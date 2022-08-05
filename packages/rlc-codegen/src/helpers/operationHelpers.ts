@@ -4,6 +4,7 @@ import {
   ParameterDeclarationStructure
 } from "ts-morph";
 import { Methods, PathParameter } from "../interfaces.js";
+import { pascalCase } from "./pascalCase.js";
 
 export function buildMethodDefinitions(
   methods: Methods,
@@ -11,24 +12,26 @@ export function buildMethodDefinitions(
 ): OptionalKind<MethodSignatureStructure>[] {
   const methodDefinitions: OptionalKind<MethodSignatureStructure>[] = [];
   for (const key of Object.keys(methods)) {
-    const method = methods[key];
-    const description = methods[key][0].description;
+    const verbMethods = methods[key];
 
-    let areAllOptional = methods[key][0].hasOptionalOptions;
+    for (const method of verbMethods) {
+      const description = method.description;
+      let areAllOptional = method.hasOptionalOptions;
 
-    methodDefinitions.push({
-      name: key,
-      ...(description && { docs: [{ description }] }),
-      parameters: [
-        ...getPathParamDefinitions(pathParams),
-        {
-          name: "options",
-          hasQuestionToken: areAllOptional,
-          type: method.map((m) => m.optionsName).join(" | ")
-        }
-      ],
-      returnType: method.map((m) => m.returnType).join(" | ")
-    });
+      methodDefinitions.push({
+        name: key,
+        ...(description && { docs: [{ description }] }),
+        parameters: [
+          ...getPathParamDefinitions(pathParams),
+          {
+            name: "options",
+            hasQuestionToken: areAllOptional,
+            type: pascalCase(method.optionsName)
+          }
+        ],
+        returnType: `StreamableMethod<${method.returnType}>`
+      });
+    }
   }
 
   return methodDefinitions;

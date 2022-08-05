@@ -1,4 +1,4 @@
-import { getAutorestOptions } from "../autorestSession";
+import { getAutorestOptions, getSession } from "../autorestSession";
 import * as path from "path";
 import {
   FunctionDeclarationOverloadStructure,
@@ -6,7 +6,8 @@ import {
   Project,
   VariableDeclarationKind
 } from "ts-morph";
-import { pathDictionary } from "./generateClientDefinition";
+import { transformPaths } from "./transforms/transformPaths";
+import { Paths } from "@azure-tools/rlc-codegen";
 
 /**
  * Generates a helper function `isUnexpected` which takes a response
@@ -15,6 +16,7 @@ import { pathDictionary } from "./generateClientDefinition";
  */
 export function generateIsUnexpectedHelper(project: Project) {
   const { srcPath } = getAutorestOptions();
+  const { model } = getSession();
   const isErrorHelper = project.createSourceFile(
     path.join(srcPath, `isUnexpected.ts`),
     undefined,
@@ -27,6 +29,12 @@ export function generateIsUnexpectedHelper(project: Project) {
   let allResponseTypes: Set<string> = new Set();
   let allErrorTypes: Set<string> = new Set();
   let overloads: OptionalKind<FunctionDeclarationOverloadStructure>[] = [];
+
+  const pathDictionary = transformPaths(model, {
+    clientImports: new Set(),
+    importedParameters: new Set(),
+    importedResponses: new Set()
+  });
 
   for (const [path, details] of Object.entries(pathDictionary)) {
     for (const [methodName, methodDetails] of Object.entries(details.methods)) {
@@ -86,7 +94,7 @@ export function generateIsUnexpectedHelper(project: Project) {
   });
 
   if (allErrorTypes.size) {
-    const hasTemplate = hasParametrizedPath();
+    const hasTemplate = hasParametrizedPath(pathDictionary);
     isErrorHelper.addFunction({
       overloads,
       isExported: true,
@@ -213,7 +221,7 @@ export function generateIsUnexpectedHelper(project: Project) {
   }
 }
 
-function hasParametrizedPath(): boolean {
+function hasParametrizedPath(pathDictionary: Paths): boolean {
   for (const [path] of Object.entries(pathDictionary)) {
     if (path.includes("/{") && path.includes("}")) {
       return true;
