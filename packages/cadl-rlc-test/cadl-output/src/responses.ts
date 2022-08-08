@@ -6,7 +6,7 @@ export interface WidgetServiceList200Response extends HttpResponse {
     status: "200";
 }
 
-export interface WidgetServiceListdefaultResponse extends HttpResponse {
+export interface WidgetServiceListDefaultResponse extends HttpResponse {
     status: string;
     body: ErrorOutput;
 }
@@ -17,7 +17,7 @@ export interface WidgetServiceRead200Response extends HttpResponse {
     body: WidgetOutput;
 }
 
-export interface WidgetServiceReaddefaultResponse extends HttpResponse {
+export interface WidgetServiceReadDefaultResponse extends HttpResponse {
     status: string;
     body: ErrorOutput;
 }
@@ -28,7 +28,7 @@ export interface WidgetServiceCreate200Response extends HttpResponse {
     body: WidgetOutput;
 }
 
-export interface WidgetServiceCreatedefaultResponse extends HttpResponse {
+export interface WidgetServiceCreateDefaultResponse extends HttpResponse {
     status: string;
     body: ErrorOutput;
 }
@@ -39,7 +39,7 @@ export interface WidgetServiceCustomGet200Response extends HttpResponse {
     body: WidgetOutput;
 }
 
-export interface WidgetServiceCustomGetdefaultResponse extends HttpResponse {
+export interface WidgetServiceCustomGetDefaultResponse extends HttpResponse {
     status: string;
     body: ErrorOutput;
 }

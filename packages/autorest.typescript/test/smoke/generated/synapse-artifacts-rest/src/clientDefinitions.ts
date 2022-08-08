@@ -95,246 +95,246 @@ import {
 } from "./parameters";
 import {
   KqlScriptsGetAll200Response,
-  KqlScriptsGetAlldefaultResponse,
+  KqlScriptsGetAllDefaultResponse,
   KqlScriptCreateOrUpdate200Response,
   KqlScriptCreateOrUpdate202Response,
-  KqlScriptCreateOrUpdatedefaultResponse,
+  KqlScriptCreateOrUpdateDefaultResponse,
   KqlScriptGetByName200Response,
-  KqlScriptGetByNamedefaultResponse,
+  KqlScriptGetByNameDefaultResponse,
   KqlScriptDeleteByName200Response,
   KqlScriptDeleteByName202Response,
   KqlScriptDeleteByName204Response,
-  KqlScriptDeleteByNamedefaultResponse,
+  KqlScriptDeleteByNameDefaultResponse,
   KqlScriptRename200Response,
   KqlScriptRename202Response,
-  KqlScriptRenamedefaultResponse,
+  KqlScriptRenameDefaultResponse,
   MetastoreRegister201Response,
-  MetastoreRegisterdefaultResponse,
+  MetastoreRegisterDefaultResponse,
   MetastoreGetDatabaseOperations200Response,
-  MetastoreGetDatabaseOperationsdefaultResponse,
+  MetastoreGetDatabaseOperationsDefaultResponse,
   MetastoreUpdate201Response,
-  MetastoreUpdatedefaultResponse,
+  MetastoreUpdateDefaultResponse,
   MetastoreDelete204Response,
-  MetastoreDeletedefaultResponse,
+  MetastoreDeleteDefaultResponse,
   SparkConfigurationGetSparkConfigurationsByWorkspace200Response,
-  SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse,
+  SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse,
   SparkConfigurationCreateOrUpdateSparkConfiguration200Response,
   SparkConfigurationCreateOrUpdateSparkConfiguration202Response,
-  SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse,
+  SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse,
   SparkConfigurationGetSparkConfiguration200Response,
   SparkConfigurationGetSparkConfiguration304Response,
-  SparkConfigurationGetSparkConfigurationdefaultResponse,
+  SparkConfigurationGetSparkConfigurationDefaultResponse,
   SparkConfigurationDeleteSparkConfiguration200Response,
   SparkConfigurationDeleteSparkConfiguration202Response,
   SparkConfigurationDeleteSparkConfiguration204Response,
-  SparkConfigurationDeleteSparkConfigurationdefaultResponse,
+  SparkConfigurationDeleteSparkConfigurationDefaultResponse,
   SparkConfigurationRenameSparkConfiguration200Response,
   SparkConfigurationRenameSparkConfiguration202Response,
-  SparkConfigurationRenameSparkConfigurationdefaultResponse,
+  SparkConfigurationRenameSparkConfigurationDefaultResponse,
   BigDataPoolsList200Response,
-  BigDataPoolsListdefaultResponse,
+  BigDataPoolsListDefaultResponse,
   BigDataPoolsGet200Response,
-  BigDataPoolsGetdefaultResponse,
+  BigDataPoolsGetDefaultResponse,
   DataFlowCreateOrUpdateDataFlow200Response,
   DataFlowCreateOrUpdateDataFlow202Response,
-  DataFlowCreateOrUpdateDataFlowdefaultResponse,
+  DataFlowCreateOrUpdateDataFlowDefaultResponse,
   DataFlowGetDataFlow200Response,
-  DataFlowGetDataFlowdefaultResponse,
+  DataFlowGetDataFlowDefaultResponse,
   DataFlowDeleteDataFlow200Response,
   DataFlowDeleteDataFlow202Response,
   DataFlowDeleteDataFlow204Response,
-  DataFlowDeleteDataFlowdefaultResponse,
+  DataFlowDeleteDataFlowDefaultResponse,
   DataFlowRenameDataFlow200Response,
   DataFlowRenameDataFlow202Response,
-  DataFlowRenameDataFlowdefaultResponse,
+  DataFlowRenameDataFlowDefaultResponse,
   DataFlowGetDataFlowsByWorkspace200Response,
-  DataFlowGetDataFlowsByWorkspacedefaultResponse,
+  DataFlowGetDataFlowsByWorkspaceDefaultResponse,
   DataFlowDebugSessionCreateDataFlowDebugSession200Response,
   DataFlowDebugSessionCreateDataFlowDebugSession202Response,
-  DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse,
+  DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse,
   DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response,
-  DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse,
+  DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse,
   DataFlowDebugSessionAddDataFlow200Response,
-  DataFlowDebugSessionAddDataFlowdefaultResponse,
+  DataFlowDebugSessionAddDataFlowDefaultResponse,
   DataFlowDebugSessionDeleteDataFlowDebugSession200Response,
-  DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse,
+  DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse,
   DataFlowDebugSessionExecuteCommand200Response,
   DataFlowDebugSessionExecuteCommand202Response,
-  DataFlowDebugSessionExecuteCommanddefaultResponse,
+  DataFlowDebugSessionExecuteCommandDefaultResponse,
   DatasetGetDatasetsByWorkspace200Response,
-  DatasetGetDatasetsByWorkspacedefaultResponse,
+  DatasetGetDatasetsByWorkspaceDefaultResponse,
   DatasetCreateOrUpdateDataset200Response,
   DatasetCreateOrUpdateDataset202Response,
-  DatasetCreateOrUpdateDatasetdefaultResponse,
+  DatasetCreateOrUpdateDatasetDefaultResponse,
   DatasetGetDataset200Response,
   DatasetGetDataset304Response,
-  DatasetGetDatasetdefaultResponse,
+  DatasetGetDatasetDefaultResponse,
   DatasetDeleteDataset200Response,
   DatasetDeleteDataset202Response,
   DatasetDeleteDataset204Response,
-  DatasetDeleteDatasetdefaultResponse,
+  DatasetDeleteDatasetDefaultResponse,
   DatasetRenameDataset200Response,
   DatasetRenameDataset202Response,
-  DatasetRenameDatasetdefaultResponse,
+  DatasetRenameDatasetDefaultResponse,
   WorkspaceGitRepoManagementGetGitHubAccessToken200Response,
   IntegrationRuntimesList200Response,
-  IntegrationRuntimesListdefaultResponse,
+  IntegrationRuntimesListDefaultResponse,
   IntegrationRuntimesGet200Response,
-  IntegrationRuntimesGetdefaultResponse,
+  IntegrationRuntimesGetDefaultResponse,
   LibraryList200Response,
-  LibraryListdefaultResponse,
+  LibraryListDefaultResponse,
   LibraryFlush200Response,
   LibraryFlush202Response,
-  LibraryFlushdefaultResponse,
+  LibraryFlushDefaultResponse,
   LibraryGetOperationResult200Response,
   LibraryGetOperationResult202Response,
-  LibraryGetOperationResultdefaultResponse,
+  LibraryGetOperationResultDefaultResponse,
   LibraryDelete200Response,
   LibraryDelete202Response,
   LibraryDelete409Response,
-  LibraryDeletedefaultResponse,
+  LibraryDeleteDefaultResponse,
   LibraryGet200Response,
   LibraryGet304Response,
-  LibraryGetdefaultResponse,
+  LibraryGetDefaultResponse,
   LibraryCreate200Response,
   LibraryCreate202Response,
-  LibraryCreatedefaultResponse,
+  LibraryCreateDefaultResponse,
   LibraryAppend201Response,
-  LibraryAppenddefaultResponse,
+  LibraryAppendDefaultResponse,
   LinkedServiceGetLinkedServicesByWorkspace200Response,
-  LinkedServiceGetLinkedServicesByWorkspacedefaultResponse,
+  LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse,
   LinkedServiceCreateOrUpdateLinkedService200Response,
   LinkedServiceCreateOrUpdateLinkedService202Response,
-  LinkedServiceCreateOrUpdateLinkedServicedefaultResponse,
+  LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse,
   LinkedServiceGetLinkedService200Response,
   LinkedServiceGetLinkedService304Response,
-  LinkedServiceGetLinkedServicedefaultResponse,
+  LinkedServiceGetLinkedServiceDefaultResponse,
   LinkedServiceDeleteLinkedService200Response,
   LinkedServiceDeleteLinkedService202Response,
   LinkedServiceDeleteLinkedService204Response,
-  LinkedServiceDeleteLinkedServicedefaultResponse,
+  LinkedServiceDeleteLinkedServiceDefaultResponse,
   LinkedServiceRenameLinkedService200Response,
   LinkedServiceRenameLinkedService202Response,
-  LinkedServiceRenameLinkedServicedefaultResponse,
+  LinkedServiceRenameLinkedServiceDefaultResponse,
   NotebookGetNotebooksByWorkspace200Response,
-  NotebookGetNotebooksByWorkspacedefaultResponse,
+  NotebookGetNotebooksByWorkspaceDefaultResponse,
   NotebookGetNotebookSummaryByWorkSpace200Response,
-  NotebookGetNotebookSummaryByWorkSpacedefaultResponse,
+  NotebookGetNotebookSummaryByWorkSpaceDefaultResponse,
   NotebookCreateOrUpdateNotebook200Response,
   NotebookCreateOrUpdateNotebook202Response,
-  NotebookCreateOrUpdateNotebookdefaultResponse,
+  NotebookCreateOrUpdateNotebookDefaultResponse,
   NotebookGetNotebook200Response,
   NotebookGetNotebook304Response,
-  NotebookGetNotebookdefaultResponse,
+  NotebookGetNotebookDefaultResponse,
   NotebookDeleteNotebook200Response,
   NotebookDeleteNotebook202Response,
   NotebookDeleteNotebook204Response,
-  NotebookDeleteNotebookdefaultResponse,
+  NotebookDeleteNotebookDefaultResponse,
   NotebookRenameNotebook200Response,
   NotebookRenameNotebook202Response,
-  NotebookRenameNotebookdefaultResponse,
+  NotebookRenameNotebookDefaultResponse,
   NotebookOperationResultGet200Response,
   NotebookOperationResultGet201Response,
   NotebookOperationResultGet202Response,
   NotebookOperationResultGet204Response,
-  NotebookOperationResultGetdefaultResponse,
+  NotebookOperationResultGetDefaultResponse,
   PipelineGetPipelinesByWorkspace200Response,
-  PipelineGetPipelinesByWorkspacedefaultResponse,
+  PipelineGetPipelinesByWorkspaceDefaultResponse,
   PipelineCreateOrUpdatePipeline200Response,
   PipelineCreateOrUpdatePipeline202Response,
-  PipelineCreateOrUpdatePipelinedefaultResponse,
+  PipelineCreateOrUpdatePipelineDefaultResponse,
   PipelineGetPipeline200Response,
   PipelineGetPipeline304Response,
-  PipelineGetPipelinedefaultResponse,
+  PipelineGetPipelineDefaultResponse,
   PipelineDeletePipeline200Response,
   PipelineDeletePipeline202Response,
   PipelineDeletePipeline204Response,
-  PipelineDeletePipelinedefaultResponse,
+  PipelineDeletePipelineDefaultResponse,
   PipelineRenamePipeline200Response,
   PipelineRenamePipeline202Response,
-  PipelineRenamePipelinedefaultResponse,
+  PipelineRenamePipelineDefaultResponse,
   PipelineCreatePipelineRun202Response,
-  PipelineCreatePipelineRundefaultResponse,
+  PipelineCreatePipelineRunDefaultResponse,
   PipelineRunQueryPipelineRunsByWorkspace200Response,
-  PipelineRunQueryPipelineRunsByWorkspacedefaultResponse,
+  PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse,
   PipelineRunGetPipelineRun200Response,
-  PipelineRunGetPipelineRundefaultResponse,
+  PipelineRunGetPipelineRunDefaultResponse,
   PipelineRunQueryActivityRuns200Response,
-  PipelineRunQueryActivityRunsdefaultResponse,
+  PipelineRunQueryActivityRunsDefaultResponse,
   PipelineRunCancelPipelineRun200Response,
-  PipelineRunCancelPipelineRundefaultResponse,
+  PipelineRunCancelPipelineRunDefaultResponse,
   SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response,
-  SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse,
+  SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse,
   SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response,
   SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response,
-  SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionGetSparkJobDefinition200Response,
   SparkJobDefinitionGetSparkJobDefinition304Response,
-  SparkJobDefinitionGetSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionGetSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionDeleteSparkJobDefinition200Response,
   SparkJobDefinitionDeleteSparkJobDefinition202Response,
   SparkJobDefinitionDeleteSparkJobDefinition204Response,
-  SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionExecuteSparkJobDefinition200Response,
   SparkJobDefinitionExecuteSparkJobDefinition202Response,
-  SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionRenameSparkJobDefinition200Response,
   SparkJobDefinitionRenameSparkJobDefinition202Response,
-  SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionDebugSparkJobDefinition200Response,
   SparkJobDefinitionDebugSparkJobDefinition202Response,
-  SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse,
   SqlPoolsList200Response,
-  SqlPoolsListdefaultResponse,
+  SqlPoolsListDefaultResponse,
   SqlPoolsGet200Response,
-  SqlPoolsGetdefaultResponse,
+  SqlPoolsGetDefaultResponse,
   SqlScriptGetSqlScriptsByWorkspace200Response,
-  SqlScriptGetSqlScriptsByWorkspacedefaultResponse,
+  SqlScriptGetSqlScriptsByWorkspaceDefaultResponse,
   SqlScriptCreateOrUpdateSqlScript200Response,
   SqlScriptCreateOrUpdateSqlScript202Response,
-  SqlScriptCreateOrUpdateSqlScriptdefaultResponse,
+  SqlScriptCreateOrUpdateSqlScriptDefaultResponse,
   SqlScriptGetSqlScript200Response,
   SqlScriptGetSqlScript304Response,
-  SqlScriptGetSqlScriptdefaultResponse,
+  SqlScriptGetSqlScriptDefaultResponse,
   SqlScriptDeleteSqlScript200Response,
   SqlScriptDeleteSqlScript202Response,
   SqlScriptDeleteSqlScript204Response,
-  SqlScriptDeleteSqlScriptdefaultResponse,
+  SqlScriptDeleteSqlScriptDefaultResponse,
   SqlScriptRenameSqlScript200Response,
   SqlScriptRenameSqlScript202Response,
-  SqlScriptRenameSqlScriptdefaultResponse,
+  SqlScriptRenameSqlScriptDefaultResponse,
   TriggerGetTriggersByWorkspace200Response,
-  TriggerGetTriggersByWorkspacedefaultResponse,
+  TriggerGetTriggersByWorkspaceDefaultResponse,
   TriggerCreateOrUpdateTrigger200Response,
   TriggerCreateOrUpdateTrigger202Response,
-  TriggerCreateOrUpdateTriggerdefaultResponse,
+  TriggerCreateOrUpdateTriggerDefaultResponse,
   TriggerGetTrigger200Response,
   TriggerGetTrigger304Response,
-  TriggerGetTriggerdefaultResponse,
+  TriggerGetTriggerDefaultResponse,
   TriggerDeleteTrigger200Response,
   TriggerDeleteTrigger202Response,
   TriggerDeleteTrigger204Response,
-  TriggerDeleteTriggerdefaultResponse,
+  TriggerDeleteTriggerDefaultResponse,
   TriggerSubscribeTriggerToEvents200Response,
   TriggerSubscribeTriggerToEvents202Response,
-  TriggerSubscribeTriggerToEventsdefaultResponse,
+  TriggerSubscribeTriggerToEventsDefaultResponse,
   TriggerGetEventSubscriptionStatus200Response,
-  TriggerGetEventSubscriptionStatusdefaultResponse,
+  TriggerGetEventSubscriptionStatusDefaultResponse,
   TriggerUnsubscribeTriggerFromEvents200Response,
   TriggerUnsubscribeTriggerFromEvents202Response,
-  TriggerUnsubscribeTriggerFromEventsdefaultResponse,
+  TriggerUnsubscribeTriggerFromEventsDefaultResponse,
   TriggerStartTrigger200Response,
-  TriggerStartTriggerdefaultResponse,
+  TriggerStartTriggerDefaultResponse,
   TriggerStopTrigger200Response,
-  TriggerStopTriggerdefaultResponse,
+  TriggerStopTriggerDefaultResponse,
   TriggerRunRerunTriggerInstance200Response,
-  TriggerRunRerunTriggerInstancedefaultResponse,
+  TriggerRunRerunTriggerInstanceDefaultResponse,
   TriggerRunCancelTriggerInstance200Response,
-  TriggerRunCancelTriggerInstancedefaultResponse,
+  TriggerRunCancelTriggerInstanceDefaultResponse,
   TriggerRunQueryTriggerRunsByWorkspace200Response,
-  TriggerRunQueryTriggerRunsByWorkspacedefaultResponse,
+  TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse,
   WorkspaceGet200Response,
-  WorkspaceGetdefaultResponse
+  WorkspaceGetDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -344,7 +344,7 @@ export interface KqlScriptsOperations {
   getAll(
     options?: KqlScriptsGetAllParameters
   ): StreamableMethod<
-    KqlScriptsGetAll200Response | KqlScriptsGetAlldefaultResponse
+    KqlScriptsGetAll200Response | KqlScriptsGetAllDefaultResponse
   >;
 }
 
@@ -357,14 +357,14 @@ export interface KqlScriptOperations {
   ): StreamableMethod<
     | KqlScriptCreateOrUpdate200Response
     | KqlScriptCreateOrUpdate202Response
-    | KqlScriptCreateOrUpdatedefaultResponse
+    | KqlScriptCreateOrUpdateDefaultResponse
   >;
   /** Get KQL script by name */
   getByName(
     kqlScriptName: string,
     options?: KqlScriptGetByNameParameters
   ): StreamableMethod<
-    KqlScriptGetByName200Response | KqlScriptGetByNamedefaultResponse
+    KqlScriptGetByName200Response | KqlScriptGetByNameDefaultResponse
   >;
   /** Delete KQL script by name */
   deleteByName(
@@ -374,7 +374,7 @@ export interface KqlScriptOperations {
     | KqlScriptDeleteByName200Response
     | KqlScriptDeleteByName202Response
     | KqlScriptDeleteByName204Response
-    | KqlScriptDeleteByNamedefaultResponse
+    | KqlScriptDeleteByNameDefaultResponse
   >;
   /** Rename KQL script */
   rename(
@@ -383,7 +383,7 @@ export interface KqlScriptOperations {
   ): StreamableMethod<
     | KqlScriptRename200Response
     | KqlScriptRename202Response
-    | KqlScriptRenamedefaultResponse
+    | KqlScriptRenameDefaultResponse
   >;
 }
 
@@ -394,7 +394,7 @@ export interface MetastoreOperations {
     id: string,
     options: MetastoreRegisterParameters
   ): StreamableMethod<
-    MetastoreRegister201Response | MetastoreRegisterdefaultResponse
+    MetastoreRegister201Response | MetastoreRegisterDefaultResponse
   >;
   /** Gets status of the database */
   getDatabaseOperations(
@@ -402,21 +402,21 @@ export interface MetastoreOperations {
     options?: MetastoreGetDatabaseOperationsParameters
   ): StreamableMethod<
     | MetastoreGetDatabaseOperations200Response
-    | MetastoreGetDatabaseOperationsdefaultResponse
+    | MetastoreGetDatabaseOperationsDefaultResponse
   >;
   /** Update files in Syms */
   update(
     id: string,
     options: MetastoreUpdateParameters
   ): StreamableMethod<
-    MetastoreUpdate201Response | MetastoreUpdatedefaultResponse
+    MetastoreUpdate201Response | MetastoreUpdateDefaultResponse
   >;
   /** Remove files in Syms */
   delete(
     id: string,
     options?: MetastoreDeleteParameters
   ): StreamableMethod<
-    MetastoreDelete204Response | MetastoreDeletedefaultResponse
+    MetastoreDelete204Response | MetastoreDeleteDefaultResponse
   >;
 }
 
@@ -427,7 +427,7 @@ export interface SparkConfigurationOperations {
     options?: SparkConfigurationGetSparkConfigurationsByWorkspaceParameters
   ): StreamableMethod<
     | SparkConfigurationGetSparkConfigurationsByWorkspace200Response
-    | SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
+    | SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse
   >;
   /** Creates or updates a sparkconfiguration. */
   createOrUpdateSparkConfiguration(
@@ -436,7 +436,7 @@ export interface SparkConfigurationOperations {
   ): StreamableMethod<
     | SparkConfigurationCreateOrUpdateSparkConfiguration200Response
     | SparkConfigurationCreateOrUpdateSparkConfiguration202Response
-    | SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
+    | SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse
   >;
   /** Gets a sparkConfiguration. */
   getSparkConfiguration(
@@ -445,7 +445,7 @@ export interface SparkConfigurationOperations {
   ): StreamableMethod<
     | SparkConfigurationGetSparkConfiguration200Response
     | SparkConfigurationGetSparkConfiguration304Response
-    | SparkConfigurationGetSparkConfigurationdefaultResponse
+    | SparkConfigurationGetSparkConfigurationDefaultResponse
   >;
   /** Deletes a sparkConfiguration. */
   deleteSparkConfiguration(
@@ -455,7 +455,7 @@ export interface SparkConfigurationOperations {
     | SparkConfigurationDeleteSparkConfiguration200Response
     | SparkConfigurationDeleteSparkConfiguration202Response
     | SparkConfigurationDeleteSparkConfiguration204Response
-    | SparkConfigurationDeleteSparkConfigurationdefaultResponse
+    | SparkConfigurationDeleteSparkConfigurationDefaultResponse
   >;
   /** Renames a sparkConfiguration. */
   renameSparkConfiguration(
@@ -464,7 +464,7 @@ export interface SparkConfigurationOperations {
   ): StreamableMethod<
     | SparkConfigurationRenameSparkConfiguration200Response
     | SparkConfigurationRenameSparkConfiguration202Response
-    | SparkConfigurationRenameSparkConfigurationdefaultResponse
+    | SparkConfigurationRenameSparkConfigurationDefaultResponse
   >;
 }
 
@@ -474,14 +474,14 @@ export interface BigDataPoolsOperations {
   list(
     options?: BigDataPoolsListParameters
   ): StreamableMethod<
-    BigDataPoolsList200Response | BigDataPoolsListdefaultResponse
+    BigDataPoolsList200Response | BigDataPoolsListDefaultResponse
   >;
   /** Get Big Data Pool */
   get(
     bigDataPoolName: string,
     options?: BigDataPoolsGetParameters
   ): StreamableMethod<
-    BigDataPoolsGet200Response | BigDataPoolsGetdefaultResponse
+    BigDataPoolsGet200Response | BigDataPoolsGetDefaultResponse
   >;
 }
 
@@ -494,14 +494,14 @@ export interface DataFlowOperations {
   ): StreamableMethod<
     | DataFlowCreateOrUpdateDataFlow200Response
     | DataFlowCreateOrUpdateDataFlow202Response
-    | DataFlowCreateOrUpdateDataFlowdefaultResponse
+    | DataFlowCreateOrUpdateDataFlowDefaultResponse
   >;
   /** Gets a data flow. */
   getDataFlow(
     dataFlowName: string,
     options?: DataFlowGetDataFlowParameters
   ): StreamableMethod<
-    DataFlowGetDataFlow200Response | DataFlowGetDataFlowdefaultResponse
+    DataFlowGetDataFlow200Response | DataFlowGetDataFlowDefaultResponse
   >;
   /** Deletes a data flow. */
   deleteDataFlow(
@@ -511,7 +511,7 @@ export interface DataFlowOperations {
     | DataFlowDeleteDataFlow200Response
     | DataFlowDeleteDataFlow202Response
     | DataFlowDeleteDataFlow204Response
-    | DataFlowDeleteDataFlowdefaultResponse
+    | DataFlowDeleteDataFlowDefaultResponse
   >;
   /** Renames a dataflow. */
   renameDataFlow(
@@ -520,14 +520,14 @@ export interface DataFlowOperations {
   ): StreamableMethod<
     | DataFlowRenameDataFlow200Response
     | DataFlowRenameDataFlow202Response
-    | DataFlowRenameDataFlowdefaultResponse
+    | DataFlowRenameDataFlowDefaultResponse
   >;
   /** Lists data flows. */
   getDataFlowsByWorkspace(
     options?: DataFlowGetDataFlowsByWorkspaceParameters
   ): StreamableMethod<
     | DataFlowGetDataFlowsByWorkspace200Response
-    | DataFlowGetDataFlowsByWorkspacedefaultResponse
+    | DataFlowGetDataFlowsByWorkspaceDefaultResponse
   >;
 }
 
@@ -539,28 +539,28 @@ export interface DataFlowDebugSessionOperations {
   ): StreamableMethod<
     | DataFlowDebugSessionCreateDataFlowDebugSession200Response
     | DataFlowDebugSessionCreateDataFlowDebugSession202Response
-    | DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
+    | DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse
   >;
   /** Query all active data flow debug sessions. */
   queryDataFlowDebugSessionsByWorkspace(
     options?: DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceParameters
   ): StreamableMethod<
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response
-    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
+    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse
   >;
   /** Add a data flow into debug session. */
   addDataFlow(
     options: DataFlowDebugSessionAddDataFlowParameters
   ): StreamableMethod<
     | DataFlowDebugSessionAddDataFlow200Response
-    | DataFlowDebugSessionAddDataFlowdefaultResponse
+    | DataFlowDebugSessionAddDataFlowDefaultResponse
   >;
   /** Deletes a data flow debug session. */
   deleteDataFlowDebugSession(
     options: DataFlowDebugSessionDeleteDataFlowDebugSessionParameters
   ): StreamableMethod<
     | DataFlowDebugSessionDeleteDataFlowDebugSession200Response
-    | DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
+    | DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse
   >;
   /** Execute a data flow debug command. */
   executeCommand(
@@ -568,7 +568,7 @@ export interface DataFlowDebugSessionOperations {
   ): StreamableMethod<
     | DataFlowDebugSessionExecuteCommand200Response
     | DataFlowDebugSessionExecuteCommand202Response
-    | DataFlowDebugSessionExecuteCommanddefaultResponse
+    | DataFlowDebugSessionExecuteCommandDefaultResponse
   >;
 }
 
@@ -579,7 +579,7 @@ export interface DatasetOperations {
     options?: DatasetGetDatasetsByWorkspaceParameters
   ): StreamableMethod<
     | DatasetGetDatasetsByWorkspace200Response
-    | DatasetGetDatasetsByWorkspacedefaultResponse
+    | DatasetGetDatasetsByWorkspaceDefaultResponse
   >;
   /** Creates or updates a dataset. */
   createOrUpdateDataset(
@@ -588,7 +588,7 @@ export interface DatasetOperations {
   ): StreamableMethod<
     | DatasetCreateOrUpdateDataset200Response
     | DatasetCreateOrUpdateDataset202Response
-    | DatasetCreateOrUpdateDatasetdefaultResponse
+    | DatasetCreateOrUpdateDatasetDefaultResponse
   >;
   /** Gets a dataset. */
   getDataset(
@@ -597,7 +597,7 @@ export interface DatasetOperations {
   ): StreamableMethod<
     | DatasetGetDataset200Response
     | DatasetGetDataset304Response
-    | DatasetGetDatasetdefaultResponse
+    | DatasetGetDatasetDefaultResponse
   >;
   /** Deletes a dataset. */
   deleteDataset(
@@ -607,7 +607,7 @@ export interface DatasetOperations {
     | DatasetDeleteDataset200Response
     | DatasetDeleteDataset202Response
     | DatasetDeleteDataset204Response
-    | DatasetDeleteDatasetdefaultResponse
+    | DatasetDeleteDatasetDefaultResponse
   >;
   /** Renames a dataset. */
   renameDataset(
@@ -616,7 +616,7 @@ export interface DatasetOperations {
   ): StreamableMethod<
     | DatasetRenameDataset200Response
     | DatasetRenameDataset202Response
-    | DatasetRenameDatasetdefaultResponse
+    | DatasetRenameDatasetDefaultResponse
   >;
 }
 
@@ -636,14 +636,14 @@ export interface IntegrationRuntimesOperations {
   list(
     options?: IntegrationRuntimesListParameters
   ): StreamableMethod<
-    IntegrationRuntimesList200Response | IntegrationRuntimesListdefaultResponse
+    IntegrationRuntimesList200Response | IntegrationRuntimesListDefaultResponse
   >;
   /** Get Integration Runtime */
   get(
     integrationRuntimeName: string,
     options?: IntegrationRuntimesGetParameters
   ): StreamableMethod<
-    IntegrationRuntimesGet200Response | IntegrationRuntimesGetdefaultResponse
+    IntegrationRuntimesGet200Response | IntegrationRuntimesGetDefaultResponse
   >;
 }
 
@@ -652,7 +652,7 @@ export interface LibraryOperations {
   /** Lists Library. */
   list(
     options?: LibraryListParameters
-  ): StreamableMethod<LibraryList200Response | LibraryListdefaultResponse>;
+  ): StreamableMethod<LibraryList200Response | LibraryListDefaultResponse>;
   /** Flush Library */
   flush(
     libraryName: string,
@@ -660,7 +660,7 @@ export interface LibraryOperations {
   ): StreamableMethod<
     | LibraryFlush200Response
     | LibraryFlush202Response
-    | LibraryFlushdefaultResponse
+    | LibraryFlushDefaultResponse
   >;
   /** Get Operation result for Library */
   getOperationResult(
@@ -669,7 +669,7 @@ export interface LibraryOperations {
   ): StreamableMethod<
     | LibraryGetOperationResult200Response
     | LibraryGetOperationResult202Response
-    | LibraryGetOperationResultdefaultResponse
+    | LibraryGetOperationResultDefaultResponse
   >;
   /** Delete Library */
   delete(
@@ -679,14 +679,14 @@ export interface LibraryOperations {
     | LibraryDelete200Response
     | LibraryDelete202Response
     | LibraryDelete409Response
-    | LibraryDeletedefaultResponse
+    | LibraryDeleteDefaultResponse
   >;
   /** Get Library */
   get(
     libraryName: string,
     options?: LibraryGetParameters
   ): StreamableMethod<
-    LibraryGet200Response | LibraryGet304Response | LibraryGetdefaultResponse
+    LibraryGet200Response | LibraryGet304Response | LibraryGetDefaultResponse
   >;
   /** Creates a library with the library name. */
   create(
@@ -695,13 +695,13 @@ export interface LibraryOperations {
   ): StreamableMethod<
     | LibraryCreate200Response
     | LibraryCreate202Response
-    | LibraryCreatedefaultResponse
+    | LibraryCreateDefaultResponse
   >;
   /** Append the content to the library resource created using the create operation. The maximum content size is 4MiB. Content larger than 4MiB must be appended in 4MiB chunks */
   append(
     libraryName: string,
     options: LibraryAppendParameters
-  ): StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+  ): StreamableMethod<LibraryAppend201Response | LibraryAppendDefaultResponse>;
 }
 
 /** Contains operations for LinkedService operations */
@@ -711,7 +711,7 @@ export interface LinkedServiceOperations {
     options?: LinkedServiceGetLinkedServicesByWorkspaceParameters
   ): StreamableMethod<
     | LinkedServiceGetLinkedServicesByWorkspace200Response
-    | LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
+    | LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse
   >;
   /** Creates or updates a linked service. */
   createOrUpdateLinkedService(
@@ -720,7 +720,7 @@ export interface LinkedServiceOperations {
   ): StreamableMethod<
     | LinkedServiceCreateOrUpdateLinkedService200Response
     | LinkedServiceCreateOrUpdateLinkedService202Response
-    | LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
+    | LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse
   >;
   /** Gets a linked service. */
   getLinkedService(
@@ -729,7 +729,7 @@ export interface LinkedServiceOperations {
   ): StreamableMethod<
     | LinkedServiceGetLinkedService200Response
     | LinkedServiceGetLinkedService304Response
-    | LinkedServiceGetLinkedServicedefaultResponse
+    | LinkedServiceGetLinkedServiceDefaultResponse
   >;
   /** Deletes a linked service. */
   deleteLinkedService(
@@ -739,7 +739,7 @@ export interface LinkedServiceOperations {
     | LinkedServiceDeleteLinkedService200Response
     | LinkedServiceDeleteLinkedService202Response
     | LinkedServiceDeleteLinkedService204Response
-    | LinkedServiceDeleteLinkedServicedefaultResponse
+    | LinkedServiceDeleteLinkedServiceDefaultResponse
   >;
   /** Renames a linked service. */
   renameLinkedService(
@@ -748,7 +748,7 @@ export interface LinkedServiceOperations {
   ): StreamableMethod<
     | LinkedServiceRenameLinkedService200Response
     | LinkedServiceRenameLinkedService202Response
-    | LinkedServiceRenameLinkedServicedefaultResponse
+    | LinkedServiceRenameLinkedServiceDefaultResponse
   >;
 }
 
@@ -759,14 +759,14 @@ export interface NotebookOperations {
     options?: NotebookGetNotebooksByWorkspaceParameters
   ): StreamableMethod<
     | NotebookGetNotebooksByWorkspace200Response
-    | NotebookGetNotebooksByWorkspacedefaultResponse
+    | NotebookGetNotebooksByWorkspaceDefaultResponse
   >;
   /** Lists a summary of Notebooks. */
   getNotebookSummaryByWorkSpace(
     options?: NotebookGetNotebookSummaryByWorkSpaceParameters
   ): StreamableMethod<
     | NotebookGetNotebookSummaryByWorkSpace200Response
-    | NotebookGetNotebookSummaryByWorkSpacedefaultResponse
+    | NotebookGetNotebookSummaryByWorkSpaceDefaultResponse
   >;
   /** Creates or updates a Note Book. */
   createOrUpdateNotebook(
@@ -775,7 +775,7 @@ export interface NotebookOperations {
   ): StreamableMethod<
     | NotebookCreateOrUpdateNotebook200Response
     | NotebookCreateOrUpdateNotebook202Response
-    | NotebookCreateOrUpdateNotebookdefaultResponse
+    | NotebookCreateOrUpdateNotebookDefaultResponse
   >;
   /** Gets a Note Book. */
   getNotebook(
@@ -784,7 +784,7 @@ export interface NotebookOperations {
   ): StreamableMethod<
     | NotebookGetNotebook200Response
     | NotebookGetNotebook304Response
-    | NotebookGetNotebookdefaultResponse
+    | NotebookGetNotebookDefaultResponse
   >;
   /** Deletes a Note book. */
   deleteNotebook(
@@ -794,7 +794,7 @@ export interface NotebookOperations {
     | NotebookDeleteNotebook200Response
     | NotebookDeleteNotebook202Response
     | NotebookDeleteNotebook204Response
-    | NotebookDeleteNotebookdefaultResponse
+    | NotebookDeleteNotebookDefaultResponse
   >;
   /** Renames a notebook. */
   renameNotebook(
@@ -803,7 +803,7 @@ export interface NotebookOperations {
   ): StreamableMethod<
     | NotebookRenameNotebook200Response
     | NotebookRenameNotebook202Response
-    | NotebookRenameNotebookdefaultResponse
+    | NotebookRenameNotebookDefaultResponse
   >;
 }
 
@@ -818,7 +818,7 @@ export interface NotebookOperationResultOperations {
     | NotebookOperationResultGet201Response
     | NotebookOperationResultGet202Response
     | NotebookOperationResultGet204Response
-    | NotebookOperationResultGetdefaultResponse
+    | NotebookOperationResultGetDefaultResponse
   >;
 }
 
@@ -829,7 +829,7 @@ export interface PipelineOperations {
     options?: PipelineGetPipelinesByWorkspaceParameters
   ): StreamableMethod<
     | PipelineGetPipelinesByWorkspace200Response
-    | PipelineGetPipelinesByWorkspacedefaultResponse
+    | PipelineGetPipelinesByWorkspaceDefaultResponse
   >;
   /** Creates or updates a pipeline. */
   createOrUpdatePipeline(
@@ -838,7 +838,7 @@ export interface PipelineOperations {
   ): StreamableMethod<
     | PipelineCreateOrUpdatePipeline200Response
     | PipelineCreateOrUpdatePipeline202Response
-    | PipelineCreateOrUpdatePipelinedefaultResponse
+    | PipelineCreateOrUpdatePipelineDefaultResponse
   >;
   /** Gets a pipeline. */
   getPipeline(
@@ -847,7 +847,7 @@ export interface PipelineOperations {
   ): StreamableMethod<
     | PipelineGetPipeline200Response
     | PipelineGetPipeline304Response
-    | PipelineGetPipelinedefaultResponse
+    | PipelineGetPipelineDefaultResponse
   >;
   /** Deletes a pipeline. */
   deletePipeline(
@@ -857,7 +857,7 @@ export interface PipelineOperations {
     | PipelineDeletePipeline200Response
     | PipelineDeletePipeline202Response
     | PipelineDeletePipeline204Response
-    | PipelineDeletePipelinedefaultResponse
+    | PipelineDeletePipelineDefaultResponse
   >;
   /** Renames a pipeline. */
   renamePipeline(
@@ -866,7 +866,7 @@ export interface PipelineOperations {
   ): StreamableMethod<
     | PipelineRenamePipeline200Response
     | PipelineRenamePipeline202Response
-    | PipelineRenamePipelinedefaultResponse
+    | PipelineRenamePipelineDefaultResponse
   >;
   /** Creates a run of a pipeline. */
   createPipelineRun(
@@ -874,7 +874,7 @@ export interface PipelineOperations {
     options?: PipelineCreatePipelineRunParameters
   ): StreamableMethod<
     | PipelineCreatePipelineRun202Response
-    | PipelineCreatePipelineRundefaultResponse
+    | PipelineCreatePipelineRunDefaultResponse
   >;
 }
 
@@ -885,7 +885,7 @@ export interface PipelineRunOperations {
     options: PipelineRunQueryPipelineRunsByWorkspaceParameters
   ): StreamableMethod<
     | PipelineRunQueryPipelineRunsByWorkspace200Response
-    | PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
+    | PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse
   >;
   /** Get a pipeline run by its run ID. */
   getPipelineRun(
@@ -893,7 +893,7 @@ export interface PipelineRunOperations {
     options?: PipelineRunGetPipelineRunParameters
   ): StreamableMethod<
     | PipelineRunGetPipelineRun200Response
-    | PipelineRunGetPipelineRundefaultResponse
+    | PipelineRunGetPipelineRunDefaultResponse
   >;
   /** Query activity runs based on input filter conditions. */
   queryActivityRuns(
@@ -902,7 +902,7 @@ export interface PipelineRunOperations {
     options: PipelineRunQueryActivityRunsParameters
   ): StreamableMethod<
     | PipelineRunQueryActivityRuns200Response
-    | PipelineRunQueryActivityRunsdefaultResponse
+    | PipelineRunQueryActivityRunsDefaultResponse
   >;
   /** Cancel a pipeline run by its run ID. */
   cancelPipelineRun(
@@ -910,7 +910,7 @@ export interface PipelineRunOperations {
     options?: PipelineRunCancelPipelineRunParameters
   ): StreamableMethod<
     | PipelineRunCancelPipelineRun200Response
-    | PipelineRunCancelPipelineRundefaultResponse
+    | PipelineRunCancelPipelineRunDefaultResponse
   >;
 }
 
@@ -921,7 +921,7 @@ export interface SparkJobDefinitionOperations {
     options?: SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceParameters
   ): StreamableMethod<
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
-    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
+    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse
   >;
   /** Creates or updates a Spark Job Definition. */
   createOrUpdateSparkJobDefinition(
@@ -930,7 +930,7 @@ export interface SparkJobDefinitionOperations {
   ): StreamableMethod<
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
-    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse
   >;
   /** Gets a Spark Job Definition. */
   getSparkJobDefinition(
@@ -939,7 +939,7 @@ export interface SparkJobDefinitionOperations {
   ): StreamableMethod<
     | SparkJobDefinitionGetSparkJobDefinition200Response
     | SparkJobDefinitionGetSparkJobDefinition304Response
-    | SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionGetSparkJobDefinitionDefaultResponse
   >;
   /** Deletes a Spark Job Definition. */
   deleteSparkJobDefinition(
@@ -949,7 +949,7 @@ export interface SparkJobDefinitionOperations {
     | SparkJobDefinitionDeleteSparkJobDefinition200Response
     | SparkJobDefinitionDeleteSparkJobDefinition202Response
     | SparkJobDefinitionDeleteSparkJobDefinition204Response
-    | SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse
   >;
   /** Executes the spark job definition. */
   executeSparkJobDefinition(
@@ -958,7 +958,7 @@ export interface SparkJobDefinitionOperations {
   ): StreamableMethod<
     | SparkJobDefinitionExecuteSparkJobDefinition200Response
     | SparkJobDefinitionExecuteSparkJobDefinition202Response
-    | SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse
   >;
   /** Renames a sparkJobDefinition. */
   renameSparkJobDefinition(
@@ -967,7 +967,7 @@ export interface SparkJobDefinitionOperations {
   ): StreamableMethod<
     | SparkJobDefinitionRenameSparkJobDefinition200Response
     | SparkJobDefinitionRenameSparkJobDefinition202Response
-    | SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse
   >;
   /** Debug the spark job definition. */
   debugSparkJobDefinition(
@@ -975,7 +975,7 @@ export interface SparkJobDefinitionOperations {
   ): StreamableMethod<
     | SparkJobDefinitionDebugSparkJobDefinition200Response
     | SparkJobDefinitionDebugSparkJobDefinition202Response
-    | SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse
   >;
 }
 
@@ -984,12 +984,12 @@ export interface SqlPoolsOperations {
   /** List Sql Pools */
   list(
     options?: SqlPoolsListParameters
-  ): StreamableMethod<SqlPoolsList200Response | SqlPoolsListdefaultResponse>;
+  ): StreamableMethod<SqlPoolsList200Response | SqlPoolsListDefaultResponse>;
   /** Get Sql Pool */
   get(
     sqlPoolName: string,
     options?: SqlPoolsGetParameters
-  ): StreamableMethod<SqlPoolsGet200Response | SqlPoolsGetdefaultResponse>;
+  ): StreamableMethod<SqlPoolsGet200Response | SqlPoolsGetDefaultResponse>;
 }
 
 /** Contains operations for SqlScript operations */
@@ -999,7 +999,7 @@ export interface SqlScriptOperations {
     options?: SqlScriptGetSqlScriptsByWorkspaceParameters
   ): StreamableMethod<
     | SqlScriptGetSqlScriptsByWorkspace200Response
-    | SqlScriptGetSqlScriptsByWorkspacedefaultResponse
+    | SqlScriptGetSqlScriptsByWorkspaceDefaultResponse
   >;
   /** Creates or updates a Sql Script. */
   createOrUpdateSqlScript(
@@ -1008,7 +1008,7 @@ export interface SqlScriptOperations {
   ): StreamableMethod<
     | SqlScriptCreateOrUpdateSqlScript200Response
     | SqlScriptCreateOrUpdateSqlScript202Response
-    | SqlScriptCreateOrUpdateSqlScriptdefaultResponse
+    | SqlScriptCreateOrUpdateSqlScriptDefaultResponse
   >;
   /** Gets a sql script. */
   getSqlScript(
@@ -1017,7 +1017,7 @@ export interface SqlScriptOperations {
   ): StreamableMethod<
     | SqlScriptGetSqlScript200Response
     | SqlScriptGetSqlScript304Response
-    | SqlScriptGetSqlScriptdefaultResponse
+    | SqlScriptGetSqlScriptDefaultResponse
   >;
   /** Deletes a Sql Script. */
   deleteSqlScript(
@@ -1027,7 +1027,7 @@ export interface SqlScriptOperations {
     | SqlScriptDeleteSqlScript200Response
     | SqlScriptDeleteSqlScript202Response
     | SqlScriptDeleteSqlScript204Response
-    | SqlScriptDeleteSqlScriptdefaultResponse
+    | SqlScriptDeleteSqlScriptDefaultResponse
   >;
   /** Renames a sqlScript. */
   renameSqlScript(
@@ -1036,7 +1036,7 @@ export interface SqlScriptOperations {
   ): StreamableMethod<
     | SqlScriptRenameSqlScript200Response
     | SqlScriptRenameSqlScript202Response
-    | SqlScriptRenameSqlScriptdefaultResponse
+    | SqlScriptRenameSqlScriptDefaultResponse
   >;
 }
 
@@ -1047,7 +1047,7 @@ export interface TriggerOperations {
     options?: TriggerGetTriggersByWorkspaceParameters
   ): StreamableMethod<
     | TriggerGetTriggersByWorkspace200Response
-    | TriggerGetTriggersByWorkspacedefaultResponse
+    | TriggerGetTriggersByWorkspaceDefaultResponse
   >;
   /** Creates or updates a trigger. */
   createOrUpdateTrigger(
@@ -1056,7 +1056,7 @@ export interface TriggerOperations {
   ): StreamableMethod<
     | TriggerCreateOrUpdateTrigger200Response
     | TriggerCreateOrUpdateTrigger202Response
-    | TriggerCreateOrUpdateTriggerdefaultResponse
+    | TriggerCreateOrUpdateTriggerDefaultResponse
   >;
   /** Gets a trigger. */
   getTrigger(
@@ -1065,7 +1065,7 @@ export interface TriggerOperations {
   ): StreamableMethod<
     | TriggerGetTrigger200Response
     | TriggerGetTrigger304Response
-    | TriggerGetTriggerdefaultResponse
+    | TriggerGetTriggerDefaultResponse
   >;
   /** Deletes a trigger. */
   deleteTrigger(
@@ -1075,7 +1075,7 @@ export interface TriggerOperations {
     | TriggerDeleteTrigger200Response
     | TriggerDeleteTrigger202Response
     | TriggerDeleteTrigger204Response
-    | TriggerDeleteTriggerdefaultResponse
+    | TriggerDeleteTriggerDefaultResponse
   >;
   /** Subscribe event trigger to events. */
   subscribeTriggerToEvents(
@@ -1084,7 +1084,7 @@ export interface TriggerOperations {
   ): StreamableMethod<
     | TriggerSubscribeTriggerToEvents200Response
     | TriggerSubscribeTriggerToEvents202Response
-    | TriggerSubscribeTriggerToEventsdefaultResponse
+    | TriggerSubscribeTriggerToEventsDefaultResponse
   >;
   /** Get a trigger's event subscription status. */
   getEventSubscriptionStatus(
@@ -1092,7 +1092,7 @@ export interface TriggerOperations {
     options?: TriggerGetEventSubscriptionStatusParameters
   ): StreamableMethod<
     | TriggerGetEventSubscriptionStatus200Response
-    | TriggerGetEventSubscriptionStatusdefaultResponse
+    | TriggerGetEventSubscriptionStatusDefaultResponse
   >;
   /** Unsubscribe event trigger from events. */
   unsubscribeTriggerFromEvents(
@@ -1101,21 +1101,21 @@ export interface TriggerOperations {
   ): StreamableMethod<
     | TriggerUnsubscribeTriggerFromEvents200Response
     | TriggerUnsubscribeTriggerFromEvents202Response
-    | TriggerUnsubscribeTriggerFromEventsdefaultResponse
+    | TriggerUnsubscribeTriggerFromEventsDefaultResponse
   >;
   /** Starts a trigger. */
   startTrigger(
     triggerName: string,
     options?: TriggerStartTriggerParameters
   ): StreamableMethod<
-    TriggerStartTrigger200Response | TriggerStartTriggerdefaultResponse
+    TriggerStartTrigger200Response | TriggerStartTriggerDefaultResponse
   >;
   /** Stops a trigger. */
   stopTrigger(
     triggerName: string,
     options?: TriggerStopTriggerParameters
   ): StreamableMethod<
-    TriggerStopTrigger200Response | TriggerStopTriggerdefaultResponse
+    TriggerStopTrigger200Response | TriggerStopTriggerDefaultResponse
   >;
 }
 
@@ -1128,7 +1128,7 @@ export interface TriggerRunOperations {
     options?: TriggerRunRerunTriggerInstanceParameters
   ): StreamableMethod<
     | TriggerRunRerunTriggerInstance200Response
-    | TriggerRunRerunTriggerInstancedefaultResponse
+    | TriggerRunRerunTriggerInstanceDefaultResponse
   >;
   /** Cancel single trigger instance by runId. */
   cancelTriggerInstance(
@@ -1137,14 +1137,14 @@ export interface TriggerRunOperations {
     options?: TriggerRunCancelTriggerInstanceParameters
   ): StreamableMethod<
     | TriggerRunCancelTriggerInstance200Response
-    | TriggerRunCancelTriggerInstancedefaultResponse
+    | TriggerRunCancelTriggerInstanceDefaultResponse
   >;
   /** Query trigger runs. */
   queryTriggerRunsByWorkspace(
     options: TriggerRunQueryTriggerRunsByWorkspaceParameters
   ): StreamableMethod<
     | TriggerRunQueryTriggerRunsByWorkspace200Response
-    | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
+    | TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse
   >;
 }
 
@@ -1153,7 +1153,7 @@ export interface WorkspaceOperations {
   /** Get Workspace */
   get(
     options?: WorkspaceGetParameters
-  ): StreamableMethod<WorkspaceGet200Response | WorkspaceGetdefaultResponse>;
+  ): StreamableMethod<WorkspaceGet200Response | WorkspaceGetDefaultResponse>;
 }
 
 export interface KqlScriptsGetAll {
@@ -1161,7 +1161,7 @@ export interface KqlScriptsGetAll {
   get(
     options?: KqlScriptsGetAllParameters
   ): StreamableMethod<
-    KqlScriptsGetAll200Response | KqlScriptsGetAlldefaultResponse
+    KqlScriptsGetAll200Response | KqlScriptsGetAllDefaultResponse
   >;
 }
 
@@ -1172,13 +1172,13 @@ export interface KqlScriptCreateOrUpdate {
   ): StreamableMethod<
     | KqlScriptCreateOrUpdate200Response
     | KqlScriptCreateOrUpdate202Response
-    | KqlScriptCreateOrUpdatedefaultResponse
+    | KqlScriptCreateOrUpdateDefaultResponse
   >;
   /** Get KQL script by name */
   get(
     options?: KqlScriptGetByNameParameters
   ): StreamableMethod<
-    KqlScriptGetByName200Response | KqlScriptGetByNamedefaultResponse
+    KqlScriptGetByName200Response | KqlScriptGetByNameDefaultResponse
   >;
   /** Delete KQL script by name */
   delete(
@@ -1187,7 +1187,7 @@ export interface KqlScriptCreateOrUpdate {
     | KqlScriptDeleteByName200Response
     | KqlScriptDeleteByName202Response
     | KqlScriptDeleteByName204Response
-    | KqlScriptDeleteByNamedefaultResponse
+    | KqlScriptDeleteByNameDefaultResponse
   >;
 }
 
@@ -1198,7 +1198,7 @@ export interface KqlScriptRename {
   ): StreamableMethod<
     | KqlScriptRename200Response
     | KqlScriptRename202Response
-    | KqlScriptRenamedefaultResponse
+    | KqlScriptRenameDefaultResponse
   >;
 }
 
@@ -1207,14 +1207,14 @@ export interface MetastoreRegister {
   put(
     options: MetastoreRegisterParameters
   ): StreamableMethod<
-    MetastoreRegister201Response | MetastoreRegisterdefaultResponse
+    MetastoreRegister201Response | MetastoreRegisterDefaultResponse
   >;
   /** Gets status of the database */
   get(
     options?: MetastoreGetDatabaseOperationsParameters
   ): StreamableMethod<
     | MetastoreGetDatabaseOperations200Response
-    | MetastoreGetDatabaseOperationsdefaultResponse
+    | MetastoreGetDatabaseOperationsDefaultResponse
   >;
 }
 
@@ -1223,7 +1223,7 @@ export interface MetastoreUpdate {
   put(
     options: MetastoreUpdateParameters
   ): StreamableMethod<
-    MetastoreUpdate201Response | MetastoreUpdatedefaultResponse
+    MetastoreUpdate201Response | MetastoreUpdateDefaultResponse
   >;
 }
 
@@ -1232,7 +1232,7 @@ export interface MetastoreDelete {
   delete(
     options?: MetastoreDeleteParameters
   ): StreamableMethod<
-    MetastoreDelete204Response | MetastoreDeletedefaultResponse
+    MetastoreDelete204Response | MetastoreDeleteDefaultResponse
   >;
 }
 
@@ -1242,7 +1242,7 @@ export interface SparkConfigurationGetSparkConfigurationsByWorkspace {
     options?: SparkConfigurationGetSparkConfigurationsByWorkspaceParameters
   ): StreamableMethod<
     | SparkConfigurationGetSparkConfigurationsByWorkspace200Response
-    | SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
+    | SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse
   >;
 }
 
@@ -1253,7 +1253,7 @@ export interface SparkConfigurationCreateOrUpdateSparkConfiguration {
   ): StreamableMethod<
     | SparkConfigurationCreateOrUpdateSparkConfiguration200Response
     | SparkConfigurationCreateOrUpdateSparkConfiguration202Response
-    | SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
+    | SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse
   >;
   /** Gets a sparkConfiguration. */
   get(
@@ -1261,7 +1261,7 @@ export interface SparkConfigurationCreateOrUpdateSparkConfiguration {
   ): StreamableMethod<
     | SparkConfigurationGetSparkConfiguration200Response
     | SparkConfigurationGetSparkConfiguration304Response
-    | SparkConfigurationGetSparkConfigurationdefaultResponse
+    | SparkConfigurationGetSparkConfigurationDefaultResponse
   >;
   /** Deletes a sparkConfiguration. */
   delete(
@@ -1270,7 +1270,7 @@ export interface SparkConfigurationCreateOrUpdateSparkConfiguration {
     | SparkConfigurationDeleteSparkConfiguration200Response
     | SparkConfigurationDeleteSparkConfiguration202Response
     | SparkConfigurationDeleteSparkConfiguration204Response
-    | SparkConfigurationDeleteSparkConfigurationdefaultResponse
+    | SparkConfigurationDeleteSparkConfigurationDefaultResponse
   >;
 }
 
@@ -1281,7 +1281,7 @@ export interface SparkConfigurationRenameSparkConfiguration {
   ): StreamableMethod<
     | SparkConfigurationRenameSparkConfiguration200Response
     | SparkConfigurationRenameSparkConfiguration202Response
-    | SparkConfigurationRenameSparkConfigurationdefaultResponse
+    | SparkConfigurationRenameSparkConfigurationDefaultResponse
   >;
 }
 
@@ -1290,7 +1290,7 @@ export interface BigDataPoolsList {
   get(
     options?: BigDataPoolsListParameters
   ): StreamableMethod<
-    BigDataPoolsList200Response | BigDataPoolsListdefaultResponse
+    BigDataPoolsList200Response | BigDataPoolsListDefaultResponse
   >;
 }
 
@@ -1299,7 +1299,7 @@ export interface BigDataPoolsGet {
   get(
     options?: BigDataPoolsGetParameters
   ): StreamableMethod<
-    BigDataPoolsGet200Response | BigDataPoolsGetdefaultResponse
+    BigDataPoolsGet200Response | BigDataPoolsGetDefaultResponse
   >;
 }
 
@@ -1310,13 +1310,13 @@ export interface DataFlowCreateOrUpdateDataFlow {
   ): StreamableMethod<
     | DataFlowCreateOrUpdateDataFlow200Response
     | DataFlowCreateOrUpdateDataFlow202Response
-    | DataFlowCreateOrUpdateDataFlowdefaultResponse
+    | DataFlowCreateOrUpdateDataFlowDefaultResponse
   >;
   /** Gets a data flow. */
   get(
     options?: DataFlowGetDataFlowParameters
   ): StreamableMethod<
-    DataFlowGetDataFlow200Response | DataFlowGetDataFlowdefaultResponse
+    DataFlowGetDataFlow200Response | DataFlowGetDataFlowDefaultResponse
   >;
   /** Deletes a data flow. */
   delete(
@@ -1325,7 +1325,7 @@ export interface DataFlowCreateOrUpdateDataFlow {
     | DataFlowDeleteDataFlow200Response
     | DataFlowDeleteDataFlow202Response
     | DataFlowDeleteDataFlow204Response
-    | DataFlowDeleteDataFlowdefaultResponse
+    | DataFlowDeleteDataFlowDefaultResponse
   >;
 }
 
@@ -1336,7 +1336,7 @@ export interface DataFlowRenameDataFlow {
   ): StreamableMethod<
     | DataFlowRenameDataFlow200Response
     | DataFlowRenameDataFlow202Response
-    | DataFlowRenameDataFlowdefaultResponse
+    | DataFlowRenameDataFlowDefaultResponse
   >;
 }
 
@@ -1346,7 +1346,7 @@ export interface DataFlowGetDataFlowsByWorkspace {
     options?: DataFlowGetDataFlowsByWorkspaceParameters
   ): StreamableMethod<
     | DataFlowGetDataFlowsByWorkspace200Response
-    | DataFlowGetDataFlowsByWorkspacedefaultResponse
+    | DataFlowGetDataFlowsByWorkspaceDefaultResponse
   >;
 }
 
@@ -1357,7 +1357,7 @@ export interface DataFlowDebugSessionCreateDataFlowDebugSession {
   ): StreamableMethod<
     | DataFlowDebugSessionCreateDataFlowDebugSession200Response
     | DataFlowDebugSessionCreateDataFlowDebugSession202Response
-    | DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
+    | DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse
   >;
 }
 
@@ -1367,7 +1367,7 @@ export interface DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace {
     options?: DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceParameters
   ): StreamableMethod<
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response
-    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
+    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse
   >;
 }
 
@@ -1377,7 +1377,7 @@ export interface DataFlowDebugSessionAddDataFlow {
     options: DataFlowDebugSessionAddDataFlowParameters
   ): StreamableMethod<
     | DataFlowDebugSessionAddDataFlow200Response
-    | DataFlowDebugSessionAddDataFlowdefaultResponse
+    | DataFlowDebugSessionAddDataFlowDefaultResponse
   >;
 }
 
@@ -1387,7 +1387,7 @@ export interface DataFlowDebugSessionDeleteDataFlowDebugSession {
     options: DataFlowDebugSessionDeleteDataFlowDebugSessionParameters
   ): StreamableMethod<
     | DataFlowDebugSessionDeleteDataFlowDebugSession200Response
-    | DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
+    | DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse
   >;
 }
 
@@ -1398,7 +1398,7 @@ export interface DataFlowDebugSessionExecuteCommand {
   ): StreamableMethod<
     | DataFlowDebugSessionExecuteCommand200Response
     | DataFlowDebugSessionExecuteCommand202Response
-    | DataFlowDebugSessionExecuteCommanddefaultResponse
+    | DataFlowDebugSessionExecuteCommandDefaultResponse
   >;
 }
 
@@ -1408,7 +1408,7 @@ export interface DatasetGetDatasetsByWorkspace {
     options?: DatasetGetDatasetsByWorkspaceParameters
   ): StreamableMethod<
     | DatasetGetDatasetsByWorkspace200Response
-    | DatasetGetDatasetsByWorkspacedefaultResponse
+    | DatasetGetDatasetsByWorkspaceDefaultResponse
   >;
 }
 
@@ -1419,7 +1419,7 @@ export interface DatasetCreateOrUpdateDataset {
   ): StreamableMethod<
     | DatasetCreateOrUpdateDataset200Response
     | DatasetCreateOrUpdateDataset202Response
-    | DatasetCreateOrUpdateDatasetdefaultResponse
+    | DatasetCreateOrUpdateDatasetDefaultResponse
   >;
   /** Gets a dataset. */
   get(
@@ -1427,7 +1427,7 @@ export interface DatasetCreateOrUpdateDataset {
   ): StreamableMethod<
     | DatasetGetDataset200Response
     | DatasetGetDataset304Response
-    | DatasetGetDatasetdefaultResponse
+    | DatasetGetDatasetDefaultResponse
   >;
   /** Deletes a dataset. */
   delete(
@@ -1436,7 +1436,7 @@ export interface DatasetCreateOrUpdateDataset {
     | DatasetDeleteDataset200Response
     | DatasetDeleteDataset202Response
     | DatasetDeleteDataset204Response
-    | DatasetDeleteDatasetdefaultResponse
+    | DatasetDeleteDatasetDefaultResponse
   >;
 }
 
@@ -1447,7 +1447,7 @@ export interface DatasetRenameDataset {
   ): StreamableMethod<
     | DatasetRenameDataset200Response
     | DatasetRenameDataset202Response
-    | DatasetRenameDatasetdefaultResponse
+    | DatasetRenameDatasetDefaultResponse
   >;
 }
 
@@ -1465,7 +1465,7 @@ export interface IntegrationRuntimesList {
   get(
     options?: IntegrationRuntimesListParameters
   ): StreamableMethod<
-    IntegrationRuntimesList200Response | IntegrationRuntimesListdefaultResponse
+    IntegrationRuntimesList200Response | IntegrationRuntimesListDefaultResponse
   >;
 }
 
@@ -1474,7 +1474,7 @@ export interface IntegrationRuntimesGet {
   get(
     options?: IntegrationRuntimesGetParameters
   ): StreamableMethod<
-    IntegrationRuntimesGet200Response | IntegrationRuntimesGetdefaultResponse
+    IntegrationRuntimesGet200Response | IntegrationRuntimesGetDefaultResponse
   >;
 }
 
@@ -1482,7 +1482,7 @@ export interface LibraryList {
   /** Lists Library. */
   get(
     options?: LibraryListParameters
-  ): StreamableMethod<LibraryList200Response | LibraryListdefaultResponse>;
+  ): StreamableMethod<LibraryList200Response | LibraryListDefaultResponse>;
 }
 
 export interface LibraryFlush {
@@ -1492,7 +1492,7 @@ export interface LibraryFlush {
   ): StreamableMethod<
     | LibraryFlush200Response
     | LibraryFlush202Response
-    | LibraryFlushdefaultResponse
+    | LibraryFlushDefaultResponse
   >;
 }
 
@@ -1503,7 +1503,7 @@ export interface LibraryGetOperationResult {
   ): StreamableMethod<
     | LibraryGetOperationResult200Response
     | LibraryGetOperationResult202Response
-    | LibraryGetOperationResultdefaultResponse
+    | LibraryGetOperationResultDefaultResponse
   >;
 }
 
@@ -1515,13 +1515,13 @@ export interface LibraryDelete {
     | LibraryDelete200Response
     | LibraryDelete202Response
     | LibraryDelete409Response
-    | LibraryDeletedefaultResponse
+    | LibraryDeleteDefaultResponse
   >;
   /** Get Library */
   get(
     options?: LibraryGetParameters
   ): StreamableMethod<
-    LibraryGet200Response | LibraryGet304Response | LibraryGetdefaultResponse
+    LibraryGet200Response | LibraryGet304Response | LibraryGetDefaultResponse
   >;
   /** Creates a library with the library name. */
   put(
@@ -1529,12 +1529,12 @@ export interface LibraryDelete {
   ): StreamableMethod<
     | LibraryCreate200Response
     | LibraryCreate202Response
-    | LibraryCreatedefaultResponse
+    | LibraryCreateDefaultResponse
   >;
   /** Append the content to the library resource created using the create operation. The maximum content size is 4MiB. Content larger than 4MiB must be appended in 4MiB chunks */
   put(
     options: LibraryAppendParameters
-  ): StreamableMethod<LibraryAppend201Response | LibraryAppenddefaultResponse>;
+  ): StreamableMethod<LibraryAppend201Response | LibraryAppendDefaultResponse>;
 }
 
 export interface LinkedServiceGetLinkedServicesByWorkspace {
@@ -1543,7 +1543,7 @@ export interface LinkedServiceGetLinkedServicesByWorkspace {
     options?: LinkedServiceGetLinkedServicesByWorkspaceParameters
   ): StreamableMethod<
     | LinkedServiceGetLinkedServicesByWorkspace200Response
-    | LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
+    | LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse
   >;
 }
 
@@ -1554,7 +1554,7 @@ export interface LinkedServiceCreateOrUpdateLinkedService {
   ): StreamableMethod<
     | LinkedServiceCreateOrUpdateLinkedService200Response
     | LinkedServiceCreateOrUpdateLinkedService202Response
-    | LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
+    | LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse
   >;
   /** Gets a linked service. */
   get(
@@ -1562,7 +1562,7 @@ export interface LinkedServiceCreateOrUpdateLinkedService {
   ): StreamableMethod<
     | LinkedServiceGetLinkedService200Response
     | LinkedServiceGetLinkedService304Response
-    | LinkedServiceGetLinkedServicedefaultResponse
+    | LinkedServiceGetLinkedServiceDefaultResponse
   >;
   /** Deletes a linked service. */
   delete(
@@ -1571,7 +1571,7 @@ export interface LinkedServiceCreateOrUpdateLinkedService {
     | LinkedServiceDeleteLinkedService200Response
     | LinkedServiceDeleteLinkedService202Response
     | LinkedServiceDeleteLinkedService204Response
-    | LinkedServiceDeleteLinkedServicedefaultResponse
+    | LinkedServiceDeleteLinkedServiceDefaultResponse
   >;
 }
 
@@ -1582,7 +1582,7 @@ export interface LinkedServiceRenameLinkedService {
   ): StreamableMethod<
     | LinkedServiceRenameLinkedService200Response
     | LinkedServiceRenameLinkedService202Response
-    | LinkedServiceRenameLinkedServicedefaultResponse
+    | LinkedServiceRenameLinkedServiceDefaultResponse
   >;
 }
 
@@ -1592,7 +1592,7 @@ export interface NotebookGetNotebooksByWorkspace {
     options?: NotebookGetNotebooksByWorkspaceParameters
   ): StreamableMethod<
     | NotebookGetNotebooksByWorkspace200Response
-    | NotebookGetNotebooksByWorkspacedefaultResponse
+    | NotebookGetNotebooksByWorkspaceDefaultResponse
   >;
 }
 
@@ -1602,7 +1602,7 @@ export interface NotebookGetNotebookSummaryByWorkSpace {
     options?: NotebookGetNotebookSummaryByWorkSpaceParameters
   ): StreamableMethod<
     | NotebookGetNotebookSummaryByWorkSpace200Response
-    | NotebookGetNotebookSummaryByWorkSpacedefaultResponse
+    | NotebookGetNotebookSummaryByWorkSpaceDefaultResponse
   >;
 }
 
@@ -1613,7 +1613,7 @@ export interface NotebookCreateOrUpdateNotebook {
   ): StreamableMethod<
     | NotebookCreateOrUpdateNotebook200Response
     | NotebookCreateOrUpdateNotebook202Response
-    | NotebookCreateOrUpdateNotebookdefaultResponse
+    | NotebookCreateOrUpdateNotebookDefaultResponse
   >;
   /** Gets a Note Book. */
   get(
@@ -1621,7 +1621,7 @@ export interface NotebookCreateOrUpdateNotebook {
   ): StreamableMethod<
     | NotebookGetNotebook200Response
     | NotebookGetNotebook304Response
-    | NotebookGetNotebookdefaultResponse
+    | NotebookGetNotebookDefaultResponse
   >;
   /** Deletes a Note book. */
   delete(
@@ -1630,7 +1630,7 @@ export interface NotebookCreateOrUpdateNotebook {
     | NotebookDeleteNotebook200Response
     | NotebookDeleteNotebook202Response
     | NotebookDeleteNotebook204Response
-    | NotebookDeleteNotebookdefaultResponse
+    | NotebookDeleteNotebookDefaultResponse
   >;
 }
 
@@ -1641,7 +1641,7 @@ export interface NotebookRenameNotebook {
   ): StreamableMethod<
     | NotebookRenameNotebook200Response
     | NotebookRenameNotebook202Response
-    | NotebookRenameNotebookdefaultResponse
+    | NotebookRenameNotebookDefaultResponse
   >;
 }
 
@@ -1654,7 +1654,7 @@ export interface NotebookOperationResultGet {
     | NotebookOperationResultGet201Response
     | NotebookOperationResultGet202Response
     | NotebookOperationResultGet204Response
-    | NotebookOperationResultGetdefaultResponse
+    | NotebookOperationResultGetDefaultResponse
   >;
 }
 
@@ -1664,7 +1664,7 @@ export interface PipelineGetPipelinesByWorkspace {
     options?: PipelineGetPipelinesByWorkspaceParameters
   ): StreamableMethod<
     | PipelineGetPipelinesByWorkspace200Response
-    | PipelineGetPipelinesByWorkspacedefaultResponse
+    | PipelineGetPipelinesByWorkspaceDefaultResponse
   >;
 }
 
@@ -1675,7 +1675,7 @@ export interface PipelineCreateOrUpdatePipeline {
   ): StreamableMethod<
     | PipelineCreateOrUpdatePipeline200Response
     | PipelineCreateOrUpdatePipeline202Response
-    | PipelineCreateOrUpdatePipelinedefaultResponse
+    | PipelineCreateOrUpdatePipelineDefaultResponse
   >;
   /** Gets a pipeline. */
   get(
@@ -1683,7 +1683,7 @@ export interface PipelineCreateOrUpdatePipeline {
   ): StreamableMethod<
     | PipelineGetPipeline200Response
     | PipelineGetPipeline304Response
-    | PipelineGetPipelinedefaultResponse
+    | PipelineGetPipelineDefaultResponse
   >;
   /** Deletes a pipeline. */
   delete(
@@ -1692,7 +1692,7 @@ export interface PipelineCreateOrUpdatePipeline {
     | PipelineDeletePipeline200Response
     | PipelineDeletePipeline202Response
     | PipelineDeletePipeline204Response
-    | PipelineDeletePipelinedefaultResponse
+    | PipelineDeletePipelineDefaultResponse
   >;
 }
 
@@ -1703,7 +1703,7 @@ export interface PipelineRenamePipeline {
   ): StreamableMethod<
     | PipelineRenamePipeline200Response
     | PipelineRenamePipeline202Response
-    | PipelineRenamePipelinedefaultResponse
+    | PipelineRenamePipelineDefaultResponse
   >;
 }
 
@@ -1713,7 +1713,7 @@ export interface PipelineCreatePipelineRun {
     options?: PipelineCreatePipelineRunParameters
   ): StreamableMethod<
     | PipelineCreatePipelineRun202Response
-    | PipelineCreatePipelineRundefaultResponse
+    | PipelineCreatePipelineRunDefaultResponse
   >;
 }
 
@@ -1723,7 +1723,7 @@ export interface PipelineRunQueryPipelineRunsByWorkspace {
     options: PipelineRunQueryPipelineRunsByWorkspaceParameters
   ): StreamableMethod<
     | PipelineRunQueryPipelineRunsByWorkspace200Response
-    | PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
+    | PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse
   >;
 }
 
@@ -1733,7 +1733,7 @@ export interface PipelineRunGetPipelineRun {
     options?: PipelineRunGetPipelineRunParameters
   ): StreamableMethod<
     | PipelineRunGetPipelineRun200Response
-    | PipelineRunGetPipelineRundefaultResponse
+    | PipelineRunGetPipelineRunDefaultResponse
   >;
 }
 
@@ -1743,7 +1743,7 @@ export interface PipelineRunQueryActivityRuns {
     options: PipelineRunQueryActivityRunsParameters
   ): StreamableMethod<
     | PipelineRunQueryActivityRuns200Response
-    | PipelineRunQueryActivityRunsdefaultResponse
+    | PipelineRunQueryActivityRunsDefaultResponse
   >;
 }
 
@@ -1753,7 +1753,7 @@ export interface PipelineRunCancelPipelineRun {
     options?: PipelineRunCancelPipelineRunParameters
   ): StreamableMethod<
     | PipelineRunCancelPipelineRun200Response
-    | PipelineRunCancelPipelineRundefaultResponse
+    | PipelineRunCancelPipelineRunDefaultResponse
   >;
 }
 
@@ -1763,7 +1763,7 @@ export interface SparkJobDefinitionGetSparkJobDefinitionsByWorkspace {
     options?: SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceParameters
   ): StreamableMethod<
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
-    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
+    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse
   >;
 }
 
@@ -1774,7 +1774,7 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition {
   ): StreamableMethod<
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
-    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse
   >;
   /** Gets a Spark Job Definition. */
   get(
@@ -1782,7 +1782,7 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition {
   ): StreamableMethod<
     | SparkJobDefinitionGetSparkJobDefinition200Response
     | SparkJobDefinitionGetSparkJobDefinition304Response
-    | SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionGetSparkJobDefinitionDefaultResponse
   >;
   /** Deletes a Spark Job Definition. */
   delete(
@@ -1791,7 +1791,7 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition {
     | SparkJobDefinitionDeleteSparkJobDefinition200Response
     | SparkJobDefinitionDeleteSparkJobDefinition202Response
     | SparkJobDefinitionDeleteSparkJobDefinition204Response
-    | SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse
   >;
 }
 
@@ -1802,7 +1802,7 @@ export interface SparkJobDefinitionExecuteSparkJobDefinition {
   ): StreamableMethod<
     | SparkJobDefinitionExecuteSparkJobDefinition200Response
     | SparkJobDefinitionExecuteSparkJobDefinition202Response
-    | SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse
   >;
 }
 
@@ -1813,7 +1813,7 @@ export interface SparkJobDefinitionRenameSparkJobDefinition {
   ): StreamableMethod<
     | SparkJobDefinitionRenameSparkJobDefinition200Response
     | SparkJobDefinitionRenameSparkJobDefinition202Response
-    | SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse
   >;
 }
 
@@ -1824,7 +1824,7 @@ export interface SparkJobDefinitionDebugSparkJobDefinition {
   ): StreamableMethod<
     | SparkJobDefinitionDebugSparkJobDefinition200Response
     | SparkJobDefinitionDebugSparkJobDefinition202Response
-    | SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse
   >;
 }
 
@@ -1832,14 +1832,14 @@ export interface SqlPoolsList {
   /** List Sql Pools */
   get(
     options?: SqlPoolsListParameters
-  ): StreamableMethod<SqlPoolsList200Response | SqlPoolsListdefaultResponse>;
+  ): StreamableMethod<SqlPoolsList200Response | SqlPoolsListDefaultResponse>;
 }
 
 export interface SqlPoolsGet {
   /** Get Sql Pool */
   get(
     options?: SqlPoolsGetParameters
-  ): StreamableMethod<SqlPoolsGet200Response | SqlPoolsGetdefaultResponse>;
+  ): StreamableMethod<SqlPoolsGet200Response | SqlPoolsGetDefaultResponse>;
 }
 
 export interface SqlScriptGetSqlScriptsByWorkspace {
@@ -1848,7 +1848,7 @@ export interface SqlScriptGetSqlScriptsByWorkspace {
     options?: SqlScriptGetSqlScriptsByWorkspaceParameters
   ): StreamableMethod<
     | SqlScriptGetSqlScriptsByWorkspace200Response
-    | SqlScriptGetSqlScriptsByWorkspacedefaultResponse
+    | SqlScriptGetSqlScriptsByWorkspaceDefaultResponse
   >;
 }
 
@@ -1859,7 +1859,7 @@ export interface SqlScriptCreateOrUpdateSqlScript {
   ): StreamableMethod<
     | SqlScriptCreateOrUpdateSqlScript200Response
     | SqlScriptCreateOrUpdateSqlScript202Response
-    | SqlScriptCreateOrUpdateSqlScriptdefaultResponse
+    | SqlScriptCreateOrUpdateSqlScriptDefaultResponse
   >;
   /** Gets a sql script. */
   get(
@@ -1867,7 +1867,7 @@ export interface SqlScriptCreateOrUpdateSqlScript {
   ): StreamableMethod<
     | SqlScriptGetSqlScript200Response
     | SqlScriptGetSqlScript304Response
-    | SqlScriptGetSqlScriptdefaultResponse
+    | SqlScriptGetSqlScriptDefaultResponse
   >;
   /** Deletes a Sql Script. */
   delete(
@@ -1876,7 +1876,7 @@ export interface SqlScriptCreateOrUpdateSqlScript {
     | SqlScriptDeleteSqlScript200Response
     | SqlScriptDeleteSqlScript202Response
     | SqlScriptDeleteSqlScript204Response
-    | SqlScriptDeleteSqlScriptdefaultResponse
+    | SqlScriptDeleteSqlScriptDefaultResponse
   >;
 }
 
@@ -1887,7 +1887,7 @@ export interface SqlScriptRenameSqlScript {
   ): StreamableMethod<
     | SqlScriptRenameSqlScript200Response
     | SqlScriptRenameSqlScript202Response
-    | SqlScriptRenameSqlScriptdefaultResponse
+    | SqlScriptRenameSqlScriptDefaultResponse
   >;
 }
 
@@ -1897,7 +1897,7 @@ export interface TriggerGetTriggersByWorkspace {
     options?: TriggerGetTriggersByWorkspaceParameters
   ): StreamableMethod<
     | TriggerGetTriggersByWorkspace200Response
-    | TriggerGetTriggersByWorkspacedefaultResponse
+    | TriggerGetTriggersByWorkspaceDefaultResponse
   >;
 }
 
@@ -1908,7 +1908,7 @@ export interface TriggerCreateOrUpdateTrigger {
   ): StreamableMethod<
     | TriggerCreateOrUpdateTrigger200Response
     | TriggerCreateOrUpdateTrigger202Response
-    | TriggerCreateOrUpdateTriggerdefaultResponse
+    | TriggerCreateOrUpdateTriggerDefaultResponse
   >;
   /** Gets a trigger. */
   get(
@@ -1916,7 +1916,7 @@ export interface TriggerCreateOrUpdateTrigger {
   ): StreamableMethod<
     | TriggerGetTrigger200Response
     | TriggerGetTrigger304Response
-    | TriggerGetTriggerdefaultResponse
+    | TriggerGetTriggerDefaultResponse
   >;
   /** Deletes a trigger. */
   delete(
@@ -1925,7 +1925,7 @@ export interface TriggerCreateOrUpdateTrigger {
     | TriggerDeleteTrigger200Response
     | TriggerDeleteTrigger202Response
     | TriggerDeleteTrigger204Response
-    | TriggerDeleteTriggerdefaultResponse
+    | TriggerDeleteTriggerDefaultResponse
   >;
 }
 
@@ -1936,7 +1936,7 @@ export interface TriggerSubscribeTriggerToEvents {
   ): StreamableMethod<
     | TriggerSubscribeTriggerToEvents200Response
     | TriggerSubscribeTriggerToEvents202Response
-    | TriggerSubscribeTriggerToEventsdefaultResponse
+    | TriggerSubscribeTriggerToEventsDefaultResponse
   >;
 }
 
@@ -1946,7 +1946,7 @@ export interface TriggerGetEventSubscriptionStatus {
     options?: TriggerGetEventSubscriptionStatusParameters
   ): StreamableMethod<
     | TriggerGetEventSubscriptionStatus200Response
-    | TriggerGetEventSubscriptionStatusdefaultResponse
+    | TriggerGetEventSubscriptionStatusDefaultResponse
   >;
 }
 
@@ -1957,7 +1957,7 @@ export interface TriggerUnsubscribeTriggerFromEvents {
   ): StreamableMethod<
     | TriggerUnsubscribeTriggerFromEvents200Response
     | TriggerUnsubscribeTriggerFromEvents202Response
-    | TriggerUnsubscribeTriggerFromEventsdefaultResponse
+    | TriggerUnsubscribeTriggerFromEventsDefaultResponse
   >;
 }
 
@@ -1966,7 +1966,7 @@ export interface TriggerStartTrigger {
   post(
     options?: TriggerStartTriggerParameters
   ): StreamableMethod<
-    TriggerStartTrigger200Response | TriggerStartTriggerdefaultResponse
+    TriggerStartTrigger200Response | TriggerStartTriggerDefaultResponse
   >;
 }
 
@@ -1975,7 +1975,7 @@ export interface TriggerStopTrigger {
   post(
     options?: TriggerStopTriggerParameters
   ): StreamableMethod<
-    TriggerStopTrigger200Response | TriggerStopTriggerdefaultResponse
+    TriggerStopTrigger200Response | TriggerStopTriggerDefaultResponse
   >;
 }
 
@@ -1985,7 +1985,7 @@ export interface TriggerRunRerunTriggerInstance {
     options?: TriggerRunRerunTriggerInstanceParameters
   ): StreamableMethod<
     | TriggerRunRerunTriggerInstance200Response
-    | TriggerRunRerunTriggerInstancedefaultResponse
+    | TriggerRunRerunTriggerInstanceDefaultResponse
   >;
 }
 
@@ -1995,7 +1995,7 @@ export interface TriggerRunCancelTriggerInstance {
     options?: TriggerRunCancelTriggerInstanceParameters
   ): StreamableMethod<
     | TriggerRunCancelTriggerInstance200Response
-    | TriggerRunCancelTriggerInstancedefaultResponse
+    | TriggerRunCancelTriggerInstanceDefaultResponse
   >;
 }
 
@@ -2005,7 +2005,7 @@ export interface TriggerRunQueryTriggerRunsByWorkspace {
     options: TriggerRunQueryTriggerRunsByWorkspaceParameters
   ): StreamableMethod<
     | TriggerRunQueryTriggerRunsByWorkspace200Response
-    | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
+    | TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse
   >;
 }
 
@@ -2013,7 +2013,7 @@ export interface WorkspaceGet {
   /** Get Workspace */
   get(
     options?: WorkspaceGetParameters
-  ): StreamableMethod<WorkspaceGet200Response | WorkspaceGetdefaultResponse>;
+  ): StreamableMethod<WorkspaceGet200Response | WorkspaceGetDefaultResponse>;
 }
 
 export interface Routes {

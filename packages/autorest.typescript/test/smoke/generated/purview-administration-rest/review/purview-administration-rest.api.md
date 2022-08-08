@@ -71,7 +71,7 @@ interface AccountPropertiesOutput {
 
 // @public (undocumented)
 interface AccountsGetAccessKeys {
-    post(options?: AccountsGetAccessKeysParameters): StreamableMethod<AccountsGetAccessKeys200Response | AccountsGetAccessKeysdefaultResponse>;
+    post(options?: AccountsGetAccessKeysParameters): StreamableMethod<AccountsGetAccessKeys200Response | AccountsGetAccessKeysDefaultResponse>;
 }
 
 // @public
@@ -83,7 +83,7 @@ interface AccountsGetAccessKeys200Response extends HttpResponse {
 }
 
 // @public
-interface AccountsGetAccessKeysdefaultResponse extends HttpResponse {
+interface AccountsGetAccessKeysDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -95,8 +95,8 @@ type AccountsGetAccessKeysParameters = RequestParameters;
 
 // @public (undocumented)
 interface AccountsGetAccountProperties {
-    get(options?: AccountsGetAccountPropertiesParameters): StreamableMethod<AccountsGetAccountProperties200Response | AccountsGetAccountPropertiesdefaultResponse>;
-    patch(options: AccountsUpdateAccountPropertiesParameters): StreamableMethod<AccountsUpdateAccountProperties200Response | AccountsUpdateAccountPropertiesdefaultResponse>;
+    get(options?: AccountsGetAccountPropertiesParameters): StreamableMethod<AccountsGetAccountProperties200Response | AccountsGetAccountPropertiesDefaultResponse>;
+    patch(options: AccountsUpdateAccountPropertiesParameters): StreamableMethod<AccountsUpdateAccountProperties200Response | AccountsUpdateAccountPropertiesDefaultResponse>;
 }
 
 // @public
@@ -108,7 +108,7 @@ interface AccountsGetAccountProperties200Response extends HttpResponse {
 }
 
 // @public
-interface AccountsGetAccountPropertiesdefaultResponse extends HttpResponse {
+interface AccountsGetAccountPropertiesDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -126,7 +126,7 @@ interface AccountSkuOutput {
 
 // @public (undocumented)
 interface AccountsRegenerateAccessKey {
-    post(options: AccountsRegenerateAccessKeyParameters): StreamableMethod<AccountsRegenerateAccessKey200Response | AccountsRegenerateAccessKeydefaultResponse>;
+    post(options: AccountsRegenerateAccessKeyParameters): StreamableMethod<AccountsRegenerateAccessKey200Response | AccountsRegenerateAccessKeyDefaultResponse>;
 }
 
 // @public
@@ -144,7 +144,7 @@ interface AccountsRegenerateAccessKeyBodyParam {
 }
 
 // @public
-interface AccountsRegenerateAccessKeydefaultResponse extends HttpResponse {
+interface AccountsRegenerateAccessKeyDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -174,7 +174,7 @@ interface AccountsUpdateAccountPropertiesBodyParam {
 }
 
 // @public
-interface AccountsUpdateAccountPropertiesdefaultResponse extends HttpResponse {
+interface AccountsUpdateAccountPropertiesDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -359,7 +359,7 @@ interface CollectionsCreateOrUpdateCollectionBodyParam {
 }
 
 // @public
-interface CollectionsCreateOrUpdateCollectiondefaultResponse extends HttpResponse {
+interface CollectionsCreateOrUpdateCollectionDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -383,7 +383,7 @@ interface CollectionsDeleteCollection204Response extends HttpResponse {
 }
 
 // @public
-interface CollectionsDeleteCollectiondefaultResponse extends HttpResponse {
+interface CollectionsDeleteCollectionDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -395,9 +395,9 @@ type CollectionsDeleteCollectionParameters = RequestParameters;
 
 // @public (undocumented)
 interface CollectionsGetCollection {
-    delete(options?: CollectionsDeleteCollectionParameters): StreamableMethod<CollectionsDeleteCollection204Response | CollectionsDeleteCollectiondefaultResponse>;
-    get(options?: CollectionsGetCollectionParameters): StreamableMethod<CollectionsGetCollection200Response | CollectionsGetCollectiondefaultResponse>;
-    put(options: CollectionsCreateOrUpdateCollectionParameters): StreamableMethod<CollectionsCreateOrUpdateCollection200Response | CollectionsCreateOrUpdateCollectiondefaultResponse>;
+    delete(options?: CollectionsDeleteCollectionParameters): StreamableMethod<CollectionsDeleteCollection204Response | CollectionsDeleteCollectionDefaultResponse>;
+    get(options?: CollectionsGetCollectionParameters): StreamableMethod<CollectionsGetCollection200Response | CollectionsGetCollectionDefaultResponse>;
+    put(options: CollectionsCreateOrUpdateCollectionParameters): StreamableMethod<CollectionsCreateOrUpdateCollection200Response | CollectionsCreateOrUpdateCollectionDefaultResponse>;
 }
 
 // @public
@@ -409,7 +409,7 @@ interface CollectionsGetCollection200Response extends HttpResponse {
 }
 
 // @public
-interface CollectionsGetCollectiondefaultResponse extends HttpResponse {
+interface CollectionsGetCollectionDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -421,7 +421,7 @@ type CollectionsGetCollectionParameters = RequestParameters;
 
 // @public (undocumented)
 interface CollectionsGetCollectionPath {
-    get(options?: CollectionsGetCollectionPathParameters): StreamableMethod<CollectionsGetCollectionPath200Response | CollectionsGetCollectionPathdefaultResponse>;
+    get(options?: CollectionsGetCollectionPathParameters): StreamableMethod<CollectionsGetCollectionPath200Response | CollectionsGetCollectionPathDefaultResponse>;
 }
 
 // @public
@@ -433,7 +433,7 @@ interface CollectionsGetCollectionPath200Response extends HttpResponse {
 }
 
 // @public
-interface CollectionsGetCollectionPathdefaultResponse extends HttpResponse {
+interface CollectionsGetCollectionPathDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -445,7 +445,7 @@ type CollectionsGetCollectionPathParameters = RequestParameters;
 
 // @public (undocumented)
 interface CollectionsListChildCollectionNames {
-    get(options?: CollectionsListChildCollectionNamesParameters): StreamableMethod<CollectionsListChildCollectionNames200Response | CollectionsListChildCollectionNamesdefaultResponse>;
+    get(options?: CollectionsListChildCollectionNamesParameters): StreamableMethod<CollectionsListChildCollectionNames200Response | CollectionsListChildCollectionNamesDefaultResponse>;
 }
 
 // @public
@@ -457,7 +457,7 @@ interface CollectionsListChildCollectionNames200Response extends HttpResponse {
 }
 
 // @public
-interface CollectionsListChildCollectionNamesdefaultResponse extends HttpResponse {
+interface CollectionsListChildCollectionNamesDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -481,7 +481,7 @@ interface CollectionsListChildCollectionNamesQueryParamProperties {
 
 // @public (undocumented)
 interface CollectionsListCollections {
-    get(options?: CollectionsListCollectionsParameters): StreamableMethod<CollectionsListCollections200Response | CollectionsListCollectionsdefaultResponse>;
+    get(options?: CollectionsListCollectionsParameters): StreamableMethod<CollectionsListCollections200Response | CollectionsListCollectionsDefaultResponse>;
 }
 
 // @public
@@ -493,7 +493,7 @@ interface CollectionsListCollections200Response extends HttpResponse {
 }
 
 // @public
-interface CollectionsListCollectionsdefaultResponse extends HttpResponse {
+interface CollectionsListCollectionsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -752,16 +752,16 @@ interface MetadataPolicyGet200Response extends HttpResponse {
 }
 
 // @public (undocumented)
-interface MetadataPolicyGetdefaultHeaders {
+interface MetadataPolicyGetDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public
-interface MetadataPolicyGetdefaultResponse extends HttpResponse {
+interface MetadataPolicyGetDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput;
     // (undocumented)
-    headers: RawHttpHeaders & MetadataPolicyGetdefaultHeaders;
+    headers: RawHttpHeaders & MetadataPolicyGetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -771,7 +771,7 @@ type MetadataPolicyGetParameters = RequestParameters;
 
 // @public (undocumented)
 interface MetadataPolicyListAll {
-    get(options?: MetadataPolicyListAllParameters): StreamableMethod<MetadataPolicyListAll200Response | MetadataPolicyListAlldefaultResponse>;
+    get(options?: MetadataPolicyListAllParameters): StreamableMethod<MetadataPolicyListAll200Response | MetadataPolicyListAllDefaultResponse>;
 }
 
 // @public
@@ -783,16 +783,16 @@ interface MetadataPolicyListAll200Response extends HttpResponse {
 }
 
 // @public (undocumented)
-interface MetadataPolicyListAlldefaultHeaders {
+interface MetadataPolicyListAllDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public
-interface MetadataPolicyListAlldefaultResponse extends HttpResponse {
+interface MetadataPolicyListAllDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput;
     // (undocumented)
-    headers: RawHttpHeaders & MetadataPolicyListAlldefaultHeaders;
+    headers: RawHttpHeaders & MetadataPolicyListAllDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -848,8 +848,8 @@ interface MetadataPolicyPropertiesOutput {
 
 // @public (undocumented)
 interface MetadataPolicyUpdate {
-    get(options?: MetadataPolicyGetParameters): StreamableMethod<MetadataPolicyGet200Response | MetadataPolicyGetdefaultResponse>;
-    put(options?: MetadataPolicyUpdateParameters): StreamableMethod<MetadataPolicyUpdate200Response | MetadataPolicyUpdatedefaultResponse>;
+    get(options?: MetadataPolicyGetParameters): StreamableMethod<MetadataPolicyGet200Response | MetadataPolicyGetDefaultResponse>;
+    put(options?: MetadataPolicyUpdateParameters): StreamableMethod<MetadataPolicyUpdate200Response | MetadataPolicyUpdateDefaultResponse>;
 }
 
 // @public
@@ -866,16 +866,16 @@ interface MetadataPolicyUpdateBodyParam {
 }
 
 // @public (undocumented)
-interface MetadataPolicyUpdatedefaultHeaders {
+interface MetadataPolicyUpdateDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public
-interface MetadataPolicyUpdatedefaultResponse extends HttpResponse {
+interface MetadataPolicyUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput;
     // (undocumented)
-    headers: RawHttpHeaders & MetadataPolicyUpdatedefaultHeaders;
+    headers: RawHttpHeaders & MetadataPolicyUpdateDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -918,7 +918,7 @@ interface MetadataRolePropertiesOutput {
 
 // @public (undocumented)
 interface MetadataRolesList {
-    get(options?: MetadataRolesListParameters): StreamableMethod<MetadataRolesList200Response | MetadataRolesListdefaultResponse>;
+    get(options?: MetadataRolesListParameters): StreamableMethod<MetadataRolesList200Response | MetadataRolesListDefaultResponse>;
 }
 
 // @public
@@ -930,16 +930,16 @@ interface MetadataRolesList200Response extends HttpResponse {
 }
 
 // @public (undocumented)
-interface MetadataRolesListdefaultHeaders {
+interface MetadataRolesListDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public
-interface MetadataRolesListdefaultResponse extends HttpResponse {
+interface MetadataRolesListDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput;
     // (undocumented)
-    headers: RawHttpHeaders & MetadataRolesListdefaultHeaders;
+    headers: RawHttpHeaders & MetadataRolesListDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -1386,7 +1386,7 @@ interface ResourceSetRulesCreateOrUpdateResourceSetRuleBodyParam {
 }
 
 // @public
-interface ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse extends HttpResponse {
+interface ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -1418,7 +1418,7 @@ interface ResourceSetRulesDeleteResourceSetRule204Response extends HttpResponse 
 }
 
 // @public
-interface ResourceSetRulesDeleteResourceSetRuledefaultResponse extends HttpResponse {
+interface ResourceSetRulesDeleteResourceSetRuleDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -1430,9 +1430,9 @@ type ResourceSetRulesDeleteResourceSetRuleParameters = RequestParameters;
 
 // @public (undocumented)
 interface ResourceSetRulesGetResourceSetRule {
-    delete(options?: ResourceSetRulesDeleteResourceSetRuleParameters): StreamableMethod<ResourceSetRulesDeleteResourceSetRule200Response | ResourceSetRulesDeleteResourceSetRule204Response | ResourceSetRulesDeleteResourceSetRuledefaultResponse>;
-    get(options?: ResourceSetRulesGetResourceSetRuleParameters): StreamableMethod<ResourceSetRulesGetResourceSetRule200Response | ResourceSetRulesGetResourceSetRuledefaultResponse>;
-    put(options: ResourceSetRulesCreateOrUpdateResourceSetRuleParameters): StreamableMethod<ResourceSetRulesCreateOrUpdateResourceSetRule200Response | ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse>;
+    delete(options?: ResourceSetRulesDeleteResourceSetRuleParameters): StreamableMethod<ResourceSetRulesDeleteResourceSetRule200Response | ResourceSetRulesDeleteResourceSetRule204Response | ResourceSetRulesDeleteResourceSetRuleDefaultResponse>;
+    get(options?: ResourceSetRulesGetResourceSetRuleParameters): StreamableMethod<ResourceSetRulesGetResourceSetRule200Response | ResourceSetRulesGetResourceSetRuleDefaultResponse>;
+    put(options: ResourceSetRulesCreateOrUpdateResourceSetRuleParameters): StreamableMethod<ResourceSetRulesCreateOrUpdateResourceSetRule200Response | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse>;
 }
 
 // @public
@@ -1444,7 +1444,7 @@ interface ResourceSetRulesGetResourceSetRule200Response extends HttpResponse {
 }
 
 // @public
-interface ResourceSetRulesGetResourceSetRuledefaultResponse extends HttpResponse {
+interface ResourceSetRulesGetResourceSetRuleDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -1456,7 +1456,7 @@ type ResourceSetRulesGetResourceSetRuleParameters = RequestParameters;
 
 // @public (undocumented)
 interface ResourceSetRulesListResourceSetRules {
-    get(options?: ResourceSetRulesListResourceSetRulesParameters): StreamableMethod<ResourceSetRulesListResourceSetRules200Response | ResourceSetRulesListResourceSetRulesdefaultResponse>;
+    get(options?: ResourceSetRulesListResourceSetRulesParameters): StreamableMethod<ResourceSetRulesListResourceSetRules200Response | ResourceSetRulesListResourceSetRulesDefaultResponse>;
 }
 
 // @public
@@ -1468,7 +1468,7 @@ interface ResourceSetRulesListResourceSetRules200Response extends HttpResponse {
 }
 
 // @public
-interface ResourceSetRulesListResourceSetRulesdefaultResponse extends HttpResponse {
+interface ResourceSetRulesListResourceSetRulesDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseModelOutput_2;
     // (undocumented)
@@ -1493,51 +1493,51 @@ interface ResourceSetRulesListResourceSetRulesQueryParamProperties {
 declare namespace Responses {
     export {
         MetadataRolesList200Response,
-        MetadataRolesListdefaultHeaders,
-        MetadataRolesListdefaultResponse,
+        MetadataRolesListDefaultHeaders,
+        MetadataRolesListDefaultResponse,
         MetadataPolicyListAll200Response,
-        MetadataPolicyListAlldefaultHeaders,
-        MetadataPolicyListAlldefaultResponse,
+        MetadataPolicyListAllDefaultHeaders,
+        MetadataPolicyListAllDefaultResponse,
         MetadataPolicyUpdate200Response,
-        MetadataPolicyUpdatedefaultHeaders,
-        MetadataPolicyUpdatedefaultResponse,
+        MetadataPolicyUpdateDefaultHeaders,
+        MetadataPolicyUpdateDefaultResponse,
         MetadataPolicyGet200Response,
-        MetadataPolicyGetdefaultHeaders,
-        MetadataPolicyGetdefaultResponse
+        MetadataPolicyGetDefaultHeaders,
+        MetadataPolicyGetDefaultResponse
     }
 }
 
 declare namespace Responses_2 {
     export {
         AccountsGetAccountProperties200Response,
-        AccountsGetAccountPropertiesdefaultResponse,
+        AccountsGetAccountPropertiesDefaultResponse,
         AccountsUpdateAccountProperties200Response,
-        AccountsUpdateAccountPropertiesdefaultResponse,
+        AccountsUpdateAccountPropertiesDefaultResponse,
         AccountsGetAccessKeys200Response,
-        AccountsGetAccessKeysdefaultResponse,
+        AccountsGetAccessKeysDefaultResponse,
         AccountsRegenerateAccessKey200Response,
-        AccountsRegenerateAccessKeydefaultResponse,
+        AccountsRegenerateAccessKeyDefaultResponse,
         CollectionsGetCollection200Response,
-        CollectionsGetCollectiondefaultResponse,
+        CollectionsGetCollectionDefaultResponse,
         CollectionsCreateOrUpdateCollection200Response,
-        CollectionsCreateOrUpdateCollectiondefaultResponse,
+        CollectionsCreateOrUpdateCollectionDefaultResponse,
         CollectionsDeleteCollection204Response,
-        CollectionsDeleteCollectiondefaultResponse,
+        CollectionsDeleteCollectionDefaultResponse,
         CollectionsListCollections200Response,
-        CollectionsListCollectionsdefaultResponse,
+        CollectionsListCollectionsDefaultResponse,
         CollectionsListChildCollectionNames200Response,
-        CollectionsListChildCollectionNamesdefaultResponse,
+        CollectionsListChildCollectionNamesDefaultResponse,
         CollectionsGetCollectionPath200Response,
-        CollectionsGetCollectionPathdefaultResponse,
+        CollectionsGetCollectionPathDefaultResponse,
         ResourceSetRulesGetResourceSetRule200Response,
-        ResourceSetRulesGetResourceSetRuledefaultResponse,
+        ResourceSetRulesGetResourceSetRuleDefaultResponse,
         ResourceSetRulesCreateOrUpdateResourceSetRule200Response,
-        ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse,
+        ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse,
         ResourceSetRulesDeleteResourceSetRule200Response,
         ResourceSetRulesDeleteResourceSetRule204Response,
-        ResourceSetRulesDeleteResourceSetRuledefaultResponse,
+        ResourceSetRulesDeleteResourceSetRuleDefaultResponse,
         ResourceSetRulesListResourceSetRules200Response,
-        ResourceSetRulesListResourceSetRulesdefaultResponse
+        ResourceSetRulesListResourceSetRulesDefaultResponse
     }
 }
 

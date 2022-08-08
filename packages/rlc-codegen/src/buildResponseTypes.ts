@@ -21,7 +21,7 @@ export function buildResponseTypes(
         for (const response of operationResponse.responses) {
             // Building the response type base name
             const baseResponseName = normalizeName(
-                `${operationResponse.operationName}${response.statusCode}`,
+                `${operationResponse.operationName}_${response.statusCode}`,
                 NameType.Interface
             );
 
@@ -38,7 +38,7 @@ export function buildResponseTypes(
             }
 
             // Get the information to build the Response Interface
-            const responseTypeName = getResponseTypeName(operationResponse.operationName, response.statusCode);
+            const responseTypeName = getResponseTypeName(baseResponseName);
             const responseProperties = getResponseInterfaceProperties(
                 response,
                 headersInterface?.name,
@@ -91,12 +91,11 @@ export function buildResponseTypes(
 }
 
 export function getResponseTypeName(
-    operationName: string,
-    statusCode: string
+    baseResponseName: string
 ) {
 
     return normalizeName(
-        `${operationName}${statusCode}Response`,
+        `${baseResponseName}Response`,
         NameType.Interface
     );
 }
