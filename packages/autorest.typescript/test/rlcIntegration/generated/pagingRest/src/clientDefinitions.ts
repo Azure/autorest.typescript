@@ -29,53 +29,53 @@ import {
 } from "./parameters";
 import {
   GetNoItemNamePages200Response,
-  GetNoItemNamePagesdefaultResponse,
+  GetNoItemNamePagesDefaultResponse,
   GetNullNextLinkNamePages200Response,
-  GetNullNextLinkNamePagesdefaultResponse,
+  GetNullNextLinkNamePagesDefaultResponse,
   GetSinglePages200Response,
-  GetSinglePagesdefaultResponse,
+  GetSinglePagesDefaultResponse,
   FirstResponseEmpty200Response,
-  FirstResponseEmptydefaultResponse,
+  FirstResponseEmptyDefaultResponse,
   GetMultiplePages200Response,
-  GetMultiplePagesdefaultResponse,
+  GetMultiplePagesDefaultResponse,
   GetWithQueryParams200Response,
-  GetWithQueryParamsdefaultResponse,
+  GetWithQueryParamsDefaultResponse,
   DuplicateParams200Response,
-  DuplicateParamsdefaultResponse,
+  DuplicateParamsDefaultResponse,
   PageWithMaxPageSize200Response,
-  PageWithMaxPageSizedefaultResponse,
+  PageWithMaxPageSizeDefaultResponse,
   NextOperationWithQueryParams200Response,
-  NextOperationWithQueryParamsdefaultResponse,
+  NextOperationWithQueryParamsDefaultResponse,
   GetOdataMultiplePages200Response,
-  GetOdataMultiplePagesdefaultResponse,
+  GetOdataMultiplePagesDefaultResponse,
   GetMultiplePagesWithOffset200Response,
-  GetMultiplePagesWithOffsetdefaultResponse,
+  GetMultiplePagesWithOffsetDefaultResponse,
   GetMultiplePagesRetryFirst200Response,
-  GetMultiplePagesRetryFirstdefaultResponse,
+  GetMultiplePagesRetryFirstDefaultResponse,
   GetMultiplePagesRetrySecond200Response,
-  GetMultiplePagesRetrySeconddefaultResponse,
+  GetMultiplePagesRetrySecondDefaultResponse,
   GetSinglePagesFailure200Response,
-  GetSinglePagesFailuredefaultResponse,
+  GetSinglePagesFailureDefaultResponse,
   GetMultiplePagesFailure200Response,
-  GetMultiplePagesFailuredefaultResponse,
+  GetMultiplePagesFailureDefaultResponse,
   GetMultiplePagesFailureUri200Response,
-  GetMultiplePagesFailureUridefaultResponse,
+  GetMultiplePagesFailureUriDefaultResponse,
   GetMultiplePagesFragmentNextLink200Response,
-  GetMultiplePagesFragmentNextLinkdefaultResponse,
+  GetMultiplePagesFragmentNextLinkDefaultResponse,
   GetMultiplePagesFragmentWithGroupingNextLink200Response,
-  GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse,
+  GetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse,
   GetMultiplePagesLRO202Response,
-  GetMultiplePagesLROdefaultResponse,
+  GetMultiplePagesLRODefaultResponse,
   AppendApiVersion200Response,
-  AppendApiVersiondefaultResponse,
+  AppendApiVersionDefaultResponse,
   ReplaceApiVersion200Response,
-  ReplaceApiVersiondefaultResponse,
+  ReplaceApiVersionDefaultResponse,
   NextFragment200Response,
-  NextFragmentdefaultResponse,
+  NextFragmentDefaultResponse,
   NextFragmentWithGrouping200Response,
-  NextFragmentWithGroupingdefaultResponse,
+  NextFragmentWithGroupingDefaultResponse,
   GetPagingModelWithItemNameWithXMSClientName200Response,
-  GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
+  GetPagingModelWithItemNameWithXMSClientNameDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -84,7 +84,7 @@ export interface GetNoItemNamePages {
   get(
     options?: GetNoItemNamePagesParameters
   ): StreamableMethod<
-    GetNoItemNamePages200Response | GetNoItemNamePagesdefaultResponse
+    GetNoItemNamePages200Response | GetNoItemNamePagesDefaultResponse
   >;
 }
 
@@ -94,7 +94,7 @@ export interface GetNullNextLinkNamePages {
     options?: GetNullNextLinkNamePagesParameters
   ): StreamableMethod<
     | GetNullNextLinkNamePages200Response
-    | GetNullNextLinkNamePagesdefaultResponse
+    | GetNullNextLinkNamePagesDefaultResponse
   >;
 }
 
@@ -103,7 +103,7 @@ export interface GetSinglePages {
   get(
     options?: GetSinglePagesParameters
   ): StreamableMethod<
-    GetSinglePages200Response | GetSinglePagesdefaultResponse
+    GetSinglePages200Response | GetSinglePagesDefaultResponse
   >;
 }
 
@@ -112,7 +112,7 @@ export interface FirstResponseEmpty {
   get(
     options?: FirstResponseEmptyParameters
   ): StreamableMethod<
-    FirstResponseEmpty200Response | FirstResponseEmptydefaultResponse
+    FirstResponseEmpty200Response | FirstResponseEmptyDefaultResponse
   >;
 }
 
@@ -121,7 +121,7 @@ export interface GetMultiplePages {
   get(
     options?: GetMultiplePagesParameters
   ): StreamableMethod<
-    GetMultiplePages200Response | GetMultiplePagesdefaultResponse
+    GetMultiplePages200Response | GetMultiplePagesDefaultResponse
   >;
 }
 
@@ -130,7 +130,7 @@ export interface GetWithQueryParams {
   get(
     options: GetWithQueryParamsParameters
   ): StreamableMethod<
-    GetWithQueryParams200Response | GetWithQueryParamsdefaultResponse
+    GetWithQueryParams200Response | GetWithQueryParamsDefaultResponse
   >;
 }
 
@@ -139,7 +139,7 @@ export interface DuplicateParams {
   get(
     options?: DuplicateParamsParameters
   ): StreamableMethod<
-    DuplicateParams200Response | DuplicateParamsdefaultResponse
+    DuplicateParams200Response | DuplicateParamsDefaultResponse
   >;
 }
 
@@ -148,7 +148,7 @@ export interface PageWithMaxPageSize {
   get(
     options?: PageWithMaxPageSizeParameters
   ): StreamableMethod<
-    PageWithMaxPageSize200Response | PageWithMaxPageSizedefaultResponse
+    PageWithMaxPageSize200Response | PageWithMaxPageSizeDefaultResponse
   >;
 }
 
@@ -158,7 +158,7 @@ export interface NextOperationWithQueryParams {
     options: NextOperationWithQueryParamsParameters
   ): StreamableMethod<
     | NextOperationWithQueryParams200Response
-    | NextOperationWithQueryParamsdefaultResponse
+    | NextOperationWithQueryParamsDefaultResponse
   >;
 }
 
@@ -167,7 +167,7 @@ export interface GetOdataMultiplePages {
   get(
     options?: GetOdataMultiplePagesParameters
   ): StreamableMethod<
-    GetOdataMultiplePages200Response | GetOdataMultiplePagesdefaultResponse
+    GetOdataMultiplePages200Response | GetOdataMultiplePagesDefaultResponse
   >;
 }
 
@@ -177,7 +177,7 @@ export interface GetMultiplePagesWithOffset {
     options?: GetMultiplePagesWithOffsetParameters
   ): StreamableMethod<
     | GetMultiplePagesWithOffset200Response
-    | GetMultiplePagesWithOffsetdefaultResponse
+    | GetMultiplePagesWithOffsetDefaultResponse
   >;
 }
 
@@ -187,7 +187,7 @@ export interface GetMultiplePagesRetryFirst {
     options?: GetMultiplePagesRetryFirstParameters
   ): StreamableMethod<
     | GetMultiplePagesRetryFirst200Response
-    | GetMultiplePagesRetryFirstdefaultResponse
+    | GetMultiplePagesRetryFirstDefaultResponse
   >;
 }
 
@@ -197,7 +197,7 @@ export interface GetMultiplePagesRetrySecond {
     options?: GetMultiplePagesRetrySecondParameters
   ): StreamableMethod<
     | GetMultiplePagesRetrySecond200Response
-    | GetMultiplePagesRetrySeconddefaultResponse
+    | GetMultiplePagesRetrySecondDefaultResponse
   >;
 }
 
@@ -206,7 +206,7 @@ export interface GetSinglePagesFailure {
   get(
     options?: GetSinglePagesFailureParameters
   ): StreamableMethod<
-    GetSinglePagesFailure200Response | GetSinglePagesFailuredefaultResponse
+    GetSinglePagesFailure200Response | GetSinglePagesFailureDefaultResponse
   >;
 }
 
@@ -215,7 +215,7 @@ export interface GetMultiplePagesFailure {
   get(
     options?: GetMultiplePagesFailureParameters
   ): StreamableMethod<
-    GetMultiplePagesFailure200Response | GetMultiplePagesFailuredefaultResponse
+    GetMultiplePagesFailure200Response | GetMultiplePagesFailureDefaultResponse
   >;
 }
 
@@ -225,7 +225,7 @@ export interface GetMultiplePagesFailureUri {
     options?: GetMultiplePagesFailureUriParameters
   ): StreamableMethod<
     | GetMultiplePagesFailureUri200Response
-    | GetMultiplePagesFailureUridefaultResponse
+    | GetMultiplePagesFailureUriDefaultResponse
   >;
 }
 
@@ -235,7 +235,7 @@ export interface GetMultiplePagesFragmentNextLink {
     options: GetMultiplePagesFragmentNextLinkParameters
   ): StreamableMethod<
     | GetMultiplePagesFragmentNextLink200Response
-    | GetMultiplePagesFragmentNextLinkdefaultResponse
+    | GetMultiplePagesFragmentNextLinkDefaultResponse
   >;
 }
 
@@ -245,7 +245,7 @@ export interface GetMultiplePagesFragmentWithGroupingNextLink {
     options: GetMultiplePagesFragmentWithGroupingNextLinkParameters
   ): StreamableMethod<
     | GetMultiplePagesFragmentWithGroupingNextLink200Response
-    | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
+    | GetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse
   >;
 }
 
@@ -254,7 +254,7 @@ export interface GetMultiplePagesLRO {
   post(
     options?: GetMultiplePagesLROParameters
   ): StreamableMethod<
-    GetMultiplePagesLRO202Response | GetMultiplePagesLROdefaultResponse
+    GetMultiplePagesLRO202Response | GetMultiplePagesLRODefaultResponse
   >;
 }
 
@@ -263,7 +263,7 @@ export interface AppendApiVersion {
   get(
     options?: AppendApiVersionParameters
   ): StreamableMethod<
-    AppendApiVersion200Response | AppendApiVersiondefaultResponse
+    AppendApiVersion200Response | AppendApiVersionDefaultResponse
   >;
 }
 
@@ -272,7 +272,7 @@ export interface ReplaceApiVersion {
   get(
     options?: ReplaceApiVersionParameters
   ): StreamableMethod<
-    ReplaceApiVersion200Response | ReplaceApiVersiondefaultResponse
+    ReplaceApiVersion200Response | ReplaceApiVersionDefaultResponse
   >;
 }
 
@@ -280,7 +280,7 @@ export interface NextFragment {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
     options: NextFragmentParameters
-  ): StreamableMethod<NextFragment200Response | NextFragmentdefaultResponse>;
+  ): StreamableMethod<NextFragment200Response | NextFragmentDefaultResponse>;
 }
 
 export interface NextFragmentWithGrouping {
@@ -289,7 +289,7 @@ export interface NextFragmentWithGrouping {
     options: NextFragmentWithGroupingParameters
   ): StreamableMethod<
     | NextFragmentWithGrouping200Response
-    | NextFragmentWithGroupingdefaultResponse
+    | NextFragmentWithGroupingDefaultResponse
   >;
 }
 
@@ -299,7 +299,7 @@ export interface GetPagingModelWithItemNameWithXMSClientName {
     options?: GetPagingModelWithItemNameWithXMSClientNameParameters
   ): StreamableMethod<
     | GetPagingModelWithItemNameWithXMSClientName200Response
-    | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
+    | GetPagingModelWithItemNameWithXMSClientNameDefaultResponse
   >;
 }
 

@@ -19,34 +19,34 @@ import {
 } from "./parameters";
 import {
   AccountsGetAccountProperties200Response,
-  AccountsGetAccountPropertiesdefaultResponse,
+  AccountsGetAccountPropertiesDefaultResponse,
   AccountsUpdateAccountProperties200Response,
-  AccountsUpdateAccountPropertiesdefaultResponse,
+  AccountsUpdateAccountPropertiesDefaultResponse,
   AccountsGetAccessKeys200Response,
-  AccountsGetAccessKeysdefaultResponse,
+  AccountsGetAccessKeysDefaultResponse,
   AccountsRegenerateAccessKey200Response,
-  AccountsRegenerateAccessKeydefaultResponse,
+  AccountsRegenerateAccessKeyDefaultResponse,
   CollectionsGetCollection200Response,
-  CollectionsGetCollectiondefaultResponse,
+  CollectionsGetCollectionDefaultResponse,
   CollectionsCreateOrUpdateCollection200Response,
-  CollectionsCreateOrUpdateCollectiondefaultResponse,
+  CollectionsCreateOrUpdateCollectionDefaultResponse,
   CollectionsDeleteCollection204Response,
-  CollectionsDeleteCollectiondefaultResponse,
+  CollectionsDeleteCollectionDefaultResponse,
   CollectionsListCollections200Response,
-  CollectionsListCollectionsdefaultResponse,
+  CollectionsListCollectionsDefaultResponse,
   CollectionsListChildCollectionNames200Response,
-  CollectionsListChildCollectionNamesdefaultResponse,
+  CollectionsListChildCollectionNamesDefaultResponse,
   CollectionsGetCollectionPath200Response,
-  CollectionsGetCollectionPathdefaultResponse,
+  CollectionsGetCollectionPathDefaultResponse,
   ResourceSetRulesGetResourceSetRule200Response,
-  ResourceSetRulesGetResourceSetRuledefaultResponse,
+  ResourceSetRulesGetResourceSetRuleDefaultResponse,
   ResourceSetRulesCreateOrUpdateResourceSetRule200Response,
-  ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse,
+  ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse,
   ResourceSetRulesDeleteResourceSetRule200Response,
   ResourceSetRulesDeleteResourceSetRule204Response,
-  ResourceSetRulesDeleteResourceSetRuledefaultResponse,
+  ResourceSetRulesDeleteResourceSetRuleDefaultResponse,
   ResourceSetRulesListResourceSetRules200Response,
-  ResourceSetRulesListResourceSetRulesdefaultResponse
+  ResourceSetRulesListResourceSetRulesDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -56,14 +56,14 @@ export interface AccountsGetAccountProperties {
     options?: AccountsGetAccountPropertiesParameters
   ): StreamableMethod<
     | AccountsGetAccountProperties200Response
-    | AccountsGetAccountPropertiesdefaultResponse
+    | AccountsGetAccountPropertiesDefaultResponse
   >;
   /** Updates an account */
   patch(
     options: AccountsUpdateAccountPropertiesParameters
   ): StreamableMethod<
     | AccountsUpdateAccountProperties200Response
-    | AccountsUpdateAccountPropertiesdefaultResponse
+    | AccountsUpdateAccountPropertiesDefaultResponse
   >;
 }
 
@@ -72,7 +72,7 @@ export interface AccountsGetAccessKeys {
   post(
     options?: AccountsGetAccessKeysParameters
   ): StreamableMethod<
-    AccountsGetAccessKeys200Response | AccountsGetAccessKeysdefaultResponse
+    AccountsGetAccessKeys200Response | AccountsGetAccessKeysDefaultResponse
   >;
 }
 
@@ -82,7 +82,7 @@ export interface AccountsRegenerateAccessKey {
     options: AccountsRegenerateAccessKeyParameters
   ): StreamableMethod<
     | AccountsRegenerateAccessKey200Response
-    | AccountsRegenerateAccessKeydefaultResponse
+    | AccountsRegenerateAccessKeyDefaultResponse
   >;
 }
 
@@ -92,21 +92,21 @@ export interface CollectionsGetCollection {
     options?: CollectionsGetCollectionParameters
   ): StreamableMethod<
     | CollectionsGetCollection200Response
-    | CollectionsGetCollectiondefaultResponse
+    | CollectionsGetCollectionDefaultResponse
   >;
   /** Creates or updates a collection entity. */
   put(
     options: CollectionsCreateOrUpdateCollectionParameters
   ): StreamableMethod<
     | CollectionsCreateOrUpdateCollection200Response
-    | CollectionsCreateOrUpdateCollectiondefaultResponse
+    | CollectionsCreateOrUpdateCollectionDefaultResponse
   >;
   /** Deletes a Collection entity. */
   delete(
     options?: CollectionsDeleteCollectionParameters
   ): StreamableMethod<
     | CollectionsDeleteCollection204Response
-    | CollectionsDeleteCollectiondefaultResponse
+    | CollectionsDeleteCollectionDefaultResponse
   >;
 }
 
@@ -116,7 +116,7 @@ export interface CollectionsListCollections {
     options?: CollectionsListCollectionsParameters
   ): StreamableMethod<
     | CollectionsListCollections200Response
-    | CollectionsListCollectionsdefaultResponse
+    | CollectionsListCollectionsDefaultResponse
   >;
 }
 
@@ -126,7 +126,7 @@ export interface CollectionsListChildCollectionNames {
     options?: CollectionsListChildCollectionNamesParameters
   ): StreamableMethod<
     | CollectionsListChildCollectionNames200Response
-    | CollectionsListChildCollectionNamesdefaultResponse
+    | CollectionsListChildCollectionNamesDefaultResponse
   >;
 }
 
@@ -136,7 +136,7 @@ export interface CollectionsGetCollectionPath {
     options?: CollectionsGetCollectionPathParameters
   ): StreamableMethod<
     | CollectionsGetCollectionPath200Response
-    | CollectionsGetCollectionPathdefaultResponse
+    | CollectionsGetCollectionPathDefaultResponse
   >;
 }
 
@@ -146,14 +146,14 @@ export interface ResourceSetRulesGetResourceSetRule {
     options?: ResourceSetRulesGetResourceSetRuleParameters
   ): StreamableMethod<
     | ResourceSetRulesGetResourceSetRule200Response
-    | ResourceSetRulesGetResourceSetRuledefaultResponse
+    | ResourceSetRulesGetResourceSetRuleDefaultResponse
   >;
   /** Creates or updates an resource set config. */
   put(
     options: ResourceSetRulesCreateOrUpdateResourceSetRuleParameters
   ): StreamableMethod<
     | ResourceSetRulesCreateOrUpdateResourceSetRule200Response
-    | ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse
+    | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse
   >;
   /** Deletes a ResourceSetRuleConfig resource. */
   delete(
@@ -161,7 +161,7 @@ export interface ResourceSetRulesGetResourceSetRule {
   ): StreamableMethod<
     | ResourceSetRulesDeleteResourceSetRule200Response
     | ResourceSetRulesDeleteResourceSetRule204Response
-    | ResourceSetRulesDeleteResourceSetRuledefaultResponse
+    | ResourceSetRulesDeleteResourceSetRuleDefaultResponse
   >;
 }
 
@@ -171,7 +171,7 @@ export interface ResourceSetRulesListResourceSetRules {
     options?: ResourceSetRulesListResourceSetRulesParameters
   ): StreamableMethod<
     | ResourceSetRulesListResourceSetRules200Response
-    | ResourceSetRulesListResourceSetRulesdefaultResponse
+    | ResourceSetRulesListResourceSetRulesDefaultResponse
   >;
 }
 

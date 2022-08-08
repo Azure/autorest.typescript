@@ -3,43 +3,43 @@
 
 import {
   StringGetNull200Response,
-  StringGetNulldefaultResponse,
+  StringGetNullDefaultResponse,
   StringPutNull200Response,
-  StringPutNulldefaultResponse,
+  StringPutNullDefaultResponse,
   StringGetEmpty200Response,
-  StringGetEmptydefaultResponse,
+  StringGetEmptyDefaultResponse,
   StringPutEmpty200Response,
-  StringPutEmptydefaultResponse,
+  StringPutEmptyDefaultResponse,
   StringGetMbcs200Response,
-  StringGetMbcsdefaultResponse,
+  StringGetMbcsDefaultResponse,
   StringPutMbcs200Response,
-  StringPutMbcsdefaultResponse,
+  StringPutMbcsDefaultResponse,
   StringGetWhitespace200Response,
-  StringGetWhitespacedefaultResponse,
+  StringGetWhitespaceDefaultResponse,
   StringPutWhitespace200Response,
-  StringPutWhitespacedefaultResponse,
+  StringPutWhitespaceDefaultResponse,
   StringGetNotProvided200Response,
-  StringGetNotProvideddefaultResponse,
+  StringGetNotProvidedDefaultResponse,
   StringGetBase64Encoded200Response,
-  StringGetBase64EncodeddefaultResponse,
+  StringGetBase64EncodedDefaultResponse,
   StringGetBase64UrlEncoded200Response,
-  StringGetBase64UrlEncodeddefaultResponse,
+  StringGetBase64UrlEncodedDefaultResponse,
   StringPutBase64UrlEncoded200Response,
-  StringPutBase64UrlEncodeddefaultResponse,
+  StringPutBase64UrlEncodedDefaultResponse,
   StringGetNullBase64UrlEncoded200Response,
-  StringGetNullBase64UrlEncodeddefaultResponse,
+  StringGetNullBase64UrlEncodedDefaultResponse,
   EnumGetNotExpandable200Response,
-  EnumGetNotExpandabledefaultResponse,
+  EnumGetNotExpandableDefaultResponse,
   EnumPutNotExpandable200Response,
-  EnumPutNotExpandabledefaultResponse,
+  EnumPutNotExpandableDefaultResponse,
   EnumGetReferenced200Response,
-  EnumGetReferenceddefaultResponse,
+  EnumGetReferencedDefaultResponse,
   EnumPutReferenced200Response,
-  EnumPutReferenceddefaultResponse,
+  EnumPutReferencedDefaultResponse,
   EnumGetReferencedConstant200Response,
-  EnumGetReferencedConstantdefaultResponse,
+  EnumGetReferencedConstantDefaultResponse,
   EnumPutReferencedConstant200Response,
-  EnumPutReferencedConstantdefaultResponse
+  EnumPutReferencedConstantDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -65,140 +65,140 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: StringGetNull200Response | StringGetNulldefaultResponse
-): response is StringGetNulldefaultResponse;
+  response: StringGetNull200Response | StringGetNullDefaultResponse
+): response is StringGetNullDefaultResponse;
 export function isUnexpected(
-  response: StringPutNull200Response | StringPutNulldefaultResponse
-): response is StringPutNulldefaultResponse;
+  response: StringPutNull200Response | StringPutNullDefaultResponse
+): response is StringPutNullDefaultResponse;
 export function isUnexpected(
-  response: StringGetEmpty200Response | StringGetEmptydefaultResponse
-): response is StringGetEmptydefaultResponse;
+  response: StringGetEmpty200Response | StringGetEmptyDefaultResponse
+): response is StringGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: StringPutEmpty200Response | StringPutEmptydefaultResponse
-): response is StringPutEmptydefaultResponse;
+  response: StringPutEmpty200Response | StringPutEmptyDefaultResponse
+): response is StringPutEmptyDefaultResponse;
 export function isUnexpected(
-  response: StringGetMbcs200Response | StringGetMbcsdefaultResponse
-): response is StringGetMbcsdefaultResponse;
+  response: StringGetMbcs200Response | StringGetMbcsDefaultResponse
+): response is StringGetMbcsDefaultResponse;
 export function isUnexpected(
-  response: StringPutMbcs200Response | StringPutMbcsdefaultResponse
-): response is StringPutMbcsdefaultResponse;
+  response: StringPutMbcs200Response | StringPutMbcsDefaultResponse
+): response is StringPutMbcsDefaultResponse;
 export function isUnexpected(
-  response: StringGetWhitespace200Response | StringGetWhitespacedefaultResponse
-): response is StringGetWhitespacedefaultResponse;
+  response: StringGetWhitespace200Response | StringGetWhitespaceDefaultResponse
+): response is StringGetWhitespaceDefaultResponse;
 export function isUnexpected(
-  response: StringPutWhitespace200Response | StringPutWhitespacedefaultResponse
-): response is StringPutWhitespacedefaultResponse;
+  response: StringPutWhitespace200Response | StringPutWhitespaceDefaultResponse
+): response is StringPutWhitespaceDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetNotProvided200Response
-    | StringGetNotProvideddefaultResponse
-): response is StringGetNotProvideddefaultResponse;
+    | StringGetNotProvidedDefaultResponse
+): response is StringGetNotProvidedDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetBase64Encoded200Response
-    | StringGetBase64EncodeddefaultResponse
-): response is StringGetBase64EncodeddefaultResponse;
+    | StringGetBase64EncodedDefaultResponse
+): response is StringGetBase64EncodedDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetBase64UrlEncoded200Response
-    | StringGetBase64UrlEncodeddefaultResponse
-): response is StringGetBase64UrlEncodeddefaultResponse;
+    | StringGetBase64UrlEncodedDefaultResponse
+): response is StringGetBase64UrlEncodedDefaultResponse;
 export function isUnexpected(
   response:
     | StringPutBase64UrlEncoded200Response
-    | StringPutBase64UrlEncodeddefaultResponse
-): response is StringPutBase64UrlEncodeddefaultResponse;
+    | StringPutBase64UrlEncodedDefaultResponse
+): response is StringPutBase64UrlEncodedDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetNullBase64UrlEncoded200Response
-    | StringGetNullBase64UrlEncodeddefaultResponse
-): response is StringGetNullBase64UrlEncodeddefaultResponse;
+    | StringGetNullBase64UrlEncodedDefaultResponse
+): response is StringGetNullBase64UrlEncodedDefaultResponse;
 export function isUnexpected(
   response:
     | EnumGetNotExpandable200Response
-    | EnumGetNotExpandabledefaultResponse
-): response is EnumGetNotExpandabledefaultResponse;
+    | EnumGetNotExpandableDefaultResponse
+): response is EnumGetNotExpandableDefaultResponse;
 export function isUnexpected(
   response:
     | EnumPutNotExpandable200Response
-    | EnumPutNotExpandabledefaultResponse
-): response is EnumPutNotExpandabledefaultResponse;
+    | EnumPutNotExpandableDefaultResponse
+): response is EnumPutNotExpandableDefaultResponse;
 export function isUnexpected(
-  response: EnumGetReferenced200Response | EnumGetReferenceddefaultResponse
-): response is EnumGetReferenceddefaultResponse;
+  response: EnumGetReferenced200Response | EnumGetReferencedDefaultResponse
+): response is EnumGetReferencedDefaultResponse;
 export function isUnexpected(
-  response: EnumPutReferenced200Response | EnumPutReferenceddefaultResponse
-): response is EnumPutReferenceddefaultResponse;
+  response: EnumPutReferenced200Response | EnumPutReferencedDefaultResponse
+): response is EnumPutReferencedDefaultResponse;
 export function isUnexpected(
   response:
     | EnumGetReferencedConstant200Response
-    | EnumGetReferencedConstantdefaultResponse
-): response is EnumGetReferencedConstantdefaultResponse;
+    | EnumGetReferencedConstantDefaultResponse
+): response is EnumGetReferencedConstantDefaultResponse;
 export function isUnexpected(
   response:
     | EnumPutReferencedConstant200Response
-    | EnumPutReferencedConstantdefaultResponse
-): response is EnumPutReferencedConstantdefaultResponse;
+    | EnumPutReferencedConstantDefaultResponse
+): response is EnumPutReferencedConstantDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetNull200Response
-    | StringGetNulldefaultResponse
+    | StringGetNullDefaultResponse
     | StringPutNull200Response
-    | StringPutNulldefaultResponse
+    | StringPutNullDefaultResponse
     | StringGetEmpty200Response
-    | StringGetEmptydefaultResponse
+    | StringGetEmptyDefaultResponse
     | StringPutEmpty200Response
-    | StringPutEmptydefaultResponse
+    | StringPutEmptyDefaultResponse
     | StringGetMbcs200Response
-    | StringGetMbcsdefaultResponse
+    | StringGetMbcsDefaultResponse
     | StringPutMbcs200Response
-    | StringPutMbcsdefaultResponse
+    | StringPutMbcsDefaultResponse
     | StringGetWhitespace200Response
-    | StringGetWhitespacedefaultResponse
+    | StringGetWhitespaceDefaultResponse
     | StringPutWhitespace200Response
-    | StringPutWhitespacedefaultResponse
+    | StringPutWhitespaceDefaultResponse
     | StringGetNotProvided200Response
-    | StringGetNotProvideddefaultResponse
+    | StringGetNotProvidedDefaultResponse
     | StringGetBase64Encoded200Response
-    | StringGetBase64EncodeddefaultResponse
+    | StringGetBase64EncodedDefaultResponse
     | StringGetBase64UrlEncoded200Response
-    | StringGetBase64UrlEncodeddefaultResponse
+    | StringGetBase64UrlEncodedDefaultResponse
     | StringPutBase64UrlEncoded200Response
-    | StringPutBase64UrlEncodeddefaultResponse
+    | StringPutBase64UrlEncodedDefaultResponse
     | StringGetNullBase64UrlEncoded200Response
-    | StringGetNullBase64UrlEncodeddefaultResponse
+    | StringGetNullBase64UrlEncodedDefaultResponse
     | EnumGetNotExpandable200Response
-    | EnumGetNotExpandabledefaultResponse
+    | EnumGetNotExpandableDefaultResponse
     | EnumPutNotExpandable200Response
-    | EnumPutNotExpandabledefaultResponse
+    | EnumPutNotExpandableDefaultResponse
     | EnumGetReferenced200Response
-    | EnumGetReferenceddefaultResponse
+    | EnumGetReferencedDefaultResponse
     | EnumPutReferenced200Response
-    | EnumPutReferenceddefaultResponse
+    | EnumPutReferencedDefaultResponse
     | EnumGetReferencedConstant200Response
-    | EnumGetReferencedConstantdefaultResponse
+    | EnumGetReferencedConstantDefaultResponse
     | EnumPutReferencedConstant200Response
-    | EnumPutReferencedConstantdefaultResponse
+    | EnumPutReferencedConstantDefaultResponse
 ): response is
-  | StringGetNulldefaultResponse
-  | StringPutNulldefaultResponse
-  | StringGetEmptydefaultResponse
-  | StringPutEmptydefaultResponse
-  | StringGetMbcsdefaultResponse
-  | StringPutMbcsdefaultResponse
-  | StringGetWhitespacedefaultResponse
-  | StringPutWhitespacedefaultResponse
-  | StringGetNotProvideddefaultResponse
-  | StringGetBase64EncodeddefaultResponse
-  | StringGetBase64UrlEncodeddefaultResponse
-  | StringPutBase64UrlEncodeddefaultResponse
-  | StringGetNullBase64UrlEncodeddefaultResponse
-  | EnumGetNotExpandabledefaultResponse
-  | EnumPutNotExpandabledefaultResponse
-  | EnumGetReferenceddefaultResponse
-  | EnumPutReferenceddefaultResponse
-  | EnumGetReferencedConstantdefaultResponse
-  | EnumPutReferencedConstantdefaultResponse {
+  | StringGetNullDefaultResponse
+  | StringPutNullDefaultResponse
+  | StringGetEmptyDefaultResponse
+  | StringPutEmptyDefaultResponse
+  | StringGetMbcsDefaultResponse
+  | StringPutMbcsDefaultResponse
+  | StringGetWhitespaceDefaultResponse
+  | StringPutWhitespaceDefaultResponse
+  | StringGetNotProvidedDefaultResponse
+  | StringGetBase64EncodedDefaultResponse
+  | StringGetBase64UrlEncodedDefaultResponse
+  | StringPutBase64UrlEncodedDefaultResponse
+  | StringGetNullBase64UrlEncodedDefaultResponse
+  | EnumGetNotExpandableDefaultResponse
+  | EnumPutNotExpandableDefaultResponse
+  | EnumGetReferencedDefaultResponse
+  | EnumPutReferencedDefaultResponse
+  | EnumGetReferencedConstantDefaultResponse
+  | EnumPutReferencedConstantDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

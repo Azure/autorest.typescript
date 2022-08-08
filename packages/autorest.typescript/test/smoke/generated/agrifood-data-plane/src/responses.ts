@@ -51,7 +51,7 @@ export interface ApplicationDataListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of application data resources under a particular farm. */
-export interface ApplicationDataListByFarmerIddefaultResponse
+export interface ApplicationDataListByFarmerIdDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -64,7 +64,7 @@ export interface ApplicationDataList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of application data resources across all farmers. */
-export interface ApplicationDataListdefaultResponse extends HttpResponse {
+export interface ApplicationDataListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -76,7 +76,7 @@ export interface ApplicationDataGet200Response extends HttpResponse {
 }
 
 /** Get a specified application data resource under a particular farmer. */
-export interface ApplicationDataGetdefaultResponse extends HttpResponse {
+export interface ApplicationDataGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -94,7 +94,7 @@ export interface ApplicationDataCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates an application data resource under a particular farmer. */
-export interface ApplicationDataCreateOrUpdatedefaultResponse
+export interface ApplicationDataCreateOrUpdateDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -107,7 +107,7 @@ export interface ApplicationDataDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified application data resource under a particular farmer. */
-export interface ApplicationDataDeletedefaultResponse extends HttpResponse {
+export interface ApplicationDataDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -119,7 +119,7 @@ export interface AttachmentsListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of attachment resources under a particular farmer. */
-export interface AttachmentsListByFarmerIddefaultResponse extends HttpResponse {
+export interface AttachmentsListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -131,7 +131,7 @@ export interface AttachmentsGet200Response extends HttpResponse {
 }
 
 /** Gets a specified attachment resource under a particular farmer. */
-export interface AttachmentsGetdefaultResponse extends HttpResponse {
+export interface AttachmentsGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -149,7 +149,7 @@ export interface AttachmentsCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates an attachment resource under a particular farmer. */
-export interface AttachmentsCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface AttachmentsCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -161,7 +161,7 @@ export interface AttachmentsDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified attachment resource under a particular farmer. */
-export interface AttachmentsDeletedefaultResponse extends HttpResponse {
+export interface AttachmentsDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -174,7 +174,7 @@ export interface AttachmentsDownload200Response extends HttpResponse {
 }
 
 /** Downloads and returns attachment as response for the given input filePath. */
-export interface AttachmentsDownloaddefaultResponse extends HttpResponse {
+export interface AttachmentsDownloadDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -186,7 +186,7 @@ export interface BoundariesListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of boundary resources under a particular farmer. */
-export interface BoundariesListByFarmerIddefaultResponse extends HttpResponse {
+export interface BoundariesListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -198,7 +198,7 @@ export interface BoundariesSearchByFarmerId200Response extends HttpResponse {
 }
 
 /** Search for boundaries by fields and intersecting geometry. */
-export interface BoundariesSearchByFarmerIddefaultResponse
+export interface BoundariesSearchByFarmerIdDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -211,7 +211,7 @@ export interface BoundariesList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of boundary resources across all farmers. */
-export interface BoundariesListdefaultResponse extends HttpResponse {
+export interface BoundariesListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -223,7 +223,7 @@ export interface BoundariesSearch200Response extends HttpResponse {
 }
 
 /** Search for boundaries across all farmers by fields and intersecting geometry. */
-export interface BoundariesSearchdefaultResponse extends HttpResponse {
+export interface BoundariesSearchDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -236,7 +236,7 @@ export interface BoundariesGetCascadeDeleteJobDetails200Response
 }
 
 /** Get cascade delete job for specified boundary. */
-export interface BoundariesGetCascadeDeleteJobDetailsdefaultResponse
+export interface BoundariesGetCascadeDeleteJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -250,7 +250,7 @@ export interface BoundariesCreateCascadeDeleteJob202Response
 }
 
 /** Create a cascade delete job for specified boundary. */
-export interface BoundariesCreateCascadeDeleteJobdefaultResponse
+export interface BoundariesCreateCascadeDeleteJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -263,7 +263,7 @@ export interface BoundariesGet200Response extends HttpResponse {
 }
 
 /** Gets a specified boundary resource under a particular farmer. */
-export interface BoundariesGetdefaultResponse extends HttpResponse {
+export interface BoundariesGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -281,7 +281,7 @@ export interface BoundariesCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates a boundary resource. */
-export interface BoundariesCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface BoundariesCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -293,7 +293,7 @@ export interface BoundariesDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified boundary resource under a particular farmer. */
-export interface BoundariesDeletedefaultResponse extends HttpResponse {
+export interface BoundariesDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -305,7 +305,7 @@ export interface BoundariesGetOverlap200Response extends HttpResponse {
 }
 
 /** Returns overlapping acreage between two boundary Ids. */
-export interface BoundariesGetOverlapdefaultResponse extends HttpResponse {
+export interface BoundariesGetOverlapDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -317,7 +317,7 @@ export interface CropsList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of crop resources. */
-export interface CropsListdefaultResponse extends HttpResponse {
+export interface CropsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -329,7 +329,7 @@ export interface CropsGet200Response extends HttpResponse {
 }
 
 /** Gets a specified crop resource. */
-export interface CropsGetdefaultResponse extends HttpResponse {
+export interface CropsGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -347,7 +347,7 @@ export interface CropsCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates a crop resource. */
-export interface CropsCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface CropsCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -359,7 +359,7 @@ export interface CropsDelete204Response extends HttpResponse {
 }
 
 /** Deletes Crop for given crop id. */
-export interface CropsDeletedefaultResponse extends HttpResponse {
+export interface CropsDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -371,7 +371,7 @@ export interface CropVarietiesListByCropId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of crop variety resources under a particular crop. */
-export interface CropVarietiesListByCropIddefaultResponse extends HttpResponse {
+export interface CropVarietiesListByCropIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -383,7 +383,7 @@ export interface CropVarietiesList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of crop variety resources across all crops. */
-export interface CropVarietiesListdefaultResponse extends HttpResponse {
+export interface CropVarietiesListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -395,7 +395,7 @@ export interface CropVarietiesGet200Response extends HttpResponse {
 }
 
 /** Gets a specified crop variety resource under a particular crop. */
-export interface CropVarietiesGetdefaultResponse extends HttpResponse {
+export interface CropVarietiesGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -413,7 +413,7 @@ export interface CropVarietiesCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates a crop variety resource. */
-export interface CropVarietiesCreateOrUpdatedefaultResponse
+export interface CropVarietiesCreateOrUpdateDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -426,7 +426,7 @@ export interface CropVarietiesDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified crop variety resource under a particular crop. */
-export interface CropVarietiesDeletedefaultResponse extends HttpResponse {
+export interface CropVarietiesDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -438,7 +438,7 @@ export interface FarmersList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of farmer resources. */
-export interface FarmersListdefaultResponse extends HttpResponse {
+export interface FarmersListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -450,7 +450,7 @@ export interface FarmersGet200Response extends HttpResponse {
 }
 
 /** Gets a specified farmer resource. */
-export interface FarmersGetdefaultResponse extends HttpResponse {
+export interface FarmersGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -468,7 +468,7 @@ export interface FarmersCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates a farmer resource. */
-export interface FarmersCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface FarmersCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -480,7 +480,7 @@ export interface FarmersDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified farmer resource. */
-export interface FarmersDeletedefaultResponse extends HttpResponse {
+export interface FarmersDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -493,7 +493,7 @@ export interface FarmersGetCascadeDeleteJobDetails200Response
 }
 
 /** Get a cascade delete job for specified farmer. */
-export interface FarmersGetCascadeDeleteJobDetailsdefaultResponse
+export interface FarmersGetCascadeDeleteJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -506,7 +506,7 @@ export interface FarmersCreateCascadeDeleteJob202Response extends HttpResponse {
 }
 
 /** Create a cascade delete job for specified farmer. */
-export interface FarmersCreateCascadeDeleteJobdefaultResponse
+export interface FarmersCreateCascadeDeleteJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -520,7 +520,7 @@ export interface FarmOperationsCreateDataIngestionJob202Response
 }
 
 /** Create a farm operation data ingestion job. */
-export interface FarmOperationsCreateDataIngestionJobdefaultResponse
+export interface FarmOperationsCreateDataIngestionJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -534,7 +534,7 @@ export interface FarmOperationsGetDataIngestionJobDetails200Response
 }
 
 /** Get a farm operation data ingestion job. */
-export interface FarmOperationsGetDataIngestionJobDetailsdefaultResponse
+export interface FarmOperationsGetDataIngestionJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -547,7 +547,7 @@ export interface FarmsListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of farm resources under a particular farmer. */
-export interface FarmsListByFarmerIddefaultResponse extends HttpResponse {
+export interface FarmsListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -559,7 +559,7 @@ export interface FarmsList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of farm resources across all farmers. */
-export interface FarmsListdefaultResponse extends HttpResponse {
+export interface FarmsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -571,7 +571,7 @@ export interface FarmsGet200Response extends HttpResponse {
 }
 
 /** Gets a specified farm resource under a particular farmer. */
-export interface FarmsGetdefaultResponse extends HttpResponse {
+export interface FarmsGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -589,7 +589,7 @@ export interface FarmsCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates a farm resource under a particular farmer. */
-export interface FarmsCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface FarmsCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -601,7 +601,7 @@ export interface FarmsDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified farm resource under a particular farmer. */
-export interface FarmsDeletedefaultResponse extends HttpResponse {
+export interface FarmsDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -614,7 +614,7 @@ export interface FarmsGetCascadeDeleteJobDetails200Response
 }
 
 /** Get a cascade delete job for specified farm. */
-export interface FarmsGetCascadeDeleteJobDetailsdefaultResponse
+export interface FarmsGetCascadeDeleteJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -627,7 +627,7 @@ export interface FarmsCreateCascadeDeleteJob202Response extends HttpResponse {
 }
 
 /** Create a cascade delete job for specified farm. */
-export interface FarmsCreateCascadeDeleteJobdefaultResponse
+export interface FarmsCreateCascadeDeleteJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -640,7 +640,7 @@ export interface FieldsListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of field resources under a particular farmer. */
-export interface FieldsListByFarmerIddefaultResponse extends HttpResponse {
+export interface FieldsListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -652,7 +652,7 @@ export interface FieldsList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of field resources across all farmers. */
-export interface FieldsListdefaultResponse extends HttpResponse {
+export interface FieldsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -664,7 +664,7 @@ export interface FieldsGet200Response extends HttpResponse {
 }
 
 /** Gets a specified field resource under a particular farmer. */
-export interface FieldsGetdefaultResponse extends HttpResponse {
+export interface FieldsGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -682,7 +682,7 @@ export interface FieldsCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or Updates a field resource under a particular farmer. */
-export interface FieldsCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface FieldsCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -694,7 +694,7 @@ export interface FieldsDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified field resource under a particular farmer. */
-export interface FieldsDeletedefaultResponse extends HttpResponse {
+export interface FieldsDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -707,7 +707,7 @@ export interface FieldsGetCascadeDeleteJobDetails200Response
 }
 
 /** Get a cascade delete job for specified field. */
-export interface FieldsGetCascadeDeleteJobDetailsdefaultResponse
+export interface FieldsGetCascadeDeleteJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -720,7 +720,7 @@ export interface FieldsCreateCascadeDeleteJob202Response extends HttpResponse {
 }
 
 /** Create a cascade delete job for specified field. */
-export interface FieldsCreateCascadeDeleteJobdefaultResponse
+export interface FieldsCreateCascadeDeleteJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -733,7 +733,7 @@ export interface HarvestDataListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of harvest data resources under a particular farm. */
-export interface HarvestDataListByFarmerIddefaultResponse extends HttpResponse {
+export interface HarvestDataListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -745,7 +745,7 @@ export interface HarvestDataList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of harvest data resources across all farmers. */
-export interface HarvestDataListdefaultResponse extends HttpResponse {
+export interface HarvestDataListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -757,7 +757,7 @@ export interface HarvestDataGet200Response extends HttpResponse {
 }
 
 /** Get a specified harvest data resource under a particular farmer. */
-export interface HarvestDataGetdefaultResponse extends HttpResponse {
+export interface HarvestDataGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -775,7 +775,7 @@ export interface HarvestDataCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates harvest data resource under a particular farmer. */
-export interface HarvestDataCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface HarvestDataCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -787,7 +787,7 @@ export interface HarvestDataDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified harvest data resource under a particular farmer. */
-export interface HarvestDataDeletedefaultResponse extends HttpResponse {
+export interface HarvestDataDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -800,7 +800,7 @@ export interface ImageProcessingCreateRasterizeJob202Response
 }
 
 /** Create a ImageProcessing Rasterize job. */
-export interface ImageProcessingCreateRasterizeJobdefaultResponse
+export interface ImageProcessingCreateRasterizeJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: Record<string, unknown>;
@@ -820,7 +820,7 @@ export interface OAuthProvidersList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of oauthProvider resources. */
-export interface OAuthProvidersListdefaultResponse extends HttpResponse {
+export interface OAuthProvidersListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -832,7 +832,7 @@ export interface OAuthProvidersGet200Response extends HttpResponse {
 }
 
 /** Get a specified oauthProvider resource. */
-export interface OAuthProvidersGetdefaultResponse extends HttpResponse {
+export interface OAuthProvidersGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -850,7 +850,7 @@ export interface OAuthProvidersCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates an oauthProvider resource. */
-export interface OAuthProvidersCreateOrUpdatedefaultResponse
+export interface OAuthProvidersCreateOrUpdateDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -863,7 +863,7 @@ export interface OAuthProvidersDelete204Response extends HttpResponse {
 }
 
 /** Deletes an specified oauthProvider resource. */
-export interface OAuthProvidersDeletedefaultResponse extends HttpResponse {
+export interface OAuthProvidersDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -875,7 +875,7 @@ export interface OAuthTokensList200Response extends HttpResponse {
 }
 
 /** Returns a list of OAuthToken documents. */
-export interface OAuthTokensListdefaultResponse extends HttpResponse {
+export interface OAuthTokensListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -888,7 +888,7 @@ export interface OAuthTokensGetOAuthConnectionLink200Response
 }
 
 /** Returns Connection link needed in the OAuth flow. */
-export interface OAuthTokensGetOAuthConnectionLinkdefaultResponse
+export interface OAuthTokensGetOAuthConnectionLinkDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -902,7 +902,7 @@ export interface OAuthTokensGetCascadeDeleteJobDetails200Response
 }
 
 /** Get cascade delete job details for OAuth tokens for specified job ID. */
-export interface OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse
+export interface OAuthTokensGetCascadeDeleteJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -916,7 +916,7 @@ export interface OAuthTokensCreateCascadeDeleteJob202Response
 }
 
 /** Create a cascade delete job for OAuth tokens. */
-export interface OAuthTokensCreateCascadeDeleteJobdefaultResponse
+export interface OAuthTokensCreateCascadeDeleteJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -929,7 +929,7 @@ export interface PlantingDataListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of planting data resources under a particular farm. */
-export interface PlantingDataListByFarmerIddefaultResponse
+export interface PlantingDataListByFarmerIdDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -942,7 +942,7 @@ export interface PlantingDataList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of planting data resources across all farmers. */
-export interface PlantingDataListdefaultResponse extends HttpResponse {
+export interface PlantingDataListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -954,7 +954,7 @@ export interface PlantingDataGet200Response extends HttpResponse {
 }
 
 /** Get a specified planting data resource under a particular farmer. */
-export interface PlantingDataGetdefaultResponse extends HttpResponse {
+export interface PlantingDataGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -972,7 +972,7 @@ export interface PlantingDataCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates an planting data resource under a particular farmer. */
-export interface PlantingDataCreateOrUpdatedefaultResponse
+export interface PlantingDataCreateOrUpdateDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -985,7 +985,7 @@ export interface PlantingDataDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified planting data resource under a particular farmer. */
-export interface PlantingDataDeletedefaultResponse extends HttpResponse {
+export interface PlantingDataDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -997,7 +997,7 @@ export interface ScenesList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of scene resources. */
-export interface ScenesListdefaultResponse extends HttpResponse {
+export interface ScenesListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1010,7 +1010,7 @@ export interface ScenesCreateSatelliteDataIngestionJob202Response
 }
 
 /** Create a satellite data ingestion job. */
-export interface ScenesCreateSatelliteDataIngestionJobdefaultResponse
+export interface ScenesCreateSatelliteDataIngestionJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1024,7 +1024,7 @@ export interface ScenesGetSatelliteDataIngestionJobDetails200Response
 }
 
 /** Get a satellite data ingestion job. */
-export interface ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse
+export interface ScenesGetSatelliteDataIngestionJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1038,7 +1038,7 @@ export interface ScenesDownload200Response extends HttpResponse {
 }
 
 /** Downloads and returns file stream as response for the given input filePath. */
-export interface ScenesDownloaddefaultResponse extends HttpResponse {
+export interface ScenesDownloadDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1050,7 +1050,7 @@ export interface SeasonalFieldsListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of seasonal field resources under a particular farmer. */
-export interface SeasonalFieldsListByFarmerIddefaultResponse
+export interface SeasonalFieldsListByFarmerIdDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1063,7 +1063,7 @@ export interface SeasonalFieldsList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of seasonal field resources across all farmers. */
-export interface SeasonalFieldsListdefaultResponse extends HttpResponse {
+export interface SeasonalFieldsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1075,7 +1075,7 @@ export interface SeasonalFieldsGet200Response extends HttpResponse {
 }
 
 /** Gets a specified seasonal field resource under a particular farmer. */
-export interface SeasonalFieldsGetdefaultResponse extends HttpResponse {
+export interface SeasonalFieldsGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1093,7 +1093,7 @@ export interface SeasonalFieldsCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or Updates a seasonal field resource under a particular farmer. */
-export interface SeasonalFieldsCreateOrUpdatedefaultResponse
+export interface SeasonalFieldsCreateOrUpdateDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1106,7 +1106,7 @@ export interface SeasonalFieldsDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified seasonal-field resource under a particular farmer. */
-export interface SeasonalFieldsDeletedefaultResponse extends HttpResponse {
+export interface SeasonalFieldsDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1119,7 +1119,7 @@ export interface SeasonalFieldsGetCascadeDeleteJobDetails200Response
 }
 
 /** Get cascade delete job for specified seasonal field. */
-export interface SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse
+export interface SeasonalFieldsGetCascadeDeleteJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1133,7 +1133,7 @@ export interface SeasonalFieldsCreateCascadeDeleteJob202Response
 }
 
 /** Create a cascade delete job for specified seasonal field. */
-export interface SeasonalFieldsCreateCascadeDeleteJobdefaultResponse
+export interface SeasonalFieldsCreateCascadeDeleteJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1146,7 +1146,7 @@ export interface SeasonsList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of season resources. */
-export interface SeasonsListdefaultResponse extends HttpResponse {
+export interface SeasonsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1158,7 +1158,7 @@ export interface SeasonsGet200Response extends HttpResponse {
 }
 
 /** Gets a specified season resource. */
-export interface SeasonsGetdefaultResponse extends HttpResponse {
+export interface SeasonsGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1176,7 +1176,7 @@ export interface SeasonsCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates a season resource. */
-export interface SeasonsCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface SeasonsCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1188,7 +1188,7 @@ export interface SeasonsDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified season resource. */
-export interface SeasonsDeletedefaultResponse extends HttpResponse {
+export interface SeasonsDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1200,7 +1200,7 @@ export interface TillageDataListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of tillage data resources under a particular farm. */
-export interface TillageDataListByFarmerIddefaultResponse extends HttpResponse {
+export interface TillageDataListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1212,7 +1212,7 @@ export interface TillageDataList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of tillage data resources across all farmers. */
-export interface TillageDataListdefaultResponse extends HttpResponse {
+export interface TillageDataListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1224,7 +1224,7 @@ export interface TillageDataGet200Response extends HttpResponse {
 }
 
 /** Get a specified tillage data resource under a particular farmer. */
-export interface TillageDataGetdefaultResponse extends HttpResponse {
+export interface TillageDataGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1242,7 +1242,7 @@ export interface TillageDataCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates an tillage data resource under a particular farmer. */
-export interface TillageDataCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface TillageDataCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1254,7 +1254,7 @@ export interface TillageDataDelete204Response extends HttpResponse {
 }
 
 /** Deletes a specified tillage data resource under a particular farmer. */
-export interface TillageDataDeletedefaultResponse extends HttpResponse {
+export interface TillageDataDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1266,7 +1266,7 @@ export interface WeatherList200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of weather data. */
-export interface WeatherListdefaultResponse extends HttpResponse {
+export interface WeatherListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1279,7 +1279,7 @@ export interface WeatherGetDataIngestionJobDetails200Response
 }
 
 /** Get weather ingestion job. */
-export interface WeatherGetDataIngestionJobDetailsdefaultResponse
+export interface WeatherGetDataIngestionJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1292,7 +1292,7 @@ export interface WeatherCreateDataIngestionJob202Response extends HttpResponse {
 }
 
 /** Create a weather data ingestion job. */
-export interface WeatherCreateDataIngestionJobdefaultResponse
+export interface WeatherCreateDataIngestionJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1306,7 +1306,7 @@ export interface WeatherGetDataDeleteJobDetails200Response
 }
 
 /** Get weather data delete job. */
-export interface WeatherGetDataDeleteJobDetailsdefaultResponse
+export interface WeatherGetDataDeleteJobDetailsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -1319,7 +1319,7 @@ export interface WeatherCreateDataDeleteJob202Response extends HttpResponse {
 }
 
 /** Create a weather data delete job. */
-export interface WeatherCreateDataDeleteJobdefaultResponse
+export interface WeatherCreateDataDeleteJobDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;

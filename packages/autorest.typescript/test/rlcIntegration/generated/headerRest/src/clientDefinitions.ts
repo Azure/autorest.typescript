@@ -34,63 +34,63 @@ import {
 } from "./parameters";
 import {
   ParamExistingKey200Response,
-  ParamExistingKeydefaultResponse,
+  ParamExistingKeyDefaultResponse,
   ResponseExistingKey200Response,
-  ResponseExistingKeydefaultResponse,
+  ResponseExistingKeyDefaultResponse,
   ParamProtectedKey200Response,
-  ParamProtectedKeydefaultResponse,
+  ParamProtectedKeyDefaultResponse,
   ResponseProtectedKey200Response,
-  ResponseProtectedKeydefaultResponse,
+  ResponseProtectedKeyDefaultResponse,
   ParamInteger200Response,
-  ParamIntegerdefaultResponse,
+  ParamIntegerDefaultResponse,
   ResponseInteger200Response,
-  ResponseIntegerdefaultResponse,
+  ResponseIntegerDefaultResponse,
   ParamLong200Response,
-  ParamLongdefaultResponse,
+  ParamLongDefaultResponse,
   ResponseLong200Response,
-  ResponseLongdefaultResponse,
+  ResponseLongDefaultResponse,
   ParamFloat200Response,
-  ParamFloatdefaultResponse,
+  ParamFloatDefaultResponse,
   ResponseFloat200Response,
-  ResponseFloatdefaultResponse,
+  ResponseFloatDefaultResponse,
   ParamDouble200Response,
-  ParamDoubledefaultResponse,
+  ParamDoubleDefaultResponse,
   ResponseDouble200Response,
-  ResponseDoubledefaultResponse,
+  ResponseDoubleDefaultResponse,
   ParamBool200Response,
-  ParamBooldefaultResponse,
+  ParamBoolDefaultResponse,
   ResponseBool200Response,
-  ResponseBooldefaultResponse,
+  ResponseBoolDefaultResponse,
   ParamString200Response,
-  ParamStringdefaultResponse,
+  ParamStringDefaultResponse,
   ResponseString200Response,
-  ResponseStringdefaultResponse,
+  ResponseStringDefaultResponse,
   ParamDate200Response,
-  ParamDatedefaultResponse,
+  ParamDateDefaultResponse,
   ResponseDate200Response,
-  ResponseDatedefaultResponse,
+  ResponseDateDefaultResponse,
   ParamDatetime200Response,
-  ParamDatetimedefaultResponse,
+  ParamDatetimeDefaultResponse,
   ResponseDatetime200Response,
-  ResponseDatetimedefaultResponse,
+  ResponseDatetimeDefaultResponse,
   ParamDatetimeRfc1123200Response,
-  ParamDatetimeRfc1123defaultResponse,
+  ParamDatetimeRfc1123DefaultResponse,
   ResponseDatetimeRfc1123200Response,
-  ResponseDatetimeRfc1123defaultResponse,
+  ResponseDatetimeRfc1123DefaultResponse,
   ParamDuration200Response,
-  ParamDurationdefaultResponse,
+  ParamDurationDefaultResponse,
   ResponseDuration200Response,
-  ResponseDurationdefaultResponse,
+  ResponseDurationDefaultResponse,
   ParamByte200Response,
-  ParamBytedefaultResponse,
+  ParamByteDefaultResponse,
   ResponseByte200Response,
-  ResponseBytedefaultResponse,
+  ResponseByteDefaultResponse,
   ParamEnum200Response,
-  ParamEnumdefaultResponse,
+  ParamEnumDefaultResponse,
   ResponseEnum200Response,
-  ResponseEnumdefaultResponse,
+  ResponseEnumDefaultResponse,
   CustomRequestId200Response,
-  CustomRequestIddefaultResponse
+  CustomRequestIdDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -99,7 +99,7 @@ export interface ParamExistingKey {
   post(
     options?: ParamExistingKeyParameters
   ): StreamableMethod<
-    ParamExistingKey200Response | ParamExistingKeydefaultResponse
+    ParamExistingKey200Response | ParamExistingKeyDefaultResponse
   >;
 }
 
@@ -108,7 +108,7 @@ export interface ResponseExistingKey {
   post(
     options?: ResponseExistingKeyParameters
   ): StreamableMethod<
-    ResponseExistingKey200Response | ResponseExistingKeydefaultResponse
+    ResponseExistingKey200Response | ResponseExistingKeyDefaultResponse
   >;
 }
 
@@ -117,7 +117,7 @@ export interface ParamProtectedKey {
   post(
     options?: ParamProtectedKeyParameters
   ): StreamableMethod<
-    ParamProtectedKey200Response | ParamProtectedKeydefaultResponse
+    ParamProtectedKey200Response | ParamProtectedKeyDefaultResponse
   >;
 }
 
@@ -126,7 +126,7 @@ export interface ResponseProtectedKey {
   post(
     options?: ResponseProtectedKeyParameters
   ): StreamableMethod<
-    ResponseProtectedKey200Response | ResponseProtectedKeydefaultResponse
+    ResponseProtectedKey200Response | ResponseProtectedKeyDefaultResponse
   >;
 }
 
@@ -134,7 +134,7 @@ export interface ParamInteger {
   /** Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2 */
   post(
     options?: ParamIntegerParameters
-  ): StreamableMethod<ParamInteger200Response | ParamIntegerdefaultResponse>;
+  ): StreamableMethod<ParamInteger200Response | ParamIntegerDefaultResponse>;
 }
 
 export interface ResponseInteger {
@@ -142,7 +142,7 @@ export interface ResponseInteger {
   post(
     options?: ResponseIntegerParameters
   ): StreamableMethod<
-    ResponseInteger200Response | ResponseIntegerdefaultResponse
+    ResponseInteger200Response | ResponseIntegerDefaultResponse
   >;
 }
 
@@ -150,35 +150,35 @@ export interface ParamLong {
   /** Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2 */
   post(
     options?: ParamLongParameters
-  ): StreamableMethod<ParamLong200Response | ParamLongdefaultResponse>;
+  ): StreamableMethod<ParamLong200Response | ParamLongDefaultResponse>;
 }
 
 export interface ResponseLong {
   /** Get a response with header value "value": 105 or -2 */
   post(
     options?: ResponseLongParameters
-  ): StreamableMethod<ResponseLong200Response | ResponseLongdefaultResponse>;
+  ): StreamableMethod<ResponseLong200Response | ResponseLongDefaultResponse>;
 }
 
 export interface ParamFloat {
   /** Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0 */
   post(
     options?: ParamFloatParameters
-  ): StreamableMethod<ParamFloat200Response | ParamFloatdefaultResponse>;
+  ): StreamableMethod<ParamFloat200Response | ParamFloatDefaultResponse>;
 }
 
 export interface ResponseFloat {
   /** Get a response with header value "value": 0.07 or -3.0 */
   post(
     options?: ResponseFloatParameters
-  ): StreamableMethod<ResponseFloat200Response | ResponseFloatdefaultResponse>;
+  ): StreamableMethod<ResponseFloat200Response | ResponseFloatDefaultResponse>;
 }
 
 export interface ParamDouble {
   /** Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0 */
   post(
     options?: ParamDoubleParameters
-  ): StreamableMethod<ParamDouble200Response | ParamDoubledefaultResponse>;
+  ): StreamableMethod<ParamDouble200Response | ParamDoubleDefaultResponse>;
 }
 
 export interface ResponseDouble {
@@ -186,7 +186,7 @@ export interface ResponseDouble {
   post(
     options?: ResponseDoubleParameters
   ): StreamableMethod<
-    ResponseDouble200Response | ResponseDoubledefaultResponse
+    ResponseDouble200Response | ResponseDoubleDefaultResponse
   >;
 }
 
@@ -194,21 +194,21 @@ export interface ParamBool {
   /** Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false */
   post(
     options?: ParamBoolParameters
-  ): StreamableMethod<ParamBool200Response | ParamBooldefaultResponse>;
+  ): StreamableMethod<ParamBool200Response | ParamBoolDefaultResponse>;
 }
 
 export interface ResponseBool {
   /** Get a response with header value "value": true or false */
   post(
     options?: ResponseBoolParameters
-  ): StreamableMethod<ResponseBool200Response | ResponseBooldefaultResponse>;
+  ): StreamableMethod<ResponseBool200Response | ResponseBoolDefaultResponse>;
 }
 
 export interface ParamString {
   /** Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "" */
   post(
     options?: ParamStringParameters
-  ): StreamableMethod<ParamString200Response | ParamStringdefaultResponse>;
+  ): StreamableMethod<ParamString200Response | ParamStringDefaultResponse>;
 }
 
 export interface ResponseString {
@@ -216,7 +216,7 @@ export interface ResponseString {
   post(
     options?: ResponseStringParameters
   ): StreamableMethod<
-    ResponseString200Response | ResponseStringdefaultResponse
+    ResponseString200Response | ResponseStringDefaultResponse
   >;
 }
 
@@ -224,21 +224,21 @@ export interface ParamDate {
   /** Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01" */
   post(
     options?: ParamDateParameters
-  ): StreamableMethod<ParamDate200Response | ParamDatedefaultResponse>;
+  ): StreamableMethod<ParamDate200Response | ParamDateDefaultResponse>;
 }
 
 export interface ResponseDate {
   /** Get a response with header values "2010-01-01" or "0001-01-01" */
   post(
     options?: ResponseDateParameters
-  ): StreamableMethod<ResponseDate200Response | ResponseDatedefaultResponse>;
+  ): StreamableMethod<ResponseDate200Response | ResponseDateDefaultResponse>;
 }
 
 export interface ParamDatetime {
   /** Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z" */
   post(
     options?: ParamDatetimeParameters
-  ): StreamableMethod<ParamDatetime200Response | ParamDatetimedefaultResponse>;
+  ): StreamableMethod<ParamDatetime200Response | ParamDatetimeDefaultResponse>;
 }
 
 export interface ResponseDatetime {
@@ -246,7 +246,7 @@ export interface ResponseDatetime {
   post(
     options?: ResponseDatetimeParameters
   ): StreamableMethod<
-    ResponseDatetime200Response | ResponseDatetimedefaultResponse
+    ResponseDatetime200Response | ResponseDatetimeDefaultResponse
   >;
 }
 
@@ -255,7 +255,7 @@ export interface ParamDatetimeRfc1123 {
   post(
     options?: ParamDatetimeRfc1123Parameters
   ): StreamableMethod<
-    ParamDatetimeRfc1123200Response | ParamDatetimeRfc1123defaultResponse
+    ParamDatetimeRfc1123200Response | ParamDatetimeRfc1123DefaultResponse
   >;
 }
 
@@ -264,7 +264,7 @@ export interface ResponseDatetimeRfc1123 {
   post(
     options?: ResponseDatetimeRfc1123Parameters
   ): StreamableMethod<
-    ResponseDatetimeRfc1123200Response | ResponseDatetimeRfc1123defaultResponse
+    ResponseDatetimeRfc1123200Response | ResponseDatetimeRfc1123DefaultResponse
   >;
 }
 
@@ -272,7 +272,7 @@ export interface ParamDuration {
   /** Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S" */
   post(
     options?: ParamDurationParameters
-  ): StreamableMethod<ParamDuration200Response | ParamDurationdefaultResponse>;
+  ): StreamableMethod<ParamDuration200Response | ParamDurationDefaultResponse>;
 }
 
 export interface ResponseDuration {
@@ -280,7 +280,7 @@ export interface ResponseDuration {
   post(
     options?: ResponseDurationParameters
   ): StreamableMethod<
-    ResponseDuration200Response | ResponseDurationdefaultResponse
+    ResponseDuration200Response | ResponseDurationDefaultResponse
   >;
 }
 
@@ -288,28 +288,28 @@ export interface ParamByte {
   /** Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩" */
   post(
     options?: ParamByteParameters
-  ): StreamableMethod<ParamByte200Response | ParamBytedefaultResponse>;
+  ): StreamableMethod<ParamByte200Response | ParamByteDefaultResponse>;
 }
 
 export interface ResponseByte {
   /** Get a response with header values "啊齄丂狛狜隣郎隣兀﨩" */
   post(
     options?: ResponseByteParameters
-  ): StreamableMethod<ResponseByte200Response | ResponseBytedefaultResponse>;
+  ): StreamableMethod<ResponseByte200Response | ResponseByteDefaultResponse>;
 }
 
 export interface ParamEnum {
   /** Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null */
   post(
     options?: ParamEnumParameters
-  ): StreamableMethod<ParamEnum200Response | ParamEnumdefaultResponse>;
+  ): StreamableMethod<ParamEnum200Response | ParamEnumDefaultResponse>;
 }
 
 export interface ResponseEnum {
   /** Get a response with header values "GREY" or null */
   post(
     options?: ResponseEnumParameters
-  ): StreamableMethod<ResponseEnum200Response | ResponseEnumdefaultResponse>;
+  ): StreamableMethod<ResponseEnum200Response | ResponseEnumDefaultResponse>;
 }
 
 export interface CustomRequestId {
@@ -317,7 +317,7 @@ export interface CustomRequestId {
   post(
     options?: CustomRequestIdParameters
   ): StreamableMethod<
-    CustomRequestId200Response | CustomRequestIddefaultResponse
+    CustomRequestId200Response | CustomRequestIdDefaultResponse
   >;
 }
 

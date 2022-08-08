@@ -6,3 +6,4 @@ export * from "./generateClientDefinitions.js";
 export * from "./generateSchemaType.js";
 export * from "./helpers/shortcutMethods.js";
 export * from "./helpers/nameUtils.js"
+export * from "./buildResponseTypes.js";
