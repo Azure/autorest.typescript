@@ -24,43 +24,43 @@ import {
 } from "./parameters";
 import {
   StringGetNull200Response,
-  StringGetNulldefaultResponse,
+  StringGetNullDefaultResponse,
   StringPutNull200Response,
-  StringPutNulldefaultResponse,
+  StringPutNullDefaultResponse,
   StringGetEmpty200Response,
-  StringGetEmptydefaultResponse,
+  StringGetEmptyDefaultResponse,
   StringPutEmpty200Response,
-  StringPutEmptydefaultResponse,
+  StringPutEmptyDefaultResponse,
   StringGetMbcs200Response,
-  StringGetMbcsdefaultResponse,
+  StringGetMbcsDefaultResponse,
   StringPutMbcs200Response,
-  StringPutMbcsdefaultResponse,
+  StringPutMbcsDefaultResponse,
   StringGetWhitespace200Response,
-  StringGetWhitespacedefaultResponse,
+  StringGetWhitespaceDefaultResponse,
   StringPutWhitespace200Response,
-  StringPutWhitespacedefaultResponse,
+  StringPutWhitespaceDefaultResponse,
   StringGetNotProvided200Response,
-  StringGetNotProvideddefaultResponse,
+  StringGetNotProvidedDefaultResponse,
   StringGetBase64Encoded200Response,
-  StringGetBase64EncodeddefaultResponse,
+  StringGetBase64EncodedDefaultResponse,
   StringGetBase64UrlEncoded200Response,
-  StringGetBase64UrlEncodeddefaultResponse,
+  StringGetBase64UrlEncodedDefaultResponse,
   StringPutBase64UrlEncoded200Response,
-  StringPutBase64UrlEncodeddefaultResponse,
+  StringPutBase64UrlEncodedDefaultResponse,
   StringGetNullBase64UrlEncoded200Response,
-  StringGetNullBase64UrlEncodeddefaultResponse,
+  StringGetNullBase64UrlEncodedDefaultResponse,
   EnumGetNotExpandable200Response,
-  EnumGetNotExpandabledefaultResponse,
+  EnumGetNotExpandableDefaultResponse,
   EnumPutNotExpandable200Response,
-  EnumPutNotExpandabledefaultResponse,
+  EnumPutNotExpandableDefaultResponse,
   EnumGetReferenced200Response,
-  EnumGetReferenceddefaultResponse,
+  EnumGetReferencedDefaultResponse,
   EnumPutReferenced200Response,
-  EnumPutReferenceddefaultResponse,
+  EnumPutReferencedDefaultResponse,
   EnumGetReferencedConstant200Response,
-  EnumGetReferencedConstantdefaultResponse,
+  EnumGetReferencedConstantDefaultResponse,
   EnumPutReferencedConstant200Response,
-  EnumPutReferencedConstantdefaultResponse
+  EnumPutReferencedConstantDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -68,11 +68,11 @@ export interface StringGetNull {
   /** Get null string value value */
   get(
     options?: StringGetNullParameters
-  ): StreamableMethod<StringGetNull200Response | StringGetNulldefaultResponse>;
+  ): StreamableMethod<StringGetNull200Response | StringGetNullDefaultResponse>;
   /** Set string value null */
   put(
     options?: StringPutNullParameters
-  ): StreamableMethod<StringPutNull200Response | StringPutNulldefaultResponse>;
+  ): StreamableMethod<StringPutNull200Response | StringPutNullDefaultResponse>;
 }
 
 export interface StringGetEmpty {
@@ -80,13 +80,13 @@ export interface StringGetEmpty {
   get(
     options?: StringGetEmptyParameters
   ): StreamableMethod<
-    StringGetEmpty200Response | StringGetEmptydefaultResponse
+    StringGetEmpty200Response | StringGetEmptyDefaultResponse
   >;
   /** Set string value empty '' */
   put(
     options: StringPutEmptyParameters
   ): StreamableMethod<
-    StringPutEmpty200Response | StringPutEmptydefaultResponse
+    StringPutEmpty200Response | StringPutEmptyDefaultResponse
   >;
 }
 
@@ -94,11 +94,11 @@ export interface StringGetMbcs {
   /** Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
   get(
     options?: StringGetMbcsParameters
-  ): StreamableMethod<StringGetMbcs200Response | StringGetMbcsdefaultResponse>;
+  ): StreamableMethod<StringGetMbcs200Response | StringGetMbcsDefaultResponse>;
   /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
   put(
     options: StringPutMbcsParameters
-  ): StreamableMethod<StringPutMbcs200Response | StringPutMbcsdefaultResponse>;
+  ): StreamableMethod<StringPutMbcs200Response | StringPutMbcsDefaultResponse>;
 }
 
 export interface StringGetWhitespace {
@@ -106,13 +106,13 @@ export interface StringGetWhitespace {
   get(
     options?: StringGetWhitespaceParameters
   ): StreamableMethod<
-    StringGetWhitespace200Response | StringGetWhitespacedefaultResponse
+    StringGetWhitespace200Response | StringGetWhitespaceDefaultResponse
   >;
   /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
   put(
     options: StringPutWhitespaceParameters
   ): StreamableMethod<
-    StringPutWhitespace200Response | StringPutWhitespacedefaultResponse
+    StringPutWhitespace200Response | StringPutWhitespaceDefaultResponse
   >;
 }
 
@@ -121,7 +121,7 @@ export interface StringGetNotProvided {
   get(
     options?: StringGetNotProvidedParameters
   ): StreamableMethod<
-    StringGetNotProvided200Response | StringGetNotProvideddefaultResponse
+    StringGetNotProvided200Response | StringGetNotProvidedDefaultResponse
   >;
 }
 
@@ -130,7 +130,7 @@ export interface StringGetBase64Encoded {
   get(
     options?: StringGetBase64EncodedParameters
   ): StreamableMethod<
-    StringGetBase64Encoded200Response | StringGetBase64EncodeddefaultResponse
+    StringGetBase64Encoded200Response | StringGetBase64EncodedDefaultResponse
   >;
 }
 
@@ -140,14 +140,14 @@ export interface StringGetBase64UrlEncoded {
     options?: StringGetBase64UrlEncodedParameters
   ): StreamableMethod<
     | StringGetBase64UrlEncoded200Response
-    | StringGetBase64UrlEncodeddefaultResponse
+    | StringGetBase64UrlEncodedDefaultResponse
   >;
   /** Put value that is base64url encoded */
   put(
     options: StringPutBase64UrlEncodedParameters
   ): StreamableMethod<
     | StringPutBase64UrlEncoded200Response
-    | StringPutBase64UrlEncodeddefaultResponse
+    | StringPutBase64UrlEncodedDefaultResponse
   >;
 }
 
@@ -157,7 +157,7 @@ export interface StringGetNullBase64UrlEncoded {
     options?: StringGetNullBase64UrlEncodedParameters
   ): StreamableMethod<
     | StringGetNullBase64UrlEncoded200Response
-    | StringGetNullBase64UrlEncodeddefaultResponse
+    | StringGetNullBase64UrlEncodedDefaultResponse
   >;
 }
 
@@ -166,13 +166,13 @@ export interface EnumGetNotExpandable {
   get(
     options?: EnumGetNotExpandableParameters
   ): StreamableMethod<
-    EnumGetNotExpandable200Response | EnumGetNotExpandabledefaultResponse
+    EnumGetNotExpandable200Response | EnumGetNotExpandableDefaultResponse
   >;
   /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
   put(
     options: EnumPutNotExpandableParameters
   ): StreamableMethod<
-    EnumPutNotExpandable200Response | EnumPutNotExpandabledefaultResponse
+    EnumPutNotExpandable200Response | EnumPutNotExpandableDefaultResponse
   >;
 }
 
@@ -181,13 +181,13 @@ export interface EnumGetReferenced {
   get(
     options?: EnumGetReferencedParameters
   ): StreamableMethod<
-    EnumGetReferenced200Response | EnumGetReferenceddefaultResponse
+    EnumGetReferenced200Response | EnumGetReferencedDefaultResponse
   >;
   /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
   put(
     options: EnumPutReferencedParameters
   ): StreamableMethod<
-    EnumPutReferenced200Response | EnumPutReferenceddefaultResponse
+    EnumPutReferenced200Response | EnumPutReferencedDefaultResponse
   >;
 }
 
@@ -197,14 +197,14 @@ export interface EnumGetReferencedConstant {
     options?: EnumGetReferencedConstantParameters
   ): StreamableMethod<
     | EnumGetReferencedConstant200Response
-    | EnumGetReferencedConstantdefaultResponse
+    | EnumGetReferencedConstantDefaultResponse
   >;
   /** Sends value 'green-color' from a constant */
   put(
     options: EnumPutReferencedConstantParameters
   ): StreamableMethod<
     | EnumPutReferencedConstant200Response
-    | EnumPutReferencedConstantdefaultResponse
+    | EnumPutReferencedConstantDefaultResponse
   >;
 }
 

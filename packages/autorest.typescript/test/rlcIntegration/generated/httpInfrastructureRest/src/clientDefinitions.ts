@@ -116,215 +116,215 @@ import {
 } from "./parameters";
 import {
   HttpFailureGetEmptyError200Response,
-  HttpFailureGetEmptyErrordefaultResponse,
+  HttpFailureGetEmptyErrorDefaultResponse,
   HttpFailureGetNoModelError200Response,
   HttpFailureGetNoModelEmpty200Response,
   HttpSuccessHead200200Response,
-  HttpSuccessHead200defaultResponse,
+  HttpSuccessHead200DefaultResponse,
   HttpSuccessGet200200Response,
-  HttpSuccessGet200defaultResponse,
+  HttpSuccessGet200DefaultResponse,
   HttpSuccessOptions200200Response,
-  HttpSuccessOptions200defaultResponse,
+  HttpSuccessOptions200DefaultResponse,
   HttpSuccessPut200200Response,
-  HttpSuccessPut200defaultResponse,
+  HttpSuccessPut200DefaultResponse,
   HttpSuccessPatch200200Response,
-  HttpSuccessPatch200defaultResponse,
+  HttpSuccessPatch200DefaultResponse,
   HttpSuccessPost200200Response,
-  HttpSuccessPost200defaultResponse,
+  HttpSuccessPost200DefaultResponse,
   HttpSuccessDelete200200Response,
-  HttpSuccessDelete200defaultResponse,
+  HttpSuccessDelete200DefaultResponse,
   HttpSuccessPut201201Response,
-  HttpSuccessPut201defaultResponse,
+  HttpSuccessPut201DefaultResponse,
   HttpSuccessPost201201Response,
-  HttpSuccessPost201defaultResponse,
+  HttpSuccessPost201DefaultResponse,
   HttpSuccessPut202202Response,
-  HttpSuccessPut202defaultResponse,
+  HttpSuccessPut202DefaultResponse,
   HttpSuccessPatch202202Response,
-  HttpSuccessPatch202defaultResponse,
+  HttpSuccessPatch202DefaultResponse,
   HttpSuccessPost202202Response,
-  HttpSuccessPost202defaultResponse,
+  HttpSuccessPost202DefaultResponse,
   HttpSuccessDelete202202Response,
-  HttpSuccessDelete202defaultResponse,
+  HttpSuccessDelete202DefaultResponse,
   HttpSuccessHead204204Response,
-  HttpSuccessHead204defaultResponse,
+  HttpSuccessHead204DefaultResponse,
   HttpSuccessPut204204Response,
-  HttpSuccessPut204defaultResponse,
+  HttpSuccessPut204DefaultResponse,
   HttpSuccessPatch204204Response,
-  HttpSuccessPatch204defaultResponse,
+  HttpSuccessPatch204DefaultResponse,
   HttpSuccessPost204204Response,
-  HttpSuccessPost204defaultResponse,
+  HttpSuccessPost204DefaultResponse,
   HttpSuccessDelete204204Response,
-  HttpSuccessDelete204defaultResponse,
+  HttpSuccessDelete204DefaultResponse,
   HttpSuccessHead404204Response,
   HttpSuccessHead404404Response,
-  HttpSuccessHead404defaultResponse,
+  HttpSuccessHead404DefaultResponse,
   HttpRedirectsHead300200Response,
   HttpRedirectsHead300300Response,
-  HttpRedirectsHead300defaultResponse,
+  HttpRedirectsHead300DefaultResponse,
   HttpRedirectsGet300200Response,
   HttpRedirectsGet300300Response,
-  HttpRedirectsGet300defaultResponse,
+  HttpRedirectsGet300DefaultResponse,
   HttpRedirectsHead301200Response,
   HttpRedirectsHead301301Response,
-  HttpRedirectsHead301defaultResponse,
+  HttpRedirectsHead301DefaultResponse,
   HttpRedirectsGet301200Response,
   HttpRedirectsGet301301Response,
-  HttpRedirectsGet301defaultResponse,
+  HttpRedirectsGet301DefaultResponse,
   HttpRedirectsPut301301Response,
-  HttpRedirectsPut301defaultResponse,
+  HttpRedirectsPut301DefaultResponse,
   HttpRedirectsHead302200Response,
   HttpRedirectsHead302302Response,
-  HttpRedirectsHead302defaultResponse,
+  HttpRedirectsHead302DefaultResponse,
   HttpRedirectsGet302200Response,
   HttpRedirectsGet302302Response,
-  HttpRedirectsGet302defaultResponse,
+  HttpRedirectsGet302DefaultResponse,
   HttpRedirectsPatch302302Response,
-  HttpRedirectsPatch302defaultResponse,
+  HttpRedirectsPatch302DefaultResponse,
   HttpRedirectsPost303200Response,
   HttpRedirectsPost303303Response,
-  HttpRedirectsPost303defaultResponse,
+  HttpRedirectsPost303DefaultResponse,
   HttpRedirectsHead307200Response,
   HttpRedirectsHead307307Response,
-  HttpRedirectsHead307defaultResponse,
+  HttpRedirectsHead307DefaultResponse,
   HttpRedirectsGet307200Response,
   HttpRedirectsGet307307Response,
-  HttpRedirectsGet307defaultResponse,
+  HttpRedirectsGet307DefaultResponse,
   HttpRedirectsOptions307200Response,
   HttpRedirectsOptions307307Response,
-  HttpRedirectsOptions307defaultResponse,
+  HttpRedirectsOptions307DefaultResponse,
   HttpRedirectsPut307200Response,
   HttpRedirectsPut307307Response,
-  HttpRedirectsPut307defaultResponse,
+  HttpRedirectsPut307DefaultResponse,
   HttpRedirectsPatch307200Response,
   HttpRedirectsPatch307307Response,
-  HttpRedirectsPatch307defaultResponse,
+  HttpRedirectsPatch307DefaultResponse,
   HttpRedirectsPost307200Response,
   HttpRedirectsPost307307Response,
-  HttpRedirectsPost307defaultResponse,
+  HttpRedirectsPost307DefaultResponse,
   HttpRedirectsDelete307200Response,
   HttpRedirectsDelete307307Response,
-  HttpRedirectsDelete307defaultResponse,
-  HttpClientFailureHead400defaultResponse,
-  HttpClientFailureGet400defaultResponse,
-  HttpClientFailureOptions400defaultResponse,
-  HttpClientFailurePut400defaultResponse,
-  HttpClientFailurePatch400defaultResponse,
-  HttpClientFailurePost400defaultResponse,
-  HttpClientFailureDelete400defaultResponse,
-  HttpClientFailureHead401defaultResponse,
-  HttpClientFailureGet402defaultResponse,
-  HttpClientFailureOptions403defaultResponse,
-  HttpClientFailureGet403defaultResponse,
-  HttpClientFailurePut404defaultResponse,
-  HttpClientFailurePatch405defaultResponse,
-  HttpClientFailurePost406defaultResponse,
-  HttpClientFailureDelete407defaultResponse,
-  HttpClientFailurePut409defaultResponse,
-  HttpClientFailureHead410defaultResponse,
-  HttpClientFailureGet411defaultResponse,
-  HttpClientFailureOptions412defaultResponse,
-  HttpClientFailureGet412defaultResponse,
-  HttpClientFailurePut413defaultResponse,
-  HttpClientFailurePatch414defaultResponse,
-  HttpClientFailurePost415defaultResponse,
-  HttpClientFailureGet416defaultResponse,
-  HttpClientFailureDelete417defaultResponse,
-  HttpClientFailureHead429defaultResponse,
-  HttpServerFailureHead501defaultResponse,
-  HttpServerFailureGet501defaultResponse,
-  HttpServerFailurePost505defaultResponse,
-  HttpServerFailureDelete505defaultResponse,
+  HttpRedirectsDelete307DefaultResponse,
+  HttpClientFailureHead400DefaultResponse,
+  HttpClientFailureGet400DefaultResponse,
+  HttpClientFailureOptions400DefaultResponse,
+  HttpClientFailurePut400DefaultResponse,
+  HttpClientFailurePatch400DefaultResponse,
+  HttpClientFailurePost400DefaultResponse,
+  HttpClientFailureDelete400DefaultResponse,
+  HttpClientFailureHead401DefaultResponse,
+  HttpClientFailureGet402DefaultResponse,
+  HttpClientFailureOptions403DefaultResponse,
+  HttpClientFailureGet403DefaultResponse,
+  HttpClientFailurePut404DefaultResponse,
+  HttpClientFailurePatch405DefaultResponse,
+  HttpClientFailurePost406DefaultResponse,
+  HttpClientFailureDelete407DefaultResponse,
+  HttpClientFailurePut409DefaultResponse,
+  HttpClientFailureHead410DefaultResponse,
+  HttpClientFailureGet411DefaultResponse,
+  HttpClientFailureOptions412DefaultResponse,
+  HttpClientFailureGet412DefaultResponse,
+  HttpClientFailurePut413DefaultResponse,
+  HttpClientFailurePatch414DefaultResponse,
+  HttpClientFailurePost415DefaultResponse,
+  HttpClientFailureGet416DefaultResponse,
+  HttpClientFailureDelete417DefaultResponse,
+  HttpClientFailureHead429DefaultResponse,
+  HttpServerFailureHead501DefaultResponse,
+  HttpServerFailureGet501DefaultResponse,
+  HttpServerFailurePost505DefaultResponse,
+  HttpServerFailureDelete505DefaultResponse,
   HttpRetryHead408200Response,
-  HttpRetryHead408defaultResponse,
+  HttpRetryHead408DefaultResponse,
   HttpRetryPut500200Response,
-  HttpRetryPut500defaultResponse,
+  HttpRetryPut500DefaultResponse,
   HttpRetryPatch500200Response,
-  HttpRetryPatch500defaultResponse,
+  HttpRetryPatch500DefaultResponse,
   HttpRetryGet502200Response,
-  HttpRetryGet502defaultResponse,
+  HttpRetryGet502DefaultResponse,
   HttpRetryOptions502200Response,
-  HttpRetryOptions502defaultResponse,
+  HttpRetryOptions502DefaultResponse,
   HttpRetryPost503200Response,
-  HttpRetryPost503defaultResponse,
+  HttpRetryPost503DefaultResponse,
   HttpRetryDelete503200Response,
-  HttpRetryDelete503defaultResponse,
+  HttpRetryDelete503DefaultResponse,
   HttpRetryPut504200Response,
-  HttpRetryPut504defaultResponse,
+  HttpRetryPut504DefaultResponse,
   HttpRetryPatch504200Response,
-  HttpRetryPatch504defaultResponse,
+  HttpRetryPatch504DefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError200Valid200Response,
   MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError200ValiddefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError204Valid200Response,
   MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError204ValiddefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError201Invalid200Response,
   MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError201InvaliddefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError202None200Response,
   MultipleResponsesGet200Model204NoModelDefaultError202None204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError202NonedefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError400Valid200Response,
   MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError400ValiddefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse,
   MultipleResponsesGet200Model201ModelDefaultError200Valid200Response,
   MultipleResponsesGet200Model201ModelDefaultError200Valid201Response,
-  MultipleResponsesGet200Model201ModelDefaultError200ValiddefaultResponse,
+  MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse,
   MultipleResponsesGet200Model201ModelDefaultError201Valid200Response,
   MultipleResponsesGet200Model201ModelDefaultError201Valid201Response,
-  MultipleResponsesGet200Model201ModelDefaultError201ValiddefaultResponse,
+  MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse,
   MultipleResponsesGet200Model201ModelDefaultError400Valid200Response,
   MultipleResponsesGet200Model201ModelDefaultError400Valid201Response,
-  MultipleResponsesGet200Model201ModelDefaultError400ValiddefaultResponse,
+  MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid200Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid201Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid404Response,
-  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValiddefaultResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid200Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid201Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid404Response,
-  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValiddefaultResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid200Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid201Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid404Response,
-  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValiddefaultResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid200Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid201Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid404Response,
-  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValiddefaultResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultError202None202Response,
   MultipleResponsesGet202None204NoneDefaultError202None204Response,
-  MultipleResponsesGet202None204NoneDefaultError202NonedefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultError204None202Response,
   MultipleResponsesGet202None204NoneDefaultError204None204Response,
-  MultipleResponsesGet202None204NoneDefaultError204NonedefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultError400Valid202Response,
   MultipleResponsesGet202None204NoneDefaultError400Valid204Response,
-  MultipleResponsesGet202None204NoneDefaultError400ValiddefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response,
   MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response,
-  MultipleResponsesGet202None204NoneDefaultNone202InvaliddefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultNone204None202Response,
   MultipleResponsesGet202None204NoneDefaultNone204None204Response,
-  MultipleResponsesGet202None204NoneDefaultNone204NonedefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultNone400None202Response,
   MultipleResponsesGet202None204NoneDefaultNone400None204Response,
-  MultipleResponsesGet202None204NoneDefaultNone400NonedefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response,
   MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response,
-  MultipleResponsesGet202None204NoneDefaultNone400InvaliddefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse,
   MultipleResponsesGetDefaultModelA200Valid200Response,
   MultipleResponsesGetDefaultModelA200None200Response,
   MultipleResponsesGetDefaultModelA400Valid200Response,
-  MultipleResponsesGetDefaultModelA400ValiddefaultResponse,
+  MultipleResponsesGetDefaultModelA400ValidDefaultResponse,
   MultipleResponsesGetDefaultModelA400None200Response,
-  MultipleResponsesGetDefaultModelA400NonedefaultResponse,
+  MultipleResponsesGetDefaultModelA400NoneDefaultResponse,
   MultipleResponsesGetDefaultNone200Invalid200Response,
   MultipleResponsesGetDefaultNone200None200Response,
   MultipleResponsesGetDefaultNone400Invalid200Response,
-  MultipleResponsesGetDefaultNone400InvaliddefaultResponse,
+  MultipleResponsesGetDefaultNone400InvalidDefaultResponse,
   MultipleResponsesGetDefaultNone400None200Response,
-  MultipleResponsesGetDefaultNone400NonedefaultResponse,
+  MultipleResponsesGetDefaultNone400NoneDefaultResponse,
   MultipleResponsesGet200ModelA200None200Response,
   MultipleResponsesGet200ModelA200Valid200Response,
   MultipleResponsesGet200ModelA200Invalid200Response,
@@ -342,7 +342,7 @@ export interface HttpFailureOperations {
     options?: HttpFailureGetEmptyErrorParameters
   ): StreamableMethod<
     | HttpFailureGetEmptyError200Response
-    | HttpFailureGetEmptyErrordefaultResponse
+    | HttpFailureGetEmptyErrorDefaultResponse
   >;
   /** Get empty error form server */
   getNoModelError(
@@ -360,109 +360,109 @@ export interface HttpSuccessOperations {
   head200(
     options?: HttpSuccessHead200Parameters
   ): StreamableMethod<
-    HttpSuccessHead200200Response | HttpSuccessHead200defaultResponse
+    HttpSuccessHead200200Response | HttpSuccessHead200DefaultResponse
   >;
   /** Get 200 success */
   get200(
     options?: HttpSuccessGet200Parameters
   ): StreamableMethod<
-    HttpSuccessGet200200Response | HttpSuccessGet200defaultResponse
+    HttpSuccessGet200200Response | HttpSuccessGet200DefaultResponse
   >;
   /** Options 200 success */
   options200(
     options?: HttpSuccessOptions200Parameters
   ): StreamableMethod<
-    HttpSuccessOptions200200Response | HttpSuccessOptions200defaultResponse
+    HttpSuccessOptions200200Response | HttpSuccessOptions200DefaultResponse
   >;
   /** Put boolean value true returning 200 success */
   put200(
     options?: HttpSuccessPut200Parameters
   ): StreamableMethod<
-    HttpSuccessPut200200Response | HttpSuccessPut200defaultResponse
+    HttpSuccessPut200200Response | HttpSuccessPut200DefaultResponse
   >;
   /** Patch true Boolean value in request returning 200 */
   patch200(
     options?: HttpSuccessPatch200Parameters
   ): StreamableMethod<
-    HttpSuccessPatch200200Response | HttpSuccessPatch200defaultResponse
+    HttpSuccessPatch200200Response | HttpSuccessPatch200DefaultResponse
   >;
   /** Post bollean value true in request that returns a 200 */
   post200(
     options?: HttpSuccessPost200Parameters
   ): StreamableMethod<
-    HttpSuccessPost200200Response | HttpSuccessPost200defaultResponse
+    HttpSuccessPost200200Response | HttpSuccessPost200DefaultResponse
   >;
   /** Delete simple boolean value true returns 200 */
   delete200(
     options?: HttpSuccessDelete200Parameters
   ): StreamableMethod<
-    HttpSuccessDelete200200Response | HttpSuccessDelete200defaultResponse
+    HttpSuccessDelete200200Response | HttpSuccessDelete200DefaultResponse
   >;
   /** Put true Boolean value in request returns 201 */
   put201(
     options?: HttpSuccessPut201Parameters
   ): StreamableMethod<
-    HttpSuccessPut201201Response | HttpSuccessPut201defaultResponse
+    HttpSuccessPut201201Response | HttpSuccessPut201DefaultResponse
   >;
   /** Post true Boolean value in request returns 201 (Created) */
   post201(
     options?: HttpSuccessPost201Parameters
   ): StreamableMethod<
-    HttpSuccessPost201201Response | HttpSuccessPost201defaultResponse
+    HttpSuccessPost201201Response | HttpSuccessPost201DefaultResponse
   >;
   /** Put true Boolean value in request returns 202 (Accepted) */
   put202(
     options?: HttpSuccessPut202Parameters
   ): StreamableMethod<
-    HttpSuccessPut202202Response | HttpSuccessPut202defaultResponse
+    HttpSuccessPut202202Response | HttpSuccessPut202DefaultResponse
   >;
   /** Patch true Boolean value in request returns 202 */
   patch202(
     options?: HttpSuccessPatch202Parameters
   ): StreamableMethod<
-    HttpSuccessPatch202202Response | HttpSuccessPatch202defaultResponse
+    HttpSuccessPatch202202Response | HttpSuccessPatch202DefaultResponse
   >;
   /** Post true Boolean value in request returns 202 (Accepted) */
   post202(
     options?: HttpSuccessPost202Parameters
   ): StreamableMethod<
-    HttpSuccessPost202202Response | HttpSuccessPost202defaultResponse
+    HttpSuccessPost202202Response | HttpSuccessPost202DefaultResponse
   >;
   /** Delete true Boolean value in request returns 202 (accepted) */
   delete202(
     options?: HttpSuccessDelete202Parameters
   ): StreamableMethod<
-    HttpSuccessDelete202202Response | HttpSuccessDelete202defaultResponse
+    HttpSuccessDelete202202Response | HttpSuccessDelete202DefaultResponse
   >;
   /** Return 204 status code if successful */
   head204(
     options?: HttpSuccessHead204Parameters
   ): StreamableMethod<
-    HttpSuccessHead204204Response | HttpSuccessHead204defaultResponse
+    HttpSuccessHead204204Response | HttpSuccessHead204DefaultResponse
   >;
   /** Put true Boolean value in request returns 204 (no content) */
   put204(
     options?: HttpSuccessPut204Parameters
   ): StreamableMethod<
-    HttpSuccessPut204204Response | HttpSuccessPut204defaultResponse
+    HttpSuccessPut204204Response | HttpSuccessPut204DefaultResponse
   >;
   /** Patch true Boolean value in request returns 204 (no content) */
   patch204(
     options?: HttpSuccessPatch204Parameters
   ): StreamableMethod<
-    HttpSuccessPatch204204Response | HttpSuccessPatch204defaultResponse
+    HttpSuccessPatch204204Response | HttpSuccessPatch204DefaultResponse
   >;
   /** Post true Boolean value in request returns 204 (no content) */
   post204(
     options?: HttpSuccessPost204Parameters
   ): StreamableMethod<
-    HttpSuccessPost204204Response | HttpSuccessPost204defaultResponse
+    HttpSuccessPost204204Response | HttpSuccessPost204DefaultResponse
   >;
   /** Delete true Boolean value in request returns 204 (no content) */
   delete204(
     options?: HttpSuccessDelete204Parameters
   ): StreamableMethod<
-    HttpSuccessDelete204204Response | HttpSuccessDelete204defaultResponse
+    HttpSuccessDelete204204Response | HttpSuccessDelete204DefaultResponse
   >;
   /** Return 404 status code */
   head404(
@@ -470,7 +470,7 @@ export interface HttpSuccessOperations {
   ): StreamableMethod<
     | HttpSuccessHead404204Response
     | HttpSuccessHead404404Response
-    | HttpSuccessHead404defaultResponse
+    | HttpSuccessHead404DefaultResponse
   >;
 }
 
@@ -482,7 +482,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsHead300200Response
     | HttpRedirectsHead300300Response
-    | HttpRedirectsHead300defaultResponse
+    | HttpRedirectsHead300DefaultResponse
   >;
   /** Return 300 status code and redirect to /http/success/200 */
   get300(
@@ -490,7 +490,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsGet300200Response
     | HttpRedirectsGet300300Response
-    | HttpRedirectsGet300defaultResponse
+    | HttpRedirectsGet300DefaultResponse
   >;
   /** Return 301 status code and redirect to /http/success/200 */
   head301(
@@ -498,7 +498,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsHead301200Response
     | HttpRedirectsHead301301Response
-    | HttpRedirectsHead301defaultResponse
+    | HttpRedirectsHead301DefaultResponse
   >;
   /** Return 301 status code and redirect to /http/success/200 */
   get301(
@@ -506,13 +506,13 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsGet301200Response
     | HttpRedirectsGet301301Response
-    | HttpRedirectsGet301defaultResponse
+    | HttpRedirectsGet301DefaultResponse
   >;
   /** Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation */
   put301(
     options?: HttpRedirectsPut301Parameters
   ): StreamableMethod<
-    HttpRedirectsPut301301Response | HttpRedirectsPut301defaultResponse
+    HttpRedirectsPut301301Response | HttpRedirectsPut301DefaultResponse
   >;
   /** Return 302 status code and redirect to /http/success/200 */
   head302(
@@ -520,7 +520,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsHead302200Response
     | HttpRedirectsHead302302Response
-    | HttpRedirectsHead302defaultResponse
+    | HttpRedirectsHead302DefaultResponse
   >;
   /** Return 302 status code and redirect to /http/success/200 */
   get302(
@@ -528,13 +528,13 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsGet302200Response
     | HttpRedirectsGet302302Response
-    | HttpRedirectsGet302defaultResponse
+    | HttpRedirectsGet302DefaultResponse
   >;
   /** Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation */
   patch302(
     options?: HttpRedirectsPatch302Parameters
   ): StreamableMethod<
-    HttpRedirectsPatch302302Response | HttpRedirectsPatch302defaultResponse
+    HttpRedirectsPatch302302Response | HttpRedirectsPatch302DefaultResponse
   >;
   /** Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code */
   post303(
@@ -542,7 +542,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsPost303200Response
     | HttpRedirectsPost303303Response
-    | HttpRedirectsPost303defaultResponse
+    | HttpRedirectsPost303DefaultResponse
   >;
   /** Redirect with 307, resulting in a 200 success */
   head307(
@@ -550,7 +550,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsHead307200Response
     | HttpRedirectsHead307307Response
-    | HttpRedirectsHead307defaultResponse
+    | HttpRedirectsHead307DefaultResponse
   >;
   /** Redirect get with 307, resulting in a 200 success */
   get307(
@@ -558,7 +558,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsGet307200Response
     | HttpRedirectsGet307307Response
-    | HttpRedirectsGet307defaultResponse
+    | HttpRedirectsGet307DefaultResponse
   >;
   /** options redirected with 307, resulting in a 200 after redirect */
   options307(
@@ -566,7 +566,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsOptions307200Response
     | HttpRedirectsOptions307307Response
-    | HttpRedirectsOptions307defaultResponse
+    | HttpRedirectsOptions307DefaultResponse
   >;
   /** Put redirected with 307, resulting in a 200 after redirect */
   put307(
@@ -574,7 +574,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsPut307200Response
     | HttpRedirectsPut307307Response
-    | HttpRedirectsPut307defaultResponse
+    | HttpRedirectsPut307DefaultResponse
   >;
   /** Patch redirected with 307, resulting in a 200 after redirect */
   patch307(
@@ -582,7 +582,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsPatch307200Response
     | HttpRedirectsPatch307307Response
-    | HttpRedirectsPatch307defaultResponse
+    | HttpRedirectsPatch307DefaultResponse
   >;
   /** Post redirected with 307, resulting in a 200 after redirect */
   post307(
@@ -590,7 +590,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsPost307200Response
     | HttpRedirectsPost307307Response
-    | HttpRedirectsPost307defaultResponse
+    | HttpRedirectsPost307DefaultResponse
   >;
   /** Delete redirected with 307, resulting in a 200 after redirect */
   delete307(
@@ -598,7 +598,7 @@ export interface HttpRedirectsOperations {
   ): StreamableMethod<
     | HttpRedirectsDelete307200Response
     | HttpRedirectsDelete307307Response
-    | HttpRedirectsDelete307defaultResponse
+    | HttpRedirectsDelete307DefaultResponse
   >;
 }
 
@@ -607,107 +607,107 @@ export interface HttpClientFailureOperations {
   /** Return 400 status code - should be represented in the client as an error */
   head400(
     options?: HttpClientFailureHead400Parameters
-  ): StreamableMethod<HttpClientFailureHead400defaultResponse>;
+  ): StreamableMethod<HttpClientFailureHead400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   get400(
     options?: HttpClientFailureGet400Parameters
-  ): StreamableMethod<HttpClientFailureGet400defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   options400(
     options?: HttpClientFailureOptions400Parameters
-  ): StreamableMethod<HttpClientFailureOptions400defaultResponse>;
+  ): StreamableMethod<HttpClientFailureOptions400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   put400(
     options?: HttpClientFailurePut400Parameters
-  ): StreamableMethod<HttpClientFailurePut400defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePut400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   patch400(
     options?: HttpClientFailurePatch400Parameters
-  ): StreamableMethod<HttpClientFailurePatch400defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePatch400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   post400(
     options?: HttpClientFailurePost400Parameters
-  ): StreamableMethod<HttpClientFailurePost400defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePost400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   delete400(
     options?: HttpClientFailureDelete400Parameters
-  ): StreamableMethod<HttpClientFailureDelete400defaultResponse>;
+  ): StreamableMethod<HttpClientFailureDelete400DefaultResponse>;
   /** Return 401 status code - should be represented in the client as an error */
   head401(
     options?: HttpClientFailureHead401Parameters
-  ): StreamableMethod<HttpClientFailureHead401defaultResponse>;
+  ): StreamableMethod<HttpClientFailureHead401DefaultResponse>;
   /** Return 402 status code - should be represented in the client as an error */
   get402(
     options?: HttpClientFailureGet402Parameters
-  ): StreamableMethod<HttpClientFailureGet402defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet402DefaultResponse>;
   /** Return 403 status code - should be represented in the client as an error */
   options403(
     options?: HttpClientFailureOptions403Parameters
-  ): StreamableMethod<HttpClientFailureOptions403defaultResponse>;
+  ): StreamableMethod<HttpClientFailureOptions403DefaultResponse>;
   /** Return 403 status code - should be represented in the client as an error */
   get403(
     options?: HttpClientFailureGet403Parameters
-  ): StreamableMethod<HttpClientFailureGet403defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet403DefaultResponse>;
   /** Return 404 status code - should be represented in the client as an error */
   put404(
     options?: HttpClientFailurePut404Parameters
-  ): StreamableMethod<HttpClientFailurePut404defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePut404DefaultResponse>;
   /** Return 405 status code - should be represented in the client as an error */
   patch405(
     options?: HttpClientFailurePatch405Parameters
-  ): StreamableMethod<HttpClientFailurePatch405defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePatch405DefaultResponse>;
   /** Return 406 status code - should be represented in the client as an error */
   post406(
     options?: HttpClientFailurePost406Parameters
-  ): StreamableMethod<HttpClientFailurePost406defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePost406DefaultResponse>;
   /** Return 407 status code - should be represented in the client as an error */
   delete407(
     options?: HttpClientFailureDelete407Parameters
-  ): StreamableMethod<HttpClientFailureDelete407defaultResponse>;
+  ): StreamableMethod<HttpClientFailureDelete407DefaultResponse>;
   /** Return 409 status code - should be represented in the client as an error */
   put409(
     options?: HttpClientFailurePut409Parameters
-  ): StreamableMethod<HttpClientFailurePut409defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePut409DefaultResponse>;
   /** Return 410 status code - should be represented in the client as an error */
   head410(
     options?: HttpClientFailureHead410Parameters
-  ): StreamableMethod<HttpClientFailureHead410defaultResponse>;
+  ): StreamableMethod<HttpClientFailureHead410DefaultResponse>;
   /** Return 411 status code - should be represented in the client as an error */
   get411(
     options?: HttpClientFailureGet411Parameters
-  ): StreamableMethod<HttpClientFailureGet411defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet411DefaultResponse>;
   /** Return 412 status code - should be represented in the client as an error */
   options412(
     options?: HttpClientFailureOptions412Parameters
-  ): StreamableMethod<HttpClientFailureOptions412defaultResponse>;
+  ): StreamableMethod<HttpClientFailureOptions412DefaultResponse>;
   /** Return 412 status code - should be represented in the client as an error */
   get412(
     options?: HttpClientFailureGet412Parameters
-  ): StreamableMethod<HttpClientFailureGet412defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet412DefaultResponse>;
   /** Return 413 status code - should be represented in the client as an error */
   put413(
     options?: HttpClientFailurePut413Parameters
-  ): StreamableMethod<HttpClientFailurePut413defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePut413DefaultResponse>;
   /** Return 414 status code - should be represented in the client as an error */
   patch414(
     options?: HttpClientFailurePatch414Parameters
-  ): StreamableMethod<HttpClientFailurePatch414defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePatch414DefaultResponse>;
   /** Return 415 status code - should be represented in the client as an error */
   post415(
     options?: HttpClientFailurePost415Parameters
-  ): StreamableMethod<HttpClientFailurePost415defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePost415DefaultResponse>;
   /** Return 416 status code - should be represented in the client as an error */
   get416(
     options?: HttpClientFailureGet416Parameters
-  ): StreamableMethod<HttpClientFailureGet416defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet416DefaultResponse>;
   /** Return 417 status code - should be represented in the client as an error */
   delete417(
     options?: HttpClientFailureDelete417Parameters
-  ): StreamableMethod<HttpClientFailureDelete417defaultResponse>;
+  ): StreamableMethod<HttpClientFailureDelete417DefaultResponse>;
   /** Return 429 status code - should be represented in the client as an error */
   head429(
     options?: HttpClientFailureHead429Parameters
-  ): StreamableMethod<HttpClientFailureHead429defaultResponse>;
+  ): StreamableMethod<HttpClientFailureHead429DefaultResponse>;
 }
 
 /** Contains operations for HttpServerFailure operations */
@@ -715,19 +715,19 @@ export interface HttpServerFailureOperations {
   /** Return 501 status code - should be represented in the client as an error */
   head501(
     options?: HttpServerFailureHead501Parameters
-  ): StreamableMethod<HttpServerFailureHead501defaultResponse>;
+  ): StreamableMethod<HttpServerFailureHead501DefaultResponse>;
   /** Return 501 status code - should be represented in the client as an error */
   get501(
     options?: HttpServerFailureGet501Parameters
-  ): StreamableMethod<HttpServerFailureGet501defaultResponse>;
+  ): StreamableMethod<HttpServerFailureGet501DefaultResponse>;
   /** Return 505 status code - should be represented in the client as an error */
   post505(
     options?: HttpServerFailurePost505Parameters
-  ): StreamableMethod<HttpServerFailurePost505defaultResponse>;
+  ): StreamableMethod<HttpServerFailurePost505DefaultResponse>;
   /** Return 505 status code - should be represented in the client as an error */
   delete505(
     options?: HttpServerFailureDelete505Parameters
-  ): StreamableMethod<HttpServerFailureDelete505defaultResponse>;
+  ): StreamableMethod<HttpServerFailureDelete505DefaultResponse>;
 }
 
 /** Contains operations for HttpRetry operations */
@@ -736,55 +736,55 @@ export interface HttpRetryOperations {
   head408(
     options?: HttpRetryHead408Parameters
   ): StreamableMethod<
-    HttpRetryHead408200Response | HttpRetryHead408defaultResponse
+    HttpRetryHead408200Response | HttpRetryHead408DefaultResponse
   >;
   /** Return 500 status code, then 200 after retry */
   put500(
     options?: HttpRetryPut500Parameters
   ): StreamableMethod<
-    HttpRetryPut500200Response | HttpRetryPut500defaultResponse
+    HttpRetryPut500200Response | HttpRetryPut500DefaultResponse
   >;
   /** Return 500 status code, then 200 after retry */
   patch500(
     options?: HttpRetryPatch500Parameters
   ): StreamableMethod<
-    HttpRetryPatch500200Response | HttpRetryPatch500defaultResponse
+    HttpRetryPatch500200Response | HttpRetryPatch500DefaultResponse
   >;
   /** Return 502 status code, then 200 after retry */
   get502(
     options?: HttpRetryGet502Parameters
   ): StreamableMethod<
-    HttpRetryGet502200Response | HttpRetryGet502defaultResponse
+    HttpRetryGet502200Response | HttpRetryGet502DefaultResponse
   >;
   /** Return 502 status code, then 200 after retry */
   options502(
     options?: HttpRetryOptions502Parameters
   ): StreamableMethod<
-    HttpRetryOptions502200Response | HttpRetryOptions502defaultResponse
+    HttpRetryOptions502200Response | HttpRetryOptions502DefaultResponse
   >;
   /** Return 503 status code, then 200 after retry */
   post503(
     options?: HttpRetryPost503Parameters
   ): StreamableMethod<
-    HttpRetryPost503200Response | HttpRetryPost503defaultResponse
+    HttpRetryPost503200Response | HttpRetryPost503DefaultResponse
   >;
   /** Return 503 status code, then 200 after retry */
   delete503(
     options?: HttpRetryDelete503Parameters
   ): StreamableMethod<
-    HttpRetryDelete503200Response | HttpRetryDelete503defaultResponse
+    HttpRetryDelete503200Response | HttpRetryDelete503DefaultResponse
   >;
   /** Return 504 status code, then 200 after retry */
   put504(
     options?: HttpRetryPut504Parameters
   ): StreamableMethod<
-    HttpRetryPut504200Response | HttpRetryPut504defaultResponse
+    HttpRetryPut504200Response | HttpRetryPut504DefaultResponse
   >;
   /** Return 504 status code, then 200 after retry */
   patch504(
     options?: HttpRetryPatch504Parameters
   ): StreamableMethod<
-    HttpRetryPatch504200Response | HttpRetryPatch504defaultResponse
+    HttpRetryPatch504200Response | HttpRetryPatch504DefaultResponse
   >;
 }
 
@@ -796,7 +796,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError200Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse
   >;
   /** Send a 204 response with no payload */
   get200Model204NoModelDefaultError204Valid(
@@ -804,7 +804,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError204Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError204ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse
   >;
   /** Send a 201 response with valid payload: {'statusCode': '201'} */
   get200Model204NoModelDefaultError201Invalid(
@@ -812,7 +812,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError201Invalid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError201InvaliddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse
   >;
   /** Send a 202 response with no payload: */
   get200Model204NoModelDefaultError202None(
@@ -820,7 +820,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError202None200Response
     | MultipleResponsesGet200Model204NoModelDefaultError202None204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError202NonedefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse
   >;
   /** Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'} */
   get200Model204NoModelDefaultError400Valid(
@@ -828,7 +828,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError400Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse
   >;
   /** Send a 200 response with valid payload: {'statusCode': '200'} */
   get200Model201ModelDefaultError200Valid(
@@ -836,7 +836,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet200Model201ModelDefaultError200Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError200Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse
   >;
   /** Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'} */
   get200Model201ModelDefaultError201Valid(
@@ -844,7 +844,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet200Model201ModelDefaultError201Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError201Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError201ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse
   >;
   /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
   get200Model201ModelDefaultError400Valid(
@@ -852,7 +852,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet200Model201ModelDefaultError400Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError400Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse
   >;
   /** Send a 200 response with valid payload: {'statusCode': '200'} */
   get200ModelA201ModelC404ModelDDefaultError200Valid(
@@ -861,7 +861,7 @@ export interface MultipleResponsesOperations {
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse
   >;
   /** Send a 200 response with valid payload: {'httpCode': '201'} */
   get200ModelA201ModelC404ModelDDefaultError201Valid(
@@ -870,7 +870,7 @@ export interface MultipleResponsesOperations {
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse
   >;
   /** Send a 200 response with valid payload: {'httpStatusCode': '404'} */
   get200ModelA201ModelC404ModelDDefaultError404Valid(
@@ -879,7 +879,7 @@ export interface MultipleResponsesOperations {
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse
   >;
   /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
   get200ModelA201ModelC404ModelDDefaultError400Valid(
@@ -888,7 +888,7 @@ export interface MultipleResponsesOperations {
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse
   >;
   /** Send a 202 response with no payload */
   get202None204NoneDefaultError202None(
@@ -896,7 +896,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultError202None202Response
     | MultipleResponsesGet202None204NoneDefaultError202None204Response
-    | MultipleResponsesGet202None204NoneDefaultError202NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse
   >;
   /** Send a 204 response with no payload */
   get202None204NoneDefaultError204None(
@@ -904,7 +904,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultError204None202Response
     | MultipleResponsesGet202None204NoneDefaultError204None204Response
-    | MultipleResponsesGet202None204NoneDefaultError204NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse
   >;
   /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
   get202None204NoneDefaultError400Valid(
@@ -912,7 +912,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultError400Valid202Response
     | MultipleResponsesGet202None204NoneDefaultError400Valid204Response
-    | MultipleResponsesGet202None204NoneDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse
   >;
   /** Send a 202 response with an unexpected payload {'property': 'value'} */
   get202None204NoneDefaultNone202Invalid(
@@ -920,7 +920,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response
     | MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response
-    | MultipleResponsesGet202None204NoneDefaultNone202InvaliddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse
   >;
   /** Send a 204 response with no payload */
   get202None204NoneDefaultNone204None(
@@ -928,7 +928,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultNone204None202Response
     | MultipleResponsesGet202None204NoneDefaultNone204None204Response
-    | MultipleResponsesGet202None204NoneDefaultNone204NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse
   >;
   /** Send a 400 response with no payload */
   get202None204NoneDefaultNone400None(
@@ -936,7 +936,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultNone400None202Response
     | MultipleResponsesGet202None204NoneDefaultNone400None204Response
-    | MultipleResponsesGet202None204NoneDefaultNone400NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse
   >;
   /** Send a 400 response with an unexpected payload {'property': 'value'} */
   get202None204NoneDefaultNone400Invalid(
@@ -944,7 +944,7 @@ export interface MultipleResponsesOperations {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response
     | MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response
-    | MultipleResponsesGet202None204NoneDefaultNone400InvaliddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse
   >;
   /** Send a 200 response with valid payload: {'statusCode': '200'} */
   getDefaultModelA200Valid(
@@ -959,14 +959,14 @@ export interface MultipleResponsesOperations {
     options?: MultipleResponsesGetDefaultModelA400ValidParameters
   ): StreamableMethod<
     | MultipleResponsesGetDefaultModelA400Valid200Response
-    | MultipleResponsesGetDefaultModelA400ValiddefaultResponse
+    | MultipleResponsesGetDefaultModelA400ValidDefaultResponse
   >;
   /** Send a 400 response with no payload */
   getDefaultModelA400None(
     options?: MultipleResponsesGetDefaultModelA400NoneParameters
   ): StreamableMethod<
     | MultipleResponsesGetDefaultModelA400None200Response
-    | MultipleResponsesGetDefaultModelA400NonedefaultResponse
+    | MultipleResponsesGetDefaultModelA400NoneDefaultResponse
   >;
   /** Send a 200 response with invalid payload: {'statusCode': '200'} */
   getDefaultNone200Invalid(
@@ -981,14 +981,14 @@ export interface MultipleResponsesOperations {
     options?: MultipleResponsesGetDefaultNone400InvalidParameters
   ): StreamableMethod<
     | MultipleResponsesGetDefaultNone400Invalid200Response
-    | MultipleResponsesGetDefaultNone400InvaliddefaultResponse
+    | MultipleResponsesGetDefaultNone400InvalidDefaultResponse
   >;
   /** Send a 400 response with no payload */
   getDefaultNone400None(
     options?: MultipleResponsesGetDefaultNone400NoneParameters
   ): StreamableMethod<
     | MultipleResponsesGetDefaultNone400None200Response
-    | MultipleResponsesGetDefaultNone400NonedefaultResponse
+    | MultipleResponsesGetDefaultNone400NoneDefaultResponse
   >;
   /** Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A */
   get200ModelA200None(
@@ -1026,7 +1026,7 @@ export interface HttpFailureGetEmptyError {
     options?: HttpFailureGetEmptyErrorParameters
   ): StreamableMethod<
     | HttpFailureGetEmptyError200Response
-    | HttpFailureGetEmptyErrordefaultResponse
+    | HttpFailureGetEmptyErrorDefaultResponse
   >;
 }
 
@@ -1049,43 +1049,43 @@ export interface HttpSuccessHead200 {
   head(
     options?: HttpSuccessHead200Parameters
   ): StreamableMethod<
-    HttpSuccessHead200200Response | HttpSuccessHead200defaultResponse
+    HttpSuccessHead200200Response | HttpSuccessHead200DefaultResponse
   >;
   /** Get 200 success */
   get(
     options?: HttpSuccessGet200Parameters
   ): StreamableMethod<
-    HttpSuccessGet200200Response | HttpSuccessGet200defaultResponse
+    HttpSuccessGet200200Response | HttpSuccessGet200DefaultResponse
   >;
   /** Options 200 success */
   options(
     options?: HttpSuccessOptions200Parameters
   ): StreamableMethod<
-    HttpSuccessOptions200200Response | HttpSuccessOptions200defaultResponse
+    HttpSuccessOptions200200Response | HttpSuccessOptions200DefaultResponse
   >;
   /** Put boolean value true returning 200 success */
   put(
     options?: HttpSuccessPut200Parameters
   ): StreamableMethod<
-    HttpSuccessPut200200Response | HttpSuccessPut200defaultResponse
+    HttpSuccessPut200200Response | HttpSuccessPut200DefaultResponse
   >;
   /** Patch true Boolean value in request returning 200 */
   patch(
     options?: HttpSuccessPatch200Parameters
   ): StreamableMethod<
-    HttpSuccessPatch200200Response | HttpSuccessPatch200defaultResponse
+    HttpSuccessPatch200200Response | HttpSuccessPatch200DefaultResponse
   >;
   /** Post bollean value true in request that returns a 200 */
   post(
     options?: HttpSuccessPost200Parameters
   ): StreamableMethod<
-    HttpSuccessPost200200Response | HttpSuccessPost200defaultResponse
+    HttpSuccessPost200200Response | HttpSuccessPost200DefaultResponse
   >;
   /** Delete simple boolean value true returns 200 */
   delete(
     options?: HttpSuccessDelete200Parameters
   ): StreamableMethod<
-    HttpSuccessDelete200200Response | HttpSuccessDelete200defaultResponse
+    HttpSuccessDelete200200Response | HttpSuccessDelete200DefaultResponse
   >;
 }
 
@@ -1094,13 +1094,13 @@ export interface HttpSuccessPut201 {
   put(
     options?: HttpSuccessPut201Parameters
   ): StreamableMethod<
-    HttpSuccessPut201201Response | HttpSuccessPut201defaultResponse
+    HttpSuccessPut201201Response | HttpSuccessPut201DefaultResponse
   >;
   /** Post true Boolean value in request returns 201 (Created) */
   post(
     options?: HttpSuccessPost201Parameters
   ): StreamableMethod<
-    HttpSuccessPost201201Response | HttpSuccessPost201defaultResponse
+    HttpSuccessPost201201Response | HttpSuccessPost201DefaultResponse
   >;
 }
 
@@ -1109,25 +1109,25 @@ export interface HttpSuccessPut202 {
   put(
     options?: HttpSuccessPut202Parameters
   ): StreamableMethod<
-    HttpSuccessPut202202Response | HttpSuccessPut202defaultResponse
+    HttpSuccessPut202202Response | HttpSuccessPut202DefaultResponse
   >;
   /** Patch true Boolean value in request returns 202 */
   patch(
     options?: HttpSuccessPatch202Parameters
   ): StreamableMethod<
-    HttpSuccessPatch202202Response | HttpSuccessPatch202defaultResponse
+    HttpSuccessPatch202202Response | HttpSuccessPatch202DefaultResponse
   >;
   /** Post true Boolean value in request returns 202 (Accepted) */
   post(
     options?: HttpSuccessPost202Parameters
   ): StreamableMethod<
-    HttpSuccessPost202202Response | HttpSuccessPost202defaultResponse
+    HttpSuccessPost202202Response | HttpSuccessPost202DefaultResponse
   >;
   /** Delete true Boolean value in request returns 202 (accepted) */
   delete(
     options?: HttpSuccessDelete202Parameters
   ): StreamableMethod<
-    HttpSuccessDelete202202Response | HttpSuccessDelete202defaultResponse
+    HttpSuccessDelete202202Response | HttpSuccessDelete202DefaultResponse
   >;
 }
 
@@ -1136,31 +1136,31 @@ export interface HttpSuccessHead204 {
   head(
     options?: HttpSuccessHead204Parameters
   ): StreamableMethod<
-    HttpSuccessHead204204Response | HttpSuccessHead204defaultResponse
+    HttpSuccessHead204204Response | HttpSuccessHead204DefaultResponse
   >;
   /** Put true Boolean value in request returns 204 (no content) */
   put(
     options?: HttpSuccessPut204Parameters
   ): StreamableMethod<
-    HttpSuccessPut204204Response | HttpSuccessPut204defaultResponse
+    HttpSuccessPut204204Response | HttpSuccessPut204DefaultResponse
   >;
   /** Patch true Boolean value in request returns 204 (no content) */
   patch(
     options?: HttpSuccessPatch204Parameters
   ): StreamableMethod<
-    HttpSuccessPatch204204Response | HttpSuccessPatch204defaultResponse
+    HttpSuccessPatch204204Response | HttpSuccessPatch204DefaultResponse
   >;
   /** Post true Boolean value in request returns 204 (no content) */
   post(
     options?: HttpSuccessPost204Parameters
   ): StreamableMethod<
-    HttpSuccessPost204204Response | HttpSuccessPost204defaultResponse
+    HttpSuccessPost204204Response | HttpSuccessPost204DefaultResponse
   >;
   /** Delete true Boolean value in request returns 204 (no content) */
   delete(
     options?: HttpSuccessDelete204Parameters
   ): StreamableMethod<
-    HttpSuccessDelete204204Response | HttpSuccessDelete204defaultResponse
+    HttpSuccessDelete204204Response | HttpSuccessDelete204DefaultResponse
   >;
 }
 
@@ -1171,7 +1171,7 @@ export interface HttpSuccessHead404 {
   ): StreamableMethod<
     | HttpSuccessHead404204Response
     | HttpSuccessHead404404Response
-    | HttpSuccessHead404defaultResponse
+    | HttpSuccessHead404DefaultResponse
   >;
 }
 
@@ -1182,7 +1182,7 @@ export interface HttpRedirectsHead300 {
   ): StreamableMethod<
     | HttpRedirectsHead300200Response
     | HttpRedirectsHead300300Response
-    | HttpRedirectsHead300defaultResponse
+    | HttpRedirectsHead300DefaultResponse
   >;
   /** Return 300 status code and redirect to /http/success/200 */
   get(
@@ -1190,7 +1190,7 @@ export interface HttpRedirectsHead300 {
   ): StreamableMethod<
     | HttpRedirectsGet300200Response
     | HttpRedirectsGet300300Response
-    | HttpRedirectsGet300defaultResponse
+    | HttpRedirectsGet300DefaultResponse
   >;
 }
 
@@ -1201,7 +1201,7 @@ export interface HttpRedirectsHead301 {
   ): StreamableMethod<
     | HttpRedirectsHead301200Response
     | HttpRedirectsHead301301Response
-    | HttpRedirectsHead301defaultResponse
+    | HttpRedirectsHead301DefaultResponse
   >;
   /** Return 301 status code and redirect to /http/success/200 */
   get(
@@ -1209,13 +1209,13 @@ export interface HttpRedirectsHead301 {
   ): StreamableMethod<
     | HttpRedirectsGet301200Response
     | HttpRedirectsGet301301Response
-    | HttpRedirectsGet301defaultResponse
+    | HttpRedirectsGet301DefaultResponse
   >;
   /** Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation */
   put(
     options?: HttpRedirectsPut301Parameters
   ): StreamableMethod<
-    HttpRedirectsPut301301Response | HttpRedirectsPut301defaultResponse
+    HttpRedirectsPut301301Response | HttpRedirectsPut301DefaultResponse
   >;
 }
 
@@ -1226,7 +1226,7 @@ export interface HttpRedirectsHead302 {
   ): StreamableMethod<
     | HttpRedirectsHead302200Response
     | HttpRedirectsHead302302Response
-    | HttpRedirectsHead302defaultResponse
+    | HttpRedirectsHead302DefaultResponse
   >;
   /** Return 302 status code and redirect to /http/success/200 */
   get(
@@ -1234,13 +1234,13 @@ export interface HttpRedirectsHead302 {
   ): StreamableMethod<
     | HttpRedirectsGet302200Response
     | HttpRedirectsGet302302Response
-    | HttpRedirectsGet302defaultResponse
+    | HttpRedirectsGet302DefaultResponse
   >;
   /** Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation */
   patch(
     options?: HttpRedirectsPatch302Parameters
   ): StreamableMethod<
-    HttpRedirectsPatch302302Response | HttpRedirectsPatch302defaultResponse
+    HttpRedirectsPatch302302Response | HttpRedirectsPatch302DefaultResponse
   >;
 }
 
@@ -1251,7 +1251,7 @@ export interface HttpRedirectsPost303 {
   ): StreamableMethod<
     | HttpRedirectsPost303200Response
     | HttpRedirectsPost303303Response
-    | HttpRedirectsPost303defaultResponse
+    | HttpRedirectsPost303DefaultResponse
   >;
 }
 
@@ -1262,7 +1262,7 @@ export interface HttpRedirectsHead307 {
   ): StreamableMethod<
     | HttpRedirectsHead307200Response
     | HttpRedirectsHead307307Response
-    | HttpRedirectsHead307defaultResponse
+    | HttpRedirectsHead307DefaultResponse
   >;
   /** Redirect get with 307, resulting in a 200 success */
   get(
@@ -1270,7 +1270,7 @@ export interface HttpRedirectsHead307 {
   ): StreamableMethod<
     | HttpRedirectsGet307200Response
     | HttpRedirectsGet307307Response
-    | HttpRedirectsGet307defaultResponse
+    | HttpRedirectsGet307DefaultResponse
   >;
   /** options redirected with 307, resulting in a 200 after redirect */
   options(
@@ -1278,7 +1278,7 @@ export interface HttpRedirectsHead307 {
   ): StreamableMethod<
     | HttpRedirectsOptions307200Response
     | HttpRedirectsOptions307307Response
-    | HttpRedirectsOptions307defaultResponse
+    | HttpRedirectsOptions307DefaultResponse
   >;
   /** Put redirected with 307, resulting in a 200 after redirect */
   put(
@@ -1286,7 +1286,7 @@ export interface HttpRedirectsHead307 {
   ): StreamableMethod<
     | HttpRedirectsPut307200Response
     | HttpRedirectsPut307307Response
-    | HttpRedirectsPut307defaultResponse
+    | HttpRedirectsPut307DefaultResponse
   >;
   /** Patch redirected with 307, resulting in a 200 after redirect */
   patch(
@@ -1294,7 +1294,7 @@ export interface HttpRedirectsHead307 {
   ): StreamableMethod<
     | HttpRedirectsPatch307200Response
     | HttpRedirectsPatch307307Response
-    | HttpRedirectsPatch307defaultResponse
+    | HttpRedirectsPatch307DefaultResponse
   >;
   /** Post redirected with 307, resulting in a 200 after redirect */
   post(
@@ -1302,7 +1302,7 @@ export interface HttpRedirectsHead307 {
   ): StreamableMethod<
     | HttpRedirectsPost307200Response
     | HttpRedirectsPost307307Response
-    | HttpRedirectsPost307defaultResponse
+    | HttpRedirectsPost307DefaultResponse
   >;
   /** Delete redirected with 307, resulting in a 200 after redirect */
   delete(
@@ -1310,7 +1310,7 @@ export interface HttpRedirectsHead307 {
   ): StreamableMethod<
     | HttpRedirectsDelete307200Response
     | HttpRedirectsDelete307307Response
-    | HttpRedirectsDelete307defaultResponse
+    | HttpRedirectsDelete307DefaultResponse
   >;
 }
 
@@ -1318,180 +1318,180 @@ export interface HttpClientFailureHead400 {
   /** Return 400 status code - should be represented in the client as an error */
   head(
     options?: HttpClientFailureHead400Parameters
-  ): StreamableMethod<HttpClientFailureHead400defaultResponse>;
+  ): StreamableMethod<HttpClientFailureHead400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet400Parameters
-  ): StreamableMethod<HttpClientFailureGet400defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   options(
     options?: HttpClientFailureOptions400Parameters
-  ): StreamableMethod<HttpClientFailureOptions400defaultResponse>;
+  ): StreamableMethod<HttpClientFailureOptions400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   put(
     options?: HttpClientFailurePut400Parameters
-  ): StreamableMethod<HttpClientFailurePut400defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePut400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   patch(
     options?: HttpClientFailurePatch400Parameters
-  ): StreamableMethod<HttpClientFailurePatch400defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePatch400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   post(
     options?: HttpClientFailurePost400Parameters
-  ): StreamableMethod<HttpClientFailurePost400defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePost400DefaultResponse>;
   /** Return 400 status code - should be represented in the client as an error */
   delete(
     options?: HttpClientFailureDelete400Parameters
-  ): StreamableMethod<HttpClientFailureDelete400defaultResponse>;
+  ): StreamableMethod<HttpClientFailureDelete400DefaultResponse>;
 }
 
 export interface HttpClientFailureHead401 {
   /** Return 401 status code - should be represented in the client as an error */
   head(
     options?: HttpClientFailureHead401Parameters
-  ): StreamableMethod<HttpClientFailureHead401defaultResponse>;
+  ): StreamableMethod<HttpClientFailureHead401DefaultResponse>;
 }
 
 export interface HttpClientFailureGet402 {
   /** Return 402 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet402Parameters
-  ): StreamableMethod<HttpClientFailureGet402defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet402DefaultResponse>;
 }
 
 export interface HttpClientFailureOptions403 {
   /** Return 403 status code - should be represented in the client as an error */
   options(
     options?: HttpClientFailureOptions403Parameters
-  ): StreamableMethod<HttpClientFailureOptions403defaultResponse>;
+  ): StreamableMethod<HttpClientFailureOptions403DefaultResponse>;
   /** Return 403 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet403Parameters
-  ): StreamableMethod<HttpClientFailureGet403defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet403DefaultResponse>;
 }
 
 export interface HttpClientFailurePut404 {
   /** Return 404 status code - should be represented in the client as an error */
   put(
     options?: HttpClientFailurePut404Parameters
-  ): StreamableMethod<HttpClientFailurePut404defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePut404DefaultResponse>;
 }
 
 export interface HttpClientFailurePatch405 {
   /** Return 405 status code - should be represented in the client as an error */
   patch(
     options?: HttpClientFailurePatch405Parameters
-  ): StreamableMethod<HttpClientFailurePatch405defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePatch405DefaultResponse>;
 }
 
 export interface HttpClientFailurePost406 {
   /** Return 406 status code - should be represented in the client as an error */
   post(
     options?: HttpClientFailurePost406Parameters
-  ): StreamableMethod<HttpClientFailurePost406defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePost406DefaultResponse>;
 }
 
 export interface HttpClientFailureDelete407 {
   /** Return 407 status code - should be represented in the client as an error */
   delete(
     options?: HttpClientFailureDelete407Parameters
-  ): StreamableMethod<HttpClientFailureDelete407defaultResponse>;
+  ): StreamableMethod<HttpClientFailureDelete407DefaultResponse>;
 }
 
 export interface HttpClientFailurePut409 {
   /** Return 409 status code - should be represented in the client as an error */
   put(
     options?: HttpClientFailurePut409Parameters
-  ): StreamableMethod<HttpClientFailurePut409defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePut409DefaultResponse>;
 }
 
 export interface HttpClientFailureHead410 {
   /** Return 410 status code - should be represented in the client as an error */
   head(
     options?: HttpClientFailureHead410Parameters
-  ): StreamableMethod<HttpClientFailureHead410defaultResponse>;
+  ): StreamableMethod<HttpClientFailureHead410DefaultResponse>;
 }
 
 export interface HttpClientFailureGet411 {
   /** Return 411 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet411Parameters
-  ): StreamableMethod<HttpClientFailureGet411defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet411DefaultResponse>;
 }
 
 export interface HttpClientFailureOptions412 {
   /** Return 412 status code - should be represented in the client as an error */
   options(
     options?: HttpClientFailureOptions412Parameters
-  ): StreamableMethod<HttpClientFailureOptions412defaultResponse>;
+  ): StreamableMethod<HttpClientFailureOptions412DefaultResponse>;
   /** Return 412 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet412Parameters
-  ): StreamableMethod<HttpClientFailureGet412defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet412DefaultResponse>;
 }
 
 export interface HttpClientFailurePut413 {
   /** Return 413 status code - should be represented in the client as an error */
   put(
     options?: HttpClientFailurePut413Parameters
-  ): StreamableMethod<HttpClientFailurePut413defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePut413DefaultResponse>;
 }
 
 export interface HttpClientFailurePatch414 {
   /** Return 414 status code - should be represented in the client as an error */
   patch(
     options?: HttpClientFailurePatch414Parameters
-  ): StreamableMethod<HttpClientFailurePatch414defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePatch414DefaultResponse>;
 }
 
 export interface HttpClientFailurePost415 {
   /** Return 415 status code - should be represented in the client as an error */
   post(
     options?: HttpClientFailurePost415Parameters
-  ): StreamableMethod<HttpClientFailurePost415defaultResponse>;
+  ): StreamableMethod<HttpClientFailurePost415DefaultResponse>;
 }
 
 export interface HttpClientFailureGet416 {
   /** Return 416 status code - should be represented in the client as an error */
   get(
     options?: HttpClientFailureGet416Parameters
-  ): StreamableMethod<HttpClientFailureGet416defaultResponse>;
+  ): StreamableMethod<HttpClientFailureGet416DefaultResponse>;
 }
 
 export interface HttpClientFailureDelete417 {
   /** Return 417 status code - should be represented in the client as an error */
   delete(
     options?: HttpClientFailureDelete417Parameters
-  ): StreamableMethod<HttpClientFailureDelete417defaultResponse>;
+  ): StreamableMethod<HttpClientFailureDelete417DefaultResponse>;
 }
 
 export interface HttpClientFailureHead429 {
   /** Return 429 status code - should be represented in the client as an error */
   head(
     options?: HttpClientFailureHead429Parameters
-  ): StreamableMethod<HttpClientFailureHead429defaultResponse>;
+  ): StreamableMethod<HttpClientFailureHead429DefaultResponse>;
 }
 
 export interface HttpServerFailureHead501 {
   /** Return 501 status code - should be represented in the client as an error */
   head(
     options?: HttpServerFailureHead501Parameters
-  ): StreamableMethod<HttpServerFailureHead501defaultResponse>;
+  ): StreamableMethod<HttpServerFailureHead501DefaultResponse>;
   /** Return 501 status code - should be represented in the client as an error */
   get(
     options?: HttpServerFailureGet501Parameters
-  ): StreamableMethod<HttpServerFailureGet501defaultResponse>;
+  ): StreamableMethod<HttpServerFailureGet501DefaultResponse>;
 }
 
 export interface HttpServerFailurePost505 {
   /** Return 505 status code - should be represented in the client as an error */
   post(
     options?: HttpServerFailurePost505Parameters
-  ): StreamableMethod<HttpServerFailurePost505defaultResponse>;
+  ): StreamableMethod<HttpServerFailurePost505DefaultResponse>;
   /** Return 505 status code - should be represented in the client as an error */
   delete(
     options?: HttpServerFailureDelete505Parameters
-  ): StreamableMethod<HttpServerFailureDelete505defaultResponse>;
+  ): StreamableMethod<HttpServerFailureDelete505DefaultResponse>;
 }
 
 export interface HttpRetryHead408 {
@@ -1499,7 +1499,7 @@ export interface HttpRetryHead408 {
   head(
     options?: HttpRetryHead408Parameters
   ): StreamableMethod<
-    HttpRetryHead408200Response | HttpRetryHead408defaultResponse
+    HttpRetryHead408200Response | HttpRetryHead408DefaultResponse
   >;
 }
 
@@ -1508,13 +1508,13 @@ export interface HttpRetryPut500 {
   put(
     options?: HttpRetryPut500Parameters
   ): StreamableMethod<
-    HttpRetryPut500200Response | HttpRetryPut500defaultResponse
+    HttpRetryPut500200Response | HttpRetryPut500DefaultResponse
   >;
   /** Return 500 status code, then 200 after retry */
   patch(
     options?: HttpRetryPatch500Parameters
   ): StreamableMethod<
-    HttpRetryPatch500200Response | HttpRetryPatch500defaultResponse
+    HttpRetryPatch500200Response | HttpRetryPatch500DefaultResponse
   >;
 }
 
@@ -1523,13 +1523,13 @@ export interface HttpRetryGet502 {
   get(
     options?: HttpRetryGet502Parameters
   ): StreamableMethod<
-    HttpRetryGet502200Response | HttpRetryGet502defaultResponse
+    HttpRetryGet502200Response | HttpRetryGet502DefaultResponse
   >;
   /** Return 502 status code, then 200 after retry */
   options(
     options?: HttpRetryOptions502Parameters
   ): StreamableMethod<
-    HttpRetryOptions502200Response | HttpRetryOptions502defaultResponse
+    HttpRetryOptions502200Response | HttpRetryOptions502DefaultResponse
   >;
 }
 
@@ -1538,13 +1538,13 @@ export interface HttpRetryPost503 {
   post(
     options?: HttpRetryPost503Parameters
   ): StreamableMethod<
-    HttpRetryPost503200Response | HttpRetryPost503defaultResponse
+    HttpRetryPost503200Response | HttpRetryPost503DefaultResponse
   >;
   /** Return 503 status code, then 200 after retry */
   delete(
     options?: HttpRetryDelete503Parameters
   ): StreamableMethod<
-    HttpRetryDelete503200Response | HttpRetryDelete503defaultResponse
+    HttpRetryDelete503200Response | HttpRetryDelete503DefaultResponse
   >;
 }
 
@@ -1553,13 +1553,13 @@ export interface HttpRetryPut504 {
   put(
     options?: HttpRetryPut504Parameters
   ): StreamableMethod<
-    HttpRetryPut504200Response | HttpRetryPut504defaultResponse
+    HttpRetryPut504200Response | HttpRetryPut504DefaultResponse
   >;
   /** Return 504 status code, then 200 after retry */
   patch(
     options?: HttpRetryPatch504Parameters
   ): StreamableMethod<
-    HttpRetryPatch504200Response | HttpRetryPatch504defaultResponse
+    HttpRetryPatch504200Response | HttpRetryPatch504DefaultResponse
   >;
 }
 
@@ -1570,7 +1570,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError200Valid {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError200Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse
   >;
 }
 
@@ -1581,7 +1581,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError204Valid {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError204Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError204ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse
   >;
 }
 
@@ -1592,7 +1592,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError201Invalid {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError201Invalid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError201InvaliddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse
   >;
 }
 
@@ -1603,7 +1603,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError202None {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError202None200Response
     | MultipleResponsesGet200Model204NoModelDefaultError202None204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError202NonedefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse
   >;
 }
 
@@ -1614,7 +1614,7 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError400Valid {
   ): StreamableMethod<
     | MultipleResponsesGet200Model204NoModelDefaultError400Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse
   >;
 }
 
@@ -1625,7 +1625,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError200Valid {
   ): StreamableMethod<
     | MultipleResponsesGet200Model201ModelDefaultError200Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError200Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse
   >;
 }
 
@@ -1636,7 +1636,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError201Valid {
   ): StreamableMethod<
     | MultipleResponsesGet200Model201ModelDefaultError201Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError201Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError201ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse
   >;
 }
 
@@ -1647,7 +1647,7 @@ export interface MultipleResponsesGet200Model201ModelDefaultError400Valid {
   ): StreamableMethod<
     | MultipleResponsesGet200Model201ModelDefaultError400Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError400Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse
   >;
 }
 
@@ -1659,7 +1659,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200V
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse
   >;
 }
 
@@ -1671,7 +1671,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201V
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse
   >;
 }
 
@@ -1683,7 +1683,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404V
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse
   >;
 }
 
@@ -1695,7 +1695,7 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400V
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse
   >;
 }
 
@@ -1706,7 +1706,7 @@ export interface MultipleResponsesGet202None204NoneDefaultError202None {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultError202None202Response
     | MultipleResponsesGet202None204NoneDefaultError202None204Response
-    | MultipleResponsesGet202None204NoneDefaultError202NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse
   >;
 }
 
@@ -1717,7 +1717,7 @@ export interface MultipleResponsesGet202None204NoneDefaultError204None {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultError204None202Response
     | MultipleResponsesGet202None204NoneDefaultError204None204Response
-    | MultipleResponsesGet202None204NoneDefaultError204NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse
   >;
 }
 
@@ -1728,7 +1728,7 @@ export interface MultipleResponsesGet202None204NoneDefaultError400Valid {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultError400Valid202Response
     | MultipleResponsesGet202None204NoneDefaultError400Valid204Response
-    | MultipleResponsesGet202None204NoneDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse
   >;
 }
 
@@ -1739,7 +1739,7 @@ export interface MultipleResponsesGet202None204NoneDefaultNone202Invalid {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response
     | MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response
-    | MultipleResponsesGet202None204NoneDefaultNone202InvaliddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse
   >;
 }
 
@@ -1750,7 +1750,7 @@ export interface MultipleResponsesGet202None204NoneDefaultNone204None {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultNone204None202Response
     | MultipleResponsesGet202None204NoneDefaultNone204None204Response
-    | MultipleResponsesGet202None204NoneDefaultNone204NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse
   >;
 }
 
@@ -1761,7 +1761,7 @@ export interface MultipleResponsesGet202None204NoneDefaultNone400None {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultNone400None202Response
     | MultipleResponsesGet202None204NoneDefaultNone400None204Response
-    | MultipleResponsesGet202None204NoneDefaultNone400NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse
   >;
 }
 
@@ -1772,7 +1772,7 @@ export interface MultipleResponsesGet202None204NoneDefaultNone400Invalid {
   ): StreamableMethod<
     | MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response
     | MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response
-    | MultipleResponsesGet202None204NoneDefaultNone400InvaliddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse
   >;
 }
 
@@ -1796,7 +1796,7 @@ export interface MultipleResponsesGetDefaultModelA400Valid {
     options?: MultipleResponsesGetDefaultModelA400ValidParameters
   ): StreamableMethod<
     | MultipleResponsesGetDefaultModelA400Valid200Response
-    | MultipleResponsesGetDefaultModelA400ValiddefaultResponse
+    | MultipleResponsesGetDefaultModelA400ValidDefaultResponse
   >;
 }
 
@@ -1806,7 +1806,7 @@ export interface MultipleResponsesGetDefaultModelA400None {
     options?: MultipleResponsesGetDefaultModelA400NoneParameters
   ): StreamableMethod<
     | MultipleResponsesGetDefaultModelA400None200Response
-    | MultipleResponsesGetDefaultModelA400NonedefaultResponse
+    | MultipleResponsesGetDefaultModelA400NoneDefaultResponse
   >;
 }
 
@@ -1830,7 +1830,7 @@ export interface MultipleResponsesGetDefaultNone400Invalid {
     options?: MultipleResponsesGetDefaultNone400InvalidParameters
   ): StreamableMethod<
     | MultipleResponsesGetDefaultNone400Invalid200Response
-    | MultipleResponsesGetDefaultNone400InvaliddefaultResponse
+    | MultipleResponsesGetDefaultNone400InvalidDefaultResponse
   >;
 }
 
@@ -1840,7 +1840,7 @@ export interface MultipleResponsesGetDefaultNone400None {
     options?: MultipleResponsesGetDefaultNone400NoneParameters
   ): StreamableMethod<
     | MultipleResponsesGetDefaultNone400None200Response
-    | MultipleResponsesGetDefaultNone400NonedefaultResponse
+    | MultipleResponsesGetDefaultNone400NoneDefaultResponse
   >;
 }
 

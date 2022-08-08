@@ -3,113 +3,113 @@
 
 import {
   BasicGetValid200Response,
-  BasicGetValiddefaultResponse,
+  BasicGetValidDefaultResponse,
   BasicPutValid200Response,
-  BasicPutValiddefaultResponse,
+  BasicPutValidDefaultResponse,
   BasicGetInvalid200Response,
-  BasicGetInvaliddefaultResponse,
+  BasicGetInvalidDefaultResponse,
   BasicGetEmpty200Response,
-  BasicGetEmptydefaultResponse,
+  BasicGetEmptyDefaultResponse,
   BasicGetNull200Response,
-  BasicGetNulldefaultResponse,
+  BasicGetNullDefaultResponse,
   BasicGetNotProvided200Response,
-  BasicGetNotProvideddefaultResponse,
+  BasicGetNotProvidedDefaultResponse,
   PrimitiveGetInt200Response,
-  PrimitiveGetIntdefaultResponse,
+  PrimitiveGetIntDefaultResponse,
   PrimitivePutInt200Response,
-  PrimitivePutIntdefaultResponse,
+  PrimitivePutIntDefaultResponse,
   PrimitiveGetLong200Response,
-  PrimitiveGetLongdefaultResponse,
+  PrimitiveGetLongDefaultResponse,
   PrimitivePutLong200Response,
-  PrimitivePutLongdefaultResponse,
+  PrimitivePutLongDefaultResponse,
   PrimitiveGetFloat200Response,
-  PrimitiveGetFloatdefaultResponse,
+  PrimitiveGetFloatDefaultResponse,
   PrimitivePutFloat200Response,
-  PrimitivePutFloatdefaultResponse,
+  PrimitivePutFloatDefaultResponse,
   PrimitiveGetDouble200Response,
-  PrimitiveGetDoubledefaultResponse,
+  PrimitiveGetDoubleDefaultResponse,
   PrimitivePutDouble200Response,
-  PrimitivePutDoubledefaultResponse,
+  PrimitivePutDoubleDefaultResponse,
   PrimitiveGetBool200Response,
-  PrimitiveGetBooldefaultResponse,
+  PrimitiveGetBoolDefaultResponse,
   PrimitivePutBool200Response,
-  PrimitivePutBooldefaultResponse,
+  PrimitivePutBoolDefaultResponse,
   PrimitiveGetString200Response,
-  PrimitiveGetStringdefaultResponse,
+  PrimitiveGetStringDefaultResponse,
   PrimitivePutString200Response,
-  PrimitivePutStringdefaultResponse,
+  PrimitivePutStringDefaultResponse,
   PrimitiveGetDate200Response,
-  PrimitiveGetDatedefaultResponse,
+  PrimitiveGetDateDefaultResponse,
   PrimitivePutDate200Response,
-  PrimitivePutDatedefaultResponse,
+  PrimitivePutDateDefaultResponse,
   PrimitiveGetDateTime200Response,
-  PrimitiveGetDateTimedefaultResponse,
+  PrimitiveGetDateTimeDefaultResponse,
   PrimitivePutDateTime200Response,
-  PrimitivePutDateTimedefaultResponse,
+  PrimitivePutDateTimeDefaultResponse,
   PrimitiveGetDateTimeRfc1123200Response,
-  PrimitiveGetDateTimeRfc1123defaultResponse,
+  PrimitiveGetDateTimeRfc1123DefaultResponse,
   PrimitivePutDateTimeRfc1123200Response,
-  PrimitivePutDateTimeRfc1123defaultResponse,
+  PrimitivePutDateTimeRfc1123DefaultResponse,
   PrimitiveGetDuration200Response,
-  PrimitiveGetDurationdefaultResponse,
+  PrimitiveGetDurationDefaultResponse,
   PrimitivePutDuration200Response,
-  PrimitivePutDurationdefaultResponse,
+  PrimitivePutDurationDefaultResponse,
   PrimitiveGetByte200Response,
-  PrimitiveGetBytedefaultResponse,
+  PrimitiveGetByteDefaultResponse,
   PrimitivePutByte200Response,
-  PrimitivePutBytedefaultResponse,
+  PrimitivePutByteDefaultResponse,
   ArrayGetValid200Response,
-  ArrayGetValiddefaultResponse,
+  ArrayGetValidDefaultResponse,
   ArrayPutValid200Response,
-  ArrayPutValiddefaultResponse,
+  ArrayPutValidDefaultResponse,
   ArrayGetEmpty200Response,
-  ArrayGetEmptydefaultResponse,
+  ArrayGetEmptyDefaultResponse,
   ArrayPutEmpty200Response,
-  ArrayPutEmptydefaultResponse,
+  ArrayPutEmptyDefaultResponse,
   ArrayGetNotProvided200Response,
-  ArrayGetNotProvideddefaultResponse,
+  ArrayGetNotProvidedDefaultResponse,
   DictionaryGetValid200Response,
-  DictionaryGetValiddefaultResponse,
+  DictionaryGetValidDefaultResponse,
   DictionaryPutValid200Response,
-  DictionaryPutValiddefaultResponse,
+  DictionaryPutValidDefaultResponse,
   DictionaryGetEmpty200Response,
-  DictionaryGetEmptydefaultResponse,
+  DictionaryGetEmptyDefaultResponse,
   DictionaryPutEmpty200Response,
-  DictionaryPutEmptydefaultResponse,
+  DictionaryPutEmptyDefaultResponse,
   DictionaryGetNull200Response,
-  DictionaryGetNulldefaultResponse,
+  DictionaryGetNullDefaultResponse,
   DictionaryGetNotProvided200Response,
-  DictionaryGetNotProvideddefaultResponse,
+  DictionaryGetNotProvidedDefaultResponse,
   InheritanceGetValid200Response,
-  InheritanceGetValiddefaultResponse,
+  InheritanceGetValidDefaultResponse,
   InheritancePutValid200Response,
-  InheritancePutValiddefaultResponse,
+  InheritancePutValidDefaultResponse,
   PolymorphismGetValid200Response,
-  PolymorphismGetValiddefaultResponse,
+  PolymorphismGetValidDefaultResponse,
   PolymorphismPutValid200Response,
-  PolymorphismPutValiddefaultResponse,
+  PolymorphismPutValidDefaultResponse,
   PolymorphismGetDotSyntax200Response,
-  PolymorphismGetDotSyntaxdefaultResponse,
+  PolymorphismGetDotSyntaxDefaultResponse,
   PolymorphismGetComposedWithDiscriminator200Response,
-  PolymorphismGetComposedWithDiscriminatordefaultResponse,
+  PolymorphismGetComposedWithDiscriminatorDefaultResponse,
   PolymorphismGetComposedWithoutDiscriminator200Response,
-  PolymorphismGetComposedWithoutDiscriminatordefaultResponse,
+  PolymorphismGetComposedWithoutDiscriminatorDefaultResponse,
   PolymorphismGetComplicated200Response,
-  PolymorphismGetComplicateddefaultResponse,
+  PolymorphismGetComplicatedDefaultResponse,
   PolymorphismPutComplicated200Response,
-  PolymorphismPutComplicateddefaultResponse,
+  PolymorphismPutComplicatedDefaultResponse,
   PolymorphismPutMissingDiscriminator200Response,
-  PolymorphismPutMissingDiscriminatordefaultResponse,
+  PolymorphismPutMissingDiscriminatorDefaultResponse,
   PolymorphismPutValidMissingRequired200Response,
-  PolymorphismPutValidMissingRequireddefaultResponse,
+  PolymorphismPutValidMissingRequiredDefaultResponse,
   PolymorphicrecursiveGetValid200Response,
-  PolymorphicrecursiveGetValiddefaultResponse,
+  PolymorphicrecursiveGetValidDefaultResponse,
   PolymorphicrecursivePutValid200Response,
-  PolymorphicrecursivePutValiddefaultResponse,
+  PolymorphicrecursivePutValidDefaultResponse,
   ReadonlypropertyGetValid200Response,
-  ReadonlypropertyGetValiddefaultResponse,
+  ReadonlypropertyGetValidDefaultResponse,
   ReadonlypropertyPutValid200Response,
-  ReadonlypropertyPutValiddefaultResponse
+  ReadonlypropertyPutValidDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -171,372 +171,372 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: BasicGetValid200Response | BasicGetValiddefaultResponse
-): response is BasicGetValiddefaultResponse;
+  response: BasicGetValid200Response | BasicGetValidDefaultResponse
+): response is BasicGetValidDefaultResponse;
 export function isUnexpected(
-  response: BasicPutValid200Response | BasicPutValiddefaultResponse
-): response is BasicPutValiddefaultResponse;
+  response: BasicPutValid200Response | BasicPutValidDefaultResponse
+): response is BasicPutValidDefaultResponse;
 export function isUnexpected(
-  response: BasicGetInvalid200Response | BasicGetInvaliddefaultResponse
-): response is BasicGetInvaliddefaultResponse;
+  response: BasicGetInvalid200Response | BasicGetInvalidDefaultResponse
+): response is BasicGetInvalidDefaultResponse;
 export function isUnexpected(
-  response: BasicGetEmpty200Response | BasicGetEmptydefaultResponse
-): response is BasicGetEmptydefaultResponse;
+  response: BasicGetEmpty200Response | BasicGetEmptyDefaultResponse
+): response is BasicGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: BasicGetNull200Response | BasicGetNulldefaultResponse
-): response is BasicGetNulldefaultResponse;
+  response: BasicGetNull200Response | BasicGetNullDefaultResponse
+): response is BasicGetNullDefaultResponse;
 export function isUnexpected(
-  response: BasicGetNotProvided200Response | BasicGetNotProvideddefaultResponse
-): response is BasicGetNotProvideddefaultResponse;
+  response: BasicGetNotProvided200Response | BasicGetNotProvidedDefaultResponse
+): response is BasicGetNotProvidedDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetInt200Response | PrimitiveGetIntdefaultResponse
-): response is PrimitiveGetIntdefaultResponse;
+  response: PrimitiveGetInt200Response | PrimitiveGetIntDefaultResponse
+): response is PrimitiveGetIntDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutInt200Response | PrimitivePutIntdefaultResponse
-): response is PrimitivePutIntdefaultResponse;
+  response: PrimitivePutInt200Response | PrimitivePutIntDefaultResponse
+): response is PrimitivePutIntDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetLong200Response | PrimitiveGetLongdefaultResponse
-): response is PrimitiveGetLongdefaultResponse;
+  response: PrimitiveGetLong200Response | PrimitiveGetLongDefaultResponse
+): response is PrimitiveGetLongDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutLong200Response | PrimitivePutLongdefaultResponse
-): response is PrimitivePutLongdefaultResponse;
+  response: PrimitivePutLong200Response | PrimitivePutLongDefaultResponse
+): response is PrimitivePutLongDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetFloat200Response | PrimitiveGetFloatdefaultResponse
-): response is PrimitiveGetFloatdefaultResponse;
+  response: PrimitiveGetFloat200Response | PrimitiveGetFloatDefaultResponse
+): response is PrimitiveGetFloatDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutFloat200Response | PrimitivePutFloatdefaultResponse
-): response is PrimitivePutFloatdefaultResponse;
+  response: PrimitivePutFloat200Response | PrimitivePutFloatDefaultResponse
+): response is PrimitivePutFloatDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetDouble200Response | PrimitiveGetDoubledefaultResponse
-): response is PrimitiveGetDoubledefaultResponse;
+  response: PrimitiveGetDouble200Response | PrimitiveGetDoubleDefaultResponse
+): response is PrimitiveGetDoubleDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutDouble200Response | PrimitivePutDoubledefaultResponse
-): response is PrimitivePutDoubledefaultResponse;
+  response: PrimitivePutDouble200Response | PrimitivePutDoubleDefaultResponse
+): response is PrimitivePutDoubleDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetBool200Response | PrimitiveGetBooldefaultResponse
-): response is PrimitiveGetBooldefaultResponse;
+  response: PrimitiveGetBool200Response | PrimitiveGetBoolDefaultResponse
+): response is PrimitiveGetBoolDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutBool200Response | PrimitivePutBooldefaultResponse
-): response is PrimitivePutBooldefaultResponse;
+  response: PrimitivePutBool200Response | PrimitivePutBoolDefaultResponse
+): response is PrimitivePutBoolDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetString200Response | PrimitiveGetStringdefaultResponse
-): response is PrimitiveGetStringdefaultResponse;
+  response: PrimitiveGetString200Response | PrimitiveGetStringDefaultResponse
+): response is PrimitiveGetStringDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutString200Response | PrimitivePutStringdefaultResponse
-): response is PrimitivePutStringdefaultResponse;
+  response: PrimitivePutString200Response | PrimitivePutStringDefaultResponse
+): response is PrimitivePutStringDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetDate200Response | PrimitiveGetDatedefaultResponse
-): response is PrimitiveGetDatedefaultResponse;
+  response: PrimitiveGetDate200Response | PrimitiveGetDateDefaultResponse
+): response is PrimitiveGetDateDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutDate200Response | PrimitivePutDatedefaultResponse
-): response is PrimitivePutDatedefaultResponse;
+  response: PrimitivePutDate200Response | PrimitivePutDateDefaultResponse
+): response is PrimitivePutDateDefaultResponse;
 export function isUnexpected(
   response:
     | PrimitiveGetDateTime200Response
-    | PrimitiveGetDateTimedefaultResponse
-): response is PrimitiveGetDateTimedefaultResponse;
+    | PrimitiveGetDateTimeDefaultResponse
+): response is PrimitiveGetDateTimeDefaultResponse;
 export function isUnexpected(
   response:
     | PrimitivePutDateTime200Response
-    | PrimitivePutDateTimedefaultResponse
-): response is PrimitivePutDateTimedefaultResponse;
+    | PrimitivePutDateTimeDefaultResponse
+): response is PrimitivePutDateTimeDefaultResponse;
 export function isUnexpected(
   response:
     | PrimitiveGetDateTimeRfc1123200Response
-    | PrimitiveGetDateTimeRfc1123defaultResponse
-): response is PrimitiveGetDateTimeRfc1123defaultResponse;
+    | PrimitiveGetDateTimeRfc1123DefaultResponse
+): response is PrimitiveGetDateTimeRfc1123DefaultResponse;
 export function isUnexpected(
   response:
     | PrimitivePutDateTimeRfc1123200Response
-    | PrimitivePutDateTimeRfc1123defaultResponse
-): response is PrimitivePutDateTimeRfc1123defaultResponse;
+    | PrimitivePutDateTimeRfc1123DefaultResponse
+): response is PrimitivePutDateTimeRfc1123DefaultResponse;
 export function isUnexpected(
   response:
     | PrimitiveGetDuration200Response
-    | PrimitiveGetDurationdefaultResponse
-): response is PrimitiveGetDurationdefaultResponse;
+    | PrimitiveGetDurationDefaultResponse
+): response is PrimitiveGetDurationDefaultResponse;
 export function isUnexpected(
   response:
     | PrimitivePutDuration200Response
-    | PrimitivePutDurationdefaultResponse
-): response is PrimitivePutDurationdefaultResponse;
+    | PrimitivePutDurationDefaultResponse
+): response is PrimitivePutDurationDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetByte200Response | PrimitiveGetBytedefaultResponse
-): response is PrimitiveGetBytedefaultResponse;
+  response: PrimitiveGetByte200Response | PrimitiveGetByteDefaultResponse
+): response is PrimitiveGetByteDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutByte200Response | PrimitivePutBytedefaultResponse
-): response is PrimitivePutBytedefaultResponse;
+  response: PrimitivePutByte200Response | PrimitivePutByteDefaultResponse
+): response is PrimitivePutByteDefaultResponse;
 export function isUnexpected(
-  response: ArrayGetValid200Response | ArrayGetValiddefaultResponse
-): response is ArrayGetValiddefaultResponse;
+  response: ArrayGetValid200Response | ArrayGetValidDefaultResponse
+): response is ArrayGetValidDefaultResponse;
 export function isUnexpected(
-  response: ArrayPutValid200Response | ArrayPutValiddefaultResponse
-): response is ArrayPutValiddefaultResponse;
+  response: ArrayPutValid200Response | ArrayPutValidDefaultResponse
+): response is ArrayPutValidDefaultResponse;
 export function isUnexpected(
-  response: ArrayGetEmpty200Response | ArrayGetEmptydefaultResponse
-): response is ArrayGetEmptydefaultResponse;
+  response: ArrayGetEmpty200Response | ArrayGetEmptyDefaultResponse
+): response is ArrayGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: ArrayPutEmpty200Response | ArrayPutEmptydefaultResponse
-): response is ArrayPutEmptydefaultResponse;
+  response: ArrayPutEmpty200Response | ArrayPutEmptyDefaultResponse
+): response is ArrayPutEmptyDefaultResponse;
 export function isUnexpected(
-  response: ArrayGetNotProvided200Response | ArrayGetNotProvideddefaultResponse
-): response is ArrayGetNotProvideddefaultResponse;
+  response: ArrayGetNotProvided200Response | ArrayGetNotProvidedDefaultResponse
+): response is ArrayGetNotProvidedDefaultResponse;
 export function isUnexpected(
-  response: DictionaryGetValid200Response | DictionaryGetValiddefaultResponse
-): response is DictionaryGetValiddefaultResponse;
+  response: DictionaryGetValid200Response | DictionaryGetValidDefaultResponse
+): response is DictionaryGetValidDefaultResponse;
 export function isUnexpected(
-  response: DictionaryPutValid200Response | DictionaryPutValiddefaultResponse
-): response is DictionaryPutValiddefaultResponse;
+  response: DictionaryPutValid200Response | DictionaryPutValidDefaultResponse
+): response is DictionaryPutValidDefaultResponse;
 export function isUnexpected(
-  response: DictionaryGetEmpty200Response | DictionaryGetEmptydefaultResponse
-): response is DictionaryGetEmptydefaultResponse;
+  response: DictionaryGetEmpty200Response | DictionaryGetEmptyDefaultResponse
+): response is DictionaryGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: DictionaryPutEmpty200Response | DictionaryPutEmptydefaultResponse
-): response is DictionaryPutEmptydefaultResponse;
+  response: DictionaryPutEmpty200Response | DictionaryPutEmptyDefaultResponse
+): response is DictionaryPutEmptyDefaultResponse;
 export function isUnexpected(
-  response: DictionaryGetNull200Response | DictionaryGetNulldefaultResponse
-): response is DictionaryGetNulldefaultResponse;
+  response: DictionaryGetNull200Response | DictionaryGetNullDefaultResponse
+): response is DictionaryGetNullDefaultResponse;
 export function isUnexpected(
   response:
     | DictionaryGetNotProvided200Response
-    | DictionaryGetNotProvideddefaultResponse
-): response is DictionaryGetNotProvideddefaultResponse;
+    | DictionaryGetNotProvidedDefaultResponse
+): response is DictionaryGetNotProvidedDefaultResponse;
 export function isUnexpected(
-  response: InheritanceGetValid200Response | InheritanceGetValiddefaultResponse
-): response is InheritanceGetValiddefaultResponse;
+  response: InheritanceGetValid200Response | InheritanceGetValidDefaultResponse
+): response is InheritanceGetValidDefaultResponse;
 export function isUnexpected(
-  response: InheritancePutValid200Response | InheritancePutValiddefaultResponse
-): response is InheritancePutValiddefaultResponse;
+  response: InheritancePutValid200Response | InheritancePutValidDefaultResponse
+): response is InheritancePutValidDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetValid200Response
-    | PolymorphismGetValiddefaultResponse
-): response is PolymorphismGetValiddefaultResponse;
+    | PolymorphismGetValidDefaultResponse
+): response is PolymorphismGetValidDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismPutValid200Response
-    | PolymorphismPutValiddefaultResponse
-): response is PolymorphismPutValiddefaultResponse;
+    | PolymorphismPutValidDefaultResponse
+): response is PolymorphismPutValidDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetDotSyntax200Response
-    | PolymorphismGetDotSyntaxdefaultResponse
-): response is PolymorphismGetDotSyntaxdefaultResponse;
+    | PolymorphismGetDotSyntaxDefaultResponse
+): response is PolymorphismGetDotSyntaxDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetComposedWithDiscriminator200Response
-    | PolymorphismGetComposedWithDiscriminatordefaultResponse
-): response is PolymorphismGetComposedWithDiscriminatordefaultResponse;
+    | PolymorphismGetComposedWithDiscriminatorDefaultResponse
+): response is PolymorphismGetComposedWithDiscriminatorDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetComposedWithoutDiscriminator200Response
-    | PolymorphismGetComposedWithoutDiscriminatordefaultResponse
-): response is PolymorphismGetComposedWithoutDiscriminatordefaultResponse;
+    | PolymorphismGetComposedWithoutDiscriminatorDefaultResponse
+): response is PolymorphismGetComposedWithoutDiscriminatorDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetComplicated200Response
-    | PolymorphismGetComplicateddefaultResponse
-): response is PolymorphismGetComplicateddefaultResponse;
+    | PolymorphismGetComplicatedDefaultResponse
+): response is PolymorphismGetComplicatedDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismPutComplicated200Response
-    | PolymorphismPutComplicateddefaultResponse
-): response is PolymorphismPutComplicateddefaultResponse;
+    | PolymorphismPutComplicatedDefaultResponse
+): response is PolymorphismPutComplicatedDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismPutMissingDiscriminator200Response
-    | PolymorphismPutMissingDiscriminatordefaultResponse
-): response is PolymorphismPutMissingDiscriminatordefaultResponse;
+    | PolymorphismPutMissingDiscriminatorDefaultResponse
+): response is PolymorphismPutMissingDiscriminatorDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismPutValidMissingRequired200Response
-    | PolymorphismPutValidMissingRequireddefaultResponse
-): response is PolymorphismPutValidMissingRequireddefaultResponse;
+    | PolymorphismPutValidMissingRequiredDefaultResponse
+): response is PolymorphismPutValidMissingRequiredDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphicrecursiveGetValid200Response
-    | PolymorphicrecursiveGetValiddefaultResponse
-): response is PolymorphicrecursiveGetValiddefaultResponse;
+    | PolymorphicrecursiveGetValidDefaultResponse
+): response is PolymorphicrecursiveGetValidDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphicrecursivePutValid200Response
-    | PolymorphicrecursivePutValiddefaultResponse
-): response is PolymorphicrecursivePutValiddefaultResponse;
+    | PolymorphicrecursivePutValidDefaultResponse
+): response is PolymorphicrecursivePutValidDefaultResponse;
 export function isUnexpected(
   response:
     | ReadonlypropertyGetValid200Response
-    | ReadonlypropertyGetValiddefaultResponse
-): response is ReadonlypropertyGetValiddefaultResponse;
+    | ReadonlypropertyGetValidDefaultResponse
+): response is ReadonlypropertyGetValidDefaultResponse;
 export function isUnexpected(
   response:
     | ReadonlypropertyPutValid200Response
-    | ReadonlypropertyPutValiddefaultResponse
-): response is ReadonlypropertyPutValiddefaultResponse;
+    | ReadonlypropertyPutValidDefaultResponse
+): response is ReadonlypropertyPutValidDefaultResponse;
 export function isUnexpected(
   response:
     | BasicGetValid200Response
-    | BasicGetValiddefaultResponse
+    | BasicGetValidDefaultResponse
     | BasicPutValid200Response
-    | BasicPutValiddefaultResponse
+    | BasicPutValidDefaultResponse
     | BasicGetInvalid200Response
-    | BasicGetInvaliddefaultResponse
+    | BasicGetInvalidDefaultResponse
     | BasicGetEmpty200Response
-    | BasicGetEmptydefaultResponse
+    | BasicGetEmptyDefaultResponse
     | BasicGetNull200Response
-    | BasicGetNulldefaultResponse
+    | BasicGetNullDefaultResponse
     | BasicGetNotProvided200Response
-    | BasicGetNotProvideddefaultResponse
+    | BasicGetNotProvidedDefaultResponse
     | PrimitiveGetInt200Response
-    | PrimitiveGetIntdefaultResponse
+    | PrimitiveGetIntDefaultResponse
     | PrimitivePutInt200Response
-    | PrimitivePutIntdefaultResponse
+    | PrimitivePutIntDefaultResponse
     | PrimitiveGetLong200Response
-    | PrimitiveGetLongdefaultResponse
+    | PrimitiveGetLongDefaultResponse
     | PrimitivePutLong200Response
-    | PrimitivePutLongdefaultResponse
+    | PrimitivePutLongDefaultResponse
     | PrimitiveGetFloat200Response
-    | PrimitiveGetFloatdefaultResponse
+    | PrimitiveGetFloatDefaultResponse
     | PrimitivePutFloat200Response
-    | PrimitivePutFloatdefaultResponse
+    | PrimitivePutFloatDefaultResponse
     | PrimitiveGetDouble200Response
-    | PrimitiveGetDoubledefaultResponse
+    | PrimitiveGetDoubleDefaultResponse
     | PrimitivePutDouble200Response
-    | PrimitivePutDoubledefaultResponse
+    | PrimitivePutDoubleDefaultResponse
     | PrimitiveGetBool200Response
-    | PrimitiveGetBooldefaultResponse
+    | PrimitiveGetBoolDefaultResponse
     | PrimitivePutBool200Response
-    | PrimitivePutBooldefaultResponse
+    | PrimitivePutBoolDefaultResponse
     | PrimitiveGetString200Response
-    | PrimitiveGetStringdefaultResponse
+    | PrimitiveGetStringDefaultResponse
     | PrimitivePutString200Response
-    | PrimitivePutStringdefaultResponse
+    | PrimitivePutStringDefaultResponse
     | PrimitiveGetDate200Response
-    | PrimitiveGetDatedefaultResponse
+    | PrimitiveGetDateDefaultResponse
     | PrimitivePutDate200Response
-    | PrimitivePutDatedefaultResponse
+    | PrimitivePutDateDefaultResponse
     | PrimitiveGetDateTime200Response
-    | PrimitiveGetDateTimedefaultResponse
+    | PrimitiveGetDateTimeDefaultResponse
     | PrimitivePutDateTime200Response
-    | PrimitivePutDateTimedefaultResponse
+    | PrimitivePutDateTimeDefaultResponse
     | PrimitiveGetDateTimeRfc1123200Response
-    | PrimitiveGetDateTimeRfc1123defaultResponse
+    | PrimitiveGetDateTimeRfc1123DefaultResponse
     | PrimitivePutDateTimeRfc1123200Response
-    | PrimitivePutDateTimeRfc1123defaultResponse
+    | PrimitivePutDateTimeRfc1123DefaultResponse
     | PrimitiveGetDuration200Response
-    | PrimitiveGetDurationdefaultResponse
+    | PrimitiveGetDurationDefaultResponse
     | PrimitivePutDuration200Response
-    | PrimitivePutDurationdefaultResponse
+    | PrimitivePutDurationDefaultResponse
     | PrimitiveGetByte200Response
-    | PrimitiveGetBytedefaultResponse
+    | PrimitiveGetByteDefaultResponse
     | PrimitivePutByte200Response
-    | PrimitivePutBytedefaultResponse
+    | PrimitivePutByteDefaultResponse
     | ArrayGetValid200Response
-    | ArrayGetValiddefaultResponse
+    | ArrayGetValidDefaultResponse
     | ArrayPutValid200Response
-    | ArrayPutValiddefaultResponse
+    | ArrayPutValidDefaultResponse
     | ArrayGetEmpty200Response
-    | ArrayGetEmptydefaultResponse
+    | ArrayGetEmptyDefaultResponse
     | ArrayPutEmpty200Response
-    | ArrayPutEmptydefaultResponse
+    | ArrayPutEmptyDefaultResponse
     | ArrayGetNotProvided200Response
-    | ArrayGetNotProvideddefaultResponse
+    | ArrayGetNotProvidedDefaultResponse
     | DictionaryGetValid200Response
-    | DictionaryGetValiddefaultResponse
+    | DictionaryGetValidDefaultResponse
     | DictionaryPutValid200Response
-    | DictionaryPutValiddefaultResponse
+    | DictionaryPutValidDefaultResponse
     | DictionaryGetEmpty200Response
-    | DictionaryGetEmptydefaultResponse
+    | DictionaryGetEmptyDefaultResponse
     | DictionaryPutEmpty200Response
-    | DictionaryPutEmptydefaultResponse
+    | DictionaryPutEmptyDefaultResponse
     | DictionaryGetNull200Response
-    | DictionaryGetNulldefaultResponse
+    | DictionaryGetNullDefaultResponse
     | DictionaryGetNotProvided200Response
-    | DictionaryGetNotProvideddefaultResponse
+    | DictionaryGetNotProvidedDefaultResponse
     | InheritanceGetValid200Response
-    | InheritanceGetValiddefaultResponse
+    | InheritanceGetValidDefaultResponse
     | InheritancePutValid200Response
-    | InheritancePutValiddefaultResponse
+    | InheritancePutValidDefaultResponse
     | PolymorphismGetValid200Response
-    | PolymorphismGetValiddefaultResponse
+    | PolymorphismGetValidDefaultResponse
     | PolymorphismPutValid200Response
-    | PolymorphismPutValiddefaultResponse
+    | PolymorphismPutValidDefaultResponse
     | PolymorphismGetDotSyntax200Response
-    | PolymorphismGetDotSyntaxdefaultResponse
+    | PolymorphismGetDotSyntaxDefaultResponse
     | PolymorphismGetComposedWithDiscriminator200Response
-    | PolymorphismGetComposedWithDiscriminatordefaultResponse
+    | PolymorphismGetComposedWithDiscriminatorDefaultResponse
     | PolymorphismGetComposedWithoutDiscriminator200Response
-    | PolymorphismGetComposedWithoutDiscriminatordefaultResponse
+    | PolymorphismGetComposedWithoutDiscriminatorDefaultResponse
     | PolymorphismGetComplicated200Response
-    | PolymorphismGetComplicateddefaultResponse
+    | PolymorphismGetComplicatedDefaultResponse
     | PolymorphismPutComplicated200Response
-    | PolymorphismPutComplicateddefaultResponse
+    | PolymorphismPutComplicatedDefaultResponse
     | PolymorphismPutMissingDiscriminator200Response
-    | PolymorphismPutMissingDiscriminatordefaultResponse
+    | PolymorphismPutMissingDiscriminatorDefaultResponse
     | PolymorphismPutValidMissingRequired200Response
-    | PolymorphismPutValidMissingRequireddefaultResponse
+    | PolymorphismPutValidMissingRequiredDefaultResponse
     | PolymorphicrecursiveGetValid200Response
-    | PolymorphicrecursiveGetValiddefaultResponse
+    | PolymorphicrecursiveGetValidDefaultResponse
     | PolymorphicrecursivePutValid200Response
-    | PolymorphicrecursivePutValiddefaultResponse
+    | PolymorphicrecursivePutValidDefaultResponse
     | ReadonlypropertyGetValid200Response
-    | ReadonlypropertyGetValiddefaultResponse
+    | ReadonlypropertyGetValidDefaultResponse
     | ReadonlypropertyPutValid200Response
-    | ReadonlypropertyPutValiddefaultResponse
+    | ReadonlypropertyPutValidDefaultResponse
 ): response is
-  | BasicGetValiddefaultResponse
-  | BasicPutValiddefaultResponse
-  | BasicGetInvaliddefaultResponse
-  | BasicGetEmptydefaultResponse
-  | BasicGetNulldefaultResponse
-  | BasicGetNotProvideddefaultResponse
-  | PrimitiveGetIntdefaultResponse
-  | PrimitivePutIntdefaultResponse
-  | PrimitiveGetLongdefaultResponse
-  | PrimitivePutLongdefaultResponse
-  | PrimitiveGetFloatdefaultResponse
-  | PrimitivePutFloatdefaultResponse
-  | PrimitiveGetDoubledefaultResponse
-  | PrimitivePutDoubledefaultResponse
-  | PrimitiveGetBooldefaultResponse
-  | PrimitivePutBooldefaultResponse
-  | PrimitiveGetStringdefaultResponse
-  | PrimitivePutStringdefaultResponse
-  | PrimitiveGetDatedefaultResponse
-  | PrimitivePutDatedefaultResponse
-  | PrimitiveGetDateTimedefaultResponse
-  | PrimitivePutDateTimedefaultResponse
-  | PrimitiveGetDateTimeRfc1123defaultResponse
-  | PrimitivePutDateTimeRfc1123defaultResponse
-  | PrimitiveGetDurationdefaultResponse
-  | PrimitivePutDurationdefaultResponse
-  | PrimitiveGetBytedefaultResponse
-  | PrimitivePutBytedefaultResponse
-  | ArrayGetValiddefaultResponse
-  | ArrayPutValiddefaultResponse
-  | ArrayGetEmptydefaultResponse
-  | ArrayPutEmptydefaultResponse
-  | ArrayGetNotProvideddefaultResponse
-  | DictionaryGetValiddefaultResponse
-  | DictionaryPutValiddefaultResponse
-  | DictionaryGetEmptydefaultResponse
-  | DictionaryPutEmptydefaultResponse
-  | DictionaryGetNulldefaultResponse
-  | DictionaryGetNotProvideddefaultResponse
-  | InheritanceGetValiddefaultResponse
-  | InheritancePutValiddefaultResponse
-  | PolymorphismGetValiddefaultResponse
-  | PolymorphismPutValiddefaultResponse
-  | PolymorphismGetDotSyntaxdefaultResponse
-  | PolymorphismGetComposedWithDiscriminatordefaultResponse
-  | PolymorphismGetComposedWithoutDiscriminatordefaultResponse
-  | PolymorphismGetComplicateddefaultResponse
-  | PolymorphismPutComplicateddefaultResponse
-  | PolymorphismPutMissingDiscriminatordefaultResponse
-  | PolymorphismPutValidMissingRequireddefaultResponse
-  | PolymorphicrecursiveGetValiddefaultResponse
-  | PolymorphicrecursivePutValiddefaultResponse
-  | ReadonlypropertyGetValiddefaultResponse
-  | ReadonlypropertyPutValiddefaultResponse {
+  | BasicGetValidDefaultResponse
+  | BasicPutValidDefaultResponse
+  | BasicGetInvalidDefaultResponse
+  | BasicGetEmptyDefaultResponse
+  | BasicGetNullDefaultResponse
+  | BasicGetNotProvidedDefaultResponse
+  | PrimitiveGetIntDefaultResponse
+  | PrimitivePutIntDefaultResponse
+  | PrimitiveGetLongDefaultResponse
+  | PrimitivePutLongDefaultResponse
+  | PrimitiveGetFloatDefaultResponse
+  | PrimitivePutFloatDefaultResponse
+  | PrimitiveGetDoubleDefaultResponse
+  | PrimitivePutDoubleDefaultResponse
+  | PrimitiveGetBoolDefaultResponse
+  | PrimitivePutBoolDefaultResponse
+  | PrimitiveGetStringDefaultResponse
+  | PrimitivePutStringDefaultResponse
+  | PrimitiveGetDateDefaultResponse
+  | PrimitivePutDateDefaultResponse
+  | PrimitiveGetDateTimeDefaultResponse
+  | PrimitivePutDateTimeDefaultResponse
+  | PrimitiveGetDateTimeRfc1123DefaultResponse
+  | PrimitivePutDateTimeRfc1123DefaultResponse
+  | PrimitiveGetDurationDefaultResponse
+  | PrimitivePutDurationDefaultResponse
+  | PrimitiveGetByteDefaultResponse
+  | PrimitivePutByteDefaultResponse
+  | ArrayGetValidDefaultResponse
+  | ArrayPutValidDefaultResponse
+  | ArrayGetEmptyDefaultResponse
+  | ArrayPutEmptyDefaultResponse
+  | ArrayGetNotProvidedDefaultResponse
+  | DictionaryGetValidDefaultResponse
+  | DictionaryPutValidDefaultResponse
+  | DictionaryGetEmptyDefaultResponse
+  | DictionaryPutEmptyDefaultResponse
+  | DictionaryGetNullDefaultResponse
+  | DictionaryGetNotProvidedDefaultResponse
+  | InheritanceGetValidDefaultResponse
+  | InheritancePutValidDefaultResponse
+  | PolymorphismGetValidDefaultResponse
+  | PolymorphismPutValidDefaultResponse
+  | PolymorphismGetDotSyntaxDefaultResponse
+  | PolymorphismGetComposedWithDiscriminatorDefaultResponse
+  | PolymorphismGetComposedWithoutDiscriminatorDefaultResponse
+  | PolymorphismGetComplicatedDefaultResponse
+  | PolymorphismPutComplicatedDefaultResponse
+  | PolymorphismPutMissingDiscriminatorDefaultResponse
+  | PolymorphismPutValidMissingRequiredDefaultResponse
+  | PolymorphicrecursiveGetValidDefaultResponse
+  | PolymorphicrecursivePutValidDefaultResponse
+  | ReadonlypropertyGetValidDefaultResponse
+  | ReadonlypropertyPutValidDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

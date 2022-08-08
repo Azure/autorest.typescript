@@ -3,11 +3,11 @@
 
 import {
   UploadFile200Response,
-  UploadFiledefaultResponse,
+  UploadFileDefaultResponse,
   UploadFileViaBody200Response,
-  UploadFileViaBodydefaultResponse,
+  UploadFileViaBodyDefaultResponse,
   UploadFiles200Response,
-  UploadFilesdefaultResponse
+  UploadFilesDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -17,26 +17,26 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: UploadFile200Response | UploadFiledefaultResponse
-): response is UploadFiledefaultResponse;
+  response: UploadFile200Response | UploadFileDefaultResponse
+): response is UploadFileDefaultResponse;
 export function isUnexpected(
-  response: UploadFileViaBody200Response | UploadFileViaBodydefaultResponse
-): response is UploadFileViaBodydefaultResponse;
+  response: UploadFileViaBody200Response | UploadFileViaBodyDefaultResponse
+): response is UploadFileViaBodyDefaultResponse;
 export function isUnexpected(
-  response: UploadFiles200Response | UploadFilesdefaultResponse
-): response is UploadFilesdefaultResponse;
+  response: UploadFiles200Response | UploadFilesDefaultResponse
+): response is UploadFilesDefaultResponse;
 export function isUnexpected(
   response:
     | UploadFile200Response
-    | UploadFiledefaultResponse
+    | UploadFileDefaultResponse
     | UploadFileViaBody200Response
-    | UploadFileViaBodydefaultResponse
+    | UploadFileViaBodyDefaultResponse
     | UploadFiles200Response
-    | UploadFilesdefaultResponse
+    | UploadFilesDefaultResponse
 ): response is
-  | UploadFiledefaultResponse
-  | UploadFileViaBodydefaultResponse
-  | UploadFilesdefaultResponse {
+  | UploadFileDefaultResponse
+  | UploadFileViaBodyDefaultResponse
+  | UploadFilesDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

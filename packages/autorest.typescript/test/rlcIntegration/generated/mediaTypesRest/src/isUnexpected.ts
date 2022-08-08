@@ -3,7 +3,7 @@
 
 import {
   AnalyzeBodyNoAcceptHeader202Response,
-  AnalyzeBodyNoAcceptHeaderdefaultResponse
+  AnalyzeBodyNoAcceptHeaderDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -19,13 +19,13 @@ const responseMap: Record<string, string[]> = {
 export function isUnexpected(
   response:
     | AnalyzeBodyNoAcceptHeader202Response
-    | AnalyzeBodyNoAcceptHeaderdefaultResponse
-): response is AnalyzeBodyNoAcceptHeaderdefaultResponse;
+    | AnalyzeBodyNoAcceptHeaderDefaultResponse
+): response is AnalyzeBodyNoAcceptHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | AnalyzeBodyNoAcceptHeader202Response
-    | AnalyzeBodyNoAcceptHeaderdefaultResponse
-): response is AnalyzeBodyNoAcceptHeaderdefaultResponse {
+    | AnalyzeBodyNoAcceptHeaderDefaultResponse
+): response is AnalyzeBodyNoAcceptHeaderDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

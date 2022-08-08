@@ -8,11 +8,11 @@ import {
 } from "./parameters";
 import {
   UploadFile200Response,
-  UploadFiledefaultResponse,
+  UploadFileDefaultResponse,
   UploadFileViaBody200Response,
-  UploadFileViaBodydefaultResponse,
+  UploadFileViaBodyDefaultResponse,
   UploadFiles200Response,
-  UploadFilesdefaultResponse
+  UploadFilesDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -20,12 +20,12 @@ export interface UploadFile {
   /** Upload file */
   post(
     options: UploadFileParameters
-  ): StreamableMethod<UploadFile200Response | UploadFiledefaultResponse>;
+  ): StreamableMethod<UploadFile200Response | UploadFileDefaultResponse>;
   /** Upload file */
   put(
     options: UploadFileViaBodyParameters
   ): StreamableMethod<
-    UploadFileViaBody200Response | UploadFileViaBodydefaultResponse
+    UploadFileViaBody200Response | UploadFileViaBodyDefaultResponse
   >;
 }
 
@@ -33,7 +33,7 @@ export interface UploadFiles {
   /** Upload multiple files */
   post(
     options: UploadFilesParameters
-  ): StreamableMethod<UploadFiles200Response | UploadFilesdefaultResponse>;
+  ): StreamableMethod<UploadFiles200Response | UploadFilesDefaultResponse>;
 }
 
 export interface Routes {

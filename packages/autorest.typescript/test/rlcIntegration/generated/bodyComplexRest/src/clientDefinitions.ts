@@ -60,113 +60,113 @@ import {
 } from "./parameters";
 import {
   BasicGetValid200Response,
-  BasicGetValiddefaultResponse,
+  BasicGetValidDefaultResponse,
   BasicPutValid200Response,
-  BasicPutValiddefaultResponse,
+  BasicPutValidDefaultResponse,
   BasicGetInvalid200Response,
-  BasicGetInvaliddefaultResponse,
+  BasicGetInvalidDefaultResponse,
   BasicGetEmpty200Response,
-  BasicGetEmptydefaultResponse,
+  BasicGetEmptyDefaultResponse,
   BasicGetNull200Response,
-  BasicGetNulldefaultResponse,
+  BasicGetNullDefaultResponse,
   BasicGetNotProvided200Response,
-  BasicGetNotProvideddefaultResponse,
+  BasicGetNotProvidedDefaultResponse,
   PrimitiveGetInt200Response,
-  PrimitiveGetIntdefaultResponse,
+  PrimitiveGetIntDefaultResponse,
   PrimitivePutInt200Response,
-  PrimitivePutIntdefaultResponse,
+  PrimitivePutIntDefaultResponse,
   PrimitiveGetLong200Response,
-  PrimitiveGetLongdefaultResponse,
+  PrimitiveGetLongDefaultResponse,
   PrimitivePutLong200Response,
-  PrimitivePutLongdefaultResponse,
+  PrimitivePutLongDefaultResponse,
   PrimitiveGetFloat200Response,
-  PrimitiveGetFloatdefaultResponse,
+  PrimitiveGetFloatDefaultResponse,
   PrimitivePutFloat200Response,
-  PrimitivePutFloatdefaultResponse,
+  PrimitivePutFloatDefaultResponse,
   PrimitiveGetDouble200Response,
-  PrimitiveGetDoubledefaultResponse,
+  PrimitiveGetDoubleDefaultResponse,
   PrimitivePutDouble200Response,
-  PrimitivePutDoubledefaultResponse,
+  PrimitivePutDoubleDefaultResponse,
   PrimitiveGetBool200Response,
-  PrimitiveGetBooldefaultResponse,
+  PrimitiveGetBoolDefaultResponse,
   PrimitivePutBool200Response,
-  PrimitivePutBooldefaultResponse,
+  PrimitivePutBoolDefaultResponse,
   PrimitiveGetString200Response,
-  PrimitiveGetStringdefaultResponse,
+  PrimitiveGetStringDefaultResponse,
   PrimitivePutString200Response,
-  PrimitivePutStringdefaultResponse,
+  PrimitivePutStringDefaultResponse,
   PrimitiveGetDate200Response,
-  PrimitiveGetDatedefaultResponse,
+  PrimitiveGetDateDefaultResponse,
   PrimitivePutDate200Response,
-  PrimitivePutDatedefaultResponse,
+  PrimitivePutDateDefaultResponse,
   PrimitiveGetDateTime200Response,
-  PrimitiveGetDateTimedefaultResponse,
+  PrimitiveGetDateTimeDefaultResponse,
   PrimitivePutDateTime200Response,
-  PrimitivePutDateTimedefaultResponse,
+  PrimitivePutDateTimeDefaultResponse,
   PrimitiveGetDateTimeRfc1123200Response,
-  PrimitiveGetDateTimeRfc1123defaultResponse,
+  PrimitiveGetDateTimeRfc1123DefaultResponse,
   PrimitivePutDateTimeRfc1123200Response,
-  PrimitivePutDateTimeRfc1123defaultResponse,
+  PrimitivePutDateTimeRfc1123DefaultResponse,
   PrimitiveGetDuration200Response,
-  PrimitiveGetDurationdefaultResponse,
+  PrimitiveGetDurationDefaultResponse,
   PrimitivePutDuration200Response,
-  PrimitivePutDurationdefaultResponse,
+  PrimitivePutDurationDefaultResponse,
   PrimitiveGetByte200Response,
-  PrimitiveGetBytedefaultResponse,
+  PrimitiveGetByteDefaultResponse,
   PrimitivePutByte200Response,
-  PrimitivePutBytedefaultResponse,
+  PrimitivePutByteDefaultResponse,
   ArrayGetValid200Response,
-  ArrayGetValiddefaultResponse,
+  ArrayGetValidDefaultResponse,
   ArrayPutValid200Response,
-  ArrayPutValiddefaultResponse,
+  ArrayPutValidDefaultResponse,
   ArrayGetEmpty200Response,
-  ArrayGetEmptydefaultResponse,
+  ArrayGetEmptyDefaultResponse,
   ArrayPutEmpty200Response,
-  ArrayPutEmptydefaultResponse,
+  ArrayPutEmptyDefaultResponse,
   ArrayGetNotProvided200Response,
-  ArrayGetNotProvideddefaultResponse,
+  ArrayGetNotProvidedDefaultResponse,
   DictionaryGetValid200Response,
-  DictionaryGetValiddefaultResponse,
+  DictionaryGetValidDefaultResponse,
   DictionaryPutValid200Response,
-  DictionaryPutValiddefaultResponse,
+  DictionaryPutValidDefaultResponse,
   DictionaryGetEmpty200Response,
-  DictionaryGetEmptydefaultResponse,
+  DictionaryGetEmptyDefaultResponse,
   DictionaryPutEmpty200Response,
-  DictionaryPutEmptydefaultResponse,
+  DictionaryPutEmptyDefaultResponse,
   DictionaryGetNull200Response,
-  DictionaryGetNulldefaultResponse,
+  DictionaryGetNullDefaultResponse,
   DictionaryGetNotProvided200Response,
-  DictionaryGetNotProvideddefaultResponse,
+  DictionaryGetNotProvidedDefaultResponse,
   InheritanceGetValid200Response,
-  InheritanceGetValiddefaultResponse,
+  InheritanceGetValidDefaultResponse,
   InheritancePutValid200Response,
-  InheritancePutValiddefaultResponse,
+  InheritancePutValidDefaultResponse,
   PolymorphismGetValid200Response,
-  PolymorphismGetValiddefaultResponse,
+  PolymorphismGetValidDefaultResponse,
   PolymorphismPutValid200Response,
-  PolymorphismPutValiddefaultResponse,
+  PolymorphismPutValidDefaultResponse,
   PolymorphismGetDotSyntax200Response,
-  PolymorphismGetDotSyntaxdefaultResponse,
+  PolymorphismGetDotSyntaxDefaultResponse,
   PolymorphismGetComposedWithDiscriminator200Response,
-  PolymorphismGetComposedWithDiscriminatordefaultResponse,
+  PolymorphismGetComposedWithDiscriminatorDefaultResponse,
   PolymorphismGetComposedWithoutDiscriminator200Response,
-  PolymorphismGetComposedWithoutDiscriminatordefaultResponse,
+  PolymorphismGetComposedWithoutDiscriminatorDefaultResponse,
   PolymorphismGetComplicated200Response,
-  PolymorphismGetComplicateddefaultResponse,
+  PolymorphismGetComplicatedDefaultResponse,
   PolymorphismPutComplicated200Response,
-  PolymorphismPutComplicateddefaultResponse,
+  PolymorphismPutComplicatedDefaultResponse,
   PolymorphismPutMissingDiscriminator200Response,
-  PolymorphismPutMissingDiscriminatordefaultResponse,
+  PolymorphismPutMissingDiscriminatorDefaultResponse,
   PolymorphismPutValidMissingRequired200Response,
-  PolymorphismPutValidMissingRequireddefaultResponse,
+  PolymorphismPutValidMissingRequiredDefaultResponse,
   PolymorphicrecursiveGetValid200Response,
-  PolymorphicrecursiveGetValiddefaultResponse,
+  PolymorphicrecursiveGetValidDefaultResponse,
   PolymorphicrecursivePutValid200Response,
-  PolymorphicrecursivePutValiddefaultResponse,
+  PolymorphicrecursivePutValidDefaultResponse,
   ReadonlypropertyGetValid200Response,
-  ReadonlypropertyGetValiddefaultResponse,
+  ReadonlypropertyGetValidDefaultResponse,
   ReadonlypropertyPutValid200Response,
-  ReadonlypropertyPutValiddefaultResponse,
+  ReadonlypropertyPutValidDefaultResponse,
   FlattencomplexGetValid200Response
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -175,11 +175,11 @@ export interface BasicGetValid {
   /** Get complex type {id: 2, name: 'abc', color: 'YELLOW'} */
   get(
     options?: BasicGetValidParameters
-  ): StreamableMethod<BasicGetValid200Response | BasicGetValiddefaultResponse>;
+  ): StreamableMethod<BasicGetValid200Response | BasicGetValidDefaultResponse>;
   /** Please put {id: 2, name: 'abc', color: 'Magenta'} */
   put(
     options: BasicPutValidParameters
-  ): StreamableMethod<BasicPutValid200Response | BasicPutValiddefaultResponse>;
+  ): StreamableMethod<BasicPutValid200Response | BasicPutValidDefaultResponse>;
 }
 
 export interface BasicGetInvalid {
@@ -187,7 +187,7 @@ export interface BasicGetInvalid {
   get(
     options?: BasicGetInvalidParameters
   ): StreamableMethod<
-    BasicGetInvalid200Response | BasicGetInvaliddefaultResponse
+    BasicGetInvalid200Response | BasicGetInvalidDefaultResponse
   >;
 }
 
@@ -195,14 +195,14 @@ export interface BasicGetEmpty {
   /** Get a basic complex type that is empty */
   get(
     options?: BasicGetEmptyParameters
-  ): StreamableMethod<BasicGetEmpty200Response | BasicGetEmptydefaultResponse>;
+  ): StreamableMethod<BasicGetEmpty200Response | BasicGetEmptyDefaultResponse>;
 }
 
 export interface BasicGetNull {
   /** Get a basic complex type whose properties are null */
   get(
     options?: BasicGetNullParameters
-  ): StreamableMethod<BasicGetNull200Response | BasicGetNulldefaultResponse>;
+  ): StreamableMethod<BasicGetNull200Response | BasicGetNullDefaultResponse>;
 }
 
 export interface BasicGetNotProvided {
@@ -210,7 +210,7 @@ export interface BasicGetNotProvided {
   get(
     options?: BasicGetNotProvidedParameters
   ): StreamableMethod<
-    BasicGetNotProvided200Response | BasicGetNotProvideddefaultResponse
+    BasicGetNotProvided200Response | BasicGetNotProvidedDefaultResponse
   >;
 }
 
@@ -219,13 +219,13 @@ export interface PrimitiveGetInt {
   get(
     options?: PrimitiveGetIntParameters
   ): StreamableMethod<
-    PrimitiveGetInt200Response | PrimitiveGetIntdefaultResponse
+    PrimitiveGetInt200Response | PrimitiveGetIntDefaultResponse
   >;
   /** Put complex types with integer properties */
   put(
     options: PrimitivePutIntParameters
   ): StreamableMethod<
-    PrimitivePutInt200Response | PrimitivePutIntdefaultResponse
+    PrimitivePutInt200Response | PrimitivePutIntDefaultResponse
   >;
 }
 
@@ -234,13 +234,13 @@ export interface PrimitiveGetLong {
   get(
     options?: PrimitiveGetLongParameters
   ): StreamableMethod<
-    PrimitiveGetLong200Response | PrimitiveGetLongdefaultResponse
+    PrimitiveGetLong200Response | PrimitiveGetLongDefaultResponse
   >;
   /** Put complex types with long properties */
   put(
     options: PrimitivePutLongParameters
   ): StreamableMethod<
-    PrimitivePutLong200Response | PrimitivePutLongdefaultResponse
+    PrimitivePutLong200Response | PrimitivePutLongDefaultResponse
   >;
 }
 
@@ -249,13 +249,13 @@ export interface PrimitiveGetFloat {
   get(
     options?: PrimitiveGetFloatParameters
   ): StreamableMethod<
-    PrimitiveGetFloat200Response | PrimitiveGetFloatdefaultResponse
+    PrimitiveGetFloat200Response | PrimitiveGetFloatDefaultResponse
   >;
   /** Put complex types with float properties */
   put(
     options: PrimitivePutFloatParameters
   ): StreamableMethod<
-    PrimitivePutFloat200Response | PrimitivePutFloatdefaultResponse
+    PrimitivePutFloat200Response | PrimitivePutFloatDefaultResponse
   >;
 }
 
@@ -264,13 +264,13 @@ export interface PrimitiveGetDouble {
   get(
     options?: PrimitiveGetDoubleParameters
   ): StreamableMethod<
-    PrimitiveGetDouble200Response | PrimitiveGetDoubledefaultResponse
+    PrimitiveGetDouble200Response | PrimitiveGetDoubleDefaultResponse
   >;
   /** Put complex types with double properties */
   put(
     options: PrimitivePutDoubleParameters
   ): StreamableMethod<
-    PrimitivePutDouble200Response | PrimitivePutDoubledefaultResponse
+    PrimitivePutDouble200Response | PrimitivePutDoubleDefaultResponse
   >;
 }
 
@@ -279,13 +279,13 @@ export interface PrimitiveGetBool {
   get(
     options?: PrimitiveGetBoolParameters
   ): StreamableMethod<
-    PrimitiveGetBool200Response | PrimitiveGetBooldefaultResponse
+    PrimitiveGetBool200Response | PrimitiveGetBoolDefaultResponse
   >;
   /** Put complex types with bool properties */
   put(
     options: PrimitivePutBoolParameters
   ): StreamableMethod<
-    PrimitivePutBool200Response | PrimitivePutBooldefaultResponse
+    PrimitivePutBool200Response | PrimitivePutBoolDefaultResponse
   >;
 }
 
@@ -294,13 +294,13 @@ export interface PrimitiveGetString {
   get(
     options?: PrimitiveGetStringParameters
   ): StreamableMethod<
-    PrimitiveGetString200Response | PrimitiveGetStringdefaultResponse
+    PrimitiveGetString200Response | PrimitiveGetStringDefaultResponse
   >;
   /** Put complex types with string properties */
   put(
     options: PrimitivePutStringParameters
   ): StreamableMethod<
-    PrimitivePutString200Response | PrimitivePutStringdefaultResponse
+    PrimitivePutString200Response | PrimitivePutStringDefaultResponse
   >;
 }
 
@@ -309,13 +309,13 @@ export interface PrimitiveGetDate {
   get(
     options?: PrimitiveGetDateParameters
   ): StreamableMethod<
-    PrimitiveGetDate200Response | PrimitiveGetDatedefaultResponse
+    PrimitiveGetDate200Response | PrimitiveGetDateDefaultResponse
   >;
   /** Put complex types with date properties */
   put(
     options: PrimitivePutDateParameters
   ): StreamableMethod<
-    PrimitivePutDate200Response | PrimitivePutDatedefaultResponse
+    PrimitivePutDate200Response | PrimitivePutDateDefaultResponse
   >;
 }
 
@@ -324,13 +324,13 @@ export interface PrimitiveGetDateTime {
   get(
     options?: PrimitiveGetDateTimeParameters
   ): StreamableMethod<
-    PrimitiveGetDateTime200Response | PrimitiveGetDateTimedefaultResponse
+    PrimitiveGetDateTime200Response | PrimitiveGetDateTimeDefaultResponse
   >;
   /** Put complex types with datetime properties */
   put(
     options: PrimitivePutDateTimeParameters
   ): StreamableMethod<
-    PrimitivePutDateTime200Response | PrimitivePutDateTimedefaultResponse
+    PrimitivePutDateTime200Response | PrimitivePutDateTimeDefaultResponse
   >;
 }
 
@@ -340,14 +340,14 @@ export interface PrimitiveGetDateTimeRfc1123 {
     options?: PrimitiveGetDateTimeRfc1123Parameters
   ): StreamableMethod<
     | PrimitiveGetDateTimeRfc1123200Response
-    | PrimitiveGetDateTimeRfc1123defaultResponse
+    | PrimitiveGetDateTimeRfc1123DefaultResponse
   >;
   /** Put complex types with datetimeRfc1123 properties */
   put(
     options: PrimitivePutDateTimeRfc1123Parameters
   ): StreamableMethod<
     | PrimitivePutDateTimeRfc1123200Response
-    | PrimitivePutDateTimeRfc1123defaultResponse
+    | PrimitivePutDateTimeRfc1123DefaultResponse
   >;
 }
 
@@ -356,13 +356,13 @@ export interface PrimitiveGetDuration {
   get(
     options?: PrimitiveGetDurationParameters
   ): StreamableMethod<
-    PrimitiveGetDuration200Response | PrimitiveGetDurationdefaultResponse
+    PrimitiveGetDuration200Response | PrimitiveGetDurationDefaultResponse
   >;
   /** Put complex types with duration properties */
   put(
     options: PrimitivePutDurationParameters
   ): StreamableMethod<
-    PrimitivePutDuration200Response | PrimitivePutDurationdefaultResponse
+    PrimitivePutDuration200Response | PrimitivePutDurationDefaultResponse
   >;
 }
 
@@ -371,13 +371,13 @@ export interface PrimitiveGetByte {
   get(
     options?: PrimitiveGetByteParameters
   ): StreamableMethod<
-    PrimitiveGetByte200Response | PrimitiveGetBytedefaultResponse
+    PrimitiveGetByte200Response | PrimitiveGetByteDefaultResponse
   >;
   /** Put complex types with byte properties */
   put(
     options: PrimitivePutByteParameters
   ): StreamableMethod<
-    PrimitivePutByte200Response | PrimitivePutBytedefaultResponse
+    PrimitivePutByte200Response | PrimitivePutByteDefaultResponse
   >;
 }
 
@@ -385,22 +385,22 @@ export interface ArrayGetValid {
   /** Get complex types with array property */
   get(
     options?: ArrayGetValidParameters
-  ): StreamableMethod<ArrayGetValid200Response | ArrayGetValiddefaultResponse>;
+  ): StreamableMethod<ArrayGetValid200Response | ArrayGetValidDefaultResponse>;
   /** Put complex types with array property */
   put(
     options: ArrayPutValidParameters
-  ): StreamableMethod<ArrayPutValid200Response | ArrayPutValiddefaultResponse>;
+  ): StreamableMethod<ArrayPutValid200Response | ArrayPutValidDefaultResponse>;
 }
 
 export interface ArrayGetEmpty {
   /** Get complex types with array property which is empty */
   get(
     options?: ArrayGetEmptyParameters
-  ): StreamableMethod<ArrayGetEmpty200Response | ArrayGetEmptydefaultResponse>;
+  ): StreamableMethod<ArrayGetEmpty200Response | ArrayGetEmptyDefaultResponse>;
   /** Put complex types with array property which is empty */
   put(
     options: ArrayPutEmptyParameters
-  ): StreamableMethod<ArrayPutEmpty200Response | ArrayPutEmptydefaultResponse>;
+  ): StreamableMethod<ArrayPutEmpty200Response | ArrayPutEmptyDefaultResponse>;
 }
 
 export interface ArrayGetNotProvided {
@@ -408,7 +408,7 @@ export interface ArrayGetNotProvided {
   get(
     options?: ArrayGetNotProvidedParameters
   ): StreamableMethod<
-    ArrayGetNotProvided200Response | ArrayGetNotProvideddefaultResponse
+    ArrayGetNotProvided200Response | ArrayGetNotProvidedDefaultResponse
   >;
 }
 
@@ -417,13 +417,13 @@ export interface DictionaryGetValid {
   get(
     options?: DictionaryGetValidParameters
   ): StreamableMethod<
-    DictionaryGetValid200Response | DictionaryGetValiddefaultResponse
+    DictionaryGetValid200Response | DictionaryGetValidDefaultResponse
   >;
   /** Put complex types with dictionary property */
   put(
     options: DictionaryPutValidParameters
   ): StreamableMethod<
-    DictionaryPutValid200Response | DictionaryPutValiddefaultResponse
+    DictionaryPutValid200Response | DictionaryPutValidDefaultResponse
   >;
 }
 
@@ -432,13 +432,13 @@ export interface DictionaryGetEmpty {
   get(
     options?: DictionaryGetEmptyParameters
   ): StreamableMethod<
-    DictionaryGetEmpty200Response | DictionaryGetEmptydefaultResponse
+    DictionaryGetEmpty200Response | DictionaryGetEmptyDefaultResponse
   >;
   /** Put complex types with dictionary property which is empty */
   put(
     options: DictionaryPutEmptyParameters
   ): StreamableMethod<
-    DictionaryPutEmpty200Response | DictionaryPutEmptydefaultResponse
+    DictionaryPutEmpty200Response | DictionaryPutEmptyDefaultResponse
   >;
 }
 
@@ -447,7 +447,7 @@ export interface DictionaryGetNull {
   get(
     options?: DictionaryGetNullParameters
   ): StreamableMethod<
-    DictionaryGetNull200Response | DictionaryGetNulldefaultResponse
+    DictionaryGetNull200Response | DictionaryGetNullDefaultResponse
   >;
 }
 
@@ -457,7 +457,7 @@ export interface DictionaryGetNotProvided {
     options?: DictionaryGetNotProvidedParameters
   ): StreamableMethod<
     | DictionaryGetNotProvided200Response
-    | DictionaryGetNotProvideddefaultResponse
+    | DictionaryGetNotProvidedDefaultResponse
   >;
 }
 
@@ -466,13 +466,13 @@ export interface InheritanceGetValid {
   get(
     options?: InheritanceGetValidParameters
   ): StreamableMethod<
-    InheritanceGetValid200Response | InheritanceGetValiddefaultResponse
+    InheritanceGetValid200Response | InheritanceGetValidDefaultResponse
   >;
   /** Put complex types that extend others */
   put(
     options: InheritancePutValidParameters
   ): StreamableMethod<
-    InheritancePutValid200Response | InheritancePutValiddefaultResponse
+    InheritancePutValid200Response | InheritancePutValidDefaultResponse
   >;
 }
 
@@ -481,13 +481,13 @@ export interface PolymorphismGetValid {
   get(
     options?: PolymorphismGetValidParameters
   ): StreamableMethod<
-    PolymorphismGetValid200Response | PolymorphismGetValiddefaultResponse
+    PolymorphismGetValid200Response | PolymorphismGetValidDefaultResponse
   >;
   /** Put complex types that are polymorphic */
   put(
     options: PolymorphismPutValidParameters
   ): StreamableMethod<
-    PolymorphismPutValid200Response | PolymorphismPutValiddefaultResponse
+    PolymorphismPutValid200Response | PolymorphismPutValidDefaultResponse
   >;
 }
 
@@ -497,7 +497,7 @@ export interface PolymorphismGetDotSyntax {
     options?: PolymorphismGetDotSyntaxParameters
   ): StreamableMethod<
     | PolymorphismGetDotSyntax200Response
-    | PolymorphismGetDotSyntaxdefaultResponse
+    | PolymorphismGetDotSyntaxDefaultResponse
   >;
 }
 
@@ -507,7 +507,7 @@ export interface PolymorphismGetComposedWithDiscriminator {
     options?: PolymorphismGetComposedWithDiscriminatorParameters
   ): StreamableMethod<
     | PolymorphismGetComposedWithDiscriminator200Response
-    | PolymorphismGetComposedWithDiscriminatordefaultResponse
+    | PolymorphismGetComposedWithDiscriminatorDefaultResponse
   >;
 }
 
@@ -517,7 +517,7 @@ export interface PolymorphismGetComposedWithoutDiscriminator {
     options?: PolymorphismGetComposedWithoutDiscriminatorParameters
   ): StreamableMethod<
     | PolymorphismGetComposedWithoutDiscriminator200Response
-    | PolymorphismGetComposedWithoutDiscriminatordefaultResponse
+    | PolymorphismGetComposedWithoutDiscriminatorDefaultResponse
   >;
 }
 
@@ -527,14 +527,14 @@ export interface PolymorphismGetComplicated {
     options?: PolymorphismGetComplicatedParameters
   ): StreamableMethod<
     | PolymorphismGetComplicated200Response
-    | PolymorphismGetComplicateddefaultResponse
+    | PolymorphismGetComplicatedDefaultResponse
   >;
   /** Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
   put(
     options: PolymorphismPutComplicatedParameters
   ): StreamableMethod<
     | PolymorphismPutComplicated200Response
-    | PolymorphismPutComplicateddefaultResponse
+    | PolymorphismPutComplicatedDefaultResponse
   >;
 }
 
@@ -544,7 +544,7 @@ export interface PolymorphismPutMissingDiscriminator {
     options: PolymorphismPutMissingDiscriminatorParameters
   ): StreamableMethod<
     | PolymorphismPutMissingDiscriminator200Response
-    | PolymorphismPutMissingDiscriminatordefaultResponse
+    | PolymorphismPutMissingDiscriminatorDefaultResponse
   >;
 }
 
@@ -554,7 +554,7 @@ export interface PolymorphismPutValidMissingRequired {
     options: PolymorphismPutValidMissingRequiredParameters
   ): StreamableMethod<
     | PolymorphismPutValidMissingRequired200Response
-    | PolymorphismPutValidMissingRequireddefaultResponse
+    | PolymorphismPutValidMissingRequiredDefaultResponse
   >;
 }
 
@@ -564,14 +564,14 @@ export interface PolymorphicrecursiveGetValid {
     options?: PolymorphicrecursiveGetValidParameters
   ): StreamableMethod<
     | PolymorphicrecursiveGetValid200Response
-    | PolymorphicrecursiveGetValiddefaultResponse
+    | PolymorphicrecursiveGetValidDefaultResponse
   >;
   /** Put complex types that are polymorphic and have recursive references */
   put(
     options: PolymorphicrecursivePutValidParameters
   ): StreamableMethod<
     | PolymorphicrecursivePutValid200Response
-    | PolymorphicrecursivePutValiddefaultResponse
+    | PolymorphicrecursivePutValidDefaultResponse
   >;
 }
 
@@ -581,14 +581,14 @@ export interface ReadonlypropertyGetValid {
     options?: ReadonlypropertyGetValidParameters
   ): StreamableMethod<
     | ReadonlypropertyGetValid200Response
-    | ReadonlypropertyGetValiddefaultResponse
+    | ReadonlypropertyGetValidDefaultResponse
   >;
   /** Put complex types that have readonly properties */
   put(
     options: ReadonlypropertyPutValidParameters
   ): StreamableMethod<
     | ReadonlypropertyPutValid200Response
-    | ReadonlypropertyPutValiddefaultResponse
+    | ReadonlypropertyPutValidDefaultResponse
   >;
 }
 

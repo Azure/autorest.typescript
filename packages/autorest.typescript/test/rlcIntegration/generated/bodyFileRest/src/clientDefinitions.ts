@@ -8,11 +8,11 @@ import {
 } from "./parameters";
 import {
   GetFile200Response,
-  GetFiledefaultResponse,
+  GetFileDefaultResponse,
   GetFileLarge200Response,
-  GetFileLargedefaultResponse,
+  GetFileLargeDefaultResponse,
   GetEmptyFile200Response,
-  GetEmptyFiledefaultResponse
+  GetEmptyFileDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -20,21 +20,21 @@ export interface GetFile {
   /** Get file */
   get(
     options?: GetFileParameters
-  ): StreamableMethod<GetFile200Response | GetFiledefaultResponse>;
+  ): StreamableMethod<GetFile200Response | GetFileDefaultResponse>;
 }
 
 export interface GetFileLarge {
   /** Get a large file */
   get(
     options?: GetFileLargeParameters
-  ): StreamableMethod<GetFileLarge200Response | GetFileLargedefaultResponse>;
+  ): StreamableMethod<GetFileLarge200Response | GetFileLargeDefaultResponse>;
 }
 
 export interface GetEmptyFile {
   /** Get empty file */
   get(
     options?: GetEmptyFileParameters
-  ): StreamableMethod<GetEmptyFile200Response | GetEmptyFiledefaultResponse>;
+  ): StreamableMethod<GetEmptyFile200Response | GetEmptyFileDefaultResponse>;
 }
 
 export interface Routes {
