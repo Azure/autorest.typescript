@@ -1,11 +1,7 @@
-import {
-  CodeModel,
-} from "@autorest/codemodel";
+import { CodeModel } from "@autorest/codemodel";
 import { transform } from "./transforms/transform";
-import { generateClient as generateClientForRLC} from "@azure-tools/rlc-codegen"
-import {
-  Project,
-} from "ts-morph";
+import { generateClient as generateClientForRLC } from "@azure-tools/rlc-codegen";
+import { Project } from "ts-morph";
 
 export function generateClient(model: CodeModel, project: Project) {
   const importedParameters = new Set<string>();
@@ -17,5 +13,4 @@ export function generateClient(model: CodeModel, project: Project) {
     clientImports
   });
   generateClientForRLC(rlcModels, project);
-
 }
