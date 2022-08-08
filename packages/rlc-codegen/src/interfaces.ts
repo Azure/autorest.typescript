@@ -43,6 +43,14 @@ export interface OperationAnnotations {
 
 export interface RLCOptions {
   includeShortcuts?: boolean;
+  multiClient?: boolean;
+  batch?: any[];
+  packageDetails?: PackageDetails,
+  addCredentials?: boolean,
+  credentialScopes?: string[],
+  credentialKeyHeaderName?: string;
+  endpoint?: string;
+  endpointParameterName?: string;
 }
 
 export interface RLCModel {
@@ -51,6 +59,7 @@ export interface RLCModel {
   paths: Paths;
   options?: RLCOptions;
   schemas: Schema[];
+  apiVersionParam?: Parameter[];
 }
 export interface File {
   path: string,
@@ -99,4 +108,12 @@ export interface Property extends Schema {
 
 export interface Parameter extends Schema {
 
+}
+
+export interface PackageDetails {
+  name: string;
+  scopeName?: string;
+  nameWithoutScope: string;
+  description?: string;
+  version: string;
 }
