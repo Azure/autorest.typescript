@@ -29,8 +29,12 @@ async function emitModels(
   const schemaOutput = generateSchemaTypes(rlcModels, project);
   if (schemaOutput) {
     const { inputModelFile, outputModelFile } = schemaOutput;
-    if (inputModelFile) await emitFile(inputModelFile, program);
-    if (outputModelFile) await emitFile(outputModelFile, program);
+    if (inputModelFile) {
+      await emitFile(inputModelFile, program);
+    }
+    if (outputModelFile) {
+      await emitFile(outputModelFile, program);
+    }
   }
 }
 
@@ -46,7 +50,9 @@ async function emitClientDefinition(rlcModels: RLCModel, program: Program) {
 
 async function emitResponseTypes(rlcModels: RLCModel, program: Program) {
   const responsesFile = buildResponseTypes(rlcModels);
-  if (responsesFile) await emitFile(responsesFile, program);
+  if (responsesFile) {
+    await emitFile(responsesFile, program);
+  }
 }
 
 async function emitFile(file: File, program: Program) {

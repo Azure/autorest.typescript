@@ -1,5 +1,5 @@
 import { CodeModel, HttpHeader, Operation, Response, SchemaContext, SchemaResponse } from "@autorest/codemodel";
-import { HeaderMetadata, ImportKind, OperationResponse, ResponseMetadata } from "@azure-tools/rlc-codegen";
+import { HeaderMetadata, ImportKind, OperationResponse, ResponseMetadata, Schema as ResponseBodySchema } from "@azure-tools/rlc-codegen";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { responseToSchemaResponse } from "../operationHelpers";
 import { getElementType, getFormatDocs, primitiveSchemaToType } from "../schemaHelpers";
@@ -21,15 +21,16 @@ export function transformResponseTypes(model: CodeModel, importDetails: Map<Impo
                 continue;
             }
             let schemaResponse: SchemaResponse = responseToSchemaResponse(response);
+            // transform header
+            const headers = transformHeaders(response);
+            // transform body
+            const body = transformBody(response, importedModels);
             const rlcResponseUnit: ResponseMetadata = {
                 statusCode: getStatusCode(schemaResponse),
-                description: operationLanguageMetadata.description
+                description: operationLanguageMetadata.description,
+                headers,
+                body
             };
-
-            // transform header
-            transformHeaders(response, rlcResponseUnit);
-            // transform body
-            transformBody(response, importedModels, rlcResponseUnit);
             rlcOperationUnit.responses.push(rlcResponseUnit);
         }
         rlcResponses.push(rlcOperationUnit);
@@ -41,16 +42,16 @@ export function transformResponseTypes(model: CodeModel, importDetails: Map<Impo
 }
 
 
-function transformHeaders(from: Response, to: ResponseMetadata) {
+function transformHeaders(response: Response): HeaderMetadata[] | undefined {
     // Check if there are any required headers
     const hasDefinedHeaders =
-        Boolean(from.protocol.http?.headers) &&
-        Boolean(from.protocol.http?.headers.length);
+        Boolean(response.protocol.http?.headers) &&
+        Boolean(response.protocol.http?.headers.length);
     if (!hasDefinedHeaders) {
         return;
     }
 
-    to.headers = from.protocol.http?.headers.map((h: HttpHeader) => {
+    return response.protocol.http?.headers.map((h: HttpHeader) => {
         const header: HeaderMetadata = {
             name: `"${h.header.toLowerCase()}"`,
             description: getLanguageMetadata(h.language).description,
@@ -64,49 +65,34 @@ function transformHeaders(from: Response, to: ResponseMetadata) {
     });
 }
 
-function transformBody(from: Response, importedModels: Set<string>, to: ResponseMetadata) {
-    let schemaResponse: SchemaResponse = responseToSchemaResponse(from);
-    const bodyType = getBodyTypeName(schemaResponse, importedModels);
+function transformBody(response: Response, importedModels: Set<string>): ResponseBodySchema | undefined {
+    let schemaResponse: SchemaResponse = responseToSchemaResponse(response);
+    const bodyType = getElementType(
+        schemaResponse.schema,
+        [SchemaContext.Output, SchemaContext.Exception],
+        importedModels
+    );;
     const bodyDescription = getFormatDocs(schemaResponse.schema);
     if (!bodyType) {
         return;
     }
-    to.body = {
+    return {
         name: "body",
         type: bodyType,
         description: bodyDescription
     };
 }
 
-/**
- * Body types are defined in the models file, this function checks if the current
- * response's body has a reference to a model or if it is a primitive, and returns the Typescript type
- * to generate
- * @param response - response to get the body type from
- * @param importedModels - track models to import
- */
-function getBodyTypeName(
-    response: SchemaResponse,
-    importedModels: Set<string>
-): string | undefined {
-    return getElementType(
-        response.schema,
-        [SchemaContext.Output, SchemaContext.Exception],
-        importedModels
-    );
-}
-
 // Gets a list of all the available operations requests in the specification
 function getAllOperationRequests(model: CodeModel) {
     let operations: Operation[] = [];
-    model.operationGroups.forEach(og =>
-        og.operations
-            .filter(o => o.requests && o.requests.length)
-            .forEach(o => {
-                operations.push(o);
-            })
-    );
-
+    for (const og of model.operationGroups) {
+        for (const operation of og.operations) {
+            if (operation.requests?.length) {
+                operations.push(operation);
+            }
+        }
+    }
     return operations;
 }
 
