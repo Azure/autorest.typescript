@@ -3,11 +3,11 @@
 
 import {
   GetFile200Response,
-  GetFiledefaultResponse,
+  GetFileDefaultResponse,
   GetFileLarge200Response,
-  GetFileLargedefaultResponse,
+  GetFileLargeDefaultResponse,
   GetEmptyFile200Response,
-  GetEmptyFiledefaultResponse
+  GetEmptyFileDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -17,26 +17,26 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: GetFile200Response | GetFiledefaultResponse
-): response is GetFiledefaultResponse;
+  response: GetFile200Response | GetFileDefaultResponse
+): response is GetFileDefaultResponse;
 export function isUnexpected(
-  response: GetFileLarge200Response | GetFileLargedefaultResponse
-): response is GetFileLargedefaultResponse;
+  response: GetFileLarge200Response | GetFileLargeDefaultResponse
+): response is GetFileLargeDefaultResponse;
 export function isUnexpected(
-  response: GetEmptyFile200Response | GetEmptyFiledefaultResponse
-): response is GetEmptyFiledefaultResponse;
+  response: GetEmptyFile200Response | GetEmptyFileDefaultResponse
+): response is GetEmptyFileDefaultResponse;
 export function isUnexpected(
   response:
     | GetFile200Response
-    | GetFiledefaultResponse
+    | GetFileDefaultResponse
     | GetFileLarge200Response
-    | GetFileLargedefaultResponse
+    | GetFileLargeDefaultResponse
     | GetEmptyFile200Response
-    | GetEmptyFiledefaultResponse
+    | GetEmptyFileDefaultResponse
 ): response is
-  | GetFiledefaultResponse
-  | GetFileLargedefaultResponse
-  | GetEmptyFiledefaultResponse {
+  | GetFileDefaultResponse
+  | GetFileLargeDefaultResponse
+  | GetEmptyFileDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

@@ -11,7 +11,7 @@ export interface GetEmpty200Response extends HttpResponse {
 }
 
 /** Get a 200 to test a valid base uri */
-export interface GetEmptydefaultResponse extends HttpResponse {
+export interface GetEmptyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }

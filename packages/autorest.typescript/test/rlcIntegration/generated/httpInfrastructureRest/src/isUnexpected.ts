@@ -3,179 +3,179 @@
 
 import {
   HttpFailureGetEmptyError200Response,
-  HttpFailureGetEmptyErrordefaultResponse,
+  HttpFailureGetEmptyErrorDefaultResponse,
   HttpSuccessHead200200Response,
-  HttpSuccessHead200defaultResponse,
+  HttpSuccessHead200DefaultResponse,
   HttpSuccessGet200200Response,
-  HttpSuccessGet200defaultResponse,
+  HttpSuccessGet200DefaultResponse,
   HttpSuccessOptions200200Response,
-  HttpSuccessOptions200defaultResponse,
+  HttpSuccessOptions200DefaultResponse,
   HttpSuccessPut200200Response,
-  HttpSuccessPut200defaultResponse,
+  HttpSuccessPut200DefaultResponse,
   HttpSuccessPatch200200Response,
-  HttpSuccessPatch200defaultResponse,
+  HttpSuccessPatch200DefaultResponse,
   HttpSuccessPost200200Response,
-  HttpSuccessPost200defaultResponse,
+  HttpSuccessPost200DefaultResponse,
   HttpSuccessDelete200200Response,
-  HttpSuccessDelete200defaultResponse,
+  HttpSuccessDelete200DefaultResponse,
   HttpSuccessPut201201Response,
-  HttpSuccessPut201defaultResponse,
+  HttpSuccessPut201DefaultResponse,
   HttpSuccessPost201201Response,
-  HttpSuccessPost201defaultResponse,
+  HttpSuccessPost201DefaultResponse,
   HttpSuccessPut202202Response,
-  HttpSuccessPut202defaultResponse,
+  HttpSuccessPut202DefaultResponse,
   HttpSuccessPatch202202Response,
-  HttpSuccessPatch202defaultResponse,
+  HttpSuccessPatch202DefaultResponse,
   HttpSuccessPost202202Response,
-  HttpSuccessPost202defaultResponse,
+  HttpSuccessPost202DefaultResponse,
   HttpSuccessDelete202202Response,
-  HttpSuccessDelete202defaultResponse,
+  HttpSuccessDelete202DefaultResponse,
   HttpSuccessHead204204Response,
-  HttpSuccessHead204defaultResponse,
+  HttpSuccessHead204DefaultResponse,
   HttpSuccessPut204204Response,
-  HttpSuccessPut204defaultResponse,
+  HttpSuccessPut204DefaultResponse,
   HttpSuccessPatch204204Response,
-  HttpSuccessPatch204defaultResponse,
+  HttpSuccessPatch204DefaultResponse,
   HttpSuccessPost204204Response,
-  HttpSuccessPost204defaultResponse,
+  HttpSuccessPost204DefaultResponse,
   HttpSuccessDelete204204Response,
-  HttpSuccessDelete204defaultResponse,
+  HttpSuccessDelete204DefaultResponse,
   HttpSuccessHead404204Response,
   HttpSuccessHead404404Response,
-  HttpSuccessHead404defaultResponse,
+  HttpSuccessHead404DefaultResponse,
   HttpRedirectsHead300200Response,
   HttpRedirectsHead300300Response,
-  HttpRedirectsHead300defaultResponse,
+  HttpRedirectsHead300DefaultResponse,
   HttpRedirectsGet300200Response,
   HttpRedirectsGet300300Response,
-  HttpRedirectsGet300defaultResponse,
+  HttpRedirectsGet300DefaultResponse,
   HttpRedirectsHead301200Response,
   HttpRedirectsHead301301Response,
-  HttpRedirectsHead301defaultResponse,
+  HttpRedirectsHead301DefaultResponse,
   HttpRedirectsGet301200Response,
   HttpRedirectsGet301301Response,
-  HttpRedirectsGet301defaultResponse,
+  HttpRedirectsGet301DefaultResponse,
   HttpRedirectsPut301301Response,
-  HttpRedirectsPut301defaultResponse,
+  HttpRedirectsPut301DefaultResponse,
   HttpRedirectsHead302200Response,
   HttpRedirectsHead302302Response,
-  HttpRedirectsHead302defaultResponse,
+  HttpRedirectsHead302DefaultResponse,
   HttpRedirectsGet302200Response,
   HttpRedirectsGet302302Response,
-  HttpRedirectsGet302defaultResponse,
+  HttpRedirectsGet302DefaultResponse,
   HttpRedirectsPatch302302Response,
-  HttpRedirectsPatch302defaultResponse,
+  HttpRedirectsPatch302DefaultResponse,
   HttpRedirectsPost303200Response,
   HttpRedirectsPost303303Response,
-  HttpRedirectsPost303defaultResponse,
+  HttpRedirectsPost303DefaultResponse,
   HttpRedirectsHead307200Response,
   HttpRedirectsHead307307Response,
-  HttpRedirectsHead307defaultResponse,
+  HttpRedirectsHead307DefaultResponse,
   HttpRedirectsGet307200Response,
   HttpRedirectsGet307307Response,
-  HttpRedirectsGet307defaultResponse,
+  HttpRedirectsGet307DefaultResponse,
   HttpRedirectsOptions307200Response,
   HttpRedirectsOptions307307Response,
-  HttpRedirectsOptions307defaultResponse,
+  HttpRedirectsOptions307DefaultResponse,
   HttpRedirectsPut307200Response,
   HttpRedirectsPut307307Response,
-  HttpRedirectsPut307defaultResponse,
+  HttpRedirectsPut307DefaultResponse,
   HttpRedirectsPatch307200Response,
   HttpRedirectsPatch307307Response,
-  HttpRedirectsPatch307defaultResponse,
+  HttpRedirectsPatch307DefaultResponse,
   HttpRedirectsPost307200Response,
   HttpRedirectsPost307307Response,
-  HttpRedirectsPost307defaultResponse,
+  HttpRedirectsPost307DefaultResponse,
   HttpRedirectsDelete307200Response,
   HttpRedirectsDelete307307Response,
-  HttpRedirectsDelete307defaultResponse,
+  HttpRedirectsDelete307DefaultResponse,
   HttpRetryHead408200Response,
-  HttpRetryHead408defaultResponse,
+  HttpRetryHead408DefaultResponse,
   HttpRetryPut500200Response,
-  HttpRetryPut500defaultResponse,
+  HttpRetryPut500DefaultResponse,
   HttpRetryPatch500200Response,
-  HttpRetryPatch500defaultResponse,
+  HttpRetryPatch500DefaultResponse,
   HttpRetryGet502200Response,
-  HttpRetryGet502defaultResponse,
+  HttpRetryGet502DefaultResponse,
   HttpRetryOptions502200Response,
-  HttpRetryOptions502defaultResponse,
+  HttpRetryOptions502DefaultResponse,
   HttpRetryPost503200Response,
-  HttpRetryPost503defaultResponse,
+  HttpRetryPost503DefaultResponse,
   HttpRetryDelete503200Response,
-  HttpRetryDelete503defaultResponse,
+  HttpRetryDelete503DefaultResponse,
   HttpRetryPut504200Response,
-  HttpRetryPut504defaultResponse,
+  HttpRetryPut504DefaultResponse,
   HttpRetryPatch504200Response,
-  HttpRetryPatch504defaultResponse,
+  HttpRetryPatch504DefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError200Valid200Response,
   MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError200ValiddefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError204Valid200Response,
   MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError204ValiddefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError201Invalid200Response,
   MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError201InvaliddefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError202None200Response,
   MultipleResponsesGet200Model204NoModelDefaultError202None204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError202NonedefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse,
   MultipleResponsesGet200Model204NoModelDefaultError400Valid200Response,
   MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response,
-  MultipleResponsesGet200Model204NoModelDefaultError400ValiddefaultResponse,
+  MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse,
   MultipleResponsesGet200Model201ModelDefaultError200Valid200Response,
   MultipleResponsesGet200Model201ModelDefaultError200Valid201Response,
-  MultipleResponsesGet200Model201ModelDefaultError200ValiddefaultResponse,
+  MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse,
   MultipleResponsesGet200Model201ModelDefaultError201Valid200Response,
   MultipleResponsesGet200Model201ModelDefaultError201Valid201Response,
-  MultipleResponsesGet200Model201ModelDefaultError201ValiddefaultResponse,
+  MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse,
   MultipleResponsesGet200Model201ModelDefaultError400Valid200Response,
   MultipleResponsesGet200Model201ModelDefaultError400Valid201Response,
-  MultipleResponsesGet200Model201ModelDefaultError400ValiddefaultResponse,
+  MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid200Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid201Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid404Response,
-  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValiddefaultResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid200Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid201Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid404Response,
-  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValiddefaultResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid200Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid201Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid404Response,
-  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValiddefaultResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid200Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid201Response,
   MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid404Response,
-  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValiddefaultResponse,
+  MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultError202None202Response,
   MultipleResponsesGet202None204NoneDefaultError202None204Response,
-  MultipleResponsesGet202None204NoneDefaultError202NonedefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultError204None202Response,
   MultipleResponsesGet202None204NoneDefaultError204None204Response,
-  MultipleResponsesGet202None204NoneDefaultError204NonedefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultError400Valid202Response,
   MultipleResponsesGet202None204NoneDefaultError400Valid204Response,
-  MultipleResponsesGet202None204NoneDefaultError400ValiddefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response,
   MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response,
-  MultipleResponsesGet202None204NoneDefaultNone202InvaliddefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultNone204None202Response,
   MultipleResponsesGet202None204NoneDefaultNone204None204Response,
-  MultipleResponsesGet202None204NoneDefaultNone204NonedefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultNone400None202Response,
   MultipleResponsesGet202None204NoneDefaultNone400None204Response,
-  MultipleResponsesGet202None204NoneDefaultNone400NonedefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse,
   MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response,
   MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response,
-  MultipleResponsesGet202None204NoneDefaultNone400InvaliddefaultResponse,
+  MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse,
   MultipleResponsesGetDefaultModelA400Valid200Response,
-  MultipleResponsesGetDefaultModelA400ValiddefaultResponse,
+  MultipleResponsesGetDefaultModelA400ValidDefaultResponse,
   MultipleResponsesGetDefaultModelA400None200Response,
-  MultipleResponsesGetDefaultModelA400NonedefaultResponse,
+  MultipleResponsesGetDefaultModelA400NoneDefaultResponse,
   MultipleResponsesGetDefaultNone400Invalid200Response,
-  MultipleResponsesGetDefaultNone400InvaliddefaultResponse,
+  MultipleResponsesGetDefaultNone400InvalidDefaultResponse,
   MultipleResponsesGetDefaultNone400None200Response,
-  MultipleResponsesGetDefaultNone400NonedefaultResponse
+  MultipleResponsesGetDefaultNone400NoneDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -356,578 +356,578 @@ const responseMap: Record<string, string[]> = {
 export function isUnexpected(
   response:
     | HttpFailureGetEmptyError200Response
-    | HttpFailureGetEmptyErrordefaultResponse
-): response is HttpFailureGetEmptyErrordefaultResponse;
+    | HttpFailureGetEmptyErrorDefaultResponse
+): response is HttpFailureGetEmptyErrorDefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessHead200200Response | HttpSuccessHead200defaultResponse
-): response is HttpSuccessHead200defaultResponse;
+  response: HttpSuccessHead200200Response | HttpSuccessHead200DefaultResponse
+): response is HttpSuccessHead200DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessGet200200Response | HttpSuccessGet200defaultResponse
-): response is HttpSuccessGet200defaultResponse;
+  response: HttpSuccessGet200200Response | HttpSuccessGet200DefaultResponse
+): response is HttpSuccessGet200DefaultResponse;
 export function isUnexpected(
   response:
     | HttpSuccessOptions200200Response
-    | HttpSuccessOptions200defaultResponse
-): response is HttpSuccessOptions200defaultResponse;
+    | HttpSuccessOptions200DefaultResponse
+): response is HttpSuccessOptions200DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPut200200Response | HttpSuccessPut200defaultResponse
-): response is HttpSuccessPut200defaultResponse;
+  response: HttpSuccessPut200200Response | HttpSuccessPut200DefaultResponse
+): response is HttpSuccessPut200DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPatch200200Response | HttpSuccessPatch200defaultResponse
-): response is HttpSuccessPatch200defaultResponse;
+  response: HttpSuccessPatch200200Response | HttpSuccessPatch200DefaultResponse
+): response is HttpSuccessPatch200DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPost200200Response | HttpSuccessPost200defaultResponse
-): response is HttpSuccessPost200defaultResponse;
+  response: HttpSuccessPost200200Response | HttpSuccessPost200DefaultResponse
+): response is HttpSuccessPost200DefaultResponse;
 export function isUnexpected(
   response:
     | HttpSuccessDelete200200Response
-    | HttpSuccessDelete200defaultResponse
-): response is HttpSuccessDelete200defaultResponse;
+    | HttpSuccessDelete200DefaultResponse
+): response is HttpSuccessDelete200DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPut201201Response | HttpSuccessPut201defaultResponse
-): response is HttpSuccessPut201defaultResponse;
+  response: HttpSuccessPut201201Response | HttpSuccessPut201DefaultResponse
+): response is HttpSuccessPut201DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPost201201Response | HttpSuccessPost201defaultResponse
-): response is HttpSuccessPost201defaultResponse;
+  response: HttpSuccessPost201201Response | HttpSuccessPost201DefaultResponse
+): response is HttpSuccessPost201DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPut202202Response | HttpSuccessPut202defaultResponse
-): response is HttpSuccessPut202defaultResponse;
+  response: HttpSuccessPut202202Response | HttpSuccessPut202DefaultResponse
+): response is HttpSuccessPut202DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPatch202202Response | HttpSuccessPatch202defaultResponse
-): response is HttpSuccessPatch202defaultResponse;
+  response: HttpSuccessPatch202202Response | HttpSuccessPatch202DefaultResponse
+): response is HttpSuccessPatch202DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPost202202Response | HttpSuccessPost202defaultResponse
-): response is HttpSuccessPost202defaultResponse;
+  response: HttpSuccessPost202202Response | HttpSuccessPost202DefaultResponse
+): response is HttpSuccessPost202DefaultResponse;
 export function isUnexpected(
   response:
     | HttpSuccessDelete202202Response
-    | HttpSuccessDelete202defaultResponse
-): response is HttpSuccessDelete202defaultResponse;
+    | HttpSuccessDelete202DefaultResponse
+): response is HttpSuccessDelete202DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessHead204204Response | HttpSuccessHead204defaultResponse
-): response is HttpSuccessHead204defaultResponse;
+  response: HttpSuccessHead204204Response | HttpSuccessHead204DefaultResponse
+): response is HttpSuccessHead204DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPut204204Response | HttpSuccessPut204defaultResponse
-): response is HttpSuccessPut204defaultResponse;
+  response: HttpSuccessPut204204Response | HttpSuccessPut204DefaultResponse
+): response is HttpSuccessPut204DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPatch204204Response | HttpSuccessPatch204defaultResponse
-): response is HttpSuccessPatch204defaultResponse;
+  response: HttpSuccessPatch204204Response | HttpSuccessPatch204DefaultResponse
+): response is HttpSuccessPatch204DefaultResponse;
 export function isUnexpected(
-  response: HttpSuccessPost204204Response | HttpSuccessPost204defaultResponse
-): response is HttpSuccessPost204defaultResponse;
+  response: HttpSuccessPost204204Response | HttpSuccessPost204DefaultResponse
+): response is HttpSuccessPost204DefaultResponse;
 export function isUnexpected(
   response:
     | HttpSuccessDelete204204Response
-    | HttpSuccessDelete204defaultResponse
-): response is HttpSuccessDelete204defaultResponse;
+    | HttpSuccessDelete204DefaultResponse
+): response is HttpSuccessDelete204DefaultResponse;
 export function isUnexpected(
   response:
     | HttpSuccessHead404204Response
     | HttpSuccessHead404404Response
-    | HttpSuccessHead404defaultResponse
-): response is HttpSuccessHead404defaultResponse;
+    | HttpSuccessHead404DefaultResponse
+): response is HttpSuccessHead404DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsHead300200Response
     | HttpRedirectsHead300300Response
-    | HttpRedirectsHead300defaultResponse
-): response is HttpRedirectsHead300defaultResponse;
+    | HttpRedirectsHead300DefaultResponse
+): response is HttpRedirectsHead300DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsGet300200Response
     | HttpRedirectsGet300300Response
-    | HttpRedirectsGet300defaultResponse
-): response is HttpRedirectsGet300defaultResponse;
+    | HttpRedirectsGet300DefaultResponse
+): response is HttpRedirectsGet300DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsHead301200Response
     | HttpRedirectsHead301301Response
-    | HttpRedirectsHead301defaultResponse
-): response is HttpRedirectsHead301defaultResponse;
+    | HttpRedirectsHead301DefaultResponse
+): response is HttpRedirectsHead301DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsGet301200Response
     | HttpRedirectsGet301301Response
-    | HttpRedirectsGet301defaultResponse
-): response is HttpRedirectsGet301defaultResponse;
+    | HttpRedirectsGet301DefaultResponse
+): response is HttpRedirectsGet301DefaultResponse;
 export function isUnexpected(
-  response: HttpRedirectsPut301301Response | HttpRedirectsPut301defaultResponse
-): response is HttpRedirectsPut301defaultResponse;
+  response: HttpRedirectsPut301301Response | HttpRedirectsPut301DefaultResponse
+): response is HttpRedirectsPut301DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsHead302200Response
     | HttpRedirectsHead302302Response
-    | HttpRedirectsHead302defaultResponse
-): response is HttpRedirectsHead302defaultResponse;
+    | HttpRedirectsHead302DefaultResponse
+): response is HttpRedirectsHead302DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsGet302200Response
     | HttpRedirectsGet302302Response
-    | HttpRedirectsGet302defaultResponse
-): response is HttpRedirectsGet302defaultResponse;
+    | HttpRedirectsGet302DefaultResponse
+): response is HttpRedirectsGet302DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsPatch302302Response
-    | HttpRedirectsPatch302defaultResponse
-): response is HttpRedirectsPatch302defaultResponse;
+    | HttpRedirectsPatch302DefaultResponse
+): response is HttpRedirectsPatch302DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsPost303200Response
     | HttpRedirectsPost303303Response
-    | HttpRedirectsPost303defaultResponse
-): response is HttpRedirectsPost303defaultResponse;
+    | HttpRedirectsPost303DefaultResponse
+): response is HttpRedirectsPost303DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsHead307200Response
     | HttpRedirectsHead307307Response
-    | HttpRedirectsHead307defaultResponse
-): response is HttpRedirectsHead307defaultResponse;
+    | HttpRedirectsHead307DefaultResponse
+): response is HttpRedirectsHead307DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsGet307200Response
     | HttpRedirectsGet307307Response
-    | HttpRedirectsGet307defaultResponse
-): response is HttpRedirectsGet307defaultResponse;
+    | HttpRedirectsGet307DefaultResponse
+): response is HttpRedirectsGet307DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsOptions307200Response
     | HttpRedirectsOptions307307Response
-    | HttpRedirectsOptions307defaultResponse
-): response is HttpRedirectsOptions307defaultResponse;
+    | HttpRedirectsOptions307DefaultResponse
+): response is HttpRedirectsOptions307DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsPut307200Response
     | HttpRedirectsPut307307Response
-    | HttpRedirectsPut307defaultResponse
-): response is HttpRedirectsPut307defaultResponse;
+    | HttpRedirectsPut307DefaultResponse
+): response is HttpRedirectsPut307DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsPatch307200Response
     | HttpRedirectsPatch307307Response
-    | HttpRedirectsPatch307defaultResponse
-): response is HttpRedirectsPatch307defaultResponse;
+    | HttpRedirectsPatch307DefaultResponse
+): response is HttpRedirectsPatch307DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsPost307200Response
     | HttpRedirectsPost307307Response
-    | HttpRedirectsPost307defaultResponse
-): response is HttpRedirectsPost307defaultResponse;
+    | HttpRedirectsPost307DefaultResponse
+): response is HttpRedirectsPost307DefaultResponse;
 export function isUnexpected(
   response:
     | HttpRedirectsDelete307200Response
     | HttpRedirectsDelete307307Response
-    | HttpRedirectsDelete307defaultResponse
-): response is HttpRedirectsDelete307defaultResponse;
+    | HttpRedirectsDelete307DefaultResponse
+): response is HttpRedirectsDelete307DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryHead408200Response | HttpRetryHead408defaultResponse
-): response is HttpRetryHead408defaultResponse;
+  response: HttpRetryHead408200Response | HttpRetryHead408DefaultResponse
+): response is HttpRetryHead408DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryPut500200Response | HttpRetryPut500defaultResponse
-): response is HttpRetryPut500defaultResponse;
+  response: HttpRetryPut500200Response | HttpRetryPut500DefaultResponse
+): response is HttpRetryPut500DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryPatch500200Response | HttpRetryPatch500defaultResponse
-): response is HttpRetryPatch500defaultResponse;
+  response: HttpRetryPatch500200Response | HttpRetryPatch500DefaultResponse
+): response is HttpRetryPatch500DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryGet502200Response | HttpRetryGet502defaultResponse
-): response is HttpRetryGet502defaultResponse;
+  response: HttpRetryGet502200Response | HttpRetryGet502DefaultResponse
+): response is HttpRetryGet502DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryOptions502200Response | HttpRetryOptions502defaultResponse
-): response is HttpRetryOptions502defaultResponse;
+  response: HttpRetryOptions502200Response | HttpRetryOptions502DefaultResponse
+): response is HttpRetryOptions502DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryPost503200Response | HttpRetryPost503defaultResponse
-): response is HttpRetryPost503defaultResponse;
+  response: HttpRetryPost503200Response | HttpRetryPost503DefaultResponse
+): response is HttpRetryPost503DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryDelete503200Response | HttpRetryDelete503defaultResponse
-): response is HttpRetryDelete503defaultResponse;
+  response: HttpRetryDelete503200Response | HttpRetryDelete503DefaultResponse
+): response is HttpRetryDelete503DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryPut504200Response | HttpRetryPut504defaultResponse
-): response is HttpRetryPut504defaultResponse;
+  response: HttpRetryPut504200Response | HttpRetryPut504DefaultResponse
+): response is HttpRetryPut504DefaultResponse;
 export function isUnexpected(
-  response: HttpRetryPatch504200Response | HttpRetryPatch504defaultResponse
-): response is HttpRetryPatch504defaultResponse;
+  response: HttpRetryPatch504200Response | HttpRetryPatch504DefaultResponse
+): response is HttpRetryPatch504DefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200Model204NoModelDefaultError200Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError200ValiddefaultResponse
-): response is MultipleResponsesGet200Model204NoModelDefaultError200ValiddefaultResponse;
+    | MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse
+): response is MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200Model204NoModelDefaultError204Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError204ValiddefaultResponse
-): response is MultipleResponsesGet200Model204NoModelDefaultError204ValiddefaultResponse;
+    | MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse
+): response is MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200Model204NoModelDefaultError201Invalid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError201InvaliddefaultResponse
-): response is MultipleResponsesGet200Model204NoModelDefaultError201InvaliddefaultResponse;
+    | MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse
+): response is MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200Model204NoModelDefaultError202None200Response
     | MultipleResponsesGet200Model204NoModelDefaultError202None204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError202NonedefaultResponse
-): response is MultipleResponsesGet200Model204NoModelDefaultError202NonedefaultResponse;
+    | MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse
+): response is MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200Model204NoModelDefaultError400Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError400ValiddefaultResponse
-): response is MultipleResponsesGet200Model204NoModelDefaultError400ValiddefaultResponse;
+    | MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse
+): response is MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200Model201ModelDefaultError200Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError200Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError200ValiddefaultResponse
-): response is MultipleResponsesGet200Model201ModelDefaultError200ValiddefaultResponse;
+    | MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse
+): response is MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200Model201ModelDefaultError201Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError201Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError201ValiddefaultResponse
-): response is MultipleResponsesGet200Model201ModelDefaultError201ValiddefaultResponse;
+    | MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse
+): response is MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200Model201ModelDefaultError400Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError400Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError400ValiddefaultResponse
-): response is MultipleResponsesGet200Model201ModelDefaultError400ValiddefaultResponse;
+    | MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse
+): response is MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValiddefaultResponse
-): response is MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValiddefaultResponse;
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse
+): response is MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValiddefaultResponse
-): response is MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValiddefaultResponse;
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse
+): response is MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValiddefaultResponse
-): response is MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValiddefaultResponse;
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse
+): response is MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValiddefaultResponse
-): response is MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValiddefaultResponse;
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse
+): response is MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet202None204NoneDefaultError202None202Response
     | MultipleResponsesGet202None204NoneDefaultError202None204Response
-    | MultipleResponsesGet202None204NoneDefaultError202NonedefaultResponse
-): response is MultipleResponsesGet202None204NoneDefaultError202NonedefaultResponse;
+    | MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse
+): response is MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet202None204NoneDefaultError204None202Response
     | MultipleResponsesGet202None204NoneDefaultError204None204Response
-    | MultipleResponsesGet202None204NoneDefaultError204NonedefaultResponse
-): response is MultipleResponsesGet202None204NoneDefaultError204NonedefaultResponse;
+    | MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse
+): response is MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet202None204NoneDefaultError400Valid202Response
     | MultipleResponsesGet202None204NoneDefaultError400Valid204Response
-    | MultipleResponsesGet202None204NoneDefaultError400ValiddefaultResponse
-): response is MultipleResponsesGet202None204NoneDefaultError400ValiddefaultResponse;
+    | MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse
+): response is MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response
     | MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response
-    | MultipleResponsesGet202None204NoneDefaultNone202InvaliddefaultResponse
-): response is MultipleResponsesGet202None204NoneDefaultNone202InvaliddefaultResponse;
+    | MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse
+): response is MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet202None204NoneDefaultNone204None202Response
     | MultipleResponsesGet202None204NoneDefaultNone204None204Response
-    | MultipleResponsesGet202None204NoneDefaultNone204NonedefaultResponse
-): response is MultipleResponsesGet202None204NoneDefaultNone204NonedefaultResponse;
+    | MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse
+): response is MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet202None204NoneDefaultNone400None202Response
     | MultipleResponsesGet202None204NoneDefaultNone400None204Response
-    | MultipleResponsesGet202None204NoneDefaultNone400NonedefaultResponse
-): response is MultipleResponsesGet202None204NoneDefaultNone400NonedefaultResponse;
+    | MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse
+): response is MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response
     | MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response
-    | MultipleResponsesGet202None204NoneDefaultNone400InvaliddefaultResponse
-): response is MultipleResponsesGet202None204NoneDefaultNone400InvaliddefaultResponse;
+    | MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse
+): response is MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGetDefaultModelA400Valid200Response
-    | MultipleResponsesGetDefaultModelA400ValiddefaultResponse
-): response is MultipleResponsesGetDefaultModelA400ValiddefaultResponse;
+    | MultipleResponsesGetDefaultModelA400ValidDefaultResponse
+): response is MultipleResponsesGetDefaultModelA400ValidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGetDefaultModelA400None200Response
-    | MultipleResponsesGetDefaultModelA400NonedefaultResponse
-): response is MultipleResponsesGetDefaultModelA400NonedefaultResponse;
+    | MultipleResponsesGetDefaultModelA400NoneDefaultResponse
+): response is MultipleResponsesGetDefaultModelA400NoneDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGetDefaultNone400Invalid200Response
-    | MultipleResponsesGetDefaultNone400InvaliddefaultResponse
-): response is MultipleResponsesGetDefaultNone400InvaliddefaultResponse;
+    | MultipleResponsesGetDefaultNone400InvalidDefaultResponse
+): response is MultipleResponsesGetDefaultNone400InvalidDefaultResponse;
 export function isUnexpected(
   response:
     | MultipleResponsesGetDefaultNone400None200Response
-    | MultipleResponsesGetDefaultNone400NonedefaultResponse
-): response is MultipleResponsesGetDefaultNone400NonedefaultResponse;
+    | MultipleResponsesGetDefaultNone400NoneDefaultResponse
+): response is MultipleResponsesGetDefaultNone400NoneDefaultResponse;
 export function isUnexpected(
   response:
     | HttpFailureGetEmptyError200Response
-    | HttpFailureGetEmptyErrordefaultResponse
+    | HttpFailureGetEmptyErrorDefaultResponse
     | HttpSuccessHead200200Response
-    | HttpSuccessHead200defaultResponse
+    | HttpSuccessHead200DefaultResponse
     | HttpSuccessGet200200Response
-    | HttpSuccessGet200defaultResponse
+    | HttpSuccessGet200DefaultResponse
     | HttpSuccessOptions200200Response
-    | HttpSuccessOptions200defaultResponse
+    | HttpSuccessOptions200DefaultResponse
     | HttpSuccessPut200200Response
-    | HttpSuccessPut200defaultResponse
+    | HttpSuccessPut200DefaultResponse
     | HttpSuccessPatch200200Response
-    | HttpSuccessPatch200defaultResponse
+    | HttpSuccessPatch200DefaultResponse
     | HttpSuccessPost200200Response
-    | HttpSuccessPost200defaultResponse
+    | HttpSuccessPost200DefaultResponse
     | HttpSuccessDelete200200Response
-    | HttpSuccessDelete200defaultResponse
+    | HttpSuccessDelete200DefaultResponse
     | HttpSuccessPut201201Response
-    | HttpSuccessPut201defaultResponse
+    | HttpSuccessPut201DefaultResponse
     | HttpSuccessPost201201Response
-    | HttpSuccessPost201defaultResponse
+    | HttpSuccessPost201DefaultResponse
     | HttpSuccessPut202202Response
-    | HttpSuccessPut202defaultResponse
+    | HttpSuccessPut202DefaultResponse
     | HttpSuccessPatch202202Response
-    | HttpSuccessPatch202defaultResponse
+    | HttpSuccessPatch202DefaultResponse
     | HttpSuccessPost202202Response
-    | HttpSuccessPost202defaultResponse
+    | HttpSuccessPost202DefaultResponse
     | HttpSuccessDelete202202Response
-    | HttpSuccessDelete202defaultResponse
+    | HttpSuccessDelete202DefaultResponse
     | HttpSuccessHead204204Response
-    | HttpSuccessHead204defaultResponse
+    | HttpSuccessHead204DefaultResponse
     | HttpSuccessPut204204Response
-    | HttpSuccessPut204defaultResponse
+    | HttpSuccessPut204DefaultResponse
     | HttpSuccessPatch204204Response
-    | HttpSuccessPatch204defaultResponse
+    | HttpSuccessPatch204DefaultResponse
     | HttpSuccessPost204204Response
-    | HttpSuccessPost204defaultResponse
+    | HttpSuccessPost204DefaultResponse
     | HttpSuccessDelete204204Response
-    | HttpSuccessDelete204defaultResponse
+    | HttpSuccessDelete204DefaultResponse
     | HttpSuccessHead404204Response
     | HttpSuccessHead404404Response
-    | HttpSuccessHead404defaultResponse
+    | HttpSuccessHead404DefaultResponse
     | HttpRedirectsHead300200Response
     | HttpRedirectsHead300300Response
-    | HttpRedirectsHead300defaultResponse
+    | HttpRedirectsHead300DefaultResponse
     | HttpRedirectsGet300200Response
     | HttpRedirectsGet300300Response
-    | HttpRedirectsGet300defaultResponse
+    | HttpRedirectsGet300DefaultResponse
     | HttpRedirectsHead301200Response
     | HttpRedirectsHead301301Response
-    | HttpRedirectsHead301defaultResponse
+    | HttpRedirectsHead301DefaultResponse
     | HttpRedirectsGet301200Response
     | HttpRedirectsGet301301Response
-    | HttpRedirectsGet301defaultResponse
+    | HttpRedirectsGet301DefaultResponse
     | HttpRedirectsPut301301Response
-    | HttpRedirectsPut301defaultResponse
+    | HttpRedirectsPut301DefaultResponse
     | HttpRedirectsHead302200Response
     | HttpRedirectsHead302302Response
-    | HttpRedirectsHead302defaultResponse
+    | HttpRedirectsHead302DefaultResponse
     | HttpRedirectsGet302200Response
     | HttpRedirectsGet302302Response
-    | HttpRedirectsGet302defaultResponse
+    | HttpRedirectsGet302DefaultResponse
     | HttpRedirectsPatch302302Response
-    | HttpRedirectsPatch302defaultResponse
+    | HttpRedirectsPatch302DefaultResponse
     | HttpRedirectsPost303200Response
     | HttpRedirectsPost303303Response
-    | HttpRedirectsPost303defaultResponse
+    | HttpRedirectsPost303DefaultResponse
     | HttpRedirectsHead307200Response
     | HttpRedirectsHead307307Response
-    | HttpRedirectsHead307defaultResponse
+    | HttpRedirectsHead307DefaultResponse
     | HttpRedirectsGet307200Response
     | HttpRedirectsGet307307Response
-    | HttpRedirectsGet307defaultResponse
+    | HttpRedirectsGet307DefaultResponse
     | HttpRedirectsOptions307200Response
     | HttpRedirectsOptions307307Response
-    | HttpRedirectsOptions307defaultResponse
+    | HttpRedirectsOptions307DefaultResponse
     | HttpRedirectsPut307200Response
     | HttpRedirectsPut307307Response
-    | HttpRedirectsPut307defaultResponse
+    | HttpRedirectsPut307DefaultResponse
     | HttpRedirectsPatch307200Response
     | HttpRedirectsPatch307307Response
-    | HttpRedirectsPatch307defaultResponse
+    | HttpRedirectsPatch307DefaultResponse
     | HttpRedirectsPost307200Response
     | HttpRedirectsPost307307Response
-    | HttpRedirectsPost307defaultResponse
+    | HttpRedirectsPost307DefaultResponse
     | HttpRedirectsDelete307200Response
     | HttpRedirectsDelete307307Response
-    | HttpRedirectsDelete307defaultResponse
+    | HttpRedirectsDelete307DefaultResponse
     | HttpRetryHead408200Response
-    | HttpRetryHead408defaultResponse
+    | HttpRetryHead408DefaultResponse
     | HttpRetryPut500200Response
-    | HttpRetryPut500defaultResponse
+    | HttpRetryPut500DefaultResponse
     | HttpRetryPatch500200Response
-    | HttpRetryPatch500defaultResponse
+    | HttpRetryPatch500DefaultResponse
     | HttpRetryGet502200Response
-    | HttpRetryGet502defaultResponse
+    | HttpRetryGet502DefaultResponse
     | HttpRetryOptions502200Response
-    | HttpRetryOptions502defaultResponse
+    | HttpRetryOptions502DefaultResponse
     | HttpRetryPost503200Response
-    | HttpRetryPost503defaultResponse
+    | HttpRetryPost503DefaultResponse
     | HttpRetryDelete503200Response
-    | HttpRetryDelete503defaultResponse
+    | HttpRetryDelete503DefaultResponse
     | HttpRetryPut504200Response
-    | HttpRetryPut504defaultResponse
+    | HttpRetryPut504DefaultResponse
     | HttpRetryPatch504200Response
-    | HttpRetryPatch504defaultResponse
+    | HttpRetryPatch504DefaultResponse
     | MultipleResponsesGet200Model204NoModelDefaultError200Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse
     | MultipleResponsesGet200Model204NoModelDefaultError204Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError204ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse
     | MultipleResponsesGet200Model204NoModelDefaultError201Invalid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError201InvaliddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse
     | MultipleResponsesGet200Model204NoModelDefaultError202None200Response
     | MultipleResponsesGet200Model204NoModelDefaultError202None204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError202NonedefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse
     | MultipleResponsesGet200Model204NoModelDefaultError400Valid200Response
     | MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response
-    | MultipleResponsesGet200Model204NoModelDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse
     | MultipleResponsesGet200Model201ModelDefaultError200Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError200Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse
     | MultipleResponsesGet200Model201ModelDefaultError201Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError201Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError201ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse
     | MultipleResponsesGet200Model201ModelDefaultError400Valid200Response
     | MultipleResponsesGet200Model201ModelDefaultError400Valid201Response
-    | MultipleResponsesGet200Model201ModelDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid200Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid201Response
     | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid404Response
-    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse
     | MultipleResponsesGet202None204NoneDefaultError202None202Response
     | MultipleResponsesGet202None204NoneDefaultError202None204Response
-    | MultipleResponsesGet202None204NoneDefaultError202NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse
     | MultipleResponsesGet202None204NoneDefaultError204None202Response
     | MultipleResponsesGet202None204NoneDefaultError204None204Response
-    | MultipleResponsesGet202None204NoneDefaultError204NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse
     | MultipleResponsesGet202None204NoneDefaultError400Valid202Response
     | MultipleResponsesGet202None204NoneDefaultError400Valid204Response
-    | MultipleResponsesGet202None204NoneDefaultError400ValiddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse
     | MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response
     | MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response
-    | MultipleResponsesGet202None204NoneDefaultNone202InvaliddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse
     | MultipleResponsesGet202None204NoneDefaultNone204None202Response
     | MultipleResponsesGet202None204NoneDefaultNone204None204Response
-    | MultipleResponsesGet202None204NoneDefaultNone204NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse
     | MultipleResponsesGet202None204NoneDefaultNone400None202Response
     | MultipleResponsesGet202None204NoneDefaultNone400None204Response
-    | MultipleResponsesGet202None204NoneDefaultNone400NonedefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse
     | MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response
     | MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response
-    | MultipleResponsesGet202None204NoneDefaultNone400InvaliddefaultResponse
+    | MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse
     | MultipleResponsesGetDefaultModelA400Valid200Response
-    | MultipleResponsesGetDefaultModelA400ValiddefaultResponse
+    | MultipleResponsesGetDefaultModelA400ValidDefaultResponse
     | MultipleResponsesGetDefaultModelA400None200Response
-    | MultipleResponsesGetDefaultModelA400NonedefaultResponse
+    | MultipleResponsesGetDefaultModelA400NoneDefaultResponse
     | MultipleResponsesGetDefaultNone400Invalid200Response
-    | MultipleResponsesGetDefaultNone400InvaliddefaultResponse
+    | MultipleResponsesGetDefaultNone400InvalidDefaultResponse
     | MultipleResponsesGetDefaultNone400None200Response
-    | MultipleResponsesGetDefaultNone400NonedefaultResponse
+    | MultipleResponsesGetDefaultNone400NoneDefaultResponse
 ): response is
-  | HttpFailureGetEmptyErrordefaultResponse
-  | HttpSuccessHead200defaultResponse
-  | HttpSuccessGet200defaultResponse
-  | HttpSuccessOptions200defaultResponse
-  | HttpSuccessPut200defaultResponse
-  | HttpSuccessPatch200defaultResponse
-  | HttpSuccessPost200defaultResponse
-  | HttpSuccessDelete200defaultResponse
-  | HttpSuccessPut201defaultResponse
-  | HttpSuccessPost201defaultResponse
-  | HttpSuccessPut202defaultResponse
-  | HttpSuccessPatch202defaultResponse
-  | HttpSuccessPost202defaultResponse
-  | HttpSuccessDelete202defaultResponse
-  | HttpSuccessHead204defaultResponse
-  | HttpSuccessPut204defaultResponse
-  | HttpSuccessPatch204defaultResponse
-  | HttpSuccessPost204defaultResponse
-  | HttpSuccessDelete204defaultResponse
-  | HttpSuccessHead404defaultResponse
-  | HttpRedirectsHead300defaultResponse
-  | HttpRedirectsGet300defaultResponse
-  | HttpRedirectsHead301defaultResponse
-  | HttpRedirectsGet301defaultResponse
-  | HttpRedirectsPut301defaultResponse
-  | HttpRedirectsHead302defaultResponse
-  | HttpRedirectsGet302defaultResponse
-  | HttpRedirectsPatch302defaultResponse
-  | HttpRedirectsPost303defaultResponse
-  | HttpRedirectsHead307defaultResponse
-  | HttpRedirectsGet307defaultResponse
-  | HttpRedirectsOptions307defaultResponse
-  | HttpRedirectsPut307defaultResponse
-  | HttpRedirectsPatch307defaultResponse
-  | HttpRedirectsPost307defaultResponse
-  | HttpRedirectsDelete307defaultResponse
-  | HttpRetryHead408defaultResponse
-  | HttpRetryPut500defaultResponse
-  | HttpRetryPatch500defaultResponse
-  | HttpRetryGet502defaultResponse
-  | HttpRetryOptions502defaultResponse
-  | HttpRetryPost503defaultResponse
-  | HttpRetryDelete503defaultResponse
-  | HttpRetryPut504defaultResponse
-  | HttpRetryPatch504defaultResponse
-  | MultipleResponsesGet200Model204NoModelDefaultError200ValiddefaultResponse
-  | MultipleResponsesGet200Model204NoModelDefaultError204ValiddefaultResponse
-  | MultipleResponsesGet200Model204NoModelDefaultError201InvaliddefaultResponse
-  | MultipleResponsesGet200Model204NoModelDefaultError202NonedefaultResponse
-  | MultipleResponsesGet200Model204NoModelDefaultError400ValiddefaultResponse
-  | MultipleResponsesGet200Model201ModelDefaultError200ValiddefaultResponse
-  | MultipleResponsesGet200Model201ModelDefaultError201ValiddefaultResponse
-  | MultipleResponsesGet200Model201ModelDefaultError400ValiddefaultResponse
-  | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValiddefaultResponse
-  | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValiddefaultResponse
-  | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValiddefaultResponse
-  | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValiddefaultResponse
-  | MultipleResponsesGet202None204NoneDefaultError202NonedefaultResponse
-  | MultipleResponsesGet202None204NoneDefaultError204NonedefaultResponse
-  | MultipleResponsesGet202None204NoneDefaultError400ValiddefaultResponse
-  | MultipleResponsesGet202None204NoneDefaultNone202InvaliddefaultResponse
-  | MultipleResponsesGet202None204NoneDefaultNone204NonedefaultResponse
-  | MultipleResponsesGet202None204NoneDefaultNone400NonedefaultResponse
-  | MultipleResponsesGet202None204NoneDefaultNone400InvaliddefaultResponse
-  | MultipleResponsesGetDefaultModelA400ValiddefaultResponse
-  | MultipleResponsesGetDefaultModelA400NonedefaultResponse
-  | MultipleResponsesGetDefaultNone400InvaliddefaultResponse
-  | MultipleResponsesGetDefaultNone400NonedefaultResponse {
+  | HttpFailureGetEmptyErrorDefaultResponse
+  | HttpSuccessHead200DefaultResponse
+  | HttpSuccessGet200DefaultResponse
+  | HttpSuccessOptions200DefaultResponse
+  | HttpSuccessPut200DefaultResponse
+  | HttpSuccessPatch200DefaultResponse
+  | HttpSuccessPost200DefaultResponse
+  | HttpSuccessDelete200DefaultResponse
+  | HttpSuccessPut201DefaultResponse
+  | HttpSuccessPost201DefaultResponse
+  | HttpSuccessPut202DefaultResponse
+  | HttpSuccessPatch202DefaultResponse
+  | HttpSuccessPost202DefaultResponse
+  | HttpSuccessDelete202DefaultResponse
+  | HttpSuccessHead204DefaultResponse
+  | HttpSuccessPut204DefaultResponse
+  | HttpSuccessPatch204DefaultResponse
+  | HttpSuccessPost204DefaultResponse
+  | HttpSuccessDelete204DefaultResponse
+  | HttpSuccessHead404DefaultResponse
+  | HttpRedirectsHead300DefaultResponse
+  | HttpRedirectsGet300DefaultResponse
+  | HttpRedirectsHead301DefaultResponse
+  | HttpRedirectsGet301DefaultResponse
+  | HttpRedirectsPut301DefaultResponse
+  | HttpRedirectsHead302DefaultResponse
+  | HttpRedirectsGet302DefaultResponse
+  | HttpRedirectsPatch302DefaultResponse
+  | HttpRedirectsPost303DefaultResponse
+  | HttpRedirectsHead307DefaultResponse
+  | HttpRedirectsGet307DefaultResponse
+  | HttpRedirectsOptions307DefaultResponse
+  | HttpRedirectsPut307DefaultResponse
+  | HttpRedirectsPatch307DefaultResponse
+  | HttpRedirectsPost307DefaultResponse
+  | HttpRedirectsDelete307DefaultResponse
+  | HttpRetryHead408DefaultResponse
+  | HttpRetryPut500DefaultResponse
+  | HttpRetryPatch500DefaultResponse
+  | HttpRetryGet502DefaultResponse
+  | HttpRetryOptions502DefaultResponse
+  | HttpRetryPost503DefaultResponse
+  | HttpRetryDelete503DefaultResponse
+  | HttpRetryPut504DefaultResponse
+  | HttpRetryPatch504DefaultResponse
+  | MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse
+  | MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse
+  | MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse
+  | MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse
+  | MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse
+  | MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse
+  | MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse
+  | MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse
+  | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse
+  | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse
+  | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse
+  | MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse
+  | MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse
+  | MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse
+  | MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse
+  | MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse
+  | MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse
+  | MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse
+  | MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse
+  | MultipleResponsesGetDefaultModelA400ValidDefaultResponse
+  | MultipleResponsesGetDefaultModelA400NoneDefaultResponse
+  | MultipleResponsesGetDefaultNone400InvalidDefaultResponse
+  | MultipleResponsesGetDefaultNone400NoneDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

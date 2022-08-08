@@ -16,16 +16,16 @@ export interface MetadataRolesList200Response extends HttpResponse {
   body: MetadataRoleListOutput;
 }
 
-export interface MetadataRolesListdefaultHeaders {
+export interface MetadataRolesListDefaultHeaders {
   /** The error code */
   "x-ms-error-code"?: string;
 }
 
 /** Lists roles for Purview Account */
-export interface MetadataRolesListdefaultResponse extends HttpResponse {
+export interface MetadataRolesListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseModelOutput;
-  headers: RawHttpHeaders & MetadataRolesListdefaultHeaders;
+  headers: RawHttpHeaders & MetadataRolesListDefaultHeaders;
 }
 
 /** List or Get metadata policies */
@@ -34,16 +34,16 @@ export interface MetadataPolicyListAll200Response extends HttpResponse {
   body: MetadataPolicyListOutput;
 }
 
-export interface MetadataPolicyListAlldefaultHeaders {
+export interface MetadataPolicyListAllDefaultHeaders {
   /** The error code */
   "x-ms-error-code"?: string;
 }
 
 /** List or Get metadata policies */
-export interface MetadataPolicyListAlldefaultResponse extends HttpResponse {
+export interface MetadataPolicyListAllDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseModelOutput;
-  headers: RawHttpHeaders & MetadataPolicyListAlldefaultHeaders;
+  headers: RawHttpHeaders & MetadataPolicyListAllDefaultHeaders;
 }
 
 /** Updates a metadata policy */
@@ -52,16 +52,16 @@ export interface MetadataPolicyUpdate200Response extends HttpResponse {
   body: MetadataPolicyOutput;
 }
 
-export interface MetadataPolicyUpdatedefaultHeaders {
+export interface MetadataPolicyUpdateDefaultHeaders {
   /** The error code */
   "x-ms-error-code"?: string;
 }
 
 /** Updates a metadata policy */
-export interface MetadataPolicyUpdatedefaultResponse extends HttpResponse {
+export interface MetadataPolicyUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseModelOutput;
-  headers: RawHttpHeaders & MetadataPolicyUpdatedefaultHeaders;
+  headers: RawHttpHeaders & MetadataPolicyUpdateDefaultHeaders;
 }
 
 /** Gets a metadata policy */
@@ -70,14 +70,14 @@ export interface MetadataPolicyGet200Response extends HttpResponse {
   body: MetadataPolicyOutput;
 }
 
-export interface MetadataPolicyGetdefaultHeaders {
+export interface MetadataPolicyGetDefaultHeaders {
   /** The error code */
   "x-ms-error-code"?: string;
 }
 
 /** Gets a metadata policy */
-export interface MetadataPolicyGetdefaultResponse extends HttpResponse {
+export interface MetadataPolicyGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseModelOutput;
-  headers: RawHttpHeaders & MetadataPolicyGetdefaultHeaders;
+  headers: RawHttpHeaders & MetadataPolicyGetDefaultHeaders;
 }

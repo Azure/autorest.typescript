@@ -12,7 +12,7 @@ export interface GetFile200Response extends HttpResponse {
 }
 
 /** Get file */
-export interface GetFiledefaultResponse extends HttpResponse {
+export interface GetFileDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -25,7 +25,7 @@ export interface GetFileLarge200Response extends HttpResponse {
 }
 
 /** Get a large file */
-export interface GetFileLargedefaultResponse extends HttpResponse {
+export interface GetFileLargeDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -38,7 +38,7 @@ export interface GetEmptyFile200Response extends HttpResponse {
 }
 
 /** Get empty file */
-export interface GetEmptyFiledefaultResponse extends HttpResponse {
+export interface GetEmptyFileDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
