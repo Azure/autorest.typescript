@@ -2,11 +2,9 @@ import {
   CodeModel,
   ObjectSchema as M4ObjectSchema,
   Property,
-  SchemaContext,
-  SchemaUsage
+  SchemaContext
 } from "@autorest/codemodel";
-import { RLCModel, Schema, ObjectSchema } from "@azure-tools/rlc-codegen";
-import { getAutorestOptions } from "../../autorestSession";
+import { Schema, ObjectSchema } from "@azure-tools/rlc-codegen";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { getDocs } from "../getPropertySignature";
 import {

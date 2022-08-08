@@ -3,6 +3,7 @@ import { RLCModel } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
+import { transformOptions } from "./transformOptions";
 import { transformPaths } from "./transformPaths";
 import { transformSchemas } from "./transformSchemas";
 
@@ -18,7 +19,7 @@ export function transform(
     clientImports: Set<string>;
   }
 ): RLCModel {
-  const { srcPath, rlcShortcut } = getAutorestOptions();
+  const { srcPath } = getAutorestOptions();
   const rlcModel = {
     libraryName: normalizeName(
       getLanguageMetadata(model.language).name,
@@ -30,7 +31,7 @@ export function transform(
       importedResponses,
       clientImports
     }),
-    options: { includeShortcuts: rlcShortcut },
+    options: transformOptions(model),
     schemas: transformSchemas(model)
   };
   return rlcModel;
