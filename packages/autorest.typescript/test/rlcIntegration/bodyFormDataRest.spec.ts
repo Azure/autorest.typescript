@@ -7,7 +7,7 @@ import { isUnexpected } from "./generated/bodyFormDataRest/src";
 describe("Integration tests for BodyFormData", () => {
   let client: BodyFormDataClient;
 
-  it("should correctly accept file via form", async function() {
+  it("should correctly accept file via form", async function () {
     client = BodyFormData({ allowInsecureConnection: true });
 
     const fileName: string = `sample.png`;
@@ -27,8 +27,7 @@ describe("Integration tests for BodyFormData", () => {
 
     const result = await client.path("/formdata/stream/uploadfile").post({
       contentType: "multipart/form-data",
-      body: { fileContent: content, fileName },
-      binaryResponse: true
+      body: { fileContent: content, fileName }
     });
 
     assert.equal(result.status, "200");
@@ -60,7 +59,6 @@ describe("Integration tests for BodyFormData", () => {
 
     const response = await client.path("/formdata/stream/uploadfile").put({
       body: content,
-      binaryResponse: true,
       contentType: "application/octet-stream"
     });
 
