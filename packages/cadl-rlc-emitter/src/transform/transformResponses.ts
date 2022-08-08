@@ -19,7 +19,6 @@ export function transformToResponseTypes(program: Program, importDetails: Map<Im
                 statusCode,
                 description: resp.description
             };
-
             // transform header
             transformHeaders(resp, rlcResponseUnit);
             // transform body
