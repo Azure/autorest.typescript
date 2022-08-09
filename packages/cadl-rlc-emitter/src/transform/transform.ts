@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ImportKind, OperationResponse, Paths, RLCModel, RLCOptions, Schema } from "@azure-tools/rlc-codegen";
+import { ImportKind, OperationParameter, OperationResponse, Paths, RLCModel, RLCOptions, Schema } from "@azure-tools/rlc-codegen";
 import { Program } from "@cadl-lang/compiler";
 import { join } from "path";
+import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
@@ -21,6 +22,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
   const paths: Paths = transformPaths(program);
   const schemas: Schema[] = transformSchemas(program);
   const responses: OperationResponse[] = transformToResponseTypes(program, importSet);
+  const parameters: OperationParameter[] = transformToParameterTypes(program, importSet);
 
-  return { srcPath, libraryName, paths, options, schemas, responses, importSet };
+  return { srcPath, libraryName, paths, options, schemas, responses, parameters, importSet };
 }

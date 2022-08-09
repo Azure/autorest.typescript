@@ -1,6 +1,7 @@
 import { InterfaceDeclarationStructure, Project, PropertySignatureStructure, SourceFile, StructureKind } from "ts-morph";
 import * as path from 'path';
-import { ImportKind, ParameterMetadata, ParameterMetadatas, RLCModel, Schema } from "./interfaces";
+import { ImportKind, ParameterMetadata, ParameterMetadatas, RLCModel, Schema } from "./interfaces.js";
+import { NameType, normalizeName } from "./helpers/nameUtils.js";
 
 export function buildParameterTypes(
     model: RLCModel) {
@@ -16,7 +17,10 @@ export function buildParameterTypes(
         return;
     }
     for (const requestParameter of model.parameters) {
-        const operationName = requestParameter.operationName;
+        const operationName = normalizeName(
+            `${requestParameter.operationName}`,
+            NameType.Interface
+        );
         const requestCount = requestParameter?.parameters?.length ?? 0;
         const topParamName = `${operationName}Parameters`;
         const subParamNames: string[] = [];

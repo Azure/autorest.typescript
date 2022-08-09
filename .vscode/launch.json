@@ -85,6 +85,21 @@
         "${workspaceFolder}/packages/*/dist/**/*.js",
         "${workspaceFolder}/packages/*/dist-dev/**/*.js"
       ]
+    },
+    {
+      "name": "Generate code for CadlRlcTest",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-test",
+      "runtimeArgs": ["cadl", "compile", "./spec/main.cadl"],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
+      ]
     }
   ]
 }
