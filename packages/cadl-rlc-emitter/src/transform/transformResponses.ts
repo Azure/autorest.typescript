@@ -20,10 +20,14 @@ export function transformToResponseTypes(program: Program, importDetails: Map<Im
                 description: resp.description
             };
             // transform header
-            transformHeaders(resp, rlcResponseUnit);
+            const headers = transformHeaders(resp);
             // transform body
-            transformBody(resp, importedModels, rlcResponseUnit)
-            rlcOperationUnit.responses.push(rlcResponseUnit);
+            const body = transformBody(resp, importedModels);
+            rlcOperationUnit.responses.push({
+                ...rlcResponseUnit,
+                headers,
+                body
+            });
         }
         rlcResponses.push(rlcOperationUnit);
     }
@@ -33,17 +37,18 @@ export function transformToResponseTypes(program: Program, importDetails: Map<Im
     return rlcResponses;
 }
 
-function transformHeaders(from: HttpOperationResponse, to: ResponseMetadata) {
-    if (!from.responses.length) {
+function transformHeaders(
+    response: HttpOperationResponse): ResponseHeaderSchema[] | undefined {
+    if (!response.responses.length) {
         return;
-    } else if (from.responses.length > 1) {
+    } else if (response.responses.length > 1) {
         // TODO: handle one status code map to multiple rsps
     }
-    const headers = from.responses[0]?.headers;
+    const headers = response.responses[0]?.headers;
     if (!headers || !Object.keys(headers).length) {
         return;
     }
-    to.headers = Object.keys(headers).map(key => headers[key]).map(h => {
+    return Object.keys(headers).map(key => headers[key]).map(h => {
         // TODO: handle the schema part
         const header: ResponseHeaderSchema = {
             name: `"${h?.name.toLowerCase()}"`,
@@ -55,20 +60,20 @@ function transformHeaders(from: HttpOperationResponse, to: ResponseMetadata) {
     });
 }
 
-function transformBody(from: HttpOperationResponse, importedModels: Set<string>, to: ResponseMetadata) {
-    if (!from.responses.length) {
+function transformBody(response: HttpOperationResponse, importedModels: Set<string>) {
+    if (!response.responses.length) {
         return;
-    } else if (from.responses.length > 1) {
+    } else if (response.responses.length > 1) {
         // TODO: handle one status code map to multiple rsps
     }
-    const body = from.responses[0]?.body;
+    const body = response.responses[0]?.body;
     // TODO: get body type
     const bodyType = body?.type?.kind == "Model" ? `${body?.type.name}Output` : undefined;
     if (!bodyType) {
         return;
     }
     importedModels.add(bodyType);
-    to.body = {
+    return {
         name: "body",
         type: bodyType,
         description: ""
