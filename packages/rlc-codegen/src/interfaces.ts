@@ -126,6 +126,7 @@ export interface ParameterMetadatas {
 }
 
 export interface ParameterBodyMetadata {
+  // In case of formData we'd get multiple properties in body marked as partialBody
   isPartialBody?: boolean;
   body?: ParameterBodySchema[];
 }
