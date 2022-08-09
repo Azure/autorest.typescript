@@ -1,4 +1,4 @@
-import { HeaderMetadata, ImportKind, OperationResponse, ResponseMetadata } from "@azure-tools/rlc-codegen";
+import { ResponseHeaderSchema, ImportKind, OperationResponse, ResponseMetadata } from "@azure-tools/rlc-codegen";
 import { Program } from "@cadl-lang/compiler";
 import { getAllRoutes, HttpOperationResponse } from "@cadl-lang/rest/http";
 
@@ -45,7 +45,7 @@ function transformHeaders(from: HttpOperationResponse, to: ResponseMetadata) {
     }
     to.headers = Object.keys(headers).map(key => headers[key]).map(h => {
         // TODO: handle the schema part
-        const header: HeaderMetadata = {
+        const header: ResponseHeaderSchema = {
             name: `"${h?.name.toLowerCase()}"`,
             type: `"string"`,
             required: !Boolean(h?.optional),

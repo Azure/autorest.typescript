@@ -112,10 +112,27 @@ export interface Parameter extends Schema {
 
 export interface OperationParameter {
   operationName: string;
-  parameters: ParameterMetadata[];
+  /**
+   * An operation with multiple request parameters means that 
+   * the operation can get different values for content-type and each value 
+   * may have a different type associated to it.
+   */
+  parameters: ParameterMetadatas[];
 }
+
+export interface ParameterMetadatas {
+  parameters?: ParameterMetadata[];
+  body?: ParameterBodyMetadata;
+}
+
+export interface ParameterBodyMetadata {
+  isPartialBody?: boolean;
+  body?: ParameterBodySchema[];
+}
+
+export type ParameterBodySchema = Schema;
 export interface ParameterMetadata {
-  type: "query" | "path" | "header" | "body";
+  type: "query" | "path" | "header";
   name: string;
   param: Schema;
 }
@@ -127,8 +144,9 @@ export interface OperationResponse {
 export interface ResponseMetadata {
   statusCode: string;
   description?: string;
-  headers?: HeaderMetadata[];
-  body?: Schema;
+  headers?: ResponseHeaderSchema[];
+  body?: ResponseBodySchema;
 }
 
-export type HeaderMetadata = Schema;
+export type ResponseHeaderSchema = Schema;
+export type ResponseBodySchema = Schema;

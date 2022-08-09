@@ -1,5 +1,5 @@
 import { InterfaceDeclarationStructure, OptionalKind, Project, PropertySignatureStructure, StructureKind } from "ts-morph";
-import { HeaderMetadata, ImportKind, ResponseMetadata, RLCModel } from "./interfaces.js";
+import { ImportKind, ResponseHeaderSchema, ResponseMetadata, RLCModel } from "./interfaces.js";
 import * as path from "path";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 
@@ -113,7 +113,7 @@ function getResponseHeaderInterfaceDefinition(
         kind: StructureKind.Interface,
         isExported: true,
         name: headersInterfaceName,
-        properties: response?.headers.map((h: HeaderMetadata) => {
+        properties: response?.headers.map((h: ResponseHeaderSchema) => {
             const description = h.description;
             return {
                 name: h.name,

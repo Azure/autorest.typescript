@@ -3,6 +3,7 @@ import { ImportKind, RLCModel } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
+import { transformParameterTypes } from "./transformParameterTypes";
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
@@ -35,6 +36,7 @@ export function transform(
     options: { includeShortcuts: rlcShortcut },
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
+    parameters: transformParameterTypes(model, importDetails),
     importSet: importDetails
   };
   return rlcModel;

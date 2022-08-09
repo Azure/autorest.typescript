@@ -21,156 +21,31 @@ import { primitiveSchemaToType } from "./schemaHelpers";
 import { getOperationParameters } from "./helpers/operationHelpers";
 import { hasInputModels } from "./helpers/modelHelpers";
 import { getAutorestOptions } from "../autorestSession";
+import { transform } from "./transforms/transform";
+import { buildParameterTypes } from "@azure-tools/rlc-codegen";
 
 /**
  * Generates the interfaces describing each operation parameters
  */
-export function generateParameterInterfaces(
-  model: CodeModel,
-  project: Project
-) {
+export function generateParameterInterfaces(model: CodeModel, project: Project) {
   const { srcPath } = getAutorestOptions();
-  const parametersFile = project.createSourceFile(
-    path.join(srcPath, `parameters.ts`),
-    undefined,
-    {
-      overwrite: true
-    }
-  );
-
-  // Tracks the models we need to import
-  const importedModels = new Set<string>();
-  // Tracks the generated parameter types
-
-  const operations = getAllOperations(model);
-  let hasHeaders = false;
-
-  for (const operation of operations) {
-    const operationName = normalizeName(
-      getLanguageMetadata(operation.language).name,
-      NameType.Interface
+  const importedParameters = new Set<string>();
+  const importedResponses = new Set<string>();
+  const clientImports = new Set<string>();
+  const rlcModels = transform(model, {
+    importedParameters,
+    importedResponses,
+    clientImports
+  });
+  const preparedContent = buildParameterTypes(rlcModels);
+  if (preparedContent) {
+    project.createSourceFile(
+      path.join(srcPath, `parameters.ts`),
+      preparedContent.content,
+      {
+        overwrite: true
+      }
     );
-
-    const requestCount = operation?.requests?.length ?? 0;
-    const topParamName = `${operationName}Parameters`;
-    const subParamNames: string[] = [];
-
-    // We need to loop the requests. An operation with multiple requests means that
-    // the operation can get different values for content-type and each value may
-    // have a different type associated to it.
-    for (let i = 0; i < requestCount; i++) {
-      const internalReferences = new Set<string>();
-      // In case we have more than one request to model we need to add a suffix to differentiate
-      const nameSuffix = i > 0 ? `${i}` : "";
-      const parameterInterfaceName =
-        requestCount > 1
-          ? `${operationName}RequestParameters${nameSuffix}`
-          : topParamName;
-      const parameters = getOperationParameters(operation, i);
-      const queryParameterDefinitions = buildQueryParameterDefinition(
-        operationName,
-        parameters,
-        [SchemaContext.Input],
-        importedModels,
-        internalReferences,
-        i
-      );
-
-      const request = operation.requests ? operation.requests[i] : undefined;
-
-      const pathParameterDefinitions = buildPathParameterDefinitions(
-        operationName,
-        parameters,
-        model,
-        parametersFile,
-        internalReferences,
-        i
-      )
-
-      const headerParameterDefinitions = buildHeaderParameterDefinitions(
-        operationName,
-        parameters,
-        parametersFile,
-        internalReferences,
-        i
-      );
-
-      const contentTypeParameterDefinition = buildContentTypeParametersDefinition(
-        operationName,
-        request,
-        internalReferences,
-        i
-      );
-
-      const bodyParameterDefinition = buildBodyParametersDefinition(
-        operationName,
-        parameters,
-        [SchemaContext.Input],
-        importedModels,
-        internalReferences,
-        i
-      );
-
-      // Add interfaces for body and query parameters
-      parametersFile.addInterfaces([
-        ...(bodyParameterDefinition ?? []),
-        ...(queryParameterDefinitions ?? []),
-        ...(pathParameterDefinitions ? [pathParameterDefinitions]: []),
-        ...(headerParameterDefinitions ? [headerParameterDefinitions] : []),
-        ...(contentTypeParameterDefinition
-          ? [contentTypeParameterDefinition]
-          : [])
-      ]);
-
-      // Add Operation parameters type alias which is composed of the types we generated above
-      // plus the common type RequestParameters
-      parametersFile.addTypeAlias({
-        name: parameterInterfaceName,
-        isExported: true,
-        type: [...internalReferences, "RequestParameters"].join(" & ")
-      });
-
-      subParamNames.push(parameterInterfaceName);
-
-      if (headerParameterDefinitions !== undefined) {
-        hasHeaders = true;
-      }
-    }
-
-    // Add Operation parameters type alias which is composed of the types we generated above
-    // plus the common type RequestParameters
-    if (requestCount > 1) {
-      parametersFile.addTypeAlias({
-        name: topParamName,
-        isExported: true,
-        type: [...subParamNames].join(" | ")
-      });
-    }
-  }
-
-  if (hasHeaders) {
-    parametersFile.addImportDeclarations([
-      {
-        namedImports: ["RawHttpHeadersInput"],
-        moduleSpecifier: "@azure/core-rest-pipeline"
-      }
-    ]);
-  }
-
-  parametersFile.addImportDeclarations([
-    {
-      namedImports: ["RequestParameters"],
-      moduleSpecifier: "@azure-rest/core-client"
-    }
-  ]);
-
-  if (hasInputModels(model)) {
-    parametersFile.addImportDeclarations([
-      {
-        namedImports: [...importedModels],
-        moduleSpecifier: "./models"
-      }
-    ]);
   }
 }
 
@@ -320,7 +195,7 @@ function buildPathParameterDefinitions(
         kind: StructureKind.PropertySignature
       }
     ]
-  };  
+  };
 }
 /**
  * Gets the interface definition for an operation bodyParameters

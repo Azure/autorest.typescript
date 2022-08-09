@@ -1,5 +1,5 @@
 import { CodeModel, HttpHeader, Operation, Response, SchemaContext, SchemaResponse } from "@autorest/codemodel";
-import { HeaderMetadata, ImportKind, OperationResponse, ResponseMetadata, Schema as ResponseBodySchema } from "@azure-tools/rlc-codegen";
+import { ImportKind, OperationResponse, ResponseMetadata, ResponseBodySchema, ResponseHeaderSchema } from "@azure-tools/rlc-codegen";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { responseToSchemaResponse } from "../operationHelpers";
 import { getElementType, getFormatDocs, primitiveSchemaToType } from "../schemaHelpers";
@@ -42,7 +42,7 @@ export function transformResponseTypes(model: CodeModel, importDetails: Map<Impo
 }
 
 
-function transformHeaders(response: Response): HeaderMetadata[] | undefined {
+function transformHeaders(response: Response): ResponseHeaderSchema[] | undefined {
     // Check if there are any required headers
     const hasDefinedHeaders =
         Boolean(response.protocol.http?.headers) &&
@@ -52,7 +52,7 @@ function transformHeaders(response: Response): HeaderMetadata[] | undefined {
     }
 
     return response.protocol.http?.headers.map((h: HttpHeader) => {
-        const header: HeaderMetadata = {
+        const header: ResponseHeaderSchema = {
             name: `"${h.header.toLowerCase()}"`,
             description: getLanguageMetadata(h.language).description,
             type: primitiveSchemaToType(h.schema, [
