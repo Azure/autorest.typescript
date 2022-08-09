@@ -1,6 +1,7 @@
-import { ImportKind, OperationParameter, ParameterBodyMetadata, ParameterMetadata } from "@azure-tools/rlc-codegen";
+import { ImportKind, OperationParameter, ParameterBodyMetadata, ParameterMetadata, Schema } from "@azure-tools/rlc-codegen";
 import { Program } from "@cadl-lang/compiler";
 import { getAllRoutes, HttpOperationParameter, HttpOperationParameters } from "@cadl-lang/rest/http";
+import { getSchemaForType } from "../modelUtils.js";
 
 export function transformToParameterTypes(
     program: Program,
@@ -17,14 +18,17 @@ export function transformToParameterTypes(
         };
         // transform query param
         const queryParams = transformQueryParameters(
+            program,
             parameters);
         // transform path param
         const pathParams = transformPathParameters();
         // transform header param includeing content-type
         const headerParams = transformHeaderParameters(
+            program,
             parameters);
         // transform body
         const bodyParameter = transformBodyParameters(
+            program,
             parameters,
             importedModels
         );
@@ -41,35 +45,37 @@ export function transformToParameterTypes(
 }
 
 function getParameterMetadata(
+    program: Program,
     paramType: "query" | "path" | "header",
     parameter: HttpOperationParameter): ParameterMetadata {
+    const schema = getSchemaForType(program, parameter.param.type) as Schema;
     const name = getParameterName(parameter.name);
     return {
         type: paramType,
         name,
         param: {
-            name, // TODO
-            description: "Remember to update description from doc", // TODO
-            type: "any",// TODO
-            required: !Boolean(parameter.param.optional),
+            name,
+            type: schema.name,
+            required: !Boolean(parameter.param.optional)
         }
-    };;
+    };
 }
 
 function getParameterName(name: string) {
     if (name === "content-type") {
         return "contentType";
     }
-    return `"${name}"`;
+    return name;
 }
 
 function transformQueryParameters(
+    program: Program,
     parameters: HttpOperationParameters): ParameterMetadata[] {
     const queryParameters = parameters.parameters.filter(p => p.type === "query");
     if (!queryParameters.length) {
         return [];
     }
-    return queryParameters.map(qp => getParameterMetadata("query", qp));
+    return queryParameters.map(qp => getParameterMetadata(program, "query", qp));
 }
 
 /**
@@ -82,6 +88,7 @@ function transformPathParameters() {
 }
 
 function transformHeaderParameters(
+    program: Program,
     parameters: HttpOperationParameters): ParameterMetadata[] {
     const headerParameters = parameters.parameters.filter(
         p => (p.type === "header")
@@ -89,26 +96,26 @@ function transformHeaderParameters(
     if (!headerParameters.length) {
         return [];
     }
-    return headerParameters.map(qp => getParameterMetadata("header", qp));
+    return headerParameters.map(qp => getParameterMetadata(program, "header", qp));
 }
 
 function transformBodyParameters(
+    program: Program,
     parameters: HttpOperationParameters,
     importedModels: Set<string>): ParameterBodyMetadata | undefined {
     const bodyParameters = parameters.body;
     if (!bodyParameters) {
         return undefined;
     }
-    // TODO: handle more body types
-    const bodyType = (bodyParameters.type.kind === "Model") ? bodyParameters.type.name : "any";
-    if (bodyType !== "any") {
-        importedModels.add(bodyType);
+    const bodySchema = getSchemaForType(program, bodyParameters.type) as Schema
+    if (bodySchema.type == "object") {
+        importedModels.add(bodySchema.name);
     }
     return {
         isPartialBody: false,
         body: [{
             name: "body",
-            type: bodyType,
+            type: bodySchema.name,
             required: !Boolean(bodyParameters.optional)
         }]
     };
