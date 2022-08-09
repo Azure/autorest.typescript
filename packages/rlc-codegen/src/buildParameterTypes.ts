@@ -96,6 +96,15 @@ export function buildParameterTypes(
                 hasHeaders = true;
             }
         }
+        // Add Operation parameters type alias which is composed of the types we generated above
+        // plus the common type RequestParameters
+        if (requestCount > 1) {
+            parametersFile.addTypeAlias({
+                name: topParamName,
+                isExported: true,
+                type: [...subParamNames].join(" | ")
+            });
+        }
     }
 
     if (hasHeaders) {

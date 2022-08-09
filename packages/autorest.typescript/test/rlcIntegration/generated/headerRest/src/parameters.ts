@@ -287,7 +287,11 @@ export type ResponseDurationParameters = ResponseDurationHeaderParam &
 export interface ParamByteHeaders {
   /** Send a post request with header values "scenario": "valid" */
   scenario: string;
-  /** Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩" */
+  /**
+   * Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
+   *
+   * Value may contain base64 encoded characters
+   */
   value: string;
 }
 
