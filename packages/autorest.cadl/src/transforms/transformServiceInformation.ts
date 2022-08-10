@@ -12,7 +12,7 @@ export function transformServiceInformation(
 ): ServiceInformation {
   return {
     name: model.info.title,
-    description: model.info.description,
+    doc: model.info.description,
     endpoint: getFirstEndpoint(model),
     endpointParameters: transformEndpointParameters(model),
     version: getApiVersion(model),

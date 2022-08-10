@@ -6,16 +6,14 @@ using Cadl.Http;
   "https://{resource}.cognitiveservices.azure.com",
   "Adel API server.",
   {
-    @docs("Resource name")
-    Resource: string,
+    @doc("Resource name")
+    resource: string,
   }
 )
 @doc("Adel API server.")
-@Cadl.Rest.produces("application/json", "image/png")
-@Cadl.Rest.consumes("application/json")
 namespace Adel;
 
-enum OrderBy {
+enum OrderByKnownValues {
   "ASCENDING",
   "DESCENDING",
 }
@@ -23,14 +21,14 @@ enum OrderBy {
 @knownValues(OrderByKnownValues)
 model OrderBy is string {}
 
-enum AuthenticationType {
+enum AuthenticationTypeKnownValues {
   "ManagedIdentity",
 }
 
 @knownValues(AuthenticationTypeKnownValues)
 model AuthenticationType is string {}
 
-enum DataGranularityUnit {
+enum DataGranularityUnitKnownValues {
   "Minutes",
   "Hours",
   "Days",
@@ -42,7 +40,7 @@ enum DataGranularityUnit {
 @knownValues(DataGranularityUnitKnownValues)
 model DataGranularityUnit is string {}
 
-enum ReplayStatus {
+enum ReplayStatusKnownValues {
   "CREATED",
   "RUNNING",
   "COMPLETED",
@@ -52,7 +50,7 @@ enum ReplayStatus {
 @knownValues(ReplayStatusKnownValues)
 model ReplayStatus is string {}
 
-enum ScheduleStatus {
+enum ScheduleStatusKnownValues {
   "ACTIVE",
   "CLIENTPAUSED",
   "SERVERPAUSED",
@@ -61,7 +59,7 @@ enum ScheduleStatus {
 @knownValues(ScheduleStatusKnownValues)
 model ScheduleStatus is string {}
 
-enum EvaluationStatus {
+enum EvaluationStatusKnownValues {
   "CREATED",
   "RUNNING",
   "COMPLETED",
@@ -71,7 +69,7 @@ enum EvaluationStatus {
 @knownValues(EvaluationStatusKnownValues)
 model EvaluationStatus is string {}
 
-enum ModelStatus {
+enum ModelStatusKnownValues {
   "CREATED",
   "RUNNING",
   "COMPLETED",
@@ -81,7 +79,7 @@ enum ModelStatus {
 @knownValues(ModelStatusKnownValues)
 model ModelStatus is string {}
 
-enum AlignMode {
+enum AlignModeKnownValues {
   "Inner",
   "Outer",
 }
@@ -89,7 +87,7 @@ enum AlignMode {
 @knownValues(AlignModeKnownValues)
 model AlignMode is string {}
 
-enum FillNAMethod {
+enum FillNAMethodKnownValues {
   "Previous",
   "Subsequent",
   "Linear",
@@ -98,12 +96,8 @@ enum FillNAMethod {
 
 @knownValues(FillNAMethodKnownValues)
 model FillNAMethod is string {}
-@doc("")
-model PageAlertConfig {
-  @doc("")
+model Page_AlertConfig {
   value: AlertConfig[];
-
-  @doc("")
   nextLink?: string;
 }
 @doc("Criteria that determine which anomalies should trigger an alert and via which notification channel(s). This setting can later be applied to a live inference schedule. ")
@@ -126,25 +120,15 @@ model AlertConfig {
   @doc("The UTC time at which the parameter(s) of the alert configuration was last modified by the users (if applicable).")
   parameterModifiedTime: zonedDateTime;
 }
-@doc("")
 model Error {
-  @doc("")
-  error: ErrorError;
+  error: Error_error;
 }
-@doc("")
-model ErrorError {
-  @doc("")
+model Error_error {
   code: string;
-
-  @doc("")
   message: string;
 }
-@doc("")
-model PageDataset {
-  @doc("")
+model Page_Dataset {
   value: Dataset[];
-
-  @doc("")
   nextLink?: string;
 }
 @doc("Summarizes information about the dataset, including name, description, data source type, data schema, data granularity, and associated metadata. A dataset can be used for either training, evaluation, or real-time inference.")
@@ -174,8 +158,6 @@ model Dataset {
 model DataSourceInfo {
   @doc("Discriminator property for DataSourceInfo.")
   dataSourceType: string;
-
-  @doc("")
   authenticationType: AuthenticationType;
 }
 @doc("Format and schema details of your data.")
@@ -183,8 +165,7 @@ model DataSchema {
   @doc("Discriminator property for DataSchema.")
   dataSchemaType: string;
 }
-@doc("")
-model RequestDataset {
+model Request_Dataset {
   @doc("(Optional) Detailed description of a dataset.")
   datasetDescription?: string;
 
@@ -239,12 +220,8 @@ model DatasetPreviewResponse {
   @doc("Values for the corresponding columns headers. This values are aligned to the data granularity.")
   values: string[][];
 }
-@doc("")
-model PageHook {
-  @doc("")
+model Page_Hook {
   value: Hook[];
-
-  @doc("")
   nextLink?: string;
 }
 @doc("A hook is a channel to receive alert notifications.")
@@ -264,12 +241,8 @@ model Hook {
   @doc("The UTC time at which the parameter(s) of the hook was last modified by the users (if applicable).")
   parameterModifiedTime: zonedDateTime;
 }
-@doc("")
-model PageScheduleReplay {
-  @doc("")
+model Page_ScheduleReplay {
   value: ScheduleReplay[];
-
-  @doc("")
   nextLink?: string;
 }
 @doc("Re-inference a historical time range on an exiting inference schedule. The new anomaly detection results will overwrite the historical results in the replay time range but no alerts will be sent out.")
@@ -318,7 +291,7 @@ model VariableState {
   variable: string;
 
   @doc("Proportion of NaN values filled for the variable.")
-  filledNARatio: numeric;
+  filledNARatio: float32;
 
   @doc("Number of non-NaN data points for the variable.")
   effectiveCount: int32;
@@ -329,8 +302,7 @@ model VariableState {
   @doc("The last timestamp taken from the data source for a given variable. Different variables may have a different lastTimestamp due to missing values.")
   lastTimestamp: zonedDateTime;
 }
-@doc("")
-model RequestScheduleReplay {
+model Request_ScheduleReplay {
   @doc("(Optional) Detailed description of a replay on an inference schedule.")
   replayDescription?: string;
 
@@ -343,12 +315,8 @@ model RequestScheduleReplay {
   @doc("The last timestamp equal to or less than the end time given will be used for relay. If endTime equals to startTime, one single data point will be processed.")
   endTime: zonedDateTime;
 }
-@doc("")
-model PageSchedule {
-  @doc("")
+model Page_Schedule {
   value: Schedule[];
-
-  @doc("")
   nextLink?: string;
 }
 @doc("An inference schedule sets up a live inference pipeline to analyze new data in real-time. An inference schedule requires a unique name, a trained model, and a valid data source. You can also specify the criteria to trigger an anomaly alert and the channel(s) to receive alerts in an inference schedule.")
@@ -392,8 +360,7 @@ model Schedule {
   @doc("The UTC time at which the parameter(s) of the hook was last modified by the users (if applicable).")
   parameterModifiedTime: zonedDateTime;
 }
-@doc("")
-model RequestSchedule {
+model Request_Schedule {
   @doc("(Optional) Detailed description of a live streaming inference schedule.")
   scheduleDescription?: string;
 
@@ -451,10 +418,10 @@ model AnomalyValue {
   isAnomaly: boolean;
 
   @doc("Raw output of the model.")
-  score: numeric;
+  score: float32;
 
   @doc("Indicates the significance of the anomaly. The higher the severity, the more significant the anomaly. Severity is 0 for normal timestamps (i.e., isAnomaly = false).")
-  severity: numeric;
+  severity: float32;
 
   @doc("A list containing information on variables that contributed to a given anomaly.")
   interpretation: AnomalyInterpretation[];
@@ -465,7 +432,7 @@ model AnomalyInterpretation {
   variable: string;
 
   @doc("Higher contribution score indicates a higher possibility of this contributing variable being the root cause.")
-  contributionScore: numeric;
+  contributionScore: float32;
 
   @doc("A list of correlated variable(s) whose correlation with this contributing variable has changed significantly. This field can be empty if there were no significant correlation changes between the contributing variable and other variables.")
   correlationChanges: CorrelationChanges;
@@ -476,14 +443,10 @@ model CorrelationChanges {
   changedVariables: string[];
 
   @doc("The extent to which the correlation(s) has changed.")
-  changedValues: numeric[];
+  changedValues: float32[];
 }
-@doc("")
-model PageEvaluation {
-  @doc("")
+model Page_Evaluation {
   value: Evaluation[];
-
-  @doc("")
   nextLink?: string;
 }
 @doc("Specifies information about the model evaluation being used, including name, description, model, evaluation data, evaluation time range, status, and associated metadata.")
@@ -524,8 +487,7 @@ model Evaluation {
   @doc("The UTC time at which the model evaluation job was created.")
   createdTime: zonedDateTime;
 }
-@doc("")
-model RequestEvaluation {
+model Request_Evaluation {
   @doc("(Optional) Detailed description of a model evaluation.")
   evaluationDescription?: string;
 
@@ -541,12 +503,8 @@ model RequestEvaluation {
   @doc("The last timestamp equal to or less than the end time given will be used for model evaluation. If endTime equals to startTime, one single data point will be processed.")
   endTime: zonedDateTime;
 }
-@doc("")
-model PageModel {
-  @doc("")
+model Page_Model {
   value: Model[];
-
-  @doc("")
   nextLink?: string;
 }
 @doc("Summarizes information about the model, including name, description, training data, training time range(s), the number of variables being used, training status, and associated metadata.")
@@ -593,7 +551,7 @@ model AlignPolicy {
   fillNAMethod: FillNAMethod;
 
   @doc("Specify the value to be used for Customized fillNAMethod. This is required if you chose Customized fillNAMethod but optional for other methods.")
-  paddingValue?: numeric;
+  paddingValue?: float32;
 }
 @doc("Summarizes information about the model and each variable being used.")
 model DiagnosticsInfo {
@@ -609,16 +567,15 @@ model ModelState {
   epochIds: int32[];
 
   @doc("The training loss indicates how well the model fits the training data.")
-  trainLosses: numeric[];
+  trainLosses: float32[];
 
   @doc("The validation loss indicates how well the model fits the test data.")
-  validationLosses: numeric[];
+  validationLosses: float32[];
 
   @doc("The time cost for every 10 epochs.")
-  latenciesInSeconds: numeric[];
+  latenciesInSeconds: float32[];
 }
-@doc("")
-model RequestModel {
+model Request_Model {
   @doc("(Optional) Detailed description of a model.")
   modelDescription?: string;
 
@@ -654,7 +611,7 @@ model VariableValues {
   timestamps: string[];
 
   @doc("The value of the variable at the timestamp.")
-  values: numeric[];
+  values: float32[];
 }
 @doc("Summarizes information about the variables being used and the anomaly detection results for each timestamp.")
 model DetectionResult {
@@ -708,7 +665,7 @@ model Webhook {
   endpoint: string;
 
   @doc("(Optional) Custom headers in the API call. A string map include key-value pairs.")
-  header?: map<string>;
+  header?: Map<string, string>;
 
   @doc("(Optional) For authenticating to the endpoint. Optional if authentication is not needed.")
   credential?: string;

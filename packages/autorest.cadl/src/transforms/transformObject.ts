@@ -23,13 +23,13 @@ const cadlTypes = new Map<SchemaType, string>([
   [SchemaType.Uuid, "string"],
   [SchemaType.ByteArray, "bytes"],
   [SchemaType.Binary, "bytes"],
-  [SchemaType.Number, "numeric"],
+  [SchemaType.Number, "float32"],
   [SchemaType.Integer, "int32"],
   [SchemaType.Boolean, "boolean"],
 ]);
 
 export function transformObject(schema: ObjectSchema): CadlObject {
-  const name = schema.language.default.name;
+  const name = schema.language.default.name.replace(/-/g, "_");
   const docs = schema.language.default.description;
 
   return {
@@ -66,7 +66,7 @@ function getCadlType(schema: Schema): string {
   }
 
   if (isObjectSchema(schema)) {
-    return schema.language.default.name;
+    return schema.language.default.name.replace(/-/g, "_");
   }
 
   if (isChoiceSchema(schema) || isSealedChoiceSchema(schema)) {
@@ -74,7 +74,7 @@ function getCadlType(schema: Schema): string {
   }
 
   if (isDictionarySchema(schema)) {
-    return `map<${getCadlType(schema.elementType)}>`;
+    return `Map<string,${getCadlType(schema.elementType)}>`;
   }
 
   const cadlType = cadlTypes.get(schemaType);

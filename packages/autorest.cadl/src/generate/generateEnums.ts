@@ -3,7 +3,7 @@ import { CadlEnum } from "../interfaces";
 export function generateEnums(cadlEnum: CadlEnum) {
   const definitions: string[] = [];
   const enumDefinition = `
-    enum ${cadlEnum.name} {
+    enum ${cadlEnum.name}${cadlEnum.isExtensible ? "KnownValues" : ""} {
         ${cadlEnum.members.join(", ")}
     }`;
 

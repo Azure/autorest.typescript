@@ -3,7 +3,11 @@
 ```yaml
 version: 3.6.6
 use-extension:
-  "@autorest/modelerfour": "4.23.5"
+  "@autorest/modelerfour": "^4.23.5"
+
+modelerfour:
+  # this runs a pre-namer step to clean up names
+  prenamer: false
 
 cadl-init-scope/emitter:
   input-artifact: cadl-init-files

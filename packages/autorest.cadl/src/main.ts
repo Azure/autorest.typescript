@@ -35,10 +35,6 @@ export async function processRequest(host: AutorestExtensionHost) {
   ];
 
   file.push(generateServiceInformation(transformServiceInformation(model)));
-  file.push(`@doc("Adel API server.")
-    @Cadl.Rest.produces("application/json", "image/png")
-    @Cadl.Rest.consumes("application/json")
-    namespace Adel;`);
 
   const enums = writeEnums(cadlEnums).join(`\n`);
   const objects = cadlObjects.map(generateObject).join("\n");
@@ -46,11 +42,15 @@ export async function processRequest(host: AutorestExtensionHost) {
 
   file.push(models);
 
-  const formattedFile = format(file.join("\n"), {
+  const content = file.join("\n");
+  await writeFile("models-raw.cadl", content);
+
+  const formattedFile = format(content, {
     plugins: ["@cadl-lang/prettier-plugin-cadl"],
     pluginSearchDirs: ["./node_modules"],
     filepath: "models.cadl",
   });
+
   await writeFile("models.cadl", formattedFile);
 }
 

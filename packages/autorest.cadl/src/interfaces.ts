@@ -5,7 +5,7 @@ export interface CadlProgram {
 
 export interface ServiceInformation {
   name: string;
-  description?: string;
+  doc?: string;
   version?: string;
   endpoint?: string;
   endpointParameters?: EndpointParameter[];

@@ -1,0 +1,527 @@
+import "@cadl-lang/rest";
+using Cadl.Rest;
+using Cadl.Http;
+@serviceTitle("Adel")
+@server("https://{resource}.cognitiveservices.azure.com", "Adel API server."
+, {
+@doc("Resource name")
+resource: string 
+})
+@doc("Adel API server.")
+namespace Adel;
+
+    enum OrderByKnownValues {
+        "ASCENDING", "DESCENDING"
+    }
+
+    @knownValues(OrderByKnownValues)
+    model OrderBy is string {}
+
+    enum AuthenticationTypeKnownValues {
+        "ManagedIdentity"
+    }
+
+    @knownValues(AuthenticationTypeKnownValues)
+    model AuthenticationType is string {}
+
+    enum DataGranularityUnitKnownValues {
+        "Minutes", "Hours", "Days", "Weeks", "Months", "Years"
+    }
+
+    @knownValues(DataGranularityUnitKnownValues)
+    model DataGranularityUnit is string {}
+
+    enum ReplayStatusKnownValues {
+        "CREATED", "RUNNING", "COMPLETED", "FAILED"
+    }
+
+    @knownValues(ReplayStatusKnownValues)
+    model ReplayStatus is string {}
+
+    enum ScheduleStatusKnownValues {
+        "ACTIVE", "CLIENTPAUSED", "SERVERPAUSED"
+    }
+
+    @knownValues(ScheduleStatusKnownValues)
+    model ScheduleStatus is string {}
+
+    enum EvaluationStatusKnownValues {
+        "CREATED", "RUNNING", "COMPLETED", "FAILED"
+    }
+
+    @knownValues(EvaluationStatusKnownValues)
+    model EvaluationStatus is string {}
+
+    enum ModelStatusKnownValues {
+        "CREATED", "RUNNING", "COMPLETED", "FAILED"
+    }
+
+    @knownValues(ModelStatusKnownValues)
+    model ModelStatus is string {}
+
+    enum AlignModeKnownValues {
+        "Inner", "Outer"
+    }
+
+    @knownValues(AlignModeKnownValues)
+    model AlignMode is string {}
+
+    enum FillNAMethodKnownValues {
+        "Previous", "Subsequent", "Linear", "Customized"
+    }
+
+    @knownValues(FillNAMethodKnownValues)
+    model FillNAMethod is string {}
+model Page_AlertConfig {
+  value: AlertConfig[];
+  nextLink?: string;
+}
+@doc("Criteria that determine which anomalies should trigger an alert and via which notification channel(s). This setting can later be applied to a live inference schedule. ")
+model AlertConfig {
+@doc("Discriminator property for AlertConfig.")
+  alertConfigType: string;
+@doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
+  alertConfigName: string;
+@doc("(Optional) Detailed description of an alert configuration.")
+  alertDescription?: string;
+@doc("(Optional) Specifies the list of notification channel(s) through which the alerts will be sent. If left blank, anomalies will still be detected but no alerts will be sent out. This parameter is case-sensitive.")
+  hookNames?: string[];
+@doc("The UTC time at which the alert configuration was created.")
+  createdTime: zonedDateTime;
+@doc("The UTC time at which the parameter(s) of the alert configuration was last modified by the users (if applicable).")
+  parameterModifiedTime: zonedDateTime;
+}
+model Error {
+  error: Error_error;
+}
+model Error_error {
+  code: string;
+  message: string;
+}
+model Page_Dataset {
+  value: Dataset[];
+  nextLink?: string;
+}
+@doc("Summarizes information about the dataset, including name, description, data source type, data schema, data granularity, and associated metadata. A dataset can be used for either training, evaluation, or real-time inference.")
+model Dataset {
+@doc("Unique identifier of a dataset. This parameter is case-sensitive.")
+  datasetName: string;
+@doc("(Optional) Detailed description of a dataset.")
+  datasetDescription?: string;
+@doc("Details about your data source, including data source type, location, authentication method, and so on.")
+  dataSourceInfo: DataSourceInfo;
+@doc("Format and schema details of the dataset.")
+  dataSchema: DataSchema;
+@doc("The frequency interval at which new records are added to your data. Make sure that each variable has at most one data point within each interval.")
+  dataGranularityNumber: int32;
+@doc("The unit of your data frequency interval.")
+  dataGranularityUnit: DataGranularityUnit;
+@doc("The UTC time at which the dataset was created.")
+  createdTime: zonedDateTime;
+}
+@doc("Details about your data source, including data source type, location, authentication method, and so on.")
+model DataSourceInfo {
+@doc("Discriminator property for DataSourceInfo.")
+  dataSourceType: string;
+  authenticationType: AuthenticationType;
+}
+@doc("Format and schema details of your data.")
+model DataSchema {
+@doc("Discriminator property for DataSchema.")
+  dataSchemaType: string;
+}
+model Request_Dataset {
+@doc("(Optional) Detailed description of a dataset.")
+  datasetDescription?: string;
+@doc("Details about your data source, including data source type, location, authentication method, and so on.")
+  dataSourceInfo: DataSourceInfo;
+@doc("Format and schema details of the dataset.")
+  dataSchema: DataSchema;
+@doc("The frequency interval at which new records are added to your data. Make sure that each variable has at most one data point within each interval.")
+  dataGranularityNumber: int32;
+@doc("The unit of your data frequency interval.")
+  dataGranularityUnit: DataGranularityUnit;
+}
+@doc("Verify data schema and preview data before/after a dataset is created. View raw data to better diagnose and explain a detected anomaly.")
+model DatasetPreviewRequest {
+@doc("Details about your data source, including data source type, location, authentication method, and so on.")
+  dataSourceInfo: DataSourceInfo;
+@doc("Format and schema details of the dataset.")
+  dataSchema: DataSchema;
+@doc("The frequency interval at which new records are added to your data. Make sure that each variable has at most one data point within each interval.")
+  dataGranularityNumber: int32;
+@doc("The unit of your data frequency interval.")
+  dataGranularityUnit: DataGranularityUnit;
+@doc("The total number of rows to be returned. By default, the records are sorted by the timestamp column in descending order.")
+  top?: int32;
+@doc("The list of time range(s) for which the data points will be returned. By default, there will be no filtering on time range and the number of records specified in the top field.")
+  timeRange?: TimeRange;
+@doc("The list of variable(s) for which the data points will be returned. By default, all variables will be returned.")
+  variablesFilter?: string[];
+}
+@doc("A time range of data for processing. Both the start and end time are inclusive.")
+model TimeRange {
+@doc("The first timestamp equal to or greater than the start time given will be processed.")
+  startTime: zonedDateTime;
+@doc("The last timestamp equal to or less than the end time given will be processed. If endTime equals to startTime, one single data point will be processed.")
+  endTime: zonedDateTime;
+}
+@doc("Returns data aligned to the data granularity.")
+model DatasetPreviewResponse {
+@doc("Column headers.")
+  columns: string[];
+@doc("Values for the corresponding columns headers. This values are aligned to the data granularity.")
+  values: string[][];
+}
+model Page_Hook {
+  value: Hook[];
+  nextLink?: string;
+}
+@doc("A hook is a channel to receive alert notifications.")
+model Hook {
+@doc("Discriminator property for Hook.")
+  hookType: string;
+@doc("Unique identifier of a hook. This parameter is case-sensitive.")
+  hookName: string;
+@doc("(Optional) Detailed description of a hook.")
+  hookDescription?: string;
+@doc("The UTC time at which the hook was created.")
+  createdTime: zonedDateTime;
+@doc("The UTC time at which the parameter(s) of the hook was last modified by the users (if applicable).")
+  parameterModifiedTime: zonedDateTime;
+}
+model Page_ScheduleReplay {
+  value: ScheduleReplay[];
+  nextLink?: string;
+}
+@doc("Re-inference a historical time range on an exiting inference schedule. The new anomaly detection results will overwrite the historical results in the replay time range but no alerts will be sent out.")
+model ScheduleReplay {
+@doc("Unique identifier of a replay on an inference schedule. This parameter is case-sensitive.")
+  replayName: string;
+@doc("(Optional) Detailed description of a replay on an inference schedule.")
+  replayDescription?: string;
+@doc("The inference schedule whose settings will be used for replay. This parameter is case-sensitive.")
+  scheduleName: string;
+@doc("The first timestamp equal to or greater than the start time given will be used for replay.")
+  startTime: zonedDateTime;
+@doc("The last timestamp equal to or less than the end time given will be used for relay. If endTime equals to startTime, one single data point will be processed.")
+  endTime: zonedDateTime;
+@doc("Current status of the inference schedule replay job.")
+  status: ReplayStatus;
+@doc("The UTC time at which the status of the inference replay was last updated (if applicable).")
+  statusUpdatedTime: zonedDateTime;
+@doc("Error details if the inference replay job failed.")
+  errors: ErrorResponse[];
+@doc("Summarizes information about each variable being used. Ranked by filledNARatio in descending order.")
+  variableStates: VariableState[];
+@doc("The UTC time at which the inference replay job was created.")
+  createdTime: zonedDateTime;
+}
+@doc("Error details for a failed job.")
+model ErrorResponse {
+@doc("The error code.")
+  code: string;
+@doc("The message explaining the error reported by the service.")
+  message: string;
+}
+@doc("Summarizes information about each variable. Ranked by filledNARatio in descending order.")
+model VariableState {
+@doc("The name of the variable being used.")
+  variable: string;
+@doc("Proportion of NaN values filled for the variable.")
+  filledNARatio: float32;
+@doc("Number of non-NaN data points for the variable.")
+  effectiveCount: int32;
+@doc("The first timestamp taken from the data source for a given variable. Different variables may have a different firstTimestamp due to missing values.")
+  firstTimestamp: zonedDateTime;
+@doc("The last timestamp taken from the data source for a given variable. Different variables may have a different lastTimestamp due to missing values.")
+  lastTimestamp: zonedDateTime;
+}
+model Request_ScheduleReplay {
+@doc("(Optional) Detailed description of a replay on an inference schedule.")
+  replayDescription?: string;
+@doc("The inference schedule whose settings will be used for replay. This parameter is case-sensitive.")
+  scheduleName: string;
+@doc("The first timestamp equal to or greater than the start time given will be used for replay.")
+  startTime: zonedDateTime;
+@doc("The last timestamp equal to or less than the end time given will be used for relay. If endTime equals to startTime, one single data point will be processed.")
+  endTime: zonedDateTime;
+}
+model Page_Schedule {
+  value: Schedule[];
+  nextLink?: string;
+}
+@doc("An inference schedule sets up a live inference pipeline to analyze new data in real-time. An inference schedule requires a unique name, a trained model, and a valid data source. You can also specify the criteria to trigger an anomaly alert and the channel(s) to receive alerts in an inference schedule.")
+model Schedule {
+@doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
+  scheduleName: string;
+@doc("(Optional) Detailed description of a live streaming inference schedule.")
+  scheduleDescription?: string;
+@doc("The name of the previously trained model being used to create the live streaming inference schedule. This parameter is case-sensitive.")
+  modelName: string;
+@doc("Data used for live streaming inference. This parameter is case-sensitive.")
+  datasetName: string;
+@doc("(Optional) This start time can't be in the past. The first timestamp equal to or greater than the start time given will be used. Your data source must have data at the specified start time and the number of data points available must equal to or greater than your training sliding window.")
+  startInferenceSince?: zonedDateTime;
+@doc("(Optional) The amount of time (in seconds) you expect the data to be delayed for inference. For example, your source data comes every 5 minutes, so by default (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes that records with a timestamp of 01:30:00 will be ready for inference by 01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and so on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds = 600), then the scheduler will inference records with a timestamp of 01:30:00 at 01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so on.")
+  dataDelayOffsetInSeconds?: int32;
+@doc("(Optional) Criteria that determine which anomalies should trigger an alert and via which notification channel(s). This parameter is case-sensitive.")
+  alertConfigNames?: string[];
+@doc("Current status of the inference schedule (ACTIVE/CLIENTPAUSED/SERVERPAUSED). CLIENTPAUSED means that the inference schedule was involuntarily paused by the user. SERVERPAUSED means that the inference schedule was involuntarily paused by the server and the detailed reasons can be found under scheduleStatusChangeInfo.")
+  status: ScheduleStatus;
+@doc("The UTC time at which the status of the inference schedule was last updated (if applicable).")
+  statusUpdatedTime: zonedDateTime;
+@doc("Detailed reasons if the inference schedule status changed to SERVERPAUSED.")
+  scheduleStatusChangeInfo: string;
+@doc("The last timestamp that was processed successfully.")
+  lastSucceededTimestamp: zonedDateTime;
+@doc("The UTC time at which the inference schedule was created.")
+  createdTime: zonedDateTime;
+@doc("The UTC time at which the parameter(s) of the hook was last modified by the users (if applicable).")
+  parameterModifiedTime: zonedDateTime;
+}
+model Request_Schedule {
+@doc("(Optional) Detailed description of a live streaming inference schedule.")
+  scheduleDescription?: string;
+@doc("The name of the previously trained model being used to create the live streaming inference schedule. This parameter is case-sensitive.")
+  modelName: string;
+@doc("Data used for live streaming inference. This parameter is case-sensitive.")
+  datasetName: string;
+@doc("(Optional) This start time can't be in the past. The first timestamp equal to or greater than the start time given will be used. Your data source must have data at the specified start time and the number of data points available must equal to or greater than your training sliding window.")
+  startInferenceSince?: zonedDateTime;
+@doc("(Optional) The amount of time (in seconds) you expect the data to be delayed for inference. For example, your source data comes every 5 minutes, so by default (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes that records with a timestamp of 01:30:00 will be ready for inference by 01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and so on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds = 600), then the scheduler will inference records with a timestamp of 01:30:00 at 01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so on.")
+  dataDelayOffsetInSeconds?: int32;
+@doc("(Optional) Criteria that determine which anomalies should trigger an alert and via which notification channel(s). This parameter is case-sensitive.")
+  alertConfigNames?: string[];
+}
+@doc("Updatable properties for a given inference schedule.")
+model ScheduleUpdate {
+@doc("(Optional) Detailed description of a live streaming inference schedule.")
+  scheduleDescription?: string;
+@doc("The name of the previously trained model being used to create the live streaming inference schedule. This parameter is case-sensitive.")
+  modelName: string;
+@doc("(Optional) The amount of time (in seconds) you expect the data to be delayed for inference. For example, your source data comes every 5 minutes, so by default (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes that records with a timestamp of 01:30:00 will be ready for inference by 01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and so on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds = 600), then the scheduler will inference records with a timestamp of 01:30:00 at 01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so on.")
+  dataDelayOffsetInSeconds?: int32;
+@doc("(Optional) Criteria that determine which anomalies should trigger an alert and via which notification channel(s). This parameter is case-sensitive.")
+  alertConfigNames?: string[];
+@doc("Current status of the inference schedule (ACTIVE/CLIENTPAUSED/SERVERPAUSED). CLIENTPAUSED means that the inference schedule was involuntarily paused by the user. SERVERPAUSED means that the inference schedule was involuntarily paused by the server and the detailed reasons can be found under scheduleStatusChangeInfo.")
+  status: ScheduleStatus;
+}
+@doc("Historical anomaly detection results for an inference schedule.")
+model ScheduleHistoryResult {
+@doc("Summarizes the anomaly detection results for each timestamp.")
+  results: AnomalyState[];
+}
+@doc("Summarizes the anomaly detection results for each timestamp.")
+model AnomalyState {
+@doc("The timestamp being detected.")
+  timestamp: zonedDateTime;
+@doc("Detection results for a given timestamp and information for diagnosing if the timestamp is an anomaly.")
+  value: AnomalyValue;
+@doc("Error details if the anomaly detection job failed.")
+  errors: ErrorResponse[];
+}
+@doc("Detection results for a given timestamp and information for diagnosing if the timestamp is an anomaly.")
+model AnomalyValue {
+@doc("True if the given timestamp is an anomaly.")
+  isAnomaly: boolean;
+@doc("Raw output of the model.")
+  score: float32;
+@doc("Indicates the significance of the anomaly. The higher the severity, the more significant the anomaly. Severity is 0 for normal timestamps (i.e., isAnomaly = false).")
+  severity: float32;
+@doc("A list containing information on variables that contributed to a given anomaly.")
+  interpretation: AnomalyInterpretation[];
+}
+@doc("Information on variables that contributed to a given anomaly. This field only applies to timestamps that are detected as anomalies.")
+model AnomalyInterpretation {
+@doc("Name of the top contributing variable to a given anomaly.")
+  variable: string;
+@doc("Higher contribution score indicates a higher possibility of this contributing variable being the root cause.")
+  contributionScore: float32;
+@doc("A list of correlated variable(s) whose correlation with this contributing variable has changed significantly. This field can be empty if there were no significant correlation changes between the contributing variable and other variables.")
+  correlationChanges: CorrelationChanges;
+}
+@doc("A list of correlated variable(s) whose correlation with this contributing variable has changed significantly. This field can be empty if there were no significant correlation changes between the contributing variable and other variables.")
+model CorrelationChanges {
+@doc("The list of variable(s) whose correlation to the contributing variable has changed.")
+  changedVariables: string[];
+@doc("The extent to which the correlation(s) has changed.")
+  changedValues: float32[];
+}
+model Page_Evaluation {
+  value: Evaluation[];
+  nextLink?: string;
+}
+@doc("Specifies information about the model evaluation being used, including name, description, model, evaluation data, evaluation time range, status, and associated metadata.")
+model Evaluation {
+@doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
+  evaluationName: string;
+@doc("(Optional) Detailed description of a model evaluation.")
+  evaluationDescription?: string;
+@doc("The model being evaluated. This parameter is case-sensitive.")
+  modelName: string;
+@doc("The data being used to evaluate the model. This evaluation dataset should have the same schema and data granularity as the training dataset for the model. This parameter is case-sensitive.")
+  datasetName: string;
+@doc("The first timestamp equal to or greater than the start time given will be used for model evaluation.")
+  startTime: zonedDateTime;
+@doc("The last timestamp equal to or less than the end time given will be used for model evaluation. If endTime equals to startTime, one single data point will be processed.")
+  endTime: zonedDateTime;
+@doc("Current status of the model evaluation job.")
+  status: EvaluationStatus;
+@doc("The UTC time at which the status of the model evaluation job was last updated (if applicable).")
+  statusUpdatedTime: zonedDateTime;
+@doc("Error details if the model evaluation job failed.")
+  errors: ErrorResponse[];
+@doc("The Azure blob URL that stores the model evaluation results. This URL will expire in 12 hours.")
+  resultUrl: string;
+@doc("Summarizes information about each variable being used. Ranked by filledNARatio in descending order.")
+  variableStates: VariableState[];
+@doc("The UTC time at which the model evaluation job was created.")
+  createdTime: zonedDateTime;
+}
+model Request_Evaluation {
+@doc("(Optional) Detailed description of a model evaluation.")
+  evaluationDescription?: string;
+@doc("The model being evaluated. This parameter is case-sensitive.")
+  modelName: string;
+@doc("The data being used to evaluate the model. This evaluation dataset should have the same schema and data granularity as the training dataset for the model. This parameter is case-sensitive.")
+  datasetName: string;
+@doc("The first timestamp equal to or greater than the start time given will be used for model evaluation.")
+  startTime: zonedDateTime;
+@doc("The last timestamp equal to or less than the end time given will be used for model evaluation. If endTime equals to startTime, one single data point will be processed.")
+  endTime: zonedDateTime;
+}
+model Page_Model {
+  value: Model[];
+  nextLink?: string;
+}
+@doc("Summarizes information about the model, including name, description, training data, training time range(s), the number of variables being used, training status, and associated metadata.")
+model Model {
+@doc("Unique identifier of a model. This parameter is case-sensitive.")
+  modelName: string;
+@doc("(Optional) Detailed description of a model.")
+  modelDescription?: string;
+@doc("Data used for model training. This parameter is case-sensitive.")
+  datasetName: string;
+@doc("A list of time ranges used for model training. Both the start and end timestamps are inclusive.")
+  trainingTimeRangeList: TimeRange[];
+@doc("Controls how many previous data points get used to determine if the next data point is an anomaly.")
+  slidingWindow?: int32;
+@doc("Settings that control how variables are aligned to the same data frequency interval and how missing values are handled.")
+  alignPolicy: AlignPolicy;
+@doc("Summarizes information about the model and each variable being used.")
+  diagnosticsInfo: DiagnosticsInfo;
+@doc("Current status of the model training job.")
+  status: ModelStatus;
+@doc("The UTC time at which the training status of the model was last updated (if applicable).")
+  statusUpdatedTime: zonedDateTime;
+@doc("Error details if the model training job failed.")
+  errors: ErrorResponse[];
+@doc("The UTC time at which the model was created.")
+  createdTime: zonedDateTime;
+}
+@doc("Settings that control how variables are aligned to the same data frequency interval and how missing values are handled.")
+model AlignPolicy {
+@doc("How to align variables to the same data frequency interval before further processing. Inner mode returns results on timestamps where EVERY variable has a value. Outer mode returns results on timestamps where ANY variable has a value. The default mode is Outer.")
+  alignMode: AlignMode;
+@doc("How to populate any missing values in the dataset. The default method is Linear where missing values are filled by linear interpolation. If Customized method is selected, all missing values are filled by the value specified in paddingValue.")
+  fillNAMethod: FillNAMethod;
+@doc("Specify the value to be used for Customized fillNAMethod. This is required if you chose Customized fillNAMethod but optional for other methods.")
+  paddingValue?: float32;
+}
+@doc("Summarizes information about the model and each variable being used.")
+model DiagnosticsInfo {
+@doc("Summarizes information about the model, including name, description, training data, the number of variables being used, training status, and associated metadata.")
+  modelState: ModelState;
+@doc("Summarizes information about each variable being used. Ranked by filledNARatio in descending order.")
+  variableStates: VariableState[];
+}
+@doc("Summarizes information about a model training process.")
+model ModelState {
+@doc("How many epochs the model has been trained out of a total of 100 epochs.")
+  epochIds: int32[];
+@doc("The training loss indicates how well the model fits the training data.")
+  trainLosses: float32[];
+@doc("The validation loss indicates how well the model fits the test data.")
+  validationLosses: float32[];
+@doc("The time cost for every 10 epochs.")
+  latenciesInSeconds: float32[];
+}
+model Request_Model {
+@doc("(Optional) Detailed description of a model.")
+  modelDescription?: string;
+@doc("Data used for model training. This parameter is case-sensitive.")
+  datasetName: string;
+@doc("A list of time ranges used for model training. Both the start and end timestamps are inclusive.")
+  trainingTimeRangeList: TimeRange[];
+@doc("Controls how many previous data points get used to determine if the next data point is an anomaly.")
+  slidingWindow?: int32;
+@doc("Settings that control how variables are aligned to the same data frequency interval and how missing values are handled.")
+  alignPolicy: AlignPolicy;
+}
+@doc("The multivariate time-series data to be used for inference.")
+model DetectionRequest {
+@doc("A list of variables to detect.")
+  variables: VariableValues[];
+@doc("The first timestamp equal to or greater than the start time given will be processed.")
+  startTime: zonedDateTime;
+@doc("The last timestamp equal to or less than the end time given will be processed. If endTime equals to startTime, one single data point will be processed.")
+  endTime: zonedDateTime;
+}
+@doc("Values for each timestamp of the variable.")
+model VariableValues {
+@doc("The name of the variable.")
+  name: string;
+@doc("The timestamp.")
+  timestamps: string[];
+@doc("The value of the variable at the timestamp.")
+  values: float32[];
+}
+@doc("Summarizes information about the variables being used and the anomaly detection results for each timestamp.")
+model DetectionResult {
+@doc("Summarizes information about each variable being used. Ranked by filledNARatio in descending order.")
+  variableStates: VariableState[];
+@doc("Summarizes the anomaly detection results for each timestamp.")
+  results: AnomalyState[];
+@doc("Error details if the anomaly detection job failed.")
+  errors: ErrorResponse[];
+}
+@doc("DataNotAvailable alert will be triggered if no data can be fetched from the data source.")
+model DataNotAvailableAlertConfig {
+}
+@doc("A long-form data table has a single column that stores all the variables.")
+model LongTable {
+@doc("Header of the column that contains datetime values. This parameter is case-sensitive.")
+  timestampColumnName: string;
+@doc("Header of the column that contains the name of the variable for each data point. This parameter is case-sensitive.")
+  variableColumnName: string;
+@doc("Header of the column that contains numeric values. This parameter is case-sensitive. ")
+  valueColumnName: string;
+}
+@doc("MultiVariateAnomaly alert will be triggered for anomalies detected on multivariate time-series data based on the criteria specified.")
+model MultiVariateAnomalyAlertConfig {
+@doc("An integer between 1 and 100. Set a lower sensitivity if you only want to be notified when severe anomalies are detected. Set a higher number if you want to report as many anomalies as possible.")
+  sensitivity: int32;
+@doc("The number of time-series data points to look back and correlate anomalies. For example, if the window is set to 5 and there is an anomaly at 01:30. Assume your data comes every 5 minutes, then the service will check if the last anomaly detected was within the past 25 minutes (i.e., window size * data frequency). If so, the service will correlate this new anomaly at 01:30 with the last anomaly and show an correlation ID in the alert notification. By default, the window is set to 0 and each anomaly is considered an individual incident.")
+  correlationWindow: int32;
+@doc("True if you only want to receive one alert for each group of correlated anomalies (the alert will be sent for the earliest anomaly detected in this group). False if you want to receive an alert for every anomaly detected (regardless whether they are correlated or not).")
+  suppressCorrelatedAlerts: boolean;
+}
+@doc("Information required for Azure SQLServer data source type.")
+model SqlServer {
+@doc("Name of a SQL Server.")
+  serverName: string;
+@doc("Name of a SQL Database. This parameter is case-sensitive.")
+  databaseName: string;
+@doc("Name of a SQL table or view. This parameter is case-sensitive.")
+  tableName: string;
+}
+@doc("A webhook is a notification channel that sends alerts to a user-defined endpoint.")
+model Webhook {
+@doc("The API address to be called when an alert is triggered. MUST be Https.")
+  endpoint: string;
+@doc("(Optional) Custom headers in the API call. A string map include key-value pairs.")
+  header?: Map<string,string>;
+@doc("(Optional) For authenticating to the endpoint. Optional if authentication is not needed.")
+  credential?: string;
+}

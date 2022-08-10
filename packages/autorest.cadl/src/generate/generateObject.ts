@@ -1,12 +1,15 @@
 import { CadlObject, CadlObjectProperty } from "../interfaces";
+import { generateDocs } from "../utils/docs";
 
 export function generateObject(cadlObject: CadlObject) {
   const definitions: string[] = [];
-  definitions.push(`@doc("${cadlObject.doc}")`);
+  const doc = generateDocs(cadlObject);
+  doc && definitions.push(doc);
   definitions.push(`model ${cadlObject.name} {`);
 
   for (const property of cadlObject.properties) {
-    definitions.push(`@doc("${property.doc}")`);
+    const propertyDoc = generateDocs(property);
+    propertyDoc && definitions.push(propertyDoc);
     definitions.push(
       `  ${property.name}${getOptionalOperator(property)}: ${property.type};`
     );
