@@ -338,7 +338,7 @@
       "projectFolder": "packages/cadl-rlc-test"
     },
     {
-      "packageName": "@autorest/cadl",
+      "packageName": "@autorest/cadl-init",
       "projectFolder": "packages/autorest.cadl"
     }
   ]

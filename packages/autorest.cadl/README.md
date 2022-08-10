@@ -1,4 +1,4 @@
-# CADL Plugin for Autorest
+## Autorest cadl-init Plugin Configuration
 
 ```yaml
 version: 3.6.6

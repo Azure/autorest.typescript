@@ -86,6 +86,17 @@ packages:
       js-yaml: 4.0.0
     dev: false
 
+  /@autorest/codemodel/4.19.0:
+    resolution:
+      {
+        integrity: sha512-xzlXuHKdjn5DgJOIWLc/jujhjPF3mbsRpAoA0wDhQT/hnBEIeoT6mh6vh//5PJ50z8142cSsKp8320nMYZbl2Q==
+      }
+    engines: { node: ">=12.0.0" }
+    dependencies:
+      "@azure-tools/codegen": 2.9.1
+      js-yaml: 4.0.0
+    dev: false
+
   /@autorest/extension-base/3.4.4:
     resolution:
       {
@@ -13585,7 +13596,7 @@ packages:
       require-directory: 2.1.1
       string-width: 4.2.3
       y18n: 5.0.8
-      yargs-parser: 20.2.4
+      yargs-parser: 20.2.9
     dev: false
 
   /yargs/17.3.1:
