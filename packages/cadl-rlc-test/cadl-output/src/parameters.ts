@@ -1,12 +1,12 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { Widget } from "./models";
 
-export type WidgetServiceListParameters = RequestParameters;
-export type WidgetServiceReadParameters = RequestParameters;
+export type ListParameters = RequestParameters;
+export type ReadParameters = RequestParameters;
 
-export interface WidgetServiceCreateBodyParam {
+export interface CreateBodyParam {
     body: Widget;
 }
 
-export type WidgetServiceCreateParameters = WidgetServiceCreateBodyParam & RequestParameters;
-export type WidgetServiceCustomGetParameters = RequestParameters;
+export type CreateParameters = CreateBodyParam & RequestParameters;
+export type CustomGetParameters = RequestParameters;

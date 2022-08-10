@@ -1,45 +1,45 @@
 import { HttpResponse } from "@azure-rest/core-client";
-import { ErrorOutput, WidgetOutput } from "./outputModels";
 
 /** Ok */
-export interface WidgetServiceList200Response extends HttpResponse {
+export interface List200Response extends HttpResponse {
     status: "200";
+    body: any;
 }
 
-export interface WidgetServiceListDefaultResponse extends HttpResponse {
+export interface ListDefaultResponse extends HttpResponse {
     status: string;
-    body: ErrorOutput;
-}
-
-/** Ok */
-export interface WidgetServiceRead200Response extends HttpResponse {
-    status: "200";
-    body: WidgetOutput;
-}
-
-export interface WidgetServiceReadDefaultResponse extends HttpResponse {
-    status: string;
-    body: ErrorOutput;
+    body: any;
 }
 
 /** Ok */
-export interface WidgetServiceCreate200Response extends HttpResponse {
+export interface Read200Response extends HttpResponse {
     status: "200";
-    body: WidgetOutput;
+    body: any;
 }
 
-export interface WidgetServiceCreateDefaultResponse extends HttpResponse {
+export interface ReadDefaultResponse extends HttpResponse {
     status: string;
-    body: ErrorOutput;
+    body: any;
 }
 
 /** Ok */
-export interface WidgetServiceCustomGet200Response extends HttpResponse {
+export interface Create200Response extends HttpResponse {
     status: "200";
-    body: WidgetOutput;
+    body: any;
 }
 
-export interface WidgetServiceCustomGetDefaultResponse extends HttpResponse {
+export interface CreateDefaultResponse extends HttpResponse {
     status: string;
-    body: ErrorOutput;
+    body: any;
+}
+
+/** Ok */
+export interface CustomGet200Response extends HttpResponse {
+    status: "200";
+    body: any;
+}
+
+export interface CustomGetDefaultResponse extends HttpResponse {
+    status: string;
+    body: any;
 }
