@@ -2,42 +2,46 @@
 // Licensed under the MIT License.
 
 import { Paths } from "@azure-tools/rlc-codegen";
-import { Program } from "@cadl-lang/compiler";
+import { getDoc, Program } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
+import { getSchemaForType } from "../modelUtils.js";
 
-export function transformPaths(model: Program): Paths {
-  const [routes, _diagnostics] = getAllRoutes(model);
+export function transformPaths(program: Program): Paths {
+  const [routes, _diagnostics] = getAllRoutes(program);
   const paths: Paths = {};
   for (const route of routes) {
+    const method = {
+      description: getDoc(program, route.operation) ?? "",
+      hasOptionalOptions: route.parameters.parameters.some(
+        (p) => p.param.optional
+      ),
+      optionsName: "options",
+      responseTypes: { success: ["string"], error: [] },
+      returnType: "",
+      successStatus: ["200"],
+      operationName: route.operation.name
+    }
+    if (paths[route.path]?.methods[route.verb]) {
+      paths[route.path]?.methods[route.verb]?.push(method);
+    }
     paths[route.path] = {
       // TODO: Description
-      description: "",
+      description: getDoc(program, route.operation) ?? "",
       name: route.operation.name || "Client",
       pathParameters: route.parameters.parameters
         .filter((p) => p.type === "path")
         .map((p) => {
           return {
             name: p.name,
-            type: "string",
-            description: "param"
+            type: p.param.sourceProperty
+              ? getSchemaForType(program, p.param.sourceProperty?.type).type
+              : getSchemaForType(program, p.param.type).type,
+            description: getDoc(program, p.param)
           };
         }),
       operationGroupName: route.groupName,
       methods: {
-        [route.verb]: [
-          {
-            // TODO: Operation description
-            description: "",
-            hasOptionalOptions: route.parameters.parameters.some(
-              (p) => p.param.optional
-            ),
-            optionsName: "options",
-            responseTypes: { success: ["string"], error: [] },
-            returnType: "",
-            successStatus: ["200"],
-            operationName: route.operation.name
-          }
-        ]
+        [route.verb]: [method]
       }
     };
   }

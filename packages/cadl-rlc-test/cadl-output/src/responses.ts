@@ -1,45 +1,56 @@
 import { HttpResponse } from "@azure-rest/core-client";
+import { ErrorOutput, WidgetOutput } from "./outputModels";
 
 /** Ok */
-export interface List200Response extends HttpResponse {
+export interface WidgetServiceList200Response extends HttpResponse {
     status: "200";
     body: any;
 }
 
-export interface ListDefaultResponse extends HttpResponse {
+export interface WidgetServiceListDefaultResponse extends HttpResponse {
+export interface PetsDeleteDefaultResponse extends HttpResponse {
     status: string;
     body: any;
 }
 
-/** Ok */
-export interface Read200Response extends HttpResponse {
+/** The request has succeeded. */
+export interface WidgetServiceRead200Response extends HttpResponse {
     status: "200";
-    body: any;
+    body: WidgetOutput;
 }
 
-export interface ReadDefaultResponse extends HttpResponse {
+export interface WidgetServiceReadDefaultResponse extends HttpResponse {
+export interface PetsRead304Response extends HttpResponse {
+    status: "304";
+    body: PetOutput;
+}
+
+/** Error */
+export interface PetsReadDefaultResponse extends HttpResponse {
     status: string;
     body: any;
 }
 
-/** Ok */
-export interface Create200Response extends HttpResponse {
+/** The request has succeeded. */
+export interface WidgetServiceCreate200Response extends HttpResponse {
     status: "200";
-    body: any;
+    body: WidgetOutput;
 }
 
-export interface CreateDefaultResponse extends HttpResponse {
+export interface WidgetServiceCreateDefaultResponse extends HttpResponse {
+export interface PetsCreateDefaultResponse extends HttpResponse {
     status: string;
     body: any;
 }
 
-/** Ok */
-export interface CustomGet200Response extends HttpResponse {
+/** The request has succeeded. */
+export interface WidgetServiceCustomGet200Response extends HttpResponse {
     status: "200";
-    body: any;
+    body: WidgetOutput;
 }
 
-export interface CustomGetDefaultResponse extends HttpResponse {
+export interface WidgetServiceCustomGetDefaultResponse extends HttpResponse {
+export interface ListPetToysResponseListDefaultResponse extends HttpResponse {
     status: string;
     body: any;
 }
