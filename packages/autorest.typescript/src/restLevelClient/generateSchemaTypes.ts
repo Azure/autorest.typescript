@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CodeModel } from "@autorest/codemodel";
 import { Project } from "ts-morph";
 import { generateSchemaTypes as generateSchemaTypesForRLC } from "@azure-tools/rlc-codegen";

@@ -1,10 +1,33 @@
-import { CodeModel, HttpHeader, Operation, Response, SchemaContext, SchemaResponse } from "@autorest/codemodel";
-import { ImportKind, OperationResponse, ResponseMetadata, ResponseBodySchema, ResponseHeaderSchema } from "@azure-tools/rlc-codegen";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import {
+  CodeModel,
+  HttpHeader,
+  Operation,
+  Response,
+  SchemaContext,
+  SchemaResponse
+} from "@autorest/codemodel";
+import {
+  ImportKind,
+  OperationResponse,
+  ResponseMetadata,
+  ResponseBodySchema,
+  ResponseHeaderSchema
+} from "@azure-tools/rlc-codegen";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { responseToSchemaResponse } from "../operationHelpers";
-import { getElementType, getFormatDocs, primitiveSchemaToType } from "../schemaHelpers";
+import {
+  getElementType,
+  getFormatDocs,
+  primitiveSchemaToType
+} from "../schemaHelpers";
 
-export function transformResponseTypes(model: CodeModel, importDetails: Map<ImportKind, Set<string>>): OperationResponse[] {
+export function transformResponseTypes(
+  model: CodeModel,
+  importDetails: Map<ImportKind, Set<string>>
+): OperationResponse[] {
   const operations = getAllOperationRequests(model);
   const rlcResponses: OperationResponse[] = [];
   let importedModels = new Set<string>();
@@ -41,8 +64,9 @@ export function transformResponseTypes(model: CodeModel, importDetails: Map<Impo
   return rlcResponses;
 }
 
-
-function transformHeaders(response: Response): ResponseHeaderSchema[] | undefined {
+function transformHeaders(
+  response: Response
+): ResponseHeaderSchema[] | undefined {
   // Check if there are any required headers
   const hasDefinedHeaders =
     Boolean(response.protocol.http?.headers) &&
@@ -65,13 +89,16 @@ function transformHeaders(response: Response): ResponseHeaderSchema[] | undefine
   });
 }
 
-function transformBody(response: Response, importedModels: Set<string>): ResponseBodySchema | undefined {
+function transformBody(
+  response: Response,
+  importedModels: Set<string>
+): ResponseBodySchema | undefined {
   let schemaResponse: SchemaResponse = responseToSchemaResponse(response);
   const bodyType = getElementType(
     schemaResponse.schema,
     [SchemaContext.Output, SchemaContext.Exception],
     importedModels
-  );;
+  );
   const bodyDescription = getFormatDocs(schemaResponse.schema);
   if (!bodyType) {
     return;

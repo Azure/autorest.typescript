@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CodeModel } from "@autorest/codemodel";
 import { ImportKind, RLCModel } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";

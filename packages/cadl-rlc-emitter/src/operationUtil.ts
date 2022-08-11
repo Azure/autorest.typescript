@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { NameType, normalizeName } from "@azure-tools/rlc-codegen";
 import { OperationDetails } from "@cadl-lang/rest/http";
 

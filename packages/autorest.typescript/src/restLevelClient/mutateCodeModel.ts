@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CodeModel, Operation, Parameter, Schema } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 

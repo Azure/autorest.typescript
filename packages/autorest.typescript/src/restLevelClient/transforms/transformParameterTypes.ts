@@ -1,15 +1,34 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import {
-  CodeModel, Operation, Parameter, ParameterLocation, Property, SchemaContext,
+  CodeModel,
+  Operation,
+  Parameter,
+  ParameterLocation,
+  Property,
+  SchemaContext,
   Request as M4OperationRequest
 } from "@autorest/codemodel";
-import { ImportKind, OperationParameter, ParameterBodyMetadata, ParameterBodySchema, ParameterMetadata, ParameterMetadatas, Schema } from "@azure-tools/rlc-codegen";
+import {
+  ImportKind,
+  OperationParameter,
+  ParameterBodyMetadata,
+  ParameterBodySchema,
+  ParameterMetadata,
+  ParameterMetadatas,
+  Schema
+} from "@azure-tools/rlc-codegen";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getDocs } from "../getPropertySignature";
 import { getOperationParameters } from "../helpers/operationHelpers";
 import { getElementType, primitiveSchemaToType } from "../schemaHelpers";
 
-export function transformParameterTypes(model: CodeModel, importDetails: Map<ImportKind, Set<string>>) {
+export function transformParameterTypes(
+  model: CodeModel,
+  importDetails: Map<ImportKind, Set<string>>
+) {
   const rlcParameters: OperationParameter[] = [];
   let importedModels = new Set<string>();
   const operations = getAllOperations(model);
@@ -27,30 +46,29 @@ export function transformParameterTypes(model: CodeModel, importDetails: Map<Imp
       const parameters = getOperationParameters(operation, i);
       const request = operation.requests ? operation.requests[i] : undefined;
       // transform query param
-      const queryParams = transformQueryParameters(
-        parameters,
-        importedModels);
+      const queryParams = transformQueryParameters(parameters, importedModels);
       // transform path param
       const pathParams = transformPathParameters(
         parameters,
         model,
         importedModels
-      )
+      );
       // transform header param
       const headerParams = transformHeaderParameters(
         parameters,
-        importedModels);
-      // transform content type param
-      const contentTypeParam = transformContentTypeParameter(
-        request
-      );
-      // transform body
-      const bodyParameter = transformBodyParameters(
-        parameters,
         importedModels
       );
+      // transform content type param
+      const contentTypeParam = transformContentTypeParameter(request);
+      // transform body
+      const bodyParameter = transformBodyParameters(parameters, importedModels);
       rlcParameter.parameters.push({
-        parameters: [...queryParams, ...pathParams, ...headerParams, ...contentTypeParam],
+        parameters: [
+          ...queryParams,
+          ...pathParams,
+          ...headerParams,
+          ...contentTypeParam
+        ],
         body: bodyParameter
       });
     }
@@ -64,7 +82,7 @@ export function transformParameterTypes(model: CodeModel, importDetails: Map<Imp
 
 function transformQueryParameters(
   parameters: Parameter[],
-  importedModels: Set<string>,
+  importedModels: Set<string>
 ): ParameterMetadata[] {
   const queryParameters = parameters.filter(
     p => p.protocol.http?.in === "query"
@@ -77,10 +95,12 @@ function transformQueryParameters(
 function transformPathParameters(
   parameters: Parameter[],
   model: CodeModel,
-  importedModels: Set<string>,
+  importedModels: Set<string>
 ): ParameterMetadata[] {
   const pathParameters = parameters.filter(
-    p => p.protocol.http?.in === ParameterLocation.Uri && model.globalParameters?.indexOf(p) === -1
+    p =>
+      p.protocol.http?.in === ParameterLocation.Uri &&
+      model.globalParameters?.indexOf(p) === -1
   );
 
   return (pathParameters || []).map(qp =>
@@ -90,7 +110,7 @@ function transformPathParameters(
 
 function transformHeaderParameters(
   parameters: Parameter[],
-  importedModels: Set<string>,
+  importedModels: Set<string>
 ): ParameterMetadata[] {
   const headerParameters = parameters.filter(
     p => p.protocol.http?.in === "header"
@@ -111,21 +131,23 @@ function transformContentTypeParameter(
     return [];
   }
 
-  return [{
-    type: "header",
-    name: "contentType",
-    param: {
+  return [
+    {
+      type: "header",
       name: "contentType",
-      type: mediaTypes.map(mt => `"${mt}"`).join(" | "),
-      description: "Request content type",
-      required: false
+      param: {
+        name: "contentType",
+        type: mediaTypes.map(mt => `"${mt}"`).join(" | "),
+        description: "Request content type",
+        required: false
+      }
     }
-  }];
+  ];
 }
 
 function transformBodyParameters(
   parameters: Parameter[],
-  importedModels: Set<string>,
+  importedModels: Set<string>
 ): ParameterBodyMetadata | undefined {
   const bodyParameters = parameters.filter(p => p.protocol.http?.in === "body");
   if (!bodyParameters.length) {
@@ -133,16 +155,14 @@ function transformBodyParameters(
   }
   const isPartialBody = bodyParameters.some(p => p.isPartialBody);
   const rlcBodyParam: ParameterBodyMetadata = {
-    isPartialBody,
+    isPartialBody
   };
   if (isPartialBody) {
     rlcBodyParam.body = bodyParameters.map(bp =>
       getParamterSchema(bp, importedModels)
     );
   } else {
-    rlcBodyParam.body = [
-      getParamterSchema(bodyParameters[0], importedModels)
-    ]
+    rlcBodyParam.body = [getParamterSchema(bodyParameters[0], importedModels)];
   }
 
   return rlcBodyParam;
@@ -152,13 +172,18 @@ function getParameterMetadata(
   paramType: "query" | "path" | "header",
   parameter: Property | Parameter,
   importedModels = new Set<string>(),
-  isPrimitiveSchema = false) {
-  const schema: Schema = getParamterSchema(parameter, importedModels, isPrimitiveSchema);
+  isPrimitiveSchema = false
+) {
+  const schema: Schema = getParamterSchema(
+    parameter,
+    importedModels,
+    isPrimitiveSchema
+  );
   return {
     type: paramType,
     name: schema.name,
     param: schema
-  };;
+  };
 }
 
 function getParamterSchema(
@@ -184,7 +209,11 @@ function getParamterSchema(
       SchemaContext.Exception
     ]);
   } else {
-    type = getElementType(parameter.schema, [SchemaContext.Input], importedModels);
+    type = getElementType(
+      parameter.schema,
+      [SchemaContext.Input],
+      importedModels
+    );
   }
 
   return {
