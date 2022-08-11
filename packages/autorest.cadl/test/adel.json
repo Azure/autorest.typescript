@@ -10,7 +10,9 @@
       }
     ]
   },
-  "schemes": ["https"],
+  "schemes": [
+    "https"
+  ],
   "x-ms-parameterized-host": {
     "hostTemplate": "https://{resource}.cognitiveservices.azure.com",
     "useSchemePrefix": false,
@@ -25,8 +27,12 @@
       }
     ]
   },
-  "produces": ["application/json"],
-  "consumes": ["application/json"],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
   "tags": [],
   "paths": {
     "/alertConfigs": {
@@ -184,7 +190,9 @@
             }
           }
         },
-        "consumes": ["application/merge-patch+json"],
+        "consumes": [
+          "application/merge-patch+json"
+        ],
         "x-ms-examples": {
           "UpdateAlertConfig": {
             "$ref": "./examples/UpdateAlertConfig.json"
@@ -515,7 +523,9 @@
             }
           }
         },
-        "consumes": ["application/merge-patch+json"],
+        "consumes": [
+          "application/merge-patch+json"
+        ],
         "x-ms-examples": {
           "UpdateHook": {
             "$ref": "./examples/UpdateHook.json"
@@ -830,7 +840,9 @@
             }
           }
         },
-        "consumes": ["application/merge-patch+json"],
+        "consumes": [
+          "application/merge-patch+json"
+        ],
         "x-ms-examples": {
           "UpdateSchedule": {
             "$ref": "./examples/UpdateSchedule.json"
@@ -1262,7 +1274,10 @@
     },
     "AlignMode": {
       "type": "string",
-      "enum": ["Inner", "Outer"],
+      "enum": [
+        "Inner",
+        "Outer"
+      ],
       "x-ms-enum": {
         "name": "AlignMode",
         "modelAsString": true
@@ -1286,7 +1301,10 @@
         }
       },
       "description": "Settings that control how variables are aligned to the same data frequency interval and how missing values are handled.",
-      "required": ["alignMode", "fillNAMethod"]
+      "required": [
+        "alignMode",
+        "fillNAMethod"
+      ]
     },
     "AnomalyInterpretation": {
       "type": "object",
@@ -1309,7 +1327,11 @@
         }
       },
       "description": "Information on variables that contributed to a given anomaly. This field only applies to timestamps that are detected as anomalies.",
-      "required": ["variable", "contributionScore", "correlationChanges"]
+      "required": [
+        "variable",
+        "contributionScore",
+        "correlationChanges"
+      ]
     },
     "AnomalyState": {
       "type": "object",
@@ -1337,7 +1359,11 @@
         }
       },
       "description": "Summarizes the anomaly detection results for each timestamp.",
-      "required": ["timestamp", "value", "errors"]
+      "required": [
+        "timestamp",
+        "value",
+        "errors"
+      ]
     },
     "AnomalyValue": {
       "type": "object",
@@ -1375,11 +1401,18 @@
         }
       },
       "description": "Detection results for a given timestamp and information for diagnosing if the timestamp is an anomaly.",
-      "required": ["isAnomaly", "score", "severity", "interpretation"]
+      "required": [
+        "isAnomaly",
+        "score",
+        "severity",
+        "interpretation"
+      ]
     },
     "AuthenticationType": {
       "type": "string",
-      "enum": ["ManagedIdentity"],
+      "enum": [
+        "ManagedIdentity"
+      ],
       "x-ms-enum": {
         "name": "AuthenticationType",
         "modelAsString": true
@@ -1409,11 +1442,21 @@
         }
       },
       "description": "A list of correlated variable(s) whose correlation with this contributing variable has changed significantly. This field can be empty if there were no significant correlation changes between the contributing variable and other variables.",
-      "required": ["changedVariables", "changedValues"]
+      "required": [
+        "changedVariables",
+        "changedValues"
+      ]
     },
     "DataGranularityUnit": {
       "type": "string",
-      "enum": ["Minutes", "Hours", "Days", "Weeks", "Months", "Years"],
+      "enum": [
+        "Minutes",
+        "Hours",
+        "Days",
+        "Weeks",
+        "Months",
+        "Years"
+      ],
       "x-ms-enum": {
         "name": "DataGranularityUnit",
         "modelAsString": true
@@ -1440,7 +1483,9 @@
       },
       "description": "Format and schema details of your data.",
       "discriminator": "dataSchemaType",
-      "required": ["dataSchemaType"]
+      "required": [
+        "dataSchemaType"
+      ]
     },
     "DataSourceInfo": {
       "type": "object",
@@ -1455,7 +1500,10 @@
       },
       "description": "Details about your data source, including data source type, location, authentication method, and so on.",
       "discriminator": "dataSourceType",
-      "required": ["dataSourceType", "authenticationType"]
+      "required": [
+        "dataSourceType",
+        "authenticationType"
+      ]
     },
     "Dataset": {
       "type": "object",
@@ -1580,7 +1628,10 @@
         }
       },
       "description": "Returns data aligned to the data granularity.",
-      "required": ["columns", "values"]
+      "required": [
+        "columns",
+        "values"
+      ]
     },
     "DetectionRequest": {
       "type": "object",
@@ -1606,7 +1657,11 @@
         }
       },
       "description": "The multivariate time-series data to be used for inference.",
-      "required": ["variables", "startTime", "endTime"]
+      "required": [
+        "variables",
+        "startTime",
+        "endTime"
+      ]
     },
     "DetectionResult": {
       "type": "object",
@@ -1643,7 +1698,11 @@
         }
       },
       "description": "Summarizes information about the variables being used and the anomaly detection results for each timestamp.",
-      "required": ["variableStates", "results", "errors"]
+      "required": [
+        "variableStates",
+        "results",
+        "errors"
+      ]
     },
     "DiagnosticsInfo": {
       "type": "object",
@@ -1665,7 +1724,10 @@
         }
       },
       "description": "Summarizes information about the model and each variable being used.",
-      "required": ["modelState", "variableStates"]
+      "required": [
+        "modelState",
+        "variableStates"
+      ]
     },
     "Error": {
       "type": "object",
@@ -1680,11 +1742,16 @@
               "type": "string"
             }
           },
-          "required": ["code", "message"],
+          "required": [
+            "code",
+            "message"
+          ],
           "x-cadl-name": "(anonymous model)"
         }
       },
-      "required": ["error"]
+      "required": [
+        "error"
+      ]
     },
     "ErrorResponse": {
       "type": "object",
@@ -1701,7 +1768,10 @@
         }
       },
       "description": "Error details for a failed job.",
-      "required": ["code", "message"]
+      "required": [
+        "code",
+        "message"
+      ]
     },
     "Evaluation": {
       "type": "object",
@@ -1797,7 +1867,12 @@
     },
     "EvaluationStatus": {
       "type": "string",
-      "enum": ["CREATED", "RUNNING", "COMPLETED", "FAILED"],
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
       "x-ms-enum": {
         "name": "EvaluationStatus",
         "modelAsString": true
@@ -1805,7 +1880,12 @@
     },
     "FillNAMethod": {
       "type": "string",
-      "enum": ["Previous", "Subsequent", "Linear", "Customized"],
+      "enum": [
+        "Previous",
+        "Subsequent",
+        "Linear",
+        "Customized"
+      ],
       "x-ms-enum": {
         "name": "FillNAMethod",
         "modelAsString": true
@@ -2021,7 +2101,12 @@
     },
     "ModelStatus": {
       "type": "string",
-      "enum": ["CREATED", "RUNNING", "COMPLETED", "FAILED"],
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
       "x-ms-enum": {
         "name": "ModelStatus",
         "modelAsString": true
@@ -2061,7 +2146,10 @@
     },
     "OrderBy": {
       "type": "string",
-      "enum": ["ASCENDING", "DESCENDING"],
+      "enum": [
+        "ASCENDING",
+        "DESCENDING"
+      ],
       "x-ms-enum": {
         "name": "OrderBy",
         "modelAsString": true
@@ -2082,7 +2170,9 @@
           "type": "string"
         }
       },
-      "required": ["value"]
+      "required": [
+        "value"
+      ]
     },
     "Page_Dataset": {
       "type": "object",
@@ -2099,7 +2189,9 @@
           "type": "string"
         }
       },
-      "required": ["value"]
+      "required": [
+        "value"
+      ]
     },
     "Page_Evaluation": {
       "type": "object",
@@ -2116,7 +2208,9 @@
           "type": "string"
         }
       },
-      "required": ["value"]
+      "required": [
+        "value"
+      ]
     },
     "Page_Hook": {
       "type": "object",
@@ -2133,7 +2227,9 @@
           "type": "string"
         }
       },
-      "required": ["value"]
+      "required": [
+        "value"
+      ]
     },
     "Page_Model": {
       "type": "object",
@@ -2150,7 +2246,9 @@
           "type": "string"
         }
       },
-      "required": ["value"]
+      "required": [
+        "value"
+      ]
     },
     "Page_Schedule": {
       "type": "object",
@@ -2167,7 +2265,9 @@
           "type": "string"
         }
       },
-      "required": ["value"]
+      "required": [
+        "value"
+      ]
     },
     "Page_ScheduleReplay": {
       "type": "object",
@@ -2184,11 +2284,18 @@
           "type": "string"
         }
       },
-      "required": ["value"]
+      "required": [
+        "value"
+      ]
     },
     "ReplayStatus": {
       "type": "string",
-      "enum": ["CREATED", "RUNNING", "COMPLETED", "FAILED"],
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
       "x-ms-enum": {
         "name": "ReplayStatus",
         "modelAsString": true
@@ -2255,7 +2362,12 @@
           "description": "The last timestamp equal to or less than the end time given will be used for model evaluation. If endTime equals to startTime, one single data point will be processed."
         }
       },
-      "required": ["modelName", "datasetName", "startTime", "endTime"]
+      "required": [
+        "modelName",
+        "datasetName",
+        "startTime",
+        "endTime"
+      ]
     },
     "Request_Model": {
       "type": "object",
@@ -2289,7 +2401,11 @@
           "description": "Settings that control how variables are aligned to the same data frequency interval and how missing values are handled."
         }
       },
-      "required": ["datasetName", "trainingTimeRangeList", "alignPolicy"]
+      "required": [
+        "datasetName",
+        "trainingTimeRangeList",
+        "alignPolicy"
+      ]
     },
     "Request_Schedule": {
       "type": "object",
@@ -2327,7 +2443,10 @@
           "description": "(Optional) Criteria that determine which anomalies should trigger an alert and via which notification channel(s). This parameter is case-sensitive."
         }
       },
-      "required": ["modelName", "datasetName"]
+      "required": [
+        "modelName",
+        "datasetName"
+      ]
     },
     "Request_ScheduleReplay": {
       "type": "object",
@@ -2352,7 +2471,11 @@
           "description": "The last timestamp equal to or less than the end time given will be used for relay. If endTime equals to startTime, one single data point will be processed."
         }
       },
-      "required": ["scheduleName", "startTime", "endTime"]
+      "required": [
+        "scheduleName",
+        "startTime",
+        "endTime"
+      ]
     },
     "Schedule": {
       "type": "object",
@@ -2460,7 +2583,9 @@
         }
       },
       "description": "Historical anomaly detection results for an inference schedule.",
-      "required": ["results"]
+      "required": [
+        "results"
+      ]
     },
     "ScheduleReplay": {
       "type": "object",
@@ -2545,7 +2670,11 @@
     },
     "ScheduleStatus": {
       "type": "string",
-      "enum": ["ACTIVE", "CLIENTPAUSED", "SERVERPAUSED"],
+      "enum": [
+        "ACTIVE",
+        "CLIENTPAUSED",
+        "SERVERPAUSED"
+      ],
       "x-ms-enum": {
         "name": "ScheduleStatus",
         "modelAsString": true
@@ -2583,7 +2712,10 @@
         }
       },
       "description": "Updatable properties for a given inference schedule.",
-      "required": ["modelName", "status"]
+      "required": [
+        "modelName",
+        "status"
+      ]
     },
     "SqlServer": {
       "type": "object",
@@ -2602,7 +2734,11 @@
         }
       },
       "description": "Information required for Azure SQLServer data source type.",
-      "required": ["serverName", "databaseName", "tableName"],
+      "required": [
+        "serverName",
+        "databaseName",
+        "tableName"
+      ],
       "allOf": [
         {
           "$ref": "#/definitions/DataSourceInfo"
@@ -2625,7 +2761,10 @@
         }
       },
       "description": "A time range of data for processing. Both the start and end time are inclusive.",
-      "required": ["startTime", "endTime"]
+      "required": [
+        "startTime",
+        "endTime"
+      ]
     },
     "VariableState": {
       "type": "object",
@@ -2697,7 +2836,11 @@
         }
       },
       "description": "Values for each timestamp of the variable.",
-      "required": ["name", "timestamps", "values"]
+      "required": [
+        "name",
+        "timestamps",
+        "values"
+      ]
     },
     "Webhook": {
       "type": "object",
@@ -2719,7 +2862,9 @@
         }
       },
       "description": "A webhook is a notification channel that sends alerts to a user-defined endpoint.",
-      "required": ["endpoint"],
+      "required": [
+        "endpoint"
+      ],
       "allOf": [
         {
           "$ref": "#/definitions/Hook"
@@ -2775,7 +2920,12 @@
       "in": "query",
       "required": false,
       "type": "string",
-      "enum": ["CREATED", "RUNNING", "COMPLETED", "FAILED"],
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
       "x-ms-enum": {
         "name": "EvaluationStatus",
         "modelAsString": true
@@ -2816,7 +2966,10 @@
       "in": "query",
       "required": false,
       "type": "string",
-      "enum": ["ASCENDING", "DESCENDING"],
+      "enum": [
+        "ASCENDING",
+        "DESCENDING"
+      ],
       "x-ms-enum": {
         "name": "OrderBy",
         "modelAsString": true
@@ -2864,7 +3017,12 @@
       "in": "query",
       "required": false,
       "type": "string",
-      "enum": ["CREATED", "RUNNING", "COMPLETED", "FAILED"],
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
       "x-ms-enum": {
         "name": "ModelStatus",
         "modelAsString": true
@@ -2893,7 +3051,12 @@
       "in": "query",
       "required": false,
       "type": "string",
-      "enum": ["CREATED", "RUNNING", "COMPLETED", "FAILED"],
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
       "x-ms-enum": {
         "name": "ReplayStatus",
         "modelAsString": true
@@ -2933,7 +3096,11 @@
       "in": "query",
       "required": false,
       "type": "string",
-      "enum": ["ACTIVE", "CLIENTPAUSED", "SERVERPAUSED"],
+      "enum": [
+        "ACTIVE",
+        "CLIENTPAUSED",
+        "SERVERPAUSED"
+      ],
       "x-ms-enum": {
         "name": "ScheduleStatus",
         "modelAsString": true

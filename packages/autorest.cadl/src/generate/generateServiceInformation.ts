@@ -13,7 +13,9 @@ export function generateServiceInformation(
 
   if (serviceInformation.endpoint) {
     definitions.push(
-      `@server("${serviceInformation.endpoint}", "${serviceInformation.doc}"`
+      `@server("${serviceInformation.endpoint}", "${
+        serviceInformation.doc ?? ""
+      }"`
     );
     if (
       serviceInformation.endpointParameters &&
@@ -30,7 +32,7 @@ export function generateServiceInformation(
   }
   const serviceDoc = generateDocs(serviceInformation);
   serviceDoc && definitions.push(serviceDoc);
-  definitions.push(`namespace ${serviceInformation.name};`);
+  definitions.push(`namespace ${serviceInformation.name.replace(/ /g, "")};`);
 
   return definitions.join("\n");
 }

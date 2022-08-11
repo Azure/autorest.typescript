@@ -18,6 +18,7 @@ import { transformValue } from "../utils/values";
 const cadlTypes = new Map<SchemaType, string>([
   [SchemaType.Date, "plainDate"],
   [SchemaType.DateTime, "zonedDateTime"],
+  [SchemaType.UnixTime, "plainTime"],
   [SchemaType.String, "string"],
   [SchemaType.Time, "plainTime"],
   [SchemaType.Uuid, "string"],
@@ -53,7 +54,7 @@ export function transformObjectProperty(
   };
 }
 
-function getCadlType(schema: Schema): string {
+export function getCadlType(schema: Schema): string {
   const schemaType = schema.type;
 
   if (isConstantSchema(schema)) {

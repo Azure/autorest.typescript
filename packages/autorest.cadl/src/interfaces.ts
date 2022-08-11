@@ -3,9 +3,33 @@ export interface CadlProgram {
   serviceInformation: ServiceInformation;
 }
 
-export interface ServiceInformation {
+export interface WithDoc {
+  doc?: string | string[];
+}
+
+export interface WithSummary {
+  summary?: string;
+}
+
+export interface CadlOperationGroup extends WithDoc {
   name: string;
-  doc?: string;
+  operations: CadlOperation[];
+}
+
+export interface CadlOperation extends WithDoc, WithSummary {
+  name: string;
+  verb: "get" | "post" | "put" | "delete";
+  route: string;
+  responses: string[];
+  parameters: CadlParameters;
+}
+
+export interface CadlParameters {
+  pathParameters: CadlObjectProperty[];
+}
+
+export interface ServiceInformation extends WithDoc {
+  name: string;
   version?: string;
   endpoint?: string;
   endpointParameters?: EndpointParameter[];
@@ -13,31 +37,29 @@ export interface ServiceInformation {
   consumes?: string[];
 }
 
-export interface EndpointParameter {
+export interface EndpointParameter extends WithDoc {
   name: string;
-  doc: string | string[];
 }
 
-export interface CadlEnum {
+export interface CadlEnum extends WithDoc {
   name: string;
   members: (string | number | boolean)[];
   isExtensible: boolean;
 }
 
-export interface CadlObjectProperty {
-  doc: string | string[];
+export interface CadlObjectProperty extends WithDoc {
   name: string;
   isOptional: boolean;
   type: string;
 }
 
-export interface CadlObject {
+export interface CadlObject extends WithDoc {
   properties: CadlObjectProperty[];
-  doc: string | string[];
   name: string;
 }
 
 export interface Models {
   enums: CadlEnum[];
   objects: CadlObject[];
+  operationGroups: CadlOperationGroup[];
 }

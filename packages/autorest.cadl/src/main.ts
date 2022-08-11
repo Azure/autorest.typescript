@@ -17,6 +17,8 @@ import { transformObject } from "./transforms/transformObject";
 import { format } from "prettier";
 import { generateServiceInformation } from "./generate/generateServiceInformation";
 import { transformServiceInformation } from "./transforms/transformServiceInformation";
+import { transformOperationGroup } from "./transforms/transformOperations";
+import { generateOperationGroup } from "./generate/generateOperations";
 
 export async function processRequest(host: AutorestExtensionHost) {
   const session = await startSession<CodeModel>(host, codeModelSchema);
@@ -28,6 +30,10 @@ export async function processRequest(host: AutorestExtensionHost) {
 
   const cadlObjects = model.schemas.objects?.map(transformObject) ?? [];
 
+  const cadlOperationGroups = model.operationGroups.map(
+    transformOperationGroup
+  );
+
   const file = [
     `import "@cadl-lang/rest";`,
     `using Cadl.Rest;`,
@@ -36,13 +42,17 @@ export async function processRequest(host: AutorestExtensionHost) {
 
   file.push(generateServiceInformation(transformServiceInformation(model)));
 
-  const enums = writeEnums(cadlEnums).join(`\n`);
-  const objects = cadlObjects.map(generateObject).join("\n");
+  const enums = writeEnums(cadlEnums).join(`\n\n`);
+  const objects = cadlObjects.map(generateObject).join("\n\n");
+  const operationGroups = cadlOperationGroups
+    .map(generateOperationGroup)
+    .join("\n\n");
   const models = [enums, objects].join("\n");
 
   file.push(models);
-
+  file.push(operationGroups);
   const content = file.join("\n");
+
   await writeFile("models-raw.cadl", content);
 
   const formattedFile = format(content, {

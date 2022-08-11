@@ -4,7 +4,7 @@ import { generateDocs } from "../utils/docs";
 export function generateObject(cadlObject: CadlObject) {
   const definitions: string[] = [];
   const doc = generateDocs(cadlObject);
-  doc && definitions.push(doc);
+  definitions.push(doc);
   definitions.push(`model ${cadlObject.name} {`);
 
   for (const property of cadlObject.properties) {

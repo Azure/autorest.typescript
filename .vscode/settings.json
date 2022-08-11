@@ -10,5 +10,6 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "cadl.cadl-server.path": "${workspaceRoot}/packages/autorest.cadl/node_modules/@cadl-lang/compiler"
 }
