@@ -7,12 +7,15 @@ import {
   WriterFunction
 } from "ts-morph";
 import * as path from "path";
-import { NameType, normalizeName } from "./helpers/nameUtils";
-import { isConstantSchema } from "./helpers/schemaHelpers";
-import { generateMethodShortcutImplementation } from "./generateMethodShortcuts";
-import { RLCModel, Schema } from "./interfaces";
+import { NameType, normalizeName } from "./helpers/nameUtils.js";
+import { isConstantSchema } from "./helpers/schemaHelpers.js";
+import { generateMethodShortcutImplementation } from "./generateMethodShortcuts.js";
+import { RLCModel, Schema, File } from "./interfaces.js";
 
-export function generateClient(model: RLCModel, project: Project) {
+export function generateClient(
+  model: RLCModel,
+  project: Project
+): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
   const { srcPath } = model;
   const clientFile = project.createSourceFile(
@@ -31,7 +34,8 @@ export function generateClient(model: RLCModel, project: Project) {
     return undefined;
   }
   const { multiClient, batch } = model.options;
-  const { addCredentials, credentialScopes, credentialKeyHeaderName } = model.options
+  const { addCredentials, credentialScopes, credentialKeyHeaderName } =
+    model.options;
   const credentialTypes =
     credentialScopes && credentialScopes.length > 0 ? ["TokenCredential"] : [];
 
@@ -98,6 +102,7 @@ export function generateClient(model: RLCModel, project: Project) {
       moduleSpecifier: "./clientDefinitions"
     }
   ]);
+  return { path: clientFile.getFilePath(), content: clientFile.getFullText() };
 }
 
 function isSecurityInfoDefined(
@@ -119,7 +124,7 @@ function getClientFactoryBody(
   const { includeShortcuts, packageDetails } = model.options;
   let clientPackageName = packageDetails.nameWithoutScope;
   const packageVersion = packageDetails.version;
-  const { endpoint, endpointParameterName } = model.options
+  const { endpoint, endpointParameterName } = model.options;
   let baseUrl: string;
   if (endpointParameterName) {
     const parsedEndpoint = endpoint?.replace(
@@ -229,10 +234,12 @@ function getApiVersion(model: RLCModel): string | undefined {
     return undefined;
   }
 
-  if (model.apiVersionParam.length === 1 && isConstantSchema(model.apiVersionParam[0] as Schema)) {
+  if (
+    model.apiVersionParam.length === 1 &&
+    isConstantSchema(model.apiVersionParam[0] as Schema)
+  ) {
     return model.apiVersionParam[0].default;
   }
 
   return undefined;
 }
-

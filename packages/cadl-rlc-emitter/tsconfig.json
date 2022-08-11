@@ -25,6 +25,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
+    "resolveJsonModule": true,
     "skipLibCheck": true
   },
   "ts-node": {

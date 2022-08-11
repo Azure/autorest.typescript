@@ -4,7 +4,7 @@ import {
   normalizeName,
   ReservedName
 } from "./helpers/nameUtils.js";
-import { Paths, PathParameter } from "./interfaces.js";
+import { Paths, PathParameter, PathMetadata } from "./interfaces.js";
 
 export const REST_CLIENT_RESERVED: ReservedName[] = [
   { name: "path", reservedFor: [NameType.Property, NameType.OperationGroup] },
@@ -31,26 +31,27 @@ export function generateMethodShortcutImplementation(
       CasingConvention.Camel
     );
 
-    keys[groupName] = buildOperationDeclarations(paths);
+    if (keys[groupName]) {
+      keys[groupName].push(...buildOperationDeclarations(path, paths[path]))
+    } else {
+      keys[groupName] = buildOperationDeclarations(path, paths[path]);
+    }
   }
   return keys;
 }
 
-function buildOperationDeclarations(paths: Paths) {
+function buildOperationDeclarations(path: string, pathMetadata: PathMetadata) {
   let ops: string[] = [];
-
-  for (const path of Object.keys(paths)) {
-    for(const method of Object.keys(paths[path].methods)) {
-      const pathParams = paths[path]?.pathParameters;
-      const name = paths[path].methods[method][0].operationName;
-      const methodDefinitions = generateOperationDeclaration(
-        path,
-        name,
-        method,
-        pathParams
-      );
-      ops = [...ops, methodDefinitions];
-    }
+  for(const method of Object.keys(pathMetadata.methods)) {
+    const pathParams = pathMetadata?.pathParameters;
+    const name = pathMetadata.methods[method][0].operationName;
+    const methodDefinitions = generateOperationDeclaration(
+      path,
+      name,
+      method,
+      pathParams
+    );
+    ops = [...ops, methodDefinitions];
   }
 
   return ops;

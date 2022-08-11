@@ -8,10 +8,13 @@ import {
   generateSchemaTypes,
   buildResponseTypes,
   File,
+  generateClient
 } from "@azure-tools/rlc-codegen";
 import { dirname, isAbsolute, join } from "path";
 import { Project } from "ts-morph";
 import { transformRLCModel } from "./transform/transform.js";
+import { prettierTypeScriptOptions } from "./lib.js";
+import { format } from "prettier";
 
 export async function $onEmit(program: Program) {
   const rlcModels = await transformRLCModel(program);
@@ -19,6 +22,7 @@ export async function $onEmit(program: Program) {
   await emitClientDefinition(rlcModels, program);
   await emitModels(rlcModels, program, project);
   await emitResponseTypes(rlcModels, program);
+  await emitClientFactory(rlcModels, program, project);
 }
 
 async function emitModels(
@@ -55,12 +59,20 @@ async function emitResponseTypes(rlcModels: RLCModel, program: Program) {
   }
 }
 
+async function emitClientFactory(rlcModels: RLCModel, program: Program, project: Project) {
+  const clientFactoryFile = generateClient(rlcModels, project);
+  if (clientFactoryFile) {
+    await emitFile(clientFactoryFile, program);
+  }
+}
+
 async function emitFile(file: File, program: Program) {
   const host: CompilerHost = program.host;
   const filePath =
     isAbsolute(file.path) || !program.compilerOptions.outputPath
       ? file.path
       : join(program.compilerOptions.outputPath, file.path);
+  const prettierFileContent = format(file.content, prettierTypeScriptOptions)
   await host.mkdirp(dirname(filePath));
-  await host.writeFile(filePath, file.content);
+  await host.writeFile(filePath, prettierFileContent);
 }
