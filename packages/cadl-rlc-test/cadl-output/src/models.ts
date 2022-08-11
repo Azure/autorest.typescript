@@ -1,5 +1,5 @@
-export interface Widget {
-    id: string;
-    weight: number;
-    color: "red" | "blue";
+export interface Pet {
+    name: string;
+    tag?: string;
+    age: number;
 }

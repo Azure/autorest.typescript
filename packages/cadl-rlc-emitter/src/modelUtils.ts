@@ -7,6 +7,7 @@ import {
   EnumType,
   getDoc,
   getFormat,
+  getFriendlyName,
   getIntrinsicModelName,
   getKnownValues,
   getMaxLength,
@@ -39,8 +40,8 @@ import {
   isStatusCode
 } from "@cadl-lang/rest/http";
 
-export function getSchemaForType(program: Program, type: Type) {
-  const builtinType = mapCadlTypeToTypeScript(program, type);
+export function getSchemaForType(program: Program, type: Type, usage?: SchemaContext[]) {
+  const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(program, type);
@@ -50,11 +51,21 @@ export function getSchemaForType(program: Program, type: Type) {
     return builtinType;
   }
   if (type.kind === "Array") {
-    return getSchemaForArray(program, type);
+    const schema =  getSchemaForArray(program, type, usage);
+    if (usage && usage.includes(SchemaContext.Output)) {
+      schema.outputTypeName = `Array<${schema.items.name}Output>`;
+    }
+    schema.usage = usage;
+    return schema;
   } else if (type.kind === "Model") {
-    return getSchemaForModel(program, type);
+    const schema = getSchemaForModel(program, type, usage) as any;
+    if (usage && usage.includes(SchemaContext.Output)) {
+      schema.outputTypeName = `${schema.name}Output`;
+    }
+    schema.usage = usage;
+    return schema;
   } else if (type.kind === "Union") {
-    return getSchemaForUnion(program, type);
+    return getSchemaForUnion(program, type, usage);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   }
@@ -76,10 +87,13 @@ function includeDerivedModel(model: ModelType): boolean {
 }
 
 function isNullType(program: Program, type: Type): boolean {
-  return isIntrinsic(program, type) && getIntrinsicModelName(program, type) === "null";
+  return (
+    isIntrinsic(program, type) &&
+    getIntrinsicModelName(program, type) === "null"
+  );
 }
 
-function getSchemaForUnion(program: Program, union: UnionType) {
+function getSchemaForUnion(program: Program, union: UnionType, usage?: SchemaContext[]) {
   let type: string;
   const nonNullOptions = union.options.filter((t) => !isNullType(program, t));
   const nullable = union.options.length != nonNullOptions.length;
@@ -115,7 +129,7 @@ function getSchemaForUnion(program: Program, union: UnionType) {
     // Model unions can only ever be a model type with 'null'
     if (nonNullOptions.length === 1) {
       // Get the schema for the model type
-      const schema: any = getSchemaForType(program, nonNullOptions[0]);
+      const schema: any = getSchemaForType(program, nonNullOptions[0], usage);
       if (schema) {
         schema["x-nullable"] = nullable;
       }
@@ -125,7 +139,7 @@ function getSchemaForUnion(program: Program, union: UnionType) {
       reportDiagnostic(program, {
         code: "union-unsupported",
         messageId: "null",
-        target: union,
+        target: union
       });
       return {};
     }
@@ -143,7 +157,10 @@ function getSchemaForUnion(program: Program, union: UnionType) {
   const schema: any = { type };
   if (values.length > 0) {
     schema.enum = values;
-    schema.type = type === "string" ? values.map(item => `"${item}"`).join(' | '): values.join(' | ');
+    schema.type =
+      type === "string"
+        ? values.map((item) => `"${item}"`).join(" | ")
+        : values.join(" | ");
   }
   if (nullable) {
     schema["x-nullable"] = true;
@@ -154,7 +171,7 @@ function getSchemaForUnion(program: Program, union: UnionType) {
   function reportInvalidUnionForTypescript() {
     reportDiagnostic(program, {
       code: "union-unsupported",
-      target: union,
+      target: union
     });
   }
 }
@@ -293,9 +310,10 @@ function isSchemaProperty(program: Program, property: ModelTypeProperty) {
 //       });
 //   }
 // }
-function getSchemaForModel(program: Program, model: ModelType) {
+function getSchemaForModel(program: Program, model: ModelType, usage?: SchemaContext[]) {
+  const friendlyName = getFriendlyName(program, model);
   let modelSchema: ObjectSchema = {
-    name: model.name,
+    name: friendlyName?? model.name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };
@@ -304,7 +322,7 @@ function getSchemaForModel(program: Program, model: ModelType) {
 
   // getSchemaOrRef on all children to push them into components.schemas
   for (const child of derivedModels) {
-    getSchemaForType(program, child);
+    getSchemaForType(program, child, usage);
   }
 
   const discriminator = getDiscriminator(program, model);
@@ -350,7 +368,7 @@ function getSchemaForModel(program: Program, model: ModelType) {
     }
 
     const description = getDoc(program, prop);
-    const propSchema = getSchemaForType(program, prop.type);
+    const propSchema = getSchemaForType(program, prop.type, usage);
     if (propSchema === undefined) {
       continue;
     }
@@ -415,31 +433,31 @@ function getSchemaForModel(program: Program, model: ModelType) {
   ) {
     // Take the base model schema but carry across the documentation property
     // that we set before
-    const baseSchema = getSchemaForType(program, model.baseModel);
+    const baseSchema = getSchemaForType(program, model.baseModel, usage);
     modelSchema = {
       ...baseSchema,
       description: modelSchema.description
     };
   } else if (model.baseModel) {
     modelSchema.parents = {
-      all: [getSchemaForType(program, model.baseModel)],
-      immediate: [getSchemaForType(program, model.baseModel)]
+      all: [getSchemaForType(program, model.baseModel, usage)],
+      immediate: [getSchemaForType(program, model.baseModel, usage)]
     };
   }
 
   return modelSchema;
 }
-function getSchemaForArray(program: Program, array: ArrayType) {
+function getSchemaForArray(program: Program, array: ArrayType, usage?: SchemaContext[]) {
   const target = array.elementType;
   const schema = {
-    type: "array",
-    items: getSchemaForType(program, target)
+    type: `array`,
+    items: getSchemaForType(program, target, usage)
   } as any;
   return schema;
 }
 // Map an Cadl type to an OA schema. Returns undefined when the resulting
 // OA schema is just a regular object schema.
-function mapCadlTypeToTypeScript(program: Program, cadlType: Type): any {
+function mapCadlTypeToTypeScript(program: Program, cadlType: Type, usage?: SchemaContext[]): any {
   switch (cadlType.kind) {
     case "Number":
       return { type: "number", enum: [cadlType.value] };
@@ -448,7 +466,8 @@ function mapCadlTypeToTypeScript(program: Program, cadlType: Type): any {
     case "Boolean":
       return { type: "boolean", enum: [cadlType.value] };
     case "Model":
-      return mapCadlIntrinsicModelToTypeScript(program, cadlType);
+    case 'ModelProperty':
+      return mapCadlIntrinsicModelToTypeScript(program, cadlType, usage);
   }
 }
 function applyIntrinsicDecorators(
@@ -463,6 +482,11 @@ function applyIntrinsicDecorators(
 
   if (isString && !target.documentation && docStr) {
     newTarget.description = docStr;
+  }
+
+  const friendlyName = getFriendlyName(program, cadlType);
+  if(friendlyName) {
+    newTarget.name = friendlyName;
   }
 
   const summaryStr = getSummary(program, cadlType);
@@ -538,7 +562,10 @@ function getSchemaForEnum(program: Program, e: EnumType) {
   const schema: any = { type, description: getDoc(program, e) };
   if (values.length > 0) {
     schema.enum = values;
-    schema.type = type === "string" ? values.map(item => `"${item}"`).join('|'): values.join('|');
+    schema.type =
+      type === "string"
+        ? values.map((item) => `"${item}"`).join("|")
+        : values.join("|");
   }
 
   return schema;
@@ -552,7 +579,8 @@ function getSchemaForEnum(program: Program, e: EnumType) {
  */
 function mapCadlIntrinsicModelToTypeScript(
   program: Program,
-  cadlType: ModelType
+  cadlType: ModelType | ModelTypeProperty,
+  usage?: SchemaContext[]
 ): any | undefined {
   if (!isIntrinsic(program, cadlType)) {
     return undefined;
@@ -630,10 +658,10 @@ function mapCadlIntrinsicModelToTypeScript(
       return { type: "string", format: "duration" };
     case "Map":
       // We assert on valType because Map types always have a type
-      const valType = cadlType.properties.get("v");
+      const valType = (cadlType as ModelType)?.properties.get("v");
       return {
         type: "object",
-        additionalProperties: getSchemaForType(program, valType!.type)
+        additionalProperties: getSchemaForType(program, valType!.type, usage)
       };
   }
 }

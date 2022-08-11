@@ -1,34 +1,41 @@
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for WidgetService operations */
-export interface WidgetServiceOperations {
+/** Contains operations for Pets operations */
+export interface PetsOperations {
+    /** Returns a pet. Supports eTags. */
+    read(petId: number, options: Options): StreamableMethod<>;
     create(options: Options): StreamableMethod<>;
-    read(id: string, options: Options): StreamableMethod<>;
-    customGet(options: Options): StreamableMethod<>;
 }
 
-export interface Create {
-    post(options: Options): StreamableMethod<>;
+/** Contains operations for ListPetToysResponse operations */
+export interface ListPetToysResponseOperations {
+    list(petId: string, options: Options): StreamableMethod<>;
 }
 
-export interface Read {
+export interface PetsRead {
+    /** Returns a pet. Supports eTags. */
     get(options: Options): StreamableMethod<>;
 }
 
-export interface CustomGet {
+export interface PetsCreate {
+    post(options: Options): StreamableMethod<>;
+}
+
+export interface ListPetToysResponseList {
     get(options: Options): StreamableMethod<>;
 }
 
 export interface Routes {
-    /** Resource for '/' has methods for the following verbs: post */
-    (path: "/"): Create;
-    /** Resource for '/widgets/\{id\}' has methods for the following verbs: get */
-    (path: "/widgets/{id}", id: string): Read;
-    /** Resource for '/customGet' has methods for the following verbs: get */
-    (path: "/customGet"): CustomGet;
+    /** Resource for '/pets/\{petId\}' has methods for the following verbs: get */
+    (path: "/pets/{petId}", petId: number): PetsRead;
+    /** Resource for '/pets' has methods for the following verbs: post */
+    (path: "/pets"): PetsCreate;
+    /** Resource for '/pets/\{petId\}/toys' has methods for the following verbs: get */
+    (path: "/pets/{petId}/toys", petId: string): ListPetToysResponseList;
 }
 
 export type FooClient = Client & {
         path: Routes;
-        widgetService: WidgetServiceOperations;
+        pets: PetsOperations;
+        listPetToysResponse: ListPetToysResponseOperations;
     };
