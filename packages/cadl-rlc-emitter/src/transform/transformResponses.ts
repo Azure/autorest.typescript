@@ -13,10 +13,7 @@ import {
   getTypeName,
   getSchemaForType
 } from "../modelUtils.js";
-import {
-  getNormalizedOperationName,
-  isSingleOperationGroup
-} from "../operationUtil.js";
+import { getNormalizedOperationName } from "../operationUtil.js";
 
 export function transformToResponseTypes(
   program: Program,
@@ -25,9 +22,8 @@ export function transformToResponseTypes(
   const [routes, _diagnostics] = getAllRoutes(program);
   const rlcResponses: OperationResponse[] = [];
   let inputImportedSet = new Set<string>();
-  const isSingleGroup = isSingleOperationGroup(routes);
   for (const route of routes) {
-    const operationName = getNormalizedOperationName(route, !isSingleGroup);
+    const operationName = getNormalizedOperationName(route);
     const rlcOperationUnit: OperationResponse = {
       operationName,
       responses: []

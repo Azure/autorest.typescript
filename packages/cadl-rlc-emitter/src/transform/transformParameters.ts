@@ -17,10 +17,7 @@ import {
   getTypeName,
   getSchemaForType
 } from "../modelUtils.js";
-import {
-  getNormalizedOperationName,
-  isSingleOperationGroup
-} from "../operationUtil.js";
+import { getNormalizedOperationName } from "../operationUtil.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -29,9 +26,8 @@ export function transformToParameterTypes(
   const [routes, _diagnostics] = getAllRoutes(program);
   const rlcParameters: OperationParameter[] = [];
   let outputImportedSet = new Set<string>();
-  const isSingleGroup = isSingleOperationGroup(routes);
   for (const route of routes) {
-    const operationName = getNormalizedOperationName(route, !isSingleGroup);
+    const operationName = getNormalizedOperationName(route);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationName,
