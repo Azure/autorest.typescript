@@ -5,40 +5,40 @@ import { HttpResponse } from "@azure-rest/core-client";
 import { ErrorModelOutput } from "./outputModels";
 
 /** Upload file */
-export interface UploadFile200Response extends HttpResponse {
+export interface FormdataUploadFile200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
   body: Uint8Array;
 }
 
 /** Upload file */
-export interface UploadFileDefaultResponse extends HttpResponse {
+export interface FormdataUploadFileDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Upload file */
-export interface UploadFileViaBody200Response extends HttpResponse {
+export interface FormdataUploadFileViaBody200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
   body: Uint8Array;
 }
 
 /** Upload file */
-export interface UploadFileViaBodyDefaultResponse extends HttpResponse {
+export interface FormdataUploadFileViaBodyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Upload multiple files */
-export interface UploadFiles200Response extends HttpResponse {
+export interface FormdataUploadFiles200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
   body: Uint8Array;
 }
 
 /** Upload multiple files */
-export interface UploadFilesDefaultResponse extends HttpResponse {
+export interface FormdataUploadFilesDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }

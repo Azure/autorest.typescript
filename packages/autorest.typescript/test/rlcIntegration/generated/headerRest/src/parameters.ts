@@ -4,287 +4,293 @@
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 
-export interface ParamExistingKeyHeaders {
+export interface HeaderParamExistingKeyHeaders {
   /** Send a post request with header value "User-Agent": "overwrite" */
   "User-Agent": string;
 }
 
-export interface ParamExistingKeyHeaderParam {
-  headers: RawHttpHeadersInput & ParamExistingKeyHeaders;
+export interface HeaderParamExistingKeyHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamExistingKeyHeaders;
 }
 
-export type ParamExistingKeyParameters = ParamExistingKeyHeaderParam &
+export type HeaderParamExistingKeyParameters = HeaderParamExistingKeyHeaderParam &
   RequestParameters;
-export type ResponseExistingKeyParameters = RequestParameters;
+export type HeaderResponseExistingKeyParameters = RequestParameters;
 
-export interface ParamProtectedKeyHeaders {
+export interface HeaderParamProtectedKeyHeaders {
   /** Send a post request with header value "Content-Type": "text/html" */
   "Content-Type": string;
 }
 
-export interface ParamProtectedKeyHeaderParam {
-  headers: RawHttpHeadersInput & ParamProtectedKeyHeaders;
+export interface HeaderParamProtectedKeyHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamProtectedKeyHeaders;
 }
 
-export type ParamProtectedKeyParameters = ParamProtectedKeyHeaderParam &
+export type HeaderParamProtectedKeyParameters = HeaderParamProtectedKeyHeaderParam &
   RequestParameters;
-export type ResponseProtectedKeyParameters = RequestParameters;
+export type HeaderResponseProtectedKeyParameters = RequestParameters;
 
-export interface ParamIntegerHeaders {
+export interface HeaderParamIntegerHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
   scenario: string;
   /** Send a post request with header values 1 or -2 */
   value: number;
 }
 
-export interface ParamIntegerHeaderParam {
-  headers: RawHttpHeadersInput & ParamIntegerHeaders;
+export interface HeaderParamIntegerHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamIntegerHeaders;
 }
 
-export type ParamIntegerParameters = ParamIntegerHeaderParam &
+export type HeaderParamIntegerParameters = HeaderParamIntegerHeaderParam &
   RequestParameters;
 
-export interface ResponseIntegerHeaders {
+export interface HeaderResponseIntegerHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
   scenario: string;
 }
 
-export interface ResponseIntegerHeaderParam {
-  headers: RawHttpHeadersInput & ResponseIntegerHeaders;
+export interface HeaderResponseIntegerHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseIntegerHeaders;
 }
 
-export type ResponseIntegerParameters = ResponseIntegerHeaderParam &
+export type HeaderResponseIntegerParameters = HeaderResponseIntegerHeaderParam &
   RequestParameters;
 
-export interface ParamLongHeaders {
+export interface HeaderParamLongHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
   scenario: string;
   /** Send a post request with header values 105 or -2 */
   value: number;
 }
 
-export interface ParamLongHeaderParam {
-  headers: RawHttpHeadersInput & ParamLongHeaders;
+export interface HeaderParamLongHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamLongHeaders;
 }
 
-export type ParamLongParameters = ParamLongHeaderParam & RequestParameters;
+export type HeaderParamLongParameters = HeaderParamLongHeaderParam &
+  RequestParameters;
 
-export interface ResponseLongHeaders {
+export interface HeaderResponseLongHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
   scenario: string;
 }
 
-export interface ResponseLongHeaderParam {
-  headers: RawHttpHeadersInput & ResponseLongHeaders;
+export interface HeaderResponseLongHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseLongHeaders;
 }
 
-export type ResponseLongParameters = ResponseLongHeaderParam &
+export type HeaderResponseLongParameters = HeaderResponseLongHeaderParam &
   RequestParameters;
 
-export interface ParamFloatHeaders {
+export interface HeaderParamFloatHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
   scenario: string;
   /** Send a post request with header values 0.07 or -3.0 */
   value: number;
 }
 
-export interface ParamFloatHeaderParam {
-  headers: RawHttpHeadersInput & ParamFloatHeaders;
+export interface HeaderParamFloatHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamFloatHeaders;
 }
 
-export type ParamFloatParameters = ParamFloatHeaderParam & RequestParameters;
+export type HeaderParamFloatParameters = HeaderParamFloatHeaderParam &
+  RequestParameters;
 
-export interface ResponseFloatHeaders {
+export interface HeaderResponseFloatHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
   scenario: string;
 }
 
-export interface ResponseFloatHeaderParam {
-  headers: RawHttpHeadersInput & ResponseFloatHeaders;
+export interface HeaderResponseFloatHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseFloatHeaders;
 }
 
-export type ResponseFloatParameters = ResponseFloatHeaderParam &
+export type HeaderResponseFloatParameters = HeaderResponseFloatHeaderParam &
   RequestParameters;
 
-export interface ParamDoubleHeaders {
+export interface HeaderParamDoubleHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
   scenario: string;
   /** Send a post request with header values 7e120 or -3.0 */
   value: number;
 }
 
-export interface ParamDoubleHeaderParam {
-  headers: RawHttpHeadersInput & ParamDoubleHeaders;
+export interface HeaderParamDoubleHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamDoubleHeaders;
 }
 
-export type ParamDoubleParameters = ParamDoubleHeaderParam & RequestParameters;
+export type HeaderParamDoubleParameters = HeaderParamDoubleHeaderParam &
+  RequestParameters;
 
-export interface ResponseDoubleHeaders {
+export interface HeaderResponseDoubleHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
   scenario: string;
 }
 
-export interface ResponseDoubleHeaderParam {
-  headers: RawHttpHeadersInput & ResponseDoubleHeaders;
+export interface HeaderResponseDoubleHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseDoubleHeaders;
 }
 
-export type ResponseDoubleParameters = ResponseDoubleHeaderParam &
+export type HeaderResponseDoubleParameters = HeaderResponseDoubleHeaderParam &
   RequestParameters;
 
-export interface ParamBoolHeaders {
+export interface HeaderParamBoolHeaders {
   /** Send a post request with header values "scenario": "true" or "false" */
   scenario: string;
   /** Send a post request with header values true or false */
   value: boolean;
 }
 
-export interface ParamBoolHeaderParam {
-  headers: RawHttpHeadersInput & ParamBoolHeaders;
+export interface HeaderParamBoolHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamBoolHeaders;
 }
 
-export type ParamBoolParameters = ParamBoolHeaderParam & RequestParameters;
+export type HeaderParamBoolParameters = HeaderParamBoolHeaderParam &
+  RequestParameters;
 
-export interface ResponseBoolHeaders {
+export interface HeaderResponseBoolHeaders {
   /** Send a post request with header values "scenario": "true" or "false" */
   scenario: string;
 }
 
-export interface ResponseBoolHeaderParam {
-  headers: RawHttpHeadersInput & ResponseBoolHeaders;
+export interface HeaderResponseBoolHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseBoolHeaders;
 }
 
-export type ResponseBoolParameters = ResponseBoolHeaderParam &
+export type HeaderResponseBoolParameters = HeaderResponseBoolHeaderParam &
   RequestParameters;
 
-export interface ParamStringHeaders {
+export interface HeaderParamStringHeaders {
   /** Send a post request with header values "scenario": "valid" or "null" or "empty" */
   scenario: string;
   /** Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or "" */
   value?: string;
 }
 
-export interface ParamStringHeaderParam {
-  headers: RawHttpHeadersInput & ParamStringHeaders;
+export interface HeaderParamStringHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamStringHeaders;
 }
 
-export type ParamStringParameters = ParamStringHeaderParam & RequestParameters;
+export type HeaderParamStringParameters = HeaderParamStringHeaderParam &
+  RequestParameters;
 
-export interface ResponseStringHeaders {
+export interface HeaderResponseStringHeaders {
   /** Send a post request with header values "scenario": "valid" or "null" or "empty" */
   scenario: string;
 }
 
-export interface ResponseStringHeaderParam {
-  headers: RawHttpHeadersInput & ResponseStringHeaders;
+export interface HeaderResponseStringHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseStringHeaders;
 }
 
-export type ResponseStringParameters = ResponseStringHeaderParam &
+export type HeaderResponseStringParameters = HeaderResponseStringHeaderParam &
   RequestParameters;
 
-export interface ParamDateHeaders {
+export interface HeaderParamDateHeaders {
   /** Send a post request with header values "scenario": "valid" or "min" */
   scenario: string;
   /** Send a post request with header values "2010-01-01" or "0001-01-01" */
   value: Date | string;
 }
 
-export interface ParamDateHeaderParam {
-  headers: RawHttpHeadersInput & ParamDateHeaders;
+export interface HeaderParamDateHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamDateHeaders;
 }
 
-export type ParamDateParameters = ParamDateHeaderParam & RequestParameters;
+export type HeaderParamDateParameters = HeaderParamDateHeaderParam &
+  RequestParameters;
 
-export interface ResponseDateHeaders {
+export interface HeaderResponseDateHeaders {
   /** Send a post request with header values "scenario": "valid" or "min" */
   scenario: string;
 }
 
-export interface ResponseDateHeaderParam {
-  headers: RawHttpHeadersInput & ResponseDateHeaders;
+export interface HeaderResponseDateHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseDateHeaders;
 }
 
-export type ResponseDateParameters = ResponseDateHeaderParam &
+export type HeaderResponseDateParameters = HeaderResponseDateHeaderParam &
   RequestParameters;
 
-export interface ParamDatetimeHeaders {
+export interface HeaderParamDatetimeHeaders {
   /** Send a post request with header values "scenario": "valid" or "min" */
   scenario: string;
   /** Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
   value: Date | string;
 }
 
-export interface ParamDatetimeHeaderParam {
-  headers: RawHttpHeadersInput & ParamDatetimeHeaders;
+export interface HeaderParamDatetimeHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamDatetimeHeaders;
 }
 
-export type ParamDatetimeParameters = ParamDatetimeHeaderParam &
+export type HeaderParamDatetimeParameters = HeaderParamDatetimeHeaderParam &
   RequestParameters;
 
-export interface ResponseDatetimeHeaders {
+export interface HeaderResponseDatetimeHeaders {
   /** Send a post request with header values "scenario": "valid" or "min" */
   scenario: string;
 }
 
-export interface ResponseDatetimeHeaderParam {
-  headers: RawHttpHeadersInput & ResponseDatetimeHeaders;
+export interface HeaderResponseDatetimeHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseDatetimeHeaders;
 }
 
-export type ResponseDatetimeParameters = ResponseDatetimeHeaderParam &
+export type HeaderResponseDatetimeParameters = HeaderResponseDatetimeHeaderParam &
   RequestParameters;
 
-export interface ParamDatetimeRfc1123Headers {
+export interface HeaderParamDatetimeRfc1123Headers {
   /** Send a post request with header values "scenario": "valid" or "min" */
   scenario: string;
   /** Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
   value?: Date | string;
 }
 
-export interface ParamDatetimeRfc1123HeaderParam {
-  headers: RawHttpHeadersInput & ParamDatetimeRfc1123Headers;
+export interface HeaderParamDatetimeRfc1123HeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamDatetimeRfc1123Headers;
 }
 
-export type ParamDatetimeRfc1123Parameters = ParamDatetimeRfc1123HeaderParam &
+export type HeaderParamDatetimeRfc1123Parameters = HeaderParamDatetimeRfc1123HeaderParam &
   RequestParameters;
 
-export interface ResponseDatetimeRfc1123Headers {
+export interface HeaderResponseDatetimeRfc1123Headers {
   /** Send a post request with header values "scenario": "valid" or "min" */
   scenario: string;
 }
 
-export interface ResponseDatetimeRfc1123HeaderParam {
-  headers: RawHttpHeadersInput & ResponseDatetimeRfc1123Headers;
+export interface HeaderResponseDatetimeRfc1123HeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseDatetimeRfc1123Headers;
 }
 
-export type ResponseDatetimeRfc1123Parameters = ResponseDatetimeRfc1123HeaderParam &
+export type HeaderResponseDatetimeRfc1123Parameters = HeaderResponseDatetimeRfc1123HeaderParam &
   RequestParameters;
 
-export interface ParamDurationHeaders {
+export interface HeaderParamDurationHeaders {
   /** Send a post request with header values "scenario": "valid" */
   scenario: string;
   /** Send a post request with header values "P123DT22H14M12.011S" */
   value: string;
 }
 
-export interface ParamDurationHeaderParam {
-  headers: RawHttpHeadersInput & ParamDurationHeaders;
+export interface HeaderParamDurationHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamDurationHeaders;
 }
 
-export type ParamDurationParameters = ParamDurationHeaderParam &
+export type HeaderParamDurationParameters = HeaderParamDurationHeaderParam &
   RequestParameters;
 
-export interface ResponseDurationHeaders {
+export interface HeaderResponseDurationHeaders {
   /** Send a post request with header values "scenario": "valid" */
   scenario: string;
 }
 
-export interface ResponseDurationHeaderParam {
-  headers: RawHttpHeadersInput & ResponseDurationHeaders;
+export interface HeaderResponseDurationHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseDurationHeaders;
 }
 
-export type ResponseDurationParameters = ResponseDurationHeaderParam &
+export type HeaderResponseDurationParameters = HeaderResponseDurationHeaderParam &
   RequestParameters;
 
-export interface ParamByteHeaders {
+export interface HeaderParamByteHeaders {
   /** Send a post request with header values "scenario": "valid" */
   scenario: string;
   /**
@@ -295,46 +301,48 @@ export interface ParamByteHeaders {
   value: string;
 }
 
-export interface ParamByteHeaderParam {
-  headers: RawHttpHeadersInput & ParamByteHeaders;
+export interface HeaderParamByteHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamByteHeaders;
 }
 
-export type ParamByteParameters = ParamByteHeaderParam & RequestParameters;
+export type HeaderParamByteParameters = HeaderParamByteHeaderParam &
+  RequestParameters;
 
-export interface ResponseByteHeaders {
+export interface HeaderResponseByteHeaders {
   /** Send a post request with header values "scenario": "valid" */
   scenario: string;
 }
 
-export interface ResponseByteHeaderParam {
-  headers: RawHttpHeadersInput & ResponseByteHeaders;
+export interface HeaderResponseByteHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseByteHeaders;
 }
 
-export type ResponseByteParameters = ResponseByteHeaderParam &
+export type HeaderResponseByteParameters = HeaderResponseByteHeaderParam &
   RequestParameters;
 
-export interface ParamEnumHeaders {
+export interface HeaderParamEnumHeaders {
   /** Send a post request with header values "scenario": "valid" or "null" or "empty" */
   scenario: string;
   /** Send a post request with header values 'GREY' */
   value?: "White" | "black" | "GREY";
 }
 
-export interface ParamEnumHeaderParam {
-  headers: RawHttpHeadersInput & ParamEnumHeaders;
+export interface HeaderParamEnumHeaderParam {
+  headers: RawHttpHeadersInput & HeaderParamEnumHeaders;
 }
 
-export type ParamEnumParameters = ParamEnumHeaderParam & RequestParameters;
+export type HeaderParamEnumParameters = HeaderParamEnumHeaderParam &
+  RequestParameters;
 
-export interface ResponseEnumHeaders {
+export interface HeaderResponseEnumHeaders {
   /** Send a post request with header values "scenario": "valid" or "null" or "empty" */
   scenario: string;
 }
 
-export interface ResponseEnumHeaderParam {
-  headers: RawHttpHeadersInput & ResponseEnumHeaders;
+export interface HeaderResponseEnumHeaderParam {
+  headers: RawHttpHeadersInput & HeaderResponseEnumHeaders;
 }
 
-export type ResponseEnumParameters = ResponseEnumHeaderParam &
+export type HeaderResponseEnumParameters = HeaderResponseEnumHeaderParam &
   RequestParameters;
-export type CustomRequestIdParameters = RequestParameters;
+export type HeaderCustomRequestIdParameters = RequestParameters;

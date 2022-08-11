@@ -4,12 +4,12 @@
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type GetNoItemNamePagesParameters = RequestParameters;
-export type GetNullNextLinkNamePagesParameters = RequestParameters;
-export type GetSinglePagesParameters = RequestParameters;
-export type FirstResponseEmptyParameters = RequestParameters;
+export type PagingGetNoItemNamePagesParameters = RequestParameters;
+export type PagingGetNullNextLinkNamePagesParameters = RequestParameters;
+export type PagingGetSinglePagesParameters = RequestParameters;
+export type PagingFirstResponseEmptyParameters = RequestParameters;
 
-export interface GetMultiplePagesHeaders {
+export interface PagingGetMultiplePagesHeaders {
   "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
@@ -17,64 +17,64 @@ export interface GetMultiplePagesHeaders {
   timeout?: number;
 }
 
-export interface GetMultiplePagesHeaderParam {
-  headers: RawHttpHeadersInput & GetMultiplePagesHeaders;
+export interface PagingGetMultiplePagesHeaderParam {
+  headers: RawHttpHeadersInput & PagingGetMultiplePagesHeaders;
 }
 
-export type GetMultiplePagesParameters = GetMultiplePagesHeaderParam &
+export type PagingGetMultiplePagesParameters = PagingGetMultiplePagesHeaderParam &
   RequestParameters;
 
-export interface GetWithQueryParamsQueryParamProperties {
+export interface PagingGetWithQueryParamsQueryParamProperties {
   /** A required integer query parameter. Put in value '100' to pass test. */
   requiredQueryParameter: number;
   /** A constant. Must be True and will be passed as a query parameter to nextOperationWithQueryParams */
   queryConstant: true;
 }
 
-export interface GetWithQueryParamsQueryParam {
-  queryParameters: GetWithQueryParamsQueryParamProperties;
+export interface PagingGetWithQueryParamsQueryParam {
+  queryParameters: PagingGetWithQueryParamsQueryParamProperties;
 }
 
-export type GetWithQueryParamsParameters = GetWithQueryParamsQueryParam &
+export type PagingGetWithQueryParamsParameters = PagingGetWithQueryParamsQueryParam &
   RequestParameters;
 
-export interface DuplicateParamsQueryParamProperties {
+export interface PagingDuplicateParamsQueryParamProperties {
   /** OData filter options. Pass in 'foo' */
   $filter?: string;
 }
 
-export interface DuplicateParamsQueryParam {
-  queryParameters?: DuplicateParamsQueryParamProperties;
+export interface PagingDuplicateParamsQueryParam {
+  queryParameters?: PagingDuplicateParamsQueryParamProperties;
 }
 
-export type DuplicateParamsParameters = DuplicateParamsQueryParam &
+export type PagingDuplicateParamsParameters = PagingDuplicateParamsQueryParam &
   RequestParameters;
 
-export interface PageWithMaxPageSizeQueryParamProperties {
+export interface PagingPageWithMaxPageSizeQueryParamProperties {
   /** Max page size query param. Don't send */
   $maxpagesize?: "5";
 }
 
-export interface PageWithMaxPageSizeQueryParam {
-  queryParameters?: PageWithMaxPageSizeQueryParamProperties;
+export interface PagingPageWithMaxPageSizeQueryParam {
+  queryParameters?: PagingPageWithMaxPageSizeQueryParamProperties;
 }
 
-export type PageWithMaxPageSizeParameters = PageWithMaxPageSizeQueryParam &
+export type PagingPageWithMaxPageSizeParameters = PagingPageWithMaxPageSizeQueryParam &
   RequestParameters;
 
-export interface NextOperationWithQueryParamsQueryParamProperties {
+export interface PagingNextOperationWithQueryParamsQueryParamProperties {
   /** A constant. Must be True */
   queryConstant: true;
 }
 
-export interface NextOperationWithQueryParamsQueryParam {
-  queryParameters: NextOperationWithQueryParamsQueryParamProperties;
+export interface PagingNextOperationWithQueryParamsQueryParam {
+  queryParameters: PagingNextOperationWithQueryParamsQueryParamProperties;
 }
 
-export type NextOperationWithQueryParamsParameters = NextOperationWithQueryParamsQueryParam &
+export type PagingNextOperationWithQueryParamsParameters = PagingNextOperationWithQueryParamsQueryParam &
   RequestParameters;
 
-export interface GetOdataMultiplePagesHeaders {
+export interface PagingGetOdataMultiplePagesHeaders {
   "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
@@ -82,14 +82,14 @@ export interface GetOdataMultiplePagesHeaders {
   timeout?: number;
 }
 
-export interface GetOdataMultiplePagesHeaderParam {
-  headers: RawHttpHeadersInput & GetOdataMultiplePagesHeaders;
+export interface PagingGetOdataMultiplePagesHeaderParam {
+  headers: RawHttpHeadersInput & PagingGetOdataMultiplePagesHeaders;
 }
 
-export type GetOdataMultiplePagesParameters = GetOdataMultiplePagesHeaderParam &
+export type PagingGetOdataMultiplePagesParameters = PagingGetOdataMultiplePagesHeaderParam &
   RequestParameters;
 
-export interface GetMultiplePagesWithOffsetHeaders {
+export interface PagingGetMultiplePagesWithOffsetHeaders {
   "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
@@ -97,43 +97,43 @@ export interface GetMultiplePagesWithOffsetHeaders {
   timeout?: number;
 }
 
-export interface GetMultiplePagesWithOffsetHeaderParam {
-  headers: RawHttpHeadersInput & GetMultiplePagesWithOffsetHeaders;
+export interface PagingGetMultiplePagesWithOffsetHeaderParam {
+  headers: RawHttpHeadersInput & PagingGetMultiplePagesWithOffsetHeaders;
 }
 
-export type GetMultiplePagesWithOffsetParameters = GetMultiplePagesWithOffsetHeaderParam &
+export type PagingGetMultiplePagesWithOffsetParameters = PagingGetMultiplePagesWithOffsetHeaderParam &
   RequestParameters;
-export type GetMultiplePagesRetryFirstParameters = RequestParameters;
-export type GetMultiplePagesRetrySecondParameters = RequestParameters;
-export type GetSinglePagesFailureParameters = RequestParameters;
-export type GetMultiplePagesFailureParameters = RequestParameters;
-export type GetMultiplePagesFailureUriParameters = RequestParameters;
+export type PagingGetMultiplePagesRetryFirstParameters = RequestParameters;
+export type PagingGetMultiplePagesRetrySecondParameters = RequestParameters;
+export type PagingGetSinglePagesFailureParameters = RequestParameters;
+export type PagingGetMultiplePagesFailureParameters = RequestParameters;
+export type PagingGetMultiplePagesFailureUriParameters = RequestParameters;
 
-export interface GetMultiplePagesFragmentNextLinkQueryParamProperties {
+export interface PagingGetMultiplePagesFragmentNextLinkQueryParamProperties {
   /** Sets the api version to use. */
   api_version: string;
 }
 
-export interface GetMultiplePagesFragmentNextLinkQueryParam {
-  queryParameters: GetMultiplePagesFragmentNextLinkQueryParamProperties;
+export interface PagingGetMultiplePagesFragmentNextLinkQueryParam {
+  queryParameters: PagingGetMultiplePagesFragmentNextLinkQueryParamProperties;
 }
 
-export type GetMultiplePagesFragmentNextLinkParameters = GetMultiplePagesFragmentNextLinkQueryParam &
+export type PagingGetMultiplePagesFragmentNextLinkParameters = PagingGetMultiplePagesFragmentNextLinkQueryParam &
   RequestParameters;
 
-export interface GetMultiplePagesFragmentWithGroupingNextLinkQueryParamProperties {
+export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkQueryParamProperties {
   /** Sets the api version to use. */
   api_version: string;
 }
 
-export interface GetMultiplePagesFragmentWithGroupingNextLinkQueryParam {
-  queryParameters: GetMultiplePagesFragmentWithGroupingNextLinkQueryParamProperties;
+export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkQueryParam {
+  queryParameters: PagingGetMultiplePagesFragmentWithGroupingNextLinkQueryParamProperties;
 }
 
-export type GetMultiplePagesFragmentWithGroupingNextLinkParameters = GetMultiplePagesFragmentWithGroupingNextLinkQueryParam &
+export type PagingGetMultiplePagesFragmentWithGroupingNextLinkParameters = PagingGetMultiplePagesFragmentWithGroupingNextLinkQueryParam &
   RequestParameters;
 
-export interface GetMultiplePagesLROHeaders {
+export interface PagingGetMultiplePagesLROHeaders {
   "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
@@ -141,35 +141,36 @@ export interface GetMultiplePagesLROHeaders {
   timeout?: number;
 }
 
-export interface GetMultiplePagesLROHeaderParam {
-  headers: RawHttpHeadersInput & GetMultiplePagesLROHeaders;
+export interface PagingGetMultiplePagesLROHeaderParam {
+  headers: RawHttpHeadersInput & PagingGetMultiplePagesLROHeaders;
 }
 
-export type GetMultiplePagesLROParameters = GetMultiplePagesLROHeaderParam &
+export type PagingGetMultiplePagesLROParameters = PagingGetMultiplePagesLROHeaderParam &
   RequestParameters;
-export type AppendApiVersionParameters = RequestParameters;
-export type ReplaceApiVersionParameters = RequestParameters;
+export type PagingAppendApiVersionParameters = RequestParameters;
+export type PagingReplaceApiVersionParameters = RequestParameters;
 
-export interface NextFragmentQueryParamProperties {
+export interface PagingNextFragmentQueryParamProperties {
   /** Sets the api version to use. */
   api_version: string;
 }
 
-export interface NextFragmentQueryParam {
-  queryParameters: NextFragmentQueryParamProperties;
+export interface PagingNextFragmentQueryParam {
+  queryParameters: PagingNextFragmentQueryParamProperties;
 }
 
-export type NextFragmentParameters = NextFragmentQueryParam & RequestParameters;
+export type PagingNextFragmentParameters = PagingNextFragmentQueryParam &
+  RequestParameters;
 
-export interface NextFragmentWithGroupingQueryParamProperties {
+export interface PagingNextFragmentWithGroupingQueryParamProperties {
   /** Sets the api version to use. */
   api_version: string;
 }
 
-export interface NextFragmentWithGroupingQueryParam {
-  queryParameters: NextFragmentWithGroupingQueryParamProperties;
+export interface PagingNextFragmentWithGroupingQueryParam {
+  queryParameters: PagingNextFragmentWithGroupingQueryParamProperties;
 }
 
-export type NextFragmentWithGroupingParameters = NextFragmentWithGroupingQueryParam &
+export type PagingNextFragmentWithGroupingParameters = PagingNextFragmentWithGroupingQueryParam &
   RequestParameters;
-export type GetPagingModelWithItemNameWithXMSClientNameParameters = RequestParameters;
+export type PagingGetPagingModelWithItemNameWithXMSClientNameParameters = RequestParameters;

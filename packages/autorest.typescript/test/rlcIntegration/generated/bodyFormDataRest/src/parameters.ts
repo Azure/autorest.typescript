@@ -3,11 +3,11 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export interface UploadFileBodyParam {
-  body: UploadFileFormBody;
+export interface FormdataUploadFileBodyParam {
+  body: FormdataUploadFileFormBody;
 }
 
-export interface UploadFileFormBody {
+export interface FormdataUploadFileFormBody {
   /**
    * File to upload.
    *
@@ -22,16 +22,16 @@ export interface UploadFileFormBody {
   fileName: string;
 }
 
-export interface UploadFileMediaTypesParam {
+export interface FormdataUploadFileMediaTypesParam {
   /** Request content type */
   contentType?: "multipart/form-data";
 }
 
-export type UploadFileParameters = UploadFileMediaTypesParam &
-  UploadFileBodyParam &
+export type FormdataUploadFileParameters = FormdataUploadFileMediaTypesParam &
+  FormdataUploadFileBodyParam &
   RequestParameters;
 
-export interface UploadFileViaBodyBodyParam {
+export interface FormdataUploadFileViaBodyBodyParam {
   /**
    * File to upload.
    *
@@ -44,31 +44,31 @@ export interface UploadFileViaBodyBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface UploadFileViaBodyMediaTypesParam {
+export interface FormdataUploadFileViaBodyMediaTypesParam {
   /** Request content type */
   contentType?: "application/octet-stream";
 }
 
-export type UploadFileViaBodyParameters = UploadFileViaBodyMediaTypesParam &
-  UploadFileViaBodyBodyParam &
+export type FormdataUploadFileViaBodyParameters = FormdataUploadFileViaBodyMediaTypesParam &
+  FormdataUploadFileViaBodyBodyParam &
   RequestParameters;
 
-export interface UploadFilesBodyParam {
-  body: UploadFilesFormBody;
+export interface FormdataUploadFilesBodyParam {
+  body: FormdataUploadFilesFormBody;
 }
 
-export interface UploadFilesFormBody {
+export interface FormdataUploadFilesFormBody {
   /** Files to upload. */
   fileContent: Array<
     string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream
   >;
 }
 
-export interface UploadFilesMediaTypesParam {
+export interface FormdataUploadFilesMediaTypesParam {
   /** Request content type */
   contentType?: "multipart/form-data";
 }
 
-export type UploadFilesParameters = UploadFilesMediaTypesParam &
-  UploadFilesBodyParam &
+export type FormdataUploadFilesParameters = FormdataUploadFilesMediaTypesParam &
+  FormdataUploadFilesBodyParam &
   RequestParameters;
