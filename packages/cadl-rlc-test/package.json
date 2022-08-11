@@ -1,10 +1,13 @@
 {
   "name": "@msinternal/cadl-rest-test",
   "version": "1.0.0",
+  "type": "module",
   "dependencies": {
     "@cadl-lang/compiler": "latest",
     "@cadl-lang/ts-rlc": "0.0.1",
-    "@cadl-lang/rest": "latest"
+    "@cadl-lang/rest": "latest",
+    "@cadl-lang/openapi": "latest",
+    "@azure-tools/cadl-autorest": "latest"
   },
   "scripts": {
     "cadl:compile": "cadl compile ./spec",
