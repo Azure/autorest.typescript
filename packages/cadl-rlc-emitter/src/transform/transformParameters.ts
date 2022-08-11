@@ -1,15 +1,34 @@
-import { ImportKind, OperationParameter, ParameterBodyMetadata, ParameterMetadata, Schema } from "@azure-tools/rlc-codegen";
+import {
+  ImportKind,
+  OperationParameter,
+  ParameterBodyMetadata,
+  ParameterMetadata,
+  Schema,
+  SchemaContext
+} from "@azure-tools/rlc-codegen";
 import { Program } from "@cadl-lang/compiler";
-import { getAllRoutes, HttpOperationParameter, HttpOperationParameters } from "@cadl-lang/rest/http";
-import { getSchemaForType } from "../modelUtils.js";
-import { getNormalizedOperationName, isSingleOperationGroup } from "../operationUtil.js";
+import {
+  getAllRoutes,
+  HttpOperationParameter,
+  HttpOperationParameters
+} from "@cadl-lang/rest/http";
+import {
+  getImportedModelName,
+  getTypeName,
+  getSchemaForType
+} from "../modelUtils.js";
+import {
+  getNormalizedOperationName,
+  isSingleOperationGroup
+} from "../operationUtil.js";
 
 export function transformToParameterTypes(
   program: Program,
-  importDetails: Map<ImportKind, Set<string>>): OperationParameter[] {
+  importDetails: Map<ImportKind, Set<string>>
+): OperationParameter[] {
   const [routes, _diagnostics] = getAllRoutes(program);
   const rlcParameters: OperationParameter[] = [];
-  let importedModels = new Set<string>();
+  let outputImportedSet = new Set<string>();
   const isSingleGroup = isSingleOperationGroup(routes);
   for (const route of routes) {
     const operationName = getNormalizedOperationName(route, !isSingleGroup);
@@ -19,20 +38,16 @@ export function transformToParameterTypes(
       parameters: []
     };
     // transform query param
-    const queryParams = transformQueryParameters(
-      program,
-      parameters);
+    const queryParams = transformQueryParameters(program, parameters);
     // transform path param
     const pathParams = transformPathParameters();
     // transform header param includeing content-type
-    const headerParams = transformHeaderParameters(
-      program,
-      parameters);
+    const headerParams = transformHeaderParameters(program, parameters);
     // transform body
     const bodyParameter = transformBodyParameters(
       program,
       parameters,
-      importedModels
+      outputImportedSet
     );
     rlcParameter.parameters.push({
       parameters: [...queryParams, ...pathParams, ...headerParams],
@@ -40,8 +55,8 @@ export function transformToParameterTypes(
     });
     rlcParameters.push(rlcParameter);
   }
-  if (importedModels.size > 0) {
-    importDetails.set(ImportKind.ParameterInput, importedModels);
+  if (outputImportedSet.size > 0) {
+    importDetails.set(ImportKind.ParameterInput, outputImportedSet);
   }
   return rlcParameters;
 }
@@ -49,15 +64,20 @@ export function transformToParameterTypes(
 function getParameterMetadata(
   program: Program,
   paramType: "query" | "path" | "header",
-  parameter: HttpOperationParameter): ParameterMetadata {
-  const schema = getSchemaForType(program, parameter.param.type) as Schema;
+  parameter: HttpOperationParameter
+): ParameterMetadata {
+  const schema = getSchemaForType(program, parameter.param.type, [
+    SchemaContext.Input,
+    SchemaContext.Exception
+  ]) as Schema;
+  const type = getTypeName(schema);
   const name = getParameterName(parameter.name);
   return {
     type: paramType,
     name,
     param: {
       name,
-      type: schema.name,
+      type,
       required: !Boolean(parameter.param.optional)
     }
   };
@@ -72,17 +92,22 @@ function getParameterName(name: string) {
 
 function transformQueryParameters(
   program: Program,
-  parameters: HttpOperationParameters): ParameterMetadata[] {
-  const queryParameters = parameters.parameters.filter(p => p.type === "query");
+  parameters: HttpOperationParameters
+): ParameterMetadata[] {
+  const queryParameters = parameters.parameters.filter(
+    (p) => p.type === "query"
+  );
   if (!queryParameters.length) {
     return [];
   }
-  return queryParameters.map(qp => getParameterMetadata(program, "query", qp));
+  return queryParameters.map((qp) =>
+    getParameterMetadata(program, "query", qp)
+  );
 }
 
 /**
  * Only support to take the global path parameter as path parameter
- * @returns 
+ * @returns
  */
 function transformPathParameters() {
   // TODO
@@ -91,34 +116,45 @@ function transformPathParameters() {
 
 function transformHeaderParameters(
   program: Program,
-  parameters: HttpOperationParameters): ParameterMetadata[] {
+  parameters: HttpOperationParameters
+): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
-    p => (p.type === "header")
+    (p) => p.type === "header"
   );
   if (!headerParameters.length) {
     return [];
   }
-  return headerParameters.map(qp => getParameterMetadata(program, "header", qp));
+  return headerParameters.map((qp) =>
+    getParameterMetadata(program, "header", qp)
+  );
 }
 
 function transformBodyParameters(
   program: Program,
   parameters: HttpOperationParameters,
-  importedModels: Set<string>): ParameterBodyMetadata | undefined {
+  importedModels: Set<string>
+): ParameterBodyMetadata | undefined {
   const bodyParameters = parameters.body;
   if (!bodyParameters) {
     return undefined;
   }
-  const bodySchema = getSchemaForType(program, bodyParameters.type) as Schema;
-  if (bodySchema.type == "object") {
-    importedModels.add(bodySchema.name);
+  const bodySchema = getSchemaForType(program, bodyParameters.type, [
+    SchemaContext.Input,
+    SchemaContext.Exception
+  ]) as Schema;
+  const type = getTypeName(bodySchema);
+  const importedNames = getImportedModelName(bodySchema);
+  if (importedNames) {
+    importedNames.forEach(importedModels.add, importedModels);
   }
   return {
-    isPartialBody: false,
-    body: [{
-      name: "body",
-      type: bodySchema.name,
-      required: !Boolean(bodyParameters.optional)
-    }]
+    isPartialBody: false, // TODO: handle body is partial case
+    body: [
+      {
+        name: "body",
+        type,
+        required: !Boolean(bodyParameters.optional)
+      }
+    ]
   };
 }

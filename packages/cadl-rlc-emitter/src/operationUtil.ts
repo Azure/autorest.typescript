@@ -6,11 +6,17 @@ export function isSingleOperationGroup(routes: OperationDetails[]) {
   for (const route of routes) {
     operationGroups.add(route.groupName);
   }
-  return (operationGroups.size === 1);
+  return operationGroups.size === 1;
 }
 
-export function getNormalizedOperationName(route: OperationDetails, includeGroupName = true) {
-  return includeGroupName ?
-    normalizeName(`${route.groupName}_${route.operation.name}`, NameType.Interface) :
-    normalizeName(`${route.operation.name}`, NameType.Interface);
+export function getNormalizedOperationName(
+  route: OperationDetails,
+  includeGroupName = true
+) {
+  return includeGroupName
+    ? normalizeName(
+        `${route.groupName}_${route.operation.name}`,
+        NameType.Interface
+      )
+    : normalizeName(`${route.operation.name}`, NameType.Interface);
 }

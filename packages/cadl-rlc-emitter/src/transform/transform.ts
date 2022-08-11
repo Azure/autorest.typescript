@@ -3,6 +3,7 @@
 
 import {
   ImportKind,
+  OperationParameter,
   OperationResponse,
   Paths,
   RLCModel,
@@ -28,8 +29,14 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
   const importSet = new Map<ImportKind, Set<string>>();
   const paths: Paths = transformPaths(program);
   const schemas: Schema[] = transformSchemas(program);
-  const responses: OperationResponse[] = transformToResponseTypes(program, importSet);
-  const parameters: OperationParameter[] = transformToParameterTypes(program, importSet);
+  const responses: OperationResponse[] = transformToResponseTypes(
+    program,
+    importSet
+  );
+  const parameters: OperationParameter[] = transformToParameterTypes(
+    program,
+    importSet
+  );
 
   return {
     srcPath,
@@ -38,6 +45,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     options,
     schemas,
     responses,
+    parameters,
     importSet
   };
 }

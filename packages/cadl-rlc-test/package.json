@@ -7,7 +7,8 @@
     "@cadl-lang/ts-rlc": "0.0.1",
     "@cadl-lang/rest": "latest",
     "@cadl-lang/openapi": "latest",
-    "@azure-tools/cadl-autorest": "latest"
+    "@azure-tools/cadl-autorest": "latest",
+    "@cadl-lang/versioning": "latest"
   },
   "scripts": {
     "cadl:compile": "cadl compile ./spec",

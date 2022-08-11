@@ -1,12 +1,21 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import { Widget } from "./models";
+import { Pet } from "./models";
 
-export type ListParameters = RequestParameters;
-export type ReadParameters = RequestParameters;
+export type PetsDeleteParameters = RequestParameters;
+export type PetsReadParameters = RequestParameters;
 
-export interface CreateBodyParam {
-    body: Widget;
+export interface PetsCreateBodyParam {
+    body: Pet;
 }
 
-export type CreateParameters = CreateBodyParam & RequestParameters;
-export type CustomGetParameters = RequestParameters;
+export type PetsCreateParameters = PetsCreateBodyParam & RequestParameters;
+
+export interface ListPetToysResponseListQueryParamProperties {
+    nameFilter: string;
+}
+
+export interface ListPetToysResponseListQueryParam {
+    queryParameters: ListPetToysResponseListQueryParamProperties;
+}
+
+export type ListPetToysResponseListParameters = ListPetToysResponseListQueryParam & RequestParameters;

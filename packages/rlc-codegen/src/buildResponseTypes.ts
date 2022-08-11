@@ -1,10 +1,20 @@
-import { InterfaceDeclarationStructure, OptionalKind, Project, PropertySignatureStructure, StructureKind } from "ts-morph";
-import { ImportKind, ResponseHeaderSchema, ResponseMetadata, RLCModel } from "./interfaces.js";
+import {
+  InterfaceDeclarationStructure,
+  OptionalKind,
+  Project,
+  PropertySignatureStructure,
+  StructureKind
+} from "ts-morph";
+import {
+  ImportKind,
+  ResponseHeaderSchema,
+  ResponseMetadata,
+  RLCModel
+} from "./interfaces.js";
 import * as path from "path";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 
-export function buildResponseTypes(
-  model: RLCModel) {
+export function buildResponseTypes(model: RLCModel) {
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `responses.ts`);
@@ -26,12 +36,8 @@ export function buildResponseTypes(
       );
 
       // Build the response header
-      const headersInterface:
-        | InterfaceDeclarationStructure
-        | undefined = getResponseHeaderInterfaceDefinition(
-          response,
-          baseResponseName
-        );
+      const headersInterface: InterfaceDeclarationStructure | undefined =
+        getResponseHeaderInterfaceDefinition(response, baseResponseName);
       if (headersInterface) {
         hasHeaders = true;
         responsesFile.addInterface(headersInterface);
@@ -41,15 +47,16 @@ export function buildResponseTypes(
       const responseTypeName = getResponseTypeName(baseResponseName);
       const responseProperties = getResponseInterfaceProperties(
         response,
-        headersInterface?.name,
+        headersInterface?.name
       );
 
-      const responseInterfaceDefinition: OptionalKind<InterfaceDeclarationStructure> = {
-        name: responseTypeName,
-        properties: responseProperties,
-        isExported: true,
-        extends: ["HttpResponse"]
-      };
+      const responseInterfaceDefinition: OptionalKind<InterfaceDeclarationStructure> =
+        {
+          name: responseTypeName,
+          properties: responseProperties,
+          isExported: true,
+          extends: ["HttpResponse"]
+        };
 
       // Only add a description if one was provided in the Swagger
       // otherwise skip to avoid having empty TSDoc lines
@@ -82,7 +89,9 @@ export function buildResponseTypes(
   if (model.importSet?.has(ImportKind.ResponseOutput)) {
     responsesFile.addImportDeclarations([
       {
-        namedImports: [...Array.from(model.importSet.get(ImportKind.ResponseOutput) || [])],
+        namedImports: [
+          ...Array.from(model.importSet.get(ImportKind.ResponseOutput) || [])
+        ],
         moduleSpecifier: "./outputModels"
       }
     ]);
@@ -90,14 +99,8 @@ export function buildResponseTypes(
   return { path: filePath, content: responsesFile.getFullText() };
 }
 
-export function getResponseTypeName(
-  baseResponseName: string
-) {
-
-  return normalizeName(
-    `${baseResponseName}Response`,
-    NameType.Interface
-  );
+export function getResponseTypeName(baseResponseName: string) {
+  return normalizeName(`${baseResponseName}Response`, NameType.Interface);
 }
 
 function getResponseHeaderInterfaceDefinition(
@@ -130,7 +133,7 @@ function getResponseHeaderInterfaceDefinition(
  */
 function getResponseInterfaceProperties(
   response: ResponseMetadata,
-  headersInterfaceName?: string,
+  headersInterfaceName?: string
 ) {
   const statusCode = response.statusCode;
   const responseProperties: PropertySignatureStructure[] = [
