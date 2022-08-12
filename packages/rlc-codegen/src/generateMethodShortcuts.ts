@@ -18,9 +18,7 @@ export const REST_CLIENT_RESERVED: ReservedName[] = [
   }
 ];
 
-export function generateMethodShortcutImplementation(
-  paths: Paths
-) {
+export function generateMethodShortcutImplementation(paths: Paths) {
   let keys: Record<string, string[]> = {};
   for (const path of Object.keys(paths)) {
     const groupName = normalizeName(
@@ -32,7 +30,7 @@ export function generateMethodShortcutImplementation(
     );
 
     if (keys[groupName]) {
-      keys[groupName].push(...buildOperationDeclarations(path, paths[path]))
+      keys[groupName].push(...buildOperationDeclarations(path, paths[path]));
     } else {
       keys[groupName] = buildOperationDeclarations(path, paths[path]);
     }
@@ -42,16 +40,18 @@ export function generateMethodShortcutImplementation(
 
 function buildOperationDeclarations(path: string, pathMetadata: PathMetadata) {
   let ops: string[] = [];
-  for(const method of Object.keys(pathMetadata.methods)) {
-    const pathParams = pathMetadata?.pathParameters;
-    const name = pathMetadata.methods[method][0].operationName;
-    const methodDefinitions = generateOperationDeclaration(
-      path,
-      name,
-      method,
-      pathParams
-    );
-    ops = [...ops, methodDefinitions];
+  for (const method of Object.keys(pathMetadata.methods)) {
+    for (const op of pathMetadata.methods[method]) {
+      const pathParams = pathMetadata?.pathParameters;
+      const name = normalizeName(op.operationName, NameType.Property);
+      const methodDefinitions = generateOperationDeclaration(
+        path,
+        name,
+        method,
+        pathParams
+      );
+      ops = [...ops, methodDefinitions];
+    }
   }
 
   return ops;
@@ -64,7 +64,7 @@ function generateOperationDeclaration(
   pathParams: PathParameter[] = []
 ): string {
   const pathParamNames = `${
-    pathParams.length > 0 ? `${pathParams.map(p => p.name)},` : ""
+    pathParams.length > 0 ? `${pathParams.map((p) => p.name)},` : ""
   }`;
   return `"${operationName}": (${pathParamNames} options) => {
       return client.path("${path}", ${pathParamNames}).${method}(options);

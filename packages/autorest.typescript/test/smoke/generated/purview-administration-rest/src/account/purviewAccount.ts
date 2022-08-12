@@ -11,7 +11,7 @@ export function createClient(
   options: ClientOptions = {}
 ): PurviewAccountClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2019-11-01-preview";
+
   options = {
     ...options,
     credentials: {
