@@ -19,9 +19,11 @@ import { generateServiceInformation } from "./generate/generateServiceInformatio
 import { transformServiceInformation } from "./transforms/transformServiceInformation";
 import { transformOperationGroup } from "./transforms/transformOperations";
 import { generateOperationGroup } from "./generate/generateOperations";
+import { setSession } from "./utils/logger";
 
 export async function processRequest(host: AutorestExtensionHost) {
   const session = await startSession<CodeModel>(host, codeModelSchema);
+  setSession(session);
   const model = session.model;
   const cadlEnums = [
     ...(model.schemas.choices ?? []),
