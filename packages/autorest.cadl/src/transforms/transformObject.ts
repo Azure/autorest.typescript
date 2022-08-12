@@ -14,6 +14,7 @@ import {
   isSealedChoiceSchema,
 } from "../utils/schemas";
 import { transformValue } from "../utils/values";
+import { getLogger } from "../utils/logger";
 
 const cadlTypes = new Map<SchemaType, string>([
   [SchemaType.Date, "plainDate"],
@@ -30,6 +31,10 @@ const cadlTypes = new Map<SchemaType, string>([
 ]);
 
 export function transformObject(schema: ObjectSchema): CadlObject {
+  const logger = getLogger("transformOperationGroup");
+  if (schema.children && schema.children.immediate.length > 0) {
+    logger.info(`Has children: ${schema.language.default.name}`);
+  }
   const name = schema.language.default.name.replace(/-/g, "_");
   const docs = schema.language.default.description;
 

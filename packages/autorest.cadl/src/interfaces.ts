@@ -21,13 +21,8 @@ export interface CadlOperation extends WithDoc, WithSummary {
   verb: "get" | "post" | "put" | "delete";
   route: string;
   responses: string[];
-  parameters: CadlParameters;
+  parameters: CadlParameter[];
 }
-
-export interface CadlParameters {
-  pathParameters: CadlObjectProperty[];
-}
-
 export interface ServiceInformation extends WithDoc {
   name: string;
   version?: string;
@@ -45,6 +40,11 @@ export interface CadlEnum extends WithDoc {
   name: string;
   members: (string | number | boolean)[];
   isExtensible: boolean;
+}
+
+export type CadlParameterLocation = "path" | "query" | "header" | "body";
+export interface CadlParameter extends CadlObjectProperty {
+  location: CadlParameterLocation;
 }
 
 export interface CadlObjectProperty extends WithDoc {

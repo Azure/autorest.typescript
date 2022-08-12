@@ -1,4 +1,5 @@
 import {
+  ImplementationLocation,
   Operation,
   OperationGroup,
   Parameter,
@@ -8,9 +9,10 @@ import {
   SchemaResponse,
 } from "@autorest/codemodel";
 import {
-  CadlObjectProperty,
   CadlOperation,
   CadlOperationGroup,
+  CadlParameter,
+  CadlParameterLocation,
 } from "../interfaces";
 import { getCadlType } from "./transformObject";
 
@@ -58,24 +60,49 @@ function transformRequest(
   const transformedResponses = transformResponses(
     responses as SchemaResponse[]
   );
-  const pathParameters = (operation.parameters ?? [])
-    .filter((p) => p.protocol.http?.in === ParameterLocation.Path)
+  const visitedParameter: Set<Parameter> = new Set();
+  let parameters = (operation.parameters ?? [])
+    .filter((p) => filterOperationParameters(p, visitedParameter))
     .map(transformParameter);
+
+  parameters = [
+    ...parameters,
+    ...getRequestParameters(operation)
+      .filter((p) => filterOperationParameters(p, visitedParameter))
+      .map(transformParameter),
+  ];
 
   return {
     name,
     doc,
     summary,
-    parameters: { pathParameters },
+    parameters,
     verb: transformVerb(requests![0].protocol),
     route: transformRoute(requests![0].protocol),
     responses: [...new Set(transformedResponses)],
   };
 }
 
-export function transformParameter(
-  propertySchema: Parameter
-): CadlObjectProperty {
+function filterOperationParameters(
+  parameter: Parameter,
+  visitedParameters: Set<Parameter>
+): boolean {
+  if (visitedParameters.has(parameter)) {
+    return false;
+  }
+
+  const shouldVisit =
+    parameter.implementation === ImplementationLocation.Method &&
+    ["path", "body", "header", "query"].includes(parameter.protocol.http?.in);
+
+  if (shouldVisit) {
+    visitedParameters.add(parameter);
+  }
+
+  return shouldVisit;
+}
+
+export function transformParameter(propertySchema: Parameter): CadlParameter {
   const name = propertySchema.language.default.name;
   const doc = propertySchema.language.default.description;
 
@@ -84,5 +111,48 @@ export function transformParameter(
     name,
     isOptional: propertySchema.required === false,
     type: getCadlType(propertySchema.schema),
+    location: transformParameterLocation(propertySchema),
   };
+}
+
+function getRequestParameters(operation: Operation): Parameter[] {
+  if (!operation.requests?.length) {
+    return [];
+  }
+
+  if (operation.requests.length > 1) {
+    throw new Error(
+      `Operation ${operation.language.default.name} has more than one request`
+    );
+  }
+
+  const parameters = operation.requests[0].parameters ?? [];
+  const signatureParameters = operation.requests[0].signatureParameters ?? [];
+
+  return [...parameters, ...signatureParameters];
+}
+
+function transformParameterLocation(
+  parameter: Parameter
+): CadlParameterLocation {
+  const location: ParameterLocation = parameter.protocol.http?.in;
+
+  if (!location) {
+    throw new Error(
+      `Parameter ${parameter.language.default.name} has no location defined`
+    );
+  }
+
+  switch (location) {
+    case ParameterLocation.Path:
+      return "path";
+    case ParameterLocation.Query:
+      return "query";
+    case ParameterLocation.Header:
+      return "header";
+    case ParameterLocation.Body:
+      return "body";
+    default:
+      throw new Error(`Unknown location ${location}`);
+  }
 }
