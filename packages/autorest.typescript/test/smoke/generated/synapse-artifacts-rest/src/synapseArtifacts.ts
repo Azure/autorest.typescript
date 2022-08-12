@@ -11,7 +11,7 @@ export default function createClient(
   options: ClientOptions = {}
 ): SynapseArtifactsClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-
+  options.apiVersion = options.apiVersion ?? "2021-11-01-preview";
   options = {
     ...options,
     credentials: {

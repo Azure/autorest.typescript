@@ -8,6 +8,7 @@ export default function createClient(
   options: ClientOptions = {}
 ): BodyComplexRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
+  options.apiVersion = options.apiVersion ?? "2016-02-29";
 
   const userAgentInfo = `azsdk-js-body-complex-rest/1.0.0-preview1`;
   const userAgentPrefix =

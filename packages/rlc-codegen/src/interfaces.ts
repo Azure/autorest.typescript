@@ -59,7 +59,7 @@ export interface RLCModel {
   paths: Paths;
   options?: RLCOptions;
   schemas: Schema[];
-  apiVersionParam?: Parameter[];
+  apiVersionParam?: Parameter;
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;

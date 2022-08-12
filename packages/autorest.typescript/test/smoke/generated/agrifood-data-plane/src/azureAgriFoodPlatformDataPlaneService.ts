@@ -11,7 +11,7 @@ export default function createClient(
   options: ClientOptions = {}
 ): AzureAgriFoodPlatformDataPlaneServiceClient {
   const baseUrl = options.baseUrl ?? `${Endpoint}`;
-
+  options.apiVersion = options.apiVersion ?? "2021-03-31-preview";
   options = {
     ...options,
     credentials: {

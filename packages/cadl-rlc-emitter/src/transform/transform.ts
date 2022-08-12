@@ -6,12 +6,13 @@ import {
   NameType,
   normalizeName,
   OperationResponse,
+  Parameter,
   Paths,
   RLCModel,
   RLCOptions,
   Schema
 } from "@azure-tools/rlc-codegen";
-import { getServiceTitle, Program } from "@cadl-lang/compiler";
+import { getServiceTitle, getServiceVersion, Program } from "@cadl-lang/compiler";
 import { join } from "path";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
@@ -25,6 +26,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
   const importSet = new Map<ImportKind, Set<string>>();
   const paths: Paths = transformPaths(program);
   const schemas: Schema[] = transformSchemas(program);
+  const apiVersionParam = transformApiVersionParam(program);
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet
@@ -37,6 +39,19 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     options,
     schemas,
     responses,
-    importSet
+    importSet,
+    apiVersionParam
   };
+}
+
+function transformApiVersionParam(program: Program): Parameter | undefined {
+  const apiVersion = getServiceVersion(program);
+  if (apiVersion) {
+    return {
+      name: "api-version",
+      type: "constant",
+      default: apiVersion
+    }
+  }
+  return undefined;
 }
