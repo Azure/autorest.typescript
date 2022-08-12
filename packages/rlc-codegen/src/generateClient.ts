@@ -210,9 +210,9 @@ function getClientFactoryBody(
       // If the operation group has an empty name, it means its operations are client
       // level operations so we need to spread the definitions. Otherwise they are
       // within an operation group so we add them as key: value
-      return `${key ? `"${key}":` : "..."} {${shortcutImplementations[
-        key
-      ].join()}}`;
+      return `${
+        key && key !== "client" ? `"${key}":` : "..."
+      } {${shortcutImplementations[key].join()}}`;
     });
     returnStatement = `return { ...client, ${shortcutBody.join()} };`;
   }
