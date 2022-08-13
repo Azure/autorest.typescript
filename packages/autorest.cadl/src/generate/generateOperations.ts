@@ -9,7 +9,7 @@ export function generateOperation(operation: CadlOperation) {
   const doc = generateDocs(operation);
   const summary = generateSummary(operation);
   const { verb, name, route, responses, parameters } = operation;
-  const params = generatePathParameters(parameters);
+  const params = generateParameters(parameters);
   const statements: string[] = [];
   summary && statements.push(summary);
   statements.push(doc);
@@ -32,12 +32,12 @@ function generateMultiResponseWarning(
     );
 }
 
-function generatePathParameters(parameters: CadlParameter[]) {
+function generateParameters(parameters: CadlParameter[]) {
   const params: string[] = [];
   for (const parameter of parameters) {
     const location = parameter.location;
     params.push(generateDocs(parameter));
-    params.push(`@${location} ${parameter.name}: ${parameter.type},`);
+    params.push(`@${location} "${parameter.name}": ${parameter.type},`);
   }
   return params.join("\n");
 }

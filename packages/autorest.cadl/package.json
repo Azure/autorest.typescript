@@ -2,17 +2,18 @@
   "name": "@autorest/cadl-init",
   "version": "1.0.0",
   "description": "Autorest plugin to scaffold a CADL definition from an OpenAPI document",
-  "main": "dist/main.js",
+  "main": "dist/src/main.js",
   "typings": "dist/main.d.ts",
   "scripts": {
-    "test:adel": "autorest --cadl-init --input-file=./test/adel.json --use=.",
-    "test:url": "autorest --cadl-init --input-file=./test/url.json --use=.",
-    "test:pubsub": "autorest --cadl-init --input-file=./test/webpubsub.json --use=.",
+    "test:adel": "autorest --cadl-init --input-file=./test/adel/adel.json --use=. --output-folder=./test/adel",
+    "test:url": "autorest --cadl-init --input-file=./test/url/url.json --use=. --output-dir=./test/url",
+    "test:pubsub": "autorest --cadl-init --input-file=./test/webpubsub/webpubsub.json --use=. --output-dir=./test/webpubsub",
     "build": "tsc -p .",
+    "generate": "ts-node ./test/utils/generateCadl.ts generate",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf ./dist ./temp",
-    "start": "node --max_old_space_size=4096 ./dist/main.js",
-    "debug": "node --max_old_space_size=4096 --inspect-brk=localhost:9229 ./dist/main.js",
+    "start": "node --max_old_space_size=4096 ./dist/src/main.js",
+    "debug": "node --max_old_space_size=4096 --inspect-brk=localhost:9229 ./dist/src/main.js",
     "watch": "tsc -p . --watch"
   },
   "repository": {
@@ -41,6 +42,11 @@
     "@cadl-lang/prettier-plugin-cadl": "^0.5.13",
     "@types/prettier": "^2.7.0",
     "rimraf": "^3.0.2",
-    "@cadl-lang/rest": "^0.15.1"
+    "@cadl-lang/rest": "^0.15.1",
+    "ts-node": "^10.9.1",
+    "@types/node": "^18.7.2",
+    "fs-extra": "^10.1.0",
+    "@types/fs-extra": "^9.0.13",
+    "chalk": "~4.1.1"
   }
 }

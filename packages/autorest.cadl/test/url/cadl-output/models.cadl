@@ -1,0 +1,879 @@
+import "@cadl-lang/rest";
+using Cadl.Rest;
+using Cadl.Http;
+@serviceTitle("AutoRest Url Test Service")
+@server(
+  "{$host}",
+  "Test Infrastructure for AutoRest",
+  {
+    @doc("server parameter")
+    $host: string,
+  }
+)
+@doc("Test Infrastructure for AutoRest")
+namespace AutoRestUrlTestService;
+
+enum UriColor {
+  "red color",
+  "green color",
+  "blue color",
+}
+// TODO: Add documentation
+model Error {
+  // TODO: Add documentation
+  status: int32;
+  // TODO: Add documentation
+  message: string;
+}
+// TODO: Add documentation
+interface paths {
+  @doc("Get true Boolean value on path")
+  @route("/paths/bool/true/{boolPath}")
+  @get
+  getBooleanTrue(
+    @doc("true boolean value")
+    @path
+    boolPath: true,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get false Boolean value on path")
+  @route("/paths/bool/false/{boolPath}")
+  @get
+  getBooleanFalse(
+    @doc("false boolean value")
+    @path
+    boolPath: false,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '1000000' integer value")
+  @route("/paths/int/1000000/{intPath}")
+  @get
+  getIntOneMillion(
+    @doc("'1000000' integer value")
+    @path
+    intPath: 1000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '-1000000' integer value")
+  @route("/paths/int/-1000000/{intPath}")
+  @get
+  getIntNegativeOneMillion(
+    @doc("'-1000000' integer value")
+    @path
+    intPath: -1000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '10000000000' 64 bit integer value")
+  @route("/paths/long/10000000000/{longPath}")
+  @get
+  getTenBillion(
+    @doc("'10000000000' 64 bit integer value")
+    @path
+    longPath: 10000000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '-10000000000' 64 bit integer value")
+  @route("/paths/long/-10000000000/{longPath}")
+  @get
+  getNegativeTenBillion(
+    @doc("'-10000000000' 64 bit integer value")
+    @path
+    longPath: -10000000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '1.034E+20' numeric value")
+  @route("/paths/float/1.034E+20/{floatPath}")
+  @get
+  floatScientificPositive(
+    @doc("'1.034E+20'numeric value")
+    @path
+    floatPath: 103400000000000000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '-1.034E-20' numeric value")
+  @route("/paths/float/-1.034E-20/{floatPath}")
+  @get
+  floatScientificNegative(
+    @doc("'-1.034E-20'numeric value")
+    @path
+    floatPath: -1.034e-20,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '9999999.999' numeric value")
+  @route("/paths/double/9999999.999/{doublePath}")
+  @get
+  doubleDecimalPositive(
+    @doc("'9999999.999'numeric value")
+    @path
+    doublePath: 9999999.999,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '-9999999.999' numeric value")
+  @route("/paths/double/-9999999.999/{doublePath}")
+  @get
+  doubleDecimalNegative(
+    @doc("'-9999999.999'numeric value")
+    @path
+    doublePath: -9999999.999,
+
+    @doc("Accept header")
+    @header
+    "accept": "application/json"
+  ): void;
+  @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
+  @route("/paths/string/unicode/{stringPath}")
+  @get
+  stringUnicode(
+    @doc("'啊齄丂狛狜隣郎隣兀﨩'multi-byte string value")
+    @path
+    stringPath: "啊齄丂狛狜隣郎隣兀﨩",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get 'begin!*'();:@ &=+$,/?#[]end")
+  @route("/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}")
+  @get
+  stringUrlEncoded(
+    @doc("'begin!*'();:@ &=+$,/?#[]end' url encoded string value")
+    @path
+    stringPath: "begin!*'();:@ &=+$,/?#[]end",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @summary("Get 'begin!*'();:@&=+$,end")
+  @doc("https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded")
+  @route("/paths/string/begin!*'();:@&=+$,end/{stringPath}")
+  @get
+  stringUrlNonEncoded(
+    @doc("'begin!*'();:@&=+$,end' url encoded string value")
+    @path
+    stringPath: "begin!*'();:@&=+$,end",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get ''")
+  @route("/paths/string/empty/{stringPath}")
+  @get
+  stringEmpty(
+    @doc("'' string value")
+    @path
+    stringPath: "",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null (should throw)")
+  @route("/paths/string/null/{stringPath}")
+  @get
+  stringNull(
+    @doc("null string value")
+    @path
+    stringPath: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get using uri with 'green color' in path parameter")
+  @route("/paths/enum/green%20color/{enumPath}")
+  @get
+  enumValid(
+    @doc("send the value green")
+    @path
+    enumPath: UriColor,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null (should throw on the client before the request is sent on wire)")
+  @route("/paths/string/null/{enumPath}")
+  @get
+  enumNull(
+    @doc("send null should throw")
+    @path
+    enumPath: UriColor,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
+  @route("/paths/byte/multibyte/{bytePath}")
+  @get
+  byteMultiByte(
+    @doc("'啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
+    @path
+    bytePath: bytes,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '' as byte array")
+  @route("/paths/byte/empty/{bytePath}")
+  @get
+  byteEmpty(
+    @doc("'' as byte array")
+    @path
+    bytePath: "",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null as byte array (should throw)")
+  @route("/paths/byte/null/{bytePath}")
+  @get
+  byteNull(
+    @doc("null as byte array (should throw)")
+    @path
+    bytePath: bytes,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '2012-01-01' as date")
+  @route("/paths/date/2012-01-01/{datePath}")
+  @get
+  DateValid(
+    @doc("'2012-01-01' as date")
+    @path
+    datePath: "2012-01-01",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null as date - this should throw or be unusable on the client side, depending on date representation")
+  @route("/paths/date/null/{datePath}")
+  @get
+  DateNull(
+    @doc("null as date (should throw)")
+    @path
+    datePath: plainDate,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '2012-01-01T01:01:01Z' as date-time")
+  @route("/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}")
+  @get
+  DateTimeValid(
+    @doc("'2012-01-01T01:01:01Z' as date-time")
+    @path
+    dateTimePath: "2012-01-01T01:01:01Z",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null as date-time, should be disallowed or throw depending on representation of date-time")
+  @route("/paths/datetime/null/{dateTimePath}")
+  @get
+  DateTimeNull(
+    @doc("null as date-time")
+    @path
+    dateTimePath: zonedDateTime,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get 'lorem' encoded value as 'bG9yZW0' (base64url)")
+  @route("/paths/string/bG9yZW0/{base64UrlPath}")
+  @get
+  base64Url(
+    @doc("base64url encoded value")
+    @path
+    base64UrlPath: bytes,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format")
+  @route("/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}")
+  @get
+  ArrayCsvInPath(
+    @doc("an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format")
+    @path
+    arrayPath: string[],
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get the date 2016-04-13 encoded value as '1460505600' (Unix time)")
+  @route("/paths/int/1460505600/{unixTimeUrlPath}")
+  @get
+  unixTimeUrl(
+    @doc("Unix time encoded value")
+    @path
+    unixTimeUrlPath: plainTime,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+}
+
+// TODO: Add documentation
+interface queries {
+  @doc("Get true Boolean value on path")
+  @route("/queries/bool/true")
+  @get
+  getBooleanTrue(
+    @doc("true boolean value")
+    @query
+    boolQuery: true,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get false Boolean value on path")
+  @route("/queries/bool/false")
+  @get
+  getBooleanFalse(
+    @doc("false boolean value")
+    @query
+    boolQuery: false,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null Boolean value on query (query string should be absent)")
+  @route("/queries/bool/null")
+  @get
+  getBooleanNull(
+    @doc("null boolean value")
+    @query
+    boolQuery: boolean,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '1000000' integer value")
+  @route("/queries/int/1000000")
+  @get
+  getIntOneMillion(
+    @doc("'1000000' integer value")
+    @query
+    intQuery: 1000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '-1000000' integer value")
+  @route("/queries/int/-1000000")
+  @get
+  getIntNegativeOneMillion(
+    @doc("'-1000000' integer value")
+    @query
+    intQuery: -1000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null integer value (no query parameter)")
+  @route("/queries/int/null")
+  @get
+  getIntNull(
+    @doc("null integer value")
+    @query
+    intQuery: int32,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '10000000000' 64 bit integer value")
+  @route("/queries/long/10000000000")
+  @get
+  getTenBillion(
+    @doc("'10000000000' 64 bit integer value")
+    @query
+    longQuery: 10000000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '-10000000000' 64 bit integer value")
+  @route("/queries/long/-10000000000")
+  @get
+  getNegativeTenBillion(
+    @doc("'-10000000000' 64 bit integer value")
+    @query
+    longQuery: -10000000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get 'null 64 bit integer value (no query param in uri)")
+  @route("/queries/long/null")
+  @get
+  getLongNull(
+    @doc("null 64 bit integer value")
+    @query
+    longQuery: int32,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '1.034E+20' numeric value")
+  @route("/queries/float/1.034E+20")
+  @get
+  floatScientificPositive(
+    @doc("'1.034E+20'numeric value")
+    @query
+    floatQuery: 103400000000000000000,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '-1.034E-20' numeric value")
+  @route("/queries/float/-1.034E-20")
+  @get
+  floatScientificNegative(
+    @doc("'-1.034E-20'numeric value")
+    @query
+    floatQuery: -1.034e-20,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null numeric value (no query parameter)")
+  @route("/queries/float/null")
+  @get
+  floatNull(
+    @doc("null numeric value")
+    @query
+    floatQuery: float32,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '9999999.999' numeric value")
+  @route("/queries/double/9999999.999")
+  @get
+  doubleDecimalPositive(
+    @doc("'9999999.999'numeric value")
+    @query
+    doubleQuery: 9999999.999,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '-9999999.999' numeric value")
+  @route("/queries/double/-9999999.999")
+  @get
+  doubleDecimalNegative(
+    @doc("'-9999999.999'numeric value")
+    @query
+    doubleQuery: -9999999.999,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null numeric value (no query parameter)")
+  @route("/queries/double/null")
+  @get
+  doubleNull(
+    @doc("null numeric value")
+    @query
+    doubleQuery: float32,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
+  @route("/queries/string/unicode/")
+  @get
+  stringUnicode(
+    @doc("'啊齄丂狛狜隣郎隣兀﨩'multi-byte string value")
+    @query
+    stringQuery: "啊齄丂狛狜隣郎隣兀﨩",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get 'begin!*'();:@ &=+$,/?#[]end")
+  @route("/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend")
+  @get
+  stringUrlEncoded(
+    @doc("'begin!*'();:@ &=+$,/?#[]end' url encoded string value")
+    @query
+    stringQuery: "begin!*'();:@ &=+$,/?#[]end",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get ''")
+  @route("/queries/string/empty")
+  @get
+  stringEmpty(
+    @doc("'' string value")
+    @query
+    stringQuery: "",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null (no query parameter in url)")
+  @route("/queries/string/null")
+  @get
+  stringNull(
+    @doc("null string value")
+    @query
+    stringQuery: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get using uri with query parameter 'green color'")
+  @route("/queries/enum/green%20color")
+  @get
+  enumValid(
+    @doc("'green color' enum value")
+    @query
+    enumQuery: UriColor,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null (no query parameter in url)")
+  @route("/queries/enum/null")
+  @get
+  enumNull(
+    @doc("null string value")
+    @query
+    enumQuery: UriColor,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
+  @route("/queries/byte/multibyte")
+  @get
+  byteMultiByte(
+    @doc("'啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
+    @query
+    byteQuery: bytes,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '' as byte array")
+  @route("/queries/byte/empty")
+  @get
+  byteEmpty(
+    @doc("'' as byte array")
+    @query
+    byteQuery: "",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null as byte array (no query parameters in uri)")
+  @route("/queries/byte/null")
+  @get
+  byteNull(
+    @doc("null as byte array (no query parameters in uri)")
+    @query
+    byteQuery: bytes,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '2012-01-01' as date")
+  @route("/queries/date/2012-01-01")
+  @get
+  DateValid(
+    @doc("'2012-01-01' as date")
+    @query
+    dateQuery: "2012-01-01",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null as date - this should result in no query parameters in uri")
+  @route("/queries/date/null")
+  @get
+  DateNull(
+    @doc("null as date (no query parameters in uri)")
+    @query
+    dateQuery: plainDate,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get '2012-01-01T01:01:01Z' as date-time")
+  @route("/queries/datetime/2012-01-01T01%3A01%3A01Z")
+  @get
+  DateTimeValid(
+    @doc("'2012-01-01T01:01:01Z' as date-time")
+    @query
+    dateTimeQuery: "2012-01-01T01:01:01Z",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get null as date-time, should result in no query parameters in uri")
+  @route("/queries/datetime/null")
+  @get
+  DateTimeNull(
+    @doc("null as date-time (no query parameters)")
+    @query
+    dateTimeQuery: zonedDateTime,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format")
+  @route("/queries/array/csv/string/valid")
+  @get
+  ArrayStringCsvValid(
+    @doc("an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format")
+    @query
+    arrayQuery: string[],
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get a null array of string using the csv-array format")
+  @route("/queries/array/csv/string/null")
+  @get
+  ArrayStringCsvNull(
+    @doc("a null array of string using the csv-array format")
+    @query
+    arrayQuery: string[],
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get an empty array [] of string using the csv-array format")
+  @route("/queries/array/csv/string/empty")
+  @get
+  ArrayStringCsvEmpty(
+    @doc("an empty array [] of string using the csv-array format")
+    @query
+    arrayQuery: string[],
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service")
+  @route("/queries/array/none/string/empty")
+  @get
+  ArrayStringNoCollectionFormatEmpty(
+    @doc("Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].")
+    @query
+    arrayQuery: string[],
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format")
+  @route("/queries/array/ssv/string/valid")
+  @get
+  ArrayStringSsvValid(
+    @doc("an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format")
+    @query
+    arrayQuery: string[],
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format")
+  @route("/queries/array/tsv/string/valid")
+  @get
+  ArrayStringTsvValid(
+    @doc("an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format")
+    @query
+    arrayQuery: string[],
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format")
+  @route("/queries/array/pipes/string/valid")
+  @get
+  ArrayStringPipesValid(
+    @doc("an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format")
+    @query
+    arrayQuery: string[],
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+}
+
+// TODO: Add documentation
+interface pathItems {
+  @doc("send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'")
+  @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery")
+  @get
+  getAllWithValues(
+    @doc("A string value 'pathItemStringPath' that appears in the path")
+    @path
+    pathItemStringPath: string,
+
+    @doc("A string value 'pathItemStringQuery' that appears as a query parameter")
+    @query
+    pathItemStringQuery: string,
+
+    @doc("should contain value 'localStringPath'")
+    @path
+    localStringPath: string,
+
+    @doc("should contain value 'localStringQuery'")
+    @query
+    localStringQuery: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'")
+  @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery")
+  @get
+  getGlobalQueryNull(
+    @doc("A string value 'pathItemStringPath' that appears in the path")
+    @path
+    pathItemStringPath: string,
+
+    @doc("A string value 'pathItemStringQuery' that appears as a query parameter")
+    @query
+    pathItemStringQuery: string,
+
+    @doc("should contain value 'localStringPath'")
+    @path
+    localStringPath: string,
+
+    @doc("should contain value 'localStringQuery'")
+    @query
+    localStringQuery: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null")
+  @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null")
+  @get
+  getGlobalAndLocalQueryNull(
+    @doc("A string value 'pathItemStringPath' that appears in the path")
+    @path
+    pathItemStringPath: string,
+
+    @doc("A string value 'pathItemStringQuery' that appears as a query parameter")
+    @query
+    pathItemStringQuery: string,
+
+    @doc("should contain value 'localStringPath'")
+    @path
+    localStringPath: string,
+
+    @doc("should contain null value")
+    @query
+    localStringQuery: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @doc("send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null")
+  @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null")
+  @get
+  getLocalPathItemQueryNull(
+    @doc("A string value 'pathItemStringPath' that appears in the path")
+    @path
+    pathItemStringPath: string,
+
+    @doc("should contain value null")
+    @query
+    pathItemStringQuery: string,
+
+    @doc("should contain value 'localStringPath'")
+    @path
+    localStringPath: string,
+
+    @doc("should contain value null")
+    @query
+    localStringQuery: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+}

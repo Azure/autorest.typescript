@@ -5,9 +5,10 @@ import { CodeModel, codeModelSchema } from "@autorest/codemodel";
 import {
   AutoRestExtension,
   AutorestExtensionHost,
+  Session,
   startSession,
 } from "@autorest/extension-base";
-import { writeFile } from "fs/promises";
+import { mkdir, writeFile } from "fs/promises";
 import { writeEnums } from "./generate/generateModels";
 import { generateObject } from "./generate/generateObject";
 
@@ -20,6 +21,17 @@ import { transformServiceInformation } from "./transforms/transformServiceInform
 import { transformOperationGroup } from "./transforms/transformOperations";
 import { generateOperationGroup } from "./generate/generateOperations";
 import { setSession } from "./utils/logger";
+import { join, dirname } from "path";
+
+function getOutuptDirectory(session: Session<CodeModel>) {
+  const outputFolder = session.configuration["output-folder"];
+  const srcPath = session.configuration["src-path"] ?? "cadl-output";
+  return outputFolder ? join(outputFolder, srcPath) : srcPath;
+}
+
+function getFilePath(session: Session<CodeModel>, fileName: string) {
+  return join(getOutuptDirectory(session), fileName);
+}
 
 export async function processRequest(host: AutorestExtensionHost) {
   const session = await startSession<CodeModel>(host, codeModelSchema);
@@ -55,7 +67,7 @@ export async function processRequest(host: AutorestExtensionHost) {
   file.push(operationGroups);
   const content = file.join("\n");
 
-  await writeFile("models-raw.cadl", content);
+  await emitFile(getFilePath(session, "models-raw.cadl"), content);
 
   const formattedFile = format(content, {
     plugins: ["@cadl-lang/prettier-plugin-cadl"],
@@ -63,7 +75,14 @@ export async function processRequest(host: AutorestExtensionHost) {
     filepath: "models.cadl",
   });
 
-  await writeFile("models.cadl", formattedFile);
+  await emitFile(getFilePath(session, "models.cadl"), formattedFile);
+}
+
+async function emitFile(filePath: string, content: string) {
+  try {
+    await mkdir(dirname(filePath));
+  } catch {}
+  await writeFile(filePath, content);
 }
 
 async function main() {

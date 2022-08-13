@@ -623,43 +623,43 @@ interface AlertConfigs {
 // TODO: Add documentation 
 @route("/alertConfigs")
 @get op List(@doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
-@query skip: int32,
+@query "skip": int32,
 @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
-@query maxpagesize: int32,
+@query "maxpagesize": int32,
 @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
-@query sortBy: string,
+@query "sortBy": string,
 // TODO: Add documentation 
-@query orderBy: OrderBy,
+@query "orderBy": OrderBy,
 @doc("Accept header")
-@header accept: "application/json",): Page_AlertConfig;
+@header "accept": "application/json",): Page_AlertConfig;
 // TODO: Add documentation 
 @route("/alertConfigs/{alertConfigName}")
 @put op Create(@doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
-@path alertConfigName: string,
+@path "alertConfigName": string,
 // TODO: Add documentation 
-@body body: AlertConfig,
+@body "body": AlertConfig,
 @doc("Accept header")
-@header accept: "application/json",): AlertConfig;
+@header "accept": "application/json",): AlertConfig;
 // TODO: Add documentation 
 @route("/alertConfigs/{alertConfigName}")
 @get op Read(@doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
-@path alertConfigName: string,
+@path "alertConfigName": string,
 @doc("Accept header")
-@header accept: "application/json",): AlertConfig;
+@header "accept": "application/json",): AlertConfig;
 // TODO: Add documentation 
 @route("/alertConfigs/{alertConfigName}")
 @delete op Delete(@doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
-@path alertConfigName: string,
+@path "alertConfigName": string,
 @doc("Accept header")
-@header accept: "application/json",): void;
+@header "accept": "application/json",): void;
 // TODO: Add documentation 
 @route("/alertConfigs/{alertConfigName}")
 @patch op Update(@doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
-@path alertConfigName: string,
+@path "alertConfigName": string,
 // TODO: Add documentation 
-@body body: AlertConfig,
+@body "body": AlertConfig,
 @doc("Accept header")
-@header accept: "application/json",): AlertConfig;
+@header "accept": "application/json",): AlertConfig;
 }
 
 // TODO: Add documentation 
@@ -667,42 +667,42 @@ interface Datasets {
 // TODO: Add documentation 
 @route("/datasets")
 @get op List(@doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
-@query skip: int32,
+@query "skip": int32,
 @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
-@query maxpagesize: int32,
+@query "maxpagesize": int32,
 @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
-@query sortBy: string,
+@query "sortBy": string,
 // TODO: Add documentation 
-@query orderBy: OrderBy,
+@query "orderBy": OrderBy,
 @doc("Accept header")
-@header accept: "application/json",): Page_Dataset;
+@header "accept": "application/json",): Page_Dataset;
 // TODO: Add documentation 
 @route("/datasets/{datasetName}")
 @put op Create(@doc("Unique identifier of a dataset. This parameter is case-sensitive.")
-@path datasetName: string,
+@path "datasetName": string,
 // TODO: Add documentation 
-@body body: Request_Dataset,
+@body "body": Request_Dataset,
 @doc("Accept header")
-@header accept: "application/json",): Dataset;
+@header "accept": "application/json",): Dataset;
 // TODO: Add documentation 
 @route("/datasets/{datasetName}")
 @get op Read(@doc("Unique identifier of a dataset. This parameter is case-sensitive.")
-@path datasetName: string,
+@path "datasetName": string,
 @doc("Accept header")
-@header accept: "application/json",): Dataset;
+@header "accept": "application/json",): Dataset;
 // TODO: Add documentation 
 @route("/datasets/{datasetName}")
 @delete op Delete(@doc("Unique identifier of a dataset. This parameter is case-sensitive.")
-@path datasetName: string,
+@path "datasetName": string,
 @doc("Accept header")
-@header accept: "application/json",): void;
+@header "accept": "application/json",): void;
 @summary("Query data from data source to preview")
 @doc("Verify data schema and preview data before/after a dataset is created. View raw data to better diagnose and explain a detected anomaly.")
 @route("/datasets/previewData")
 @post op PreviewData(// TODO: Add documentation 
-@body body: DatasetPreviewRequest,
+@body "body": DatasetPreviewRequest,
 @doc("Accept header")
-@header accept: "application/json",): DatasetPreviewResponse;
+@header "accept": "application/json",): DatasetPreviewResponse;
 }
 
 // TODO: Add documentation 
@@ -710,43 +710,43 @@ interface Hooks {
 // TODO: Add documentation 
 @route("/hooks")
 @get op List(@doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
-@query skip: int32,
+@query "skip": int32,
 @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
-@query maxpagesize: int32,
+@query "maxpagesize": int32,
 @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
-@query sortBy: string,
+@query "sortBy": string,
 // TODO: Add documentation 
-@query orderBy: OrderBy,
+@query "orderBy": OrderBy,
 @doc("Accept header")
-@header accept: "application/json",): Page_Hook;
+@header "accept": "application/json",): Page_Hook;
 // TODO: Add documentation 
 @route("/hooks/{hookName}")
 @put op Create(@doc("Unique identifier of a hook. This parameter is case-sensitive.")
-@path hookName: string,
+@path "hookName": string,
 // TODO: Add documentation 
-@body body: Hook,
+@body "body": Hook,
 @doc("Accept header")
-@header accept: "application/json",): Hook;
+@header "accept": "application/json",): Hook;
 // TODO: Add documentation 
 @route("/hooks/{hookName}")
 @get op Read(@doc("Unique identifier of a hook. This parameter is case-sensitive.")
-@path hookName: string,
+@path "hookName": string,
 @doc("Accept header")
-@header accept: "application/json",): Hook;
+@header "accept": "application/json",): Hook;
 // TODO: Add documentation 
 @route("/hooks/{hookName}")
 @delete op Delete(@doc("Unique identifier of a hook. This parameter is case-sensitive.")
-@path hookName: string,
+@path "hookName": string,
 @doc("Accept header")
-@header accept: "application/json",): void;
+@header "accept": "application/json",): void;
 // TODO: Add documentation 
 @route("/hooks/{hookName}")
 @patch op Update(@doc("Unique identifier of a hook. This parameter is case-sensitive.")
-@path hookName: string,
+@path "hookName": string,
 // TODO: Add documentation 
-@body body: Hook,
+@body "body": Hook,
 @doc("Accept header")
-@header accept: "application/json",): Hook;
+@header "accept": "application/json",): Hook;
 }
 
 // TODO: Add documentation 
@@ -754,41 +754,41 @@ interface Replays {
 // TODO: Add documentation 
 @route("/inference/replays")
 @get op List(@doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
-@query skip: int32,
+@query "skip": int32,
 @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
-@query maxpagesize: int32,
+@query "maxpagesize": int32,
 @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
-@query sortBy: string,
+@query "sortBy": string,
 // TODO: Add documentation 
-@query orderBy: OrderBy,
+@query "orderBy": OrderBy,
 // TODO: Add documentation 
-@query status: ReplayStatus,
+@query "status": ReplayStatus,
 @doc("Filter replay records by a list of inference schedule name(s). Format the list as a comma-separated string, no space allowed. By default, the list of replay records are ranked by descending replay created time (UTC) for each inference schedule.")
-@query scheduleName: string,
+@query "scheduleName": string,
 @doc("The total number of replay records to be returned per inference schedule, ordered by created time descending. By default, the full list of replay records will be returned for the inference schedule name(s) in your filter.")
-@query topPerSchedule: int32,
+@query "topPerSchedule": int32,
 @doc("Accept header")
-@header accept: "application/json",): Page_ScheduleReplay;
+@header "accept": "application/json",): Page_ScheduleReplay;
 // TODO: Add documentation 
 @route("/inference/replays/{replayName}")
 @put op Create(@doc("Unique identifier of a replay on an inference schedule. This parameter is case-sensitive.")
-@path replayName: string,
+@path "replayName": string,
 // TODO: Add documentation 
-@body body: Request_ScheduleReplay,
+@body "body": Request_ScheduleReplay,
 @doc("Accept header")
-@header accept: "application/json",): ScheduleReplay;
+@header "accept": "application/json",): ScheduleReplay;
 // TODO: Add documentation 
 @route("/inference/replays/{replayName}")
 @get op Read(@doc("Unique identifier of a replay on an inference schedule. This parameter is case-sensitive.")
-@path replayName: string,
+@path "replayName": string,
 @doc("Accept header")
-@header accept: "application/json",): ScheduleReplay;
+@header "accept": "application/json",): ScheduleReplay;
 // TODO: Add documentation 
 @route("/inference/replays/{replayName}")
 @delete op Delete(@doc("Unique identifier of a replay on an inference schedule. This parameter is case-sensitive.")
-@path replayName: string,
+@path "replayName": string,
 @doc("Accept header")
-@header accept: "application/json",): void;
+@header "accept": "application/json",): void;
 }
 
 // TODO: Add documentation 
@@ -796,61 +796,61 @@ interface Schedules {
 // TODO: Add documentation 
 @route("/inference/schedules")
 @get op List(@doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
-@query skip: int32,
+@query "skip": int32,
 @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
-@query maxpagesize: int32,
+@query "maxpagesize": int32,
 @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
-@query sortBy: string,
+@query "sortBy": string,
 // TODO: Add documentation 
-@query orderBy: OrderBy,
+@query "orderBy": OrderBy,
 // TODO: Add documentation 
-@query status: ScheduleStatus,
+@query "status": ScheduleStatus,
 @doc("Filter inference schedules by a list of model name(s). Format the list as a comma-separated string, no space allowed. For each model, by default the list of inference schedules are ranked by descending inference schedule created time (UTC).")
-@query modelNames: string,
+@query "modelNames": string,
 @doc("The total number of inference schedules to be returned per model, ordered by created time descending. By default, the full list of inference schedules will be returned for the model name(s) in your filter.")
-@query topPerModel: int32,
+@query "topPerModel": int32,
 @doc("Accept header")
-@header accept: "application/json",): Page_Schedule;
+@header "accept": "application/json",): Page_Schedule;
 // TODO: Add documentation 
 @route("/inference/schedules/{scheduleName}")
 @put op Create(@doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
-@path scheduleName: string,
+@path "scheduleName": string,
 // TODO: Add documentation 
-@body body: Request_Schedule,
+@body "body": Request_Schedule,
 @doc("Accept header")
-@header accept: "application/json",): Schedule;
+@header "accept": "application/json",): Schedule;
 // TODO: Add documentation 
 @route("/inference/schedules/{scheduleName}")
 @get op Read(@doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
-@path scheduleName: string,
+@path "scheduleName": string,
 @doc("Accept header")
-@header accept: "application/json",): Schedule;
+@header "accept": "application/json",): Schedule;
 // TODO: Add documentation 
 @route("/inference/schedules/{scheduleName}")
 @delete op Delete(@doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
-@path scheduleName: string,
+@path "scheduleName": string,
 @doc("Accept header")
-@header accept: "application/json",): void;
+@header "accept": "application/json",): void;
 @summary("Update an inference schedule")
 @doc("Pause/resume or update selected properties of an inference schedule.")
 @route("/inference/schedules/{scheduleName}")
 @patch op Update(@doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
-@path scheduleName: string,
+@path "scheduleName": string,
 // TODO: Add documentation 
-@body body: ScheduleUpdate,
+@body "body": ScheduleUpdate,
 @doc("Accept header")
-@header accept: "application/json",): Schedule;
+@header "accept": "application/json",): Schedule;
 @summary("Get historical detection results from the inference schedule")
 @doc("Use this API to retrieve detected anomalies over a historical time period specified in the request body. Please refer to the official documentation for the detailed quota and limits.")
 @route("/inference/schedules/{scheduleName}/getHistory")
 @get op GetHistory(// TODO: Add documentation 
-@path scheduleName: string,
+@path "scheduleName": string,
 // TODO: Add documentation 
-@query startTime: string,
+@query "startTime": string,
 // TODO: Add documentation 
-@query endTime: string,
+@query "endTime": string,
 @doc("Accept header")
-@header accept: "application/json",): ScheduleHistoryResult;
+@header "accept": "application/json",): ScheduleHistoryResult;
 }
 
 // TODO: Add documentation 
@@ -858,41 +858,41 @@ interface Evaluations {
 // TODO: Add documentation 
 @route("/multivariate/evaluations")
 @get op List(@doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
-@query skip: int32,
+@query "skip": int32,
 @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
-@query maxpagesize: int32,
+@query "maxpagesize": int32,
 @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
-@query sortBy: string,
+@query "sortBy": string,
 // TODO: Add documentation 
-@query orderBy: OrderBy,
+@query "orderBy": OrderBy,
 // TODO: Add documentation 
-@query status: EvaluationStatus,
+@query "status": EvaluationStatus,
 @doc("Filter evaluations by a list of model name(s). Format the list as a comma-separated string, no space allowed. For each model, by default the list of evaluations are ranked by descending evaluation created time (UTC).")
-@query modelNames: string,
+@query "modelNames": string,
 @doc("The total number of evaluations to be returned per model, ordered by created time descending. By default, the full list of evaluations will be returned for the model name(s) in your filter.")
-@query topPerModel: int32,
+@query "topPerModel": int32,
 @doc("Accept header")
-@header accept: "application/json",): Page_Evaluation;
+@header "accept": "application/json",): Page_Evaluation;
 // TODO: Add documentation 
 @route("/multivariate/evaluations/{evaluationName}")
 @put op Create(@doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
-@path evaluationName: string,
+@path "evaluationName": string,
 // TODO: Add documentation 
-@body body: Request_Evaluation,
+@body "body": Request_Evaluation,
 @doc("Accept header")
-@header accept: "application/json",): Evaluation;
+@header "accept": "application/json",): Evaluation;
 // TODO: Add documentation 
 @route("/multivariate/evaluations/{evaluationName}")
 @get op Read(@doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
-@path evaluationName: string,
+@path "evaluationName": string,
 @doc("Accept header")
-@header accept: "application/json",): Evaluation;
+@header "accept": "application/json",): Evaluation;
 // TODO: Add documentation 
 @route("/multivariate/evaluations/{evaluationName}")
 @delete op Delete(@doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
-@path evaluationName: string,
+@path "evaluationName": string,
 @doc("Accept header")
-@header accept: "application/json",): void;
+@header "accept": "application/json",): void;
 }
 
 // TODO: Add documentation 
@@ -900,48 +900,48 @@ interface Models {
 // TODO: Add documentation 
 @route("/multivariate/models")
 @get op List(@doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
-@query skip: int32,
+@query "skip": int32,
 @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
-@query maxpagesize: int32,
+@query "maxpagesize": int32,
 @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
-@query sortBy: string,
+@query "sortBy": string,
 // TODO: Add documentation 
-@query orderBy: OrderBy,
+@query "orderBy": OrderBy,
 // TODO: Add documentation 
-@query status: ModelStatus,
+@query "status": ModelStatus,
 @doc("Filter models by a list of training dataset name(s). Format the list as a comma-separated string, no space allowed. For each dataset, by default the list of models are ranked by descending model created time (UTC).")
-@query datasetNames: string,
+@query "datasetNames": string,
 @doc("The total number of models to be returned per dataset, ordered by created time descending. By default, the full list of models will be returned for the dataset name(s) in your filter.")
-@query topPerDataset: int32,
+@query "topPerDataset": int32,
 @doc("Accept header")
-@header accept: "application/json",): Page_Model;
+@header "accept": "application/json",): Page_Model;
 // TODO: Add documentation 
 @route("/multivariate/models/{modelName}")
 @put op Create(@doc("Unique identifier of a model. This parameter is case-sensitive.")
-@path modelName: string,
+@path "modelName": string,
 // TODO: Add documentation 
-@body body: Request_Model,
+@body "body": Request_Model,
 @doc("Accept header")
-@header accept: "application/json",): Model;
+@header "accept": "application/json",): Model;
 // TODO: Add documentation 
 @route("/multivariate/models/{modelName}")
 @get op Read(@doc("Unique identifier of a model. This parameter is case-sensitive.")
-@path modelName: string,
+@path "modelName": string,
 @doc("Accept header")
-@header accept: "application/json",): Model;
+@header "accept": "application/json",): Model;
 // TODO: Add documentation 
 @route("/multivariate/models/{modelName}")
 @delete op Delete(@doc("Unique identifier of a model. This parameter is case-sensitive.")
-@path modelName: string,
+@path "modelName": string,
 @doc("Accept header")
-@header accept: "application/json",): void;
+@header "accept": "application/json",): void;
 @summary("Detect Multivariate Anomaly - Sync")
 @doc("Detect anomalies with a trained model and multivariate time-series data points specified in the request body. This API is recommended to be embedded in an inference schedule set up for continuous real-time inference. Please refer to the official documentation for the detailed quota and limits.")
 @route("/multivariate/models/{modelName}/detect")
 @post op Detect(// TODO: Add documentation 
-@path modelName: string,
+@path "modelName": string,
 // TODO: Add documentation 
-@body body: DetectionRequest,
+@body "body": DetectionRequest,
 @doc("Accept header")
-@header accept: "application/json",): DetectionResult;
+@header "accept": "application/json",): DetectionResult;
 }
