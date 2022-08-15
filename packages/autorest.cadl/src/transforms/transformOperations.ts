@@ -1,5 +1,4 @@
 import {
-  ImplementationLocation,
   Operation,
   OperationGroup,
   Parameter,
@@ -91,9 +90,9 @@ function filterOperationParameters(
     return false;
   }
 
-  const shouldVisit =
-    parameter.implementation === ImplementationLocation.Method &&
-    ["path", "body", "header", "query"].includes(parameter.protocol.http?.in);
+  const shouldVisit = ["path", "body", "header", "query"].includes(
+    parameter.protocol.http?.in
+  );
 
   if (shouldVisit) {
     visitedParameters.add(parameter);

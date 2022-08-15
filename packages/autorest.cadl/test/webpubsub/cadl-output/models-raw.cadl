@@ -7,7 +7,7 @@ using Cadl.Http;
 @doc("HTTP or HTTPS endpoint for the Web PubSub service instance.")
 Endpoint: string 
 })
-// TODO: Add documentation 
+// TODO: (missing-docs) Add documentation 
 namespace AzureWebPubSubServiceRESTAPI;
 
     enum WebPubSubPermissionKnownValues {
@@ -38,26 +38,27 @@ model ErrorDetail {
   target: string;
 @doc("An array of details about specific errors that led to this reported error.")
   details: ErrorDetail[];
-// TODO: Add documentation 
+// TODO: (missing-docs) Add documentation 
   inner: InnerError;
 }
 
-// TODO: Add documentation 
+// TODO: (missing-docs) Add documentation 
 model InnerError {
 @doc("A more specific error code than was provided by the containing error.")
   code: string;
-// TODO: Add documentation 
+// TODO: (missing-docs) Add documentation 
   inner: InnerError;
 }
-// TODO: Add documentation 
+// TODO: (missing-docs) Add documentation 
 interface HealthApi {
 @summary("Get service health status.")
 @doc("Get service health status.")
 @route("/api/health")
-@head op GetServiceStatus(): void;
+@head op GetServiceStatus(@doc("Api Version")
+@query "ApiVersion": "2021-10-01",): void;
 }
 
-// TODO: Add documentation 
+// TODO: (missing-docs) Add documentation 
 interface WebPubSub {
 @summary("Generate token for the client to connect Azure Web PubSub service.")
 @doc("Generate token for the client to connect Azure Web PubSub service.")
@@ -70,6 +71,8 @@ interface WebPubSub {
 @query "role": string[],
 @doc("The expire time of the generated token.")
 @query "minutesToExpire": int32,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): ClientTokenResponse;
 @summary("Close the connections in the hub.")
@@ -81,6 +84,8 @@ interface WebPubSub {
 @query "excluded": string[],
 @doc("The reason closing the client connection.")
 @query "reason": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Broadcast content inside request body to all the connected client connections.")
@@ -90,6 +95,8 @@ interface WebPubSub {
 @path "hub": string,
 @doc("Excluded connection Ids.")
 @query "excluded": string[],
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Upload file type")
 @header "content-type": ContentType,
 @doc("The payload body.")
@@ -103,6 +110,8 @@ interface WebPubSub {
 @path "hub": string,
 @doc("The connection Id.")
 @path "connectionId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Close the client connection.")
@@ -114,6 +123,8 @@ interface WebPubSub {
 @path "connectionId": string,
 @doc("The reason closing the client connection.")
 @query "reason": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Send content inside request body to the specific connection.")
@@ -123,6 +134,8 @@ interface WebPubSub {
 @path "hub": string,
 @doc("The connection Id.")
 @path "connectionId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Upload file type")
 @header "content-type": ContentType,
 @doc("The payload body.")
@@ -136,6 +149,8 @@ interface WebPubSub {
 @path "hub": string,
 @doc("Target group name, which length should be greater than 0 and less than 1025.")
 @path "group": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Close connections in the specific group.")
@@ -149,6 +164,8 @@ interface WebPubSub {
 @query "excluded": string[],
 @doc("The reason closing the client connection.")
 @query "reason": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Send content inside request body to a group of connections.")
@@ -160,6 +177,8 @@ interface WebPubSub {
 @path "group": string,
 @doc("Excluded connection Ids")
 @query "excluded": string[],
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Upload file type")
 @header "content-type": ContentType,
 @doc("The payload body.")
@@ -175,6 +194,8 @@ interface WebPubSub {
 @path "group": string,
 @doc("Target connection Id")
 @path "connectionId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Remove a connection from the target group.")
@@ -186,6 +207,8 @@ interface WebPubSub {
 @path "group": string,
 @doc("Target connection Id.")
 @path "connectionId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Check if there are any client connections connected for the given user.")
@@ -195,6 +218,8 @@ interface WebPubSub {
 @path "hub": string,
 @doc("Target user Id.")
 @path "userId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Close connections for the specific user.")
@@ -208,6 +233,8 @@ interface WebPubSub {
 @query "excluded": string[],
 @doc("The reason closing the client connection.")
 @query "reason": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Send content inside request body to the specific user.")
@@ -217,6 +244,8 @@ interface WebPubSub {
 @path "hub": string,
 @doc("The user Id.")
 @path "userId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Upload file type")
 @header "content-type": ContentType,
 @doc("The payload body.")
@@ -232,6 +261,8 @@ interface WebPubSub {
 @path "group": string,
 @doc("Target user Id.")
 @path "userId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Remove a user from the target group.")
@@ -243,6 +274,8 @@ interface WebPubSub {
 @path "group": string,
 @doc("Target user Id.")
 @path "userId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Remove a user from all groups.")
@@ -252,6 +285,8 @@ interface WebPubSub {
 @path "hub": string,
 @doc("Target user Id.")
 @path "userId": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Grant permission to the connection.")
@@ -265,6 +300,8 @@ interface WebPubSub {
 @path "connectionId": string,
 @doc("The meaning of the target depends on the specific permission. For joinLeaveGroup and sendToGroup, targetName is a required parameter standing for the group name.")
 @query "targetName": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Revoke permission for the connection.")
@@ -278,6 +315,8 @@ interface WebPubSub {
 @path "connectionId": string,
 @doc("The meaning of the target depends on the specific permission. For joinLeaveGroup and sendToGroup, targetName is a required parameter standing for the group name.")
 @query "targetName": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 @summary("Check if a connection has permission to the specified action.")
@@ -291,6 +330,8 @@ interface WebPubSub {
 @path "connectionId": string,
 @doc("The meaning of the target depends on the specific permission. For joinLeaveGroup and sendToGroup, targetName is a required parameter standing for the group name.")
 @query "targetName": string,
+@doc("Api Version")
+@query "ApiVersion": "2021-10-01",
 @doc("Accept header")
 @header "accept": "application/json, text/json",): void;
 }

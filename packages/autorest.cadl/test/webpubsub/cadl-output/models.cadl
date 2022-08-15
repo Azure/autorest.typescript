@@ -1,7 +1,7 @@
 import "@cadl-lang/rest";
 using Cadl.Rest;
 using Cadl.Http;
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 @serviceTitle("Azure Web PubSub Service REST API")
 @server(
   "{Endpoint}",
@@ -45,27 +45,31 @@ model ErrorDetail {
 
   @doc("An array of details about specific errors that led to this reported error.")
   details: ErrorDetail[];
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   inner: InnerError;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model InnerError {
   @doc("A more specific error code than was provided by the containing error.")
   code: string;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   inner: InnerError;
 }
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface HealthApi {
   @summary("Get service health status.")
   @doc("Get service health status.")
   @route("/api/health")
   @head
-  GetServiceStatus(): void;
+  GetServiceStatus(
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01"
+  ): void;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface WebPubSub {
   @summary("Generate token for the client to connect Azure Web PubSub service.")
   @doc("Generate token for the client to connect Azure Web PubSub service.")
@@ -88,6 +92,10 @@ interface WebPubSub {
     @query
     minutesToExpire: int32,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -109,6 +117,10 @@ interface WebPubSub {
     @query
     reason: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -125,6 +137,10 @@ interface WebPubSub {
     @doc("Excluded connection Ids.")
     @query
     excluded: string[],
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
 
     @doc("Upload file type")
     @header
@@ -151,6 +167,10 @@ interface WebPubSub {
     @path
     connectionId: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -172,6 +192,10 @@ interface WebPubSub {
     @query
     reason: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -188,6 +212,10 @@ interface WebPubSub {
     @doc("The connection Id.")
     @path
     connectionId: string,
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
 
     @doc("Upload file type")
     @header
@@ -214,6 +242,10 @@ interface WebPubSub {
     @path
     group: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -239,6 +271,10 @@ interface WebPubSub {
     @query
     reason: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -259,6 +295,10 @@ interface WebPubSub {
     @doc("Excluded connection Ids")
     @query
     excluded: string[],
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
 
     @doc("Upload file type")
     @header
@@ -289,6 +329,10 @@ interface WebPubSub {
     @path
     connectionId: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -310,6 +354,10 @@ interface WebPubSub {
     @path
     connectionId: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -326,6 +374,10 @@ interface WebPubSub {
     @doc("Target user Id.")
     @path
     userId: string,
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
 
     @doc("Accept header")
     @header
@@ -352,6 +404,10 @@ interface WebPubSub {
     @query
     reason: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -368,6 +424,10 @@ interface WebPubSub {
     @doc("The user Id.")
     @path
     userId: string,
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
 
     @doc("Upload file type")
     @header
@@ -398,6 +458,10 @@ interface WebPubSub {
     @path
     userId: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -419,6 +483,10 @@ interface WebPubSub {
     @path
     userId: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -435,6 +503,10 @@ interface WebPubSub {
     @doc("Target user Id.")
     @path
     userId: string,
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
 
     @doc("Accept header")
     @header
@@ -461,6 +533,10 @@ interface WebPubSub {
     @query
     targetName: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -486,6 +562,10 @@ interface WebPubSub {
     @query
     targetName: string,
 
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
+
     @doc("Accept header")
     @header
     accept: "application/json, text/json"
@@ -510,6 +590,10 @@ interface WebPubSub {
     @doc("The meaning of the target depends on the specific permission. For joinLeaveGroup and sendToGroup, targetName is a required parameter standing for the group name.")
     @query
     targetName: string,
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2021-10-01",
 
     @doc("Accept header")
     @header

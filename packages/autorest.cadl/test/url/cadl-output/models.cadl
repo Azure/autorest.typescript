@@ -18,14 +18,14 @@ enum UriColor {
   "green color",
   "blue color",
 }
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Error {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   status: int32;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   message: string;
 }
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface paths {
   @doc("Get true Boolean value on path")
   @route("/paths/bool/true/{boolPath}")
@@ -145,7 +145,7 @@ interface paths {
 
     @doc("Accept header")
     @header
-    "accept": "application/json"
+    accept: "application/json"
   ): void;
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
   @route("/paths/string/unicode/{stringPath}")
@@ -354,7 +354,7 @@ interface paths {
   ): void;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface queries {
   @doc("Get true Boolean value on path")
   @route("/queries/bool/true")
@@ -778,7 +778,7 @@ interface queries {
   ): void;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface pathItems {
   @doc("send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'")
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery")
@@ -791,6 +791,14 @@ interface pathItems {
     @doc("A string value 'pathItemStringQuery' that appears as a query parameter")
     @query
     pathItemStringQuery: string,
+
+    @doc("A string value 'globalItemStringPath' that appears in the path")
+    @path
+    globalStringPath: string,
+
+    @doc("should contain value null")
+    @query
+    globalStringQuery: string,
 
     @doc("should contain value 'localStringPath'")
     @path
@@ -816,6 +824,14 @@ interface pathItems {
     @query
     pathItemStringQuery: string,
 
+    @doc("A string value 'globalItemStringPath' that appears in the path")
+    @path
+    globalStringPath: string,
+
+    @doc("should contain value null")
+    @query
+    globalStringQuery: string,
+
     @doc("should contain value 'localStringPath'")
     @path
     localStringPath: string,
@@ -840,6 +856,14 @@ interface pathItems {
     @query
     pathItemStringQuery: string,
 
+    @doc("A string value 'globalItemStringPath' that appears in the path")
+    @path
+    globalStringPath: string,
+
+    @doc("should contain value null")
+    @query
+    globalStringQuery: string,
+
     @doc("should contain value 'localStringPath'")
     @path
     localStringPath: string,
@@ -863,6 +887,14 @@ interface pathItems {
     @doc("should contain value null")
     @query
     pathItemStringQuery: string,
+
+    @doc("A string value 'globalItemStringPath' that appears in the path")
+    @path
+    globalStringPath: string,
+
+    @doc("should contain value null")
+    @query
+    globalStringQuery: string,
 
     @doc("should contain value 'localStringPath'")
     @path

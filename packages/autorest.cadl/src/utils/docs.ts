@@ -6,7 +6,7 @@ interface WithDocs {
 
 export function generateDocs({ doc }: WithDocs): string {
   if (isEmptyDoc(doc)) {
-    return `// TODO: Add documentation `;
+    return `// TODO: (missing-docs) Add documentation `;
   }
 
   const docString = Array.isArray(doc) ? doc.join("\n") : doc;

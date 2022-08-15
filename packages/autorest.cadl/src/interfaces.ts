@@ -3,6 +3,11 @@ export interface CadlProgram {
   serviceInformation: ServiceInformation;
 }
 
+export interface CadlChoiceValue {
+  name: string;
+  value: string | number | boolean;
+}
+
 export interface WithDoc {
   doc?: string | string[];
 }
@@ -38,7 +43,7 @@ export interface EndpointParameter extends WithDoc {
 
 export interface CadlEnum extends WithDoc {
   name: string;
-  members: (string | number | boolean)[];
+  members: CadlChoiceValue[];
   isExtensible: boolean;
 }
 

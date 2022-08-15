@@ -4,7 +4,13 @@ export function generateEnums(cadlEnum: CadlEnum) {
   const definitions: string[] = [];
   const enumDefinition = `
     enum ${cadlEnum.name}${cadlEnum.isExtensible ? "KnownValues" : ""} {
-        ${cadlEnum.members.join(", ")}
+        ${cadlEnum.members
+          .map((m) => {
+            return `"${m.name}"` !== m.value
+              ? `${m.name}: ${m.value}`
+              : m.value;
+          })
+          .join(", ")}
     }`;
 
   definitions.push(enumDefinition);

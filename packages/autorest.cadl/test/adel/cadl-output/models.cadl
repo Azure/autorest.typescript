@@ -96,11 +96,11 @@ enum FillNAMethodKnownValues {
 
 @knownValues(FillNAMethodKnownValues)
 model FillNAMethod is string {}
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Page_AlertConfig {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   value: AlertConfig[];
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -125,25 +125,25 @@ model AlertConfig {
   parameterModifiedTime: zonedDateTime;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Error {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   error: Error_error;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Error_error {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   code: string;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   message: string;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Page_Dataset {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   value: Dataset[];
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -175,7 +175,7 @@ model Dataset {
 model DataSourceInfo {
   @doc("Discriminator property for DataSourceInfo.")
   dataSourceType: string;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   authenticationType: AuthenticationType;
 }
 
@@ -185,7 +185,7 @@ model DataSchema {
   dataSchemaType: string;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Request_Dataset {
   @doc("(Optional) Detailed description of a dataset.")
   datasetDescription?: string;
@@ -245,11 +245,11 @@ model DatasetPreviewResponse {
   values: string[][];
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Page_Hook {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   value: Hook[];
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -271,11 +271,11 @@ model Hook {
   parameterModifiedTime: zonedDateTime;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Page_ScheduleReplay {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   value: ScheduleReplay[];
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -339,7 +339,7 @@ model VariableState {
   lastTimestamp: zonedDateTime;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Request_ScheduleReplay {
   @doc("(Optional) Detailed description of a replay on an inference schedule.")
   replayDescription?: string;
@@ -354,11 +354,11 @@ model Request_ScheduleReplay {
   endTime: zonedDateTime;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Page_Schedule {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   value: Schedule[];
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -404,7 +404,7 @@ model Schedule {
   parameterModifiedTime: zonedDateTime;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Request_Schedule {
   @doc("(Optional) Detailed description of a live streaming inference schedule.")
   scheduleDescription?: string;
@@ -497,11 +497,11 @@ model CorrelationChanges {
   changedValues: float32[];
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Page_Evaluation {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   value: Evaluation[];
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -544,7 +544,7 @@ model Evaluation {
   createdTime: zonedDateTime;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Request_Evaluation {
   @doc("(Optional) Detailed description of a model evaluation.")
   evaluationDescription?: string;
@@ -562,11 +562,11 @@ model Request_Evaluation {
   endTime: zonedDateTime;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Page_Model {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   value: Model[];
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -642,7 +642,7 @@ model ModelState {
   latenciesInSeconds: float32[];
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 model Request_Model {
   @doc("(Optional) Detailed description of a model.")
   modelDescription?: string;
@@ -746,9 +746,9 @@ model Webhook {
   @doc("(Optional) For authenticating to the endpoint. Optional if authentication is not needed.")
   credential?: string;
 }
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface AlertConfigs {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/alertConfigs")
   @get
   List(
@@ -763,28 +763,28 @@ interface AlertConfigs {
     @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
     @query
     sortBy: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query orderBy: OrderBy,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): Page_AlertConfig;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
   @put
   Create(
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
     @path
     alertConfigName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: AlertConfig,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): AlertConfig;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
   @get
   Read(
@@ -796,7 +796,7 @@ interface AlertConfigs {
     @header
     accept: "application/json"
   ): AlertConfig;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
   @delete
   Delete(
@@ -808,14 +808,14 @@ interface AlertConfigs {
     @header
     accept: "application/json"
   ): void;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
   @patch
   Update(
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
     @path
     alertConfigName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: AlertConfig,
 
     @doc("Accept header")
@@ -824,9 +824,9 @@ interface AlertConfigs {
   ): AlertConfig;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface Datasets {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/datasets")
   @get
   List(
@@ -841,28 +841,28 @@ interface Datasets {
     @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
     @query
     sortBy: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query orderBy: OrderBy,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): Page_Dataset;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
   @put
   Create(
     @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
     @path
     datasetName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: Request_Dataset,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): Dataset;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
   @get
   Read(
@@ -874,7 +874,7 @@ interface Datasets {
     @header
     accept: "application/json"
   ): Dataset;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
   @delete
   Delete(
@@ -891,7 +891,7 @@ interface Datasets {
   @route("/datasets/previewData")
   @post
   PreviewData(
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: DatasetPreviewRequest,
 
     @doc("Accept header")
@@ -900,9 +900,9 @@ interface Datasets {
   ): DatasetPreviewResponse;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface Hooks {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/hooks")
   @get
   List(
@@ -917,28 +917,28 @@ interface Hooks {
     @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
     @query
     sortBy: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query orderBy: OrderBy,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): Page_Hook;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
   @put
   Create(
     @doc("Unique identifier of a hook. This parameter is case-sensitive.")
     @path
     hookName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: Hook,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): Hook;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
   @get
   Read(
@@ -950,7 +950,7 @@ interface Hooks {
     @header
     accept: "application/json"
   ): Hook;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
   @delete
   Delete(
@@ -962,14 +962,14 @@ interface Hooks {
     @header
     accept: "application/json"
   ): void;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
   @patch
   Update(
     @doc("Unique identifier of a hook. This parameter is case-sensitive.")
     @path
     hookName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: Hook,
 
     @doc("Accept header")
@@ -978,9 +978,9 @@ interface Hooks {
   ): Hook;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface Replays {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/inference/replays")
   @get
   List(
@@ -995,9 +995,9 @@ interface Replays {
     @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
     @query
     sortBy: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query orderBy: OrderBy,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query status: ReplayStatus,
 
     @doc("Filter replay records by a list of inference schedule name(s). Format the list as a comma-separated string, no space allowed. By default, the list of replay records are ranked by descending replay created time (UTC) for each inference schedule.")
@@ -1012,21 +1012,21 @@ interface Replays {
     @header
     accept: "application/json"
   ): Page_ScheduleReplay;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
   @put
   Create(
     @doc("Unique identifier of a replay on an inference schedule. This parameter is case-sensitive.")
     @path
     replayName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: Request_ScheduleReplay,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): ScheduleReplay;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
   @get
   Read(
@@ -1038,7 +1038,7 @@ interface Replays {
     @header
     accept: "application/json"
   ): ScheduleReplay;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
   @delete
   Delete(
@@ -1052,9 +1052,9 @@ interface Replays {
   ): void;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface Schedules {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/inference/schedules")
   @get
   List(
@@ -1069,9 +1069,9 @@ interface Schedules {
     @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
     @query
     sortBy: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query orderBy: OrderBy,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query status: ScheduleStatus,
 
     @doc("Filter inference schedules by a list of model name(s). Format the list as a comma-separated string, no space allowed. For each model, by default the list of inference schedules are ranked by descending inference schedule created time (UTC).")
@@ -1086,21 +1086,21 @@ interface Schedules {
     @header
     accept: "application/json"
   ): Page_Schedule;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
   @put
   Create(
     @doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
     @path
     scheduleName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: Request_Schedule,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): Schedule;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
   @get
   Read(
@@ -1112,7 +1112,7 @@ interface Schedules {
     @header
     accept: "application/json"
   ): Schedule;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
   @delete
   Delete(
@@ -1132,7 +1132,7 @@ interface Schedules {
     @doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
     @path
     scheduleName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: ScheduleUpdate,
 
     @doc("Accept header")
@@ -1144,11 +1144,11 @@ interface Schedules {
   @route("/inference/schedules/{scheduleName}/getHistory")
   @get
   GetHistory(
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @path scheduleName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query startTime: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query endTime: string,
 
     @doc("Accept header")
@@ -1157,9 +1157,9 @@ interface Schedules {
   ): ScheduleHistoryResult;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface Evaluations {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/multivariate/evaluations")
   @get
   List(
@@ -1174,9 +1174,9 @@ interface Evaluations {
     @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
     @query
     sortBy: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query orderBy: OrderBy,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query status: EvaluationStatus,
 
     @doc("Filter evaluations by a list of model name(s). Format the list as a comma-separated string, no space allowed. For each model, by default the list of evaluations are ranked by descending evaluation created time (UTC).")
@@ -1191,21 +1191,21 @@ interface Evaluations {
     @header
     accept: "application/json"
   ): Page_Evaluation;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
   @put
   Create(
     @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
     @path
     evaluationName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: Request_Evaluation,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): Evaluation;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
   @get
   Read(
@@ -1217,7 +1217,7 @@ interface Evaluations {
     @header
     accept: "application/json"
   ): Evaluation;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
   @delete
   Delete(
@@ -1231,9 +1231,9 @@ interface Evaluations {
   ): void;
 }
 
-// TODO: Add documentation
+// TODO: (missing-docs) Add documentation
 interface Models {
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/multivariate/models")
   @get
   List(
@@ -1248,9 +1248,9 @@ interface Models {
     @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
     @query
     sortBy: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query orderBy: OrderBy,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @query status: ModelStatus,
 
     @doc("Filter models by a list of training dataset name(s). Format the list as a comma-separated string, no space allowed. For each dataset, by default the list of models are ranked by descending model created time (UTC).")
@@ -1265,21 +1265,21 @@ interface Models {
     @header
     accept: "application/json"
   ): Page_Model;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
   @put
   Create(
     @doc("Unique identifier of a model. This parameter is case-sensitive.")
     @path
     modelName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: Request_Model,
 
     @doc("Accept header")
     @header
     accept: "application/json"
   ): Model;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
   @get
   Read(
@@ -1291,7 +1291,7 @@ interface Models {
     @header
     accept: "application/json"
   ): Model;
-  // TODO: Add documentation
+  // TODO: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
   @delete
   Delete(
@@ -1308,9 +1308,9 @@ interface Models {
   @route("/multivariate/models/{modelName}/detect")
   @post
   Detect(
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @path modelName: string,
-    // TODO: Add documentation
+    // TODO: (missing-docs) Add documentation
     @body body: DetectionRequest,
 
     @doc("Accept header")

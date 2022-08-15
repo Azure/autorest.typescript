@@ -28,6 +28,7 @@ const cadlTypes = new Map<SchemaType, string>([
   [SchemaType.Number, "float32"],
   [SchemaType.Integer, "int32"],
   [SchemaType.Boolean, "boolean"],
+  [SchemaType.Credential, "@secret string"],
 ]);
 
 export function transformObject(schema: ObjectSchema): CadlObject {

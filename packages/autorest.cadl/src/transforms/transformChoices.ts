@@ -1,9 +1,10 @@
 import {
   ChoiceSchema,
+  ChoiceValue,
   SchemaType,
   SealedChoiceSchema,
 } from "@autorest/codemodel";
-import { CadlEnum } from "../interfaces";
+import { CadlChoiceValue, CadlEnum } from "../interfaces";
 import { transformValue } from "../utils/values";
 
 export function transformEnum(
@@ -11,8 +12,15 @@ export function transformEnum(
 ): CadlEnum {
   return {
     name: schema.language.default.name,
-    members: schema.choices.map((choice) => transformValue(choice.value)),
+    members: schema.choices.map((choice) => transformChoiceMember(choice)),
     isExtensible: !isSealedChoiceSchema(schema),
+  };
+}
+
+function transformChoiceMember(member: ChoiceValue): CadlChoiceValue {
+  return {
+    name: member.language.default.name,
+    value: transformValue(member.value),
   };
 }
 
