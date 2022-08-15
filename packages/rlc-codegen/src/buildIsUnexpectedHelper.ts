@@ -1,5 +1,6 @@
 import { Paths, RLCModel } from "./interfaces.js";
 import * as path from "path";
+import * as prettier from "prettier";
 import {
   FunctionDeclarationOverloadStructure,
   OptionalKind,
@@ -205,7 +206,13 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
     }
   }
 
-  return { path: filePath, content: isErrorHelper.getFullText() };
+  return {
+    path: filePath,
+    content: prettier.format(
+      isErrorHelper.getFullText(),
+      prettierTypeScriptOptions
+    )
+  };
 }
 
 function hasParametrizedPath(pathDictionary: Paths): boolean {
@@ -217,3 +224,14 @@ function hasParametrizedPath(pathDictionary: Paths): boolean {
 
   return false;
 }
+
+const prettierTypeScriptOptions: prettier.Options = {
+  parser: "typescript",
+  arrowParens: "always",
+  bracketSpacing: true,
+  endOfLine: "lf",
+  printWidth: 80,
+  semi: true,
+  singleQuote: false,
+  tabWidth: 2
+};

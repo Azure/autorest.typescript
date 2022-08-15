@@ -86,9 +86,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/monitor/data-plane/readme.md"
     ),
-    params: [
-      AutorestParams.Security
-    ],
+    params: [AutorestParams.Security],
     buildTag: "ci_2"
   },
   {
@@ -204,7 +202,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.AzureSdkForJs,
       AutorestParams.GenerateSamples
     ],
-    buildTag: "ci_rlc"
+    buildTag: "debug"
   },
   {
     path: joinPath(
@@ -216,7 +214,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.RestClient,
       AutorestParams.MultiClient,
       AutorestParams.AzureSdkForJs,
-      AutorestParams.GenerateSamples,
+      AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
   },
@@ -229,7 +227,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.RestClient,
       AutorestParams.AzureSdkForJs,
-      AutorestParams.GenerateSamples,
+      AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
   }

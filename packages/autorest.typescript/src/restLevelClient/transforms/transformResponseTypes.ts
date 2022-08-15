@@ -35,6 +35,8 @@ export function transformResponseTypes(
     const responses = mergeResponsesAndExceptions(operation);
     const operationLanguageMetadata = getLanguageMetadata(operation.language);
     const rlcOperationUnit: OperationResponse = {
+      operationGroup: "",
+      // Please note the operationName already has operationGroup as prefix
       operationName: `${operationLanguageMetadata.name}`,
       responses: []
     };

@@ -17,6 +17,10 @@ import {
   Schema
 } from "./interfaces.js";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
+import {
+  getParameterBaseName,
+  getParameterTypeName
+} from "./helpers/nameConstructors.js";
 
 export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
@@ -31,12 +35,12 @@ export function buildParameterTypes(model: RLCModel) {
     return;
   }
   for (const requestParameter of model.parameters) {
-    const operationName = normalizeName(
-      `${requestParameter.operationName}`,
-      NameType.Interface
+    const baseParameterName = getParameterBaseName(
+      requestParameter.operationGroup,
+      requestParameter.operationName
     );
     const requestCount = requestParameter?.parameters?.length ?? 0;
-    const topParamName = `${operationName}Parameters`;
+    const topParamName = getParameterTypeName(baseParameterName);
     const subParamNames: string[] = [];
 
     // We need to loop the requests. An operation with multiple requests means that
@@ -49,17 +53,17 @@ export function buildParameterTypes(model: RLCModel) {
       const nameSuffix = i > 0 ? `${i}` : "";
       const parameterInterfaceName =
         requestCount > 1
-          ? `${operationName}RequestParameters${nameSuffix}`
+          ? `${baseParameterName}RequestParameters${nameSuffix}`
           : topParamName;
       const queryParameterDefinitions = buildQueryParameterDefinition(
         parameter,
-        operationName,
+        baseParameterName,
         internalReferences,
         i
       );
       const pathParameterDefinitions = buildPathParameterDefinitions(
         parameter,
-        operationName,
+        baseParameterName,
         parametersFile,
         internalReferences,
         i
@@ -67,7 +71,7 @@ export function buildParameterTypes(model: RLCModel) {
 
       const headerParameterDefinitions = buildHeaderParameterDefinitions(
         parameter,
-        operationName,
+        baseParameterName,
         parametersFile,
         internalReferences,
         i
@@ -76,14 +80,14 @@ export function buildParameterTypes(model: RLCModel) {
       const contentTypeParameterDefinition =
         buildContentTypeParametersDefinition(
           parameter,
-          operationName,
+          baseParameterName,
           internalReferences,
           i
         );
 
       const bodyParameterDefinition = buildBodyParametersDefinition(
         parameter,
-        operationName,
+        baseParameterName,
         internalReferences,
         i
       );
@@ -153,7 +157,7 @@ export function buildParameterTypes(model: RLCModel) {
 
 function buildQueryParameterDefinition(
   parameters: ParameterMetadatas,
-  operationName: string,
+  baseName: string,
   internalReferences: Set<string>,
   requestIndex: number
 ): InterfaceDeclarationStructure[] | undefined {
@@ -166,8 +170,8 @@ function buildQueryParameterDefinition(
   }
 
   const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
-  const queryParameterInterfaceName = `${operationName}QueryParam${nameSuffix}`;
-  const queryParameterPropertiesName = `${operationName}QueryParamProperties`;
+  const queryParameterInterfaceName = `${baseName}QueryParam${nameSuffix}`;
+  const queryParameterPropertiesName = `${baseName}QueryParamProperties`;
 
   // Get the property signature for each query parameter
   const propertiesDefinition = queryParameters.map((qp) =>
@@ -218,7 +222,7 @@ function getPropertyFromSchema(schema: Schema): PropertySignatureStructure {
 
 function buildPathParameterDefinitions(
   parameters: ParameterMetadatas,
-  operationName: string,
+  baseName: string,
   parametersFile: SourceFile,
   internalReferences: Set<string>,
   requestIndex: number
@@ -231,12 +235,9 @@ function buildPathParameterDefinitions(
   }
 
   const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
-  const pathParameterInterfaceName = `${operationName}PathParam${nameSuffix}`;
+  const pathParameterInterfaceName = `${baseName}PathParam${nameSuffix}`;
 
-  const pathInterface = getPathInterfaceDefinition(
-    pathParameters,
-    operationName
-  );
+  const pathInterface = getPathInterfaceDefinition(pathParameters, baseName);
 
   if (pathInterface) {
     parametersFile.addInterface(pathInterface);
@@ -251,7 +252,7 @@ function buildPathParameterDefinitions(
     properties: [
       {
         name: "pathParameters",
-        type: `${operationName}PathParameters`,
+        type: `${baseName}PathParameters`,
         kind: StructureKind.PropertySignature
       }
     ]
@@ -275,7 +276,7 @@ function getPathInterfaceDefinition(
 
 function buildHeaderParameterDefinitions(
   parameters: ParameterMetadatas,
-  operationName: string,
+  baseName: string,
   parametersFile: SourceFile,
   internalReferences: Set<string>,
   requestIndex: number
@@ -288,11 +289,11 @@ function buildHeaderParameterDefinitions(
   }
 
   const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
-  const headerParameterInterfaceName = `${operationName}HeaderParam${nameSuffix}`;
+  const headerParameterInterfaceName = `${baseName}HeaderParam${nameSuffix}`;
 
   const headersInterface = getRequestHeaderInterfaceDefinition(
     headerParameters,
-    operationName
+    baseName
   );
 
   if (headersInterface) {
@@ -308,7 +309,7 @@ function buildHeaderParameterDefinitions(
     properties: [
       {
         name: "headers",
-        type: `RawHttpHeadersInput & ${operationName}Headers`,
+        type: `RawHttpHeadersInput & ${baseName}Headers`,
         kind: StructureKind.PropertySignature
       }
     ]
@@ -332,7 +333,7 @@ function getRequestHeaderInterfaceDefinition(
 
 function buildContentTypeParametersDefinition(
   parameters: ParameterMetadatas,
-  operationName: string,
+  baseName: string,
   internalReferences: Set<string>,
   requestIndex: number
 ): InterfaceDeclarationStructure | undefined {
@@ -344,7 +345,7 @@ function buildContentTypeParametersDefinition(
   }
 
   const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
-  const mediaTypesParameterInterfaceName = `${operationName}MediaTypesParam${nameSuffix}`;
+  const mediaTypesParameterInterfaceName = `${baseName}MediaTypesParam${nameSuffix}`;
 
   // Mark the queryParameter interface for importing
   internalReferences.add(mediaTypesParameterInterfaceName);
@@ -360,7 +361,7 @@ function buildContentTypeParametersDefinition(
 
 function buildBodyParametersDefinition(
   parameters: ParameterMetadatas,
-  operationName: string,
+  baseName: string,
   internalReferences: Set<string>,
   requestIndex: number
 ): InterfaceDeclarationStructure[] {
@@ -374,7 +375,7 @@ function buildBodyParametersDefinition(
   }
 
   const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
-  const bodyParameterInterfaceName = `${operationName}BodyParam${nameSuffix}`;
+  const bodyParameterInterfaceName = `${baseName}BodyParam${nameSuffix}`;
   internalReferences.add(bodyParameterInterfaceName);
 
   // In case of formData we'd get multiple properties in body marked as partialBody
@@ -389,7 +390,7 @@ function buildBodyParametersDefinition(
       propertiesDefinitions.push(getPropertyFromSchema(param));
     }
 
-    const formBodyName = `${operationName}FormBody`;
+    const formBodyName = `${baseName}FormBody`;
     const formBodyInterface: InterfaceDeclarationStructure = {
       isExported: true,
       kind: StructureKind.Interface,

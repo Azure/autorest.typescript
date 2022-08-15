@@ -15,7 +15,10 @@ import {
   RLCModel
 } from "./interfaces.js";
 import * as path from "path";
-import { NameType, normalizeName } from "./helpers/nameUtils.js";
+import {
+  getResponseBaseName,
+  getResponseTypeName
+} from "./helpers/nameConstructors.js";
 
 export function buildResponseTypes(model: RLCModel) {
   const project = new Project();
@@ -33,9 +36,10 @@ export function buildResponseTypes(model: RLCModel) {
   for (const operationResponse of model.responses) {
     for (const response of operationResponse.responses) {
       // Building the response type base name
-      const baseResponseName = normalizeName(
-        `${operationResponse.operationName}_${response.statusCode}`,
-        NameType.Interface
+      const baseResponseName = getResponseBaseName(
+        operationResponse.operationGroup,
+        operationResponse.operationName,
+        response.statusCode
       );
 
       // Build the response header
@@ -100,10 +104,6 @@ export function buildResponseTypes(model: RLCModel) {
     ]);
   }
   return { path: filePath, content: responsesFile.getFullText() };
-}
-
-export function getResponseTypeName(baseResponseName: string) {
-  return normalizeName(`${baseResponseName}Response`, NameType.Interface);
 }
 
 function getResponseHeaderInterfaceDefinition(
