@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Paths, RLCModel } from "./interfaces.js";
 import * as path from "path";
 import * as prettier from "prettier";
