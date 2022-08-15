@@ -8,7 +8,8 @@ import {
   generateSchemaTypes,
   buildResponseTypes,
   buildParameterTypes,
-  File,
+  buildIsUnexpectedHelper,
+  File
 } from "@azure-tools/rlc-codegen";
 import { dirname, isAbsolute, join } from "path";
 import { Project } from "ts-morph";
@@ -21,6 +22,7 @@ export async function $onEmit(program: Program) {
   await emitModels(rlcModels, program, project);
   await emitResponseTypes(rlcModels, program);
   await emitParameterTypes(rlcModels, program);
+  await emitIsUnexpectedHelper(rlcModels, program);
 }
 
 async function emitModels(
@@ -64,6 +66,12 @@ async function emitParameterTypes(rlcModels: RLCModel, program: Program) {
   }
 }
 
+async function emitIsUnexpectedHelper(rlcModels: RLCModel, program: Program) {
+  const isUnexpectedHelperFile = buildIsUnexpectedHelper(rlcModels);
+  if (isUnexpectedHelperFile) {
+    await emitFile(isUnexpectedHelperFile, program);
+  }
+}
 
 async function emitFile(file: File, program: Program) {
   const host: CompilerHost = program.host;
