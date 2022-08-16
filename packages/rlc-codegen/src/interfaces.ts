@@ -70,8 +70,8 @@ export enum ImportKind {
   ParameterInput
 }
 export interface File {
-  path: string,
-  content: string
+  path: string;
+  content: string;
 }
 
 export enum SchemaContext {
@@ -105,18 +105,14 @@ export interface ObjectSchema extends Schema {
     immediate?: ObjectSchema[];
   };
   parents?: {
-    all?: ObjectSchema[]
+    all?: ObjectSchema[];
     immediate?: ObjectSchema[];
-  }
+  };
 }
 
-export interface Property extends Schema {
+export interface Property extends Schema {}
 
-}
-
-export interface Parameter extends Schema {
-
-}
+export interface Parameter extends Schema {}
 
 export interface PackageDetails {
   name: string;
@@ -126,10 +122,11 @@ export interface PackageDetails {
   version: string;
 }
 export interface OperationParameter {
+  operationGroup: string;
   operationName: string;
   /**
-   * An operation with multiple request parameters means that 
-   * the operation can get different values for content-type and each value 
+   * An operation with multiple request parameters means that
+   * the operation can get different values for content-type and each value
    * may have a different type associated to it.
    */
   parameters: ParameterMetadatas[];
@@ -154,6 +151,7 @@ export interface ParameterMetadata {
 }
 
 export interface OperationResponse {
+  operationGroup: string;
   operationName: string;
   responses: ResponseMetadata[];
 }

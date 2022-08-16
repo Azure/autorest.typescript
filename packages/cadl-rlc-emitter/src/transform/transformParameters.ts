@@ -20,7 +20,6 @@ import {
   getTypeName,
   getSchemaForType
 } from "../modelUtils.js";
-import { getNormalizedOperationName } from "../operationUtil.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -30,10 +29,10 @@ export function transformToParameterTypes(
   const rlcParameters: OperationParameter[] = [];
   let outputImportedSet = new Set<string>();
   for (const route of routes) {
-    const operationName = getNormalizedOperationName(route);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationName,
+      operationGroup: route.groupName,
+      operationName: route.operation.name,
       parameters: []
     };
     // transform query param

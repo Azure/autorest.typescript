@@ -33,11 +33,13 @@ export function transformParameterTypes(
   let importedModels = new Set<string>();
   const operations = getAllOperations(model);
   for (const operation of operations) {
+    // Please note the operationName already has operationGroup as prefix
     const operationName = normalizeName(
       getLanguageMetadata(operation.language).name,
       NameType.Interface
     );
     const rlcParameter: OperationParameter = {
+      operationGroup: "",
       operationName,
       parameters: []
     };

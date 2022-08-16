@@ -8,6 +8,7 @@ import {
   generateSchemaTypes,
   buildResponseTypes,
   buildParameterTypes,
+  buildIsUnexpectedHelper,
   File,
   generateClient
 } from "@azure-tools/rlc-codegen";
@@ -25,6 +26,7 @@ export async function $onEmit(program: Program) {
   await emitResponseTypes(rlcModels, program);
   await emitClientFactory(rlcModels, program, project);
   await emitParameterTypes(rlcModels, program);
+  await emitIsUnexpectedHelper(rlcModels, program);
 }
 
 async function emitModels(
@@ -61,7 +63,18 @@ async function emitResponseTypes(rlcModels: RLCModel, program: Program) {
   }
 }
 
-async function emitClientFactory(rlcModels: RLCModel, program: Program, project: Project) {
+async function emitIsUnexpectedHelper(rlcModels: RLCModel, program: Program) {
+  const isUnexpectedHelperFile = buildIsUnexpectedHelper(rlcModels);
+  if (isUnexpectedHelperFile) {
+    await emitFile(isUnexpectedHelperFile, program);
+  }
+}
+
+async function emitClientFactory(
+  rlcModels: RLCModel,
+  program: Program,
+  project: Project
+) {
   const clientFactoryFile = generateClient(rlcModels, project);
   if (clientFactoryFile) {
     await emitFile(clientFactoryFile, program);
@@ -75,14 +88,13 @@ async function emitParameterTypes(rlcModels: RLCModel, program: Program) {
   }
 }
 
-
 async function emitFile(file: File, program: Program) {
   const host: CompilerHost = program.host;
   const filePath =
     isAbsolute(file.path) || !program.compilerOptions.outputPath
       ? file.path
       : join(program.compilerOptions.outputPath, file.path);
-  const prettierFileContent = format(file.content, prettierTypeScriptOptions)
+  const prettierFileContent = format(file.content, prettierTypeScriptOptions);
   await host.mkdirp(dirname(filePath));
   await host.writeFile(filePath, prettierFileContent);
 }

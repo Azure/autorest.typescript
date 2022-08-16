@@ -16,7 +16,6 @@ import {
   getTypeName,
   getSchemaForType
 } from "../modelUtils.js";
-import { getNormalizedOperationName } from "../operationUtil.js";
 
 export function transformToResponseTypes(
   program: Program,
@@ -26,9 +25,9 @@ export function transformToResponseTypes(
   const rlcResponses: OperationResponse[] = [];
   let inputImportedSet = new Set<string>();
   for (const route of routes) {
-    const operationName = getNormalizedOperationName(route);
     const rlcOperationUnit: OperationResponse = {
-      operationName,
+      operationGroup: route.groupName,
+      operationName: route.operation.name,
       responses: []
     };
     for (const resp of route.responses) {
