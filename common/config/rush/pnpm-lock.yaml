@@ -135,7 +135,7 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/cadl-autorest/0.18.0_68b456f0c42e574f08cec6f61920f940:
+  /@azure-tools/cadl-autorest/0.18.0_b97277126dc9961564c0cbc8f388d862:
     resolution: {integrity: sha512-0wpi/+TF3b51vokDRjID7BpcBWVoaFEuXtuJFlDEcQdO6J3Li9O2BFOz595YVWS8/Z8+BUMWDgc5wR49uyywBg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -148,7 +148,6 @@ packages:
       '@cadl-lang/compiler': 0.33.0
       '@cadl-lang/openapi': 0.10.0_2b66ecc4096f8cfee81ca097164113ff
       '@cadl-lang/rest': 0.15.0_@cadl-lang+compiler@0.33.0
-      '@cadl-lang/versioning': 0.6.0
     dev: false
 
   /@azure-tools/codegen/2.9.1:
@@ -1695,28 +1694,6 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: false
 
-  /@cadl-lang/compiler/0.32.0:
-    resolution: {integrity: sha512-SjfXLjTIZE3DehNquJcKHSDeSPF0avV0tZpusdqqcCZscEFglGHFS3igqsXEOkbsv6ACwYz8Fm6/y94qU77t4Q==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/code-frame': 7.16.7
-      ajv: 8.9.0
-      change-case: 4.1.2
-      globby: 13.1.2
-      js-yaml: 4.1.0
-      mkdirp: 1.0.4
-      mustache: 4.2.0
-      node-fetch: 3.2.10
-      node-watch: 0.7.3
-      picocolors: 1.0.0
-      prettier: 2.6.2
-      prompts: 2.4.2
-      vscode-languageserver: 7.0.0
-      vscode-languageserver-textdocument: 1.0.5
-      yargs: 17.3.1
-    dev: false
-
   /@cadl-lang/compiler/0.33.0:
     resolution: {integrity: sha512-emylkgPuD1nPEUwtsdRV5F/WQvqPU2UYGTpWXocqP5FuJfmiTZBRvPvJ9Ftkg/rYJ9EKgf45IIXyGRza7bRyFA==}
     engines: {node: '>=16.0.0'}
@@ -1759,11 +1736,11 @@ packages:
       '@cadl-lang/compiler': 0.33.0
     dev: false
 
-  /@cadl-lang/versioning/0.6.0:
-    resolution: {integrity: sha512-IRMefE9nijDB34aF8l3WqHADR2a6wKWlzjDGvllBKhBJPF7I4NlNxg87+0Dd638JrNMpcbPWvbFWSktC+Las/w==}
+  /@cadl-lang/versioning/0.6.1:
+    resolution: {integrity: sha512-PfRn5WRjMInDpAs/JFzqmvkGJETiFbUCS1ey/ZGqxuIWN0u1HT/0R8echuEB3Efi4NSBwBKynd54xNDV/t2ajA==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@cadl-lang/compiler': 0.32.0
+      '@cadl-lang/compiler': 0.33.0
     dev: false
 
   /@colors/colors/1.5.0:
@@ -8610,12 +8587,6 @@ packages:
     hasBin: true
     dev: false
 
-  /prettier/2.6.2:
-    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    dev: false
-
   /prettier/2.7.1:
     resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
     engines: {node: '>=10.13.0'}
@@ -10280,7 +10251,7 @@ packages:
     dev: false
 
   /verror/1.10.0:
-    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
+    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -10931,27 +10902,27 @@ packages:
     dev: false
 
   file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-KXobUUQ010E4t9qUG38d62wviaWaxOTKN7cIGp1koGVFV/pzbwNIJvzMNqSYmJ3i/AgsTT+ZNj7KQ7EAEZbr5g==, tarball: file:projects/cadl-rest-test.tgz}
+    resolution: {integrity: sha512-BSXJCSuQCLLT0iT+obiADq1bUf3PtBQpq+vlA4/4la2olIuzo3TaIrKt4iD3dCDegkw8n2ZFC/k0aZFRMsz8rA==, tarball: file:projects/cadl-rest-test.tgz}
     name: '@rush-temp/cadl-rest-test'
     version: 0.0.0
     dependencies:
-      '@azure-tools/cadl-autorest': 0.18.0_68b456f0c42e574f08cec6f61920f940
+      '@azure-tools/cadl-autorest': 0.18.0_b97277126dc9961564c0cbc8f388d862
       '@cadl-lang/compiler': 0.33.0
       '@cadl-lang/openapi': 0.10.0_2b66ecc4096f8cfee81ca097164113ff
       '@cadl-lang/rest': 0.15.0_@cadl-lang+compiler@0.33.0
-      '@cadl-lang/versioning': 0.6.0
+      '@cadl-lang/versioning': 0.6.1
     transitivePeerDependencies:
       - '@azure-tools/cadl-azure-core'
+      - '@cadl-lang/versioning'
     dev: false
 
   file:projects/rlc-codegen.tgz:
-    resolution: {integrity: sha512-m7HJZL3MPGGxx41nnGQSakYxXfp21gOm8LQavqTGAObHwVUIgz824TzNffKLkjvo39uMSGDKvhwsvWYPdz+uSg==, tarball: file:projects/rlc-codegen.tgz}
+    resolution: {integrity: sha512-vJE6CUWSNP/9AMhjJxx7AzKRtNdnqypAxH0pGhrnwM41LyeLwsQyCPl3aF0tQcYE6oZbvE5iNlxVjqVYazk85g==, tarball: file:projects/rlc-codegen.tgz}
     name: '@rush-temp/rlc-codegen'
     version: 0.0.0
     dependencies:
       '@types/lodash': 4.14.182
       '@types/node': 18.6.4
-      '@types/prettier': 1.19.1
       lodash: 4.17.21
       prettier: 2.7.1
       rimraf: 3.0.2

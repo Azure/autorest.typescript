@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { paramMessage, createCadlLibrary } from "@cadl-lang/compiler";
+import { Options } from "prettier";
 
 const libDef = {
     name: "@cadl-lang/ts-rlc",
@@ -89,4 +90,14 @@ const libDef = {
   
   export const $lib = createCadlLibrary(libDef);
   export const { reportDiagnostic } = $lib;
-  
+
+  export const prettierTypeScriptOptions: Options = {
+    parser: "typescript",
+    arrowParens: "always",
+    bracketSpacing: true,
+    endOfLine: "lf",
+    printWidth: 80,
+    semi: true,
+    singleQuote: false,
+    tabWidth: 2
+  };

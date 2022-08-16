@@ -1,0 +1,15 @@
+{
+  "includeShortcuts": true,
+  "addCredentials": true,
+  "credentialScopes": [
+    "https://example.net/.default"
+  ],
+  "endpointParameterName": "petStoreUrl",
+  "packageDetails": {
+    "name": "@msinternal/pet-store",
+    "scopeName": "msinternal",
+    "nameWithoutScope": "pet-store",
+    "description": "Pet Store Service",
+    "version": "1.0.0-beta.1"
+  }
+}

@@ -5,17 +5,18 @@ export type PetsDeleteParameters = RequestParameters;
 export type PetsReadParameters = RequestParameters;
 
 export interface PetsCreateBodyParam {
-    body: Pet;
+  body: Pet;
 }
 
 export type PetsCreateParameters = PetsCreateBodyParam & RequestParameters;
 
 export interface ListPetToysResponseListQueryParamProperties {
-    nameFilter: string;
+  nameFilter: string;
 }
 
 export interface ListPetToysResponseListQueryParam {
-    queryParameters: ListPetToysResponseListQueryParamProperties;
+  queryParameters: ListPetToysResponseListQueryParamProperties;
 }
 
-export type ListPetToysResponseListParameters = ListPetToysResponseListQueryParam & RequestParameters;
+export type ListPetToysResponseListParameters =
+  ListPetToysResponseListQueryParam & RequestParameters;

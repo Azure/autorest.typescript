@@ -29,11 +29,8 @@ export function transformPaths(program: Program): Paths {
       returnType: "",
       successStatus: gerOperationSuccessStatus(route),
       operationName: route.operation.name
-    };
-    if (
-      paths[route.path] !== undefined &&
-      !paths[route.path]?.methods[route.verb]
-    ) {
+    }
+    if (paths[route.path] !== undefined && !paths[route.path]?.methods[route.verb]) {
       (paths[route.path] as PathMetadata).methods[route.verb] = [method];
     } else if (paths[route.path]?.methods[route.verb]) {
       paths[route.path]?.methods[route.verb]?.push(method);
