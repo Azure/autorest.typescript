@@ -59,13 +59,6 @@ async function emitResponseTypes(rlcModels: RLCModel, program: Program) {
   }
 }
 
-async function emitParameterTypes(rlcModels: RLCModel, program: Program) {
-  const parametersFile = buildParameterTypes(rlcModels);
-  if (parametersFile) {
-    await emitFile(parametersFile, program);
-  }
-}
-
 async function emitIsUnexpectedHelper(rlcModels: RLCModel, program: Program) {
   const isUnexpectedHelperFile = buildIsUnexpectedHelper(rlcModels);
   if (isUnexpectedHelperFile) {
@@ -79,7 +72,6 @@ async function emitParameterTypes(rlcModels: RLCModel, program: Program) {
     await emitFile(parametersFile, program);
   }
 }
-
 
 async function emitFile(file: File, program: Program) {
   const host: CompilerHost = program.host;
