@@ -2,38 +2,43 @@
 // Licensed under the MIT license.
 
 import {
-  UploadFileParameters,
-  UploadFileViaBodyParameters,
-  UploadFilesParameters
+  FormdataUploadFileParameters,
+  FormdataUploadFileViaBodyParameters,
+  FormdataUploadFilesParameters
 } from "./parameters";
 import {
-  UploadFile200Response,
-  UploadFileDefaultResponse,
-  UploadFileViaBody200Response,
-  UploadFileViaBodyDefaultResponse,
-  UploadFiles200Response,
-  UploadFilesDefaultResponse
+  FormdataUploadFile200Response,
+  FormdataUploadFileDefaultResponse,
+  FormdataUploadFileViaBody200Response,
+  FormdataUploadFileViaBodyDefaultResponse,
+  FormdataUploadFiles200Response,
+  FormdataUploadFilesDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface UploadFile {
   /** Upload file */
   post(
-    options: UploadFileParameters
-  ): StreamableMethod<UploadFile200Response | UploadFileDefaultResponse>;
+    options: FormdataUploadFileParameters
+  ): StreamableMethod<
+    FormdataUploadFile200Response | FormdataUploadFileDefaultResponse
+  >;
   /** Upload file */
   put(
-    options: UploadFileViaBodyParameters
+    options: FormdataUploadFileViaBodyParameters
   ): StreamableMethod<
-    UploadFileViaBody200Response | UploadFileViaBodyDefaultResponse
+    | FormdataUploadFileViaBody200Response
+    | FormdataUploadFileViaBodyDefaultResponse
   >;
 }
 
 export interface UploadFiles {
   /** Upload multiple files */
   post(
-    options: UploadFilesParameters
-  ): StreamableMethod<UploadFiles200Response | UploadFilesDefaultResponse>;
+    options: FormdataUploadFilesParameters
+  ): StreamableMethod<
+    FormdataUploadFiles200Response | FormdataUploadFilesDefaultResponse
+  >;
 }
 
 export interface Routes {

@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createHeaderRestClient, {
-  ParamIntegerParameters
+  HeaderParamIntegerParameters
 } from "@msinternal/header-rest";
 import * as dotenv from "dotenv";
 
@@ -18,7 +18,7 @@ dotenv.config();
  */
 async function headerParamInteger() {
   const client = createHeaderRestClient();
-  const options: ParamIntegerParameters = {
+  const options: HeaderParamIntegerParameters = {
     headers: { scenario: "positive", value: 1 }
   };
   const result = await client.path("/header/param/prim/integer").post(options);

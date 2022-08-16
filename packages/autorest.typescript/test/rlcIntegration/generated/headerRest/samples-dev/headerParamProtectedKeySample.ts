@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createHeaderRestClient, {
-  ParamProtectedKeyParameters
+  HeaderParamProtectedKeyParameters
 } from "@msinternal/header-rest";
 import * as dotenv from "dotenv";
 
@@ -18,7 +18,7 @@ dotenv.config();
  */
 async function headerParamProtectedKey() {
   const client = createHeaderRestClient();
-  const options: ParamProtectedKeyParameters = {
+  const options: HeaderParamProtectedKeyParameters = {
     headers: { "Content-Type": "text/html" }
   };
   const result = await client.path("/header/param/protectedkey").post(options);

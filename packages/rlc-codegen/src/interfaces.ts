@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-
 export type Methods = {
   [key: string]: [OperationMethod];
 };
@@ -44,6 +43,14 @@ export interface OperationAnnotations {
 
 export interface RLCOptions {
   includeShortcuts?: boolean;
+  multiClient?: boolean;
+  batch?: any[];
+  packageDetails?: PackageDetails,
+  addCredentials?: boolean,
+  credentialScopes?: string[],
+  credentialKeyHeaderName?: string;
+  endpoint?: string;
+  endpointParameterName?: string;
 }
 
 export interface RLCModel {
@@ -52,6 +59,7 @@ export interface RLCModel {
   paths: Paths;
   options?: RLCOptions;
   schemas: Schema[];
+  apiVersionParam?: Parameter;
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
@@ -62,8 +70,8 @@ export enum ImportKind {
   ParameterInput
 }
 export interface File {
-  path: string,
-  content: string
+  path: string;
+  content: string;
 }
 
 export enum SchemaContext {
@@ -97,38 +105,62 @@ export interface ObjectSchema extends Schema {
     immediate?: ObjectSchema[];
   };
   parents?: {
-    all?: ObjectSchema[]
+    all?: ObjectSchema[];
     immediate?: ObjectSchema[];
-  }
+  };
 }
 
-export interface Property extends Schema {
+export interface Property extends Schema {}
 
+export interface Parameter extends Schema {}
+
+export interface PackageDetails {
+  name: string;
+  scopeName?: string;
+  nameWithoutScope: string;
+  description?: string;
+  version: string;
 }
-
-export interface Parameter extends Schema {
-
-}
-
 export interface OperationParameter {
+  operationGroup: string;
   operationName: string;
-  parameters: ParameterMetadata[];
+  /**
+   * An operation with multiple request parameters means that
+   * the operation can get different values for content-type and each value
+   * may have a different type associated to it.
+   */
+  parameters: ParameterMetadatas[];
 }
+
+export interface ParameterMetadatas {
+  parameters?: ParameterMetadata[];
+  body?: ParameterBodyMetadata;
+}
+
+export interface ParameterBodyMetadata {
+  // In case of formData we'd get multiple properties in body marked as partialBody
+  isPartialBody?: boolean;
+  body?: ParameterBodySchema[];
+}
+
+export type ParameterBodySchema = Schema;
 export interface ParameterMetadata {
-  type: "query" | "path" | "header" | "body";
+  type: "query" | "path" | "header";
   name: string;
   param: Schema;
 }
 
 export interface OperationResponse {
+  operationGroup: string;
   operationName: string;
   responses: ResponseMetadata[];
 }
 export interface ResponseMetadata {
   statusCode: string;
   description?: string;
-  headers?: HeaderMetadata[];
-  body?: Schema;
+  headers?: ResponseHeaderSchema[];
+  body?: ResponseBodySchema;
 }
 
-export type HeaderMetadata = Schema;
+export type ResponseHeaderSchema = Schema;
+export type ResponseBodySchema = Schema;

@@ -32,7 +32,13 @@ import {
 } from "@cadl-lang/compiler";
 import { Discriminator, getDiscriminator } from "@cadl-lang/rest";
 import { reportDiagnostic } from "./lib.js";
-import { ObjectSchema, SchemaContext } from "@azure-tools/rlc-codegen";
+import {
+  NameType,
+  normalizeName,
+  ObjectSchema,
+  Schema,
+  SchemaContext
+} from "@azure-tools/rlc-codegen";
 import {
   getHeaderFieldName,
   getPathParamName,
@@ -40,7 +46,11 @@ import {
   isStatusCode
 } from "@cadl-lang/rest/http";
 
-export function getSchemaForType(program: Program, type: Type, usage?: SchemaContext[]) {
+export function getSchemaForType(
+  program: Program,
+  type: Type,
+  usage?: SchemaContext[]
+) {
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -51,7 +61,7 @@ export function getSchemaForType(program: Program, type: Type, usage?: SchemaCon
     return builtinType;
   }
   if (type.kind === "Array") {
-    const schema =  getSchemaForArray(program, type, usage);
+    const schema = getSchemaForArray(program, type, usage);
     if (usage && usage.includes(SchemaContext.Output)) {
       schema.outputTypeName = `Array<${schema.items.name}Output>`;
     }
@@ -93,7 +103,11 @@ function isNullType(program: Program, type: Type): boolean {
   );
 }
 
-function getSchemaForUnion(program: Program, union: UnionType, usage?: SchemaContext[]) {
+function getSchemaForUnion(
+  program: Program,
+  union: UnionType,
+  usage?: SchemaContext[]
+) {
   let type: string;
   const nonNullOptions = union.options.filter((t) => !isNullType(program, t));
   const nullable = union.options.length != nonNullOptions.length;
@@ -310,13 +324,23 @@ function isSchemaProperty(program: Program, property: ModelTypeProperty) {
 //       });
 //   }
 // }
-function getSchemaForModel(program: Program, model: ModelType, usage?: SchemaContext[]) {
+function getSchemaForModel(
+  program: Program,
+  model: ModelType,
+  usage?: SchemaContext[]
+) {
   const friendlyName = getFriendlyName(program, model);
   let modelSchema: ObjectSchema = {
-    name: friendlyName?? model.name,
+    name: friendlyName ?? model.name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };
+  // normalized the output name
+  modelSchema.name = normalizeName(
+    modelSchema.name,
+    NameType.Interface,
+    true /** shouldGuard */
+  );
   modelSchema.properties = {};
   const derivedModels = model.derivedModels.filter(includeDerivedModel);
 
@@ -447,7 +471,11 @@ function getSchemaForModel(program: Program, model: ModelType, usage?: SchemaCon
 
   return modelSchema;
 }
-function getSchemaForArray(program: Program, array: ArrayType, usage?: SchemaContext[]) {
+function getSchemaForArray(
+  program: Program,
+  array: ArrayType,
+  usage?: SchemaContext[]
+) {
   const target = array.elementType;
   const schema = {
     type: `array`,
@@ -457,7 +485,11 @@ function getSchemaForArray(program: Program, array: ArrayType, usage?: SchemaCon
 }
 // Map an Cadl type to an OA schema. Returns undefined when the resulting
 // OA schema is just a regular object schema.
-function mapCadlTypeToTypeScript(program: Program, cadlType: Type, usage?: SchemaContext[]): any {
+function mapCadlTypeToTypeScript(
+  program: Program,
+  cadlType: Type,
+  usage?: SchemaContext[]
+): any {
   switch (cadlType.kind) {
     case "Number":
       return { type: "number", enum: [cadlType.value] };
@@ -466,7 +498,7 @@ function mapCadlTypeToTypeScript(program: Program, cadlType: Type, usage?: Schem
     case "Boolean":
       return { type: "boolean", enum: [cadlType.value] };
     case "Model":
-    case 'ModelProperty':
+    case "ModelProperty":
       return mapCadlIntrinsicModelToTypeScript(program, cadlType, usage);
   }
 }
@@ -485,7 +517,7 @@ function applyIntrinsicDecorators(
   }
 
   const friendlyName = getFriendlyName(program, cadlType);
-  if(friendlyName) {
+  if (friendlyName) {
     newTarget.name = friendlyName;
   }
 
@@ -664,4 +696,27 @@ function mapCadlIntrinsicModelToTypeScript(
         additionalProperties: getSchemaForType(program, valType!.type, usage)
       };
   }
+}
+
+export function getTypeName(schema: Schema): string {
+  // TODO: Handle more cases
+  return getPriorityName(schema) ?? schema.type ?? "any";
+}
+
+export function getImportedModelName(schema: Schema): string[] | undefined {
+  // TODO: Handle more type cases
+  switch (schema.type) {
+    case "array":
+      return (schema as any).items
+        .filter((i: Schema) => i.type === "object")
+        .map((i: Schema) => i.outputTypeName);
+    case "object":
+      return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
+    default:
+      return;
+  }
+}
+
+function getPriorityName(schema: Schema): string {
+  return schema.outputTypeName ?? schema.name;
 }

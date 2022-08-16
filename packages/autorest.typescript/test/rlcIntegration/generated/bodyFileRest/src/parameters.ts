@@ -3,6 +3,6 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type GetFileParameters = RequestParameters;
-export type GetFileLargeParameters = RequestParameters;
-export type GetEmptyFileParameters = RequestParameters;
+export type FilesGetFileParameters = RequestParameters;
+export type FilesGetFileLargeParameters = RequestParameters;
+export type FilesGetEmptyFileParameters = RequestParameters;
