@@ -13,12 +13,10 @@ import { RLCModel } from "./interfaces.js";
 import * as path from "path";
 
 export function buildIndexFile(model: RLCModel) {
-  if (!model.options) {
-    return undefined;
-  }
+  const multiClient = Boolean(model.options?.multiClient),
+    batch = model.options?.batch;
   const project = new Project();
   const { srcPath } = model;
-  const { multiClient, batch } = model.options;
   const filePath = path.join(srcPath, `index.ts`);
   const indexFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
