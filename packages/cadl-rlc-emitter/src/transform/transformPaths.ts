@@ -3,6 +3,9 @@
 
 import {
   getResponseTypeName,
+  getResponseBaseName,
+  getParameterTypeName,
+  getParameterBaseName,
   PathMetadata,
   Paths,
   ResponseTypes
@@ -19,18 +22,35 @@ export function transformPaths(program: Program): Paths {
   const [routes, _diagnostics] = getAllRoutes(program);
   const paths: Paths = {};
   for (const route of routes) {
+    const parameterBaseName = getParameterBaseName(
+      route.groupName,
+      route.operation.name
+    );
+    const respNames = [];
+    for (const resp of route.responses) {
+      const respBaseName = getResponseBaseName(
+        route.groupName,
+        route.operation.name,
+        resp.statusCode === "*" ? "Default" : resp.statusCode
+      );
+      const respName = getResponseTypeName(respBaseName);
+      respNames.push(respName);
+    }
     const method = {
       description: getDoc(program, route.operation) ?? "",
       hasOptionalOptions: route.parameters.parameters.some(
         (p) => p.param.optional
       ),
-      optionsName: "options",
+      optionsName: getParameterTypeName(parameterBaseName),
       responseTypes: getResponseTypes(route),
-      returnType: "",
+      returnType: respNames.join(" | "),
       successStatus: gerOperationSuccessStatus(route),
       operationName: route.operation.name
-    }
-    if (paths[route.path] !== undefined && !paths[route.path]?.methods[route.verb]) {
+    };
+    if (
+      paths[route.path] !== undefined &&
+      !paths[route.path]?.methods[route.verb]
+    ) {
       (paths[route.path] as PathMetadata).methods[route.verb] = [method];
     } else if (paths[route.path]?.methods[route.verb]) {
       paths[route.path]?.methods[route.verb]?.push(method);
