@@ -15,7 +15,6 @@ import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
 import { generateParameterInterfaces } from "./generateParameterTypes";
 import { generatePathFirstClient } from "./generateClientDefinition";
 import { generateClient } from "./generateClient";
-import { generateIndexFile } from "../generators/indexGenerator";
 import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
 import { generateTopLevelIndexFile } from "./generateTopLevelIndexFile";
@@ -37,6 +36,7 @@ import {
   hasRLCSamplesGenerated
 } from "../generators/samples/rlcSampleGenerator";
 import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
+import { generateIndexFile } from "./generateIndexFile";
 
 /**
  * Generates a Rest Level Client library
