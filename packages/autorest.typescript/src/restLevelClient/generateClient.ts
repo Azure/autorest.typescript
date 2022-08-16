@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CodeModel } from "@autorest/codemodel";
 import { transform } from "./transforms/transform";
 import { generateClient as generateClientForRLC } from "@azure-tools/rlc-codegen";

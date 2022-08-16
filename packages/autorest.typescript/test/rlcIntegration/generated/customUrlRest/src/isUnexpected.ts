@@ -1,16 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetEmpty200Response, GetEmptyDefaultResponse } from "./responses";
+import {
+  PathsGetEmpty200Response,
+  PathsGetEmptyDefaultResponse
+} from "./responses";
 
 const responseMap: Record<string, string[]> = { "GET /customuri": ["200"] };
 
 export function isUnexpected(
-  response: GetEmpty200Response | GetEmptyDefaultResponse
-): response is GetEmptyDefaultResponse;
+  response: PathsGetEmpty200Response | PathsGetEmptyDefaultResponse
+): response is PathsGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: GetEmpty200Response | GetEmptyDefaultResponse
-): response is GetEmptyDefaultResponse {
+  response: PathsGetEmpty200Response | PathsGetEmptyDefaultResponse
+): response is PathsGetEmptyDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

@@ -7,6 +7,7 @@ import {
   RLCModel,
   generateSchemaTypes,
   buildResponseTypes,
+  buildParameterTypes,
   File,
   generateClient
 } from "@azure-tools/rlc-codegen";
@@ -23,6 +24,7 @@ export async function $onEmit(program: Program) {
   await emitModels(rlcModels, program, project);
   await emitResponseTypes(rlcModels, program);
   await emitClientFactory(rlcModels, program, project);
+  await emitParameterTypes(rlcModels, program);
 }
 
 async function emitModels(
@@ -65,6 +67,14 @@ async function emitClientFactory(rlcModels: RLCModel, program: Program, project:
     await emitFile(clientFactoryFile, program);
   }
 }
+
+async function emitParameterTypes(rlcModels: RLCModel, program: Program) {
+  const parametersFile = buildParameterTypes(rlcModels);
+  if (parametersFile) {
+    await emitFile(parametersFile, program);
+  }
+}
+
 
 async function emitFile(file: File, program: Program) {
   const host: CompilerHost = program.host;

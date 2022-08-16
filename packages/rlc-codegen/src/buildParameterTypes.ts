@@ -1,0 +1,434 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import {
+  InterfaceDeclarationStructure,
+  Project,
+  PropertySignatureStructure,
+  SourceFile,
+  StructureKind
+} from "ts-morph";
+import * as path from "path";
+import {
+  ImportKind,
+  ParameterMetadata,
+  ParameterMetadatas,
+  RLCModel,
+  Schema
+} from "./interfaces.js";
+import { NameType, normalizeName } from "./helpers/nameUtils.js";
+
+export function buildParameterTypes(model: RLCModel) {
+  const project = new Project();
+  const srcPath = model.srcPath;
+  const filePath = path.join(srcPath, `parameters.ts`);
+  const parametersFile = project.createSourceFile(filePath, undefined, {
+    overwrite: true
+  });
+  let hasHeaders = false;
+
+  if (!model.parameters) {
+    return;
+  }
+  for (const requestParameter of model.parameters) {
+    const operationName = normalizeName(
+      `${requestParameter.operationName}`,
+      NameType.Interface
+    );
+    const requestCount = requestParameter?.parameters?.length ?? 0;
+    const topParamName = `${operationName}Parameters`;
+    const subParamNames: string[] = [];
+
+    // We need to loop the requests. An operation with multiple requests means that
+    // the operation can get different values for content-type and each value may
+    // have a different type associated to it.
+    for (let i = 0; i < requestCount; i++) {
+      const parameter = requestParameter.parameters[i];
+      const internalReferences = new Set<string>();
+      // In case we have more than one request to model we need to add a suffix to differentiate
+      const nameSuffix = i > 0 ? `${i}` : "";
+      const parameterInterfaceName =
+        requestCount > 1
+          ? `${operationName}RequestParameters${nameSuffix}`
+          : topParamName;
+      const queryParameterDefinitions = buildQueryParameterDefinition(
+        parameter,
+        operationName,
+        internalReferences,
+        i
+      );
+      const pathParameterDefinitions = buildPathParameterDefinitions(
+        parameter,
+        operationName,
+        parametersFile,
+        internalReferences,
+        i
+      );
+
+      const headerParameterDefinitions = buildHeaderParameterDefinitions(
+        parameter,
+        operationName,
+        parametersFile,
+        internalReferences,
+        i
+      );
+
+      const contentTypeParameterDefinition =
+        buildContentTypeParametersDefinition(
+          parameter,
+          operationName,
+          internalReferences,
+          i
+        );
+
+      const bodyParameterDefinition = buildBodyParametersDefinition(
+        parameter,
+        operationName,
+        internalReferences,
+        i
+      );
+
+      // Add interfaces for body and query parameters
+      parametersFile.addInterfaces([
+        ...(bodyParameterDefinition ?? []),
+        ...(queryParameterDefinitions ?? []),
+        ...(pathParameterDefinitions ? [pathParameterDefinitions] : []),
+        ...(headerParameterDefinitions ? [headerParameterDefinitions] : []),
+        ...(contentTypeParameterDefinition
+          ? [contentTypeParameterDefinition]
+          : [])
+      ]);
+
+      // Add Operation parameters type alias which is composed of the types we generated above
+      // plus the common type RequestParameters
+      parametersFile.addTypeAlias({
+        name: parameterInterfaceName,
+        isExported: true,
+        type: [...internalReferences, "RequestParameters"].join(" & ")
+      });
+
+      subParamNames.push(parameterInterfaceName);
+
+      if (headerParameterDefinitions !== undefined) {
+        hasHeaders = true;
+      }
+    }
+    // Add Operation parameters type alias which is composed of the types we generated above
+    // plus the common type RequestParameters
+    if (requestCount > 1) {
+      parametersFile.addTypeAlias({
+        name: topParamName,
+        isExported: true,
+        type: [...subParamNames].join(" | ")
+      });
+    }
+  }
+
+  if (hasHeaders) {
+    parametersFile.addImportDeclarations([
+      {
+        namedImports: ["RawHttpHeadersInput"],
+        moduleSpecifier: "@azure/core-rest-pipeline"
+      }
+    ]);
+  }
+  parametersFile.addImportDeclarations([
+    {
+      namedImports: ["RequestParameters"],
+      moduleSpecifier: "@azure-rest/core-client"
+    }
+  ]);
+  if (model.importSet?.has(ImportKind.ParameterInput)) {
+    parametersFile.addImportDeclarations([
+      {
+        namedImports: [
+          ...Array.from(model.importSet?.get(ImportKind.ParameterInput) || [])
+        ],
+        moduleSpecifier: "./models"
+      }
+    ]);
+  }
+  return { path: filePath, content: parametersFile.getFullText() };
+}
+
+function buildQueryParameterDefinition(
+  parameters: ParameterMetadatas,
+  operationName: string,
+  internalReferences: Set<string>,
+  requestIndex: number
+): InterfaceDeclarationStructure[] | undefined {
+  const queryParameters = (parameters?.parameters || []).filter(
+    (p) => p.type === "query"
+  );
+
+  if (!queryParameters.length) {
+    return undefined;
+  }
+
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const queryParameterInterfaceName = `${operationName}QueryParam${nameSuffix}`;
+  const queryParameterPropertiesName = `${operationName}QueryParamProperties`;
+
+  // Get the property signature for each query parameter
+  const propertiesDefinition = queryParameters.map((qp) =>
+    getPropertyFromSchema(qp.param)
+  );
+
+  const hasRequiredParameters = propertiesDefinition.some(
+    (p) => !p.hasQuestionToken
+  );
+
+  const propertiesInterface: InterfaceDeclarationStructure = {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name: queryParameterPropertiesName,
+    properties: propertiesDefinition
+  };
+
+  const parameterInterface: InterfaceDeclarationStructure = {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name: queryParameterInterfaceName,
+    properties: [
+      {
+        name: "queryParameters",
+        type: queryParameterPropertiesName,
+        // Mark as optional if there are no required parameters
+        hasQuestionToken: !hasRequiredParameters
+      }
+    ]
+  };
+
+  // Mark the queryParameter interface for importing
+  internalReferences.add(queryParameterInterfaceName);
+
+  return [propertiesInterface, parameterInterface];
+}
+
+function getPropertyFromSchema(schema: Schema): PropertySignatureStructure {
+  const description = schema.description;
+  return {
+    name: schema.name,
+    ...(description && { docs: [{ description }] }),
+    type: schema.type,
+    hasQuestionToken: !Boolean(schema.required),
+    kind: StructureKind.PropertySignature
+  };
+}
+
+function buildPathParameterDefinitions(
+  parameters: ParameterMetadatas,
+  operationName: string,
+  parametersFile: SourceFile,
+  internalReferences: Set<string>,
+  requestIndex: number
+): InterfaceDeclarationStructure | undefined {
+  const pathParameters = (parameters.parameters || []).filter(
+    (p) => p.type === "path"
+  );
+  if (!pathParameters.length) {
+    return undefined;
+  }
+
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const pathParameterInterfaceName = `${operationName}PathParam${nameSuffix}`;
+
+  const pathInterface = getPathInterfaceDefinition(
+    pathParameters,
+    operationName
+  );
+
+  if (pathInterface) {
+    parametersFile.addInterface(pathInterface);
+  }
+
+  internalReferences.add(pathParameterInterfaceName);
+
+  return {
+    isExported: true,
+    kind: StructureKind.Interface,
+    name: pathParameterInterfaceName,
+    properties: [
+      {
+        name: "pathParameters",
+        type: `${operationName}PathParameters`,
+        kind: StructureKind.PropertySignature
+      }
+    ]
+  };
+}
+
+function getPathInterfaceDefinition(
+  pathParameters: ParameterMetadata[],
+  baseName: string
+): undefined | InterfaceDeclarationStructure {
+  const pathInterfaceName = `${baseName}PathParameters`;
+  return {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name: pathInterfaceName,
+    properties: pathParameters.map((p: ParameterMetadata) =>
+      getPropertyFromSchema(p.param)
+    )
+  };
+}
+
+function buildHeaderParameterDefinitions(
+  parameters: ParameterMetadatas,
+  operationName: string,
+  parametersFile: SourceFile,
+  internalReferences: Set<string>,
+  requestIndex: number
+): InterfaceDeclarationStructure | undefined {
+  const headerParameters = (parameters.parameters || []).filter(
+    (p) => p.type === "header" && p.name !== "contentType"
+  );
+  if (!headerParameters.length) {
+    return undefined;
+  }
+
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const headerParameterInterfaceName = `${operationName}HeaderParam${nameSuffix}`;
+
+  const headersInterface = getRequestHeaderInterfaceDefinition(
+    headerParameters,
+    operationName
+  );
+
+  if (headersInterface) {
+    parametersFile.addInterface(headersInterface);
+  }
+
+  internalReferences.add(headerParameterInterfaceName);
+
+  return {
+    isExported: true,
+    kind: StructureKind.Interface,
+    name: headerParameterInterfaceName,
+    properties: [
+      {
+        name: "headers",
+        type: `RawHttpHeadersInput & ${operationName}Headers`,
+        kind: StructureKind.PropertySignature
+      }
+    ]
+  };
+}
+
+function getRequestHeaderInterfaceDefinition(
+  headerParameters: ParameterMetadata[],
+  baseName: string
+): undefined | InterfaceDeclarationStructure {
+  const headersInterfaceName = `${baseName}Headers`;
+  return {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name: headersInterfaceName,
+    properties: headerParameters.map((h: ParameterMetadata) =>
+      getPropertyFromSchema(h.param)
+    )
+  };
+}
+
+function buildContentTypeParametersDefinition(
+  parameters: ParameterMetadatas,
+  operationName: string,
+  internalReferences: Set<string>,
+  requestIndex: number
+): InterfaceDeclarationStructure | undefined {
+  const mediaTypeParameters = (parameters.parameters || []).filter(
+    (p) => p.type === "header" && p.name === "contentType"
+  );
+  if (!mediaTypeParameters.length) {
+    return undefined;
+  }
+
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const mediaTypesParameterInterfaceName = `${operationName}MediaTypesParam${nameSuffix}`;
+
+  // Mark the queryParameter interface for importing
+  internalReferences.add(mediaTypesParameterInterfaceName);
+  const mediaParam = mediaTypeParameters[0].param;
+
+  return {
+    isExported: true,
+    kind: StructureKind.Interface,
+    name: mediaTypesParameterInterfaceName,
+    properties: [getPropertyFromSchema(mediaParam)]
+  };
+}
+
+function buildBodyParametersDefinition(
+  parameters: ParameterMetadatas,
+  operationName: string,
+  internalReferences: Set<string>,
+  requestIndex: number
+): InterfaceDeclarationStructure[] {
+  const bodyParameters = parameters.body;
+  if (
+    !bodyParameters ||
+    !bodyParameters?.body ||
+    !bodyParameters?.body.length
+  ) {
+    return [];
+  }
+
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const bodyParameterInterfaceName = `${operationName}BodyParam${nameSuffix}`;
+  internalReferences.add(bodyParameterInterfaceName);
+
+  // In case of formData we'd get multiple properties in body marked as partialBody
+  if (bodyParameters.isPartialBody) {
+    let allOptionalParts = true;
+    const propertiesDefinitions: PropertySignatureStructure[] = [];
+    for (const param of bodyParameters.body) {
+      if (param.required) {
+        allOptionalParts = false;
+      }
+
+      propertiesDefinitions.push(getPropertyFromSchema(param));
+    }
+
+    const formBodyName = `${operationName}FormBody`;
+    const formBodyInterface: InterfaceDeclarationStructure = {
+      isExported: true,
+      kind: StructureKind.Interface,
+      name: formBodyName,
+      properties: propertiesDefinitions
+    };
+
+    return [
+      {
+        isExported: true,
+        kind: StructureKind.Interface,
+        name: bodyParameterInterfaceName,
+        properties: [
+          {
+            name: "body",
+            type: formBodyName,
+            hasQuestionToken: allOptionalParts
+          }
+        ]
+      },
+      formBodyInterface
+    ];
+  } else {
+    const bodySignature = getPropertyFromSchema(bodyParameters.body[0]);
+
+    return [
+      {
+        isExported: true,
+        kind: StructureKind.Interface,
+        name: bodyParameterInterfaceName,
+        properties: [
+          {
+            docs: bodySignature.docs,
+            name: "body",
+            type: bodySignature.type,
+            hasQuestionToken: bodySignature.hasQuestionToken
+          }
+        ]
+      }
+    ];
+  }
+}

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
 import { generatePackageJson } from "../generators/static/packageFileGenerator";
@@ -29,7 +32,10 @@ import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
-import { generateRLCSamples, hasRLCSamplesGenerated } from "../generators/samples/rlcSampleGenerator";
+import {
+  generateRLCSamples,
+  hasRLCSamplesGenerated
+} from "../generators/samples/rlcSampleGenerator";
 import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
 
 /**
@@ -85,7 +91,10 @@ export async function generateRestLevelClient() {
   if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);
   }
-  if (((generateSample && hasRLCSamplesGenerated) || generateTest) && generateMetadata) {
+  if (
+    ((generateSample && hasRLCSamplesGenerated) || generateTest) &&
+    generateMetadata
+  ) {
     generateSampleEnv(project);
   }
 

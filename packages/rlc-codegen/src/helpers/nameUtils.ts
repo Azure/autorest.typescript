@@ -97,8 +97,8 @@ export function guardReservedNames(
 ): string {
   const suffix = getSuffix(nameType);
   return [...ReservedModelNames, ...customReservedNames]
-    .filter(r => r.reservedFor.includes(nameType))
-    .find(r => r.name === name.toLowerCase())
+    .filter((r) => r.reservedFor.includes(nameType))
+    .find((r) => r.name === name.toLowerCase())
     ? `${name}${suffix}`
     : name;
 }
@@ -120,7 +120,6 @@ function getSuffix(nameType?: NameType) {
   }
 }
 
-
 export function normalizeName(
   name: string,
   nameType: NameType,
@@ -137,7 +136,7 @@ export function normalizeName(
   const [firstPart, ...otherParts] = parts;
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
   const normalizedParts = (otherParts || [])
-    .map(part =>
+    .map((part) =>
       part === "null" ? part : toCasing(part, CasingConvention.Pascal)
     )
     .join("");

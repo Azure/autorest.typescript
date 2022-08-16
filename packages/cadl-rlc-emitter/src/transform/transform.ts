@@ -5,6 +5,7 @@ import {
   ImportKind,
   NameType,
   normalizeName,
+  OperationParameter,
   OperationResponse,
   Parameter,
   Paths,
@@ -14,6 +15,7 @@ import {
 } from "@azure-tools/rlc-codegen";
 import { getServiceTitle, getServiceVersion, Program } from "@cadl-lang/compiler";
 import { join } from "path";
+import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
@@ -31,6 +33,10 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     program,
     importSet
   );
+  const parameters: OperationParameter[] = transformToParameterTypes(
+    program,
+    importSet
+  );
 
   return {
     srcPath,
@@ -40,7 +46,8 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     schemas,
     responses,
     importSet,
-    apiVersionParam
+    apiVersionParam,
+    parameters
   };
 }
 

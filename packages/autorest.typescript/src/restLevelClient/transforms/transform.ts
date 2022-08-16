@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CodeModel, ImplementationLocation, ParameterLocation } from "@autorest/codemodel";
 import { ImportKind, RLCModel } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
@@ -5,6 +8,7 @@ import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { isConstantSchema } from "../schemaHelpers";
 import { transformOptions } from "./transformOptions";
+import { transformParameterTypes } from "./transformParameterTypes";
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
@@ -38,7 +42,8 @@ export function transform(
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
     importSet: importDetails,
-    apiVersionParam: transformApiVersionParam(model)
+    apiVersionParam: transformApiVersionParam(model),
+    parameters: transformParameterTypes(model, importDetails)
   };
   return rlcModel;
 }
