@@ -73,6 +73,14 @@ async function emitIsUnexpectedHelper(rlcModels: RLCModel, program: Program) {
   }
 }
 
+async function emitParameterTypes(rlcModels: RLCModel, program: Program) {
+  const parametersFile = buildParameterTypes(rlcModels);
+  if (parametersFile) {
+    await emitFile(parametersFile, program);
+  }
+}
+
+
 async function emitFile(file: File, program: Program) {
   const host: CompilerHost = program.host;
   const filePath =
