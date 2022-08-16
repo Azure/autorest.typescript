@@ -11,6 +11,7 @@ import {
 } from "@autorest/codemodel";
 import { Paths, PathParameter, ResponseTypes } from "@azure-tools/rlc-codegen";
 import { isEqual } from "lodash";
+import { isPagingOperation } from "../../utils/extractPaginationDetails";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { isLongRunningOperation } from "../helpers/hasPollingOperations";
@@ -77,7 +78,8 @@ export function transformPaths(
               methods: {},
               name: operationName,
               annotations: {
-                isLongRunning: isLongRunningOperation(operation)
+                isLongRunning: isLongRunningOperation(operation),
+                isPageable: isPagingOperation(operation)
               }
             };
           }
