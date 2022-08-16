@@ -10251,7 +10251,7 @@ packages:
     dev: false
 
   /verror/1.10.0:
-    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
+    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -10917,12 +10917,13 @@ packages:
     dev: false
 
   file:projects/rlc-codegen.tgz:
-    resolution: {integrity: sha512-vJE6CUWSNP/9AMhjJxx7AzKRtNdnqypAxH0pGhrnwM41LyeLwsQyCPl3aF0tQcYE6oZbvE5iNlxVjqVYazk85g==, tarball: file:projects/rlc-codegen.tgz}
+    resolution: {integrity: sha512-m7HJZL3MPGGxx41nnGQSakYxXfp21gOm8LQavqTGAObHwVUIgz824TzNffKLkjvo39uMSGDKvhwsvWYPdz+uSg==, tarball: file:projects/rlc-codegen.tgz}
     name: '@rush-temp/rlc-codegen'
     version: 0.0.0
     dependencies:
       '@types/lodash': 4.14.182
       '@types/node': 18.6.4
+      '@types/prettier': 1.19.1
       lodash: 4.17.21
       prettier: 2.7.1
       rimraf: 3.0.2

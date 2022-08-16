@@ -9,7 +9,7 @@ import {
   buildResponseTypes,
   buildParameterTypes,
   buildIsUnexpectedHelper,
-  File
+  File,
   generateClient
 } from "@azure-tools/rlc-codegen";
 import { dirname, isAbsolute, join } from "path";
@@ -67,13 +67,17 @@ async function emitIsUnexpectedHelper(rlcModels: RLCModel, program: Program) {
   const isUnexpectedHelperFile = buildIsUnexpectedHelper(rlcModels);
   if (isUnexpectedHelperFile) {
     await emitFile(isUnexpectedHelperFile, program);
-async function emitClientFactory(rlcModels: RLCModel, program: Program, project: Project) {
-  const clientFactoryFile = generateClient(rlcModels, project);
-  if (clientFactoryFile) {
-    await emitFile(clientFactoryFile, program);
   }
 }
 
+async function emitClientFactory(
+  rlcModels: RLCModel,
+  program: Program,
+  project: Project
+) {
+  const clientFactoryFile = generateClient(rlcModels, project);
+  if (clientFactoryFile) {
+    await emitFile(clientFactoryFile, program);
   }
 }
 
@@ -90,7 +94,7 @@ async function emitFile(file: File, program: Program) {
     isAbsolute(file.path) || !program.compilerOptions.outputPath
       ? file.path
       : join(program.compilerOptions.outputPath, file.path);
-  const prettierFileContent = format(file.content, prettierTypeScriptOptions)
+  const prettierFileContent = format(file.content, prettierTypeScriptOptions);
   await host.mkdirp(dirname(filePath));
   await host.writeFile(filePath, prettierFileContent);
 }
