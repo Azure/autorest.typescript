@@ -7,3 +7,4 @@ export * from "./generateSchemaType.js";
 export * from "./helpers/shortcutMethods.js";
 export * from "./helpers/nameUtils.js"
 export * from "./buildResponseTypes.js";
+export * from "./buildParameterTypes.js";

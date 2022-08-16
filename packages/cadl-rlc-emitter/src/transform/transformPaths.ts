@@ -20,7 +20,7 @@ export function transformPaths(program: Program): Paths {
       returnType: "",
       successStatus: ["200"],
       operationName: route.operation.name
-    }
+    };
     if (paths[route.path]?.methods[route.verb]) {
       paths[route.path]?.methods[route.verb]?.push(method);
     }

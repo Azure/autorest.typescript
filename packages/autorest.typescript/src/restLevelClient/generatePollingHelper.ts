@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { readFileSync } from "fs";
 import * as path from "path";
 import * as hbs from "handlebars";
@@ -13,7 +16,11 @@ export function generatePollingHelper(project: Project) {
 
   const readmeFileContents = hbs.compile(file, { noEscape: true });
   const { srcPath } = getAutorestOptions();
-  project.createSourceFile(path.join(srcPath, "pollingHelper.ts"), readmeFileContents({}), {
-    overwrite: true
-  });
+  project.createSourceFile(
+    path.join(srcPath, "pollingHelper.ts"),
+    readmeFileContents({}),
+    {
+      overwrite: true
+    }
+  );
 }

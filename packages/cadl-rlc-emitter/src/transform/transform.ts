@@ -3,6 +3,7 @@
 
 import {
   ImportKind,
+  OperationParameter,
   OperationResponse,
   Paths,
   RLCModel,
@@ -11,6 +12,7 @@ import {
 } from "@azure-tools/rlc-codegen";
 import { Program } from "@cadl-lang/compiler";
 import { join } from "path";
+import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
@@ -31,6 +33,10 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     program,
     importSet
   );
+  const parameters: OperationParameter[] = transformToParameterTypes(
+    program,
+    importSet
+  );
 
   return {
     srcPath,
@@ -39,6 +45,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     options,
     schemas,
     responses,
+    parameters,
     importSet
   };
 }

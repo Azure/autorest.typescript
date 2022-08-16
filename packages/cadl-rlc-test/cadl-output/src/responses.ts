@@ -1,5 +1,5 @@
 import { HttpResponse } from "@azure-rest/core-client";
-import { ErrorOutput, PetOutput, ResponsePageOutput } from "./outputModels";
+import { ErrorModelOutput, PetOutput, ToyListResultsOutput } from "./outputModels";
 
 /** Ok */
 export interface PetsDelete200Response extends HttpResponse {
@@ -9,7 +9,7 @@ export interface PetsDelete200Response extends HttpResponse {
 /** Error */
 export interface PetsDeleteDefaultResponse extends HttpResponse {
     status: string;
-    body: ErrorOutput;
+    body: ErrorModelOutput;
 }
 
 /** The request has succeeded. */
@@ -27,7 +27,7 @@ export interface PetsRead304Response extends HttpResponse {
 /** Error */
 export interface PetsReadDefaultResponse extends HttpResponse {
     status: string;
-    body: ErrorOutput;
+    body: ErrorModelOutput;
 }
 
 /** The request has succeeded. */
@@ -39,17 +39,17 @@ export interface PetsCreate200Response extends HttpResponse {
 /** Error */
 export interface PetsCreateDefaultResponse extends HttpResponse {
     status: string;
-    body: ErrorOutput;
+    body: ErrorModelOutput;
 }
 
 /** The request has succeeded. */
 export interface ListPetToysResponseList200Response extends HttpResponse {
     status: "200";
-    body: ResponsePageOutput;
+    body: ToyListResultsOutput;
 }
 
 /** Error */
 export interface ListPetToysResponseListDefaultResponse extends HttpResponse {
     status: string;
-    body: ErrorOutput;
+    body: ErrorModelOutput;
 }

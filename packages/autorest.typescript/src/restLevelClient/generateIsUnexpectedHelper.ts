@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { getAutorestOptions, getSession } from "../autorestSession";
 import * as path from "path";
 import {
