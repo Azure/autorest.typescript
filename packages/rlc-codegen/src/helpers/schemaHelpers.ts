@@ -16,3 +16,10 @@ export function isObjectSchema(schema: Schema) {
   }
   return false;
 }
+
+export function isConstantSchema(schema: Schema) {
+  if (schema.type === "constant") {
+    return true;
+  }
+  return false;
+}
