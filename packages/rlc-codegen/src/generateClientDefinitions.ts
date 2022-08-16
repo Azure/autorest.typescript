@@ -21,14 +21,12 @@ import { generateMethodShortcuts } from "./helpers/shortcutMethods.js";
 import { camelCase } from "./helpers/nameUtils.js";
 import { pascalCase } from "./helpers/nameUtils.js";
 
-export function buildClientDefinitions(
-  model: RLCModel,
-  options: {
-    importedParameters: Set<string>;
-    importedResponses: Set<string>;
-    clientImports: Set<string>;
-  }
-) {
+export function buildClientDefinitions(model: RLCModel) {
+  const options = {
+    importedParameters: new Set<string>(),
+    importedResponses: new Set<string>(),
+    clientImports: new Set<string>()
+  };
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `clientDefinitions.ts`);
@@ -56,7 +54,8 @@ export function buildClientDefinitions(
     isExported: true,
     callSignatures: getPathFirstRoutesInterfaceDefinition(
       pathDictionary,
-      clientDefinitionsFile
+      clientDefinitionsFile,
+      options
     )
   });
 
@@ -115,12 +114,25 @@ export function buildClientDefinitions(
 
 function getPathFirstRoutesInterfaceDefinition(
   paths: Paths,
-  sourcefile: SourceFile
+  sourcefile: SourceFile,
+  options: {
+    importedParameters: Set<string>;
+    importedResponses: Set<string>;
+    clientImports: Set<string>;
+  }
 ): CallSignatureDeclarationStructure[] {
   const operationGroupCount = getOperationGroupCount(paths);
 
   const signatures: CallSignatureDeclarationStructure[] = [];
   for (const key of Object.keys(paths)) {
+    for (const verb of Object.keys(paths[key].methods)) {
+      for (const method of paths[key].methods[verb]) {
+        options.importedParameters.add(method.optionsName);
+        method.returnType
+          .split(" | ")
+          .forEach((item) => options.importedResponses.add(item));
+      }
+    }
     generatePathFirstRouteMethodsDefinition(
       paths[key],
       operationGroupCount,

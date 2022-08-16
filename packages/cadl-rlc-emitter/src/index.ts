@@ -47,11 +47,7 @@ async function emitModels(
 }
 
 async function emitClientDefinition(rlcModels: RLCModel, program: Program) {
-  const clientDefinitionsFile = buildClientDefinitions(rlcModels, {
-    clientImports: new Set(),
-    importedParameters: new Set(),
-    importedResponses: new Set()
-  });
+  const clientDefinitionsFile = buildClientDefinitions(rlcModels);
 
   await emitFile(clientDefinitionsFile, program);
 }
