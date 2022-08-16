@@ -3,9 +3,7 @@
 
 import {
   getResponseTypeName,
-  getResponseBaseName,
   getParameterTypeName,
-  getParameterBaseName,
   PathMetadata,
   Paths,
   ResponseTypes
@@ -22,18 +20,13 @@ export function transformPaths(program: Program): Paths {
   const [routes, _diagnostics] = getAllRoutes(program);
   const paths: Paths = {};
   for (const route of routes) {
-    const parameterBaseName = getParameterBaseName(
-      route.groupName,
-      route.operation.name
-    );
     const respNames = [];
     for (const resp of route.responses) {
-      const respBaseName = getResponseBaseName(
+      const respName = getResponseTypeName(
         route.groupName,
         route.operation.name,
         resp.statusCode === "*" ? "Default" : resp.statusCode
       );
-      const respName = getResponseTypeName(respBaseName);
       respNames.push(respName);
     }
     const method = {
@@ -41,7 +34,7 @@ export function transformPaths(program: Program): Paths {
       hasOptionalOptions: route.parameters.parameters.some(
         (p) => p.param.optional
       ),
-      optionsName: getParameterTypeName(parameterBaseName),
+      optionsName: getParameterTypeName(route.groupName, route.operation.name),
       responseTypes: getResponseTypes(route),
       returnType: respNames.join(" | "),
       successStatus: gerOperationSuccessStatus(route),

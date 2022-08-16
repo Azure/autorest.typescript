@@ -22,11 +22,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     clientImports
   });
 
-  const clientDefinitions = buildClientDefinitions(rlcModel, {
-    importedParameters,
-    importedResponses,
-    clientImports
-  });
+  const clientDefinitions = buildClientDefinitions(rlcModel);
 
   project.createSourceFile(
     path.join(srcPath, `clientDefinitions.ts`),
