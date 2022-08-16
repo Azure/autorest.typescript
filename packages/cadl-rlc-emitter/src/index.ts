@@ -10,7 +10,9 @@ import {
   buildParameterTypes,
   buildIsUnexpectedHelper,
   File,
-  generateClient
+  generateClient,
+  buildIndexFile,
+  buildTopLevelIndex
 } from "@azure-tools/rlc-codegen";
 import { dirname, isAbsolute, join } from "path";
 import { Project } from "ts-morph";
@@ -27,6 +29,8 @@ export async function $onEmit(program: Program) {
   await emitClientFactory(rlcModels, program, project);
   await emitParameterTypes(rlcModels, program);
   await emitIsUnexpectedHelper(rlcModels, program);
+  await emitIndexFile(rlcModels, program);
+  await emitTopLevelIndexFile(rlcModels, program);
 }
 
 async function emitModels(
@@ -97,4 +101,18 @@ async function emitFile(file: File, program: Program) {
   const prettierFileContent = format(file.content, prettierTypeScriptOptions);
   await host.mkdirp(dirname(filePath));
   await host.writeFile(filePath, prettierFileContent);
+}
+
+async function emitIndexFile(rlcModels: RLCModel, program: Program) {
+  const moduleIndexFile = buildIndexFile(rlcModels);
+  if (moduleIndexFile) {
+    await emitFile(moduleIndexFile, program);
+  }
+}
+
+async function emitTopLevelIndexFile(rlcModels: RLCModel, program: Program) {
+  const topLevelIndexFile = buildTopLevelIndex(rlcModels);
+  if (topLevelIndexFile) {
+    await emitFile(topLevelIndexFile, program);
+  }
 }

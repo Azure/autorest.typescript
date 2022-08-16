@@ -85,7 +85,7 @@ export async function generateRestLevelClient() {
   generateParameterInterfaces(model, project);
   generatePathFirstClient(model, project);
   generateClient(model, project);
-  generateIndexFile(project);
+  generateIndexFile(model, project);
   generateIsUnexpectedHelper(model, project);
   generateTopLevelIndexFile(model, project);
   if (generateSample && generateMetadata) {

@@ -12,3 +12,4 @@ export * from "./helpers/nameUtils.js";
 export * from "./buildParameterTypes.js";
 export * from "./buildIsUnexpectedHelper.js";
 export * from "./buildTopLevelIndexFile.js";
+export * from "./buildIndexFile.js";

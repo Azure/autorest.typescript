@@ -1,36 +1,44 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
 import { Project, SourceFile } from "ts-morph";
-import { getAutorestOptions, getSession } from "../autorestSession";
-import { NameType, normalizeName } from "../utils/nameUtils";
-import { hasPagingOperations } from "../utils/extractPaginationDetails";
-import { hasPollingOperations } from "../restLevelClient/helpers/hasPollingOperations";
+import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   hasInputModels,
-  hasOutputModels
-} from "../restLevelClient/helpers/modelHelpers";
-export function generateIndexFile(project: Project) {
-  const { srcPath, multiClient, batch } = getAutorestOptions();
-  const indexFile = project.createSourceFile(`${srcPath}/index.ts`, undefined, {
+  hasOutputModels,
+  hasPagingOperations,
+  hasPollingOperations
+} from "./helpers/operationHelpers.js";
+import { RLCModel } from "./interfaces.js";
+import * as path from "path";
+
+export function buildIndexFile(model: RLCModel) {
+  if (!model.options) {
+    return undefined;
+  }
+  const project = new Project();
+  const { srcPath } = model;
+  const { multiClient, batch } = model.options;
+  const filePath = path.join(srcPath, `index.ts`);
+  const indexFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
   });
 
   if (!multiClient || !batch || batch?.length === 1) {
     // if we are generate single client package for RLC
-    generateRLCIndex(indexFile);
+    generateRLCIndex(indexFile, model);
   } else {
-    generateRLCIndexForMultiClient(indexFile);
+    generateRLCIndexForMultiClient(indexFile, model);
   }
+  return {
+    path: filePath,
+    content: indexFile.getFullText()
+  };
 }
 
 // to generate a index.ts for each single module inside the multi client RLC package
-function generateRLCIndexForMultiClient(file: SourceFile) {
-  const { model } = getSession();
-  const clientName = model.language.default.name;
+function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
+  const clientName = model.libraryName;
   const createClientFuncName = `createClient`;
   const moduleName = normalizeName(clientName, NameType.File);
 
@@ -93,9 +101,8 @@ function generateRLCIndexForMultiClient(file: SourceFile) {
   ]);
 }
 
-function generateRLCIndex(file: SourceFile) {
-  const { model } = getSession();
-  const clientName = model.language.default.name;
+function generateRLCIndex(file: SourceFile, model: RLCModel) {
+  const clientName = model.libraryName;
   const createClientFuncName = `${clientName}`;
   const moduleName = normalizeName(clientName, NameType.File);
 
