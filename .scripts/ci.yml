@@ -129,7 +129,7 @@ stages:
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
-      - job: Test
+      - job: Autorest Typescript Test
         dependsOn: Build
         variables:
           - template: globals.yml
@@ -199,6 +199,16 @@ stages:
           name: SmokeTest_RLC
           tag: ci_rlc
 
+      - job: Cadl Compile
+        steps:
+          - template: build.yml
+          - script: npm run cadl:compile
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-test
+            displayName: "Generate Code From Cadl"
+          - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-test
+            displayName: "Check git Tree"
+  
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ? ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}
     : - template: release.yml
