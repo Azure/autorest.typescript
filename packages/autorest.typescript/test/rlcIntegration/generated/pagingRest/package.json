@@ -9,7 +9,6 @@
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/paging-service.d.ts",
-  "homepage": "https://github.com/Azure/azure-sdk-for-js/tree/main/undefined/README.md",
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [

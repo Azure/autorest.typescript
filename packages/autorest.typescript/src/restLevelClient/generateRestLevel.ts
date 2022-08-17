@@ -3,7 +3,6 @@
 
 import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
-import { generatePackageJson } from "../generators/static/packageFileGenerator";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { generateTsConfig } from "../generators/static/tsConfigFileGenerator";
 import { generateApiExtractorConfig } from "../generators/static/apiExtractorConfig";
@@ -37,6 +36,7 @@ import {
 } from "../generators/samples/rlcSampleGenerator";
 import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
 import { generateIndexFile } from "./generateIndexFile";
+import { generatePackageJson } from "./generatePackageFile";
 
 /**
  * Generates a Rest Level Client library
@@ -98,7 +98,7 @@ export async function generateRestLevelClient() {
     generateSampleEnv(project);
   }
 
-  generatePackageJson(project);
+  generatePackageJson(model, project);
   generateTsConfig(project);
 
   // Save the source files to the virtual filesystem
