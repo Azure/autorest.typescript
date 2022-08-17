@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
-import * as path from "path";
 import { getAutorestOptions } from "../autorestSession";
 import { CodeModel } from "@autorest/codemodel";
 import { transform } from "./transforms/transform";
-import { buildTopLevelIndex } from "@azure-tools/rlc-codegen";
+import { buildIndexFile } from "@azure-tools/rlc-codegen";
+import * as path from "path";
 
-export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
+export function generateIndexFile(model: CodeModel, project: Project) {
   const { srcPath } = getAutorestOptions();
   const importedParameters = new Set<string>();
   const importedResponses = new Set<string>();
@@ -18,17 +18,14 @@ export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
     importedResponses,
     clientImports
   });
-
-  const preparedContent = buildTopLevelIndex(rlcModels);
+  const preparedContent = buildIndexFile(rlcModels);
   if (preparedContent) {
-    const fileDirectory = path.join(srcPath as string, "../../");
-    const indexFile = project.createSourceFile(
-      "/src/index.ts",
+    project.createSourceFile(
+      path.join(srcPath, `index.ts`),
       preparedContent.content,
       {
         overwrite: true
       }
     );
-    indexFile.moveToDirectory(fileDirectory);
   }
 }
