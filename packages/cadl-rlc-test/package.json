@@ -10,9 +10,14 @@
     "@azure-tools/cadl-autorest": "0.18.0",
     "@cadl-lang/versioning": "0.7.0"
   },
+  "devDependencies": {
+    "ts-node": "^8.5.2",
+    "@types/node": "^12.7.12"
+  },
   "scripts": {
     "cadl:compile": "cadl compile ./spec",
-    "build": "echo skip"
+    "build": "echo skip",
+    "check:tree": "ts-node ./eng/check-clean-tree.ts"
   },
   "private": true
 }
