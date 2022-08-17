@@ -1,19 +1,19 @@
 import { spawn, ChildProcess } from "child_process";
 
-const onExit = (childProcess: ChildProcess): Promise<string[]> => {
-  let messages: string[] = [];
+const onExit = (childProcess) => {
+  let messages = [];
   return new Promise((resolve, reject) => {
     if (childProcess.stdout) {
       childProcess.stdout.on("data", message => messages.push(message));
     }
-    childProcess.once("exit", (code: number, signal: string) => {
+    childProcess.once("exit", (code, signal) => {
       if (code === 0) {
         resolve(messages);
       }
       reject(new Error(`Exit with code: ${code}`));
     });
 
-    childProcess.once("error", (error: Error) => {
+    childProcess.once("error", (error) => {
       reject(error);
     });
   });

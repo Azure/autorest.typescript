@@ -17,7 +17,7 @@
   "scripts": {
     "cadl:compile": "cadl compile ./spec",
     "build": "echo skip",
-    "check:tree": "ts-node ./eng/check-clean-tree.ts"
+    "check:tree": "ts-node ./eng/check-clean-tree.js"
   },
   "private": true
 }
