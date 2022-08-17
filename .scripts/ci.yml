@@ -129,7 +129,7 @@ stages:
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
-      - job: Autorest Typescript Test
+      - job: Autorest_Typescript_Test
         dependsOn: Build
         variables:
           - template: globals.yml
@@ -199,7 +199,7 @@ stages:
           name: SmokeTest_RLC
           tag: ci_rlc
 
-      - job: Cadl Compile
+      - job: Cadl_Compile
         dependsOn: Build
         variables:
           - template: globals.yml
