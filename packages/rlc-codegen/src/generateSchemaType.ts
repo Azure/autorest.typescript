@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ObjectDestructuringAssignment, Project } from "ts-morph";
+import { Project } from "ts-morph";
 import * as path from "path";
 import {
   buildObjectInterfaces,
@@ -23,7 +23,7 @@ export function generateSchemaTypes(model: RLCModel, project: Project) {
     SchemaContext.Output,
     SchemaContext.Exception
   ]);
-  return { inputModelFile, outputModelFile }
+  return { inputModelFile, outputModelFile };
 }
 
 export function generateModelFiles(

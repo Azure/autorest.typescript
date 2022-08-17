@@ -25,7 +25,6 @@ import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerat
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
-import { generateRollupConfig } from "../generators/static/rollupConfigFileGenerator";
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
@@ -36,7 +35,7 @@ import {
 } from "../generators/samples/rlcSampleGenerator";
 import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
 import { generateIndexFile } from "./generateIndexFile";
-import { generatePackageJson } from "./generatePackageFile";
+import { generatePackageJson, generateRollupConfig } from "./generateMetadata";
 
 /**
  * Generates a Rest Level Client library
@@ -71,7 +70,7 @@ export async function generateRestLevelClient() {
   generateReadmeFile(model, project);
   generateLicenseFile(project);
   generateApiExtractorConfig(project);
-  generateRollupConfig(project);
+  generateRollupConfig(model, project);
   generateEsLintConfig(project);
 
   generateKarmaConfigFile(project);

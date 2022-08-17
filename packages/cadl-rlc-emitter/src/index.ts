@@ -12,7 +12,8 @@ import {
   File,
   generateClient,
   buildIndexFile,
-  buildTopLevelIndex
+  buildTopLevelIndex,
+  buildRollupConfig
 } from "@azure-tools/rlc-codegen";
 import { dirname, isAbsolute, join } from "path";
 import { Project } from "ts-morph";
@@ -33,6 +34,7 @@ export async function $onEmit(program: Program) {
   await emitIndexFile(rlcModels, program);
   await emitTopLevelIndexFile(rlcModels, program);
   await emitPackageFile(rlcModels, program);
+  await emitRollupConfig(rlcModels, program);
 }
 
 async function emitModels(
@@ -128,5 +130,12 @@ async function emitTopLevelIndexFile(rlcModels: RLCModel, program: Program) {
   const topLevelIndexFile = buildTopLevelIndex(rlcModels);
   if (topLevelIndexFile) {
     await emitFile(topLevelIndexFile, program);
+  }
+}
+
+async function emitRollupConfig(rlcModels: RLCModel, program: Program) {
+  const configFile = buildRollupConfig(rlcModels);
+  if (configFile) {
+    await emitFile(configFile, program);
   }
 }

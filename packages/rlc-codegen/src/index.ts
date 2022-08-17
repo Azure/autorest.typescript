@@ -14,3 +14,4 @@ export * from "./buildIsUnexpectedHelper.js";
 export * from "./buildTopLevelIndexFile.js";
 export * from "./buildIndexFile.js";
 export * from "./buildPackageFile.js";
+export * from "./buildRollupConfig.js";
