@@ -78,14 +78,6 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "LICENSE",
       "review/*"
     ],
-    "//metadata": {
-      constantPaths: [
-        {
-          path: "swagger/README.md",
-          prefix: "package-version"
-        }
-      ]
-    },
     engines: {
       node: ">=12.0.0"
     },
@@ -156,6 +148,14 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   }
 
   if (azureSdkForJs) {
+    packageInfo["//metadata"] = {
+      constantPaths: [
+        {
+          path: "swagger/README.md",
+          prefix: "package-version"
+        }
+      ]
+    };
     packageInfo.scripts["build"] =
       "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local";
     packageInfo.scripts["build:debug"] =
