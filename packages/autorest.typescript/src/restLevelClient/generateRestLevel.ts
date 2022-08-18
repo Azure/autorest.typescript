@@ -92,7 +92,7 @@ export async function generateRestLevelClient() {
 
   // buildResponseTypes
   generateFileByBuilder(project, buildResponseTypes, rlcModels);
-  generateSchemaTypes(model, project);
+  generateSchemaTypes(rlcModels, project);
   // buildParameterTypes
   generateFileByBuilder(project, buildParameterTypes, rlcModels);
   // buildClientDefinitions
@@ -102,7 +102,7 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildIndexFile, rlcModels);
   // buildIsUnexpectedHelper
   generateFileByBuilder(project, buildIsUnexpectedHelper, rlcModels);
-  generateTopLevelIndexFile(model, project);
+  generateTopLevelIndexFile(rlcModels, project);
   if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);
   }

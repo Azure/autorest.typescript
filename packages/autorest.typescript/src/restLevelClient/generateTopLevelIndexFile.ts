@@ -4,13 +4,13 @@
 import { Project } from "ts-morph";
 import * as path from "path";
 import { getAutorestOptions } from "../autorestSession";
-import { CodeModel } from "@autorest/codemodel";
-import { transform } from "./transforms/transform";
-import { buildTopLevelIndex } from "@azure-tools/rlc-codegen";
+import { buildTopLevelIndex, RLCModel } from "@azure-tools/rlc-codegen";
 
-export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
+export function generateTopLevelIndexFile(
+  rlcModels: RLCModel,
+  project: Project
+) {
   const { srcPath } = getAutorestOptions();
-  const rlcModels = transform(model);
   const preparedContent = buildTopLevelIndex(rlcModels);
   if (preparedContent) {
     const fileDirectory = path.join(srcPath as string, "../../");
@@ -21,6 +21,7 @@ export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
         overwrite: true
       }
     );
+    // post handle the file position
     indexFile.moveToDirectory(fileDirectory);
   }
 }
