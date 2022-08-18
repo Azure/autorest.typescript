@@ -11,13 +11,6 @@ import { transform } from "./transforms/transform";
  */
 export function generateSchemaTypes(model: CodeModel, project: Project) {
   // Get all paths
-  const importedParameters = new Set<string>();
-  const importedResponses = new Set<string>();
-  const clientImports = new Set<string>();
-  const rlcModels = transform(model, {
-    importedParameters,
-    importedResponses,
-    clientImports
-  });
+  const rlcModels = transform(model);
   generateSchemaTypesForRLC(rlcModels, project);
 }

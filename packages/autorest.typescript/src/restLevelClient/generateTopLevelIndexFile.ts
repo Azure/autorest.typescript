@@ -10,15 +10,7 @@ import { buildTopLevelIndex } from "@azure-tools/rlc-codegen";
 
 export function generateTopLevelIndexFile(model: CodeModel, project: Project) {
   const { srcPath } = getAutorestOptions();
-  const importedParameters = new Set<string>();
-  const importedResponses = new Set<string>();
-  const clientImports = new Set<string>();
-  const rlcModels = transform(model, {
-    importedParameters,
-    importedResponses,
-    clientImports
-  });
-
+  const rlcModels = transform(model);
   const preparedContent = buildTopLevelIndex(rlcModels);
   if (preparedContent) {
     const fileDirectory = path.join(srcPath as string, "../../");

@@ -22,18 +22,10 @@ import {
 } from "../operationHelpers";
 import { getElementType } from "../schemaHelpers";
 
-export function transformPaths(
-  model: CodeModel,
-  {
-    importedParameters = new Set<string>(),
+export function transformPaths(model: CodeModel): Paths {
+  const importedParameters = new Set<string>(),
     clientImports = new Set<string>(),
-    importedResponses = new Set<string>()
-  }: {
-    importedParameters: Set<string>;
-    importedResponses: Set<string>;
-    clientImports: Set<string>;
-  }
-): Paths {
+    importedResponses = new Set<string>();
   const pathDictionary: Paths = {};
 
   for (const operationGroup of model.operationGroups) {
