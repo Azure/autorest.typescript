@@ -1,10 +1,10 @@
-import { RLCModel, File } from "@azure-tools/rlc-codegen";
+import { RLCModel, File as RLCFile } from "@azure-tools/rlc-codegen";
 import { Project } from "ts-morph";
 
 export type ContentBuilder = (
   model: RLCModel,
   hasSampleGenerated?: boolean
-) => File | undefined;
+) => RLCFile | undefined;
 
 export function generateFileByBuilder(
   project: Project,
