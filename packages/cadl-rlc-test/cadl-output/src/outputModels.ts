@@ -9,6 +9,17 @@ export interface PetOutput {
   age: number;
 }
 
+export interface PetListResultsOutput {
+  items: array;
+  nextLink?: string;
+}
+
+export interface Output {
+  name: string;
+  tag?: string;
+  age: number;
+}
+
 export interface ToyOutput {
   id: number;
   petId: number;
@@ -16,6 +27,6 @@ export interface ToyOutput {
 }
 
 export interface ToyListResultsOutput {
-  items: Array<ToyOutput>;
+  items: array;
   nextLink?: string;
 }

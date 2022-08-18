@@ -1,3 +1,2 @@
 emitters:
-  '@azure-tools/cadl-autorest': true
   '@cadl-lang/ts-rlc': true
