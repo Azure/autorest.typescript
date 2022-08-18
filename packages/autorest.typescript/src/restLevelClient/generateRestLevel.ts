@@ -4,8 +4,6 @@
 import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
-import { generateTsConfig } from "../generators/static/tsConfigFileGenerator";
-import { generateApiExtractorConfig } from "../generators/static/apiExtractorConfig";
 import { generateResponseInterfaces } from "./generateResponseTypes";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { generateSchemaTypes } from "./generateSchemaTypes";
@@ -35,7 +33,12 @@ import {
 } from "../generators/samples/rlcSampleGenerator";
 import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
 import { generateIndexFile } from "./generateIndexFile";
-import { generatePackageJson, generateRollupConfig } from "./generateMetadata";
+import {
+  generateApiExtractorConfig,
+  generatePackageJson,
+  generateRollupConfig,
+  generateTsConfig
+} from "./generateMetadata";
 
 /**
  * Generates a Rest Level Client library
@@ -69,7 +72,7 @@ export async function generateRestLevelClient() {
   performCodeModelMutations(model);
   generateReadmeFile(model, project);
   generateLicenseFile(project);
-  generateApiExtractorConfig(project);
+  generateApiExtractorConfig(model, project);
   generateRollupConfig(model, project);
   generateEsLintConfig(project);
 
@@ -98,7 +101,7 @@ export async function generateRestLevelClient() {
   }
 
   generatePackageJson(model, project);
-  generateTsConfig(project);
+  generateTsConfig(model, project);
 
   // Save the source files to the virtual filesystem
   project.saveSync();

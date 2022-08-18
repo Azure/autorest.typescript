@@ -13,7 +13,9 @@ import {
   generateClient,
   buildIndexFile,
   buildTopLevelIndex,
-  buildRollupConfig
+  buildRollupConfig,
+  buildTsConfig,
+  buildApiExtractorConfig
 } from "@azure-tools/rlc-codegen";
 import { dirname, isAbsolute, join } from "path";
 import { Project } from "ts-morph";
@@ -35,6 +37,8 @@ export async function $onEmit(program: Program) {
   await emitTopLevelIndexFile(rlcModels, program);
   await emitPackageFile(rlcModels, program);
   await emitRollupConfig(rlcModels, program);
+  await emitTsConfig(rlcModels, program);
+  await emitApiExtractorConfig(rlcModels, program);
 }
 
 async function emitModels(
@@ -137,5 +141,19 @@ async function emitRollupConfig(rlcModels: RLCModel, program: Program) {
   const configFile = buildRollupConfig(rlcModels);
   if (configFile) {
     await emitFile(configFile, program);
+  }
+}
+
+async function emitTsConfig(rlcModels: RLCModel, program: Program) {
+  const tsConfigFile = buildTsConfig(rlcModels);
+  if (tsConfigFile) {
+    await emitFile(tsConfigFile, program);
+  }
+}
+
+async function emitApiExtractorConfig(rlcModels: RLCModel, program: Program) {
+  const tsConfigFile = buildApiExtractorConfig(rlcModels);
+  if (tsConfigFile) {
+    await emitFile(tsConfigFile, program);
   }
 }
