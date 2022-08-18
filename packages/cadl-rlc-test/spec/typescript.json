@@ -1,9 +1,8 @@
 {
+  "generateMetadata": true,
   "includeShortcuts": true,
   "addCredentials": true,
-  "credentialScopes": [
-    "https://example.net/.default"
-  ],
+  "credentialScopes": ["https://example.net/.default"],
   "endpointParameterName": "petStoreUrl",
   "packageDetails": {
     "name": "@msinternal/pet-store",

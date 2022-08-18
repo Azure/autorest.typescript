@@ -9,7 +9,7 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-codegen";
-import { Program } from "@cadl-lang/compiler";
+import { getDoc, Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
   HttpOperationParameter,
@@ -76,7 +76,8 @@ function getParameterMetadata(
     param: {
       name,
       type,
-      required: !Boolean(parameter.param.optional)
+      required: !Boolean(parameter.param.optional),
+      description: getDoc(program, parameter.param.type) ?? ""
     }
   };
 }
