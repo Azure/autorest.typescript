@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import {
-  ArrayType,
   EnumMemberType,
   EnumType,
   getDoc,
@@ -20,10 +19,11 @@ import {
   getSummary,
   getVisibility,
   isIntrinsic,
+  isNeverType,
   isNumericType,
   isSecret,
   isStringType,
-  isTemplate,
+  isTemplateDeclaration,
   ModelType,
   ModelTypeProperty,
   Program,
@@ -60,14 +60,7 @@ export function getSchemaForType(
     }
     return builtinType;
   }
-  if (type.kind === "Array") {
-    const schema = getSchemaForArray(program, type, usage);
-    if (usage && usage.includes(SchemaContext.Output)) {
-      schema.outputTypeName = `Array<${schema.items.name}Output>`;
-    }
-    schema.usage = usage;
-    return schema;
-  } else if (type.kind === "Model") {
+  if (type.kind === "Model") {
     const schema = getSchemaForModel(program, type, usage) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
       schema.outputTypeName = `${schema.name}Output`;
@@ -89,7 +82,7 @@ export function getSchemaForType(
 }
 function includeDerivedModel(model: ModelType): boolean {
   return (
-    !isTemplate(model) &&
+    !isTemplateDeclaration(model) &&
     (model.templateArguments === undefined ||
       model.templateArguments?.length === 0 ||
       model.derivedModels.length > 0)
@@ -129,9 +122,6 @@ function getSchemaForUnion(
       break;
     case "Model":
       type = "model";
-      break;
-    case "Array":
-      type = "array";
       break;
     default:
       reportInvalidUnionForTypescript();
@@ -471,18 +461,6 @@ function getSchemaForModel(
 
   return modelSchema;
 }
-function getSchemaForArray(
-  program: Program,
-  array: ArrayType,
-  usage?: SchemaContext[]
-) {
-  const target = array.elementType;
-  const schema = {
-    type: `array`,
-    items: getSchemaForType(program, target, usage)
-  } as any;
-  return schema;
-}
 // Map an Cadl type to an OA schema. Returns undefined when the resulting
 // OA schema is just a regular object schema.
 function mapCadlTypeToTypeScript(
@@ -614,6 +592,30 @@ function mapCadlIntrinsicModelToTypeScript(
   cadlType: ModelType | ModelTypeProperty,
   usage?: SchemaContext[]
 ): any | undefined {
+  const indexer = (cadlType as ModelType).indexer;
+  if (indexer !== undefined) {
+    if (!isNeverType(indexer.key)) {
+      const name = getIntrinsicModelName(program, indexer.key);
+      let schema: any = {};
+      if (name === "string") {
+        schema = {
+          type: "object",
+          additionalProperties: getSchemaForType(program, indexer.value!),
+        };
+      } else if (name === "integer") {
+        schema = {
+          type: "array",
+          items: getSchemaForType(program, indexer.value!),
+        };
+        return schema;
+      }
+      if (usage && usage.includes(SchemaContext.Output)) {
+        schema.outputTypeName = `Array<${schema.items.name}Output>`;
+      }
+      schema.usage = usage;
+      return schema;
+    }
+  }
   if (!isIntrinsic(program, cadlType)) {
     return undefined;
   }
@@ -688,13 +690,13 @@ function mapCadlIntrinsicModelToTypeScript(
       return { type: "string", format: "time" };
     case "duration":
       return { type: "string", format: "duration" };
-    case "Map":
-      // We assert on valType because Map types always have a type
-      const valType = (cadlType as ModelType)?.properties.get("v");
-      return {
-        type: "object",
-        additionalProperties: getSchemaForType(program, valType!.type, usage)
-      };
+    // case "Map":
+    //   // We assert on valType because Map types always have a type
+    //   const valType = (cadlType as ModelType)?.properties.get("v");
+    //   return {
+    //     type: "object",
+    //     additionalProperties: getSchemaForType(program, valType!.type, usage)
+    //   };
   }
 }
 

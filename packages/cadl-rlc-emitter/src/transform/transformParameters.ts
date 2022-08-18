@@ -31,7 +31,7 @@ export function transformToParameterTypes(
   for (const route of routes) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: route.groupName,
+      operationGroup: route.operation.namespace?.name ?? "",
       operationName: route.operation.name,
       parameters: []
     };
@@ -132,7 +132,7 @@ function transformBodyParameters(
   parameters: HttpOperationParameters,
   importedModels: Set<string>
 ): ParameterBodyMetadata | undefined {
-  const bodyParameters = parameters.body;
+  const bodyParameters = parameters.bodyParameter;
   if (!bodyParameters) {
     return undefined;
   }

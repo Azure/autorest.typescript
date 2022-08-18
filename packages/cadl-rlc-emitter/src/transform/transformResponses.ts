@@ -26,7 +26,7 @@ export function transformToResponseTypes(
   let inputImportedSet = new Set<string>();
   for (const route of routes) {
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: route.groupName,
+      operationGroup: route.operation.namespace?.name ?? "",
       operationName: route.operation.name,
       responses: []
     };

@@ -12,7 +12,7 @@ import { getDoc, Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
   HttpOperationResponse,
-  OperationDetails
+  OperationDetails,
 } from "@cadl-lang/rest/http";
 import { getSchemaForType } from "../modelUtils.js";
 
@@ -23,7 +23,7 @@ export function transformPaths(program: Program): Paths {
     const respNames = [];
     for (const resp of route.responses) {
       const respName = getResponseTypeName(
-        route.groupName,
+        route.operation.namespace?.name ?? "",
         route.operation.name,
         resp.statusCode === "*" ? "Default" : resp.statusCode
       );
@@ -34,7 +34,7 @@ export function transformPaths(program: Program): Paths {
       hasOptionalOptions: route.parameters.parameters.some(
         (p) => p.param.optional
       ),
-      optionsName: getParameterTypeName(route.groupName, route.operation.name),
+      optionsName: getParameterTypeName(route.operation.namespace?.name ?? "", route.operation.name),
       responseTypes: getResponseTypes(route),
       returnType: respNames.join(" | "),
       successStatus: gerOperationSuccessStatus(route),
@@ -63,7 +63,7 @@ export function transformPaths(program: Program): Paths {
               description: getDoc(program, p.param)
             };
           }),
-        operationGroupName: route.groupName,
+        operationGroupName: route.operation.namespace?.name ?? "",
         methods: {
           [route.verb]: [method]
         }
@@ -110,7 +110,7 @@ function getResponseTypes(operation: OperationDetails): ResponseTypes {
           const statusCode =
             r.statusCode == "*" ? `"default"` : `"${r.statusCode}"`;
           const responseName = getResponseTypeName(
-            operation.groupName,
+            operation.operation.namespace?.name ?? "",
             operation.operation.name,
             statusCode
           );

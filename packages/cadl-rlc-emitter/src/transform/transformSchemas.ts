@@ -11,15 +11,15 @@ export function transformSchemas(program: Program) {
   const [routes, _diagnostics] = getAllRoutes(program);
   const modelMap: Map<Type, SchemaContext[]> = new Map<Type, SchemaContext[]>();
   for (const route of routes) {
-    if (route.parameters.body) {
-      const bodyModel = route.parameters.body.type;
-      if (bodyModel.kind === "Model") {
+    if (route.parameters.bodyParameter) {
+      const bodyModel = route.parameters.bodyType;
+      if (bodyModel && bodyModel.kind === "Model") {
         setModelMap(bodyModel, SchemaContext.Input);
-      } else if (
-        bodyModel.kind === "Array" &&
-        bodyModel.elementType.kind === "Model"
-      ) {
-        setModelMap(bodyModel.elementType, SchemaContext.Input);
+      // } else if (
+      //   bodyModel.kind === "Array" &&
+      //   bodyModel.elementType.kind === "Model"
+      // ) {
+      //   setModelMap(bodyModel.elementType, SchemaContext.Input);
       }
     }
     for (const resp of route.responses) {
@@ -35,16 +35,16 @@ export function transformSchemas(program: Program) {
             }
           }
           setModelMap(respModel.type, SchemaContext.Output);
-        } else if (
-          respModel.type.kind === "Array" &&
-          respModel.type.elementType.kind === "Model"
-        ) {
-          if (respModel.type.elementType.templateArguments && respModel.type.elementType.templateArguments.length) {
-            for(const temp of respModel.type.elementType.templateArguments) {
-              setModelMap(temp, SchemaContext.Output);
-            }
-          }
-          setModelMap(respModel.type.elementType, SchemaContext.Output);
+        // } else if (
+        //   respModel.type.kind === "Array" &&
+        //   respModel.type.elementType.kind === "Model"
+        // ) {
+        //   if (respModel.type.elementType.templateArguments && respModel.type.elementType.templateArguments.length) {
+        //     for(const temp of respModel.type.elementType.templateArguments) {
+        //       setModelMap(temp, SchemaContext.Output);
+        //     }
+        //   }
+        //   setModelMap(respModel.type.elementType, SchemaContext.Output);
         }
       }
     }
