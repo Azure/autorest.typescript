@@ -7,7 +7,7 @@ export default function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {}
 ): PetStoreServiceClient {
-  const baseUrl = options.baseUrl ?? `undefined`;
+  const baseUrl = options.baseUrl ?? `${petStoreUrl}`;
   options.apiVersion = options.apiVersion ?? "2021-03-25";
   options = {
     ...options,
