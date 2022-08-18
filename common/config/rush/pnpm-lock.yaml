@@ -9971,6 +9971,20 @@ packages:
       yn: 3.1.1
     dev: false
 
+  /ts-node/8.10.2:
+    resolution: {integrity: sha512-ISJJGgkIpDdBhWVu3jufsWpK3Rzo7bdiIXJjQc0ynKxVOVcg2oIrf2H2cejminGrptVc6q6/uynAHNCuWGbpVA==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+    peerDependencies:
+      typescript: '>=2.7'
+    dependencies:
+      arg: 4.1.3
+      diff: 4.0.2
+      make-error: 1.3.6
+      source-map-support: 0.5.21
+      yn: 3.1.1
+    dev: false
+
   /ts-node/8.10.2_typescript@4.7.4:
     resolution: {integrity: sha512-ISJJGgkIpDdBhWVu3jufsWpK3Rzo7bdiIXJjQc0ynKxVOVcg2oIrf2H2cejminGrptVc6q6/uynAHNCuWGbpVA==}
     engines: {node: '>=6.0.0'}
@@ -10274,7 +10288,7 @@ packages:
     dev: false
 
   /verror/1.10.0:
-    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
+    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -10925,7 +10939,7 @@ packages:
     dev: false
 
   file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-dBFXctdnTG83bFRt485MfG1/9wC8B5XMvo+Rrm9TvE8njPPPRnDzH2CZMG/GftBREQDzNkGsAPwcEu61Sjn6+A==, tarball: file:projects/cadl-rest-test.tgz}
+    resolution: {integrity: sha512-MhEFlwB/IHXdacgMroEMHVipSKg8B79WG7CiH4jaljpeUENpGK3VwgymaRnXKyNi8mR6KzPsf7FsPn6RHuqRBA==, tarball: file:projects/cadl-rest-test.tgz}
     name: '@rush-temp/cadl-rest-test'
     version: 0.0.0
     dependencies:
@@ -10934,12 +10948,15 @@ packages:
       '@cadl-lang/openapi': 0.10.0_2b66ecc4096f8cfee81ca097164113ff
       '@cadl-lang/rest': 0.15.0_@cadl-lang+compiler@0.33.0
       '@cadl-lang/versioning': 0.7.0
+      '@types/node': 12.20.55
+      ts-node: 8.10.2
     transitivePeerDependencies:
       - '@azure-tools/cadl-azure-core'
+      - typescript
     dev: false
 
   file:projects/rlc-codegen.tgz:
-    resolution: {integrity: sha512-m7HJZL3MPGGxx41nnGQSakYxXfp21gOm8LQavqTGAObHwVUIgz824TzNffKLkjvo39uMSGDKvhwsvWYPdz+uSg==, tarball: file:projects/rlc-codegen.tgz}
+    resolution: {integrity: sha512-vJE6CUWSNP/9AMhjJxx7AzKRtNdnqypAxH0pGhrnwM41LyeLwsQyCPl3aF0tQcYE6oZbvE5iNlxVjqVYazk85g==, tarball: file:projects/rlc-codegen.tgz}
     name: '@rush-temp/rlc-codegen'
     version: 0.0.0
     dependencies:
