@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { CodeModel, ImplementationLocation, ParameterLocation } from "@autorest/codemodel";
+import {
+  CodeModel,
+  ImplementationLocation,
+  ParameterLocation
+} from "@autorest/codemodel";
 import { ImportKind, RLCModel } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
@@ -13,18 +17,7 @@ import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
 
-export function transform(
-  model: CodeModel,
-  {
-    importedParameters = new Set<string>(),
-    clientImports = new Set<string>(),
-    importedResponses = new Set<string>()
-  }: {
-    importedParameters: Set<string>;
-    importedResponses: Set<string>;
-    clientImports: Set<string>;
-  }
-): RLCModel {
+export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
   const importDetails = new Map<ImportKind, Set<string>>();
   const rlcModel: RLCModel = {
@@ -33,11 +26,7 @@ export function transform(
       NameType.Interface
     ),
     srcPath,
-    paths: transformPaths(model, {
-      importedParameters,
-      importedResponses,
-      clientImports
-    }),
+    paths: transformPaths(model),
     options: transformOptions(model),
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
@@ -66,10 +55,10 @@ function transformApiVersionParam(model: CodeModel) {
 
   if (apiVersionParam && isConstantSchema(apiVersionParam.schema)) {
     return {
-      name: 'api-version',
-      type: 'constant',
+      name: "api-version",
+      type: "constant",
       default: apiVersionParam.schema.value.value.toString()
-    }
+    };
   }
 
   return undefined;
