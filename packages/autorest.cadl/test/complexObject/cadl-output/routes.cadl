@@ -23,11 +23,11 @@ interface Operations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2014-04-01-preview",
+    "api-version": "2014-04-01-preview",
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): CatalogArray;
   @summary("Create products")
   @doc("Resets products.")
@@ -44,7 +44,7 @@ interface Operations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2014-04-01-preview",
+    "api-version": "2014-04-01-preview",
 
     @doc("body Parameter")
     @body
@@ -52,7 +52,7 @@ interface Operations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): CatalogDictionary;
   @summary("Update products")
   @doc("Resets products.")
@@ -69,7 +69,7 @@ interface Operations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2014-04-01-preview",
+    "api-version": "2014-04-01-preview",
 
     @doc("body Parameter")
     @body
@@ -77,6 +77,6 @@ interface Operations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): CatalogArray;
 }

@@ -132,7 +132,6 @@ export function transformObjectProperty(
 ): CadlObjectProperty {
   const name = propertySchema.serializedName;
   const doc = propertySchema.language.default.description;
-
   if (isObjectSchema(propertySchema.schema)) {
     const dataTypes = getDataTypes(codeModel);
     let visited = dataTypes.get(propertySchema.schema) as CadlObject;

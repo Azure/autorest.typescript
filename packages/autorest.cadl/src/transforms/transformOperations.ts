@@ -118,7 +118,10 @@ export function transformParameter(
   propertySchema: Parameter,
   codeModel: CodeModel
 ): CadlParameter {
-  const name = propertySchema.language.default.name;
+  // Body parameter doesn't have a serializedName, in that case we get the name
+  const name =
+    propertySchema.language.default.serializedName ??
+    propertySchema.language.default.name;
   const doc = propertySchema.language.default.description;
 
   const dataTypes = getDataTypes(codeModel);

@@ -15,7 +15,7 @@ interface HealthApiOperations {
   GetServiceStatus(
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01"
+    "api-version": "2021-10-01"
   ): void;
 }
 
@@ -44,11 +44,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): ClientTokenResponse;
   @summary("Close the connections in the hub.")
   @doc("Close the connections in the hub.")
@@ -69,11 +69,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Broadcast content inside request body to all the connected client connections.")
   @doc("Broadcast content inside request body to all the connected client connections.")
@@ -90,11 +90,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Upload file type")
     @header
-    "content-type": ContentType,
+    "Content-Type": ContentType,
 
     @doc("The payload body.")
     @body
@@ -102,7 +102,7 @@ interface WebPubSubOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Check if the connection with the given connectionId exists.")
   @doc("Check if the connection with the given connectionId exists.")
@@ -119,11 +119,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Close the client connection.")
   @doc("Close the client connection.")
@@ -144,11 +144,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Send content inside request body to the specific connection.")
   @doc("Send content inside request body to the specific connection.")
@@ -165,11 +165,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Upload file type")
     @header
-    "content-type": ContentType,
+    "Content-Type": ContentType,
 
     @doc("The payload body.")
     @body
@@ -177,7 +177,7 @@ interface WebPubSubOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Check if there are any client connections inside the given group")
   @doc("Check if there are any client connections inside the given group")
@@ -194,11 +194,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Close connections in the specific group.")
   @doc("Close connections in the specific group.")
@@ -223,11 +223,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Send content inside request body to a group of connections.")
   @doc("Send content inside request body to a group of connections.")
@@ -248,11 +248,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Upload file type")
     @header
-    "content-type": ContentType,
+    "Content-Type": ContentType,
 
     @doc("The payload body.")
     @body
@@ -260,7 +260,7 @@ interface WebPubSubOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Add a connection to the target group.")
   @doc("Add a connection to the target group.")
@@ -281,11 +281,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Remove a connection from the target group.")
   @doc("Remove a connection from the target group.")
@@ -306,11 +306,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Check if there are any client connections connected for the given user.")
   @doc("Check if there are any client connections connected for the given user.")
@@ -327,11 +327,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Close connections for the specific user.")
   @doc("Close connections for the specific user.")
@@ -356,11 +356,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Send content inside request body to the specific user.")
   @doc("Send content inside request body to the specific user.")
@@ -377,11 +377,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Upload file type")
     @header
-    "content-type": ContentType,
+    "Content-Type": ContentType,
 
     @doc("The payload body.")
     @body
@@ -389,7 +389,7 @@ interface WebPubSubOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Add a user to the target group.")
   @doc("Add a user to the target group.")
@@ -410,11 +410,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Remove a user from the target group.")
   @doc("Remove a user from the target group.")
@@ -435,11 +435,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Remove a user from all groups.")
   @doc("Remove a user from all groups.")
@@ -456,11 +456,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Grant permission to the connection.")
   @doc("Grant permission to the connection.")
@@ -485,11 +485,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Revoke permission for the connection.")
   @doc("Revoke permission for the connection.")
@@ -514,11 +514,11 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
   @summary("Check if a connection has permission to the specified action.")
   @doc("Check if a connection has permission to the specified action.")
@@ -543,10 +543,10 @@ interface WebPubSubOperations {
 
     @doc("Api Version")
     @query
-    ApiVersion: "2021-10-01",
+    "api-version": "2021-10-01",
 
     @doc("Accept header")
     @header
-    accept: "application/json, text/json"
+    Accept: "application/json, text/json"
   ): void;
 }

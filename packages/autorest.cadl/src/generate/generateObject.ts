@@ -7,12 +7,17 @@ export function generateObject(cadlObject: CadlObject) {
   definitions.push(doc);
   cadlObject.discriminator &&
     definitions.push(`@discriminator("${cadlObject.discriminator}")`);
-  definitions.push(`model ${cadlObject.name} {`);
 
   if (cadlObject.parents.length > 0) {
-    for (const parent of cadlObject.parents) {
-      definitions.push(`...${parent},`);
-    }
+    const parent = cadlObject.parents[0];
+    cadlObject.parents.length > 1 &&
+      definitions.push(
+        `// TODO: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
+       // please review the generated model to write a valid object hierarchy.`
+      );
+    definitions.push(`model ${cadlObject.name} extends ${parent} {`);
+  } else {
+    definitions.push(`model ${cadlObject.name} {`);
   }
 
   for (const property of cadlObject.properties) {

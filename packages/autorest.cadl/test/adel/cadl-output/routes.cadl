@@ -28,7 +28,7 @@ interface AlertConfigsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Page_AlertConfig;
   // TODO: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -42,7 +42,7 @@ interface AlertConfigsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): AlertConfig;
   // TODO: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -54,7 +54,7 @@ interface AlertConfigsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): AlertConfig;
   // TODO: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -66,7 +66,7 @@ interface AlertConfigsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): void;
   // TODO: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -80,7 +80,7 @@ interface AlertConfigsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): AlertConfig;
 }
 
@@ -106,7 +106,7 @@ interface DatasetsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Page_Dataset;
   // TODO: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
@@ -120,7 +120,7 @@ interface DatasetsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Dataset;
   // TODO: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
@@ -132,7 +132,7 @@ interface DatasetsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Dataset;
   // TODO: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
@@ -144,7 +144,7 @@ interface DatasetsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): void;
   @summary("Query data from data source to preview")
   @doc("Verify data schema and preview data before/after a dataset is created. View raw data to better diagnose and explain a detected anomaly.")
@@ -156,7 +156,7 @@ interface DatasetsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): DatasetPreviewResponse;
 }
 
@@ -182,7 +182,7 @@ interface HooksOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Page_Hook;
   // TODO: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -196,7 +196,7 @@ interface HooksOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Hook;
   // TODO: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -208,7 +208,7 @@ interface HooksOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Hook;
   // TODO: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -220,7 +220,7 @@ interface HooksOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): void;
   // TODO: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -234,7 +234,7 @@ interface HooksOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Hook;
 }
 
@@ -270,7 +270,7 @@ interface ReplaysOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Page_ScheduleReplay;
   // TODO: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
@@ -284,7 +284,7 @@ interface ReplaysOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): ScheduleReplay;
   // TODO: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
@@ -296,7 +296,7 @@ interface ReplaysOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): ScheduleReplay;
   // TODO: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
@@ -308,7 +308,7 @@ interface ReplaysOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): void;
 }
 
@@ -344,7 +344,7 @@ interface SchedulesOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Page_Schedule;
   // TODO: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
@@ -358,7 +358,7 @@ interface SchedulesOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Schedule;
   // TODO: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
@@ -370,7 +370,7 @@ interface SchedulesOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Schedule;
   // TODO: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
@@ -382,7 +382,7 @@ interface SchedulesOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): void;
   @summary("Update an inference schedule")
   @doc("Pause/resume or update selected properties of an inference schedule.")
@@ -397,7 +397,7 @@ interface SchedulesOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Schedule;
   @summary("Get historical detection results from the inference schedule")
   @doc("Use this API to retrieve detected anomalies over a historical time period specified in the request body. Please refer to the official documentation for the detailed quota and limits.")
@@ -413,7 +413,7 @@ interface SchedulesOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): ScheduleHistoryResult;
 }
 
@@ -449,7 +449,7 @@ interface EvaluationsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Page_Evaluation;
   // TODO: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
@@ -463,7 +463,7 @@ interface EvaluationsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Evaluation;
   // TODO: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
@@ -475,7 +475,7 @@ interface EvaluationsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Evaluation;
   // TODO: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
@@ -487,7 +487,7 @@ interface EvaluationsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): void;
 }
 
@@ -523,7 +523,7 @@ interface ModelsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Page_Model;
   // TODO: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
@@ -537,7 +537,7 @@ interface ModelsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Model;
   // TODO: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
@@ -549,7 +549,7 @@ interface ModelsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): Model;
   // TODO: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
@@ -561,7 +561,7 @@ interface ModelsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): void;
   @summary("Detect Multivariate Anomaly - Sync")
   @doc("Detect anomalies with a trained model and multivariate time-series data points specified in the request body. This API is recommended to be embedded in an inference schedule set up for continuous real-time inference. Please refer to the official documentation for the detailed quota and limits.")
@@ -575,6 +575,6 @@ interface ModelsOperations {
 
     @doc("Accept header")
     @header
-    accept: "application/json"
+    Accept: "application/json"
   ): DetectionResult;
 }

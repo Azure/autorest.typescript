@@ -148,15 +148,13 @@ model dictionary_wrapper {
 }
 
 // TODO: (missing-docs) Add documentation
-model siamese {
-  ...cat;
+model siamese extends cat {
   // TODO: (missing-docs) Add documentation
   breed: string;
 }
 
 // TODO: (missing-docs) Add documentation
-model cat {
-  ...pet;
+model cat extends pet {
   // TODO: (missing-docs) Add documentation
   color: string;
   // TODO: (missing-docs) Add documentation
@@ -164,8 +162,7 @@ model cat {
 }
 
 // TODO: (missing-docs) Add documentation
-model dog {
-  ...pet;
+model dog extends pet {
   // TODO: (missing-docs) Add documentation
   food: string;
 }
@@ -209,8 +206,7 @@ model DotFishMarket {
 }
 
 // TODO: (missing-docs) Add documentation
-model DotSalmon {
-  ...DotFish;
+model DotSalmon extends DotFish {
   // TODO: (missing-docs) Add documentation
   location: string;
   // TODO: (missing-docs) Add documentation
@@ -221,8 +217,7 @@ model DotSalmon {
 
 // TODO: (missing-docs) Add documentation
 @discriminator("fishtype")
-model salmon {
-  ...Fish;
+model salmon extends Fish {
   // TODO: (missing-docs) Add documentation
   location: string;
   // TODO: (missing-docs) Add documentation
@@ -253,8 +248,7 @@ model MyBaseHelperType {
 }
 
 // TODO: (missing-docs) Add documentation
-model smart_salmon {
-  ...salmon;
+model smart_salmon extends salmon {
   // TODO: (missing-docs) Add documentation
   college_degree: string;
   // TODO: (missing-docs) Add documentation
@@ -263,8 +257,7 @@ model smart_salmon {
 
 // TODO: (missing-docs) Add documentation
 @discriminator("fishtype")
-model shark {
-  ...Fish;
+model shark extends Fish {
   // TODO: (missing-docs) Add documentation
   age?: int32;
   // TODO: (missing-docs) Add documentation
@@ -272,8 +265,7 @@ model shark {
 }
 
 // TODO: (missing-docs) Add documentation
-model sawshark {
-  ...shark;
+model sawshark extends shark {
   // TODO: (missing-docs) Add documentation
   picture: bytes;
   // TODO: (missing-docs) Add documentation
@@ -281,8 +273,7 @@ model sawshark {
 }
 
 // TODO: (missing-docs) Add documentation
-model goblinshark {
-  ...shark;
+model goblinshark extends shark {
   // TODO: (missing-docs) Add documentation
   jawsize: int32;
 
@@ -293,15 +284,13 @@ model goblinshark {
 }
 
 // TODO: (missing-docs) Add documentation
-model cookiecuttershark {
-  ...shark;
+model cookiecuttershark extends shark {
   // TODO: (missing-docs) Add documentation
   fishtype: "cookiecuttershark";
 }
 
 // TODO: (missing-docs) Add documentation
-model MyDerivedType {
-  ...MyBaseType;
+model MyDerivedType extends MyBaseType {
   // TODO: (missing-docs) Add documentation
   propD1: string;
   // TODO: (missing-docs) Add documentation

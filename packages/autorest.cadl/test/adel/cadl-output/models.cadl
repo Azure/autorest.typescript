@@ -680,17 +680,13 @@ model DetectionResult {
 }
 
 @doc("DataNotAvailable alert will be triggered if no data can be fetched from the data source.")
-model DataNotAvailableAlertConfig {
-  ...AlertConfig;
-
+model DataNotAvailableAlertConfig extends AlertConfig {
   @doc("Discriminator property for AlertConfig.")
   alertConfigType: "DataNotAvailable";
 }
 
 @doc("A long-form data table has a single column that stores all the variables.")
-model LongTable {
-  ...DataSchema;
-
+model LongTable extends DataSchema {
   @doc("Header of the column that contains datetime values. This parameter is case-sensitive.")
   timestampColumnName: string;
 
@@ -705,9 +701,7 @@ model LongTable {
 }
 
 @doc("MultiVariateAnomaly alert will be triggered for anomalies detected on multivariate time-series data based on the criteria specified.")
-model MultiVariateAnomalyAlertConfig {
-  ...AlertConfig;
-
+model MultiVariateAnomalyAlertConfig extends AlertConfig {
   @doc("An integer between 1 and 100. Set a lower sensitivity if you only want to be notified when severe anomalies are detected. Set a higher number if you want to report as many anomalies as possible.")
   sensitivity: int32;
 
@@ -722,9 +716,7 @@ model MultiVariateAnomalyAlertConfig {
 }
 
 @doc("Information required for Azure SQLServer data source type.")
-model SqlServer {
-  ...DataSourceInfo;
-
+model SqlServer extends DataSourceInfo {
   @doc("Name of a SQL Server.")
   serverName: string;
 
@@ -739,9 +731,7 @@ model SqlServer {
 }
 
 @doc("A webhook is a notification channel that sends alerts to a user-defined endpoint.")
-model Webhook {
-  ...Hook;
-
+model Webhook extends Hook {
   @doc("The API address to be called when an alert is triggered. MUST be Https.")
   endpoint: string;
 
