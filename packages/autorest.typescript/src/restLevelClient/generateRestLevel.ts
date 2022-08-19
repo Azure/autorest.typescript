@@ -4,13 +4,10 @@
 import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
-import { generateResponseInterfaces } from "./generateResponseTypes";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { generateSchemaTypes } from "./generateSchemaTypes";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generateParameterInterfaces } from "./generateParameterTypes";
-import { generatePathFirstClient } from "./generateClientDefinition";
 import { generateClient } from "./generateClient";
 import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
@@ -31,14 +28,19 @@ import {
   generateRLCSamples,
   hasRLCSamplesGenerated
 } from "../generators/samples/rlcSampleGenerator";
-import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
-import { generateIndexFile } from "./generateIndexFile";
+import { transform } from "./transforms/transform";
 import {
-  generateApiExtractorConfig,
-  generatePackageJson,
-  generateRollupConfig,
-  generateTsConfig
-} from "./generateMetadata";
+  buildApiExtractorConfig,
+  buildClientDefinitions,
+  buildIndexFile,
+  buildIsUnexpectedHelper,
+  buildPackageFile,
+  buildParameterTypes,
+  buildResponseTypes,
+  buildRollupConfig,
+  buildTsConfig
+} from "@azure-tools/rlc-codegen";
+import { generateFileByBuilder } from "./helpers/generatorHelpers";
 
 /**
  * Generates a Rest Level Client library
@@ -61,6 +63,12 @@ export async function generateRestLevelClient() {
     }
   });
 
+  // first store commonly calculated information in CodeModel
+  performCodeModelMutations(model);
+
+  // then transform CodeModel to RLCModel
+  const rlcModels = transform(model);
+
   if (hasPagingOperations(model)) {
     generatePagingHelper(project);
   }
@@ -69,27 +77,32 @@ export async function generateRestLevelClient() {
     generatePollingHelper(project);
   }
 
-  performCodeModelMutations(model);
   generateReadmeFile(model, project);
   generateLicenseFile(project);
-  generateApiExtractorConfig(model, project);
-  generateRollupConfig(model, project);
+  // buildApiExtractorConfig
+  generateFileByBuilder(project, buildApiExtractorConfig, rlcModels);
+  // buildRollupConfig
+  generateFileByBuilder(project, buildRollupConfig, rlcModels);
   generateEsLintConfig(project);
-
   generateKarmaConfigFile(project);
   generateEnvFile(project);
   generateEnvBrowserFile(project);
   generateRecordedClientFile(project);
   generateSampleTestFile(project);
 
-  generateResponseInterfaces(model, project);
-  generateSchemaTypes(model, project);
-  generateParameterInterfaces(model, project);
-  generatePathFirstClient(model, project);
-  generateClient(model, project);
-  generateIndexFile(model, project);
-  generateIsUnexpectedHelper(model, project);
-  generateTopLevelIndexFile(model, project);
+  // buildResponseTypes
+  generateFileByBuilder(project, buildResponseTypes, rlcModels);
+  generateSchemaTypes(rlcModels, project);
+  // buildParameterTypes
+  generateFileByBuilder(project, buildParameterTypes, rlcModels);
+  // buildClientDefinitions
+  generateFileByBuilder(project, buildClientDefinitions, rlcModels);
+  generateClient(rlcModels, project);
+  // buildIndexFile
+  generateFileByBuilder(project, buildIndexFile, rlcModels);
+  // buildIsUnexpectedHelper
+  generateFileByBuilder(project, buildIsUnexpectedHelper, rlcModels);
+  generateTopLevelIndexFile(rlcModels, project);
   if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);
   }
@@ -100,8 +113,20 @@ export async function generateRestLevelClient() {
     generateSampleEnv(project);
   }
 
-  generatePackageJson(model, project);
-  generateTsConfig(model, project);
+  // buildPackageFile
+  generateFileByBuilder(
+    project,
+    buildPackageFile,
+    rlcModels,
+    hasRLCSamplesGenerated
+  );
+  // buildTsConfig
+  generateFileByBuilder(
+    project,
+    buildTsConfig,
+    rlcModels,
+    hasRLCSamplesGenerated
+  );
 
   // Save the source files to the virtual filesystem
   project.saveSync();

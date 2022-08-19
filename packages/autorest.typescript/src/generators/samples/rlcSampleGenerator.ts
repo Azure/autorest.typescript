@@ -81,16 +81,8 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
     return rlcSampleGroups;
   }
   // Get all paths
-  const importedParameters = new Set<string>();
-  const importedResponses = new Set<string>();
-  const clientImports = new Set<string>();
-
   const session = getSession();
-  const paths: Paths = transformPaths(model, {
-    importedParameters,
-    importedResponses,
-    clientImports
-  });
+  const paths: Paths = transformPaths(model);
   const clientName = getLanguageMetadata(model.language).name;
   const clientInterfaceName = clientName.endsWith("Client")
     ? `${clientName}`
