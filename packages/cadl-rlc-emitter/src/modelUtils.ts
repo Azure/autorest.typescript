@@ -607,7 +607,6 @@ function mapCadlIntrinsicModelToTypeScript(
           type: "array",
           items: getSchemaForType(program, indexer.value!),
         };
-        return schema;
       }
       if (usage && usage.includes(SchemaContext.Output)) {
         schema.outputTypeName = `Array<${schema.items.name}Output>`;

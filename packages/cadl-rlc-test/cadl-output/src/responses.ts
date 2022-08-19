@@ -3,7 +3,6 @@ import {
   ErrorModelOutput,
   PetListResultsOutput,
   PetOutput,
-  Output,
   ToyListResultsOutput,
 } from "./outputModels";
 
@@ -37,7 +36,7 @@ export interface PetsRead200Response extends HttpResponse {
 /** The client has made a conditional request and the resource has not been modified. */
 export interface PetsRead304Response extends HttpResponse {
   status: "304";
-  body: Output;
+  body: PetOutput;
 }
 
 export interface PetsReadDefaultResponse extends HttpResponse {
