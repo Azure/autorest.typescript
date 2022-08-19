@@ -43,7 +43,7 @@ function getApiVersion(model: CodeModel): string | undefined {
         gp.implementation === ImplementationLocation.Client &&
         gp.protocol.http?.in === ParameterLocation.Query
     )
-    .find((param) => (param.language as any).serializedName === "api-version");
+    .find((param) => param.language.default.serializedName === "api-version");
 
   if (apiVersionParam && isConstantSchema(apiVersionParam.schema)) {
     return apiVersionParam.schema.value.value.toString();

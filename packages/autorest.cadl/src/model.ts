@@ -34,7 +34,7 @@ export function transformDataType(
   }
 
   return {
-    name: getCadlType(schema),
+    name: getCadlType(schema, codeModel),
     kind: "wildcard",
     doc: schema.language.default.documentation,
   };

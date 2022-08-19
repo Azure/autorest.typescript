@@ -1,0 +1,72 @@
+import "@cadl-lang/rest";
+
+using Cadl.Rest;
+
+enum OperationResult_statusKnownValues {
+  "Succeeded",
+  "Failed",
+  "canceled",
+  "Accepted",
+  "Creating",
+  "Created",
+  "Updating",
+  "Updated",
+  "Deleting",
+  "Deleted",
+  "OK",
+}
+
+@knownValues(OperationResult_statusKnownValues)
+model OperationResult_status is string {}
+
+// TODO: (missing-docs) Add documentation
+model ProductResultValue {
+  // TODO: (missing-docs) Add documentation
+  value: Product[];
+  // TODO: (missing-docs) Add documentation
+  nextLink: string;
+}
+
+// TODO: (missing-docs) Add documentation
+model Product {
+  // TODO: (missing-docs) Add documentation
+  properties?: Product_properties;
+}
+
+// TODO: (missing-docs) Add documentation
+model Product_properties {
+  // TODO: (missing-docs) Add documentation
+  id: int32;
+  // TODO: (missing-docs) Add documentation
+  name: string;
+}
+
+// TODO: (missing-docs) Add documentation
+model ProductResult {
+  // TODO: (missing-docs) Add documentation
+  values: Product[];
+  // TODO: (missing-docs) Add documentation
+  nextLink: string;
+}
+
+// TODO: (missing-docs) Add documentation
+model OdataProductResult {
+  // TODO: (missing-docs) Add documentation
+  values: Product[];
+  // TODO: (missing-docs) Add documentation
+  "odata.nextLink": string;
+}
+
+// TODO: (missing-docs) Add documentation
+model ProductResultValueWithXMSClientName {
+  // TODO: (missing-docs) Add documentation
+  values: Product[];
+  // TODO: (missing-docs) Add documentation
+  nextLink: string;
+}
+
+// TODO: (missing-docs) Add documentation
+model OperationResult {
+  @doc("The status of the request")
+  status: OperationResult_status;
+}

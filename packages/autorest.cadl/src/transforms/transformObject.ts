@@ -159,7 +159,7 @@ export function transformObjectProperty(
     doc,
     name,
     isOptional: propertySchema.required === false,
-    type: getCadlType(propertySchema.schema),
+    type: getCadlType(propertySchema.schema, codeModel),
   };
 }
 
@@ -171,15 +171,20 @@ function getParents(schema: ObjectSchema): string[] {
     .map((p) => p.language.default.name);
 }
 
-export function getCadlType(schema: Schema): string {
+export function getCadlType(schema: Schema, codeModel: CodeModel): string {
   const schemaType = schema.type;
+  const visited = getDataTypes(codeModel).get(schema);
+
+  if (visited) {
+    return visited.name;
+  }
 
   if (isConstantSchema(schema)) {
     return `${transformValue(schema.value.value as any)}`;
   }
 
   if (isArraySchema(schema)) {
-    const elementType = getCadlType(schema.elementType);
+    const elementType = getCadlType(schema.elementType, codeModel);
     return `${elementType}[]`;
   }
 
@@ -188,11 +193,11 @@ export function getCadlType(schema: Schema): string {
   }
 
   if (isChoiceSchema(schema) || isSealedChoiceSchema(schema)) {
-    return schema.language.default.name;
+    return schema.language.default.name.replace(/-/g, "_");
   }
 
   if (isDictionarySchema(schema)) {
-    return `Record<${getCadlType(schema.elementType)}>`;
+    return `Record<${getCadlType(schema.elementType, codeModel)}>`;
   }
 
   const cadlType = cadlTypes.get(schemaType);

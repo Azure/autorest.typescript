@@ -6,6 +6,7 @@ using Cadl.Http;
 
 // TODO: (missing-docs) Add documentation
 @serviceTitle("Azure Web PubSub Service REST API")
+@serviceVersion("2021-10-01")
 @server(
   "{Endpoint}",
   "",

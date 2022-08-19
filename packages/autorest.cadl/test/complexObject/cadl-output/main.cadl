@@ -5,6 +5,7 @@ using Cadl.Rest;
 using Cadl.Http;
 
 @serviceTitle("Complex Model Client")
+@serviceVersion("2014-04-01-preview")
 @server(
   "{$host}",
   "Some cool documentation.",

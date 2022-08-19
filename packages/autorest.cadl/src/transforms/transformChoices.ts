@@ -21,7 +21,7 @@ export function transformEnum(
     cadlEnum = {
       doc: schema.language.default.documentation,
       kind: "enum",
-      name: schema.language.default.name,
+      name: schema.language.default.name.replace(/-/g, "_"),
       members: schema.choices.map((choice) => transformChoiceMember(choice)),
       isExtensible: !isSealedChoiceSchema(schema),
     };
