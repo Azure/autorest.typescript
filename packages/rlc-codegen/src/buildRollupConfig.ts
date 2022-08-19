@@ -2,15 +2,19 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
-import { getAutorestOptions } from "../../autorestSession";
+import { RLCModel } from "./interfaces.js";
 
-export function generateRollupConfig(project: Project) {
-  const { generateMetadata } = getAutorestOptions();
-  if (!generateMetadata) {
+export function buildRollupConfig(model: RLCModel) {
+  const generateMetadata = Boolean(model.options?.generateMetadata),
+    azureSdkForJs = Boolean(model.options?.azureSdkForJs);
+  // when it's generating rlc codes, only generate rollup config in codegen test
+  if (!generateMetadata || azureSdkForJs) {
     return;
   }
 
-  const rollupFile = project.createSourceFile("rollup.config.js", undefined, {
+  const project = new Project();
+  const filePath = "rollup.config.js";
+  const rollupFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
   });
 
@@ -135,4 +139,9 @@ export function generateRollupConfig(project: Project) {
     
     export default makeConfig(require("./package.json"));`
   );
+
+  return {
+    path: filePath,
+    content: rollupFile.getFullText()
+  };
 }

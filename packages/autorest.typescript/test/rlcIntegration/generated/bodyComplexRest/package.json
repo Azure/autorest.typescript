@@ -9,7 +9,6 @@
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/body-complex-rest.d.ts",
-  "homepage": "https://github.com/Azure/azure-sdk-for-js/tree/main/undefined/README.md",
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
@@ -20,11 +19,6 @@
     "LICENSE",
     "review/*"
   ],
-  "//metadata": {
-    "constantPaths": [
-      { "path": "swagger/README.md", "prefix": "package-version" }
-    ]
-  },
   "engines": { "node": ">=12.0.0" },
   "scripts": {
     "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",

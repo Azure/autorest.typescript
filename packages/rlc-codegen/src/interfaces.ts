@@ -45,12 +45,17 @@ export interface RLCOptions {
   includeShortcuts?: boolean;
   multiClient?: boolean;
   batch?: any[];
-  packageDetails?: PackageDetails,
-  addCredentials?: boolean,
-  credentialScopes?: string[],
+  packageDetails?: PackageDetails;
+  addCredentials?: boolean;
+  credentialScopes?: string[];
   credentialKeyHeaderName?: string;
   endpoint?: string;
   endpointParameterName?: string;
+  generateMetadata?: boolean;
+  generateTest?: boolean;
+  generateSample?: boolean;
+  azureSdkForJs?: boolean;
+  azureOutputDirectory?: string;
 }
 
 export interface RLCModel {

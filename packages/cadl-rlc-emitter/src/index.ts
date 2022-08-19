@@ -12,13 +12,17 @@ import {
   File,
   generateClient,
   buildIndexFile,
-  buildTopLevelIndex
+  buildTopLevelIndex,
+  buildRollupConfig,
+  buildTsConfig,
+  buildApiExtractorConfig
 } from "@azure-tools/rlc-codegen";
 import { dirname, isAbsolute, join } from "path";
 import { Project } from "ts-morph";
 import { transformRLCModel } from "./transform/transform.js";
-import { prettierTypeScriptOptions } from "./lib.js";
+import { prettierJSONOptions, prettierTypeScriptOptions } from "./lib.js";
 import { format } from "prettier";
+import { buildPackageFile } from "@azure-tools/rlc-codegen";
 
 export async function $onEmit(program: Program) {
   const rlcModels = await transformRLCModel(program);
@@ -31,6 +35,10 @@ export async function $onEmit(program: Program) {
   await emitIsUnexpectedHelper(rlcModels, program);
   await emitIndexFile(rlcModels, program);
   await emitTopLevelIndexFile(rlcModels, program);
+  await emitPackageFile(rlcModels, program);
+  await emitRollupConfig(rlcModels, program);
+  await emitTsConfig(rlcModels, program);
+  await emitApiExtractorConfig(rlcModels, program);
 }
 
 async function emitModels(
@@ -94,7 +102,16 @@ async function emitFile(file: File, program: Program) {
     isAbsolute(file.path) || !program.compilerOptions.outputPath
       ? file.path
       : join(program.compilerOptions.outputPath, file.path);
-  const prettierFileContent = format(file.content, prettierTypeScriptOptions);
+  const isJson = /\.json$/gi.test(filePath);
+  const isSourceCode = /\.(ts|js)$/gi.test(filePath);
+  let prettierFileContent = file.content;
+  // Format the contents if necessary
+  if (isJson || isSourceCode) {
+    prettierFileContent = format(
+      prettierFileContent,
+      isJson ? prettierJSONOptions : prettierTypeScriptOptions
+    );
+  }
   await host.mkdirp(dirname(filePath));
   await host.writeFile(filePath, prettierFileContent);
 }
@@ -106,9 +123,37 @@ async function emitIndexFile(rlcModels: RLCModel, program: Program) {
   }
 }
 
+async function emitPackageFile(rlcModels: RLCModel, program: Program) {
+  const packageFile = buildPackageFile(rlcModels);
+  if (packageFile) {
+    await emitFile(packageFile, program);
+  }
+}
+
 async function emitTopLevelIndexFile(rlcModels: RLCModel, program: Program) {
   const topLevelIndexFile = buildTopLevelIndex(rlcModels);
   if (topLevelIndexFile) {
     await emitFile(topLevelIndexFile, program);
+  }
+}
+
+async function emitRollupConfig(rlcModels: RLCModel, program: Program) {
+  const configFile = buildRollupConfig(rlcModels);
+  if (configFile) {
+    await emitFile(configFile, program);
+  }
+}
+
+async function emitTsConfig(rlcModels: RLCModel, program: Program) {
+  const tsConfigFile = buildTsConfig(rlcModels);
+  if (tsConfigFile) {
+    await emitFile(tsConfigFile, program);
+  }
+}
+
+async function emitApiExtractorConfig(rlcModels: RLCModel, program: Program) {
+  const tsConfigFile = buildApiExtractorConfig(rlcModels);
+  if (tsConfigFile) {
+    await emitFile(tsConfigFile, program);
   }
 }

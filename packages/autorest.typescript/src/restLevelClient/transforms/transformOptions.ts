@@ -9,13 +9,23 @@ export function transformOptions(model: CodeModel): RLCOptions {
     rlcShortcut,
     multiClient,
     batch,
-    packageDetails
+    packageDetails,
+    generateMetadata,
+    generateSample,
+    generateTest,
+    azureOutputDirectory,
+    azureSdkForJs
   } = getAutorestOptions();
   const options: RLCOptions = {};
   options.includeShortcuts = rlcShortcut;
   options.multiClient = multiClient;
   options.batch = batch;
   options.packageDetails = packageDetails;
+  options.generateMetadata = generateMetadata;
+  options.generateSample = generateSample;
+  options.generateTest = generateTest;
+  options.azureOutputDirectory = azureOutputDirectory;
+  options.azureSdkForJs = azureSdkForJs;
   const {
     addCredentials,
     credentialScopes,

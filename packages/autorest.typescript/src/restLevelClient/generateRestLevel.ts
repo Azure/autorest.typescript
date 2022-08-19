@@ -3,10 +3,7 @@
 
 import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
-import { generatePackageJson } from "../generators/static/packageFileGenerator";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
-import { generateTsConfig } from "../generators/static/tsConfigFileGenerator";
-import { generateApiExtractorConfig } from "../generators/static/apiExtractorConfig";
 import { generateResponseInterfaces } from "./generateResponseTypes";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { generateSchemaTypes } from "./generateSchemaTypes";
@@ -26,7 +23,6 @@ import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerat
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
-import { generateRollupConfig } from "../generators/static/rollupConfigFileGenerator";
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
@@ -37,6 +33,12 @@ import {
 } from "../generators/samples/rlcSampleGenerator";
 import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
 import { generateIndexFile } from "./generateIndexFile";
+import {
+  generateApiExtractorConfig,
+  generatePackageJson,
+  generateRollupConfig,
+  generateTsConfig
+} from "./generateMetadata";
 
 /**
  * Generates a Rest Level Client library
@@ -70,8 +72,8 @@ export async function generateRestLevelClient() {
   performCodeModelMutations(model);
   generateReadmeFile(model, project);
   generateLicenseFile(project);
-  generateApiExtractorConfig(project);
-  generateRollupConfig(project);
+  generateApiExtractorConfig(model, project);
+  generateRollupConfig(model, project);
   generateEsLintConfig(project);
 
   generateKarmaConfigFile(project);
@@ -98,8 +100,8 @@ export async function generateRestLevelClient() {
     generateSampleEnv(project);
   }
 
-  generatePackageJson(project);
-  generateTsConfig(project);
+  generatePackageJson(model, project);
+  generateTsConfig(model, project);
 
   // Save the source files to the virtual filesystem
   project.saveSync();
