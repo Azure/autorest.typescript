@@ -1,0 +1,17 @@
+import "./routes.cadl";
+
+using Cadl.Rest;
+
+using Cadl.Http;
+
+@serviceTitle("Adel")
+@server(
+  "https://{resource}.cognitiveservices.azure.com",
+  "Adel API server.",
+  {
+    @doc("Resource name")
+    resource: string,
+  }
+)
+@doc("Adel API server.")
+namespace Adel;

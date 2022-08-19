@@ -48,11 +48,12 @@ export function generateOperationGroup(operationGroup: CadlOperationGroup) {
   const { name, operations } = operationGroup;
 
   statements.push(`${doc}`);
-  statements.push(`interface ${name} {`);
+  const hasInterface = Boolean(name);
+  hasInterface && statements.push(`interface ${name} {`);
   for (const operation of operations) {
     statements.push(generateOperation(operation));
   }
-  statements.push(`}`);
+  hasInterface && statements.push(`}`);
 
   return statements.join("\n");
 }

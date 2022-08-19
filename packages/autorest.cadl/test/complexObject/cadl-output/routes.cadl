@@ -1,0 +1,82 @@
+import "@cadl-lang/rest";
+
+import "./models.cadl";
+
+using Cadl.Rest;
+
+using Cadl.Http;
+
+// TODO: (missing-docs) Add documentation
+interface Operations {
+  @summary("Product Types")
+  @doc("The Products endpoint returns information about the Uber products offered at a given location. The response includes the display name and other details about each product, and lists the products in the proper display order.")
+  @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+  @get
+  list(
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: "123456",
+
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string,
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2014-04-01-preview",
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): CatalogArray;
+  @summary("Create products")
+  @doc("Resets products.")
+  @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+  @post
+  create(
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: string,
+
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string,
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2014-04-01-preview",
+
+    @doc("body Parameter")
+    @body
+    bodyParameter: CatalogDictionaryOfArray,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): CatalogDictionary;
+  @summary("Update products")
+  @doc("Resets products.")
+  @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+  @put
+  update(
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: string,
+
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string,
+
+    @doc("Api Version")
+    @query
+    ApiVersion: "2014-04-01-preview",
+
+    @doc("body Parameter")
+    @body
+    bodyParameter: CatalogArrayOfDictionary,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): CatalogArray;
+}

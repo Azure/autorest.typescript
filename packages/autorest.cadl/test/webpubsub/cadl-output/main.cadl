@@ -1,0 +1,17 @@
+import "./routes.cadl";
+
+using Cadl.Rest;
+
+using Cadl.Http;
+
+// TODO: (missing-docs) Add documentation
+@serviceTitle("Azure Web PubSub Service REST API")
+@server(
+  "{Endpoint}",
+  "",
+  {
+    @doc("HTTP or HTTPS endpoint for the Web PubSub service instance.")
+    Endpoint: string,
+  }
+)
+namespace AzureWebPubSubServiceRESTAPI;

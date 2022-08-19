@@ -10,7 +10,8 @@ export function generateDocs({ doc }: WithDocs): string {
   }
 
   const docString = Array.isArray(doc) ? doc.join("\n") : doc;
-  return `@doc("${docString}")`;
+
+  return `@doc(${JSON.stringify(docString)})`;
 }
 
 export function generateSummary({ summary }: WithSummary): string {

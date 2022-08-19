@@ -1,0 +1,17 @@
+import "./routes.cadl";
+
+using Cadl.Rest;
+
+using Cadl.Http;
+
+@serviceTitle("Complex Model Client")
+@server(
+  "{$host}",
+  "Some cool documentation.",
+  {
+    @doc("server parameter")
+    $host: string,
+  }
+)
+@doc("Some cool documentation.")
+namespace ComplexModelClient;

@@ -2430,6 +2430,16 @@ packages:
       "@cadl-lang/compiler": 0.36.0
     dev: false
 
+  /@cadl-lang/versioning/0.7.0:
+    resolution:
+      {
+        integrity: sha512-Wg0CyP47jZnv4hHaq8enUxhsqaJSQzYrlzQzg265CtZrUFzwlBAkqQVel8qeA6f/wljkkL5Se75Vt5tLE2kfhQ==
+      }
+    engines: { node: ">=16.0.0" }
+    dependencies:
+      "@cadl-lang/compiler": 0.34.0
+    dev: false
+
   /@colors/colors/1.5.0:
     resolution:
       {

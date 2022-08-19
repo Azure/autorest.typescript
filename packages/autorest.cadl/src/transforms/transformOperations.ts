@@ -1,4 +1,5 @@
 import {
+  CodeModel,
   Operation,
   OperationGroup,
   Parameter,
@@ -7,22 +8,23 @@ import {
   Request,
   SchemaResponse,
 } from "@autorest/codemodel";
+import { getDataTypes } from "../dataTypes";
 import {
   CadlOperation,
   CadlOperationGroup,
   CadlParameter,
   CadlParameterLocation,
 } from "../interfaces";
-import { getCadlType } from "./transformObject";
+import { transformDataType } from "../model";
 
-export function transformOperationGroup({
-  language,
-  operations,
-}: OperationGroup): CadlOperationGroup {
-  const name = language.default.name;
+export function transformOperationGroup(
+  { language, operations }: OperationGroup,
+  codeModel: CodeModel
+): CadlOperationGroup {
+  const name = `${language.default.name}Operations`;
   const doc = language.default.description;
   const ops = operations.reduce<CadlOperation[]>((acc, op) => {
-    acc = [...acc, ...transformOperation(op)];
+    acc = [...acc, ...transformOperation(op, codeModel)];
     return acc;
   }, []);
   return {
@@ -40,35 +42,46 @@ function transformVerb(protocol: Protocols) {
   return protocol?.http?.method;
 }
 
-function transformResponses(responses: SchemaResponse[] = []) {
-  return responses.map(({ schema }) => schema?.language.default.name ?? "void");
+function transformResponses(
+  responses: SchemaResponse[] = [],
+  codeModel: CodeModel
+) {
+  const dataTypes = getDataTypes(codeModel);
+  return responses.map(({ schema }) => dataTypes.get(schema)?.name ?? "void");
 }
 
-export function transformOperation(operation: Operation): CadlOperation[] {
-  return operation.requests!.map((r) => transformRequest(r, operation));
+export function transformOperation(
+  operation: Operation,
+  codeModel: CodeModel
+): CadlOperation[] {
+  return operation.requests!.map((r) =>
+    transformRequest(r, operation, codeModel)
+  );
 }
 
 function transformRequest(
   _request: Request,
-  operation: Operation
+  operation: Operation,
+  codeModel: CodeModel
 ): CadlOperation {
   const { language, responses, requests } = operation;
   const name = language.default.name;
   const doc = language.default.description;
   const summary = language.default.summary;
   const transformedResponses = transformResponses(
-    responses as SchemaResponse[]
+    responses as SchemaResponse[],
+    codeModel
   );
   const visitedParameter: Set<Parameter> = new Set();
   let parameters = (operation.parameters ?? [])
     .filter((p) => filterOperationParameters(p, visitedParameter))
-    .map(transformParameter);
+    .map((v) => transformParameter(v, codeModel));
 
   parameters = [
     ...parameters,
     ...getRequestParameters(operation)
       .filter((p) => filterOperationParameters(p, visitedParameter))
-      .map(transformParameter),
+      .map((v) => transformParameter(v, codeModel)),
   ];
 
   return {
@@ -101,15 +114,24 @@ function filterOperationParameters(
   return shouldVisit;
 }
 
-export function transformParameter(propertySchema: Parameter): CadlParameter {
+export function transformParameter(
+  propertySchema: Parameter,
+  codeModel: CodeModel
+): CadlParameter {
   const name = propertySchema.language.default.name;
   const doc = propertySchema.language.default.description;
 
+  const dataTypes = getDataTypes(codeModel);
+  let visited =
+    dataTypes.get(propertySchema.schema) ??
+    transformDataType(propertySchema.schema, codeModel);
+
   return {
+    kind: "parameter",
     doc,
     name,
     isOptional: propertySchema.required === false,
-    type: getCadlType(propertySchema.schema),
+    type: visited.name,
     location: transformParameterLocation(propertySchema),
   };
 }

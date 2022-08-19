@@ -1,0 +1,580 @@
+import "@cadl-lang/rest";
+
+import "./models.cadl";
+
+using Cadl.Rest;
+
+using Cadl.Http;
+
+// TODO: (missing-docs) Add documentation
+interface AlertConfigsOperations {
+  // TODO: (missing-docs) Add documentation
+  @route("/alertConfigs")
+  @get
+  List(
+    @doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
+    @query
+    maxpagesize: int32,
+
+    @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
+    @query
+    sortBy: string,
+    // TODO: (missing-docs) Add documentation
+    @query orderBy: OrderBy,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Page_AlertConfig;
+  // TODO: (missing-docs) Add documentation
+  @route("/alertConfigs/{alertConfigName}")
+  @put
+  Create(
+    @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
+    @path
+    alertConfigName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: AlertConfig,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): AlertConfig;
+  // TODO: (missing-docs) Add documentation
+  @route("/alertConfigs/{alertConfigName}")
+  @get
+  Read(
+    @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
+    @path
+    alertConfigName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): AlertConfig;
+  // TODO: (missing-docs) Add documentation
+  @route("/alertConfigs/{alertConfigName}")
+  @delete
+  Delete(
+    @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
+    @path
+    alertConfigName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  // TODO: (missing-docs) Add documentation
+  @route("/alertConfigs/{alertConfigName}")
+  @patch
+  Update(
+    @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
+    @path
+    alertConfigName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: AlertConfig,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): AlertConfig;
+}
+
+// TODO: (missing-docs) Add documentation
+interface DatasetsOperations {
+  // TODO: (missing-docs) Add documentation
+  @route("/datasets")
+  @get
+  List(
+    @doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
+    @query
+    maxpagesize: int32,
+
+    @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
+    @query
+    sortBy: string,
+    // TODO: (missing-docs) Add documentation
+    @query orderBy: OrderBy,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Page_Dataset;
+  // TODO: (missing-docs) Add documentation
+  @route("/datasets/{datasetName}")
+  @put
+  Create(
+    @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
+    @path
+    datasetName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: Request_Dataset,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Dataset;
+  // TODO: (missing-docs) Add documentation
+  @route("/datasets/{datasetName}")
+  @get
+  Read(
+    @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
+    @path
+    datasetName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Dataset;
+  // TODO: (missing-docs) Add documentation
+  @route("/datasets/{datasetName}")
+  @delete
+  Delete(
+    @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
+    @path
+    datasetName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @summary("Query data from data source to preview")
+  @doc("Verify data schema and preview data before/after a dataset is created. View raw data to better diagnose and explain a detected anomaly.")
+  @route("/datasets/previewData")
+  @post
+  PreviewData(
+    // TODO: (missing-docs) Add documentation
+    @body body: DatasetPreviewRequest,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): DatasetPreviewResponse;
+}
+
+// TODO: (missing-docs) Add documentation
+interface HooksOperations {
+  // TODO: (missing-docs) Add documentation
+  @route("/hooks")
+  @get
+  List(
+    @doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
+    @query
+    maxpagesize: int32,
+
+    @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
+    @query
+    sortBy: string,
+    // TODO: (missing-docs) Add documentation
+    @query orderBy: OrderBy,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Page_Hook;
+  // TODO: (missing-docs) Add documentation
+  @route("/hooks/{hookName}")
+  @put
+  Create(
+    @doc("Unique identifier of a hook. This parameter is case-sensitive.")
+    @path
+    hookName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: Hook,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Hook;
+  // TODO: (missing-docs) Add documentation
+  @route("/hooks/{hookName}")
+  @get
+  Read(
+    @doc("Unique identifier of a hook. This parameter is case-sensitive.")
+    @path
+    hookName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Hook;
+  // TODO: (missing-docs) Add documentation
+  @route("/hooks/{hookName}")
+  @delete
+  Delete(
+    @doc("Unique identifier of a hook. This parameter is case-sensitive.")
+    @path
+    hookName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  // TODO: (missing-docs) Add documentation
+  @route("/hooks/{hookName}")
+  @patch
+  Update(
+    @doc("Unique identifier of a hook. This parameter is case-sensitive.")
+    @path
+    hookName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: Hook,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Hook;
+}
+
+// TODO: (missing-docs) Add documentation
+interface ReplaysOperations {
+  // TODO: (missing-docs) Add documentation
+  @route("/inference/replays")
+  @get
+  List(
+    @doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
+    @query
+    maxpagesize: int32,
+
+    @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
+    @query
+    sortBy: string,
+    // TODO: (missing-docs) Add documentation
+    @query orderBy: OrderBy,
+    // TODO: (missing-docs) Add documentation
+    @query status: ReplayStatus,
+
+    @doc("Filter replay records by a list of inference schedule name(s). Format the list as a comma-separated string, no space allowed. By default, the list of replay records are ranked by descending replay created time (UTC) for each inference schedule.")
+    @query
+    scheduleName: string,
+
+    @doc("The total number of replay records to be returned per inference schedule, ordered by created time descending. By default, the full list of replay records will be returned for the inference schedule name(s) in your filter.")
+    @query
+    topPerSchedule: int32,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Page_ScheduleReplay;
+  // TODO: (missing-docs) Add documentation
+  @route("/inference/replays/{replayName}")
+  @put
+  Create(
+    @doc("Unique identifier of a replay on an inference schedule. This parameter is case-sensitive.")
+    @path
+    replayName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: Request_ScheduleReplay,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): ScheduleReplay;
+  // TODO: (missing-docs) Add documentation
+  @route("/inference/replays/{replayName}")
+  @get
+  Read(
+    @doc("Unique identifier of a replay on an inference schedule. This parameter is case-sensitive.")
+    @path
+    replayName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): ScheduleReplay;
+  // TODO: (missing-docs) Add documentation
+  @route("/inference/replays/{replayName}")
+  @delete
+  Delete(
+    @doc("Unique identifier of a replay on an inference schedule. This parameter is case-sensitive.")
+    @path
+    replayName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+}
+
+// TODO: (missing-docs) Add documentation
+interface SchedulesOperations {
+  // TODO: (missing-docs) Add documentation
+  @route("/inference/schedules")
+  @get
+  List(
+    @doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
+    @query
+    maxpagesize: int32,
+
+    @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
+    @query
+    sortBy: string,
+    // TODO: (missing-docs) Add documentation
+    @query orderBy: OrderBy,
+    // TODO: (missing-docs) Add documentation
+    @query status: ScheduleStatus,
+
+    @doc("Filter inference schedules by a list of model name(s). Format the list as a comma-separated string, no space allowed. For each model, by default the list of inference schedules are ranked by descending inference schedule created time (UTC).")
+    @query
+    modelNames: string,
+
+    @doc("The total number of inference schedules to be returned per model, ordered by created time descending. By default, the full list of inference schedules will be returned for the model name(s) in your filter.")
+    @query
+    topPerModel: int32,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Page_Schedule;
+  // TODO: (missing-docs) Add documentation
+  @route("/inference/schedules/{scheduleName}")
+  @put
+  Create(
+    @doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
+    @path
+    scheduleName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: Request_Schedule,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Schedule;
+  // TODO: (missing-docs) Add documentation
+  @route("/inference/schedules/{scheduleName}")
+  @get
+  Read(
+    @doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
+    @path
+    scheduleName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Schedule;
+  // TODO: (missing-docs) Add documentation
+  @route("/inference/schedules/{scheduleName}")
+  @delete
+  Delete(
+    @doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
+    @path
+    scheduleName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @summary("Update an inference schedule")
+  @doc("Pause/resume or update selected properties of an inference schedule.")
+  @route("/inference/schedules/{scheduleName}")
+  @patch
+  Update(
+    @doc("Unique identifier of a live streaming inference schedule. This parameter is case-sensitive.")
+    @path
+    scheduleName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: ScheduleUpdate,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Schedule;
+  @summary("Get historical detection results from the inference schedule")
+  @doc("Use this API to retrieve detected anomalies over a historical time period specified in the request body. Please refer to the official documentation for the detailed quota and limits.")
+  @route("/inference/schedules/{scheduleName}/getHistory")
+  @get
+  GetHistory(
+    // TODO: (missing-docs) Add documentation
+    @path scheduleName: string,
+    // TODO: (missing-docs) Add documentation
+    @query startTime: string,
+    // TODO: (missing-docs) Add documentation
+    @query endTime: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): ScheduleHistoryResult;
+}
+
+// TODO: (missing-docs) Add documentation
+interface EvaluationsOperations {
+  // TODO: (missing-docs) Add documentation
+  @route("/multivariate/evaluations")
+  @get
+  List(
+    @doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
+    @query
+    maxpagesize: int32,
+
+    @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
+    @query
+    sortBy: string,
+    // TODO: (missing-docs) Add documentation
+    @query orderBy: OrderBy,
+    // TODO: (missing-docs) Add documentation
+    @query status: EvaluationStatus,
+
+    @doc("Filter evaluations by a list of model name(s). Format the list as a comma-separated string, no space allowed. For each model, by default the list of evaluations are ranked by descending evaluation created time (UTC).")
+    @query
+    modelNames: string,
+
+    @doc("The total number of evaluations to be returned per model, ordered by created time descending. By default, the full list of evaluations will be returned for the model name(s) in your filter.")
+    @query
+    topPerModel: int32,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Page_Evaluation;
+  // TODO: (missing-docs) Add documentation
+  @route("/multivariate/evaluations/{evaluationName}")
+  @put
+  Create(
+    @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
+    @path
+    evaluationName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: Request_Evaluation,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Evaluation;
+  // TODO: (missing-docs) Add documentation
+  @route("/multivariate/evaluations/{evaluationName}")
+  @get
+  Read(
+    @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
+    @path
+    evaluationName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Evaluation;
+  // TODO: (missing-docs) Add documentation
+  @route("/multivariate/evaluations/{evaluationName}")
+  @delete
+  Delete(
+    @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
+    @path
+    evaluationName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+}
+
+// TODO: (missing-docs) Add documentation
+interface ModelsOperations {
+  // TODO: (missing-docs) Add documentation
+  @route("/multivariate/models")
+  @get
+  List(
+    @doc("The number of records to skip from the list of records based on the sorting field and ordering method specified. By default, records are ranked by descending created time (UTC).")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of records to be returned per page. If more records are requested via the API, @nextLink will contain the link to the next page.")
+    @query
+    maxpagesize: int32,
+
+    @doc("The name of the field on which you want to sort records. By default, records are sorted by created time (UTC).")
+    @query
+    sortBy: string,
+    // TODO: (missing-docs) Add documentation
+    @query orderBy: OrderBy,
+    // TODO: (missing-docs) Add documentation
+    @query status: ModelStatus,
+
+    @doc("Filter models by a list of training dataset name(s). Format the list as a comma-separated string, no space allowed. For each dataset, by default the list of models are ranked by descending model created time (UTC).")
+    @query
+    datasetNames: string,
+
+    @doc("The total number of models to be returned per dataset, ordered by created time descending. By default, the full list of models will be returned for the dataset name(s) in your filter.")
+    @query
+    topPerDataset: int32,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Page_Model;
+  // TODO: (missing-docs) Add documentation
+  @route("/multivariate/models/{modelName}")
+  @put
+  Create(
+    @doc("Unique identifier of a model. This parameter is case-sensitive.")
+    @path
+    modelName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: Request_Model,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Model;
+  // TODO: (missing-docs) Add documentation
+  @route("/multivariate/models/{modelName}")
+  @get
+  Read(
+    @doc("Unique identifier of a model. This parameter is case-sensitive.")
+    @path
+    modelName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): Model;
+  // TODO: (missing-docs) Add documentation
+  @route("/multivariate/models/{modelName}")
+  @delete
+  Delete(
+    @doc("Unique identifier of a model. This parameter is case-sensitive.")
+    @path
+    modelName: string,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): void;
+  @summary("Detect Multivariate Anomaly - Sync")
+  @doc("Detect anomalies with a trained model and multivariate time-series data points specified in the request body. This API is recommended to be embedded in an inference schedule set up for continuous real-time inference. Please refer to the official documentation for the detailed quota and limits.")
+  @route("/multivariate/models/{modelName}/detect")
+  @post
+  Detect(
+    // TODO: (missing-docs) Add documentation
+    @path modelName: string,
+    // TODO: (missing-docs) Add documentation
+    @body body: DetectionRequest,
+
+    @doc("Accept header")
+    @header
+    accept: "application/json"
+  ): DetectionResult;
+}

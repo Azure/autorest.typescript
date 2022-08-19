@@ -1,5 +1,6 @@
 export interface CadlProgram {
   models: Models;
+  operationGroups: CadlOperationGroup[];
   serviceInformation: ServiceInformation;
 }
 
@@ -41,30 +42,43 @@ export interface EndpointParameter extends WithDoc {
   name: string;
 }
 
-export interface CadlEnum extends WithDoc {
+export interface CadlDataType extends WithDoc {
+  kind: string;
   name: string;
+}
+
+export interface CadlWildcardType extends CadlDataType {
+  kind: "wildcard";
+}
+
+export interface CadlEnum extends CadlDataType {
+  kind: "enum";
   members: CadlChoiceValue[];
   isExtensible: boolean;
 }
 
 export type CadlParameterLocation = "path" | "query" | "header" | "body";
-export interface CadlParameter extends CadlObjectProperty {
+export interface CadlParameter extends CadlDataType {
+  kind: "parameter";
+  isOptional: boolean;
+  type: string;
   location: CadlParameterLocation;
 }
 
-export interface CadlObjectProperty extends WithDoc {
-  name: string;
+export interface CadlObjectProperty extends CadlDataType {
+  kind: "property";
   isOptional: boolean;
   type: string;
 }
 
-export interface CadlObject extends WithDoc {
+export interface CadlObject extends CadlDataType {
+  kind: "object";
   properties: CadlObjectProperty[];
-  name: string;
+  parents: string[];
+  discriminator?: string;
 }
 
 export interface Models {
   enums: CadlEnum[];
   objects: CadlObject[];
-  operationGroups: CadlOperationGroup[];
 }

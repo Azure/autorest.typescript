@@ -6,8 +6,9 @@
   "typings": "dist/main.d.ts",
   "scripts": {
     "test:adel": "autorest --cadl-init --input-file=./test/adel/adel.json --use=. --output-folder=./test/adel",
-    "test:url": "autorest --cadl-init --input-file=./test/url/url.json --use=. --output-dir=./test/url",
-    "test:pubsub": "autorest --cadl-init --input-file=./test/webpubsub/webpubsub.json --use=. --output-dir=./test/webpubsub",
+    "test:bodycomplex": "autorest --cadl-init --input-file=./test/bodyComplex/body-complex.json --use=. --output-folder=./test/bodyComplex",
+    "test:url": "autorest --cadl-init --input-file=./test/url/url.json --use=. --output-folder=./test/url",
+    "test:pubsub": "autorest --cadl-init --input-file=./test/webpubsub/webpubsub.json --use=. --output-folder=./test/webpubsub",
     "build": "tsc -p .",
     "generate": "ts-node ./test/utils/generateCadl.ts generate",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -34,8 +35,9 @@
     "typescript": "^4.7.4",
     "@autorest/extension-base": "^3.5.0",
     "@autorest/codemodel": "^4.19.0",
-    "@cadl-lang/compiler": "^0.33.0",
-    "@cadl-lang/openapi": "^0.10.1"
+    "@cadl-lang/compiler": "^0.34.0",
+    "@cadl-lang/openapi": "^0.10.1",
+    "@cadl-lang/openapi3": "^0.14.0"
   },
   "devDependencies": {
     "prettier": "^2.7.1",
@@ -47,6 +49,7 @@
     "@types/node": "^18.7.2",
     "fs-extra": "^10.1.0",
     "@types/fs-extra": "^9.0.13",
-    "chalk": "~4.1.1"
+    "chalk": "~4.1.1",
+    "@cadl-lang/versioning": "^0.7.0"
   }
 }
