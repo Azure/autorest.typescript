@@ -15,11 +15,15 @@ import { getModel } from "./model";
 import { emitModels } from "./emiters/emitModels";
 import { emitRoutes } from "./emiters/emitRoutes";
 import { emitMain } from "./emiters/emitMain";
+import { markPagination } from "./utils/paging";
+import { markErrorModels } from "./utils/errors";
 
 export async function processRequest(host: AutorestExtensionHost) {
   const session = await startSession<CodeModel>(host, codeModelSchema);
   setSession(session);
   const codeModel = session.model;
+  markPagination(codeModel);
+  markErrorModels(codeModel);
   const cadlProgramDetails = getModel(codeModel);
 
   await emitModels(getFilePath(session, "models.cadl"), cadlProgramDetails);

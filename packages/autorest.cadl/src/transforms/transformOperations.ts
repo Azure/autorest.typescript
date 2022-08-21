@@ -64,12 +64,12 @@ function transformRequest(
   operation: Operation,
   codeModel: CodeModel
 ): CadlOperation {
-  const { language, responses, requests } = operation;
+  const { language, responses, requests, exceptions } = operation;
   const name = language.default.name;
   const doc = language.default.description;
   const summary = language.default.summary;
   const transformedResponses = transformResponses(
-    responses as SchemaResponse[],
+    [...(exceptions ?? []), ...(responses ?? [])] as SchemaResponse[],
     codeModel
   );
   const visitedParameter: Set<Parameter> = new Set();

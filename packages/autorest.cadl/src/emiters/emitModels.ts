@@ -3,6 +3,7 @@ import { generateEnums } from "../generate/generateEnums";
 import { generateObject } from "../generate/generateObject";
 import { writeFile } from "fs/promises";
 import { format } from "prettier";
+import { getModelsImports } from "../utils/imports";
 
 export async function emitModels(
   filePath: string,
@@ -18,12 +19,21 @@ export async function emitModels(
   await writeFile(filePath, formattedFile);
 }
 
-function generateModels({ models }: CadlProgram) {
-  const imports = [`import "@cadl-lang/rest";`, `using Cadl.Rest;`];
-  const enums = flattenEnums(models.enums);
-  const objects = models.objects.map(generateObject);
+function generateModels(program: CadlProgram) {
+  const { models } = program;
+  const { modules, namespaces: namespacesSet } = getModelsImports(program);
+  const imports = [
+    ...new Set<string>([`import "@cadl-lang/rest";`, ...modules]),
+  ].join("\n");
 
-  return [...imports, ...enums, ...objects].join("\n\n");
+  const namespaces = [
+    ...new Set<string>([`using Cadl.Rest`, ...namespacesSet]),
+  ].join("\n");
+
+  const enums = flattenEnums(models.enums).join("");
+  const objects = models.objects.map(generateObject).join("\n\n");
+
+  return [imports, "\n", namespaces, "\n", enums, "\n", objects].join("\n");
 }
 
 function flattenEnums(enums: CadlEnum[]) {

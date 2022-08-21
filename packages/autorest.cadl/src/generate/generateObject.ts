@@ -1,12 +1,13 @@
 import { CadlObject, CadlObjectProperty } from "../interfaces";
+import { generateDecorators } from "../utils/decorators";
 import { generateDocs } from "../utils/docs";
 
 export function generateObject(cadlObject: CadlObject) {
   const definitions: string[] = [];
   const doc = generateDocs(cadlObject);
   definitions.push(doc);
-  cadlObject.discriminator &&
-    definitions.push(`@discriminator("${cadlObject.discriminator}")`);
+  const decorators = generateDecorators(cadlObject.decorators);
+  decorators && definitions.push(decorators);
 
   if (cadlObject.parents.length > 0) {
     const parent = cadlObject.parents[0];
@@ -23,6 +24,9 @@ export function generateObject(cadlObject: CadlObject) {
   for (const property of cadlObject.properties) {
     const propertyDoc = generateDocs(property);
     propertyDoc && definitions.push(propertyDoc);
+    const decorators = generateDecorators(property.decorators);
+    decorators && definitions.push(decorators);
+
     definitions.push(
       `  "${property.name}"${getOptionalOperator(property)}: ${property.type};`
     );

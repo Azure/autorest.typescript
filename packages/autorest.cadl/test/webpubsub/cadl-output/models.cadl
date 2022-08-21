@@ -2,6 +2,7 @@ import "@cadl-lang/rest";
 
 using Cadl.Rest;
 
+// TODO: (missing-docs) Add documentation
 enum WebPubSubPermissionKnownValues {
   "sendToGroup",
   "joinLeaveGroup",
@@ -10,6 +11,7 @@ enum WebPubSubPermissionKnownValues {
 @knownValues(WebPubSubPermissionKnownValues)
 model WebPubSubPermission is string {}
 
+// TODO: (missing-docs) Add documentation
 enum ContentType {
   "application/json",
   "application/octet-stream",

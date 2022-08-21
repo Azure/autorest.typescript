@@ -69,13 +69,21 @@ export interface CadlObjectProperty extends CadlDataType {
   kind: "property";
   isOptional: boolean;
   type: string;
+  decorators?: CadlDecorator[];
+}
+
+export interface CadlDecorator {
+  name: string;
+  arguments?: string[];
+  module?: string;
+  namespace?: string;
 }
 
 export interface CadlObject extends CadlDataType {
   kind: "object";
   properties: CadlObjectProperty[];
   parents: string[];
-  discriminator?: string;
+  decorators?: CadlDecorator[];
 }
 
 export interface Models {

@@ -2,6 +2,7 @@ import "@cadl-lang/rest";
 
 using Cadl.Rest;
 
+// TODO: (missing-docs) Add documentation
 enum CMYKColorsKnownValues {
   "cyan",
   "Magenta",
@@ -12,6 +13,7 @@ enum CMYKColorsKnownValues {
 @knownValues(CMYKColorsKnownValues)
 model CMYKColors is string {}
 
+// TODO: (missing-docs) Add documentation
 enum MyKindKnownValues {
   "Kind1",
 }
@@ -19,6 +21,7 @@ enum MyKindKnownValues {
 @knownValues(MyKindKnownValues)
 model MyKind is string {}
 
+// TODO: (missing-docs) Add documentation
 enum GoblinSharkColorKnownValues {
   "pink",
   "gray",

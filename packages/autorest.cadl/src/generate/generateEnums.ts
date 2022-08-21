@@ -1,7 +1,10 @@
 import { CadlEnum } from "../interfaces";
+import { generateDocs } from "../utils/docs";
 
 export function generateEnums(cadlEnum: CadlEnum) {
   const definitions: string[] = [];
+  const doc = generateDocs(cadlEnum);
+  definitions.push(doc);
   const enumDefinition = `
     enum ${cadlEnum.name}${cadlEnum.isExtensible ? "KnownValues" : ""} {
         ${cadlEnum.members
@@ -11,14 +14,14 @@ export function generateEnums(cadlEnum: CadlEnum) {
               : m.value;
           })
           .join(", ")}
-    }`;
+    }\n`;
 
   definitions.push(enumDefinition);
 
   if (cadlEnum.isExtensible) {
     const knownValues = `
     @knownValues(${cadlEnum.name}KnownValues)
-    model ${cadlEnum.name} is string {}`;
+    model ${cadlEnum.name} is string {}\n\n`;
 
     definitions.push(knownValues);
   }

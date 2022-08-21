@@ -13,9 +13,9 @@ export function generateServiceInformation(
 
   if (serviceInformation.endpoint) {
     definitions.push(
-      `@server("${serviceInformation.endpoint}", "${
-        serviceInformation.doc ?? ""
-      }"`
+      `@server("${serviceInformation.endpoint}", ${
+        JSON.stringify(serviceInformation.doc) ?? ""
+      }`
     );
     if (
       serviceInformation.endpointParameters &&

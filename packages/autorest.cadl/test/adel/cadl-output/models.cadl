@@ -2,6 +2,7 @@ import "@cadl-lang/rest";
 
 using Cadl.Rest;
 
+// TODO: (missing-docs) Add documentation
 enum OrderByKnownValues {
   "ASCENDING",
   "DESCENDING",
@@ -10,6 +11,7 @@ enum OrderByKnownValues {
 @knownValues(OrderByKnownValues)
 model OrderBy is string {}
 
+// TODO: (missing-docs) Add documentation
 enum AuthenticationTypeKnownValues {
   "ManagedIdentity",
 }
@@ -17,6 +19,7 @@ enum AuthenticationTypeKnownValues {
 @knownValues(AuthenticationTypeKnownValues)
 model AuthenticationType is string {}
 
+// TODO: (missing-docs) Add documentation
 enum DataGranularityUnitKnownValues {
   "Minutes",
   "Hours",
@@ -29,6 +32,7 @@ enum DataGranularityUnitKnownValues {
 @knownValues(DataGranularityUnitKnownValues)
 model DataGranularityUnit is string {}
 
+// TODO: (missing-docs) Add documentation
 enum ReplayStatusKnownValues {
   "CREATED",
   "RUNNING",
@@ -39,6 +43,7 @@ enum ReplayStatusKnownValues {
 @knownValues(ReplayStatusKnownValues)
 model ReplayStatus is string {}
 
+// TODO: (missing-docs) Add documentation
 enum ScheduleStatusKnownValues {
   "ACTIVE",
   "CLIENTPAUSED",
@@ -48,6 +53,7 @@ enum ScheduleStatusKnownValues {
 @knownValues(ScheduleStatusKnownValues)
 model ScheduleStatus is string {}
 
+// TODO: (missing-docs) Add documentation
 enum EvaluationStatusKnownValues {
   "CREATED",
   "RUNNING",
@@ -58,6 +64,7 @@ enum EvaluationStatusKnownValues {
 @knownValues(EvaluationStatusKnownValues)
 model EvaluationStatus is string {}
 
+// TODO: (missing-docs) Add documentation
 enum ModelStatusKnownValues {
   "CREATED",
   "RUNNING",
@@ -68,6 +75,7 @@ enum ModelStatusKnownValues {
 @knownValues(ModelStatusKnownValues)
 model ModelStatus is string {}
 
+// TODO: (missing-docs) Add documentation
 enum AlignModeKnownValues {
   "Inner",
   "Outer",
@@ -76,6 +84,7 @@ enum AlignModeKnownValues {
 @knownValues(AlignModeKnownValues)
 model AlignMode is string {}
 
+// TODO: (missing-docs) Add documentation
 enum FillNAMethodKnownValues {
   "Previous",
   "Subsequent",

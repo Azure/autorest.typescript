@@ -1,0 +1,588 @@
+import "@cadl-lang/rest";
+
+import "./models.cadl";
+
+using Cadl.Rest;
+
+using Cadl.Http;
+
+// TODO: (missing-docs) Add documentation
+interface QuestionAnsweringOperations {
+  @summary("Answers the specified question using your knowledge base.")
+  @doc("Answers the specified question using your knowledge base.")
+  @route("/:query-knowledgebases")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @post
+  GetAnswers(
+    @doc("The name of the project to use.")
+    @query
+    projectName: string,
+
+    @doc("The name of the specific deployment of the project to use.")
+    @query
+    deploymentName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Post body of the request.")
+    @body
+    knowledgeBaseQueryOptions: AnswersOptions,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | AnswersResult;
+  @summary("Answers the specified question using the provided text in the body.")
+  @doc("Answers the specified question using the provided text in the body.")
+  @route("/:query-text")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @post
+  GetAnswersFromText(
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Post body of the request.")
+    @body
+    textQueryOptions: AnswersFromTextOptions,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | AnswersFromTextResult;
+}
+
+// TODO: (missing-docs) Add documentation
+interface QuestionAnsweringProjectsOperations {
+  @summary("Gets all projects for a user.")
+  @doc("Gets all projects for a user.")
+  @route("/query-knowledgebases/projects")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  ListProjects(
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("The maximum number of resources to return from the collection.")
+    @query
+    top: int32,
+
+    @doc("An offset into the collection of the first resource to be returned.")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of resources to include in a single response.")
+    @query
+    maxpagesize: int32,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | ProjectsMetadata;
+  @summary("Get the requested project metadata.")
+  @doc("Get the requested project metadata.")
+  @route("/query-knowledgebases/projects/{projectName}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetProjectDetails(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | ProjectMetadata;
+  @summary("Create or update a project.")
+  @doc("Create or update a project.")
+  @route("/query-knowledgebases/projects/{projectName}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @patch
+  CreateProject(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Parameters needed to create the project.")
+    @body
+    body: CreateProjectOptions,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | ProjectMetadata;
+  @summary("Delete the project.")
+  @doc("Delete the project.")
+  @route("/query-knowledgebases/projects/{projectName}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @delete
+  DeleteProject(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | void;
+  @summary("Gets the status of a Project delete job.")
+  @doc("Gets the status of a Project delete job.")
+  @route("/query-knowledgebases/projects/deletion-jobs/{jobId}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetDeleteStatus(
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Job ID.")
+    @path
+    jobId: string,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | JobState;
+  @summary("Export project metadata and assets.")
+  @doc("Export project metadata and assets.")
+  @route("/query-knowledgebases/projects/{projectName}/:export")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @post
+  Export(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Knowledge base Import or Export format.")
+    @query
+    format: format,
+
+    @doc("Kind of the asset of the project.")
+    @query
+    assetKind: components·nvda8q·parameters·assetkindparameter·schema,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | ExportJobState | void;
+  @summary("Gets the status of an Export job, once job completes, returns the project metadata, and assets.")
+  @doc("Gets the status of an Export job, once job completes, returns the project metadata, and assets.")
+  @route("/query-knowledgebases/projects/{projectName}/export/jobs/{jobId}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetExportStatus(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Job ID.")
+    @path
+    jobId: string,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | ExportJobState;
+  @summary("Import project assets.")
+  @doc("Import project assets.")
+  @route("/query-knowledgebases/projects/{projectName}/:import")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @post
+  Import(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Knowledge base Import or Export format.")
+    @query
+    format: format,
+
+    @doc("Kind of the asset of the project.")
+    @query
+    assetKind: components·nvda8q·parameters·assetkindparameter·schema,
+
+    @doc("Project assets the needs to be imported.")
+    @body
+    body: ImportJobOptions,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | void;
+  @summary("Gets the status of an Import job.")
+  @doc("Gets the status of an Import job.")
+  @route("/query-knowledgebases/projects/{projectName}/import/jobs/{jobId}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetImportStatus(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Job ID.")
+    @path
+    jobId: string,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | JobState;
+  @summary("Deploy project to production.")
+  @doc("Deploy project to production.")
+  @route("/query-knowledgebases/projects/{projectName}/deployments/{deploymentName}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @put
+  DeployProject(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("The name of the specific deployment of the project to use.")
+    @path
+    deploymentName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | void;
+  @summary("Gets the status of a Deploy job.")
+  @doc("Gets the status of a Deploy job.")
+  @route("/query-knowledgebases/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetDeployStatus(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("The name of the specific deployment of the project to use.")
+    @path
+    deploymentName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Job ID.")
+    @path
+    jobId: string,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | JobState;
+  @summary("List all deployments of a project.")
+  @doc("List all deployments of a project.")
+  @route("/query-knowledgebases/projects/{projectName}/deployments")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  ListDeployments(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("The maximum number of resources to return from the collection.")
+    @query
+    top: int32,
+
+    @doc("An offset into the collection of the first resource to be returned.")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of resources to include in a single response.")
+    @query
+    maxpagesize: int32,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | ProjectDeployments;
+  @summary("Gets all the synonyms of a project.")
+  @doc("Gets all the synonyms of a project.")
+  @route("/query-knowledgebases/projects/{projectName}/synonyms")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetSynonyms(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("The maximum number of resources to return from the collection.")
+    @query
+    top: int32,
+
+    @doc("An offset into the collection of the first resource to be returned.")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of resources to include in a single response.")
+    @query
+    maxpagesize: int32,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | SynonymAssets;
+  @summary("Updates all the synonyms of a project.")
+  @doc("Updates all the synonyms of a project.")
+  @route("/query-knowledgebases/projects/{projectName}/synonyms")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @put
+  UpdateSynonyms(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("All the synonyms of a project.")
+    @body
+    body: SynonymAssets,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | void;
+  @summary("Gets all the sources of a project.")
+  @doc("Gets all the sources of a project.")
+  @route("/query-knowledgebases/projects/{projectName}/sources")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetSources(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("The maximum number of resources to return from the collection.")
+    @query
+    top: int32,
+
+    @doc("An offset into the collection of the first resource to be returned.")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of resources to include in a single response.")
+    @query
+    maxpagesize: int32,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | QnaSources;
+  @summary("Updates the sources of a project.")
+  @doc("Updates the sources of a project.")
+  @route("/query-knowledgebases/projects/{projectName}/sources")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @patch
+  UpdateSources(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Update sources parameters of a project.")
+    @body
+    body: UpdateSourceRecord[],
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | void;
+  @summary("Gets the status of update sources job.")
+  @doc("Gets the status of update sources job.")
+  @route("/query-knowledgebases/projects/{projectName}/sources/jobs/{jobId}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetUpdateSourcesStatus(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Job ID.")
+    @path
+    jobId: string,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | JobState;
+  @summary("Gets all the QnAs of a project.")
+  @doc("Gets all the QnAs of a project.")
+  @route("/query-knowledgebases/projects/{projectName}/qnas")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetQnas(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Source of the QnA.")
+    @query
+    source: string,
+
+    @doc("The maximum number of resources to return from the collection.")
+    @query
+    top: int32,
+
+    @doc("An offset into the collection of the first resource to be returned.")
+    @query
+    skip: int32,
+
+    @doc("The maximum number of resources to include in a single response.")
+    @query
+    maxpagesize: int32,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | QnaAssets;
+  @summary("Updates the QnAs of a project.")
+  @doc("Updates the QnAs of a project.")
+  @route("/query-knowledgebases/projects/{projectName}/qnas")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @patch
+  UpdateQnas(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Update QnAs parameters of a project.")
+    @body
+    body: UpdateQnaRecord[],
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | void;
+  @summary("Gets the status of update QnAs job.")
+  @doc("Gets the status of update QnAs job.")
+  @route("/query-knowledgebases/projects/{projectName}/qnas/jobs/{jobId}")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @get
+  GetUpdateQnasStatus(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Job ID.")
+    @path
+    jobId: string,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | JobState;
+  @summary("Update Active Learning feedback.")
+  @doc("Update Active Learning feedback.")
+  @route("/query-knowledgebases/projects/{projectName}/feedback")
+  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  //      This needs to be revisited as CADL supports linking specific responses to each request
+  @post
+  AddFeedback(
+    @doc("The name of the project to use.")
+    @path
+    projectName: string,
+
+    @doc("Api Version")
+    @query
+    "api-version": "2021-10-01",
+
+    @doc("Feedback for Active Learning.")
+    @body
+    body: ActiveLearningFeedback,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ErrorResponse | void;
+}

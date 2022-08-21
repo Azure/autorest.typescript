@@ -17,6 +17,8 @@ import {
 import { transformValue } from "../utils/values";
 import { getLogger } from "../utils/logger";
 import { getDataTypes } from "../dataTypes";
+import { getModelDecorators, getPropertyDecorators } from "../utils/decorators";
+import { getDiscriminator, getOwnDiscriminator } from "../utils/discriminator";
 
 const cadlTypes = new Map<SchemaType, string>([
   [SchemaType.Date, "plainDate"],
@@ -25,6 +27,7 @@ const cadlTypes = new Map<SchemaType, string>([
   [SchemaType.String, "string"],
   [SchemaType.Time, "plainTime"],
   [SchemaType.Uuid, "string"],
+  [SchemaType.Uri, "string"],
   [SchemaType.ByteArray, "bytes"],
   [SchemaType.Binary, "bytes"],
   [SchemaType.Number, "float32"],
@@ -71,59 +74,11 @@ export function transformObject(
     kind: "object",
     properties,
     parents: getParents(schema),
-    discriminator: ownDiscriminator?.serializedName,
+    decorators: getModelDecorators(schema),
   };
 
   cadlTypes.set(schema, updatedVisited);
   return updatedVisited;
-}
-
-function getOwnDiscriminator(schema: ObjectSchema): Property | undefined {
-  return schema.discriminator?.property;
-}
-
-function getDiscriminator(
-  schema: ObjectSchema
-): CadlObjectProperty | undefined {
-  if (!schema.discriminatorValue) {
-    return undefined;
-  }
-  const { serializedName: name, language } = getDiscriminatorProperty(schema);
-  const type = `"${schema.discriminatorValue}"`;
-
-  return {
-    isOptional: false,
-    name,
-    type,
-    kind: "property",
-    doc: language.default.description,
-  };
-}
-
-function getDiscriminatorProperty(schema: ObjectSchema): Property {
-  const logger = getLogger("getDiscriminatorProperty");
-
-  logger.info(
-    `Getting discriminator property for ${schema.language.default.name}`
-  );
-
-  if (schema.discriminator?.property) {
-    return schema.discriminator.property;
-  }
-
-  if (!schema.parents?.immediate || schema.parents.immediate.length === 0) {
-    throw new Error("No discriminator property found");
-  }
-
-  for (const parent of schema.parents.immediate as ObjectSchema[]) {
-    const discriminator = getDiscriminatorProperty(parent);
-
-    if (discriminator) {
-      return discriminator;
-    }
-  }
-
-  throw new Error("No discriminator property found");
 }
 
 export function transformObjectProperty(
@@ -146,6 +101,7 @@ export function transformObjectProperty(
       doc: doc,
       isOptional: !propertySchema.required,
       type: visited.name,
+      decorators: getPropertyDecorators(propertySchema),
     };
   }
 
@@ -160,6 +116,7 @@ export function transformObjectProperty(
     name,
     isOptional: propertySchema.required === false,
     type: getCadlType(propertySchema.schema, codeModel),
+    decorators: getPropertyDecorators(propertySchema),
   };
 }
 

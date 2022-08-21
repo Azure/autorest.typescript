@@ -1,7 +1,10 @@
 import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
+using Azure.Core;
 
+// TODO: (missing-docs) Add documentation
 enum OperationResult_statusKnownValues {
   "Succeeded",
   "Failed",
@@ -20,10 +23,14 @@ enum OperationResult_statusKnownValues {
 model OperationResult_status is string {}
 
 // TODO: (missing-docs) Add documentation
+@pagedResult
 model ProductResultValue {
   // TODO: (missing-docs) Add documentation
+  @items
   value: Product[];
   // TODO: (missing-docs) Add documentation
+
+  @nextLink
   nextLink: string;
 }
 
@@ -42,26 +49,38 @@ model Product_properties {
 }
 
 // TODO: (missing-docs) Add documentation
+@pagedResult
 model ProductResult {
   // TODO: (missing-docs) Add documentation
+  @items
   values: Product[];
   // TODO: (missing-docs) Add documentation
+
+  @nextLink
   nextLink: string;
 }
 
 // TODO: (missing-docs) Add documentation
+@pagedResult
 model OdataProductResult {
   // TODO: (missing-docs) Add documentation
+  @items
   values: Product[];
   // TODO: (missing-docs) Add documentation
+
+  @nextLink
   "odata.nextLink": string;
 }
 
 // TODO: (missing-docs) Add documentation
+@pagedResult
 model ProductResultValueWithXMSClientName {
   // TODO: (missing-docs) Add documentation
+  @items
   values: Product[];
   // TODO: (missing-docs) Add documentation
+
+  @nextLink
   nextLink: string;
 }
 
