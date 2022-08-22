@@ -19,13 +19,10 @@ export function buildClient(model: RLCModel): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
   const { srcPath } = model;
   const project = new Project();
-  const clientFile = project.createSourceFile(
-    path.join(srcPath, `${name}.ts`),
-    undefined,
-    {
-      overwrite: true
-    }
-  );
+  const filePath = path.join(srcPath, `${name}.ts`);
+  const clientFile = project.createSourceFile(filePath, undefined, {
+    overwrite: true
+  });
 
   // Get all paths
   const clientName = model.libraryName;
@@ -103,7 +100,7 @@ export function buildClient(model: RLCModel): File | undefined {
       moduleSpecifier: "./clientDefinitions"
     }
   ]);
-  return { path: clientFile.getFilePath(), content: clientFile.getFullText() };
+  return { path: filePath, content: clientFile.getFullText() };
 }
 
 function isSecurityInfoDefined(

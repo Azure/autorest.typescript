@@ -36,7 +36,6 @@ import {
   buildResponseTypes,
   buildRollupConfig,
   buildTsConfig,
-  buildSchemaTypes,
   buildClient
 } from "@azure-tools/rlc-codegen";
 import {
