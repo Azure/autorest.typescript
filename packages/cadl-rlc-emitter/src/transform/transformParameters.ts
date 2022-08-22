@@ -3,6 +3,8 @@
 
 import {
   ImportKind,
+  NameType,
+  normalizeName,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
@@ -69,7 +71,7 @@ function getParameterMetadata(
     SchemaContext.Exception
   ]) as Schema;
   const type = getTypeName(schema);
-  const name = getParameterName(parameter.name);
+  const name = normalizeName(getParameterName(parameter.name), NameType.Parameter);
   return {
     type: paramType,
     name,

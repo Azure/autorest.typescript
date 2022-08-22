@@ -1,32 +1,154 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import { Pet } from "./models";
+import { LedgerEntry, LedgerUser } from "./models";
 
-export type PetsDeleteParameters = RequestParameters;
-
-export interface PetsListQueryParamProperties {
-  nextLink?: string;
+export interface ConfidentialLedgerListCollectionsQueryParamProperties {
+  apiVersion: string;
 }
 
-export interface PetsListQueryParam {
-  queryParameters?: PetsListQueryParamProperties;
+export interface ConfidentialLedgerListCollectionsQueryParam {
+  queryParameters: ConfidentialLedgerListCollectionsQueryParamProperties;
 }
 
-export type PetsListParameters = PetsListQueryParam & RequestParameters;
-export type PetsReadParameters = RequestParameters;
+export type ConfidentialLedgerListCollectionsParameters =
+  ConfidentialLedgerListCollectionsQueryParam & RequestParameters;
 
-export interface PetsCreateBodyParam {
-  body: Pet;
+export interface ConfidentialLedgerGetEnclaveQuotesQueryParamProperties {
+  apiVersion: string;
 }
 
-export type PetsCreateParameters = PetsCreateBodyParam & RequestParameters;
-
-export interface ListPetToysResponseListQueryParamProperties {
-  nameFilter: string;
+export interface ConfidentialLedgerGetEnclaveQuotesQueryParam {
+  queryParameters: ConfidentialLedgerGetEnclaveQuotesQueryParamProperties;
 }
 
-export interface ListPetToysResponseListQueryParam {
-  queryParameters: ListPetToysResponseListQueryParamProperties;
+export type ConfidentialLedgerGetEnclaveQuotesParameters =
+  ConfidentialLedgerGetEnclaveQuotesQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerGetConstitutionQueryParamProperties {
+  apiVersion: string;
 }
 
-export type ListPetToysResponseListParameters =
-  ListPetToysResponseListQueryParam & RequestParameters;
+export interface ConfidentialLedgerGetConstitutionQueryParam {
+  queryParameters: ConfidentialLedgerGetConstitutionQueryParamProperties;
+}
+
+export type ConfidentialLedgerGetConstitutionParameters =
+  ConfidentialLedgerGetConstitutionQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerGetConsortiumMembersQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface ConfidentialLedgerGetConsortiumMembersQueryParam {
+  queryParameters: ConfidentialLedgerGetConsortiumMembersQueryParamProperties;
+}
+
+export type ConfidentialLedgerGetConsortiumMembersParameters =
+  ConfidentialLedgerGetConsortiumMembersQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerPostLedgerEntryBodyParam {
+  body: LedgerEntry;
+}
+
+export interface ConfidentialLedgerPostLedgerEntryQueryParamProperties {
+  apiVersion: string;
+  collectionId?: string;
+}
+
+export interface ConfidentialLedgerPostLedgerEntryQueryParam {
+  queryParameters: ConfidentialLedgerPostLedgerEntryQueryParamProperties;
+}
+
+export type ConfidentialLedgerPostLedgerEntryParameters =
+  ConfidentialLedgerPostLedgerEntryQueryParam &
+    ConfidentialLedgerPostLedgerEntryBodyParam &
+    RequestParameters;
+
+export interface ConfidentialLedgerGetLedgerEntryQueryParamProperties {
+  apiVersion: string;
+  collectionId?: string;
+}
+
+export interface ConfidentialLedgerGetLedgerEntryQueryParam {
+  queryParameters: ConfidentialLedgerGetLedgerEntryQueryParamProperties;
+}
+
+export type ConfidentialLedgerGetLedgerEntryParameters =
+  ConfidentialLedgerGetLedgerEntryQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerGetReceiptQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface ConfidentialLedgerGetReceiptQueryParam {
+  queryParameters: ConfidentialLedgerGetReceiptQueryParamProperties;
+}
+
+export type ConfidentialLedgerGetReceiptParameters =
+  ConfidentialLedgerGetReceiptQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerGetTransactionStatusQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface ConfidentialLedgerGetTransactionStatusQueryParam {
+  queryParameters: ConfidentialLedgerGetTransactionStatusQueryParamProperties;
+}
+
+export type ConfidentialLedgerGetTransactionStatusParameters =
+  ConfidentialLedgerGetTransactionStatusQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties {
+  apiVersion: string;
+  collectionId?: string;
+}
+
+export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParam {
+  queryParameters: ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties;
+}
+
+export type ConfidentialLedgerGetCurrentLedgerEntryParameters =
+  ConfidentialLedgerGetCurrentLedgerEntryQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerDeleteUserQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface ConfidentialLedgerDeleteUserQueryParam {
+  queryParameters: ConfidentialLedgerDeleteUserQueryParamProperties;
+}
+
+export type ConfidentialLedgerDeleteUserParameters =
+  ConfidentialLedgerDeleteUserQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerGetUserQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface ConfidentialLedgerGetUserQueryParam {
+  queryParameters: ConfidentialLedgerGetUserQueryParamProperties;
+}
+
+export type ConfidentialLedgerGetUserParameters =
+  ConfidentialLedgerGetUserQueryParam & RequestParameters;
+
+export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
+  body: LedgerUser;
+}
+
+export interface ConfidentialLedgerCreateOrUpdateUserQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface ConfidentialLedgerCreateOrUpdateUserQueryParam {
+  queryParameters: ConfidentialLedgerCreateOrUpdateUserQueryParamProperties;
+}
+
+export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {
+  contentType: string;
+}
+
+export type ConfidentialLedgerCreateOrUpdateUserParameters =
+  ConfidentialLedgerCreateOrUpdateUserQueryParam &
+    ConfidentialLedgerCreateOrUpdateUserMediaTypesParam &
+    ConfidentialLedgerCreateOrUpdateUserBodyParam &
+    RequestParameters;

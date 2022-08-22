@@ -1,6 +1,6 @@
-import PetStoreService from "./petStoreService";
+import ConfidentialLedgerService from "./confidentialLedgerService";
 
-export * from "./petStoreService";
+export * from "./confidentialLedgerService";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -8,4 +8,4 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 
-export default PetStoreService;
+export default ConfidentialLedgerService;
