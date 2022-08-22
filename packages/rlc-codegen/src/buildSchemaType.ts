@@ -6,14 +6,15 @@ import * as path from "path";
 import {
   buildObjectInterfaces,
   buildPolymorphicAliases
-} from "./generateObjectTypes.js";
+} from "./buildObjectTypes.js";
 import { RLCModel, SchemaContext } from "./interfaces.js";
 
 /**
  * Generates types to represent schema definitions in the swagger
  */
-export function generateSchemaTypes(model: RLCModel, project: Project) {
+export function buildSchemaTypes(model: RLCModel) {
   const { srcPath } = model;
+  const project = new Project();
   let filePath = path.join(srcPath, `models.ts`);
   const inputModelFile = generateModelFiles(model, project, filePath, [
     SchemaContext.Input

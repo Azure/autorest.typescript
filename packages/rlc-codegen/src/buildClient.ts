@@ -12,15 +12,13 @@ import {
 import * as path from "path";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { isConstantSchema } from "./helpers/schemaHelpers.js";
-import { generateMethodShortcutImplementation } from "./generateMethodShortcuts.js";
+import { buildMethodShortcutImplementation } from "./buildMethodShortcuts.js";
 import { RLCModel, Schema, File } from "./interfaces.js";
 
-export function generateClient(
-  model: RLCModel,
-  project: Project
-): File | undefined {
+export function buildClient(model: RLCModel): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
   const { srcPath } = model;
+  const project = new Project();
   const clientFile = project.createSourceFile(
     path.join(srcPath, `${name}.ts`),
     undefined,
@@ -206,7 +204,7 @@ function getClientFactoryBody(
   let returnStatement = `return client;`;
 
   if (includeShortcuts) {
-    const shortcutImplementations = generateMethodShortcutImplementation(
+    const shortcutImplementations = buildMethodShortcutImplementation(
       model.paths
     );
     const shortcutBody = Object.keys(shortcutImplementations).map((key) => {

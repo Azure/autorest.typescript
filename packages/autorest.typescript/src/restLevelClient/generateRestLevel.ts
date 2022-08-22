@@ -5,13 +5,10 @@ import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { performCodeModelMutations } from "./mutateCodeModel";
-import { generateSchemaTypes } from "./generateSchemaTypes";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generateClient } from "./generateClient";
 import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
-import { generateTopLevelIndexFile } from "./generateTopLevelIndexFile";
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
 import { hasPollingOperations } from "./helpers/hasPollingOperations";
 import { generateKarmaConfigFile } from "../generators/static/karmaConfigFileGenerator";
@@ -38,9 +35,15 @@ import {
   buildParameterTypes,
   buildResponseTypes,
   buildRollupConfig,
-  buildTsConfig
+  buildTsConfig,
+  buildSchemaTypes,
+  buildClient
 } from "@azure-tools/rlc-codegen";
-import { generateFileByBuilder } from "./helpers/generatorHelpers";
+import {
+  generateFileByBuilder,
+  generateSchemaTypes,
+  generateTopLevelIndexFile
+} from "./helpers/generatorHelpers";
 
 /**
  * Generates a Rest Level Client library
@@ -92,12 +95,14 @@ export async function generateRestLevelClient() {
 
   // buildResponseTypes
   generateFileByBuilder(project, buildResponseTypes, rlcModels);
-  generateSchemaTypes(rlcModels, project);
+  // generate input & output models
+  generateSchemaTypes(project, rlcModels);
   // buildParameterTypes
   generateFileByBuilder(project, buildParameterTypes, rlcModels);
   // buildClientDefinitions
   generateFileByBuilder(project, buildClientDefinitions, rlcModels);
-  generateClient(rlcModels, project);
+  // buildClient
+  generateFileByBuilder(project, buildClient, rlcModels);
   // buildIndexFile
   generateFileByBuilder(project, buildIndexFile, rlcModels);
   // buildIsUnexpectedHelper

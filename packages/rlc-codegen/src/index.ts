@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 export * from "./interfaces.js";
-export * from "./generateClientDefinitions.js";
-export * from "./generateSchemaType.js";
-export * from "./generateClient.js";
+export * from "./buildClientDefinitions.js";
+export * from "./buildSchemaType.js";
+export * from "./buildClient.js";
 export * from "./helpers/nameConstructors.js";
 export * from "./buildResponseTypes.js";
 export * from "./helpers/shortcutMethods.js";
