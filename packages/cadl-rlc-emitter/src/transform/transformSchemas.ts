@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
-import { Program, Type } from "@cadl-lang/compiler";
+import { ModelType, Program, Type } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import { getSchemaForType } from "../modelUtils.js";
 
@@ -14,7 +14,7 @@ export function transformSchemas(program: Program) {
     if (route.parameters.bodyParameter) {
       const bodyModel = route.parameters.bodyType;
       if (bodyModel && bodyModel.kind === "Model") {
-        setModelMap(bodyModel, SchemaContext.Input);
+        getGeneratedModels(bodyModel, SchemaContext.Input);
       }
     }
     for (const resp of route.responses) {
@@ -23,14 +23,7 @@ export function transformSchemas(program: Program) {
         if (!respModel) {
           continue;
         }
-        if (respModel.type.kind === "Model") {
-          if (respModel.type.templateArguments && respModel.type.templateArguments.length) {
-            for(const temp of respModel.type.templateArguments) {
-              setModelMap(temp, SchemaContext.Output);
-            }
-          }
-          setModelMap(respModel.type, SchemaContext.Output);
-        }
+        getGeneratedModels(respModel.type, SchemaContext.Output);
       }
     }
   }
@@ -48,6 +41,25 @@ export function transformSchemas(program: Program) {
       }
     } else {
       modelMap.set(type, [schemaContext]);
+    }
+  }
+  function getGeneratedModels(model: Type, context: SchemaContext) {
+    if (model.kind === "Model") {
+      if (model.templateArguments && model.templateArguments.length) {
+        for (const temp of model.templateArguments) {
+          setModelMap(temp, context);
+        }
+      }
+      setModelMap(model, context);
+      const indexer = (model as ModelType).indexer;
+      if (indexer?.value && !modelMap.has(indexer?.value)) {
+        setModelMap(indexer.value, context);
+      }
+      for (const prop of model.properties) {
+        if (prop[1].type.kind === "Model" && !modelMap.has(prop[1].type)) {
+          getGeneratedModels(prop[1].type, context);
+        }
+      }
     }
   }
   return schemas;
