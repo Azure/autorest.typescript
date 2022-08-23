@@ -2,6 +2,16 @@ import { RequestParameters } from "@azure-rest/core-client";
 import { Pet } from "./models";
 
 export type PetsDeleteParameters = RequestParameters;
+
+export interface PetsListQueryParamProperties {
+  nextLink?: string;
+}
+
+export interface PetsListQueryParam {
+  queryParameters?: PetsListQueryParamProperties;
+}
+
+export type PetsListParameters = PetsListQueryParam & RequestParameters;
 export type PetsReadParameters = RequestParameters;
 
 export interface PetsCreateBodyParam {

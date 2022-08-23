@@ -43,6 +43,9 @@ export default function createClient(
       read: (petId, options) => {
         return client.path("/pets/{petId}", petId).get(options);
       },
+      list: (options) => {
+        return client.path("/pets").get(options);
+      },
       create: (options) => {
         return client.path("/pets").post(options);
       },

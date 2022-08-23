@@ -135,19 +135,19 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/cadl-autorest/0.18.0_c95bbd841cb649e5bb3cd5fea3af8c74:
-    resolution: {integrity: sha512-0wpi/+TF3b51vokDRjID7BpcBWVoaFEuXtuJFlDEcQdO6J3Li9O2BFOz595YVWS8/Z8+BUMWDgc5wR49uyywBg==}
+  /@azure-tools/cadl-autorest/0.19.0_304f91367eebb876f0a696e8de03235b:
+    resolution: {integrity: sha512-lu9eDwwBHi11bcVKH/4p6qgtUdnxhqgNT9fsoweXWPlzSMpNbmHxenpJ0iUhRc5q2+KiKwEMO+1cDiZLnpM6/g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@azure-tools/cadl-azure-core': ~0.5.0
-      '@cadl-lang/compiler': ~0.33.0
-      '@cadl-lang/openapi': ~0.10.1
-      '@cadl-lang/rest': ~0.15.1
-      '@cadl-lang/versioning': ~0.6.1
+      '@azure-tools/cadl-azure-core': ~0.6.0
+      '@cadl-lang/compiler': ~0.34.0
+      '@cadl-lang/openapi': ~0.11.0
+      '@cadl-lang/rest': ~0.16.0
+      '@cadl-lang/versioning': ~0.7.0
     dependencies:
-      '@cadl-lang/compiler': 0.33.0
-      '@cadl-lang/openapi': 0.10.0_2b66ecc4096f8cfee81ca097164113ff
-      '@cadl-lang/rest': 0.15.0_@cadl-lang+compiler@0.33.0
+      '@cadl-lang/compiler': 0.34.0
+      '@cadl-lang/openapi': 0.11.0_0f0c7e63bc84e362f275bdbb3a699842
+      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
       '@cadl-lang/versioning': 0.7.0
     dev: false
 
@@ -1695,28 +1695,6 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: false
 
-  /@cadl-lang/compiler/0.33.0:
-    resolution: {integrity: sha512-emylkgPuD1nPEUwtsdRV5F/WQvqPU2UYGTpWXocqP5FuJfmiTZBRvPvJ9Ftkg/rYJ9EKgf45IIXyGRza7bRyFA==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/code-frame': 7.16.7
-      ajv: 8.9.0
-      change-case: 4.1.2
-      globby: 13.1.2
-      js-yaml: 4.1.0
-      mkdirp: 1.0.4
-      mustache: 4.2.0
-      node-fetch: 3.2.10
-      node-watch: 0.7.3
-      picocolors: 1.0.0
-      prettier: 2.7.1
-      prompts: 2.4.2
-      vscode-languageserver: 7.0.0
-      vscode-languageserver-textdocument: 1.0.5
-      yargs: 17.3.1
-    dev: false
-
   /@cadl-lang/compiler/0.34.0:
     resolution: {integrity: sha512-5KdfJTXkvzvRXVE4cvSm6lJtVVC4hEhUn+9vJXuxl3FIEmMR176xRXl9+ykcYLtDOGojVX0d1OCukeniwXQAWA==}
     engines: {node: '>=16.0.0'}
@@ -1739,24 +1717,24 @@ packages:
       yargs: 17.3.1
     dev: false
 
-  /@cadl-lang/openapi/0.10.0_2b66ecc4096f8cfee81ca097164113ff:
-    resolution: {integrity: sha512-YlJN4KcnwiQkldiwYQ8265dZt1BP01mnBu9SC6du9Qw3vMTUO9XLl857moGKyfjuV2Mj2wFPQcWq/Sdf+2wcKg==}
+  /@cadl-lang/openapi/0.11.0_0f0c7e63bc84e362f275bdbb3a699842:
+    resolution: {integrity: sha512-miVNnGNq1VOdirTEStKIi00AMxPi/C53bGizrdqBUS7ZJ1vDQR7pq9hbPNYX8K7qAjMMSrJQykZc0xTOB/Jlow==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.32.0
-      '@cadl-lang/rest': ~0.15.0
+      '@cadl-lang/compiler': ~0.34.0
+      '@cadl-lang/rest': ~0.16.0
     dependencies:
-      '@cadl-lang/compiler': 0.33.0
-      '@cadl-lang/rest': 0.15.0_@cadl-lang+compiler@0.33.0
+      '@cadl-lang/compiler': 0.34.0
+      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
     dev: false
 
-  /@cadl-lang/rest/0.15.0_@cadl-lang+compiler@0.33.0:
-    resolution: {integrity: sha512-rO1yEXZ9cWr3FtAQbA/DLWslUjUYkOAkei9ZJxcHHmzqJnAI5fylFB23LaAJhVA6a8lAHis30CtJj8sY/KXQAg==}
+  /@cadl-lang/rest/0.16.0_@cadl-lang+compiler@0.34.0:
+    resolution: {integrity: sha512-sf6BmJXpXWiTRZyqJkAAUZaAmfp6L35rg235PI4JeKsi93SbNExxuWR7USisA8sRvcCK9Ru8f8d0M+pb9oi4Mw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.32.0
+      '@cadl-lang/compiler': ~0.34.0
     dependencies:
-      '@cadl-lang/compiler': 0.33.0
+      '@cadl-lang/compiler': 0.34.0
     dev: false
 
   /@cadl-lang/versioning/0.7.0:
@@ -10939,14 +10917,14 @@ packages:
     dev: false
 
   file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-MhEFlwB/IHXdacgMroEMHVipSKg8B79WG7CiH4jaljpeUENpGK3VwgymaRnXKyNi8mR6KzPsf7FsPn6RHuqRBA==, tarball: file:projects/cadl-rest-test.tgz}
+    resolution: {integrity: sha512-okaWsEXRoGtZPyt1fGM8htNrlnpEEICoGtz0BNlxRl4o0Hy3JK1wgjkr/yJ4TNQ7aaIP08v5OnxKAPG5Vcpwpg==, tarball: file:projects/cadl-rest-test.tgz}
     name: '@rush-temp/cadl-rest-test'
     version: 0.0.0
     dependencies:
-      '@azure-tools/cadl-autorest': 0.18.0_c95bbd841cb649e5bb3cd5fea3af8c74
-      '@cadl-lang/compiler': 0.33.0
-      '@cadl-lang/openapi': 0.10.0_2b66ecc4096f8cfee81ca097164113ff
-      '@cadl-lang/rest': 0.15.0_@cadl-lang+compiler@0.33.0
+      '@azure-tools/cadl-autorest': 0.19.0_304f91367eebb876f0a696e8de03235b
+      '@cadl-lang/compiler': 0.34.0
+      '@cadl-lang/openapi': 0.11.0_0f0c7e63bc84e362f275bdbb3a699842
+      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
       '@cadl-lang/versioning': 0.7.0
       '@types/node': 12.20.55
       ts-node: 8.10.2
@@ -10971,12 +10949,12 @@ packages:
     dev: false
 
   file:projects/ts-rlc.tgz:
-    resolution: {integrity: sha512-KidvxWsb4evzZKkkdwbkBf9uMvhMymsOOljwiVo2LS6c7dBWM0fS8huTt/2QBWzCw3FZbZtjE067s1aTJNW+Og==, tarball: file:projects/ts-rlc.tgz}
+    resolution: {integrity: sha512-a7n5GJwToiuR2OubqzND3cieE4jm+h76RpUxK21HX8k3/XPibnOl3QhlXQSGA+Vdx0epwo/z02Ufh2T0HGkrQA==, tarball: file:projects/ts-rlc.tgz}
     name: '@rush-temp/ts-rlc'
     version: 0.0.0
     dependencies:
-      '@cadl-lang/compiler': 0.33.0
-      '@cadl-lang/rest': 0.15.0_@cadl-lang+compiler@0.33.0
+      '@cadl-lang/compiler': 0.34.0
+      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
       '@types/chai': 4.3.1
       '@types/mocha': 9.1.1
       '@types/node': 17.0.45

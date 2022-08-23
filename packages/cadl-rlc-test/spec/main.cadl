@@ -1,4 +1,6 @@
+
 import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
 import "./decorators.js";
 
 using Cadl.Http;
@@ -51,32 +53,26 @@ model ResponsePage<T> {
 }
 
 model PetId {
-  @path
-  @doc("The id of pet.")
-  petId: int32;
+  @path petId: int32;
 }
 
-@doc("Manage your pets. You can delete or get the Pet from pet store.")
-@summary("Manage your pets.")
+@doc("Manage your pets.")
 @route("/pets")
 namespace Pets {
   @doc("Delete a pet.")
-  @summary("delete.")
   @delete
-  op delete(...PetId): {
-    ...Response<200>;
-  } | Error;
+  op delete(...PetId): OkResponse | Error;
 
-  // @fancyDoc("List pets.")
-  // op list(@query nextLink?: string): OkResponse<ResponsePage<Pet>> | Error;
+  @fancyDoc("List pets.")
+  op list(@query nextLink?: string): ResponsePage<Pet> | Error;
 
   @doc("Returns a pet. Supports eTags.")
-  op read(...PetId): OkResponse<Pet> | NotModified<Pet> | Error;
+  op read(...PetId): Pet | (NotModifiedResponse & Body<Pet>) | Error;
 
-  @post op create(@body pet: Pet): OkResponse<Pet> | Error;
+  @post op create(@body pet: Pet): Pet | Error;
 }
 
 @route("/pets/{petId}/toys")
 namespace ListPetToysResponse {
-  op list(@path petId: string, @query nameFilter: string): OkResponse<ResponsePage<Toy>> | Error;
+  op list(@path petId: string, @query nameFilter: string): ResponsePage<Toy> | Error;
 }

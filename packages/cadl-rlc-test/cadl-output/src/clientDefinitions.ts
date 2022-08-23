@@ -1,6 +1,7 @@
 import {
   PetsDeleteParameters,
   PetsReadParameters,
+  PetsListParameters,
   PetsCreateParameters,
   ListPetToysResponseListParameters,
 } from "./parameters";
@@ -10,6 +11,8 @@ import {
   PetsRead200Response,
   PetsRead304Response,
   PetsReadDefaultResponse,
+  PetsList200Response,
+  PetsListDefaultResponse,
   PetsCreate200Response,
   PetsCreateDefaultResponse,
   ListPetToysResponseList200Response,
@@ -31,6 +34,10 @@ export interface PetsOperations {
   ): StreamableMethod<
     PetsRead200Response | PetsRead304Response | PetsReadDefaultResponse
   >;
+  /** <blink>List pets.</blink> */
+  list(
+    options?: PetsListParameters
+  ): StreamableMethod<PetsList200Response | PetsListDefaultResponse>;
   create(
     options: PetsCreateParameters
   ): StreamableMethod<PetsCreate200Response | PetsCreateDefaultResponse>;
@@ -59,7 +66,11 @@ export interface PetsDelete {
   >;
 }
 
-export interface PetsCreate {
+export interface PetsList {
+  /** <blink>List pets.</blink> */
+  get(
+    options?: PetsListParameters
+  ): StreamableMethod<PetsList200Response | PetsListDefaultResponse>;
   post(
     options: PetsCreateParameters
   ): StreamableMethod<PetsCreate200Response | PetsCreateDefaultResponse>;
@@ -76,8 +87,8 @@ export interface ListPetToysResponseList {
 export interface Routes {
   /** Resource for '/pets/\{petId\}' has methods for the following verbs: delete, get */
   (path: "/pets/{petId}", petId: number): PetsDelete;
-  /** Resource for '/pets' has methods for the following verbs: post */
-  (path: "/pets"): PetsCreate;
+  /** Resource for '/pets' has methods for the following verbs: get, post */
+  (path: "/pets"): PetsList;
   /** Resource for '/pets/\{petId\}/toys' has methods for the following verbs: get */
   (path: "/pets/{petId}/toys", petId: string): ListPetToysResponseList;
 }

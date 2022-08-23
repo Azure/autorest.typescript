@@ -4,6 +4,8 @@ import {
   PetsRead200Response,
   PetsRead304Response,
   PetsReadDefaultResponse,
+  PetsList200Response,
+  PetsListDefaultResponse,
   PetsCreate200Response,
   PetsCreateDefaultResponse,
   ListPetToysResponseList200Response,
@@ -13,6 +15,7 @@ import {
 const responseMap: Record<string, string[]> = {
   "DELETE /pets/{petId}": ["200"],
   "GET /pets/{petId}": ["200", "304"],
+  "GET /pets": ["200"],
   "POST /pets": ["200"],
   "GET /pets/{petId}/toys": ["200"],
 };
@@ -23,6 +26,9 @@ export function isUnexpected(
 export function isUnexpected(
   response: PetsRead200Response | PetsRead304Response | PetsReadDefaultResponse
 ): response is PetsReadDefaultResponse;
+export function isUnexpected(
+  response: PetsList200Response | PetsListDefaultResponse
+): response is PetsListDefaultResponse;
 export function isUnexpected(
   response: PetsCreate200Response | PetsCreateDefaultResponse
 ): response is PetsCreateDefaultResponse;
@@ -38,6 +44,8 @@ export function isUnexpected(
     | PetsRead200Response
     | PetsRead304Response
     | PetsReadDefaultResponse
+    | PetsList200Response
+    | PetsListDefaultResponse
     | PetsCreate200Response
     | PetsCreateDefaultResponse
     | ListPetToysResponseList200Response
@@ -45,6 +53,7 @@ export function isUnexpected(
 ): response is
   | PetsDeleteDefaultResponse
   | PetsReadDefaultResponse
+  | PetsListDefaultResponse
   | PetsCreateDefaultResponse
   | ListPetToysResponseListDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];

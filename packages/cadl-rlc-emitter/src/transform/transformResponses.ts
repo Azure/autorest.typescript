@@ -11,6 +11,7 @@ import {
 } from "@azure-tools/rlc-codegen";
 import { Program } from "@cadl-lang/compiler";
 import { getAllRoutes, HttpOperationResponse } from "@cadl-lang/rest/http";
+import { reportDiagnostic } from "../lib.js";
 import {
   getImportedModelName,
   getTypeName,
@@ -25,8 +26,16 @@ export function transformToResponseTypes(
   const rlcResponses: OperationResponse[] = [];
   let inputImportedSet = new Set<string>();
   for (const route of routes) {
+    if (!route.operation.namespace?.name) {
+      reportDiagnostic(program, {
+        code: "missing-namespace",
+        format: { path: route.path },
+        target: route.operation
+      });
+      continue;
+    }
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: route.groupName,
+      operationGroup: route.operation.namespace?.name,
       operationName: route.operation.name,
       responses: []
     };
