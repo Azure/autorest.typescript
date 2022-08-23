@@ -13,28 +13,6 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for CollectionPropertiesBasic operations */
-export interface CollectionPropertiesBasicOperations {
-  sendCollectionModel(
-    options: CollectionPropertiesBasicSendCollectionModelParameters
-  ): StreamableMethod<
-    | CollectionPropertiesBasicSendCollectionModel200Response
-    | CollectionPropertiesBasicSendCollectionModelDefaultResponse
-  >;
-  getCollectionModel(
-    options: CollectionPropertiesBasicGetCollectionModelParameters
-  ): StreamableMethod<
-    | CollectionPropertiesBasicGetCollectionModel200Response
-    | CollectionPropertiesBasicGetCollectionModelDefaultResponse
-  >;
-  setCollectionModel(
-    options: CollectionPropertiesBasicSetCollectionModelParameters
-  ): StreamableMethod<
-    | CollectionPropertiesBasicSetCollectionModel200Response
-    | CollectionPropertiesBasicSetCollectionModelDefaultResponse
-  >;
-}
-
 export interface SendCollectionModel {
   post(
     options: CollectionPropertiesBasicSendCollectionModelParameters
@@ -63,5 +41,4 @@ export interface Routes {
 
 export type CollectionPropertiesBasicClient = Client & {
   path: Routes;
-  collectionPropertiesBasic: CollectionPropertiesBasicOperations;
 };

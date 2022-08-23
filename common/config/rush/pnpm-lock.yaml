@@ -9834,13 +9834,16 @@ packages:
     dev: false
 
   file:projects/ts-rlc.tgz:
-    resolution: {integrity: sha512-wH/lkJZr4WP4sm3AK7R/9JTfMz7CQTDtMlFVigeS3Wn9+Kut7AiQxHJ/958ZgSFzRIHwiJww0Cd2rxCkYiCTow==, tarball: file:projects/ts-rlc.tgz}
+    resolution: {integrity: sha512-ZEpfzoG6Q8ThPYiAjRd6Pn/d7AVdGbqYVnLUqhJVhB0QN3c59SmaTnsoPFCoWYJhI40qcJ9r8cEn+IqfKMMVSw==, tarball: file:projects/ts-rlc.tgz}
     name: '@rush-temp/ts-rlc'
     version: 0.0.0
     dependencies:
+      '@azure-rest/core-client': 1.0.0-beta.10
       '@azure-tools/cadl-azure-core': 0.6.0_0f0c7e63bc84e362f275bdbb3a699842
+      '@azure-tools/cadl-ranch': 0.1.2
       '@azure-tools/cadl-ranch-expect': 0.1.2_@cadl-lang+compiler@0.34.0
       '@azure-tools/cadl-ranch-specs': 0.1.3_2b631f1613cdc8bfd08501b7b5674984
+      '@azure/core-auth': 1.4.0
       '@cadl-lang/compiler': 0.34.0
       '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
       '@types/chai': 4.3.3

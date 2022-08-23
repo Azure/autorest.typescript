@@ -1,9 +1,7 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { OutputBasicClient } from "./clientDefinitions";
+import { HelloClient } from "./clientDefinitions";
 
-export default function createClient(
-  options: ClientOptions = {}
-): OutputBasicClient {
+export default function createClient(options: ClientOptions = {}): HelloClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "1.0.0";
 
@@ -19,7 +17,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as OutputBasicClient;
+  const client = getClient(baseUrl, options) as HelloClient;
 
   return client;
 }

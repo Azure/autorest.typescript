@@ -10,22 +10,6 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for BasicPolymorphicModels operations */
-export interface BasicPolymorphicModelsOperations {
-  setValue(
-    options: BasicPolymorphicModelsSetValueParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValue200Response
-    | BasicPolymorphicModelsSetValueDefaultResponse
-  >;
-  setValueWithPolymorphicProperty(
-    options: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response
-    | BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse
-  >;
-}
-
 export interface SetValue {
   put(
     options: BasicPolymorphicModelsSetValueParameters
@@ -53,5 +37,4 @@ export interface Routes {
 
 export type InheritanceClient = Client & {
   path: Routes;
-  basicPolymorphicModels: BasicPolymorphicModelsOperations;
 };

@@ -35,9 +35,8 @@ export function transformRLCOptions(program: Program): RLCOptions {
 function returnFixedConfig() {
   return {
     generateMetadata: true,
-    includeShortcuts: true,
-    addCredentials: true,
-    credentialScopes: ["https://example.net/.default"],
+    includeShortcuts: false,
+    addCredentials: false,
     packageDetails: {
       name: "@msinternal/example-name",
       scopeName: "msinternal",

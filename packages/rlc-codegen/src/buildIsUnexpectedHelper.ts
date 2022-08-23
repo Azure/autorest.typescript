@@ -65,6 +65,10 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
     }
   }
 
+  if (!overloads.length) {
+    return;
+  }
+
   isErrorHelper.addImportDeclaration({
     namedImports: [...allResponseTypes],
     moduleSpecifier: "./responses"

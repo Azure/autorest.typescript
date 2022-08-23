@@ -177,6 +177,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["rollup"] = "^2.66.1";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
     packageInfo.devDependencies["uglify-js"] = "^3.4.9";
+    packageInfo["type"] = "module";
   }
 
   if (generateTest) {

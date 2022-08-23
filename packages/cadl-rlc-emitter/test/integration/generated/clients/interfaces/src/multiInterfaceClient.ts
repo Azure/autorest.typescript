@@ -1,19 +1,11 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { TokenCredential } from "@azure/core-auth";
 import { MultiInterfaceClient } from "./clientDefinitions";
 
 export default function createClient(
-  credentials: TokenCredential,
   options: ClientOptions = {}
 ): MultiInterfaceClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  options = {
-    ...options,
-    credentials: {
-      scopes: ["https://example.net/.default"],
-    },
-  };
 
   const userAgentInfo = `azsdk-js-example-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -27,27 +19,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(
-    baseUrl,
-    credentials,
-    options
-  ) as MultiInterfaceClient;
+  const client = getClient(baseUrl, options) as MultiInterfaceClient;
 
-  return {
-    ...client,
-    multiInterfaceClient: {
-      getDogs: (options) => {
-        return client.path("/dogs").get(options);
-      },
-      setDogs: (options) => {
-        return client.path("/dogs/models").put(options);
-      },
-      getCats: (options) => {
-        return client.path("/cats").get(options);
-      },
-      setCats: (options) => {
-        return client.path("/cats").put(options);
-      },
-    },
-  };
+  return client;
 }

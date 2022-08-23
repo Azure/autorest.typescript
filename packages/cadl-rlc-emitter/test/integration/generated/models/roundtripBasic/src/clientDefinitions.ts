@@ -5,15 +5,6 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for RoundTripBasic operations */
-export interface RoundTripBasicOperations {
-  getModel(
-    options: RoundTripBasicGetModelParameters
-  ): StreamableMethod<
-    RoundTripBasicGetModel200Response | RoundTripBasicGetModelDefaultResponse
-  >;
-}
-
 export interface GetModel {
   get(
     options: RoundTripBasicGetModelParameters
@@ -29,5 +20,4 @@ export interface Routes {
 
 export type RoundTripBasicClient = Client & {
   path: Routes;
-  roundTripBasic: RoundTripBasicOperations;
 };

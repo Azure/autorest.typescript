@@ -4,6 +4,10 @@ export interface CadlRanchConfig {
 }
 
 export const cadls: CadlRanchConfig[] = [
+  {
+    outputPath: "hello",
+    inputPath: "hello"
+  },
   // TODO: remember to fix this case in emitter side
   // {
   //   outputPath: "extensibleEnums",
