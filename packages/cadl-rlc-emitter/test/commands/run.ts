@@ -1,23 +1,7 @@
-import { spawn, ChildProcess } from "child_process";
+import { spawn } from "child_process";
 import { dirname, join as joinPath } from "path";
 import { fileURLToPath } from "url";
-// import { onExit } from "./childProcessOnExit";
-
-export const onExit = (childProcess: ChildProcess) => {
-  return new Promise<void>((resolve, reject) => {
-    childProcess.once("exit", (code: number, signal: string) => {
-      if (code === 0) {
-        resolve();
-      }
-      console.log(signal);
-      reject(new Error(`Exit with code: ${code}`));
-    });
-
-    childProcess.once("error", (error: Error) => {
-      reject(error);
-    });
-  });
-};
+import { onExit } from "./childProcessOnExit.js";
 
 async function runCadlFile() {
   const specName = "outputBasic";
@@ -45,8 +29,8 @@ async function runCadlFile() {
     shell: process.platform === "win32"
   });
   const result = await onExit(childProcess);
-  console.log(result);
   console.log(`=== End ${specName} ===`);
+  return result;
 }
 
 try {
