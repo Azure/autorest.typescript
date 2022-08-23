@@ -22,8 +22,15 @@ async function runCadlFile() {
     "./dist/src/index.js"
   );
   const outputPath = joinPath(`${__dirname}`, "..", `./generated/${specName}`);
-  const cadlCommand = `cadl compile ${cadlPath} --emit=${emitterPath} --output-path=${outputPath}`;
-  const commandArguments: string[] = [];
+  const cadlCommand = `cadl`;
+  // const cadlCommand = `cadl compile ${cadlPath} --emit=${emitterPath} --output-path=${outputPath}`;
+  const commandArguments: string[] = [
+    "compile",
+    `${cadlPath}`,
+    `--emit=${emitterPath}`,
+    `--output-path=${outputPath}`
+  ];
+  console.log(`${cadlCommand} ${commandArguments.join(" ")}`);
   const childProcess = spawn(cadlCommand, commandArguments, {
     stdio: [process.stdin, process.stdout, process.stderr],
     shell: process.platform === "win32"
