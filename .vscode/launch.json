@@ -95,6 +95,16 @@
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
+    },
+    {
+      "name": "Generate code for CadlEmitter",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-emitter",
+      "runtimeArgs": ["ts-node", "./test/commands/run.ts"],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     }
   ]
 }

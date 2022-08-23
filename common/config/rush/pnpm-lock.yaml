@@ -9834,7 +9834,7 @@ packages:
     dev: false
 
   file:projects/ts-rlc.tgz:
-    resolution: {integrity: sha512-leE4cfuqKDmZkaXZYlwWOVgQ1OBVZuoboLjj5pGVAesFIRLxIRxzKZcZr9XD/xajDwZUubtS7pa1hi14F22YIA==, tarball: file:projects/ts-rlc.tgz}
+    resolution: {integrity: sha512-wH/lkJZr4WP4sm3AK7R/9JTfMz7CQTDtMlFVigeS3Wn9+Kut7AiQxHJ/958ZgSFzRIHwiJww0Cd2rxCkYiCTow==, tarball: file:projects/ts-rlc.tgz}
     name: '@rush-temp/ts-rlc'
     version: 0.0.0
     dependencies:
@@ -9850,6 +9850,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.34.0_252839f5d039dc356004eccbeb259218
       '@typescript-eslint/parser': 5.34.0_eslint@8.22.0+typescript@4.7.4
       chai: 4.3.6
+      chalk: 4.1.2
       eslint: 8.22.0
       mocha: 9.2.2
       prettier: 2.7.1
