@@ -15,11 +15,6 @@ export function transformSchemas(program: Program) {
       const bodyModel = route.parameters.bodyType;
       if (bodyModel && bodyModel.kind === "Model") {
         setModelMap(bodyModel, SchemaContext.Input);
-      // } else if (
-      //   bodyModel.kind === "Array" &&
-      //   bodyModel.elementType.kind === "Model"
-      // ) {
-      //   setModelMap(bodyModel.elementType, SchemaContext.Input);
       }
     }
     for (const resp of route.responses) {
@@ -35,16 +30,6 @@ export function transformSchemas(program: Program) {
             }
           }
           setModelMap(respModel.type, SchemaContext.Output);
-        // } else if (
-        //   respModel.type.kind === "Array" &&
-        //   respModel.type.elementType.kind === "Model"
-        // ) {
-        //   if (respModel.type.elementType.templateArguments && respModel.type.elementType.templateArguments.length) {
-        //     for(const temp of respModel.type.elementType.templateArguments) {
-        //       setModelMap(temp, SchemaContext.Output);
-        //     }
-        //   }
-        //   setModelMap(respModel.type.elementType, SchemaContext.Output);
         }
       }
     }

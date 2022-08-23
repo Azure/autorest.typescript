@@ -15,6 +15,7 @@ import {
   HttpOperationParameter,
   HttpOperationParameters
 } from "@cadl-lang/rest/http";
+import { reportDiagnostic } from "../lib.js";
 import {
   getImportedModelName,
   getTypeName,
@@ -29,9 +30,17 @@ export function transformToParameterTypes(
   const rlcParameters: OperationParameter[] = [];
   let outputImportedSet = new Set<string>();
   for (const route of routes) {
+    if (!route.operation.namespace?.name) {
+      reportDiagnostic(program, {
+        code: "missing-namespace",
+        format: { path: route.path },
+        target: route.operation
+      });
+      continue;
+    }
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: route.operation.namespace?.name ?? "",
+      operationGroup: route.operation.namespace?.name,
       operationName: route.operation.name,
       parameters: []
     };
