@@ -1,100 +1,272 @@
 import {
-  PetsDeleteParameters,
-  PetsReadParameters,
-  PetsListParameters,
-  PetsCreateParameters,
-  ListPetToysResponseListParameters,
+  ConfidentialLedgerListCollectionsParameters,
+  ConfidentialLedgerGetEnclaveQuotesParameters,
+  ConfidentialLedgerGetConstitutionParameters,
+  ConfidentialLedgerGetConsortiumMembersParameters,
+  ConfidentialLedgerPostLedgerEntryParameters,
+  ConfidentialLedgerGetLedgerEntryParameters,
+  ConfidentialLedgerGetReceiptParameters,
+  ConfidentialLedgerGetTransactionStatusParameters,
+  ConfidentialLedgerGetCurrentLedgerEntryParameters,
+  ConfidentialLedgerDeleteUserParameters,
+  ConfidentialLedgerGetUserParameters,
+  ConfidentialLedgerCreateOrUpdateUserParameters,
 } from "./parameters";
 import {
-  PetsDelete200Response,
-  PetsDeleteDefaultResponse,
-  PetsRead200Response,
-  PetsRead304Response,
-  PetsReadDefaultResponse,
-  PetsList200Response,
-  PetsListDefaultResponse,
-  PetsCreate200Response,
-  PetsCreateDefaultResponse,
-  ListPetToysResponseList200Response,
-  ListPetToysResponseListDefaultResponse,
+  ConfidentialLedgerListCollections200Response,
+  ConfidentialLedgerListCollectionsDefaultResponse,
+  ConfidentialLedgerGetEnclaveQuotes200Response,
+  ConfidentialLedgerGetEnclaveQuotesDefaultResponse,
+  ConfidentialLedgerGetConstitution200Response,
+  ConfidentialLedgerGetConstitutionDefaultResponse,
+  ConfidentialLedgerGetConsortiumMembers200Response,
+  ConfidentialLedgerGetConsortiumMembersDefaultResponse,
+  ConfidentialLedgerPostLedgerEntry200Response,
+  ConfidentialLedgerPostLedgerEntryDefaultResponse,
+  ConfidentialLedgerGetLedgerEntry200Response,
+  ConfidentialLedgerGetLedgerEntryDefaultResponse,
+  ConfidentialLedgerGetReceipt200Response,
+  ConfidentialLedgerGetReceiptDefaultResponse,
+  ConfidentialLedgerGetTransactionStatus200Response,
+  ConfidentialLedgerGetTransactionStatusDefaultResponse,
+  ConfidentialLedgerGetCurrentLedgerEntry200Response,
+  ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse,
+  ConfidentialLedgerDeleteUser204Response,
+  ConfidentialLedgerDeleteUserDefaultResponse,
+  ConfidentialLedgerGetUser200Response,
+  ConfidentialLedgerGetUserDefaultResponse,
+  ConfidentialLedgerCreateOrUpdateUser200Response,
+  ConfidentialLedgerCreateOrUpdateUserDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Pets operations */
-export interface PetsOperations {
-  /** Delete a pet. */
-  delete(
-    petId: number,
-    options: PetsDeleteParameters
-  ): StreamableMethod<PetsDelete200Response | PetsDeleteDefaultResponse>;
-  /** Returns a pet. Supports eTags. */
-  read(
-    petId: number,
-    options: PetsReadParameters
+/** Contains operations for ConfidentialLedger operations */
+export interface ConfidentialLedgerOperations {
+  /** Collection ids are user-created collections of ledger entries */
+  listCollections(
+    options: ConfidentialLedgerListCollectionsParameters
   ): StreamableMethod<
-    PetsRead200Response | PetsRead304Response | PetsReadDefaultResponse
+    | ConfidentialLedgerListCollections200Response
+    | ConfidentialLedgerListCollectionsDefaultResponse
   >;
-  /** <blink>List pets.</blink> */
-  list(
-    options?: PetsListParameters
-  ): StreamableMethod<PetsList200Response | PetsListDefaultResponse>;
-  create(
-    options: PetsCreateParameters
-  ): StreamableMethod<PetsCreate200Response | PetsCreateDefaultResponse>;
+  /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
+  getEnclaveQuotes(
+    options: ConfidentialLedgerGetEnclaveQuotesParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetEnclaveQuotes200Response
+    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
+  >;
+  /** The constitution is a script that assesses and applies proposals from consortium members. */
+  getConstitution(
+    options: ConfidentialLedgerGetConstitutionParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetConstitution200Response
+    | ConfidentialLedgerGetConstitutionDefaultResponse
+  >;
+  /** Consortium members can manage the Confidential Ledger. */
+  getConsortiumMembers(
+    options: ConfidentialLedgerGetConsortiumMembersParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetConsortiumMembers200Response
+    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
+  >;
+  /** A collection id may optionally be specified. */
+  postLedgerEntry(
+    options?: ConfidentialLedgerPostLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerPostLedgerEntry200Response
+    | ConfidentialLedgerPostLedgerEntryDefaultResponse
+  >;
+  getLedgerEntry(
+    transactionId: string,
+    options?: ConfidentialLedgerGetLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetLedgerEntry200Response
+    | ConfidentialLedgerGetLedgerEntryDefaultResponse
+  >;
+  getReceipt(
+    transactionId: string,
+    options: ConfidentialLedgerGetReceiptParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetReceipt200Response
+    | ConfidentialLedgerGetReceiptDefaultResponse
+  >;
+  getTransactionStatus(
+    transactionId: string,
+    options: ConfidentialLedgerGetTransactionStatusParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetTransactionStatus200Response
+    | ConfidentialLedgerGetTransactionStatusDefaultResponse
+  >;
+  getCurrentLedgerEntry(
+    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetCurrentLedgerEntry200Response
+    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
+  >;
+  deleteUser(
+    userId: string,
+    options: ConfidentialLedgerDeleteUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerDeleteUser204Response
+    | ConfidentialLedgerDeleteUserDefaultResponse
+  >;
+  getUser(
+    userId: string,
+    options: ConfidentialLedgerGetUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetUser200Response
+    | ConfidentialLedgerGetUserDefaultResponse
+  >;
+  createOrUpdateUser(
+    userId: string,
+    options: ConfidentialLedgerCreateOrUpdateUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
+  >;
 }
 
-/** Contains operations for ListPetToysResponse operations */
-export interface ListPetToysResponseOperations {
-  list(
-    petId: string,
-    options: ListPetToysResponseListParameters
-  ): StreamableMethod<
-    ListPetToysResponseList200Response | ListPetToysResponseListDefaultResponse
-  >;
-}
-
-export interface PetsDelete {
-  /** Delete a pet. */
-  delete(
-    options: PetsDeleteParameters
-  ): StreamableMethod<PetsDelete200Response | PetsDeleteDefaultResponse>;
-  /** Returns a pet. Supports eTags. */
+export interface ListCollections {
+  /** Collection ids are user-created collections of ledger entries */
   get(
-    options: PetsReadParameters
+    options: ConfidentialLedgerListCollectionsParameters
   ): StreamableMethod<
-    PetsRead200Response | PetsRead304Response | PetsReadDefaultResponse
+    | ConfidentialLedgerListCollections200Response
+    | ConfidentialLedgerListCollectionsDefaultResponse
   >;
 }
 
-export interface PetsList {
-  /** <blink>List pets.</blink> */
+export interface GetEnclaveQuotes {
+  /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
   get(
-    options?: PetsListParameters
-  ): StreamableMethod<PetsList200Response | PetsListDefaultResponse>;
+    options: ConfidentialLedgerGetEnclaveQuotesParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetEnclaveQuotes200Response
+    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
+  >;
+}
+
+export interface GetConstitution {
+  /** The constitution is a script that assesses and applies proposals from consortium members. */
+  get(
+    options: ConfidentialLedgerGetConstitutionParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetConstitution200Response
+    | ConfidentialLedgerGetConstitutionDefaultResponse
+  >;
+}
+
+export interface GetConsortiumMembers {
+  /** Consortium members can manage the Confidential Ledger. */
+  get(
+    options: ConfidentialLedgerGetConsortiumMembersParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetConsortiumMembers200Response
+    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
+  >;
+}
+
+export interface PostLedgerEntry {
+  /** A collection id may optionally be specified. */
   post(
-    options: PetsCreateParameters
-  ): StreamableMethod<PetsCreate200Response | PetsCreateDefaultResponse>;
+    options?: ConfidentialLedgerPostLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerPostLedgerEntry200Response
+    | ConfidentialLedgerPostLedgerEntryDefaultResponse
+  >;
 }
 
-export interface ListPetToysResponseList {
+export interface GetLedgerEntry {
   get(
-    options: ListPetToysResponseListParameters
+    options?: ConfidentialLedgerGetLedgerEntryParameters
   ): StreamableMethod<
-    ListPetToysResponseList200Response | ListPetToysResponseListDefaultResponse
+    | ConfidentialLedgerGetLedgerEntry200Response
+    | ConfidentialLedgerGetLedgerEntryDefaultResponse
+  >;
+}
+
+export interface GetReceipt {
+  get(
+    options: ConfidentialLedgerGetReceiptParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetReceipt200Response
+    | ConfidentialLedgerGetReceiptDefaultResponse
+  >;
+}
+
+export interface GetTransactionStatus {
+  get(
+    options: ConfidentialLedgerGetTransactionStatusParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetTransactionStatus200Response
+    | ConfidentialLedgerGetTransactionStatusDefaultResponse
+  >;
+}
+
+export interface GetCurrentLedgerEntry {
+  get(
+    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetCurrentLedgerEntry200Response
+    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
+  >;
+}
+
+export interface DeleteUser {
+  delete(
+    options: ConfidentialLedgerDeleteUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerDeleteUser204Response
+    | ConfidentialLedgerDeleteUserDefaultResponse
+  >;
+  get(
+    options: ConfidentialLedgerGetUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetUser200Response
+    | ConfidentialLedgerGetUserDefaultResponse
+  >;
+  patch(
+    options: ConfidentialLedgerCreateOrUpdateUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
   >;
 }
 
 export interface Routes {
-  /** Resource for '/pets/\{petId\}' has methods for the following verbs: delete, get */
-  (path: "/pets/{petId}", petId: number): PetsDelete;
-  /** Resource for '/pets' has methods for the following verbs: get, post */
-  (path: "/pets"): PetsList;
-  /** Resource for '/pets/\{petId\}/toys' has methods for the following verbs: get */
-  (path: "/pets/{petId}/toys", petId: string): ListPetToysResponseList;
+  /** Resource for '/app/collections' has methods for the following verbs: get */
+  (path: "/app/collections"): ListCollections;
+  /** Resource for '/app/enclaveQuotes' has methods for the following verbs: get */
+  (path: "/app/enclaveQuotes"): GetEnclaveQuotes;
+  /** Resource for '/app/governance/constitution' has methods for the following verbs: get */
+  (path: "/app/governance/constitution"): GetConstitution;
+  /** Resource for '/app/governance/members' has methods for the following verbs: get */
+  (path: "/app/governance/members"): GetConsortiumMembers;
+  /** Resource for '/app/transactions' has methods for the following verbs: post */
+  (path: "/app/transactions"): PostLedgerEntry;
+  /** Resource for '/app/transactions/\{transactionId\}' has methods for the following verbs: get */
+  (
+    path: "/app/transactions/{transactionId}",
+    transactionId: string
+  ): GetLedgerEntry;
+  /** Resource for '/app/transactions/\{transactionId\}/receipt' has methods for the following verbs: get */
+  (
+    path: "/app/transactions/{transactionId}/receipt",
+    transactionId: string
+  ): GetReceipt;
+  /** Resource for '/app/transactions/\{transactionId\}/status' has methods for the following verbs: get */
+  (
+    path: "/app/transactions/{transactionId}/status",
+    transactionId: string
+  ): GetTransactionStatus;
+  /** Resource for '/app/transactions/current' has methods for the following verbs: get */
+  (path: "/app/transactions/current"): GetCurrentLedgerEntry;
+  /** Resource for '/app/users/\{userId\}' has methods for the following verbs: delete, get, patch */
+  (path: "/app/users/{userId}", userId: string): DeleteUser;
 }
 
-export type PetStoreServiceClient = Client & {
+export type ConfidentialLedgerServiceClient = Client & {
   path: Routes;
-  pets: PetsOperations;
-  listPetToysResponse: ListPetToysResponseOperations;
+  confidentialLedger: ConfidentialLedgerOperations;
 };
