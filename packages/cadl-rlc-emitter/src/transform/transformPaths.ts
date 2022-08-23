@@ -14,12 +14,21 @@ import {
   HttpOperationResponse,
   OperationDetails,
 } from "@cadl-lang/rest/http";
+import { reportDiagnostic } from "../lib.js";
 import { getSchemaForType } from "../modelUtils.js";
 
 export function transformPaths(program: Program): Paths {
   const [routes, _diagnostics] = getAllRoutes(program);
   const paths: Paths = {};
   for (const route of routes) {
+    if (!route.operation.namespace?.name) {
+      reportDiagnostic(program, {
+        code: "missing-namespace",
+        format: { path: route.path },
+        target: route.operation
+      });
+      continue;
+    }
     const respNames = [];
     for (const resp of route.responses) {
       const respName = getResponseTypeName(
@@ -34,7 +43,7 @@ export function transformPaths(program: Program): Paths {
       hasOptionalOptions: route.parameters.parameters.some(
         (p) => p.param.optional
       ),
-      optionsName: getParameterTypeName(route.operation.namespace?.name ?? "", route.operation.name),
+      optionsName: getParameterTypeName(route.operation.namespace?.name, route.operation.name),
       responseTypes: getResponseTypes(route),
       returnType: respNames.join(" | "),
       successStatus: gerOperationSuccessStatus(route),
@@ -63,7 +72,7 @@ export function transformPaths(program: Program): Paths {
               description: getDoc(program, p.param)
             };
           }),
-        operationGroupName: route.operation.namespace?.name ?? "",
+        operationGroupName: route.operation.namespace?.name,
         methods: {
           [route.verb]: [method]
         }
