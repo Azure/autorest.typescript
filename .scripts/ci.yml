@@ -233,7 +233,7 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-test
             displayName: "Check git Tree"
 
-      - job: Cadl_Emitter_Test
+      - job: Cadl_Ranch_Test
         dependsOn: Build
         variables:
           - template: globals.yml
