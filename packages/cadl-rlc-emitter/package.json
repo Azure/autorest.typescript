@@ -10,7 +10,8 @@
     "test": "mocha",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "integartion-test": "ts-node ./test/commands/run.ts"
+    "integartion-test": "ts-node ./test/commands/run.ts",
+    "check:tree": "ts-node ./test/commands/check-clean-tree.ts"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
