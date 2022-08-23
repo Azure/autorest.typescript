@@ -1,4 +1,6 @@
 **/dist
+**/temp
+**/dist-test
 **/node_modules
 test.json
 **/test/**/dist
