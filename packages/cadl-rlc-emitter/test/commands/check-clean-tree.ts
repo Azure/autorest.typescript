@@ -4,9 +4,9 @@ const onExit = (childProcess: ChildProcess): Promise<string[]> => {
   let messages: string[] = [];
   return new Promise((resolve, reject) => {
     if (childProcess.stdout) {
-      childProcess.stdout.on("data", message => messages.push(message));
+      childProcess.stdout.on("data", (message) => messages.push(message));
     }
-    childProcess.once("exit", (code: number, signal: string) => {
+    childProcess.once("exit", (code: number) => {
       if (code === 0) {
         resolve(messages);
       }
@@ -49,7 +49,7 @@ async function check_tree() {
   }
 }
 
-check_tree().catch(error => {
+check_tree().catch((error) => {
   console.error(error);
   process.exit(-1);
 });
