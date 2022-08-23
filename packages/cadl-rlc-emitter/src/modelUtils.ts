@@ -694,13 +694,6 @@ function mapCadlIntrinsicModelToTypeScript(
       return { type: "string", format: "time" };
     case "duration":
       return { type: "string", format: "duration" };
-    // case "Map":
-    //   // We assert on valType because Map types always have a type
-    //   const valType = (cadlType as ModelType)?.properties.get("v");
-    //   return {
-    //     type: "object",
-    //     additionalProperties: getSchemaForType(program, valType!.type, usage)
-    //   };
   }
 }
 
