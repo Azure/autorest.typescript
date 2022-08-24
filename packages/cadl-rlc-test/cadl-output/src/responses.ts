@@ -1,67 +1,143 @@
 import { HttpResponse } from "@azure-rest/core-client";
-import {
-  ErrorModelOutput,
-  PetListResultsOutput,
-  PetOutput,
-  ToyListResultsOutput,
-} from "./outputModels";
+import { CollectionArrayOutput, ErrorResponseOutput } from "./outputModels";
 
 /** The request has succeeded. */
-export interface PetsDelete200Response extends HttpResponse {
+export interface ConfidentialLedgerListCollections200Response
+  extends HttpResponse {
   status: "200";
+  body: CollectionArrayOutput;
 }
 
-export interface PetsDeleteDefaultResponse extends HttpResponse {
+export interface ConfidentialLedgerListCollectionsDefaultResponse
+  extends HttpResponse {
   status: string;
-  body: ErrorModelOutput;
+  body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface PetsList200Response extends HttpResponse {
+export interface ConfidentialLedgerGetEnclaveQuotes200Response
+  extends HttpResponse {
   status: "200";
-  body: PetListResultsOutput;
 }
 
-export interface PetsListDefaultResponse extends HttpResponse {
+export interface ConfidentialLedgerGetEnclaveQuotesDefaultResponse
+  extends HttpResponse {
   status: string;
-  body: ErrorModelOutput;
+  body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface PetsRead200Response extends HttpResponse {
+export interface ConfidentialLedgerGetConstitution200Response
+  extends HttpResponse {
   status: "200";
-  body: PetOutput;
 }
 
-/** The client has made a conditional request and the resource has not been modified. */
-export interface PetsRead304Response extends HttpResponse {
-  status: "304";
-  body: PetOutput;
-}
-
-export interface PetsReadDefaultResponse extends HttpResponse {
+export interface ConfidentialLedgerGetConstitutionDefaultResponse
+  extends HttpResponse {
   status: string;
-  body: ErrorModelOutput;
+  body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface PetsCreate200Response extends HttpResponse {
+export interface ConfidentialLedgerGetConsortiumMembers200Response
+  extends HttpResponse {
   status: "200";
-  body: PetOutput;
 }
 
-export interface PetsCreateDefaultResponse extends HttpResponse {
+export interface ConfidentialLedgerGetConsortiumMembersDefaultResponse
+  extends HttpResponse {
   status: string;
-  body: ErrorModelOutput;
+  body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface ListPetToysResponseList200Response extends HttpResponse {
+export interface ConfidentialLedgerPostLedgerEntry200Response
+  extends HttpResponse {
   status: "200";
-  body: ToyListResultsOutput;
 }
 
-export interface ListPetToysResponseListDefaultResponse extends HttpResponse {
+export interface ConfidentialLedgerPostLedgerEntryDefaultResponse
+  extends HttpResponse {
   status: string;
-  body: ErrorModelOutput;
+  body: ErrorResponseOutput;
+}
+
+/** The request has succeeded. */
+export interface ConfidentialLedgerGetLedgerEntry200Response
+  extends HttpResponse {
+  status: "200";
+}
+
+export interface ConfidentialLedgerGetLedgerEntryDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
+}
+
+/** The request has succeeded. */
+export interface ConfidentialLedgerGetReceipt200Response extends HttpResponse {
+  status: "200";
+}
+
+export interface ConfidentialLedgerGetReceiptDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
+}
+
+/** The request has succeeded. */
+export interface ConfidentialLedgerGetTransactionStatus200Response
+  extends HttpResponse {
+  status: "200";
+}
+
+export interface ConfidentialLedgerGetTransactionStatusDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
+}
+
+/** The request has succeeded. */
+export interface ConfidentialLedgerGetCurrentLedgerEntry200Response
+  extends HttpResponse {
+  status: "200";
+}
+
+export interface ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ConfidentialLedgerDeleteUser204Response extends HttpResponse {
+  status: "204";
+}
+
+export interface ConfidentialLedgerDeleteUserDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
+}
+
+/** The request has succeeded. */
+export interface ConfidentialLedgerGetUser200Response extends HttpResponse {
+  status: "200";
+}
+
+export interface ConfidentialLedgerGetUserDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
+}
+
+/** The request has succeeded. */
+export interface ConfidentialLedgerCreateOrUpdateUser200Response
+  extends HttpResponse {
+  status: "200";
+}
+
+export interface ConfidentialLedgerCreateOrUpdateUserDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
 }

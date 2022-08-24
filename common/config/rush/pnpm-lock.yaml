@@ -135,7 +135,7 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/cadl-autorest/0.19.0_304f91367eebb876f0a696e8de03235b:
+  /@azure-tools/cadl-autorest/0.19.0_f88b848ac07766dd7868dc339be67596:
     resolution: {integrity: sha512-lu9eDwwBHi11bcVKH/4p6qgtUdnxhqgNT9fsoweXWPlzSMpNbmHxenpJ0iUhRc5q2+KiKwEMO+1cDiZLnpM6/g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -145,10 +145,24 @@ packages:
       '@cadl-lang/rest': ~0.16.0
       '@cadl-lang/versioning': ~0.7.0
     dependencies:
+      '@azure-tools/cadl-azure-core': 0.6.0_4d9a9aef6a5b7edf33d6ed7de82c13bc
       '@cadl-lang/compiler': 0.34.0
       '@cadl-lang/openapi': 0.11.0_0f0c7e63bc84e362f275bdbb3a699842
       '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
       '@cadl-lang/versioning': 0.7.0
+    dev: false
+
+  /@azure-tools/cadl-azure-core/0.6.0_4d9a9aef6a5b7edf33d6ed7de82c13bc:
+    resolution: {integrity: sha512-IQVy1oAACCJAu4yJylEnZzdkc7P+5soqUsqe5+L1b0/WIKuBt8vgioESlE7LivX9BBNIPIMjmEKk5rcCZ7KTDQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@cadl-lang/compiler': ~0.34.0
+      '@cadl-lang/openapi': ~0.11.0
+      '@cadl-lang/rest': ~0.16.0
+    dependencies:
+      '@cadl-lang/compiler': 0.34.0
+      '@cadl-lang/openapi': 0.11.0_0f0c7e63bc84e362f275bdbb3a699842
+      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
     dev: false
 
   /@azure-tools/codegen/2.9.1:
@@ -10917,11 +10931,12 @@ packages:
     dev: false
 
   file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-okaWsEXRoGtZPyt1fGM8htNrlnpEEICoGtz0BNlxRl4o0Hy3JK1wgjkr/yJ4TNQ7aaIP08v5OnxKAPG5Vcpwpg==, tarball: file:projects/cadl-rest-test.tgz}
+    resolution: {integrity: sha512-jripC8YX4VPxY7aMA0D3pwcCRjvXBzNrokYnvkS+bmYLuWbCmiMrvRz8w1X+lJlvIMycXmZPPtDRmirNOz1Y/w==, tarball: file:projects/cadl-rest-test.tgz}
     name: '@rush-temp/cadl-rest-test'
     version: 0.0.0
     dependencies:
-      '@azure-tools/cadl-autorest': 0.19.0_304f91367eebb876f0a696e8de03235b
+      '@azure-tools/cadl-autorest': 0.19.0_f88b848ac07766dd7868dc339be67596
+      '@azure-tools/cadl-azure-core': 0.6.0_4d9a9aef6a5b7edf33d6ed7de82c13bc
       '@cadl-lang/compiler': 0.34.0
       '@cadl-lang/openapi': 0.11.0_0f0c7e63bc84e362f275bdbb3a699842
       '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
@@ -10929,7 +10944,6 @@ packages:
       '@types/node': 12.20.55
       ts-node: 8.10.2
     transitivePeerDependencies:
-      - '@azure-tools/cadl-azure-core'
       - typescript
     dev: false
 

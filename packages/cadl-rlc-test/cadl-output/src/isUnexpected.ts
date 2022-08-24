@@ -1,61 +1,144 @@
 import {
-  PetsDelete200Response,
-  PetsDeleteDefaultResponse,
-  PetsRead200Response,
-  PetsRead304Response,
-  PetsReadDefaultResponse,
-  PetsList200Response,
-  PetsListDefaultResponse,
-  PetsCreate200Response,
-  PetsCreateDefaultResponse,
-  ListPetToysResponseList200Response,
-  ListPetToysResponseListDefaultResponse,
+  ConfidentialLedgerListCollections200Response,
+  ConfidentialLedgerListCollectionsDefaultResponse,
+  ConfidentialLedgerGetEnclaveQuotes200Response,
+  ConfidentialLedgerGetEnclaveQuotesDefaultResponse,
+  ConfidentialLedgerGetConstitution200Response,
+  ConfidentialLedgerGetConstitutionDefaultResponse,
+  ConfidentialLedgerGetConsortiumMembers200Response,
+  ConfidentialLedgerGetConsortiumMembersDefaultResponse,
+  ConfidentialLedgerPostLedgerEntry200Response,
+  ConfidentialLedgerPostLedgerEntryDefaultResponse,
+  ConfidentialLedgerGetLedgerEntry200Response,
+  ConfidentialLedgerGetLedgerEntryDefaultResponse,
+  ConfidentialLedgerGetReceipt200Response,
+  ConfidentialLedgerGetReceiptDefaultResponse,
+  ConfidentialLedgerGetTransactionStatus200Response,
+  ConfidentialLedgerGetTransactionStatusDefaultResponse,
+  ConfidentialLedgerGetCurrentLedgerEntry200Response,
+  ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse,
+  ConfidentialLedgerDeleteUser204Response,
+  ConfidentialLedgerDeleteUserDefaultResponse,
+  ConfidentialLedgerGetUser200Response,
+  ConfidentialLedgerGetUserDefaultResponse,
+  ConfidentialLedgerCreateOrUpdateUser200Response,
+  ConfidentialLedgerCreateOrUpdateUserDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "DELETE /pets/{petId}": ["200"],
-  "GET /pets/{petId}": ["200", "304"],
-  "GET /pets": ["200"],
-  "POST /pets": ["200"],
-  "GET /pets/{petId}/toys": ["200"],
+  "GET /app/collections": ["200"],
+  "GET /app/enclaveQuotes": ["200"],
+  "GET /app/governance/constitution": ["200"],
+  "GET /app/governance/members": ["200"],
+  "POST /app/transactions": ["200"],
+  "GET /app/transactions/{transactionId}": ["200"],
+  "GET /app/transactions/{transactionId}/receipt": ["200"],
+  "GET /app/transactions/{transactionId}/status": ["200"],
+  "GET /app/transactions/current": ["200"],
+  "DELETE /app/users/{userId}": ["204"],
+  "GET /app/users/{userId}": ["200"],
+  "PATCH /app/users/{userId}": ["200"],
 };
 
 export function isUnexpected(
-  response: PetsDelete200Response | PetsDeleteDefaultResponse
-): response is PetsDeleteDefaultResponse;
-export function isUnexpected(
-  response: PetsRead200Response | PetsRead304Response | PetsReadDefaultResponse
-): response is PetsReadDefaultResponse;
-export function isUnexpected(
-  response: PetsList200Response | PetsListDefaultResponse
-): response is PetsListDefaultResponse;
-export function isUnexpected(
-  response: PetsCreate200Response | PetsCreateDefaultResponse
-): response is PetsCreateDefaultResponse;
+  response:
+    | ConfidentialLedgerListCollections200Response
+    | ConfidentialLedgerListCollectionsDefaultResponse
+): response is ConfidentialLedgerListCollectionsDefaultResponse;
 export function isUnexpected(
   response:
-    | ListPetToysResponseList200Response
-    | ListPetToysResponseListDefaultResponse
-): response is ListPetToysResponseListDefaultResponse;
+    | ConfidentialLedgerGetEnclaveQuotes200Response
+    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
+): response is ConfidentialLedgerGetEnclaveQuotesDefaultResponse;
 export function isUnexpected(
   response:
-    | PetsDelete200Response
-    | PetsDeleteDefaultResponse
-    | PetsRead200Response
-    | PetsRead304Response
-    | PetsReadDefaultResponse
-    | PetsList200Response
-    | PetsListDefaultResponse
-    | PetsCreate200Response
-    | PetsCreateDefaultResponse
-    | ListPetToysResponseList200Response
-    | ListPetToysResponseListDefaultResponse
+    | ConfidentialLedgerGetConstitution200Response
+    | ConfidentialLedgerGetConstitutionDefaultResponse
+): response is ConfidentialLedgerGetConstitutionDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerGetConsortiumMembers200Response
+    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
+): response is ConfidentialLedgerGetConsortiumMembersDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerPostLedgerEntry200Response
+    | ConfidentialLedgerPostLedgerEntryDefaultResponse
+): response is ConfidentialLedgerPostLedgerEntryDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerGetLedgerEntry200Response
+    | ConfidentialLedgerGetLedgerEntryDefaultResponse
+): response is ConfidentialLedgerGetLedgerEntryDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerGetReceipt200Response
+    | ConfidentialLedgerGetReceiptDefaultResponse
+): response is ConfidentialLedgerGetReceiptDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerGetTransactionStatus200Response
+    | ConfidentialLedgerGetTransactionStatusDefaultResponse
+): response is ConfidentialLedgerGetTransactionStatusDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerGetCurrentLedgerEntry200Response
+    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
+): response is ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerDeleteUser204Response
+    | ConfidentialLedgerDeleteUserDefaultResponse
+): response is ConfidentialLedgerDeleteUserDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerGetUser200Response
+    | ConfidentialLedgerGetUserDefaultResponse
+): response is ConfidentialLedgerGetUserDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
+): response is ConfidentialLedgerCreateOrUpdateUserDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerListCollections200Response
+    | ConfidentialLedgerListCollectionsDefaultResponse
+    | ConfidentialLedgerGetEnclaveQuotes200Response
+    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
+    | ConfidentialLedgerGetConstitution200Response
+    | ConfidentialLedgerGetConstitutionDefaultResponse
+    | ConfidentialLedgerGetConsortiumMembers200Response
+    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
+    | ConfidentialLedgerPostLedgerEntry200Response
+    | ConfidentialLedgerPostLedgerEntryDefaultResponse
+    | ConfidentialLedgerGetLedgerEntry200Response
+    | ConfidentialLedgerGetLedgerEntryDefaultResponse
+    | ConfidentialLedgerGetReceipt200Response
+    | ConfidentialLedgerGetReceiptDefaultResponse
+    | ConfidentialLedgerGetTransactionStatus200Response
+    | ConfidentialLedgerGetTransactionStatusDefaultResponse
+    | ConfidentialLedgerGetCurrentLedgerEntry200Response
+    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
+    | ConfidentialLedgerDeleteUser204Response
+    | ConfidentialLedgerDeleteUserDefaultResponse
+    | ConfidentialLedgerGetUser200Response
+    | ConfidentialLedgerGetUserDefaultResponse
+    | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
 ): response is
-  | PetsDeleteDefaultResponse
-  | PetsReadDefaultResponse
-  | PetsListDefaultResponse
-  | PetsCreateDefaultResponse
-  | ListPetToysResponseListDefaultResponse {
+  | ConfidentialLedgerListCollectionsDefaultResponse
+  | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
+  | ConfidentialLedgerGetConstitutionDefaultResponse
+  | ConfidentialLedgerGetConsortiumMembersDefaultResponse
+  | ConfidentialLedgerPostLedgerEntryDefaultResponse
+  | ConfidentialLedgerGetLedgerEntryDefaultResponse
+  | ConfidentialLedgerGetReceiptDefaultResponse
+  | ConfidentialLedgerGetTransactionStatusDefaultResponse
+  | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
+  | ConfidentialLedgerDeleteUserDefaultResponse
+  | ConfidentialLedgerGetUserDefaultResponse
+  | ConfidentialLedgerCreateOrUpdateUserDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

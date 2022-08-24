@@ -49,7 +49,8 @@ import {
 export function getSchemaForType(
   program: Program,
   type: Type,
-  usage?: SchemaContext[]
+  usage?: SchemaContext[],
+  needRef?: boolean
 ) {
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
@@ -61,7 +62,7 @@ export function getSchemaForType(
     return builtinType;
   }
   if (type.kind === "Model") {
-    const schema = getSchemaForModel(program, type, usage) as any;
+    const schema = getSchemaForModel(program, type, usage, needRef) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
       schema.outputTypeName = `${schema.name}Output`;
     }
@@ -317,7 +318,8 @@ function isSchemaProperty(program: Program, property: ModelTypeProperty) {
 function getSchemaForModel(
   program: Program,
   model: ModelType,
-  usage?: SchemaContext[]
+  usage?: SchemaContext[],
+  needRef?: boolean
 ) {
   const friendlyName = getFriendlyName(program, model);
   let modelSchema: ObjectSchema = {
@@ -331,12 +333,13 @@ function getSchemaForModel(
     NameType.Interface,
     true /** shouldGuard */
   );
+
   modelSchema.properties = {};
   const derivedModels = model.derivedModels.filter(includeDerivedModel);
 
   // getSchemaOrRef on all children to push them into components.schemas
   for (const child of derivedModels) {
-    getSchemaForType(program, child, usage);
+    getSchemaForType(program, child, usage, true);
   }
 
   const discriminator = getDiscriminator(program, model);
@@ -375,14 +378,16 @@ function getSchemaForModel(
   }
 
   // applyExternalDocs(model, modelSchema);
-
+  if (needRef) {
+    return modelSchema;
+  }
   for (const [name, prop] of model.properties) {
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
 
     const description = getDoc(program, prop);
-    const propSchema = getSchemaForType(program, prop.type, usage);
+    const propSchema = getSchemaForType(program, prop.type, usage, true);
     if (propSchema === undefined) {
       continue;
     }
@@ -454,8 +459,8 @@ function getSchemaForModel(
     };
   } else if (model.baseModel) {
     modelSchema.parents = {
-      all: [getSchemaForType(program, model.baseModel, usage)],
-      immediate: [getSchemaForType(program, model.baseModel, usage)]
+      all: [getSchemaForType(program, model.baseModel, usage, true)],
+      immediate: [getSchemaForType(program, model.baseModel, usage, true)]
     };
   }
 
@@ -590,7 +595,7 @@ function getSchemaForEnum(program: Program, e: EnumType) {
 function mapCadlIntrinsicModelToTypeScript(
   program: Program,
   cadlType: ModelType | ModelTypeProperty,
-  usage?: SchemaContext[]
+  usage?: SchemaContext[],
 ): any | undefined {
   const indexer = (cadlType as ModelType).indexer;
   if (indexer !== undefined) {
@@ -600,12 +605,12 @@ function mapCadlIntrinsicModelToTypeScript(
       if (name === "string") {
         schema = {
           type: "object",
-          additionalProperties: getSchemaForType(program, indexer.value!),
+          additionalProperties: getSchemaForType(program, indexer.value!, usage, true),
         };
       } else if (name === "integer") {
         schema = {
           type: "array",
-          items: getSchemaForType(program, indexer.value!),
+          items: getSchemaForType(program, indexer.value!, usage, true),
         };
       }
       if (usage && usage.includes(SchemaContext.Output)) {
