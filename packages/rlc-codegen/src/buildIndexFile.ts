@@ -7,7 +7,8 @@ import {
   hasInputModels,
   hasOutputModels,
   hasPagingOperations,
-  hasPollingOperations
+  hasPollingOperations,
+  hasUnexpectedHelper
 } from "./helpers/operationHelpers.js";
 import { RLCModel } from "./interfaces.js";
 import * as path from "path";
@@ -121,11 +122,16 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
     },
     {
       moduleSpecifier: "./clientDefinitions"
-    },
-    {
-      moduleSpecifier: "./isUnexpected"
     }
   ]);
+
+  if (hasUnexpectedHelper(model)) {
+    file.addExportDeclarations([
+      {
+        moduleSpecifier: "./isUnexpected"
+      }
+    ]);
+  }
 
   if (hasInputModels(model)) {
     file.addExportDeclarations([
