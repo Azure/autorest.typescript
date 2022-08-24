@@ -2,7 +2,7 @@ import "@cadl-lang/rest";
 
 using Cadl.Rest;
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 enum CMYKColorsKnownValues {
   "cyan",
   "Magenta",
@@ -13,7 +13,7 @@ enum CMYKColorsKnownValues {
 @knownValues(CMYKColorsKnownValues)
 model CMYKColors is string {}
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 enum MyKindKnownValues {
   "Kind1",
 }
@@ -21,7 +21,7 @@ enum MyKindKnownValues {
 @knownValues(MyKindKnownValues)
 model MyKind is string {}
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 enum GoblinSharkColorKnownValues {
   "pink",
   "gray",
@@ -33,269 +33,273 @@ enum GoblinSharkColorKnownValues {
 @knownValues(GoblinSharkColorKnownValues)
 model GoblinSharkColor is string {}
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model basic {
   @doc("Basic Id")
-  id: int32;
+  id?: int32;
 
-  @doc("Name property with a very long description that does not fit on a single line and a line break.")
-  name: string;
-  // TODO: (missing-docs) Add documentation
-  color: CMYKColors;
+  @doc("""
+Name property with a very long description that does not fit on a single line
+and a line break.
+""")
+  name?: string;
+  // FIXME: (missing-docs) Add documentation
+  color?: CMYKColors;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
+@error
 model Error {
-  // TODO: (missing-docs) Add documentation
-  status: int32;
-  // TODO: (missing-docs) Add documentation
-  message: string;
+  // FIXME: (missing-docs) Add documentation
+  status?: int32;
+  // FIXME: (missing-docs) Add documentation
+  message?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model int_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field1: int32;
-  // TODO: (missing-docs) Add documentation
-  field2: int32;
+  // FIXME: (missing-docs) Add documentation
+  field1?: int32;
+  // FIXME: (missing-docs) Add documentation
+  field2?: int32;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model long_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field1: int32;
-  // TODO: (missing-docs) Add documentation
-  field2: int32;
+  // FIXME: (missing-docs) Add documentation
+  field1?: int32;
+  // FIXME: (missing-docs) Add documentation
+  field2?: int32;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model float_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field1: float32;
-  // TODO: (missing-docs) Add documentation
-  field2: float32;
+  // FIXME: (missing-docs) Add documentation
+  field1?: float32;
+  // FIXME: (missing-docs) Add documentation
+  field2?: float32;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model double_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field1: float32;
-  // TODO: (missing-docs) Add documentation
-  field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: float32;
+  // FIXME: (missing-docs) Add documentation
+  field1?: float32;
+  // FIXME: (missing-docs) Add documentation
+  field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose?: float32;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model boolean_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field_true: boolean;
-  // TODO: (missing-docs) Add documentation
-  field_false: boolean;
+  // FIXME: (missing-docs) Add documentation
+  field_true?: boolean;
+  // FIXME: (missing-docs) Add documentation
+  field_false?: boolean;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model string_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field: string;
-  // TODO: (missing-docs) Add documentation
-  empty: string;
-  // TODO: (missing-docs) Add documentation
-  null: string;
+  // FIXME: (missing-docs) Add documentation
+  field?: string;
+  // FIXME: (missing-docs) Add documentation
+  empty?: string;
+  // FIXME: (missing-docs) Add documentation
+  null?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model date_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field: plainDate;
-  // TODO: (missing-docs) Add documentation
-  leap: plainDate;
+  // FIXME: (missing-docs) Add documentation
+  field?: plainDate;
+  // FIXME: (missing-docs) Add documentation
+  leap?: plainDate;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model datetime_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field: zonedDateTime;
-  // TODO: (missing-docs) Add documentation
-  now: zonedDateTime;
+  // FIXME: (missing-docs) Add documentation
+  field?: zonedDateTime;
+  // FIXME: (missing-docs) Add documentation
+  now?: zonedDateTime;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model datetimerfc1123_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field: zonedDateTime;
-  // TODO: (missing-docs) Add documentation
-  now: zonedDateTime;
+  // FIXME: (missing-docs) Add documentation
+  field?: zonedDateTime;
+  // FIXME: (missing-docs) Add documentation
+  now?: zonedDateTime;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model duration_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field: duration;
+  // FIXME: (missing-docs) Add documentation
+  field?: duration;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model byte_wrapper {
-  // TODO: (missing-docs) Add documentation
-  field: bytes;
+  // FIXME: (missing-docs) Add documentation
+  field?: bytes;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model array_wrapper {
-  // TODO: (missing-docs) Add documentation
-  array: string[];
+  // FIXME: (missing-docs) Add documentation
+  array?: string[];
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model dictionary_wrapper {
   @doc("Dictionary of <string>")
-  defaultProgram: Record<string>;
+  defaultProgram?: Record<string>;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model siamese extends cat {
-  // TODO: (missing-docs) Add documentation
-  breed: string;
+  // FIXME: (missing-docs) Add documentation
+  breed?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model cat extends pet {
-  // TODO: (missing-docs) Add documentation
-  color: string;
-  // TODO: (missing-docs) Add documentation
-  hates: dog[];
+  // FIXME: (missing-docs) Add documentation
+  color?: string;
+  // FIXME: (missing-docs) Add documentation
+  hates?: dog[];
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model dog extends pet {
-  // TODO: (missing-docs) Add documentation
-  food: string;
+  // FIXME: (missing-docs) Add documentation
+  food?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model pet {
-  // TODO: (missing-docs) Add documentation
-  id: int32;
-  // TODO: (missing-docs) Add documentation
-  name: string;
+  // FIXME: (missing-docs) Add documentation
+  id?: int32;
+  // FIXME: (missing-docs) Add documentation
+  name?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @discriminator("fishtype")
 model Fish {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   species?: string;
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   length: float32;
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   siblings?: Fish[];
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @discriminator("fish.type")
 model DotFish {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   species?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model DotFishMarket {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   sampleSalmon?: DotSalmon;
-  // TODO: (missing-docs) Add documentation
-  salmons: DotSalmon[];
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
+  salmons?: DotSalmon[];
+  // FIXME: (missing-docs) Add documentation
   sampleFish?: DotFish;
-  // TODO: (missing-docs) Add documentation
-  fishes: DotFish[];
+  // FIXME: (missing-docs) Add documentation
+  fishes?: DotFish[];
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model DotSalmon extends DotFish {
-  // TODO: (missing-docs) Add documentation
-  location: string;
-  // TODO: (missing-docs) Add documentation
-  iswild: boolean;
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
+  location?: string;
+  // FIXME: (missing-docs) Add documentation
+  iswild?: boolean;
+  // FIXME: (missing-docs) Add documentation
   "fish.type": "DotSalmon";
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @discriminator("fishtype")
 model salmon extends Fish {
-  // TODO: (missing-docs) Add documentation
-  location: string;
-  // TODO: (missing-docs) Add documentation
-  iswild: boolean;
+  // FIXME: (missing-docs) Add documentation
+  location?: string;
+  // FIXME: (missing-docs) Add documentation
+  iswild?: boolean;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model readonly_obj {
-  // TODO: (missing-docs) Add documentation
-  id: string;
-  // TODO: (missing-docs) Add documentation
-  size: int32;
+  // FIXME: (missing-docs) Add documentation
+  id?: string;
+  // FIXME: (missing-docs) Add documentation
+  size?: int32;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @discriminator("kind")
 model MyBaseType {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   propB1?: string;
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   helper?: MyBaseHelperType;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model MyBaseHelperType {
-  // TODO: (missing-docs) Add documentation
-  propBH1: string;
+  // FIXME: (missing-docs) Add documentation
+  propBH1?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model smart_salmon extends salmon {
-  // TODO: (missing-docs) Add documentation
-  college_degree: string;
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
+  college_degree?: string;
+  // FIXME: (missing-docs) Add documentation
   fishtype: "smart_salmon";
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @discriminator("fishtype")
 model shark extends Fish {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   age?: int32;
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   birthday: zonedDateTime;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model sawshark extends shark {
-  // TODO: (missing-docs) Add documentation
-  picture: bytes;
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
+  picture?: bytes;
+  // FIXME: (missing-docs) Add documentation
   fishtype: "sawshark";
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model goblinshark extends shark {
-  // TODO: (missing-docs) Add documentation
-  jawsize: int32;
+  // FIXME: (missing-docs) Add documentation
+  jawsize?: int32;
 
   @doc("Colors possible")
-  color: GoblinSharkColor;
-  // TODO: (missing-docs) Add documentation
+  color?: GoblinSharkColor;
+  // FIXME: (missing-docs) Add documentation
   fishtype: "goblin";
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model cookiecuttershark extends shark {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   fishtype: "cookiecuttershark";
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model MyDerivedType extends MyBaseType {
-  // TODO: (missing-docs) Add documentation
-  propD1: string;
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
+  propD1?: string;
+  // FIXME: (missing-docs) Add documentation
   kind: "Kind1";
 }

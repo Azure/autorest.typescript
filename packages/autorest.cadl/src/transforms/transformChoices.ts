@@ -24,9 +24,18 @@ export function transformEnum(
       name: schema.language.default.name.replace(/-/g, "_"),
       members: schema.choices.map((choice) => transformChoiceMember(choice)),
       isExtensible: !isSealedChoiceSchema(schema),
+      ...(hasSyntheticName(schema) && {
+        fixMe: [
+          "// FIXME: (synthetic-name) This enum has a generated name. Please rename it to something more appropriate.",
+        ],
+      }),
     };
   }
   return cadlEnum;
+}
+
+function hasSyntheticName(schema: ChoiceSchema | SealedChoiceSchema) {
+  return schema.language.default.name.startsWith("components·");
 }
 
 function transformChoiceMember(member: ChoiceValue): CadlChoiceValue {

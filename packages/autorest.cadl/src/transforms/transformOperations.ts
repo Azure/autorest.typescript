@@ -115,27 +115,27 @@ function filterOperationParameters(
 }
 
 export function transformParameter(
-  propertySchema: Parameter,
+  parameter: Parameter,
   codeModel: CodeModel
 ): CadlParameter {
   // Body parameter doesn't have a serializedName, in that case we get the name
   const name =
-    propertySchema.language.default.serializedName ??
-    propertySchema.language.default.name;
-  const doc = propertySchema.language.default.description;
+    parameter.language.default.serializedName ??
+    parameter.language.default.name;
+  const doc = parameter.language.default.description;
 
   const dataTypes = getDataTypes(codeModel);
   let visited =
-    dataTypes.get(propertySchema.schema) ??
-    transformDataType(propertySchema.schema, codeModel);
+    dataTypes.get(parameter.schema) ??
+    transformDataType(parameter.schema, codeModel);
 
   return {
     kind: "parameter",
     doc,
     name,
-    isOptional: propertySchema.required === false,
+    isOptional: parameter.required !== true,
     type: visited.name,
-    location: transformParameterLocation(propertySchema),
+    location: transformParameterLocation(parameter),
   };
 }
 

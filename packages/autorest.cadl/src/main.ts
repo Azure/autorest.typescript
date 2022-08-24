@@ -8,6 +8,7 @@ import {
   Session,
   startSession,
 } from "@autorest/extension-base";
+import { existsSync, mkdirSync } from "fs";
 
 import { setSession } from "./utils/logger";
 import { join } from "path";
@@ -25,10 +26,16 @@ export async function processRequest(host: AutorestExtensionHost) {
   markPagination(codeModel);
   markErrorModels(codeModel);
   const cadlProgramDetails = getModel(codeModel);
-
+  createOutputFolder(getFilePath(session, ""));
   await emitModels(getFilePath(session, "models.cadl"), cadlProgramDetails);
   await emitRoutes(getFilePath(session, "routes.cadl"), cadlProgramDetails);
   await emitMain(getFilePath(session, "main.cadl"), cadlProgramDetails);
+}
+
+function createOutputFolder(dir: string) {
+  if (!existsSync(dir)) {
+    mkdirSync(dir);
+  }
 }
 
 function getOutuptDirectory(session: Session<CodeModel>) {

@@ -2,52 +2,57 @@ import "@cadl-lang/rest";
 
 using Cadl.Rest;
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model CatalogArray {
   @doc("Array of products")
-  productArray: Product[];
+  productArray?: Product[];
 }
 
 @doc("The product documentation.")
 model Product {
-  @doc("Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.")
-  product_id: string;
+  @doc("""
+Unique identifier representing a specific product for a given latitude &
+longitude. For example, uberX in San Francisco will have a different product_id
+than uberX in Los Angeles.
+""")
+  product_id?: string;
 
   @doc("Description of product.")
-  description: string;
+  description?: string;
 
   @doc("Display name of product.")
-  display_name: string;
+  display_name?: string;
 
   @doc("Capacity of product. For example, 4 people.")
-  capacity: string;
+  capacity?: string;
 
   @doc("Image URL representing the product.")
-  image: string;
+  image?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
+@error
 model Error {
-  // TODO: (missing-docs) Add documentation
-  status: int32;
-  // TODO: (missing-docs) Add documentation
-  message: string;
+  // FIXME: (missing-docs) Add documentation
+  status?: int32;
+  // FIXME: (missing-docs) Add documentation
+  message?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model CatalogDictionaryOfArray {
   @doc("Dictionary of Array of product")
-  productDictionaryOfArray: Record<Product[]>;
+  productDictionaryOfArray?: Record<Product[]>;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model CatalogDictionary {
   @doc("Dictionary of products")
-  productDictionary: Record<Product>;
+  productDictionary?: Record<Product>;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model CatalogArrayOfDictionary {
   @doc("Array of dictionary of products")
-  productArrayOfDictionary: Record<Product>[];
+  productArrayOfDictionary?: Record<Product>[];
 }

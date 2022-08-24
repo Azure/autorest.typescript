@@ -42,7 +42,7 @@ export interface EndpointParameter extends WithDoc {
   name: string;
 }
 
-export interface CadlDataType extends WithDoc {
+export interface CadlDataType extends WithDoc, WithFixMe {
   kind: string;
   name: string;
 }
@@ -55,6 +55,10 @@ export interface CadlEnum extends CadlDataType {
   kind: "enum";
   members: CadlChoiceValue[];
   isExtensible: boolean;
+}
+
+export interface WithFixMe {
+  fixMe?: string[];
 }
 
 export type CadlParameterLocation = "path" | "query" | "header" | "body";

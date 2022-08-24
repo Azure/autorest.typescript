@@ -6,12 +6,14 @@ interface WithDocs {
 
 export function generateDocs({ doc }: WithDocs): string {
   if (isEmptyDoc(doc)) {
-    return `// TODO: (missing-docs) Add documentation `;
+    return `// FIXME: (missing-docs) Add documentation `;
   }
 
-  const docString = Array.isArray(doc) ? doc.join("\n") : doc;
+  let docString = Array.isArray(doc) ? doc.join("\n") : doc;
+  docString = docString.replace(/"/g, '\\"');
+  docString = lineWrap(docString);
 
-  return `@doc(${JSON.stringify(docString)})`;
+  return `@doc(${docString})`;
 }
 
 export function generateSummary({ summary }: WithSummary): string {
@@ -19,7 +21,34 @@ export function generateSummary({ summary }: WithSummary): string {
     return "";
   }
 
-  return `@summary("${summary}")`;
+  return `@summary(${lineWrap(summary)})`;
+}
+
+function lineWrap(doc: string) {
+  const maxLength = 80;
+
+  if (doc.length <= maxLength) {
+    return `"${doc}"`;
+  }
+
+  const lines: string[] = [`"""`];
+  const words = doc.split(" ");
+  let line = ``;
+  for (const word of words) {
+    if (word.length + 1 > maxLength - line.length) {
+      // Don't add the leading space
+      lines.push(line.substring(0, line.length - 1));
+
+      // Start a new line
+      line = `${word} `;
+    } else {
+      line = `${line}${word} `;
+    }
+  }
+  lines.push(`${line.substring(0, line.length - 1)}`);
+  lines.push(`"""`);
+
+  return lines.join("\n");
 }
 
 function isEmptyDoc(doc?: string | string[]): doc is undefined {

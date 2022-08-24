@@ -2,21 +2,16 @@ import { CadlEnum, CadlProgram } from "../interfaces";
 import { generateEnums } from "../generate/generateEnums";
 import { generateObject } from "../generate/generateObject";
 import { writeFile } from "fs/promises";
-import { format } from "prettier";
 import { getModelsImports } from "../utils/imports";
+import { formatFile } from "../utils/format";
 
 export async function emitModels(
   filePath: string,
   program: CadlProgram
 ): Promise<void> {
   const content = generateModels(program);
-  const formattedFile = format(content, {
-    plugins: ["@cadl-lang/prettier-plugin-cadl"],
-    pluginSearchDirs: ["./node_modules"],
-    filepath: filePath,
-  });
 
-  await writeFile(filePath, formattedFile);
+  await writeFile(filePath, formatFile(content));
 }
 
 function generateModels(program: CadlProgram) {
@@ -27,7 +22,7 @@ function generateModels(program: CadlProgram) {
   ].join("\n");
 
   const namespaces = [
-    ...new Set<string>([`using Cadl.Rest`, ...namespacesSet]),
+    ...new Set<string>([`using Cadl.Rest;`, ...namespacesSet]),
   ].join("\n");
 
   const enums = flattenEnums(models.enums).join("");

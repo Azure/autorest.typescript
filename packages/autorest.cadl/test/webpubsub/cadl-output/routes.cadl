@@ -6,7 +6,7 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 interface HealthApiOperations {
   @summary("Get service health status.")
   @doc("Get service health status.")
@@ -19,14 +19,17 @@ interface HealthApiOperations {
   ): void;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 interface WebPubSubOperations {
   @summary("Generate token for the client to connect Azure Web PubSub service.")
   @doc("Generate token for the client to connect Azure Web PubSub service.")
   @route("/api/hubs/{hub}/:generateToken")
   @post
   GenerateClientToken(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -49,13 +52,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): ClientTokenResponse;
+  ): ErrorDetail | ClientTokenResponse;
   @summary("Close the connections in the hub.")
   @doc("Close the connections in the hub.")
   @route("/api/hubs/{hub}/:closeConnections")
   @post
   CloseAllConnections(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -74,13 +80,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Broadcast content inside request body to all the connected client connections.")
   @doc("Broadcast content inside request body to all the connected client connections.")
   @route("/api/hubs/{hub}/:send")
   @post
   SendToAll(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -103,13 +112,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Check if the connection with the given connectionId exists.")
   @doc("Check if the connection with the given connectionId exists.")
   @route("/api/hubs/{hub}/connections/{connectionId}")
   @head
   ConnectionExists(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -124,13 +136,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Close the client connection.")
   @doc("Close the client connection.")
   @route("/api/hubs/{hub}/connections/{connectionId}")
   @delete
   CloseConnection(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -149,13 +164,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Send content inside request body to the specific connection.")
   @doc("Send content inside request body to the specific connection.")
   @route("/api/hubs/{hub}/connections/{connectionId}/:send")
   @post
   SendToConnection(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -178,13 +196,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Check if there are any client connections inside the given group")
   @doc("Check if there are any client connections inside the given group")
   @route("/api/hubs/{hub}/groups/{group}")
   @head
   GroupExists(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -199,13 +220,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Close connections in the specific group.")
   @doc("Close connections in the specific group.")
   @route("/api/hubs/{hub}/groups/{group}/:closeConnections")
   @post
   CloseGroupConnections(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -228,13 +252,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Send content inside request body to a group of connections.")
   @doc("Send content inside request body to a group of connections.")
   @route("/api/hubs/{hub}/groups/{group}/:send")
   @post
   SendToGroup(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -261,13 +288,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Add a connection to the target group.")
   @doc("Add a connection to the target group.")
   @route("/api/hubs/{hub}/groups/{group}/connections/{connectionId}")
   @put
   AddConnectionToGroup(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -286,13 +316,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Remove a connection from the target group.")
   @doc("Remove a connection from the target group.")
   @route("/api/hubs/{hub}/groups/{group}/connections/{connectionId}")
   @delete
   RemoveConnectionFromGroup(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -311,13 +344,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Check if there are any client connections connected for the given user.")
   @doc("Check if there are any client connections connected for the given user.")
   @route("/api/hubs/{hub}/users/{userId}")
   @head
   UserExists(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -332,13 +368,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Close connections for the specific user.")
   @doc("Close connections for the specific user.")
   @route("/api/hubs/{hub}/users/{userId}/:closeConnections")
   @post
   CloseUserConnections(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -361,13 +400,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Send content inside request body to the specific user.")
   @doc("Send content inside request body to the specific user.")
   @route("/api/hubs/{hub}/users/{userId}/:send")
   @post
   SendToUser(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -390,13 +432,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Add a user to the target group.")
   @doc("Add a user to the target group.")
   @route("/api/hubs/{hub}/users/{userId}/groups/{group}")
   @put
   AddUserToGroup(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -415,13 +460,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Remove a user from the target group.")
   @doc("Remove a user from the target group.")
   @route("/api/hubs/{hub}/users/{userId}/groups/{group}")
   @delete
   RemoveUserFromGroup(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -440,13 +488,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Remove a user from all groups.")
   @doc("Remove a user from all groups.")
   @route("/api/hubs/{hub}/users/{userId}/groups")
   @delete
   RemoveUserFromAllGroups(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -461,13 +512,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Grant permission to the connection.")
   @doc("Grant permission to the connection.")
   @route("/api/hubs/{hub}/permissions/{permission}/connections/{connectionId}")
   @put
   GrantPermission(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -479,7 +533,11 @@ interface WebPubSubOperations {
     @path
     connectionId: string,
 
-    @doc("The meaning of the target depends on the specific permission. For joinLeaveGroup and sendToGroup, targetName is a required parameter standing for the group name.")
+    @doc("""
+The meaning of the target depends on the specific permission. For
+joinLeaveGroup and sendToGroup, targetName is a required parameter standing for
+the group name.
+""")
     @query
     targetName: string,
 
@@ -490,13 +548,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Revoke permission for the connection.")
   @doc("Revoke permission for the connection.")
   @route("/api/hubs/{hub}/permissions/{permission}/connections/{connectionId}")
   @delete
   RevokePermission(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -508,7 +569,11 @@ interface WebPubSubOperations {
     @path
     connectionId: string,
 
-    @doc("The meaning of the target depends on the specific permission. For joinLeaveGroup and sendToGroup, targetName is a required parameter standing for the group name.")
+    @doc("""
+The meaning of the target depends on the specific permission. For
+joinLeaveGroup and sendToGroup, targetName is a required parameter standing for
+the group name.
+""")
     @query
     targetName: string,
 
@@ -519,13 +584,16 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
   @summary("Check if a connection has permission to the specified action.")
   @doc("Check if a connection has permission to the specified action.")
   @route("/api/hubs/{hub}/permissions/{permission}/connections/{connectionId}")
   @head
   CheckPermission(
-    @doc("Target hub name, which should start with alphabetic characters and only contain alpha-numeric characters or underscore.")
+    @doc("""
+Target hub name, which should start with alphabetic characters and only contain
+alpha-numeric characters or underscore.
+""")
     @path
     hub: string,
 
@@ -537,7 +605,11 @@ interface WebPubSubOperations {
     @path
     connectionId: string,
 
-    @doc("The meaning of the target depends on the specific permission. For joinLeaveGroup and sendToGroup, targetName is a required parameter standing for the group name.")
+    @doc("""
+The meaning of the target depends on the specific permission. For
+joinLeaveGroup and sendToGroup, targetName is a required parameter standing for
+the group name.
+""")
     @query
     targetName: string,
 
@@ -548,5 +620,5 @@ interface WebPubSubOperations {
     @doc("Accept header")
     @header
     Accept: "application/json, text/json"
-  ): void;
+  ): ErrorDetail | void;
 }

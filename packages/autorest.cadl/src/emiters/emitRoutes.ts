@@ -1,20 +1,14 @@
 import { CadlProgram } from "../interfaces";
 import { writeFile } from "fs/promises";
-import { format } from "prettier";
 import { generateOperationGroup } from "../generate/generateOperations";
+import { formatFile } from "../utils/format";
 
 export async function emitRoutes(
   filePath: string,
   program: CadlProgram
 ): Promise<void> {
   const content = generateRoutes(program);
-  const formattedFile = format(content, {
-    plugins: ["@cadl-lang/prettier-plugin-cadl"],
-    pluginSearchDirs: ["./node_modules"],
-    filepath: filePath,
-  });
-
-  await writeFile(filePath, formattedFile);
+  await writeFile(filePath, formatFile(content));
 }
 
 function generateRoutes({ operationGroups }: CadlProgram) {

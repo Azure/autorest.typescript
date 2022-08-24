@@ -5,6 +5,11 @@ export function generateEnums(cadlEnum: CadlEnum) {
   const definitions: string[] = [];
   const doc = generateDocs(cadlEnum);
   definitions.push(doc);
+
+  for (const fixme of cadlEnum.fixMe ?? []) {
+    definitions.push(`\n${fixme}`);
+  }
+
   const enumDefinition = `
     enum ${cadlEnum.name}${cadlEnum.isExtensible ? "KnownValues" : ""} {
         ${cadlEnum.members

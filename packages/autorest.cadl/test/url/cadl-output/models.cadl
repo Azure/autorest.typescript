@@ -2,17 +2,18 @@ import "@cadl-lang/rest";
 
 using Cadl.Rest;
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 enum UriColor {
   "red color",
   "green color",
   "blue color",
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
+@error
 model Error {
-  // TODO: (missing-docs) Add documentation
-  status: int32;
-  // TODO: (missing-docs) Add documentation
-  message: string;
+  // FIXME: (missing-docs) Add documentation
+  status?: int32;
+  // FIXME: (missing-docs) Add documentation
+  message?: string;
 }

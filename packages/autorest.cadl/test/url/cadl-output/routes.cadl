@@ -6,7 +6,7 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 interface pathsOperations {
   @doc("Get true Boolean value on path")
   @route("/paths/bool/true/{boolPath}")
@@ -19,7 +19,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get false Boolean value on path")
   @route("/paths/bool/false/{boolPath}")
   @get
@@ -31,7 +31,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '1000000' integer value")
   @route("/paths/int/1000000/{intPath}")
   @get
@@ -43,7 +43,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '-1000000' integer value")
   @route("/paths/int/-1000000/{intPath}")
   @get
@@ -55,7 +55,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '10000000000' 64 bit integer value")
   @route("/paths/long/10000000000/{longPath}")
   @get
@@ -67,7 +67,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '-10000000000' 64 bit integer value")
   @route("/paths/long/-10000000000/{longPath}")
   @get
@@ -79,7 +79,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '1.034E+20' numeric value")
   @route("/paths/float/1.034E+20/{floatPath}")
   @get
@@ -91,7 +91,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '-1.034E-20' numeric value")
   @route("/paths/float/-1.034E-20/{floatPath}")
   @get
@@ -103,7 +103,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '9999999.999' numeric value")
   @route("/paths/double/9999999.999/{doublePath}")
   @get
@@ -115,7 +115,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '-9999999.999' numeric value")
   @route("/paths/double/-9999999.999/{doublePath}")
   @get
@@ -127,7 +127,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
   @route("/paths/string/unicode/{stringPath}")
   @get
@@ -139,7 +139,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get 'begin!*'();:@ &=+$,/?#[]end")
   @route("/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}")
   @get
@@ -151,9 +151,12 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @summary("Get 'begin!*'();:@&=+$,end")
-  @doc("https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded")
+  @doc("""
+https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not
+encoded
+""")
   @route("/paths/string/begin!*'();:@&=+$,end/{stringPath}")
   @get
   stringUrlNonEncoded(
@@ -164,7 +167,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get ''")
   @route("/paths/string/empty/{stringPath}")
   @get
@@ -176,7 +179,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null (should throw)")
   @route("/paths/string/null/{stringPath}")
   @get
@@ -188,7 +191,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get using uri with 'green color' in path parameter")
   @route("/paths/enum/green%20color/{enumPath}")
   @get
@@ -200,7 +203,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null (should throw on the client before the request is sent on wire)")
   @route("/paths/string/null/{enumPath}")
   @get
@@ -212,7 +215,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
   @route("/paths/byte/multibyte/{bytePath}")
   @get
@@ -224,7 +227,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '' as byte array")
   @route("/paths/byte/empty/{bytePath}")
   @get
@@ -236,7 +239,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null as byte array (should throw)")
   @route("/paths/byte/null/{bytePath}")
   @get
@@ -248,7 +251,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '2012-01-01' as date")
   @route("/paths/date/2012-01-01/{datePath}")
   @get
@@ -260,8 +263,11 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("Get null as date - this should throw or be unusable on the client side, depending on date representation")
+  ): Error | void;
+  @doc("""
+Get null as date - this should throw or be unusable on the client side,
+depending on date representation
+""")
   @route("/paths/date/null/{datePath}")
   @get
   DateNull(
@@ -272,7 +278,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '2012-01-01T01:01:01Z' as date-time")
   @route("/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}")
   @get
@@ -284,8 +290,11 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("Get null as date-time, should be disallowed or throw depending on representation of date-time")
+  ): Error | void;
+  @doc("""
+Get null as date-time, should be disallowed or throw depending on
+representation of date-time
+""")
   @route("/paths/datetime/null/{dateTimePath}")
   @get
   DateTimeNull(
@@ -296,7 +305,7 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get 'lorem' encoded value as 'bG9yZW0' (base64url)")
   @route("/paths/string/bG9yZW0/{base64UrlPath}")
   @get
@@ -308,19 +317,25 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format")
+  ): Error | void;
+  @doc("""
+Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+using the csv-array format
+""")
   @route("/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}")
   @get
   ArrayCsvInPath(
-    @doc("an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format")
+    @doc("""
+an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+using the csv-array format
+""")
     @path
     arrayPath: string[],
 
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get the date 2016-04-13 encoded value as '1460505600' (Unix time)")
   @route("/paths/int/1460505600/{unixTimeUrlPath}")
   @get
@@ -332,10 +347,10 @@ interface pathsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 interface queriesOperations {
   @doc("Get true Boolean value on path")
   @route("/queries/bool/true")
@@ -348,7 +363,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get false Boolean value on path")
   @route("/queries/bool/false")
   @get
@@ -360,7 +375,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null Boolean value on query (query string should be absent)")
   @route("/queries/bool/null")
   @get
@@ -372,7 +387,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '1000000' integer value")
   @route("/queries/int/1000000")
   @get
@@ -384,7 +399,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '-1000000' integer value")
   @route("/queries/int/-1000000")
   @get
@@ -396,7 +411,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null integer value (no query parameter)")
   @route("/queries/int/null")
   @get
@@ -408,7 +423,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '10000000000' 64 bit integer value")
   @route("/queries/long/10000000000")
   @get
@@ -420,7 +435,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '-10000000000' 64 bit integer value")
   @route("/queries/long/-10000000000")
   @get
@@ -432,7 +447,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get 'null 64 bit integer value (no query param in uri)")
   @route("/queries/long/null")
   @get
@@ -444,7 +459,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '1.034E+20' numeric value")
   @route("/queries/float/1.034E+20")
   @get
@@ -456,7 +471,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '-1.034E-20' numeric value")
   @route("/queries/float/-1.034E-20")
   @get
@@ -468,7 +483,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null numeric value (no query parameter)")
   @route("/queries/float/null")
   @get
@@ -480,7 +495,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '9999999.999' numeric value")
   @route("/queries/double/9999999.999")
   @get
@@ -492,7 +507,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '-9999999.999' numeric value")
   @route("/queries/double/-9999999.999")
   @get
@@ -504,7 +519,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null numeric value (no query parameter)")
   @route("/queries/double/null")
   @get
@@ -516,7 +531,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
   @route("/queries/string/unicode/")
   @get
@@ -528,7 +543,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get 'begin!*'();:@ &=+$,/?#[]end")
   @route("/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend")
   @get
@@ -540,7 +555,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get ''")
   @route("/queries/string/empty")
   @get
@@ -552,7 +567,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null (no query parameter in url)")
   @route("/queries/string/null")
   @get
@@ -564,7 +579,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get using uri with query parameter 'green color'")
   @route("/queries/enum/green%20color")
   @get
@@ -576,7 +591,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null (no query parameter in url)")
   @route("/queries/enum/null")
   @get
@@ -588,7 +603,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
   @route("/queries/byte/multibyte")
   @get
@@ -600,7 +615,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '' as byte array")
   @route("/queries/byte/empty")
   @get
@@ -612,7 +627,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null as byte array (no query parameters in uri)")
   @route("/queries/byte/null")
   @get
@@ -624,7 +639,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '2012-01-01' as date")
   @route("/queries/date/2012-01-01")
   @get
@@ -636,7 +651,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null as date - this should result in no query parameters in uri")
   @route("/queries/date/null")
   @get
@@ -648,7 +663,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get '2012-01-01T01:01:01Z' as date-time")
   @route("/queries/datetime/2012-01-01T01%3A01%3A01Z")
   @get
@@ -660,7 +675,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get null as date-time, should result in no query parameters in uri")
   @route("/queries/datetime/null")
   @get
@@ -672,19 +687,25 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format")
+  ): Error | void;
+  @doc("""
+Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+''] using the csv-array format
+""")
   @route("/queries/array/csv/string/valid")
   @get
   ArrayStringCsvValid(
-    @doc("an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format")
+    @doc("""
+an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+using the csv-array format
+""")
     @query
     arrayQuery: string[],
 
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get a null array of string using the csv-array format")
   @route("/queries/array/csv/string/null")
   @get
@@ -696,7 +717,7 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
   @doc("Get an empty array [] of string using the csv-array format")
   @route("/queries/array/csv/string/empty")
   @get
@@ -708,8 +729,11 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service")
+  ): Error | void;
+  @doc("""
+Array query has no defined collection format, should default to csv. Pass in
+['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service
+""")
   @route("/queries/array/none/string/empty")
   @get
   ArrayStringNoCollectionFormatEmpty(
@@ -720,48 +744,71 @@ interface queriesOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format")
+  ): Error | void;
+  @doc("""
+Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+''] using the ssv-array format
+""")
   @route("/queries/array/ssv/string/valid")
   @get
   ArrayStringSsvValid(
-    @doc("an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format")
+    @doc("""
+an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+using the ssv-array format
+""")
     @query
     arrayQuery: string[],
 
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format")
+  ): Error | void;
+  @doc("""
+Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+''] using the tsv-array format
+""")
   @route("/queries/array/tsv/string/valid")
   @get
   ArrayStringTsvValid(
-    @doc("an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format")
+    @doc("""
+an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+using the tsv-array format
+""")
     @query
     arrayQuery: string[],
 
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format")
+  ): Error | void;
+  @doc("""
+Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+''] using the pipes-array format
+""")
   @route("/queries/array/pipes/string/valid")
   @get
   ArrayStringPipesValid(
-    @doc("an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format")
+    @doc("""
+an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
+using the pipes-array format
+""")
     @query
     arrayQuery: string[],
 
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 interface pathItemsOperations {
-  @doc("send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'")
+  @doc("""
+send globalStringPath='globalStringPath',
+pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
+globalStringQuery='globalStringQuery',
+pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
+""")
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery")
   @get
   getAllWithValues(
@@ -792,8 +839,13 @@ interface pathItemsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'")
+  ): Error | void;
+  @doc("""
+send globalStringPath='globalStringPath',
+pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
+globalStringQuery=null, pathItemStringQuery='pathItemStringQuery',
+localStringQuery='localStringQuery'
+""")
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery")
   @get
   getGlobalQueryNull(
@@ -824,8 +876,13 @@ interface pathItemsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null")
+  ): Error | void;
+  @doc("""
+send globalStringPath=globalStringPath,
+pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
+globalStringQuery=null, pathItemStringQuery='pathItemStringQuery',
+localStringQuery=null
+""")
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null")
   @get
   getGlobalAndLocalQueryNull(
@@ -856,8 +913,13 @@ interface pathItemsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
-  @doc("send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null")
+  ): Error | void;
+  @doc("""
+send globalStringPath='globalStringPath',
+pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
+globalStringQuery='globalStringQuery', pathItemStringQuery=null,
+localStringQuery=null
+""")
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null")
   @get
   getLocalPathItemQueryNull(
@@ -888,5 +950,5 @@ interface pathItemsOperations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): void;
+  ): Error | void;
 }

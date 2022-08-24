@@ -35,6 +35,7 @@ const cadlTypes = new Map<SchemaType, string>([
   [SchemaType.Boolean, "boolean"],
   [SchemaType.Credential, "@secret string"],
   [SchemaType.Duration, "duration"],
+  [SchemaType.AnyObject, "object"],
 ]);
 
 export function transformObject(
@@ -99,7 +100,7 @@ export function transformObjectProperty(
       kind: "property",
       name: name,
       doc: doc,
-      isOptional: !propertySchema.required,
+      isOptional: propertySchema.required !== true,
       type: visited.name,
       decorators: getPropertyDecorators(propertySchema),
     };
@@ -114,7 +115,7 @@ export function transformObjectProperty(
     kind: "property",
     doc,
     name,
-    isOptional: propertySchema.required === false,
+    isOptional: propertySchema.required !== true,
     type: getCadlType(propertySchema.schema, codeModel),
     decorators: getPropertyDecorators(propertySchema),
   };

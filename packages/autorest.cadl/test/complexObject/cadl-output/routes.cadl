@@ -6,10 +6,14 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 interface Operations {
   @summary("Product Types")
-  @doc("The Products endpoint returns information about the Uber products offered at a given location. The response includes the display name and other details about each product, and lists the products in the proper display order.")
+  @doc("""
+The Products endpoint returns information about the Uber products offered at a
+given location. The response includes the display name and other details about
+each product, and lists the products in the proper display order.
+""")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @get
   list(
@@ -28,7 +32,7 @@ interface Operations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): CatalogArray;
+  ): Error | CatalogArray;
   @summary("Create products")
   @doc("Resets products.")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
@@ -53,7 +57,7 @@ interface Operations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): CatalogDictionary;
+  ): Error | CatalogDictionary;
   @summary("Update products")
   @doc("Resets products.")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
@@ -78,5 +82,5 @@ interface Operations {
     @doc("Accept header")
     @header
     Accept: "application/json"
-  ): CatalogArray;
+  ): Error | CatalogArray;
 }

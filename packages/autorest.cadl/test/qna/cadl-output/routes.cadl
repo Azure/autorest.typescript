@@ -6,13 +6,11 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 interface QuestionAnsweringOperations {
   @summary("Answers the specified question using your knowledge base.")
   @doc("Answers the specified question using your knowledge base.")
   @route("/:query-knowledgebases")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @post
   GetAnswers(
     @doc("The name of the project to use.")
@@ -38,8 +36,6 @@ interface QuestionAnsweringOperations {
   @summary("Answers the specified question using the provided text in the body.")
   @doc("Answers the specified question using the provided text in the body.")
   @route("/:query-text")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @post
   GetAnswersFromText(
     @doc("Api Version")
@@ -56,13 +52,11 @@ interface QuestionAnsweringOperations {
   ): ErrorResponse | AnswersFromTextResult;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 interface QuestionAnsweringProjectsOperations {
   @summary("Gets all projects for a user.")
   @doc("Gets all projects for a user.")
   @route("/query-knowledgebases/projects")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   ListProjects(
     @doc("Api Version")
@@ -88,8 +82,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Get the requested project metadata.")
   @doc("Get the requested project metadata.")
   @route("/query-knowledgebases/projects/{projectName}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetProjectDetails(
     @doc("The name of the project to use.")
@@ -107,8 +99,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Create or update a project.")
   @doc("Create or update a project.")
   @route("/query-knowledgebases/projects/{projectName}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @patch
   CreateProject(
     @doc("The name of the project to use.")
@@ -130,8 +120,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Delete the project.")
   @doc("Delete the project.")
   @route("/query-knowledgebases/projects/{projectName}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @delete
   DeleteProject(
     @doc("The name of the project to use.")
@@ -149,8 +137,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Gets the status of a Project delete job.")
   @doc("Gets the status of a Project delete job.")
   @route("/query-knowledgebases/projects/deletion-jobs/{jobId}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetDeleteStatus(
     @doc("Api Version")
@@ -168,7 +154,7 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Export project metadata and assets.")
   @doc("Export project metadata and assets.")
   @route("/query-knowledgebases/projects/{projectName}/:export")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
+  // FIXME: (multi-response) Swagger defines multiple requests and responses.
   //      This needs to be revisited as CADL supports linking specific responses to each request
   @post
   Export(
@@ -192,11 +178,15 @@ interface QuestionAnsweringProjectsOperations {
     @header
     Accept: "application/json"
   ): ErrorResponse | ExportJobState | void;
-  @summary("Gets the status of an Export job, once job completes, returns the project metadata, and assets.")
-  @doc("Gets the status of an Export job, once job completes, returns the project metadata, and assets.")
+  @summary("""
+Gets the status of an Export job, once job completes, returns the project
+metadata, and assets.
+""")
+  @doc("""
+Gets the status of an Export job, once job completes, returns the project
+metadata, and assets.
+""")
   @route("/query-knowledgebases/projects/{projectName}/export/jobs/{jobId}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetExportStatus(
     @doc("The name of the project to use.")
@@ -218,8 +208,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Import project assets.")
   @doc("Import project assets.")
   @route("/query-knowledgebases/projects/{projectName}/:import")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @post
   Import(
     @doc("The name of the project to use.")
@@ -249,8 +237,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Gets the status of an Import job.")
   @doc("Gets the status of an Import job.")
   @route("/query-knowledgebases/projects/{projectName}/import/jobs/{jobId}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetImportStatus(
     @doc("The name of the project to use.")
@@ -272,8 +258,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Deploy project to production.")
   @doc("Deploy project to production.")
   @route("/query-knowledgebases/projects/{projectName}/deployments/{deploymentName}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @put
   DeployProject(
     @doc("The name of the project to use.")
@@ -295,8 +279,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Gets the status of a Deploy job.")
   @doc("Gets the status of a Deploy job.")
   @route("/query-knowledgebases/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetDeployStatus(
     @doc("The name of the project to use.")
@@ -322,8 +304,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("List all deployments of a project.")
   @doc("List all deployments of a project.")
   @route("/query-knowledgebases/projects/{projectName}/deployments")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   ListDeployments(
     @doc("The name of the project to use.")
@@ -353,8 +333,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Gets all the synonyms of a project.")
   @doc("Gets all the synonyms of a project.")
   @route("/query-knowledgebases/projects/{projectName}/synonyms")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetSynonyms(
     @doc("The name of the project to use.")
@@ -384,8 +362,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Updates all the synonyms of a project.")
   @doc("Updates all the synonyms of a project.")
   @route("/query-knowledgebases/projects/{projectName}/synonyms")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @put
   UpdateSynonyms(
     @doc("The name of the project to use.")
@@ -407,8 +383,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Gets all the sources of a project.")
   @doc("Gets all the sources of a project.")
   @route("/query-knowledgebases/projects/{projectName}/sources")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetSources(
     @doc("The name of the project to use.")
@@ -438,8 +412,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Updates the sources of a project.")
   @doc("Updates the sources of a project.")
   @route("/query-knowledgebases/projects/{projectName}/sources")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @patch
   UpdateSources(
     @doc("The name of the project to use.")
@@ -461,8 +433,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Gets the status of update sources job.")
   @doc("Gets the status of update sources job.")
   @route("/query-knowledgebases/projects/{projectName}/sources/jobs/{jobId}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetUpdateSourcesStatus(
     @doc("The name of the project to use.")
@@ -484,8 +454,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Gets all the QnAs of a project.")
   @doc("Gets all the QnAs of a project.")
   @route("/query-knowledgebases/projects/{projectName}/qnas")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetQnas(
     @doc("The name of the project to use.")
@@ -519,8 +487,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Updates the QnAs of a project.")
   @doc("Updates the QnAs of a project.")
   @route("/query-knowledgebases/projects/{projectName}/qnas")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @patch
   UpdateQnas(
     @doc("The name of the project to use.")
@@ -542,8 +508,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Gets the status of update QnAs job.")
   @doc("Gets the status of update QnAs job.")
   @route("/query-knowledgebases/projects/{projectName}/qnas/jobs/{jobId}")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @get
   GetUpdateQnasStatus(
     @doc("The name of the project to use.")
@@ -565,8 +529,6 @@ interface QuestionAnsweringProjectsOperations {
   @summary("Update Active Learning feedback.")
   @doc("Update Active Learning feedback.")
   @route("/query-knowledgebases/projects/{projectName}/feedback")
-  //TODO: (multi-response) Swagger defines multiple requests and responses.
-  //      This needs to be revisited as CADL supports linking specific responses to each request
   @post
   AddFeedback(
     @doc("The name of the project to use.")

@@ -12,7 +12,9 @@ export function transformServiceInformation(
 ): ServiceInformation {
   return {
     name: model.info.title,
-    doc: model.info.description,
+    doc:
+      model.info.description ??
+      "// FIXME: (miissing-service-description) Add service description",
     endpoint: getFirstEndpoint(model),
     endpointParameters: transformEndpointParameters(model),
     version: getApiVersion(model),

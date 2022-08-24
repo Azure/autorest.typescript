@@ -25,9 +25,9 @@ function generateMultiResponseWarning(
   responses: string[],
   statements: string[]
 ) {
-  responses.length > 1 &&
+  responses.length > 2 &&
     statements.push(
-      `//TODO: (multi-response) Swagger defines multiple requests and responses. 
+      `// FIXME: (multi-response) Swagger defines multiple requests and responses. 
        //      This needs to be revisited as CADL supports linking specific responses to each request`
     );
 }

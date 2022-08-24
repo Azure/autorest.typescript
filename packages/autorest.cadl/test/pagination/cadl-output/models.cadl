@@ -4,7 +4,7 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 enum OperationResult_statusKnownValues {
   "Succeeded",
   "Failed",
@@ -22,70 +22,70 @@ enum OperationResult_statusKnownValues {
 @knownValues(OperationResult_statusKnownValues)
 model OperationResult_status is string {}
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @pagedResult
 model ProductResultValue {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   @items
-  value: Product[];
-  // TODO: (missing-docs) Add documentation
+  value?: Product[];
+  // FIXME: (missing-docs) Add documentation
 
   @nextLink
-  nextLink: string;
+  nextLink?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model Product {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   properties?: Product_properties;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model Product_properties {
-  // TODO: (missing-docs) Add documentation
-  id: int32;
-  // TODO: (missing-docs) Add documentation
-  name: string;
+  // FIXME: (missing-docs) Add documentation
+  id?: int32;
+  // FIXME: (missing-docs) Add documentation
+  name?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @pagedResult
 model ProductResult {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   @items
-  values: Product[];
-  // TODO: (missing-docs) Add documentation
+  values?: Product[];
+  // FIXME: (missing-docs) Add documentation
 
   @nextLink
-  nextLink: string;
+  nextLink?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @pagedResult
 model OdataProductResult {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   @items
-  values: Product[];
-  // TODO: (missing-docs) Add documentation
+  values?: Product[];
+  // FIXME: (missing-docs) Add documentation
 
   @nextLink
-  "odata.nextLink": string;
+  "odata.nextLink"?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 @pagedResult
 model ProductResultValueWithXMSClientName {
-  // TODO: (missing-docs) Add documentation
+  // FIXME: (missing-docs) Add documentation
   @items
-  values: Product[];
-  // TODO: (missing-docs) Add documentation
+  values?: Product[];
+  // FIXME: (missing-docs) Add documentation
 
   @nextLink
-  nextLink: string;
+  nextLink?: string;
 }
 
-// TODO: (missing-docs) Add documentation
+// FIXME: (missing-docs) Add documentation
 model OperationResult {
   @doc("The status of the request")
-  status: OperationResult_status;
+  status?: OperationResult_status;
 }
