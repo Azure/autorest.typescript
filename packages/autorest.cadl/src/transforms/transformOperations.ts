@@ -16,6 +16,7 @@ import {
   CadlParameterLocation,
 } from "../interfaces";
 import { transformDataType } from "../model";
+import { hasLROExtension } from "../utils/lro";
 
 export function transformOperationGroup(
   { language, operations }: OperationGroup,
@@ -92,7 +93,18 @@ function transformRequest(
     verb: transformVerb(requests![0].protocol),
     route: transformRoute(requests![0].protocol),
     responses: [...new Set(transformedResponses)],
+    fixMe: getFixmes(operation),
   };
+}
+
+function getFixmes(operation: Operation): string[] {
+  const fixmes: string[] = [];
+  if (hasLROExtension(operation)) {
+    fixmes.push(`// FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
+    // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators`);
+  }
+
+  return fixmes;
 }
 
 function filterOperationParameters(

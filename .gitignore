@@ -25,3 +25,4 @@ common/autoinstallers/*/.npmrc
 dist-esm
 dist
 packages/autorest.cadl/test/playfab/*
+playfab

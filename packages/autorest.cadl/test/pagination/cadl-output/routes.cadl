@@ -263,6 +263,8 @@ parameters grouped
   ): void | OdataProductResult;
   @doc("A long-running paging operation that includes a nextLink that has 10 pages")
   @route("/paging/multiple/lro")
+  // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
+  // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @post
   GetMultiplePagesLRO(
     // FIXME: (missing-docs) Add documentation

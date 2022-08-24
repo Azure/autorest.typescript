@@ -10,13 +10,16 @@ export function generateObject(cadlObject: CadlObject) {
   decorators && definitions.push(decorators);
 
   if (cadlObject.parents.length > 0) {
-    const parent = cadlObject.parents[0];
+    const firstParent = cadlObject.parents[0];
     cadlObject.parents.length > 1 &&
       definitions.push(
         `// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
        // please review the generated model to write a valid object hierarchy.`
       );
-    definitions.push(`model ${cadlObject.name} extends ${parent} {`);
+    definitions.push(`model ${cadlObject.name} extends ${firstParent} {`);
+    for (const parent of cadlObject.parents.filter((p) => p !== firstParent)) {
+      definitions.push(`...${parent};`);
+    }
   } else {
     definitions.push(`model ${cadlObject.name} {`);
   }

@@ -22,7 +22,7 @@ export interface CadlOperationGroup extends WithDoc {
   operations: CadlOperation[];
 }
 
-export interface CadlOperation extends WithDoc, WithSummary {
+export interface CadlOperation extends WithDoc, WithSummary, WithFixMe {
   name: string;
   verb: "get" | "post" | "put" | "delete";
   route: string;

@@ -15,6 +15,9 @@ export function generateOperation(operation: CadlOperation) {
   statements.push(doc);
   statements.push(`@route("${route}")`);
   generateMultiResponseWarning(responses, statements);
+  for (const fixme of operation.fixMe ?? []) {
+    statements.push(fixme);
+  }
   statements.push(
     `@${verb} op ${name}(${params ? params : ""}): ${responses.join(" | ")};`
   );
