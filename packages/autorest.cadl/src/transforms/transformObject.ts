@@ -75,11 +75,26 @@ export function transformObject(
     kind: "object",
     properties,
     parents: getParents(schema),
+    extendedParents: getExtendedParents(schema),
+    spreadParents: getSpreadParents(schema),
     decorators: getModelDecorators(schema),
   };
 
+  addFixmes(updatedVisited);
+
   cadlTypes.set(schema, updatedVisited);
   return updatedVisited;
+}
+
+function addFixmes(cadlObject: CadlObject): void {
+  cadlObject.fixMe = cadlObject.fixMe ?? [];
+
+  if ((cadlObject.extendedParents ?? []).length > 1) {
+    cadlObject.fixMe
+      .push(`// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
+     // this may happen because of multiple parents having discriminator properties.
+     // Parents not included ${cadlObject.extendedParents!.join(", ")}`);
+  }
 }
 
 export function transformObjectProperty(
@@ -126,6 +141,22 @@ function getParents(schema: ObjectSchema): string[] {
 
   return immediateParents
     .filter((p) => p.language.default.name !== schema.language.default.name)
+    .map((p) => p.language.default.name);
+}
+
+function getExtendedParents(schema: ObjectSchema): string[] {
+  const immediateParents = schema.parents?.immediate ?? [];
+  return immediateParents
+    .filter((p) => p.language.default.name !== schema.language.default.name)
+    .filter((p) => getOwnDiscriminator(p as ObjectSchema))
+    .map((p) => p.language.default.name);
+}
+
+function getSpreadParents(schema: ObjectSchema): string[] {
+  const immediateParents = schema.parents?.immediate ?? [];
+  return immediateParents
+    .filter((p) => p.language.default.name !== schema.language.default.name)
+    .filter((p) => !getOwnDiscriminator(p as ObjectSchema))
     .map((p) => p.language.default.name);
 }
 

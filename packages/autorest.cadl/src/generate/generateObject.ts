@@ -4,24 +4,25 @@ import { generateDocs } from "../utils/docs";
 
 export function generateObject(cadlObject: CadlObject) {
   const definitions: string[] = [];
+
+  const fixme = getFixme(cadlObject);
+  fixme && definitions.push(fixme);
+
   const doc = generateDocs(cadlObject);
   definitions.push(doc);
+
   const decorators = generateDecorators(cadlObject.decorators);
   decorators && definitions.push(decorators);
 
-  if (cadlObject.parents.length > 0) {
-    const firstParent = cadlObject.parents[0];
-    cadlObject.parents.length > 1 &&
-      definitions.push(
-        `// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
-       // please review the generated model to write a valid object hierarchy.`
-      );
+  if (cadlObject.extendedParents?.length) {
+    const firstParent = cadlObject.extendedParents[0];
     definitions.push(`model ${cadlObject.name} extends ${firstParent} {`);
-    for (const parent of cadlObject.parents.filter((p) => p !== firstParent)) {
-      definitions.push(`...${parent};`);
-    }
   } else {
     definitions.push(`model ${cadlObject.name} {`);
+  }
+
+  for (const parent of cadlObject.spreadParents ?? []) {
+    definitions.push(`...${parent};`);
   }
 
   for (const property of cadlObject.properties) {
@@ -37,6 +38,14 @@ export function generateObject(cadlObject: CadlObject) {
   definitions.push("}");
 
   return definitions.join("\n");
+}
+
+function getFixme(cadlObject: CadlObject): string | undefined {
+  if (!cadlObject.fixMe) {
+    return undefined;
+  }
+
+  return cadlObject.fixMe.join("\n");
 }
 
 function getOptionalOperator(property: CadlObjectProperty) {

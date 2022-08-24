@@ -155,13 +155,15 @@ model dictionary_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model siamese extends cat {
+model siamese {
+  ...cat;
   // FIXME: (missing-docs) Add documentation
   breed?: string;
 }
 
 // FIXME: (missing-docs) Add documentation
-model cat extends pet {
+model cat {
+  ...pet;
   // FIXME: (missing-docs) Add documentation
   color?: string;
   // FIXME: (missing-docs) Add documentation
@@ -169,7 +171,8 @@ model cat extends pet {
 }
 
 // FIXME: (missing-docs) Add documentation
-model dog extends pet {
+model dog {
+  ...pet;
   // FIXME: (missing-docs) Add documentation
   food?: string;
 }

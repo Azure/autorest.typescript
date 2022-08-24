@@ -479,10 +479,9 @@ same resource.
   settings?: ProjectSettings;
 }
 
-// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
-// please review the generated model to write a valid object hierarchy.
 @doc("Job state represents the job metadata and any errors.")
-model JobState extends JobMetadata {
+model JobState {
+  ...JobMetadata;
   ...Errors;
 }
 
@@ -507,10 +506,9 @@ model Errors {
   errors?: Error[];
 }
 
-// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
-// please review the generated model to write a valid object hierarchy.
 @doc("Export job status, project metadata, and assets.")
-model ExportJobState extends JobState {
+model ExportJobState {
+  ...JobState;
   ...ExportJobResultUrl;
 }
 
@@ -547,17 +545,15 @@ model WordAlterations {
   alterations: string[];
 }
 
-// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
-// please review the generated model to write a valid object hierarchy.
 @doc("Import QnA Record.")
-model ImportQnaRecord extends RetrieveQnaRecord {
+model ImportQnaRecord {
+  ...RetrieveQnaRecord;
   ...SourceDisplayNameParameter;
 }
 
-// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
-// please review the generated model to write a valid object hierarchy.
 @doc("QnA Record with last updated date-time.")
-model RetrieveQnaRecord extends QnaRecord {
+model RetrieveQnaRecord {
+  ...QnaRecord;
   ...LastUpdatedDateTimeParameter;
 }
 
@@ -706,10 +702,9 @@ project.
   nextLink?: string;
 }
 
-// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
-// please review the generated model to write a valid object hierarchy.
 @doc("Custom source record with last updated date-time.")
-model QnaSourceRecord extends QnaSourceMetadata {
+model QnaSourceRecord {
+  ...QnaSourceMetadata;
   ...LastUpdatedDateTimeParameter;
 }
 
@@ -743,10 +738,9 @@ model UpdateSourceRecord {
   value: UpdateQnaSourceRecord;
 }
 
-// FIXME: (multiple-inheritance) Multiple inheritance is not supported in CADL, so this type will only inherit from one parent.
-// please review the generated model to write a valid object hierarchy.
 @doc("Update source record.")
-model UpdateQnaSourceRecord extends QnaSourceMetadata {
+model UpdateQnaSourceRecord {
+  ...QnaSourceMetadata;
   ...RefreshSourceOptions;
 }
 

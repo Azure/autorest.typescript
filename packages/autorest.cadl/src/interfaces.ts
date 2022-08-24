@@ -87,6 +87,8 @@ export interface CadlObject extends CadlDataType {
   kind: "object";
   properties: CadlObjectProperty[];
   parents: string[];
+  extendedParents?: string[];
+  spreadParents?: string[];
   decorators?: CadlDecorator[];
 }
 
