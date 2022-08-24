@@ -77,6 +77,21 @@ export function hasPollingOperations(model: RLCModel) {
   return false;
 }
 
+export function hasUnexpectedHelper(model: RLCModel) {
+  const pathDictionary = model.paths;
+  for (const details of Object.values(pathDictionary)) {
+    for (const methodDetails of Object.values(details.methods)) {
+      const successTypes = methodDetails[0].responseTypes.success;
+      const errorTypes = methodDetails[0].responseTypes.error;
+
+      if (successTypes.length > 0 && errorTypes.length > 0 && !!errorTypes[0]) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 export function hasInputModels(model: RLCModel) {
   return hasSchemaContextObject(model, [SchemaContext.Input]);
 }

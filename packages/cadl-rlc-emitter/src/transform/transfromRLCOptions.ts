@@ -1,19 +1,22 @@
 import { RLCOptions } from "@azure-tools/rlc-codegen";
 import { getServiceNamespace, Program } from "@cadl-lang/compiler";
 import { getAuthentication, getServers } from "@cadl-lang/rest/http";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 
 export function transformRLCOptions(program: Program): RLCOptions {
-  const config: RLCOptions = JSON.parse(
-    readFileSync(
-      join(
-        program.compilerOptions.outputPath ?? "",
-        "../spec",
-        "typescript.json"
-      )
-    ).toString()
+  let configFile = join(
+    program.compilerOptions.outputPath ?? "",
+    "typescript.json"
   );
+  if (!existsSync(configFile)) {
+    configFile = join(
+      program.compilerOptions.outputPath ?? "",
+      "../spec",
+      "typescript.json"
+    );
+  }
+  const config: RLCOptions = JSON.parse(readFileSync(configFile).toString());
   const serviceNs = getServiceNamespace(program);
   if (serviceNs) {
     const host = getServers(program, serviceNs);
@@ -23,13 +26,19 @@ export function transformRLCOptions(program: Program): RLCOptions {
   }
   const securityInfo = processAuth(program);
   config.addCredentials =
-    !securityInfo || config.addCredentials === false
+    !securityInfo && config.addCredentials === false
       ? false
-      : securityInfo.addCredentials;
-  config.credentialScopes = securityInfo ? securityInfo.credentialScopes : [];
-  config.credentialKeyHeaderName = securityInfo
-    ? securityInfo.credentialKeyHeaderName
-    : undefined;
+      : securityInfo
+      ? securityInfo.addCredentials
+      : config.addCredentials;
+  config.credentialScopes =
+    securityInfo && securityInfo.credentialScopes
+      ? securityInfo.credentialScopes
+      : config.credentialScopes;
+  config.credentialKeyHeaderName =
+    securityInfo && securityInfo.credentialKeyHeaderName
+      ? securityInfo.credentialKeyHeaderName
+      : config.credentialKeyHeaderName;
   return config;
 }
 

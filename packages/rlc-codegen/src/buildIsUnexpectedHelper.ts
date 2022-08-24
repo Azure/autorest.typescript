@@ -9,7 +9,11 @@ import {
   Project,
   VariableDeclarationKind
 } from "ts-morph";
+import { hasUnexpectedHelper } from "./helpers/operationHelpers.js";
 export function buildIsUnexpectedHelper(model: RLCModel) {
+  if (!hasUnexpectedHelper(model)) {
+    return;
+  }
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `isUnexpected.ts`);
@@ -21,7 +25,6 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
   let allResponseTypes: Set<string> = new Set();
   let allErrorTypes: Set<string> = new Set();
   let overloads: OptionalKind<FunctionDeclarationOverloadStructure>[] = [];
-
   const pathDictionary = model.paths;
 
   for (const [path, details] of Object.entries(pathDictionary)) {
@@ -64,7 +67,6 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
       });
     }
   }
-
   isErrorHelper.addImportDeclaration({
     namedImports: [...allResponseTypes],
     moduleSpecifier: "./responses"

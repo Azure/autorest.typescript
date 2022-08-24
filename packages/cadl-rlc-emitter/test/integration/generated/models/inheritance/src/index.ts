@@ -1,0 +1,11 @@
+import InheritanceClient from "./inheritanceClient";
+
+export * from "./inheritanceClient";
+export * from "./parameters";
+export * from "./responses";
+export * from "./clientDefinitions";
+export * from "./isUnexpected";
+export * from "./models";
+export * from "./outputModels";
+
+export default InheritanceClient;
