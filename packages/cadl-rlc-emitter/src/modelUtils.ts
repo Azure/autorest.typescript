@@ -284,7 +284,6 @@ function validateDiscriminator(
 }
 /**
  * A "schema property" here is a property that is emitted to OpenAPI schema.
- *
  * Headers, parameters, status codes are not schema properties even they are
  * represented as properties in Cadl.
  */
