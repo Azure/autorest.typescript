@@ -6,6 +6,8 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
+namespace AutoRestComplexTestService;
+
 // FIXME: (missing-docs) Add documentation
 interface basicOperations {
   @doc("Get complex type {id: 2, name: 'abc', color: 'YELLOW'}")

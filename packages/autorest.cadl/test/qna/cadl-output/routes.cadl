@@ -6,6 +6,8 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
+namespace MicrosoftCognitiveLanguageService;
+
 // FIXME: (missing-docs) Add documentation
 interface QuestionAnsweringOperations {
   @summary("Answers the specified question using your knowledge base.")

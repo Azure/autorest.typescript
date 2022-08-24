@@ -4,6 +4,8 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
+namespace MicrosoftCognitiveLanguageService;
+
 // FIXME: (missing-docs) Add documentation
 enum RankerKindKnownValues {
   "QuestionOnly",

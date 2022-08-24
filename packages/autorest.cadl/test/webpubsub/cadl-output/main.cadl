@@ -1,9 +1,8 @@
+import "@cadl-lang/rest";
 import "./routes.cadl";
 
 using Cadl.Rest;
-
 using Cadl.Http;
-
 @serviceTitle("Azure Web PubSub Service REST API")
 @serviceVersion("2021-10-01")
 @server(

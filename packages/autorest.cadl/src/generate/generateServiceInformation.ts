@@ -1,9 +1,9 @@
-import { ServiceInformation } from "../interfaces";
+import { CadlProgram } from "../interfaces";
 import { generateDocs } from "../utils/docs";
+import { getNamespace } from "../utils/namespace";
 
-export function generateServiceInformation(
-  serviceInformation: ServiceInformation
-) {
+export function generateServiceInformation(program: CadlProgram) {
+  const { serviceInformation } = program;
   const definitions: string[] = [];
 
   definitions.push(`@serviceTitle("${serviceInformation.name}")`);
@@ -32,7 +32,7 @@ export function generateServiceInformation(
   }
   const serviceDoc = generateDocs(serviceInformation);
   serviceDoc && definitions.push(serviceDoc);
-  definitions.push(`namespace ${serviceInformation.name.replace(/ /g, "")};`);
+  definitions.push(getNamespace(program));
 
   return definitions.join("\n");
 }

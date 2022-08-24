@@ -2,6 +2,8 @@ import "@cadl-lang/rest";
 
 using Cadl.Rest;
 
+namespace AutoRestComplexTestService;
+
 // FIXME: (missing-docs) Add documentation
 enum CMYKColorsKnownValues {
   "cyan",

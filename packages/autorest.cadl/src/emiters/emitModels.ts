@@ -4,6 +4,7 @@ import { generateObject } from "../generate/generateObject";
 import { writeFile } from "fs/promises";
 import { getModelsImports } from "../utils/imports";
 import { formatFile } from "../utils/format";
+import { getNamespace } from "../utils/namespace";
 
 export async function emitModels(
   filePath: string,
@@ -28,7 +29,17 @@ function generateModels(program: CadlProgram) {
   const enums = flattenEnums(models.enums).join("");
   const objects = models.objects.map(generateObject).join("\n\n");
 
-  return [imports, "\n", namespaces, "\n", enums, "\n", objects].join("\n");
+  return [
+    imports,
+    "\n",
+    namespaces,
+    "\n",
+    getNamespace(program),
+    "\n",
+    enums,
+    "\n",
+    objects,
+  ].join("\n");
 }
 
 function flattenEnums(enums: CadlEnum[]) {

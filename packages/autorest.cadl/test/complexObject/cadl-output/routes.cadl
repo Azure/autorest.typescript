@@ -6,6 +6,8 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
+namespace ComplexModelClient;
+
 // FIXME: (missing-docs) Add documentation
 interface Operations {
   @summary("Product Types")

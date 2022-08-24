@@ -1,9 +1,8 @@
+import "@cadl-lang/rest";
 import "./routes.cadl";
 
 using Cadl.Rest;
-
 using Cadl.Http;
-
 @serviceTitle("Microsoft Cognitive Language Service")
 @serviceVersion("2021-10-01")
 @server(

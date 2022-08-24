@@ -6,6 +6,8 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
+namespace Adel;
+
 // FIXME: (missing-docs) Add documentation
 interface AlertConfigsOperations {
   // FIXME: (missing-docs) Add documentation

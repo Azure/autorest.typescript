@@ -6,6 +6,8 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
+namespace AzureWebPubSubServiceRESTAPI;
+
 // FIXME: (missing-docs) Add documentation
 interface HealthApiOperations {
   @summary("Get service health status.")

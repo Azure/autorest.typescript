@@ -1,9 +1,8 @@
+import "@cadl-lang/rest";
 import "./routes.cadl";
 
 using Cadl.Rest;
-
 using Cadl.Http;
-
 @serviceTitle("AutoRest Url Test Service")
 @server(
   "{$host}",

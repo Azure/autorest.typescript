@@ -6,6 +6,8 @@ using Cadl.Rest;
 
 using Cadl.Http;
 
+namespace AutoRestPagingTestService;
+
 // FIXME: (missing-docs) Add documentation
 interface PagingOperations {
   @doc("A paging operation that must return result of the default 'value' node.")
