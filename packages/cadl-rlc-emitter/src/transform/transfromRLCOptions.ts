@@ -1,27 +1,22 @@
 import { RLCOptions } from "@azure-tools/rlc-codegen";
 import { getServiceNamespace, Program } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 
 export function transformRLCOptions(program: Program): RLCOptions {
-  let config: RLCOptions;
-  try {
-    config = JSON.parse(
-      readFileSync(
-        join(
-          // TODO: finalize the possible position of config file
-          program.compilerOptions.outputPath ?? "",
-          "../spec",
-          "typescript.json"
-        )
-      ).toString()
+  let configFile = join(
+    program.compilerOptions.outputPath ?? "",
+    "typescript.json"
+  );
+  if (!existsSync(configFile)) {
+    configFile = join(
+      program.compilerOptions.outputPath ?? "",
+      "../spec",
+      "typescript.json"
     );
-  } catch (e) {
-    //TODO: fallback to fixed config if there is no typescript.json provided
-    config = returnFixedConfig();
   }
-
+  const config: RLCOptions = JSON.parse(readFileSync(configFile).toString());
   const serviceNs = getServiceNamespace(program);
   if (serviceNs) {
     const host = getServers(program, serviceNs);
@@ -30,20 +25,4 @@ export function transformRLCOptions(program: Program): RLCOptions {
     }
   }
   return config;
-}
-
-function returnFixedConfig(): RLCOptions {
-  return {
-    generateMetadata: true,
-    includeShortcuts: false,
-    addCredentials: false,
-    packageDetails: {
-      name: "@msinternal/example-name",
-      scopeName: "msinternal",
-      nameWithoutScope: "example",
-      description: "Mock example Service",
-      version: "1.0.0-beta.1"
-    },
-    isCadlTest: true
-  };
 }

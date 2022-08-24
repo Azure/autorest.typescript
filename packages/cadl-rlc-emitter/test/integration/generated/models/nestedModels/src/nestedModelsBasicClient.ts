@@ -7,7 +7,7 @@ export default function createClient(
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "1.0.0";
 
-  const userAgentInfo = `azsdk-js-example-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-nested-model-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -21,5 +21,18 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as NestedModelsBasicClient;
 
-  return client;
+  return {
+    ...client,
+    nestedModelsBasic: {
+      sendNestedModel: (options) => {
+        return client.path("/nested-models/models").post(options);
+      },
+      getNestedModel: (options) => {
+        return client.path("/nested-models/models").get(options);
+      },
+      setNestedModel: (options) => {
+        return client.path("/nested-models/models").put(options);
+      },
+    },
+  };
 }

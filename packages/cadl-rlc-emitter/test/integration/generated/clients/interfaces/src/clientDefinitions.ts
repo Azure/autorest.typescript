@@ -16,6 +16,34 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for MultiInterfaceClient operations */
+export interface MultiInterfaceClientOperations {
+  getDogs(
+    options: MultiInterfaceClientGetDogsParameters
+  ): StreamableMethod<
+    | MultiInterfaceClientGetDogs200Response
+    | MultiInterfaceClientGetDogsDefaultResponse
+  >;
+  setDogs(
+    options: MultiInterfaceClientSetDogsParameters
+  ): StreamableMethod<
+    | MultiInterfaceClientSetDogs200Response
+    | MultiInterfaceClientSetDogsDefaultResponse
+  >;
+  getCats(
+    options: MultiInterfaceClientGetCatsParameters
+  ): StreamableMethod<
+    | MultiInterfaceClientGetCats200Response
+    | MultiInterfaceClientGetCatsDefaultResponse
+  >;
+  setCats(
+    options: MultiInterfaceClientSetCatsParameters
+  ): StreamableMethod<
+    | MultiInterfaceClientSetCats200Response
+    | MultiInterfaceClientSetCatsDefaultResponse
+  >;
+}
+
 export interface GetDogs {
   get(
     options: MultiInterfaceClientGetDogsParameters
@@ -60,4 +88,5 @@ export interface Routes {
 
 export type MultiInterfaceClient = Client & {
   path: Routes;
+  multiInterfaceClient: MultiInterfaceClientOperations;
 };

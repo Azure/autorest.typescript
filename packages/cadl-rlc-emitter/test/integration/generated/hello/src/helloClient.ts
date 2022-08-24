@@ -5,7 +5,7 @@ export default function createClient(options: ClientOptions = {}): HelloClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "1.0.0";
 
-  const userAgentInfo = `azsdk-js-example-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-hello-world-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -19,5 +19,12 @@ export default function createClient(options: ClientOptions = {}): HelloClient {
 
   const client = getClient(baseUrl, options) as HelloClient;
 
-  return client;
+  return {
+    ...client,
+    hello: {
+      world: (options) => {
+        return client.path("/hello/world").get(options);
+      },
+    },
+  };
 }

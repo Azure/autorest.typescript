@@ -7,7 +7,7 @@ export default function createClient(
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "1.0.0";
 
-  const userAgentInfo = `azsdk-js-example-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-optional-property-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -21,5 +21,18 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as OptionalPropertiesClient;
 
-  return client;
+  return {
+    ...client,
+    optionalProperties: {
+      sendOptionalPropertyModel: (options) => {
+        return client.path("/optional-properties/models").post(options);
+      },
+      getOptionalPropertyModel: (options) => {
+        return client.path("/optional-properties/models").get(options);
+      },
+      setOptionalPropertyModel: (options) => {
+        return client.path("/optional-properties/models").put(options);
+      },
+    },
+  };
 }
