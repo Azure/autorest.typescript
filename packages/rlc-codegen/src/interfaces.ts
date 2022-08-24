@@ -169,3 +169,8 @@ export interface ResponseMetadata {
 
 export type ResponseHeaderSchema = Schema;
 export type ResponseBodySchema = Schema;
+
+export type ContentBuilder = {
+  (model: RLCModel): File | undefined;
+  (model: RLCModel, hasSampleGenerated?: boolean): File | undefined;
+};

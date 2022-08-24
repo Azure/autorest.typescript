@@ -21,7 +21,7 @@ export const REST_CLIENT_RESERVED: ReservedName[] = [
   }
 ];
 
-export function generateMethodShortcutImplementation(paths: Paths) {
+export function buildMethodShortcutImplementation(paths: Paths) {
   let keys: Record<string, string[]> = {};
   for (const path of Object.keys(paths)) {
     const groupName = normalizeName(
