@@ -232,9 +232,43 @@ stages:
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-test
             displayName: "Check git Tree"
-  
+
+      - job: Cadl_Ranch_Test
+        dependsOn: Build
+        variables:
+          - template: globals.yml
+        strategy:
+          matrix:
+            macOS_Node16:
+              Pool:
+              OSVmImage: "macOS-10.15"
+              NodeTestVersion: "16.x"
+            Browser_Linux_Node16:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage:
+              NodeTestVersion: "16.x"
+            Linux_Node14:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-18.04"
+              NodeTestVersion: "16.x"
+            Linux_Node16:
+              Pool: ${{ parameters.LinuxPool }}
+              OSVmImage: "ubuntu-18.04"
+              NodeTestVersion: "16.x"
+        pool:
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+        steps:
+          - template: build.yml
+          - script: npm run integartion-test
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
+            displayName: "Generate RLC Test Clients from Cadl-ranch"
+          - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
+            displayName: "Check git Tree"
+
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
-  - ? ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}
-    : - template: release.yml
+  - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
+      - template: release.yml
         parameters:
           DependsOn: BuildStage

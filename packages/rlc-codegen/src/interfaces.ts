@@ -56,6 +56,7 @@ export interface RLCOptions {
   generateSample?: boolean;
   azureSdkForJs?: boolean;
   azureOutputDirectory?: string;
+  isCadlTest?: boolean;
 }
 
 export interface RLCModel {

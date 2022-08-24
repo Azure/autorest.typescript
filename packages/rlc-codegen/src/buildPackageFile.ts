@@ -44,8 +44,13 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   }
 
   const packageDetails = model.options.packageDetails;
-  const { generateTest, generateSample, azureOutputDirectory, azureSdkForJs } =
-    model.options;
+  const {
+    generateTest,
+    generateSample,
+    azureOutputDirectory,
+    azureSdkForJs,
+    isCadlTest
+  } = model.options;
 
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
@@ -177,6 +182,10 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["rollup"] = "^2.66.1";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
     packageInfo.devDependencies["uglify-js"] = "^3.4.9";
+  }
+
+  if (isCadlTest) {
+    packageInfo["type"] = "module";
   }
 
   if (generateTest) {
