@@ -46,7 +46,7 @@ export function transformSchemas(program: Program) {
   function getGeneratedModels(model: Type, context: SchemaContext) {
     if (model.kind === "Model") {
       if (model.templateArguments && model.templateArguments.length) {
-        for (const temp of model.templateArguments) {
+        for(const temp of model.templateArguments) {
           setModelMap(temp, context);
         }
       }
@@ -55,7 +55,7 @@ export function transformSchemas(program: Program) {
       if (indexer?.value && !modelMap.has(indexer?.value)) {
         setModelMap(indexer.value, context);
       }
-      for (const prop of model.properties) {
+      for(const prop of model.properties) {
         if (prop[1].type.kind === "Model" && !modelMap.has(prop[1].type)) {
           getGeneratedModels(prop[1].type, context);
         }
@@ -64,3 +64,4 @@ export function transformSchemas(program: Program) {
   }
   return schemas;
 }
+

@@ -595,7 +595,7 @@ function getSchemaForEnum(program: Program, e: EnumType) {
 function mapCadlIntrinsicModelToTypeScript(
   program: Program,
   cadlType: ModelType | ModelTypeProperty,
-  usage?: SchemaContext[]
+  usage?: SchemaContext[],
 ): any | undefined {
   const indexer = (cadlType as ModelType).indexer;
   if (indexer !== undefined) {
@@ -605,17 +605,12 @@ function mapCadlIntrinsicModelToTypeScript(
       if (name === "string") {
         schema = {
           type: "object",
-          additionalProperties: getSchemaForType(
-            program,
-            indexer.value!,
-            usage,
-            true
-          )
+          additionalProperties: getSchemaForType(program, indexer.value!, usage, true),
         };
       } else if (name === "integer") {
         schema = {
           type: "array",
-          items: getSchemaForType(program, indexer.value!, usage, true)
+          items: getSchemaForType(program, indexer.value!, usage, true),
         };
       }
       if (usage && usage.includes(SchemaContext.Output)) {
