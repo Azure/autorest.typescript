@@ -32,7 +32,7 @@ export function transformRLCOptions(program: Program): RLCOptions {
   return config;
 }
 
-function returnFixedConfig() {
+function returnFixedConfig(): RLCOptions {
   return {
     generateMetadata: true,
     includeShortcuts: false,
@@ -43,6 +43,7 @@ function returnFixedConfig() {
       nameWithoutScope: "example",
       description: "Mock example Service",
       version: "1.0.0-beta.1"
-    }
+    },
+    isCadlTest: true
   };
 }
