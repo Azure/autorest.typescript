@@ -1,8 +1,6 @@
 {
   "generateMetadata": true,
   "includeShortcuts": true,
-  "addCredentials": true,
-  "credentialScopes": ["https://example.net/.default"],
   "endpointParameterName": "ledgerUri",
   "packageDetails": {
     "name": "@msinternal/confidential-ledger",
