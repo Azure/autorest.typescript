@@ -82,7 +82,7 @@ export function getSchemaForType(
   });
   return undefined;
 }
-function includeDerivedModel(model: ModelType): boolean {
+export function includeDerivedModel(model: ModelType): boolean {
   return (
     !isTemplateDeclaration(model) &&
     (model.templateArguments === undefined ||
@@ -339,11 +339,31 @@ function getSchemaForModel(
   const derivedModels = model.derivedModels.filter(includeDerivedModel);
 
   // getSchemaOrRef on all children to push them into components.schemas
+  const discriminator = getDiscriminator(program, model);
+  if (derivedModels.length > 0) {
+    modelSchema.children = {
+      all: [],
+      immediate: []
+    };
+  }
   for (const child of derivedModels) {
-    getSchemaForType(program, child, usage, true);
+    const childSchema = getSchemaForType(program, child, usage, true);
+    for (const [name, prop] of child.properties) {
+      if (name === discriminator?.propertyName) {
+        const propSchema = getSchemaForType(
+          program,
+          prop.type,
+          usage,
+          true
+        )
+        childSchema.discriminatorValue = propSchema.type.replace(/"/g, '');
+        break;
+      }
+    }
+    modelSchema.children?.all?.push(childSchema);
+    modelSchema.children?.immediate?.push(childSchema);
   }
 
-  const discriminator = getDiscriminator(program, model);
   if (discriminator) {
     if (!validateDiscriminator(program, discriminator, derivedModels)) {
       // appropriate diagnostic is generated in the validate function
@@ -352,30 +372,12 @@ function getSchemaForModel(
 
     const { propertyName } = discriminator;
 
-    for (const child of derivedModels) {
-      // Set x-ms-discriminator-value if only one value for the discriminator property
-      const prop = getProperty(child, propertyName);
-      if (prop) {
-        const vals = getStringValues(prop.type);
-        if (vals.length === 1 && vals[0]) {
-          modelSchema.discriminatorValue = vals[0];
-        }
-      }
-    }
-
     modelSchema.discriminator = {
       name: propertyName,
-      type: "string"
+      type: "string",
+      required: true,
+      description: `Discriminator property for ${model.name}.`
     };
-    // Push discriminator into base type, but only if it is not already there
-    if (!model.properties?.get(propertyName)) {
-      modelSchema.properties[propertyName] = {
-        name: propertyName,
-        type: "string",
-        description: `Discriminator property for ${model.name}.`
-      };
-      // modelSchema.required = [propertyName];
-    }
   }
 
   // applyExternalDocs(model, modelSchema);
@@ -476,11 +478,11 @@ function mapCadlTypeToTypeScript(
 ): any {
   switch (cadlType.kind) {
     case "Number":
-      return { type: "number", enum: [cadlType.value] };
+      return { type: cadlType.value };
     case "String":
-      return { type: "string", enum: [cadlType.value] };
+      return { type: `"${cadlType.value}"` };
     case "Boolean":
-      return { type: "boolean", enum: [cadlType.value] };
+      return { type: cadlType.value };
     case "Model":
     case "ModelProperty":
       return mapCadlIntrinsicModelToTypeScript(program, cadlType, usage);
