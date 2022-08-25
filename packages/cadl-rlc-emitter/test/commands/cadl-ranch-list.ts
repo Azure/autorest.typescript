@@ -9,22 +9,22 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "hello"
   },
   // TODO: remember to fix this case in emitter side
-  // {
-  //   outputPath: "extensibleEnums",
-  //   inputPath: "extensible-enums"
-  // },
+  {
+    outputPath: "extensibleEnums",
+    inputPath: "extensible-enums"
+  },
   {
     outputPath: "models/collectionsBasic",
     inputPath: "models/collections-basic"
   },
-  // {
-  //   outputPath: "models/collectionsModels",
-  //   inputPath: "models/collections-models"
-  // },
-  // {
-  //   outputPath: "models/enumProperties",
-  //   inputPath: "models/enum-properties"
-  // },
+  {
+    outputPath: "models/collectionsModels",
+    inputPath: "models/collections-models"
+  },
+  {
+    outputPath: "models/enumProperties",
+    inputPath: "models/enum-properties"
+  },
   {
     outputPath: "models/inheritance",
     inputPath: "models/inheritance"

@@ -1,3 +1,11 @@
+export interface NestedRoundTripSharedModelOutput {
+  /** Required string, illustrating a reference type property. */
+  requiredString: string;
+  requiredInt: number;
+  requiredStringList: string[];
+  requiredIntList: number[];
+}
+
 export interface ErrorResponseOutput {
   /** The error object. */
   error: ErrorModelOutput;
@@ -33,8 +41,8 @@ export interface NestedOutputOnlyModelOutput {
   /** Required string, illustrating a reference type property. */
   requiredString: string;
   requiredInt: number;
-  requiredStringList: Array<undefinedOutput>;
-  requiredIntList: Array<undefinedOutput>;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }
 
 export interface RoundTripModelOutput {
@@ -42,4 +50,12 @@ export interface RoundTripModelOutput {
   NestedRoundTripModel: NestedRoundTripOnlyModelOutput;
   /** Model to illustrate a nested model that appears as a nested model on input, output, and round-trip models. */
   NestedSharedModel: NestedRoundTripSharedModelOutput;
+}
+
+export interface NestedRoundTripOnlyModelOutput {
+  /** Required string, illustrating a reference type property. */
+  requiredString: string;
+  requiredInt: number;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }

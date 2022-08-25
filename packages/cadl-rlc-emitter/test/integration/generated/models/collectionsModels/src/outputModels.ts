@@ -1,6 +1,12 @@
-export interface BaseClassOutput {
-  /** An example property. */
-  baseClassProperty: string;
+export interface ModelCollectionModelOutput {
+  requiredModelCollection: Array<SimpleModelOutput>;
+  optionalModelCollection?: Array<SimpleModelOutput>;
+}
+
+export interface SimpleModelOutput {
+  /** Required string. */
+  requiredString: string;
+  requiredInt: number;
 }
 
 export interface ErrorResponseOutput {
@@ -25,15 +31,4 @@ export interface InnerErrorOutput {
   code: string;
   /** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
   innererror?: InnerErrorOutput;
-}
-
-export interface ModelWithPolymorphicPropertyOutput {
-  /** Example base class that has a discriminator property. */
-  polymorphicProperty: BaseClassWithDiscriminatorOutput;
-}
-
-export interface BaseClassWithDiscriminatorOutput extends BaseClassOutput {
-  /** Discriminator property for BaseClassWithDiscriminator. */
-  discriminatorProperty?: string;
-  discriminatorProperty: "B";
 }

@@ -5,7 +5,7 @@ export interface BaseClass {
 
 export interface ModelWithPolymorphicProperty {
   /** Example base class that has a discriminator property. */
-  polymorphicProperty: object;
+  polymorphicProperty: BaseClassWithDiscriminator;
 }
 
 export interface BaseClassWithDiscriminator extends BaseClass {

@@ -65,6 +65,7 @@ export function getSchemaForType(
     const schema = getSchemaForModel(program, type, usage, needRef) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
       schema.outputTypeName = `${schema.name}Output`;
+      schema.typeName = `${schema.name}`;
     }
     schema.usage = usage;
     return schema;
@@ -548,10 +549,7 @@ function applyIntrinsicDecorators(
     const values = getKnownValues(program, cadlType);
     if (values) {
       const enumSchema = { ...newTarget, ...getSchemaForEnum(program, values) };
-      enumSchema["x-ms-enum"].modelAsString = true;
-      enumSchema["x-ms-enum"].name = (
-        getPropertyType(cadlType) as ModelType
-      ).name;
+      enumSchema.name = "string";
       return enumSchema;
     }
   }
@@ -595,7 +593,7 @@ function getSchemaForEnum(program: Program, e: EnumType) {
 function mapCadlIntrinsicModelToTypeScript(
   program: Program,
   cadlType: ModelType | ModelTypeProperty,
-  usage?: SchemaContext[],
+  usage?: SchemaContext[]
 ): any | undefined {
   const indexer = (cadlType as ModelType).indexer;
   if (indexer !== undefined) {
@@ -605,16 +603,26 @@ function mapCadlIntrinsicModelToTypeScript(
       if (name === "string") {
         schema = {
           type: "object",
-          additionalProperties: getSchemaForType(program, indexer.value!, usage, true),
+          additionalProperties: getSchemaForType(
+            program,
+            indexer.value!,
+            usage,
+            true
+          )
         };
       } else if (name === "integer") {
         schema = {
           type: "array",
-          items: getSchemaForType(program, indexer.value!, usage, true),
+          items: getSchemaForType(program, indexer.value!, usage, true)
         };
       }
-      if (usage && usage.includes(SchemaContext.Output)) {
-        schema.outputTypeName = `Array<${schema.items.name}Output>`;
+      if (!isIntrinsic(program, indexer.value)) {
+        schema.typeName = `Array<${schema.items.name}>`;
+        if (usage && usage.includes(SchemaContext.Output)) {
+          schema.outputTypeName = `Array<${schema.items.name}Output>`;
+        }
+      } else {
+        schema.typeName = `${schema.items.type}[]`;
       }
       schema.usage = usage;
       return schema;

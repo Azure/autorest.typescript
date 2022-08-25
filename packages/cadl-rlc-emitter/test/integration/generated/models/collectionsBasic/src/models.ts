@@ -1,9 +1,9 @@
 export interface InputModel {
-  requiredStringList: array;
-  requiredIntList: array;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }
 
 export interface RoundTripModel {
-  requiredStringList: array;
-  requiredIntList: array;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }

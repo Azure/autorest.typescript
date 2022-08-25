@@ -2,14 +2,14 @@ export interface InputModel {
   /** Optional string, illustrating an optional reference type property. */
   optionalString?: string;
   optionalInt?: number;
-  optionalStringList?: array;
-  optionalIntList?: array;
+  optionalStringList?: string[];
+  optionalIntList?: number[];
 }
 
 export interface RoundTripModel {
   /** Optional string, illustrating an optional reference type property. */
   optionalString?: string;
   optionalInt?: number;
-  optionalStringList?: array;
-  optionalIntList?: array;
+  optionalStringList?: string[];
+  optionalIntList?: number[];
 }
