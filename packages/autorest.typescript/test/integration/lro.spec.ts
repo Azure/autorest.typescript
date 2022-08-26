@@ -161,7 +161,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed. The provisioning state: canceled."
+          "Poller cancelled"
         );
       }
     });
@@ -182,7 +182,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed. The provisioning state: failed."
+          "The long running operation has failed."
         );
       }
     });
@@ -213,7 +213,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
+          "Poller cancelled"
         );
       }
     });
@@ -360,7 +360,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed. The provisioning state: failed."
+          "The long-running operation has failed."
         );
       }
     });
@@ -397,7 +397,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed. The provisioning state: failed."
+          "The long running operation has failed."
         );
       }
     });
@@ -435,7 +435,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed. The provisioning state: canceled."
+          "Poller cancelled"
         );
       }
     });
@@ -471,7 +471,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed. The provisioning state: failed."
+          "The long running operation has failed."
         );
       }
     });
@@ -494,7 +494,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed. The provisioning state: canceled."
+          "Poller cancelled"
         );
       }
     });
