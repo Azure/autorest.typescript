@@ -29,11 +29,7 @@ interface QuestionAnsweringOperations {
 
     @doc("Post body of the request.")
     @body
-    knowledgeBaseQueryOptions: AnswersOptions,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    knowledgeBaseQueryOptions: AnswersOptions
   ): ErrorResponse | AnswersResult;
   @summary("Answers the specified question using the provided text in the body.")
   @doc("Answers the specified question using the provided text in the body.")
@@ -46,11 +42,7 @@ interface QuestionAnsweringOperations {
 
     @doc("Post body of the request.")
     @body
-    textQueryOptions: AnswersFromTextOptions,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    textQueryOptions: AnswersFromTextOptions
   ): ErrorResponse | AnswersFromTextResult;
 }
 
@@ -75,11 +67,7 @@ interface QuestionAnsweringProjectsOperations {
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    maxpagesize: int32
   ): ErrorResponse | ProjectsMetadata;
   @summary("Get the requested project metadata.")
   @doc("Get the requested project metadata.")
@@ -92,11 +80,7 @@ interface QuestionAnsweringProjectsOperations {
 
     @doc("Api Version")
     @query
-    "api-version": "2021-10-01",
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    "api-version": "2021-10-01"
   ): ErrorResponse | ProjectMetadata;
   @summary("Create or update a project.")
   @doc("Create or update a project.")
@@ -113,11 +97,7 @@ interface QuestionAnsweringProjectsOperations {
 
     @doc("Parameters needed to create the project.")
     @body
-    body: CreateProjectOptions,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    body: CreateProjectOptions
   ): ErrorResponse | ProjectMetadata;
   @summary("Delete the project.")
   @doc("Delete the project.")
@@ -132,11 +112,7 @@ interface QuestionAnsweringProjectsOperations {
 
     @doc("Api Version")
     @query
-    "api-version": "2021-10-01",
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    "api-version": "2021-10-01"
   ): ErrorResponse | void;
   @summary("Gets the status of a Project delete job.")
   @doc("Gets the status of a Project delete job.")
@@ -149,11 +125,7 @@ interface QuestionAnsweringProjectsOperations {
 
     @doc("Job ID.")
     @path
-    jobId: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    jobId: string
   ): ErrorResponse | JobState;
   @summary("Export project metadata and assets.")
   @doc("Export project metadata and assets.")
@@ -178,11 +150,7 @@ interface QuestionAnsweringProjectsOperations {
 
     @doc("Kind of the asset of the project.")
     @query
-    assetKind: components·nvda8q·parameters·assetkindparameter·schema,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    assetKind: components·nvda8q·parameters·assetkindparameter·schema
   ): ErrorResponse | ExportJobState | void;
   @summary("""
 Gets the status of an Export job, once job completes, returns the project
@@ -205,11 +173,7 @@ metadata, and assets.
 
     @doc("Job ID.")
     @path
-    jobId: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    jobId: string
   ): ErrorResponse | ExportJobState;
   @summary("Import project assets.")
   @doc("Import project assets.")
@@ -236,11 +200,7 @@ metadata, and assets.
 
     @doc("Project assets the needs to be imported.")
     @body
-    body: ImportJobOptions,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    body: ImportJobOptions
   ): ErrorResponse | void;
   @summary("Gets the status of an Import job.")
   @doc("Gets the status of an Import job.")
@@ -257,11 +217,7 @@ metadata, and assets.
 
     @doc("Job ID.")
     @path
-    jobId: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    jobId: string
   ): ErrorResponse | JobState;
   @summary("Deploy project to production.")
   @doc("Deploy project to production.")
@@ -280,11 +236,7 @@ metadata, and assets.
 
     @doc("Api Version")
     @query
-    "api-version": "2021-10-01",
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    "api-version": "2021-10-01"
   ): ErrorResponse | void;
   @summary("Gets the status of a Deploy job.")
   @doc("Gets the status of a Deploy job.")
@@ -305,11 +257,7 @@ metadata, and assets.
 
     @doc("Job ID.")
     @path
-    jobId: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    jobId: string
   ): ErrorResponse | JobState;
   @summary("List all deployments of a project.")
   @doc("List all deployments of a project.")
@@ -334,11 +282,7 @@ metadata, and assets.
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    maxpagesize: int32
   ): ErrorResponse | ProjectDeployments;
   @summary("Gets all the synonyms of a project.")
   @doc("Gets all the synonyms of a project.")
@@ -363,11 +307,7 @@ metadata, and assets.
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    maxpagesize: int32
   ): ErrorResponse | SynonymAssets;
   @summary("Updates all the synonyms of a project.")
   @doc("Updates all the synonyms of a project.")
@@ -384,11 +324,7 @@ metadata, and assets.
 
     @doc("All the synonyms of a project.")
     @body
-    body: SynonymAssets,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    body: SynonymAssets
   ): ErrorResponse | void;
   @summary("Gets all the sources of a project.")
   @doc("Gets all the sources of a project.")
@@ -413,11 +349,7 @@ metadata, and assets.
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    maxpagesize: int32
   ): ErrorResponse | QnaSources;
   @summary("Updates the sources of a project.")
   @doc("Updates the sources of a project.")
@@ -436,11 +368,7 @@ metadata, and assets.
 
     @doc("Update sources parameters of a project.")
     @body
-    body: UpdateSourceRecord[],
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    body: UpdateSourceRecord[]
   ): ErrorResponse | void;
   @summary("Gets the status of update sources job.")
   @doc("Gets the status of update sources job.")
@@ -457,11 +385,7 @@ metadata, and assets.
 
     @doc("Job ID.")
     @path
-    jobId: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    jobId: string
   ): ErrorResponse | JobState;
   @summary("Gets all the QnAs of a project.")
   @doc("Gets all the QnAs of a project.")
@@ -490,11 +414,7 @@ metadata, and assets.
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    maxpagesize: int32
   ): ErrorResponse | QnaAssets;
   @summary("Updates the QnAs of a project.")
   @doc("Updates the QnAs of a project.")
@@ -513,11 +433,7 @@ metadata, and assets.
 
     @doc("Update QnAs parameters of a project.")
     @body
-    body: UpdateQnaRecord[],
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    body: UpdateQnaRecord[]
   ): ErrorResponse | void;
   @summary("Gets the status of update QnAs job.")
   @doc("Gets the status of update QnAs job.")
@@ -534,11 +450,7 @@ metadata, and assets.
 
     @doc("Job ID.")
     @path
-    jobId: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    jobId: string
   ): ErrorResponse | JobState;
   @summary("Update Active Learning feedback.")
   @doc("Update Active Learning feedback.")
@@ -555,10 +467,6 @@ metadata, and assets.
 
     @doc("Feedback for Active Learning.")
     @body
-    body: ActiveLearningFeedback,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    body: ActiveLearningFeedback
   ): ErrorResponse | void;
 }

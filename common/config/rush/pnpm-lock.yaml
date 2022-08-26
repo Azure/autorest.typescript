@@ -360,6 +360,16 @@ packages:
       - supports-color
     dev: false
 
+  /@azure-tools/cadl-csharp/0.1.0:
+    resolution:
+      {
+        integrity: sha512-1YJExugnM34MhVdCanKP1Z02Tf+Jy7bjc5oOS81LX6ZCIzoPcj4+VCTGxvu6FgNa0VP5RHsE8XqiWxUfqlR60A==
+      }
+    dependencies:
+      js-yaml: 4.1.0
+      json-serialize-refs: 0.0.6-0
+    dev: false
+
   /@azure-tools/codegen/2.9.1:
     resolution:
       {
@@ -8534,6 +8544,13 @@ packages:
     resolution:
       {
         integrity: sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==
+      }
+    dev: false
+
+  /json-serialize-refs/0.0.6-0:
+    resolution:
+      {
+        integrity: sha512-/fLtaG4ubslySZx5QIywbY2QdrItBBdEArP1/AVR7KD5Pp3VETmyVNNJuhgBUGnYXfulbMUXZmRlg6naIm9ENw==
       }
     dev: false
 

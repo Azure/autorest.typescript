@@ -36,11 +36,7 @@ are sorted by created time (UTC).
     @query
     sortBy: string,
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @query orderBy: OrderBy
   ): Error | Page_AlertConfig;
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -50,11 +46,7 @@ are sorted by created time (UTC).
     @path
     alertConfigName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: AlertConfig,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: AlertConfig
   ): Error | AlertConfig;
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -62,11 +54,7 @@ are sorted by created time (UTC).
   Read(
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
     @path
-    alertConfigName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    alertConfigName: string
   ): Error | AlertConfig;
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -74,11 +62,7 @@ are sorted by created time (UTC).
   Delete(
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
     @path
-    alertConfigName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    alertConfigName: string
   ): Error | void;
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -88,11 +72,7 @@ are sorted by created time (UTC).
     @path
     alertConfigName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: AlertConfig,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: AlertConfig
   ): Error | AlertConfig;
 }
 
@@ -124,11 +104,7 @@ are sorted by created time (UTC).
     @query
     sortBy: string,
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @query orderBy: OrderBy
   ): Error | Page_Dataset;
   // FIXME: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
@@ -138,11 +114,7 @@ are sorted by created time (UTC).
     @path
     datasetName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Dataset,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: Request_Dataset
   ): Error | Dataset;
   // FIXME: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
@@ -150,11 +122,7 @@ are sorted by created time (UTC).
   Read(
     @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
     @path
-    datasetName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    datasetName: string
   ): Error | Dataset;
   // FIXME: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
@@ -162,11 +130,7 @@ are sorted by created time (UTC).
   Delete(
     @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
     @path
-    datasetName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    datasetName: string
   ): Error | void;
   @summary("Query data from data source to preview")
   @doc("""
@@ -177,11 +141,7 @@ data to better diagnose and explain a detected anomaly.
   @post
   PreviewData(
     // FIXME: (missing-docs) Add documentation
-    @body body: DatasetPreviewRequest,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: DatasetPreviewRequest
   ): Error | DatasetPreviewResponse;
 }
 
@@ -213,11 +173,7 @@ are sorted by created time (UTC).
     @query
     sortBy: string,
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @query orderBy: OrderBy
   ): Error | Page_Hook;
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -227,11 +183,7 @@ are sorted by created time (UTC).
     @path
     hookName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: Hook,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: Hook
   ): Error | Hook;
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -239,11 +191,7 @@ are sorted by created time (UTC).
   Read(
     @doc("Unique identifier of a hook. This parameter is case-sensitive.")
     @path
-    hookName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    hookName: string
   ): Error | Hook;
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -251,11 +199,7 @@ are sorted by created time (UTC).
   Delete(
     @doc("Unique identifier of a hook. This parameter is case-sensitive.")
     @path
-    hookName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    hookName: string
   ): Error | void;
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -265,11 +209,7 @@ are sorted by created time (UTC).
     @path
     hookName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: Hook,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: Hook
   ): Error | Hook;
 }
 
@@ -320,11 +260,7 @@ ordered by created time descending. By default, the full list of replay records
 will be returned for the inference schedule name(s) in your filter.
 """)
     @query
-    topPerSchedule: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    topPerSchedule: int32
   ): Error | Page_ScheduleReplay;
   // FIXME: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
@@ -337,11 +273,7 @@ case-sensitive.
     @path
     replayName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_ScheduleReplay,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: Request_ScheduleReplay
   ): Error | ScheduleReplay;
   // FIXME: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
@@ -352,11 +284,7 @@ Unique identifier of a replay on an inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    replayName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    replayName: string
   ): Error | ScheduleReplay;
   // FIXME: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
@@ -367,11 +295,7 @@ Unique identifier of a replay on an inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    replayName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    replayName: string
   ): Error | void;
 }
 
@@ -422,11 +346,7 @@ created time descending. By default, the full list of inference schedules will
 be returned for the model name(s) in your filter.
 """)
     @query
-    topPerModel: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    topPerModel: int32
   ): Error | Page_Schedule;
   // FIXME: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
@@ -439,11 +359,7 @@ case-sensitive.
     @path
     scheduleName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Schedule,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: Request_Schedule
   ): Error | Schedule;
   // FIXME: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
@@ -454,11 +370,7 @@ Unique identifier of a live streaming inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    scheduleName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    scheduleName: string
   ): Error | Schedule;
   // FIXME: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
@@ -469,11 +381,7 @@ Unique identifier of a live streaming inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    scheduleName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    scheduleName: string
   ): Error | void;
   @summary("Update an inference schedule")
   @doc("Pause/resume or update selected properties of an inference schedule.")
@@ -487,11 +395,7 @@ case-sensitive.
     @path
     scheduleName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: ScheduleUpdate,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: ScheduleUpdate
   ): Error | Schedule;
   @summary("Get historical detection results from the inference schedule")
   @doc("""
@@ -507,11 +411,7 @@ the detailed quota and limits.
     // FIXME: (missing-docs) Add documentation
     @query startTime: string,
     // FIXME: (missing-docs) Add documentation
-    @query endTime: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @query endTime: string
   ): Error | ScheduleHistoryResult;
 }
 
@@ -561,11 +461,7 @@ time descending. By default, the full list of evaluations will be returned for
 the model name(s) in your filter.
 """)
     @query
-    topPerModel: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    topPerModel: int32
   ): Error | Page_Evaluation;
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
@@ -575,11 +471,7 @@ the model name(s) in your filter.
     @path
     evaluationName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Evaluation,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: Request_Evaluation
   ): Error | Evaluation;
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
@@ -587,11 +479,7 @@ the model name(s) in your filter.
   Read(
     @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
     @path
-    evaluationName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    evaluationName: string
   ): Error | Evaluation;
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
@@ -599,11 +487,7 @@ the model name(s) in your filter.
   Delete(
     @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
     @path
-    evaluationName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    evaluationName: string
   ): Error | void;
 }
 
@@ -653,11 +537,7 @@ descending. By default, the full list of models will be returned for the
 dataset name(s) in your filter.
 """)
     @query
-    topPerDataset: int32,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    topPerDataset: int32
   ): Error | Page_Model;
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
@@ -667,11 +547,7 @@ dataset name(s) in your filter.
     @path
     modelName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Model,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: Request_Model
   ): Error | Model;
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
@@ -679,11 +555,7 @@ dataset name(s) in your filter.
   Read(
     @doc("Unique identifier of a model. This parameter is case-sensitive.")
     @path
-    modelName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    modelName: string
   ): Error | Model;
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
@@ -691,11 +563,7 @@ dataset name(s) in your filter.
   Delete(
     @doc("Unique identifier of a model. This parameter is case-sensitive.")
     @path
-    modelName: string,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    modelName: string
   ): Error | void;
   @summary("Detect Multivariate Anomaly - Sync")
   @doc("""
@@ -710,10 +578,6 @@ the official documentation for the detailed quota and limits.
     // FIXME: (missing-docs) Add documentation
     @path modelName: string,
     // FIXME: (missing-docs) Add documentation
-    @body body: DetectionRequest,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    @body body: DetectionRequest
   ): Error | DetectionResult;
 }

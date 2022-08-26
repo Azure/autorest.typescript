@@ -29,11 +29,7 @@ each product, and lists the products in the proper display order.
 
     @doc("Api Version")
     @query
-    "api-version": "2014-04-01-preview",
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    "api-version": "2014-04-01-preview"
   ): Error | CatalogArray;
   @summary("Create products")
   @doc("Resets products.")
@@ -54,11 +50,7 @@ each product, and lists the products in the proper display order.
 
     @doc("body Parameter")
     @body
-    bodyParameter: CatalogDictionaryOfArray,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    bodyParameter: CatalogDictionaryOfArray
   ): Error | CatalogDictionary;
   @summary("Update products")
   @doc("Resets products.")
@@ -79,10 +71,6 @@ each product, and lists the products in the proper display order.
 
     @doc("body Parameter")
     @body
-    bodyParameter: CatalogArrayOfDictionary,
-
-    @doc("Accept header")
-    @header
-    Accept: "application/json"
+    bodyParameter: CatalogArrayOfDictionary
   ): Error | CatalogArray;
 }

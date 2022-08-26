@@ -6,6 +6,7 @@ import {
   ParameterLocation,
   Protocols,
   Request,
+  Schema,
   SchemaResponse,
 } from "@autorest/codemodel";
 import { getDataTypes } from "../dataTypes";
@@ -17,6 +18,7 @@ import {
 } from "../interfaces";
 import { transformDataType } from "../model";
 import { hasLROExtension } from "../utils/lro";
+import { isConstantSchema } from "../utils/schemas";
 
 export function transformOperationGroup(
   { language, operations }: OperationGroup,
@@ -107,10 +109,27 @@ function getFixmes(operation: Operation): string[] {
   return fixmes;
 }
 
+function constantValueEquals(schema: Schema, match: string) {
+  if (isConstantSchema(schema)) {
+    const value = schema.value.value;
+    if (typeof value === "string") {
+      return value.toLowerCase() === match.toLowerCase();
+    }
+  }
+
+  return false;
+}
+
 function filterOperationParameters(
   parameter: Parameter,
   visitedParameters: Set<Parameter>
 ): boolean {
+  if (
+    parameter.origin === "modelerfour:synthesized/accept" &&
+    constantValueEquals(parameter.schema, "application/json")
+  ) {
+    return false;
+  }
   if (visitedParameters.has(parameter)) {
     return false;
   }
