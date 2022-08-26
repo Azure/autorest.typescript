@@ -15,9 +15,12 @@ import {
   CadlOperationGroup,
   CadlParameter,
   CadlParameterLocation,
+  Extension,
 } from "../interfaces";
 import { transformDataType } from "../model";
+import { getOptions } from "../options";
 import { hasLROExtension } from "../utils/lro";
+import { getLanguageMetadata } from "../utils/metadata";
 import { isConstantSchema } from "../utils/schemas";
 
 export function transformOperationGroup(
@@ -49,8 +52,21 @@ function transformResponses(
   responses: SchemaResponse[] = [],
   codeModel: CodeModel
 ) {
+  const { isAzureSpec } = getOptions();
   const dataTypes = getDataTypes(codeModel);
-  return responses.map(({ schema }) => dataTypes.get(schema)?.name ?? "void");
+  return responses.map(({ schema }) => {
+    const responseName = dataTypes.get(schema)?.name;
+
+    if (!responseName) {
+      return "void";
+    }
+
+    if (isAzureSpec && schema.language.default.paging?.isPageable) {
+      return `Azure.Core.ResourceList<${responseName}>`;
+    }
+
+    return responseName;
+  });
 }
 
 export function transformOperation(
@@ -71,6 +87,7 @@ function transformRequest(
   const name = language.default.name;
   const doc = language.default.description;
   const summary = language.default.summary;
+  const { paging } = getLanguageMetadata(operation.language);
   const transformedResponses = transformResponses(
     [...(exceptions ?? []), ...(responses ?? [])] as SchemaResponse[],
     codeModel
@@ -87,6 +104,12 @@ function transformRequest(
       .map((v) => transformParameter(v, codeModel)),
   ];
 
+  const extensions: Extension[] = [];
+
+  if (paging) {
+    extensions.push("Pageable");
+  }
+
   return {
     name,
     doc,
@@ -96,6 +119,7 @@ function transformRequest(
     route: transformRoute(requests![0].protocol),
     responses: [...new Set(transformedResponses)],
     fixMe: getFixmes(operation),
+    extensions: [],
   };
 }
 

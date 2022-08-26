@@ -10,7 +10,6 @@ import {
 } from "@autorest/extension-base";
 import { existsSync, mkdirSync } from "fs";
 
-import { setSession } from "./utils/logger";
 import { join } from "path";
 import { getModel } from "./model";
 import { emitModels } from "./emiters/emitModels";
@@ -18,6 +17,7 @@ import { emitRoutes } from "./emiters/emitRoutes";
 import { emitMain } from "./emiters/emitMain";
 import { markPagination } from "./utils/paging";
 import { markErrorModels } from "./utils/errors";
+import { setSession } from "./autorestSession";
 
 export async function processRequest(host: AutorestExtensionHost) {
   const session = await startSession<CodeModel>(host, codeModelSchema);

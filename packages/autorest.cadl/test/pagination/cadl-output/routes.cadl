@@ -13,22 +13,22 @@ interface PagingOperations {
   @doc("A paging operation that must return result of the default 'value' node.")
   @route("/paging/noitemname")
   @get
-  getNoItemNamePages(): void | ProductResultValue;
+  getNoItemNamePages(): void | Azure.Core.ResourceList<ProductResultValue>;
   @doc("A paging operation that must ignore any kind of nextLink, and stop after page 1.")
   @route("/paging/nullnextlink")
   @get
-  getNullNextLinkNamePages(): void | ProductResult;
+  getNullNextLinkNamePages(): void | Azure.Core.ResourceList<ProductResult>;
   @doc("A paging operation that finishes on the first call without a nextlink")
   @route("/paging/single")
   @get
-  getSinglePages(): void | ProductResult;
+  getSinglePages(): void | Azure.Core.ResourceList<ProductResult>;
   @doc("""
 A paging operation whose first response's items list is empty, but still
 returns a next link. Second (and final) call, will give you an items list of 1.
 """)
   @route("/paging/firstResponseEmpty/1")
   @get
-  firstResponseEmpty(): void | ProductResultValue;
+  firstResponseEmpty(): void | Azure.Core.ResourceList<ProductResultValue>;
   @doc("A paging operation that includes a nextLink that has 10 pages")
   @route("/paging/multiple")
   @get
@@ -46,7 +46,7 @@ seconds. The default is 30 seconds.
 """)
     @header
     timeout: int32
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("""
 A paging operation that includes a next operation. It has a different query
 parameter from it's next operation nextOperationWithQueryParams. Returns a
@@ -65,7 +65,7 @@ nextOperationWithQueryParams
 """)
     @query
     queryConstant: true
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("""
 Define `filter` as a query param for all calls. However, the returned next link
 will also include the `filter` as part of it. Make sure you don't end up
@@ -77,7 +77,7 @@ duplicating the `filter` param in the url sent.
     @doc("OData filter options. Pass in 'foo'")
     @query
     $filter: string
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("Paging with max page size. We don't want to ")
   @route("/paging/maxPageSize")
   @get
@@ -85,7 +85,7 @@ duplicating the `filter` param in the url sent.
     @doc("Max page size query param. Don't send")
     @query
     $maxpagesize: "5"
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("""
 Next operation for getWithQueryParams. Pass in next=True to pass test. Returns
 a ProductResult
@@ -96,7 +96,7 @@ a ProductResult
     @doc("A constant. Must be True")
     @query
     queryConstant: true
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("A paging operation that includes a nextLink in odata format that has 10 pages")
   @route("/paging/multiple/odata")
   @get
@@ -114,7 +114,7 @@ seconds. The default is 30 seconds.
 """)
     @header
     timeout: int32
-  ): void | OdataProductResult;
+  ): void | Azure.Core.ResourceList<OdataProductResult>;
   @doc("A paging operation that includes a nextLink that has 10 pages")
   @route("/paging/multiple/withpath/{offset}")
   @get
@@ -136,14 +136,14 @@ seconds. The default is 30 seconds.
 """)
     @header
     timeout: int32
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("""
 A paging operation that fails on the first call with 500 and then retries and
 then get a response including a nextLink that has 10 pages
 """)
   @route("/paging/multiple/retryfirst")
   @get
-  getMultiplePagesRetryFirst(): void | ProductResult;
+  getMultiplePagesRetryFirst(): void | Azure.Core.ResourceList<ProductResult>;
   @doc("""
 A paging operation that includes a nextLink that has 10 pages, of which the 2nd
 call fails first with 500. The client should retry and finish all 10 pages
@@ -151,19 +151,19 @@ eventually.
 """)
   @route("/paging/multiple/retrysecond")
   @get
-  getMultiplePagesRetrySecond(): void | ProductResult;
+  getMultiplePagesRetrySecond(): void | Azure.Core.ResourceList<ProductResult>;
   @doc("A paging operation that receives a 400 on the first call")
   @route("/paging/single/failure")
   @get
-  getSinglePagesFailure(): void | ProductResult;
+  getSinglePagesFailure(): void | Azure.Core.ResourceList<ProductResult>;
   @doc("A paging operation that receives a 400 on the second call")
   @route("/paging/multiple/failure")
   @get
-  getMultiplePagesFailure(): void | ProductResult;
+  getMultiplePagesFailure(): void | Azure.Core.ResourceList<ProductResult>;
   @doc("A paging operation that receives an invalid nextLink")
   @route("/paging/multiple/failureuri")
   @get
-  getMultiplePagesFailureUri(): void | ProductResult;
+  getMultiplePagesFailureUri(): void | Azure.Core.ResourceList<ProductResult>;
   @doc("A paging operation that doesn't return a full URL, just a fragment")
   @route("/paging/multiple/fragment/{tenant}")
   @get
@@ -175,7 +175,7 @@ eventually.
     @doc("Sets the tenant to use.")
     @path
     tenant: string
-  ): void | OdataProductResult;
+  ): void | Azure.Core.ResourceList<OdataProductResult>;
   @doc("""
 A paging operation that doesn't return a full URL, just a fragment with
 parameters grouped
@@ -190,7 +190,7 @@ parameters grouped
     @doc("Sets the tenant to use.")
     @path
     tenant: string
-  ): void | OdataProductResult;
+  ): void | Azure.Core.ResourceList<OdataProductResult>;
   @doc("A long-running paging operation that includes a nextLink that has 10 pages")
   @route("/paging/multiple/lro")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
@@ -210,7 +210,7 @@ seconds. The default is 30 seconds.
 """)
     @header
     timeout: int32
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("""
 A paging operation with api version. When calling the next link, you want to
 append your client's api version to the next link
@@ -221,7 +221,7 @@ append your client's api version to the next link
     @doc("Api Version")
     @query
     "api-version": "1.0.0"
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("""
 A paging operation with api version. When calling the next link, you want to
 reformat it and override the returned api version with your client's api
@@ -233,7 +233,7 @@ version
     @doc("Api Version")
     @query
     "api-version": "1.0.0"
-  ): void | ProductResult;
+  ): void | Azure.Core.ResourceList<ProductResult>;
   @doc("A paging operation that doesn't return a full URL, just a fragment")
   @route("/paging/multiple/fragment/{tenant}/{nextLink}")
   @get
@@ -249,7 +249,7 @@ version
     @doc("Next link for list operation.")
     @path
     nextLink: string
-  ): void | OdataProductResult;
+  ): void | Azure.Core.ResourceList<OdataProductResult>;
   @doc("A paging operation that doesn't return a full URL, just a fragment")
   @route("/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}")
   @get
@@ -265,7 +265,7 @@ version
     @doc("Next link for list operation.")
     @path
     nextLink: string
-  ): void | OdataProductResult;
+  ): void | Azure.Core.ResourceList<OdataProductResult>;
   @doc("""
 A paging operation that returns a paging model whose item name is is overriden
 by x-ms-client-name 'indexes'.
@@ -273,5 +273,5 @@ by x-ms-client-name 'indexes'.
   @route("/paging/itemNameWithXMSClientName")
   @get
   getPagingModelWithItemNameWithXMSClientName(
-  ): void | ProductResultValueWithXMSClientName;
+  ): void | Azure.Core.ResourceList<ProductResultValueWithXMSClientName>;
 }

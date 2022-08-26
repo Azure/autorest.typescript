@@ -1,5 +1,10 @@
 import { CadlProgram } from "../interfaces";
 
+type Imports = {
+  modules: string[];
+  namespaces: string[];
+};
+
 export function getModelsImports(program: CadlProgram) {
   const modules = new Set<string>();
   const namespaces = new Set<string>();
@@ -21,4 +26,28 @@ export function getModelsImports(program: CadlProgram) {
     modules: [...modules],
     namespaces: [...namespaces],
   };
+}
+
+export function getRoutesImports(program: CadlProgram) {
+  let imports: Imports = {
+    modules: [`import "@cadl-lang/rest";`, `import "./models.cadl";`],
+    namespaces: [`using Cadl.Rest;`, `using Cadl.Http;`],
+  };
+
+  let core = false;
+  for (const operationGroup of program.operationGroups) {
+    const hasPagination = operationGroup.operations.some((o) =>
+      o.extensions.includes("Pageable")
+    );
+
+    if (hasPagination) {
+      core = true;
+    }
+  }
+
+  if (core) {
+    imports.modules.push(`import "@azure-tools/cadl-azure-core";`);
+  }
+
+  return imports;
 }

@@ -3,6 +3,7 @@ import { writeFile } from "fs/promises";
 import { generateOperationGroup } from "../generate/generateOperations";
 import { formatFile } from "../utils/format";
 import { getNamespace } from "../utils/namespace";
+import { getRoutesImports } from "../utils/imports";
 
 export async function emitRoutes(
   filePath: string,
@@ -14,13 +15,10 @@ export async function emitRoutes(
 
 function generateRoutes(program: CadlProgram) {
   const { operationGroups } = program;
-  const imports = [
-    `import "@cadl-lang/rest";`,
-    `import "./models.cadl";`,
-    `using Cadl.Rest;`,
-    `using Cadl.Http;`,
-  ];
+  const { modules, namespaces } = getRoutesImports(program);
   const content = operationGroups.map(generateOperationGroup);
 
-  return [...imports, getNamespace(program), ...content].join("\n\n");
+  return [...modules, ...namespaces, getNamespace(program), ...content].join(
+    "\n\n"
+  );
 }

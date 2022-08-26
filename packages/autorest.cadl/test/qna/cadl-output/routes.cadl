@@ -68,7 +68,7 @@ interface QuestionAnsweringProjectsOperations {
     @doc("The maximum number of resources to include in a single response.")
     @query
     maxpagesize: int32
-  ): ErrorResponse | ProjectsMetadata;
+  ): ErrorResponse | Azure.Core.ResourceList<ProjectsMetadata>;
   @summary("Get the requested project metadata.")
   @doc("Get the requested project metadata.")
   @route("/query-knowledgebases/projects/{projectName}")
@@ -283,7 +283,7 @@ metadata, and assets.
     @doc("The maximum number of resources to include in a single response.")
     @query
     maxpagesize: int32
-  ): ErrorResponse | ProjectDeployments;
+  ): ErrorResponse | Azure.Core.ResourceList<ProjectDeployments>;
   @summary("Gets all the synonyms of a project.")
   @doc("Gets all the synonyms of a project.")
   @route("/query-knowledgebases/projects/{projectName}/synonyms")
@@ -308,7 +308,7 @@ metadata, and assets.
     @doc("The maximum number of resources to include in a single response.")
     @query
     maxpagesize: int32
-  ): ErrorResponse | SynonymAssets;
+  ): ErrorResponse | Azure.Core.ResourceList<SynonymAssets>;
   @summary("Updates all the synonyms of a project.")
   @doc("Updates all the synonyms of a project.")
   @route("/query-knowledgebases/projects/{projectName}/synonyms")
@@ -350,7 +350,7 @@ metadata, and assets.
     @doc("The maximum number of resources to include in a single response.")
     @query
     maxpagesize: int32
-  ): ErrorResponse | QnaSources;
+  ): ErrorResponse | Azure.Core.ResourceList<QnaSources>;
   @summary("Updates the sources of a project.")
   @doc("Updates the sources of a project.")
   @route("/query-knowledgebases/projects/{projectName}/sources")
@@ -415,7 +415,7 @@ metadata, and assets.
     @doc("The maximum number of resources to include in a single response.")
     @query
     maxpagesize: int32
-  ): ErrorResponse | QnaAssets;
+  ): ErrorResponse | Azure.Core.ResourceList<QnaAssets>;
   @summary("Updates the QnAs of a project.")
   @doc("Updates the QnAs of a project.")
   @route("/query-knowledgebases/projects/{projectName}/qnas")

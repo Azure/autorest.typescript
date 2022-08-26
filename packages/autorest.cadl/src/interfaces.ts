@@ -4,6 +4,10 @@ export interface CadlProgram {
   serviceInformation: ServiceInformation;
 }
 
+export interface CadlOptions {
+  isAzureSpec: boolean;
+}
+
 export interface CadlChoiceValue {
   name: string;
   value: string | number | boolean;
@@ -22,12 +26,14 @@ export interface CadlOperationGroup extends WithDoc {
   operations: CadlOperation[];
 }
 
+export type Extension = "Pageable" | "LRO";
 export interface CadlOperation extends WithDoc, WithSummary, WithFixMe {
   name: string;
   verb: "get" | "post" | "put" | "delete";
   route: string;
   responses: string[];
   parameters: CadlParameter[];
+  extensions: Extension[];
 }
 export interface ServiceInformation extends WithDoc {
   name: string;

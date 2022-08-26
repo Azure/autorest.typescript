@@ -1,9 +1,4 @@
-import {
-  CodeModel,
-  Operation,
-  Language as ModelerLanguage,
-  isObjectSchema,
-} from "@autorest/codemodel";
+import { CodeModel, Operation, isObjectSchema } from "@autorest/codemodel";
 import { getLanguageMetadata } from "./metadata";
 import { isResponseSchema } from "./schemas";
 
@@ -36,8 +31,6 @@ export interface PaginationExtension {
    */
   isNextLinkMethod?: boolean;
 }
-
-export type Language = ModelerLanguage & { paging?: PaginationExtension };
 
 export function markPagination(codeModel: CodeModel) {
   for (const operationGroup of codeModel.operationGroups) {

@@ -1,5 +1,4 @@
-import { CodeModel } from "@autorest/codemodel";
-import { Session } from "@autorest/extension-base";
+import { getSession } from "../autorestSession";
 
 export interface Logger {
   info: (message: string) => void;
@@ -9,22 +8,13 @@ export interface Logger {
   verbose: (message: string) => void;
 }
 
-let _session: Session<CodeModel>;
-
-export function setSession(session: Session<CodeModel>): void {
-  _session = session;
-}
-
-export function getSession(): Session<CodeModel> {
-  return _session;
-}
-
 export function getLogger(scope: string) {
-  const { error, warning, debug, verbose } = _session;
+  const session = getSession();
+  const { error, warning, debug, verbose } = session;
 
   return {
     info: function (message: string) {
-      _session.info(`${scope}: ${message}`);
+      session.info(`${scope}: ${message}`);
     },
     error: (message: string) => error(`${scope}: ${message}`, []),
     warning: (message: string) => warning(`${scope}: ${message}`, []),
