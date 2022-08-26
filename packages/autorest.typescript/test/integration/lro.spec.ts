@@ -159,9 +159,9 @@ describe("LROs", () => {
         await client.lROs.beginPut200Acceptedcanceled200AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Poller cancelled"
+        assert.notEqual(
+          e.responseStatusChecker,
+          200
         );
       }
     });
