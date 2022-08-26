@@ -8,7 +8,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for PrimitiveProperties operations */
 export interface PrimitivePropertiesOperations {
   getModel(
-    options: PrimitivePropertiesGetModelParameters
+    options?: PrimitivePropertiesGetModelParameters
   ): StreamableMethod<
     | PrimitivePropertiesGetModel200Response
     | PrimitivePropertiesGetModelDefaultResponse
@@ -17,7 +17,7 @@ export interface PrimitivePropertiesOperations {
 
 export interface GetModel {
   get(
-    options: PrimitivePropertiesGetModelParameters
+    options?: PrimitivePropertiesGetModelParameters
   ): StreamableMethod<
     | PrimitivePropertiesGetModel200Response
     | PrimitivePropertiesGetModelDefaultResponse

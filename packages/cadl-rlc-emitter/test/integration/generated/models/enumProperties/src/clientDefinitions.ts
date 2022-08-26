@@ -16,19 +16,19 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for EnumPropertiesBasic operations */
 export interface EnumPropertiesBasicOperations {
   sendEnumPropertyModel(
-    options: EnumPropertiesBasicSendEnumPropertyModelParameters
+    options?: EnumPropertiesBasicSendEnumPropertyModelParameters
   ): StreamableMethod<
     | EnumPropertiesBasicSendEnumPropertyModel200Response
     | EnumPropertiesBasicSendEnumPropertyModelDefaultResponse
   >;
   getEnumPropertModel(
-    options: EnumPropertiesBasicGetEnumPropertModelParameters
+    options?: EnumPropertiesBasicGetEnumPropertModelParameters
   ): StreamableMethod<
     | EnumPropertiesBasicGetEnumPropertModel200Response
     | EnumPropertiesBasicGetEnumPropertModelDefaultResponse
   >;
   setEnumPropertModel(
-    options: EnumPropertiesBasicSetEnumPropertModelParameters
+    options?: EnumPropertiesBasicSetEnumPropertModelParameters
   ): StreamableMethod<
     | EnumPropertiesBasicSetEnumPropertModel200Response
     | EnumPropertiesBasicSetEnumPropertModelDefaultResponse
@@ -37,19 +37,19 @@ export interface EnumPropertiesBasicOperations {
 
 export interface SendEnumPropertyModel {
   post(
-    options: EnumPropertiesBasicSendEnumPropertyModelParameters
+    options?: EnumPropertiesBasicSendEnumPropertyModelParameters
   ): StreamableMethod<
     | EnumPropertiesBasicSendEnumPropertyModel200Response
     | EnumPropertiesBasicSendEnumPropertyModelDefaultResponse
   >;
   get(
-    options: EnumPropertiesBasicGetEnumPropertModelParameters
+    options?: EnumPropertiesBasicGetEnumPropertModelParameters
   ): StreamableMethod<
     | EnumPropertiesBasicGetEnumPropertModel200Response
     | EnumPropertiesBasicGetEnumPropertModelDefaultResponse
   >;
   put(
-    options: EnumPropertiesBasicSetEnumPropertModelParameters
+    options?: EnumPropertiesBasicSetEnumPropertModelParameters
   ): StreamableMethod<
     | EnumPropertiesBasicSetEnumPropertModel200Response
     | EnumPropertiesBasicSetEnumPropertModelDefaultResponse

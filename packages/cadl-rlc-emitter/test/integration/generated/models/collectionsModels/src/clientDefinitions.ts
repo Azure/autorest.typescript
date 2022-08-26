@@ -16,19 +16,19 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for ModelCollectionProperties operations */
 export interface ModelCollectionPropertiesOperations {
   sendCollectionModel(
-    options: ModelCollectionPropertiesSendCollectionModelParameters
+    options?: ModelCollectionPropertiesSendCollectionModelParameters
   ): StreamableMethod<
     | ModelCollectionPropertiesSendCollectionModel200Response
     | ModelCollectionPropertiesSendCollectionModelDefaultResponse
   >;
   getCollectionModel(
-    options: ModelCollectionPropertiesGetCollectionModelParameters
+    options?: ModelCollectionPropertiesGetCollectionModelParameters
   ): StreamableMethod<
     | ModelCollectionPropertiesGetCollectionModel200Response
     | ModelCollectionPropertiesGetCollectionModelDefaultResponse
   >;
   setCollectionModel(
-    options: ModelCollectionPropertiesSetCollectionModelParameters
+    options?: ModelCollectionPropertiesSetCollectionModelParameters
   ): StreamableMethod<
     | ModelCollectionPropertiesSetCollectionModel200Response
     | ModelCollectionPropertiesSetCollectionModelDefaultResponse
@@ -37,19 +37,19 @@ export interface ModelCollectionPropertiesOperations {
 
 export interface SendCollectionModel {
   post(
-    options: ModelCollectionPropertiesSendCollectionModelParameters
+    options?: ModelCollectionPropertiesSendCollectionModelParameters
   ): StreamableMethod<
     | ModelCollectionPropertiesSendCollectionModel200Response
     | ModelCollectionPropertiesSendCollectionModelDefaultResponse
   >;
   get(
-    options: ModelCollectionPropertiesGetCollectionModelParameters
+    options?: ModelCollectionPropertiesGetCollectionModelParameters
   ): StreamableMethod<
     | ModelCollectionPropertiesGetCollectionModel200Response
     | ModelCollectionPropertiesGetCollectionModelDefaultResponse
   >;
   put(
-    options: ModelCollectionPropertiesSetCollectionModelParameters
+    options?: ModelCollectionPropertiesSetCollectionModelParameters
   ): StreamableMethod<
     | ModelCollectionPropertiesSetCollectionModel200Response
     | ModelCollectionPropertiesSetCollectionModelDefaultResponse

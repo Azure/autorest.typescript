@@ -11,7 +11,7 @@ describe("HelloClient Rest Client", () => {
 
   it("should return 200", async () => {
     try {
-      const result = await client.path("/hello/world").get({});
+      const result = await client.path("/hello/world").get();
 
       // TODO: why the function isUnexpected is missing
       assert.strictEqual(result.status, "200");

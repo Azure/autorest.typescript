@@ -19,25 +19,25 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for MultiInterfaceClient operations */
 export interface MultiInterfaceClientOperations {
   getDogs(
-    options: MultiInterfaceClientGetDogsParameters
+    options?: MultiInterfaceClientGetDogsParameters
   ): StreamableMethod<
     | MultiInterfaceClientGetDogs200Response
     | MultiInterfaceClientGetDogsDefaultResponse
   >;
   setDogs(
-    options: MultiInterfaceClientSetDogsParameters
+    options?: MultiInterfaceClientSetDogsParameters
   ): StreamableMethod<
     | MultiInterfaceClientSetDogs200Response
     | MultiInterfaceClientSetDogsDefaultResponse
   >;
   getCats(
-    options: MultiInterfaceClientGetCatsParameters
+    options?: MultiInterfaceClientGetCatsParameters
   ): StreamableMethod<
     | MultiInterfaceClientGetCats200Response
     | MultiInterfaceClientGetCatsDefaultResponse
   >;
   setCats(
-    options: MultiInterfaceClientSetCatsParameters
+    options?: MultiInterfaceClientSetCatsParameters
   ): StreamableMethod<
     | MultiInterfaceClientSetCats200Response
     | MultiInterfaceClientSetCatsDefaultResponse
@@ -46,7 +46,7 @@ export interface MultiInterfaceClientOperations {
 
 export interface GetDogs {
   get(
-    options: MultiInterfaceClientGetDogsParameters
+    options?: MultiInterfaceClientGetDogsParameters
   ): StreamableMethod<
     | MultiInterfaceClientGetDogs200Response
     | MultiInterfaceClientGetDogsDefaultResponse
@@ -55,7 +55,7 @@ export interface GetDogs {
 
 export interface SetDogs {
   put(
-    options: MultiInterfaceClientSetDogsParameters
+    options?: MultiInterfaceClientSetDogsParameters
   ): StreamableMethod<
     | MultiInterfaceClientSetDogs200Response
     | MultiInterfaceClientSetDogsDefaultResponse
@@ -64,13 +64,13 @@ export interface SetDogs {
 
 export interface GetCats {
   get(
-    options: MultiInterfaceClientGetCatsParameters
+    options?: MultiInterfaceClientGetCatsParameters
   ): StreamableMethod<
     | MultiInterfaceClientGetCats200Response
     | MultiInterfaceClientGetCatsDefaultResponse
   >;
   put(
-    options: MultiInterfaceClientSetCatsParameters
+    options?: MultiInterfaceClientSetCatsParameters
   ): StreamableMethod<
     | MultiInterfaceClientSetCats200Response
     | MultiInterfaceClientSetCatsDefaultResponse

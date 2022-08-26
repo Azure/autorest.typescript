@@ -15,34 +15,34 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for ExtensibleEnums operations */
 export interface ExtensibleEnumsOperations {
   getKnownValue(
-    options: ExtensibleEnumsGetKnownValueParameters
+    options?: ExtensibleEnumsGetKnownValueParameters
   ): StreamableMethod<ExtensibleEnumsGetKnownValue200Response>;
   putKnownValue(
-    options: ExtensibleEnumsPutKnownValueParameters
+    options?: ExtensibleEnumsPutKnownValueParameters
   ): StreamableMethod<ExtensibleEnumsPutKnownValue204Response>;
   getUnknownValue(
-    options: ExtensibleEnumsGetUnknownValueParameters
+    options?: ExtensibleEnumsGetUnknownValueParameters
   ): StreamableMethod<ExtensibleEnumsGetUnknownValue200Response>;
   putUnknownValue(
-    options: ExtensibleEnumsPutUnknownValueParameters
+    options?: ExtensibleEnumsPutUnknownValueParameters
   ): StreamableMethod<ExtensibleEnumsPutUnknownValue204Response>;
 }
 
 export interface GetKnownValue {
   get(
-    options: ExtensibleEnumsGetKnownValueParameters
+    options?: ExtensibleEnumsGetKnownValueParameters
   ): StreamableMethod<ExtensibleEnumsGetKnownValue200Response>;
   put(
-    options: ExtensibleEnumsPutKnownValueParameters
+    options?: ExtensibleEnumsPutKnownValueParameters
   ): StreamableMethod<ExtensibleEnumsPutKnownValue204Response>;
 }
 
 export interface GetUnknownValue {
   get(
-    options: ExtensibleEnumsGetUnknownValueParameters
+    options?: ExtensibleEnumsGetUnknownValueParameters
   ): StreamableMethod<ExtensibleEnumsGetUnknownValue200Response>;
   put(
-    options: ExtensibleEnumsPutUnknownValueParameters
+    options?: ExtensibleEnumsPutUnknownValueParameters
   ): StreamableMethod<ExtensibleEnumsPutUnknownValue204Response>;
 }
 

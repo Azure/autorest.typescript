@@ -4,11 +4,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Hello operations */
 export interface HelloOperations {
-  world(options: HelloWorldParameters): StreamableMethod<HelloWorld200Response>;
+  world(
+    options?: HelloWorldParameters
+  ): StreamableMethod<HelloWorld200Response>;
 }
 
 export interface World {
-  get(options: HelloWorldParameters): StreamableMethod<HelloWorld200Response>;
+  get(options?: HelloWorldParameters): StreamableMethod<HelloWorld200Response>;
 }
 
 export interface Routes {

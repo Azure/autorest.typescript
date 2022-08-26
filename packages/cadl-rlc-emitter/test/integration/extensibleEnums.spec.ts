@@ -11,7 +11,7 @@ describe("HelloClient Rest Client", () => {
 
   it("should get known value", async () => {
     try {
-      const result = await client.path("/extensible-enums/string/known-value").get({});
+      const result = await client.path("/extensible-enums/string/known-value").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Monday");
     } catch (err) {
@@ -32,7 +32,7 @@ describe("HelloClient Rest Client", () => {
 
   it("should get unknown value", async () => {
     try {
-      const result = await client.path("/extensible-enums/string/unknown-value").get({});
+      const result = await client.path("/extensible-enums/string/unknown-value").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Weekend");
     } catch (err) {

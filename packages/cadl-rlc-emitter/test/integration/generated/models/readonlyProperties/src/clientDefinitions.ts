@@ -13,13 +13,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for ReadonlyProperties operations */
 export interface ReadonlyPropertiesOperations {
   getOptionalPropertyModel(
-    options: ReadonlyPropertiesGetOptionalPropertyModelParameters
+    options?: ReadonlyPropertiesGetOptionalPropertyModelParameters
   ): StreamableMethod<
     | ReadonlyPropertiesGetOptionalPropertyModel200Response
     | ReadonlyPropertiesGetOptionalPropertyModelDefaultResponse
   >;
   setOptionalPropertyModel(
-    options: ReadonlyPropertiesSetOptionalPropertyModelParameters
+    options?: ReadonlyPropertiesSetOptionalPropertyModelParameters
   ): StreamableMethod<
     | ReadonlyPropertiesSetOptionalPropertyModel200Response
     | ReadonlyPropertiesSetOptionalPropertyModelDefaultResponse
@@ -28,13 +28,13 @@ export interface ReadonlyPropertiesOperations {
 
 export interface GetOptionalPropertyModel {
   get(
-    options: ReadonlyPropertiesGetOptionalPropertyModelParameters
+    options?: ReadonlyPropertiesGetOptionalPropertyModelParameters
   ): StreamableMethod<
     | ReadonlyPropertiesGetOptionalPropertyModel200Response
     | ReadonlyPropertiesGetOptionalPropertyModelDefaultResponse
   >;
   put(
-    options: ReadonlyPropertiesSetOptionalPropertyModelParameters
+    options?: ReadonlyPropertiesSetOptionalPropertyModelParameters
   ): StreamableMethod<
     | ReadonlyPropertiesSetOptionalPropertyModel200Response
     | ReadonlyPropertiesSetOptionalPropertyModelDefaultResponse
