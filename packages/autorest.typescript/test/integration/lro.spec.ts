@@ -213,7 +213,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "Poller cancelled"
+          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
         );
       }
     });
