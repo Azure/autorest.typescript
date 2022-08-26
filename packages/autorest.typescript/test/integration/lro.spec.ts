@@ -182,7 +182,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed."
+          "The long-running operation has failed."
         );
       }
     });
@@ -328,7 +328,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed. The provisioning state: canceled."
+          "Poller cancelled"
         );
       }
     });
@@ -377,7 +377,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed."
+          "The long-running operation has failed."
         );
       }
     });
@@ -451,7 +451,7 @@ describe("LROs", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long running operation has failed."
+          "The long-running operation has failed."
         );
       }
     });
