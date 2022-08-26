@@ -195,27 +195,14 @@ describe("LROs", () => {
     });
 
     it("should handle post202NoRetry204", async () => {
-      try {
-        await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
-        throw new Error("should have thrown instead");
-      } catch (e) {
-        assert.equal(
-          e.message,
-          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
-        );
-      }
+      await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
+      check200(lastResponse);
     });
 
     it("should handle deleteNoHeaderInRetry", async () => {
-      try {
-        await client.lROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
-        throw new Error("should have thrown instead");
-      } catch (e) {
-        assert.equal(
-          e.message,
-          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
-        );
-      }
+      await client.lROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
+      check200(lastResponse);
+        
     });
 
     it("should handle put202Retry200", async () => {
@@ -250,15 +237,8 @@ describe("LROs", () => {
     });
 
     it("should handle delete202NoRetry204", async () => {
-      try {
-        await client.lROs.beginDelete202NoRetry204AndWait(LROOptions);
-        throw new Error("should have thrown instead");
-      } catch (e) {
-        assert.equal(
-          e.message,
-          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
-        );
-      }
+      await client.lROs.beginDelete202NoRetry204AndWait(LROOptions);
+      check200(lastResponse);
     });
 
     it("should handle deleteProvisioning202Accepted200Succeeded", async () => {
