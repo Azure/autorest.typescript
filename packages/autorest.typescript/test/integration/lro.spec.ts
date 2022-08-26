@@ -199,9 +199,9 @@ describe("LROs", () => {
         await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "should have thrown instead"
+        assert.notEqual(
+          e.responseStatusChecker,
+          204
         );
       }
     });
