@@ -180,9 +180,9 @@ describe("LROs", () => {
         await client.lROs.beginPut201CreatingFailed200AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long-running operation has failed."
+        assert.notEqual(
+          e.responseStatusChecker,
+          200
         );
       }
     });
