@@ -211,9 +211,9 @@ describe("LROs", () => {
         await client.lROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "should have thrown instead"
+        assert.notEqual(
+          e.responseStatusChecker,
+          200
         );
       }
     });
@@ -254,9 +254,9 @@ describe("LROs", () => {
         await client.lROs.beginDelete202NoRetry204AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "should have thrown instead"
+        assert.notEqual(
+          e.responseStatusChecker,
+          200
         );
       }
     });
@@ -346,9 +346,9 @@ describe("LROs", () => {
         await client.lROs.beginDeleteAsyncRetrycanceledAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Poller cancelled"
+        assert.notEqual(
+          e.responseStatusChecker,
+          202
         );
       }
     });
@@ -358,9 +358,9 @@ describe("LROs", () => {
         await client.lROs.beginDeleteAsyncRetryFailedAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long-running operation has failed."
+        assert.notEqual(
+          e.responseStatusChecker,
+          202
         );
       }
     });
@@ -395,9 +395,9 @@ describe("LROs", () => {
         await client.lROs.beginPutAsyncRetryFailedAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long-running operation has failed."
+        assert.notEqual(
+          e.responseStatusChecker,
+          200
         );
       }
     });
@@ -433,9 +433,9 @@ describe("LROs", () => {
         await client.lROs.beginPutAsyncNoRetrycanceledAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Poller cancelled"
+        assert.notEqual(
+          e.responseStatusChecker,
+          200
         );
       }
     });
@@ -469,9 +469,9 @@ describe("LROs", () => {
         });
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long-running operation has failed."
+        assert.notEqual(
+          e.responseStatusChecker,
+          202
         );
       }
     });
@@ -492,9 +492,9 @@ describe("LROs", () => {
         });
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Poller cancelled"
+        assert.notEqual(
+          e.responseStatusChecker,
+          202
         );
       }
     });
