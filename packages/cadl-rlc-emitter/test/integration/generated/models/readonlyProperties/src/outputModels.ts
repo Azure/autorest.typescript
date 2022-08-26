@@ -9,10 +9,10 @@ export interface OutputModelOutput {
   requiredReadonlyModel: ReadonlyModelOutput;
   /** Readonly model */
   optionalReadonlyModel?: ReadonlyModelOutput;
-  requiredReadonlyStringList: Array<undefinedOutput>;
-  requiredReadonlyIntList: Array<undefinedOutput>;
-  optionalReadonlyStringList?: Array<undefinedOutput>;
-  optionalReadonlyIntList?: Array<undefinedOutput>;
+  requiredReadonlyStringList: string[];
+  requiredReadonlyIntList: number[];
+  optionalReadonlyStringList?: string[];
+  optionalReadonlyIntList?: number[];
 }
 
 export interface ReadonlyModelOutput {
@@ -55,8 +55,8 @@ export interface RoundTripModelOutput {
   requiredReadonlyModel: ReadonlyModelOutput;
   /** Readonly model */
   optionalReadonlyModel?: ReadonlyModelOutput;
-  requiredReadonlyStringList: Array<undefinedOutput>;
-  requiredReadonlyIntList: Array<undefinedOutput>;
-  optionalReadonlyStringList?: Array<undefinedOutput>;
-  optionalReadonlyIntList?: Array<undefinedOutput>;
+  requiredReadonlyStringList: string[];
+  requiredReadonlyIntList: number[];
+  optionalReadonlyStringList?: string[];
+  optionalReadonlyIntList?: number[];
 }

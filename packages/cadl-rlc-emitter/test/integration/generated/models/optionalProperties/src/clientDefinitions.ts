@@ -16,19 +16,19 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for OptionalProperties operations */
 export interface OptionalPropertiesOperations {
   sendOptionalPropertyModel(
-    options: OptionalPropertiesSendOptionalPropertyModelParameters
+    options?: OptionalPropertiesSendOptionalPropertyModelParameters
   ): StreamableMethod<
     | OptionalPropertiesSendOptionalPropertyModel200Response
     | OptionalPropertiesSendOptionalPropertyModelDefaultResponse
   >;
   getOptionalPropertyModel(
-    options: OptionalPropertiesGetOptionalPropertyModelParameters
+    options?: OptionalPropertiesGetOptionalPropertyModelParameters
   ): StreamableMethod<
     | OptionalPropertiesGetOptionalPropertyModel200Response
     | OptionalPropertiesGetOptionalPropertyModelDefaultResponse
   >;
   setOptionalPropertyModel(
-    options: OptionalPropertiesSetOptionalPropertyModelParameters
+    options?: OptionalPropertiesSetOptionalPropertyModelParameters
   ): StreamableMethod<
     | OptionalPropertiesSetOptionalPropertyModel200Response
     | OptionalPropertiesSetOptionalPropertyModelDefaultResponse
@@ -37,19 +37,19 @@ export interface OptionalPropertiesOperations {
 
 export interface SendOptionalPropertyModel {
   post(
-    options: OptionalPropertiesSendOptionalPropertyModelParameters
+    options?: OptionalPropertiesSendOptionalPropertyModelParameters
   ): StreamableMethod<
     | OptionalPropertiesSendOptionalPropertyModel200Response
     | OptionalPropertiesSendOptionalPropertyModelDefaultResponse
   >;
   get(
-    options: OptionalPropertiesGetOptionalPropertyModelParameters
+    options?: OptionalPropertiesGetOptionalPropertyModelParameters
   ): StreamableMethod<
     | OptionalPropertiesGetOptionalPropertyModel200Response
     | OptionalPropertiesGetOptionalPropertyModelDefaultResponse
   >;
   put(
-    options: OptionalPropertiesSetOptionalPropertyModelParameters
+    options?: OptionalPropertiesSetOptionalPropertyModelParameters
   ): StreamableMethod<
     | OptionalPropertiesSetOptionalPropertyModel200Response
     | OptionalPropertiesSetOptionalPropertyModelDefaultResponse

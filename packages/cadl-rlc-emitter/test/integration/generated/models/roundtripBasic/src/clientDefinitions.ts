@@ -7,7 +7,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetModel {
   get(
-    options: RoundTripBasicGetModelParameters
+    options?: RoundTripBasicGetModelParameters
   ): StreamableMethod<
     RoundTripBasicGetModel200Response | RoundTripBasicGetModelDefaultResponse
   >;

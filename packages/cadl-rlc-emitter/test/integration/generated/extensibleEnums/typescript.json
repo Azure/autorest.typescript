@@ -1,0 +1,14 @@
+{
+    "generateMetadata": true,
+    "includeShortcuts": true,
+    "addCredentials": false,
+    "packageDetails": {
+      "name": "@msinternal/extensible-enums",
+      "scopeName": "msinternal",
+      "nameWithoutScope": "extensible-enums",
+      "description": "Extensible Enums Test Service",
+      "version": "1.0.0"
+    },
+    "isCadlTest": true
+  }
+  

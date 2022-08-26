@@ -46,7 +46,7 @@ export interface ConfidentialLedgerCreateOrUpdateUserDefaultResponse extends Htt
 // @public (undocumented)
 export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {
     // (undocumented)
-    contentType: string;
+    contentType: "application/merge-patch+json";
 }
 
 // @public (undocumented)

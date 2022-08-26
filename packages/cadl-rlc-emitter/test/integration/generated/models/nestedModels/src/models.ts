@@ -9,29 +9,29 @@ export interface NestedInputOnlyModel {
   /** Required string, illustrating a reference type property. */
   requiredString: string;
   requiredInt: number;
-  requiredStringList: array;
-  requiredIntList: array;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }
 
 export interface NestedRoundTripSharedModel {
   /** Required string, illustrating a reference type property. */
   requiredString: string;
   requiredInt: number;
-  requiredStringList: array;
-  requiredIntList: array;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }
 
 export interface RoundTripModel {
   /** Model to illustrate a nested model that only appears on a nested model. */
-  NestedRoundTripModel: object;
+  NestedRoundTripModel: NestedRoundTripOnlyModel;
   /** Model to illustrate a nested model that appears as a nested model on input, output, and round-trip models. */
-  NestedSharedModel: object;
+  NestedSharedModel: NestedRoundTripSharedModel;
 }
 
 export interface NestedRoundTripOnlyModel {
   /** Required string, illustrating a reference type property. */
   requiredString: string;
   requiredInt: number;
-  requiredStringList: array;
-  requiredIntList: array;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }

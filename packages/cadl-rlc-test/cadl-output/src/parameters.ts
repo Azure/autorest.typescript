@@ -144,7 +144,7 @@ export interface ConfidentialLedgerCreateOrUpdateUserQueryParam {
 }
 
 export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {
-  contentType: string;
+  contentType: "application/merge-patch+json";
 }
 
 export type ConfidentialLedgerCreateOrUpdateUserParameters =

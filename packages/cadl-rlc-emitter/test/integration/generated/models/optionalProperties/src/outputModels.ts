@@ -26,14 +26,14 @@ export interface OutputModelOutput {
   /** Optional string, illustrating an optional reference type property. */
   optionalString?: string;
   optionalInt?: number;
-  optionalStringList?: Array<undefinedOutput>;
-  optionalIntList?: Array<undefinedOutput>;
+  optionalStringList?: string[];
+  optionalIntList?: number[];
 }
 
 export interface RoundTripModelOutput {
   /** Optional string, illustrating an optional reference type property. */
   optionalString?: string;
   optionalInt?: number;
-  optionalStringList?: Array<undefinedOutput>;
-  optionalIntList?: Array<undefinedOutput>;
+  optionalStringList?: string[];
+  optionalIntList?: number[];
 }

@@ -4,7 +4,7 @@
 import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
 import { ModelType, Program, Type } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
-import { getSchemaForType } from "../modelUtils.js";
+import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
 
 export function transformSchemas(program: Program) {
   const schemas: Schema[] = [];
@@ -46,7 +46,7 @@ export function transformSchemas(program: Program) {
   function getGeneratedModels(model: Type, context: SchemaContext) {
     if (model.kind === "Model") {
       if (model.templateArguments && model.templateArguments.length) {
-        for(const temp of model.templateArguments) {
+        for (const temp of model.templateArguments) {
           setModelMap(temp, context);
         }
       }
@@ -55,13 +55,28 @@ export function transformSchemas(program: Program) {
       if (indexer?.value && !modelMap.has(indexer?.value)) {
         setModelMap(indexer.value, context);
       }
-      for(const prop of model.properties) {
-        if (prop[1].type.kind === "Model" && !modelMap.has(prop[1].type)) {
+      for (const prop of model.properties) {
+        if (
+          prop[1].type.kind === "Model" &&
+          (!modelMap.has(prop[1].type) ||
+            !modelMap.get(prop[1].type)?.includes(context))
+        ) {
           getGeneratedModels(prop[1].type, context);
+        }
+      }
+      const derivedModels = model.derivedModels.filter(includeDerivedModel);
+
+      // getSchemaOrRef on all children to push them into components.schemas
+      for (const child of derivedModels) {
+        if (
+          child.kind === "Model" &&
+          (!modelMap.has(child) ||
+            !modelMap.get(child)?.includes(context))
+        ) {
+          getGeneratedModels(child, context);
         }
       }
     }
   }
   return schemas;
 }
-

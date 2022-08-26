@@ -3,6 +3,30 @@ export interface BaseClassOutput {
   baseClassProperty: string;
 }
 
+export interface DerivedFromBaseClassAOutput extends BaseClassOutput {
+  /** An example property on a derived type */
+  derivedClassAProperty: string;
+}
+
+export interface DerivedFromBaseClassBOutput extends BaseClassOutput {
+  /** An example property on a derived type */
+  derivedClassBProperty: string;
+}
+
+export interface BaseClassWithDiscriminatorOutput extends BaseClassOutput {
+  discriminatorProperty: "BaseClassWithDiscriminator" | "A" | "B";
+}
+
+export interface DerivedFromBaseClassWithDiscriminatorAOutput
+  extends BaseClassWithDiscriminatorOutput {
+  discriminatorProperty: "A";
+}
+
+export interface DerivedFromBaseClassWithDiscriminatorBOutput
+  extends BaseClassWithDiscriminatorOutput {
+  discriminatorProperty: "B";
+}
+
 export interface ErrorResponseOutput {
   /** The error object. */
   error: ErrorModelOutput;

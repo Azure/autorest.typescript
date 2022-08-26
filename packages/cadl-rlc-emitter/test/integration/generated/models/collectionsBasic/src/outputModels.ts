@@ -23,11 +23,11 @@ export interface InnerErrorOutput {
 }
 
 export interface OutputModelOutput {
-  requiredStringList: Array<undefinedOutput>;
-  requiredIntList: Array<undefinedOutput>;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }
 
 export interface RoundTripModelOutput {
-  requiredStringList: Array<undefinedOutput>;
-  requiredIntList: Array<undefinedOutput>;
+  requiredStringList: string[];
+  requiredIntList: number[];
 }

@@ -12,7 +12,7 @@ import { getDoc, Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
   HttpOperationResponse,
-  OperationDetails,
+  OperationDetails
 } from "@cadl-lang/rest/http";
 import { reportDiagnostic } from "../lib.js";
 import { getSchemaForType } from "../modelUtils.js";
@@ -40,10 +40,16 @@ export function transformPaths(program: Program): Paths {
     }
     const method = {
       description: getDoc(program, route.operation) ?? "",
-      hasOptionalOptions: route.parameters.parameters.some(
-        (p) => p.param.optional
+      hasOptionalOptions:
+        route.parameters.parameters.length === 0 ||
+        (route.parameters.parameters.length > 0 &&
+          route.parameters.parameters.some((p) => p.param.optional))
+          ? true
+          : false,
+      optionsName: getParameterTypeName(
+        route.operation.namespace?.name,
+        route.operation.name
       ),
-      optionsName: getParameterTypeName(route.operation.namespace?.name, route.operation.name),
       responseTypes: getResponseTypes(route),
       returnType: respNames.join(" | "),
       successStatus: gerOperationSuccessStatus(route),
