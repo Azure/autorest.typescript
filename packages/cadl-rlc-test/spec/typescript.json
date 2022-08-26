@@ -1,12 +1,12 @@
 {
   "generateMetadata": true,
   "includeShortcuts": true,
-  "endpointParameterName": "ledgerUri",
+  "endpointParameterName": "Endpoint",
   "packageDetails": {
-    "name": "@msinternal/confidential-ledger",
+    "name": "@msinternal/authoring",
     "scopeName": "msinternal",
-    "nameWithoutScope": "confidential-ledger",
-    "description": "Confidential Ledger Service",
+    "nameWithoutScope": "authoring",
+    "description": "Authoring Ledger Service",
     "version": "1.0.0-beta.1"
   }
 }

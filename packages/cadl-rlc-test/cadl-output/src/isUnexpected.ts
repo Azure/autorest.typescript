@@ -1,144 +1,189 @@
 import {
-  ConfidentialLedgerListCollections200Response,
-  ConfidentialLedgerListCollectionsDefaultResponse,
-  ConfidentialLedgerGetEnclaveQuotes200Response,
-  ConfidentialLedgerGetEnclaveQuotesDefaultResponse,
-  ConfidentialLedgerGetConstitution200Response,
-  ConfidentialLedgerGetConstitutionDefaultResponse,
-  ConfidentialLedgerGetConsortiumMembers200Response,
-  ConfidentialLedgerGetConsortiumMembersDefaultResponse,
-  ConfidentialLedgerPostLedgerEntry200Response,
-  ConfidentialLedgerPostLedgerEntryDefaultResponse,
-  ConfidentialLedgerGetLedgerEntry200Response,
-  ConfidentialLedgerGetLedgerEntryDefaultResponse,
-  ConfidentialLedgerGetReceipt200Response,
-  ConfidentialLedgerGetReceiptDefaultResponse,
-  ConfidentialLedgerGetTransactionStatus200Response,
-  ConfidentialLedgerGetTransactionStatusDefaultResponse,
-  ConfidentialLedgerGetCurrentLedgerEntry200Response,
-  ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse,
-  ConfidentialLedgerDeleteUser204Response,
-  ConfidentialLedgerDeleteUserDefaultResponse,
-  ConfidentialLedgerGetUser200Response,
-  ConfidentialLedgerGetUserDefaultResponse,
-  ConfidentialLedgerCreateOrUpdateUser200Response,
-  ConfidentialLedgerCreateOrUpdateUserDefaultResponse,
+  ProjectsCreateOrUpdate200Response,
+  ProjectsCreateOrUpdate201Response,
+  ProjectsCreateOrUpdateDefaultResponse,
+  ProjectsGet200Response,
+  ProjectsGetDefaultResponse,
+  ProjectsDelete202Response,
+  ProjectsDeleteDefaultResponse,
+  ProjectsList200Response,
+  ProjectsListDefaultResponse,
+  ProjectsExport202Response,
+  ProjectsExportDefaultResponse,
+  ProjectsImportx202Response,
+  ProjectsImportxDefaultResponse,
+  ProjectsTrain202Response,
+  ProjectsTrainDefaultResponse,
+  DeploymentsGetDeployment200Response,
+  DeploymentsGetDeploymentDefaultResponse,
+  DeploymentsDeployProject200Response,
+  DeploymentsDeployProject201Response,
+  DeploymentsDeployProjectDefaultResponse,
+  DeploymentsDeleteDeployment202Response,
+  DeploymentsDeleteDeploymentDefaultResponse,
+  DeploymentsList200Response,
+  DeploymentsListDefaultResponse,
+  DeploymentsSwapDeployments202Response,
+  DeploymentsSwapDeploymentsDefaultResponse,
+  JobsGetDeploymentStatus200Response,
+  JobsGetDeploymentStatusDefaultResponse,
+  JobsGetSwapDeploymentsStatus200Response,
+  JobsGetSwapDeploymentsStatusDefaultResponse,
+  GlobalGetSupportedLanguages200Response,
+  GlobalGetSupportedLanguagesDefaultResponse,
+  GlobalListTrainingConfigVersions200Response,
+  GlobalListTrainingConfigVersionsDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "GET /app/collections": ["200"],
-  "GET /app/enclaveQuotes": ["200"],
-  "GET /app/governance/constitution": ["200"],
-  "GET /app/governance/members": ["200"],
-  "POST /app/transactions": ["200"],
-  "GET /app/transactions/{transactionId}": ["200"],
-  "GET /app/transactions/{transactionId}/receipt": ["200"],
-  "GET /app/transactions/{transactionId}/status": ["200"],
-  "GET /app/transactions/current": ["200"],
-  "DELETE /app/users/{userId}": ["204"],
-  "GET /app/users/{userId}": ["200"],
-  "PATCH /app/users/{userId}": ["200"],
+  "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],
+  "GET /authoring/analyze-text/projects/{projectName}": ["200"],
+  "DELETE /authoring/analyze-text/projects/{projectName}": ["202"],
+  "GET /authoring/analyze-text/projects": ["200"],
+  "POST /authoring/analyze-text/projects/{projectName}:export": ["202"],
+  "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
+  "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
+    ["200"],
+  "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
+    ["200", "201"],
+  "DELETE /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
+    ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments": ["200"],
+  "POST /authoring/analyze-text/projects/{projectName}/deployments/swap": [
+    "202",
+  ],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}":
+    ["200"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}":
+    ["200"],
+  "GET /authoring/analyze-text/projects/global/languages": ["200"],
+  "GET /authoring/analyze-text/projects/global/training-config-versions": [
+    "200",
+  ],
 };
 
 export function isUnexpected(
   response:
-    | ConfidentialLedgerListCollections200Response
-    | ConfidentialLedgerListCollectionsDefaultResponse
-): response is ConfidentialLedgerListCollectionsDefaultResponse;
+    | ProjectsCreateOrUpdate200Response
+    | ProjectsCreateOrUpdate201Response
+    | ProjectsCreateOrUpdateDefaultResponse
+): response is ProjectsCreateOrUpdateDefaultResponse;
+export function isUnexpected(
+  response: ProjectsGet200Response | ProjectsGetDefaultResponse
+): response is ProjectsGetDefaultResponse;
+export function isUnexpected(
+  response: ProjectsDelete202Response | ProjectsDeleteDefaultResponse
+): response is ProjectsDeleteDefaultResponse;
+export function isUnexpected(
+  response: ProjectsList200Response | ProjectsListDefaultResponse
+): response is ProjectsListDefaultResponse;
+export function isUnexpected(
+  response: ProjectsExport202Response | ProjectsExportDefaultResponse
+): response is ProjectsExportDefaultResponse;
+export function isUnexpected(
+  response: ProjectsImportx202Response | ProjectsImportxDefaultResponse
+): response is ProjectsImportxDefaultResponse;
+export function isUnexpected(
+  response: ProjectsTrain202Response | ProjectsTrainDefaultResponse
+): response is ProjectsTrainDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetEnclaveQuotes200Response
-    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
-): response is ConfidentialLedgerGetEnclaveQuotesDefaultResponse;
+    | DeploymentsGetDeployment200Response
+    | DeploymentsGetDeploymentDefaultResponse
+): response is DeploymentsGetDeploymentDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetConstitution200Response
-    | ConfidentialLedgerGetConstitutionDefaultResponse
-): response is ConfidentialLedgerGetConstitutionDefaultResponse;
+    | DeploymentsDeployProject200Response
+    | DeploymentsDeployProject201Response
+    | DeploymentsDeployProjectDefaultResponse
+): response is DeploymentsDeployProjectDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetConsortiumMembers200Response
-    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-): response is ConfidentialLedgerGetConsortiumMembersDefaultResponse;
+    | DeploymentsDeleteDeployment202Response
+    | DeploymentsDeleteDeploymentDefaultResponse
+): response is DeploymentsDeleteDeploymentDefaultResponse;
+export function isUnexpected(
+  response: DeploymentsList200Response | DeploymentsListDefaultResponse
+): response is DeploymentsListDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerPostLedgerEntry200Response
-    | ConfidentialLedgerPostLedgerEntryDefaultResponse
-): response is ConfidentialLedgerPostLedgerEntryDefaultResponse;
+    | DeploymentsSwapDeployments202Response
+    | DeploymentsSwapDeploymentsDefaultResponse
+): response is DeploymentsSwapDeploymentsDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetLedgerEntry200Response
-    | ConfidentialLedgerGetLedgerEntryDefaultResponse
-): response is ConfidentialLedgerGetLedgerEntryDefaultResponse;
+    | JobsGetDeploymentStatus200Response
+    | JobsGetDeploymentStatusDefaultResponse
+): response is JobsGetDeploymentStatusDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetReceipt200Response
-    | ConfidentialLedgerGetReceiptDefaultResponse
-): response is ConfidentialLedgerGetReceiptDefaultResponse;
+    | JobsGetSwapDeploymentsStatus200Response
+    | JobsGetSwapDeploymentsStatusDefaultResponse
+): response is JobsGetSwapDeploymentsStatusDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetTransactionStatus200Response
-    | ConfidentialLedgerGetTransactionStatusDefaultResponse
-): response is ConfidentialLedgerGetTransactionStatusDefaultResponse;
+    | GlobalGetSupportedLanguages200Response
+    | GlobalGetSupportedLanguagesDefaultResponse
+): response is GlobalGetSupportedLanguagesDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetCurrentLedgerEntry200Response
-    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
-): response is ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse;
+    | GlobalListTrainingConfigVersions200Response
+    | GlobalListTrainingConfigVersionsDefaultResponse
+): response is GlobalListTrainingConfigVersionsDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerDeleteUser204Response
-    | ConfidentialLedgerDeleteUserDefaultResponse
-): response is ConfidentialLedgerDeleteUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerGetUser200Response
-    | ConfidentialLedgerGetUserDefaultResponse
-): response is ConfidentialLedgerGetUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerCreateOrUpdateUser200Response
-    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
-): response is ConfidentialLedgerCreateOrUpdateUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerListCollections200Response
-    | ConfidentialLedgerListCollectionsDefaultResponse
-    | ConfidentialLedgerGetEnclaveQuotes200Response
-    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
-    | ConfidentialLedgerGetConstitution200Response
-    | ConfidentialLedgerGetConstitutionDefaultResponse
-    | ConfidentialLedgerGetConsortiumMembers200Response
-    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-    | ConfidentialLedgerPostLedgerEntry200Response
-    | ConfidentialLedgerPostLedgerEntryDefaultResponse
-    | ConfidentialLedgerGetLedgerEntry200Response
-    | ConfidentialLedgerGetLedgerEntryDefaultResponse
-    | ConfidentialLedgerGetReceipt200Response
-    | ConfidentialLedgerGetReceiptDefaultResponse
-    | ConfidentialLedgerGetTransactionStatus200Response
-    | ConfidentialLedgerGetTransactionStatusDefaultResponse
-    | ConfidentialLedgerGetCurrentLedgerEntry200Response
-    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
-    | ConfidentialLedgerDeleteUser204Response
-    | ConfidentialLedgerDeleteUserDefaultResponse
-    | ConfidentialLedgerGetUser200Response
-    | ConfidentialLedgerGetUserDefaultResponse
-    | ConfidentialLedgerCreateOrUpdateUser200Response
-    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
+    | ProjectsCreateOrUpdate200Response
+    | ProjectsCreateOrUpdate201Response
+    | ProjectsCreateOrUpdateDefaultResponse
+    | ProjectsGet200Response
+    | ProjectsGetDefaultResponse
+    | ProjectsDelete202Response
+    | ProjectsDeleteDefaultResponse
+    | ProjectsList200Response
+    | ProjectsListDefaultResponse
+    | ProjectsExport202Response
+    | ProjectsExportDefaultResponse
+    | ProjectsImportx202Response
+    | ProjectsImportxDefaultResponse
+    | ProjectsTrain202Response
+    | ProjectsTrainDefaultResponse
+    | DeploymentsGetDeployment200Response
+    | DeploymentsGetDeploymentDefaultResponse
+    | DeploymentsDeployProject200Response
+    | DeploymentsDeployProject201Response
+    | DeploymentsDeployProjectDefaultResponse
+    | DeploymentsDeleteDeployment202Response
+    | DeploymentsDeleteDeploymentDefaultResponse
+    | DeploymentsList200Response
+    | DeploymentsListDefaultResponse
+    | DeploymentsSwapDeployments202Response
+    | DeploymentsSwapDeploymentsDefaultResponse
+    | JobsGetDeploymentStatus200Response
+    | JobsGetDeploymentStatusDefaultResponse
+    | JobsGetSwapDeploymentsStatus200Response
+    | JobsGetSwapDeploymentsStatusDefaultResponse
+    | GlobalGetSupportedLanguages200Response
+    | GlobalGetSupportedLanguagesDefaultResponse
+    | GlobalListTrainingConfigVersions200Response
+    | GlobalListTrainingConfigVersionsDefaultResponse
 ): response is
-  | ConfidentialLedgerListCollectionsDefaultResponse
-  | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
-  | ConfidentialLedgerGetConstitutionDefaultResponse
-  | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-  | ConfidentialLedgerPostLedgerEntryDefaultResponse
-  | ConfidentialLedgerGetLedgerEntryDefaultResponse
-  | ConfidentialLedgerGetReceiptDefaultResponse
-  | ConfidentialLedgerGetTransactionStatusDefaultResponse
-  | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
-  | ConfidentialLedgerDeleteUserDefaultResponse
-  | ConfidentialLedgerGetUserDefaultResponse
-  | ConfidentialLedgerCreateOrUpdateUserDefaultResponse {
+  | ProjectsCreateOrUpdateDefaultResponse
+  | ProjectsGetDefaultResponse
+  | ProjectsDeleteDefaultResponse
+  | ProjectsListDefaultResponse
+  | ProjectsExportDefaultResponse
+  | ProjectsImportxDefaultResponse
+  | ProjectsTrainDefaultResponse
+  | DeploymentsGetDeploymentDefaultResponse
+  | DeploymentsDeployProjectDefaultResponse
+  | DeploymentsDeleteDeploymentDefaultResponse
+  | DeploymentsListDefaultResponse
+  | DeploymentsSwapDeploymentsDefaultResponse
+  | JobsGetDeploymentStatusDefaultResponse
+  | JobsGetSwapDeploymentsStatusDefaultResponse
+  | GlobalGetSupportedLanguagesDefaultResponse
+  | GlobalListTrainingConfigVersionsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

@@ -1,6 +1,6 @@
-import ConfidentialLedgerService from "./confidentialLedgerService";
+import MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoring from "./microsoftCognitiveLanguageServiceAnalyzeTextAuthoring";
 
-export * from "./confidentialLedgerService";
+export * from "./microsoftCognitiveLanguageServiceAnalyzeTextAuthoring";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -8,4 +8,4 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 
-export default ConfidentialLedgerService;
+export default MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoring;

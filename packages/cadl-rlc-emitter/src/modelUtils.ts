@@ -290,7 +290,7 @@ function validateDiscriminator(
  * Headers, parameters, status codes are not schema properties even they are
  * represented as properties in Cadl.
  */
-function isSchemaProperty(program: Program, property: ModelTypeProperty) {
+export function isSchemaProperty(program: Program, property: ModelTypeProperty) {
   const headerInfo = getHeaderFieldName(program, property);
   const queryInfo = getQueryParamName(program, property);
   const pathInfo = getPathParamName(program, property);
@@ -329,6 +329,9 @@ function getSchemaForModel(
     description: getDoc(program, model) ?? ""
   };
   // normalized the output name
+  if (modelSchema.name === 'CustomPage') {
+    modelSchema;
+  }
   modelSchema.name = normalizeName(
     modelSchema.name,
     NameType.Interface,
@@ -604,13 +607,14 @@ function mapCadlIntrinsicModelToTypeScript(
       let schema: any = {};
       if (name === "string") {
         schema = {
-          type: "object",
+          type: "dictionary",
           additionalProperties: getSchemaForType(
             program,
             indexer.value!,
             usage,
             true
-          )
+          ),
+          typeName: "Record<string, unknown>"
         };
       } else if (name === "integer") {
         schema = {
@@ -623,7 +627,7 @@ function mapCadlIntrinsicModelToTypeScript(
         if (usage && usage.includes(SchemaContext.Output)) {
           schema.outputTypeName = `Array<${schema.items.name}Output>`;
         }
-      } else {
+      } else if (name === 'integer'){
         schema.typeName = `${schema.items.type}[]`;
       }
       schema.usage = usage;

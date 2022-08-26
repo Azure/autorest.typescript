@@ -1,154 +1,203 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import { LedgerEntry, LedgerUser } from "./models";
+import { TrainingJobOptions, SwapDeploymentsOptions } from "./models";
 
-export interface ConfidentialLedgerListCollectionsQueryParamProperties {
+export interface ProjectsCreateOrUpdateQueryParamProperties {
   apiVersion: string;
 }
 
-export interface ConfidentialLedgerListCollectionsQueryParam {
-  queryParameters: ConfidentialLedgerListCollectionsQueryParamProperties;
+export interface ProjectsCreateOrUpdateQueryParam {
+  queryParameters: ProjectsCreateOrUpdateQueryParamProperties;
 }
 
-export type ConfidentialLedgerListCollectionsParameters =
-  ConfidentialLedgerListCollectionsQueryParam & RequestParameters;
-
-export interface ConfidentialLedgerGetEnclaveQuotesQueryParamProperties {
-  apiVersion: string;
+export interface ProjectsCreateOrUpdateMediaTypesParam {
+  contentType?: "application/merge-patch+json";
 }
 
-export interface ConfidentialLedgerGetEnclaveQuotesQueryParam {
-  queryParameters: ConfidentialLedgerGetEnclaveQuotesQueryParamProperties;
-}
-
-export type ConfidentialLedgerGetEnclaveQuotesParameters =
-  ConfidentialLedgerGetEnclaveQuotesQueryParam & RequestParameters;
-
-export interface ConfidentialLedgerGetConstitutionQueryParamProperties {
-  apiVersion: string;
-}
-
-export interface ConfidentialLedgerGetConstitutionQueryParam {
-  queryParameters: ConfidentialLedgerGetConstitutionQueryParamProperties;
-}
-
-export type ConfidentialLedgerGetConstitutionParameters =
-  ConfidentialLedgerGetConstitutionQueryParam & RequestParameters;
-
-export interface ConfidentialLedgerGetConsortiumMembersQueryParamProperties {
-  apiVersion: string;
-}
-
-export interface ConfidentialLedgerGetConsortiumMembersQueryParam {
-  queryParameters: ConfidentialLedgerGetConsortiumMembersQueryParamProperties;
-}
-
-export type ConfidentialLedgerGetConsortiumMembersParameters =
-  ConfidentialLedgerGetConsortiumMembersQueryParam & RequestParameters;
-
-export interface ConfidentialLedgerPostLedgerEntryBodyParam {
-  body: LedgerEntry;
-}
-
-export interface ConfidentialLedgerPostLedgerEntryQueryParamProperties {
-  apiVersion: string;
-  collectionId?: string;
-}
-
-export interface ConfidentialLedgerPostLedgerEntryQueryParam {
-  queryParameters: ConfidentialLedgerPostLedgerEntryQueryParamProperties;
-}
-
-export type ConfidentialLedgerPostLedgerEntryParameters =
-  ConfidentialLedgerPostLedgerEntryQueryParam &
-    ConfidentialLedgerPostLedgerEntryBodyParam &
+export type ProjectsCreateOrUpdateParameters =
+  ProjectsCreateOrUpdateQueryParam &
+    ProjectsCreateOrUpdateMediaTypesParam &
     RequestParameters;
 
-export interface ConfidentialLedgerGetLedgerEntryQueryParamProperties {
-  apiVersion: string;
-  collectionId?: string;
-}
-
-export interface ConfidentialLedgerGetLedgerEntryQueryParam {
-  queryParameters: ConfidentialLedgerGetLedgerEntryQueryParamProperties;
-}
-
-export type ConfidentialLedgerGetLedgerEntryParameters =
-  ConfidentialLedgerGetLedgerEntryQueryParam & RequestParameters;
-
-export interface ConfidentialLedgerGetReceiptQueryParamProperties {
+export interface ProjectsGetQueryParamProperties {
   apiVersion: string;
 }
 
-export interface ConfidentialLedgerGetReceiptQueryParam {
-  queryParameters: ConfidentialLedgerGetReceiptQueryParamProperties;
+export interface ProjectsGetQueryParam {
+  queryParameters: ProjectsGetQueryParamProperties;
 }
 
-export type ConfidentialLedgerGetReceiptParameters =
-  ConfidentialLedgerGetReceiptQueryParam & RequestParameters;
+export type ProjectsGetParameters = ProjectsGetQueryParam & RequestParameters;
 
-export interface ConfidentialLedgerGetTransactionStatusQueryParamProperties {
+export interface ProjectsDeleteQueryParamProperties {
   apiVersion: string;
 }
 
-export interface ConfidentialLedgerGetTransactionStatusQueryParam {
-  queryParameters: ConfidentialLedgerGetTransactionStatusQueryParamProperties;
+export interface ProjectsDeleteQueryParam {
+  queryParameters: ProjectsDeleteQueryParamProperties;
 }
 
-export type ConfidentialLedgerGetTransactionStatusParameters =
-  ConfidentialLedgerGetTransactionStatusQueryParam & RequestParameters;
+export type ProjectsDeleteParameters = ProjectsDeleteQueryParam &
+  RequestParameters;
 
-export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties {
-  apiVersion: string;
-  collectionId?: string;
-}
-
-export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParam {
-  queryParameters: ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties;
-}
-
-export type ConfidentialLedgerGetCurrentLedgerEntryParameters =
-  ConfidentialLedgerGetCurrentLedgerEntryQueryParam & RequestParameters;
-
-export interface ConfidentialLedgerDeleteUserQueryParamProperties {
+export interface ProjectsListQueryParamProperties {
+  top?: number;
+  skip?: number;
+  maxpagesize?: number;
   apiVersion: string;
 }
 
-export interface ConfidentialLedgerDeleteUserQueryParam {
-  queryParameters: ConfidentialLedgerDeleteUserQueryParamProperties;
+export interface ProjectsListQueryParam {
+  queryParameters: ProjectsListQueryParamProperties;
 }
 
-export type ConfidentialLedgerDeleteUserParameters =
-  ConfidentialLedgerDeleteUserQueryParam & RequestParameters;
+export type ProjectsListParameters = ProjectsListQueryParam & RequestParameters;
 
-export interface ConfidentialLedgerGetUserQueryParamProperties {
+export interface ProjectsExportQueryParamProperties {
+  projectFileVersion: string;
   apiVersion: string;
 }
 
-export interface ConfidentialLedgerGetUserQueryParam {
-  queryParameters: ConfidentialLedgerGetUserQueryParamProperties;
+export interface ProjectsExportQueryParam {
+  queryParameters: ProjectsExportQueryParamProperties;
 }
 
-export type ConfidentialLedgerGetUserParameters =
-  ConfidentialLedgerGetUserQueryParam & RequestParameters;
+export type ProjectsExportParameters = ProjectsExportQueryParam &
+  RequestParameters;
 
-export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
-  body: LedgerUser;
-}
-
-export interface ConfidentialLedgerCreateOrUpdateUserQueryParamProperties {
+export interface ProjectsImportxQueryParamProperties {
   apiVersion: string;
 }
 
-export interface ConfidentialLedgerCreateOrUpdateUserQueryParam {
-  queryParameters: ConfidentialLedgerCreateOrUpdateUserQueryParamProperties;
+export interface ProjectsImportxQueryParam {
+  queryParameters: ProjectsImportxQueryParamProperties;
 }
 
-export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {
-  contentType: "application/merge-patch+json";
+export type ProjectsImportxParameters = ProjectsImportxQueryParam &
+  RequestParameters;
+
+export interface ProjectsTrainBodyParam {
+  body: TrainingJobOptions;
 }
 
-export type ConfidentialLedgerCreateOrUpdateUserParameters =
-  ConfidentialLedgerCreateOrUpdateUserQueryParam &
-    ConfidentialLedgerCreateOrUpdateUserMediaTypesParam &
-    ConfidentialLedgerCreateOrUpdateUserBodyParam &
+export interface ProjectsTrainQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface ProjectsTrainQueryParam {
+  queryParameters: ProjectsTrainQueryParamProperties;
+}
+
+export type ProjectsTrainParameters = ProjectsTrainQueryParam &
+  ProjectsTrainBodyParam &
+  RequestParameters;
+
+export interface DeploymentsGetDeploymentQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface DeploymentsGetDeploymentQueryParam {
+  queryParameters: DeploymentsGetDeploymentQueryParamProperties;
+}
+
+export type DeploymentsGetDeploymentParameters =
+  DeploymentsGetDeploymentQueryParam & RequestParameters;
+
+export interface DeploymentsDeployProjectQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface DeploymentsDeployProjectQueryParam {
+  queryParameters: DeploymentsDeployProjectQueryParamProperties;
+}
+
+export type DeploymentsDeployProjectParameters =
+  DeploymentsDeployProjectQueryParam & RequestParameters;
+
+export interface DeploymentsDeleteDeploymentQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface DeploymentsDeleteDeploymentQueryParam {
+  queryParameters: DeploymentsDeleteDeploymentQueryParamProperties;
+}
+
+export type DeploymentsDeleteDeploymentParameters =
+  DeploymentsDeleteDeploymentQueryParam & RequestParameters;
+
+export interface DeploymentsListQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface DeploymentsListQueryParam {
+  queryParameters: DeploymentsListQueryParamProperties;
+}
+
+export type DeploymentsListParameters = DeploymentsListQueryParam &
+  RequestParameters;
+
+export interface DeploymentsSwapDeploymentsBodyParam {
+  body: SwapDeploymentsOptions;
+}
+
+export interface DeploymentsSwapDeploymentsQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface DeploymentsSwapDeploymentsQueryParam {
+  queryParameters: DeploymentsSwapDeploymentsQueryParamProperties;
+}
+
+export type DeploymentsSwapDeploymentsParameters =
+  DeploymentsSwapDeploymentsQueryParam &
+    DeploymentsSwapDeploymentsBodyParam &
     RequestParameters;
+
+export interface JobsGetDeploymentStatusQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface JobsGetDeploymentStatusQueryParam {
+  queryParameters: JobsGetDeploymentStatusQueryParamProperties;
+}
+
+export type JobsGetDeploymentStatusParameters =
+  JobsGetDeploymentStatusQueryParam & RequestParameters;
+
+export interface JobsGetSwapDeploymentsStatusQueryParamProperties {
+  apiVersion: string;
+}
+
+export interface JobsGetSwapDeploymentsStatusQueryParam {
+  queryParameters: JobsGetSwapDeploymentsStatusQueryParamProperties;
+}
+
+export type JobsGetSwapDeploymentsStatusParameters =
+  JobsGetSwapDeploymentsStatusQueryParam & RequestParameters;
+
+export interface GlobalGetSupportedLanguagesQueryParamProperties {
+  top?: number;
+  skip?: number;
+  maxpagesize?: number;
+  apiVersion: string;
+}
+
+export interface GlobalGetSupportedLanguagesQueryParam {
+  queryParameters: GlobalGetSupportedLanguagesQueryParamProperties;
+}
+
+export type GlobalGetSupportedLanguagesParameters =
+  GlobalGetSupportedLanguagesQueryParam & RequestParameters;
+
+export interface GlobalListTrainingConfigVersionsQueryParamProperties {
+  top?: number;
+  skip?: number;
+  maxpagesize?: number;
+  apiVersion: string;
+}
+
+export interface GlobalListTrainingConfigVersionsQueryParam {
+  queryParameters: GlobalListTrainingConfigVersionsQueryParamProperties;
+}
+
+export type GlobalListTrainingConfigVersionsParameters =
+  GlobalListTrainingConfigVersionsQueryParam & RequestParameters;

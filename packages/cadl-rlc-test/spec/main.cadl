@@ -1,31 +1,34 @@
 import "@cadl-lang/rest";
 import "@cadl-lang/versioning";
 import "@azure-tools/cadl-azure-core";
-import "@azure-tools/cadl-autorest";
 
 using Cadl.Http;
 using Cadl.Rest;
 using Cadl.Versioning;
 using Azure.Core;
-using OpenAPI;
 
-//
-// ** Service description **
-//
+// NOTE: These features are missing:
+// - Security definition for apiKey
 
-// TODO: Use `Uri` type when available: https://github.com/microsoft/cadl/issues/654
-@serviceTitle("Confidential Ledger Service")
-@serviceVersion("2022-05-13")
-@useAuth(OAuth2Auth<[MyFlow]>)
-@versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
 @server(
-  "{ledgerUri}",
-  "Confidential Ledger Service",
+  "{Endpoint}/language",
+  "Language Service",
   {
-    ledgerUri: string,
+    Endpoint: Endpoint,
   }
 )
-namespace Azure.Security.ConfidentialLedger;
+@serviceTitle("Microsoft Cognitive Language Service - Analyze Text Authoring")
+@serviceVersion("2022-05-15-preview")
+@useAuth(OAuth2Auth<[MyFlow]>)
+@versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
+@route("/authoring/analyze-text/")
+namespace Azure.Language.Authoring;
+
+// Common Parameters
+
+// TODO: Use the common parameter for this
+@doc("The endpoint to use.")
+model Endpoint is string;
 
 model MyFlow {
   type: OAuth2FlowType.implicit;
@@ -33,176 +36,310 @@ model MyFlow {
   tokenUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/token";
   scopes: ["https://confidential-ledger.azure.com/.default"];
 }
-//
-// ** Parameter descriptions **
-//
+// Models
 
-model TransactionIdParameter {
-  // TODO: update definition so this parameter comes from KeysOf in operation, when model support is added.
-  @path
-  @doc("Identifies a write transaction.")
-  transactionId: string;
+model Project {
+  @key
+  @segment("projects")
+  projectName: string;
+
+  @doc("The project kind.")
+  projectKind: ProjectKind;
+
+  @doc("The storage container name.")
+  storageInputContainerName: string;
+
+  @doc("The project settings.")
+  settings?: ProjectSettings;
+
+  @doc("Whether the project would be used for multiple languages or not.")
+  multilingual?: boolean;
+
+  @doc("The project description.")
+  description?: string;
+
+  @doc("The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc.")
+  language: string;
+
+  @doc("Represents the project creation datetime.")
+  @format("date-time")
+  @visibility("read")
+  createdDateTime: string;
+
+  @doc("Represents the project last modification datetime.")
+  @format("date-time")
+  @visibility("read")
+  lastModifiedDateTime: string;
+
+  @doc("Represents the project last training datetime.")
+  @format("date-time")
+  @visibility("read")
+  lastTrainedDateTime: string;
+
+  @doc("Represents the project last deployment datetime.")
+  @format("date-time")
+  @visibility("read")
+  lastDeployedDateTime: string;
 }
 
-model CollectionIdParameter {
+@knownValues(ProjectKindValues)
+model ProjectKind is string;
+
+@doc("Represents the project kind.")
+enum ProjectKindValues {
+  @doc("For building a classification model to classify text using your own data. Each file will have only one label. For example, file 1 is classified as A and file 2 is classified as B.")
+  CustomSingleLabelClassification,
+
+  @doc("For building a classification model to classify text using your own data. Each file can have one or many labels. For example, file 1 is classified as A, B, and C and file 2 is classified as B and C.")
+  CustomMultiLabelClassification,
+
+  @doc("For building an extraction model to identify your domain categories using your own data.")
+  CustomEntityRecognition,
+}
+
+@doc("Represents the settings used to define the project behavior.")
+model ProjectSettings is Record<string>;
+
+@parentResource(Project)
+model Deployment {
+  @key("deploymentName")
+  @segment("deployments")
+  name: string;
+}
+
+model Job {
+  @doc("The job ID.")
+  jobId: string;
+
+  @doc("The creation date time of the job.")
+  @format("date-time")
+  @visibility("read")
+  createdDateTime: string;
+
+  @doc("The the last date time the job was updated.")
+  @format("date-time")
+  @visibility("read")
+  lastUpdatedDateTime: string;
+
+  @doc("The expiration date time of the job.")
+  @format("date-time")
+  @visibility("read")
+  expirationDateTime: string;
+
+  @doc("The job status.")
+  status: JobStatus;
+
+  @doc("The warnings that were encountered while executing the job.")
+  warnings: JobWarning[];
+
+  @doc("The errors encountered while executing the job.")
+  errors: Azure.Core.Foundations.Error;
+}
+
+@doc("Represents the job status.")
+@knownValues(JobStatusValues)
+model JobStatus is string;
+
+@doc("Represents the job status values.")
+enum JobStatusValues {
+  // These values are all camel-cased in the original spec
+  notStarted,
+  running,
+  succeeded,
+  failed,
+  cancelled,
+  cancelling,
+  partiallyCompleted,
+}
+
+@doc("Represents a warning that was encountered while executing the request.")
+model JobWarning {
+  @doc("The warning code.")
+  code: string;
+
+  @doc("The warning message.")
+  message: string;
+}
+
+@parentResource(Deployment)
+model DeploymentJob {
+  ...Job;
+
+  @key("jobId")
+  @segment("jobs")
+  id: string;
+}
+
+@parentResource(Deployment)
+model SwapDeploymentsJob {
+  ...Job;
+
+  @key("jobId")
+  @segment("swap/jobs")
+  id: string;
+}
+
+model ExportedProject {}
+
+@doc("Represents a supported language.")
+model SupportedLanguage {
+  @doc("The language name.")
+  languageName: string;
+
+  @doc("The language code. This is BCP-47 representation of a language. For example, \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc.")
+  languageCode: string;
+}
+
+model SupportedLanguages is Azure.Core.Page<SupportedLanguage>;
+
+@doc("Represents a training config version.")
+model TrainingConfigVersion {
+  @doc("Represents the version of the config.")
+  trainingConfigVersion: string;
+
+  @doc("Represents the training config version expiration date.")
+  modelExpirationDate: plainDate;
+}
+
+model TrainingConfigVersions is Azure.Core.Page<TrainingConfigVersion>;
+
+// Operations
+
+model ListQueryParams {
+  @query top?: int32;
+  @query skip?: int32;
+  @query maxpagesize?: int32;
+}
+
+model ExportParams {
   @query
-  @doc("The collection id.")
-  collectionId?: string;
+  projectFileVersion: string;
 }
 
-model UserIdParameter {
-  @path
-  @doc("The user id, either an AAD object ID or certificate fingerprint.")
-  @extension("x-ms-skip-url-encoding", true)
-  userId: string;
+@doc("Training job parameters.")
+model TrainingJobOptions {
+  modelLabel: string;
 }
 
-model UserDetailsParameter {
+model SwapDeploymentsOptions {
+  @doc("Represents the first deployment name.")
+  firstDeploymentName: string;
+
+  @doc("Represents the second deployment name.")
+  secondDeploymentName: string;
+}
+
+model SwapDeploymentsParams {
+  @doc("The body schema of the operation.")
   @body
-  @doc("Details about a Confidential Ledger user.")
-  userDetails: LedgerUser;
-
-  @header("content-type")
-  contentType: "application/merge-patch+json";
+  body: SwapDeploymentsOptions;
 }
 
-//
-// ** Model descriptions **
-//
+interface Projects {
+  @doc("Creates a new project or updates an existing one.")
+  createOrUpdate is LongRunningResourceCreateOrUpdate<Project>;
 
-@doc("Identifier for collections.")
-model Collection {
-  collectionId: string;
+  @doc("Gets the details of a project.")
+  get is ResourceRead<Project>;
+
+  @doc("Deletes a project.")
+  delete is LongRunningResourceDelete<Project>;
+
+  @doc("Lists the existing projects.")
+  list is ResourceList<
+    Project,
+    {
+      parameters: ListQueryParams;
+    }
+  >;
+
+  @doc("Triggers a job to export a project's data.")
+  export is ResourceAction<
+    Project,
+    ExportParams,
+    Cadl.Http.AcceptedResponse & Foundations.LongRunningStatusLocation
+  >;
+
+  // NOTE: `import` is a reserved keyword
+  @doc("Triggers a job to export a project's data.")
+  importx is ResourceAction<
+    Project,
+    ExportedProject,
+    Cadl.Http.AcceptedResponse & Foundations.LongRunningStatusLocation
+  >;
+
+  @doc("Triggers a training job for a project.")
+  train is ResourceAction<
+    Project,
+    {
+      @body body: TrainingJobOptions;
+    },
+    Cadl.Http.AcceptedResponse & Foundations.LongRunningStatusLocation
+  >;
 }
 
-@doc("A list of identifiers for ledger collections.")
-model CollectionArray {
-  items: Collection[];
+interface Deployments {
+  @doc("Gets the details of a deployment.")
+  getDeployment is ResourceRead<Deployment>;
+
+  @doc("Creates a new deployment or replaces an existing one.")
+  deployProject is LongRunningResourceCreateOrReplace<Deployment>;
+
+  @doc("Deletes a project deployment.")
+  deleteDeployment is LongRunningResourceDelete<Deployment>;
+
+  @doc("Lists the existing deployments.")
+  list is ResourceList<Deployment>;
+
+  @doc("Swaps two existing deployments with each other.")
+  @collectionAction(Deployment, "swap")
+  swapDeployments is ResourceCollectionAction<
+    Deployment,
+    SwapDeploymentsParams,
+    Azure.Core.Foundations.AcceptedResponse & Foundations.LongRunningStatusLocation
+  >;
 }
 
-model LedgerUser {
-  assignedRole: ConfidentialLedgerUserRoleName;
-  userId: string;
+interface Jobs {
+  @doc("Gets the status of an existing deployment job.")
+  getDeploymentStatus is ResourceRead<DeploymentJob>;
+
+  @doc("Gets the status of an existing swap deployment job.")
+  getSwapDeploymentsStatus is ResourceRead<SwapDeploymentsJob>;
 }
 
-@doc("Represents an assignable role")
-enum ConfidentialLedgerUserRoleName {
-  Administrator,
-  Contributor,
-  Reader,
-}
-
-model LedgerEntry {
-  contents: string;
-  collectionId: string;
-  transactionId: string;
-}
-
-namespace ConfidentialLedger {
-  @route("/app/collections")
-  @summary("Retrieves a list of collection ids present in the Confidential Ledger")
-  @doc("Collection ids are user-created collections of ledger entries")
-  @get // TODO: rewrite the operations in terms of Azure.Core operations, e.g. Azure.Core.Operations.ResourceAction<TResource, TResponse, TParams>, Azure.Core.Operations.ResourceList<TResource, TParams> etc. // This will also take care of not passing ApiVersionParameter everywhere.
-  op listCollections(
+@route("projects/global/")
+interface Global {
+  @get
+  @route("languages")
+  getSupportedLanguages(
+    ...ListQueryParams,
     ...Foundations.ApiVersionParameter
-  ): CollectionArray | Foundations.ErrorResponse;
+  ): SupportedLanguages | Foundations.ErrorResponse;
 
-  @route("/app/enclaveQuotes")
-  @summary("Gets quotes for all nodes of the Confidential Ledger.")
-  @doc("A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave.")
   @get
-  op getEnclaveQuotes(...Foundations.ApiVersionParameter): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  @route("/app/governance/constitution")
-  @summary("Gets the constitution used for governance.")
-  @doc("The constitution is a script that assesses and applies proposals from consortium members.")
-  @get
-  op getConstitution(...Foundations.ApiVersionParameter): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  @route("/app/governance/members")
-  @summary("Gets the consortium members.")
-  @doc("Consortium members can manage the Confidential Ledger.")
-  @get
-  op getConsortiumMembers(
+  @route("training-config-versions")
+  listTrainingConfigVersions(
+    ...ListQueryParams,
     ...Foundations.ApiVersionParameter
-  ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  // TODO: Pageable operations excluded from August MVP
-  // @route("/app/transactions")
-  // @summary("Gets ledger entries from a collection corresponding to a range.")
-  // @doc("A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned.")
-  // @get
-  // op GetLedgerEntries(
-  //   ...ApiVersionParameter
-  // );
-
-  // TODO: Long-running operations excluded from August MVP
-
-  @route("/app/transactions")
-  @summary("Writes a ledger entry.")
-  @doc("A collection id may optionally be specified.")
-  @post
-  op postLedgerEntry(
-    ...Foundations.ApiVersionParameter,
-    ...CollectionIdParameter,
-    @body entry: LedgerEntry
-  ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  @route("/app/transactions/{transactionId}")
-  @summary("Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate the collection from which to fetch the value.")
-  @get
-  op getLedgerEntry(
-    ...Foundations.ApiVersionParameter,
-    ...CollectionIdParameter,
-    ...TransactionIdParameter
-  ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  @route("/app/transactions/{transactionId}/receipt")
-  @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
-  @get
-  op getReceipt(
-    ...Foundations.ApiVersionParameter,
-    ...TransactionIdParameter
-  ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  @route("/app/transactions/{transactionId}/status")
-  @summary("Gets the status of an entry identified by a transaction id.")
-  @get
-  op getTransactionStatus(
-    ...Foundations.ApiVersionParameter,
-    ...TransactionIdParameter
-  ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  @route("/app/transactions/current")
-  @summary("Gets the current value available in the ledger.")
-  @get
-  op getCurrentLedgerEntry(
-    ...Foundations.ApiVersionParameter,
-    ...CollectionIdParameter
-  ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  @route("/app/users/{userId}")
-  @summary("Deletes a user from the Confidential Ledger.")
-  @delete
-  op deleteUser(
-    ...Foundations.ApiVersionParameter,
-    ...UserIdParameter
-  ): NoContentResponse | Foundations.ErrorResponse;
-
-  @route("/app/users/{userId}")
-  @summary("Gets a user.")
-  @get
-  op getUser(
-    ...Foundations.ApiVersionParameter,
-    ...UserIdParameter
-  ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
-
-  @route("/app/users/{userId}")
-  @summary("Adds a user or updates a user's fields.")
-  @patch
-  op createOrUpdateUser(
-    ...Foundations.ApiVersionParameter,
-    ...UserIdParameter,
-    ...UserDetailsParameter
-  ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
+  ): TrainingConfigVersions | Foundations.ErrorResponse;
 }
+
+// Missing operations
+
+// "/authoring/analyze-text/projects/{projectName}/models": {
+// "/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}": {
+// "/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/result": {
+// "/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/summary-result": {
+
+// Special endpoints
+
+// "/authoring/analyze-text/projects/{projectName}/export/jobs/{jobId}": {
+// "/authoring/analyze-text/projects/{projectName}/import/jobs/{jobId}": {
+// "/authoring/analyze-text/projects/{projectName}/train/jobs": {
+// "/authoring/analyze-text/projects/{projectName}/train/jobs/{jobId}": {
+// "/authoring/analyze-text/projects/{projectName}/train/jobs/{jobId}/:cancel": {
+
+// Under global
+
+// "/authoring/analyze-text/projects/global/deletion-jobs/{jobId}": {

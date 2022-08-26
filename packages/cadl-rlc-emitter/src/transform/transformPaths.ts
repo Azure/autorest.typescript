@@ -21,7 +21,7 @@ export function transformPaths(program: Program): Paths {
   const [routes, _diagnostics] = getAllRoutes(program);
   const paths: Paths = {};
   for (const route of routes) {
-    if (!route.operation.namespace?.name) {
+    if (!route.operation.interface?.name) {
       reportDiagnostic(program, {
         code: "missing-namespace",
         format: { path: route.path },
@@ -32,7 +32,7 @@ export function transformPaths(program: Program): Paths {
     const respNames = [];
     for (const resp of route.responses) {
       const respName = getResponseTypeName(
-        route.operation.namespace?.name ?? "",
+        route.operation.interface?.name ?? "",
         route.operation.name,
         resp.statusCode === "*" ? "Default" : resp.statusCode
       );
@@ -47,7 +47,7 @@ export function transformPaths(program: Program): Paths {
           ? true
           : false,
       optionsName: getParameterTypeName(
-        route.operation.namespace?.name,
+        route.operation.interface?.name,
         route.operation.name
       ),
       responseTypes: getResponseTypes(route),
@@ -78,7 +78,7 @@ export function transformPaths(program: Program): Paths {
               description: getDoc(program, p.param)
             };
           }),
-        operationGroupName: route.operation.namespace?.name,
+        operationGroupName: route.operation.interface?.name,
         methods: {
           [route.verb]: [method]
         }
@@ -125,7 +125,7 @@ function getResponseTypes(operation: OperationDetails): ResponseTypes {
           const statusCode =
             r.statusCode == "*" ? `"default"` : `"${r.statusCode}"`;
           const responseName = getResponseTypeName(
-            operation.operation.namespace?.name ?? "",
+            operation.operation.interface?.name ?? "",
             operation.operation.name,
             statusCode
           );

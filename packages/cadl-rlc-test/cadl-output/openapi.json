@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Confidential Ledger Service",
-    "version": "2022-05-13",
+    "title": "Microsoft Cognitive Language Service - Analyze Text Authoring",
+    "version": "2022-05-15-preview",
     "x-cadl-generated": [
       {
         "emitter": "@azure-tools/cadl-autorest"
@@ -13,13 +13,14 @@
     "https"
   ],
   "x-ms-parameterized-host": {
-    "hostTemplate": "{ledgerUri}",
+    "hostTemplate": "{Endpoint}/language",
     "useSchemePrefix": false,
     "parameters": [
       {
-        "name": "ledgerUri",
+        "name": "Endpoint",
         "in": "path",
         "required": true,
+        "description": "The endpoint to use.",
         "type": "string"
       }
     ]
@@ -30,14 +31,40 @@
   "consumes": [
     "application/json"
   ],
+  "security": [
+    {
+      "OAuth2Auth": [
+        "https://confidential-ledger.azure.com/.default"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "OAuth2Auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://login.microsoftonline.com/common/v2.0/oauth2/authorize",
+      "tokenUrl": "https://login.microsoftonline.com/common/v2.0/oauth2/token",
+      "scopes": {
+        "https://confidential-ledger.azure.com/.default": ""
+      }
+    }
+  },
   "tags": [],
   "paths": {
-    "/app/collections": {
+    "/authoring/analyze-text/projects": {
       "get": {
-        "operationId": "ConfidentialLedger_ListCollections",
-        "summary": "Retrieves a list of collection ids present in the Confidential Ledger",
-        "description": "Collection ids are user-created collections of ledger entries",
+        "operationId": "Projects_List",
+        "description": "Lists the existing projects.",
         "parameters": [
+          {
+            "$ref": "#/parameters/ListQueryParams.top"
+          },
+          {
+            "$ref": "#/parameters/ListQueryParams.skip"
+          },
+          {
+            "$ref": "#/parameters/ListQueryParams.maxpagesize"
+          },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
@@ -46,7 +73,27 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "$ref": "#/definitions/CollectionArray"
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Project"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "Project[]",
+                  "description": "The Project items on this page"
+                },
+                "nextLink": {
+                  "type": "string",
+                  "description": "The link to the next page of items",
+                  "x-cadl-name": "Rest.ResourceLocation<Project>"
+                }
+              },
+              "required": [
+                "value"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.Foundations.CustomPage<Project, (anonymous model)>>"
             }
           },
           "default": {
@@ -55,279 +102,212 @@
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
         }
       }
     },
-    "/app/enclaveQuotes": {
-      "get": {
-        "operationId": "ConfidentialLedger_GetEnclaveQuotes",
-        "summary": "Gets quotes for all nodes of the Confidential Ledger.",
-        "description": "A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/app/governance/constitution": {
-      "get": {
-        "operationId": "ConfidentialLedger_GetConstitution",
-        "summary": "Gets the constitution used for governance.",
-        "description": "The constitution is a script that assesses and applies proposals from consortium members.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/app/governance/members": {
-      "get": {
-        "operationId": "ConfidentialLedger_GetConsortiumMembers",
-        "summary": "Gets the consortium members.",
-        "description": "Consortium members can manage the Confidential Ledger.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/app/transactions": {
-      "post": {
-        "operationId": "ConfidentialLedger_PostLedgerEntry",
-        "summary": "Writes a ledger entry.",
-        "description": "A collection id may optionally be specified.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/CollectionIdParameter"
-          },
-          {
-            "name": "entry",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/LedgerEntry"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/app/transactions/{transactionId}": {
-      "get": {
-        "operationId": "ConfidentialLedger_GetLedgerEntry",
-        "summary": "Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate the collection from which to fetch the value.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/CollectionIdParameter"
-          },
-          {
-            "$ref": "#/parameters/TransactionIdParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/app/transactions/{transactionId}/receipt": {
-      "get": {
-        "operationId": "ConfidentialLedger_GetReceipt",
-        "summary": "Gets a receipt certifying ledger contents at a particular transaction id.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/TransactionIdParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/app/transactions/{transactionId}/status": {
-      "get": {
-        "operationId": "ConfidentialLedger_GetTransactionStatus",
-        "summary": "Gets the status of an entry identified by a transaction id.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/TransactionIdParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/app/transactions/current": {
-      "get": {
-        "operationId": "ConfidentialLedger_GetCurrentLedgerEntry",
-        "summary": "Gets the current value available in the ledger.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/CollectionIdParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/app/users/{userId}": {
-      "delete": {
-        "operationId": "ConfidentialLedger_DeleteUser",
-        "summary": "Deletes a user from the Confidential Ledger.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/UserIdParameter"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "There is no content to send for this request, but the headers may be useful. "
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      },
-      "get": {
-        "operationId": "ConfidentialLedger_GetUser",
-        "summary": "Gets a user.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/UserIdParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      },
+    "/authoring/analyze-text/projects/{projectName}": {
       "patch": {
-        "operationId": "ConfidentialLedger_CreateOrUpdateUser",
-        "summary": "Adds a user or updates a user's fields.",
+        "operationId": "Projects_CreateOrUpdate",
+        "description": "Creates a new project or updates an existing one.",
         "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
-            "$ref": "#/parameters/UserIdParameter"
-          },
-          {
-            "$ref": "#/parameters/UserDetailsParameter.userDetails"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "projectKind": {
+                  "$ref": "#/definitions/ProjectKind",
+                  "description": "The project kind."
+                },
+                "storageInputContainerName": {
+                  "type": "string",
+                  "description": "The storage container name."
+                },
+                "settings": {
+                  "$ref": "#/definitions/ProjectSettings",
+                  "description": "The project settings."
+                },
+                "multilingual": {
+                  "type": "boolean",
+                  "description": "Whether the project would be used for multiple languages or not."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The project description."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+                }
+              },
+              "description": "The template for adding optional properties.",
+              "x-cadl-name": "OptionalProperties<UpdateableProperties<DefaultKeyVisibility<Project, read>>>"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "The request has succeeded.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "projectName": {
+                  "type": "string"
+                },
+                "projectKind": {
+                  "$ref": "#/definitions/ProjectKind",
+                  "description": "The project kind."
+                },
+                "storageInputContainerName": {
+                  "type": "string",
+                  "description": "The storage container name."
+                },
+                "settings": {
+                  "$ref": "#/definitions/ProjectSettings",
+                  "description": "The project settings."
+                },
+                "multilingual": {
+                  "type": "boolean",
+                  "description": "Whether the project would be used for multiple languages or not."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The project description."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+                },
+                "createdDateTime": {
+                  "type": "string",
+                  "description": "Represents the project creation datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastModifiedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last modification datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastTrainedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last training datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastDeployedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last deployment datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "projectName",
+                "projectKind",
+                "storageInputContainerName",
+                "language",
+                "createdDateTime",
+                "lastModifiedDateTime",
+                "lastTrainedDateTime",
+                "lastDeployedDateTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "projectName": {
+                  "type": "string"
+                },
+                "projectKind": {
+                  "$ref": "#/definitions/ProjectKind",
+                  "description": "The project kind."
+                },
+                "storageInputContainerName": {
+                  "type": "string",
+                  "description": "The storage container name."
+                },
+                "settings": {
+                  "$ref": "#/definitions/ProjectSettings",
+                  "description": "The project settings."
+                },
+                "multilingual": {
+                  "type": "boolean",
+                  "description": "Whether the project would be used for multiple languages or not."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The project description."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+                },
+                "createdDateTime": {
+                  "type": "string",
+                  "description": "Represents the project creation datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastModifiedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last modification datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastTrainedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last training datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastDeployedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last deployment datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "projectName",
+                "projectKind",
+                "storageInputContainerName",
+                "language",
+                "createdDateTime",
+                "lastModifiedDateTime",
+                "lastTrainedDateTime",
+                "lastDeployedDateTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -339,6 +319,738 @@
         "consumes": [
           "application/merge-patch+json"
         ]
+      },
+      "get": {
+        "operationId": "Projects_Get",
+        "description": "Gets the details of a project.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "projectName": {
+                  "type": "string"
+                },
+                "projectKind": {
+                  "$ref": "#/definitions/ProjectKind",
+                  "description": "The project kind."
+                },
+                "storageInputContainerName": {
+                  "type": "string",
+                  "description": "The storage container name."
+                },
+                "settings": {
+                  "$ref": "#/definitions/ProjectSettings",
+                  "description": "The project settings."
+                },
+                "multilingual": {
+                  "type": "boolean",
+                  "description": "Whether the project would be used for multiple languages or not."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The project description."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+                },
+                "createdDateTime": {
+                  "type": "string",
+                  "description": "Represents the project creation datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastModifiedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last modification datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastTrainedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last training datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastDeployedDateTime": {
+                  "type": "string",
+                  "description": "Represents the project last deployment datetime.",
+                  "format": "date-time",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "projectName",
+                "projectKind",
+                "storageInputContainerName",
+                "language",
+                "createdDateTime",
+                "lastModifiedDateTime",
+                "lastTrainedDateTime",
+                "lastDeployedDateTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "Projects_Delete",
+        "description": "Deletes a project.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique ID of the operation."
+                },
+                "status": {
+                  "$ref": "#/definitions/Azure.Core.Foundations.OperationState",
+                  "description": "The status of the operation"
+                },
+                "error": {
+                  "$ref": "#/definitions/Azure.Core.Foundations.Error",
+                  "description": "Error object that describes the error when status is \"Failed\"."
+                }
+              },
+              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/{projectName}:export": {
+      "post": {
+        "operationId": "Projects_Export",
+        "description": "Triggers a job to export a project's data.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/ExportParams"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/{projectName}:importx": {
+      "post": {
+        "operationId": "Projects_Importx",
+        "description": "Triggers a job to export a project's data.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/{projectName}:train": {
+      "post": {
+        "operationId": "Projects_Train",
+        "description": "Triggers a training job for a project.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrainingJobOptions"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/{projectName}/deployments": {
+      "get": {
+        "operationId": "Deployments_List",
+        "description": "Lists the existing deployments.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Deployment"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "Deployment[]",
+                  "description": "The Deployment items on this page"
+                },
+                "nextLink": {
+                  "type": "string",
+                  "description": "The link to the next page of items",
+                  "x-cadl-name": "Rest.ResourceLocation<Deployment>"
+                }
+              },
+              "required": [
+                "value"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.Foundations.CustomPage<Deployment, {}>>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}": {
+      "get": {
+        "operationId": "Deployments_GetDeployment",
+        "description": "Gets the details of a deployment.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Deployment"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "Deployments_DeployProject",
+        "description": "Creates a new deployment or replaces an existing one.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Deployment"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "name"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "Deployments_DeleteDeployment",
+        "description": "Deletes a project deployment.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Deployment"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique ID of the operation."
+                },
+                "status": {
+                  "$ref": "#/definitions/Azure.Core.Foundations.OperationState",
+                  "description": "The status of the operation"
+                },
+                "error": {
+                  "$ref": "#/definitions/Azure.Core.Foundations.Error",
+                  "description": "Error object that describes the error when status is \"Failed\"."
+                }
+              },
+              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}": {
+      "get": {
+        "operationId": "Jobs_GetDeploymentStatus",
+        "description": "Gets the status of an existing deployment job.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Deployment"
+          },
+          {
+            "$ref": "#/parameters/DeploymentJob.jobId"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "jobId": {
+                  "type": "string",
+                  "description": "The job ID."
+                },
+                "createdDateTime": {
+                  "type": "string",
+                  "description": "The creation date time of the job.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastUpdatedDateTime": {
+                  "type": "string",
+                  "description": "The the last date time the job was updated.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "expirationDateTime": {
+                  "type": "string",
+                  "description": "The expiration date time of the job.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "status": {
+                  "$ref": "#/definitions/JobStatus",
+                  "description": "The job status."
+                },
+                "warnings": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/JobWarning"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "JobWarning[]",
+                  "description": "The warnings that were encountered while executing the job."
+                },
+                "errors": {
+                  "$ref": "#/definitions/Azure.Core.Foundations.Error",
+                  "description": "The errors encountered while executing the job."
+                },
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "jobId",
+                "createdDateTime",
+                "lastUpdatedDateTime",
+                "expirationDateTime",
+                "status",
+                "warnings",
+                "errors",
+                "id"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}": {
+      "get": {
+        "operationId": "Jobs_GetSwapDeploymentsStatus",
+        "description": "Gets the status of an existing swap deployment job.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Deployment"
+          },
+          {
+            "$ref": "#/parameters/SwapDeploymentsJob.jobId"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "jobId": {
+                  "type": "string",
+                  "description": "The job ID."
+                },
+                "createdDateTime": {
+                  "type": "string",
+                  "description": "The creation date time of the job.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "lastUpdatedDateTime": {
+                  "type": "string",
+                  "description": "The the last date time the job was updated.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "expirationDateTime": {
+                  "type": "string",
+                  "description": "The expiration date time of the job.",
+                  "format": "date-time",
+                  "readOnly": true
+                },
+                "status": {
+                  "$ref": "#/definitions/JobStatus",
+                  "description": "The job status."
+                },
+                "warnings": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/JobWarning"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "JobWarning[]",
+                  "description": "The warnings that were encountered while executing the job."
+                },
+                "errors": {
+                  "$ref": "#/definitions/Azure.Core.Foundations.Error",
+                  "description": "The errors encountered while executing the job."
+                },
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "jobId",
+                "createdDateTime",
+                "lastUpdatedDateTime",
+                "expirationDateTime",
+                "status",
+                "warnings",
+                "errors",
+                "id"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/{projectName}/deployments/swap": {
+      "post": {
+        "operationId": "Deployments_SwapDeployments",
+        "description": "Swaps two existing deployments with each other.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Project.projectName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SwapDeploymentsParams"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/global/languages": {
+      "get": {
+        "operationId": "Global_GetSupportedLanguages",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ListQueryParams.top"
+          },
+          {
+            "$ref": "#/parameters/ListQueryParams.skip"
+          },
+          {
+            "$ref": "#/parameters/ListQueryParams.maxpagesize"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedSupportedLanguage"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/authoring/analyze-text/projects/global/training-config-versions": {
+      "get": {
+        "operationId": "Global_ListTrainingConfigVersions",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ListQueryParams.top"
+          },
+          {
+            "$ref": "#/parameters/ListQueryParams.skip"
+          },
+          {
+            "$ref": "#/parameters/ListQueryParams.maxpagesize"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedTrainingConfigVersion"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
       }
     }
   },
@@ -409,80 +1121,278 @@
         "code"
       ]
     },
-    "Collection": {
-      "type": "object",
-      "properties": {
-        "collectionId": {
-          "type": "string"
-        }
-      },
-      "description": "Identifier for collections.",
-      "required": [
-        "collectionId"
-      ]
-    },
-    "CollectionArray": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Collection"
-          },
-          "x-ms-identifiers": [],
-          "x-cadl-name": "Collection[]"
-        }
-      },
-      "description": "A list of identifiers for ledger collections.",
-      "required": [
-        "items"
-      ]
-    },
-    "ConfidentialLedgerUserRoleName": {
+    "Azure.Core.Foundations.OperationState": {
       "type": "string",
-      "description": "Represents an assignable role",
       "enum": [
-        "Administrator",
-        "Contributor",
-        "Reader"
+        "InProgress",
+        "Succeeded",
+        "Failed",
+        "Canceled"
       ],
       "x-ms-enum": {
-        "name": "ConfidentialLedgerUserRoleName",
-        "modelAsString": false
+        "name": "OperationState",
+        "modelAsString": true
       }
     },
-    "LedgerEntry": {
+    "Deployment": {
       "type": "object",
       "properties": {
-        "contents": {
-          "type": "string"
-        },
-        "collectionId": {
-          "type": "string"
-        },
-        "transactionId": {
+        "name": {
           "type": "string"
         }
       },
       "required": [
-        "contents",
-        "collectionId",
-        "transactionId"
+        "name"
       ]
     },
-    "LedgerUser": {
+    "JobStatus": {
+      "type": "string",
+      "description": "Represents the job status.",
+      "enum": [
+        "notStarted",
+        "running",
+        "succeeded",
+        "failed",
+        "cancelled",
+        "cancelling",
+        "partiallyCompleted"
+      ],
+      "x-ms-enum": {
+        "name": "JobStatus",
+        "modelAsString": true
+      }
+    },
+    "JobWarning": {
       "type": "object",
       "properties": {
-        "assignedRole": {
-          "$ref": "#/definitions/ConfidentialLedgerUserRoleName"
+        "code": {
+          "type": "string",
+          "description": "The warning code."
         },
-        "userId": {
+        "message": {
+          "type": "string",
+          "description": "The warning message."
+        }
+      },
+      "description": "Represents a warning that was encountered while executing the request.",
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "PagedSupportedLanguage": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SupportedLanguage"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "SupportedLanguage[]",
+          "description": "The SupportedLanguage items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "x-cadl-name": "Rest.ResourceLocation<SupportedLanguage>"
+        }
+      },
+      "description": "Paged collection of SupportedLanguage items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedTrainingConfigVersion": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TrainingConfigVersion"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "TrainingConfigVersion[]",
+          "description": "The TrainingConfigVersion items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "x-cadl-name": "Rest.ResourceLocation<TrainingConfigVersion>"
+        }
+      },
+      "description": "Paged collection of TrainingConfigVersion items",
+      "required": [
+        "value"
+      ]
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "projectName": {
           "type": "string"
+        },
+        "projectKind": {
+          "$ref": "#/definitions/ProjectKind",
+          "description": "The project kind."
+        },
+        "storageInputContainerName": {
+          "type": "string",
+          "description": "The storage container name."
+        },
+        "settings": {
+          "$ref": "#/definitions/ProjectSettings",
+          "description": "The project settings."
+        },
+        "multilingual": {
+          "type": "boolean",
+          "description": "Whether the project would be used for multiple languages or not."
+        },
+        "description": {
+          "type": "string",
+          "description": "The project description."
+        },
+        "language": {
+          "type": "string",
+          "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+        },
+        "createdDateTime": {
+          "type": "string",
+          "description": "Represents the project creation datetime.",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "description": "Represents the project last modification datetime.",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "lastTrainedDateTime": {
+          "type": "string",
+          "description": "Represents the project last training datetime.",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "lastDeployedDateTime": {
+          "type": "string",
+          "description": "Represents the project last deployment datetime.",
+          "format": "date-time",
+          "readOnly": true
         }
       },
       "required": [
-        "assignedRole",
-        "userId"
+        "projectName",
+        "projectKind",
+        "storageInputContainerName",
+        "language",
+        "createdDateTime",
+        "lastModifiedDateTime",
+        "lastTrainedDateTime",
+        "lastDeployedDateTime"
+      ]
+    },
+    "ProjectKind": {
+      "type": "string",
+      "description": "Represents the project kind.",
+      "enum": [
+        "CustomSingleLabelClassification",
+        "CustomMultiLabelClassification",
+        "CustomEntityRecognition"
+      ],
+      "x-ms-enum": {
+        "name": "ProjectKind",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "CustomSingleLabelClassification",
+            "value": "CustomSingleLabelClassification",
+            "description": "For building a classification model to classify text using your own data. Each file will have only one label. For example, file 1 is classified as A and file 2 is classified as B."
+          },
+          {
+            "name": "CustomMultiLabelClassification",
+            "value": "CustomMultiLabelClassification",
+            "description": "For building a classification model to classify text using your own data. Each file can have one or many labels. For example, file 1 is classified as A, B, and C and file 2 is classified as B and C."
+          },
+          {
+            "name": "CustomEntityRecognition",
+            "value": "CustomEntityRecognition",
+            "description": "For building an extraction model to identify your domain categories using your own data."
+          }
+        ]
+      }
+    },
+    "ProjectSettings": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Represents the settings used to define the project behavior."
+    },
+    "SupportedLanguage": {
+      "type": "object",
+      "properties": {
+        "languageName": {
+          "type": "string",
+          "description": "The language name."
+        },
+        "languageCode": {
+          "type": "string",
+          "description": "The language code. This is BCP-47 representation of a language. For example, \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+        }
+      },
+      "description": "Represents a supported language.",
+      "required": [
+        "languageName",
+        "languageCode"
+      ]
+    },
+    "SwapDeploymentsOptions": {
+      "type": "object",
+      "properties": {
+        "firstDeploymentName": {
+          "type": "string",
+          "description": "Represents the first deployment name."
+        },
+        "secondDeploymentName": {
+          "type": "string",
+          "description": "Represents the second deployment name."
+        }
+      },
+      "required": [
+        "firstDeploymentName",
+        "secondDeploymentName"
+      ]
+    },
+    "TrainingConfigVersion": {
+      "type": "object",
+      "properties": {
+        "trainingConfigVersion": {
+          "type": "string",
+          "description": "Represents the version of the config."
+        },
+        "modelExpirationDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Represents the training config version expiration date."
+        }
+      },
+      "description": "Represents a training config version.",
+      "required": [
+        "trainingConfigVersion",
+        "modelExpirationDate"
+      ]
+    },
+    "TrainingJobOptions": {
+      "type": "object",
+      "properties": {
+        "modelLabel": {
+          "type": "string"
+        }
+      },
+      "description": "Training job parameters.",
+      "required": [
+        "modelLabel"
       ]
     }
   },
@@ -496,39 +1406,73 @@
       "type": "string",
       "x-ms-parameter-location": "method"
     },
-    "CollectionIdParameter": {
-      "name": "collectionId",
+    "Deployment": {
+      "name": "deploymentName",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "DeploymentJob.jobId": {
+      "name": "jobId",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "ExportParams": {
+      "name": "projectFileVersion",
+      "in": "query",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "ListQueryParams.maxpagesize": {
+      "name": "maxpagesize",
       "in": "query",
       "required": false,
-      "description": "The collection id.",
-      "type": "string",
+      "type": "integer",
+      "format": "int32",
       "x-ms-parameter-location": "method"
     },
-    "TransactionIdParameter": {
-      "name": "transactionId",
+    "ListQueryParams.skip": {
+      "name": "skip",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "format": "int32",
+      "x-ms-parameter-location": "method"
+    },
+    "ListQueryParams.top": {
+      "name": "top",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "format": "int32",
+      "x-ms-parameter-location": "method"
+    },
+    "Project.projectName": {
+      "name": "projectName",
       "in": "path",
       "required": true,
-      "description": "Identifies a write transaction.",
       "type": "string",
       "x-ms-parameter-location": "method"
     },
-    "UserDetailsParameter.userDetails": {
-      "name": "userDetails",
+    "SwapDeploymentsJob.jobId": {
+      "name": "jobId",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "SwapDeploymentsParams": {
+      "name": "body",
       "in": "body",
       "required": true,
-      "description": "Details about a Confidential Ledger user.",
+      "description": "The body schema of the operation.",
       "schema": {
-        "$ref": "#/definitions/LedgerUser"
+        "$ref": "#/definitions/SwapDeploymentsOptions"
       },
-      "x-ms-parameter-location": "method"
-    },
-    "UserIdParameter": {
-      "name": "userId",
-      "in": "path",
-      "required": true,
-      "description": "The user id, either an AAD object ID or certificate fingerprint.",
-      "type": "string",
-      "x-ms-skip-url-encoding": true,
       "x-ms-parameter-location": "method"
     }
   }

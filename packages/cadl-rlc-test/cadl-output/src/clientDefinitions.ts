@@ -1,272 +1,395 @@
 import {
-  ConfidentialLedgerListCollectionsParameters,
-  ConfidentialLedgerGetEnclaveQuotesParameters,
-  ConfidentialLedgerGetConstitutionParameters,
-  ConfidentialLedgerGetConsortiumMembersParameters,
-  ConfidentialLedgerPostLedgerEntryParameters,
-  ConfidentialLedgerGetLedgerEntryParameters,
-  ConfidentialLedgerGetReceiptParameters,
-  ConfidentialLedgerGetTransactionStatusParameters,
-  ConfidentialLedgerGetCurrentLedgerEntryParameters,
-  ConfidentialLedgerDeleteUserParameters,
-  ConfidentialLedgerGetUserParameters,
-  ConfidentialLedgerCreateOrUpdateUserParameters,
+  ProjectsCreateOrUpdateParameters,
+  ProjectsGetParameters,
+  ProjectsDeleteParameters,
+  ProjectsListParameters,
+  ProjectsExportParameters,
+  ProjectsImportxParameters,
+  ProjectsTrainParameters,
+  DeploymentsGetDeploymentParameters,
+  DeploymentsDeployProjectParameters,
+  DeploymentsDeleteDeploymentParameters,
+  DeploymentsListParameters,
+  DeploymentsSwapDeploymentsParameters,
+  JobsGetDeploymentStatusParameters,
+  JobsGetSwapDeploymentsStatusParameters,
+  GlobalGetSupportedLanguagesParameters,
+  GlobalListTrainingConfigVersionsParameters,
 } from "./parameters";
 import {
-  ConfidentialLedgerListCollections200Response,
-  ConfidentialLedgerListCollectionsDefaultResponse,
-  ConfidentialLedgerGetEnclaveQuotes200Response,
-  ConfidentialLedgerGetEnclaveQuotesDefaultResponse,
-  ConfidentialLedgerGetConstitution200Response,
-  ConfidentialLedgerGetConstitutionDefaultResponse,
-  ConfidentialLedgerGetConsortiumMembers200Response,
-  ConfidentialLedgerGetConsortiumMembersDefaultResponse,
-  ConfidentialLedgerPostLedgerEntry200Response,
-  ConfidentialLedgerPostLedgerEntryDefaultResponse,
-  ConfidentialLedgerGetLedgerEntry200Response,
-  ConfidentialLedgerGetLedgerEntryDefaultResponse,
-  ConfidentialLedgerGetReceipt200Response,
-  ConfidentialLedgerGetReceiptDefaultResponse,
-  ConfidentialLedgerGetTransactionStatus200Response,
-  ConfidentialLedgerGetTransactionStatusDefaultResponse,
-  ConfidentialLedgerGetCurrentLedgerEntry200Response,
-  ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse,
-  ConfidentialLedgerDeleteUser204Response,
-  ConfidentialLedgerDeleteUserDefaultResponse,
-  ConfidentialLedgerGetUser200Response,
-  ConfidentialLedgerGetUserDefaultResponse,
-  ConfidentialLedgerCreateOrUpdateUser200Response,
-  ConfidentialLedgerCreateOrUpdateUserDefaultResponse,
+  ProjectsCreateOrUpdate200Response,
+  ProjectsCreateOrUpdate201Response,
+  ProjectsCreateOrUpdateDefaultResponse,
+  ProjectsGet200Response,
+  ProjectsGetDefaultResponse,
+  ProjectsDelete202Response,
+  ProjectsDeleteDefaultResponse,
+  ProjectsList200Response,
+  ProjectsListDefaultResponse,
+  ProjectsExport202Response,
+  ProjectsExportDefaultResponse,
+  ProjectsImportx202Response,
+  ProjectsImportxDefaultResponse,
+  ProjectsTrain202Response,
+  ProjectsTrainDefaultResponse,
+  DeploymentsGetDeployment200Response,
+  DeploymentsGetDeploymentDefaultResponse,
+  DeploymentsDeployProject200Response,
+  DeploymentsDeployProject201Response,
+  DeploymentsDeployProjectDefaultResponse,
+  DeploymentsDeleteDeployment202Response,
+  DeploymentsDeleteDeploymentDefaultResponse,
+  DeploymentsList200Response,
+  DeploymentsListDefaultResponse,
+  DeploymentsSwapDeployments202Response,
+  DeploymentsSwapDeploymentsDefaultResponse,
+  JobsGetDeploymentStatus200Response,
+  JobsGetDeploymentStatusDefaultResponse,
+  JobsGetSwapDeploymentsStatus200Response,
+  JobsGetSwapDeploymentsStatusDefaultResponse,
+  GlobalGetSupportedLanguages200Response,
+  GlobalGetSupportedLanguagesDefaultResponse,
+  GlobalListTrainingConfigVersions200Response,
+  GlobalListTrainingConfigVersionsDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for ConfidentialLedger operations */
-export interface ConfidentialLedgerOperations {
-  /** Collection ids are user-created collections of ledger entries */
-  listCollections(
-    options: ConfidentialLedgerListCollectionsParameters
+/** Contains operations for Projects operations */
+export interface ProjectsOperations {
+  /** Creates a new project or updates an existing one. */
+  createOrUpdate(
+    projectName: string,
+    options?: ProjectsCreateOrUpdateParameters
   ): StreamableMethod<
-    | ConfidentialLedgerListCollections200Response
-    | ConfidentialLedgerListCollectionsDefaultResponse
+    | ProjectsCreateOrUpdate200Response
+    | ProjectsCreateOrUpdate201Response
+    | ProjectsCreateOrUpdateDefaultResponse
   >;
-  /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
-  getEnclaveQuotes(
-    options: ConfidentialLedgerGetEnclaveQuotesParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetEnclaveQuotes200Response
-    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
-  >;
-  /** The constitution is a script that assesses and applies proposals from consortium members. */
-  getConstitution(
-    options: ConfidentialLedgerGetConstitutionParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetConstitution200Response
-    | ConfidentialLedgerGetConstitutionDefaultResponse
-  >;
-  /** Consortium members can manage the Confidential Ledger. */
-  getConsortiumMembers(
-    options: ConfidentialLedgerGetConsortiumMembersParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetConsortiumMembers200Response
-    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-  >;
-  /** A collection id may optionally be specified. */
-  postLedgerEntry(
-    options?: ConfidentialLedgerPostLedgerEntryParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerPostLedgerEntry200Response
-    | ConfidentialLedgerPostLedgerEntryDefaultResponse
-  >;
-  getLedgerEntry(
-    transactionId: string,
-    options?: ConfidentialLedgerGetLedgerEntryParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetLedgerEntry200Response
-    | ConfidentialLedgerGetLedgerEntryDefaultResponse
-  >;
-  getReceipt(
-    transactionId: string,
-    options: ConfidentialLedgerGetReceiptParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetReceipt200Response
-    | ConfidentialLedgerGetReceiptDefaultResponse
-  >;
-  getTransactionStatus(
-    transactionId: string,
-    options: ConfidentialLedgerGetTransactionStatusParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetTransactionStatus200Response
-    | ConfidentialLedgerGetTransactionStatusDefaultResponse
-  >;
-  getCurrentLedgerEntry(
-    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetCurrentLedgerEntry200Response
-    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
-  >;
-  deleteUser(
-    userId: string,
-    options: ConfidentialLedgerDeleteUserParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerDeleteUser204Response
-    | ConfidentialLedgerDeleteUserDefaultResponse
-  >;
-  getUser(
-    userId: string,
-    options: ConfidentialLedgerGetUserParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetUser200Response
-    | ConfidentialLedgerGetUserDefaultResponse
-  >;
-  createOrUpdateUser(
-    userId: string,
-    options: ConfidentialLedgerCreateOrUpdateUserParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerCreateOrUpdateUser200Response
-    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
-  >;
-}
-
-export interface ListCollections {
-  /** Collection ids are user-created collections of ledger entries */
+  /** Gets the details of a project. */
   get(
-    options: ConfidentialLedgerListCollectionsParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerListCollections200Response
-    | ConfidentialLedgerListCollectionsDefaultResponse
-  >;
-}
-
-export interface GetEnclaveQuotes {
-  /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
-  get(
-    options: ConfidentialLedgerGetEnclaveQuotesParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetEnclaveQuotes200Response
-    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
-  >;
-}
-
-export interface GetConstitution {
-  /** The constitution is a script that assesses and applies proposals from consortium members. */
-  get(
-    options: ConfidentialLedgerGetConstitutionParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetConstitution200Response
-    | ConfidentialLedgerGetConstitutionDefaultResponse
-  >;
-}
-
-export interface GetConsortiumMembers {
-  /** Consortium members can manage the Confidential Ledger. */
-  get(
-    options: ConfidentialLedgerGetConsortiumMembersParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetConsortiumMembers200Response
-    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-  >;
-}
-
-export interface PostLedgerEntry {
-  /** A collection id may optionally be specified. */
-  post(
-    options?: ConfidentialLedgerPostLedgerEntryParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerPostLedgerEntry200Response
-    | ConfidentialLedgerPostLedgerEntryDefaultResponse
-  >;
-}
-
-export interface GetLedgerEntry {
-  get(
-    options?: ConfidentialLedgerGetLedgerEntryParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetLedgerEntry200Response
-    | ConfidentialLedgerGetLedgerEntryDefaultResponse
-  >;
-}
-
-export interface GetReceipt {
-  get(
-    options: ConfidentialLedgerGetReceiptParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetReceipt200Response
-    | ConfidentialLedgerGetReceiptDefaultResponse
-  >;
-}
-
-export interface GetTransactionStatus {
-  get(
-    options: ConfidentialLedgerGetTransactionStatusParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetTransactionStatus200Response
-    | ConfidentialLedgerGetTransactionStatusDefaultResponse
-  >;
-}
-
-export interface GetCurrentLedgerEntry {
-  get(
-    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
-  ): StreamableMethod<
-    | ConfidentialLedgerGetCurrentLedgerEntry200Response
-    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
-  >;
-}
-
-export interface DeleteUser {
+    projectName: string,
+    options: ProjectsGetParameters
+  ): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
+  /** Deletes a project. */
   delete(
-    options: ConfidentialLedgerDeleteUserParameters
+    projectName: string,
+    options: ProjectsDeleteParameters
   ): StreamableMethod<
-    | ConfidentialLedgerDeleteUser204Response
-    | ConfidentialLedgerDeleteUserDefaultResponse
+    ProjectsDelete202Response | ProjectsDeleteDefaultResponse
   >;
-  get(
-    options: ConfidentialLedgerGetUserParameters
+  /** Lists the existing projects. */
+  list(
+    options?: ProjectsListParameters
+  ): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
+  /** Triggers a job to export a project's data. */
+  export(
+    projectName: string,
+    options: ProjectsExportParameters
   ): StreamableMethod<
-    | ConfidentialLedgerGetUser200Response
-    | ConfidentialLedgerGetUserDefaultResponse
+    ProjectsExport202Response | ProjectsExportDefaultResponse
   >;
+  /** Triggers a job to export a project's data. */
+  importx(
+    projectName: string,
+    options: ProjectsImportxParameters
+  ): StreamableMethod<
+    ProjectsImportx202Response | ProjectsImportxDefaultResponse
+  >;
+  /** Triggers a training job for a project. */
+  train(
+    projectName: string,
+    options: ProjectsTrainParameters
+  ): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
+}
+
+/** Contains operations for Deployments operations */
+export interface DeploymentsOperations {
+  /** Gets the details of a deployment. */
+  getDeployment(
+    projectName: string,
+    deploymentName: string,
+    options: DeploymentsGetDeploymentParameters
+  ): StreamableMethod<
+    | DeploymentsGetDeployment200Response
+    | DeploymentsGetDeploymentDefaultResponse
+  >;
+  /** Creates a new deployment or replaces an existing one. */
+  deployProject(
+    projectName: string,
+    deploymentName: string,
+    options: DeploymentsDeployProjectParameters
+  ): StreamableMethod<
+    | DeploymentsDeployProject200Response
+    | DeploymentsDeployProject201Response
+    | DeploymentsDeployProjectDefaultResponse
+  >;
+  /** Deletes a project deployment. */
+  deleteDeployment(
+    projectName: string,
+    deploymentName: string,
+    options: DeploymentsDeleteDeploymentParameters
+  ): StreamableMethod<
+    | DeploymentsDeleteDeployment202Response
+    | DeploymentsDeleteDeploymentDefaultResponse
+  >;
+  /** Lists the existing deployments. */
+  list(
+    projectName: string,
+    options: DeploymentsListParameters
+  ): StreamableMethod<
+    DeploymentsList200Response | DeploymentsListDefaultResponse
+  >;
+  /** Swaps two existing deployments with each other. */
+  swapDeployments(
+    projectName: string,
+    options: DeploymentsSwapDeploymentsParameters
+  ): StreamableMethod<
+    | DeploymentsSwapDeployments202Response
+    | DeploymentsSwapDeploymentsDefaultResponse
+  >;
+}
+
+/** Contains operations for Jobs operations */
+export interface JobsOperations {
+  /** Gets the status of an existing deployment job. */
+  getDeploymentStatus(
+    projectName: string,
+    deploymentName: string,
+    jobId: string,
+    options: JobsGetDeploymentStatusParameters
+  ): StreamableMethod<
+    JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse
+  >;
+  /** Gets the status of an existing swap deployment job. */
+  getSwapDeploymentsStatus(
+    projectName: string,
+    deploymentName: string,
+    jobId: string,
+    options: JobsGetSwapDeploymentsStatusParameters
+  ): StreamableMethod<
+    | JobsGetSwapDeploymentsStatus200Response
+    | JobsGetSwapDeploymentsStatusDefaultResponse
+  >;
+}
+
+/** Contains operations for Global operations */
+export interface GlobalOperations {
+  getSupportedLanguages(
+    options?: GlobalGetSupportedLanguagesParameters
+  ): StreamableMethod<
+    | GlobalGetSupportedLanguages200Response
+    | GlobalGetSupportedLanguagesDefaultResponse
+  >;
+  listTrainingConfigVersions(
+    options?: GlobalListTrainingConfigVersionsParameters
+  ): StreamableMethod<
+    | GlobalListTrainingConfigVersions200Response
+    | GlobalListTrainingConfigVersionsDefaultResponse
+  >;
+}
+
+export interface ProjectsCreateOrUpdate {
+  /** Creates a new project or updates an existing one. */
   patch(
-    options: ConfidentialLedgerCreateOrUpdateUserParameters
+    options?: ProjectsCreateOrUpdateParameters
   ): StreamableMethod<
-    | ConfidentialLedgerCreateOrUpdateUser200Response
-    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
+    | ProjectsCreateOrUpdate200Response
+    | ProjectsCreateOrUpdate201Response
+    | ProjectsCreateOrUpdateDefaultResponse
+  >;
+  /** Gets the details of a project. */
+  get(
+    options: ProjectsGetParameters
+  ): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
+  /** Deletes a project. */
+  delete(
+    options: ProjectsDeleteParameters
+  ): StreamableMethod<
+    ProjectsDelete202Response | ProjectsDeleteDefaultResponse
+  >;
+}
+
+export interface ProjectsList {
+  /** Lists the existing projects. */
+  get(
+    options?: ProjectsListParameters
+  ): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
+}
+
+export interface ProjectsExport {
+  /** Triggers a job to export a project's data. */
+  post(
+    options: ProjectsExportParameters
+  ): StreamableMethod<
+    ProjectsExport202Response | ProjectsExportDefaultResponse
+  >;
+}
+
+export interface ProjectsImportx {
+  /** Triggers a job to export a project's data. */
+  post(
+    options: ProjectsImportxParameters
+  ): StreamableMethod<
+    ProjectsImportx202Response | ProjectsImportxDefaultResponse
+  >;
+}
+
+export interface ProjectsTrain {
+  /** Triggers a training job for a project. */
+  post(
+    options: ProjectsTrainParameters
+  ): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
+}
+
+export interface DeploymentsGetDeployment {
+  /** Gets the details of a deployment. */
+  get(
+    options: DeploymentsGetDeploymentParameters
+  ): StreamableMethod<
+    | DeploymentsGetDeployment200Response
+    | DeploymentsGetDeploymentDefaultResponse
+  >;
+  /** Creates a new deployment or replaces an existing one. */
+  put(
+    options: DeploymentsDeployProjectParameters
+  ): StreamableMethod<
+    | DeploymentsDeployProject200Response
+    | DeploymentsDeployProject201Response
+    | DeploymentsDeployProjectDefaultResponse
+  >;
+  /** Deletes a project deployment. */
+  delete(
+    options: DeploymentsDeleteDeploymentParameters
+  ): StreamableMethod<
+    | DeploymentsDeleteDeployment202Response
+    | DeploymentsDeleteDeploymentDefaultResponse
+  >;
+}
+
+export interface DeploymentsList {
+  /** Lists the existing deployments. */
+  get(
+    options: DeploymentsListParameters
+  ): StreamableMethod<
+    DeploymentsList200Response | DeploymentsListDefaultResponse
+  >;
+}
+
+export interface DeploymentsSwapDeployments {
+  /** Swaps two existing deployments with each other. */
+  post(
+    options: DeploymentsSwapDeploymentsParameters
+  ): StreamableMethod<
+    | DeploymentsSwapDeployments202Response
+    | DeploymentsSwapDeploymentsDefaultResponse
+  >;
+}
+
+export interface JobsGetDeploymentStatus {
+  /** Gets the status of an existing deployment job. */
+  get(
+    options: JobsGetDeploymentStatusParameters
+  ): StreamableMethod<
+    JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse
+  >;
+}
+
+export interface JobsGetSwapDeploymentsStatus {
+  /** Gets the status of an existing swap deployment job. */
+  get(
+    options: JobsGetSwapDeploymentsStatusParameters
+  ): StreamableMethod<
+    | JobsGetSwapDeploymentsStatus200Response
+    | JobsGetSwapDeploymentsStatusDefaultResponse
+  >;
+}
+
+export interface GlobalGetSupportedLanguages {
+  get(
+    options?: GlobalGetSupportedLanguagesParameters
+  ): StreamableMethod<
+    | GlobalGetSupportedLanguages200Response
+    | GlobalGetSupportedLanguagesDefaultResponse
+  >;
+}
+
+export interface GlobalListTrainingConfigVersions {
+  get(
+    options?: GlobalListTrainingConfigVersionsParameters
+  ): StreamableMethod<
+    | GlobalListTrainingConfigVersions200Response
+    | GlobalListTrainingConfigVersionsDefaultResponse
   >;
 }
 
 export interface Routes {
-  /** Resource for '/app/collections' has methods for the following verbs: get */
-  (path: "/app/collections"): ListCollections;
-  /** Resource for '/app/enclaveQuotes' has methods for the following verbs: get */
-  (path: "/app/enclaveQuotes"): GetEnclaveQuotes;
-  /** Resource for '/app/governance/constitution' has methods for the following verbs: get */
-  (path: "/app/governance/constitution"): GetConstitution;
-  /** Resource for '/app/governance/members' has methods for the following verbs: get */
-  (path: "/app/governance/members"): GetConsortiumMembers;
-  /** Resource for '/app/transactions' has methods for the following verbs: post */
-  (path: "/app/transactions"): PostLedgerEntry;
-  /** Resource for '/app/transactions/\{transactionId\}' has methods for the following verbs: get */
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}' has methods for the following verbs: patch, get, delete */
   (
-    path: "/app/transactions/{transactionId}",
-    transactionId: string
-  ): GetLedgerEntry;
-  /** Resource for '/app/transactions/\{transactionId\}/receipt' has methods for the following verbs: get */
+    path: "/authoring/analyze-text/projects/{projectName}",
+    projectName: string
+  ): ProjectsCreateOrUpdate;
+  /** Resource for '/authoring/analyze-text/projects' has methods for the following verbs: get */
+  (path: "/authoring/analyze-text/projects"): ProjectsList;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}:export' has methods for the following verbs: post */
   (
-    path: "/app/transactions/{transactionId}/receipt",
-    transactionId: string
-  ): GetReceipt;
-  /** Resource for '/app/transactions/\{transactionId\}/status' has methods for the following verbs: get */
+    path: "/authoring/analyze-text/projects/{projectName}:export",
+    projectName: string
+  ): ProjectsExport;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}:importx' has methods for the following verbs: post */
   (
-    path: "/app/transactions/{transactionId}/status",
-    transactionId: string
-  ): GetTransactionStatus;
-  /** Resource for '/app/transactions/current' has methods for the following verbs: get */
-  (path: "/app/transactions/current"): GetCurrentLedgerEntry;
-  /** Resource for '/app/users/\{userId\}' has methods for the following verbs: delete, get, patch */
-  (path: "/app/users/{userId}", userId: string): DeleteUser;
+    path: "/authoring/analyze-text/projects/{projectName}:importx",
+    projectName: string
+  ): ProjectsImportx;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}:train' has methods for the following verbs: post */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}:train",
+    projectName: string
+  ): ProjectsTrain;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}' has methods for the following verbs: get, put, delete */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
+    projectName: string,
+    deploymentName: string
+  ): DeploymentsGetDeployment;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments' has methods for the following verbs: get */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}/deployments",
+    projectName: string
+  ): DeploymentsList;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/swap' has methods for the following verbs: post */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}/deployments/swap",
+    projectName: string
+  ): DeploymentsSwapDeployments;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}/jobs/\{jobId\}' has methods for the following verbs: get */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}",
+    projectName: string,
+    deploymentName: string,
+    jobId: string
+  ): JobsGetDeploymentStatus;
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}/swap/jobs/\{jobId\}' has methods for the following verbs: get */
+  (
+    path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}",
+    projectName: string,
+    deploymentName: string,
+    jobId: string
+  ): JobsGetSwapDeploymentsStatus;
+  /** Resource for '/authoring/analyze-text/projects/global/languages' has methods for the following verbs: get */
+  (
+    path: "/authoring/analyze-text/projects/global/languages"
+  ): GlobalGetSupportedLanguages;
+  /** Resource for '/authoring/analyze-text/projects/global/training-config-versions' has methods for the following verbs: get */
+  (
+    path: "/authoring/analyze-text/projects/global/training-config-versions"
+  ): GlobalListTrainingConfigVersions;
 }
 
-export type ConfidentialLedgerServiceClient = Client & {
-  path: Routes;
-  confidentialLedger: ConfidentialLedgerOperations;
-};
+export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient =
+  Client & {
+    path: Routes;
+    projects: ProjectsOperations;
+    deployments: DeploymentsOperations;
+    jobs: JobsOperations;
+    global: GlobalOperations;
+  };

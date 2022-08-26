@@ -1,11 +1,10 @@
-export interface LedgerEntry {
-  contents: string;
-  collectionId: string;
-  transactionId: string;
+export interface TrainingJobOptions {
+  modelLabel: string;
 }
 
-export interface LedgerUser {
-  /** Represents an assignable role */
-  assignedRole: "Administrator" | "Contributor" | "Reader";
-  userId: string;
+export interface SwapDeploymentsOptions {
+  /** Represents the first deployment name. */
+  firstDeploymentName: string;
+  /** Represents the second deployment name. */
+  secondDeploymentName: string;
 }

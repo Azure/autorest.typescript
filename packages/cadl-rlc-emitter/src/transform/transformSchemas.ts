@@ -2,8 +2,19 @@
 // Licensed under the MIT License.
 
 import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
-import { ModelType, Program, Type } from "@cadl-lang/compiler";
-import { getAllRoutes } from "@cadl-lang/rest/http";
+import {
+  ModelType,
+  ModelTypeProperty,
+  Program,
+  Type
+} from "@cadl-lang/compiler";
+import {
+  getAllRoutes,
+  getHeaderFieldName,
+  getPathParamName,
+  getQueryParamName,
+  isStatusCode
+} from "@cadl-lang/rest/http";
 import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
 
 export function transformSchemas(program: Program) {
@@ -23,7 +34,8 @@ export function transformSchemas(program: Program) {
         if (!respModel) {
           continue;
         }
-        getGeneratedModels(respModel.type, SchemaContext.Output);
+        const type = getEffectiveModelType(respModel?.type);
+        getGeneratedModels(type, SchemaContext.Output);
       }
     }
   }
@@ -39,7 +51,7 @@ export function transformSchemas(program: Program) {
         context.push(schemaContext);
         modelMap.set(type, context);
       }
-    } else {
+    } else if ((type as ModelType).name !== "") {
       modelMap.set(type, [schemaContext]);
     }
   }
@@ -70,13 +82,31 @@ export function transformSchemas(program: Program) {
       for (const child of derivedModels) {
         if (
           child.kind === "Model" &&
-          (!modelMap.has(child) ||
-            !modelMap.get(child)?.includes(context))
+          (!modelMap.has(child) || !modelMap.get(child)?.includes(context))
         ) {
           getGeneratedModels(child, context);
         }
       }
     }
+  }
+  function isSchemaProperty(property: ModelTypeProperty) {
+    const headerInfo = getHeaderFieldName(program, property);
+    const queryInfo = getQueryParamName(program, property);
+    const pathInfo = getPathParamName(program, property);
+    const statusCodeInfo = isStatusCode(program, property);
+    return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+  }
+  function getEffectiveModelType(type: Type) {
+    if (type.kind === "Model") {
+      const effective = program.checker.getEffectiveModelType(
+        type,
+        isSchemaProperty
+      );
+      if (effective.name) {
+        return effective;
+      }
+    }
+    return type;
   }
   return schemas;
 }

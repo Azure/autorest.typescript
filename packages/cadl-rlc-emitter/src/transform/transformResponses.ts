@@ -26,7 +26,7 @@ export function transformToResponseTypes(
   const rlcResponses: OperationResponse[] = [];
   let inputImportedSet = new Set<string>();
   for (const route of routes) {
-    if (!route.operation.namespace?.name) {
+    if (!route.operation.interface?.name) {
       reportDiagnostic(program, {
         code: "missing-namespace",
         format: { path: route.path },
@@ -35,7 +35,7 @@ export function transformToResponseTypes(
       continue;
     }
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: route.operation.namespace?.name,
+      operationGroup: route.operation.interface?.name,
       operationName: route.operation.name,
       responses: []
     };

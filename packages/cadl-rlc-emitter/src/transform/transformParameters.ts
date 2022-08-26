@@ -32,7 +32,7 @@ export function transformToParameterTypes(
   const rlcParameters: OperationParameter[] = [];
   let outputImportedSet = new Set<string>();
   for (const route of routes) {
-    if (!route.operation.namespace?.name) {
+    if (!route.operation.interface?.name) {
       reportDiagnostic(program, {
         code: "missing-namespace",
         format: { path: route.path },
@@ -42,7 +42,7 @@ export function transformToParameterTypes(
     }
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: route.operation.namespace?.name,
+      operationGroup: route.operation.interface?.name,
       operationName: route.operation.name,
       parameters: []
     };
