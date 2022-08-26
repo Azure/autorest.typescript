@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { readFileSync } from "fs";
 import { getAutorestOptions, getSession } from "../autorestSession";
 import { extractPaginationDetails } from "../utils/extractPaginationDetails";

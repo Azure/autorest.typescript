@@ -9,13 +9,13 @@ import {
 } from "./parameters";
 import {
   MetadataRolesList200Response,
-  MetadataRolesListdefaultResponse,
+  MetadataRolesListDefaultResponse,
   MetadataPolicyListAll200Response,
-  MetadataPolicyListAlldefaultResponse,
+  MetadataPolicyListAllDefaultResponse,
   MetadataPolicyUpdate200Response,
-  MetadataPolicyUpdatedefaultResponse,
+  MetadataPolicyUpdateDefaultResponse,
   MetadataPolicyGet200Response,
-  MetadataPolicyGetdefaultResponse
+  MetadataPolicyGetDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -24,7 +24,7 @@ export interface MetadataRolesList {
   get(
     options?: MetadataRolesListParameters
   ): StreamableMethod<
-    MetadataRolesList200Response | MetadataRolesListdefaultResponse
+    MetadataRolesList200Response | MetadataRolesListDefaultResponse
   >;
 }
 
@@ -33,7 +33,7 @@ export interface MetadataPolicyListAll {
   get(
     options?: MetadataPolicyListAllParameters
   ): StreamableMethod<
-    MetadataPolicyListAll200Response | MetadataPolicyListAlldefaultResponse
+    MetadataPolicyListAll200Response | MetadataPolicyListAllDefaultResponse
   >;
 }
 
@@ -42,13 +42,13 @@ export interface MetadataPolicyUpdate {
   put(
     options?: MetadataPolicyUpdateParameters
   ): StreamableMethod<
-    MetadataPolicyUpdate200Response | MetadataPolicyUpdatedefaultResponse
+    MetadataPolicyUpdate200Response | MetadataPolicyUpdateDefaultResponse
   >;
   /** Gets a metadata policy */
   get(
     options?: MetadataPolicyGetParameters
   ): StreamableMethod<
-    MetadataPolicyGet200Response | MetadataPolicyGetdefaultResponse
+    MetadataPolicyGet200Response | MetadataPolicyGetDefaultResponse
   >;
 }
 

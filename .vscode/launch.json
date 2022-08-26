@@ -68,6 +68,43 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "protocol": "inspector"
+    },
+    {
+      "name": "Run Debug Smoke Test",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "runtimeArgs": [
+        "ts-node",
+        "./test/commands/smoke-test.ts",
+        "--tag=debug"
+      ],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js"
+      ]
+    },
+    {
+      "name": "Generate code for CadlRlcTest",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-test",
+      "runtimeArgs": ["cadl", "compile", "./spec/main.cadl"],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
+    },
+    {
+      "name": "Generate code for CadlEmitter",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-emitter",
+      "runtimeArgs": ["ts-node", "./test/commands/run.ts"],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     }
   ]
 }

@@ -3,13 +3,13 @@
 
 import {
   MetadataRolesList200Response,
-  MetadataRolesListdefaultResponse,
+  MetadataRolesListDefaultResponse,
   MetadataPolicyListAll200Response,
-  MetadataPolicyListAlldefaultResponse,
+  MetadataPolicyListAllDefaultResponse,
   MetadataPolicyUpdate200Response,
-  MetadataPolicyUpdatedefaultResponse,
+  MetadataPolicyUpdateDefaultResponse,
   MetadataPolicyGet200Response,
-  MetadataPolicyGetdefaultResponse
+  MetadataPolicyGetDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -20,36 +20,36 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: MetadataRolesList200Response | MetadataRolesListdefaultResponse
-): response is MetadataRolesListdefaultResponse;
+  response: MetadataRolesList200Response | MetadataRolesListDefaultResponse
+): response is MetadataRolesListDefaultResponse;
 export function isUnexpected(
   response:
     | MetadataPolicyListAll200Response
-    | MetadataPolicyListAlldefaultResponse
-): response is MetadataPolicyListAlldefaultResponse;
+    | MetadataPolicyListAllDefaultResponse
+): response is MetadataPolicyListAllDefaultResponse;
 export function isUnexpected(
   response:
     | MetadataPolicyUpdate200Response
-    | MetadataPolicyUpdatedefaultResponse
-): response is MetadataPolicyUpdatedefaultResponse;
+    | MetadataPolicyUpdateDefaultResponse
+): response is MetadataPolicyUpdateDefaultResponse;
 export function isUnexpected(
-  response: MetadataPolicyGet200Response | MetadataPolicyGetdefaultResponse
-): response is MetadataPolicyGetdefaultResponse;
+  response: MetadataPolicyGet200Response | MetadataPolicyGetDefaultResponse
+): response is MetadataPolicyGetDefaultResponse;
 export function isUnexpected(
   response:
     | MetadataRolesList200Response
-    | MetadataRolesListdefaultResponse
+    | MetadataRolesListDefaultResponse
     | MetadataPolicyListAll200Response
-    | MetadataPolicyListAlldefaultResponse
+    | MetadataPolicyListAllDefaultResponse
     | MetadataPolicyUpdate200Response
-    | MetadataPolicyUpdatedefaultResponse
+    | MetadataPolicyUpdateDefaultResponse
     | MetadataPolicyGet200Response
-    | MetadataPolicyGetdefaultResponse
+    | MetadataPolicyGetDefaultResponse
 ): response is
-  | MetadataRolesListdefaultResponse
-  | MetadataPolicyListAlldefaultResponse
-  | MetadataPolicyUpdatedefaultResponse
-  | MetadataPolicyGetdefaultResponse {
+  | MetadataRolesListDefaultResponse
+  | MetadataPolicyListAllDefaultResponse
+  | MetadataPolicyUpdateDefaultResponse
+  | MetadataPolicyGetDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

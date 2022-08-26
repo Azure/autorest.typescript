@@ -1,4 +1,6 @@
 **/dist
+**/temp
+**/dist-test
 **/node_modules
 test.json
 **/test/**/dist
@@ -7,7 +9,6 @@ test.json
 **/test/**/node_modules
 **/test/**/types
 **/test/**/temp
-**/cadl-output
 **/test-browser
 .tmp
 **/.tmp

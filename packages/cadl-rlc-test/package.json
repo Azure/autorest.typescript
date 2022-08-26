@@ -1,14 +1,24 @@
 {
   "name": "@msinternal/cadl-rest-test",
   "version": "1.0.0",
+  "type": "module",
   "dependencies": {
-    "@cadl-lang/compiler": "latest",
+    "@cadl-lang/compiler": "0.34.0",
     "@cadl-lang/ts-rlc": "0.0.1",
-    "@cadl-lang/rest": "latest"
+    "@cadl-lang/rest": "0.16.0",
+    "@cadl-lang/openapi": "0.11.0",
+    "@cadl-lang/versioning": "0.7.0",
+    "@azure-tools/cadl-azure-core": "0.6.0",
+    "@azure-tools/cadl-autorest": "0.19.0"
+  },
+  "devDependencies": {
+    "ts-node": "^8.5.2",
+    "@types/node": "^12.7.12"
   },
   "scripts": {
     "cadl:compile": "cadl compile ./spec",
-    "build": "echo skip"
+    "build": "echo skip",
+    "check:tree": "ts-node ./eng/check-clean-tree.js"
   },
   "private": true
 }

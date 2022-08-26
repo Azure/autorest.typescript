@@ -2,304 +2,314 @@
 // Licensed under the MIT license.
 
 import {
-  GetNoItemNamePagesParameters,
-  GetNullNextLinkNamePagesParameters,
-  GetSinglePagesParameters,
-  FirstResponseEmptyParameters,
-  GetMultiplePagesParameters,
-  GetWithQueryParamsParameters,
-  DuplicateParamsParameters,
-  PageWithMaxPageSizeParameters,
-  NextOperationWithQueryParamsParameters,
-  GetOdataMultiplePagesParameters,
-  GetMultiplePagesWithOffsetParameters,
-  GetMultiplePagesRetryFirstParameters,
-  GetMultiplePagesRetrySecondParameters,
-  GetSinglePagesFailureParameters,
-  GetMultiplePagesFailureParameters,
-  GetMultiplePagesFailureUriParameters,
-  GetMultiplePagesFragmentNextLinkParameters,
-  GetMultiplePagesFragmentWithGroupingNextLinkParameters,
-  GetMultiplePagesLROParameters,
-  AppendApiVersionParameters,
-  ReplaceApiVersionParameters,
-  NextFragmentParameters,
-  NextFragmentWithGroupingParameters,
-  GetPagingModelWithItemNameWithXMSClientNameParameters
+  PagingGetNoItemNamePagesParameters,
+  PagingGetNullNextLinkNamePagesParameters,
+  PagingGetSinglePagesParameters,
+  PagingFirstResponseEmptyParameters,
+  PagingGetMultiplePagesParameters,
+  PagingGetWithQueryParamsParameters,
+  PagingDuplicateParamsParameters,
+  PagingPageWithMaxPageSizeParameters,
+  PagingNextOperationWithQueryParamsParameters,
+  PagingGetOdataMultiplePagesParameters,
+  PagingGetMultiplePagesWithOffsetParameters,
+  PagingGetMultiplePagesRetryFirstParameters,
+  PagingGetMultiplePagesRetrySecondParameters,
+  PagingGetSinglePagesFailureParameters,
+  PagingGetMultiplePagesFailureParameters,
+  PagingGetMultiplePagesFailureUriParameters,
+  PagingGetMultiplePagesFragmentNextLinkParameters,
+  PagingGetMultiplePagesFragmentWithGroupingNextLinkParameters,
+  PagingGetMultiplePagesLROParameters,
+  PagingAppendApiVersionParameters,
+  PagingReplaceApiVersionParameters,
+  PagingNextFragmentParameters,
+  PagingNextFragmentWithGroupingParameters,
+  PagingGetPagingModelWithItemNameWithXMSClientNameParameters
 } from "./parameters";
 import {
-  GetNoItemNamePages200Response,
-  GetNoItemNamePagesdefaultResponse,
-  GetNullNextLinkNamePages200Response,
-  GetNullNextLinkNamePagesdefaultResponse,
-  GetSinglePages200Response,
-  GetSinglePagesdefaultResponse,
-  FirstResponseEmpty200Response,
-  FirstResponseEmptydefaultResponse,
-  GetMultiplePages200Response,
-  GetMultiplePagesdefaultResponse,
-  GetWithQueryParams200Response,
-  GetWithQueryParamsdefaultResponse,
-  DuplicateParams200Response,
-  DuplicateParamsdefaultResponse,
-  PageWithMaxPageSize200Response,
-  PageWithMaxPageSizedefaultResponse,
-  NextOperationWithQueryParams200Response,
-  NextOperationWithQueryParamsdefaultResponse,
-  GetOdataMultiplePages200Response,
-  GetOdataMultiplePagesdefaultResponse,
-  GetMultiplePagesWithOffset200Response,
-  GetMultiplePagesWithOffsetdefaultResponse,
-  GetMultiplePagesRetryFirst200Response,
-  GetMultiplePagesRetryFirstdefaultResponse,
-  GetMultiplePagesRetrySecond200Response,
-  GetMultiplePagesRetrySeconddefaultResponse,
-  GetSinglePagesFailure200Response,
-  GetSinglePagesFailuredefaultResponse,
-  GetMultiplePagesFailure200Response,
-  GetMultiplePagesFailuredefaultResponse,
-  GetMultiplePagesFailureUri200Response,
-  GetMultiplePagesFailureUridefaultResponse,
-  GetMultiplePagesFragmentNextLink200Response,
-  GetMultiplePagesFragmentNextLinkdefaultResponse,
-  GetMultiplePagesFragmentWithGroupingNextLink200Response,
-  GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse,
-  GetMultiplePagesLRO202Response,
-  GetMultiplePagesLROdefaultResponse,
-  AppendApiVersion200Response,
-  AppendApiVersiondefaultResponse,
-  ReplaceApiVersion200Response,
-  ReplaceApiVersiondefaultResponse,
-  NextFragment200Response,
-  NextFragmentdefaultResponse,
-  NextFragmentWithGrouping200Response,
-  NextFragmentWithGroupingdefaultResponse,
-  GetPagingModelWithItemNameWithXMSClientName200Response,
-  GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
+  PagingGetNoItemNamePages200Response,
+  PagingGetNoItemNamePagesDefaultResponse,
+  PagingGetNullNextLinkNamePages200Response,
+  PagingGetNullNextLinkNamePagesDefaultResponse,
+  PagingGetSinglePages200Response,
+  PagingGetSinglePagesDefaultResponse,
+  PagingFirstResponseEmpty200Response,
+  PagingFirstResponseEmptyDefaultResponse,
+  PagingGetMultiplePages200Response,
+  PagingGetMultiplePagesDefaultResponse,
+  PagingGetWithQueryParams200Response,
+  PagingGetWithQueryParamsDefaultResponse,
+  PagingDuplicateParams200Response,
+  PagingDuplicateParamsDefaultResponse,
+  PagingPageWithMaxPageSize200Response,
+  PagingPageWithMaxPageSizeDefaultResponse,
+  PagingNextOperationWithQueryParams200Response,
+  PagingNextOperationWithQueryParamsDefaultResponse,
+  PagingGetOdataMultiplePages200Response,
+  PagingGetOdataMultiplePagesDefaultResponse,
+  PagingGetMultiplePagesWithOffset200Response,
+  PagingGetMultiplePagesWithOffsetDefaultResponse,
+  PagingGetMultiplePagesRetryFirst200Response,
+  PagingGetMultiplePagesRetryFirstDefaultResponse,
+  PagingGetMultiplePagesRetrySecond200Response,
+  PagingGetMultiplePagesRetrySecondDefaultResponse,
+  PagingGetSinglePagesFailure200Response,
+  PagingGetSinglePagesFailureDefaultResponse,
+  PagingGetMultiplePagesFailure200Response,
+  PagingGetMultiplePagesFailureDefaultResponse,
+  PagingGetMultiplePagesFailureUri200Response,
+  PagingGetMultiplePagesFailureUriDefaultResponse,
+  PagingGetMultiplePagesFragmentNextLink200Response,
+  PagingGetMultiplePagesFragmentNextLinkDefaultResponse,
+  PagingGetMultiplePagesFragmentWithGroupingNextLink200Response,
+  PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse,
+  PagingGetMultiplePagesLRO202Response,
+  PagingGetMultiplePagesLRODefaultResponse,
+  PagingAppendApiVersion200Response,
+  PagingAppendApiVersionDefaultResponse,
+  PagingReplaceApiVersion200Response,
+  PagingReplaceApiVersionDefaultResponse,
+  PagingNextFragment200Response,
+  PagingNextFragmentDefaultResponse,
+  PagingNextFragmentWithGrouping200Response,
+  PagingNextFragmentWithGroupingDefaultResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientName200Response,
+  PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetNoItemNamePages {
   /** A paging operation that must return result of the default 'value' node. */
   get(
-    options?: GetNoItemNamePagesParameters
+    options?: PagingGetNoItemNamePagesParameters
   ): StreamableMethod<
-    GetNoItemNamePages200Response | GetNoItemNamePagesdefaultResponse
+    | PagingGetNoItemNamePages200Response
+    | PagingGetNoItemNamePagesDefaultResponse
   >;
 }
 
 export interface GetNullNextLinkNamePages {
   /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
   get(
-    options?: GetNullNextLinkNamePagesParameters
+    options?: PagingGetNullNextLinkNamePagesParameters
   ): StreamableMethod<
-    | GetNullNextLinkNamePages200Response
-    | GetNullNextLinkNamePagesdefaultResponse
+    | PagingGetNullNextLinkNamePages200Response
+    | PagingGetNullNextLinkNamePagesDefaultResponse
   >;
 }
 
 export interface GetSinglePages {
   /** A paging operation that finishes on the first call without a nextlink */
   get(
-    options?: GetSinglePagesParameters
+    options?: PagingGetSinglePagesParameters
   ): StreamableMethod<
-    GetSinglePages200Response | GetSinglePagesdefaultResponse
+    PagingGetSinglePages200Response | PagingGetSinglePagesDefaultResponse
   >;
 }
 
 export interface FirstResponseEmpty {
   /** A paging operation whose first response's items list is empty, but still returns a next link. Second (and final) call, will give you an items list of 1. */
   get(
-    options?: FirstResponseEmptyParameters
+    options?: PagingFirstResponseEmptyParameters
   ): StreamableMethod<
-    FirstResponseEmpty200Response | FirstResponseEmptydefaultResponse
+    | PagingFirstResponseEmpty200Response
+    | PagingFirstResponseEmptyDefaultResponse
   >;
 }
 
 export interface GetMultiplePages {
   /** A paging operation that includes a nextLink that has 10 pages */
   get(
-    options?: GetMultiplePagesParameters
+    options?: PagingGetMultiplePagesParameters
   ): StreamableMethod<
-    GetMultiplePages200Response | GetMultiplePagesdefaultResponse
+    PagingGetMultiplePages200Response | PagingGetMultiplePagesDefaultResponse
   >;
 }
 
 export interface GetWithQueryParams {
   /** A paging operation that includes a next operation. It has a different query parameter from it's next operation nextOperationWithQueryParams. Returns a ProductResult */
   get(
-    options: GetWithQueryParamsParameters
+    options: PagingGetWithQueryParamsParameters
   ): StreamableMethod<
-    GetWithQueryParams200Response | GetWithQueryParamsdefaultResponse
+    | PagingGetWithQueryParams200Response
+    | PagingGetWithQueryParamsDefaultResponse
   >;
 }
 
 export interface DuplicateParams {
   /** Define `filter` as a query param for all calls. However, the returned next link will also include the `filter` as part of it. Make sure you don't end up duplicating the `filter` param in the url sent. */
   get(
-    options?: DuplicateParamsParameters
+    options?: PagingDuplicateParamsParameters
   ): StreamableMethod<
-    DuplicateParams200Response | DuplicateParamsdefaultResponse
+    PagingDuplicateParams200Response | PagingDuplicateParamsDefaultResponse
   >;
 }
 
 export interface PageWithMaxPageSize {
   /** Paging with max page size. We don't want to */
   get(
-    options?: PageWithMaxPageSizeParameters
+    options?: PagingPageWithMaxPageSizeParameters
   ): StreamableMethod<
-    PageWithMaxPageSize200Response | PageWithMaxPageSizedefaultResponse
+    | PagingPageWithMaxPageSize200Response
+    | PagingPageWithMaxPageSizeDefaultResponse
   >;
 }
 
 export interface NextOperationWithQueryParams {
   /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
   get(
-    options: NextOperationWithQueryParamsParameters
+    options: PagingNextOperationWithQueryParamsParameters
   ): StreamableMethod<
-    | NextOperationWithQueryParams200Response
-    | NextOperationWithQueryParamsdefaultResponse
+    | PagingNextOperationWithQueryParams200Response
+    | PagingNextOperationWithQueryParamsDefaultResponse
   >;
 }
 
 export interface GetOdataMultiplePages {
   /** A paging operation that includes a nextLink in odata format that has 10 pages */
   get(
-    options?: GetOdataMultiplePagesParameters
+    options?: PagingGetOdataMultiplePagesParameters
   ): StreamableMethod<
-    GetOdataMultiplePages200Response | GetOdataMultiplePagesdefaultResponse
+    | PagingGetOdataMultiplePages200Response
+    | PagingGetOdataMultiplePagesDefaultResponse
   >;
 }
 
 export interface GetMultiplePagesWithOffset {
   /** A paging operation that includes a nextLink that has 10 pages */
   get(
-    options?: GetMultiplePagesWithOffsetParameters
+    options?: PagingGetMultiplePagesWithOffsetParameters
   ): StreamableMethod<
-    | GetMultiplePagesWithOffset200Response
-    | GetMultiplePagesWithOffsetdefaultResponse
+    | PagingGetMultiplePagesWithOffset200Response
+    | PagingGetMultiplePagesWithOffsetDefaultResponse
   >;
 }
 
 export interface GetMultiplePagesRetryFirst {
   /** A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages */
   get(
-    options?: GetMultiplePagesRetryFirstParameters
+    options?: PagingGetMultiplePagesRetryFirstParameters
   ): StreamableMethod<
-    | GetMultiplePagesRetryFirst200Response
-    | GetMultiplePagesRetryFirstdefaultResponse
+    | PagingGetMultiplePagesRetryFirst200Response
+    | PagingGetMultiplePagesRetryFirstDefaultResponse
   >;
 }
 
 export interface GetMultiplePagesRetrySecond {
   /** A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually. */
   get(
-    options?: GetMultiplePagesRetrySecondParameters
+    options?: PagingGetMultiplePagesRetrySecondParameters
   ): StreamableMethod<
-    | GetMultiplePagesRetrySecond200Response
-    | GetMultiplePagesRetrySeconddefaultResponse
+    | PagingGetMultiplePagesRetrySecond200Response
+    | PagingGetMultiplePagesRetrySecondDefaultResponse
   >;
 }
 
 export interface GetSinglePagesFailure {
   /** A paging operation that receives a 400 on the first call */
   get(
-    options?: GetSinglePagesFailureParameters
+    options?: PagingGetSinglePagesFailureParameters
   ): StreamableMethod<
-    GetSinglePagesFailure200Response | GetSinglePagesFailuredefaultResponse
+    | PagingGetSinglePagesFailure200Response
+    | PagingGetSinglePagesFailureDefaultResponse
   >;
 }
 
 export interface GetMultiplePagesFailure {
   /** A paging operation that receives a 400 on the second call */
   get(
-    options?: GetMultiplePagesFailureParameters
+    options?: PagingGetMultiplePagesFailureParameters
   ): StreamableMethod<
-    GetMultiplePagesFailure200Response | GetMultiplePagesFailuredefaultResponse
+    | PagingGetMultiplePagesFailure200Response
+    | PagingGetMultiplePagesFailureDefaultResponse
   >;
 }
 
 export interface GetMultiplePagesFailureUri {
   /** A paging operation that receives an invalid nextLink */
   get(
-    options?: GetMultiplePagesFailureUriParameters
+    options?: PagingGetMultiplePagesFailureUriParameters
   ): StreamableMethod<
-    | GetMultiplePagesFailureUri200Response
-    | GetMultiplePagesFailureUridefaultResponse
+    | PagingGetMultiplePagesFailureUri200Response
+    | PagingGetMultiplePagesFailureUriDefaultResponse
   >;
 }
 
 export interface GetMultiplePagesFragmentNextLink {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options: GetMultiplePagesFragmentNextLinkParameters
+    options: PagingGetMultiplePagesFragmentNextLinkParameters
   ): StreamableMethod<
-    | GetMultiplePagesFragmentNextLink200Response
-    | GetMultiplePagesFragmentNextLinkdefaultResponse
+    | PagingGetMultiplePagesFragmentNextLink200Response
+    | PagingGetMultiplePagesFragmentNextLinkDefaultResponse
   >;
 }
 
 export interface GetMultiplePagesFragmentWithGroupingNextLink {
   /** A paging operation that doesn't return a full URL, just a fragment with parameters grouped */
   get(
-    options: GetMultiplePagesFragmentWithGroupingNextLinkParameters
+    options: PagingGetMultiplePagesFragmentWithGroupingNextLinkParameters
   ): StreamableMethod<
-    | GetMultiplePagesFragmentWithGroupingNextLink200Response
-    | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
+    | PagingGetMultiplePagesFragmentWithGroupingNextLink200Response
+    | PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse
   >;
 }
 
 export interface GetMultiplePagesLRO {
   /** A long-running paging operation that includes a nextLink that has 10 pages */
   post(
-    options?: GetMultiplePagesLROParameters
+    options?: PagingGetMultiplePagesLROParameters
   ): StreamableMethod<
-    GetMultiplePagesLRO202Response | GetMultiplePagesLROdefaultResponse
+    | PagingGetMultiplePagesLRO202Response
+    | PagingGetMultiplePagesLRODefaultResponse
   >;
 }
 
 export interface AppendApiVersion {
   /** A paging operation with api version. When calling the next link, you want to append your client's api version to the next link */
   get(
-    options?: AppendApiVersionParameters
+    options?: PagingAppendApiVersionParameters
   ): StreamableMethod<
-    AppendApiVersion200Response | AppendApiVersiondefaultResponse
+    PagingAppendApiVersion200Response | PagingAppendApiVersionDefaultResponse
   >;
 }
 
 export interface ReplaceApiVersion {
   /** A paging operation with api version. When calling the next link, you want to reformat it and override the returned api version with your client's api version */
   get(
-    options?: ReplaceApiVersionParameters
+    options?: PagingReplaceApiVersionParameters
   ): StreamableMethod<
-    ReplaceApiVersion200Response | ReplaceApiVersiondefaultResponse
+    PagingReplaceApiVersion200Response | PagingReplaceApiVersionDefaultResponse
   >;
 }
 
 export interface NextFragment {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options: NextFragmentParameters
-  ): StreamableMethod<NextFragment200Response | NextFragmentdefaultResponse>;
+    options: PagingNextFragmentParameters
+  ): StreamableMethod<
+    PagingNextFragment200Response | PagingNextFragmentDefaultResponse
+  >;
 }
 
 export interface NextFragmentWithGrouping {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options: NextFragmentWithGroupingParameters
+    options: PagingNextFragmentWithGroupingParameters
   ): StreamableMethod<
-    | NextFragmentWithGrouping200Response
-    | NextFragmentWithGroupingdefaultResponse
+    | PagingNextFragmentWithGrouping200Response
+    | PagingNextFragmentWithGroupingDefaultResponse
   >;
 }
 
 export interface GetPagingModelWithItemNameWithXMSClientName {
   /** A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name 'indexes'. */
   get(
-    options?: GetPagingModelWithItemNameWithXMSClientNameParameters
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameParameters
   ): StreamableMethod<
-    | GetPagingModelWithItemNameWithXMSClientName200Response
-    | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
+    | PagingGetPagingModelWithItemNameWithXMSClientName200Response
+    | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
   >;
 }
 

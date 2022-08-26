@@ -3,243 +3,243 @@
 
 import {
   KqlScriptsGetAll200Response,
-  KqlScriptsGetAlldefaultResponse,
+  KqlScriptsGetAllDefaultResponse,
   KqlScriptCreateOrUpdate200Response,
   KqlScriptCreateOrUpdate202Response,
-  KqlScriptCreateOrUpdatedefaultResponse,
+  KqlScriptCreateOrUpdateDefaultResponse,
   KqlScriptGetByName200Response,
-  KqlScriptGetByNamedefaultResponse,
+  KqlScriptGetByNameDefaultResponse,
   KqlScriptDeleteByName200Response,
   KqlScriptDeleteByName202Response,
   KqlScriptDeleteByName204Response,
-  KqlScriptDeleteByNamedefaultResponse,
+  KqlScriptDeleteByNameDefaultResponse,
   KqlScriptRename200Response,
   KqlScriptRename202Response,
-  KqlScriptRenamedefaultResponse,
+  KqlScriptRenameDefaultResponse,
   MetastoreRegister201Response,
-  MetastoreRegisterdefaultResponse,
+  MetastoreRegisterDefaultResponse,
   MetastoreGetDatabaseOperations200Response,
-  MetastoreGetDatabaseOperationsdefaultResponse,
+  MetastoreGetDatabaseOperationsDefaultResponse,
   MetastoreUpdate201Response,
-  MetastoreUpdatedefaultResponse,
+  MetastoreUpdateDefaultResponse,
   MetastoreDelete204Response,
-  MetastoreDeletedefaultResponse,
+  MetastoreDeleteDefaultResponse,
   SparkConfigurationGetSparkConfigurationsByWorkspace200Response,
-  SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse,
+  SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse,
   SparkConfigurationCreateOrUpdateSparkConfiguration200Response,
   SparkConfigurationCreateOrUpdateSparkConfiguration202Response,
-  SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse,
+  SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse,
   SparkConfigurationGetSparkConfiguration200Response,
   SparkConfigurationGetSparkConfiguration304Response,
-  SparkConfigurationGetSparkConfigurationdefaultResponse,
+  SparkConfigurationGetSparkConfigurationDefaultResponse,
   SparkConfigurationDeleteSparkConfiguration200Response,
   SparkConfigurationDeleteSparkConfiguration202Response,
   SparkConfigurationDeleteSparkConfiguration204Response,
-  SparkConfigurationDeleteSparkConfigurationdefaultResponse,
+  SparkConfigurationDeleteSparkConfigurationDefaultResponse,
   SparkConfigurationRenameSparkConfiguration200Response,
   SparkConfigurationRenameSparkConfiguration202Response,
-  SparkConfigurationRenameSparkConfigurationdefaultResponse,
+  SparkConfigurationRenameSparkConfigurationDefaultResponse,
   BigDataPoolsList200Response,
-  BigDataPoolsListdefaultResponse,
+  BigDataPoolsListDefaultResponse,
   BigDataPoolsGet200Response,
-  BigDataPoolsGetdefaultResponse,
+  BigDataPoolsGetDefaultResponse,
   DataFlowCreateOrUpdateDataFlow200Response,
   DataFlowCreateOrUpdateDataFlow202Response,
-  DataFlowCreateOrUpdateDataFlowdefaultResponse,
+  DataFlowCreateOrUpdateDataFlowDefaultResponse,
   DataFlowGetDataFlow200Response,
-  DataFlowGetDataFlowdefaultResponse,
+  DataFlowGetDataFlowDefaultResponse,
   DataFlowDeleteDataFlow200Response,
   DataFlowDeleteDataFlow202Response,
   DataFlowDeleteDataFlow204Response,
-  DataFlowDeleteDataFlowdefaultResponse,
+  DataFlowDeleteDataFlowDefaultResponse,
   DataFlowRenameDataFlow200Response,
   DataFlowRenameDataFlow202Response,
-  DataFlowRenameDataFlowdefaultResponse,
+  DataFlowRenameDataFlowDefaultResponse,
   DataFlowGetDataFlowsByWorkspace200Response,
-  DataFlowGetDataFlowsByWorkspacedefaultResponse,
+  DataFlowGetDataFlowsByWorkspaceDefaultResponse,
   DataFlowDebugSessionCreateDataFlowDebugSession200Response,
   DataFlowDebugSessionCreateDataFlowDebugSession202Response,
-  DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse,
+  DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse,
   DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response,
-  DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse,
+  DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse,
   DataFlowDebugSessionAddDataFlow200Response,
-  DataFlowDebugSessionAddDataFlowdefaultResponse,
+  DataFlowDebugSessionAddDataFlowDefaultResponse,
   DataFlowDebugSessionDeleteDataFlowDebugSession200Response,
-  DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse,
+  DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse,
   DataFlowDebugSessionExecuteCommand200Response,
   DataFlowDebugSessionExecuteCommand202Response,
-  DataFlowDebugSessionExecuteCommanddefaultResponse,
+  DataFlowDebugSessionExecuteCommandDefaultResponse,
   DatasetGetDatasetsByWorkspace200Response,
-  DatasetGetDatasetsByWorkspacedefaultResponse,
+  DatasetGetDatasetsByWorkspaceDefaultResponse,
   DatasetCreateOrUpdateDataset200Response,
   DatasetCreateOrUpdateDataset202Response,
-  DatasetCreateOrUpdateDatasetdefaultResponse,
+  DatasetCreateOrUpdateDatasetDefaultResponse,
   DatasetGetDataset200Response,
   DatasetGetDataset304Response,
-  DatasetGetDatasetdefaultResponse,
+  DatasetGetDatasetDefaultResponse,
   DatasetDeleteDataset200Response,
   DatasetDeleteDataset202Response,
   DatasetDeleteDataset204Response,
-  DatasetDeleteDatasetdefaultResponse,
+  DatasetDeleteDatasetDefaultResponse,
   DatasetRenameDataset200Response,
   DatasetRenameDataset202Response,
-  DatasetRenameDatasetdefaultResponse,
+  DatasetRenameDatasetDefaultResponse,
   IntegrationRuntimesList200Response,
-  IntegrationRuntimesListdefaultResponse,
+  IntegrationRuntimesListDefaultResponse,
   IntegrationRuntimesGet200Response,
-  IntegrationRuntimesGetdefaultResponse,
+  IntegrationRuntimesGetDefaultResponse,
   LibraryList200Response,
-  LibraryListdefaultResponse,
+  LibraryListDefaultResponse,
   LibraryFlush200Response,
   LibraryFlush202Response,
-  LibraryFlushdefaultResponse,
+  LibraryFlushDefaultResponse,
   LibraryGetOperationResult200Response,
   LibraryGetOperationResult202Response,
-  LibraryGetOperationResultdefaultResponse,
+  LibraryGetOperationResultDefaultResponse,
   LibraryDelete200Response,
   LibraryDelete202Response,
   LibraryDelete409Response,
-  LibraryDeletedefaultResponse,
+  LibraryDeleteDefaultResponse,
   LibraryGet200Response,
   LibraryGet304Response,
-  LibraryGetdefaultResponse,
+  LibraryGetDefaultResponse,
   LibraryCreate200Response,
   LibraryCreate202Response,
-  LibraryCreatedefaultResponse,
+  LibraryCreateDefaultResponse,
   LinkedServiceGetLinkedServicesByWorkspace200Response,
-  LinkedServiceGetLinkedServicesByWorkspacedefaultResponse,
+  LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse,
   LinkedServiceCreateOrUpdateLinkedService200Response,
   LinkedServiceCreateOrUpdateLinkedService202Response,
-  LinkedServiceCreateOrUpdateLinkedServicedefaultResponse,
+  LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse,
   LinkedServiceGetLinkedService200Response,
   LinkedServiceGetLinkedService304Response,
-  LinkedServiceGetLinkedServicedefaultResponse,
+  LinkedServiceGetLinkedServiceDefaultResponse,
   LinkedServiceDeleteLinkedService200Response,
   LinkedServiceDeleteLinkedService202Response,
   LinkedServiceDeleteLinkedService204Response,
-  LinkedServiceDeleteLinkedServicedefaultResponse,
+  LinkedServiceDeleteLinkedServiceDefaultResponse,
   LinkedServiceRenameLinkedService200Response,
   LinkedServiceRenameLinkedService202Response,
-  LinkedServiceRenameLinkedServicedefaultResponse,
+  LinkedServiceRenameLinkedServiceDefaultResponse,
   NotebookGetNotebooksByWorkspace200Response,
-  NotebookGetNotebooksByWorkspacedefaultResponse,
+  NotebookGetNotebooksByWorkspaceDefaultResponse,
   NotebookGetNotebookSummaryByWorkSpace200Response,
-  NotebookGetNotebookSummaryByWorkSpacedefaultResponse,
+  NotebookGetNotebookSummaryByWorkSpaceDefaultResponse,
   NotebookCreateOrUpdateNotebook200Response,
   NotebookCreateOrUpdateNotebook202Response,
-  NotebookCreateOrUpdateNotebookdefaultResponse,
+  NotebookCreateOrUpdateNotebookDefaultResponse,
   NotebookGetNotebook200Response,
   NotebookGetNotebook304Response,
-  NotebookGetNotebookdefaultResponse,
+  NotebookGetNotebookDefaultResponse,
   NotebookDeleteNotebook200Response,
   NotebookDeleteNotebook202Response,
   NotebookDeleteNotebook204Response,
-  NotebookDeleteNotebookdefaultResponse,
+  NotebookDeleteNotebookDefaultResponse,
   NotebookRenameNotebook200Response,
   NotebookRenameNotebook202Response,
-  NotebookRenameNotebookdefaultResponse,
+  NotebookRenameNotebookDefaultResponse,
   NotebookOperationResultGet200Response,
   NotebookOperationResultGet201Response,
   NotebookOperationResultGet202Response,
   NotebookOperationResultGet204Response,
-  NotebookOperationResultGetdefaultResponse,
+  NotebookOperationResultGetDefaultResponse,
   PipelineGetPipelinesByWorkspace200Response,
-  PipelineGetPipelinesByWorkspacedefaultResponse,
+  PipelineGetPipelinesByWorkspaceDefaultResponse,
   PipelineCreateOrUpdatePipeline200Response,
   PipelineCreateOrUpdatePipeline202Response,
-  PipelineCreateOrUpdatePipelinedefaultResponse,
+  PipelineCreateOrUpdatePipelineDefaultResponse,
   PipelineGetPipeline200Response,
   PipelineGetPipeline304Response,
-  PipelineGetPipelinedefaultResponse,
+  PipelineGetPipelineDefaultResponse,
   PipelineDeletePipeline200Response,
   PipelineDeletePipeline202Response,
   PipelineDeletePipeline204Response,
-  PipelineDeletePipelinedefaultResponse,
+  PipelineDeletePipelineDefaultResponse,
   PipelineRenamePipeline200Response,
   PipelineRenamePipeline202Response,
-  PipelineRenamePipelinedefaultResponse,
+  PipelineRenamePipelineDefaultResponse,
   PipelineCreatePipelineRun202Response,
-  PipelineCreatePipelineRundefaultResponse,
+  PipelineCreatePipelineRunDefaultResponse,
   PipelineRunQueryPipelineRunsByWorkspace200Response,
-  PipelineRunQueryPipelineRunsByWorkspacedefaultResponse,
+  PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse,
   PipelineRunGetPipelineRun200Response,
-  PipelineRunGetPipelineRundefaultResponse,
+  PipelineRunGetPipelineRunDefaultResponse,
   PipelineRunQueryActivityRuns200Response,
-  PipelineRunQueryActivityRunsdefaultResponse,
+  PipelineRunQueryActivityRunsDefaultResponse,
   PipelineRunCancelPipelineRun200Response,
-  PipelineRunCancelPipelineRundefaultResponse,
+  PipelineRunCancelPipelineRunDefaultResponse,
   SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response,
-  SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse,
+  SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse,
   SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response,
   SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response,
-  SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionGetSparkJobDefinition200Response,
   SparkJobDefinitionGetSparkJobDefinition304Response,
-  SparkJobDefinitionGetSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionGetSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionDeleteSparkJobDefinition200Response,
   SparkJobDefinitionDeleteSparkJobDefinition202Response,
   SparkJobDefinitionDeleteSparkJobDefinition204Response,
-  SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionExecuteSparkJobDefinition200Response,
   SparkJobDefinitionExecuteSparkJobDefinition202Response,
-  SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionRenameSparkJobDefinition200Response,
   SparkJobDefinitionRenameSparkJobDefinition202Response,
-  SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse,
   SparkJobDefinitionDebugSparkJobDefinition200Response,
   SparkJobDefinitionDebugSparkJobDefinition202Response,
-  SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse,
+  SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse,
   SqlPoolsList200Response,
-  SqlPoolsListdefaultResponse,
+  SqlPoolsListDefaultResponse,
   SqlPoolsGet200Response,
-  SqlPoolsGetdefaultResponse,
+  SqlPoolsGetDefaultResponse,
   SqlScriptGetSqlScriptsByWorkspace200Response,
-  SqlScriptGetSqlScriptsByWorkspacedefaultResponse,
+  SqlScriptGetSqlScriptsByWorkspaceDefaultResponse,
   SqlScriptCreateOrUpdateSqlScript200Response,
   SqlScriptCreateOrUpdateSqlScript202Response,
-  SqlScriptCreateOrUpdateSqlScriptdefaultResponse,
+  SqlScriptCreateOrUpdateSqlScriptDefaultResponse,
   SqlScriptGetSqlScript200Response,
   SqlScriptGetSqlScript304Response,
-  SqlScriptGetSqlScriptdefaultResponse,
+  SqlScriptGetSqlScriptDefaultResponse,
   SqlScriptDeleteSqlScript200Response,
   SqlScriptDeleteSqlScript202Response,
   SqlScriptDeleteSqlScript204Response,
-  SqlScriptDeleteSqlScriptdefaultResponse,
+  SqlScriptDeleteSqlScriptDefaultResponse,
   SqlScriptRenameSqlScript200Response,
   SqlScriptRenameSqlScript202Response,
-  SqlScriptRenameSqlScriptdefaultResponse,
+  SqlScriptRenameSqlScriptDefaultResponse,
   TriggerGetTriggersByWorkspace200Response,
-  TriggerGetTriggersByWorkspacedefaultResponse,
+  TriggerGetTriggersByWorkspaceDefaultResponse,
   TriggerCreateOrUpdateTrigger200Response,
   TriggerCreateOrUpdateTrigger202Response,
-  TriggerCreateOrUpdateTriggerdefaultResponse,
+  TriggerCreateOrUpdateTriggerDefaultResponse,
   TriggerGetTrigger200Response,
   TriggerGetTrigger304Response,
-  TriggerGetTriggerdefaultResponse,
+  TriggerGetTriggerDefaultResponse,
   TriggerDeleteTrigger200Response,
   TriggerDeleteTrigger202Response,
   TriggerDeleteTrigger204Response,
-  TriggerDeleteTriggerdefaultResponse,
+  TriggerDeleteTriggerDefaultResponse,
   TriggerSubscribeTriggerToEvents200Response,
   TriggerSubscribeTriggerToEvents202Response,
-  TriggerSubscribeTriggerToEventsdefaultResponse,
+  TriggerSubscribeTriggerToEventsDefaultResponse,
   TriggerGetEventSubscriptionStatus200Response,
-  TriggerGetEventSubscriptionStatusdefaultResponse,
+  TriggerGetEventSubscriptionStatusDefaultResponse,
   TriggerUnsubscribeTriggerFromEvents200Response,
   TriggerUnsubscribeTriggerFromEvents202Response,
-  TriggerUnsubscribeTriggerFromEventsdefaultResponse,
+  TriggerUnsubscribeTriggerFromEventsDefaultResponse,
   TriggerStartTrigger200Response,
-  TriggerStartTriggerdefaultResponse,
+  TriggerStartTriggerDefaultResponse,
   TriggerStopTrigger200Response,
-  TriggerStopTriggerdefaultResponse,
+  TriggerStopTriggerDefaultResponse,
   TriggerRunRerunTriggerInstance200Response,
-  TriggerRunRerunTriggerInstancedefaultResponse,
+  TriggerRunRerunTriggerInstanceDefaultResponse,
   TriggerRunCancelTriggerInstance200Response,
-  TriggerRunCancelTriggerInstancedefaultResponse,
+  TriggerRunCancelTriggerInstanceDefaultResponse,
   TriggerRunQueryTriggerRunsByWorkspace200Response,
-  TriggerRunQueryTriggerRunsByWorkspacedefaultResponse,
+  TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse,
   WorkspaceGet200Response,
-  WorkspaceGetdefaultResponse
+  WorkspaceGetDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -355,808 +355,808 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: KqlScriptsGetAll200Response | KqlScriptsGetAlldefaultResponse
-): response is KqlScriptsGetAlldefaultResponse;
+  response: KqlScriptsGetAll200Response | KqlScriptsGetAllDefaultResponse
+): response is KqlScriptsGetAllDefaultResponse;
 export function isUnexpected(
   response:
     | KqlScriptCreateOrUpdate200Response
     | KqlScriptCreateOrUpdate202Response
-    | KqlScriptCreateOrUpdatedefaultResponse
-): response is KqlScriptCreateOrUpdatedefaultResponse;
+    | KqlScriptCreateOrUpdateDefaultResponse
+): response is KqlScriptCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: KqlScriptGetByName200Response | KqlScriptGetByNamedefaultResponse
-): response is KqlScriptGetByNamedefaultResponse;
+  response: KqlScriptGetByName200Response | KqlScriptGetByNameDefaultResponse
+): response is KqlScriptGetByNameDefaultResponse;
 export function isUnexpected(
   response:
     | KqlScriptDeleteByName200Response
     | KqlScriptDeleteByName202Response
     | KqlScriptDeleteByName204Response
-    | KqlScriptDeleteByNamedefaultResponse
-): response is KqlScriptDeleteByNamedefaultResponse;
+    | KqlScriptDeleteByNameDefaultResponse
+): response is KqlScriptDeleteByNameDefaultResponse;
 export function isUnexpected(
   response:
     | KqlScriptRename200Response
     | KqlScriptRename202Response
-    | KqlScriptRenamedefaultResponse
-): response is KqlScriptRenamedefaultResponse;
+    | KqlScriptRenameDefaultResponse
+): response is KqlScriptRenameDefaultResponse;
 export function isUnexpected(
-  response: MetastoreRegister201Response | MetastoreRegisterdefaultResponse
-): response is MetastoreRegisterdefaultResponse;
+  response: MetastoreRegister201Response | MetastoreRegisterDefaultResponse
+): response is MetastoreRegisterDefaultResponse;
 export function isUnexpected(
   response:
     | MetastoreGetDatabaseOperations200Response
-    | MetastoreGetDatabaseOperationsdefaultResponse
-): response is MetastoreGetDatabaseOperationsdefaultResponse;
+    | MetastoreGetDatabaseOperationsDefaultResponse
+): response is MetastoreGetDatabaseOperationsDefaultResponse;
 export function isUnexpected(
-  response: MetastoreUpdate201Response | MetastoreUpdatedefaultResponse
-): response is MetastoreUpdatedefaultResponse;
+  response: MetastoreUpdate201Response | MetastoreUpdateDefaultResponse
+): response is MetastoreUpdateDefaultResponse;
 export function isUnexpected(
-  response: MetastoreDelete204Response | MetastoreDeletedefaultResponse
-): response is MetastoreDeletedefaultResponse;
+  response: MetastoreDelete204Response | MetastoreDeleteDefaultResponse
+): response is MetastoreDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationGetSparkConfigurationsByWorkspace200Response
-    | SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
-): response is SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse;
+    | SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse
+): response is SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationCreateOrUpdateSparkConfiguration200Response
     | SparkConfigurationCreateOrUpdateSparkConfiguration202Response
-    | SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
-): response is SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse;
+    | SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse
+): response is SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationGetSparkConfiguration200Response
     | SparkConfigurationGetSparkConfiguration304Response
-    | SparkConfigurationGetSparkConfigurationdefaultResponse
-): response is SparkConfigurationGetSparkConfigurationdefaultResponse;
+    | SparkConfigurationGetSparkConfigurationDefaultResponse
+): response is SparkConfigurationGetSparkConfigurationDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationDeleteSparkConfiguration200Response
     | SparkConfigurationDeleteSparkConfiguration202Response
     | SparkConfigurationDeleteSparkConfiguration204Response
-    | SparkConfigurationDeleteSparkConfigurationdefaultResponse
-): response is SparkConfigurationDeleteSparkConfigurationdefaultResponse;
+    | SparkConfigurationDeleteSparkConfigurationDefaultResponse
+): response is SparkConfigurationDeleteSparkConfigurationDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationRenameSparkConfiguration200Response
     | SparkConfigurationRenameSparkConfiguration202Response
-    | SparkConfigurationRenameSparkConfigurationdefaultResponse
-): response is SparkConfigurationRenameSparkConfigurationdefaultResponse;
+    | SparkConfigurationRenameSparkConfigurationDefaultResponse
+): response is SparkConfigurationRenameSparkConfigurationDefaultResponse;
 export function isUnexpected(
-  response: BigDataPoolsList200Response | BigDataPoolsListdefaultResponse
-): response is BigDataPoolsListdefaultResponse;
+  response: BigDataPoolsList200Response | BigDataPoolsListDefaultResponse
+): response is BigDataPoolsListDefaultResponse;
 export function isUnexpected(
-  response: BigDataPoolsGet200Response | BigDataPoolsGetdefaultResponse
-): response is BigDataPoolsGetdefaultResponse;
+  response: BigDataPoolsGet200Response | BigDataPoolsGetDefaultResponse
+): response is BigDataPoolsGetDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowCreateOrUpdateDataFlow200Response
     | DataFlowCreateOrUpdateDataFlow202Response
-    | DataFlowCreateOrUpdateDataFlowdefaultResponse
-): response is DataFlowCreateOrUpdateDataFlowdefaultResponse;
+    | DataFlowCreateOrUpdateDataFlowDefaultResponse
+): response is DataFlowCreateOrUpdateDataFlowDefaultResponse;
 export function isUnexpected(
-  response: DataFlowGetDataFlow200Response | DataFlowGetDataFlowdefaultResponse
-): response is DataFlowGetDataFlowdefaultResponse;
+  response: DataFlowGetDataFlow200Response | DataFlowGetDataFlowDefaultResponse
+): response is DataFlowGetDataFlowDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDeleteDataFlow200Response
     | DataFlowDeleteDataFlow202Response
     | DataFlowDeleteDataFlow204Response
-    | DataFlowDeleteDataFlowdefaultResponse
-): response is DataFlowDeleteDataFlowdefaultResponse;
+    | DataFlowDeleteDataFlowDefaultResponse
+): response is DataFlowDeleteDataFlowDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowRenameDataFlow200Response
     | DataFlowRenameDataFlow202Response
-    | DataFlowRenameDataFlowdefaultResponse
-): response is DataFlowRenameDataFlowdefaultResponse;
+    | DataFlowRenameDataFlowDefaultResponse
+): response is DataFlowRenameDataFlowDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowGetDataFlowsByWorkspace200Response
-    | DataFlowGetDataFlowsByWorkspacedefaultResponse
-): response is DataFlowGetDataFlowsByWorkspacedefaultResponse;
+    | DataFlowGetDataFlowsByWorkspaceDefaultResponse
+): response is DataFlowGetDataFlowsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionCreateDataFlowDebugSession200Response
     | DataFlowDebugSessionCreateDataFlowDebugSession202Response
-    | DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
-): response is DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse;
+    | DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse
+): response is DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response
-    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
-): response is DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse;
+    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse
+): response is DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionAddDataFlow200Response
-    | DataFlowDebugSessionAddDataFlowdefaultResponse
-): response is DataFlowDebugSessionAddDataFlowdefaultResponse;
+    | DataFlowDebugSessionAddDataFlowDefaultResponse
+): response is DataFlowDebugSessionAddDataFlowDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionDeleteDataFlowDebugSession200Response
-    | DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
-): response is DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse;
+    | DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse
+): response is DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionExecuteCommand200Response
     | DataFlowDebugSessionExecuteCommand202Response
-    | DataFlowDebugSessionExecuteCommanddefaultResponse
-): response is DataFlowDebugSessionExecuteCommanddefaultResponse;
+    | DataFlowDebugSessionExecuteCommandDefaultResponse
+): response is DataFlowDebugSessionExecuteCommandDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetGetDatasetsByWorkspace200Response
-    | DatasetGetDatasetsByWorkspacedefaultResponse
-): response is DatasetGetDatasetsByWorkspacedefaultResponse;
+    | DatasetGetDatasetsByWorkspaceDefaultResponse
+): response is DatasetGetDatasetsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetCreateOrUpdateDataset200Response
     | DatasetCreateOrUpdateDataset202Response
-    | DatasetCreateOrUpdateDatasetdefaultResponse
-): response is DatasetCreateOrUpdateDatasetdefaultResponse;
+    | DatasetCreateOrUpdateDatasetDefaultResponse
+): response is DatasetCreateOrUpdateDatasetDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetGetDataset200Response
     | DatasetGetDataset304Response
-    | DatasetGetDatasetdefaultResponse
-): response is DatasetGetDatasetdefaultResponse;
+    | DatasetGetDatasetDefaultResponse
+): response is DatasetGetDatasetDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetDeleteDataset200Response
     | DatasetDeleteDataset202Response
     | DatasetDeleteDataset204Response
-    | DatasetDeleteDatasetdefaultResponse
-): response is DatasetDeleteDatasetdefaultResponse;
+    | DatasetDeleteDatasetDefaultResponse
+): response is DatasetDeleteDatasetDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetRenameDataset200Response
     | DatasetRenameDataset202Response
-    | DatasetRenameDatasetdefaultResponse
-): response is DatasetRenameDatasetdefaultResponse;
+    | DatasetRenameDatasetDefaultResponse
+): response is DatasetRenameDatasetDefaultResponse;
 export function isUnexpected(
   response:
     | IntegrationRuntimesList200Response
-    | IntegrationRuntimesListdefaultResponse
-): response is IntegrationRuntimesListdefaultResponse;
+    | IntegrationRuntimesListDefaultResponse
+): response is IntegrationRuntimesListDefaultResponse;
 export function isUnexpected(
   response:
     | IntegrationRuntimesGet200Response
-    | IntegrationRuntimesGetdefaultResponse
-): response is IntegrationRuntimesGetdefaultResponse;
+    | IntegrationRuntimesGetDefaultResponse
+): response is IntegrationRuntimesGetDefaultResponse;
 export function isUnexpected(
-  response: LibraryList200Response | LibraryListdefaultResponse
-): response is LibraryListdefaultResponse;
+  response: LibraryList200Response | LibraryListDefaultResponse
+): response is LibraryListDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryFlush200Response
     | LibraryFlush202Response
-    | LibraryFlushdefaultResponse
-): response is LibraryFlushdefaultResponse;
+    | LibraryFlushDefaultResponse
+): response is LibraryFlushDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryGetOperationResult200Response
     | LibraryGetOperationResult202Response
-    | LibraryGetOperationResultdefaultResponse
-): response is LibraryGetOperationResultdefaultResponse;
+    | LibraryGetOperationResultDefaultResponse
+): response is LibraryGetOperationResultDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryDelete200Response
     | LibraryDelete202Response
     | LibraryDelete409Response
-    | LibraryDeletedefaultResponse
-): response is LibraryDeletedefaultResponse;
+    | LibraryDeleteDefaultResponse
+): response is LibraryDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryGet200Response
     | LibraryGet304Response
-    | LibraryGetdefaultResponse
-): response is LibraryGetdefaultResponse;
+    | LibraryGetDefaultResponse
+): response is LibraryGetDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryCreate200Response
     | LibraryCreate202Response
-    | LibraryCreatedefaultResponse
-): response is LibraryCreatedefaultResponse;
+    | LibraryCreateDefaultResponse
+): response is LibraryCreateDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceGetLinkedServicesByWorkspace200Response
-    | LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
-): response is LinkedServiceGetLinkedServicesByWorkspacedefaultResponse;
+    | LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse
+): response is LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceCreateOrUpdateLinkedService200Response
     | LinkedServiceCreateOrUpdateLinkedService202Response
-    | LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
-): response is LinkedServiceCreateOrUpdateLinkedServicedefaultResponse;
+    | LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse
+): response is LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceGetLinkedService200Response
     | LinkedServiceGetLinkedService304Response
-    | LinkedServiceGetLinkedServicedefaultResponse
-): response is LinkedServiceGetLinkedServicedefaultResponse;
+    | LinkedServiceGetLinkedServiceDefaultResponse
+): response is LinkedServiceGetLinkedServiceDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceDeleteLinkedService200Response
     | LinkedServiceDeleteLinkedService202Response
     | LinkedServiceDeleteLinkedService204Response
-    | LinkedServiceDeleteLinkedServicedefaultResponse
-): response is LinkedServiceDeleteLinkedServicedefaultResponse;
+    | LinkedServiceDeleteLinkedServiceDefaultResponse
+): response is LinkedServiceDeleteLinkedServiceDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceRenameLinkedService200Response
     | LinkedServiceRenameLinkedService202Response
-    | LinkedServiceRenameLinkedServicedefaultResponse
-): response is LinkedServiceRenameLinkedServicedefaultResponse;
+    | LinkedServiceRenameLinkedServiceDefaultResponse
+): response is LinkedServiceRenameLinkedServiceDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookGetNotebooksByWorkspace200Response
-    | NotebookGetNotebooksByWorkspacedefaultResponse
-): response is NotebookGetNotebooksByWorkspacedefaultResponse;
+    | NotebookGetNotebooksByWorkspaceDefaultResponse
+): response is NotebookGetNotebooksByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookGetNotebookSummaryByWorkSpace200Response
-    | NotebookGetNotebookSummaryByWorkSpacedefaultResponse
-): response is NotebookGetNotebookSummaryByWorkSpacedefaultResponse;
+    | NotebookGetNotebookSummaryByWorkSpaceDefaultResponse
+): response is NotebookGetNotebookSummaryByWorkSpaceDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookCreateOrUpdateNotebook200Response
     | NotebookCreateOrUpdateNotebook202Response
-    | NotebookCreateOrUpdateNotebookdefaultResponse
-): response is NotebookCreateOrUpdateNotebookdefaultResponse;
+    | NotebookCreateOrUpdateNotebookDefaultResponse
+): response is NotebookCreateOrUpdateNotebookDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookGetNotebook200Response
     | NotebookGetNotebook304Response
-    | NotebookGetNotebookdefaultResponse
-): response is NotebookGetNotebookdefaultResponse;
+    | NotebookGetNotebookDefaultResponse
+): response is NotebookGetNotebookDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookDeleteNotebook200Response
     | NotebookDeleteNotebook202Response
     | NotebookDeleteNotebook204Response
-    | NotebookDeleteNotebookdefaultResponse
-): response is NotebookDeleteNotebookdefaultResponse;
+    | NotebookDeleteNotebookDefaultResponse
+): response is NotebookDeleteNotebookDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookRenameNotebook200Response
     | NotebookRenameNotebook202Response
-    | NotebookRenameNotebookdefaultResponse
-): response is NotebookRenameNotebookdefaultResponse;
+    | NotebookRenameNotebookDefaultResponse
+): response is NotebookRenameNotebookDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookOperationResultGet200Response
     | NotebookOperationResultGet201Response
     | NotebookOperationResultGet202Response
     | NotebookOperationResultGet204Response
-    | NotebookOperationResultGetdefaultResponse
-): response is NotebookOperationResultGetdefaultResponse;
+    | NotebookOperationResultGetDefaultResponse
+): response is NotebookOperationResultGetDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineGetPipelinesByWorkspace200Response
-    | PipelineGetPipelinesByWorkspacedefaultResponse
-): response is PipelineGetPipelinesByWorkspacedefaultResponse;
+    | PipelineGetPipelinesByWorkspaceDefaultResponse
+): response is PipelineGetPipelinesByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineCreateOrUpdatePipeline200Response
     | PipelineCreateOrUpdatePipeline202Response
-    | PipelineCreateOrUpdatePipelinedefaultResponse
-): response is PipelineCreateOrUpdatePipelinedefaultResponse;
+    | PipelineCreateOrUpdatePipelineDefaultResponse
+): response is PipelineCreateOrUpdatePipelineDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineGetPipeline200Response
     | PipelineGetPipeline304Response
-    | PipelineGetPipelinedefaultResponse
-): response is PipelineGetPipelinedefaultResponse;
+    | PipelineGetPipelineDefaultResponse
+): response is PipelineGetPipelineDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineDeletePipeline200Response
     | PipelineDeletePipeline202Response
     | PipelineDeletePipeline204Response
-    | PipelineDeletePipelinedefaultResponse
-): response is PipelineDeletePipelinedefaultResponse;
+    | PipelineDeletePipelineDefaultResponse
+): response is PipelineDeletePipelineDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRenamePipeline200Response
     | PipelineRenamePipeline202Response
-    | PipelineRenamePipelinedefaultResponse
-): response is PipelineRenamePipelinedefaultResponse;
+    | PipelineRenamePipelineDefaultResponse
+): response is PipelineRenamePipelineDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineCreatePipelineRun202Response
-    | PipelineCreatePipelineRundefaultResponse
-): response is PipelineCreatePipelineRundefaultResponse;
+    | PipelineCreatePipelineRunDefaultResponse
+): response is PipelineCreatePipelineRunDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRunQueryPipelineRunsByWorkspace200Response
-    | PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
-): response is PipelineRunQueryPipelineRunsByWorkspacedefaultResponse;
+    | PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse
+): response is PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRunGetPipelineRun200Response
-    | PipelineRunGetPipelineRundefaultResponse
-): response is PipelineRunGetPipelineRundefaultResponse;
+    | PipelineRunGetPipelineRunDefaultResponse
+): response is PipelineRunGetPipelineRunDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRunQueryActivityRuns200Response
-    | PipelineRunQueryActivityRunsdefaultResponse
-): response is PipelineRunQueryActivityRunsdefaultResponse;
+    | PipelineRunQueryActivityRunsDefaultResponse
+): response is PipelineRunQueryActivityRunsDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRunCancelPipelineRun200Response
-    | PipelineRunCancelPipelineRundefaultResponse
-): response is PipelineRunCancelPipelineRundefaultResponse;
+    | PipelineRunCancelPipelineRunDefaultResponse
+): response is PipelineRunCancelPipelineRunDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
-    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
-): response is SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse;
+    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse
+): response is SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
-    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
-): response is SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse;
+    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse
+): response is SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionGetSparkJobDefinition200Response
     | SparkJobDefinitionGetSparkJobDefinition304Response
-    | SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
-): response is SparkJobDefinitionGetSparkJobDefinitiondefaultResponse;
+    | SparkJobDefinitionGetSparkJobDefinitionDefaultResponse
+): response is SparkJobDefinitionGetSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionDeleteSparkJobDefinition200Response
     | SparkJobDefinitionDeleteSparkJobDefinition202Response
     | SparkJobDefinitionDeleteSparkJobDefinition204Response
-    | SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse
-): response is SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse;
+    | SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse
+): response is SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionExecuteSparkJobDefinition200Response
     | SparkJobDefinitionExecuteSparkJobDefinition202Response
-    | SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
-): response is SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse;
+    | SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse
+): response is SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionRenameSparkJobDefinition200Response
     | SparkJobDefinitionRenameSparkJobDefinition202Response
-    | SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
-): response is SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse;
+    | SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse
+): response is SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionDebugSparkJobDefinition200Response
     | SparkJobDefinitionDebugSparkJobDefinition202Response
-    | SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
-): response is SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse;
+    | SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse
+): response is SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
-  response: SqlPoolsList200Response | SqlPoolsListdefaultResponse
-): response is SqlPoolsListdefaultResponse;
+  response: SqlPoolsList200Response | SqlPoolsListDefaultResponse
+): response is SqlPoolsListDefaultResponse;
 export function isUnexpected(
-  response: SqlPoolsGet200Response | SqlPoolsGetdefaultResponse
-): response is SqlPoolsGetdefaultResponse;
+  response: SqlPoolsGet200Response | SqlPoolsGetDefaultResponse
+): response is SqlPoolsGetDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptGetSqlScriptsByWorkspace200Response
-    | SqlScriptGetSqlScriptsByWorkspacedefaultResponse
-): response is SqlScriptGetSqlScriptsByWorkspacedefaultResponse;
+    | SqlScriptGetSqlScriptsByWorkspaceDefaultResponse
+): response is SqlScriptGetSqlScriptsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptCreateOrUpdateSqlScript200Response
     | SqlScriptCreateOrUpdateSqlScript202Response
-    | SqlScriptCreateOrUpdateSqlScriptdefaultResponse
-): response is SqlScriptCreateOrUpdateSqlScriptdefaultResponse;
+    | SqlScriptCreateOrUpdateSqlScriptDefaultResponse
+): response is SqlScriptCreateOrUpdateSqlScriptDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptGetSqlScript200Response
     | SqlScriptGetSqlScript304Response
-    | SqlScriptGetSqlScriptdefaultResponse
-): response is SqlScriptGetSqlScriptdefaultResponse;
+    | SqlScriptGetSqlScriptDefaultResponse
+): response is SqlScriptGetSqlScriptDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptDeleteSqlScript200Response
     | SqlScriptDeleteSqlScript202Response
     | SqlScriptDeleteSqlScript204Response
-    | SqlScriptDeleteSqlScriptdefaultResponse
-): response is SqlScriptDeleteSqlScriptdefaultResponse;
+    | SqlScriptDeleteSqlScriptDefaultResponse
+): response is SqlScriptDeleteSqlScriptDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptRenameSqlScript200Response
     | SqlScriptRenameSqlScript202Response
-    | SqlScriptRenameSqlScriptdefaultResponse
-): response is SqlScriptRenameSqlScriptdefaultResponse;
+    | SqlScriptRenameSqlScriptDefaultResponse
+): response is SqlScriptRenameSqlScriptDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerGetTriggersByWorkspace200Response
-    | TriggerGetTriggersByWorkspacedefaultResponse
-): response is TriggerGetTriggersByWorkspacedefaultResponse;
+    | TriggerGetTriggersByWorkspaceDefaultResponse
+): response is TriggerGetTriggersByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerCreateOrUpdateTrigger200Response
     | TriggerCreateOrUpdateTrigger202Response
-    | TriggerCreateOrUpdateTriggerdefaultResponse
-): response is TriggerCreateOrUpdateTriggerdefaultResponse;
+    | TriggerCreateOrUpdateTriggerDefaultResponse
+): response is TriggerCreateOrUpdateTriggerDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerGetTrigger200Response
     | TriggerGetTrigger304Response
-    | TriggerGetTriggerdefaultResponse
-): response is TriggerGetTriggerdefaultResponse;
+    | TriggerGetTriggerDefaultResponse
+): response is TriggerGetTriggerDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerDeleteTrigger200Response
     | TriggerDeleteTrigger202Response
     | TriggerDeleteTrigger204Response
-    | TriggerDeleteTriggerdefaultResponse
-): response is TriggerDeleteTriggerdefaultResponse;
+    | TriggerDeleteTriggerDefaultResponse
+): response is TriggerDeleteTriggerDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerSubscribeTriggerToEvents200Response
     | TriggerSubscribeTriggerToEvents202Response
-    | TriggerSubscribeTriggerToEventsdefaultResponse
-): response is TriggerSubscribeTriggerToEventsdefaultResponse;
+    | TriggerSubscribeTriggerToEventsDefaultResponse
+): response is TriggerSubscribeTriggerToEventsDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerGetEventSubscriptionStatus200Response
-    | TriggerGetEventSubscriptionStatusdefaultResponse
-): response is TriggerGetEventSubscriptionStatusdefaultResponse;
+    | TriggerGetEventSubscriptionStatusDefaultResponse
+): response is TriggerGetEventSubscriptionStatusDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerUnsubscribeTriggerFromEvents200Response
     | TriggerUnsubscribeTriggerFromEvents202Response
-    | TriggerUnsubscribeTriggerFromEventsdefaultResponse
-): response is TriggerUnsubscribeTriggerFromEventsdefaultResponse;
+    | TriggerUnsubscribeTriggerFromEventsDefaultResponse
+): response is TriggerUnsubscribeTriggerFromEventsDefaultResponse;
 export function isUnexpected(
-  response: TriggerStartTrigger200Response | TriggerStartTriggerdefaultResponse
-): response is TriggerStartTriggerdefaultResponse;
+  response: TriggerStartTrigger200Response | TriggerStartTriggerDefaultResponse
+): response is TriggerStartTriggerDefaultResponse;
 export function isUnexpected(
-  response: TriggerStopTrigger200Response | TriggerStopTriggerdefaultResponse
-): response is TriggerStopTriggerdefaultResponse;
+  response: TriggerStopTrigger200Response | TriggerStopTriggerDefaultResponse
+): response is TriggerStopTriggerDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerRunRerunTriggerInstance200Response
-    | TriggerRunRerunTriggerInstancedefaultResponse
-): response is TriggerRunRerunTriggerInstancedefaultResponse;
+    | TriggerRunRerunTriggerInstanceDefaultResponse
+): response is TriggerRunRerunTriggerInstanceDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerRunCancelTriggerInstance200Response
-    | TriggerRunCancelTriggerInstancedefaultResponse
-): response is TriggerRunCancelTriggerInstancedefaultResponse;
+    | TriggerRunCancelTriggerInstanceDefaultResponse
+): response is TriggerRunCancelTriggerInstanceDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerRunQueryTriggerRunsByWorkspace200Response
-    | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
-): response is TriggerRunQueryTriggerRunsByWorkspacedefaultResponse;
+    | TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse
+): response is TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse;
 export function isUnexpected(
-  response: WorkspaceGet200Response | WorkspaceGetdefaultResponse
-): response is WorkspaceGetdefaultResponse;
+  response: WorkspaceGet200Response | WorkspaceGetDefaultResponse
+): response is WorkspaceGetDefaultResponse;
 export function isUnexpected(
   response:
     | KqlScriptsGetAll200Response
-    | KqlScriptsGetAlldefaultResponse
+    | KqlScriptsGetAllDefaultResponse
     | KqlScriptCreateOrUpdate200Response
     | KqlScriptCreateOrUpdate202Response
-    | KqlScriptCreateOrUpdatedefaultResponse
+    | KqlScriptCreateOrUpdateDefaultResponse
     | KqlScriptGetByName200Response
-    | KqlScriptGetByNamedefaultResponse
+    | KqlScriptGetByNameDefaultResponse
     | KqlScriptDeleteByName200Response
     | KqlScriptDeleteByName202Response
     | KqlScriptDeleteByName204Response
-    | KqlScriptDeleteByNamedefaultResponse
+    | KqlScriptDeleteByNameDefaultResponse
     | KqlScriptRename200Response
     | KqlScriptRename202Response
-    | KqlScriptRenamedefaultResponse
+    | KqlScriptRenameDefaultResponse
     | MetastoreRegister201Response
-    | MetastoreRegisterdefaultResponse
+    | MetastoreRegisterDefaultResponse
     | MetastoreGetDatabaseOperations200Response
-    | MetastoreGetDatabaseOperationsdefaultResponse
+    | MetastoreGetDatabaseOperationsDefaultResponse
     | MetastoreUpdate201Response
-    | MetastoreUpdatedefaultResponse
+    | MetastoreUpdateDefaultResponse
     | MetastoreDelete204Response
-    | MetastoreDeletedefaultResponse
+    | MetastoreDeleteDefaultResponse
     | SparkConfigurationGetSparkConfigurationsByWorkspace200Response
-    | SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
+    | SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse
     | SparkConfigurationCreateOrUpdateSparkConfiguration200Response
     | SparkConfigurationCreateOrUpdateSparkConfiguration202Response
-    | SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
+    | SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse
     | SparkConfigurationGetSparkConfiguration200Response
     | SparkConfigurationGetSparkConfiguration304Response
-    | SparkConfigurationGetSparkConfigurationdefaultResponse
+    | SparkConfigurationGetSparkConfigurationDefaultResponse
     | SparkConfigurationDeleteSparkConfiguration200Response
     | SparkConfigurationDeleteSparkConfiguration202Response
     | SparkConfigurationDeleteSparkConfiguration204Response
-    | SparkConfigurationDeleteSparkConfigurationdefaultResponse
+    | SparkConfigurationDeleteSparkConfigurationDefaultResponse
     | SparkConfigurationRenameSparkConfiguration200Response
     | SparkConfigurationRenameSparkConfiguration202Response
-    | SparkConfigurationRenameSparkConfigurationdefaultResponse
+    | SparkConfigurationRenameSparkConfigurationDefaultResponse
     | BigDataPoolsList200Response
-    | BigDataPoolsListdefaultResponse
+    | BigDataPoolsListDefaultResponse
     | BigDataPoolsGet200Response
-    | BigDataPoolsGetdefaultResponse
+    | BigDataPoolsGetDefaultResponse
     | DataFlowCreateOrUpdateDataFlow200Response
     | DataFlowCreateOrUpdateDataFlow202Response
-    | DataFlowCreateOrUpdateDataFlowdefaultResponse
+    | DataFlowCreateOrUpdateDataFlowDefaultResponse
     | DataFlowGetDataFlow200Response
-    | DataFlowGetDataFlowdefaultResponse
+    | DataFlowGetDataFlowDefaultResponse
     | DataFlowDeleteDataFlow200Response
     | DataFlowDeleteDataFlow202Response
     | DataFlowDeleteDataFlow204Response
-    | DataFlowDeleteDataFlowdefaultResponse
+    | DataFlowDeleteDataFlowDefaultResponse
     | DataFlowRenameDataFlow200Response
     | DataFlowRenameDataFlow202Response
-    | DataFlowRenameDataFlowdefaultResponse
+    | DataFlowRenameDataFlowDefaultResponse
     | DataFlowGetDataFlowsByWorkspace200Response
-    | DataFlowGetDataFlowsByWorkspacedefaultResponse
+    | DataFlowGetDataFlowsByWorkspaceDefaultResponse
     | DataFlowDebugSessionCreateDataFlowDebugSession200Response
     | DataFlowDebugSessionCreateDataFlowDebugSession202Response
-    | DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
+    | DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response
-    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
+    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse
     | DataFlowDebugSessionAddDataFlow200Response
-    | DataFlowDebugSessionAddDataFlowdefaultResponse
+    | DataFlowDebugSessionAddDataFlowDefaultResponse
     | DataFlowDebugSessionDeleteDataFlowDebugSession200Response
-    | DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
+    | DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse
     | DataFlowDebugSessionExecuteCommand200Response
     | DataFlowDebugSessionExecuteCommand202Response
-    | DataFlowDebugSessionExecuteCommanddefaultResponse
+    | DataFlowDebugSessionExecuteCommandDefaultResponse
     | DatasetGetDatasetsByWorkspace200Response
-    | DatasetGetDatasetsByWorkspacedefaultResponse
+    | DatasetGetDatasetsByWorkspaceDefaultResponse
     | DatasetCreateOrUpdateDataset200Response
     | DatasetCreateOrUpdateDataset202Response
-    | DatasetCreateOrUpdateDatasetdefaultResponse
+    | DatasetCreateOrUpdateDatasetDefaultResponse
     | DatasetGetDataset200Response
     | DatasetGetDataset304Response
-    | DatasetGetDatasetdefaultResponse
+    | DatasetGetDatasetDefaultResponse
     | DatasetDeleteDataset200Response
     | DatasetDeleteDataset202Response
     | DatasetDeleteDataset204Response
-    | DatasetDeleteDatasetdefaultResponse
+    | DatasetDeleteDatasetDefaultResponse
     | DatasetRenameDataset200Response
     | DatasetRenameDataset202Response
-    | DatasetRenameDatasetdefaultResponse
+    | DatasetRenameDatasetDefaultResponse
     | IntegrationRuntimesList200Response
-    | IntegrationRuntimesListdefaultResponse
+    | IntegrationRuntimesListDefaultResponse
     | IntegrationRuntimesGet200Response
-    | IntegrationRuntimesGetdefaultResponse
+    | IntegrationRuntimesGetDefaultResponse
     | LibraryList200Response
-    | LibraryListdefaultResponse
+    | LibraryListDefaultResponse
     | LibraryFlush200Response
     | LibraryFlush202Response
-    | LibraryFlushdefaultResponse
+    | LibraryFlushDefaultResponse
     | LibraryGetOperationResult200Response
     | LibraryGetOperationResult202Response
-    | LibraryGetOperationResultdefaultResponse
+    | LibraryGetOperationResultDefaultResponse
     | LibraryDelete200Response
     | LibraryDelete202Response
     | LibraryDelete409Response
-    | LibraryDeletedefaultResponse
+    | LibraryDeleteDefaultResponse
     | LibraryGet200Response
     | LibraryGet304Response
-    | LibraryGetdefaultResponse
+    | LibraryGetDefaultResponse
     | LibraryCreate200Response
     | LibraryCreate202Response
-    | LibraryCreatedefaultResponse
+    | LibraryCreateDefaultResponse
     | LinkedServiceGetLinkedServicesByWorkspace200Response
-    | LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
+    | LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse
     | LinkedServiceCreateOrUpdateLinkedService200Response
     | LinkedServiceCreateOrUpdateLinkedService202Response
-    | LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
+    | LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse
     | LinkedServiceGetLinkedService200Response
     | LinkedServiceGetLinkedService304Response
-    | LinkedServiceGetLinkedServicedefaultResponse
+    | LinkedServiceGetLinkedServiceDefaultResponse
     | LinkedServiceDeleteLinkedService200Response
     | LinkedServiceDeleteLinkedService202Response
     | LinkedServiceDeleteLinkedService204Response
-    | LinkedServiceDeleteLinkedServicedefaultResponse
+    | LinkedServiceDeleteLinkedServiceDefaultResponse
     | LinkedServiceRenameLinkedService200Response
     | LinkedServiceRenameLinkedService202Response
-    | LinkedServiceRenameLinkedServicedefaultResponse
+    | LinkedServiceRenameLinkedServiceDefaultResponse
     | NotebookGetNotebooksByWorkspace200Response
-    | NotebookGetNotebooksByWorkspacedefaultResponse
+    | NotebookGetNotebooksByWorkspaceDefaultResponse
     | NotebookGetNotebookSummaryByWorkSpace200Response
-    | NotebookGetNotebookSummaryByWorkSpacedefaultResponse
+    | NotebookGetNotebookSummaryByWorkSpaceDefaultResponse
     | NotebookCreateOrUpdateNotebook200Response
     | NotebookCreateOrUpdateNotebook202Response
-    | NotebookCreateOrUpdateNotebookdefaultResponse
+    | NotebookCreateOrUpdateNotebookDefaultResponse
     | NotebookGetNotebook200Response
     | NotebookGetNotebook304Response
-    | NotebookGetNotebookdefaultResponse
+    | NotebookGetNotebookDefaultResponse
     | NotebookDeleteNotebook200Response
     | NotebookDeleteNotebook202Response
     | NotebookDeleteNotebook204Response
-    | NotebookDeleteNotebookdefaultResponse
+    | NotebookDeleteNotebookDefaultResponse
     | NotebookRenameNotebook200Response
     | NotebookRenameNotebook202Response
-    | NotebookRenameNotebookdefaultResponse
+    | NotebookRenameNotebookDefaultResponse
     | NotebookOperationResultGet200Response
     | NotebookOperationResultGet201Response
     | NotebookOperationResultGet202Response
     | NotebookOperationResultGet204Response
-    | NotebookOperationResultGetdefaultResponse
+    | NotebookOperationResultGetDefaultResponse
     | PipelineGetPipelinesByWorkspace200Response
-    | PipelineGetPipelinesByWorkspacedefaultResponse
+    | PipelineGetPipelinesByWorkspaceDefaultResponse
     | PipelineCreateOrUpdatePipeline200Response
     | PipelineCreateOrUpdatePipeline202Response
-    | PipelineCreateOrUpdatePipelinedefaultResponse
+    | PipelineCreateOrUpdatePipelineDefaultResponse
     | PipelineGetPipeline200Response
     | PipelineGetPipeline304Response
-    | PipelineGetPipelinedefaultResponse
+    | PipelineGetPipelineDefaultResponse
     | PipelineDeletePipeline200Response
     | PipelineDeletePipeline202Response
     | PipelineDeletePipeline204Response
-    | PipelineDeletePipelinedefaultResponse
+    | PipelineDeletePipelineDefaultResponse
     | PipelineRenamePipeline200Response
     | PipelineRenamePipeline202Response
-    | PipelineRenamePipelinedefaultResponse
+    | PipelineRenamePipelineDefaultResponse
     | PipelineCreatePipelineRun202Response
-    | PipelineCreatePipelineRundefaultResponse
+    | PipelineCreatePipelineRunDefaultResponse
     | PipelineRunQueryPipelineRunsByWorkspace200Response
-    | PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
+    | PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse
     | PipelineRunGetPipelineRun200Response
-    | PipelineRunGetPipelineRundefaultResponse
+    | PipelineRunGetPipelineRunDefaultResponse
     | PipelineRunQueryActivityRuns200Response
-    | PipelineRunQueryActivityRunsdefaultResponse
+    | PipelineRunQueryActivityRunsDefaultResponse
     | PipelineRunCancelPipelineRun200Response
-    | PipelineRunCancelPipelineRundefaultResponse
+    | PipelineRunCancelPipelineRunDefaultResponse
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
-    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
+    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
-    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse
     | SparkJobDefinitionGetSparkJobDefinition200Response
     | SparkJobDefinitionGetSparkJobDefinition304Response
-    | SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionGetSparkJobDefinitionDefaultResponse
     | SparkJobDefinitionDeleteSparkJobDefinition200Response
     | SparkJobDefinitionDeleteSparkJobDefinition202Response
     | SparkJobDefinitionDeleteSparkJobDefinition204Response
-    | SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse
     | SparkJobDefinitionExecuteSparkJobDefinition200Response
     | SparkJobDefinitionExecuteSparkJobDefinition202Response
-    | SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse
     | SparkJobDefinitionRenameSparkJobDefinition200Response
     | SparkJobDefinitionRenameSparkJobDefinition202Response
-    | SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse
     | SparkJobDefinitionDebugSparkJobDefinition200Response
     | SparkJobDefinitionDebugSparkJobDefinition202Response
-    | SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
+    | SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse
     | SqlPoolsList200Response
-    | SqlPoolsListdefaultResponse
+    | SqlPoolsListDefaultResponse
     | SqlPoolsGet200Response
-    | SqlPoolsGetdefaultResponse
+    | SqlPoolsGetDefaultResponse
     | SqlScriptGetSqlScriptsByWorkspace200Response
-    | SqlScriptGetSqlScriptsByWorkspacedefaultResponse
+    | SqlScriptGetSqlScriptsByWorkspaceDefaultResponse
     | SqlScriptCreateOrUpdateSqlScript200Response
     | SqlScriptCreateOrUpdateSqlScript202Response
-    | SqlScriptCreateOrUpdateSqlScriptdefaultResponse
+    | SqlScriptCreateOrUpdateSqlScriptDefaultResponse
     | SqlScriptGetSqlScript200Response
     | SqlScriptGetSqlScript304Response
-    | SqlScriptGetSqlScriptdefaultResponse
+    | SqlScriptGetSqlScriptDefaultResponse
     | SqlScriptDeleteSqlScript200Response
     | SqlScriptDeleteSqlScript202Response
     | SqlScriptDeleteSqlScript204Response
-    | SqlScriptDeleteSqlScriptdefaultResponse
+    | SqlScriptDeleteSqlScriptDefaultResponse
     | SqlScriptRenameSqlScript200Response
     | SqlScriptRenameSqlScript202Response
-    | SqlScriptRenameSqlScriptdefaultResponse
+    | SqlScriptRenameSqlScriptDefaultResponse
     | TriggerGetTriggersByWorkspace200Response
-    | TriggerGetTriggersByWorkspacedefaultResponse
+    | TriggerGetTriggersByWorkspaceDefaultResponse
     | TriggerCreateOrUpdateTrigger200Response
     | TriggerCreateOrUpdateTrigger202Response
-    | TriggerCreateOrUpdateTriggerdefaultResponse
+    | TriggerCreateOrUpdateTriggerDefaultResponse
     | TriggerGetTrigger200Response
     | TriggerGetTrigger304Response
-    | TriggerGetTriggerdefaultResponse
+    | TriggerGetTriggerDefaultResponse
     | TriggerDeleteTrigger200Response
     | TriggerDeleteTrigger202Response
     | TriggerDeleteTrigger204Response
-    | TriggerDeleteTriggerdefaultResponse
+    | TriggerDeleteTriggerDefaultResponse
     | TriggerSubscribeTriggerToEvents200Response
     | TriggerSubscribeTriggerToEvents202Response
-    | TriggerSubscribeTriggerToEventsdefaultResponse
+    | TriggerSubscribeTriggerToEventsDefaultResponse
     | TriggerGetEventSubscriptionStatus200Response
-    | TriggerGetEventSubscriptionStatusdefaultResponse
+    | TriggerGetEventSubscriptionStatusDefaultResponse
     | TriggerUnsubscribeTriggerFromEvents200Response
     | TriggerUnsubscribeTriggerFromEvents202Response
-    | TriggerUnsubscribeTriggerFromEventsdefaultResponse
+    | TriggerUnsubscribeTriggerFromEventsDefaultResponse
     | TriggerStartTrigger200Response
-    | TriggerStartTriggerdefaultResponse
+    | TriggerStartTriggerDefaultResponse
     | TriggerStopTrigger200Response
-    | TriggerStopTriggerdefaultResponse
+    | TriggerStopTriggerDefaultResponse
     | TriggerRunRerunTriggerInstance200Response
-    | TriggerRunRerunTriggerInstancedefaultResponse
+    | TriggerRunRerunTriggerInstanceDefaultResponse
     | TriggerRunCancelTriggerInstance200Response
-    | TriggerRunCancelTriggerInstancedefaultResponse
+    | TriggerRunCancelTriggerInstanceDefaultResponse
     | TriggerRunQueryTriggerRunsByWorkspace200Response
-    | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
+    | TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse
     | WorkspaceGet200Response
-    | WorkspaceGetdefaultResponse
+    | WorkspaceGetDefaultResponse
 ): response is
-  | KqlScriptsGetAlldefaultResponse
-  | KqlScriptCreateOrUpdatedefaultResponse
-  | KqlScriptGetByNamedefaultResponse
-  | KqlScriptDeleteByNamedefaultResponse
-  | KqlScriptRenamedefaultResponse
-  | MetastoreRegisterdefaultResponse
-  | MetastoreGetDatabaseOperationsdefaultResponse
-  | MetastoreUpdatedefaultResponse
-  | MetastoreDeletedefaultResponse
-  | SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
-  | SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
-  | SparkConfigurationGetSparkConfigurationdefaultResponse
-  | SparkConfigurationDeleteSparkConfigurationdefaultResponse
-  | SparkConfigurationRenameSparkConfigurationdefaultResponse
-  | BigDataPoolsListdefaultResponse
-  | BigDataPoolsGetdefaultResponse
-  | DataFlowCreateOrUpdateDataFlowdefaultResponse
-  | DataFlowGetDataFlowdefaultResponse
-  | DataFlowDeleteDataFlowdefaultResponse
-  | DataFlowRenameDataFlowdefaultResponse
-  | DataFlowGetDataFlowsByWorkspacedefaultResponse
-  | DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
-  | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
-  | DataFlowDebugSessionAddDataFlowdefaultResponse
-  | DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
-  | DataFlowDebugSessionExecuteCommanddefaultResponse
-  | DatasetGetDatasetsByWorkspacedefaultResponse
-  | DatasetCreateOrUpdateDatasetdefaultResponse
-  | DatasetGetDatasetdefaultResponse
-  | DatasetDeleteDatasetdefaultResponse
-  | DatasetRenameDatasetdefaultResponse
-  | IntegrationRuntimesListdefaultResponse
-  | IntegrationRuntimesGetdefaultResponse
-  | LibraryListdefaultResponse
-  | LibraryFlushdefaultResponse
-  | LibraryGetOperationResultdefaultResponse
-  | LibraryDeletedefaultResponse
-  | LibraryGetdefaultResponse
-  | LibraryCreatedefaultResponse
-  | LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
-  | LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
-  | LinkedServiceGetLinkedServicedefaultResponse
-  | LinkedServiceDeleteLinkedServicedefaultResponse
-  | LinkedServiceRenameLinkedServicedefaultResponse
-  | NotebookGetNotebooksByWorkspacedefaultResponse
-  | NotebookGetNotebookSummaryByWorkSpacedefaultResponse
-  | NotebookCreateOrUpdateNotebookdefaultResponse
-  | NotebookGetNotebookdefaultResponse
-  | NotebookDeleteNotebookdefaultResponse
-  | NotebookRenameNotebookdefaultResponse
-  | NotebookOperationResultGetdefaultResponse
-  | PipelineGetPipelinesByWorkspacedefaultResponse
-  | PipelineCreateOrUpdatePipelinedefaultResponse
-  | PipelineGetPipelinedefaultResponse
-  | PipelineDeletePipelinedefaultResponse
-  | PipelineRenamePipelinedefaultResponse
-  | PipelineCreatePipelineRundefaultResponse
-  | PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
-  | PipelineRunGetPipelineRundefaultResponse
-  | PipelineRunQueryActivityRunsdefaultResponse
-  | PipelineRunCancelPipelineRundefaultResponse
-  | SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
-  | SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
-  | SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
-  | SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse
-  | SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
-  | SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
-  | SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
-  | SqlPoolsListdefaultResponse
-  | SqlPoolsGetdefaultResponse
-  | SqlScriptGetSqlScriptsByWorkspacedefaultResponse
-  | SqlScriptCreateOrUpdateSqlScriptdefaultResponse
-  | SqlScriptGetSqlScriptdefaultResponse
-  | SqlScriptDeleteSqlScriptdefaultResponse
-  | SqlScriptRenameSqlScriptdefaultResponse
-  | TriggerGetTriggersByWorkspacedefaultResponse
-  | TriggerCreateOrUpdateTriggerdefaultResponse
-  | TriggerGetTriggerdefaultResponse
-  | TriggerDeleteTriggerdefaultResponse
-  | TriggerSubscribeTriggerToEventsdefaultResponse
-  | TriggerGetEventSubscriptionStatusdefaultResponse
-  | TriggerUnsubscribeTriggerFromEventsdefaultResponse
-  | TriggerStartTriggerdefaultResponse
-  | TriggerStopTriggerdefaultResponse
-  | TriggerRunRerunTriggerInstancedefaultResponse
-  | TriggerRunCancelTriggerInstancedefaultResponse
-  | TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
-  | WorkspaceGetdefaultResponse {
+  | KqlScriptsGetAllDefaultResponse
+  | KqlScriptCreateOrUpdateDefaultResponse
+  | KqlScriptGetByNameDefaultResponse
+  | KqlScriptDeleteByNameDefaultResponse
+  | KqlScriptRenameDefaultResponse
+  | MetastoreRegisterDefaultResponse
+  | MetastoreGetDatabaseOperationsDefaultResponse
+  | MetastoreUpdateDefaultResponse
+  | MetastoreDeleteDefaultResponse
+  | SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse
+  | SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse
+  | SparkConfigurationGetSparkConfigurationDefaultResponse
+  | SparkConfigurationDeleteSparkConfigurationDefaultResponse
+  | SparkConfigurationRenameSparkConfigurationDefaultResponse
+  | BigDataPoolsListDefaultResponse
+  | BigDataPoolsGetDefaultResponse
+  | DataFlowCreateOrUpdateDataFlowDefaultResponse
+  | DataFlowGetDataFlowDefaultResponse
+  | DataFlowDeleteDataFlowDefaultResponse
+  | DataFlowRenameDataFlowDefaultResponse
+  | DataFlowGetDataFlowsByWorkspaceDefaultResponse
+  | DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse
+  | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse
+  | DataFlowDebugSessionAddDataFlowDefaultResponse
+  | DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse
+  | DataFlowDebugSessionExecuteCommandDefaultResponse
+  | DatasetGetDatasetsByWorkspaceDefaultResponse
+  | DatasetCreateOrUpdateDatasetDefaultResponse
+  | DatasetGetDatasetDefaultResponse
+  | DatasetDeleteDatasetDefaultResponse
+  | DatasetRenameDatasetDefaultResponse
+  | IntegrationRuntimesListDefaultResponse
+  | IntegrationRuntimesGetDefaultResponse
+  | LibraryListDefaultResponse
+  | LibraryFlushDefaultResponse
+  | LibraryGetOperationResultDefaultResponse
+  | LibraryDeleteDefaultResponse
+  | LibraryGetDefaultResponse
+  | LibraryCreateDefaultResponse
+  | LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse
+  | LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse
+  | LinkedServiceGetLinkedServiceDefaultResponse
+  | LinkedServiceDeleteLinkedServiceDefaultResponse
+  | LinkedServiceRenameLinkedServiceDefaultResponse
+  | NotebookGetNotebooksByWorkspaceDefaultResponse
+  | NotebookGetNotebookSummaryByWorkSpaceDefaultResponse
+  | NotebookCreateOrUpdateNotebookDefaultResponse
+  | NotebookGetNotebookDefaultResponse
+  | NotebookDeleteNotebookDefaultResponse
+  | NotebookRenameNotebookDefaultResponse
+  | NotebookOperationResultGetDefaultResponse
+  | PipelineGetPipelinesByWorkspaceDefaultResponse
+  | PipelineCreateOrUpdatePipelineDefaultResponse
+  | PipelineGetPipelineDefaultResponse
+  | PipelineDeletePipelineDefaultResponse
+  | PipelineRenamePipelineDefaultResponse
+  | PipelineCreatePipelineRunDefaultResponse
+  | PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse
+  | PipelineRunGetPipelineRunDefaultResponse
+  | PipelineRunQueryActivityRunsDefaultResponse
+  | PipelineRunCancelPipelineRunDefaultResponse
+  | SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse
+  | SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse
+  | SparkJobDefinitionGetSparkJobDefinitionDefaultResponse
+  | SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse
+  | SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse
+  | SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse
+  | SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse
+  | SqlPoolsListDefaultResponse
+  | SqlPoolsGetDefaultResponse
+  | SqlScriptGetSqlScriptsByWorkspaceDefaultResponse
+  | SqlScriptCreateOrUpdateSqlScriptDefaultResponse
+  | SqlScriptGetSqlScriptDefaultResponse
+  | SqlScriptDeleteSqlScriptDefaultResponse
+  | SqlScriptRenameSqlScriptDefaultResponse
+  | TriggerGetTriggersByWorkspaceDefaultResponse
+  | TriggerCreateOrUpdateTriggerDefaultResponse
+  | TriggerGetTriggerDefaultResponse
+  | TriggerDeleteTriggerDefaultResponse
+  | TriggerSubscribeTriggerToEventsDefaultResponse
+  | TriggerGetEventSubscriptionStatusDefaultResponse
+  | TriggerUnsubscribeTriggerFromEventsDefaultResponse
+  | TriggerStartTriggerDefaultResponse
+  | TriggerStopTriggerDefaultResponse
+  | TriggerRunRerunTriggerInstanceDefaultResponse
+  | TriggerRunCancelTriggerInstanceDefaultResponse
+  | TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse
+  | WorkspaceGetDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

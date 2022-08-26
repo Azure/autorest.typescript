@@ -1,21 +1,14 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
-import { generatePackageJson } from "../generators/static/packageFileGenerator";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
-import { generateTsConfig } from "../generators/static/tsConfigFileGenerator";
-import { generateApiExtractorConfig } from "../generators/static/apiExtractorConfig";
-import { generateResponseInterfaces } from "./generateResponseTypes";
 import { performCodeModelMutations } from "./mutateCodeModel";
-import { generateSchemaTypes } from "./generateSchemaTypes";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generateParameterInterfaces } from "./generateParameterTypes";
-import { generatePathFirstClient } from "./generateClientDefinition";
-import { generateClient } from "./generateClient";
-import { generateIndexFile } from "../generators/indexGenerator";
 import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
-import { generateTopLevelIndexFile } from "./generateTopLevelIndexFile";
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
 import { hasPollingOperations } from "./helpers/hasPollingOperations";
 import { generateKarmaConfigFile } from "../generators/static/karmaConfigFileGenerator";
@@ -24,13 +17,32 @@ import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerat
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
-import { generateRollupConfig } from "../generators/static/rollupConfigFileGenerator";
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
-import { generateRLCSamples, hasRLCSamplesGenerated } from "../generators/samples/rlcSampleGenerator";
-import { generateIsUnexpectedHelper } from "./generateIsUnexpectedHelper";
+import {
+  generateRLCSamples,
+  hasRLCSamplesGenerated
+} from "../generators/samples/rlcSampleGenerator";
+import { transform } from "./transforms/transform";
+import {
+  buildApiExtractorConfig,
+  buildClientDefinitions,
+  buildIndexFile,
+  buildIsUnexpectedHelper,
+  buildPackageFile,
+  buildParameterTypes,
+  buildResponseTypes,
+  buildRollupConfig,
+  buildTsConfig,
+  buildClient
+} from "@azure-tools/rlc-codegen";
+import {
+  generateFileByBuilder,
+  generateSchemaTypes,
+  generateTopLevelIndexFile
+} from "./helpers/generatorHelpers";
 
 /**
  * Generates a Rest Level Client library
@@ -53,6 +65,12 @@ export async function generateRestLevelClient() {
     }
   });
 
+  // first store commonly calculated information in CodeModel
+  performCodeModelMutations(model);
+
+  // then transform CodeModel to RLCModel
+  const rlcModels = transform(model);
+
   if (hasPagingOperations(model)) {
     generatePagingHelper(project);
   }
@@ -61,36 +79,58 @@ export async function generateRestLevelClient() {
     generatePollingHelper(project);
   }
 
-  performCodeModelMutations(model);
   generateReadmeFile(model, project);
   generateLicenseFile(project);
-  generateApiExtractorConfig(project);
-  generateRollupConfig(project);
+  // buildApiExtractorConfig
+  generateFileByBuilder(project, buildApiExtractorConfig, rlcModels);
+  // buildRollupConfig
+  generateFileByBuilder(project, buildRollupConfig, rlcModels);
   generateEsLintConfig(project);
-
   generateKarmaConfigFile(project);
   generateEnvFile(project);
   generateEnvBrowserFile(project);
   generateRecordedClientFile(project);
   generateSampleTestFile(project);
 
-  generateResponseInterfaces(model, project);
-  generateSchemaTypes(model, project);
-  generateParameterInterfaces(model, project);
-  generatePathFirstClient(model, project);
-  generateClient(model, project);
-  generateIndexFile(project);
-  generateIsUnexpectedHelper(project);
-  generateTopLevelIndexFile(model, project);
+  // buildResponseTypes
+  generateFileByBuilder(project, buildResponseTypes, rlcModels);
+  // generate input & output models
+  generateSchemaTypes(project, rlcModels);
+  // buildParameterTypes
+  generateFileByBuilder(project, buildParameterTypes, rlcModels);
+  // buildClientDefinitions
+  generateFileByBuilder(project, buildClientDefinitions, rlcModels);
+  // buildClient
+  generateFileByBuilder(project, buildClient, rlcModels);
+  // buildIndexFile
+  generateFileByBuilder(project, buildIndexFile, rlcModels);
+  // buildIsUnexpectedHelper
+  generateFileByBuilder(project, buildIsUnexpectedHelper, rlcModels);
+  generateTopLevelIndexFile(rlcModels, project);
   if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);
   }
-  if (((generateSample && hasRLCSamplesGenerated) || generateTest) && generateMetadata) {
+  if (
+    ((generateSample && hasRLCSamplesGenerated) || generateTest) &&
+    generateMetadata
+  ) {
     generateSampleEnv(project);
   }
 
-  generatePackageJson(project);
-  generateTsConfig(project);
+  // buildPackageFile
+  generateFileByBuilder(
+    project,
+    buildPackageFile,
+    rlcModels,
+    hasRLCSamplesGenerated
+  );
+  // buildTsConfig
+  generateFileByBuilder(
+    project,
+    buildTsConfig,
+    rlcModels,
+    hasRLCSamplesGenerated
+  );
 
   // Save the source files to the virtual filesystem
   project.saveSync();

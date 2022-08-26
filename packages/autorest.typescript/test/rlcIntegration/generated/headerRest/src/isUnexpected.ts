@@ -2,64 +2,64 @@
 // Licensed under the MIT license.
 
 import {
-  ParamExistingKey200Response,
-  ParamExistingKeydefaultResponse,
-  ResponseExistingKey200Response,
-  ResponseExistingKeydefaultResponse,
-  ParamProtectedKey200Response,
-  ParamProtectedKeydefaultResponse,
-  ResponseProtectedKey200Response,
-  ResponseProtectedKeydefaultResponse,
-  ParamInteger200Response,
-  ParamIntegerdefaultResponse,
-  ResponseInteger200Response,
-  ResponseIntegerdefaultResponse,
-  ParamLong200Response,
-  ParamLongdefaultResponse,
-  ResponseLong200Response,
-  ResponseLongdefaultResponse,
-  ParamFloat200Response,
-  ParamFloatdefaultResponse,
-  ResponseFloat200Response,
-  ResponseFloatdefaultResponse,
-  ParamDouble200Response,
-  ParamDoubledefaultResponse,
-  ResponseDouble200Response,
-  ResponseDoubledefaultResponse,
-  ParamBool200Response,
-  ParamBooldefaultResponse,
-  ResponseBool200Response,
-  ResponseBooldefaultResponse,
-  ParamString200Response,
-  ParamStringdefaultResponse,
-  ResponseString200Response,
-  ResponseStringdefaultResponse,
-  ParamDate200Response,
-  ParamDatedefaultResponse,
-  ResponseDate200Response,
-  ResponseDatedefaultResponse,
-  ParamDatetime200Response,
-  ParamDatetimedefaultResponse,
-  ResponseDatetime200Response,
-  ResponseDatetimedefaultResponse,
-  ParamDatetimeRfc1123200Response,
-  ParamDatetimeRfc1123defaultResponse,
-  ResponseDatetimeRfc1123200Response,
-  ResponseDatetimeRfc1123defaultResponse,
-  ParamDuration200Response,
-  ParamDurationdefaultResponse,
-  ResponseDuration200Response,
-  ResponseDurationdefaultResponse,
-  ParamByte200Response,
-  ParamBytedefaultResponse,
-  ResponseByte200Response,
-  ResponseBytedefaultResponse,
-  ParamEnum200Response,
-  ParamEnumdefaultResponse,
-  ResponseEnum200Response,
-  ResponseEnumdefaultResponse,
-  CustomRequestId200Response,
-  CustomRequestIddefaultResponse
+  HeaderParamExistingKey200Response,
+  HeaderParamExistingKeyDefaultResponse,
+  HeaderResponseExistingKey200Response,
+  HeaderResponseExistingKeyDefaultResponse,
+  HeaderParamProtectedKey200Response,
+  HeaderParamProtectedKeyDefaultResponse,
+  HeaderResponseProtectedKey200Response,
+  HeaderResponseProtectedKeyDefaultResponse,
+  HeaderParamInteger200Response,
+  HeaderParamIntegerDefaultResponse,
+  HeaderResponseInteger200Response,
+  HeaderResponseIntegerDefaultResponse,
+  HeaderParamLong200Response,
+  HeaderParamLongDefaultResponse,
+  HeaderResponseLong200Response,
+  HeaderResponseLongDefaultResponse,
+  HeaderParamFloat200Response,
+  HeaderParamFloatDefaultResponse,
+  HeaderResponseFloat200Response,
+  HeaderResponseFloatDefaultResponse,
+  HeaderParamDouble200Response,
+  HeaderParamDoubleDefaultResponse,
+  HeaderResponseDouble200Response,
+  HeaderResponseDoubleDefaultResponse,
+  HeaderParamBool200Response,
+  HeaderParamBoolDefaultResponse,
+  HeaderResponseBool200Response,
+  HeaderResponseBoolDefaultResponse,
+  HeaderParamString200Response,
+  HeaderParamStringDefaultResponse,
+  HeaderResponseString200Response,
+  HeaderResponseStringDefaultResponse,
+  HeaderParamDate200Response,
+  HeaderParamDateDefaultResponse,
+  HeaderResponseDate200Response,
+  HeaderResponseDateDefaultResponse,
+  HeaderParamDatetime200Response,
+  HeaderParamDatetimeDefaultResponse,
+  HeaderResponseDatetime200Response,
+  HeaderResponseDatetimeDefaultResponse,
+  HeaderParamDatetimeRfc1123200Response,
+  HeaderParamDatetimeRfc1123DefaultResponse,
+  HeaderResponseDatetimeRfc1123200Response,
+  HeaderResponseDatetimeRfc1123DefaultResponse,
+  HeaderParamDuration200Response,
+  HeaderParamDurationDefaultResponse,
+  HeaderResponseDuration200Response,
+  HeaderResponseDurationDefaultResponse,
+  HeaderParamByte200Response,
+  HeaderParamByteDefaultResponse,
+  HeaderResponseByte200Response,
+  HeaderResponseByteDefaultResponse,
+  HeaderParamEnum200Response,
+  HeaderParamEnumDefaultResponse,
+  HeaderResponseEnum200Response,
+  HeaderResponseEnumDefaultResponse,
+  HeaderCustomRequestId200Response,
+  HeaderCustomRequestIdDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -97,188 +97,206 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: ParamExistingKey200Response | ParamExistingKeydefaultResponse
-): response is ParamExistingKeydefaultResponse;
-export function isUnexpected(
-  response: ResponseExistingKey200Response | ResponseExistingKeydefaultResponse
-): response is ResponseExistingKeydefaultResponse;
-export function isUnexpected(
-  response: ParamProtectedKey200Response | ParamProtectedKeydefaultResponse
-): response is ParamProtectedKeydefaultResponse;
+  response:
+    | HeaderParamExistingKey200Response
+    | HeaderParamExistingKeyDefaultResponse
+): response is HeaderParamExistingKeyDefaultResponse;
 export function isUnexpected(
   response:
-    | ResponseProtectedKey200Response
-    | ResponseProtectedKeydefaultResponse
-): response is ResponseProtectedKeydefaultResponse;
-export function isUnexpected(
-  response: ParamInteger200Response | ParamIntegerdefaultResponse
-): response is ParamIntegerdefaultResponse;
-export function isUnexpected(
-  response: ResponseInteger200Response | ResponseIntegerdefaultResponse
-): response is ResponseIntegerdefaultResponse;
-export function isUnexpected(
-  response: ParamLong200Response | ParamLongdefaultResponse
-): response is ParamLongdefaultResponse;
-export function isUnexpected(
-  response: ResponseLong200Response | ResponseLongdefaultResponse
-): response is ResponseLongdefaultResponse;
-export function isUnexpected(
-  response: ParamFloat200Response | ParamFloatdefaultResponse
-): response is ParamFloatdefaultResponse;
-export function isUnexpected(
-  response: ResponseFloat200Response | ResponseFloatdefaultResponse
-): response is ResponseFloatdefaultResponse;
-export function isUnexpected(
-  response: ParamDouble200Response | ParamDoubledefaultResponse
-): response is ParamDoubledefaultResponse;
-export function isUnexpected(
-  response: ResponseDouble200Response | ResponseDoubledefaultResponse
-): response is ResponseDoubledefaultResponse;
-export function isUnexpected(
-  response: ParamBool200Response | ParamBooldefaultResponse
-): response is ParamBooldefaultResponse;
-export function isUnexpected(
-  response: ResponseBool200Response | ResponseBooldefaultResponse
-): response is ResponseBooldefaultResponse;
-export function isUnexpected(
-  response: ParamString200Response | ParamStringdefaultResponse
-): response is ParamStringdefaultResponse;
-export function isUnexpected(
-  response: ResponseString200Response | ResponseStringdefaultResponse
-): response is ResponseStringdefaultResponse;
-export function isUnexpected(
-  response: ParamDate200Response | ParamDatedefaultResponse
-): response is ParamDatedefaultResponse;
-export function isUnexpected(
-  response: ResponseDate200Response | ResponseDatedefaultResponse
-): response is ResponseDatedefaultResponse;
-export function isUnexpected(
-  response: ParamDatetime200Response | ParamDatetimedefaultResponse
-): response is ParamDatetimedefaultResponse;
-export function isUnexpected(
-  response: ResponseDatetime200Response | ResponseDatetimedefaultResponse
-): response is ResponseDatetimedefaultResponse;
+    | HeaderResponseExistingKey200Response
+    | HeaderResponseExistingKeyDefaultResponse
+): response is HeaderResponseExistingKeyDefaultResponse;
 export function isUnexpected(
   response:
-    | ParamDatetimeRfc1123200Response
-    | ParamDatetimeRfc1123defaultResponse
-): response is ParamDatetimeRfc1123defaultResponse;
+    | HeaderParamProtectedKey200Response
+    | HeaderParamProtectedKeyDefaultResponse
+): response is HeaderParamProtectedKeyDefaultResponse;
 export function isUnexpected(
   response:
-    | ResponseDatetimeRfc1123200Response
-    | ResponseDatetimeRfc1123defaultResponse
-): response is ResponseDatetimeRfc1123defaultResponse;
+    | HeaderResponseProtectedKey200Response
+    | HeaderResponseProtectedKeyDefaultResponse
+): response is HeaderResponseProtectedKeyDefaultResponse;
 export function isUnexpected(
-  response: ParamDuration200Response | ParamDurationdefaultResponse
-): response is ParamDurationdefaultResponse;
-export function isUnexpected(
-  response: ResponseDuration200Response | ResponseDurationdefaultResponse
-): response is ResponseDurationdefaultResponse;
-export function isUnexpected(
-  response: ParamByte200Response | ParamBytedefaultResponse
-): response is ParamBytedefaultResponse;
-export function isUnexpected(
-  response: ResponseByte200Response | ResponseBytedefaultResponse
-): response is ResponseBytedefaultResponse;
-export function isUnexpected(
-  response: ParamEnum200Response | ParamEnumdefaultResponse
-): response is ParamEnumdefaultResponse;
-export function isUnexpected(
-  response: ResponseEnum200Response | ResponseEnumdefaultResponse
-): response is ResponseEnumdefaultResponse;
-export function isUnexpected(
-  response: CustomRequestId200Response | CustomRequestIddefaultResponse
-): response is CustomRequestIddefaultResponse;
+  response: HeaderParamInteger200Response | HeaderParamIntegerDefaultResponse
+): response is HeaderParamIntegerDefaultResponse;
 export function isUnexpected(
   response:
-    | ParamExistingKey200Response
-    | ParamExistingKeydefaultResponse
-    | ResponseExistingKey200Response
-    | ResponseExistingKeydefaultResponse
-    | ParamProtectedKey200Response
-    | ParamProtectedKeydefaultResponse
-    | ResponseProtectedKey200Response
-    | ResponseProtectedKeydefaultResponse
-    | ParamInteger200Response
-    | ParamIntegerdefaultResponse
-    | ResponseInteger200Response
-    | ResponseIntegerdefaultResponse
-    | ParamLong200Response
-    | ParamLongdefaultResponse
-    | ResponseLong200Response
-    | ResponseLongdefaultResponse
-    | ParamFloat200Response
-    | ParamFloatdefaultResponse
-    | ResponseFloat200Response
-    | ResponseFloatdefaultResponse
-    | ParamDouble200Response
-    | ParamDoubledefaultResponse
-    | ResponseDouble200Response
-    | ResponseDoubledefaultResponse
-    | ParamBool200Response
-    | ParamBooldefaultResponse
-    | ResponseBool200Response
-    | ResponseBooldefaultResponse
-    | ParamString200Response
-    | ParamStringdefaultResponse
-    | ResponseString200Response
-    | ResponseStringdefaultResponse
-    | ParamDate200Response
-    | ParamDatedefaultResponse
-    | ResponseDate200Response
-    | ResponseDatedefaultResponse
-    | ParamDatetime200Response
-    | ParamDatetimedefaultResponse
-    | ResponseDatetime200Response
-    | ResponseDatetimedefaultResponse
-    | ParamDatetimeRfc1123200Response
-    | ParamDatetimeRfc1123defaultResponse
-    | ResponseDatetimeRfc1123200Response
-    | ResponseDatetimeRfc1123defaultResponse
-    | ParamDuration200Response
-    | ParamDurationdefaultResponse
-    | ResponseDuration200Response
-    | ResponseDurationdefaultResponse
-    | ParamByte200Response
-    | ParamBytedefaultResponse
-    | ResponseByte200Response
-    | ResponseBytedefaultResponse
-    | ParamEnum200Response
-    | ParamEnumdefaultResponse
-    | ResponseEnum200Response
-    | ResponseEnumdefaultResponse
-    | CustomRequestId200Response
-    | CustomRequestIddefaultResponse
+    | HeaderResponseInteger200Response
+    | HeaderResponseIntegerDefaultResponse
+): response is HeaderResponseIntegerDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamLong200Response | HeaderParamLongDefaultResponse
+): response is HeaderParamLongDefaultResponse;
+export function isUnexpected(
+  response: HeaderResponseLong200Response | HeaderResponseLongDefaultResponse
+): response is HeaderResponseLongDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamFloat200Response | HeaderParamFloatDefaultResponse
+): response is HeaderParamFloatDefaultResponse;
+export function isUnexpected(
+  response: HeaderResponseFloat200Response | HeaderResponseFloatDefaultResponse
+): response is HeaderResponseFloatDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamDouble200Response | HeaderParamDoubleDefaultResponse
+): response is HeaderParamDoubleDefaultResponse;
+export function isUnexpected(
+  response:
+    | HeaderResponseDouble200Response
+    | HeaderResponseDoubleDefaultResponse
+): response is HeaderResponseDoubleDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamBool200Response | HeaderParamBoolDefaultResponse
+): response is HeaderParamBoolDefaultResponse;
+export function isUnexpected(
+  response: HeaderResponseBool200Response | HeaderResponseBoolDefaultResponse
+): response is HeaderResponseBoolDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamString200Response | HeaderParamStringDefaultResponse
+): response is HeaderParamStringDefaultResponse;
+export function isUnexpected(
+  response:
+    | HeaderResponseString200Response
+    | HeaderResponseStringDefaultResponse
+): response is HeaderResponseStringDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamDate200Response | HeaderParamDateDefaultResponse
+): response is HeaderParamDateDefaultResponse;
+export function isUnexpected(
+  response: HeaderResponseDate200Response | HeaderResponseDateDefaultResponse
+): response is HeaderResponseDateDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamDatetime200Response | HeaderParamDatetimeDefaultResponse
+): response is HeaderParamDatetimeDefaultResponse;
+export function isUnexpected(
+  response:
+    | HeaderResponseDatetime200Response
+    | HeaderResponseDatetimeDefaultResponse
+): response is HeaderResponseDatetimeDefaultResponse;
+export function isUnexpected(
+  response:
+    | HeaderParamDatetimeRfc1123200Response
+    | HeaderParamDatetimeRfc1123DefaultResponse
+): response is HeaderParamDatetimeRfc1123DefaultResponse;
+export function isUnexpected(
+  response:
+    | HeaderResponseDatetimeRfc1123200Response
+    | HeaderResponseDatetimeRfc1123DefaultResponse
+): response is HeaderResponseDatetimeRfc1123DefaultResponse;
+export function isUnexpected(
+  response: HeaderParamDuration200Response | HeaderParamDurationDefaultResponse
+): response is HeaderParamDurationDefaultResponse;
+export function isUnexpected(
+  response:
+    | HeaderResponseDuration200Response
+    | HeaderResponseDurationDefaultResponse
+): response is HeaderResponseDurationDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamByte200Response | HeaderParamByteDefaultResponse
+): response is HeaderParamByteDefaultResponse;
+export function isUnexpected(
+  response: HeaderResponseByte200Response | HeaderResponseByteDefaultResponse
+): response is HeaderResponseByteDefaultResponse;
+export function isUnexpected(
+  response: HeaderParamEnum200Response | HeaderParamEnumDefaultResponse
+): response is HeaderParamEnumDefaultResponse;
+export function isUnexpected(
+  response: HeaderResponseEnum200Response | HeaderResponseEnumDefaultResponse
+): response is HeaderResponseEnumDefaultResponse;
+export function isUnexpected(
+  response:
+    | HeaderCustomRequestId200Response
+    | HeaderCustomRequestIdDefaultResponse
+): response is HeaderCustomRequestIdDefaultResponse;
+export function isUnexpected(
+  response:
+    | HeaderParamExistingKey200Response
+    | HeaderParamExistingKeyDefaultResponse
+    | HeaderResponseExistingKey200Response
+    | HeaderResponseExistingKeyDefaultResponse
+    | HeaderParamProtectedKey200Response
+    | HeaderParamProtectedKeyDefaultResponse
+    | HeaderResponseProtectedKey200Response
+    | HeaderResponseProtectedKeyDefaultResponse
+    | HeaderParamInteger200Response
+    | HeaderParamIntegerDefaultResponse
+    | HeaderResponseInteger200Response
+    | HeaderResponseIntegerDefaultResponse
+    | HeaderParamLong200Response
+    | HeaderParamLongDefaultResponse
+    | HeaderResponseLong200Response
+    | HeaderResponseLongDefaultResponse
+    | HeaderParamFloat200Response
+    | HeaderParamFloatDefaultResponse
+    | HeaderResponseFloat200Response
+    | HeaderResponseFloatDefaultResponse
+    | HeaderParamDouble200Response
+    | HeaderParamDoubleDefaultResponse
+    | HeaderResponseDouble200Response
+    | HeaderResponseDoubleDefaultResponse
+    | HeaderParamBool200Response
+    | HeaderParamBoolDefaultResponse
+    | HeaderResponseBool200Response
+    | HeaderResponseBoolDefaultResponse
+    | HeaderParamString200Response
+    | HeaderParamStringDefaultResponse
+    | HeaderResponseString200Response
+    | HeaderResponseStringDefaultResponse
+    | HeaderParamDate200Response
+    | HeaderParamDateDefaultResponse
+    | HeaderResponseDate200Response
+    | HeaderResponseDateDefaultResponse
+    | HeaderParamDatetime200Response
+    | HeaderParamDatetimeDefaultResponse
+    | HeaderResponseDatetime200Response
+    | HeaderResponseDatetimeDefaultResponse
+    | HeaderParamDatetimeRfc1123200Response
+    | HeaderParamDatetimeRfc1123DefaultResponse
+    | HeaderResponseDatetimeRfc1123200Response
+    | HeaderResponseDatetimeRfc1123DefaultResponse
+    | HeaderParamDuration200Response
+    | HeaderParamDurationDefaultResponse
+    | HeaderResponseDuration200Response
+    | HeaderResponseDurationDefaultResponse
+    | HeaderParamByte200Response
+    | HeaderParamByteDefaultResponse
+    | HeaderResponseByte200Response
+    | HeaderResponseByteDefaultResponse
+    | HeaderParamEnum200Response
+    | HeaderParamEnumDefaultResponse
+    | HeaderResponseEnum200Response
+    | HeaderResponseEnumDefaultResponse
+    | HeaderCustomRequestId200Response
+    | HeaderCustomRequestIdDefaultResponse
 ): response is
-  | ParamExistingKeydefaultResponse
-  | ResponseExistingKeydefaultResponse
-  | ParamProtectedKeydefaultResponse
-  | ResponseProtectedKeydefaultResponse
-  | ParamIntegerdefaultResponse
-  | ResponseIntegerdefaultResponse
-  | ParamLongdefaultResponse
-  | ResponseLongdefaultResponse
-  | ParamFloatdefaultResponse
-  | ResponseFloatdefaultResponse
-  | ParamDoubledefaultResponse
-  | ResponseDoubledefaultResponse
-  | ParamBooldefaultResponse
-  | ResponseBooldefaultResponse
-  | ParamStringdefaultResponse
-  | ResponseStringdefaultResponse
-  | ParamDatedefaultResponse
-  | ResponseDatedefaultResponse
-  | ParamDatetimedefaultResponse
-  | ResponseDatetimedefaultResponse
-  | ParamDatetimeRfc1123defaultResponse
-  | ResponseDatetimeRfc1123defaultResponse
-  | ParamDurationdefaultResponse
-  | ResponseDurationdefaultResponse
-  | ParamBytedefaultResponse
-  | ResponseBytedefaultResponse
-  | ParamEnumdefaultResponse
-  | ResponseEnumdefaultResponse
-  | CustomRequestIddefaultResponse {
+  | HeaderParamExistingKeyDefaultResponse
+  | HeaderResponseExistingKeyDefaultResponse
+  | HeaderParamProtectedKeyDefaultResponse
+  | HeaderResponseProtectedKeyDefaultResponse
+  | HeaderParamIntegerDefaultResponse
+  | HeaderResponseIntegerDefaultResponse
+  | HeaderParamLongDefaultResponse
+  | HeaderResponseLongDefaultResponse
+  | HeaderParamFloatDefaultResponse
+  | HeaderResponseFloatDefaultResponse
+  | HeaderParamDoubleDefaultResponse
+  | HeaderResponseDoubleDefaultResponse
+  | HeaderParamBoolDefaultResponse
+  | HeaderResponseBoolDefaultResponse
+  | HeaderParamStringDefaultResponse
+  | HeaderResponseStringDefaultResponse
+  | HeaderParamDateDefaultResponse
+  | HeaderResponseDateDefaultResponse
+  | HeaderParamDatetimeDefaultResponse
+  | HeaderResponseDatetimeDefaultResponse
+  | HeaderParamDatetimeRfc1123DefaultResponse
+  | HeaderResponseDatetimeRfc1123DefaultResponse
+  | HeaderParamDurationDefaultResponse
+  | HeaderResponseDurationDefaultResponse
+  | HeaderParamByteDefaultResponse
+  | HeaderResponseByteDefaultResponse
+  | HeaderParamEnumDefaultResponse
+  | HeaderResponseEnumDefaultResponse
+  | HeaderCustomRequestIdDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

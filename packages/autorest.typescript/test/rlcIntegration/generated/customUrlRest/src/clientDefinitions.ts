@@ -1,23 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetEmptyParameters } from "./parameters";
-import { GetEmpty200Response, GetEmptydefaultResponse } from "./responses";
+import { PathsGetEmptyParameters } from "./parameters";
+import {
+  PathsGetEmpty200Response,
+  PathsGetEmptyDefaultResponse
+} from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Paths operations */
 export interface PathsOperations {
   /** Get a 200 to test a valid base uri */
   getEmpty(
-    options?: GetEmptyParameters
-  ): StreamableMethod<GetEmpty200Response | GetEmptydefaultResponse>;
+    options?: PathsGetEmptyParameters
+  ): StreamableMethod<PathsGetEmpty200Response | PathsGetEmptyDefaultResponse>;
 }
 
 export interface GetEmpty {
   /** Get a 200 to test a valid base uri */
   get(
-    options?: GetEmptyParameters
-  ): StreamableMethod<GetEmpty200Response | GetEmptydefaultResponse>;
+    options?: PathsGetEmptyParameters
+  ): StreamableMethod<PathsGetEmpty200Response | PathsGetEmptyDefaultResponse>;
 }
 
 export interface Routes {

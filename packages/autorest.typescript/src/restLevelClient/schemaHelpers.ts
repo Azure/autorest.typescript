@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import {
   AnyObjectSchema,
   ArraySchema,
@@ -65,7 +68,7 @@ export function getElementType(
 /**
  * Determine whether or not a schema maps to a Typescript primitive type.
  */
-function isPrimitiveSchema(schema: Schema): boolean {
+export function isPrimitiveSchema(schema: Schema): boolean {
   return [
     SchemaType.Binary,
     SchemaType.String,

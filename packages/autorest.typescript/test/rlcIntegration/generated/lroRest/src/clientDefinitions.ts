@@ -87,190 +87,190 @@ import {
 import {
   LROsPut200Succeeded200Response,
   LROsPut200Succeeded204Response,
-  LROsPut200SucceededdefaultResponse,
+  LROsPut200SucceededDefaultResponse,
   LROsPatch200SucceededIgnoreHeaders200Response,
-  LROsPatch200SucceededIgnoreHeadersdefaultResponse,
+  LROsPatch200SucceededIgnoreHeadersDefaultResponse,
   LROsPatch201RetryWithAsyncHeader200Response,
   LROsPatch201RetryWithAsyncHeader201Response,
-  LROsPatch201RetryWithAsyncHeaderdefaultResponse,
+  LROsPatch201RetryWithAsyncHeaderDefaultResponse,
   LROsPatch202RetryWithAsyncAndLocationHeader200Response,
   LROsPatch202RetryWithAsyncAndLocationHeader202Response,
-  LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse,
+  LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse,
   LROsPut201Succeeded201Response,
-  LROsPut201SucceededdefaultResponse,
+  LROsPut201SucceededDefaultResponse,
   LROsPost202List200Response,
   LROsPost202List202Response,
-  LROsPost202ListdefaultResponse,
+  LROsPost202ListDefaultResponse,
   LROsPut200SucceededNoState200Response,
-  LROsPut200SucceededNoStatedefaultResponse,
+  LROsPut200SucceededNoStateDefaultResponse,
   LROsPut202Retry200202Response,
-  LROsPut202Retry200defaultResponse,
+  LROsPut202Retry200DefaultResponse,
   LROsPut201CreatingSucceeded200200Response,
   LROsPut201CreatingSucceeded200201Response,
-  LROsPut201CreatingSucceeded200defaultResponse,
+  LROsPut201CreatingSucceeded200DefaultResponse,
   LROsPut200UpdatingSucceeded204200Response,
-  LROsPut200UpdatingSucceeded204defaultResponse,
+  LROsPut200UpdatingSucceeded204DefaultResponse,
   LROsPut201CreatingFailed200200Response,
   LROsPut201CreatingFailed200201Response,
-  LROsPut201CreatingFailed200defaultResponse,
+  LROsPut201CreatingFailed200DefaultResponse,
   LROsPut200Acceptedcanceled200200Response,
-  LROsPut200Acceptedcanceled200defaultResponse,
+  LROsPut200Acceptedcanceled200DefaultResponse,
   LROsPutNoHeaderInRetry202Response,
-  LROsPutNoHeaderInRetrydefaultResponse,
+  LROsPutNoHeaderInRetryDefaultResponse,
   LROsPutAsyncRetrySucceeded200Response,
-  LROsPutAsyncRetrySucceededdefaultResponse,
+  LROsPutAsyncRetrySucceededDefaultResponse,
   LROsPutAsyncNoRetrySucceeded200Response,
-  LROsPutAsyncNoRetrySucceededdefaultResponse,
+  LROsPutAsyncNoRetrySucceededDefaultResponse,
   LROsPutAsyncRetryFailed200Response,
-  LROsPutAsyncRetryFaileddefaultResponse,
+  LROsPutAsyncRetryFailedDefaultResponse,
   LROsPutAsyncNoRetrycanceled200Response,
-  LROsPutAsyncNoRetrycanceleddefaultResponse,
+  LROsPutAsyncNoRetrycanceledDefaultResponse,
   LROsPutAsyncNoHeaderInRetry201Response,
-  LROsPutAsyncNoHeaderInRetrydefaultResponse,
+  LROsPutAsyncNoHeaderInRetryDefaultResponse,
   LROsPutNonResource202Response,
-  LROsPutNonResourcedefaultResponse,
+  LROsPutNonResourceDefaultResponse,
   LROsPutAsyncNonResource202Response,
-  LROsPutAsyncNonResourcedefaultResponse,
+  LROsPutAsyncNonResourceDefaultResponse,
   LROsPutSubResource202Response,
-  LROsPutSubResourcedefaultResponse,
+  LROsPutSubResourceDefaultResponse,
   LROsPutAsyncSubResource202Response,
-  LROsPutAsyncSubResourcedefaultResponse,
+  LROsPutAsyncSubResourceDefaultResponse,
   LROsDeleteProvisioning202Accepted200Succeeded200Response,
   LROsDeleteProvisioning202Accepted200Succeeded202Response,
-  LROsDeleteProvisioning202Accepted200SucceededdefaultResponse,
+  LROsDeleteProvisioning202Accepted200SucceededDefaultResponse,
   LROsDeleteProvisioning202DeletingFailed200200Response,
   LROsDeleteProvisioning202DeletingFailed200202Response,
-  LROsDeleteProvisioning202DeletingFailed200defaultResponse,
+  LROsDeleteProvisioning202DeletingFailed200DefaultResponse,
   LROsDeleteProvisioning202Deletingcanceled200200Response,
   LROsDeleteProvisioning202Deletingcanceled200202Response,
-  LROsDeleteProvisioning202Deletingcanceled200defaultResponse,
+  LROsDeleteProvisioning202Deletingcanceled200DefaultResponse,
   LROsDelete204Succeeded204Response,
-  LROsDelete204SucceededdefaultResponse,
+  LROsDelete204SucceededDefaultResponse,
   LROsDelete202Retry200200Response,
   LROsDelete202Retry200202Response,
-  LROsDelete202Retry200defaultResponse,
+  LROsDelete202Retry200DefaultResponse,
   LROsDelete202NoRetry204200Response,
   LROsDelete202NoRetry204202Response,
-  LROsDelete202NoRetry204defaultResponse,
+  LROsDelete202NoRetry204DefaultResponse,
   LROsDeleteNoHeaderInRetry202Response,
   LROsDeleteNoHeaderInRetry204Response,
-  LROsDeleteNoHeaderInRetrydefaultResponse,
+  LROsDeleteNoHeaderInRetryDefaultResponse,
   LROsDeleteAsyncNoHeaderInRetry202Response,
   LROsDeleteAsyncNoHeaderInRetry204Response,
-  LROsDeleteAsyncNoHeaderInRetrydefaultResponse,
+  LROsDeleteAsyncNoHeaderInRetryDefaultResponse,
   LROsDeleteAsyncRetrySucceeded202Response,
-  LROsDeleteAsyncRetrySucceededdefaultResponse,
+  LROsDeleteAsyncRetrySucceededDefaultResponse,
   LROsDeleteAsyncNoRetrySucceeded202Response,
-  LROsDeleteAsyncNoRetrySucceededdefaultResponse,
+  LROsDeleteAsyncNoRetrySucceededDefaultResponse,
   LROsDeleteAsyncRetryFailed202Response,
-  LROsDeleteAsyncRetryFaileddefaultResponse,
+  LROsDeleteAsyncRetryFailedDefaultResponse,
   LROsDeleteAsyncRetrycanceled202Response,
-  LROsDeleteAsyncRetrycanceleddefaultResponse,
+  LROsDeleteAsyncRetrycanceledDefaultResponse,
   LROsPost200WithPayload200Response,
   LROsPost200WithPayload202Response,
-  LROsPost200WithPayloaddefaultResponse,
+  LROsPost200WithPayloadDefaultResponse,
   LROsPost202Retry200202Response,
-  LROsPost202Retry200defaultResponse,
+  LROsPost202Retry200DefaultResponse,
   LROsPost202NoRetry204202Response,
-  LROsPost202NoRetry204defaultResponse,
+  LROsPost202NoRetry204DefaultResponse,
   LROsPostDoubleHeadersFinalLocationGet202Response,
-  LROsPostDoubleHeadersFinalLocationGetdefaultResponse,
+  LROsPostDoubleHeadersFinalLocationGetDefaultResponse,
   LROsPostDoubleHeadersFinalAzureHeaderGet202Response,
-  LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse,
   LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response,
-  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse,
   LROsPostAsyncRetrySucceeded200Response,
   LROsPostAsyncRetrySucceeded202Response,
-  LROsPostAsyncRetrySucceededdefaultResponse,
+  LROsPostAsyncRetrySucceededDefaultResponse,
   LROsPostAsyncNoRetrySucceeded200Response,
   LROsPostAsyncNoRetrySucceeded202Response,
-  LROsPostAsyncNoRetrySucceededdefaultResponse,
+  LROsPostAsyncNoRetrySucceededDefaultResponse,
   LROsPostAsyncRetryFailed202Response,
-  LROsPostAsyncRetryFaileddefaultResponse,
+  LROsPostAsyncRetryFailedDefaultResponse,
   LROsPostAsyncRetrycanceled202Response,
-  LROsPostAsyncRetrycanceleddefaultResponse,
+  LROsPostAsyncRetrycanceledDefaultResponse,
   LRORetrysPut201CreatingSucceeded200200Response,
   LRORetrysPut201CreatingSucceeded200201Response,
-  LRORetrysPut201CreatingSucceeded200defaultResponse,
+  LRORetrysPut201CreatingSucceeded200DefaultResponse,
   LRORetrysPutAsyncRelativeRetrySucceeded200Response,
-  LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse,
+  LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse,
   LRORetrysDeleteProvisioning202Accepted200Succeeded200Response,
   LRORetrysDeleteProvisioning202Accepted200Succeeded202Response,
-  LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse,
+  LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse,
   LRORetrysDelete202Retry200202Response,
-  LRORetrysDelete202Retry200defaultResponse,
+  LRORetrysDelete202Retry200DefaultResponse,
   LRORetrysDeleteAsyncRelativeRetrySucceeded202Response,
-  LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse,
+  LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse,
   LRORetrysPost202Retry200202Response,
-  LRORetrysPost202Retry200defaultResponse,
+  LRORetrysPost202Retry200DefaultResponse,
   LRORetrysPostAsyncRelativeRetrySucceeded202Response,
-  LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse,
+  LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse,
   LrosaDsPutNonRetry400200Response,
   LrosaDsPutNonRetry400201Response,
-  LrosaDsPutNonRetry400defaultResponse,
+  LrosaDsPutNonRetry400DefaultResponse,
   LrosaDsPutNonRetry201Creating400200Response,
   LrosaDsPutNonRetry201Creating400201Response,
-  LrosaDsPutNonRetry201Creating400defaultResponse,
+  LrosaDsPutNonRetry201Creating400DefaultResponse,
   LrosaDsPutNonRetry201Creating400InvalidJson200Response,
   LrosaDsPutNonRetry201Creating400InvalidJson201Response,
-  LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse,
+  LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse,
   LrosaDsPutAsyncRelativeRetry400200Response,
-  LrosaDsPutAsyncRelativeRetry400defaultResponse,
+  LrosaDsPutAsyncRelativeRetry400DefaultResponse,
   LrosaDsDeleteNonRetry400202Response,
-  LrosaDsDeleteNonRetry400defaultResponse,
+  LrosaDsDeleteNonRetry400DefaultResponse,
   LrosaDsDelete202NonRetry400202Response,
-  LrosaDsDelete202NonRetry400defaultResponse,
+  LrosaDsDelete202NonRetry400DefaultResponse,
   LrosaDsDeleteAsyncRelativeRetry400202Response,
-  LrosaDsDeleteAsyncRelativeRetry400defaultResponse,
+  LrosaDsDeleteAsyncRelativeRetry400DefaultResponse,
   LrosaDsPostNonRetry400202Response,
-  LrosaDsPostNonRetry400defaultResponse,
+  LrosaDsPostNonRetry400DefaultResponse,
   LrosaDsPost202NonRetry400202Response,
-  LrosaDsPost202NonRetry400defaultResponse,
+  LrosaDsPost202NonRetry400DefaultResponse,
   LrosaDsPostAsyncRelativeRetry400202Response,
-  LrosaDsPostAsyncRelativeRetry400defaultResponse,
+  LrosaDsPostAsyncRelativeRetry400DefaultResponse,
   LrosaDsPutError201NoProvisioningStatePayload200Response,
   LrosaDsPutError201NoProvisioningStatePayload201Response,
-  LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse,
+  LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse,
   LrosaDsPutAsyncRelativeRetryNoStatus200Response,
-  LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse,
+  LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse,
   LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response,
-  LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse,
+  LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse,
   LrosaDsDelete204Succeeded204Response,
-  LrosaDsDelete204SucceededdefaultResponse,
+  LrosaDsDelete204SucceededDefaultResponse,
   LrosaDsDeleteAsyncRelativeRetryNoStatus202Response,
-  LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse,
   LrosaDsPost202NoLocation202Response,
-  LrosaDsPost202NoLocationdefaultResponse,
+  LrosaDsPost202NoLocationDefaultResponse,
   LrosaDsPostAsyncRelativeRetryNoPayload202Response,
-  LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse,
+  LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse,
   LrosaDsPut200InvalidJson200Response,
   LrosaDsPut200InvalidJson204Response,
-  LrosaDsPut200InvalidJsondefaultResponse,
+  LrosaDsPut200InvalidJsonDefaultResponse,
   LrosaDsPutAsyncRelativeRetryInvalidHeader200Response,
-  LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse,
   LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response,
-  LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
   LrosaDsDelete202RetryInvalidHeader202Response,
-  LrosaDsDelete202RetryInvalidHeaderdefaultResponse,
+  LrosaDsDelete202RetryInvalidHeaderDefaultResponse,
   LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response,
-  LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse,
   LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response,
-  LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
   LrosaDsPost202RetryInvalidHeader202Response,
-  LrosaDsPost202RetryInvalidHeaderdefaultResponse,
+  LrosaDsPost202RetryInvalidHeaderDefaultResponse,
   LrosaDsPostAsyncRelativeRetryInvalidHeader202Response,
-  LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse,
   LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response,
-  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
   LROsCustomHeaderPutAsyncRetrySucceeded200Response,
-  LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse,
+  LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse,
   LROsCustomHeaderPut201CreatingSucceeded200200Response,
   LROsCustomHeaderPut201CreatingSucceeded200201Response,
-  LROsCustomHeaderPut201CreatingSucceeded200defaultResponse,
+  LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse,
   LROsCustomHeaderPost202Retry200202Response,
-  LROsCustomHeaderPost202Retry200defaultResponse,
+  LROsCustomHeaderPost202Retry200DefaultResponse,
   LROsCustomHeaderPostAsyncRetrySucceeded202Response,
-  LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
+  LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -281,7 +281,7 @@ export interface LROsPut200Succeeded {
   ): StreamableMethod<
     | LROsPut200Succeeded200Response
     | LROsPut200Succeeded204Response
-    | LROsPut200SucceededdefaultResponse
+    | LROsPut200SucceededDefaultResponse
   >;
 }
 
@@ -291,7 +291,7 @@ export interface LROsPatch200SucceededIgnoreHeaders {
     options?: LROsPatch200SucceededIgnoreHeadersParameters
   ): StreamableMethod<
     | LROsPatch200SucceededIgnoreHeaders200Response
-    | LROsPatch200SucceededIgnoreHeadersdefaultResponse
+    | LROsPatch200SucceededIgnoreHeadersDefaultResponse
   >;
 }
 
@@ -302,7 +302,7 @@ export interface LROsPatch201RetryWithAsyncHeader {
   ): StreamableMethod<
     | LROsPatch201RetryWithAsyncHeader200Response
     | LROsPatch201RetryWithAsyncHeader201Response
-    | LROsPatch201RetryWithAsyncHeaderdefaultResponse
+    | LROsPatch201RetryWithAsyncHeaderDefaultResponse
   >;
 }
 
@@ -313,7 +313,7 @@ export interface LROsPatch202RetryWithAsyncAndLocationHeader {
   ): StreamableMethod<
     | LROsPatch202RetryWithAsyncAndLocationHeader200Response
     | LROsPatch202RetryWithAsyncAndLocationHeader202Response
-    | LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse
+    | LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse
   >;
 }
 
@@ -322,7 +322,7 @@ export interface LROsPut201Succeeded {
   put(
     options?: LROsPut201SucceededParameters
   ): StreamableMethod<
-    LROsPut201Succeeded201Response | LROsPut201SucceededdefaultResponse
+    LROsPut201Succeeded201Response | LROsPut201SucceededDefaultResponse
   >;
 }
 
@@ -333,7 +333,7 @@ export interface LROsPost202List {
   ): StreamableMethod<
     | LROsPost202List200Response
     | LROsPost202List202Response
-    | LROsPost202ListdefaultResponse
+    | LROsPost202ListDefaultResponse
   >;
 }
 
@@ -343,7 +343,7 @@ export interface LROsPut200SucceededNoState {
     options?: LROsPut200SucceededNoStateParameters
   ): StreamableMethod<
     | LROsPut200SucceededNoState200Response
-    | LROsPut200SucceededNoStatedefaultResponse
+    | LROsPut200SucceededNoStateDefaultResponse
   >;
 }
 
@@ -352,7 +352,7 @@ export interface LROsPut202Retry200 {
   put(
     options?: LROsPut202Retry200Parameters
   ): StreamableMethod<
-    LROsPut202Retry200202Response | LROsPut202Retry200defaultResponse
+    LROsPut202Retry200202Response | LROsPut202Retry200DefaultResponse
   >;
 }
 
@@ -363,7 +363,7 @@ export interface LROsPut201CreatingSucceeded200 {
   ): StreamableMethod<
     | LROsPut201CreatingSucceeded200200Response
     | LROsPut201CreatingSucceeded200201Response
-    | LROsPut201CreatingSucceeded200defaultResponse
+    | LROsPut201CreatingSucceeded200DefaultResponse
   >;
 }
 
@@ -373,7 +373,7 @@ export interface LROsPut200UpdatingSucceeded204 {
     options?: LROsPut200UpdatingSucceeded204Parameters
   ): StreamableMethod<
     | LROsPut200UpdatingSucceeded204200Response
-    | LROsPut200UpdatingSucceeded204defaultResponse
+    | LROsPut200UpdatingSucceeded204DefaultResponse
   >;
 }
 
@@ -384,7 +384,7 @@ export interface LROsPut201CreatingFailed200 {
   ): StreamableMethod<
     | LROsPut201CreatingFailed200200Response
     | LROsPut201CreatingFailed200201Response
-    | LROsPut201CreatingFailed200defaultResponse
+    | LROsPut201CreatingFailed200DefaultResponse
   >;
 }
 
@@ -394,7 +394,7 @@ export interface LROsPut200Acceptedcanceled200 {
     options?: LROsPut200Acceptedcanceled200Parameters
   ): StreamableMethod<
     | LROsPut200Acceptedcanceled200200Response
-    | LROsPut200Acceptedcanceled200defaultResponse
+    | LROsPut200Acceptedcanceled200DefaultResponse
   >;
 }
 
@@ -403,7 +403,7 @@ export interface LROsPutNoHeaderInRetry {
   put(
     options?: LROsPutNoHeaderInRetryParameters
   ): StreamableMethod<
-    LROsPutNoHeaderInRetry202Response | LROsPutNoHeaderInRetrydefaultResponse
+    LROsPutNoHeaderInRetry202Response | LROsPutNoHeaderInRetryDefaultResponse
   >;
 }
 
@@ -413,7 +413,7 @@ export interface LROsPutAsyncRetrySucceeded {
     options?: LROsPutAsyncRetrySucceededParameters
   ): StreamableMethod<
     | LROsPutAsyncRetrySucceeded200Response
-    | LROsPutAsyncRetrySucceededdefaultResponse
+    | LROsPutAsyncRetrySucceededDefaultResponse
   >;
 }
 
@@ -423,7 +423,7 @@ export interface LROsPutAsyncNoRetrySucceeded {
     options?: LROsPutAsyncNoRetrySucceededParameters
   ): StreamableMethod<
     | LROsPutAsyncNoRetrySucceeded200Response
-    | LROsPutAsyncNoRetrySucceededdefaultResponse
+    | LROsPutAsyncNoRetrySucceededDefaultResponse
   >;
 }
 
@@ -432,7 +432,7 @@ export interface LROsPutAsyncRetryFailed {
   put(
     options?: LROsPutAsyncRetryFailedParameters
   ): StreamableMethod<
-    LROsPutAsyncRetryFailed200Response | LROsPutAsyncRetryFaileddefaultResponse
+    LROsPutAsyncRetryFailed200Response | LROsPutAsyncRetryFailedDefaultResponse
   >;
 }
 
@@ -442,7 +442,7 @@ export interface LROsPutAsyncNoRetrycanceled {
     options?: LROsPutAsyncNoRetrycanceledParameters
   ): StreamableMethod<
     | LROsPutAsyncNoRetrycanceled200Response
-    | LROsPutAsyncNoRetrycanceleddefaultResponse
+    | LROsPutAsyncNoRetrycanceledDefaultResponse
   >;
 }
 
@@ -452,7 +452,7 @@ export interface LROsPutAsyncNoHeaderInRetry {
     options?: LROsPutAsyncNoHeaderInRetryParameters
   ): StreamableMethod<
     | LROsPutAsyncNoHeaderInRetry201Response
-    | LROsPutAsyncNoHeaderInRetrydefaultResponse
+    | LROsPutAsyncNoHeaderInRetryDefaultResponse
   >;
 }
 
@@ -461,7 +461,7 @@ export interface LROsPutNonResource {
   put(
     options?: LROsPutNonResourceParameters
   ): StreamableMethod<
-    LROsPutNonResource202Response | LROsPutNonResourcedefaultResponse
+    LROsPutNonResource202Response | LROsPutNonResourceDefaultResponse
   >;
 }
 
@@ -470,7 +470,7 @@ export interface LROsPutAsyncNonResource {
   put(
     options?: LROsPutAsyncNonResourceParameters
   ): StreamableMethod<
-    LROsPutAsyncNonResource202Response | LROsPutAsyncNonResourcedefaultResponse
+    LROsPutAsyncNonResource202Response | LROsPutAsyncNonResourceDefaultResponse
   >;
 }
 
@@ -479,7 +479,7 @@ export interface LROsPutSubResource {
   put(
     options?: LROsPutSubResourceParameters
   ): StreamableMethod<
-    LROsPutSubResource202Response | LROsPutSubResourcedefaultResponse
+    LROsPutSubResource202Response | LROsPutSubResourceDefaultResponse
   >;
 }
 
@@ -488,7 +488,7 @@ export interface LROsPutAsyncSubResource {
   put(
     options?: LROsPutAsyncSubResourceParameters
   ): StreamableMethod<
-    LROsPutAsyncSubResource202Response | LROsPutAsyncSubResourcedefaultResponse
+    LROsPutAsyncSubResource202Response | LROsPutAsyncSubResourceDefaultResponse
   >;
 }
 
@@ -499,7 +499,7 @@ export interface LROsDeleteProvisioning202Accepted200Succeeded {
   ): StreamableMethod<
     | LROsDeleteProvisioning202Accepted200Succeeded200Response
     | LROsDeleteProvisioning202Accepted200Succeeded202Response
-    | LROsDeleteProvisioning202Accepted200SucceededdefaultResponse
+    | LROsDeleteProvisioning202Accepted200SucceededDefaultResponse
   >;
 }
 
@@ -510,7 +510,7 @@ export interface LROsDeleteProvisioning202DeletingFailed200 {
   ): StreamableMethod<
     | LROsDeleteProvisioning202DeletingFailed200200Response
     | LROsDeleteProvisioning202DeletingFailed200202Response
-    | LROsDeleteProvisioning202DeletingFailed200defaultResponse
+    | LROsDeleteProvisioning202DeletingFailed200DefaultResponse
   >;
 }
 
@@ -521,7 +521,7 @@ export interface LROsDeleteProvisioning202Deletingcanceled200 {
   ): StreamableMethod<
     | LROsDeleteProvisioning202Deletingcanceled200200Response
     | LROsDeleteProvisioning202Deletingcanceled200202Response
-    | LROsDeleteProvisioning202Deletingcanceled200defaultResponse
+    | LROsDeleteProvisioning202Deletingcanceled200DefaultResponse
   >;
 }
 
@@ -530,7 +530,7 @@ export interface LROsDelete204Succeeded {
   delete(
     options?: LROsDelete204SucceededParameters
   ): StreamableMethod<
-    LROsDelete204Succeeded204Response | LROsDelete204SucceededdefaultResponse
+    LROsDelete204Succeeded204Response | LROsDelete204SucceededDefaultResponse
   >;
 }
 
@@ -541,7 +541,7 @@ export interface LROsDelete202Retry200 {
   ): StreamableMethod<
     | LROsDelete202Retry200200Response
     | LROsDelete202Retry200202Response
-    | LROsDelete202Retry200defaultResponse
+    | LROsDelete202Retry200DefaultResponse
   >;
 }
 
@@ -552,7 +552,7 @@ export interface LROsDelete202NoRetry204 {
   ): StreamableMethod<
     | LROsDelete202NoRetry204200Response
     | LROsDelete202NoRetry204202Response
-    | LROsDelete202NoRetry204defaultResponse
+    | LROsDelete202NoRetry204DefaultResponse
   >;
 }
 
@@ -563,7 +563,7 @@ export interface LROsDeleteNoHeaderInRetry {
   ): StreamableMethod<
     | LROsDeleteNoHeaderInRetry202Response
     | LROsDeleteNoHeaderInRetry204Response
-    | LROsDeleteNoHeaderInRetrydefaultResponse
+    | LROsDeleteNoHeaderInRetryDefaultResponse
   >;
 }
 
@@ -574,7 +574,7 @@ export interface LROsDeleteAsyncNoHeaderInRetry {
   ): StreamableMethod<
     | LROsDeleteAsyncNoHeaderInRetry202Response
     | LROsDeleteAsyncNoHeaderInRetry204Response
-    | LROsDeleteAsyncNoHeaderInRetrydefaultResponse
+    | LROsDeleteAsyncNoHeaderInRetryDefaultResponse
   >;
 }
 
@@ -584,7 +584,7 @@ export interface LROsDeleteAsyncRetrySucceeded {
     options?: LROsDeleteAsyncRetrySucceededParameters
   ): StreamableMethod<
     | LROsDeleteAsyncRetrySucceeded202Response
-    | LROsDeleteAsyncRetrySucceededdefaultResponse
+    | LROsDeleteAsyncRetrySucceededDefaultResponse
   >;
 }
 
@@ -594,7 +594,7 @@ export interface LROsDeleteAsyncNoRetrySucceeded {
     options?: LROsDeleteAsyncNoRetrySucceededParameters
   ): StreamableMethod<
     | LROsDeleteAsyncNoRetrySucceeded202Response
-    | LROsDeleteAsyncNoRetrySucceededdefaultResponse
+    | LROsDeleteAsyncNoRetrySucceededDefaultResponse
   >;
 }
 
@@ -604,7 +604,7 @@ export interface LROsDeleteAsyncRetryFailed {
     options?: LROsDeleteAsyncRetryFailedParameters
   ): StreamableMethod<
     | LROsDeleteAsyncRetryFailed202Response
-    | LROsDeleteAsyncRetryFaileddefaultResponse
+    | LROsDeleteAsyncRetryFailedDefaultResponse
   >;
 }
 
@@ -614,7 +614,7 @@ export interface LROsDeleteAsyncRetrycanceled {
     options?: LROsDeleteAsyncRetrycanceledParameters
   ): StreamableMethod<
     | LROsDeleteAsyncRetrycanceled202Response
-    | LROsDeleteAsyncRetrycanceleddefaultResponse
+    | LROsDeleteAsyncRetrycanceledDefaultResponse
   >;
 }
 
@@ -625,7 +625,7 @@ export interface LROsPost200WithPayload {
   ): StreamableMethod<
     | LROsPost200WithPayload200Response
     | LROsPost200WithPayload202Response
-    | LROsPost200WithPayloaddefaultResponse
+    | LROsPost200WithPayloadDefaultResponse
   >;
 }
 
@@ -634,7 +634,7 @@ export interface LROsPost202Retry200 {
   post(
     options?: LROsPost202Retry200Parameters
   ): StreamableMethod<
-    LROsPost202Retry200202Response | LROsPost202Retry200defaultResponse
+    LROsPost202Retry200202Response | LROsPost202Retry200DefaultResponse
   >;
 }
 
@@ -643,7 +643,7 @@ export interface LROsPost202NoRetry204 {
   post(
     options?: LROsPost202NoRetry204Parameters
   ): StreamableMethod<
-    LROsPost202NoRetry204202Response | LROsPost202NoRetry204defaultResponse
+    LROsPost202NoRetry204202Response | LROsPost202NoRetry204DefaultResponse
   >;
 }
 
@@ -653,7 +653,7 @@ export interface LROsPostDoubleHeadersFinalLocationGet {
     options?: LROsPostDoubleHeadersFinalLocationGetParameters
   ): StreamableMethod<
     | LROsPostDoubleHeadersFinalLocationGet202Response
-    | LROsPostDoubleHeadersFinalLocationGetdefaultResponse
+    | LROsPostDoubleHeadersFinalLocationGetDefaultResponse
   >;
 }
 
@@ -663,7 +663,7 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGet {
     options?: LROsPostDoubleHeadersFinalAzureHeaderGetParameters
   ): StreamableMethod<
     | LROsPostDoubleHeadersFinalAzureHeaderGet202Response
-    | LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
   >;
 }
 
@@ -673,7 +673,7 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefault {
     options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultParameters
   ): StreamableMethod<
     | LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response
-    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse
   >;
 }
 
@@ -684,7 +684,7 @@ export interface LROsPostAsyncRetrySucceeded {
   ): StreamableMethod<
     | LROsPostAsyncRetrySucceeded200Response
     | LROsPostAsyncRetrySucceeded202Response
-    | LROsPostAsyncRetrySucceededdefaultResponse
+    | LROsPostAsyncRetrySucceededDefaultResponse
   >;
 }
 
@@ -695,7 +695,7 @@ export interface LROsPostAsyncNoRetrySucceeded {
   ): StreamableMethod<
     | LROsPostAsyncNoRetrySucceeded200Response
     | LROsPostAsyncNoRetrySucceeded202Response
-    | LROsPostAsyncNoRetrySucceededdefaultResponse
+    | LROsPostAsyncNoRetrySucceededDefaultResponse
   >;
 }
 
@@ -705,7 +705,7 @@ export interface LROsPostAsyncRetryFailed {
     options?: LROsPostAsyncRetryFailedParameters
   ): StreamableMethod<
     | LROsPostAsyncRetryFailed202Response
-    | LROsPostAsyncRetryFaileddefaultResponse
+    | LROsPostAsyncRetryFailedDefaultResponse
   >;
 }
 
@@ -715,7 +715,7 @@ export interface LROsPostAsyncRetrycanceled {
     options?: LROsPostAsyncRetrycanceledParameters
   ): StreamableMethod<
     | LROsPostAsyncRetrycanceled202Response
-    | LROsPostAsyncRetrycanceleddefaultResponse
+    | LROsPostAsyncRetrycanceledDefaultResponse
   >;
 }
 
@@ -726,7 +726,7 @@ export interface LRORetrysPut201CreatingSucceeded200 {
   ): StreamableMethod<
     | LRORetrysPut201CreatingSucceeded200200Response
     | LRORetrysPut201CreatingSucceeded200201Response
-    | LRORetrysPut201CreatingSucceeded200defaultResponse
+    | LRORetrysPut201CreatingSucceeded200DefaultResponse
   >;
 }
 
@@ -736,7 +736,7 @@ export interface LRORetrysPutAsyncRelativeRetrySucceeded {
     options?: LRORetrysPutAsyncRelativeRetrySucceededParameters
   ): StreamableMethod<
     | LRORetrysPutAsyncRelativeRetrySucceeded200Response
-    | LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse
   >;
 }
 
@@ -747,7 +747,7 @@ export interface LRORetrysDeleteProvisioning202Accepted200Succeeded {
   ): StreamableMethod<
     | LRORetrysDeleteProvisioning202Accepted200Succeeded200Response
     | LRORetrysDeleteProvisioning202Accepted200Succeeded202Response
-    | LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse
+    | LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse
   >;
 }
 
@@ -757,7 +757,7 @@ export interface LRORetrysDelete202Retry200 {
     options?: LRORetrysDelete202Retry200Parameters
   ): StreamableMethod<
     | LRORetrysDelete202Retry200202Response
-    | LRORetrysDelete202Retry200defaultResponse
+    | LRORetrysDelete202Retry200DefaultResponse
   >;
 }
 
@@ -767,7 +767,7 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceeded {
     options?: LRORetrysDeleteAsyncRelativeRetrySucceededParameters
   ): StreamableMethod<
     | LRORetrysDeleteAsyncRelativeRetrySucceeded202Response
-    | LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse
   >;
 }
 
@@ -777,7 +777,7 @@ export interface LRORetrysPost202Retry200 {
     options?: LRORetrysPost202Retry200Parameters
   ): StreamableMethod<
     | LRORetrysPost202Retry200202Response
-    | LRORetrysPost202Retry200defaultResponse
+    | LRORetrysPost202Retry200DefaultResponse
   >;
 }
 
@@ -787,7 +787,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceeded {
     options?: LRORetrysPostAsyncRelativeRetrySucceededParameters
   ): StreamableMethod<
     | LRORetrysPostAsyncRelativeRetrySucceeded202Response
-    | LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse
   >;
 }
 
@@ -798,7 +798,7 @@ export interface LrosaDsPutNonRetry400 {
   ): StreamableMethod<
     | LrosaDsPutNonRetry400200Response
     | LrosaDsPutNonRetry400201Response
-    | LrosaDsPutNonRetry400defaultResponse
+    | LrosaDsPutNonRetry400DefaultResponse
   >;
 }
 
@@ -809,7 +809,7 @@ export interface LrosaDsPutNonRetry201Creating400 {
   ): StreamableMethod<
     | LrosaDsPutNonRetry201Creating400200Response
     | LrosaDsPutNonRetry201Creating400201Response
-    | LrosaDsPutNonRetry201Creating400defaultResponse
+    | LrosaDsPutNonRetry201Creating400DefaultResponse
   >;
 }
 
@@ -820,7 +820,7 @@ export interface LrosaDsPutNonRetry201Creating400InvalidJson {
   ): StreamableMethod<
     | LrosaDsPutNonRetry201Creating400InvalidJson200Response
     | LrosaDsPutNonRetry201Creating400InvalidJson201Response
-    | LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse
+    | LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse
   >;
 }
 
@@ -830,7 +830,7 @@ export interface LrosaDsPutAsyncRelativeRetry400 {
     options?: LrosaDsPutAsyncRelativeRetry400Parameters
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetry400200Response
-    | LrosaDsPutAsyncRelativeRetry400defaultResponse
+    | LrosaDsPutAsyncRelativeRetry400DefaultResponse
   >;
 }
 
@@ -840,7 +840,7 @@ export interface LrosaDsDeleteNonRetry400 {
     options?: LrosaDsDeleteNonRetry400Parameters
   ): StreamableMethod<
     | LrosaDsDeleteNonRetry400202Response
-    | LrosaDsDeleteNonRetry400defaultResponse
+    | LrosaDsDeleteNonRetry400DefaultResponse
   >;
 }
 
@@ -850,7 +850,7 @@ export interface LrosaDsDelete202NonRetry400 {
     options?: LrosaDsDelete202NonRetry400Parameters
   ): StreamableMethod<
     | LrosaDsDelete202NonRetry400202Response
-    | LrosaDsDelete202NonRetry400defaultResponse
+    | LrosaDsDelete202NonRetry400DefaultResponse
   >;
 }
 
@@ -860,7 +860,7 @@ export interface LrosaDsDeleteAsyncRelativeRetry400 {
     options?: LrosaDsDeleteAsyncRelativeRetry400Parameters
   ): StreamableMethod<
     | LrosaDsDeleteAsyncRelativeRetry400202Response
-    | LrosaDsDeleteAsyncRelativeRetry400defaultResponse
+    | LrosaDsDeleteAsyncRelativeRetry400DefaultResponse
   >;
 }
 
@@ -869,7 +869,7 @@ export interface LrosaDsPostNonRetry400 {
   post(
     options?: LrosaDsPostNonRetry400Parameters
   ): StreamableMethod<
-    LrosaDsPostNonRetry400202Response | LrosaDsPostNonRetry400defaultResponse
+    LrosaDsPostNonRetry400202Response | LrosaDsPostNonRetry400DefaultResponse
   >;
 }
 
@@ -879,7 +879,7 @@ export interface LrosaDsPost202NonRetry400 {
     options?: LrosaDsPost202NonRetry400Parameters
   ): StreamableMethod<
     | LrosaDsPost202NonRetry400202Response
-    | LrosaDsPost202NonRetry400defaultResponse
+    | LrosaDsPost202NonRetry400DefaultResponse
   >;
 }
 
@@ -889,7 +889,7 @@ export interface LrosaDsPostAsyncRelativeRetry400 {
     options?: LrosaDsPostAsyncRelativeRetry400Parameters
   ): StreamableMethod<
     | LrosaDsPostAsyncRelativeRetry400202Response
-    | LrosaDsPostAsyncRelativeRetry400defaultResponse
+    | LrosaDsPostAsyncRelativeRetry400DefaultResponse
   >;
 }
 
@@ -900,7 +900,7 @@ export interface LrosaDsPutError201NoProvisioningStatePayload {
   ): StreamableMethod<
     | LrosaDsPutError201NoProvisioningStatePayload200Response
     | LrosaDsPutError201NoProvisioningStatePayload201Response
-    | LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse
+    | LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse
   >;
 }
 
@@ -910,7 +910,7 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatus {
     options?: LrosaDsPutAsyncRelativeRetryNoStatusParameters
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetryNoStatus200Response
-    | LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse
   >;
 }
 
@@ -920,7 +920,7 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusPayload {
     options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadParameters
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response
-    | LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse
+    | LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse
   >;
 }
 
@@ -930,7 +930,7 @@ export interface LrosaDsDelete204Succeeded {
     options?: LrosaDsDelete204SucceededParameters
   ): StreamableMethod<
     | LrosaDsDelete204Succeeded204Response
-    | LrosaDsDelete204SucceededdefaultResponse
+    | LrosaDsDelete204SucceededDefaultResponse
   >;
 }
 
@@ -940,7 +940,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryNoStatus {
     options?: LrosaDsDeleteAsyncRelativeRetryNoStatusParameters
   ): StreamableMethod<
     | LrosaDsDeleteAsyncRelativeRetryNoStatus202Response
-    | LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse
   >;
 }
 
@@ -950,7 +950,7 @@ export interface LrosaDsPost202NoLocation {
     options?: LrosaDsPost202NoLocationParameters
   ): StreamableMethod<
     | LrosaDsPost202NoLocation202Response
-    | LrosaDsPost202NoLocationdefaultResponse
+    | LrosaDsPost202NoLocationDefaultResponse
   >;
 }
 
@@ -960,7 +960,7 @@ export interface LrosaDsPostAsyncRelativeRetryNoPayload {
     options?: LrosaDsPostAsyncRelativeRetryNoPayloadParameters
   ): StreamableMethod<
     | LrosaDsPostAsyncRelativeRetryNoPayload202Response
-    | LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse
+    | LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse
   >;
 }
 
@@ -971,7 +971,7 @@ export interface LrosaDsPut200InvalidJson {
   ): StreamableMethod<
     | LrosaDsPut200InvalidJson200Response
     | LrosaDsPut200InvalidJson204Response
-    | LrosaDsPut200InvalidJsondefaultResponse
+    | LrosaDsPut200InvalidJsonDefaultResponse
   >;
 }
 
@@ -981,7 +981,7 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidHeader {
     options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderParameters
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetryInvalidHeader200Response
-    | LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse
   >;
 }
 
@@ -991,7 +991,7 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPolling {
     options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingParameters
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response
-    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse
   >;
 }
 
@@ -1001,7 +1001,7 @@ export interface LrosaDsDelete202RetryInvalidHeader {
     options?: LrosaDsDelete202RetryInvalidHeaderParameters
   ): StreamableMethod<
     | LrosaDsDelete202RetryInvalidHeader202Response
-    | LrosaDsDelete202RetryInvalidHeaderdefaultResponse
+    | LrosaDsDelete202RetryInvalidHeaderDefaultResponse
   >;
 }
 
@@ -1011,7 +1011,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader {
     options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderParameters
   ): StreamableMethod<
     | LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse
   >;
 }
 
@@ -1021,7 +1021,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling {
     options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingParameters
   ): StreamableMethod<
     | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse
   >;
 }
 
@@ -1031,7 +1031,7 @@ export interface LrosaDsPost202RetryInvalidHeader {
     options?: LrosaDsPost202RetryInvalidHeaderParameters
   ): StreamableMethod<
     | LrosaDsPost202RetryInvalidHeader202Response
-    | LrosaDsPost202RetryInvalidHeaderdefaultResponse
+    | LrosaDsPost202RetryInvalidHeaderDefaultResponse
   >;
 }
 
@@ -1041,7 +1041,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidHeader {
     options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderParameters
   ): StreamableMethod<
     | LrosaDsPostAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse
   >;
 }
 
@@ -1051,7 +1051,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling {
     options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingParameters
   ): StreamableMethod<
     | LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse
   >;
 }
 
@@ -1061,7 +1061,7 @@ export interface LROsCustomHeaderPutAsyncRetrySucceeded {
     options?: LROsCustomHeaderPutAsyncRetrySucceededParameters
   ): StreamableMethod<
     | LROsCustomHeaderPutAsyncRetrySucceeded200Response
-    | LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse
+    | LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse
   >;
 }
 
@@ -1072,7 +1072,7 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200 {
   ): StreamableMethod<
     | LROsCustomHeaderPut201CreatingSucceeded200200Response
     | LROsCustomHeaderPut201CreatingSucceeded200201Response
-    | LROsCustomHeaderPut201CreatingSucceeded200defaultResponse
+    | LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse
   >;
 }
 
@@ -1082,7 +1082,7 @@ export interface LROsCustomHeaderPost202Retry200 {
     options?: LROsCustomHeaderPost202Retry200Parameters
   ): StreamableMethod<
     | LROsCustomHeaderPost202Retry200202Response
-    | LROsCustomHeaderPost202Retry200defaultResponse
+    | LROsCustomHeaderPost202Retry200DefaultResponse
   >;
 }
 
@@ -1092,7 +1092,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceeded {
     options?: LROsCustomHeaderPostAsyncRetrySucceededParameters
   ): StreamableMethod<
     | LROsCustomHeaderPostAsyncRetrySucceeded202Response
-    | LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
+    | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
   >;
 }
 
