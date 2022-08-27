@@ -48,10 +48,14 @@ import {
 
 export function getSchemaForType(
   program: Program,
-  type: Type,
+  typeInput: Type,
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
+  const type = getEffectiveModelType(typeInput);
+  if ((type as ModelType).name === 'CustomPage') {
+    type;
+  }
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -74,7 +78,25 @@ export function getSchemaForType(
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   }
-
+  function getEffectiveModelType(type: Type) {
+    if (type.kind === "Model") {
+      const effective = program.checker.getEffectiveModelType(
+        type,
+        isSchemaProperty
+      );
+      if (effective.name) {
+        return effective;
+      }
+    }
+    function isSchemaProperty(property: ModelTypeProperty) {
+      const headerInfo = getHeaderFieldName(program, property);
+      const queryInfo = getQueryParamName(program, property);
+      const pathInfo = getPathParamName(program, property);
+      const statusCodeInfo = isStatusCode(program, property);
+      return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+    }
+    return type;
+  }
   reportDiagnostic(program, {
     code: "invalid-schema",
     format: { type: type.kind },
@@ -329,9 +351,6 @@ function getSchemaForModel(
     description: getDoc(program, model) ?? ""
   };
   // normalized the output name
-  if (modelSchema.name === 'CustomPage') {
-    modelSchema;
-  }
   modelSchema.name = normalizeName(
     modelSchema.name,
     NameType.Interface,
@@ -469,7 +488,6 @@ function getSchemaForModel(
       immediate: [getSchemaForType(program, model.baseModel, usage, true)]
     };
   }
-
   return modelSchema;
 }
 // Map an Cadl type to an OA schema. Returns undefined when the resulting

@@ -1,10 +1,13 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
-  ResourceOkResponseOutput,
-  ResourceCreatedResponseOutput,
+  ProjectOutput,
   ErrorResponseOutput,
-  AcceptedResponseOutput,
+  OperationStatusOutput,
+  CustomPageOutput,
+  DeploymentOutput,
+  DeploymentJobOutput,
+  SwapDeploymentsJobOutput,
   PagedSupportedLanguageOutput,
   PagedTrainingConfigVersionOutput,
 } from "./outputModels";
@@ -16,7 +19,7 @@ export interface ProjectsCreateOrUpdate200Headers {
 /** The request has succeeded. */
 export interface ProjectsCreateOrUpdate200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: ProjectOutput;
   headers: RawHttpHeaders & ProjectsCreateOrUpdate200Headers;
 }
 
@@ -27,7 +30,7 @@ export interface ProjectsCreateOrUpdate201Headers {
 /** The request has succeeded and a new resource has been created as a result. */
 export interface ProjectsCreateOrUpdate201Response extends HttpResponse {
   status: "201";
-  body: ResourceCreatedResponseOutput;
+  body: ProjectOutput;
   headers: RawHttpHeaders & ProjectsCreateOrUpdate201Headers;
 }
 
@@ -39,7 +42,7 @@ export interface ProjectsCreateOrUpdateDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ProjectsGet200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: ProjectOutput;
 }
 
 export interface ProjectsGetDefaultResponse extends HttpResponse {
@@ -54,7 +57,7 @@ export interface ProjectsDelete202Headers {
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface ProjectsDelete202Response extends HttpResponse {
   status: "202";
-  body: AcceptedResponseOutput;
+  body: OperationStatusOutput;
   headers: RawHttpHeaders & ProjectsDelete202Headers;
 }
 
@@ -66,7 +69,7 @@ export interface ProjectsDeleteDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ProjectsList200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: CustomPageOutput;
 }
 
 export interface ProjectsListDefaultResponse extends HttpResponse {
@@ -122,7 +125,7 @@ export interface ProjectsTrainDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface DeploymentsGetDeployment200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: DeploymentOutput;
 }
 
 export interface DeploymentsGetDeploymentDefaultResponse extends HttpResponse {
@@ -137,7 +140,7 @@ export interface DeploymentsDeployProject200Headers {
 /** The request has succeeded. */
 export interface DeploymentsDeployProject200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: DeploymentOutput;
   headers: RawHttpHeaders & DeploymentsDeployProject200Headers;
 }
 
@@ -148,7 +151,7 @@ export interface DeploymentsDeployProject201Headers {
 /** The request has succeeded and a new resource has been created as a result. */
 export interface DeploymentsDeployProject201Response extends HttpResponse {
   status: "201";
-  body: ResourceCreatedResponseOutput;
+  body: DeploymentOutput;
   headers: RawHttpHeaders & DeploymentsDeployProject201Headers;
 }
 
@@ -164,7 +167,7 @@ export interface DeploymentsDeleteDeployment202Headers {
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface DeploymentsDeleteDeployment202Response extends HttpResponse {
   status: "202";
-  body: AcceptedResponseOutput;
+  body: OperationStatusOutput;
   headers: RawHttpHeaders & DeploymentsDeleteDeployment202Headers;
 }
 
@@ -177,7 +180,7 @@ export interface DeploymentsDeleteDeploymentDefaultResponse
 /** The request has succeeded. */
 export interface DeploymentsList200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: CustomPageOutput;
 }
 
 export interface DeploymentsListDefaultResponse extends HttpResponse {
@@ -204,7 +207,7 @@ export interface DeploymentsSwapDeploymentsDefaultResponse
 /** The request has succeeded. */
 export interface JobsGetDeploymentStatus200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: DeploymentJobOutput;
 }
 
 export interface JobsGetDeploymentStatusDefaultResponse extends HttpResponse {
@@ -215,7 +218,7 @@ export interface JobsGetDeploymentStatusDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface JobsGetSwapDeploymentsStatus200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: SwapDeploymentsJobOutput;
 }
 
 export interface JobsGetSwapDeploymentsStatusDefaultResponse

@@ -2,19 +2,9 @@
 // Licensed under the MIT License.
 
 import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
-import {
-  ModelType,
-  ModelTypeProperty,
-  Program,
-  Type
-} from "@cadl-lang/compiler";
-import {
-  getAllRoutes,
-  getHeaderFieldName,
-  getPathParamName,
-  getQueryParamName,
-  isStatusCode
-} from "@cadl-lang/rest/http";
+import { ModelType, Program, Type } from "@cadl-lang/compiler";
+import { getAllRoutes } from "@cadl-lang/rest/http";
+import { getPagedResult, PagedResultMetadata } from "@azure-tools/cadl-azure-core";
 import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
 
 export function transformSchemas(program: Program) {
@@ -30,12 +20,16 @@ export function transformSchemas(program: Program) {
     }
     for (const resp of route.responses) {
       for (const resps of resp.responses) {
+       
         const respModel = resps.body;
         if (!respModel) {
           continue;
         }
-        const type = getEffectiveModelType(respModel?.type);
-        getGeneratedModels(type, SchemaContext.Output);
+        const paged = getPagedMetadataNested(program, respModel.type as ModelType);
+        if (paged) {
+          paged;
+        }
+        getGeneratedModels(respModel.type, SchemaContext.Output);
       }
     }
   }
@@ -89,24 +83,35 @@ export function transformSchemas(program: Program) {
       }
     }
   }
-  function isSchemaProperty(property: ModelTypeProperty) {
-    const headerInfo = getHeaderFieldName(program, property);
-    const queryInfo = getQueryParamName(program, property);
-    const pathInfo = getPathParamName(program, property);
-    const statusCodeInfo = isStatusCode(program, property);
-    return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
-  }
-  function getEffectiveModelType(type: Type) {
-    if (type.kind === "Model") {
-      const effective = program.checker.getEffectiveModelType(
-        type,
-        isSchemaProperty
-      );
-      if (effective.name) {
-        return effective;
+  function getPagedMetadataNested(
+    program: Program,
+    type: ModelType
+  ): PagedResultMetadata | undefined {
+    // This only works for `is Page<T>` not `extends Page<T>`.
+    let paged = getPagedResult(program, type);
+    if (paged) {
+      return paged;
+    }
+    if (type.baseModel) {
+      paged = getPagedResult(program, type.baseModel);
+    }
+    if (paged) {
+      return paged;
+    }
+    const templateArguments = type.templateArguments;
+    if (templateArguments) {
+      for (const argument of templateArguments) {
+        const modelArgument = argument as ModelType;
+        if (modelArgument) {
+          paged = getPagedMetadataNested(program, modelArgument);
+          if (paged) {
+            return paged;
+          }
+        }
       }
     }
-    return type;
+    return paged;
   }
   return schemas;
 }
+
