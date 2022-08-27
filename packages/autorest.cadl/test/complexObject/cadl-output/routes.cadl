@@ -1,9 +1,8 @@
+import "@azure-tools/cadl-azure-core";
 import "@cadl-lang/rest";
-
 import "./models.cadl";
 
 using Cadl.Rest;
-
 using Cadl.Http;
 
 namespace ComplexModelClient;
@@ -18,59 +17,49 @@ each product, and lists the products in the proper display order.
 """)
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @get
-  list(
+  list is Azure.Core.Operation<{
     @doc("Subscription ID.")
     @path
-    subscriptionId: "123456",
+    subscriptionId: "123456";
 
     @doc("Resource Group ID.")
     @path
-    resourceGroupName: string,
+    resourceGroupName: string;
+  }, Error | CatalogArray>;
 
-    @doc("Api Version")
-    @query
-    "api-version": "2014-04-01-preview"
-  ): Error | CatalogArray;
   @summary("Create products")
   @doc("Resets products.")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @post
-  create(
+  create is Azure.Core.Operation<{
     @doc("Subscription ID.")
     @path
-    subscriptionId: string,
+    subscriptionId: string;
 
     @doc("Resource Group ID.")
     @path
-    resourceGroupName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2014-04-01-preview",
+    resourceGroupName: string;
 
     @doc("body Parameter")
     @body
-    bodyParameter: CatalogDictionaryOfArray
-  ): Error | CatalogDictionary;
+    bodyParameter: CatalogDictionaryOfArray;
+  }, Error | CatalogDictionary>;
+
   @summary("Update products")
   @doc("Resets products.")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @put
-  update(
+  update is Azure.Core.Operation<{
     @doc("Subscription ID.")
     @path
-    subscriptionId: string,
+    subscriptionId: string;
 
     @doc("Resource Group ID.")
     @path
-    resourceGroupName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2014-04-01-preview",
+    resourceGroupName: string;
 
     @doc("body Parameter")
     @body
-    bodyParameter: CatalogArrayOfDictionary
-  ): Error | CatalogArray;
+    bodyParameter: CatalogArrayOfDictionary;
+  }, Error | CatalogArray>;
 }

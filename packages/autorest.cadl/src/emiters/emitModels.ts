@@ -3,7 +3,7 @@ import { generateEnums } from "../generate/generateEnums";
 import { generateObject } from "../generate/generateObject";
 import { writeFile } from "fs/promises";
 import { getModelsImports } from "../utils/imports";
-import { formatFile } from "../utils/format";
+import { formatCadlFile } from "../utils/format";
 import { getNamespace } from "../utils/namespace";
 
 export async function emitModels(
@@ -12,7 +12,7 @@ export async function emitModels(
 ): Promise<void> {
   const content = generateModels(program);
 
-  await writeFile(filePath, formatFile(content));
+  await writeFile(filePath, formatCadlFile(content, filePath));
 }
 
 function generateModels(program: CadlProgram) {

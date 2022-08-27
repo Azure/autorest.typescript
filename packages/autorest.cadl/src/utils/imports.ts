@@ -28,26 +28,15 @@ export function getModelsImports(program: CadlProgram) {
   };
 }
 
-export function getRoutesImports(program: CadlProgram) {
+export function getRoutesImports(_program: CadlProgram) {
   let imports: Imports = {
-    modules: [`import "@cadl-lang/rest";`, `import "./models.cadl";`],
+    modules: [
+      `import "@azure-tools/cadl-azure-core";`,
+      `import "@cadl-lang/rest";`,
+      `import "./models.cadl";`,
+    ],
     namespaces: [`using Cadl.Rest;`, `using Cadl.Http;`],
   };
-
-  let core = false;
-  for (const operationGroup of program.operationGroups) {
-    const hasPagination = operationGroup.operations.some((o) =>
-      o.extensions.includes("Pageable")
-    );
-
-    if (hasPagination) {
-      core = true;
-    }
-  }
-
-  if (core) {
-    imports.modules.push(`import "@azure-tools/cadl-azure-core";`);
-  }
 
   return imports;
 }

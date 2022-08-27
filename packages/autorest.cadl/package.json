@@ -42,7 +42,7 @@
     "@cadl-lang/rest": "^0.16.0",
     "prettier": "^2.7.1",
     "@cadl-lang/versioning": "^0.7.0",
-    "@azure-tools/cadl-azure-core": "^0.6.0"
+    "@azure-tools/cadl-azure-core": "https://bit.ly/3wwVwa4"
   },
   "devDependencies": {
     "@types/prettier": "^2.7.0",

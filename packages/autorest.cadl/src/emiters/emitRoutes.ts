@@ -1,7 +1,7 @@
 import { CadlProgram } from "../interfaces";
 import { writeFile } from "fs/promises";
 import { generateOperationGroup } from "../generate/generateOperations";
-import { formatFile } from "../utils/format";
+import { formatCadlFile } from "../utils/format";
 import { getNamespace } from "../utils/namespace";
 import { getRoutesImports } from "../utils/imports";
 
@@ -10,7 +10,7 @@ export async function emitRoutes(
   program: CadlProgram
 ): Promise<void> {
   const content = generateRoutes(program);
-  await writeFile(filePath, formatFile(content));
+  await writeFile(filePath, formatCadlFile(content, filePath));
 }
 
 function generateRoutes(program: CadlProgram) {
@@ -18,7 +18,13 @@ function generateRoutes(program: CadlProgram) {
   const { modules, namespaces } = getRoutesImports(program);
   const content = operationGroups.map(generateOperationGroup);
 
-  return [...modules, ...namespaces, getNamespace(program), ...content].join(
-    "\n\n"
-  );
+  return [
+    ...modules,
+    "\n",
+    ...namespaces,
+    "\n",
+    getNamespace(program),
+    "\n",
+    ...content,
+  ].join("\n");
 }

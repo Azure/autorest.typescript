@@ -1,9 +1,8 @@
+import "@azure-tools/cadl-azure-core";
 import "@cadl-lang/rest";
-
 import "./models.cadl";
 
 using Cadl.Rest;
-
 using Cadl.Http;
 
 namespace Adel;
@@ -13,125 +12,132 @@ interface AlertConfigsOperations {
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs")
   @get
-  List(
+  List is Azure.Core.Operation<{
     @doc("""
 The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
     @query
-    maxpagesize: int32,
+    maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
     @query
-    sortBy: string,
+    sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy
-  ): Error | Page_AlertConfig;
+    @query orderBy: OrderBy;
+  }, Error | Page_AlertConfig>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
   @put
-  Create(
+  Create is Azure.Core.Operation<{
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
     @path
-    alertConfigName: string,
+    alertConfigName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: AlertConfig
-  ): Error | AlertConfig;
+    @body body: AlertConfig;
+  }, Error | AlertConfig>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
   @get
-  Read(
+  Read is Azure.Core.Operation<{
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
     @path
-    alertConfigName: string
-  ): Error | AlertConfig;
+    alertConfigName: string;
+  }, Error | AlertConfig>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
   @delete
-  Delete(
+  Delete is Azure.Core.Operation<{
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
     @path
-    alertConfigName: string
-  ): Error | void;
+    alertConfigName: string;
+  }, Error | void>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
   @patch
-  Update(
+  Update is Azure.Core.Operation<{
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
     @path
-    alertConfigName: string,
+    alertConfigName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: AlertConfig
-  ): Error | AlertConfig;
+    @body body: AlertConfig;
+  }, Error | AlertConfig>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface DatasetsOperations {
   // FIXME: (missing-docs) Add documentation
   @route("/datasets")
   @get
-  List(
+  List is Azure.Core.Operation<{
     @doc("""
 The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
     @query
-    maxpagesize: int32,
+    maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
     @query
-    sortBy: string,
+    sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy
-  ): Error | Page_Dataset;
+    @query orderBy: OrderBy;
+  }, Error | Page_Dataset>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
   @put
-  Create(
+  Create is Azure.Core.Operation<{
     @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
     @path
-    datasetName: string,
+    datasetName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Dataset
-  ): Error | Dataset;
+    @body body: Request_Dataset;
+  }, Error | Dataset>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
   @get
-  Read(
+  Read is Azure.Core.Operation<{
     @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
     @path
-    datasetName: string
-  ): Error | Dataset;
+    datasetName: string;
+  }, Error | Dataset>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
   @delete
-  Delete(
+  Delete is Azure.Core.Operation<{
     @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
     @path
-    datasetName: string
-  ): Error | void;
+    datasetName: string;
+  }, Error | void>;
+
   @summary("Query data from data source to preview")
   @doc("""
 Verify data schema and preview data before/after a dataset is created. View raw
@@ -139,111 +145,113 @@ data to better diagnose and explain a detected anomaly.
 """)
   @route("/datasets/previewData")
   @post
-  PreviewData(
+  PreviewData is Azure.Core.Operation<{
     // FIXME: (missing-docs) Add documentation
-    @body body: DatasetPreviewRequest
-  ): Error | DatasetPreviewResponse;
+    @body body: DatasetPreviewRequest;
+  }, Error | DatasetPreviewResponse>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface HooksOperations {
   // FIXME: (missing-docs) Add documentation
   @route("/hooks")
   @get
-  List(
+  List is Azure.Core.Operation<{
     @doc("""
 The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
     @query
-    maxpagesize: int32,
+    maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
     @query
-    sortBy: string,
+    sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy
-  ): Error | Page_Hook;
+    @query orderBy: OrderBy;
+  }, Error | Page_Hook>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
   @put
-  Create(
+  Create is Azure.Core.Operation<{
     @doc("Unique identifier of a hook. This parameter is case-sensitive.")
     @path
-    hookName: string,
+    hookName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Hook
-  ): Error | Hook;
+    @body body: Hook;
+  }, Error | Hook>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
   @get
-  Read(
+  Read is Azure.Core.Operation<{
     @doc("Unique identifier of a hook. This parameter is case-sensitive.")
     @path
-    hookName: string
-  ): Error | Hook;
+    hookName: string;
+  }, Error | Hook>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
   @delete
-  Delete(
+  Delete is Azure.Core.Operation<{
     @doc("Unique identifier of a hook. This parameter is case-sensitive.")
     @path
-    hookName: string
-  ): Error | void;
+    hookName: string;
+  }, Error | void>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
   @patch
-  Update(
+  Update is Azure.Core.Operation<{
     @doc("Unique identifier of a hook. This parameter is case-sensitive.")
     @path
-    hookName: string,
+    hookName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Hook
-  ): Error | Hook;
+    @body body: Hook;
+  }, Error | Hook>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface ReplaysOperations {
   // FIXME: (missing-docs) Add documentation
   @route("/inference/replays")
   @get
-  List(
+  List is Azure.Core.Operation<{
     @doc("""
 The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
     @query
-    maxpagesize: int32,
+    maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
     @query
-    sortBy: string,
+    sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy,
+    @query orderBy: OrderBy;
     // FIXME: (missing-docs) Add documentation
-    @query status: ReplayStatus,
+    @query status: ReplayStatus;
 
     @doc("""
 Filter replay records by a list of inference schedule name(s). Format the list
@@ -252,7 +260,7 @@ records are ranked by descending replay created time (UTC) for each inference
 schedule.
 """)
     @query
-    scheduleName: string,
+    scheduleName: string;
 
     @doc("""
 The total number of replay records to be returned per inference schedule,
@@ -260,76 +268,78 @@ ordered by created time descending. By default, the full list of replay records
 will be returned for the inference schedule name(s) in your filter.
 """)
     @query
-    topPerSchedule: int32
-  ): Error | Page_ScheduleReplay;
+    topPerSchedule: int32;
+  }, Error | Page_ScheduleReplay>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
   @put
-  Create(
+  Create is Azure.Core.Operation<{
     @doc("""
 Unique identifier of a replay on an inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    replayName: string,
+    replayName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_ScheduleReplay
-  ): Error | ScheduleReplay;
+    @body body: Request_ScheduleReplay;
+  }, Error | ScheduleReplay>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
   @get
-  Read(
+  Read is Azure.Core.Operation<{
     @doc("""
 Unique identifier of a replay on an inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    replayName: string
-  ): Error | ScheduleReplay;
+    replayName: string;
+  }, Error | ScheduleReplay>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
   @delete
-  Delete(
+  Delete is Azure.Core.Operation<{
     @doc("""
 Unique identifier of a replay on an inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    replayName: string
-  ): Error | void;
+    replayName: string;
+  }, Error | void>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface SchedulesOperations {
   // FIXME: (missing-docs) Add documentation
   @route("/inference/schedules")
   @get
-  List(
+  List is Azure.Core.Operation<{
     @doc("""
 The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
     @query
-    maxpagesize: int32,
+    maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
     @query
-    sortBy: string,
+    sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy,
+    @query orderBy: OrderBy;
     // FIXME: (missing-docs) Add documentation
-    @query status: ScheduleStatus,
+    @query status: ScheduleStatus;
 
     @doc("""
 Filter inference schedules by a list of model name(s). Format the list as a
@@ -338,7 +348,7 @@ of inference schedules are ranked by descending inference schedule created time
 (UTC).
 """)
     @query
-    modelNames: string,
+    modelNames: string;
 
     @doc("""
 The total number of inference schedules to be returned per model, ordered by
@@ -346,57 +356,62 @@ created time descending. By default, the full list of inference schedules will
 be returned for the model name(s) in your filter.
 """)
     @query
-    topPerModel: int32
-  ): Error | Page_Schedule;
+    topPerModel: int32;
+  }, Error | Page_Schedule>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
   @put
-  Create(
+  Create is Azure.Core.Operation<{
     @doc("""
 Unique identifier of a live streaming inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    scheduleName: string,
+    scheduleName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Schedule
-  ): Error | Schedule;
+    @body body: Request_Schedule;
+  }, Error | Schedule>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
   @get
-  Read(
+  Read is Azure.Core.Operation<{
     @doc("""
 Unique identifier of a live streaming inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    scheduleName: string
-  ): Error | Schedule;
+    scheduleName: string;
+  }, Error | Schedule>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
   @delete
-  Delete(
+  Delete is Azure.Core.Operation<{
     @doc("""
 Unique identifier of a live streaming inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    scheduleName: string
-  ): Error | void;
+    scheduleName: string;
+  }, Error | void>;
+
   @summary("Update an inference schedule")
   @doc("Pause/resume or update selected properties of an inference schedule.")
   @route("/inference/schedules/{scheduleName}")
   @patch
-  Update(
+  Update is Azure.Core.Operation<{
     @doc("""
 Unique identifier of a live streaming inference schedule. This parameter is
 case-sensitive.
 """)
     @path
-    scheduleName: string,
+    scheduleName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: ScheduleUpdate
-  ): Error | Schedule;
+    @body body: ScheduleUpdate;
+  }, Error | Schedule>;
+
   @summary("Get historical detection results from the inference schedule")
   @doc("""
 Use this API to retrieve detected anomalies over a historical time period
@@ -405,47 +420,46 @@ the detailed quota and limits.
 """)
   @route("/inference/schedules/{scheduleName}/getHistory")
   @get
-  GetHistory(
+  GetHistory is Azure.Core.Operation<{
     // FIXME: (missing-docs) Add documentation
-    @path scheduleName: string,
+    @path scheduleName: string;
     // FIXME: (missing-docs) Add documentation
-    @query startTime: string,
+    @query startTime: string;
     // FIXME: (missing-docs) Add documentation
-    @query endTime: string
-  ): Error | ScheduleHistoryResult;
+    @query endTime: string;
+  }, Error | ScheduleHistoryResult>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface EvaluationsOperations {
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/evaluations")
   @get
-  List(
+  List is Azure.Core.Operation<{
     @doc("""
 The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
     @query
-    maxpagesize: int32,
+    maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
     @query
-    sortBy: string,
+    sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy,
+    @query orderBy: OrderBy;
     // FIXME: (missing-docs) Add documentation
-    @query status: EvaluationStatus,
+    @query status: EvaluationStatus;
 
     @doc("""
 Filter evaluations by a list of model name(s). Format the list as a
@@ -453,7 +467,7 @@ comma-separated string, no space allowed. For each model, by default the list
 of evaluations are ranked by descending evaluation created time (UTC).
 """)
     @query
-    modelNames: string,
+    modelNames: string;
 
     @doc("""
 The total number of evaluations to be returned per model, ordered by created
@@ -461,67 +475,69 @@ time descending. By default, the full list of evaluations will be returned for
 the model name(s) in your filter.
 """)
     @query
-    topPerModel: int32
-  ): Error | Page_Evaluation;
+    topPerModel: int32;
+  }, Error | Page_Evaluation>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
   @put
-  Create(
+  Create is Azure.Core.Operation<{
     @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
     @path
-    evaluationName: string,
+    evaluationName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Evaluation
-  ): Error | Evaluation;
+    @body body: Request_Evaluation;
+  }, Error | Evaluation>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
   @get
-  Read(
+  Read is Azure.Core.Operation<{
     @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
     @path
-    evaluationName: string
-  ): Error | Evaluation;
+    evaluationName: string;
+  }, Error | Evaluation>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
   @delete
-  Delete(
+  Delete is Azure.Core.Operation<{
     @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
     @path
-    evaluationName: string
-  ): Error | void;
+    evaluationName: string;
+  }, Error | void>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface ModelsOperations {
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/models")
   @get
-  List(
+  List is Azure.Core.Operation<{
     @doc("""
 The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
     @query
-    maxpagesize: int32,
+    maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
     @query
-    sortBy: string,
+    sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy,
+    @query orderBy: OrderBy;
     // FIXME: (missing-docs) Add documentation
-    @query status: ModelStatus,
+    @query status: ModelStatus;
 
     @doc("""
 Filter models by a list of training dataset name(s). Format the list as a
@@ -529,7 +545,7 @@ comma-separated string, no space allowed. For each dataset, by default the list
 of models are ranked by descending model created time (UTC).
 """)
     @query
-    datasetNames: string,
+    datasetNames: string;
 
     @doc("""
 The total number of models to be returned per dataset, ordered by created time
@@ -537,34 +553,38 @@ descending. By default, the full list of models will be returned for the
 dataset name(s) in your filter.
 """)
     @query
-    topPerDataset: int32
-  ): Error | Page_Model;
+    topPerDataset: int32;
+  }, Error | Page_Model>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
   @put
-  Create(
+  Create is Azure.Core.Operation<{
     @doc("Unique identifier of a model. This parameter is case-sensitive.")
     @path
-    modelName: string,
+    modelName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Model
-  ): Error | Model;
+    @body body: Request_Model;
+  }, Error | Model>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
   @get
-  Read(
+  Read is Azure.Core.Operation<{
     @doc("Unique identifier of a model. This parameter is case-sensitive.")
     @path
-    modelName: string
-  ): Error | Model;
+    modelName: string;
+  }, Error | Model>;
+
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
   @delete
-  Delete(
+  Delete is Azure.Core.Operation<{
     @doc("Unique identifier of a model. This parameter is case-sensitive.")
     @path
-    modelName: string
-  ): Error | void;
+    modelName: string;
+  }, Error | void>;
+
   @summary("Detect Multivariate Anomaly - Sync")
   @doc("""
 Detect anomalies with a trained model and multivariate time-series data points
@@ -574,10 +594,10 @@ the official documentation for the detailed quota and limits.
 """)
   @route("/multivariate/models/{modelName}/detect")
   @post
-  Detect(
+  Detect is Azure.Core.Operation<{
     // FIXME: (missing-docs) Add documentation
-    @path modelName: string,
+    @path modelName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: DetectionRequest
-  ): Error | DetectionResult;
+    @body body: DetectionRequest;
+  }, Error | DetectionResult>;
 }

@@ -1,14 +1,14 @@
 import { CadlProgram } from "../interfaces";
 import { writeFile } from "fs/promises";
 import { generateServiceInformation } from "../generate/generateServiceInformation";
-import { formatFile } from "../utils/format";
+import { formatCadlFile } from "../utils/format";
 
 export async function emitMain(
   filePath: string,
   program: CadlProgram
 ): Promise<void> {
   const content = getServiceInformation(program);
-  await writeFile(filePath, formatFile(content));
+  await writeFile(filePath, formatCadlFile(content, filePath));
 }
 
 function getServiceInformation(program: CadlProgram) {

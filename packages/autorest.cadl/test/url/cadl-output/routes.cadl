@@ -1,9 +1,8 @@
+import "@azure-tools/cadl-azure-core";
 import "@cadl-lang/rest";
-
 import "./models.cadl";
 
 using Cadl.Rest;
-
 using Cadl.Http;
 
 namespace AutoRestUrlTestService;
@@ -13,99 +12,111 @@ interface pathsOperations {
   @doc("Get true Boolean value on path")
   @route("/paths/bool/true/{boolPath}")
   @get
-  getBooleanTrue(
+  getBooleanTrue is Azure.Core.Operation<{
     @doc("true boolean value")
     @path
-    boolPath: true
-  ): Error | void;
+    boolPath: true;
+  }, Error | void>;
+
   @doc("Get false Boolean value on path")
   @route("/paths/bool/false/{boolPath}")
   @get
-  getBooleanFalse(
+  getBooleanFalse is Azure.Core.Operation<{
     @doc("false boolean value")
     @path
-    boolPath: false
-  ): Error | void;
+    boolPath: false;
+  }, Error | void>;
+
   @doc("Get '1000000' integer value")
   @route("/paths/int/1000000/{intPath}")
   @get
-  getIntOneMillion(
+  getIntOneMillion is Azure.Core.Operation<{
     @doc("'1000000' integer value")
     @path
-    intPath: 1000000
-  ): Error | void;
+    intPath: 1000000;
+  }, Error | void>;
+
   @doc("Get '-1000000' integer value")
   @route("/paths/int/-1000000/{intPath}")
   @get
-  getIntNegativeOneMillion(
+  getIntNegativeOneMillion is Azure.Core.Operation<{
     @doc("'-1000000' integer value")
     @path
-    intPath: -1000000
-  ): Error | void;
+    intPath: -1000000;
+  }, Error | void>;
+
   @doc("Get '10000000000' 64 bit integer value")
   @route("/paths/long/10000000000/{longPath}")
   @get
-  getTenBillion(
+  getTenBillion is Azure.Core.Operation<{
     @doc("'10000000000' 64 bit integer value")
     @path
-    longPath: 10000000000
-  ): Error | void;
+    longPath: 10000000000;
+  }, Error | void>;
+
   @doc("Get '-10000000000' 64 bit integer value")
   @route("/paths/long/-10000000000/{longPath}")
   @get
-  getNegativeTenBillion(
+  getNegativeTenBillion is Azure.Core.Operation<{
     @doc("'-10000000000' 64 bit integer value")
     @path
-    longPath: -10000000000
-  ): Error | void;
+    longPath: -10000000000;
+  }, Error | void>;
+
   @doc("Get '1.034E+20' numeric value")
   @route("/paths/float/1.034E+20/{floatPath}")
   @get
-  floatScientificPositive(
+  floatScientificPositive is Azure.Core.Operation<{
     @doc("'1.034E+20'numeric value")
     @path
-    floatPath: 103400000000000000000
-  ): Error | void;
+    floatPath: 103400000000000000000;
+  }, Error | void>;
+
   @doc("Get '-1.034E-20' numeric value")
   @route("/paths/float/-1.034E-20/{floatPath}")
   @get
-  floatScientificNegative(
+  floatScientificNegative is Azure.Core.Operation<{
     @doc("'-1.034E-20'numeric value")
     @path
-    floatPath: -1.034e-20
-  ): Error | void;
+    floatPath: -1.034e-20;
+  }, Error | void>;
+
   @doc("Get '9999999.999' numeric value")
   @route("/paths/double/9999999.999/{doublePath}")
   @get
-  doubleDecimalPositive(
+  doubleDecimalPositive is Azure.Core.Operation<{
     @doc("'9999999.999'numeric value")
     @path
-    doublePath: 9999999.999
-  ): Error | void;
+    doublePath: 9999999.999;
+  }, Error | void>;
+
   @doc("Get '-9999999.999' numeric value")
   @route("/paths/double/-9999999.999/{doublePath}")
   @get
-  doubleDecimalNegative(
+  doubleDecimalNegative is Azure.Core.Operation<{
     @doc("'-9999999.999'numeric value")
     @path
-    doublePath: -9999999.999
-  ): Error | void;
+    doublePath: -9999999.999;
+  }, Error | void>;
+
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
   @route("/paths/string/unicode/{stringPath}")
   @get
-  stringUnicode(
+  stringUnicode is Azure.Core.Operation<{
     @doc("'啊齄丂狛狜隣郎隣兀﨩'multi-byte string value")
     @path
-    stringPath: "啊齄丂狛狜隣郎隣兀﨩"
-  ): Error | void;
+    stringPath: "啊齄丂狛狜隣郎隣兀﨩";
+  }, Error | void>;
+
   @doc("Get 'begin!*'();:@ &=+$,/?#[]end")
   @route("/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}")
   @get
-  stringUrlEncoded(
+  stringUrlEncoded is Azure.Core.Operation<{
     @doc("'begin!*'();:@ &=+$,/?#[]end' url encoded string value")
     @path
-    stringPath: "begin!*'();:@ &=+$,/?#[]end"
-  ): Error | void;
+    stringPath: "begin!*'();:@ &=+$,/?#[]end";
+  }, Error | void>;
+
   @summary("Get 'begin!*'();:@&=+$,end")
   @doc("""
 https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not
@@ -113,448 +124,494 @@ encoded
 """)
   @route("/paths/string/begin!*'();:@&=+$,end/{stringPath}")
   @get
-  stringUrlNonEncoded(
+  stringUrlNonEncoded is Azure.Core.Operation<{
     @doc("'begin!*'();:@&=+$,end' url encoded string value")
     @path
-    stringPath: "begin!*'();:@&=+$,end"
-  ): Error | void;
+    stringPath: "begin!*'();:@&=+$,end";
+  }, Error | void>;
+
   @doc("Get ''")
   @route("/paths/string/empty/{stringPath}")
   @get
-  stringEmpty(
+  stringEmpty is Azure.Core.Operation<{
     @doc("'' string value")
     @path
-    stringPath: ""
-  ): Error | void;
+    stringPath: "";
+  }, Error | void>;
+
   @doc("Get null (should throw)")
   @route("/paths/string/null/{stringPath}")
   @get
-  stringNull(
+  stringNull is Azure.Core.Operation<{
     @doc("null string value")
     @path
-    stringPath: string
-  ): Error | void;
+    stringPath: string;
+  }, Error | void>;
+
   @doc("Get using uri with 'green color' in path parameter")
   @route("/paths/enum/green%20color/{enumPath}")
   @get
-  enumValid(
+  enumValid is Azure.Core.Operation<{
     @doc("send the value green")
     @path
-    enumPath: UriColor
-  ): Error | void;
+    enumPath: UriColor;
+  }, Error | void>;
+
   @doc("Get null (should throw on the client before the request is sent on wire)")
   @route("/paths/string/null/{enumPath}")
   @get
-  enumNull(
+  enumNull is Azure.Core.Operation<{
     @doc("send null should throw")
     @path
-    enumPath: UriColor
-  ): Error | void;
+    enumPath: UriColor;
+  }, Error | void>;
+
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
   @route("/paths/byte/multibyte/{bytePath}")
   @get
-  byteMultiByte(
+  byteMultiByte is Azure.Core.Operation<{
     @doc("'啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
     @path
-    bytePath: bytes
-  ): Error | void;
+    bytePath: bytes;
+  }, Error | void>;
+
   @doc("Get '' as byte array")
   @route("/paths/byte/empty/{bytePath}")
   @get
-  byteEmpty(
+  byteEmpty is Azure.Core.Operation<{
     @doc("'' as byte array")
     @path
-    bytePath: ""
-  ): Error | void;
+    bytePath: "";
+  }, Error | void>;
+
   @doc("Get null as byte array (should throw)")
   @route("/paths/byte/null/{bytePath}")
   @get
-  byteNull(
+  byteNull is Azure.Core.Operation<{
     @doc("null as byte array (should throw)")
     @path
-    bytePath: bytes
-  ): Error | void;
+    bytePath: bytes;
+  }, Error | void>;
+
   @doc("Get '2012-01-01' as date")
   @route("/paths/date/2012-01-01/{datePath}")
   @get
-  DateValid(
+  DateValid is Azure.Core.Operation<{
     @doc("'2012-01-01' as date")
     @path
-    datePath: "2012-01-01"
-  ): Error | void;
+    datePath: "2012-01-01";
+  }, Error | void>;
+
   @doc("""
 Get null as date - this should throw or be unusable on the client side,
 depending on date representation
 """)
   @route("/paths/date/null/{datePath}")
   @get
-  DateNull(
+  DateNull is Azure.Core.Operation<{
     @doc("null as date (should throw)")
     @path
-    datePath: plainDate
-  ): Error | void;
+    datePath: plainDate;
+  }, Error | void>;
+
   @doc("Get '2012-01-01T01:01:01Z' as date-time")
   @route("/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}")
   @get
-  DateTimeValid(
+  DateTimeValid is Azure.Core.Operation<{
     @doc("'2012-01-01T01:01:01Z' as date-time")
     @path
-    dateTimePath: "2012-01-01T01:01:01Z"
-  ): Error | void;
+    dateTimePath: "2012-01-01T01:01:01Z";
+  }, Error | void>;
+
   @doc("""
 Get null as date-time, should be disallowed or throw depending on
 representation of date-time
 """)
   @route("/paths/datetime/null/{dateTimePath}")
   @get
-  DateTimeNull(
+  DateTimeNull is Azure.Core.Operation<{
     @doc("null as date-time")
     @path
-    dateTimePath: zonedDateTime
-  ): Error | void;
+    dateTimePath: zonedDateTime;
+  }, Error | void>;
+
   @doc("Get 'lorem' encoded value as 'bG9yZW0' (base64url)")
   @route("/paths/string/bG9yZW0/{base64UrlPath}")
   @get
-  base64Url(
+  base64Url is Azure.Core.Operation<{
     @doc("base64url encoded value")
     @path
-    base64UrlPath: bytes
-  ): Error | void;
+    base64UrlPath: bytes;
+  }, Error | void>;
+
   @doc("""
 Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
 using the csv-array format
 """)
   @route("/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}")
   @get
-  ArrayCsvInPath(
+  ArrayCsvInPath is Azure.Core.Operation<{
     @doc("""
 an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
 using the csv-array format
 """)
     @path
-    arrayPath: string[]
-  ): Error | void;
+    arrayPath: string[];
+  }, Error | void>;
+
   @doc("Get the date 2016-04-13 encoded value as '1460505600' (Unix time)")
   @route("/paths/int/1460505600/{unixTimeUrlPath}")
   @get
-  unixTimeUrl(
+  unixTimeUrl is Azure.Core.Operation<{
     @doc("Unix time encoded value")
     @path
-    unixTimeUrlPath: plainTime
-  ): Error | void;
+    unixTimeUrlPath: plainTime;
+  }, Error | void>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface queriesOperations {
   @doc("Get true Boolean value on path")
   @route("/queries/bool/true")
   @get
-  getBooleanTrue(
+  getBooleanTrue is Azure.Core.Operation<{
     @doc("true boolean value")
     @query
-    boolQuery: true
-  ): Error | void;
+    boolQuery: true;
+  }, Error | void>;
+
   @doc("Get false Boolean value on path")
   @route("/queries/bool/false")
   @get
-  getBooleanFalse(
+  getBooleanFalse is Azure.Core.Operation<{
     @doc("false boolean value")
     @query
-    boolQuery: false
-  ): Error | void;
+    boolQuery: false;
+  }, Error | void>;
+
   @doc("Get null Boolean value on query (query string should be absent)")
   @route("/queries/bool/null")
   @get
-  getBooleanNull(
+  getBooleanNull is Azure.Core.Operation<{
     @doc("null boolean value")
     @query
-    boolQuery: boolean
-  ): Error | void;
+    boolQuery: boolean;
+  }, Error | void>;
+
   @doc("Get '1000000' integer value")
   @route("/queries/int/1000000")
   @get
-  getIntOneMillion(
+  getIntOneMillion is Azure.Core.Operation<{
     @doc("'1000000' integer value")
     @query
-    intQuery: 1000000
-  ): Error | void;
+    intQuery: 1000000;
+  }, Error | void>;
+
   @doc("Get '-1000000' integer value")
   @route("/queries/int/-1000000")
   @get
-  getIntNegativeOneMillion(
+  getIntNegativeOneMillion is Azure.Core.Operation<{
     @doc("'-1000000' integer value")
     @query
-    intQuery: -1000000
-  ): Error | void;
+    intQuery: -1000000;
+  }, Error | void>;
+
   @doc("Get null integer value (no query parameter)")
   @route("/queries/int/null")
   @get
-  getIntNull(
+  getIntNull is Azure.Core.Operation<{
     @doc("null integer value")
     @query
-    intQuery: int32
-  ): Error | void;
+    intQuery: int32;
+  }, Error | void>;
+
   @doc("Get '10000000000' 64 bit integer value")
   @route("/queries/long/10000000000")
   @get
-  getTenBillion(
+  getTenBillion is Azure.Core.Operation<{
     @doc("'10000000000' 64 bit integer value")
     @query
-    longQuery: 10000000000
-  ): Error | void;
+    longQuery: 10000000000;
+  }, Error | void>;
+
   @doc("Get '-10000000000' 64 bit integer value")
   @route("/queries/long/-10000000000")
   @get
-  getNegativeTenBillion(
+  getNegativeTenBillion is Azure.Core.Operation<{
     @doc("'-10000000000' 64 bit integer value")
     @query
-    longQuery: -10000000000
-  ): Error | void;
+    longQuery: -10000000000;
+  }, Error | void>;
+
   @doc("Get 'null 64 bit integer value (no query param in uri)")
   @route("/queries/long/null")
   @get
-  getLongNull(
+  getLongNull is Azure.Core.Operation<{
     @doc("null 64 bit integer value")
     @query
-    longQuery: int32
-  ): Error | void;
+    longQuery: int32;
+  }, Error | void>;
+
   @doc("Get '1.034E+20' numeric value")
   @route("/queries/float/1.034E+20")
   @get
-  floatScientificPositive(
+  floatScientificPositive is Azure.Core.Operation<{
     @doc("'1.034E+20'numeric value")
     @query
-    floatQuery: 103400000000000000000
-  ): Error | void;
+    floatQuery: 103400000000000000000;
+  }, Error | void>;
+
   @doc("Get '-1.034E-20' numeric value")
   @route("/queries/float/-1.034E-20")
   @get
-  floatScientificNegative(
+  floatScientificNegative is Azure.Core.Operation<{
     @doc("'-1.034E-20'numeric value")
     @query
-    floatQuery: -1.034e-20
-  ): Error | void;
+    floatQuery: -1.034e-20;
+  }, Error | void>;
+
   @doc("Get null numeric value (no query parameter)")
   @route("/queries/float/null")
   @get
-  floatNull(
+  floatNull is Azure.Core.Operation<{
     @doc("null numeric value")
     @query
-    floatQuery: float32
-  ): Error | void;
+    floatQuery: float32;
+  }, Error | void>;
+
   @doc("Get '9999999.999' numeric value")
   @route("/queries/double/9999999.999")
   @get
-  doubleDecimalPositive(
+  doubleDecimalPositive is Azure.Core.Operation<{
     @doc("'9999999.999'numeric value")
     @query
-    doubleQuery: 9999999.999
-  ): Error | void;
+    doubleQuery: 9999999.999;
+  }, Error | void>;
+
   @doc("Get '-9999999.999' numeric value")
   @route("/queries/double/-9999999.999")
   @get
-  doubleDecimalNegative(
+  doubleDecimalNegative is Azure.Core.Operation<{
     @doc("'-9999999.999'numeric value")
     @query
-    doubleQuery: -9999999.999
-  ): Error | void;
+    doubleQuery: -9999999.999;
+  }, Error | void>;
+
   @doc("Get null numeric value (no query parameter)")
   @route("/queries/double/null")
   @get
-  doubleNull(
+  doubleNull is Azure.Core.Operation<{
     @doc("null numeric value")
     @query
-    doubleQuery: float32
-  ): Error | void;
+    doubleQuery: float32;
+  }, Error | void>;
+
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
   @route("/queries/string/unicode/")
   @get
-  stringUnicode(
+  stringUnicode is Azure.Core.Operation<{
     @doc("'啊齄丂狛狜隣郎隣兀﨩'multi-byte string value")
     @query
-    stringQuery: "啊齄丂狛狜隣郎隣兀﨩"
-  ): Error | void;
+    stringQuery: "啊齄丂狛狜隣郎隣兀﨩";
+  }, Error | void>;
+
   @doc("Get 'begin!*'();:@ &=+$,/?#[]end")
   @route("/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend")
   @get
-  stringUrlEncoded(
+  stringUrlEncoded is Azure.Core.Operation<{
     @doc("'begin!*'();:@ &=+$,/?#[]end' url encoded string value")
     @query
-    stringQuery: "begin!*'();:@ &=+$,/?#[]end"
-  ): Error | void;
+    stringQuery: "begin!*'();:@ &=+$,/?#[]end";
+  }, Error | void>;
+
   @doc("Get ''")
   @route("/queries/string/empty")
   @get
-  stringEmpty(
+  stringEmpty is Azure.Core.Operation<{
     @doc("'' string value")
     @query
-    stringQuery: ""
-  ): Error | void;
+    stringQuery: "";
+  }, Error | void>;
+
   @doc("Get null (no query parameter in url)")
   @route("/queries/string/null")
   @get
-  stringNull(
+  stringNull is Azure.Core.Operation<{
     @doc("null string value")
     @query
-    stringQuery: string
-  ): Error | void;
+    stringQuery: string;
+  }, Error | void>;
+
   @doc("Get using uri with query parameter 'green color'")
   @route("/queries/enum/green%20color")
   @get
-  enumValid(
+  enumValid is Azure.Core.Operation<{
     @doc("'green color' enum value")
     @query
-    enumQuery: UriColor
-  ): Error | void;
+    enumQuery: UriColor;
+  }, Error | void>;
+
   @doc("Get null (no query parameter in url)")
   @route("/queries/enum/null")
   @get
-  enumNull(
+  enumNull is Azure.Core.Operation<{
     @doc("null string value")
     @query
-    enumQuery: UriColor
-  ): Error | void;
+    enumQuery: UriColor;
+  }, Error | void>;
+
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
   @route("/queries/byte/multibyte")
   @get
-  byteMultiByte(
+  byteMultiByte is Azure.Core.Operation<{
     @doc("'啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
     @query
-    byteQuery: bytes
-  ): Error | void;
+    byteQuery: bytes;
+  }, Error | void>;
+
   @doc("Get '' as byte array")
   @route("/queries/byte/empty")
   @get
-  byteEmpty(
+  byteEmpty is Azure.Core.Operation<{
     @doc("'' as byte array")
     @query
-    byteQuery: ""
-  ): Error | void;
+    byteQuery: "";
+  }, Error | void>;
+
   @doc("Get null as byte array (no query parameters in uri)")
   @route("/queries/byte/null")
   @get
-  byteNull(
+  byteNull is Azure.Core.Operation<{
     @doc("null as byte array (no query parameters in uri)")
     @query
-    byteQuery: bytes
-  ): Error | void;
+    byteQuery: bytes;
+  }, Error | void>;
+
   @doc("Get '2012-01-01' as date")
   @route("/queries/date/2012-01-01")
   @get
-  DateValid(
+  DateValid is Azure.Core.Operation<{
     @doc("'2012-01-01' as date")
     @query
-    dateQuery: "2012-01-01"
-  ): Error | void;
+    dateQuery: "2012-01-01";
+  }, Error | void>;
+
   @doc("Get null as date - this should result in no query parameters in uri")
   @route("/queries/date/null")
   @get
-  DateNull(
+  DateNull is Azure.Core.Operation<{
     @doc("null as date (no query parameters in uri)")
     @query
-    dateQuery: plainDate
-  ): Error | void;
+    dateQuery: plainDate;
+  }, Error | void>;
+
   @doc("Get '2012-01-01T01:01:01Z' as date-time")
   @route("/queries/datetime/2012-01-01T01%3A01%3A01Z")
   @get
-  DateTimeValid(
+  DateTimeValid is Azure.Core.Operation<{
     @doc("'2012-01-01T01:01:01Z' as date-time")
     @query
-    dateTimeQuery: "2012-01-01T01:01:01Z"
-  ): Error | void;
+    dateTimeQuery: "2012-01-01T01:01:01Z";
+  }, Error | void>;
+
   @doc("Get null as date-time, should result in no query parameters in uri")
   @route("/queries/datetime/null")
   @get
-  DateTimeNull(
+  DateTimeNull is Azure.Core.Operation<{
     @doc("null as date-time (no query parameters)")
     @query
-    dateTimeQuery: zonedDateTime
-  ): Error | void;
+    dateTimeQuery: zonedDateTime;
+  }, Error | void>;
+
   @doc("""
 Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
 ''] using the csv-array format
 """)
   @route("/queries/array/csv/string/valid")
   @get
-  ArrayStringCsvValid(
+  ArrayStringCsvValid is Azure.Core.Operation<{
     @doc("""
 an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
 using the csv-array format
 """)
     @query
-    arrayQuery: string[]
-  ): Error | void;
+    arrayQuery: string[];
+  }, Error | void>;
+
   @doc("Get a null array of string using the csv-array format")
   @route("/queries/array/csv/string/null")
   @get
-  ArrayStringCsvNull(
+  ArrayStringCsvNull is Azure.Core.Operation<{
     @doc("a null array of string using the csv-array format")
     @query
-    arrayQuery: string[]
-  ): Error | void;
+    arrayQuery: string[];
+  }, Error | void>;
+
   @doc("Get an empty array [] of string using the csv-array format")
   @route("/queries/array/csv/string/empty")
   @get
-  ArrayStringCsvEmpty(
+  ArrayStringCsvEmpty is Azure.Core.Operation<{
     @doc("an empty array [] of string using the csv-array format")
     @query
-    arrayQuery: string[]
-  ): Error | void;
+    arrayQuery: string[];
+  }, Error | void>;
+
   @doc("""
 Array query has no defined collection format, should default to csv. Pass in
 ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service
 """)
   @route("/queries/array/none/string/empty")
   @get
-  ArrayStringNoCollectionFormatEmpty(
+  ArrayStringNoCollectionFormatEmpty is Azure.Core.Operation<{
     @doc("Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].")
     @query
-    arrayQuery: string[]
-  ): Error | void;
+    arrayQuery: string[];
+  }, Error | void>;
+
   @doc("""
 Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
 ''] using the ssv-array format
 """)
   @route("/queries/array/ssv/string/valid")
   @get
-  ArrayStringSsvValid(
+  ArrayStringSsvValid is Azure.Core.Operation<{
     @doc("""
 an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
 using the ssv-array format
 """)
     @query
-    arrayQuery: string[]
-  ): Error | void;
+    arrayQuery: string[];
+  }, Error | void>;
+
   @doc("""
 Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
 ''] using the tsv-array format
 """)
   @route("/queries/array/tsv/string/valid")
   @get
-  ArrayStringTsvValid(
+  ArrayStringTsvValid is Azure.Core.Operation<{
     @doc("""
 an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
 using the tsv-array format
 """)
     @query
-    arrayQuery: string[]
-  ): Error | void;
+    arrayQuery: string[];
+  }, Error | void>;
+
   @doc("""
 Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
 ''] using the pipes-array format
 """)
   @route("/queries/array/pipes/string/valid")
   @get
-  ArrayStringPipesValid(
+  ArrayStringPipesValid is Azure.Core.Operation<{
     @doc("""
 an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
 using the pipes-array format
 """)
     @query
-    arrayQuery: string[]
-  ): Error | void;
+    arrayQuery: string[];
+  }, Error | void>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface pathItemsOperations {
   @doc("""
@@ -565,31 +622,32 @@ pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
 """)
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery")
   @get
-  getAllWithValues(
+  getAllWithValues is Azure.Core.Operation<{
     @doc("A string value 'pathItemStringPath' that appears in the path")
     @path
-    pathItemStringPath: string,
+    pathItemStringPath: string;
 
     @doc("A string value 'pathItemStringQuery' that appears as a query parameter")
     @query
-    pathItemStringQuery: string,
+    pathItemStringQuery: string;
 
     @doc("A string value 'globalItemStringPath' that appears in the path")
     @path
-    globalStringPath: string,
+    globalStringPath: string;
 
     @doc("should contain value null")
     @query
-    globalStringQuery: string,
+    globalStringQuery: string;
 
     @doc("should contain value 'localStringPath'")
     @path
-    localStringPath: string,
+    localStringPath: string;
 
     @doc("should contain value 'localStringQuery'")
     @query
-    localStringQuery: string
-  ): Error | void;
+    localStringQuery: string;
+  }, Error | void>;
+
   @doc("""
 send globalStringPath='globalStringPath',
 pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
@@ -598,31 +656,32 @@ localStringQuery='localStringQuery'
 """)
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery")
   @get
-  getGlobalQueryNull(
+  getGlobalQueryNull is Azure.Core.Operation<{
     @doc("A string value 'pathItemStringPath' that appears in the path")
     @path
-    pathItemStringPath: string,
+    pathItemStringPath: string;
 
     @doc("A string value 'pathItemStringQuery' that appears as a query parameter")
     @query
-    pathItemStringQuery: string,
+    pathItemStringQuery: string;
 
     @doc("A string value 'globalItemStringPath' that appears in the path")
     @path
-    globalStringPath: string,
+    globalStringPath: string;
 
     @doc("should contain value null")
     @query
-    globalStringQuery: string,
+    globalStringQuery: string;
 
     @doc("should contain value 'localStringPath'")
     @path
-    localStringPath: string,
+    localStringPath: string;
 
     @doc("should contain value 'localStringQuery'")
     @query
-    localStringQuery: string
-  ): Error | void;
+    localStringQuery: string;
+  }, Error | void>;
+
   @doc("""
 send globalStringPath=globalStringPath,
 pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
@@ -631,31 +690,32 @@ localStringQuery=null
 """)
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null")
   @get
-  getGlobalAndLocalQueryNull(
+  getGlobalAndLocalQueryNull is Azure.Core.Operation<{
     @doc("A string value 'pathItemStringPath' that appears in the path")
     @path
-    pathItemStringPath: string,
+    pathItemStringPath: string;
 
     @doc("A string value 'pathItemStringQuery' that appears as a query parameter")
     @query
-    pathItemStringQuery: string,
+    pathItemStringQuery: string;
 
     @doc("A string value 'globalItemStringPath' that appears in the path")
     @path
-    globalStringPath: string,
+    globalStringPath: string;
 
     @doc("should contain value null")
     @query
-    globalStringQuery: string,
+    globalStringQuery: string;
 
     @doc("should contain value 'localStringPath'")
     @path
-    localStringPath: string,
+    localStringPath: string;
 
     @doc("should contain null value")
     @query
-    localStringQuery: string
-  ): Error | void;
+    localStringQuery: string;
+  }, Error | void>;
+
   @doc("""
 send globalStringPath='globalStringPath',
 pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
@@ -664,29 +724,29 @@ localStringQuery=null
 """)
   @route("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null")
   @get
-  getLocalPathItemQueryNull(
+  getLocalPathItemQueryNull is Azure.Core.Operation<{
     @doc("A string value 'pathItemStringPath' that appears in the path")
     @path
-    pathItemStringPath: string,
+    pathItemStringPath: string;
 
     @doc("should contain value null")
     @query
-    pathItemStringQuery: string,
+    pathItemStringQuery: string;
 
     @doc("A string value 'globalItemStringPath' that appears in the path")
     @path
-    globalStringPath: string,
+    globalStringPath: string;
 
     @doc("should contain value null")
     @query
-    globalStringQuery: string,
+    globalStringQuery: string;
 
     @doc("should contain value 'localStringPath'")
     @path
-    localStringPath: string,
+    localStringPath: string;
 
     @doc("should contain value null")
     @query
-    localStringQuery: string
-  ): Error | void;
+    localStringQuery: string;
+  }, Error | void>;
 }

@@ -1,9 +1,8 @@
+import "@azure-tools/cadl-azure-core";
 import "@cadl-lang/rest";
-
 import "./models.cadl";
 
 using Cadl.Rest;
-
 using Cadl.Http;
 
 namespace MicrosoftCognitiveLanguageService;
@@ -14,119 +13,96 @@ interface QuestionAnsweringOperations {
   @doc("Answers the specified question using your knowledge base.")
   @route("/:query-knowledgebases")
   @post
-  GetAnswers(
+  GetAnswers is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @query
-    projectName: string,
+    projectName: string;
 
     @doc("The name of the specific deployment of the project to use.")
     @query
-    deploymentName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    deploymentName: string;
 
     @doc("Post body of the request.")
     @body
-    knowledgeBaseQueryOptions: AnswersOptions
-  ): ErrorResponse | AnswersResult;
+    knowledgeBaseQueryOptions: AnswersOptions;
+  }, ErrorResponse | AnswersResult>;
+
   @summary("Answers the specified question using the provided text in the body.")
   @doc("Answers the specified question using the provided text in the body.")
   @route("/:query-text")
   @post
-  GetAnswersFromText(
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
-
+  GetAnswersFromText is Azure.Core.Operation<{
     @doc("Post body of the request.")
     @body
-    textQueryOptions: AnswersFromTextOptions
-  ): ErrorResponse | AnswersFromTextResult;
+    textQueryOptions: AnswersFromTextOptions;
+  }, ErrorResponse | AnswersFromTextResult>;
 }
-
 // FIXME: (missing-docs) Add documentation
 interface QuestionAnsweringProjectsOperations {
   @summary("Gets all projects for a user.")
   @doc("Gets all projects for a user.")
   @route("/query-knowledgebases/projects")
   @get
-  ListProjects(
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
-
+  ListProjects is Azure.Core.Operation<{
     @doc("The maximum number of resources to return from the collection.")
     @query
-    top: int32,
+    top: int32;
 
     @doc("An offset into the collection of the first resource to be returned.")
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32
-  ): ErrorResponse | Azure.Core.ResourceList<ProjectsMetadata>;
+    maxpagesize: int32;
+  }, ErrorResponse | Azure.Core.ResourceList<ProjectsMetadata>>;
+
   @summary("Get the requested project metadata.")
   @doc("Get the requested project metadata.")
   @route("/query-knowledgebases/projects/{projectName}")
   @get
-  GetProjectDetails(
+  GetProjectDetails is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
+    projectName: string;
+  }, ErrorResponse | ProjectMetadata>;
 
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01"
-  ): ErrorResponse | ProjectMetadata;
   @summary("Create or update a project.")
   @doc("Create or update a project.")
   @route("/query-knowledgebases/projects/{projectName}")
   @patch
-  CreateProject(
+  CreateProject is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Parameters needed to create the project.")
     @body
-    body: CreateProjectOptions
-  ): ErrorResponse | ProjectMetadata;
+    body: CreateProjectOptions;
+  }, ErrorResponse | ProjectMetadata>;
+
   @summary("Delete the project.")
   @doc("Delete the project.")
   @route("/query-knowledgebases/projects/{projectName}")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @delete
-  DeleteProject(
+  DeleteProject is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
+    projectName: string;
+  }, ErrorResponse | void>;
 
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01"
-  ): ErrorResponse | void;
   @summary("Gets the status of a Project delete job.")
   @doc("Gets the status of a Project delete job.")
   @route("/query-knowledgebases/projects/deletion-jobs/{jobId}")
   @get
-  GetDeleteStatus(
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
-
+  GetDeleteStatus is Azure.Core.Operation<{
     @doc("Job ID.")
     @path
-    jobId: string
-  ): ErrorResponse | JobState;
+    jobId: string;
+  }, ErrorResponse | JobState>;
+
   @summary("Export project metadata and assets.")
   @doc("Export project metadata and assets.")
   @route("/query-knowledgebases/projects/{projectName}/:export")
@@ -135,23 +111,20 @@ interface QuestionAnsweringProjectsOperations {
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @post
-  Export(
+  Export is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Knowledge base Import or Export format.")
     @query
-    format: format,
+    format: format;
 
     @doc("Kind of the asset of the project.")
     @query
-    assetKind: components·nvda8q·parameters·assetkindparameter·schema
-  ): ErrorResponse | ExportJobState | void;
+    assetKind: components·nvda8q·parameters·assetkindparameter·schema;
+  }, ErrorResponse | ExportJobState | void>;
+
   @summary("""
 Gets the status of an Export job, once job completes, returns the project
 metadata, and assets.
@@ -162,311 +135,265 @@ metadata, and assets.
 """)
   @route("/query-knowledgebases/projects/{projectName}/export/jobs/{jobId}")
   @get
-  GetExportStatus(
+  GetExportStatus is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Job ID.")
     @path
-    jobId: string
-  ): ErrorResponse | ExportJobState;
+    jobId: string;
+  }, ErrorResponse | ExportJobState>;
+
   @summary("Import project assets.")
   @doc("Import project assets.")
   @route("/query-knowledgebases/projects/{projectName}/:import")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @post
-  Import(
+  Import is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Knowledge base Import or Export format.")
     @query
-    format: format,
+    format: format;
 
     @doc("Kind of the asset of the project.")
     @query
-    assetKind: components·nvda8q·parameters·assetkindparameter·schema,
+    assetKind: components·nvda8q·parameters·assetkindparameter·schema;
 
     @doc("Project assets the needs to be imported.")
     @body
-    body: ImportJobOptions
-  ): ErrorResponse | void;
+    body: ImportJobOptions;
+  }, ErrorResponse | void>;
+
   @summary("Gets the status of an Import job.")
   @doc("Gets the status of an Import job.")
   @route("/query-knowledgebases/projects/{projectName}/import/jobs/{jobId}")
   @get
-  GetImportStatus(
+  GetImportStatus is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Job ID.")
     @path
-    jobId: string
-  ): ErrorResponse | JobState;
+    jobId: string;
+  }, ErrorResponse | JobState>;
+
   @summary("Deploy project to production.")
   @doc("Deploy project to production.")
   @route("/query-knowledgebases/projects/{projectName}/deployments/{deploymentName}")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @put
-  DeployProject(
+  DeployProject is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
+    projectName: string;
 
     @doc("The name of the specific deployment of the project to use.")
     @path
-    deploymentName: string,
+    deploymentName: string;
+  }, ErrorResponse | void>;
 
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01"
-  ): ErrorResponse | void;
   @summary("Gets the status of a Deploy job.")
   @doc("Gets the status of a Deploy job.")
   @route("/query-knowledgebases/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}")
   @get
-  GetDeployStatus(
+  GetDeployStatus is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
+    projectName: string;
 
     @doc("The name of the specific deployment of the project to use.")
     @path
-    deploymentName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    deploymentName: string;
 
     @doc("Job ID.")
     @path
-    jobId: string
-  ): ErrorResponse | JobState;
+    jobId: string;
+  }, ErrorResponse | JobState>;
+
   @summary("List all deployments of a project.")
   @doc("List all deployments of a project.")
   @route("/query-knowledgebases/projects/{projectName}/deployments")
   @get
-  ListDeployments(
+  ListDeployments is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("The maximum number of resources to return from the collection.")
     @query
-    top: int32,
+    top: int32;
 
     @doc("An offset into the collection of the first resource to be returned.")
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32
-  ): ErrorResponse | Azure.Core.ResourceList<ProjectDeployments>;
+    maxpagesize: int32;
+  }, ErrorResponse | Azure.Core.ResourceList<ProjectDeployments>>;
+
   @summary("Gets all the synonyms of a project.")
   @doc("Gets all the synonyms of a project.")
   @route("/query-knowledgebases/projects/{projectName}/synonyms")
   @get
-  GetSynonyms(
+  GetSynonyms is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("The maximum number of resources to return from the collection.")
     @query
-    top: int32,
+    top: int32;
 
     @doc("An offset into the collection of the first resource to be returned.")
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32
-  ): ErrorResponse | Azure.Core.ResourceList<SynonymAssets>;
+    maxpagesize: int32;
+  }, ErrorResponse | Azure.Core.ResourceList<SynonymAssets>>;
+
   @summary("Updates all the synonyms of a project.")
   @doc("Updates all the synonyms of a project.")
   @route("/query-knowledgebases/projects/{projectName}/synonyms")
   @put
-  UpdateSynonyms(
+  UpdateSynonyms is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("All the synonyms of a project.")
     @body
-    body: SynonymAssets
-  ): ErrorResponse | void;
+    body: SynonymAssets;
+  }, ErrorResponse | void>;
+
   @summary("Gets all the sources of a project.")
   @doc("Gets all the sources of a project.")
   @route("/query-knowledgebases/projects/{projectName}/sources")
   @get
-  GetSources(
+  GetSources is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("The maximum number of resources to return from the collection.")
     @query
-    top: int32,
+    top: int32;
 
     @doc("An offset into the collection of the first resource to be returned.")
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32
-  ): ErrorResponse | Azure.Core.ResourceList<QnaSources>;
+    maxpagesize: int32;
+  }, ErrorResponse | Azure.Core.ResourceList<QnaSources>>;
+
   @summary("Updates the sources of a project.")
   @doc("Updates the sources of a project.")
   @route("/query-knowledgebases/projects/{projectName}/sources")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @patch
-  UpdateSources(
+  UpdateSources is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Update sources parameters of a project.")
     @body
-    body: UpdateSourceRecord[]
-  ): ErrorResponse | void;
+    body: UpdateSourceRecord[];
+  }, ErrorResponse | void>;
+
   @summary("Gets the status of update sources job.")
   @doc("Gets the status of update sources job.")
   @route("/query-knowledgebases/projects/{projectName}/sources/jobs/{jobId}")
   @get
-  GetUpdateSourcesStatus(
+  GetUpdateSourcesStatus is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Job ID.")
     @path
-    jobId: string
-  ): ErrorResponse | JobState;
+    jobId: string;
+  }, ErrorResponse | JobState>;
+
   @summary("Gets all the QnAs of a project.")
   @doc("Gets all the QnAs of a project.")
   @route("/query-knowledgebases/projects/{projectName}/qnas")
   @get
-  GetQnas(
+  GetQnas is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Source of the QnA.")
     @query
-    source: string,
+    source: string;
 
     @doc("The maximum number of resources to return from the collection.")
     @query
-    top: int32,
+    top: int32;
 
     @doc("An offset into the collection of the first resource to be returned.")
     @query
-    skip: int32,
+    skip: int32;
 
     @doc("The maximum number of resources to include in a single response.")
     @query
-    maxpagesize: int32
-  ): ErrorResponse | Azure.Core.ResourceList<QnaAssets>;
+    maxpagesize: int32;
+  }, ErrorResponse | Azure.Core.ResourceList<QnaAssets>>;
+
   @summary("Updates the QnAs of a project.")
   @doc("Updates the QnAs of a project.")
   @route("/query-knowledgebases/projects/{projectName}/qnas")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @patch
-  UpdateQnas(
+  UpdateQnas is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Update QnAs parameters of a project.")
     @body
-    body: UpdateQnaRecord[]
-  ): ErrorResponse | void;
+    body: UpdateQnaRecord[];
+  }, ErrorResponse | void>;
+
   @summary("Gets the status of update QnAs job.")
   @doc("Gets the status of update QnAs job.")
   @route("/query-knowledgebases/projects/{projectName}/qnas/jobs/{jobId}")
   @get
-  GetUpdateQnasStatus(
+  GetUpdateQnasStatus is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Job ID.")
     @path
-    jobId: string
-  ): ErrorResponse | JobState;
+    jobId: string;
+  }, ErrorResponse | JobState>;
+
   @summary("Update Active Learning feedback.")
   @doc("Update Active Learning feedback.")
   @route("/query-knowledgebases/projects/{projectName}/feedback")
   @post
-  AddFeedback(
+  AddFeedback is Azure.Core.Operation<{
     @doc("The name of the project to use.")
     @path
-    projectName: string,
-
-    @doc("Api Version")
-    @query
-    "api-version": "2021-10-01",
+    projectName: string;
 
     @doc("Feedback for Active Learning.")
     @body
-    body: ActiveLearningFeedback
-  ): ErrorResponse | void;
+    body: ActiveLearningFeedback;
+  }, ErrorResponse | void>;
 }

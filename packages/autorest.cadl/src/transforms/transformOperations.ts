@@ -149,11 +149,19 @@ function filterOperationParameters(
   visitedParameters: Set<Parameter>
 ): boolean {
   if (
+    parameter.protocol.http?.in === ParameterLocation.Query &&
+    parameter.language.default.serializedName === "api-version"
+  ) {
+    return false;
+  }
+
+  if (
     parameter.origin === "modelerfour:synthesized/accept" &&
     constantValueEquals(parameter.schema, "application/json")
   ) {
     return false;
   }
+
   if (visitedParameters.has(parameter)) {
     return false;
   }

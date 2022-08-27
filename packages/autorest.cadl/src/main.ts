@@ -18,6 +18,7 @@ import { emitMain } from "./emiters/emitMain";
 import { markPagination } from "./utils/paging";
 import { markErrorModels } from "./utils/errors";
 import { setSession } from "./autorestSession";
+import { emitPackage } from "./emiters/emitPackage";
 
 export async function processRequest(host: AutorestExtensionHost) {
   const session = await startSession<CodeModel>(host, codeModelSchema);
@@ -30,6 +31,7 @@ export async function processRequest(host: AutorestExtensionHost) {
   await emitModels(getFilePath(session, "models.cadl"), cadlProgramDetails);
   await emitRoutes(getFilePath(session, "routes.cadl"), cadlProgramDetails);
   await emitMain(getFilePath(session, "main.cadl"), cadlProgramDetails);
+  await emitPackage(getFilePath(session, "package.json"), cadlProgramDetails);
 }
 
 function createOutputFolder(dir: string) {
