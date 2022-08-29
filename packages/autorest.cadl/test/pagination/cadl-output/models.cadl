@@ -7,10 +7,10 @@ using Azure.Core;
 namespace AutoRestPagingTestService;
 
 // FIXME: (missing-docs) Add documentation
-enum OperationResult_statusKnownValues {
+enum OperationResultStatusKnownValues {
   "Succeeded",
   "Failed",
-  "canceled",
+  Canceled: "canceled",
   "Accepted",
   "Creating",
   "Created",
@@ -21,8 +21,8 @@ enum OperationResult_statusKnownValues {
   "OK",
 }
 
-@knownValues(OperationResult_statusKnownValues)
-model OperationResult_status is string {}
+@knownValues(OperationResultStatusKnownValues)
+model OperationResultStatus is string {}
 
 // FIXME: (missing-docs) Add documentation
 @pagedResult
@@ -39,11 +39,11 @@ model ProductResultValue {
 // FIXME: (missing-docs) Add documentation
 model Product {
   // FIXME: (missing-docs) Add documentation
-  properties?: Product_properties;
+  properties?: ProductProperties;
 }
 
 // FIXME: (missing-docs) Add documentation
-model Product_properties {
+model ProductProperties {
   // FIXME: (missing-docs) Add documentation
   id?: int32;
   // FIXME: (missing-docs) Add documentation
@@ -89,5 +89,5 @@ model ProductResultValueWithXMSClientName {
 // FIXME: (missing-docs) Add documentation
 model OperationResult {
   @doc("The status of the request")
-  status?: OperationResult_status;
+  status?: OperationResultStatus;
 }

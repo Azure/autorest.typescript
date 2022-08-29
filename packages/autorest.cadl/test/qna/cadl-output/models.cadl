@@ -4,7 +4,7 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
-namespace MicrosoftCognitiveLanguageService;
+namespace QuestionAnswering;
 
 // FIXME: (missing-docs) Add documentation
 enum RankerKindKnownValues {
@@ -40,6 +40,10 @@ enum ErrorCodeKnownValues {
   "AzureCognitiveSearchIndexLimitReached",
   "InternalServerError",
   "ServiceUnavailable",
+  "Timeout",
+  "QuotaExceeded",
+  "Conflict",
+  "Warning",
 }
 
 @knownValues(ErrorCodeKnownValues)
@@ -53,6 +57,14 @@ enum InnerErrorCodeKnownValues {
   "AzureCognitiveSearchNotFound",
   "AzureCognitiveSearchThrottling",
   "ExtractionFailure",
+  "InvalidRequestBodyFormat",
+  "EmptyRequest",
+  "MissingInputDocuments",
+  "InvalidDocument",
+  "ModelVersionIncorrect",
+  "InvalidDocumentBatch",
+  "UnsupportedLanguageCode",
+  "InvalidCountryHint",
 }
 
 @knownValues(InnerErrorCodeKnownValues)
@@ -60,7 +72,7 @@ model InnerErrorCode is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum StringIndexTypeKnownValues {
-  "TextElements_v8",
+  TextElementsV8: "TextElements_v8",
   "UnicodeCodePoint",
   "Utf16CodeUnit",
 }
@@ -69,65 +81,64 @@ enum StringIndexTypeKnownValues {
 model StringIndexType is string {}
 
 // FIXME: (missing-docs) Add documentation
-enum jobStatusKnownValues {
-  "notStarted",
-  "running",
-  "succeeded",
-  "failed",
-  "cancelled",
-  "cancelling",
-  "partiallyCompleted",
+enum JobStatusKnownValues {
+  NotStarted: "notStarted",
+  Running: "running",
+  Succeeded: "succeeded",
+  Failed: "failed",
+  Cancelled: "cancelled",
+  Cancelling: "cancelling",
+  PartiallyCompleted: "partiallyCompleted",
 }
 
-@knownValues(jobStatusKnownValues)
-model jobStatus is string {}
+@knownValues(JobStatusKnownValues)
+model JobStatus is string {}
 
 // FIXME: (missing-docs) Add documentation
-enum formatKnownValues {
-  "json",
-  "tsv",
-  "excel",
+enum FormatKnownValues {
+  Json: "json",
+  Tsv: "tsv",
+  Excel: "excel",
 }
 
-@knownValues(formatKnownValues)
-model format is string {}
+@knownValues(FormatKnownValues)
+model Format is string {}
 
 // FIXME: (missing-docs) Add documentation
-// FIXME: (synthetic-name) This enum has a generated name. Please rename it to something more appropriate.
-enum components·nvda8q·parameters·assetkindparameter·schemaKnownValues {
-  "qnas",
-  "synonyms",
+enum AssetKindKnownValues {
+  Qnas: "qnas",
+  Synonyms: "synonyms",
 }
 
-@knownValues(components·nvda8q·parameters·assetkindparameter·schemaKnownValues)
-model components·nvda8q·parameters·assetkindparameter·schema is string {}
+@knownValues(AssetKindKnownValues)
+model AssetKind is string {}
 
 // FIXME: (missing-docs) Add documentation
-enum sourceKindKnownValues {
-  "file",
-  "url",
+enum SourceKindKnownValues {
+  File: "file",
+  Url: "url",
 }
 
-@knownValues(sourceKindKnownValues)
-model sourceKind is string {}
+@knownValues(SourceKindKnownValues)
+model SourceKind is string {}
 
 // FIXME: (missing-docs) Add documentation
-enum sourceContentStructureKindKnownValues {
-  "unstructured",
+enum SourceContentStructureKindKnownValues {
+  Unstructured: "unstructured",
 }
 
-@knownValues(sourceContentStructureKindKnownValues)
-model sourceContentStructureKind is string {}
+@knownValues(SourceContentStructureKindKnownValues)
+model SourceContentStructureKind is string {}
 
 // FIXME: (missing-docs) Add documentation
-enum updateOperationKindKnownValues {
-  "add",
-  "delete",
-  "replace",
+enum UpdateOperationKindKnownValues {
+  Add: "add",
+  Delete: "delete",
+  Replace: "replace",
 }
 
-@knownValues(updateOperationKindKnownValues)
-model updateOperationKind is string {}
+@knownValues(UpdateOperationKindKnownValues)
+model UpdateOperationKind is string {}
 
 @doc("Parameters to query a knowledge base.")
 model AnswersOptions {
@@ -302,7 +313,7 @@ model AnswerSpan {
 @error
 model ErrorResponse {
   @doc("The error object.")
-  error?: Error;
+  error: Error;
 }
 
 @doc("The error object.")
@@ -499,7 +510,7 @@ model JobMetadata {
   lastUpdatedDateTime: zonedDateTime;
 
   @doc("Job Status.")
-  status: jobStatus;
+  status: JobStatus;
 }
 
 @doc("Collection of Error types.")
@@ -725,16 +736,16 @@ the complete URL if it's a 'url' source.
   sourceUri: string;
 
   @doc("Supported source types.")
-  sourceKind: sourceKind;
+  sourceKind: SourceKind;
 
   @doc("Content structure type for sources.")
-  contentStructureKind?: sourceContentStructureKind;
+  contentStructureKind?: SourceContentStructureKind;
 }
 
 @doc("Source to be updated.")
 model UpdateSourceRecord {
   @doc("Update operation type for assets.")
-  "op": updateOperationKind;
+  "op": UpdateOperationKind;
 
   @doc("Update source record.")
   value: UpdateQnaSourceRecord;
@@ -767,7 +778,7 @@ model QnaAssets {
 @doc("QnA record to be updated.")
 model UpdateQnaRecord {
   @doc("Update operation type for assets.")
-  "op": updateOperationKind;
+  "op": UpdateOperationKind;
 
   @doc("QnA record.")
   value: QnaRecord;

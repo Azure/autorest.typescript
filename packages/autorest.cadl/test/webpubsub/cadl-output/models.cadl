@@ -6,8 +6,8 @@ namespace AzureWebPubSubServiceRESTAPI;
 
 // FIXME: (missing-docs) Add documentation
 enum WebPubSubPermissionKnownValues {
-  "sendToGroup",
-  "joinLeaveGroup",
+  SendToGroup: "sendToGroup",
+  JoinLeaveGroup: "joinLeaveGroup",
 }
 
 @knownValues(WebPubSubPermissionKnownValues)
@@ -15,9 +15,9 @@ model WebPubSubPermission is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum ContentType {
-  "application/json",
-  "application/octet-stream",
-  "text/plain",
+  ApplicationJson: "application/json",
+  ApplicationOctetStream: "application/octet-stream",
+  TextPlain: "text/plain",
 }
 
 @doc("The response object containing the token for the client")

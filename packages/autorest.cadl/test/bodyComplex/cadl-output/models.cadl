@@ -6,10 +6,10 @@ namespace AutoRestComplexTestService;
 
 // FIXME: (missing-docs) Add documentation
 enum CMYKColorsKnownValues {
-  "cyan",
+  Cyan: "cyan",
   "Magenta",
-  "YELLOW",
-  "blacK",
+  Yellow: "YELLOW",
+  BlacK: "blacK",
 }
 
 @knownValues(CMYKColorsKnownValues)
@@ -25,18 +25,18 @@ model MyKind is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum GoblinSharkColorKnownValues {
-  "pink",
-  "gray",
-  "brown",
-  upperRed: "RED",
-  lowerRed: "red",
+  Pink: "pink",
+  Gray: "gray",
+  Brown: "brown",
+  UpperRed: "RED",
+  LowerRed: "red",
 }
 
 @knownValues(GoblinSharkColorKnownValues)
 model GoblinSharkColor is string {}
 
 // FIXME: (missing-docs) Add documentation
-model basic {
+model Basic {
   @doc("Basic Id")
   id?: int32;
 
@@ -59,7 +59,7 @@ model Error {
 }
 
 // FIXME: (missing-docs) Add documentation
-model int_wrapper {
+model IntWrapper {
   // FIXME: (missing-docs) Add documentation
   field1?: int32;
   // FIXME: (missing-docs) Add documentation
@@ -67,7 +67,7 @@ model int_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model long_wrapper {
+model LongWrapper {
   // FIXME: (missing-docs) Add documentation
   field1?: int32;
   // FIXME: (missing-docs) Add documentation
@@ -75,7 +75,7 @@ model long_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model float_wrapper {
+model FloatWrapper {
   // FIXME: (missing-docs) Add documentation
   field1?: float32;
   // FIXME: (missing-docs) Add documentation
@@ -83,7 +83,7 @@ model float_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model double_wrapper {
+model DoubleWrapper {
   // FIXME: (missing-docs) Add documentation
   field1?: float32;
   // FIXME: (missing-docs) Add documentation
@@ -91,7 +91,7 @@ model double_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model boolean_wrapper {
+model BooleanWrapper {
   // FIXME: (missing-docs) Add documentation
   field_true?: boolean;
   // FIXME: (missing-docs) Add documentation
@@ -99,7 +99,7 @@ model boolean_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model string_wrapper {
+model StringWrapper {
   // FIXME: (missing-docs) Add documentation
   field?: string;
   // FIXME: (missing-docs) Add documentation
@@ -109,7 +109,7 @@ model string_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model date_wrapper {
+model DateWrapper {
   // FIXME: (missing-docs) Add documentation
   field?: plainDate;
   // FIXME: (missing-docs) Add documentation
@@ -117,7 +117,7 @@ model date_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model datetime_wrapper {
+model DatetimeWrapper {
   // FIXME: (missing-docs) Add documentation
   field?: zonedDateTime;
   // FIXME: (missing-docs) Add documentation
@@ -125,7 +125,7 @@ model datetime_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model datetimerfc1123_wrapper {
+model Datetimerfc1123Wrapper {
   // FIXME: (missing-docs) Add documentation
   field?: zonedDateTime;
   // FIXME: (missing-docs) Add documentation
@@ -133,54 +133,54 @@ model datetimerfc1123_wrapper {
 }
 
 // FIXME: (missing-docs) Add documentation
-model duration_wrapper {
+model DurationWrapper {
   // FIXME: (missing-docs) Add documentation
   field?: duration;
 }
 
 // FIXME: (missing-docs) Add documentation
-model byte_wrapper {
+model ByteWrapper {
   // FIXME: (missing-docs) Add documentation
   field?: bytes;
 }
 
 // FIXME: (missing-docs) Add documentation
-model array_wrapper {
+model ArrayWrapper {
   // FIXME: (missing-docs) Add documentation
   array?: string[];
 }
 
 // FIXME: (missing-docs) Add documentation
-model dictionary_wrapper {
+model DictionaryWrapper {
   @doc("Dictionary of <string>")
   defaultProgram?: Record<string>;
 }
 
 // FIXME: (missing-docs) Add documentation
-model siamese {
-  ...cat;
+model Siamese {
+  ...Cat;
   // FIXME: (missing-docs) Add documentation
   breed?: string;
 }
 
 // FIXME: (missing-docs) Add documentation
-model cat {
-  ...pet;
+model Cat {
+  ...Pet;
   // FIXME: (missing-docs) Add documentation
   color?: string;
   // FIXME: (missing-docs) Add documentation
-  hates?: dog[];
+  hates?: Dog[];
 }
 
 // FIXME: (missing-docs) Add documentation
-model dog {
-  ...pet;
+model Dog {
+  ...Pet;
   // FIXME: (missing-docs) Add documentation
   food?: string;
 }
 
 // FIXME: (missing-docs) Add documentation
-model pet {
+model Pet {
   // FIXME: (missing-docs) Add documentation
   id?: int32;
   // FIXME: (missing-docs) Add documentation
@@ -229,7 +229,7 @@ model DotSalmon extends DotFish {
 
 // FIXME: (missing-docs) Add documentation
 @discriminator("fishtype")
-model salmon extends Fish {
+model Salmon extends Fish {
   // FIXME: (missing-docs) Add documentation
   location?: string;
   // FIXME: (missing-docs) Add documentation
@@ -237,7 +237,7 @@ model salmon extends Fish {
 }
 
 // FIXME: (missing-docs) Add documentation
-model readonly_obj {
+model ReadonlyObj {
   // FIXME: (missing-docs) Add documentation
   id?: string;
   // FIXME: (missing-docs) Add documentation
@@ -260,7 +260,7 @@ model MyBaseHelperType {
 }
 
 // FIXME: (missing-docs) Add documentation
-model smart_salmon extends salmon {
+model SmartSalmon extends Salmon {
   // FIXME: (missing-docs) Add documentation
   college_degree?: string;
   // FIXME: (missing-docs) Add documentation
@@ -269,7 +269,7 @@ model smart_salmon extends salmon {
 
 // FIXME: (missing-docs) Add documentation
 @discriminator("fishtype")
-model shark extends Fish {
+model Shark extends Fish {
   // FIXME: (missing-docs) Add documentation
   age?: int32;
   // FIXME: (missing-docs) Add documentation
@@ -277,7 +277,7 @@ model shark extends Fish {
 }
 
 // FIXME: (missing-docs) Add documentation
-model sawshark extends shark {
+model Sawshark extends Shark {
   // FIXME: (missing-docs) Add documentation
   picture?: bytes;
   // FIXME: (missing-docs) Add documentation
@@ -285,7 +285,7 @@ model sawshark extends shark {
 }
 
 // FIXME: (missing-docs) Add documentation
-model goblinshark extends shark {
+model Goblinshark extends Shark {
   // FIXME: (missing-docs) Add documentation
   jawsize?: int32;
 
@@ -296,7 +296,7 @@ model goblinshark extends shark {
 }
 
 // FIXME: (missing-docs) Add documentation
-model cookiecuttershark extends shark {
+model Cookiecuttershark extends Shark {
   // FIXME: (missing-docs) Add documentation
   fishtype: "cookiecuttershark";
 }

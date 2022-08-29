@@ -6,9 +6,9 @@ namespace AutoRestUrlTestService;
 
 // FIXME: (missing-docs) Add documentation
 enum UriColor {
-  "red color",
-  "green color",
-  "blue color",
+  RedColor: "red color",
+  GreenColor: "green color",
+  BlueColor: "blue color",
 }
 
 // FIXME: (missing-docs) Add documentation

@@ -36,7 +36,7 @@ are sorted by created time (UTC).
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
     @query orderBy: OrderBy;
-  }, Error | Page_AlertConfig>;
+  }, Error | PageAlertConfig>;
 
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -107,7 +107,7 @@ are sorted by created time (UTC).
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
     @query orderBy: OrderBy;
-  }, Error | Page_Dataset>;
+  }, Error | PageDataset>;
 
   // FIXME: (missing-docs) Add documentation
   @route("/datasets/{datasetName}")
@@ -117,7 +117,7 @@ are sorted by created time (UTC).
     @path
     datasetName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Dataset;
+    @body body: RequestDataset;
   }, Error | Dataset>;
 
   // FIXME: (missing-docs) Add documentation
@@ -179,7 +179,7 @@ are sorted by created time (UTC).
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
     @query orderBy: OrderBy;
-  }, Error | Page_Hook>;
+  }, Error | PageHook>;
 
   // FIXME: (missing-docs) Add documentation
   @route("/hooks/{hookName}")
@@ -269,7 +269,7 @@ will be returned for the inference schedule name(s) in your filter.
 """)
     @query
     topPerSchedule: int32;
-  }, Error | Page_ScheduleReplay>;
+  }, Error | PageScheduleReplay>;
 
   // FIXME: (missing-docs) Add documentation
   @route("/inference/replays/{replayName}")
@@ -282,7 +282,7 @@ case-sensitive.
     @path
     replayName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_ScheduleReplay;
+    @body body: RequestScheduleReplay;
   }, Error | ScheduleReplay>;
 
   // FIXME: (missing-docs) Add documentation
@@ -357,7 +357,7 @@ be returned for the model name(s) in your filter.
 """)
     @query
     topPerModel: int32;
-  }, Error | Page_Schedule>;
+  }, Error | PageSchedule>;
 
   // FIXME: (missing-docs) Add documentation
   @route("/inference/schedules/{scheduleName}")
@@ -370,7 +370,7 @@ case-sensitive.
     @path
     scheduleName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Schedule;
+    @body body: RequestSchedule;
   }, Error | Schedule>;
 
   // FIXME: (missing-docs) Add documentation
@@ -476,7 +476,7 @@ the model name(s) in your filter.
 """)
     @query
     topPerModel: int32;
-  }, Error | Page_Evaluation>;
+  }, Error | PageEvaluation>;
 
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/evaluations/{evaluationName}")
@@ -486,7 +486,7 @@ the model name(s) in your filter.
     @path
     evaluationName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Evaluation;
+    @body body: RequestEvaluation;
   }, Error | Evaluation>;
 
   // FIXME: (missing-docs) Add documentation
@@ -554,7 +554,7 @@ dataset name(s) in your filter.
 """)
     @query
     topPerDataset: int32;
-  }, Error | Page_Model>;
+  }, Error | PageModel>;
 
   // FIXME: (missing-docs) Add documentation
   @route("/multivariate/models/{modelName}")
@@ -564,7 +564,7 @@ dataset name(s) in your filter.
     @path
     modelName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: Request_Model;
+    @body body: RequestModel;
   }, Error | Model>;
 
   // FIXME: (missing-docs) Add documentation

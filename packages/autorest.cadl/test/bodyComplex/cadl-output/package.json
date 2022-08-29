@@ -1,5 +1,5 @@
 {
-  "name": "azure-web-pubsub-service-rest-api",
+  "name": "autorest-complex-test-service",
   "dependencies": {
     "@azure-tools/cadl-azure-core": "https://bit.ly/3wwVwa4",
     "@cadl-lang/compiler": "^0.34.0",

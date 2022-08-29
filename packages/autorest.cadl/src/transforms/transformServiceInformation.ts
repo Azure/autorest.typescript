@@ -30,7 +30,7 @@ export function transformEndpointParameters(
 
   return globalParameters.map((p) => ({
     doc: p.language.default.description ?? "",
-    name: p.language.default.name,
+    name: p.language.default.serializedName,
   }));
 }
 

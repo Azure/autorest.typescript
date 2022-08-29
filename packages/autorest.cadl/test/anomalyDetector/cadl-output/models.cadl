@@ -8,7 +8,7 @@ namespace AnomalyDetectorClient;
 
 // FIXME: (missing-docs) Add documentation
 enum ApiVersionKnownValues {
-  "v1.1-preview.1",
+  V11Preview1: "v1.1-preview.1",
 }
 
 @knownValues(ApiVersionKnownValues)
@@ -16,12 +16,12 @@ model ApiVersion is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum ImputeModeKnownValues {
-  "auto",
-  "previous",
-  "linear",
-  "fixed",
-  "zero",
-  "notFill",
+  Auto: "auto",
+  Previous: "previous",
+  Linear: "linear",
+  Fixed: "fixed",
+  Zero: "zero",
+  NotFill: "notFill",
 }
 
 @knownValues(ImputeModeKnownValues)
@@ -46,7 +46,7 @@ enum AnomalyDetectorErrorCodesKnownValues {
 model AnomalyDetectorErrorCodes is string {}
 
 // FIXME: (missing-docs) Add documentation
-enum fillNAMethodKnownValues {
+enum FillNAMethodKnownValues {
   "Previous",
   "Subsequent",
   "Linear",
@@ -55,27 +55,27 @@ enum fillNAMethodKnownValues {
   "NotFill",
 }
 
-@knownValues(fillNAMethodKnownValues)
-model fillNAMethod is string {}
+@knownValues(FillNAMethodKnownValues)
+model FillNAMethod is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum TimeGranularity {
-  "yearly",
-  "monthly",
-  "weekly",
-  "daily",
-  "hourly",
-  perMinute: "minutely",
-  perSecond: "secondly",
-  "microsecond",
-  "none",
+  Yearly: "yearly",
+  Monthly: "monthly",
+  Weekly: "weekly",
+  Daily: "daily",
+  Hourly: "hourly",
+  PerMinute: "minutely",
+  PerSecond: "secondly",
+  Microsecond: "microsecond",
+  None: "none",
 }
 // FIXME: (missing-docs) Add documentation
 enum DetectionStatus {
-  "CREATED",
-  "RUNNING",
-  "READY",
-  "FAILED",
+  Created: "CREATED",
+  Running: "RUNNING",
+  Ready: "READY",
+  Failed: "FAILED",
 }
 // FIXME: (missing-docs) Add documentation
 enum DataSchema {
@@ -83,16 +83,16 @@ enum DataSchema {
   "MultiTable",
 }
 // FIXME: (missing-docs) Add documentation
-enum alignMode {
+enum AlignMode {
   "Inner",
   "Outer",
 }
 // FIXME: (missing-docs) Add documentation
-enum modelStatus {
-  "CREATED",
-  "RUNNING",
-  "READY",
-  "FAILED",
+enum ModelStatus {
+  Created: "CREATED",
+  Running: "RUNNING",
+  Ready: "READY",
+  Failed: "FAILED",
 }
 
 @doc("The request of entire or last anomaly detection.")
@@ -506,7 +506,7 @@ the anomaly score of the subsequent point.
   alignPolicy?: AlignPolicy;
 
   @doc("Model status. One of CREATED, RUNNING, READY, and FAILED.")
-  status?: modelStatus;
+  status?: ModelStatus;
 
   @doc("Error messages when failed to create a model.")
   errors?: ErrorResponse[];
@@ -521,14 +521,14 @@ model AlignPolicy {
 An optional field, indicating how we align different variables to the same
 time-range. Either Inner or Outer. 
 """)
-  alignMode?: alignMode;
+  alignMode?: AlignMode;
 
   @doc("""
 An optional field, indicating how missing values will be filled. One of
 Previous, Subsequent, Linear, Zero, Fixed, and NotFill. Cannot be set to
 NotFill, when the alignMode is Outer.
 """)
-  fillNAMethod?: fillNAMethod;
+  fillNAMethod?: FillNAMethod;
 
   @doc("An optional field. Required when fillNAMethod is Fixed.")
   paddingValue?: float32;
@@ -584,7 +584,7 @@ model ModelSnapshot {
   lastUpdatedTime: zonedDateTime;
 
   @doc("Model status. One of CREATED, RUNNING, READY, and FAILED.")
-  status: modelStatus;
+  status: ModelStatus;
   // FIXME: (missing-docs) Add documentation
   displayName?: string;
 

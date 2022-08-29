@@ -6,8 +6,8 @@ namespace Adel;
 
 // FIXME: (missing-docs) Add documentation
 enum OrderByKnownValues {
-  "ASCENDING",
-  "DESCENDING",
+  Ascending: "ASCENDING",
+  Descending: "DESCENDING",
 }
 
 @knownValues(OrderByKnownValues)
@@ -36,10 +36,10 @@ model DataGranularityUnit is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum ReplayStatusKnownValues {
-  "CREATED",
-  "RUNNING",
-  "COMPLETED",
-  "FAILED",
+  Created: "CREATED",
+  Running: "RUNNING",
+  Completed: "COMPLETED",
+  Failed: "FAILED",
 }
 
 @knownValues(ReplayStatusKnownValues)
@@ -47,9 +47,9 @@ model ReplayStatus is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum ScheduleStatusKnownValues {
-  "ACTIVE",
-  "CLIENTPAUSED",
-  "SERVERPAUSED",
+  Active: "ACTIVE",
+  Clientpaused: "CLIENTPAUSED",
+  Serverpaused: "SERVERPAUSED",
 }
 
 @knownValues(ScheduleStatusKnownValues)
@@ -57,10 +57,10 @@ model ScheduleStatus is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum EvaluationStatusKnownValues {
-  "CREATED",
-  "RUNNING",
-  "COMPLETED",
-  "FAILED",
+  Created: "CREATED",
+  Running: "RUNNING",
+  Completed: "COMPLETED",
+  Failed: "FAILED",
 }
 
 @knownValues(EvaluationStatusKnownValues)
@@ -68,10 +68,10 @@ model EvaluationStatus is string {}
 
 // FIXME: (missing-docs) Add documentation
 enum ModelStatusKnownValues {
-  "CREATED",
-  "RUNNING",
-  "COMPLETED",
-  "FAILED",
+  Created: "CREATED",
+  Running: "RUNNING",
+  Completed: "COMPLETED",
+  Failed: "FAILED",
 }
 
 @knownValues(ModelStatusKnownValues)
@@ -98,7 +98,7 @@ enum FillNAMethodKnownValues {
 model FillNAMethod is string {}
 
 // FIXME: (missing-docs) Add documentation
-model Page_AlertConfig {
+model PageAlertConfig {
   // FIXME: (missing-docs) Add documentation
   value: AlertConfig[];
   // FIXME: (missing-docs) Add documentation
@@ -139,11 +139,11 @@ modified by the users (if applicable).
 @error
 model Error {
   // FIXME: (missing-docs) Add documentation
-  error: Error_error;
+  error: ErrorError;
 }
 
 // FIXME: (missing-docs) Add documentation
-model Error_error {
+model ErrorError {
   // FIXME: (missing-docs) Add documentation
   code: string;
   // FIXME: (missing-docs) Add documentation
@@ -151,7 +151,7 @@ model Error_error {
 }
 
 // FIXME: (missing-docs) Add documentation
-model Page_Dataset {
+model PageDataset {
   // FIXME: (missing-docs) Add documentation
   value: Dataset[];
   // FIXME: (missing-docs) Add documentation
@@ -207,7 +207,7 @@ model DataSourceInfo {
 model DataSchema {}
 
 // FIXME: (missing-docs) Add documentation
-model Request_Dataset {
+model RequestDataset {
   @doc("(Optional) Detailed description of a dataset.")
   datasetDescription?: string;
 
@@ -301,7 +301,7 @@ data granularity.
 }
 
 // FIXME: (missing-docs) Add documentation
-model Page_Hook {
+model PageHook {
   // FIXME: (missing-docs) Add documentation
   value: Hook[];
   // FIXME: (missing-docs) Add documentation
@@ -328,7 +328,7 @@ users (if applicable).
 }
 
 // FIXME: (missing-docs) Add documentation
-model Page_ScheduleReplay {
+model PageScheduleReplay {
   // FIXME: (missing-docs) Add documentation
   value: ScheduleReplay[];
   // FIXME: (missing-docs) Add documentation
@@ -427,7 +427,7 @@ variables may have a different lastTimestamp due to missing values.
 }
 
 // FIXME: (missing-docs) Add documentation
-model Request_ScheduleReplay {
+model RequestScheduleReplay {
   @doc("(Optional) Detailed description of a replay on an inference schedule.")
   replayDescription?: string;
 
@@ -451,7 +451,7 @@ relay. If endTime equals to startTime, one single data point will be processed.
 }
 
 // FIXME: (missing-docs) Add documentation
-model Page_Schedule {
+model PageSchedule {
   // FIXME: (missing-docs) Add documentation
   value: Schedule[];
   // FIXME: (missing-docs) Add documentation
@@ -542,7 +542,7 @@ users (if applicable).
 }
 
 // FIXME: (missing-docs) Add documentation
-model Request_Schedule {
+model RequestSchedule {
   @doc("(Optional) Detailed description of a live streaming inference schedule.")
   scheduleDescription?: string;
 
@@ -707,7 +707,7 @@ changed.
 }
 
 // FIXME: (missing-docs) Add documentation
-model Page_Evaluation {
+model PageEvaluation {
   // FIXME: (missing-docs) Add documentation
   value: Evaluation[];
   // FIXME: (missing-docs) Add documentation
@@ -778,7 +778,7 @@ in descending order.
 }
 
 // FIXME: (missing-docs) Add documentation
-model Request_Evaluation {
+model RequestEvaluation {
   @doc("(Optional) Detailed description of a model evaluation.")
   evaluationDescription?: string;
 
@@ -807,7 +807,7 @@ processed.
 }
 
 // FIXME: (missing-docs) Add documentation
-model Page_Model {
+model PageModel {
   // FIXME: (missing-docs) Add documentation
   value: Model[];
   // FIXME: (missing-docs) Add documentation
@@ -926,7 +926,7 @@ model ModelState {
 }
 
 // FIXME: (missing-docs) Add documentation
-model Request_Model {
+model RequestModel {
   @doc("(Optional) Detailed description of a model.")
   modelDescription?: string;
 

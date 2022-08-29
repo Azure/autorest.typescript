@@ -17,7 +17,7 @@ each product, and lists the products in the proper display order.
 """)
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @get
-  list is Azure.Core.Operation<{
+  List is Azure.Core.Operation<{
     @doc("Subscription ID.")
     @path
     subscriptionId: "123456";
@@ -31,7 +31,7 @@ each product, and lists the products in the proper display order.
   @doc("Resets products.")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @post
-  create is Azure.Core.Operation<{
+  Create is Azure.Core.Operation<{
     @doc("Subscription ID.")
     @path
     subscriptionId: string;
@@ -49,7 +49,7 @@ each product, and lists the products in the proper display order.
   @doc("Resets products.")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @put
-  update is Azure.Core.Operation<{
+  Update is Azure.Core.Operation<{
     @doc("Subscription ID.")
     @path
     subscriptionId: string;

@@ -7,7 +7,7 @@ use-extension:
 
 modelerfour:
   # this runs a pre-namer step to clean up names
-  prenamer: false
+  prenamer: true
 
 cadl-init-scope/emitter:
   input-artifact: cadl-init-files

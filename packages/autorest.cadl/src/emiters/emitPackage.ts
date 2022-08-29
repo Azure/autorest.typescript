@@ -6,7 +6,7 @@ export async function emitPackage(
   filePath: string,
   program: CadlProgram
 ): Promise<void> {
-  const name = program.serviceInformation.name;
+  const name = program.serviceInformation.name.toLowerCase().replace(/ /g, "-");
   const content = JSON.stringify(getPackage(name));
   await writeFile(filePath, formatJSONFile(content, filePath));
 }
