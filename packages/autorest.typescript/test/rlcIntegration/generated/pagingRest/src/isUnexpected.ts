@@ -8,6 +8,8 @@ import {
   PagingGetNullNextLinkNamePagesDefaultResponse,
   PagingGetSinglePages200Response,
   PagingGetSinglePagesDefaultResponse,
+  PagingGetSinglePagesWithBodyParams200Response,
+  PagingGetSinglePagesWithBodyParamsDefaultResponse,
   PagingFirstResponseEmpty200Response,
   PagingFirstResponseEmptyDefaultResponse,
   PagingGetMultiplePages200Response,
@@ -56,6 +58,7 @@ const responseMap: Record<string, string[]> = {
   "GET /paging/noitemname": ["200"],
   "GET /paging/nullnextlink": ["200"],
   "GET /paging/single": ["200"],
+  "GET /paging/single/getWithBodyParams": ["200"],
   "GET /paging/firstResponseEmpty/1": ["200"],
   "GET /paging/multiple": ["200"],
   "GET /paging/multiple/getWithQueryParams": ["200"],
@@ -95,6 +98,11 @@ export function isUnexpected(
     | PagingGetSinglePages200Response
     | PagingGetSinglePagesDefaultResponse
 ): response is PagingGetSinglePagesDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingGetSinglePagesWithBodyParams200Response
+    | PagingGetSinglePagesWithBodyParamsDefaultResponse
+): response is PagingGetSinglePagesWithBodyParamsDefaultResponse;
 export function isUnexpected(
   response:
     | PagingFirstResponseEmpty200Response
@@ -206,6 +214,8 @@ export function isUnexpected(
     | PagingGetNullNextLinkNamePagesDefaultResponse
     | PagingGetSinglePages200Response
     | PagingGetSinglePagesDefaultResponse
+    | PagingGetSinglePagesWithBodyParams200Response
+    | PagingGetSinglePagesWithBodyParamsDefaultResponse
     | PagingFirstResponseEmpty200Response
     | PagingFirstResponseEmptyDefaultResponse
     | PagingGetMultiplePages200Response
@@ -252,6 +262,7 @@ export function isUnexpected(
   | PagingGetNoItemNamePagesDefaultResponse
   | PagingGetNullNextLinkNamePagesDefaultResponse
   | PagingGetSinglePagesDefaultResponse
+  | PagingGetSinglePagesWithBodyParamsDefaultResponse
   | PagingFirstResponseEmptyDefaultResponse
   | PagingGetMultiplePagesDefaultResponse
   | PagingGetWithQueryParamsDefaultResponse
@@ -304,8 +315,8 @@ function geParametrizedPathSuccess(path: string): string[] {
       let found = true;
       for (let i = 0; i < candidateParts.length; i++) {
         if (
-          candidateParts[i]?.startsWith("{") &&
-          candidateParts[i]?.endsWith("}")
+          candidateParts[i].startsWith("{") &&
+          candidateParts[i].endsWith("}")
         ) {
           // If the current part of the candidate is a "template" part
           // it is a match with the actual path part on hand

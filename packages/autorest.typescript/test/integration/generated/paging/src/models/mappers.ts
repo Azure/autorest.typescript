@@ -99,6 +99,21 @@ export const ProductResult: coreClient.CompositeMapper = {
   }
 };
 
+export const BodyParam: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "BodyParam",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const OdataProductResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",

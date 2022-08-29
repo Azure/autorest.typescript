@@ -3,10 +3,25 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
+import { BodyParam } from "./models";
 
 export type PagingGetNoItemNamePagesParameters = RequestParameters;
 export type PagingGetNullNextLinkNamePagesParameters = RequestParameters;
 export type PagingGetSinglePagesParameters = RequestParameters;
+
+export interface PagingGetSinglePagesWithBodyParamsBodyParam {
+  /** put {'name': 'body'} to pass the test */
+  body: BodyParam;
+}
+
+export interface PagingGetSinglePagesWithBodyParamsMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type PagingGetSinglePagesWithBodyParamsParameters = PagingGetSinglePagesWithBodyParamsMediaTypesParam &
+  PagingGetSinglePagesWithBodyParamsBodyParam &
+  RequestParameters;
 export type PagingFirstResponseEmptyParameters = RequestParameters;
 
 export interface PagingGetMultiplePagesHeaders {
