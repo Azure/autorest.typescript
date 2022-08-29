@@ -31,14 +31,14 @@ export interface HeadNoParams {
   ): StreamableMethod<ServiceDriven1GetRequired200Response>;
   /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
   put(
-    options?: ServiceDriven1PutRequiredOptionalParameters
+    options: ServiceDriven1PutRequiredOptionalParameters
   ): StreamableMethod<ServiceDriven1PutRequiredOptional200Response>;
 }
 
 export interface PostParameters {
   /** POST a JSON */
   post(
-    options: ServiceDriven1PostParametersParameters
+    options?: ServiceDriven1PostParametersParameters
   ): StreamableMethod<ServiceDriven1PostParameters200Response>;
 }
 

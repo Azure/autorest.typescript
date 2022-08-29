@@ -31,11 +31,11 @@ export interface HeadNoParams {
    *  Initially only has one required Query Parameter. After evolution, a new optional query parameter is added
    */
   get(
-    options?: ServiceDriven2GetRequiredParameters
+    options: ServiceDriven2GetRequiredParameters
   ): StreamableMethod<ServiceDriven2GetRequired200Response>;
   /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
   put(
-    options?: ServiceDriven2PutRequiredOptionalParameters
+    options: ServiceDriven2PutRequiredOptionalParameters
   ): StreamableMethod<ServiceDriven2PutRequiredOptional200Response>;
   /**
    * Delete something.
@@ -49,7 +49,7 @@ export interface HeadNoParams {
 export interface PostParameters {
   /** POST a JSON or a JPEG */
   post(
-    options: ServiceDriven2PostParametersParameters
+    options?: ServiceDriven2PostParametersParameters
   ): StreamableMethod<ServiceDriven2PostParameters200Response>;
 }
 

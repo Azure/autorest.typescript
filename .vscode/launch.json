@@ -100,7 +100,7 @@
       "name": "Generate code for CadlEmitter",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/cadl-rlc-emitter",
-      "runtimeArgs": ["ts-node", "./test/commands/run.ts"],
+      "runtimeArgs": ["ts-node", "./test/commands/gen-cadl-ranch.ts"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",

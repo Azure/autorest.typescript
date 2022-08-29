@@ -2,7 +2,7 @@ import { assert } from "chai";
 import ResiliencyDevDrivenClientFactory, {
   ResiliencyDevDrivenClient
 } from "./generated/resiliency/devDriven/src/index.js";
-describe("HelloClient Rest Client", () => {
+describe("ResiliencyDevDrivenClient Rest Client", () => {
   let client: ResiliencyDevDrivenClient;
 
   beforeEach(() => {
@@ -11,16 +11,39 @@ describe("HelloClient Rest Client", () => {
     });
   });
 
-  it("should return 200", async () => {
-    try {
-      const pathFn = client.path("/customization/model/{mode}", "raw");
+  describe("dpg customization with raw model", () => {
+    it("should get model", async () => {
+      const result = await client
+        .path("/customization/model/{mode}", "raw")
+        .get();
+      assert.equal(result.status, "200");
+      assert.equal(result.body.received, "raw");
+    });
 
-      const result = await pathFn.get({});
+    it("should post model", async () => {
+      const result = await client
+        .path("/customization/model/{mode}", "raw")
+        .post({ body: { hello: "world!" } });
+      assert.equal(result.status, "200");
+      assert.equal(result.body.received, "raw");
+    });
+  });
 
-      // TODO: why the function isUnexpected is missing
-      assert.strictEqual(result.status, "200");
-    } catch (err) {
-      assert.fail(err as string);
-    }
+  describe("dpg customization with model model", () => {
+    it("should get model", async () => {
+      const result = await client
+        .path("/customization/model/{mode}", "model")
+        .get();
+      assert.equal(result.status, "200");
+      assert.equal(result.body.received, "model");
+    });
+
+    it("should post model", async () => {
+      const result = await client
+        .path("/customization/model/{mode}", "model")
+        .post({ body: { hello: "world!" } });
+      assert.equal(result.status, "200");
+      assert.equal(result.body.received, "model");
+    });
   });
 });
