@@ -55,5 +55,5 @@ export interface Routes {
 
 export type ExtensibleEnumsClient = Client & {
   path: Routes;
-  string: StringOperations;
+  stringOperations: StringOperations;
 };

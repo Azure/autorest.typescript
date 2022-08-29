@@ -53,9 +53,6 @@ export function getSchemaForType(
   needRef?: boolean
 ) {
   const type = getEffectiveModelType(typeInput);
-  if ((type as ModelType).name === "CustomPage") {
-    type;
-  }
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -312,10 +309,7 @@ function validateDiscriminator(
  * Headers, parameters, status codes are not schema properties even they are
  * represented as properties in Cadl.
  */
-export function isSchemaProperty(
-  program: Program,
-  property: ModelTypeProperty
-) {
+function isSchemaProperty(program: Program, property: ModelTypeProperty) {
   const headerInfo = getHeaderFieldName(program, property);
   const queryInfo = getQueryParamName(program, property);
   const pathInfo = getPathParamName(program, property);
