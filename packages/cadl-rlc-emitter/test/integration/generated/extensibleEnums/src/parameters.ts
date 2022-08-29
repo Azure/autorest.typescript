@@ -1,18 +1,18 @@
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type ExtensibleEnumsGetKnownValueParameters = RequestParameters;
-export type ExtensibleEnumsGetUnknownValueParameters = RequestParameters;
+export type StringGetKnownValueParameters = RequestParameters;
+export type StringGetUnknownValueParameters = RequestParameters;
 
-export interface ExtensibleEnumsPutKnownValueBodyParam {
+export interface StringPutKnownValueBodyParam {
   body: string;
 }
 
-export type ExtensibleEnumsPutKnownValueParameters =
-  ExtensibleEnumsPutKnownValueBodyParam & RequestParameters;
+export type StringPutKnownValueParameters = StringPutKnownValueBodyParam &
+  RequestParameters;
 
-export interface ExtensibleEnumsPutUnknownValueBodyParam {
+export interface StringPutUnknownValueBodyParam {
   body: string;
 }
 
-export type ExtensibleEnumsPutUnknownValueParameters =
-  ExtensibleEnumsPutUnknownValueBodyParam & RequestParameters;
+export type StringPutUnknownValueParameters = StringPutUnknownValueBodyParam &
+  RequestParameters;

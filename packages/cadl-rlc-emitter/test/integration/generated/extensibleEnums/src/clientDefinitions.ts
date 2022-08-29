@@ -1,49 +1,49 @@
 import {
-  ExtensibleEnumsGetKnownValueParameters,
-  ExtensibleEnumsPutKnownValueParameters,
-  ExtensibleEnumsGetUnknownValueParameters,
-  ExtensibleEnumsPutUnknownValueParameters,
+  StringGetKnownValueParameters,
+  StringPutKnownValueParameters,
+  StringGetUnknownValueParameters,
+  StringPutUnknownValueParameters,
 } from "./parameters";
 import {
-  ExtensibleEnumsGetKnownValue200Response,
-  ExtensibleEnumsPutKnownValue204Response,
-  ExtensibleEnumsGetUnknownValue200Response,
-  ExtensibleEnumsPutUnknownValue204Response,
+  StringGetKnownValue200Response,
+  StringPutKnownValue204Response,
+  StringGetUnknownValue200Response,
+  StringPutUnknownValue204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for ExtensibleEnums operations */
-export interface ExtensibleEnumsOperations {
+/** Contains operations for String operations */
+export interface StringOperations {
   getKnownValue(
-    options?: ExtensibleEnumsGetKnownValueParameters
-  ): StreamableMethod<ExtensibleEnumsGetKnownValue200Response>;
+    options?: StringGetKnownValueParameters
+  ): StreamableMethod<StringGetKnownValue200Response>;
   putKnownValue(
-    options?: ExtensibleEnumsPutKnownValueParameters
-  ): StreamableMethod<ExtensibleEnumsPutKnownValue204Response>;
+    options?: StringPutKnownValueParameters
+  ): StreamableMethod<StringPutKnownValue204Response>;
   getUnknownValue(
-    options?: ExtensibleEnumsGetUnknownValueParameters
-  ): StreamableMethod<ExtensibleEnumsGetUnknownValue200Response>;
+    options?: StringGetUnknownValueParameters
+  ): StreamableMethod<StringGetUnknownValue200Response>;
   putUnknownValue(
-    options?: ExtensibleEnumsPutUnknownValueParameters
-  ): StreamableMethod<ExtensibleEnumsPutUnknownValue204Response>;
+    options?: StringPutUnknownValueParameters
+  ): StreamableMethod<StringPutUnknownValue204Response>;
 }
 
 export interface GetKnownValue {
   get(
-    options?: ExtensibleEnumsGetKnownValueParameters
-  ): StreamableMethod<ExtensibleEnumsGetKnownValue200Response>;
+    options?: StringGetKnownValueParameters
+  ): StreamableMethod<StringGetKnownValue200Response>;
   put(
-    options?: ExtensibleEnumsPutKnownValueParameters
-  ): StreamableMethod<ExtensibleEnumsPutKnownValue204Response>;
+    options?: StringPutKnownValueParameters
+  ): StreamableMethod<StringPutKnownValue204Response>;
 }
 
 export interface GetUnknownValue {
   get(
-    options?: ExtensibleEnumsGetUnknownValueParameters
-  ): StreamableMethod<ExtensibleEnumsGetUnknownValue200Response>;
+    options?: StringGetUnknownValueParameters
+  ): StreamableMethod<StringGetUnknownValue200Response>;
   put(
-    options?: ExtensibleEnumsPutUnknownValueParameters
-  ): StreamableMethod<ExtensibleEnumsPutUnknownValue204Response>;
+    options?: StringPutUnknownValueParameters
+  ): StreamableMethod<StringPutUnknownValue204Response>;
 }
 
 export interface Routes {
@@ -55,5 +55,5 @@ export interface Routes {
 
 export type ExtensibleEnumsClient = Client & {
   path: Routes;
-  extensibleEnums: ExtensibleEnumsOperations;
+  string: StringOperations;
 };

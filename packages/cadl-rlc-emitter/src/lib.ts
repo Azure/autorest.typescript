@@ -86,12 +86,6 @@ const libDef = {
       messages: {
         default: paramMessage`Invalid type '${"type"}' for a default value`
       }
-    },
-    "missing-namespace": {
-      severity: "error",
-      messages: {
-        required: paramMessage`Missing namespace for route '${"path"}'`
-      }
     }
   }
 } as const;
