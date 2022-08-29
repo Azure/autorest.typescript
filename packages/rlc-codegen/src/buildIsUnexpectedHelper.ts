@@ -146,8 +146,8 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
             let found = true;
             for (let i = 0; i < candidateParts.length; i++) {
               if (
-                candidateParts[i].startsWith("{") &&
-                candidateParts[i].endsWith("}")
+                candidateParts[i]?.startsWith("{") &&
+                candidateParts[i]?.endsWith("}")
               ) {
                 // If the current part of the candidate is a "template" part
                 // it is a match with the actual path part on hand

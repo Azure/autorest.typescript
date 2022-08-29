@@ -11,6 +11,7 @@ import {
 import { getDoc, Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
+  HttpOperationParameters,
   HttpOperationResponse,
   OperationDetails
 } from "@cadl-lang/rest/http";
@@ -40,12 +41,7 @@ export function transformPaths(program: Program): Paths {
     }
     const method = {
       description: getDoc(program, route.operation) ?? "",
-      hasOptionalOptions:
-        route.parameters.parameters.length === 0 ||
-        (route.parameters.parameters.length > 0 &&
-          route.parameters.parameters.some((p) => p.param.optional))
-          ? true
-          : false,
+      hasOptionalOptions: !hasRequiredOptions(route.parameters),
       optionsName: getParameterTypeName(
         route.operation.interface?.name,
         route.operation.name
@@ -87,6 +83,14 @@ export function transformPaths(program: Program): Paths {
   }
 
   return paths;
+}
+
+function hasRequiredOptions(routeParameters: HttpOperationParameters) {
+  const isRequiredBodyParam = Boolean(routeParameters.bodyParameter?.optional);
+  const containsRequiredNonBodyParam = routeParameters.parameters
+    .filter((parameter) => ["query", "header"].includes(parameter.type))
+    .some((parameter) => !Boolean(parameter.param.optional));
+  return isRequiredBodyParam || containsRequiredNonBodyParam;
 }
 
 /**

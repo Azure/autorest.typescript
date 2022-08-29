@@ -293,7 +293,7 @@ export interface ErrorResponseOutput {
 // @public (undocumented)
 export interface GlobalGetSupportedLanguages {
     // (undocumented)
-    get(options?: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
+    get(options: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
 }
 
 // @public
@@ -336,7 +336,7 @@ export interface GlobalGetSupportedLanguagesQueryParamProperties {
 // @public (undocumented)
 export interface GlobalListTrainingConfigVersions {
     // (undocumented)
-    get(options?: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
+    get(options: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
 }
 
 // @public
@@ -379,9 +379,9 @@ export interface GlobalListTrainingConfigVersionsQueryParamProperties {
 // @public
 export interface GlobalOperations {
     // (undocumented)
-    getSupportedLanguages(options?: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
+    getSupportedLanguages(options: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
     // (undocumented)
-    listTrainingConfigVersions(options?: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
+    listTrainingConfigVersions(options: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -573,7 +573,7 @@ export interface ProjectOutput {
 export interface ProjectsCreateOrUpdate {
     delete(options: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
     get(options: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
-    patch(options?: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
+    patch(options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -795,7 +795,7 @@ export interface ProjectsImportxQueryParamProperties {
 
 // @public (undocumented)
 export interface ProjectsList {
-    get(options?: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
+    get(options: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
 }
 
 // @public
@@ -837,12 +837,12 @@ export interface ProjectsListQueryParamProperties {
 
 // @public
 export interface ProjectsOperations {
-    createOrUpdate(projectName: string, options?: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
+    createOrUpdate(projectName: string, options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
     delete(projectName: string, options: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
     export(projectName: string, options: ProjectsExportParameters): StreamableMethod<ProjectsExport202Response | ProjectsExportDefaultResponse>;
     get(projectName: string, options: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
     importx(projectName: string, options: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
-    list(options?: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
+    list(options: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
     train(projectName: string, options: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
 }
 

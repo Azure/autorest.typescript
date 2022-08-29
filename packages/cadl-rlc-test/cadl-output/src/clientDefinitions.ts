@@ -59,7 +59,7 @@ export interface ProjectsOperations {
   /** Creates a new project or updates an existing one. */
   createOrUpdate(
     projectName: string,
-    options?: ProjectsCreateOrUpdateParameters
+    options: ProjectsCreateOrUpdateParameters
   ): StreamableMethod<
     | ProjectsCreateOrUpdate200Response
     | ProjectsCreateOrUpdate201Response
@@ -79,7 +79,7 @@ export interface ProjectsOperations {
   >;
   /** Lists the existing projects. */
   list(
-    options?: ProjectsListParameters
+    options: ProjectsListParameters
   ): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
   /** Triggers a job to export a project's data. */
   export(
@@ -175,13 +175,13 @@ export interface JobsOperations {
 /** Contains operations for Global operations */
 export interface GlobalOperations {
   getSupportedLanguages(
-    options?: GlobalGetSupportedLanguagesParameters
+    options: GlobalGetSupportedLanguagesParameters
   ): StreamableMethod<
     | GlobalGetSupportedLanguages200Response
     | GlobalGetSupportedLanguagesDefaultResponse
   >;
   listTrainingConfigVersions(
-    options?: GlobalListTrainingConfigVersionsParameters
+    options: GlobalListTrainingConfigVersionsParameters
   ): StreamableMethod<
     | GlobalListTrainingConfigVersions200Response
     | GlobalListTrainingConfigVersionsDefaultResponse
@@ -191,7 +191,7 @@ export interface GlobalOperations {
 export interface ProjectsCreateOrUpdate {
   /** Creates a new project or updates an existing one. */
   patch(
-    options?: ProjectsCreateOrUpdateParameters
+    options: ProjectsCreateOrUpdateParameters
   ): StreamableMethod<
     | ProjectsCreateOrUpdate200Response
     | ProjectsCreateOrUpdate201Response
@@ -212,7 +212,7 @@ export interface ProjectsCreateOrUpdate {
 export interface ProjectsList {
   /** Lists the existing projects. */
   get(
-    options?: ProjectsListParameters
+    options: ProjectsListParameters
   ): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
 }
 
@@ -306,7 +306,7 @@ export interface JobsGetSwapDeploymentsStatus {
 
 export interface GlobalGetSupportedLanguages {
   get(
-    options?: GlobalGetSupportedLanguagesParameters
+    options: GlobalGetSupportedLanguagesParameters
   ): StreamableMethod<
     | GlobalGetSupportedLanguages200Response
     | GlobalGetSupportedLanguagesDefaultResponse
@@ -315,7 +315,7 @@ export interface GlobalGetSupportedLanguages {
 
 export interface GlobalListTrainingConfigVersions {
   get(
-    options?: GlobalListTrainingConfigVersionsParameters
+    options: GlobalListTrainingConfigVersionsParameters
   ): StreamableMethod<
     | GlobalListTrainingConfigVersions200Response
     | GlobalListTrainingConfigVersionsDefaultResponse

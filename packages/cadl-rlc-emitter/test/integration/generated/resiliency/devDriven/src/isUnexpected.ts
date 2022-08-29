@@ -1,55 +1,21 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import {
-  MetadataRolesList200Response,
-  MetadataRolesListDefaultResponse,
-  MetadataPolicyListAll200Response,
-  MetadataPolicyListAllDefaultResponse,
-  MetadataPolicyUpdate200Response,
-  MetadataPolicyUpdateDefaultResponse,
-  MetadataPolicyGet200Response,
-  MetadataPolicyGetDefaultResponse
+  DevDrivenGetPages200Response,
+  DevDrivenGetPagesDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "GET /metadataRoles": ["200"],
-  "GET /metadataPolicies": ["200"],
-  "PUT /metadataPolicies/{policyId}": ["200"],
-  "GET /metadataPolicies/{policyId}": ["200"]
+  "GET /customization/model/{mode}": ["200"],
+  "POST /customization/model/{mode}": ["200"],
+  "GET /": ["200"],
+  "PUT /customization/lro/{mode}": ["200"],
 };
 
 export function isUnexpected(
-  response: MetadataRolesList200Response | MetadataRolesListDefaultResponse
-): response is MetadataRolesListDefaultResponse;
+  response: DevDrivenGetPages200Response | DevDrivenGetPagesDefaultResponse
+): response is DevDrivenGetPagesDefaultResponse;
 export function isUnexpected(
-  response:
-    | MetadataPolicyListAll200Response
-    | MetadataPolicyListAllDefaultResponse
-): response is MetadataPolicyListAllDefaultResponse;
-export function isUnexpected(
-  response:
-    | MetadataPolicyUpdate200Response
-    | MetadataPolicyUpdateDefaultResponse
-): response is MetadataPolicyUpdateDefaultResponse;
-export function isUnexpected(
-  response: MetadataPolicyGet200Response | MetadataPolicyGetDefaultResponse
-): response is MetadataPolicyGetDefaultResponse;
-export function isUnexpected(
-  response:
-    | MetadataRolesList200Response
-    | MetadataRolesListDefaultResponse
-    | MetadataPolicyListAll200Response
-    | MetadataPolicyListAllDefaultResponse
-    | MetadataPolicyUpdate200Response
-    | MetadataPolicyUpdateDefaultResponse
-    | MetadataPolicyGet200Response
-    | MetadataPolicyGetDefaultResponse
-): response is
-  | MetadataRolesListDefaultResponse
-  | MetadataPolicyListAllDefaultResponse
-  | MetadataPolicyUpdateDefaultResponse
-  | MetadataPolicyGetDefaultResponse {
+  response: DevDrivenGetPages200Response | DevDrivenGetPagesDefaultResponse
+): response is DevDrivenGetPagesDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
