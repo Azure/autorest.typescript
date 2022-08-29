@@ -72,14 +72,14 @@ export interface ConfidentialLedgerOperations {
   >;
   /** A collection id may optionally be specified. */
   postLedgerEntry(
-    options?: ConfidentialLedgerPostLedgerEntryParameters
+    options: ConfidentialLedgerPostLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerPostLedgerEntry200Response
     | ConfidentialLedgerPostLedgerEntryDefaultResponse
   >;
   getLedgerEntry(
     transactionId: string,
-    options?: ConfidentialLedgerGetLedgerEntryParameters
+    options: ConfidentialLedgerGetLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetLedgerEntry200Response
     | ConfidentialLedgerGetLedgerEntryDefaultResponse
@@ -99,7 +99,7 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetTransactionStatusDefaultResponse
   >;
   getCurrentLedgerEntry(
-    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
+    options: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetCurrentLedgerEntry200Response
     | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
@@ -170,7 +170,7 @@ export interface GetConsortiumMembers {
 export interface PostLedgerEntry {
   /** A collection id may optionally be specified. */
   post(
-    options?: ConfidentialLedgerPostLedgerEntryParameters
+    options: ConfidentialLedgerPostLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerPostLedgerEntry200Response
     | ConfidentialLedgerPostLedgerEntryDefaultResponse
@@ -179,7 +179,7 @@ export interface PostLedgerEntry {
 
 export interface GetLedgerEntry {
   get(
-    options?: ConfidentialLedgerGetLedgerEntryParameters
+    options: ConfidentialLedgerGetLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetLedgerEntry200Response
     | ConfidentialLedgerGetLedgerEntryDefaultResponse
@@ -206,7 +206,7 @@ export interface GetTransactionStatus {
 
 export interface GetCurrentLedgerEntry {
   get(
-    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
+    options: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetCurrentLedgerEntry200Response
     | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
