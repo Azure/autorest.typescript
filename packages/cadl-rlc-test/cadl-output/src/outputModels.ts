@@ -118,13 +118,13 @@ export interface OperationStatusOutput {
   error?: ErrorModelOutput;
 }
 
-export interface CustomPageOutput {
+export interface CustomPageProjectOutput {
   value: Array<ProjectOutput>;
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-export interface CustomPageOutput {
+export interface CustomPageProjectOutput {
   value: Array<ProjectOutput>;
   /** The link to the next page of items */
   nextLink?: string;
@@ -177,13 +177,13 @@ export interface OperationStatusOutput {
   error?: ErrorModelOutput;
 }
 
-export interface CustomPageOutput {
+export interface CustomPageDeploymentOutput {
   value: Array<DeploymentOutput>;
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-export interface CustomPageOutput {
+export interface CustomPageDeploymentOutput {
   value: Array<DeploymentOutput>;
   /** The link to the next page of items */
   nextLink?: string;

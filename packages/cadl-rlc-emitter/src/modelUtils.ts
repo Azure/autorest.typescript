@@ -53,7 +53,7 @@ export function getSchemaForType(
   needRef?: boolean
 ) {
   const type = getEffectiveModelType(typeInput);
-  if ((type as ModelType).name === 'CustomPage') {
+  if ((type as ModelType).name === "CustomPage") {
     type;
   }
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
@@ -312,7 +312,10 @@ function validateDiscriminator(
  * Headers, parameters, status codes are not schema properties even they are
  * represented as properties in Cadl.
  */
-export function isSchemaProperty(program: Program, property: ModelTypeProperty) {
+export function isSchemaProperty(
+  program: Program,
+  property: ModelTypeProperty
+) {
   const headerInfo = getHeaderFieldName(program, property);
   const queryInfo = getQueryParamName(program, property);
   const pathInfo = getPathParamName(program, property);
@@ -345,8 +348,29 @@ function getSchemaForModel(
   needRef?: boolean
 ) {
   const friendlyName = getFriendlyName(program, model);
+  let name = model.name;
+  if (
+    !friendlyName &&
+    model.templateArguments &&
+    model.templateArguments.length > 0
+  ) {
+    name =
+      model.name +
+      model.templateArguments
+        .map((it) => {
+          switch (it.kind) {
+            case "Model":
+              return it.name;
+            case "String":
+              return it.value;
+            default:
+              return "";
+          }
+        })
+        .join("");
+  }
   let modelSchema: ObjectSchema = {
-    name: friendlyName ?? model.name,
+    name: friendlyName ?? name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };
@@ -372,13 +396,8 @@ function getSchemaForModel(
     const childSchema = getSchemaForType(program, child, usage, true);
     for (const [name, prop] of child.properties) {
       if (name === discriminator?.propertyName) {
-        const propSchema = getSchemaForType(
-          program,
-          prop.type,
-          usage,
-          true
-        )
-        childSchema.discriminatorValue = propSchema.type.replace(/"/g, '');
+        const propSchema = getSchemaForType(program, prop.type, usage, true);
+        childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
         break;
       }
     }
@@ -645,7 +664,7 @@ function mapCadlIntrinsicModelToTypeScript(
         if (usage && usage.includes(SchemaContext.Output)) {
           schema.outputTypeName = `Array<${schema.items.name}Output>`;
         }
-      } else if (name === 'integer'){
+      } else if (name === "integer") {
         schema.typeName = `${schema.items.type}[]`;
       }
       schema.usage = usage;

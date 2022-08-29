@@ -19,7 +19,7 @@ using Azure.Core;
 )
 @serviceTitle("Microsoft Cognitive Language Service - Analyze Text Authoring")
 @serviceVersion("2022-05-15-preview")
-@useAuth(OAuth2Auth<[MyFlow]>)
+@useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
 @versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
 @route("/authoring/analyze-text/")
 namespace Azure.Language.Authoring;
@@ -30,12 +30,6 @@ namespace Azure.Language.Authoring;
 @doc("The endpoint to use.")
 model Endpoint is string;
 
-model MyFlow {
-  type: OAuth2FlowType.implicit;
-  authorizationUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/authorize";
-  tokenUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/token";
-  scopes: ["https://confidential-ledger.azure.com/.default"];
-}
 // Models
 
 model Project {

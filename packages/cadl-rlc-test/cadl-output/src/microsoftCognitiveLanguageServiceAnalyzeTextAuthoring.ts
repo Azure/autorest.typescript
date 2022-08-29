@@ -1,10 +1,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { TokenCredential } from "@azure/core-auth";
+import { KeyCredential } from "@azure/core-auth";
 import { MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient } from "./clientDefinitions";
 
 export default function createClient(
   Endpoint: string,
-  credentials: TokenCredential,
+  credentials: KeyCredential,
   options: ClientOptions = {}
 ): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient {
   const baseUrl = options.baseUrl ?? `${Endpoint}/language`;
@@ -12,7 +12,7 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://confidential-ledger.azure.com/.default"],
+      apiKeyHeaderName: "Ocp-Apim-Subscription-Key",
     },
   };
 
