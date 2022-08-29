@@ -11,10 +11,10 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
-    "integartion-test": "npm run start-test-server & npm run generate-cadl-integration && npm run run-integration-test:alone",
-    "generate-cadl-integration": "ts-node ./test/commands/gen-cadl-ranch.ts",
+    "integartion-test": "npm run start-test-server & npm run generate-cadl-only && npm run integration-test:alone",
+    "generate-cadl-only": "ts-node ./test/commands/gen-cadl-ranch.ts",
     "start-test-server": "cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http",
-    "run-integration-test:alone": "mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 './test/integration/*.spec.ts'"   
+    "integration-test:alone": "mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 './test/integration/*.spec.ts'"   
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",

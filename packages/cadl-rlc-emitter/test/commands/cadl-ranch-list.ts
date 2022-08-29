@@ -8,7 +8,6 @@ export const cadls: CadlRanchConfig[] = [
     outputPath: "hello",
     inputPath: "hello"
   },
-  // TODO: remember to fix this case in emitter side
   {
     outputPath: "extensibleEnums",
     inputPath: "extensible-enums"
@@ -60,5 +59,17 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "clients/interfaces",
     inputPath: "clients/interfaces"
+  },
+  {
+    outputPath: "resiliency/devDriven",
+    inputPath: "resiliency/dev-driven"
+  },
+  {
+    outputPath: "resiliency/srvDriven1",
+    inputPath: "resiliency/srv-driven-1"
+  },
+  {
+    outputPath: "resiliency/srvDriven2",
+    inputPath: "resiliency/srv-driven-2"
   }
 ];
