@@ -44,7 +44,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | ClientTokenResponse>;
+  }, ClientTokenResponse>;
 
   @summary("Close the connections in the hub.")
   @doc("Close the connections in the hub.")
@@ -69,7 +69,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Broadcast content inside request body to all the connected client connections.")
   @doc("Broadcast content inside request body to all the connected client connections.")
@@ -98,7 +98,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Check if the connection with the given connectionId exists.")
   @doc("Check if the connection with the given connectionId exists.")
@@ -119,7 +119,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Close the client connection.")
   @doc("Close the client connection.")
@@ -144,7 +144,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Send content inside request body to the specific connection.")
   @doc("Send content inside request body to the specific connection.")
@@ -173,7 +173,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Check if there are any client connections inside the given group")
   @doc("Check if there are any client connections inside the given group")
@@ -194,7 +194,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Close connections in the specific group.")
   @doc("Close connections in the specific group.")
@@ -223,7 +223,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Send content inside request body to a group of connections.")
   @doc("Send content inside request body to a group of connections.")
@@ -256,7 +256,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Add a connection to the target group.")
   @doc("Add a connection to the target group.")
@@ -281,7 +281,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Remove a connection from the target group.")
   @doc("Remove a connection from the target group.")
@@ -306,7 +306,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Check if there are any client connections connected for the given user.")
   @doc("Check if there are any client connections connected for the given user.")
@@ -327,7 +327,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Close connections for the specific user.")
   @doc("Close connections for the specific user.")
@@ -356,7 +356,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Send content inside request body to the specific user.")
   @doc("Send content inside request body to the specific user.")
@@ -385,7 +385,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Add a user to the target group.")
   @doc("Add a user to the target group.")
@@ -410,7 +410,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Remove a user from the target group.")
   @doc("Remove a user from the target group.")
@@ -435,7 +435,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Remove a user from all groups.")
   @doc("Remove a user from all groups.")
@@ -456,7 +456,7 @@ alpha-numeric characters or underscore.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Grant permission to the connection.")
   @doc("Grant permission to the connection.")
@@ -489,7 +489,7 @@ the group name.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Revoke permission for the connection.")
   @doc("Revoke permission for the connection.")
@@ -522,7 +522,7 @@ the group name.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 
   @summary("Check if a connection has permission to the specified action.")
   @doc("Check if a connection has permission to the specified action.")
@@ -555,5 +555,5 @@ the group name.
     @doc("Accept header")
     @header
     Accept: "application/json, text/json";
-  }, ErrorDetail | void>;
+  }, void>;
 }

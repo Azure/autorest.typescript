@@ -9,6 +9,7 @@ export function getModelsImports(program: CadlProgram) {
   const modules = new Set<string>();
   const namespaces = new Set<string>();
   for (const model of program.models.objects) {
+    model.alias?.module && modules.add(`import "${model.alias.module}";`);
     for (const decorator of model.decorators ?? []) {
       decorator.module && modules.add(`import "${decorator.module}";`);
       decorator.namespace && namespaces.add(`using ${decorator.namespace};`);

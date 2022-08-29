@@ -17,6 +17,14 @@ export function generateObject(cadlObject: CadlObject) {
   if (cadlObject.extendedParents?.length) {
     const firstParent = cadlObject.extendedParents[0];
     definitions.push(`model ${cadlObject.name} extends ${firstParent} {`);
+  } else if (cadlObject.alias) {
+    const { alias, params } = cadlObject.alias;
+
+    definitions.push(
+      `model ${cadlObject.name} is ${alias}${
+        params ? `<${params.join(",")}>` : ""
+      } {`
+    );
   } else {
     definitions.push(`model ${cadlObject.name} {`);
   }
@@ -32,7 +40,9 @@ export function generateObject(cadlObject: CadlObject) {
     decorators && definitions.push(decorators);
 
     definitions.push(
-      `  "${property.name}"${getOptionalOperator(property)}: ${property.type};`
+      ` ${getReadonlyOperator(property)} "${
+        property.name
+      }"${getOptionalOperator(property)}: ${property.type};`
     );
   }
   definitions.push("}");
@@ -50,4 +60,8 @@ function getFixme(cadlObject: CadlObject): string | undefined {
 
 function getOptionalOperator(property: CadlObjectProperty) {
   return property.isOptional ? "?" : "";
+}
+
+function getReadonlyOperator(property: CadlObjectProperty) {
+  return property.visibility === "read" ? "readonly " : "";
 }

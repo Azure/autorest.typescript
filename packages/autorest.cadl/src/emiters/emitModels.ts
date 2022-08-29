@@ -28,13 +28,13 @@ function generateModels(program: CadlProgram) {
 
   const enums = flattenEnums(models.enums).join("");
   const objects = models.objects.map(generateObject).join("\n\n");
-
+  const programNamespace = getNamespace(program);
   return [
     imports,
     "\n",
     namespaces,
     "\n",
-    getNamespace(program),
+    programNamespace,
     "\n",
     enums,
     "\n",

@@ -25,7 +25,7 @@ each product, and lists the products in the proper display order.
     @doc("Resource Group ID.")
     @path
     resourceGroupName: string;
-  }, Error | CatalogArray>;
+  }, CatalogArray>;
 
   @summary("Create products")
   @doc("Resets products.")
@@ -43,7 +43,7 @@ each product, and lists the products in the proper display order.
     @doc("body Parameter")
     @body
     bodyParameter: CatalogDictionaryOfArray;
-  }, Error | CatalogDictionary>;
+  }, CatalogDictionary>;
 
   @summary("Update products")
   @doc("Resets products.")
@@ -61,5 +61,5 @@ each product, and lists the products in the proper display order.
     @doc("body Parameter")
     @body
     bodyParameter: CatalogArrayOfDictionary;
-  }, Error | CatalogArray>;
+  }, CatalogArray>;
 }

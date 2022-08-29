@@ -1,5 +1,12 @@
 import { CadlProgram } from "../interfaces";
+import { getOptions } from "../options";
 
 export function getNamespace(program: CadlProgram) {
-  return `namespace ${program.serviceInformation.name.replace(/ /g, "")};`;
+  let { namespace } = getOptions();
+
+  namespace =
+    namespace ??
+    program.serviceInformation.name.replace(/ /g, "").replace(/-/g, "");
+
+  return `namespace ${namespace};`;
 }

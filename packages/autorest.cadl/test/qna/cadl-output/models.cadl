@@ -2,7 +2,6 @@ import "@cadl-lang/rest";
 import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
-using Azure.Core;
 
 namespace QuestionAnswering;
 
@@ -422,16 +421,7 @@ model TextAnswer {
 }
 
 @doc("Collection of projects metadata and global settings.")
-@pagedResult
-model ProjectsMetadata {
-  // FIXME: (missing-docs) Add documentation
-  @items
-  value?: ProjectMetadata[];
-  // FIXME: (missing-docs) Add documentation
-
-  @nextLink
-  nextLink?: string;
-}
+model ProjectsMetadata is Azure.Core.Page<ProjectMetadata> {}
 
 @doc("Represents the project.")
 model ProjectMetadata {
@@ -668,16 +658,7 @@ model SourceDisplayNameParameter {
 }
 
 @doc("All deployments of a project.")
-@pagedResult
-model ProjectDeployments {
-  @doc("List of deployments of a project.")
-  @items
-  value?: ProjectDeployment[];
-  // FIXME: (missing-docs) Add documentation
-
-  @nextLink
-  nextLink?: string;
-}
+model ProjectDeployments is Azure.Core.Page<ProjectDeployment> {}
 
 @doc("Project deployment details.")
 model ProjectDeployment {
@@ -689,31 +670,10 @@ model ProjectDeployment {
 }
 
 @doc("All synonym assets for this project.")
-@pagedResult
-model SynonymAssets {
-  @doc("Collection of synonyms.")
-  @items
-  value?: WordAlterations[];
-  // FIXME: (missing-docs) Add documentation
-
-  @nextLink
-  nextLink?: string;
-}
+model SynonymAssets is Azure.Core.Page<WordAlterations> {}
 
 @doc("All QnA sources for the project.")
-@pagedResult
-model QnaSources {
-  @doc("""
-Custom sources from which QnAs were extracted or explicitly added to the
-project.
-""")
-  @items
-  value?: QnaSourceRecord[];
-  // FIXME: (missing-docs) Add documentation
-
-  @nextLink
-  nextLink?: string;
-}
+model QnaSources is Azure.Core.Page<QnaSourceRecord> {}
 
 @doc("Custom source record with last updated date-time.")
 model QnaSourceRecord {
@@ -764,16 +724,7 @@ model RefreshSourceOptions {
 }
 
 @doc("All QnA assets for the project.")
-@pagedResult
-model QnaAssets {
-  @doc("List of QnA records.")
-  @items
-  value?: RetrieveQnaRecord[];
-  // FIXME: (missing-docs) Add documentation
-
-  @nextLink
-  nextLink?: string;
-}
+model QnaAssets is Azure.Core.Page<RetrieveQnaRecord> {}
 
 @doc("QnA record to be updated.")
 model UpdateQnaRecord {

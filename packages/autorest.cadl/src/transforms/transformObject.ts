@@ -19,6 +19,7 @@ import { getLogger } from "../utils/logger";
 import { getDataTypes } from "../dataTypes";
 import { getModelDecorators, getPropertyDecorators } from "../utils/decorators";
 import { getDiscriminator, getOwnDiscriminator } from "../utils/discriminator";
+import { addCorePageAlias } from "../utils/alias";
 
 const cadlTypes = new Map<SchemaType, string>([
   [SchemaType.Date, "plainDate"],
@@ -80,6 +81,7 @@ export function transformObject(
     decorators: getModelDecorators(schema),
   };
 
+  addCorePageAlias(updatedVisited);
   addFixmes(updatedVisited);
 
   cadlTypes.set(schema, updatedVisited);
@@ -118,6 +120,7 @@ export function transformObjectProperty(
       isOptional: propertySchema.required !== true,
       type: visited.name,
       decorators: getPropertyDecorators(propertySchema),
+      ...(propertySchema.readOnly === true && { visibility: "read" }),
     };
   }
 

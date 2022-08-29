@@ -16,7 +16,7 @@ interface PathsOperations {
     @doc("true boolean value")
     @path
     boolPath: true;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get false Boolean value on path")
   @route("/paths/bool/false/{boolPath}")
@@ -25,7 +25,7 @@ interface PathsOperations {
     @doc("false boolean value")
     @path
     boolPath: false;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '1000000' integer value")
   @route("/paths/int/1000000/{intPath}")
@@ -34,7 +34,7 @@ interface PathsOperations {
     @doc("'1000000' integer value")
     @path
     intPath: 1000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '-1000000' integer value")
   @route("/paths/int/-1000000/{intPath}")
@@ -43,7 +43,7 @@ interface PathsOperations {
     @doc("'-1000000' integer value")
     @path
     intPath: -1000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '10000000000' 64 bit integer value")
   @route("/paths/long/10000000000/{longPath}")
@@ -52,7 +52,7 @@ interface PathsOperations {
     @doc("'10000000000' 64 bit integer value")
     @path
     longPath: 10000000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '-10000000000' 64 bit integer value")
   @route("/paths/long/-10000000000/{longPath}")
@@ -61,7 +61,7 @@ interface PathsOperations {
     @doc("'-10000000000' 64 bit integer value")
     @path
     longPath: -10000000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '1.034E+20' numeric value")
   @route("/paths/float/1.034E+20/{floatPath}")
@@ -70,7 +70,7 @@ interface PathsOperations {
     @doc("'1.034E+20'numeric value")
     @path
     floatPath: 103400000000000000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '-1.034E-20' numeric value")
   @route("/paths/float/-1.034E-20/{floatPath}")
@@ -79,7 +79,7 @@ interface PathsOperations {
     @doc("'-1.034E-20'numeric value")
     @path
     floatPath: -1.034e-20;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '9999999.999' numeric value")
   @route("/paths/double/9999999.999/{doublePath}")
@@ -88,7 +88,7 @@ interface PathsOperations {
     @doc("'9999999.999'numeric value")
     @path
     doublePath: 9999999.999;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '-9999999.999' numeric value")
   @route("/paths/double/-9999999.999/{doublePath}")
@@ -97,7 +97,7 @@ interface PathsOperations {
     @doc("'-9999999.999'numeric value")
     @path
     doublePath: -9999999.999;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
   @route("/paths/string/unicode/{stringPath}")
@@ -106,7 +106,7 @@ interface PathsOperations {
     @doc("'啊齄丂狛狜隣郎隣兀﨩'multi-byte string value")
     @path
     stringPath: "啊齄丂狛狜隣郎隣兀﨩";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get 'begin!*'();:@ &=+$,/?#[]end")
   @route("/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}")
@@ -115,7 +115,7 @@ interface PathsOperations {
     @doc("'begin!*'();:@ &=+$,/?#[]end' url encoded string value")
     @path
     stringPath: "begin!*'();:@ &=+$,/?#[]end";
-  }, Error | void>;
+  }, void>;
 
   @summary("Get 'begin!*'();:@&=+$,end")
   @doc("""
@@ -128,7 +128,7 @@ encoded
     @doc("'begin!*'();:@&=+$,end' url encoded string value")
     @path
     stringPath: "begin!*'();:@&=+$,end";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get ''")
   @route("/paths/string/empty/{stringPath}")
@@ -137,7 +137,7 @@ encoded
     @doc("'' string value")
     @path
     stringPath: "";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null (should throw)")
   @route("/paths/string/null/{stringPath}")
@@ -146,7 +146,7 @@ encoded
     @doc("null string value")
     @path
     stringPath: string;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get using uri with 'green color' in path parameter")
   @route("/paths/enum/green%20color/{enumPath}")
@@ -155,7 +155,7 @@ encoded
     @doc("send the value green")
     @path
     enumPath: UriColor;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null (should throw on the client before the request is sent on wire)")
   @route("/paths/string/null/{enumPath}")
@@ -164,7 +164,7 @@ encoded
     @doc("send null should throw")
     @path
     enumPath: UriColor;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
   @route("/paths/byte/multibyte/{bytePath}")
@@ -173,7 +173,7 @@ encoded
     @doc("'啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
     @path
     bytePath: bytes;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '' as byte array")
   @route("/paths/byte/empty/{bytePath}")
@@ -182,7 +182,7 @@ encoded
     @doc("'' as byte array")
     @path
     bytePath: "";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null as byte array (should throw)")
   @route("/paths/byte/null/{bytePath}")
@@ -191,7 +191,7 @@ encoded
     @doc("null as byte array (should throw)")
     @path
     bytePath: bytes;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '2012-01-01' as date")
   @route("/paths/date/2012-01-01/{datePath}")
@@ -200,7 +200,7 @@ encoded
     @doc("'2012-01-01' as date")
     @path
     datePath: "2012-01-01";
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Get null as date - this should throw or be unusable on the client side,
@@ -212,7 +212,7 @@ depending on date representation
     @doc("null as date (should throw)")
     @path
     datePath: plainDate;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '2012-01-01T01:01:01Z' as date-time")
   @route("/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}")
@@ -221,7 +221,7 @@ depending on date representation
     @doc("'2012-01-01T01:01:01Z' as date-time")
     @path
     dateTimePath: "2012-01-01T01:01:01Z";
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Get null as date-time, should be disallowed or throw depending on
@@ -233,7 +233,7 @@ representation of date-time
     @doc("null as date-time")
     @path
     dateTimePath: zonedDateTime;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get 'lorem' encoded value as 'bG9yZW0' (base64url)")
   @route("/paths/string/bG9yZW0/{base64UrlPath}")
@@ -242,7 +242,7 @@ representation of date-time
     @doc("base64url encoded value")
     @path
     base64UrlPath: bytes;
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
@@ -257,7 +257,7 @@ using the csv-array format
 """)
     @path
     arrayPath: string[];
-  }, Error | void>;
+  }, void>;
 
   @doc("Get the date 2016-04-13 encoded value as '1460505600' (Unix time)")
   @route("/paths/int/1460505600/{unixTimeUrlPath}")
@@ -266,7 +266,7 @@ using the csv-array format
     @doc("Unix time encoded value")
     @path
     unixTimeUrlPath: plainTime;
-  }, Error | void>;
+  }, void>;
 }
 // FIXME: (missing-docs) Add documentation
 interface QueriesOperations {
@@ -277,7 +277,7 @@ interface QueriesOperations {
     @doc("true boolean value")
     @query
     boolQuery: true;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get false Boolean value on path")
   @route("/queries/bool/false")
@@ -286,7 +286,7 @@ interface QueriesOperations {
     @doc("false boolean value")
     @query
     boolQuery: false;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null Boolean value on query (query string should be absent)")
   @route("/queries/bool/null")
@@ -295,7 +295,7 @@ interface QueriesOperations {
     @doc("null boolean value")
     @query
     boolQuery: boolean;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '1000000' integer value")
   @route("/queries/int/1000000")
@@ -304,7 +304,7 @@ interface QueriesOperations {
     @doc("'1000000' integer value")
     @query
     intQuery: 1000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '-1000000' integer value")
   @route("/queries/int/-1000000")
@@ -313,7 +313,7 @@ interface QueriesOperations {
     @doc("'-1000000' integer value")
     @query
     intQuery: -1000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null integer value (no query parameter)")
   @route("/queries/int/null")
@@ -322,7 +322,7 @@ interface QueriesOperations {
     @doc("null integer value")
     @query
     intQuery: int32;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '10000000000' 64 bit integer value")
   @route("/queries/long/10000000000")
@@ -331,7 +331,7 @@ interface QueriesOperations {
     @doc("'10000000000' 64 bit integer value")
     @query
     longQuery: 10000000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '-10000000000' 64 bit integer value")
   @route("/queries/long/-10000000000")
@@ -340,7 +340,7 @@ interface QueriesOperations {
     @doc("'-10000000000' 64 bit integer value")
     @query
     longQuery: -10000000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get 'null 64 bit integer value (no query param in uri)")
   @route("/queries/long/null")
@@ -349,7 +349,7 @@ interface QueriesOperations {
     @doc("null 64 bit integer value")
     @query
     longQuery: int32;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '1.034E+20' numeric value")
   @route("/queries/float/1.034E+20")
@@ -358,7 +358,7 @@ interface QueriesOperations {
     @doc("'1.034E+20'numeric value")
     @query
     floatQuery: 103400000000000000000;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '-1.034E-20' numeric value")
   @route("/queries/float/-1.034E-20")
@@ -367,7 +367,7 @@ interface QueriesOperations {
     @doc("'-1.034E-20'numeric value")
     @query
     floatQuery: -1.034e-20;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null numeric value (no query parameter)")
   @route("/queries/float/null")
@@ -376,7 +376,7 @@ interface QueriesOperations {
     @doc("null numeric value")
     @query
     floatQuery: float32;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '9999999.999' numeric value")
   @route("/queries/double/9999999.999")
@@ -385,7 +385,7 @@ interface QueriesOperations {
     @doc("'9999999.999'numeric value")
     @query
     doubleQuery: 9999999.999;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '-9999999.999' numeric value")
   @route("/queries/double/-9999999.999")
@@ -394,7 +394,7 @@ interface QueriesOperations {
     @doc("'-9999999.999'numeric value")
     @query
     doubleQuery: -9999999.999;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null numeric value (no query parameter)")
   @route("/queries/double/null")
@@ -403,7 +403,7 @@ interface QueriesOperations {
     @doc("null numeric value")
     @query
     doubleQuery: float32;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value")
   @route("/queries/string/unicode/")
@@ -412,7 +412,7 @@ interface QueriesOperations {
     @doc("'啊齄丂狛狜隣郎隣兀﨩'multi-byte string value")
     @query
     stringQuery: "啊齄丂狛狜隣郎隣兀﨩";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get 'begin!*'();:@ &=+$,/?#[]end")
   @route("/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend")
@@ -421,7 +421,7 @@ interface QueriesOperations {
     @doc("'begin!*'();:@ &=+$,/?#[]end' url encoded string value")
     @query
     stringQuery: "begin!*'();:@ &=+$,/?#[]end";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get ''")
   @route("/queries/string/empty")
@@ -430,7 +430,7 @@ interface QueriesOperations {
     @doc("'' string value")
     @query
     stringQuery: "";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null (no query parameter in url)")
   @route("/queries/string/null")
@@ -439,7 +439,7 @@ interface QueriesOperations {
     @doc("null string value")
     @query
     stringQuery: string;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get using uri with query parameter 'green color'")
   @route("/queries/enum/green%20color")
@@ -448,7 +448,7 @@ interface QueriesOperations {
     @doc("'green color' enum value")
     @query
     enumQuery: UriColor;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null (no query parameter in url)")
   @route("/queries/enum/null")
@@ -457,7 +457,7 @@ interface QueriesOperations {
     @doc("null string value")
     @query
     enumQuery: UriColor;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
   @route("/queries/byte/multibyte")
@@ -466,7 +466,7 @@ interface QueriesOperations {
     @doc("'啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array")
     @query
     byteQuery: bytes;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '' as byte array")
   @route("/queries/byte/empty")
@@ -475,7 +475,7 @@ interface QueriesOperations {
     @doc("'' as byte array")
     @query
     byteQuery: "";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null as byte array (no query parameters in uri)")
   @route("/queries/byte/null")
@@ -484,7 +484,7 @@ interface QueriesOperations {
     @doc("null as byte array (no query parameters in uri)")
     @query
     byteQuery: bytes;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '2012-01-01' as date")
   @route("/queries/date/2012-01-01")
@@ -493,7 +493,7 @@ interface QueriesOperations {
     @doc("'2012-01-01' as date")
     @query
     dateQuery: "2012-01-01";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null as date - this should result in no query parameters in uri")
   @route("/queries/date/null")
@@ -502,7 +502,7 @@ interface QueriesOperations {
     @doc("null as date (no query parameters in uri)")
     @query
     dateQuery: plainDate;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get '2012-01-01T01:01:01Z' as date-time")
   @route("/queries/datetime/2012-01-01T01%3A01%3A01Z")
@@ -511,7 +511,7 @@ interface QueriesOperations {
     @doc("'2012-01-01T01:01:01Z' as date-time")
     @query
     dateTimeQuery: "2012-01-01T01:01:01Z";
-  }, Error | void>;
+  }, void>;
 
   @doc("Get null as date-time, should result in no query parameters in uri")
   @route("/queries/datetime/null")
@@ -520,7 +520,7 @@ interface QueriesOperations {
     @doc("null as date-time (no query parameters)")
     @query
     dateTimeQuery: zonedDateTime;
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -535,7 +535,7 @@ using the csv-array format
 """)
     @query
     arrayQuery: string[];
-  }, Error | void>;
+  }, void>;
 
   @doc("Get a null array of string using the csv-array format")
   @route("/queries/array/csv/string/null")
@@ -544,7 +544,7 @@ using the csv-array format
     @doc("a null array of string using the csv-array format")
     @query
     arrayQuery: string[];
-  }, Error | void>;
+  }, void>;
 
   @doc("Get an empty array [] of string using the csv-array format")
   @route("/queries/array/csv/string/empty")
@@ -553,7 +553,7 @@ using the csv-array format
     @doc("an empty array [] of string using the csv-array format")
     @query
     arrayQuery: string[];
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Array query has no defined collection format, should default to csv. Pass in
@@ -565,7 +565,7 @@ Array query has no defined collection format, should default to csv. Pass in
     @doc("Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].")
     @query
     arrayQuery: string[];
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -580,7 +580,7 @@ using the ssv-array format
 """)
     @query
     arrayQuery: string[];
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -595,7 +595,7 @@ using the tsv-array format
 """)
     @query
     arrayQuery: string[];
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -610,7 +610,7 @@ using the pipes-array format
 """)
     @query
     arrayQuery: string[];
-  }, Error | void>;
+  }, void>;
 }
 // FIXME: (missing-docs) Add documentation
 interface PathItemsOperations {
@@ -646,7 +646,7 @@ pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
     @doc("should contain value 'localStringQuery'")
     @query
     localStringQuery: string;
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 send globalStringPath='globalStringPath',
@@ -680,7 +680,7 @@ localStringQuery='localStringQuery'
     @doc("should contain value 'localStringQuery'")
     @query
     localStringQuery: string;
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 send globalStringPath=globalStringPath,
@@ -714,7 +714,7 @@ localStringQuery=null
     @doc("should contain null value")
     @query
     localStringQuery: string;
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 send globalStringPath='globalStringPath',
@@ -748,5 +748,5 @@ localStringQuery=null
     @doc("should contain value null")
     @query
     localStringQuery: string;
-  }, Error | void>;
+  }, void>;
 }

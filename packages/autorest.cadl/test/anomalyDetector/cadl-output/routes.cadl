@@ -25,7 +25,7 @@ set in the request.
 """)
     @body
     body: DetectRequest;
-  }, AnomalyDetectorError | EntireDetectResponse>;
+  }, EntireDetectResponse>;
 
   @summary("Detect anomaly status of the latest point in time series.")
   @doc("""
@@ -43,7 +43,7 @@ set in the request.
 """)
     @body
     body: DetectRequest;
-  }, AnomalyDetectorError | LastDetectResponse>;
+  }, LastDetectResponse>;
 
   @summary("Detect change point for the entire series")
   @doc("Evaluate change point score of every series point")
@@ -56,7 +56,7 @@ also be set in the request if needed.
 """)
     @body
     body: ChangePointDetectRequest;
-  }, AnomalyDetectorError | ChangePointDetectResponse>;
+  }, ChangePointDetectResponse>;
 
   @summary("Get Multivariate Anomaly Detection Result")
   @doc("""
@@ -69,7 +69,7 @@ DetectAnomalyAsync api
     @doc("Result identifier")
     @path
     resultId: string;
-  }, ErrorResponse | DetectionResult>;
+  }, DetectionResult>;
 
   @summary("Train a Multivariate Anomaly Detection Model")
   @doc("""
@@ -86,7 +86,7 @@ column is value.
     @doc("Training request")
     @body
     body: ModelInfo;
-  }, ErrorResponse | void>;
+  }, void>;
 
   @summary("List Multivariate Models")
   @doc("List models of a subscription")
@@ -100,7 +100,7 @@ column is value.
     @doc("$top indicates how many models will be fetched.")
     @query
     $top: int32;
-  }, ErrorResponse | Azure.Core.ResourceList<ModelList>>;
+  }, Azure.Core.ResourceList<ModelList>>;
 
   @summary("Delete Multivariate Model")
   @doc("Delete an existing multivariate model according to the modelId")
@@ -110,7 +110,7 @@ column is value.
     @doc("Model identifier")
     @path
     modelId: string;
-  }, ErrorResponse | void>;
+  }, void>;
 
   @summary("Get Multivariate Model")
   @doc("""
@@ -123,7 +123,7 @@ and variables used in the model.
     @doc("Model identifier")
     @path
     modelId: string;
-  }, ErrorResponse | Model>;
+  }, Model>;
 
   @summary("Detect Multivariate Anomaly")
   @doc("""
@@ -146,7 +146,7 @@ second column is value.
     @doc("Detect anomaly request")
     @body
     body: DetectionRequest;
-  }, ErrorResponse | void>;
+  }, void>;
 
   @summary("Detect anomalies in the last a few points of the request body")
   @doc("Synchronized API for anomaly detection.")
@@ -160,5 +160,5 @@ second column is value.
     @doc("Request for last detection")
     @body
     body: LastDetectionRequest;
-  }, ErrorResponse | LastDetectionResult>;
+  }, LastDetectionResult>;
 }

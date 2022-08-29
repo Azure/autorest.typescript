@@ -10,6 +10,7 @@ export function getOptions(): CadlOptions {
     const session = getSession();
     options = {
       isAzureSpec: getIsAzureSpec(session),
+      namespace: getNamespace(session),
     };
   }
 
@@ -18,4 +19,8 @@ export function getOptions(): CadlOptions {
 
 export function getIsAzureSpec(session: Session<CodeModel>) {
   return session.configuration["isAzureSpec"] !== false;
+}
+
+export function getNamespace(session: Session<CodeModel>) {
+  return session.configuration["namespace"];
 }

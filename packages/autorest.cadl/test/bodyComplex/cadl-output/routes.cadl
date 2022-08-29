@@ -12,7 +12,7 @@ interface BasicOperations {
   @doc("Get complex type {id: 2, name: 'abc', color: 'YELLOW'}")
   @route("/complex/basic/valid")
   @get
-  GetValid is Azure.Core.Operation<{}, Error | Basic>;
+  GetValid is Azure.Core.Operation<{}, Basic>;
 
   @doc("Please put {id: 2, name: 'abc', color: 'Magenta'}")
   @route("/complex/basic/valid")
@@ -21,34 +21,34 @@ interface BasicOperations {
     @doc("Please put {id: 2, name: 'abc', color: 'Magenta'}")
     @body
     complexBody: Basic;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get a basic complex type that is invalid for the local strong type")
   @route("/complex/basic/invalid")
   @get
-  GetInvalid is Azure.Core.Operation<{}, Error | Basic>;
+  GetInvalid is Azure.Core.Operation<{}, Basic>;
 
   @doc("Get a basic complex type that is empty")
   @route("/complex/basic/empty")
   @get
-  GetEmpty is Azure.Core.Operation<{}, Error | Basic>;
+  GetEmpty is Azure.Core.Operation<{}, Basic>;
 
   @doc("Get a basic complex type whose properties are null")
   @route("/complex/basic/null")
   @get
-  GetNull is Azure.Core.Operation<{}, Error | Basic>;
+  GetNull is Azure.Core.Operation<{}, Basic>;
 
   @doc("Get a basic complex type while the server doesn't provide a response payload")
   @route("/complex/basic/notprovided")
   @get
-  GetNotProvided is Azure.Core.Operation<{}, Error | Basic>;
+  GetNotProvided is Azure.Core.Operation<{}, Basic>;
 }
 // FIXME: (missing-docs) Add documentation
 interface PrimitiveOperations {
   @doc("Get complex types with integer properties")
   @route("/complex/primitive/integer")
   @get
-  GetInt is Azure.Core.Operation<{}, Error | IntWrapper>;
+  GetInt is Azure.Core.Operation<{}, IntWrapper>;
 
   @doc("Put complex types with integer properties")
   @route("/complex/primitive/integer")
@@ -57,12 +57,12 @@ interface PrimitiveOperations {
     @doc("Please put -1 and 2")
     @body
     complexBody: IntWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with long properties")
   @route("/complex/primitive/long")
   @get
-  GetLong is Azure.Core.Operation<{}, Error | LongWrapper>;
+  GetLong is Azure.Core.Operation<{}, LongWrapper>;
 
   @doc("Put complex types with long properties")
   @route("/complex/primitive/long")
@@ -71,12 +71,12 @@ interface PrimitiveOperations {
     @doc("Please put 1099511627775 and -999511627788")
     @body
     complexBody: LongWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with float properties")
   @route("/complex/primitive/float")
   @get
-  GetFloat is Azure.Core.Operation<{}, Error | FloatWrapper>;
+  GetFloat is Azure.Core.Operation<{}, FloatWrapper>;
 
   @doc("Put complex types with float properties")
   @route("/complex/primitive/float")
@@ -85,12 +85,12 @@ interface PrimitiveOperations {
     @doc("Please put 1.05 and -0.003")
     @body
     complexBody: FloatWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with double properties")
   @route("/complex/primitive/double")
   @get
-  GetDouble is Azure.Core.Operation<{}, Error | DoubleWrapper>;
+  GetDouble is Azure.Core.Operation<{}, DoubleWrapper>;
 
   @doc("Put complex types with double properties")
   @route("/complex/primitive/double")
@@ -102,12 +102,12 @@ Please put 3e-100 and
 """)
     @body
     complexBody: DoubleWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with bool properties")
   @route("/complex/primitive/bool")
   @get
-  GetBool is Azure.Core.Operation<{}, Error | BooleanWrapper>;
+  GetBool is Azure.Core.Operation<{}, BooleanWrapper>;
 
   @doc("Put complex types with bool properties")
   @route("/complex/primitive/bool")
@@ -116,12 +116,12 @@ Please put 3e-100 and
     @doc("Please put true and false")
     @body
     complexBody: BooleanWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with string properties")
   @route("/complex/primitive/string")
   @get
-  GetString is Azure.Core.Operation<{}, Error | StringWrapper>;
+  GetString is Azure.Core.Operation<{}, StringWrapper>;
 
   @doc("Put complex types with string properties")
   @route("/complex/primitive/string")
@@ -130,12 +130,12 @@ Please put 3e-100 and
     @doc("Please put 'goodrequest', '', and null")
     @body
     complexBody: StringWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with date properties")
   @route("/complex/primitive/date")
   @get
-  GetDate is Azure.Core.Operation<{}, Error | DateWrapper>;
+  GetDate is Azure.Core.Operation<{}, DateWrapper>;
 
   @doc("Put complex types with date properties")
   @route("/complex/primitive/date")
@@ -144,12 +144,12 @@ Please put 3e-100 and
     @doc("Please put '0001-01-01' and '2016-02-29'")
     @body
     complexBody: DateWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with datetime properties")
   @route("/complex/primitive/datetime")
   @get
-  GetDateTime is Azure.Core.Operation<{}, Error | DatetimeWrapper>;
+  GetDateTime is Azure.Core.Operation<{}, DatetimeWrapper>;
 
   @doc("Put complex types with datetime properties")
   @route("/complex/primitive/datetime")
@@ -158,12 +158,12 @@ Please put 3e-100 and
     @doc("Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'")
     @body
     complexBody: DatetimeWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with datetimeRfc1123 properties")
   @route("/complex/primitive/datetimerfc1123")
   @get
-  GetDateTimeRfc1123 is Azure.Core.Operation<{}, Error | Datetimerfc1123Wrapper>;
+  GetDateTimeRfc1123 is Azure.Core.Operation<{}, Datetimerfc1123Wrapper>;
 
   @doc("Put complex types with datetimeRfc1123 properties")
   @route("/complex/primitive/datetimerfc1123")
@@ -172,12 +172,12 @@ Please put 3e-100 and
     @doc("Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'")
     @body
     complexBody: Datetimerfc1123Wrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with duration properties")
   @route("/complex/primitive/duration")
   @get
-  GetDuration is Azure.Core.Operation<{}, Error | DurationWrapper>;
+  GetDuration is Azure.Core.Operation<{}, DurationWrapper>;
 
   @doc("Put complex types with duration properties")
   @route("/complex/primitive/duration")
@@ -186,12 +186,12 @@ Please put 3e-100 and
     @doc("Please put 'P123DT22H14M12.011S'")
     @body
     complexBody: DurationWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with byte properties")
   @route("/complex/primitive/byte")
   @get
-  GetByte is Azure.Core.Operation<{}, Error | ByteWrapper>;
+  GetByte is Azure.Core.Operation<{}, ByteWrapper>;
 
   @doc("Put complex types with byte properties")
   @route("/complex/primitive/byte")
@@ -200,14 +200,14 @@ Please put 3e-100 and
     @doc("Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6)")
     @body
     complexBody: ByteWrapper;
-  }, Error | void>;
+  }, void>;
 }
 // FIXME: (missing-docs) Add documentation
 interface ArrayOperations {
   @doc("Get complex types with array property")
   @route("/complex/array/valid")
   @get
-  GetValid is Azure.Core.Operation<{}, Error | ArrayWrapper>;
+  GetValid is Azure.Core.Operation<{}, ArrayWrapper>;
 
   @doc("Put complex types with array property")
   @route("/complex/array/valid")
@@ -219,12 +219,12 @@ Please put an array with 4 items: \"1, 2, 3, 4\", \"\", null, \"&S#$(*Y\",
 """)
     @body
     complexBody: ArrayWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with array property which is empty")
   @route("/complex/array/empty")
   @get
-  GetEmpty is Azure.Core.Operation<{}, Error | ArrayWrapper>;
+  GetEmpty is Azure.Core.Operation<{}, ArrayWrapper>;
 
   @doc("Put complex types with array property which is empty")
   @route("/complex/array/empty")
@@ -233,7 +233,7 @@ Please put an array with 4 items: \"1, 2, 3, 4\", \"\", null, \"&S#$(*Y\",
     @doc("Please put an empty array")
     @body
     complexBody: ArrayWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("""
 Get complex types with array property while server doesn't provide a response
@@ -241,14 +241,14 @@ payload
 """)
   @route("/complex/array/notprovided")
   @get
-  GetNotProvided is Azure.Core.Operation<{}, Error | ArrayWrapper>;
+  GetNotProvided is Azure.Core.Operation<{}, ArrayWrapper>;
 }
 // FIXME: (missing-docs) Add documentation
 interface DictionaryOperations {
   @doc("Get complex types with dictionary property")
   @route("/complex/dictionary/typed/valid")
   @get
-  GetValid is Azure.Core.Operation<{}, Error | DictionaryWrapper>;
+  GetValid is Azure.Core.Operation<{}, DictionaryWrapper>;
 
   @doc("Put complex types with dictionary property")
   @route("/complex/dictionary/typed/valid")
@@ -260,12 +260,12 @@ Please put a dictionary with 5 key-value pairs: \"txt\":\"notepad\",
 """)
     @body
     complexBody: DictionaryWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with dictionary property which is empty")
   @route("/complex/dictionary/typed/empty")
   @get
-  GetEmpty is Azure.Core.Operation<{}, Error | DictionaryWrapper>;
+  GetEmpty is Azure.Core.Operation<{}, DictionaryWrapper>;
 
   @doc("Put complex types with dictionary property which is empty")
   @route("/complex/dictionary/typed/empty")
@@ -274,12 +274,12 @@ Please put a dictionary with 5 key-value pairs: \"txt\":\"notepad\",
     @doc("Please put an empty dictionary")
     @body
     complexBody: DictionaryWrapper;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types with dictionary property which is null")
   @route("/complex/dictionary/typed/null")
   @get
-  GetNull is Azure.Core.Operation<{}, Error | DictionaryWrapper>;
+  GetNull is Azure.Core.Operation<{}, DictionaryWrapper>;
 
   @doc("""
 Get complex types with dictionary property while server doesn't provide a
@@ -287,14 +287,14 @@ response payload
 """)
   @route("/complex/dictionary/typed/notprovided")
   @get
-  GetNotProvided is Azure.Core.Operation<{}, Error | DictionaryWrapper>;
+  GetNotProvided is Azure.Core.Operation<{}, DictionaryWrapper>;
 }
 // FIXME: (missing-docs) Add documentation
 interface InheritanceOperations {
   @doc("Get complex types that extend others")
   @route("/complex/inheritance/valid")
   @get
-  GetValid is Azure.Core.Operation<{}, Error | Siamese>;
+  GetValid is Azure.Core.Operation<{}, Siamese>;
 
   @doc("Put complex types that extend others")
   @route("/complex/inheritance/valid")
@@ -307,14 +307,14 @@ and the 2nd one named \"Tomato\" with id=-1 and food=\"french fries\".
 """)
     @body
     complexBody: Siamese;
-  }, Error | void>;
+  }, void>;
 }
 // FIXME: (missing-docs) Add documentation
 interface PolymorphismOperations {
   @doc("Get complex types that are polymorphic")
   @route("/complex/polymorphism/valid")
   @get
-  GetValid is Azure.Core.Operation<{}, Error | Fish>;
+  GetValid is Azure.Core.Operation<{}, Fish>;
 
   @doc("Put complex types that are polymorphic")
   @route("/complex/polymorphism/valid")
@@ -368,12 +368,12 @@ Buffer([255, 255, 255, 255, 254]).toString('base64'),
 """)
     @body
     complexBody: Fish;
-  }, Error | void>;
+  }, void>;
 
   @doc("Get complex types that are polymorphic, JSON key contains a dot")
   @route("/complex/polymorphism/dotsyntax")
   @get
-  GetDotSyntax is Azure.Core.Operation<{}, Error | DotFish>;
+  GetDotSyntax is Azure.Core.Operation<{}, DotFish>;
 
   @doc("""
 Get complex object composing a polymorphic scalar property and array property
@@ -382,7 +382,7 @@ must NOT fail and use the discriminator type specified on the wire.
 """)
   @route("/complex/polymorphism/composedWithDiscriminator")
   @get
-  GetComposedWithDiscriminator is Azure.Core.Operation<{}, Error | DotFishMarket>;
+  GetComposedWithDiscriminator is Azure.Core.Operation<{}, DotFishMarket>;
 
   @doc("""
 Get complex object composing a polymorphic scalar property and array property
@@ -391,7 +391,7 @@ Deserialization must NOT fail and use the explicit type of the property.
 """)
   @route("/complex/polymorphism/composedWithoutDiscriminator")
   @get
-  GetComposedWithoutDiscriminator is Azure.Core.Operation<{}, Error | DotFishMarket>;
+  GetComposedWithoutDiscriminator is Azure.Core.Operation<{}, DotFishMarket>;
 
   @doc("""
 Get complex types that are polymorphic, but not at the root of the hierarchy;
@@ -399,7 +399,7 @@ also have additional properties
 """)
   @route("/complex/polymorphism/complicated")
   @get
-  GetComplicated is Azure.Core.Operation<{}, Error | Salmon>;
+  GetComplicated is Azure.Core.Operation<{}, Salmon>;
 
   @doc("""
 Put complex types that are polymorphic, but not at the root of the hierarchy;
@@ -410,7 +410,7 @@ also have additional properties
   PutComplicated is Azure.Core.Operation<{
     // FIXME: (missing-docs) Add documentation
     @body complexBody: Salmon;
-  }, Error | void>;
+  }, void>;
 
   @doc("Put complex types that are polymorphic, omitting the discriminator")
   @route("/complex/polymorphism/missingdiscriminator")
@@ -418,7 +418,7 @@ also have additional properties
   PutMissingDiscriminator is Azure.Core.Operation<{
     // FIXME: (missing-docs) Add documentation
     @body complexBody: Salmon;
-  }, Error | Salmon>;
+  }, Salmon>;
 
   @doc("""
 Put complex types that are polymorphic, attempting to omit required 'birthday'
@@ -466,14 +466,14 @@ base64(FF FF FF FF FE),
 """)
     @body
     complexBody: Fish;
-  }, Error | void>;
+  }, void>;
 }
 // FIXME: (missing-docs) Add documentation
 interface PolymorphicrecursiveOperations {
   @doc("Get complex types that are polymorphic and have recursive references")
   @route("/complex/polymorphicrecursive/valid")
   @get
-  GetValid is Azure.Core.Operation<{}, Error | Fish>;
+  GetValid is Azure.Core.Operation<{}, Fish>;
 
   @doc("Put complex types that are polymorphic and have recursive references")
   @route("/complex/polymorphicrecursive/valid")
@@ -556,14 +556,14 @@ Please put a salmon that looks like this:
 """)
     @body
     complexBody: Fish;
-  }, Error | void>;
+  }, void>;
 }
 // FIXME: (missing-docs) Add documentation
 interface ReadonlypropertyOperations {
   @doc("Get complex types that have readonly properties")
   @route("/complex/readonlyproperty/valid")
   @get
-  GetValid is Azure.Core.Operation<{}, Error | ReadonlyObj>;
+  GetValid is Azure.Core.Operation<{}, ReadonlyObj>;
 
   @doc("Put complex types that have readonly properties")
   @route("/complex/readonlyproperty/valid")
@@ -571,7 +571,7 @@ interface ReadonlypropertyOperations {
   PutValid is Azure.Core.Operation<{
     // FIXME: (missing-docs) Add documentation
     @body complexBody: ReadonlyObj;
-  }, Error | void>;
+  }, void>;
 }
 // FIXME: (missing-docs) Add documentation
 interface FlattencomplexOperations {

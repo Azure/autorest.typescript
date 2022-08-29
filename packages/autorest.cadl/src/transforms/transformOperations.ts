@@ -83,13 +83,13 @@ function transformRequest(
   operation: Operation,
   codeModel: CodeModel
 ): CadlOperation {
-  const { language, responses, requests, exceptions } = operation;
+  const { language, responses, requests } = operation;
   const name = language.default.name;
   const doc = language.default.description;
   const summary = language.default.summary;
   const { paging } = getLanguageMetadata(operation.language);
   const transformedResponses = transformResponses(
-    [...(exceptions ?? []), ...(responses ?? [])] as SchemaResponse[],
+    [...(responses ?? [])] as SchemaResponse[],
     codeModel
   );
   const visitedParameter: Set<Parameter> = new Set();

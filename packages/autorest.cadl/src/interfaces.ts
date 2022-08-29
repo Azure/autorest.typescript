@@ -6,6 +6,7 @@ export interface CadlProgram {
 
 export interface CadlOptions {
   isAzureSpec: boolean;
+  namespace?: string;
 }
 
 export interface CadlChoiceValue {
@@ -80,6 +81,7 @@ export interface CadlObjectProperty extends CadlDataType {
   isOptional: boolean;
   type: string;
   decorators?: CadlDecorator[];
+  visibility?: "read";
 }
 
 export interface CadlDecorator {
@@ -89,6 +91,12 @@ export interface CadlDecorator {
   namespace?: string;
 }
 
+export interface CadlAlias {
+  alias: string;
+  params?: string[];
+  module?: string;
+}
+
 export interface CadlObject extends CadlDataType {
   kind: "object";
   properties: CadlObjectProperty[];
@@ -96,6 +104,7 @@ export interface CadlObject extends CadlDataType {
   extendedParents?: string[];
   spreadParents?: string[];
   decorators?: CadlDecorator[];
+  alias?: CadlAlias;
 }
 
 export interface Models {

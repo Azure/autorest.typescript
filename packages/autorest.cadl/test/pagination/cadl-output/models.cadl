@@ -25,16 +25,7 @@ enum OperationResultStatusKnownValues {
 model OperationResultStatus is string {}
 
 // FIXME: (missing-docs) Add documentation
-@pagedResult
-model ProductResultValue {
-  // FIXME: (missing-docs) Add documentation
-  @items
-  value?: Product[];
-  // FIXME: (missing-docs) Add documentation
-
-  @nextLink
-  nextLink?: string;
-}
+model ProductResultValue is Azure.Core.Page<Product> {}
 
 // FIXME: (missing-docs) Add documentation
 model Product {
