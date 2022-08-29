@@ -33,32 +33,6 @@ export interface OperationStatusOutput {
   error?: ErrorModelOutput;
 }
 
-export interface ProjectOutput {
-  projectName: string;
-  /** The project kind. */
-  projectKind:
-    | "CustomSingleLabelClassification"
-    | "CustomMultiLabelClassification"
-    | "CustomEntityRecognition";
-  /** The storage container name. */
-  storageInputContainerName: string;
-  /** Represents the settings used to define the project behavior. */
-  settings?: Record<string, unknown>;
-  multilingual?: boolean;
-  /** The project description. */
-  description?: string;
-  /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
-  language: string;
-  /** Represents the project creation datetime. */
-  createdDateTime: string;
-  /** Represents the project last modification datetime. */
-  lastModifiedDateTime: string;
-  /** Represents the project last training datetime. */
-  lastTrainedDateTime: string;
-  /** Represents the project last deployment datetime. */
-  lastDeployedDateTime: string;
-}
-
 export interface ErrorResponseOutput {
   /** The error object. */
   error: ErrorModelOutput;
@@ -83,114 +57,20 @@ export interface InnerErrorOutput {
   innererror?: InnerErrorOutput;
 }
 
-export interface ProjectOutput {
-  projectName: string;
-  /** The project kind. */
-  projectKind:
-    | "CustomSingleLabelClassification"
-    | "CustomMultiLabelClassification"
-    | "CustomEntityRecognition";
-  /** The storage container name. */
-  storageInputContainerName: string;
-  /** Represents the settings used to define the project behavior. */
-  settings?: Record<string, unknown>;
-  multilingual?: boolean;
-  /** The project description. */
-  description?: string;
-  /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
-  language: string;
-  /** Represents the project creation datetime. */
-  createdDateTime: string;
-  /** Represents the project last modification datetime. */
-  lastModifiedDateTime: string;
-  /** Represents the project last training datetime. */
-  lastTrainedDateTime: string;
-  /** Represents the project last deployment datetime. */
-  lastDeployedDateTime: string;
-}
-
-export interface OperationStatusOutput {
-  /** The unique ID of the operation. */
-  id: string;
-  /** The status of the operation */
-  status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
-  /** The error object. */
-  error?: ErrorModelOutput;
-}
-
 export interface CustomPageProjectOutput {
   value: Array<ProjectOutput>;
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-export interface CustomPageProjectOutput {
-  value: Array<ProjectOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export interface ProjectOutput {
-  projectName: string;
-  /** The project kind. */
-  projectKind:
-    | "CustomSingleLabelClassification"
-    | "CustomMultiLabelClassification"
-    | "CustomEntityRecognition";
-  /** The storage container name. */
-  storageInputContainerName: string;
-  /** Represents the settings used to define the project behavior. */
-  settings?: Record<string, unknown>;
-  multilingual?: boolean;
-  /** The project description. */
-  description?: string;
-  /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
-  language: string;
-  /** Represents the project creation datetime. */
-  createdDateTime: string;
-  /** Represents the project last modification datetime. */
-  lastModifiedDateTime: string;
-  /** Represents the project last training datetime. */
-  lastTrainedDateTime: string;
-  /** Represents the project last deployment datetime. */
-  lastDeployedDateTime: string;
-}
-
 export interface DeploymentOutput {
   name: string;
-}
-
-export interface DeploymentOutput {
-  name: string;
-}
-
-export interface DeploymentOutput {
-  name: string;
-}
-
-export interface OperationStatusOutput {
-  /** The unique ID of the operation. */
-  id: string;
-  /** The status of the operation */
-  status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
-  /** The error object. */
-  error?: ErrorModelOutput;
 }
 
 export interface CustomPageDeploymentOutput {
   value: Array<DeploymentOutput>;
   /** The link to the next page of items */
   nextLink?: string;
-}
-
-export interface CustomPageDeploymentOutput {
-  value: Array<DeploymentOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export interface DeploymentOutput {
-  name: string;
 }
 
 export interface DeploymentJobOutput {

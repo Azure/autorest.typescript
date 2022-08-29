@@ -9,6 +9,7 @@ const modelKey = Symbol("typescript-models");
 
 export function transformSchemas(program: Program) {
   const schemas: Schema[] = [];
+  const schemaSet: Set<string> = new Set<string>();
   const [routes, _diagnostics] = getAllRoutes(program);
   for (const route of routes) {
     if (route.parameters.bodyParameter) {
@@ -30,7 +31,11 @@ export function transformSchemas(program: Program) {
   program.stateMap(modelKey).forEach((context, cadlModel) => {
     const model = getSchemaForType(program, cadlModel, context);
     model.usage = context;
-    schemas.push(model);
+    const modelStr = JSON.stringify(model);
+    if (!schemaSet.has(modelStr)) {
+      schemas.push(model);
+      schemaSet.add(modelStr);
+    }
   });
   function setModelMap(type: Type, schemaContext: SchemaContext) {
     if (program.stateMap(modelKey).get(type)) {

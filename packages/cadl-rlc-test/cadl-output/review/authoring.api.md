@@ -24,20 +24,6 @@ export interface CustomPageDeploymentOutput {
 }
 
 // @public (undocumented)
-export interface CustomPageDeploymentOutput {
-    nextLink?: string;
-    // (undocumented)
-    value: Array<DeploymentOutput>;
-}
-
-// @public (undocumented)
-export interface CustomPageProjectOutput {
-    nextLink?: string;
-    // (undocumented)
-    value: Array<ProjectOutput>;
-}
-
-// @public (undocumented)
 export interface CustomPageProjectOutput {
     nextLink?: string;
     // (undocumented)
@@ -56,24 +42,6 @@ export interface DeploymentJobOutput {
     status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
     // (undocumented)
     warnings: Array<JobWarningOutput>;
-}
-
-// @public (undocumented)
-export interface DeploymentOutput {
-    // (undocumented)
-    name: string;
-}
-
-// @public (undocumented)
-export interface DeploymentOutput {
-    // (undocumented)
-    name: string;
-}
-
-// @public (undocumented)
-export interface DeploymentOutput {
-    // (undocumented)
-    name: string;
 }
 
 // @public (undocumented)
@@ -571,20 +539,6 @@ export interface OperationStatusOutput {
 }
 
 // @public (undocumented)
-export interface OperationStatusOutput {
-    error?: ErrorModelOutput;
-    id: string;
-    status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
-}
-
-// @public (undocumented)
-export interface OperationStatusOutput {
-    error?: ErrorModelOutput;
-    id: string;
-    status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
-}
-
-// @public (undocumented)
 export interface PagedSupportedLanguageOutput {
     nextLink?: string;
     // (undocumented)
@@ -596,57 +550,6 @@ export interface PagedTrainingConfigVersionOutput {
     nextLink?: string;
     // (undocumented)
     value: Array<TrainingConfigVersionOutput>;
-}
-
-// @public (undocumented)
-export interface ProjectOutput {
-    createdDateTime: string;
-    description?: string;
-    language: string;
-    lastDeployedDateTime: string;
-    lastModifiedDateTime: string;
-    lastTrainedDateTime: string;
-    // (undocumented)
-    multilingual?: boolean;
-    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
-    // (undocumented)
-    projectName: string;
-    settings?: Record<string, unknown>;
-    storageInputContainerName: string;
-}
-
-// @public (undocumented)
-export interface ProjectOutput {
-    createdDateTime: string;
-    description?: string;
-    language: string;
-    lastDeployedDateTime: string;
-    lastModifiedDateTime: string;
-    lastTrainedDateTime: string;
-    // (undocumented)
-    multilingual?: boolean;
-    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
-    // (undocumented)
-    projectName: string;
-    settings?: Record<string, unknown>;
-    storageInputContainerName: string;
-}
-
-// @public (undocumented)
-export interface ProjectOutput {
-    createdDateTime: string;
-    description?: string;
-    language: string;
-    lastDeployedDateTime: string;
-    lastModifiedDateTime: string;
-    lastTrainedDateTime: string;
-    // (undocumented)
-    multilingual?: boolean;
-    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
-    // (undocumented)
-    projectName: string;
-    settings?: Record<string, unknown>;
-    storageInputContainerName: string;
 }
 
 // @public (undocumented)
