@@ -7,14 +7,15 @@
   "scripts": {
     "clean": "rimraf ./dist ./cadl-output",
     "build": "tsc -p .",
-    "test": "mocha",
+    "test": "npm run unit-test && npm run integartion-test",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
     "integartion-test": "npm run start-test-server & npm run generate-cadl-only && npm run integration-test:alone",
     "generate-cadl-only": "ts-node ./test/commands/gen-cadl-ranch.ts",
     "start-test-server": "cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http",
-    "integration-test:alone": "mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 './test/integration/*.spec.ts'"   
+    "integration-test:alone": "mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 ./test/integration/*.spec.ts",
+    "unit-test": "mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true './test/unit/**/*.spec.ts'"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
@@ -52,7 +53,6 @@
     "extension": [
       "ts"
     ],
-    "spec": "test/**/*.spec.ts",
     "loader": "ts-node/esm"
   }
 }
