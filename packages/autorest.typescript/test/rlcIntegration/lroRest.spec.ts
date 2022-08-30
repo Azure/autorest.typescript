@@ -163,7 +163,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "204");
-      assert.equal(result.body, {});
+      assert.equal(result.body, undefined);
     });
 
     it("should handle deleteNoHeaderInRetry", async () => {
@@ -177,7 +177,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "204");
-      assert.equal(result.body, {});
+      assert.equal(result.body, undefined);
   });
 
     it("should handle put202Retry200", async () => {
@@ -256,7 +256,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "204");
-      assert.equal(result.body, {});
+      assert.equal(result.body, undefined);
     });
 
     it("should handle deleteProvisioning202Accepted200Succeeded", async () => {
