@@ -1,0 +1,12 @@
+{
+  "generateMetadata": true,
+  "includeShortcuts": true,
+  "endpointParameterName": "ledgerUri",
+  "packageDetails": {
+    "name": "@msinternal/confidential-ledger",
+    "scopeName": "msinternal",
+    "nameWithoutScope": "confidential-ledger",
+    "description": "Confidential Ledger Service",
+    "version": "1.0.0-beta.1"
+  }
+}
