@@ -1,0 +1,352 @@
+import "@cadl-lang/rest";
+
+import "./models.cadl";
+
+using Cadl.Rest;
+
+using Cadl.Http;
+
+namespace PlayFab;
+
+// FIXME: (missing-docs) Add documentation
+interface PlayFabAuthenticationOperations {
+  @doc("""
+This feature is in private preview with a set of managed partners. Method to
+exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token
+or to refresh a still valid Entity Token.
+""")
+  @route("/Authentication/GetEntityToken")
+  @post
+  GetEntityToken(
+    @doc("""
+This API must be called with X-SecretKey, X-Authentication or X-EntityToken
+headers. An optional EntityKey may be included to attempt to set the resulting
+EntityToken to a specific entity, however the entity must be a relation of the
+caller, such as the master_player_account of a character. If sending
+X-EntityToken the account will be marked as freshly logged in and will issue a
+new token. If using X-Authentication or X-EntityToken the header must still be
+valid and cannot be expired or revoked.
+""")
+    @body
+    GetEntityTokenRequest: GetEntityTokenRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | GetEntityTokenResponse;
+  @doc("""
+This feature is in private preview with a set of managed partners.
+Authenticates a player from the specified player account pool using the
+\"Android Device ID\" player identity provider, finds or provisions a
+master_player_account associated with the player identity, and returns an
+entity token for it. Optionally logs the authenticated player into the
+specified title and returns an additional entity token for the
+title_player_account.
+""")
+  @route("/PlayerIdentity/AuthenticateWithAndroidDeviceId")
+  @post
+  AuthenticateWithAndroidDeviceId(
+    // FIXME: (missing-docs) Add documentation
+    @body
+    AuthenticateAndroidDeviceIdIdentityRequest: AuthenticateAndroidDeviceIdIdentityRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | AuthenticateIdentityResult;
+  @doc("""
+This feature is in private preview with a set of managed partners.
+Authenticates a player from the specified player account pool using the
+\"Custom ID\" player identity provider, finds or provisions a
+master_player_account associated with the player identity, and returns an
+entity token for it. Optionally logs the authenticated player into the
+specified title and returns an additional entity token for the
+title_player_account.
+""")
+  @route("/PlayerIdentity/AuthenticateWithCustomId")
+  @post
+  AuthenticateWithCustomId(
+    // FIXME: (missing-docs) Add documentation
+    @body
+    AuthenticateCustomIdIdentityRequest: AuthenticateCustomIdIdentityRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | AuthenticateIdentityResult;
+  @doc("""
+This feature is in private preview with a set of managed partners.
+Authenticates a player from the specified player account pool using the \"IOS
+Device ID\" player identity provider, finds or provisions a
+master_player_account associated with the player identity, and returns an
+entity token for it. Optionally logs the authenticated player into the
+specified title and returns an additional entity token for the
+title_player_account.
+""")
+  @route("/PlayerIdentity/AuthenticateWithIOSDeviceId")
+  @post
+  AuthenticateWithIOSDeviceId(
+    // FIXME: (missing-docs) Add documentation
+    @body
+    AuthenticateIOSDeviceIdIdentityRequest: AuthenticateIOSDeviceIdIdentityRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | AuthenticateIdentityResult;
+  @doc("""
+This feature is in private preview with a set of managed partners.
+Authenticates a player from the specified player account pool using the
+\"Nintendo Switch Device ID\" player identity provider, finds or provisions a
+master_player_account associated with the player identity, and returns an
+entity token for it. Optionally logs the authenticated player into the
+specified title and returns an additional entity token for the
+title_player_account.
+""")
+  @route("/PlayerIdentity/AuthenticateWithNintendoSwitchDeviceID")
+  @post
+  AuthenticateWithNintendoSwitchDeviceID(
+    // FIXME: (missing-docs) Add documentation
+    @body
+    AuthenticateNintendoSwitchDeviceIDIdentityRequest: AuthenticateNintendoSwitchDeviceIDIdentityRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | AuthenticateIdentityResult;
+  @doc("""
+This feature is in private preview with a set of managed partners. Lists the
+player identities currently linked to a master_player_account.
+""")
+  @route("/PlayerIdentity/GetLinkedPlayerIdentities")
+  @post
+  GetLinkedPlayerIdentities(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+    // FIXME: (missing-docs) Add documentation
+    @body GetLinkedPlayerIdentitiesRequest: GetLinkedPlayerIdentitiesRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | GetLinkedPlayerIdentitiesResult;
+  @doc("""
+This feature is in private preview with a set of managed partners. Removes the
+link from a player identity to a master_player_account.
+""")
+  @route("/PlayerIdentity/UnlinkPlayerIdentity")
+  @post
+  UnlinkPlayerIdentity(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+    // FIXME: (missing-docs) Add documentation
+    @body UnlinkPlayerIdentityRequest: UnlinkPlayerIdentityRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | UnlinkPlayerIdentityResult;
+}
+
+// FIXME: (missing-docs) Add documentation
+interface PlayFabFileOperations {
+  @doc("""
+This feature is in private preview with a set of managed partners. Abort
+pending file uploads to an entity's profile.
+""")
+  @route("/File/AbortFileUploads")
+  @post
+  AbortFileUploads(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+
+    @doc("Aborts the pending upload of the requested files.")
+    @body
+    AbortFileUploadsRequest: AbortFileUploadsRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | AbortFileUploadsResponse;
+  @doc("""
+This feature is in private preview with a set of managed partners. Delete files
+on an entity's profile.
+""")
+  @route("/File/DeleteFiles")
+  @post
+  DeleteFiles(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+
+    @doc("Deletes the requested files from the entity's profile.")
+    @body
+    DeleteFilesRequest: DeleteFilesRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | DeleteFilesResponse;
+  @doc("""
+This feature is in private preview with a set of managed partners. Finalize
+file uploads to an entity's profile.
+""")
+  @route("/File/FinalizeFileUploads")
+  @post
+  FinalizeFileUploads(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+
+    @doc("""
+Finalizes the upload of the requested files. Verifies that the files have been
+successfully uploaded and moves the file pointers from pending to live.
+""")
+    @body
+    FinalizeFileUploadsRequest: FinalizeFileUploadsRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | FinalizeFileUploadsResponse;
+  @doc("""
+This feature is in private preview with a set of managed partners. Retrieves
+file metadata from an entity's profile.
+""")
+  @route("/File/GetFiles")
+  @post
+  GetFiles(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+
+    @doc("""
+Returns URLs that may be used to download the files for a profile for a limited
+length of time. Only returns files that have been successfully uploaded, files
+that are still pending will either return the old value, if it exists, or
+nothing.
+""")
+    @body
+    GetFilesRequest: GetFilesRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | GetFilesResponse;
+  @doc("""
+This feature is in private preview with a set of managed partners. Initiates
+file uploads to an entity's profile.
+""")
+  @route("/File/InitiateFileUploads")
+  @post
+  InitiateFileUploads(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+
+    @doc("""
+Returns URLs that may be used to upload the files for a profile 5 minutes.
+After using the upload calls FinalizeFileUploads must be called to move the
+file status from pending to live.
+""")
+    @body
+    InitiateFileUploadsRequest: InitiateFileUploadsRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | InitiateFileUploadsResponse;
+  @doc("""
+This feature is in private preview with a set of managed partners. Retrieves
+objects from an entity's profile.
+""")
+  @route("/Object/GetObjects")
+  @post
+  GetObjects(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+
+    @doc("Gets JSON objects from an entity profile and returns it. ")
+    @body
+    GetObjectsRequest: GetObjectsRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | GetObjectsResponse;
+  @doc("""
+This feature is in private preview with a set of managed partners. Sets objects
+on an entity's profile.
+""")
+  @route("/Object/SetObjects")
+  @post
+  SetObjects(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+
+    @doc("""
+Sets JSON objects on the requested entity profile. May include a version number
+to be used to perform optimistic concurrency operations during update. If the
+current version differs from the version in the request the request will be
+ignored. If no version is set on the request then the value will always be
+updated if the values differ. Using the version value does not guarantee a
+write though, ConcurrentEditError may still occur if multiple clients are
+attempting to update the same profile. 
+""")
+    @body
+    SetObjectsRequest: SetObjectsRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | SetObjectsResponse;
+}
+
+// FIXME: (missing-docs) Add documentation
+interface PlayFabEventsOperations {
+  @doc("""
+This feature is in private preview with a set of managed partners. Write
+batches of entity based events to PlayStream. The namespace of the Event must
+be 'custom' or start with 'custom.'.
+""")
+  @route("/Event/WriteEvents")
+  @post
+  WriteEvents(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+    // FIXME: (missing-docs) Add documentation
+    @body WriteEventsRequest: WriteEventsRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | WriteEventsResponse;
+}
+
+// FIXME: (missing-docs) Add documentation
+interface PlayFabProfilesOperations {
+  @doc("""
+This feature is in private preview with a set of managed partners. Begins a
+title session for a master_player_account, returning an entity token for the
+associated title_player_account, creating a profile for it if necessary.
+""")
+  @route("/TitlePlayer/LoginPlayer")
+  @post
+  LoginPlayer(
+    @doc("Token")
+    @header
+    "X-EntityToken": string,
+    // FIXME: (missing-docs) Add documentation
+    @body LoginPlayerRequest: LoginPlayerRequest,
+
+    @doc("Accept header")
+    @header
+    Accept: "application/json"
+  ): ApiErrorWrapper | LoginPlayerResult;
+}
