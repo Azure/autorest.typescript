@@ -1,7 +1,7 @@
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   ProductOutput,
-  ResourceOkResponseOutput,
+  CustomPageProductOutput,
   ErrorResponseOutput,
   LROProductOutput,
 } from "./outputModels";
@@ -21,7 +21,7 @@ export interface DevDrivenPostModel200Response extends HttpResponse {
 /** The request has succeeded. */
 export interface DevDrivenGetPages200Response extends HttpResponse {
   status: "200";
-  body: ResourceOkResponseOutput;
+  body: CustomPageProductOutput;
 }
 
 export interface DevDrivenGetPagesDefaultResponse extends HttpResponse {

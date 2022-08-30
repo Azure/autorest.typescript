@@ -6,13 +6,7 @@ export interface LROProductOutput extends ProductOutput {
   provisioningState: string;
 }
 
-export interface CustomPageOutput {
-  value: Array<ProductOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export interface ResourceOkResponseOutput {
+export interface CustomPageProductOutput {
   value: Array<ProductOutput>;
   /** The link to the next page of items */
   nextLink?: string;

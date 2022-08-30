@@ -5,11 +5,12 @@ import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
 import { ModelType, Program, Type } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
+const modelKey = Symbol("typescript-models");
 
 export function transformSchemas(program: Program) {
   const schemas: Schema[] = [];
+  const schemaSet: Set<string> = new Set<string>();
   const [routes, _diagnostics] = getAllRoutes(program);
-  const modelMap: Map<Type, SchemaContext[]> = new Map<Type, SchemaContext[]>();
   for (const route of routes) {
     if (route.parameters.bodyParameter) {
       const bodyModel = route.parameters.bodyType;
@@ -27,39 +28,43 @@ export function transformSchemas(program: Program) {
       }
     }
   }
-  modelMap.forEach((context, cadlModel) => {
+  program.stateMap(modelKey).forEach((context, cadlModel) => {
     const model = getSchemaForType(program, cadlModel, context);
     model.usage = context;
-    schemas.push(model);
+    const modelStr = JSON.stringify(model);
+    if (!schemaSet.has(modelStr)) {
+      schemas.push(model);
+      schemaSet.add(modelStr);
+    }
   });
   function setModelMap(type: Type, schemaContext: SchemaContext) {
-    if (modelMap.has(type)) {
-      const context = modelMap.get(type);
+    if (program.stateMap(modelKey).get(type)) {
+      const context = program.stateMap(modelKey).get(type);
       if (context && context.indexOf(schemaContext) === -1) {
         context.push(schemaContext);
-        modelMap.set(type, context);
+        program.stateMap(modelKey).set(type, context);
       }
-    } else {
-      modelMap.set(type, [schemaContext]);
+    } else if ((type as ModelType).name !== "") {
+      program.stateMap(modelKey).set(type, [schemaContext]);
     }
   }
   function getGeneratedModels(model: Type, context: SchemaContext) {
     if (model.kind === "Model") {
-      if (model.templateArguments && model.templateArguments.length) {
+      if (model.templateArguments && model.templateArguments.length > 0) {
         for (const temp of model.templateArguments) {
           setModelMap(temp, context);
         }
       }
       setModelMap(model, context);
       const indexer = (model as ModelType).indexer;
-      if (indexer?.value && !modelMap.has(indexer?.value)) {
+      if (indexer?.value && !program.stateMap(modelKey).get(indexer?.value)) {
         setModelMap(indexer.value, context);
       }
       for (const prop of model.properties) {
         if (
           prop[1].type.kind === "Model" &&
-          (!modelMap.has(prop[1].type) ||
-            !modelMap.get(prop[1].type)?.includes(context))
+          (!program.stateMap(modelKey).get(prop[1].type) ||
+            !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
         ) {
           getGeneratedModels(prop[1].type, context);
         }
@@ -70,8 +75,8 @@ export function transformSchemas(program: Program) {
       for (const child of derivedModels) {
         if (
           child.kind === "Model" &&
-          (!modelMap.has(child) ||
-            !modelMap.get(child)?.includes(context))
+          (!program.stateMap(modelKey).get(child) ||
+            !program.stateMap(modelKey).get(child)?.includes(context))
         ) {
           getGeneratedModels(child, context);
         }

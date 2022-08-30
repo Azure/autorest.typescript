@@ -1,0 +1,12 @@
+{
+  "generateMetadata": true,
+  "includeShortcuts": true,
+  "endpointParameterName": "Endpoint",
+  "packageDetails": {
+    "name": "@msinternal/authoring",
+    "scopeName": "msinternal",
+    "nameWithoutScope": "authoring",
+    "description": "Authoring Ledger Service",
+    "version": "1.0.0-beta.1"
+  }
+}

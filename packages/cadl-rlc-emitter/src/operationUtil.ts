@@ -10,8 +10,9 @@ export function getNormalizedOperationName(
 ) {
   return includeGroupName
     ? normalizeName(
-        `${route.operation.namespace?.name}_${route.operation.name}`,
+        `${route.container?.name}_${route.operation.name}`,
         NameType.Interface
       )
     : normalizeName(`${route.operation.name}`, NameType.Interface);
 }
+

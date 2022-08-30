@@ -23,13 +23,15 @@ export default function createClient(
 
   return {
     ...client,
-    multiInterfaceClient: {
+    dogs: {
       getDogs: (options) => {
         return client.path("/dogs").get(options);
       },
       setDogs: (options) => {
         return client.path("/dogs/models").put(options);
       },
+    },
+    cats: {
       getCats: (options) => {
         return client.path("/cats").get(options);
       },

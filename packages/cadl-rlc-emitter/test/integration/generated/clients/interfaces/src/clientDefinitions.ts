@@ -1,92 +1,73 @@
 import {
-  MultiInterfaceClientGetDogsParameters,
-  MultiInterfaceClientSetDogsParameters,
-  MultiInterfaceClientGetCatsParameters,
-  MultiInterfaceClientSetCatsParameters,
+  DogsGetDogsParameters,
+  DogsSetDogsParameters,
+  CatsGetCatsParameters,
+  CatsSetCatsParameters,
 } from "./parameters";
 import {
-  MultiInterfaceClientGetDogs200Response,
-  MultiInterfaceClientGetDogsDefaultResponse,
-  MultiInterfaceClientSetDogs200Response,
-  MultiInterfaceClientSetDogsDefaultResponse,
-  MultiInterfaceClientGetCats200Response,
-  MultiInterfaceClientGetCatsDefaultResponse,
-  MultiInterfaceClientSetCats200Response,
-  MultiInterfaceClientSetCatsDefaultResponse,
+  DogsGetDogs200Response,
+  DogsGetDogsDefaultResponse,
+  DogsSetDogs200Response,
+  DogsSetDogsDefaultResponse,
+  CatsGetCats200Response,
+  CatsGetCatsDefaultResponse,
+  CatsSetCats200Response,
+  CatsSetCatsDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for MultiInterfaceClient operations */
-export interface MultiInterfaceClientOperations {
+/** Contains operations for dogs operations */
+export interface dogsOperations {
   getDogs(
-    options?: MultiInterfaceClientGetDogsParameters
-  ): StreamableMethod<
-    | MultiInterfaceClientGetDogs200Response
-    | MultiInterfaceClientGetDogsDefaultResponse
-  >;
+    options?: DogsGetDogsParameters
+  ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
   setDogs(
-    options?: MultiInterfaceClientSetDogsParameters
-  ): StreamableMethod<
-    | MultiInterfaceClientSetDogs200Response
-    | MultiInterfaceClientSetDogsDefaultResponse
-  >;
+    options?: DogsSetDogsParameters
+  ): StreamableMethod<DogsSetDogs200Response | DogsSetDogsDefaultResponse>;
+}
+
+/** Contains operations for cats operations */
+export interface catsOperations {
   getCats(
-    options?: MultiInterfaceClientGetCatsParameters
-  ): StreamableMethod<
-    | MultiInterfaceClientGetCats200Response
-    | MultiInterfaceClientGetCatsDefaultResponse
-  >;
+    options?: CatsGetCatsParameters
+  ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
   setCats(
-    options?: MultiInterfaceClientSetCatsParameters
-  ): StreamableMethod<
-    | MultiInterfaceClientSetCats200Response
-    | MultiInterfaceClientSetCatsDefaultResponse
-  >;
+    options?: CatsSetCatsParameters
+  ): StreamableMethod<CatsSetCats200Response | CatsSetCatsDefaultResponse>;
 }
 
-export interface GetDogs {
+export interface DogsGetDogs {
   get(
-    options?: MultiInterfaceClientGetDogsParameters
-  ): StreamableMethod<
-    | MultiInterfaceClientGetDogs200Response
-    | MultiInterfaceClientGetDogsDefaultResponse
-  >;
+    options?: DogsGetDogsParameters
+  ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
 }
 
-export interface SetDogs {
+export interface DogsSetDogs {
   put(
-    options?: MultiInterfaceClientSetDogsParameters
-  ): StreamableMethod<
-    | MultiInterfaceClientSetDogs200Response
-    | MultiInterfaceClientSetDogsDefaultResponse
-  >;
+    options?: DogsSetDogsParameters
+  ): StreamableMethod<DogsSetDogs200Response | DogsSetDogsDefaultResponse>;
 }
 
-export interface GetCats {
+export interface CatsGetCats {
   get(
-    options?: MultiInterfaceClientGetCatsParameters
-  ): StreamableMethod<
-    | MultiInterfaceClientGetCats200Response
-    | MultiInterfaceClientGetCatsDefaultResponse
-  >;
+    options?: CatsGetCatsParameters
+  ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
   put(
-    options?: MultiInterfaceClientSetCatsParameters
-  ): StreamableMethod<
-    | MultiInterfaceClientSetCats200Response
-    | MultiInterfaceClientSetCatsDefaultResponse
-  >;
+    options?: CatsSetCatsParameters
+  ): StreamableMethod<CatsSetCats200Response | CatsSetCatsDefaultResponse>;
 }
 
 export interface Routes {
   /** Resource for '/dogs' has methods for the following verbs: get */
-  (path: "/dogs"): GetDogs;
+  (path: "/dogs"): DogsGetDogs;
   /** Resource for '/dogs/models' has methods for the following verbs: put */
-  (path: "/dogs/models"): SetDogs;
+  (path: "/dogs/models"): DogsSetDogs;
   /** Resource for '/cats' has methods for the following verbs: get, put */
-  (path: "/cats"): GetCats;
+  (path: "/cats"): CatsGetCats;
 }
 
 export type MultiInterfaceClient = Client & {
   path: Routes;
-  multiInterfaceClient: MultiInterfaceClientOperations;
+  dogs: dogsOperations;
+  cats: catsOperations;
 };

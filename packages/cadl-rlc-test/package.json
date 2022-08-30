@@ -16,7 +16,7 @@
     "@types/node": "^12.7.12"
   },
   "scripts": {
-    "cadl:compile": "cadl compile ./spec",
+    "smoke-test": "ts-node ./eng/smoke-test.js",
     "build": "echo skip",
     "check:tree": "ts-node ./eng/check-clean-tree.js"
   },

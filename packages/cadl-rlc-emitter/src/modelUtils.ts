@@ -48,10 +48,11 @@ import {
 
 export function getSchemaForType(
   program: Program,
-  type: Type,
+  typeInput: Type,
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
+  const type = getEffectiveModelType(typeInput);
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -74,7 +75,25 @@ export function getSchemaForType(
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   }
-
+  function getEffectiveModelType(type: Type) {
+    if (type.kind === "Model") {
+      const effective = program.checker.getEffectiveModelType(
+        type,
+        isSchemaProperty
+      );
+      if (effective.name) {
+        return effective;
+      }
+    }
+    function isSchemaProperty(property: ModelTypeProperty) {
+      const headerInfo = getHeaderFieldName(program, property);
+      const queryInfo = getQueryParamName(program, property);
+      const pathInfo = getPathParamName(program, property);
+      const statusCodeInfo = isStatusCode(program, property);
+      return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+    }
+    return type;
+  }
   reportDiagnostic(program, {
     code: "invalid-schema",
     format: { type: type.kind },
@@ -323,8 +342,29 @@ function getSchemaForModel(
   needRef?: boolean
 ) {
   const friendlyName = getFriendlyName(program, model);
+  let name = model.name;
+  if (
+    !friendlyName &&
+    model.templateArguments &&
+    model.templateArguments.length > 0
+  ) {
+    name =
+      model.name +
+      model.templateArguments
+        .map((it) => {
+          switch (it.kind) {
+            case "Model":
+              return it.name;
+            case "String":
+              return it.value;
+            default:
+              return "";
+          }
+        })
+        .join("");
+  }
   let modelSchema: ObjectSchema = {
-    name: friendlyName ?? model.name,
+    name: friendlyName ?? name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };
@@ -350,13 +390,8 @@ function getSchemaForModel(
     const childSchema = getSchemaForType(program, child, usage, true);
     for (const [name, prop] of child.properties) {
       if (name === discriminator?.propertyName) {
-        const propSchema = getSchemaForType(
-          program,
-          prop.type,
-          usage,
-          true
-        )
-        childSchema.discriminatorValue = propSchema.type.replace(/"/g, '');
+        const propSchema = getSchemaForType(program, prop.type, usage, true);
+        childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
         break;
       }
     }
@@ -466,7 +501,6 @@ function getSchemaForModel(
       immediate: [getSchemaForType(program, model.baseModel, usage, true)]
     };
   }
-
   return modelSchema;
 }
 // Map an Cadl type to an OA schema. Returns undefined when the resulting
@@ -604,13 +638,14 @@ function mapCadlIntrinsicModelToTypeScript(
       let schema: any = {};
       if (name === "string") {
         schema = {
-          type: "object",
+          type: "dictionary",
           additionalProperties: getSchemaForType(
             program,
             indexer.value!,
             usage,
             true
-          )
+          ),
+          typeName: "Record<string, unknown>"
         };
       } else if (name === "integer") {
         schema = {
@@ -623,7 +658,7 @@ function mapCadlIntrinsicModelToTypeScript(
         if (usage && usage.includes(SchemaContext.Output)) {
           schema.outputTypeName = `Array<${schema.items.name}Output>`;
         }
-      } else {
+      } else if (name === "integer") {
         schema.typeName = `${schema.items.type}[]`;
       }
       schema.usage = usage;

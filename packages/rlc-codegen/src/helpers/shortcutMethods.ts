@@ -8,7 +8,7 @@ import {
 } from "ts-morph";
 import { PathMetadata, Paths } from "../interfaces.js";
 import { buildMethodDefinitions } from "./operationHelpers.js";
-import { camelCase } from "./nameUtils.js";
+import { NameType, normalizeName } from "./nameUtils.js";
 
 export function generateMethodShortcuts(
   paths: Paths
@@ -47,7 +47,7 @@ function buildOperationDefinitions(
   for (const verb in path.methods) {
     const methods = path.methods[verb];
     for (const method of methods) {
-      const name = camelCase(method.operationName);
+      const name = normalizeName(method.operationName, NameType.Property);
       const pathParams = path.pathParameters;
       const methodDefinitions = buildMethodDefinitions(
         { [name]: [method] },

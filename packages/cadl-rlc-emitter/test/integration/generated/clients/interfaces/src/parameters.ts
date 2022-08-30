@@ -1,19 +1,17 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { Dog, Cat } from "./models";
 
-export type MultiInterfaceClientGetDogsParameters = RequestParameters;
+export type DogsGetDogsParameters = RequestParameters;
 
-export interface MultiInterfaceClientSetDogsBodyParam {
+export interface DogsSetDogsBodyParam {
   body: Dog;
 }
 
-export type MultiInterfaceClientSetDogsParameters =
-  MultiInterfaceClientSetDogsBodyParam & RequestParameters;
-export type MultiInterfaceClientGetCatsParameters = RequestParameters;
+export type DogsSetDogsParameters = DogsSetDogsBodyParam & RequestParameters;
+export type CatsGetCatsParameters = RequestParameters;
 
-export interface MultiInterfaceClientSetCatsBodyParam {
+export interface CatsSetCatsBodyParam {
   body: Cat;
 }
 
-export type MultiInterfaceClientSetCatsParameters =
-  MultiInterfaceClientSetCatsBodyParam & RequestParameters;
+export type CatsSetCatsParameters = CatsSetCatsBodyParam & RequestParameters;
