@@ -18,7 +18,8 @@ import {
 } from "./helpers/operationHelpers.js";
 import { PathMetadata, Paths, RLCModel } from "./interfaces.js";
 import { generateMethodShortcuts } from "./helpers/shortcutMethods.js";
-import { camelCase } from "./helpers/nameUtils.js";
+import { REST_CLIENT_RESERVED } from './buildMethodShortcuts.js'
+import { CasingConvention, NameType, normalizeName } from "./helpers/nameUtils.js";
 import { pascalCase } from "./helpers/nameUtils.js";
 
 export function buildClientDefinitions(model: RLCModel) {
@@ -206,7 +207,13 @@ function getShortcutName(interfaceName: string) {
   const endIndex = shouldKeepSuffix(interfaceName)
     ? undefined
     : interfaceName.indexOf("Operations");
-  const clientProperty = camelCase(interfaceName.substring(0, endIndex));
+  const clientProperty = normalizeName(
+    interfaceName.substring(0, endIndex),
+    NameType.OperationGroup,
+    true,
+    REST_CLIENT_RESERVED,
+    CasingConvention.Camel
+  );
 
   return {
     name: clientProperty,

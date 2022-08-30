@@ -23,7 +23,7 @@ export default function createClient(
 
   return {
     ...client,
-    extensibleEnums: {
+    stringOperations: {
       getKnownValue: (options) => {
         return client.path("/extensible-enums/string/known-value").get(options);
       },

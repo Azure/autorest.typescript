@@ -30,6 +30,24 @@
   "consumes": [
     "application/json"
   ],
+  "security": [
+    {
+      "OAuth2Auth": [
+        "https://confidential-ledger.azure.com/.default"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "OAuth2Auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://login.microsoftonline.com/common/v2.0/oauth2/authorize",
+      "tokenUrl": "https://login.microsoftonline.com/common/v2.0/oauth2/token",
+      "scopes": {
+        "https://confidential-ledger.azure.com/.default": ""
+      }
+    }
+  },
   "tags": [],
   "paths": {
     "/app/collections": {

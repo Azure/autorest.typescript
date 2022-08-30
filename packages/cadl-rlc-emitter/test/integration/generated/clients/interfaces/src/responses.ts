@@ -2,49 +2,45 @@ import { HttpResponse } from "@azure-rest/core-client";
 import { DogOutput, ErrorResponseOutput, CatOutput } from "./outputModels";
 
 /** The request has succeeded. */
-export interface MultiInterfaceClientGetDogs200Response extends HttpResponse {
+export interface DogsGetDogs200Response extends HttpResponse {
   status: "200";
   body: DogOutput;
 }
 
-export interface MultiInterfaceClientGetDogsDefaultResponse
-  extends HttpResponse {
+export interface DogsGetDogsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface MultiInterfaceClientSetDogs200Response extends HttpResponse {
+export interface DogsSetDogs200Response extends HttpResponse {
   status: "200";
   body: DogOutput;
 }
 
-export interface MultiInterfaceClientSetDogsDefaultResponse
-  extends HttpResponse {
+export interface DogsSetDogsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface MultiInterfaceClientGetCats200Response extends HttpResponse {
+export interface CatsGetCats200Response extends HttpResponse {
   status: "200";
   body: CatOutput;
 }
 
-export interface MultiInterfaceClientGetCatsDefaultResponse
-  extends HttpResponse {
+export interface CatsGetCatsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface MultiInterfaceClientSetCats200Response extends HttpResponse {
+export interface CatsSetCats200Response extends HttpResponse {
   status: "200";
   body: CatOutput;
 }
 
-export interface MultiInterfaceClientSetCatsDefaultResponse
-  extends HttpResponse {
+export interface CatsSetCatsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
