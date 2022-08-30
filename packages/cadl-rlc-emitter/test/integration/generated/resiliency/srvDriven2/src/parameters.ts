@@ -1,7 +1,7 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { PostInput } from "./models";
 
-export interface ServiceDriven2HeadNoParamsQueryParamProperties {
+export interface ParamsHeadNoParamsQueryParamProperties {
   newParameter?: string;
 }
 
