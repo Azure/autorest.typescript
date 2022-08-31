@@ -1,0 +1,1886 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "PlayFab",
+    "version": "0000-00-00",
+    "description": "This feature is in private preview with a set of managed partners.  The\nAuthentication APIs provide a convenient way to convert classic authentication\nresponses into entity authentication models. These APIs will provide you with\nthe entity authentication token needed for subsequent Entity API calls. APIs\nfor authenticating player identities from a variety of identity providers\n(IDPs), linking them to PlayFab player accounts (master_player_account\nentities), and managing these links between identities and player accounts",
+    "x-cadl-generated": [
+      {
+        "emitter": "@azure-tools/cadl-autorest"
+      }
+    ]
+  },
+  "schemes": [
+    "https"
+  ],
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{endpoint}",
+    "useSchemePrefix": false,
+    "parameters": [
+      {
+        "name": "endpoint",
+        "in": "path",
+        "required": true,
+        "description": "The endpoint of your PlayFab service",
+        "type": "string"
+      }
+    ]
+  },
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "tags": [],
+  "paths": {
+    "/Authentication/GetEntityToken": {
+      "post": {
+        "operationId": "PlayFabAuthenticationOperations_GetEntityToken",
+        "description": "This feature is in private preview with a set of managed partners. Method to\nexchange a legacy AuthenticationTicket or title SecretKey for an Entity Token\nor to refresh a still valid Entity Token.",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "GetEntityTokenRequest",
+            "in": "body",
+            "required": true,
+            "description": "This API must be called with X-SecretKey, X-Authentication or X-EntityToken\nheaders. An optional EntityKey may be included to attempt to set the resulting\nEntityToken to a specific entity, however the entity must be a relation of the\ncaller, such as the master_player_account of a character. If sending\nX-EntityToken the account will be marked as freshly logged in and will issue a\nnew token. If using X-Authentication or X-EntityToken the header must still be\nvalid and cannot be expired or revoked.",
+            "schema": {
+              "$ref": "#/definitions/GetEntityTokenRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/GetEntityTokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/Event/WriteEvents": {
+      "post": {
+        "operationId": "PlayFabEventsOperations_WriteEvents",
+        "description": "This feature is in private preview with a set of managed partners. Write\nbatches of entity based events to PlayStream. The namespace of the Event must\nbe 'custom' or start with 'custom.'.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "WriteEventsRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WriteEventsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/WriteEventsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/File/AbortFileUploads": {
+      "post": {
+        "operationId": "PlayFabFileOperations_AbortFileUploads",
+        "description": "This feature is in private preview with a set of managed partners. Abort\npending file uploads to an entity's profile.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "AbortFileUploadsRequest",
+            "in": "body",
+            "required": true,
+            "description": "Aborts the pending upload of the requested files.",
+            "schema": {
+              "$ref": "#/definitions/AbortFileUploadsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AbortFileUploadsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/File/DeleteFiles": {
+      "post": {
+        "operationId": "PlayFabFileOperations_DeleteFiles",
+        "description": "This feature is in private preview with a set of managed partners. Delete files\non an entity's profile.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "DeleteFilesRequest",
+            "in": "body",
+            "required": true,
+            "description": "Deletes the requested files from the entity's profile.",
+            "schema": {
+              "$ref": "#/definitions/DeleteFilesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/DeleteFilesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/File/FinalizeFileUploads": {
+      "post": {
+        "operationId": "PlayFabFileOperations_FinalizeFileUploads",
+        "description": "This feature is in private preview with a set of managed partners. Finalize\nfile uploads to an entity's profile.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "FinalizeFileUploadsRequest",
+            "in": "body",
+            "required": true,
+            "description": "Finalizes the upload of the requested files. Verifies that the files have been\nsuccessfully uploaded and moves the file pointers from pending to live.",
+            "schema": {
+              "$ref": "#/definitions/FinalizeFileUploadsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/FinalizeFileUploadsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/File/GetFiles": {
+      "post": {
+        "operationId": "PlayFabFileOperations_GetFiles",
+        "description": "This feature is in private preview with a set of managed partners. Retrieves\nfile metadata from an entity's profile.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "GetFilesRequest",
+            "in": "body",
+            "required": true,
+            "description": "Returns URLs that may be used to download the files for a profile for a limited\nlength of time. Only returns files that have been successfully uploaded, files\nthat are still pending will either return the old value, if it exists, or\nnothing.",
+            "schema": {
+              "$ref": "#/definitions/GetFilesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/GetFilesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/File/InitiateFileUploads": {
+      "post": {
+        "operationId": "PlayFabFileOperations_InitiateFileUploads",
+        "description": "This feature is in private preview with a set of managed partners. Initiates\nfile uploads to an entity's profile.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "InitiateFileUploadsRequest",
+            "in": "body",
+            "required": true,
+            "description": "Returns URLs that may be used to upload the files for a profile 5 minutes.\nAfter using the upload calls FinalizeFileUploads must be called to move the\nfile status from pending to live.",
+            "schema": {
+              "$ref": "#/definitions/InitiateFileUploadsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/InitiateFileUploadsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/Object/GetObjects": {
+      "post": {
+        "operationId": "PlayFabFileOperations_GetObjects",
+        "description": "This feature is in private preview with a set of managed partners. Retrieves\nobjects from an entity's profile.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "GetObjectsRequest",
+            "in": "body",
+            "required": true,
+            "description": "Gets JSON objects from an entity profile and returns it. ",
+            "schema": {
+              "$ref": "#/definitions/GetObjectsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/GetObjectsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/Object/SetObjects": {
+      "post": {
+        "operationId": "PlayFabFileOperations_SetObjects",
+        "description": "This feature is in private preview with a set of managed partners. Sets objects\non an entity's profile.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "SetObjectsRequest",
+            "in": "body",
+            "required": true,
+            "description": "Sets JSON objects on the requested entity profile. May include a version number\nto be used to perform optimistic concurrency operations during update. If the\ncurrent version differs from the version in the request the request will be\nignored. If no version is set on the request then the value will always be\nupdated if the values differ. Using the version value does not guarantee a\nwrite though, ConcurrentEditError may still occur if multiple clients are\nattempting to update the same profile. ",
+            "schema": {
+              "$ref": "#/definitions/SetObjectsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/SetObjectsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/PlayerIdentity/AuthenticateWithAndroidDeviceId": {
+      "post": {
+        "operationId": "PlayFabAuthenticationOperations_AuthenticateWithAndroidDeviceId",
+        "description": "This feature is in private preview with a set of managed partners.\nAuthenticates a player from the specified player account pool using the\n\"Android Device ID\" player identity provider, finds or provisions a\nmaster_player_account associated with the player identity, and returns an\nentity token for it. Optionally logs the authenticated player into the\nspecified title and returns an additional entity token for the\ntitle_player_account.",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "AuthenticateAndroidDeviceIdIdentityRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthenticateAndroidDeviceIdIdentityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AuthenticateIdentityResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/PlayerIdentity/AuthenticateWithCustomId": {
+      "post": {
+        "operationId": "PlayFabAuthenticationOperations_AuthenticateWithCustomId",
+        "description": "This feature is in private preview with a set of managed partners.\nAuthenticates a player from the specified player account pool using the\n\"Custom ID\" player identity provider, finds or provisions a\nmaster_player_account associated with the player identity, and returns an\nentity token for it. Optionally logs the authenticated player into the\nspecified title and returns an additional entity token for the\ntitle_player_account.",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "AuthenticateCustomIdIdentityRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthenticateCustomIdIdentityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AuthenticateIdentityResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/PlayerIdentity/AuthenticateWithIOSDeviceId": {
+      "post": {
+        "operationId": "PlayFabAuthenticationOperations_AuthenticateWithIosDeviceId",
+        "description": "This feature is in private preview with a set of managed partners.\nAuthenticates a player from the specified player account pool using the \"IOS\nDevice ID\" player identity provider, finds or provisions a\nmaster_player_account associated with the player identity, and returns an\nentity token for it. Optionally logs the authenticated player into the\nspecified title and returns an additional entity token for the\ntitle_player_account.",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "AuthenticateIOSDeviceIdIdentityRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthenticateIOSDeviceIdIdentityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AuthenticateIdentityResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/PlayerIdentity/AuthenticateWithNintendoSwitchDeviceID": {
+      "post": {
+        "operationId": "PlayFabAuthenticationOperations_AuthenticateWithNintendoSwitchDeviceId",
+        "description": "This feature is in private preview with a set of managed partners.\nAuthenticates a player from the specified player account pool using the\n\"Nintendo Switch Device ID\" player identity provider, finds or provisions a\nmaster_player_account associated with the player identity, and returns an\nentity token for it. Optionally logs the authenticated player into the\nspecified title and returns an additional entity token for the\ntitle_player_account.",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "AuthenticateNintendoSwitchDeviceIDIdentityRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthenticateNintendoSwitchDeviceIDIdentityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AuthenticateIdentityResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/PlayerIdentity/GetLinkedPlayerIdentities": {
+      "post": {
+        "operationId": "PlayFabAuthenticationOperations_GetLinkedPlayerIdentities",
+        "description": "This feature is in private preview with a set of managed partners. Lists the\nplayer identities currently linked to a master_player_account.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "GetLinkedPlayerIdentitiesRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetLinkedPlayerIdentitiesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/GetLinkedPlayerIdentitiesResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/PlayerIdentity/UnlinkPlayerIdentity": {
+      "post": {
+        "operationId": "PlayFabAuthenticationOperations_UnlinkPlayerIdentity",
+        "description": "This feature is in private preview with a set of managed partners. Removes the\nlink from a player identity to a master_player_account.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "UnlinkPlayerIdentityRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UnlinkPlayerIdentityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/UnlinkPlayerIdentityResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    },
+    "/TitlePlayer/LoginPlayer": {
+      "post": {
+        "operationId": "PlayFabProfilesOperations_LoginPlayer",
+        "description": "This feature is in private preview with a set of managed partners. Begins a\ntitle session for a master_player_account, returning an entity token for the\nassociated title_player_account, creating a profile for it if necessary.",
+        "parameters": [
+          {
+            "name": "X-EntityToken",
+            "in": "header",
+            "required": true,
+            "description": "Token",
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "description": "Accept header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "LoginPlayerRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginPlayerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/LoginPlayerResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorWrapper"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AbortFileUploadsRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity to perform this action on."
+        },
+        "FileNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "Names of the files to have their pending uploads aborted."
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The expected version of the profile, if set and doesn't match the current\nversion of the profile the operation will not be performed."
+        }
+      },
+      "description": "Aborts the pending upload of the requested files.",
+      "required": [
+        "Entity",
+        "FileNames"
+      ]
+    },
+    "AbortFileUploadsResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/AbortFileUploadsResponse_data"
+        }
+      }
+    },
+    "AbortFileUploadsResponse_data": {
+      "type": "object",
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity id and type."
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The current version of the profile, can be used for concurrency control during\nupdates."
+        }
+      }
+    },
+    "AccountLinkAction": {
+      "type": "string",
+      "enum": [
+        "CreateAndLinkNewAccount",
+        "LinkToExistingAccount",
+        "LeaveUnlinked"
+      ],
+      "x-ms-enum": {
+        "name": "AccountLinkAction",
+        "modelAsString": true
+      }
+    },
+    "ApiErrorWrapper": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Numerical HTTP code"
+        },
+        "status": {
+          "type": "string",
+          "description": "String HTTP code"
+        },
+        "error": {
+          "type": "string",
+          "description": "Playfab error code"
+        },
+        "errorCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Numerical PlayFab error code"
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "Description for the PlayFab errorCode"
+        },
+        "errorDetails": {
+          "$ref": "#/definitions/object",
+          "description": "Detailed description of individual issues with the request object"
+        }
+      },
+      "description": "The basic wrapper around every failed API response",
+      "required": [
+        "code",
+        "errorCode"
+      ]
+    },
+    "AuthenticateAndroidDeviceIdIdentityRequest": {
+      "type": "object",
+      "properties": {
+        "AndroidDeviceId": {
+          "type": "string",
+          "description": "Identifier for the user's android device."
+        },
+        "BehaviorIfIdentityNotLinked": {
+          "$ref": "#/definitions/AccountLinkAction",
+          "description": "Controls what happens if the authenticated player identity is not yet\nassociated with a master_player_account in the player account pool.\n'CreateAndLinkNewAccount' (default) creates a new master_player_account entity\nand associates the player identity with it. 'LinkToExistingAccount' attempts to\nassociate the player identity with the master_player_account entity specified\nby 'ExistingMasterPlayerAccountId', returning an 'AccountAlreadyLinked' error\nif the master_player_account is already associated with another player\nidentity. 'LeaveUnlinked' leaves the player identity unlinked and returns the\n'AccountNotFound' error."
+        },
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "ExistingMasterPlayerAccountId": {
+          "type": "string",
+          "description": "Optional master_player_account entity in the player account pool to associate\nwith the authenticated player identity. When specified, then the request must\nbe authenticated as either the same master_player_account (with an entity token\nobtained from a previous authentication API call) or as another entity\nauthorized to make calls on behalf of it, such as a title entity in the same\nplayer account pool (with a title secret key)."
+        },
+        "PlayerAccountPoolId": {
+          "type": "string",
+          "description": "The player account pool containing the player account (master_player_account\nentity) to be looked-up or created for the identity. The player account pool ID\nis also known as the \"publisher ID\" or \"namespace ID\"."
+        },
+        "TitleId": {
+          "type": "string",
+          "description": "Optional title to log the master_player_account into after authenticating the\nplayer. This option can be used to combine the player authentication and title\nlogin operations in a single API request, avoiding a second API request to\n'TitlePlayer/LoginPlayer'. When specified, an entity token for the\ntitle_player_account entity is returned in the 'TitlePlayerAccountEntityToken'\nproperty of the response."
+        }
+      },
+      "required": [
+        "AndroidDeviceId",
+        "BehaviorIfIdentityNotLinked",
+        "PlayerAccountPoolId"
+      ]
+    },
+    "AuthenticateCustomIdIdentityRequest": {
+      "type": "object",
+      "properties": {
+        "BehaviorIfIdentityNotLinked": {
+          "$ref": "#/definitions/AccountLinkAction",
+          "description": "Controls what happens if the authenticated player identity is not yet\nassociated with a master_player_account in the player account pool.\n'CreateAndLinkNewAccount' (default) creates a new master_player_account entity\nand associates the player identity with it. 'LinkToExistingAccount' attempts to\nassociate the player identity with the master_player_account entity specified\nby 'ExistingMasterPlayerAccountId', returning an 'AccountAlreadyLinked' error\nif the master_player_account is already associated with another player\nidentity. 'LeaveUnlinked' leaves the player identity unlinked and returns the\n'AccountNotFound' error."
+        },
+        "CustomId": {
+          "type": "string",
+          "description": "Custom string value which uniquely identifies a player identity within the\nplayer account pool."
+        },
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "ExistingMasterPlayerAccountId": {
+          "type": "string",
+          "description": "Optional master_player_account entity in the player account pool to associate\nwith the authenticated player identity. When specified, then the request must\nbe authenticated as either the same master_player_account (with an entity token\nobtained from a previous authentication API call) or as another entity\nauthorized to make calls on behalf of it, such as a title entity in the same\nplayer account pool (with a title secret key)."
+        },
+        "PlayerAccountPoolId": {
+          "type": "string",
+          "description": "The player account pool containing the player account (master_player_account\nentity) to be looked-up or created for the identity. The player account pool ID\nis also known as the \"publisher ID\" or \"namespace ID\"."
+        },
+        "TitleId": {
+          "type": "string",
+          "description": "Optional title to log the master_player_account into after authenticating the\nplayer. This option can be used to combine the player authentication and title\nlogin operations in a single API request, avoiding a second API request to\n'TitlePlayer/LoginPlayer'. When specified, an entity token for the\ntitle_player_account entity is returned in the 'TitlePlayerAccountEntityToken'\nproperty of the response."
+        }
+      },
+      "required": [
+        "BehaviorIfIdentityNotLinked",
+        "CustomId",
+        "PlayerAccountPoolId"
+      ]
+    },
+    "AuthenticateIOSDeviceIdIdentityRequest": {
+      "type": "object",
+      "properties": {
+        "BehaviorIfIdentityNotLinked": {
+          "$ref": "#/definitions/AccountLinkAction",
+          "description": "Controls what happens if the authenticated player identity is not yet\nassociated with a master_player_account in the player account pool.\n'CreateAndLinkNewAccount' (default) creates a new master_player_account entity\nand associates the player identity with it. 'LinkToExistingAccount' attempts to\nassociate the player identity with the master_player_account entity specified\nby 'ExistingMasterPlayerAccountId', returning an 'AccountAlreadyLinked' error\nif the master_player_account is already associated with another player\nidentity. 'LeaveUnlinked' leaves the player identity unlinked and returns the\n'AccountNotFound' error."
+        },
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "DeviceId": {
+          "type": "string",
+          "description": "Vendor-specific iOS identifier for the user's device."
+        },
+        "ExistingMasterPlayerAccountId": {
+          "type": "string",
+          "description": "Optional master_player_account entity in the player account pool to associate\nwith the authenticated player identity. When specified, then the request must\nbe authenticated as either the same master_player_account (with an entity token\nobtained from a previous authentication API call) or as another entity\nauthorized to make calls on behalf of it, such as a title entity in the same\nplayer account pool (with a title secret key)."
+        },
+        "PlayerAccountPoolId": {
+          "type": "string",
+          "description": "The player account pool containing the player account (master_player_account\nentity) to be looked-up or created for the identity. The player account pool ID\nis also known as the \"publisher ID\" or \"namespace ID\"."
+        },
+        "TitleId": {
+          "type": "string",
+          "description": "Optional title to log the master_player_account into after authenticating the\nplayer. This option can be used to combine the player authentication and title\nlogin operations in a single API request, avoiding a second API request to\n'TitlePlayer/LoginPlayer'. When specified, an entity token for the\ntitle_player_account entity is returned in the 'TitlePlayerAccountEntityToken'\nproperty of the response."
+        }
+      },
+      "required": [
+        "BehaviorIfIdentityNotLinked",
+        "DeviceId",
+        "PlayerAccountPoolId"
+      ]
+    },
+    "AuthenticateIdentityResult": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/AuthenticateIdentityResult_data"
+        }
+      }
+    },
+    "AuthenticateIdentityResult_data": {
+      "type": "object",
+      "properties": {
+        "CreatedIdentityLinkId": {
+          "type": "string",
+          "description": "Unique identifier of the link between the player identity and associated\nmaster_player_account, if a new link was created as directed by the value of\n'BehaviorIfIdentityNotLinked'."
+        },
+        "MasterPlayerAccount": {
+          "$ref": "#/definitions/EntityTokenResponse",
+          "description": "Entity token for the master_player_account linked to the authenticated player\nidentity."
+        },
+        "TitlePlayerAccount": {
+          "$ref": "#/definitions/EntityTokenResponse",
+          "description": "Entity token for the title_player_account for the master_player_account and\ntitle, if TitleId is specified in the request"
+        }
+      }
+    },
+    "AuthenticateNintendoSwitchDeviceIDIdentityRequest": {
+      "type": "object",
+      "properties": {
+        "BehaviorIfIdentityNotLinked": {
+          "$ref": "#/definitions/AccountLinkAction",
+          "description": "Controls what happens if the authenticated player identity is not yet\nassociated with a master_player_account in the player account pool.\n'CreateAndLinkNewAccount' (default) creates a new master_player_account entity\nand associates the player identity with it. 'LinkToExistingAccount' attempts to\nassociate the player identity with the master_player_account entity specified\nby 'ExistingMasterPlayerAccountId', returning an 'AccountAlreadyLinked' error\nif the master_player_account is already associated with another player\nidentity. 'LeaveUnlinked' leaves the player identity unlinked and returns the\n'AccountNotFound' error."
+        },
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "ExistingMasterPlayerAccountId": {
+          "type": "string",
+          "description": "Optional master_player_account entity in the player account pool to associate\nwith the authenticated player identity. When specified, then the request must\nbe authenticated as either the same master_player_account (with an entity token\nobtained from a previous authentication API call) or as another entity\nauthorized to make calls on behalf of it, such as a title entity in the same\nplayer account pool (with a title secret key)."
+        },
+        "NintendoSwitchDeviceId": {
+          "type": "string",
+          "description": "Identifier for the user's android device."
+        },
+        "PlayerAccountPoolId": {
+          "type": "string",
+          "description": "The player account pool containing the player account (master_player_account\nentity) to be looked-up or created for the identity. The player account pool ID\nis also known as the \"publisher ID\" or \"namespace ID\"."
+        },
+        "TitleId": {
+          "type": "string",
+          "description": "Optional title to log the master_player_account into after authenticating the\nplayer. This option can be used to combine the player authentication and title\nlogin operations in a single API request, avoiding a second API request to\n'TitlePlayer/LoginPlayer'. When specified, an entity token for the\ntitle_player_account entity is returned in the 'TitlePlayerAccountEntityToken'\nproperty of the response."
+        }
+      },
+      "required": [
+        "BehaviorIfIdentityNotLinked",
+        "NintendoSwitchDeviceId",
+        "PlayerAccountPoolId"
+      ]
+    },
+    "DeleteFilesRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity to perform this action on."
+        },
+        "FileNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "Names of the files to be deleted."
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The expected version of the profile, if set and doesn't match the current\nversion of the profile the operation will not be performed."
+        }
+      },
+      "description": "Deletes the requested files from the entity's profile.",
+      "required": [
+        "Entity",
+        "FileNames"
+      ]
+    },
+    "DeleteFilesResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/DeleteFilesResponse_data"
+        }
+      }
+    },
+    "DeleteFilesResponse_data": {
+      "type": "object",
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity id and type."
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The current version of the profile, can be used for concurrency control during\nupdates."
+        }
+      }
+    },
+    "EntityKey": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string",
+          "description": "Unique ID of the entity."
+        },
+        "Type": {
+          "type": "string",
+          "description": "Entity type. See\nhttps://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types"
+        }
+      },
+      "description": "Combined entity type and ID structure which uniquely identifies a single entity.",
+      "required": [
+        "Id"
+      ]
+    },
+    "EntityTokenResponse": {
+      "type": "object",
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity id and type."
+        },
+        "EntityToken": {
+          "type": "string",
+          "description": "The token used to set X-EntityToken for all entity based API calls."
+        },
+        "TokenExpiration": {
+          "type": "string",
+          "description": "The time the token will expire, if it is an expiring token, in UTC."
+        }
+      }
+    },
+    "EventContents": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the event (e.g. build number, external\ntrace identifiers, etc.). Before an event is written, this collection and the\nbase request custom tags will be merged, but not overriden. This enables the\ncaller to specify static tags and per event tags."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "Entity associated with the event. If null, the event will apply to the calling\nentity."
+        },
+        "EventNamespace": {
+          "type": "string",
+          "description": "The namespace in which the event is defined. Allowed namespaces can vary by API."
+        },
+        "Name": {
+          "type": "string",
+          "description": "The name of this event."
+        },
+        "OriginalId": {
+          "type": "string",
+          "description": "The original unique identifier associated with this event before it was posted\nto PlayFab. The value might differ from the EventId value, which is assigned\nwhen the event is received by the server."
+        },
+        "OriginalTimestamp": {
+          "type": "string",
+          "description": "The time (in UTC) associated with this event when it occurred. If specified,\nthis value is stored in the OriginalTimestamp property of the PlayStream event."
+        },
+        "Payload": {
+          "$ref": "#/definitions/object",
+          "description": "Arbitrary data associated with the event. Only one of Payload or PayloadJSON is\nallowed."
+        },
+        "PayloadJSON": {
+          "type": "string",
+          "description": "Arbitrary data associated with the event, represented as a JSON serialized\nstring. Only one of Payload or PayloadJSON is allowed."
+        }
+      },
+      "required": [
+        "EventNamespace",
+        "Name"
+      ]
+    },
+    "FinalizeFileUploadsRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity to perform this action on."
+        },
+        "FileNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-'\nand '.'"
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The current version of the profile, can be used for concurrency control during\nupdates."
+        }
+      },
+      "description": "Finalizes the upload of the requested files. Verifies that the files have been\nsuccessfully uploaded and moves the file pointers from pending to live.",
+      "required": [
+        "Entity",
+        "FileNames",
+        "ProfileVersion"
+      ]
+    },
+    "FinalizeFileUploadsResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/FinalizeFileUploadsResponse_data"
+        }
+      }
+    },
+    "FinalizeFileUploadsResponse_data": {
+      "type": "object",
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity id and type."
+        },
+        "Metadata": {
+          "$ref": "#/definitions/GetFileMetadata",
+          "description": "Collection of metadata for the entity's files"
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The current version of the profile, can be used for concurrency control during\nupdates."
+        }
+      }
+    },
+    "GetEntityTokenRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The optional entity to perform this action on. Defaults to the currently logged\nin entity."
+        }
+      },
+      "description": "This API must be called with X-SecretKey, X-Authentication or X-EntityToken\nheaders. An optional EntityKey may be included to attempt to set the resulting\nEntityToken to a specific entity, however the entity must be a relation of the\ncaller, such as the master_player_account of a character. If sending\nX-EntityToken the account will be marked as freshly logged in and will issue a\nnew token. If using X-Authentication or X-EntityToken the header must still be\nvalid and cannot be expired or revoked."
+    },
+    "GetEntityTokenResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/GetEntityTokenResponse_data"
+        }
+      }
+    },
+    "GetEntityTokenResponse_data": {
+      "type": "object",
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity id and type."
+        },
+        "EntityToken": {
+          "type": "string",
+          "description": "The token used to set X-EntityToken for all entity based API calls."
+        },
+        "TokenExpiration": {
+          "type": "string",
+          "description": "The time the token will expire, if it is an expiring token, in UTC."
+        }
+      }
+    },
+    "GetFileMetadata": {
+      "type": "object",
+      "properties": {
+        "Checksum": {
+          "type": "string",
+          "description": "Checksum value for the file, can be used to check if the file on the server has\nchanged."
+        },
+        "DownloadUrl": {
+          "type": "string",
+          "description": "Download URL where the file can be retrieved"
+        },
+        "FileName": {
+          "type": "string",
+          "description": "Name of the file"
+        },
+        "LastModified": {
+          "type": "string",
+          "description": "Last UTC time the file was modified"
+        },
+        "Size": {
+          "type": "number",
+          "format": "float",
+          "description": "Storage service's reported byte count"
+        }
+      },
+      "required": [
+        "LastModified",
+        "Size"
+      ]
+    },
+    "GetFilesRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity to perform this action on."
+        }
+      },
+      "description": "Returns URLs that may be used to download the files for a profile for a limited\nlength of time. Only returns files that have been successfully uploaded, files\nthat are still pending will either return the old value, if it exists, or\nnothing.",
+      "required": [
+        "Entity"
+      ]
+    },
+    "GetFilesResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/GetFilesResponse_data"
+        }
+      }
+    },
+    "GetFilesResponse_data": {
+      "type": "object",
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity id and type."
+        },
+        "Metadata": {
+          "$ref": "#/definitions/GetFileMetadata",
+          "description": "Collection of metadata for the entity's files"
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The current version of the profile, can be used for concurrency control during\nupdates."
+        }
+      }
+    },
+    "GetLinkedPlayerIdentitiesRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "MasterPlayerAccountId": {
+          "type": "string",
+          "description": "master_player_account entity."
+        }
+      }
+    },
+    "GetLinkedPlayerIdentitiesResult": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/GetLinkedPlayerIdentitiesResult_data"
+        }
+      }
+    },
+    "GetLinkedPlayerIdentitiesResult_data": {
+      "type": "object",
+      "properties": {
+        "LinkedIdentities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LinkedPlayerIdentity"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "LinkedPlayerIdentity[]",
+          "description": "List of player identities currently linked to the master_player_account."
+        }
+      }
+    },
+    "GetObjectsRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity to perform this action on."
+        },
+        "EscapeObject": {
+          "type": "boolean",
+          "description": "Determines whether the object will be returned as an escaped JSON string or as\na un-escaped JSON object. Default is JSON object."
+        }
+      },
+      "description": "Gets JSON objects from an entity profile and returns it. ",
+      "required": [
+        "Entity"
+      ]
+    },
+    "GetObjectsResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/GetObjectsResponse_data"
+        }
+      }
+    },
+    "GetObjectsResponse_data": {
+      "type": "object",
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity id and type."
+        },
+        "Objects": {
+          "$ref": "#/definitions/ObjectResult",
+          "description": "Requested objects that the calling entity has access to"
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The current version of the profile, can be used for concurrency control during\nupdates."
+        }
+      }
+    },
+    "InitiateFileUploadMetadata": {
+      "type": "object",
+      "properties": {
+        "FileName": {
+          "type": "string",
+          "description": "Name of the file."
+        },
+        "UploadUrl": {
+          "type": "string",
+          "description": "Location the data should be sent to via an HTTP PUT operation."
+        }
+      }
+    },
+    "InitiateFileUploadsRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity to perform this action on."
+        },
+        "FileNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'"
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The expected version of the profile, if set and doesn't match the current\nversion of the profile the operation will not be performed."
+        }
+      },
+      "description": "Returns URLs that may be used to upload the files for a profile 5 minutes.\nAfter using the upload calls FinalizeFileUploads must be called to move the\nfile status from pending to live.",
+      "required": [
+        "Entity",
+        "FileNames"
+      ]
+    },
+    "InitiateFileUploadsResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/InitiateFileUploadsResponse_data"
+        }
+      }
+    },
+    "InitiateFileUploadsResponse_data": {
+      "type": "object",
+      "properties": {
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity id and type."
+        },
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "The current version of the profile, can be used for concurrency control during\nupdates."
+        },
+        "UploadDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InitiateFileUploadMetadata"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "InitiateFileUploadMetadata[]",
+          "description": "Collection of file names and upload urls"
+        }
+      }
+    },
+    "LinkedPlayerIdentity": {
+      "type": "object",
+      "properties": {
+        "IdentityLinkId": {
+          "type": "string",
+          "description": "Unique identifier of the link between the player identity and\nmaster_player_account.Can be used to specify the link in requests to\nUnlinkPlayerIdentity"
+        },
+        "IdentityProvider": {
+          "$ref": "#/definitions/PlayerIdentityProvider",
+          "description": "The player identity provider in which the identity exists."
+        },
+        "IdentityProviderIssuedId": {
+          "type": "string",
+          "description": "The unique identifier of the player identity, as assigned by the player\nidentity provider. The format varies by identity provider"
+        }
+      },
+      "required": [
+        "IdentityProvider"
+      ]
+    },
+    "LoginPlayerRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "TitleId": {
+          "type": "string",
+          "description": "Unique identifier for the title, found in the Settings > Game Properties\nsection of the PlayFab developer site when a title has been selected."
+        }
+      },
+      "required": [
+        "TitleId"
+      ]
+    },
+    "LoginPlayerResult": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/LoginPlayerResult_data"
+        }
+      }
+    },
+    "LoginPlayerResult_data": {
+      "type": "object",
+      "properties": {
+        "TitlePlayerAccountEntityToken": {
+          "$ref": "#/definitions/EntityTokenResponse",
+          "description": "Entity token for the title_player_account entity associated with the\nmaster_player_account and title."
+        }
+      }
+    },
+    "ObjectResult": {
+      "type": "object",
+      "properties": {
+        "DataObject": {
+          "$ref": "#/definitions/object",
+          "description": "Un-escaped JSON object, if EscapeObject false or default."
+        },
+        "EscapedDataObject": {
+          "type": "string",
+          "description": "Escaped string JSON body of the object, if EscapeObject is true."
+        },
+        "ObjectName": {
+          "type": "string",
+          "description": "Name of the object. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'"
+        }
+      }
+    },
+    "OperationTypes": {
+      "type": "string",
+      "enum": [
+        "Created",
+        "Updated",
+        "Deleted",
+        "None"
+      ],
+      "x-ms-enum": {
+        "name": "OperationTypes",
+        "modelAsString": true
+      }
+    },
+    "PlayerIdentityProvider": {
+      "type": "string",
+      "enum": [
+        "AndroidDevice",
+        "Apple",
+        "CustomId",
+        "Email",
+        "FacebookInstantGames",
+        "GameCenter",
+        "Google",
+        "iOSDevice",
+        "Kongregate",
+        "NintendoSwitchDevice",
+        "NintendoAccount",
+        "OpenId",
+        "PSN",
+        "ServerCustomId",
+        "Steam",
+        "Twitch",
+        "Username",
+        "Xbox",
+        "GooglePlayGames"
+      ],
+      "x-ms-enum": {
+        "name": "PlayerIdentityProvider",
+        "modelAsString": true
+      }
+    },
+    "SetObject": {
+      "type": "object",
+      "properties": {
+        "DataObject": {
+          "$ref": "#/definitions/object",
+          "description": "Body of the object to be saved. If empty and DeleteObject is true object will\nbe deleted if it exists, or no operation will occur if it does not exist. Only\none of Object or EscapedDataObject fields may be used."
+        },
+        "DeleteObject": {
+          "type": "boolean",
+          "description": "Flag to indicate that this object should be deleted. Both DataObject and\nEscapedDataObject must not be set as well."
+        },
+        "EscapedDataObject": {
+          "type": "string",
+          "description": "Body of the object to be saved as an escaped JSON string. If empty and\nDeleteObject is true object will be deleted if it exists, or no operation will\noccur if it does not exist. Only one of DataObject or EscapedDataObject fields\nmay be used."
+        },
+        "ObjectName": {
+          "type": "string",
+          "description": "Name of object. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'."
+        }
+      },
+      "required": [
+        "ObjectName"
+      ]
+    },
+    "SetObjectInfo": {
+      "type": "object",
+      "properties": {
+        "ObjectName": {
+          "type": "string",
+          "description": "Name of the object"
+        },
+        "OperationReason": {
+          "type": "string",
+          "description": "Optional reason to explain why the operation was the result that it was."
+        },
+        "SetResult": {
+          "$ref": "#/definitions/OperationTypes",
+          "description": "Indicates which operation was completed, either Created, Updated, Deleted or\nNone."
+        }
+      }
+    },
+    "SetObjectsRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Entity": {
+          "$ref": "#/definitions/EntityKey",
+          "description": "The entity to perform this action on."
+        },
+        "ExpectedProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "Optional field used for concurrency control. By specifying the previously\nreturned value of ProfileVersion from GetProfile API, you can ensure that the\nobject set will only be performed if the profile has not been updated by any\nother clients since the version you last loaded."
+        },
+        "Objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SetObject"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "SetObject[]",
+          "description": "Collection of objects to set on the profile."
+        }
+      },
+      "description": "Sets JSON objects on the requested entity profile. May include a version number\nto be used to perform optimistic concurrency operations during update. If the\ncurrent version differs from the version in the request the request will be\nignored. If no version is set on the request then the value will always be\nupdated if the values differ. Using the version value does not guarantee a\nwrite though, ConcurrentEditError may still occur if multiple clients are\nattempting to update the same profile. ",
+      "required": [
+        "Entity",
+        "Objects"
+      ]
+    },
+    "SetObjectsResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/SetObjectsResponse_data"
+        }
+      }
+    },
+    "SetObjectsResponse_data": {
+      "type": "object",
+      "properties": {
+        "ProfileVersion": {
+          "type": "number",
+          "format": "float",
+          "description": "New version of the entity profile."
+        },
+        "SetResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SetObjectInfo"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "SetObjectInfo[]",
+          "description": "New version of the entity profile."
+        }
+      }
+    },
+    "UnlinkPlayerIdentityRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "IdentityLinkId": {
+          "type": "string",
+          "description": "Unique identifier of the link between the player identity and\nmaster_player_account to be unlinked. If no matching player identity is\ncurrently linked to the master_player_account, then the 'AccountNotLinked'\nerror is returned."
+        },
+        "MasterPlayerAccountId": {
+          "type": "string",
+          "description": "master_player_account entity."
+        }
+      },
+      "required": [
+        "IdentityLinkId"
+      ]
+    },
+    "UnlinkPlayerIdentityResult": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/object",
+          "description": "Any object"
+        }
+      }
+    },
+    "WriteEventsRequest": {
+      "type": "object",
+      "properties": {
+        "CustomTags": {
+          "$ref": "#/definitions/object",
+          "description": "The optional custom tags associated with the request (e.g. build number,\nexternal trace identifiers, etc.)."
+        },
+        "Events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EventContents"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "EventContents[]",
+          "description": "Collection of events to write to PlayStream."
+        }
+      },
+      "required": [
+        "Events"
+      ]
+    },
+    "WriteEventsResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the\nservice will return 200 and this will report the actual HTTP status code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The HTTP status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/WriteEventsResponse_data"
+        }
+      }
+    },
+    "WriteEventsResponse_data": {
+      "type": "object",
+      "properties": {
+        "AssignedEventIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "The unique identifiers assigned by the server to the events, in the same order\nas the events in the request. Only returned if FlushToPlayStream option is\ntrue."
+        }
+      }
+    },
+    "object": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "parameters": {}
+}
