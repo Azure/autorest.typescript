@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Account resource */
 export interface AccountOutput {
   /** Gets or sets the identifier. */
   id?: string;
@@ -22,6 +23,7 @@ export interface AccountOutput {
   type?: string;
 }
 
+/** The Managed Identity of the resource */
 export interface IdentityOutput {
   /** Service principal object Id */
   principalId?: string;
@@ -31,6 +33,7 @@ export interface IdentityOutput {
   type?: "SystemAssigned";
 }
 
+/** The account properties */
 export interface AccountPropertiesOutput {
   /**
    * Cloud connectors.
@@ -76,9 +79,11 @@ export interface CloudConnectorsOutput {
   awsExternalId?: string;
 }
 
+/** The URIs that are the public endpoints of the account. */
 export interface AccountPropertiesEndpointsOutput
   extends AccountEndpointsOutput {}
 
+/** The account endpoints */
 export interface AccountEndpointsOutput {
   /** Gets the catalog endpoint. */
   catalog?: string;
@@ -88,9 +93,11 @@ export interface AccountEndpointsOutput {
   scan?: string;
 }
 
+/** Gets the resource identifiers of the managed resources. */
 export interface AccountPropertiesManagedResourcesOutput
   extends ManagedResourcesOutput {}
 
+/** The managed resources in customer subscription. */
 export interface ManagedResourcesOutput {
   /** Gets the managed event hub namespace resource identifier. */
   eventHubNamespace?: string;
@@ -100,6 +107,7 @@ export interface ManagedResourcesOutput {
   storageAccount?: string;
 }
 
+/** A private endpoint connection class. */
 export interface PrivateEndpointConnectionOutput {
   /** Gets or sets the identifier. */
   id?: string;
@@ -111,6 +119,7 @@ export interface PrivateEndpointConnectionOutput {
   type?: string;
 }
 
+/** A private endpoint connection properties class. */
 export interface PrivateEndpointConnectionPropertiesOutput {
   /** The private endpoint information. */
   privateEndpoint?: PrivateEndpointOutput;
@@ -120,11 +129,13 @@ export interface PrivateEndpointConnectionPropertiesOutput {
   provisioningState?: string;
 }
 
+/** A private endpoint class. */
 export interface PrivateEndpointOutput {
   /** The private endpoint identifier. */
   id?: string;
 }
 
+/** The private link service connection state. */
 export interface PrivateLinkServiceConnectionStateOutput {
   /** The required actions. */
   actionsRequired?: string;
@@ -134,6 +145,7 @@ export interface PrivateLinkServiceConnectionStateOutput {
   status?: "Unknown" | "Pending" | "Approved" | "Rejected" | "Disconnected";
 }
 
+/** The Sku */
 export interface AccountSkuOutput {
   /** Gets or sets the sku capacity. Possible values include: 4, 16 */
   capacity?: number;
@@ -141,8 +153,10 @@ export interface AccountSkuOutput {
   name?: "Standard";
 }
 
+/** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountSystemDataOutput extends SystemDataOutput {}
 
+/** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemDataOutput {
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
@@ -158,13 +172,16 @@ export interface SystemDataOutput {
   lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
 }
 
+/** Default error response model */
 export interface ErrorResponseModelOutput {
   /** Gets or sets the error. */
   error?: ErrorResponseModelErrorOutput;
 }
 
+/** Gets or sets the error. */
 export interface ErrorResponseModelErrorOutput extends ErrorModelOutput {}
 
+/** Default error model */
 export interface ErrorModelOutput {
   /** Gets or sets the code. */
   code?: string;
@@ -176,6 +193,7 @@ export interface ErrorModelOutput {
   target?: string;
 }
 
+/** The Account access keys. */
 export interface AccessKeysOutput {
   /** Gets or sets the primary connection string. */
   atlasKafkaPrimaryEndpoint?: string;
@@ -183,6 +201,7 @@ export interface AccessKeysOutput {
   atlasKafkaSecondaryEndpoint?: string;
 }
 
+/** Collection resource. */
 export interface CollectionOutput {
   /** Gets the state of the provisioning. */
   collectionProvisioningState?:
@@ -204,6 +223,7 @@ export interface CollectionOutput {
   systemData?: CollectionSystemDataOutput;
 }
 
+/** Reference to a Collection. */
 export interface CollectionReferenceOutput {
   /** Gets or sets the reference name. */
   referenceName?: string;
@@ -211,8 +231,10 @@ export interface CollectionReferenceOutput {
   type?: string;
 }
 
+/** Metadata pertaining to creation and last modification of the resource. */
 export interface CollectionSystemDataOutput extends SystemDataOutput {}
 
+/** Paged list of collections. */
 export interface CollectionListOutput {
   /** Total item count. */
   count?: number;
@@ -222,6 +244,7 @@ export interface CollectionListOutput {
   value: Array<CollectionOutput>;
 }
 
+/** Paged list of collections. */
 export interface CollectionNameResponseListOutput {
   /** Total item count. */
   count?: number;
@@ -231,6 +254,7 @@ export interface CollectionNameResponseListOutput {
   value: Array<CollectionNameResponseOutput>;
 }
 
+/** Collection resource. */
 export interface CollectionNameResponseOutput {
   /** Gets or sets the friendly name of the collection. */
   friendlyName?: string;
@@ -238,6 +262,7 @@ export interface CollectionNameResponseOutput {
   name?: string;
 }
 
+/** Collection resource. */
 export interface CollectionPathResponseOutput {
   /** The friendly names of ancestors starting from the default (root) collection and ending with the immediate parent. */
   parentFriendlyNameChain?: Array<string>;
@@ -245,6 +270,7 @@ export interface CollectionPathResponseOutput {
   parentNameChain?: Array<string>;
 }
 
+/** ResourceSetRuleConfig implementation class. */
 export interface ResourceSetRuleConfigOutput {
   /** Gets or sets the advanced resource set property of the account. */
   advancedResourceSet?: AdvancedResourceSetOutput;
@@ -254,6 +280,7 @@ export interface ResourceSetRuleConfigOutput {
   pathPatternConfig?: PathPatternExtractorConfigOutput;
 }
 
+/** The resource set processing property of the account. */
 export interface AdvancedResourceSetOutput {
   /** Date at which ResourceSetProcessing property of the account is updated. */
   modifiedAt?: string;
@@ -349,6 +376,7 @@ export interface RuleOutput {
   qualifiedName: string;
 }
 
+/** Paged list of account resources */
 export interface ResourceSetRuleConfigListOutput {
   /** Total item count. */
   count?: number;
