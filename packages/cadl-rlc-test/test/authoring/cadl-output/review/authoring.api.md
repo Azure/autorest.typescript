@@ -19,14 +19,12 @@ export default createClient;
 // @public
 export interface CustomPageDeploymentOutput {
     nextLink?: string;
-    // (undocumented)
     value: Array<DeploymentOutput>;
 }
 
 // @public
 export interface CustomPageProjectOutput {
     nextLink?: string;
-    // (undocumented)
     value: Array<ProjectOutput>;
 }
 
@@ -40,7 +38,6 @@ export interface DeploymentJobOutput {
     jobId: string;
     lastUpdatedDateTime: string;
     status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
-    // (undocumented)
     warnings: Array<JobWarningOutput>;
 }
 
@@ -278,7 +275,6 @@ export interface DeploymentsSwapDeploymentsQueryParamProperties {
 // @public
 export interface ErrorModelOutput {
     code: string;
-    // (undocumented)
     details: Array<ErrorModelOutput>;
     innererror?: InnerErrorOutput;
     message: string;
@@ -541,14 +537,12 @@ export interface OperationStatusOutput {
 // @public
 export interface PagedSupportedLanguageOutput {
     nextLink?: string;
-    // (undocumented)
     value: Array<SupportedLanguageOutput>;
 }
 
 // @public
 export interface PagedTrainingConfigVersionOutput {
     nextLink?: string;
-    // (undocumented)
     value: Array<TrainingConfigVersionOutput>;
 }
 
@@ -560,7 +554,6 @@ export interface ProjectOutput {
     lastDeployedDateTime: string;
     lastModifiedDateTime: string;
     lastTrainedDateTime: string;
-    // (undocumented)
     multilingual?: boolean;
     projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
     // (undocumented)
@@ -926,7 +919,6 @@ export interface SwapDeploymentsJobOutput {
     jobId: string;
     lastUpdatedDateTime: string;
     status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
-    // (undocumented)
     warnings: Array<JobWarningOutput>;
 }
 
@@ -938,7 +930,6 @@ export interface SwapDeploymentsOptions {
 
 // @public
 export interface TrainingConfigVersionOutput {
-    // (undocumented)
     modelExpirationDate: string;
     trainingConfigVersion: string;
 }

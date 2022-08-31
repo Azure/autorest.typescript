@@ -8,8 +8,15 @@
  * valid and cannot be expired or revoked.
  */
 export interface GetEntityTokenRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /**
+   * The optional entity to perform this action on. Defaults to the currently logged
+   * in entity.
+   */
   Entity?: object;
 }
 
@@ -44,6 +51,10 @@ export interface AuthenticateAndroidDeviceIdIdentityRequest {
     | "CreateAndLinkNewAccount"
     | "LinkToExistingAccount"
     | "LeaveUnlinked";
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
   /**
    * Optional master_player_account entity in the player account pool to associate
@@ -92,6 +103,10 @@ export interface AuthenticateCustomIdIdentityRequest {
    * player account pool.
    */
   CustomId: string;
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
   /**
    * Optional master_player_account entity in the player account pool to associate
@@ -135,6 +150,10 @@ export interface AuthenticateIOSDeviceIdIdentityRequest {
     | "CreateAndLinkNewAccount"
     | "LinkToExistingAccount"
     | "LeaveUnlinked";
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
   /** Vendor-specific iOS identifier for the user's device. */
   DeviceId: string;
@@ -180,6 +199,10 @@ export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
     | "CreateAndLinkNewAccount"
     | "LinkToExistingAccount"
     | "LeaveUnlinked";
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
   /**
    * Optional master_player_account entity in the player account pool to associate
@@ -210,12 +233,20 @@ export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
 }
 
 export interface GetLinkedPlayerIdentitiesRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
   /** master_player_account entity. */
   MasterPlayerAccountId?: string;
 }
 
 export interface UnlinkPlayerIdentityRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
   /**
    * Unique identifier of the link between the player identity and
@@ -230,19 +261,37 @@ export interface UnlinkPlayerIdentityRequest {
 
 /** Aborts the pending upload of the requested files. */
 export interface AbortFileUploadsRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity to perform this action on. */
   Entity: object;
+  /** Names of the files to have their pending uploads aborted. */
   FileNames: string[];
+  /**
+   * The expected version of the profile, if set and doesn't match the current
+   * version of the profile the operation will not be performed.
+   */
   ProfileVersion?: number;
 }
 
 /** Deletes the requested files from the entity's profile. */
 export interface DeleteFilesRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity to perform this action on. */
   Entity: object;
+  /** Names of the files to be deleted. */
   FileNames: string[];
+  /**
+   * The expected version of the profile, if set and doesn't match the current
+   * version of the profile the operation will not be performed.
+   */
   ProfileVersion?: number;
 }
 
@@ -251,10 +300,22 @@ export interface DeleteFilesRequest {
  * successfully uploaded and moves the file pointers from pending to live.
  */
 export interface FinalizeFileUploadsRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity to perform this action on. */
   Entity: object;
+  /**
+   * Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-'
+   * and '.'
+   */
   FileNames: string[];
+  /**
+   * The current version of the profile, can be used for concurrency control during
+   * updates.
+   */
   ProfileVersion: number;
 }
 
@@ -265,8 +326,12 @@ export interface FinalizeFileUploadsRequest {
  * nothing.
  */
 export interface GetFilesRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity to perform this action on. */
   Entity: object;
 }
 
@@ -276,18 +341,35 @@ export interface GetFilesRequest {
  * file status from pending to live.
  */
 export interface InitiateFileUploadsRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity to perform this action on. */
   Entity: object;
+  /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
   FileNames: string[];
+  /**
+   * The expected version of the profile, if set and doesn't match the current
+   * version of the profile the operation will not be performed.
+   */
   ProfileVersion?: number;
 }
 
 /** Gets JSON objects from an entity profile and returns it. */
 export interface GetObjectsRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity to perform this action on. */
   Entity: object;
+  /**
+   * Determines whether the object will be returned as an escaped JSON string or as
+   * a un-escaped JSON object. Default is JSON object.
+   */
   EscapeObject?: boolean;
 }
 
@@ -301,15 +383,35 @@ export interface GetObjectsRequest {
  * attempting to update the same profile.
  */
 export interface SetObjectsRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity to perform this action on. */
   Entity: object;
+  /**
+   * Optional field used for concurrency control. By specifying the previously
+   * returned value of ProfileVersion from GetProfile API, you can ensure that the
+   * object set will only be performed if the profile has not been updated by any
+   * other clients since the version you last loaded.
+   */
   ExpectedProfileVersion?: number;
+  /** Collection of objects to set on the profile. */
   Objects: Array<SetObject>;
 }
 
 export interface SetObject {
+  /**
+   * Body of the object to be saved. If empty and DeleteObject is true object will
+   * be deleted if it exists, or no operation will occur if it does not exist. Only
+   * one of Object or EscapedDataObject fields may be used.
+   */
   DataObject?: object;
+  /**
+   * Flag to indicate that this object should be deleted. Both DataObject and
+   * EscapedDataObject must not be set as well.
+   */
   DeleteObject?: boolean;
   /**
    * Body of the object to be saved as an escaped JSON string. If empty and
@@ -323,13 +425,27 @@ export interface SetObject {
 }
 
 export interface WriteEventsRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
+  /** Collection of events to write to PlayStream. */
   Events: Array<EventContents>;
 }
 
 export interface EventContents {
+  /**
+   * The optional custom tags associated with the event (e.g. build number, external
+   * trace identifiers, etc.). Before an event is written, this collection and the
+   * base request custom tags will be merged, but not overriden. This enables the
+   * caller to specify static tags and per event tags.
+   */
   CustomTags?: object;
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /**
+   * Entity associated with the event. If null, the event will apply to the calling
+   * entity.
+   */
   Entity?: object;
   /** The namespace in which the event is defined. Allowed namespaces can vary by API. */
   EventNamespace: string;
@@ -346,6 +462,10 @@ export interface EventContents {
    * this value is stored in the OriginalTimestamp property of the PlayStream event.
    */
   OriginalTimestamp?: string;
+  /**
+   * Arbitrary data associated with the event. Only one of Payload or PayloadJSON is
+   * allowed.
+   */
   Payload?: object;
   /**
    * Arbitrary data associated with the event, represented as a JSON serialized
@@ -355,6 +475,10 @@ export interface EventContents {
 }
 
 export interface LoginPlayerRequest {
+  /**
+   * The optional custom tags associated with the request (e.g. build number,
+   * external trace identifiers, etc.).
+   */
   CustomTags?: object;
   /**
    * Unique identifier for the title, found in the Settings > Game Properties

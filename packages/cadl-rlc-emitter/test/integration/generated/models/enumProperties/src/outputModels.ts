@@ -12,8 +12,9 @@ export interface ErrorModelOutput {
   message: string;
   /** The target of the error. */
   target?: string;
+  /** An array of details about specific errors that led to this reported error. */
   details: Array<ErrorModelOutput>;
-  /** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
+  /** An object containing more specific information than the current object about the error. */
   innererror?: InnerErrorOutput;
 }
 
@@ -21,13 +22,13 @@ export interface ErrorModelOutput {
 export interface InnerErrorOutput {
   /** One of a server-defined set of error codes. */
   code: string;
-  /** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
+  /** Inner error. */
   innererror?: InnerErrorOutput;
 }
 
 /** Output model with enum properties */
 export interface OutputModelOutput {
-  /** Represents the days of the week using a standard, non-string enum. */
+  /** Required standard enum value. */
   Day:
     | "Monday"
     | "Tuesday"
@@ -42,7 +43,7 @@ export interface OutputModelOutput {
 
 /** Round-trip model with enum properties */
 export interface RoundTripModelOutput {
-  /** Represents the days of the week using a standard, non-string enum. */
+  /** Required standard enum value. */
   Day:
     | "Monday"
     | "Tuesday"

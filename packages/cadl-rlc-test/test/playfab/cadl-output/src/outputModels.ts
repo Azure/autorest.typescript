@@ -12,6 +12,10 @@ export interface EntityKeyOutput {
 }
 
 export interface GetEntityTokenResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -19,7 +23,7 @@ export interface GetEntityTokenResponseOutput {
 }
 
 export interface GetEntityTokenResponseDataOutput {
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity id and type. */
   Entity?: EntityKeyOutput;
   /** The token used to set X-EntityToken for all entity based API calls. */
   EntityToken?: string;
@@ -29,18 +33,25 @@ export interface GetEntityTokenResponseDataOutput {
 
 /** The basic wrapper around every failed API response */
 export interface ApiErrorWrapperOutput {
+  /** Numerical HTTP code */
   code: number;
   /** String HTTP code */
   status?: string;
   /** Playfab error code */
   error?: string;
+  /** Numerical PlayFab error code */
   errorCode: number;
   /** Description for the PlayFab errorCode */
   errorMessage?: string;
+  /** Detailed description of individual issues with the request object */
   errorDetails?: ObjectOutput;
 }
 
 export interface AuthenticateIdentityResultOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -54,12 +65,20 @@ export interface AuthenticateIdentityResultDataOutput {
    * 'BehaviorIfIdentityNotLinked'.
    */
   CreatedIdentityLinkId?: string;
+  /**
+   * Entity token for the master_player_account linked to the authenticated player
+   * identity.
+   */
   MasterPlayerAccount?: EntityTokenResponseOutput;
+  /**
+   * Entity token for the title_player_account for the master_player_account and
+   * title, if TitleId is specified in the request
+   */
   TitlePlayerAccount?: EntityTokenResponseOutput;
 }
 
 export interface EntityTokenResponseOutput {
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity id and type. */
   Entity?: EntityKeyOutput;
   /** The token used to set X-EntityToken for all entity based API calls. */
   EntityToken?: string;
@@ -68,6 +87,10 @@ export interface EntityTokenResponseOutput {
 }
 
 export interface GetLinkedPlayerIdentitiesResultOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -75,6 +98,7 @@ export interface GetLinkedPlayerIdentitiesResultOutput {
 }
 
 export interface GetLinkedPlayerIdentitiesResultDataOutput {
+  /** List of player identities currently linked to the master_player_account. */
   LinkedIdentities?: Array<LinkedPlayerIdentityOutput>;
 }
 
@@ -114,13 +138,22 @@ export interface LinkedPlayerIdentityOutput {
 }
 
 export interface UnlinkPlayerIdentityResultOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
+  /** Any object */
   data?: ObjectOutput;
 }
 
 export interface AbortFileUploadsResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -128,12 +161,20 @@ export interface AbortFileUploadsResponseOutput {
 }
 
 export interface AbortFileUploadsResponseDataOutput {
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity id and type. */
   Entity?: EntityKeyOutput;
+  /**
+   * The current version of the profile, can be used for concurrency control during
+   * updates.
+   */
   ProfileVersion?: number;
 }
 
 export interface DeleteFilesResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -141,12 +182,20 @@ export interface DeleteFilesResponseOutput {
 }
 
 export interface DeleteFilesResponseDataOutput {
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity id and type. */
   Entity?: EntityKeyOutput;
+  /**
+   * The current version of the profile, can be used for concurrency control during
+   * updates.
+   */
   ProfileVersion?: number;
 }
 
 export interface FinalizeFileUploadsResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -154,9 +203,14 @@ export interface FinalizeFileUploadsResponseOutput {
 }
 
 export interface FinalizeFileUploadsResponseDataOutput {
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity id and type. */
   Entity?: EntityKeyOutput;
+  /** Collection of metadata for the entity's files */
   Metadata?: GetFileMetadataOutput;
+  /**
+   * The current version of the profile, can be used for concurrency control during
+   * updates.
+   */
   ProfileVersion?: number;
 }
 
@@ -172,10 +226,15 @@ export interface GetFileMetadataOutput {
   FileName?: string;
   /** Last UTC time the file was modified */
   LastModified: string;
+  /** Storage service's reported byte count */
   Size: number;
 }
 
 export interface GetFilesResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -183,13 +242,22 @@ export interface GetFilesResponseOutput {
 }
 
 export interface GetFilesResponseDataOutput {
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity id and type. */
   Entity?: EntityKeyOutput;
+  /** Collection of metadata for the entity's files */
   Metadata?: GetFileMetadataOutput;
+  /**
+   * The current version of the profile, can be used for concurrency control during
+   * updates.
+   */
   ProfileVersion?: number;
 }
 
 export interface InitiateFileUploadsResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -197,9 +265,14 @@ export interface InitiateFileUploadsResponseOutput {
 }
 
 export interface InitiateFileUploadsResponseDataOutput {
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity id and type. */
   Entity?: EntityKeyOutput;
+  /**
+   * The current version of the profile, can be used for concurrency control during
+   * updates.
+   */
   ProfileVersion?: number;
+  /** Collection of file names and upload urls */
   UploadDetails?: Array<InitiateFileUploadMetadataOutput>;
 }
 
@@ -211,6 +284,10 @@ export interface InitiateFileUploadMetadataOutput {
 }
 
 export interface GetObjectsResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -218,13 +295,19 @@ export interface GetObjectsResponseOutput {
 }
 
 export interface GetObjectsResponseDataOutput {
-  /** Combined entity type and ID structure which uniquely identifies a single entity. */
+  /** The entity id and type. */
   Entity?: EntityKeyOutput;
+  /** Requested objects that the calling entity has access to */
   Objects?: ObjectResultOutput;
+  /**
+   * The current version of the profile, can be used for concurrency control during
+   * updates.
+   */
   ProfileVersion?: number;
 }
 
 export interface ObjectResultOutput {
+  /** Un-escaped JSON object, if EscapeObject false or default. */
   DataObject?: ObjectOutput;
   /** Escaped string JSON body of the object, if EscapeObject is true. */
   EscapedDataObject?: string;
@@ -233,6 +316,10 @@ export interface ObjectResultOutput {
 }
 
 export interface SetObjectsResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -240,7 +327,9 @@ export interface SetObjectsResponseOutput {
 }
 
 export interface SetObjectsResponseDataOutput {
+  /** New version of the entity profile. */
   ProfileVersion?: number;
+  /** New version of the entity profile. */
   SetResults?: Array<SetObjectInfoOutput>;
 }
 
@@ -257,6 +346,10 @@ export interface SetObjectInfoOutput {
 }
 
 export interface WriteEventsResponseOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -264,10 +357,19 @@ export interface WriteEventsResponseOutput {
 }
 
 export interface WriteEventsResponseDataOutput {
+  /**
+   * The unique identifiers assigned by the server to the events, in the same order
+   * as the events in the request. Only returned if FlushToPlayStream option is
+   * true.
+   */
   AssignedEventIds?: string[];
 }
 
 export interface LoginPlayerResultOutput {
+  /**
+   * The HTTP status code. If X-ReportErrorAsSuccess header is set to true, the
+   * service will return 200 and this will report the actual HTTP status code.
+   */
   code?: number;
   /** The HTTP status code as a string. */
   status?: string;
@@ -275,5 +377,9 @@ export interface LoginPlayerResultOutput {
 }
 
 export interface LoginPlayerResultDataOutput {
+  /**
+   * Entity token for the title_player_account entity associated with the
+   * master_player_account and title.
+   */
   TitlePlayerAccountEntityToken?: EntityTokenResponseOutput;
 }

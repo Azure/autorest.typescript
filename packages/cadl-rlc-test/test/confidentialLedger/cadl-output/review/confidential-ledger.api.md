@@ -443,7 +443,6 @@ export interface DeleteUser {
 // @public
 export interface ErrorModelOutput {
     code: string;
-    // (undocumented)
     details: Array<ErrorModelOutput>;
     innererror?: InnerErrorOutput;
     message: string;

@@ -31,6 +31,6 @@ export interface DerivedFromBaseClassWithDiscriminatorB
 
 /** Illustrates case where a basic model has polymorphic properties. */
 export interface ModelWithPolymorphicProperty {
-  /** Example base class that has a discriminator property. */
+  /** Example polymorphic type property. */
   polymorphicProperty: BaseClassWithDiscriminator;
 }

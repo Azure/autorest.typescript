@@ -7,6 +7,7 @@ export interface PrimitivePropertyModel {
   requiredSafeInt: number;
   requiredFloat: number;
   requiredDouble: number;
+  /** Illustrate a zonedDateTime body parameter, serialized as (https://datatracker.ietf.org/doc/html/rfc3339) */
   requiredBodyDateTime: string;
   requiredDuration: string;
   requiredBoolean: boolean;

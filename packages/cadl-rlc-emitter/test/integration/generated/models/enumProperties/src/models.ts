@@ -1,6 +1,6 @@
 /** Input model with enum properties. */
 export interface InputModel {
-  /** Represents the days of the week using a standard, non-string enum. */
+  /** Required standard enum value. */
   Day:
     | "Monday"
     | "Tuesday"
@@ -15,7 +15,7 @@ export interface InputModel {
 
 /** Round-trip model with enum properties */
 export interface RoundTripModel {
-  /** Represents the days of the week using a standard, non-string enum. */
+  /** Required standard enum value. */
   Day:
     | "Monday"
     | "Tuesday"
