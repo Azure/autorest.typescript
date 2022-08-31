@@ -637,30 +637,39 @@ function mapCadlIntrinsicModelToTypeScript(
       const name = getIntrinsicModelName(program, indexer.key);
       let schema: any = {};
       if (name === "string") {
+        const valueType = getSchemaForType(
+          program,
+          indexer.value!,
+          usage,
+          true
+        );
         schema = {
           type: "dictionary",
-          additionalProperties: getSchemaForType(
-            program,
-            indexer.value!,
-            usage,
-            true
-          ),
-          typeName: "Record<string, unknown>"
+          additionalProperties: valueType
         };
+        if (!isIntrinsic(program, indexer.value)) {
+          schema.typeName = `Record<string, ${valueType.name}>`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `Array<${valueType.name}Output>`;
+          }
+        } else {
+          schema.typeName = `Record<string, ${valueType.type}>`;
+        }
       } else if (name === "integer") {
         schema = {
           type: "array",
           items: getSchemaForType(program, indexer.value!, usage, true)
         };
-      }
-      if (!isIntrinsic(program, indexer.value)) {
-        schema.typeName = `Array<${schema.items.name}>`;
-        if (usage && usage.includes(SchemaContext.Output)) {
-          schema.outputTypeName = `Array<${schema.items.name}Output>`;
+        if (!isIntrinsic(program, indexer.value)) {
+          schema.typeName = `Array<${schema.items.name}>`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `Array<${schema.items.name}Output>`;
+          }
+        } else {
+          schema.typeName = `${schema.items.type}[]`;
         }
-      } else if (name === "integer") {
-        schema.typeName = `${schema.items.type}[]`;
       }
+
       schema.usage = usage;
       return schema;
     }

@@ -565,7 +565,7 @@ export interface ProjectOutput {
     projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
     // (undocumented)
     projectName: string;
-    settings?: Record<string, unknown>;
+    settings?: Record<string, string>;
     storageInputContainerName: string;
 }
 
