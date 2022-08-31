@@ -338,14 +338,14 @@ describe("Input/output model type", () => {
   // Error thrown
   // Issue tracked here https://github.com/Azure/autorest.typescript/issues/1524
   describe("record generation", () => {
-    xit("should handle Record<int32> -> string", async () => {
-      await verifyPropertyType("Record<int32>", "string");
+    it("should handle Record<int32> -> Record<string, number>", async () => {
+      await verifyPropertyType("Record<int32>", "Record<string, number>");
     });
-    xit("should handle Record<boolean> -> string", async () => {
-      await verifyPropertyType("Record<boolean>", "string");
+    it("should handle Record<boolean> -> Record<string, boolean>", async () => {
+      await verifyPropertyType("Record<boolean>", "Record<string, boolean>");
     });
-    xit("should handle Record<string> -> string", async () => {
-      await verifyPropertyType("Record<string>", "string");
+    it("should handle Record<string> -> Record<string, string>", async () => {
+      await verifyPropertyType("Record<string>", "Record<string, string>");
     });
   });
   describe("property definition correctness", () => {
