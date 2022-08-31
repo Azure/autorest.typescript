@@ -1,8 +1,6 @@
-import { buildSchemaTypes } from "@azure-tools/rlc-codegen";
-import { TestHost } from "@cadl-lang/compiler/testing";
 import { assert } from "chai";
-import { transformSchemas } from "../../../src/transform/transformSchemas.js";
-import { createOpenAPITestHost } from "../testUtil.js";
+import { emitModelsFromCadl } from "../emitUtil.js";
+import { assertEqualContent } from "../testUtil.js";
 
 type VerifyPropertyConfig = {
   additionalCadlDefinition?: string;
@@ -12,38 +10,8 @@ type VerifyPropertyConfig = {
 };
 
 describe("Input/output model type", () => {
-  let testHost: TestHost;
-
-  beforeEach(async () => {
-    testHost = await createOpenAPITestHost();
-  });
-
-  async function generateInputOutputModelsFromCadl(cadlContent: string) {
-    testHost.addCadlFile(
-      "main.cadl",
-      `
-    import "@cadl-lang/rest";
-    using Cadl.Rest; 
-    using Cadl.Http;
-    ${cadlContent}
-    `
-    );
-    await testHost.compile("./");
-    const rlcSchemas = transformSchemas(testHost.program);
-    return buildSchemaTypes({
-      schemas: rlcSchemas,
-      srcPath: "",
-      paths: {},
-      libraryName: "test"
-    });
-  }
-
-  function assertEqualContent(actual: string, expected: string) {
-    assert.strictEqual(actual.replace(/\s/g, ""), expected.replace(/\s/g, ""));
-  }
-
   it("shouldn't generate models if there is no operations", async () => {
-    const schemaOutput = await generateInputOutputModelsFromCadl(`
+    const schemaOutput = await emitModelsFromCadl(`
     model Test {
       prop: string;
     }
@@ -75,7 +43,7 @@ describe("Input/output model type", () => {
       ...defaultOption,
       ...options
     };
-    const schemaOutput = await generateInputOutputModelsFromCadl(`
+    const schemaOutput = await emitModelsFromCadl(`
     ${additionalCadlDefinition}
     model InputOutputModel {
       prop: ${cadlType};
@@ -208,7 +176,9 @@ describe("Input/output model type", () => {
       await verifyPropertyType(cadlType, typeScriptType);
     });
   });
-  describe("array models generation", () => {});
+  describe("array models generation", () => {
+    // TODO: please add test cases here
+  });
   describe("object generation", () => {
     it("should handle basic model -> type/interface", async () => {
       const cadlDefinition = `
@@ -291,7 +261,7 @@ describe("Input/output model type", () => {
     // The output is unexpected, the kind should be `string` but now `"Pet" | "cat" | "dog"`
     // Issue tracked here https://github.com/Azure/autorest.typescript/issues/1524
     xit("should handle inheritance model -> multiple types/interfaces", async () => {
-      const schemaOutput = await generateInputOutputModelsFromCadl(`
+      const schemaOutput = await emitModelsFromCadl(`
       @discriminator("kind")
       model Pet {
         name: string;
