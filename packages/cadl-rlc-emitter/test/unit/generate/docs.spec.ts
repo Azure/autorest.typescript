@@ -8,7 +8,6 @@ import { assertEqualContent } from "../testUtil.js";
 
 describe("Doc generation testing", () => {
   describe("input/output models", () => {
-    // issue tracked https://github.com/Azure/autorest.typescript/issues/1525
     it("should generate model-level and property-level docs in input model", async () => {
       const models = await emitModelsFromCadl(`
         @doc("A simple model with doc")  
@@ -87,8 +86,84 @@ describe("Doc generation testing", () => {
       `
       );
     });
-    it("should generate header description", async () => {});
-    it("should generate contentType description", async () => {});
-    it("should generate apiVersion description", async () => {});
+    xit("should generate header description with custom name", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        op test(@doc("test header") @header("x-my-header") MyHeader: string): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+  
+        export interface TestHeaders {
+            /** test header */
+            "x-my-header": string;
+        }
+        
+        export interface TestHeaderParam {
+            headers: RawHttpHeadersInput & TestHeaders;
+        }
+        
+       export type TestParameters = TestHeaderParam & RequestParameters;
+      `
+      );
+    });
+    it("should generate contentType description", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        op test(@doc("content type") @header contentType: "application/octet-stream"): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+      import { RequestParameters } from "@azure-rest/core-client";
+      
+      export interface TestMediaTypesParam {
+          /** content type */
+          contentType: "application/octet-stream";
+      }
+      
+      export type TestParameters = TestMediaTypesParam & RequestParameters;
+      `
+      );
+    });
+    // issue tracked https://github.com/Azure/autorest.typescript/issues/1525
+    xit("should generate apiVersion description with 'api-version'", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @doc("The ApiVersion query parameter.")
+        model ApiVersionParameter {
+          @query
+          @doc("The API version to use for this operation.")
+          "api-version": string;
+        }
+        op test(...ApiVersionParameter): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+      import { RequestParameters } from "@azure-rest/core-client";
+      
+      export interface TestQueryParamProperties {
+          /** The API version to use for this operation. */
+          "api-version": string;
+      }
+      
+      export interface TestQueryParam {
+          queryParameters: TestQueryParamProperties;
+      }
+      
+      export type TestParameters = TestQueryParam & RequestParameters;
+      `
+      );
+    });
   });
 });
