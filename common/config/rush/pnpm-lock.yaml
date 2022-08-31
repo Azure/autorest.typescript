@@ -10373,7 +10373,7 @@ packages:
     dev: false
 
   /verror/1.10.0:
-    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
+    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -11056,7 +11056,7 @@ packages:
     dev: false
 
   file:projects/ts-rlc.tgz:
-    resolution: {integrity: sha512-femNrpaCqZN31OIjjwuE+iNnodudjuLiip8qrdK/l5AukOz9W9qbNmMxyBkoktXKcEAMkHnUHzwGPf6KM0IOKQ==, tarball: file:projects/ts-rlc.tgz}
+    resolution: {integrity: sha512-oCn22XTh3qRLFXaw4EG80jq+onTPDeyp7F5PAxnA5eWkFd0ZiTE7Mz/OsRMSWjqVGBf1Wp1BrO64Iodqki4LIQ==, tarball: file:projects/ts-rlc.tgz}
     name: '@rush-temp/ts-rlc'
     version: 0.0.0
     dependencies:
@@ -11076,6 +11076,7 @@ packages:
       '@typescript-eslint/parser': 5.32.0_eslint@8.21.0+typescript@4.7.4
       chai: 4.3.6
       chalk: 4.1.2
+      cross-env: 7.0.3
       eslint: 8.21.0
       mocha: 9.2.2
       prettier: 2.7.1
