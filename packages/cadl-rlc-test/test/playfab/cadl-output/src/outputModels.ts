@@ -1,5 +1,6 @@
 export interface ObjectOutput {}
 
+/** Combined entity type and ID structure which uniquely identifies a single entity. */
 export interface EntityKeyOutput {
   /** Unique ID of the entity. */
   Id: string;
@@ -26,6 +27,7 @@ export interface GetEntityTokenResponseDataOutput {
   TokenExpiration?: string;
 }
 
+/** The basic wrapper around every failed API response */
 export interface ApiErrorWrapperOutput {
   code: number;
   /** String HTTP code */

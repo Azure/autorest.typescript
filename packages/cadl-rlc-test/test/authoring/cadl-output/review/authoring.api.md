@@ -16,14 +16,14 @@ import { StreamableMethod } from '@azure-rest/core-client';
 function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
 export default createClient;
 
-// @public (undocumented)
+// @public
 export interface CustomPageDeploymentOutput {
     nextLink?: string;
     // (undocumented)
     value: Array<DeploymentOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface CustomPageProjectOutput {
     nextLink?: string;
     // (undocumented)
@@ -275,7 +275,7 @@ export interface DeploymentsSwapDeploymentsQueryParamProperties {
     apiVersion: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ErrorModelOutput {
     code: string;
     // (undocumented)
@@ -285,7 +285,7 @@ export interface ErrorModelOutput {
     target?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ErrorResponseOutput {
     error: ErrorModelOutput;
 }
@@ -384,7 +384,7 @@ export interface GlobalOperations {
     listTrainingConfigVersions(options: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface InnerErrorOutput {
     code: string;
     innererror?: InnerErrorOutput;
@@ -516,7 +516,7 @@ export interface JobsOperations {
     getSwapDeploymentsStatus(projectName: string, deploymentName: string, jobId: string, options: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface JobWarningOutput {
     code: string;
     message: string;
@@ -531,21 +531,21 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
     global: GlobalOperations;
 };
 
-// @public (undocumented)
+// @public
 export interface OperationStatusOutput {
     error?: ErrorModelOutput;
     id: string;
     status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
 }
 
-// @public (undocumented)
+// @public
 export interface PagedSupportedLanguageOutput {
     nextLink?: string;
     // (undocumented)
     value: Array<SupportedLanguageOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface PagedTrainingConfigVersionOutput {
     nextLink?: string;
     // (undocumented)
@@ -910,7 +910,7 @@ export interface Routes {
     (path: "/authoring/analyze-text/projects/global/training-config-versions"): GlobalListTrainingConfigVersions;
 }
 
-// @public (undocumented)
+// @public
 export interface SupportedLanguageOutput {
     languageCode: string;
     languageName: string;
@@ -936,14 +936,14 @@ export interface SwapDeploymentsOptions {
     secondDeploymentName: string;
 }
 
-// @public (undocumented)
+// @public
 export interface TrainingConfigVersionOutput {
     // (undocumented)
     modelExpirationDate: string;
     trainingConfigVersion: string;
 }
 
-// @public (undocumented)
+// @public
 export interface TrainingJobOptions {
     // (undocumented)
     modelLabel: string;

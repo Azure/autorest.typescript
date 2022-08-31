@@ -24,6 +24,7 @@ export interface ProjectOutput {
   lastDeployedDateTime: string;
 }
 
+/** Status monitor resource for long running operations */
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
@@ -33,11 +34,13 @@ export interface OperationStatusOutput {
   error?: ErrorModelOutput;
 }
 
+/** A response containing error details. */
 export interface ErrorResponseOutput {
   /** The error object. */
   error: ErrorModelOutput;
 }
 
+/** The error object. */
 export interface ErrorModelOutput {
   /** One of a server-defined set of error codes. */
   code: string;
@@ -50,6 +53,7 @@ export interface ErrorModelOutput {
   innererror?: InnerErrorOutput;
 }
 
+/** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
 export interface InnerErrorOutput {
   /** One of a server-defined set of error codes. */
   code: string;
@@ -57,6 +61,7 @@ export interface InnerErrorOutput {
   innererror?: InnerErrorOutput;
 }
 
+/** Paged collection of Project items */
 export interface CustomPageProjectOutput {
   value: Array<ProjectOutput>;
   /** The link to the next page of items */
@@ -67,6 +72,7 @@ export interface DeploymentOutput {
   name: string;
 }
 
+/** Paged collection of Deployment items */
 export interface CustomPageDeploymentOutput {
   value: Array<DeploymentOutput>;
   /** The link to the next page of items */
@@ -97,6 +103,7 @@ export interface DeploymentJobOutput {
   id: string;
 }
 
+/** Represents a warning that was encountered while executing the request. */
 export interface JobWarningOutput {
   /** The warning code. */
   code: string;
@@ -128,12 +135,14 @@ export interface SwapDeploymentsJobOutput {
   id: string;
 }
 
+/** Paged collection of SupportedLanguage items */
 export interface PagedSupportedLanguageOutput {
   value: Array<SupportedLanguageOutput>;
   /** The link to the next page of items */
   nextLink?: string;
 }
 
+/** Represents a supported language. */
 export interface SupportedLanguageOutput {
   /** The language name. */
   languageName: string;
@@ -141,12 +150,14 @@ export interface SupportedLanguageOutput {
   languageCode: string;
 }
 
+/** Paged collection of TrainingConfigVersion items */
 export interface PagedTrainingConfigVersionOutput {
   value: Array<TrainingConfigVersionOutput>;
   /** The link to the next page of items */
   nextLink?: string;
 }
 
+/** Represents a training config version. */
 export interface TrainingConfigVersionOutput {
   /** Represents the version of the config. */
   trainingConfigVersion: string;

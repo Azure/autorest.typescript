@@ -1,3 +1,4 @@
+/** Example base type. */
 export interface BaseClassOutput {
   /** An example property. */
   baseClassProperty: string;
@@ -13,6 +14,7 @@ export interface DerivedFromBaseClassBOutput extends BaseClassOutput {
   derivedClassBProperty: string;
 }
 
+/** Example base class that has a discriminator property. */
 export interface BaseClassWithDiscriminatorOutput extends BaseClassOutput {
   discriminatorProperty: "BaseClassWithDiscriminator" | "A" | "B";
 }
@@ -27,11 +29,13 @@ export interface DerivedFromBaseClassWithDiscriminatorBOutput
   discriminatorProperty: "B";
 }
 
+/** A response containing error details. */
 export interface ErrorResponseOutput {
   /** The error object. */
   error: ErrorModelOutput;
 }
 
+/** The error object. */
 export interface ErrorModelOutput {
   /** One of a server-defined set of error codes. */
   code: string;
@@ -44,6 +48,7 @@ export interface ErrorModelOutput {
   innererror?: InnerErrorOutput;
 }
 
+/** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
 export interface InnerErrorOutput {
   /** One of a server-defined set of error codes. */
   code: string;
@@ -51,6 +56,7 @@ export interface InnerErrorOutput {
   innererror?: InnerErrorOutput;
 }
 
+/** Illustrates case where a basic model has polymorphic properties. */
 export interface ModelWithPolymorphicPropertyOutput {
   /** Example base class that has a discriminator property. */
   polymorphicProperty: BaseClassWithDiscriminatorOutput;

@@ -1,3 +1,4 @@
+/** Input model with enum properties. */
 export interface InputModel {
   /** Represents the days of the week using a standard, non-string enum. */
   Day:
@@ -12,6 +13,7 @@ export interface InputModel {
   Language: "English" | "Spanish" | "Mandarin" | "Undocumented";
 }
 
+/** Round-trip model with enum properties */
 export interface RoundTripModel {
   /** Represents the days of the week using a standard, non-string enum. */
   Day:

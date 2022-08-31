@@ -11,7 +11,7 @@ import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-// @public (undocumented)
+// @public
 export interface AbortFileUploadsRequest {
     // (undocumented)
     CustomTags?: object;
@@ -38,7 +38,7 @@ export interface AbortFileUploadsResponseOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ApiErrorWrapperOutput {
     // (undocumented)
     code: number;
@@ -117,7 +117,7 @@ export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
 function createClient(endpoint: string, options?: ClientOptions): PlayFabClient;
 export default createClient;
 
-// @public (undocumented)
+// @public
 export interface DeleteFilesRequest {
     // (undocumented)
     CustomTags?: object;
@@ -144,13 +144,13 @@ export interface DeleteFilesResponseOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface EntityKey {
     Id: string;
     Type?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface EntityKeyOutput {
     Id: string;
     Type?: string;
@@ -177,7 +177,7 @@ export interface EventContents {
     PayloadJSON?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FinalizeFileUploadsRequest {
     // (undocumented)
     CustomTags?: object;
@@ -206,7 +206,7 @@ export interface FinalizeFileUploadsResponseOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetEntityTokenRequest {
     // (undocumented)
     CustomTags?: object;
@@ -239,7 +239,7 @@ export interface GetFileMetadataOutput {
     Size: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetFilesRequest {
     // (undocumented)
     CustomTags?: object;
@@ -286,7 +286,7 @@ export interface GetLinkedPlayerIdentitiesResultOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetObjectsRequest {
     // (undocumented)
     CustomTags?: object;
@@ -319,7 +319,7 @@ export interface InitiateFileUploadMetadataOutput {
     UploadUrl?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface InitiateFileUploadsRequest {
     // (undocumented)
     CustomTags?: object;
@@ -1214,7 +1214,7 @@ export interface SetObjectInfoOutput {
     SetResult?: "Created" | "Updated" | "Deleted" | "None";
 }
 
-// @public (undocumented)
+// @public
 export interface SetObjectsRequest {
     // (undocumented)
     CustomTags?: object;

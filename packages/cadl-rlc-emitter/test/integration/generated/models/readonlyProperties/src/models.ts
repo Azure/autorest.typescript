@@ -1,8 +1,10 @@
+/** Readonly model */
 export interface ReadonlyModel {
   /** Required string */
   requiredString: string;
 }
 
+/** Round-trip model with readonly properties. */
 export interface RoundTripModel {
   /** Required string, illustrating a readonly reference type property. */
   requiredReadonlyString: string;

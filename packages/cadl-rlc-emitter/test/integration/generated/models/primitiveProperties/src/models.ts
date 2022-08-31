@@ -1,3 +1,4 @@
+/** Round-trip model with primitive properties to show serialization and deserialization of each. */
 export interface PrimitivePropertyModel {
   requiredString: string;
   requiredBytes: string;

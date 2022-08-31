@@ -1,3 +1,4 @@
+/** Model to illustrate a nested model that appears as a nested model on input, output, and round-trip models. */
 export interface NestedRoundTripSharedModelOutput {
   /** Required string, illustrating a reference type property. */
   requiredString: string;
@@ -6,11 +7,13 @@ export interface NestedRoundTripSharedModelOutput {
   requiredIntList: number[];
 }
 
+/** A response containing error details. */
 export interface ErrorResponseOutput {
   /** The error object. */
   error: ErrorModelOutput;
 }
 
+/** The error object. */
 export interface ErrorModelOutput {
   /** One of a server-defined set of error codes. */
   code: string;
@@ -23,6 +26,7 @@ export interface ErrorModelOutput {
   innererror?: InnerErrorOutput;
 }
 
+/** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
 export interface InnerErrorOutput {
   /** One of a server-defined set of error codes. */
   code: string;
@@ -30,6 +34,7 @@ export interface InnerErrorOutput {
   innererror?: InnerErrorOutput;
 }
 
+/** Output model with nested model properties */
 export interface OutputModelOutput {
   /** Model to illustrate a nested model that only appears on an output model. */
   NestedOutputModel: NestedOutputOnlyModelOutput;
@@ -37,6 +42,7 @@ export interface OutputModelOutput {
   NestedSharedModel: NestedRoundTripSharedModelOutput;
 }
 
+/** Model to illustrate a nested model that only appears on an output model. */
 export interface NestedOutputOnlyModelOutput {
   /** Required string, illustrating a reference type property. */
   requiredString: string;
@@ -45,6 +51,7 @@ export interface NestedOutputOnlyModelOutput {
   requiredIntList: number[];
 }
 
+/** Round-trip model with nested model properties */
 export interface RoundTripModelOutput {
   /** Model to illustrate a nested model that only appears on a nested model. */
   NestedRoundTripModel: NestedRoundTripOnlyModelOutput;
@@ -52,6 +59,7 @@ export interface RoundTripModelOutput {
   NestedSharedModel: NestedRoundTripSharedModelOutput;
 }
 
+/** Model to illustrate a nested model that only appears on a nested model. */
 export interface NestedRoundTripOnlyModelOutput {
   /** Required string, illustrating a reference type property. */
   requiredString: string;
