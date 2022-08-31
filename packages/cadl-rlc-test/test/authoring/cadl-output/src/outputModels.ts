@@ -8,7 +8,7 @@ export interface ProjectOutput {
   /** The storage container name. */
   storageInputContainerName: string;
   /** Represents the settings used to define the project behavior. */
-  settings?: Record<string, unknown>;
+  settings?: Record<string, string>;
   multilingual?: boolean;
   /** The project description. */
   description?: string;
