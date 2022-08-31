@@ -1,0 +1,12 @@
+{
+  "generateMetadata": true,
+  "includeShortcuts": true,
+  "endpointParameterName": "endpoint",
+  "packageDetails": {
+    "name": "@msinternal/playfab",
+    "scopeName": "msinternal",
+    "nameWithoutScope": "playfab",
+    "description": "PlayFab Service",
+    "version": "1.0.0-beta.1"
+  }
+}

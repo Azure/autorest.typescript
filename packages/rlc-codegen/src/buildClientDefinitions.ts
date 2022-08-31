@@ -206,7 +206,7 @@ function generatePathFirstRouteMethodsDefinition(
 function getShortcutName(interfaceName: string) {
   const endIndex = shouldKeepSuffix(interfaceName)
     ? undefined
-    : interfaceName.indexOf("Operations");
+    : interfaceName.length - "Operations".length;
   const clientProperty = normalizeName(
     interfaceName.substring(0, endIndex),
     NameType.OperationGroup,
