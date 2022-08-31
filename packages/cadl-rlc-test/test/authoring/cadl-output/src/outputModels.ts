@@ -7,8 +7,9 @@ export interface ProjectOutput {
     | "CustomEntityRecognition";
   /** The storage container name. */
   storageInputContainerName: string;
-  /** Represents the settings used to define the project behavior. */
+  /** The project settings. */
   settings?: Record<string, string>;
+  /** Whether the project would be used for multiple languages or not. */
   multilingual?: boolean;
   /** The project description. */
   description?: string;
@@ -24,20 +25,23 @@ export interface ProjectOutput {
   lastDeployedDateTime: string;
 }
 
+/** Status monitor resource for long running operations */
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
   /** The status of the operation */
   status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
-  /** The error object. */
+  /** Error object that describes the error when status is "Failed". */
   error?: ErrorModelOutput;
 }
 
+/** A response containing error details. */
 export interface ErrorResponseOutput {
   /** The error object. */
   error: ErrorModelOutput;
 }
 
+/** The error object. */
 export interface ErrorModelOutput {
   /** One of a server-defined set of error codes. */
   code: string;
@@ -45,19 +49,23 @@ export interface ErrorModelOutput {
   message: string;
   /** The target of the error. */
   target?: string;
+  /** An array of details about specific errors that led to this reported error. */
   details: Array<ErrorModelOutput>;
-  /** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
+  /** An object containing more specific information than the current object about the error. */
   innererror?: InnerErrorOutput;
 }
 
+/** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
 export interface InnerErrorOutput {
   /** One of a server-defined set of error codes. */
   code: string;
-  /** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
+  /** Inner error. */
   innererror?: InnerErrorOutput;
 }
 
+/** Paged collection of Project items */
 export interface CustomPageProjectOutput {
+  /** The Project items on this page */
   value: Array<ProjectOutput>;
   /** The link to the next page of items */
   nextLink?: string;
@@ -67,7 +75,9 @@ export interface DeploymentOutput {
   name: string;
 }
 
+/** Paged collection of Deployment items */
 export interface CustomPageDeploymentOutput {
+  /** The Deployment items on this page */
   value: Array<DeploymentOutput>;
   /** The link to the next page of items */
   nextLink?: string;
@@ -91,12 +101,14 @@ export interface DeploymentJobOutput {
     | "cancelled"
     | "cancelling"
     | "partiallyCompleted";
+  /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
-  /** The error object. */
+  /** The errors encountered while executing the job. */
   errors: ErrorModelOutput;
   id: string;
 }
 
+/** Represents a warning that was encountered while executing the request. */
 export interface JobWarningOutput {
   /** The warning code. */
   code: string;
@@ -122,18 +134,22 @@ export interface SwapDeploymentsJobOutput {
     | "cancelled"
     | "cancelling"
     | "partiallyCompleted";
+  /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
-  /** The error object. */
+  /** The errors encountered while executing the job. */
   errors: ErrorModelOutput;
   id: string;
 }
 
+/** Paged collection of SupportedLanguage items */
 export interface PagedSupportedLanguageOutput {
+  /** The SupportedLanguage items on this page */
   value: Array<SupportedLanguageOutput>;
   /** The link to the next page of items */
   nextLink?: string;
 }
 
+/** Represents a supported language. */
 export interface SupportedLanguageOutput {
   /** The language name. */
   languageName: string;
@@ -141,14 +157,18 @@ export interface SupportedLanguageOutput {
   languageCode: string;
 }
 
+/** Paged collection of TrainingConfigVersion items */
 export interface PagedTrainingConfigVersionOutput {
+  /** The TrainingConfigVersion items on this page */
   value: Array<TrainingConfigVersionOutput>;
   /** The link to the next page of items */
   nextLink?: string;
 }
 
+/** Represents a training config version. */
 export interface TrainingConfigVersionOutput {
   /** Represents the version of the config. */
   trainingConfigVersion: string;
+  /** Represents the training config version expiration date. */
   modelExpirationDate: string;
 }

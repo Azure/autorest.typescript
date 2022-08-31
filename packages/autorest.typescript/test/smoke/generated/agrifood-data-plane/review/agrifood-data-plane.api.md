@@ -18,7 +18,7 @@ import { PollOperationState } from '@azure/core-lro';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-// @public (undocumented)
+// @public
 export interface ApplicationData {
     applicationProductDetails?: Array<ApplicationProductDetail>;
     area?: Measure;
@@ -242,14 +242,14 @@ export interface ApplicationDataListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface ApplicationDataListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<ApplicationDataOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface ApplicationDataOutput {
     applicationProductDetails?: Array<ApplicationProductDetailOutput>;
     area?: MeasureOutput;
@@ -273,7 +273,7 @@ export interface ApplicationDataOutput {
     totalMaterial?: MeasureOutput;
 }
 
-// @public (undocumented)
+// @public
 export interface ApplicationProductDetail {
     avgMaterial?: Measure;
     isCarrier?: boolean;
@@ -281,7 +281,7 @@ export interface ApplicationProductDetail {
     totalMaterial?: Measure;
 }
 
-// @public (undocumented)
+// @public
 export interface ApplicationProductDetailOutput {
     avgMaterial?: MeasureOutput;
     isCarrier?: boolean;
@@ -289,14 +289,14 @@ export interface ApplicationProductDetailOutput {
     totalMaterial?: MeasureOutput;
 }
 
-// @public (undocumented)
+// @public
 export interface AttachmentListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<AttachmentOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface AttachmentOutput {
     createdDateTime?: string;
     description?: string;
@@ -816,7 +816,7 @@ export interface BoundariesSearchMediaTypesParam {
 // @public (undocumented)
 export type BoundariesSearchParameters = BoundariesSearchMediaTypesParam & BoundariesSearchBodyParam & RequestParameters;
 
-// @public (undocumented)
+// @public
 export interface Boundary {
     acreage?: number;
     createdDateTime?: Date | string;
@@ -834,14 +834,14 @@ export interface Boundary {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface BoundaryListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<BoundaryOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface BoundaryOutput {
     acreage?: number;
     createdDateTime?: string;
@@ -859,14 +859,14 @@ export interface BoundaryOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface BoundaryOverlapResponseOutput {
     boundaryAcreage?: number;
     intersectingAcreage?: number;
     otherBoundaryAcreage?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface CascadeDeleteJobOutput {
     createdDateTime?: string;
     description?: string;
@@ -888,7 +888,7 @@ export interface CascadeDeleteJobOutput {
 function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
 export default createClient;
 
-// @public (undocumented)
+// @public
 export interface Crop {
     createdDateTime?: Date | string;
     description?: string;
@@ -901,14 +901,14 @@ export interface Crop {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CropListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<CropOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface CropOutput {
     createdDateTime?: string;
     description?: string;
@@ -1224,7 +1224,7 @@ export interface CropVarietiesListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface CropVariety {
     brand?: string;
     createdDateTime?: Date | string;
@@ -1239,14 +1239,14 @@ export interface CropVariety {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface CropVarietyListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<CropVarietyOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface CropVarietyOutput {
     brand?: string;
     createdDateTime?: string;
@@ -1261,7 +1261,7 @@ export interface CropVarietyOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ErrorModelOutput {
     code?: string;
     details?: Array<ErrorModelOutput>;
@@ -1270,13 +1270,13 @@ export interface ErrorModelOutput {
     target?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ErrorResponseOutput {
     error?: ErrorModelOutput;
     traceId?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface Farm {
     createdDateTime?: Date | string;
     description?: string;
@@ -1289,7 +1289,7 @@ export interface Farm {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface Farmer {
     createdDateTime?: Date | string;
     description?: string;
@@ -1301,14 +1301,14 @@ export interface Farmer {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FarmerListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<FarmerOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface FarmerOutput {
     createdDateTime?: string;
     description?: string;
@@ -1501,14 +1501,14 @@ export interface FarmersListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface FarmListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<FarmOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface FarmOperationDataIngestionJob {
     authProviderId: string;
     createdDateTime?: Date | string;
@@ -1527,7 +1527,7 @@ export interface FarmOperationDataIngestionJob {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FarmOperationDataIngestionJobOutput {
     authProviderId: string;
     createdDateTime?: string;
@@ -1600,7 +1600,7 @@ export interface FarmOperationsGetDataIngestionJobDetailsDefaultResponse extends
 // @public (undocumented)
 export type FarmOperationsGetDataIngestionJobDetailsParameters = RequestParameters;
 
-// @public (undocumented)
+// @public
 export interface FarmOutput {
     createdDateTime?: string;
     description?: string;
@@ -1839,7 +1839,7 @@ export interface FarmsListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface Field {
     boundaryIds?: Array<string>;
     createdDateTime?: Date | string;
@@ -1855,14 +1855,14 @@ export interface Field {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FieldListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<FieldOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface FieldOutput {
     boundaryIds?: Array<string>;
     createdDateTime?: string;
@@ -2106,19 +2106,19 @@ export interface FieldsListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export type GeoJsonObject = MultiPolygon | Point | Polygon;
 
-// @public (undocumented)
+// @public
 export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutput;
 
-// @public (undocumented)
+// @public
 export interface GeoJsonObjectOutputParent {
     // (undocumented)
     type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
-// @public (undocumented)
+// @public
 export interface GeoJsonObjectParent {
     // (undocumented)
     type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
@@ -2136,7 +2136,7 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
     nextPageLink?: string;
 }>;
 
-// @public (undocumented)
+// @public
 export interface HarvestData {
     area?: Measure;
     associatedBoundaryId?: string;
@@ -2380,14 +2380,14 @@ export interface HarvestDataListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface HarvestDataListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<HarvestDataOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface HarvestDataOutput {
     area?: MeasureOutput;
     associatedBoundaryId?: string;
@@ -2415,7 +2415,7 @@ export interface HarvestDataOutput {
     totalYield?: MeasureOutput;
 }
 
-// @public (undocumented)
+// @public
 export interface HarvestProductDetail {
     area?: Measure;
     avgMoisture?: Measure;
@@ -2426,7 +2426,7 @@ export interface HarvestProductDetail {
     totalYield?: Measure;
 }
 
-// @public (undocumented)
+// @public
 export interface HarvestProductDetailOutput {
     area?: MeasureOutput;
     avgMoisture?: MeasureOutput;
@@ -2437,7 +2437,7 @@ export interface HarvestProductDetailOutput {
     totalYield?: MeasureOutput;
 }
 
-// @public (undocumented)
+// @public
 export interface ImageFileOutput {
     fileLink?: string;
     imageFormat?: "TIF";
@@ -2491,7 +2491,7 @@ export interface ImageProcessingGetRasterizeJob200Response extends HttpResponse 
 // @public (undocumented)
 export type ImageProcessingGetRasterizeJobParameters = RequestParameters;
 
-// @public (undocumented)
+// @public
 export interface ImageProcessingRasterizeJob {
     createdDateTime?: Date | string;
     description?: string;
@@ -2509,7 +2509,7 @@ export interface ImageProcessingRasterizeJob {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ImageProcessingRasterizeJobOutput {
     createdDateTime?: string;
     description?: string;
@@ -2527,7 +2527,7 @@ export interface ImageProcessingRasterizeJobOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface InnerErrorOutput extends Record<string, unknown> {
     code?: string;
     innererror?: InnerErrorOutput;
@@ -2818,47 +2818,47 @@ export function isUnexpected(response: WeatherGetDataDeleteJobDetails200Response
 // @public (undocumented)
 export function isUnexpected(response: WeatherCreateDataDeleteJob202Response | WeatherCreateDataDeleteJobDefaultResponse): response is WeatherCreateDataDeleteJobDefaultResponse;
 
-// @public (undocumented)
+// @public
 export interface LocationOutput {
     latitude: number;
     longitude: number;
 }
 
-// @public (undocumented)
+// @public
 export interface Measure {
     unit?: string;
     value?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface MeasureOutput {
     unit?: string;
     value?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface MultiPolygon extends GeoJsonObjectParent, MultiPolygonCoordinates {
     // (undocumented)
     type: "MultiPolygon";
 }
 
-// @public (undocumented)
+// @public
 export interface MultiPolygonCoordinates {
     coordinates: Array<Array<Array<Array<number>>>>;
 }
 
-// @public (undocumented)
+// @public
 export interface MultiPolygonCoordinatesOutput {
     coordinates: Array<Array<Array<Array<number>>>>;
 }
 
-// @public (undocumented)
+// @public
 export interface MultiPolygonOutput extends GeoJsonObjectOutputParent, MultiPolygonCoordinatesOutput {
     // (undocumented)
     type: "MultiPolygon";
 }
 
-// @public (undocumented)
+// @public
 export interface OAuthConnectRequest {
     farmerId: string;
     oAuthProviderId: string;
@@ -2866,7 +2866,7 @@ export interface OAuthConnectRequest {
     userRedirectState?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface OAuthProvider {
     apiKey?: string;
     appId?: string;
@@ -2881,14 +2881,14 @@ export interface OAuthProvider {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-// @public (undocumented)
+// @public
 export interface OAuthProviderListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<OAuthProviderOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface OAuthProviderOutput {
     apiKey?: string;
     appId?: string;
@@ -3029,14 +3029,14 @@ export interface OAuthProvidersListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface OAuthTokenListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<OAuthTokenOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface OAuthTokenOutput {
     authProviderId: string;
     createdDateTime?: string;
@@ -3194,7 +3194,7 @@ export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
-// @public (undocumented)
+// @public
 export interface PlantingData {
     area?: Measure;
     associatedBoundaryId?: string;
@@ -3423,14 +3423,14 @@ export interface PlantingDataListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface PlantingDataListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<PlantingDataOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface PlantingDataOutput {
     area?: MeasureOutput;
     associatedBoundaryId?: string;
@@ -3455,7 +3455,7 @@ export interface PlantingDataOutput {
     totalMaterial?: MeasureOutput;
 }
 
-// @public (undocumented)
+// @public
 export interface PlantingProductDetail {
     area?: Measure;
     avgMaterial?: Measure;
@@ -3463,7 +3463,7 @@ export interface PlantingProductDetail {
     totalMaterial?: Measure;
 }
 
-// @public (undocumented)
+// @public
 export interface PlantingProductDetailOutput {
     area?: MeasureOutput;
     avgMaterial?: MeasureOutput;
@@ -3471,45 +3471,45 @@ export interface PlantingProductDetailOutput {
     totalMaterial?: MeasureOutput;
 }
 
-// @public (undocumented)
+// @public
 export interface Point extends GeoJsonObjectParent, PointCoordinates {
     // (undocumented)
     type: "Point";
 }
 
-// @public (undocumented)
+// @public
 export interface PointCoordinates {
     coordinates: Array<number>;
 }
 
-// @public (undocumented)
+// @public
 export interface PointCoordinatesOutput {
     coordinates: Array<number>;
 }
 
-// @public (undocumented)
+// @public
 export interface PointOutput extends GeoJsonObjectOutputParent, PointCoordinatesOutput {
     // (undocumented)
     type: "Point";
 }
 
-// @public (undocumented)
+// @public
 export interface Polygon extends GeoJsonObjectParent, PolygonCoordinates {
     // (undocumented)
     type: "Polygon";
 }
 
-// @public (undocumented)
+// @public
 export interface PolygonCoordinates {
     coordinates: Array<Array<Array<number>>>;
 }
 
-// @public (undocumented)
+// @public
 export interface PolygonCoordinatesOutput {
     coordinates: Array<Array<Array<number>>>;
 }
 
-// @public (undocumented)
+// @public
 export interface PolygonOutput extends GeoJsonObjectOutputParent, PolygonCoordinatesOutput {
     // (undocumented)
     type: "Polygon";
@@ -3574,14 +3574,14 @@ export interface Routes {
     (path: "/weather/delete-data/{jobId}", jobId: string): WeatherGetDataDeleteJobDetails;
 }
 
-// @public (undocumented)
+// @public
 export interface SatelliteData {
     imageFormats?: Array<string>;
     imageNames?: Array<string>;
     imageResolutions?: Array<number>;
 }
 
-// @public (undocumented)
+// @public
 export interface SatelliteDataIngestionJob {
     boundaryId: string;
     createdDateTime?: Date | string;
@@ -3603,7 +3603,7 @@ export interface SatelliteDataIngestionJob {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SatelliteDataIngestionJobOutput {
     boundaryId: string;
     createdDateTime?: string;
@@ -3625,21 +3625,21 @@ export interface SatelliteDataIngestionJobOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SatelliteDataOutput {
     imageFormats?: Array<string>;
     imageNames?: Array<string>;
     imageResolutions?: Array<number>;
 }
 
-// @public (undocumented)
+// @public
 export interface SceneListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<SceneOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface SceneOutput {
     boundaryId?: string;
     cloudCoverPercentage?: number;
@@ -3790,7 +3790,7 @@ export interface ScenesListQueryParamProperties {
     startDateTime?: Date | string;
 }
 
-// @public (undocumented)
+// @public
 export interface SearchBoundaryQuery {
     $maxPageSize?: number;
     $skipToken?: string;
@@ -3810,7 +3810,7 @@ export interface SearchBoundaryQuery {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface Season {
     createdDateTime?: Date | string;
     description?: string;
@@ -3825,7 +3825,7 @@ export interface Season {
     year?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface SeasonalField {
     avgSeedPopulationUnit?: string;
     avgSeedPopulationValue?: number;
@@ -3850,14 +3850,14 @@ export interface SeasonalField {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SeasonalFieldListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<SeasonalFieldOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface SeasonalFieldOutput {
     avgSeedPopulationUnit?: string;
     avgSeedPopulationValue?: number;
@@ -4134,14 +4134,14 @@ export interface SeasonalFieldsListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface SeasonListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<SeasonOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface SeasonOutput {
     createdDateTime?: string;
     description?: string;
@@ -4287,7 +4287,7 @@ export interface SeasonsListQueryParamProperties {
     years?: Array<number>;
 }
 
-// @public (undocumented)
+// @public
 export interface TillageData {
     area?: Measure;
     associatedBoundaryId?: string;
@@ -4510,14 +4510,14 @@ export interface TillageDataListQueryParamProperties {
     statuses?: Array<string>;
 }
 
-// @public (undocumented)
+// @public
 export interface TillageDataListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<TillageDataOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface TillageDataOutput {
     area?: MeasureOutput;
     associatedBoundaryId?: string;
@@ -4598,7 +4598,7 @@ export interface WeatherCreateDataIngestionJobMediaTypesParam {
 // @public (undocumented)
 export type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestionJobMediaTypesParam & WeatherCreateDataIngestionJobBodyParam & RequestParameters;
 
-// @public (undocumented)
+// @public
 export interface WeatherDataDeleteJob {
     boundaryId: string;
     createdDateTime?: Date | string;
@@ -4620,7 +4620,7 @@ export interface WeatherDataDeleteJob {
     weatherDataType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface WeatherDataDeleteJobOutput {
     boundaryId: string;
     createdDateTime?: string;
@@ -4642,7 +4642,7 @@ export interface WeatherDataDeleteJobOutput {
     weatherDataType?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface WeatherDataIngestionJob {
     boundaryId: string;
     createdDateTime?: Date | string;
@@ -4664,7 +4664,7 @@ export interface WeatherDataIngestionJob {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface WeatherDataIngestionJobOutput {
     boundaryId: string;
     createdDateTime?: string;
@@ -4686,14 +4686,14 @@ export interface WeatherDataIngestionJobOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface WeatherDataListResponseOutput {
     $skipToken?: string;
     nextLink?: string;
     value?: Array<WeatherDataOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface WeatherDataOutput {
     boundaryId: string;
     cloudCover?: MeasureOutput;

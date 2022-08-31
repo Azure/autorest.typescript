@@ -446,10 +446,11 @@ function getSchemaForModel(
     if (newPropSchema === undefined) {
       continue;
     }
-    modelSchema.properties[name] = newPropSchema;
     if (description) {
-      // modelSchema.properties[name]['description'] = description;
+      newPropSchema['description'] = description;
     }
+    modelSchema.properties[name] = newPropSchema;
+
 
     if (prop.default) {
       // modelSchema.properties[name]['default'] = getDefaultValue(program, prop.default);
@@ -645,7 +646,8 @@ function mapCadlIntrinsicModelToTypeScript(
         );
         schema = {
           type: "dictionary",
-          additionalProperties: valueType
+          additionalProperties: valueType,
+          description: getDoc(program, cadlType)
         };
         if (!isIntrinsic(program, indexer.value)) {
           schema.typeName = `Record<string, ${valueType.name}>`;
@@ -658,7 +660,8 @@ function mapCadlIntrinsicModelToTypeScript(
       } else if (name === "integer") {
         schema = {
           type: "array",
-          items: getSchemaForType(program, indexer.value!, usage, true)
+          items: getSchemaForType(program, indexer.value!, usage, true),
+          description: getDoc(program, cadlType)
         };
         if (!isIntrinsic(program, indexer.value)) {
           schema.typeName = `Array<${schema.items.name}>`;
@@ -678,9 +681,10 @@ function mapCadlIntrinsicModelToTypeScript(
     return undefined;
   }
   const name = getIntrinsicModelName(program, cadlType);
+  const description = getSummary(program, cadlType);
   switch (name) {
     case "bytes":
-      return { type: "string", format: "byte" };
+      return { type: "string", format: "byte", description };
     case "int8":
       return applyIntrinsicDecorators(program, cadlType, {
         type: "number",
@@ -739,15 +743,15 @@ function mapCadlIntrinsicModelToTypeScript(
     case "string":
       return applyIntrinsicDecorators(program, cadlType, { type: "string" });
     case "boolean":
-      return { type: "boolean" };
+      return { type: "boolean", description };
     case "plainDate":
-      return { type: "string", format: "date" };
+      return { type: "string", format: "date", description };
     case "zonedDateTime":
-      return { type: "string", format: "date-time" };
+      return { type: "string", format: "date-time", description };
     case "plainTime":
-      return { type: "string", format: "time" };
+      return { type: "string", format: "time", description };
     case "duration":
-      return { type: "string", format: "duration" };
+      return { type: "string", format: "duration", description };
   }
 }
 

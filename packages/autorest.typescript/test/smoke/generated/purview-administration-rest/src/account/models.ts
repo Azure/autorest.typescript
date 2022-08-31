@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountSystemData extends SystemData {}
 
+/** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The timestamp of resource creation (UTC). */
   createdAt?: Date | string;
@@ -18,16 +20,19 @@ export interface SystemData {
   lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
 }
 
+/** The account properties that can be updated through data plane. */
 export interface DataPlaneAccountUpdateParameters {
   /** The friendly name for the azure resource. */
   friendlyName?: string;
 }
 
+/** A access key options used for regeneration. */
 export interface AccessKeyOptions {
   /** The access key type. */
   keyType?: "PrimaryAtlasKafkaKey" | "SecondaryAtlasKafkaKey";
 }
 
+/** Collection resource. */
 export interface Collection {
   /** Gets the state of the provisioning. */
   collectionProvisioningState?:
@@ -49,6 +54,7 @@ export interface Collection {
   systemData?: CollectionSystemData;
 }
 
+/** Reference to a Collection. */
 export interface CollectionReference {
   /** Gets or sets the reference name. */
   referenceName?: string;
@@ -56,8 +62,10 @@ export interface CollectionReference {
   type?: string;
 }
 
+/** Metadata pertaining to creation and last modification of the resource. */
 export interface CollectionSystemData extends SystemData {}
 
+/** ResourceSetRuleConfig implementation class. */
 export interface ResourceSetRuleConfig {
   /** Gets or sets the advanced resource set property of the account. */
   advancedResourceSet?: AdvancedResourceSet;
@@ -67,6 +75,7 @@ export interface ResourceSetRuleConfig {
   pathPatternConfig?: PathPatternExtractorConfig;
 }
 
+/** The resource set processing property of the account. */
 export interface AdvancedResourceSet {
   /** Date at which ResourceSetProcessing property of the account is updated. */
   modifiedAt?: Date | string;

@@ -11,13 +11,13 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
+// @public
 export interface CollectionArrayOutput {
     // (undocumented)
     items: Array<CollectionOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface CollectionOutput {
     // (undocumented)
     collectionId: string;
@@ -440,17 +440,16 @@ export interface DeleteUser {
     patch(options: ConfidentialLedgerCreateOrUpdateUserParameters): StreamableMethod<ConfidentialLedgerCreateOrUpdateUser200Response | ConfidentialLedgerCreateOrUpdateUserDefaultResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface ErrorModelOutput {
     code: string;
-    // (undocumented)
     details: Array<ErrorModelOutput>;
     innererror?: InnerErrorOutput;
     message: string;
     target?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ErrorResponseOutput {
     error: ErrorModelOutput;
 }
@@ -494,7 +493,7 @@ export interface GetTransactionStatus {
     get(options: ConfidentialLedgerGetTransactionStatusParameters): StreamableMethod<ConfidentialLedgerGetTransactionStatus200Response | ConfidentialLedgerGetTransactionStatusDefaultResponse>;
 }
 
-// @public (undocumented)
+// @public
 export interface InnerErrorOutput {
     code: string;
     innererror?: InnerErrorOutput;
