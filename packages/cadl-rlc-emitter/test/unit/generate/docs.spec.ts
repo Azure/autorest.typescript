@@ -5,7 +5,7 @@ import { assertEqualContent } from "../testUtil.js";
 describe("Doc generation testing", () => {
   describe("input/output models", () => {
     // issue tracked https://github.com/Azure/autorest.typescript/issues/1525
-    xit("should generate model-level and property-level docs", async () => {
+    it("should generate model-level and property-level docs in input model", async () => {
       const models = await emitModelsFromCadl(`
         @doc("A simple model with doc")  
         model SimpleModel {

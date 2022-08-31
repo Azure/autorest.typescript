@@ -60,7 +60,7 @@
         "--timeout",
         "999999",
         "--colors",
-        "./test/unit/**/*.spec.ts"
+        "./test/unit/**/docs.spec.ts"
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
