@@ -11,41 +11,33 @@ import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-// @public (undocumented)
+// @public
 export interface AbortFileUploadsRequest {
-    // (undocumented)
     CustomTags?: object;
     Entity: object;
-    // (undocumented)
     FileNames: string[];
-    // (undocumented)
     ProfileVersion?: number;
 }
 
 // @public (undocumented)
 export interface AbortFileUploadsResponseDataOutput {
     Entity?: EntityKeyOutput;
-    // (undocumented)
     ProfileVersion?: number;
 }
 
 // @public (undocumented)
 export interface AbortFileUploadsResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: AbortFileUploadsResponseDataOutput;
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ApiErrorWrapperOutput {
-    // (undocumented)
     code: number;
     error?: string;
-    // (undocumented)
     errorCode: number;
-    // (undocumented)
     errorDetails?: ObjectOutput;
     errorMessage?: string;
     status?: string;
@@ -55,7 +47,6 @@ export interface ApiErrorWrapperOutput {
 export interface AuthenticateAndroidDeviceIdIdentityRequest {
     AndroidDeviceId: string;
     BehaviorIfIdentityNotLinked: "CreateAndLinkNewAccount" | "LinkToExistingAccount" | "LeaveUnlinked";
-    // (undocumented)
     CustomTags?: object;
     ExistingMasterPlayerAccountId?: string;
     PlayerAccountPoolId: string;
@@ -66,7 +57,6 @@ export interface AuthenticateAndroidDeviceIdIdentityRequest {
 export interface AuthenticateCustomIdIdentityRequest {
     BehaviorIfIdentityNotLinked: "CreateAndLinkNewAccount" | "LinkToExistingAccount" | "LeaveUnlinked";
     CustomId: string;
-    // (undocumented)
     CustomTags?: object;
     ExistingMasterPlayerAccountId?: string;
     PlayerAccountPoolId: string;
@@ -76,15 +66,12 @@ export interface AuthenticateCustomIdIdentityRequest {
 // @public (undocumented)
 export interface AuthenticateIdentityResultDataOutput {
     CreatedIdentityLinkId?: string;
-    // (undocumented)
     MasterPlayerAccount?: EntityTokenResponseOutput;
-    // (undocumented)
     TitlePlayerAccount?: EntityTokenResponseOutput;
 }
 
 // @public (undocumented)
 export interface AuthenticateIdentityResultOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: AuthenticateIdentityResultDataOutput;
@@ -94,7 +81,6 @@ export interface AuthenticateIdentityResultOutput {
 // @public (undocumented)
 export interface AuthenticateIOSDeviceIdIdentityRequest {
     BehaviorIfIdentityNotLinked: "CreateAndLinkNewAccount" | "LinkToExistingAccount" | "LeaveUnlinked";
-    // (undocumented)
     CustomTags?: object;
     DeviceId: string;
     ExistingMasterPlayerAccountId?: string;
@@ -105,7 +91,6 @@ export interface AuthenticateIOSDeviceIdIdentityRequest {
 // @public (undocumented)
 export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
     BehaviorIfIdentityNotLinked: "CreateAndLinkNewAccount" | "LinkToExistingAccount" | "LeaveUnlinked";
-    // (undocumented)
     CustomTags?: object;
     ExistingMasterPlayerAccountId?: string;
     NintendoSwitchDeviceId: string;
@@ -117,40 +102,35 @@ export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
 function createClient(endpoint: string, options?: ClientOptions): PlayFabClient;
 export default createClient;
 
-// @public (undocumented)
+// @public
 export interface DeleteFilesRequest {
-    // (undocumented)
     CustomTags?: object;
     Entity: object;
-    // (undocumented)
     FileNames: string[];
-    // (undocumented)
     ProfileVersion?: number;
 }
 
 // @public (undocumented)
 export interface DeleteFilesResponseDataOutput {
     Entity?: EntityKeyOutput;
-    // (undocumented)
     ProfileVersion?: number;
 }
 
 // @public (undocumented)
 export interface DeleteFilesResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: DeleteFilesResponseDataOutput;
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface EntityKey {
     Id: string;
     Type?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface EntityKeyOutput {
     Id: string;
     Type?: string;
@@ -165,50 +145,41 @@ export interface EntityTokenResponseOutput {
 
 // @public (undocumented)
 export interface EventContents {
-    // (undocumented)
     CustomTags?: object;
     Entity?: object;
     EventNamespace: string;
     Name: string;
     OriginalId?: string;
     OriginalTimestamp?: string;
-    // (undocumented)
     Payload?: object;
     PayloadJSON?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FinalizeFileUploadsRequest {
-    // (undocumented)
     CustomTags?: object;
     Entity: object;
-    // (undocumented)
     FileNames: string[];
-    // (undocumented)
     ProfileVersion: number;
 }
 
 // @public (undocumented)
 export interface FinalizeFileUploadsResponseDataOutput {
     Entity?: EntityKeyOutput;
-    // (undocumented)
     Metadata?: GetFileMetadataOutput;
-    // (undocumented)
     ProfileVersion?: number;
 }
 
 // @public (undocumented)
 export interface FinalizeFileUploadsResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: FinalizeFileUploadsResponseDataOutput;
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetEntityTokenRequest {
-    // (undocumented)
     CustomTags?: object;
     Entity?: object;
 }
@@ -222,7 +193,6 @@ export interface GetEntityTokenResponseDataOutput {
 
 // @public (undocumented)
 export interface GetEntityTokenResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: GetEntityTokenResponseDataOutput;
@@ -235,13 +205,11 @@ export interface GetFileMetadataOutput {
     DownloadUrl?: string;
     FileName?: string;
     LastModified: string;
-    // (undocumented)
     Size: number;
 }
 
-// @public (undocumented)
+// @public
 export interface GetFilesRequest {
-    // (undocumented)
     CustomTags?: object;
     Entity: object;
 }
@@ -249,15 +217,12 @@ export interface GetFilesRequest {
 // @public (undocumented)
 export interface GetFilesResponseDataOutput {
     Entity?: EntityKeyOutput;
-    // (undocumented)
     Metadata?: GetFileMetadataOutput;
-    // (undocumented)
     ProfileVersion?: number;
 }
 
 // @public (undocumented)
 export interface GetFilesResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: GetFilesResponseDataOutput;
@@ -266,47 +231,39 @@ export interface GetFilesResponseOutput {
 
 // @public (undocumented)
 export interface GetLinkedPlayerIdentitiesRequest {
-    // (undocumented)
     CustomTags?: object;
     MasterPlayerAccountId?: string;
 }
 
 // @public (undocumented)
 export interface GetLinkedPlayerIdentitiesResultDataOutput {
-    // (undocumented)
     LinkedIdentities?: Array<LinkedPlayerIdentityOutput>;
 }
 
 // @public (undocumented)
 export interface GetLinkedPlayerIdentitiesResultOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: GetLinkedPlayerIdentitiesResultDataOutput;
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface GetObjectsRequest {
-    // (undocumented)
     CustomTags?: object;
     Entity: object;
-    // (undocumented)
     EscapeObject?: boolean;
 }
 
 // @public (undocumented)
 export interface GetObjectsResponseDataOutput {
     Entity?: EntityKeyOutput;
-    // (undocumented)
     Objects?: ObjectResultOutput;
-    // (undocumented)
     ProfileVersion?: number;
 }
 
 // @public (undocumented)
 export interface GetObjectsResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: GetObjectsResponseDataOutput;
@@ -319,29 +276,23 @@ export interface InitiateFileUploadMetadataOutput {
     UploadUrl?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface InitiateFileUploadsRequest {
-    // (undocumented)
     CustomTags?: object;
     Entity: object;
-    // (undocumented)
     FileNames: string[];
-    // (undocumented)
     ProfileVersion?: number;
 }
 
 // @public (undocumented)
 export interface InitiateFileUploadsResponseDataOutput {
     Entity?: EntityKeyOutput;
-    // (undocumented)
     ProfileVersion?: number;
-    // (undocumented)
     UploadDetails?: Array<InitiateFileUploadMetadataOutput>;
 }
 
 // @public (undocumented)
 export interface InitiateFileUploadsResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: InitiateFileUploadsResponseDataOutput;
@@ -405,20 +356,17 @@ export interface LinkedPlayerIdentityOutput {
 
 // @public (undocumented)
 export interface LoginPlayerRequest {
-    // (undocumented)
     CustomTags?: object;
     TitleId: string;
 }
 
 // @public (undocumented)
 export interface LoginPlayerResultDataOutput {
-    // (undocumented)
     TitlePlayerAccountEntityToken?: EntityTokenResponseOutput;
 }
 
 // @public (undocumented)
 export interface LoginPlayerResultOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: LoginPlayerResultDataOutput;
@@ -436,7 +384,6 @@ export interface ObjectOutput {
 
 // @public (undocumented)
 export interface ObjectResultOutput {
-    // (undocumented)
     DataObject?: ObjectOutput;
     EscapedDataObject?: string;
     ObjectName?: string;
@@ -1199,9 +1146,7 @@ export interface Routes {
 
 // @public (undocumented)
 export interface SetObject {
-    // (undocumented)
     DataObject?: object;
-    // (undocumented)
     DeleteObject?: boolean;
     EscapedDataObject?: string;
     ObjectName: string;
@@ -1214,28 +1159,22 @@ export interface SetObjectInfoOutput {
     SetResult?: "Created" | "Updated" | "Deleted" | "None";
 }
 
-// @public (undocumented)
+// @public
 export interface SetObjectsRequest {
-    // (undocumented)
     CustomTags?: object;
     Entity: object;
-    // (undocumented)
     ExpectedProfileVersion?: number;
-    // (undocumented)
     Objects: Array<SetObject>;
 }
 
 // @public (undocumented)
 export interface SetObjectsResponseDataOutput {
-    // (undocumented)
     ProfileVersion?: number;
-    // (undocumented)
     SetResults?: Array<SetObjectInfoOutput>;
 }
 
 // @public (undocumented)
 export interface SetObjectsResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: SetObjectsResponseDataOutput;
@@ -1244,7 +1183,6 @@ export interface SetObjectsResponseOutput {
 
 // @public (undocumented)
 export interface UnlinkPlayerIdentityRequest {
-    // (undocumented)
     CustomTags?: object;
     IdentityLinkId: string;
     MasterPlayerAccountId?: string;
@@ -1252,30 +1190,24 @@ export interface UnlinkPlayerIdentityRequest {
 
 // @public (undocumented)
 export interface UnlinkPlayerIdentityResultOutput {
-    // (undocumented)
     code?: number;
-    // (undocumented)
     data?: ObjectOutput;
     status?: string;
 }
 
 // @public (undocumented)
 export interface WriteEventsRequest {
-    // (undocumented)
     CustomTags?: object;
-    // (undocumented)
     Events: Array<EventContents>;
 }
 
 // @public (undocumented)
 export interface WriteEventsResponseDataOutput {
-    // (undocumented)
     AssignedEventIds?: string[];
 }
 
 // @public (undocumented)
 export interface WriteEventsResponseOutput {
-    // (undocumented)
     code?: number;
     // (undocumented)
     data?: WriteEventsResponseDataOutput;

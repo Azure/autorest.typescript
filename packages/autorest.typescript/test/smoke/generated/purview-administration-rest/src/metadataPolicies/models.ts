@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Attribute matcher for a rule */
 export interface AttributeMatcher {
   /** AttributeName */
   attributeName?: string;
@@ -37,6 +38,7 @@ export interface MetadataPolicyProperties {
   parentCollectionName?: string;
 }
 
+/** The decision rule for a policy */
 export interface DecisionRule {
   /** The kind of rule */
   kind?: "decisionrule" | "attributerule";
@@ -46,6 +48,7 @@ export interface DecisionRule {
   dnfCondition?: Array<Array<AttributeMatcher>>;
 }
 
+/** The attribute rule for a policy */
 export interface AttributeRule {
   /** The kind of rule */
   kind?: "decisionrule" | "attributerule";
@@ -57,6 +60,7 @@ export interface AttributeRule {
   dnfCondition?: Array<Array<AttributeMatcher>>;
 }
 
+/** The collection reference for a policy */
 export interface CollectionReference {
   /** The type of reference */
   type?: string;

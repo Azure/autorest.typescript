@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** List of Metadata roles */
 export interface MetadataRoleListOutput {
   values: Array<MetadataRoleOutput>;
   nextLink?: string;
@@ -33,6 +34,7 @@ export interface MetadataRolePropertiesOutput {
   version?: number;
 }
 
+/** Attribute matcher for a rule */
 export interface AttributeMatcherOutput {
   /** AttributeName */
   attributeName?: string;
@@ -46,11 +48,13 @@ export interface AttributeMatcherOutput {
   attributeValueExcludedIn?: Array<string>;
 }
 
+/** The error response model for metadata policy */
 export interface ErrorResponseModelOutput {
   /** The error model for metadata policy */
   error: ErrorModelOutput;
 }
 
+/** The error model for metadata policy */
 export interface ErrorModelOutput {
   /** The error code */
   code: string;
@@ -62,6 +66,7 @@ export interface ErrorModelOutput {
   details?: Array<ErrorModelOutput>;
 }
 
+/** List of Metadata Policies */
 export interface MetadataPolicyListOutput {
   values: Array<MetadataPolicyOutput>;
   nextLink?: string;
@@ -90,6 +95,7 @@ export interface MetadataPolicyPropertiesOutput {
   parentCollectionName?: string;
 }
 
+/** The decision rule for a policy */
 export interface DecisionRuleOutput {
   /** The kind of rule */
   kind?: "decisionrule" | "attributerule";
@@ -99,6 +105,7 @@ export interface DecisionRuleOutput {
   dnfCondition?: Array<Array<AttributeMatcherOutput>>;
 }
 
+/** The attribute rule for a policy */
 export interface AttributeRuleOutput {
   /** The kind of rule */
   kind?: "decisionrule" | "attributerule";
@@ -110,6 +117,7 @@ export interface AttributeRuleOutput {
   dnfCondition?: Array<Array<AttributeMatcherOutput>>;
 }
 
+/** The collection reference for a policy */
 export interface CollectionReferenceOutput {
   /** The type of reference */
   type?: string;

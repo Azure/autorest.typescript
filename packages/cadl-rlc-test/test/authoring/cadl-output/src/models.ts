@@ -1,3 +1,4 @@
+/** Training job parameters. */
 export interface TrainingJobOptions {
   modelLabel: string;
 }
