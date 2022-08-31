@@ -650,7 +650,7 @@ function mapCadlIntrinsicModelToTypeScript(
         if (!isIntrinsic(program, indexer.value)) {
           schema.typeName = `Record<string, ${valueType.name}>`;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Array<${valueType.name}Output>`;
+            schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
           }
         } else {
           schema.typeName = `Record<string, ${valueType.type}>`;
