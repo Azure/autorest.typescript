@@ -71,7 +71,10 @@ function getParameterMetadata(
     SchemaContext.Exception
   ]) as Schema;
   const type = getTypeName(schema);
-  const name = normalizeName(getParameterName(parameter.name), NameType.Parameter);
+  const name = normalizeName(
+    getParameterName(parameter.name),
+    NameType.Parameter
+  );
   return {
     type: paramType,
     name,
@@ -79,7 +82,7 @@ function getParameterMetadata(
       name,
       type,
       required: !Boolean(parameter.param.optional),
-      description: getDoc(program, parameter.param.type) ?? ""
+      description: getDoc(program, parameter.param) ?? ""
     }
   };
 }
@@ -154,7 +157,8 @@ function transformBodyParameters(
       {
         name: "body",
         type,
-        required: !Boolean(bodyParameters.optional)
+        required: !Boolean(bodyParameters.optional),
+        description: getDoc(program, bodyParameters)
       }
     ]
   };
