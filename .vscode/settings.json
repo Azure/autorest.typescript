@@ -10,6 +10,5 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "cadl.cadl-server.path": "${workspaceRoot}/common/temp/node_modules/.pnpm/@cadl-lang+compiler@0.34.0/node_modules/@cadl-lang/compiler"
+  }
 }

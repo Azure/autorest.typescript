@@ -424,7 +424,6 @@ export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdH
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaders {
-    // (undocumented)
     accept: "application/json";
 }
 
@@ -466,7 +465,6 @@ export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaderPa
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaders {
-    // (undocumented)
     accept: "application/json";
 }
 
@@ -508,7 +506,6 @@ export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeade
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaders {
-    // (undocumented)
     accept: "application/json";
 }
 
@@ -550,7 +547,6 @@ export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDe
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaders {
-    // (undocumented)
     accept: "application/json";
 }
 
@@ -572,7 +568,6 @@ export interface PlayFabAuthenticationOperationsGetEntityToken200Response extend
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsGetEntityTokenBodyParam {
-    // (undocumented)
     body: GetEntityTokenRequest;
 }
 
@@ -592,7 +587,6 @@ export interface PlayFabAuthenticationOperationsGetEntityTokenHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsGetEntityTokenHeaders {
-    // (undocumented)
     accept: "application/json";
 }
 
@@ -634,9 +628,7 @@ export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaderP
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -689,9 +681,7 @@ export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaderParam 
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -747,9 +737,7 @@ export interface PlayFabEventsOperationsWriteEventsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabEventsOperationsWriteEventsHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -771,7 +759,6 @@ export interface PlayFabFileOperationsAbortFileUploads200Response extends HttpRe
 
 // @public (undocumented)
 export interface PlayFabFileOperationsAbortFileUploadsBodyParam {
-    // (undocumented)
     body: AbortFileUploadsRequest;
 }
 
@@ -791,9 +778,7 @@ export interface PlayFabFileOperationsAbortFileUploadsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsAbortFileUploadsHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -815,7 +800,6 @@ export interface PlayFabFileOperationsDeleteFiles200Response extends HttpRespons
 
 // @public (undocumented)
 export interface PlayFabFileOperationsDeleteFilesBodyParam {
-    // (undocumented)
     body: DeleteFilesRequest;
 }
 
@@ -835,9 +819,7 @@ export interface PlayFabFileOperationsDeleteFilesHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsDeleteFilesHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -859,7 +841,6 @@ export interface PlayFabFileOperationsFinalizeFileUploads200Response extends Htt
 
 // @public (undocumented)
 export interface PlayFabFileOperationsFinalizeFileUploadsBodyParam {
-    // (undocumented)
     body: FinalizeFileUploadsRequest;
 }
 
@@ -879,9 +860,7 @@ export interface PlayFabFileOperationsFinalizeFileUploadsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsFinalizeFileUploadsHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -903,7 +882,6 @@ export interface PlayFabFileOperationsGetFiles200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsGetFilesBodyParam {
-    // (undocumented)
     body: GetFilesRequest;
 }
 
@@ -923,9 +901,7 @@ export interface PlayFabFileOperationsGetFilesHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsGetFilesHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -947,7 +923,6 @@ export interface PlayFabFileOperationsGetObjects200Response extends HttpResponse
 
 // @public (undocumented)
 export interface PlayFabFileOperationsGetObjectsBodyParam {
-    // (undocumented)
     body: GetObjectsRequest;
 }
 
@@ -967,9 +942,7 @@ export interface PlayFabFileOperationsGetObjectsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsGetObjectsHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -991,7 +964,6 @@ export interface PlayFabFileOperationsInitiateFileUploads200Response extends Htt
 
 // @public (undocumented)
 export interface PlayFabFileOperationsInitiateFileUploadsBodyParam {
-    // (undocumented)
     body: InitiateFileUploadsRequest;
 }
 
@@ -1011,9 +983,7 @@ export interface PlayFabFileOperationsInitiateFileUploadsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsInitiateFileUploadsHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -1046,7 +1016,6 @@ export interface PlayFabFileOperationsSetObjects200Response extends HttpResponse
 
 // @public (undocumented)
 export interface PlayFabFileOperationsSetObjectsBodyParam {
-    // (undocumented)
     body: SetObjectsRequest;
 }
 
@@ -1066,9 +1035,7 @@ export interface PlayFabFileOperationsSetObjectsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsSetObjectsHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 
@@ -1110,9 +1077,7 @@ export interface PlayFabProfilesOperationsLoginPlayerHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabProfilesOperationsLoginPlayerHeaders {
-    // (undocumented)
     accept: "application/json";
-    // (undocumented)
     xEntityToken: string;
 }
 

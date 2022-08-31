@@ -31,7 +31,6 @@ export interface ConfidentialLedgerCreateOrUpdateUser200Response extends HttpRes
 
 // @public (undocumented)
 export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
-    // (undocumented)
     body: LedgerUser;
 }
 
@@ -60,7 +59,6 @@ export interface ConfidentialLedgerCreateOrUpdateUserQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerCreateOrUpdateUserQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -89,7 +87,6 @@ export interface ConfidentialLedgerDeleteUserQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerDeleteUserQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -118,7 +115,6 @@ export interface ConfidentialLedgerGetConsortiumMembersQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetConsortiumMembersQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -147,7 +143,6 @@ export interface ConfidentialLedgerGetConstitutionQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetConstitutionQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -176,9 +171,7 @@ export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
-    // (undocumented)
     collectionId?: string;
 }
 
@@ -207,7 +200,6 @@ export interface ConfidentialLedgerGetEnclaveQuotesQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetEnclaveQuotesQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -236,9 +228,7 @@ export interface ConfidentialLedgerGetLedgerEntryQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetLedgerEntryQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
-    // (undocumented)
     collectionId?: string;
 }
 
@@ -267,7 +257,6 @@ export interface ConfidentialLedgerGetReceiptQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetReceiptQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -296,7 +285,6 @@ export interface ConfidentialLedgerGetTransactionStatusQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetTransactionStatusQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -325,7 +313,6 @@ export interface ConfidentialLedgerGetUserQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetUserQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -356,7 +343,6 @@ export interface ConfidentialLedgerListCollectionsQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerListCollectionsQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
 }
 
@@ -414,9 +400,7 @@ export interface ConfidentialLedgerPostLedgerEntryQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerPostLedgerEntryQueryParamProperties {
-    // (undocumented)
     apiVersion: string;
-    // (undocumented)
     collectionId?: string;
 }
 

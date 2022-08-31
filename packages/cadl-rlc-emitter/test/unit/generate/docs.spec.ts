@@ -2,10 +2,6 @@ import { assert } from "chai";
 import { emitModelsFromCadl, emitParameterFromCadl } from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
-// function assertEqualContentLocal(actual: string, expected: string) {
-//   assert.strictEqual(actual, expected);
-// }
-
 describe("Doc generation testing", () => {
   describe("input/output models", () => {
     it("should generate model-level and property-level docs in input model", async () => {
