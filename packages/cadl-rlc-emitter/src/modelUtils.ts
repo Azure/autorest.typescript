@@ -413,6 +413,7 @@ function getSchemaForModel(
       required: true,
       description: `Discriminator property for ${model.name}.`
     };
+    modelSchema.isPolyParent = true;
   }
 
   // applyExternalDocs(model, modelSchema);
@@ -432,6 +433,7 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
+    propSchema.usage = usage;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
     if (model.baseModel) {
@@ -447,10 +449,9 @@ function getSchemaForModel(
       continue;
     }
     if (description) {
-      newPropSchema['description'] = description;
+      newPropSchema["description"] = description;
     }
     modelSchema.properties[name] = newPropSchema;
-
 
     if (prop.default) {
       // modelSchema.properties[name]['default'] = getDefaultValue(program, prop.default);
@@ -513,11 +514,11 @@ function mapCadlTypeToTypeScript(
 ): any {
   switch (cadlType.kind) {
     case "Number":
-      return { type: cadlType.value };
+      return { type: `${cadlType.value}` };
     case "String":
       return { type: `"${cadlType.value}"` };
     case "Boolean":
-      return { type: cadlType.value };
+      return { type: `${cadlType.value}` };
     case "Model":
     case "ModelProperty":
       return mapCadlIntrinsicModelToTypeScript(program, cadlType, usage);
@@ -669,7 +670,28 @@ function mapCadlIntrinsicModelToTypeScript(
             schema.outputTypeName = `Array<${schema.items.name}Output>`;
           }
         } else {
-          schema.typeName = `${schema.items.type}[]`;
+          if (schema.items.typeName) {
+            schema.typeName = schema.items.typeName
+              .split("|")
+              .map((typeName: string) => {
+                return `${typeName}[]`;
+              })
+              .join(" | ");
+            if (
+              schema.items.outputTypeName &&
+              usage &&
+              usage.includes(SchemaContext.Output)
+            ) {
+              schema.outputTypeName = schema.items.outputTypeName
+                .split("|")
+                .map((typeName: string) => {
+                  return `${typeName}[]`;
+                })
+                .join(" | ");
+            }
+          } else {
+            schema.typeName = `${schema.items.type}[]`;
+          }
         }
       }
 
@@ -745,11 +767,29 @@ function mapCadlIntrinsicModelToTypeScript(
     case "boolean":
       return { type: "boolean", description };
     case "plainDate":
-      return { type: "string", format: "date", description };
+      return {
+        type: "string",
+        format: "date",
+        description,
+        typeName: "Date | string",
+        outputTypeName: "string"
+      };
     case "zonedDateTime":
-      return { type: "string", format: "date-time", description };
+      return {
+        type: "string",
+        format: "date-time",
+        description,
+        typeName: "Date | string",
+        outputTypeName: "string"
+      };
     case "plainTime":
-      return { type: "string", format: "time", description };
+      return {
+        type: "string",
+        format: "time",
+        description,
+        typeName: "Date | string",
+        outputTypeName: "string"
+      };
     case "duration":
       return { type: "string", format: "duration", description };
   }
