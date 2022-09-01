@@ -1,10 +1,12 @@
 import {
+  buildClientDefinitions,
   buildParameterTypes,
   buildSchemaTypes,
   ImportKind
 } from "@azure-tools/rlc-codegen";
 import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
 import { transformSchemas } from "../../src/transform/transformSchemas.js";
+import { transformPaths } from "../../src/transform/transformPaths.js";
 import { rlcEmitterFor } from "./testUtil.js";
 
 export async function emitModelsFromCadl(cadlContent: string) {
@@ -28,5 +30,16 @@ export async function emitParameterFromCadl(cadlContent: string) {
     libraryName: "test",
     schemas: [],
     parameters
+  });
+}
+
+export async function emitClientDefinitionFromCadl(cadlContent: string) {
+  const program = await rlcEmitterFor(cadlContent);
+  const paths = transformPaths(program);
+  return buildClientDefinitions({
+    srcPath: "",
+    libraryName: "test",
+    schemas: [],
+    paths
   });
 }

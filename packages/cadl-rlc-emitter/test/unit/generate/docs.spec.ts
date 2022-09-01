@@ -1,9 +1,13 @@
 import { assert } from "chai";
-import { emitModelsFromCadl, emitParameterFromCadl } from "../emitUtil.js";
+import {
+  emitClientDefinitionFromCadl,
+  emitModelsFromCadl,
+  emitParameterFromCadl
+} from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
 describe("Doc generation testing", () => {
-  describe("input/output models", () => {
+  describe("docs in models.ts & outputModels.ts", () => {
     it("should generate model-level and property-level docs in input model", async () => {
       const models = await emitModelsFromCadl(`
         @doc("A simple model with doc")  
@@ -27,7 +31,7 @@ describe("Doc generation testing", () => {
     });
   });
 
-  describe("descriptions in parameters.ts", () => {
+  describe("docs in parameters.ts", () => {
     it("should generate body description", async () => {
       const parameters = await emitParameterFromCadl(
         `
@@ -162,4 +166,43 @@ describe("Doc generation testing", () => {
       );
     });
   });
+
+  describe("docs in clientDefinitions.ts", () => {
+    it.only("should generate operation description", async () => {
+      const clientDef = await emitClientDefinitionFromCadl(
+        `
+        @summary("This is a summary")
+        @doc("This is the longer description")
+        op read(): {};
+        `
+      );
+      assert.ok(clientDef);
+      assertEqualContent(
+        clientDef?.content!,
+        `
+        import { ReadParameters } from "./parameters";
+        import { Read204Response } from "./responses";
+        import { Client, StreamableMethod } from "@azure-rest/core-client";
+  
+        export interface Read {
+            /** This is the longer description */
+            get(options?: ReadParameters): StreamableMethod<Read204Response>;
+        }
+  
+        export interface Routes {
+            /** Resource for '/' has methods for the following verbs: get */
+            (path: "/"): Read;
+        }
+        
+        export type testClient = Client & {
+                path: Routes;
+        };
+      `
+      );
+    });
+  });
 });
+
+// export function assertEqualContent2(actual: string, expected: string) {
+//   assert.strictEqual(actual, expected);
+// }
