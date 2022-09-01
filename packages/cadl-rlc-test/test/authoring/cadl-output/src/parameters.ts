@@ -3,7 +3,7 @@ import { TrainingJobOptions, SwapDeploymentsOptions } from "./models";
 
 export interface ProjectsCreateOrUpdateQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ProjectsCreateOrUpdateQueryParam {
@@ -21,7 +21,7 @@ export type ProjectsCreateOrUpdateParameters =
 
 export interface ProjectsGetQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ProjectsGetQueryParam {
@@ -32,7 +32,7 @@ export type ProjectsGetParameters = ProjectsGetQueryParam & RequestParameters;
 
 export interface ProjectsDeleteQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ProjectsDeleteQueryParam {
@@ -47,7 +47,7 @@ export interface ProjectsListQueryParamProperties {
   skip?: number;
   maxpagesize?: number;
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ProjectsListQueryParam {
@@ -59,7 +59,7 @@ export type ProjectsListParameters = ProjectsListQueryParam & RequestParameters;
 export interface ProjectsExportQueryParamProperties {
   projectFileVersion: string;
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ProjectsExportQueryParam {
@@ -71,7 +71,7 @@ export type ProjectsExportParameters = ProjectsExportQueryParam &
 
 export interface ProjectsImportxQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ProjectsImportxQueryParam {
@@ -87,7 +87,7 @@ export interface ProjectsTrainBodyParam {
 
 export interface ProjectsTrainQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ProjectsTrainQueryParam {
@@ -100,7 +100,7 @@ export type ProjectsTrainParameters = ProjectsTrainQueryParam &
 
 export interface DeploymentsGetDeploymentQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface DeploymentsGetDeploymentQueryParam {
@@ -112,7 +112,7 @@ export type DeploymentsGetDeploymentParameters =
 
 export interface DeploymentsDeployProjectQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface DeploymentsDeployProjectQueryParam {
@@ -124,7 +124,7 @@ export type DeploymentsDeployProjectParameters =
 
 export interface DeploymentsDeleteDeploymentQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface DeploymentsDeleteDeploymentQueryParam {
@@ -136,7 +136,7 @@ export type DeploymentsDeleteDeploymentParameters =
 
 export interface DeploymentsListQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface DeploymentsListQueryParam {
@@ -153,7 +153,7 @@ export interface DeploymentsSwapDeploymentsBodyParam {
 
 export interface DeploymentsSwapDeploymentsQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface DeploymentsSwapDeploymentsQueryParam {
@@ -167,7 +167,7 @@ export type DeploymentsSwapDeploymentsParameters =
 
 export interface JobsGetDeploymentStatusQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface JobsGetDeploymentStatusQueryParam {
@@ -179,7 +179,7 @@ export type JobsGetDeploymentStatusParameters =
 
 export interface JobsGetSwapDeploymentsStatusQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface JobsGetSwapDeploymentsStatusQueryParam {
@@ -194,7 +194,7 @@ export interface GlobalGetSupportedLanguagesQueryParamProperties {
   skip?: number;
   maxpagesize?: number;
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface GlobalGetSupportedLanguagesQueryParam {
@@ -209,7 +209,7 @@ export interface GlobalListTrainingConfigVersionsQueryParamProperties {
   skip?: number;
   maxpagesize?: number;
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface GlobalListTrainingConfigVersionsQueryParam {

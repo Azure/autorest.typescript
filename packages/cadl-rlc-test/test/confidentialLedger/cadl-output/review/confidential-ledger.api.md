@@ -59,7 +59,7 @@ export interface ConfidentialLedgerCreateOrUpdateUserQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerCreateOrUpdateUserQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -87,7 +87,7 @@ export interface ConfidentialLedgerDeleteUserQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerDeleteUserQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -115,7 +115,7 @@ export interface ConfidentialLedgerGetConsortiumMembersQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetConsortiumMembersQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -143,7 +143,7 @@ export interface ConfidentialLedgerGetConstitutionQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetConstitutionQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -171,7 +171,7 @@ export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
     collectionId?: string;
 }
 
@@ -200,7 +200,7 @@ export interface ConfidentialLedgerGetEnclaveQuotesQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetEnclaveQuotesQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -228,7 +228,7 @@ export interface ConfidentialLedgerGetLedgerEntryQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetLedgerEntryQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
     collectionId?: string;
 }
 
@@ -257,7 +257,7 @@ export interface ConfidentialLedgerGetReceiptQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetReceiptQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -285,7 +285,7 @@ export interface ConfidentialLedgerGetTransactionStatusQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetTransactionStatusQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -313,7 +313,7 @@ export interface ConfidentialLedgerGetUserQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetUserQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -343,7 +343,7 @@ export interface ConfidentialLedgerListCollectionsQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerListCollectionsQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -400,7 +400,7 @@ export interface ConfidentialLedgerPostLedgerEntryQueryParam {
 
 // @public (undocumented)
 export interface ConfidentialLedgerPostLedgerEntryQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
     collectionId?: string;
 }
 

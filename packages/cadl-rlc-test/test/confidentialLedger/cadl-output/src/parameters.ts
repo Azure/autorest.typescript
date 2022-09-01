@@ -3,7 +3,7 @@ import { LedgerEntry, LedgerUser } from "./models";
 
 export interface ConfidentialLedgerListCollectionsQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerListCollectionsQueryParam {
@@ -15,7 +15,7 @@ export type ConfidentialLedgerListCollectionsParameters =
 
 export interface ConfidentialLedgerGetEnclaveQuotesQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerGetEnclaveQuotesQueryParam {
@@ -27,7 +27,7 @@ export type ConfidentialLedgerGetEnclaveQuotesParameters =
 
 export interface ConfidentialLedgerGetConstitutionQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerGetConstitutionQueryParam {
@@ -39,7 +39,7 @@ export type ConfidentialLedgerGetConstitutionParameters =
 
 export interface ConfidentialLedgerGetConsortiumMembersQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerGetConsortiumMembersQueryParam {
@@ -55,7 +55,7 @@ export interface ConfidentialLedgerPostLedgerEntryBodyParam {
 
 export interface ConfidentialLedgerPostLedgerEntryQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
   /** The collection id. */
   collectionId?: string;
 }
@@ -71,7 +71,7 @@ export type ConfidentialLedgerPostLedgerEntryParameters =
 
 export interface ConfidentialLedgerGetLedgerEntryQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
   /** The collection id. */
   collectionId?: string;
 }
@@ -85,7 +85,7 @@ export type ConfidentialLedgerGetLedgerEntryParameters =
 
 export interface ConfidentialLedgerGetReceiptQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerGetReceiptQueryParam {
@@ -97,7 +97,7 @@ export type ConfidentialLedgerGetReceiptParameters =
 
 export interface ConfidentialLedgerGetTransactionStatusQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerGetTransactionStatusQueryParam {
@@ -109,7 +109,7 @@ export type ConfidentialLedgerGetTransactionStatusParameters =
 
 export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
   /** The collection id. */
   collectionId?: string;
 }
@@ -123,7 +123,7 @@ export type ConfidentialLedgerGetCurrentLedgerEntryParameters =
 
 export interface ConfidentialLedgerDeleteUserQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerDeleteUserQueryParam {
@@ -135,7 +135,7 @@ export type ConfidentialLedgerDeleteUserParameters =
 
 export interface ConfidentialLedgerGetUserQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerGetUserQueryParam {
@@ -152,7 +152,7 @@ export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
 
 export interface ConfidentialLedgerCreateOrUpdateUserQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface ConfidentialLedgerCreateOrUpdateUserQueryParam {

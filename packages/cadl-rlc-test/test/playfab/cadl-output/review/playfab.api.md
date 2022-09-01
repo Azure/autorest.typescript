@@ -628,8 +628,8 @@ export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaderP
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -681,8 +681,8 @@ export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaderParam 
 
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -737,8 +737,8 @@ export interface PlayFabEventsOperationsWriteEventsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabEventsOperationsWriteEventsHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -778,8 +778,8 @@ export interface PlayFabFileOperationsAbortFileUploadsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsAbortFileUploadsHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -819,8 +819,8 @@ export interface PlayFabFileOperationsDeleteFilesHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsDeleteFilesHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -860,8 +860,8 @@ export interface PlayFabFileOperationsFinalizeFileUploadsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsFinalizeFileUploadsHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -901,8 +901,8 @@ export interface PlayFabFileOperationsGetFilesHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsGetFilesHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -942,8 +942,8 @@ export interface PlayFabFileOperationsGetObjectsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsGetObjectsHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -983,8 +983,8 @@ export interface PlayFabFileOperationsInitiateFileUploadsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsInitiateFileUploadsHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -1035,8 +1035,8 @@ export interface PlayFabFileOperationsSetObjectsHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabFileOperationsSetObjectsHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
@@ -1077,8 +1077,8 @@ export interface PlayFabProfilesOperationsLoginPlayerHeaderParam {
 
 // @public (undocumented)
 export interface PlayFabProfilesOperationsLoginPlayerHeaders {
+    "x-entity-token": string;
     accept: "application/json";
-    xEntityToken: string;
 }
 
 // @public (undocumented)
