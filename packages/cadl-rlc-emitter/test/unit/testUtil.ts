@@ -3,6 +3,9 @@ import { createTestHost } from "@cadl-lang/compiler/testing";
 import { TestHost } from "@cadl-lang/compiler/testing";
 import { RestTestLibrary } from "@cadl-lang/rest/testing";
 import { assert } from "chai";
+import { prettierTypeScriptOptions } from "../../src/lib.js";
+import { format } from "prettier";
+
 export async function createRLCEmitterTestHost() {
   return createTestHost({
     libraries: [RestTestLibrary]
@@ -25,5 +28,8 @@ export async function rlcEmitterFor(code: string): Promise<Program> {
 }
 
 export function assertEqualContent(actual: string, expected: string) {
-  assert.strictEqual(actual.replace(/\s/g, ""), expected.replace(/\s/g, ""));
+  assert.strictEqual(
+    format(actual, prettierTypeScriptOptions),
+    format(expected, prettierTypeScriptOptions)
+  );
 }

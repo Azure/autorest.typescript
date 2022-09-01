@@ -75,13 +75,16 @@ describe("Doc generation testing", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
+        
         export interface ListQueryParamProperties {
             /** Input your filter condition. */
             filter: string;
         }
+        
         export interface ListQueryParam {
             queryParameters: ListQueryParamProperties;
         }
+        
         export type ListParameters = ListQueryParam & RequestParameters;
       `
       );

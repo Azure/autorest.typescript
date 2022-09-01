@@ -8,8 +8,6 @@ import { transformToParameterTypes } from "../../src/transform/transformParamete
 import { transformSchemas } from "../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
 import { rlcEmitterFor } from "./testUtil.js";
-import { prettierTypeScriptOptions } from "../../src/lib.js";
-import { format } from "prettier";
 
 export async function emitModelsFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
@@ -26,17 +24,13 @@ export async function emitParameterFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
   const importSet = new Map<ImportKind, Set<string>>();
   const parameters = transformToParameterTypes(program, importSet);
-  const file = buildParameterTypes({
+  return buildParameterTypes({
     srcPath: "",
     paths: {},
     libraryName: "test",
     schemas: [],
     parameters
   });
-  if (file) {
-    file.content = format(file?.content!, prettierTypeScriptOptions);
-  }
-  return file;
 }
 
 export async function emitClientDefinitionFromCadl(cadlContent: string) {
