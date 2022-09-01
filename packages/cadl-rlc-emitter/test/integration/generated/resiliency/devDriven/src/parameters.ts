@@ -13,7 +13,7 @@ export type DevDrivenPostModelParameters = DevDrivenPostModelBodyParam &
 
 export interface DevDrivenGetPagesQueryParamProperties {
   /** The API version to use for this operation. */
-  apiVersion: string;
+  "api-version": string;
 }
 
 export interface DevDrivenGetPagesQueryParam {

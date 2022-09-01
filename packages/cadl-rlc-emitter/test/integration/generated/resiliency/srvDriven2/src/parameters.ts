@@ -3,7 +3,7 @@ import { PostInput } from "./models";
 
 export interface ParamsHeadNoParamsQueryParamProperties {
   /** I'm a new input optional parameter */
-  newParameter?: string;
+  new_parameter?: string;
 }
 
 export interface ParamsHeadNoParamsQueryParam {
@@ -17,7 +17,7 @@ export interface ParamsGetRequiredQueryParamProperties {
   /** I am a required parameter */
   parameter: string;
   /** I'm a new input optional parameter */
-  newParameter?: string;
+  new_parameter?: string;
 }
 
 export interface ParamsGetRequiredQueryParam {
@@ -33,7 +33,7 @@ export interface ParamsPutRequiredOptionalQueryParamProperties {
   /** I am an optional parameter */
   optionalParam?: string;
   /** I'm a new input optional parameter */
-  newParameter?: string;
+  new_parameter?: string;
 }
 
 export interface ParamsPutRequiredOptionalQueryParam {
@@ -56,7 +56,7 @@ export interface ParamsGetOptionalQueryParamProperties {
   /** I am an optional parameter */
   optionalParam?: string;
   /** I'm a new input optional parameter */
-  newParameter?: string;
+  new_parameter?: string;
 }
 
 export interface ParamsGetOptionalQueryParam {

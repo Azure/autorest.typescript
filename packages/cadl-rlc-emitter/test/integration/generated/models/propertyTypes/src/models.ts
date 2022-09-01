@@ -31,13 +31,13 @@ export interface FloatProperty {
 /** Model with a datetime property */
 export interface DatetimeProperty {
   /** Property */
-  property: string;
+  property: Date | string;
 }
 
 /** Model with a duration property */
 export interface DurationProperty {
   /** Property */
-  property: string;
+  property: Date | string;
 }
 
 /** Model with enum properties */
