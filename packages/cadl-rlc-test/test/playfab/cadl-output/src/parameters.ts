@@ -20,10 +20,20 @@ import {
 } from "./models";
 
 export interface PlayFabAuthenticationOperationsGetEntityTokenHeaders {
+  /** Accept header */
   accept: "application/json";
 }
 
 export interface PlayFabAuthenticationOperationsGetEntityTokenBodyParam {
+  /**
+   * This API must be called with X-SecretKey, X-Authentication or X-EntityToken
+   * headers. An optional EntityKey may be included to attempt to set the resulting
+   * EntityToken to a specific entity, however the entity must be a relation of the
+   * caller, such as the master_player_account of a character. If sending
+   * X-EntityToken the account will be marked as freshly logged in and will issue a
+   * new token. If using X-Authentication or X-EntityToken the header must still be
+   * valid and cannot be expired or revoked.
+   */
   body: GetEntityTokenRequest;
 }
 
@@ -38,6 +48,7 @@ export type PlayFabAuthenticationOperationsGetEntityTokenParameters =
     RequestParameters;
 
 export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaders {
+  /** Accept header */
   accept: "application/json";
 }
 
@@ -56,6 +67,7 @@ export type PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdParame
     RequestParameters;
 
 export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaders {
+  /** Accept header */
   accept: "application/json";
 }
 
@@ -74,6 +86,7 @@ export type PlayFabAuthenticationOperationsAuthenticateWithCustomIdParameters =
     RequestParameters;
 
 export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaders {
+  /** Accept header */
   accept: "application/json";
 }
 
@@ -92,6 +105,7 @@ export type PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdParameters
     RequestParameters;
 
 export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaders {
+  /** Accept header */
   accept: "application/json";
 }
 
@@ -110,7 +124,9 @@ export type PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceI
     RequestParameters;
 
 export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
@@ -129,7 +145,9 @@ export type PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters =
     RequestParameters;
 
 export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
@@ -148,11 +166,14 @@ export type PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters =
     RequestParameters;
 
 export interface PlayFabFileOperationsAbortFileUploadsHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
 export interface PlayFabFileOperationsAbortFileUploadsBodyParam {
+  /** Aborts the pending upload of the requested files. */
   body: AbortFileUploadsRequest;
 }
 
@@ -166,11 +187,14 @@ export type PlayFabFileOperationsAbortFileUploadsParameters =
     RequestParameters;
 
 export interface PlayFabFileOperationsDeleteFilesHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
 export interface PlayFabFileOperationsDeleteFilesBodyParam {
+  /** Deletes the requested files from the entity's profile. */
   body: DeleteFilesRequest;
 }
 
@@ -184,11 +208,17 @@ export type PlayFabFileOperationsDeleteFilesParameters =
     RequestParameters;
 
 export interface PlayFabFileOperationsFinalizeFileUploadsHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
 export interface PlayFabFileOperationsFinalizeFileUploadsBodyParam {
+  /**
+   * Finalizes the upload of the requested files. Verifies that the files have been
+   * successfully uploaded and moves the file pointers from pending to live.
+   */
   body: FinalizeFileUploadsRequest;
 }
 
@@ -203,11 +233,19 @@ export type PlayFabFileOperationsFinalizeFileUploadsParameters =
     RequestParameters;
 
 export interface PlayFabFileOperationsGetFilesHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
 export interface PlayFabFileOperationsGetFilesBodyParam {
+  /**
+   * Returns URLs that may be used to download the files for a profile for a limited
+   * length of time. Only returns files that have been successfully uploaded, files
+   * that are still pending will either return the old value, if it exists, or
+   * nothing.
+   */
   body: GetFilesRequest;
 }
 
@@ -221,11 +259,18 @@ export type PlayFabFileOperationsGetFilesParameters =
     RequestParameters;
 
 export interface PlayFabFileOperationsInitiateFileUploadsHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
 export interface PlayFabFileOperationsInitiateFileUploadsBodyParam {
+  /**
+   * Returns URLs that may be used to upload the files for a profile 5 minutes.
+   * After using the upload calls FinalizeFileUploads must be called to move the
+   * file status from pending to live.
+   */
   body: InitiateFileUploadsRequest;
 }
 
@@ -240,11 +285,14 @@ export type PlayFabFileOperationsInitiateFileUploadsParameters =
     RequestParameters;
 
 export interface PlayFabFileOperationsGetObjectsHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
 export interface PlayFabFileOperationsGetObjectsBodyParam {
+  /** Gets JSON objects from an entity profile and returns it. */
   body: GetObjectsRequest;
 }
 
@@ -258,11 +306,22 @@ export type PlayFabFileOperationsGetObjectsParameters =
     RequestParameters;
 
 export interface PlayFabFileOperationsSetObjectsHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
 export interface PlayFabFileOperationsSetObjectsBodyParam {
+  /**
+   * Sets JSON objects on the requested entity profile. May include a version number
+   * to be used to perform optimistic concurrency operations during update. If the
+   * current version differs from the version in the request the request will be
+   * ignored. If no version is set on the request then the value will always be
+   * updated if the values differ. Using the version value does not guarantee a
+   * write though, ConcurrentEditError may still occur if multiple clients are
+   * attempting to update the same profile.
+   */
   body: SetObjectsRequest;
 }
 
@@ -276,7 +335,9 @@ export type PlayFabFileOperationsSetObjectsParameters =
     RequestParameters;
 
 export interface PlayFabEventsOperationsWriteEventsHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
@@ -294,7 +355,9 @@ export type PlayFabEventsOperationsWriteEventsParameters =
     RequestParameters;
 
 export interface PlayFabProfilesOperationsLoginPlayerHeaders {
+  /** Token */
   xEntityToken: string;
+  /** Accept header */
   accept: "application/json";
 }
 
