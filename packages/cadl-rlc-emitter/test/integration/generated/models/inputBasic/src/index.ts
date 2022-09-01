@@ -1,6 +1,6 @@
-import InputBasicClient from "./inputBasicClient";
+import InputBasic from "./inputBasic";
 
-export * from "./inputBasicClient";
+export * from "./inputBasic";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -8,4 +8,4 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 
-export default InputBasicClient;
+export default InputBasic;

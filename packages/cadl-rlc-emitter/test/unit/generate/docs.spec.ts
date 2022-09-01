@@ -1,9 +1,13 @@
 import { assert } from "chai";
-import { emitModelsFromCadl, emitParameterFromCadl } from "../emitUtil.js";
+import {
+  emitClientDefinitionFromCadl,
+  emitModelsFromCadl,
+  emitParameterFromCadl
+} from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
 describe("Doc generation testing", () => {
-  describe("input/output models", () => {
+  describe("docs in models.ts & outputModels.ts", () => {
     it("should generate model-level and property-level docs in input model", async () => {
       const models = await emitModelsFromCadl(`
         @doc("A simple model with doc")  
@@ -27,7 +31,7 @@ describe("Doc generation testing", () => {
     });
   });
 
-  describe("descriptions in parameters.ts", () => {
+  describe("docs in parameters.ts", () => {
     it("should generate body description", async () => {
       const parameters = await emitParameterFromCadl(
         `
@@ -71,18 +75,21 @@ describe("Doc generation testing", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
+        
         export interface ListQueryParamProperties {
             /** Input your filter condition. */
             filter: string;
         }
+        
         export interface ListQueryParam {
             queryParameters: ListQueryParamProperties;
         }
+        
         export type ListParameters = ListQueryParam & RequestParameters;
       `
       );
     });
-    xit("should generate header description with custom name", async () => {
+    it("should generate header description with custom name", async () => {
       const parameters = await emitParameterFromCadl(
         `
         op test(@doc("test header") @header("x-my-header") MyHeader: string): string;
@@ -130,7 +137,7 @@ describe("Doc generation testing", () => {
       );
     });
     // issue tracked https://github.com/Azure/autorest.typescript/issues/1525
-    xit("should generate apiVersion description with 'api-version'", async () => {
+    it("should generate apiVersion description with 'api-version'", async () => {
       const parameters = await emitParameterFromCadl(
         `
         @doc("The ApiVersion query parameter.")
@@ -158,6 +165,41 @@ describe("Doc generation testing", () => {
       }
       
       export type TestParameters = TestQueryParam & RequestParameters;
+      `
+      );
+    });
+  });
+
+  describe("docs in clientDefinitions.ts", () => {
+    it("should generate operation description", async () => {
+      const clientDef = await emitClientDefinitionFromCadl(
+        `
+        @summary("This is a summary")
+        @doc("This is the longer description")
+        op read(): {};
+        `
+      );
+      assert.ok(clientDef);
+      assertEqualContent(
+        clientDef?.content!,
+        `
+        import { ReadParameters } from "./parameters";
+        import { Read204Response } from "./responses";
+        import { Client, StreamableMethod } from "@azure-rest/core-client";
+  
+        export interface Read {
+            /** This is the longer description */
+            get(options?: ReadParameters): StreamableMethod<Read204Response>;
+        }
+  
+        export interface Routes {
+            /** Resource for '/' has methods for the following verbs: get */
+            (path: "/"): Read;
+        }
+        
+        export type testClient = Client & {
+                path: Routes;
+        };
       `
       );
     });

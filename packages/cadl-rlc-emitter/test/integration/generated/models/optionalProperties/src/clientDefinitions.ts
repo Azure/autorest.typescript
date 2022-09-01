@@ -5,11 +5,8 @@ import {
 } from "./parameters";
 import {
   OptionalPropertiesSendOptionalPropertyModel200Response,
-  OptionalPropertiesSendOptionalPropertyModelDefaultResponse,
   OptionalPropertiesGetOptionalPropertyModel200Response,
-  OptionalPropertiesGetOptionalPropertyModelDefaultResponse,
   OptionalPropertiesSetOptionalPropertyModel200Response,
-  OptionalPropertiesSetOptionalPropertyModelDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -17,43 +14,25 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface OptionalPropertiesOperations {
   sendOptionalPropertyModel(
     options?: OptionalPropertiesSendOptionalPropertyModelParameters
-  ): StreamableMethod<
-    | OptionalPropertiesSendOptionalPropertyModel200Response
-    | OptionalPropertiesSendOptionalPropertyModelDefaultResponse
-  >;
+  ): StreamableMethod<OptionalPropertiesSendOptionalPropertyModel200Response>;
   getOptionalPropertyModel(
     options?: OptionalPropertiesGetOptionalPropertyModelParameters
-  ): StreamableMethod<
-    | OptionalPropertiesGetOptionalPropertyModel200Response
-    | OptionalPropertiesGetOptionalPropertyModelDefaultResponse
-  >;
+  ): StreamableMethod<OptionalPropertiesGetOptionalPropertyModel200Response>;
   setOptionalPropertyModel(
     options?: OptionalPropertiesSetOptionalPropertyModelParameters
-  ): StreamableMethod<
-    | OptionalPropertiesSetOptionalPropertyModel200Response
-    | OptionalPropertiesSetOptionalPropertyModelDefaultResponse
-  >;
+  ): StreamableMethod<OptionalPropertiesSetOptionalPropertyModel200Response>;
 }
 
 export interface SendOptionalPropertyModel {
   post(
     options?: OptionalPropertiesSendOptionalPropertyModelParameters
-  ): StreamableMethod<
-    | OptionalPropertiesSendOptionalPropertyModel200Response
-    | OptionalPropertiesSendOptionalPropertyModelDefaultResponse
-  >;
+  ): StreamableMethod<OptionalPropertiesSendOptionalPropertyModel200Response>;
   get(
     options?: OptionalPropertiesGetOptionalPropertyModelParameters
-  ): StreamableMethod<
-    | OptionalPropertiesGetOptionalPropertyModel200Response
-    | OptionalPropertiesGetOptionalPropertyModelDefaultResponse
-  >;
+  ): StreamableMethod<OptionalPropertiesGetOptionalPropertyModel200Response>;
   put(
     options?: OptionalPropertiesSetOptionalPropertyModelParameters
-  ): StreamableMethod<
-    | OptionalPropertiesSetOptionalPropertyModel200Response
-    | OptionalPropertiesSetOptionalPropertyModelDefaultResponse
-  >;
+  ): StreamableMethod<OptionalPropertiesSetOptionalPropertyModel200Response>;
 }
 
 export interface Routes {

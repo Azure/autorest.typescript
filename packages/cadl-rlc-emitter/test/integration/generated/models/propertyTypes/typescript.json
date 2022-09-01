@@ -3,10 +3,10 @@
   "includeShortcuts": true,
   "addCredentials": false,
   "packageDetails": {
-    "name": "@msinternal/enum-properties",
+    "name": "@msinternal/property-types",
     "scopeName": "msinternal",
-    "nameWithoutScope": "enum-properties",
-    "description": "Enum Properties Test Service",
+    "nameWithoutScope": "property-types",
+    "description": "Property Types Test Service",
     "version": "1.0.0"
   },
   "isCadlTest": true

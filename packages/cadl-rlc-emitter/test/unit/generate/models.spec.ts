@@ -178,7 +178,7 @@ describe("Input/output model type", () => {
     it("should handle plainDate[] -> input 'Date[] | string[]' output type 'string[]'", async () => {
       const cadlType = "plainDate[]";
       const inputType = "Date[] | string[]";
-      const outputType = "string[]"
+      const outputType = "string[]";
       await verifyPropertyType(cadlType, inputType, { outputType });
     });
   });
@@ -206,7 +206,7 @@ describe("Input/output model type", () => {
           prop2:number;
         }`
       });
-    })
+    });
   });
   describe("object generation", () => {
     it("should handle basic model -> type/interface", async () => {
@@ -315,14 +315,17 @@ describe("Input/output model type", () => {
           weight?: number;
           "kind": "Pet" | "cat" | "dog";
         }
+
         export interface CatOutput extends PetOutputParent {
           kind: "cat";
           meow: number;
         }
+
         export interface DogOutput extends PetOutputParent {
           kind: "dog";
           bark: string;
         }
+
         export type PetOutput = CatOutput | DogOutput;`
       );
     });
@@ -396,9 +399,9 @@ describe("Input/output model type", () => {
           prop2:number;
         }`
       });
-    })
+    });
   });
-  
+
   describe("property definition correctness", () => {
     // TODO: the behavior isn't finalized
     // Issue track here https://github.com/Azure/autorest.typescript/issues/1524

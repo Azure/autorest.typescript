@@ -51,7 +51,6 @@ export function transformPaths(program: Program): Paths {
       paths[route.path]?.methods[route.verb]?.push(method);
     } else {
       paths[route.path] = {
-        // TODO: Description
         description: getDoc(program, route.operation) ?? "",
         name: route.operation.name || "Client",
         pathParameters: route.parameters.parameters

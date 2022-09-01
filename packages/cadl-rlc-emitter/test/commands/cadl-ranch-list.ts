@@ -13,18 +13,6 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "extensible-enums"
   },
   {
-    outputPath: "models/collectionsBasic",
-    inputPath: "models/collections-basic"
-  },
-  {
-    outputPath: "models/collectionsModels",
-    inputPath: "models/collections-models"
-  },
-  {
-    outputPath: "models/enumProperties",
-    inputPath: "models/enum-properties"
-  },
-  {
     outputPath: "models/inheritance",
     inputPath: "models/inheritance"
   },
@@ -41,12 +29,12 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "models/optional-properties"
   },
   {
-    outputPath: "models/outputBasic",
-    inputPath: "models/output-basic"
+    outputPath: "models/propertyTypes",
+    inputPath: "models/property-types"
   },
   {
-    outputPath: "models/primitiveProperties",
-    inputPath: "models/primitive-properties"
+    outputPath: "models/outputBasic",
+    inputPath: "models/output-basic"
   },
   {
     outputPath: "models/readonlyProperties",

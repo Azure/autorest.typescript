@@ -1,6 +1,6 @@
-import CollectionPropertiesBasicClient from "./collectionPropertiesBasicClient";
+import ModelsPropertyTypes from "./modelsPropertyTypes";
 
-export * from "./collectionPropertiesBasicClient";
+export * from "./modelsPropertyTypes";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -8,4 +8,4 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 
-export default CollectionPropertiesBasicClient;
+export default ModelsPropertyTypes;

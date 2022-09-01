@@ -1,10 +1,10 @@
-import OutputBasicClient from "./outputBasicClient";
+import OutputBasic from "./outputBasic";
 
-export * from "./outputBasicClient";
+export * from "./outputBasic";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./isUnexpected";
 export * from "./outputModels";
 
-export default OutputBasicClient;
+export default OutputBasic;

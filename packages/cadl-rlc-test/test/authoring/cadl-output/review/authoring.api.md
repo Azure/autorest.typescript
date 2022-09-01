@@ -82,7 +82,7 @@ export interface DeploymentsDeleteDeploymentQueryParam {
 
 // @public (undocumented)
 export interface DeploymentsDeleteDeploymentQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)
@@ -136,7 +136,7 @@ export interface DeploymentsDeployProjectQueryParam {
 
 // @public (undocumented)
 export interface DeploymentsDeployProjectQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)
@@ -173,7 +173,7 @@ export interface DeploymentsGetDeploymentQueryParam {
 
 // @public (undocumented)
 export interface DeploymentsGetDeploymentQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)
@@ -208,7 +208,7 @@ export interface DeploymentsListQueryParam {
 
 // @public (undocumented)
 export interface DeploymentsListQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -263,7 +263,7 @@ export interface DeploymentsSwapDeploymentsQueryParam {
 
 // @public (undocumented)
 export interface DeploymentsSwapDeploymentsQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -313,7 +313,7 @@ export interface GlobalGetSupportedLanguagesQueryParam {
 
 // @public (undocumented)
 export interface GlobalGetSupportedLanguagesQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
     // (undocumented)
     maxpagesize?: number;
     // (undocumented)
@@ -355,7 +355,7 @@ export interface GlobalListTrainingConfigVersionsQueryParam {
 
 // @public (undocumented)
 export interface GlobalListTrainingConfigVersionsQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
     // (undocumented)
     maxpagesize?: number;
     // (undocumented)
@@ -458,7 +458,7 @@ export interface JobsGetDeploymentStatusQueryParam {
 
 // @public (undocumented)
 export interface JobsGetDeploymentStatusQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)
@@ -493,7 +493,7 @@ export interface JobsGetSwapDeploymentsStatusQueryParam {
 
 // @public (undocumented)
 export interface JobsGetSwapDeploymentsStatusQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public
@@ -616,7 +616,7 @@ export interface ProjectsCreateOrUpdateQueryParam {
 
 // @public (undocumented)
 export interface ProjectsCreateOrUpdateQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)
@@ -654,7 +654,7 @@ export interface ProjectsDeleteQueryParam {
 
 // @public (undocumented)
 export interface ProjectsDeleteQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)
@@ -695,7 +695,7 @@ export interface ProjectsExportQueryParam {
 
 // @public (undocumented)
 export interface ProjectsExportQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
     // (undocumented)
     projectFileVersion: string;
 }
@@ -727,7 +727,7 @@ export interface ProjectsGetQueryParam {
 
 // @public (undocumented)
 export interface ProjectsGetQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)
@@ -768,7 +768,7 @@ export interface ProjectsImportxQueryParam {
 
 // @public (undocumented)
 export interface ProjectsImportxQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)
@@ -803,7 +803,7 @@ export interface ProjectsListQueryParam {
 
 // @public (undocumented)
 export interface ProjectsListQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
     // (undocumented)
     maxpagesize?: number;
     // (undocumented)
@@ -867,7 +867,7 @@ export interface ProjectsTrainQueryParam {
 
 // @public (undocumented)
 export interface ProjectsTrainQueryParamProperties {
-    apiVersion: string;
+    "api-version": string;
 }
 
 // @public (undocumented)

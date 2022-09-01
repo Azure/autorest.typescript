@@ -5,7 +5,7 @@ export default function createClient(
   options: ClientOptions = {}
 ): ResiliencyServiceDriven2Client {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
-  options.apiVersion = options.apiVersion ?? "1.1.0";
+  options.apiVersion = options.apiVersion ?? "1.0.0";
 
   const userAgentInfo = `azsdk-js-srv-driven-2-rest/1.0.0`;
   const userAgentPrefix =

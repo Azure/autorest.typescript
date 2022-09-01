@@ -125,7 +125,7 @@ export type PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceI
 
 export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -146,7 +146,7 @@ export type PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters =
 
 export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -167,7 +167,7 @@ export type PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters =
 
 export interface PlayFabFileOperationsAbortFileUploadsHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -188,7 +188,7 @@ export type PlayFabFileOperationsAbortFileUploadsParameters =
 
 export interface PlayFabFileOperationsDeleteFilesHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -209,7 +209,7 @@ export type PlayFabFileOperationsDeleteFilesParameters =
 
 export interface PlayFabFileOperationsFinalizeFileUploadsHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -234,7 +234,7 @@ export type PlayFabFileOperationsFinalizeFileUploadsParameters =
 
 export interface PlayFabFileOperationsGetFilesHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -260,7 +260,7 @@ export type PlayFabFileOperationsGetFilesParameters =
 
 export interface PlayFabFileOperationsInitiateFileUploadsHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -286,7 +286,7 @@ export type PlayFabFileOperationsInitiateFileUploadsParameters =
 
 export interface PlayFabFileOperationsGetObjectsHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -307,7 +307,7 @@ export type PlayFabFileOperationsGetObjectsParameters =
 
 export interface PlayFabFileOperationsSetObjectsHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -336,7 +336,7 @@ export type PlayFabFileOperationsSetObjectsParameters =
 
 export interface PlayFabEventsOperationsWriteEventsHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
@@ -356,7 +356,7 @@ export type PlayFabEventsOperationsWriteEventsParameters =
 
 export interface PlayFabProfilesOperationsLoginPlayerHeaders {
   /** Token */
-  xEntityToken: string;
+  "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }

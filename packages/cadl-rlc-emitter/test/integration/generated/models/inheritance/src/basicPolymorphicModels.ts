@@ -1,9 +1,9 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InheritanceClient } from "./clientDefinitions";
+import { BasicPolymorphicModelsClient } from "./clientDefinitions";
 
 export default function createClient(
   options: ClientOptions = {}
-): InheritanceClient {
+): BasicPolymorphicModelsClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "1.0.0";
 
@@ -19,16 +19,16 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as InheritanceClient;
+  const client = getClient(baseUrl, options) as BasicPolymorphicModelsClient;
 
   return {
     ...client,
     basicPolymorphicModels: {
       setValue: (options) => {
-        return client.path("/model").put(options);
+        return client.path("/polymorphic/model").put(options);
       },
       setValueWithPolymorphicProperty: (options) => {
-        return client.path("/property").put(options);
+        return client.path("/polymorphic/property").put(options);
       },
     },
   };
