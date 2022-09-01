@@ -1,13 +1,13 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { ResiliencyServiceDriven2Client } from "./clientDefinitions";
+import { InputBasicClient } from "./clientDefinitions";
 
 export default function createClient(
   options: ClientOptions = {}
-): ResiliencyServiceDriven2Client {
+): InputBasicClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "1.0.0";
 
-  const userAgentInfo = `azsdk-js-srv-driven-2-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-input-basic-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -19,7 +19,14 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ResiliencyServiceDriven2Client;
+  const client = getClient(baseUrl, options) as InputBasicClient;
 
-  return client;
+  return {
+    ...client,
+    inputBasic: {
+      getModel: (options) => {
+        return client.path("/input-basic/models").get(options);
+      },
+    },
+  };
 }

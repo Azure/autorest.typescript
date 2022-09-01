@@ -58,12 +58,12 @@ export interface CatsGetCats {
 }
 
 export interface Routes {
-  /** Resource for '/dogs' has methods for the following verbs: get */
-  (path: "/dogs"): DogsGetDogs;
-  /** Resource for '/dogs/models' has methods for the following verbs: put */
-  (path: "/dogs/models"): DogsSetDogs;
-  /** Resource for '/cats' has methods for the following verbs: get, put */
-  (path: "/cats"): CatsGetCats;
+  /** Resource for '/multi-interface/dogs' has methods for the following verbs: get */
+  (path: "/multi-interface/dogs"): DogsGetDogs;
+  /** Resource for '/multi-interface/dogs/models' has methods for the following verbs: put */
+  (path: "/multi-interface/dogs/models"): DogsSetDogs;
+  /** Resource for '/multi-interface/cats' has methods for the following verbs: get, put */
+  (path: "/multi-interface/cats"): CatsGetCats;
 }
 
 export type MultiInterfaceClient = Client & {

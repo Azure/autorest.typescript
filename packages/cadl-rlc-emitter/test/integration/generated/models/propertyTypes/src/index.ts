@@ -1,6 +1,6 @@
-import RoundTripBasic from "./roundTripBasic";
+import ModelsPropertyTypes from "./modelsPropertyTypes";
 
-export * from "./roundTripBasic";
+export * from "./modelsPropertyTypes";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -8,4 +8,4 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 
-export default RoundTripBasic;
+export default ModelsPropertyTypes;

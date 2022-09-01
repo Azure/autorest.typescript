@@ -1,6 +1,6 @@
-import NestedModelsBasicClient from "./nestedModelsBasicClient";
+import NestedModelsBasic from "./nestedModelsBasic";
 
-export * from "./nestedModelsBasicClient";
+export * from "./nestedModelsBasic";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -8,4 +8,4 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 
-export default NestedModelsBasicClient;
+export default NestedModelsBasic;

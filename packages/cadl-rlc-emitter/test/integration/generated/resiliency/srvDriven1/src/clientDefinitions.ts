@@ -53,15 +53,15 @@ export interface GetOptional {
 }
 
 export interface Routes {
-  /** Resource for '/serviceDriven1/parameters' has methods for the following verbs: head, get, put */
-  (path: "/serviceDriven1/parameters"): HeadNoParams;
-  /** Resource for '/serviceDriven1/parameters/\{contentTypePath\}' has methods for the following verbs: post */
+  /** Resource for '/resilency/servicedriven1/parameters' has methods for the following verbs: head, get, put */
+  (path: "/resilency/servicedriven1/parameters"): HeadNoParams;
+  /** Resource for '/resilency/servicedriven1/parameters/\{contentTypePath\}' has methods for the following verbs: post */
   (
-    path: "/serviceDriven1/parameters/{contentTypePath}",
+    path: "/resilency/servicedriven1/parameters/{contentTypePath}",
     contentTypePath: "json"
   ): PostParameters;
-  /** Resource for '/serviceDriven1/moreParameters' has methods for the following verbs: get */
-  (path: "/serviceDriven1/moreParameters"): GetOptional;
+  /** Resource for '/resilency/servicedriven1/moreParameters' has methods for the following verbs: get */
+  (path: "/resilency/servicedriven1/moreParameters"): GetOptional;
 }
 
 export type ResiliencyServiceDriven1Client = Client & {

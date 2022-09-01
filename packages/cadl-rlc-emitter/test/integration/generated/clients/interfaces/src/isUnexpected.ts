@@ -10,10 +10,10 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "GET /dogs": ["200"],
-  "PUT /dogs/models": ["200"],
-  "GET /cats": ["200"],
-  "PUT /cats": ["200"],
+  "GET /multi-interface/dogs": ["200"],
+  "PUT /multi-interface/dogs/models": ["200"],
+  "GET /multi-interface/cats": ["200"],
+  "PUT /multi-interface/cats": ["200"],
 };
 
 export function isUnexpected(

@@ -6,8 +6,8 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PUT /model": ["200"],
-  "PUT /property": ["200"],
+  "PUT /polymorphic/model": ["200"],
+  "PUT /polymorphic/property": ["200"],
 };
 
 export function isUnexpected(

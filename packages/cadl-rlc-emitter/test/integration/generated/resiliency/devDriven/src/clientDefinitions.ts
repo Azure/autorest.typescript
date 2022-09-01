@@ -41,12 +41,18 @@ export interface Lro {
 }
 
 export interface Routes {
-  /** Resource for '/customization/model/\{mode\}' has methods for the following verbs: get, post */
-  (path: "/customization/model/{mode}", mode: "raw" | "model"): GetModel;
-  /** Resource for '/' has methods for the following verbs: get */
-  (path: "/"): GetPages;
-  /** Resource for '/customization/lro/\{mode\}' has methods for the following verbs: put */
-  (path: "/customization/lro/{mode}", mode: "raw" | "model"): Lro;
+  /** Resource for '/resilency/devdriven/customization/model/\{mode\}' has methods for the following verbs: get, post */
+  (
+    path: "/resilency/devdriven/customization/model/{mode}",
+    mode: "raw" | "model"
+  ): GetModel;
+  /** Resource for '/resilency/devdriven' has methods for the following verbs: get */
+  (path: "/resilency/devdriven"): GetPages;
+  /** Resource for '/resilency/devdriven/customization/lro/\{mode\}' has methods for the following verbs: put */
+  (
+    path: "/resilency/devdriven/customization/lro/{mode}",
+    mode: "raw" | "model"
+  ): Lro;
 }
 
 export type ResiliencyDevDrivenClient = Client & {

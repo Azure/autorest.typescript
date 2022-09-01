@@ -4,10 +4,10 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "GET /customization/model/{mode}": ["200"],
-  "POST /customization/model/{mode}": ["200"],
-  "GET /": ["200"],
-  "PUT /customization/lro/{mode}": ["200"],
+  "GET /resilency/devdriven/customization/model/{mode}": ["200"],
+  "POST /resilency/devdriven/customization/model/{mode}": ["200"],
+  "GET /resilency/devdriven": ["200"],
+  "PUT /resilency/devdriven/customization/lro/{mode}": ["200"],
 };
 
 export function isUnexpected(
