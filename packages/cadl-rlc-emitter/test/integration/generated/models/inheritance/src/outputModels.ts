@@ -15,17 +15,18 @@ export interface DerivedFromBaseClassBOutput extends BaseClassOutput {
 }
 
 /** Example base class that has a discriminator property. */
-export interface BaseClassWithDiscriminatorOutput extends BaseClassOutput {
+export interface BaseClassWithDiscriminatorOutputParent
+  extends BaseClassOutput {
   discriminatorProperty: "BaseClassWithDiscriminator" | "A" | "B";
 }
 
 export interface DerivedFromBaseClassWithDiscriminatorAOutput
-  extends BaseClassWithDiscriminatorOutput {
+  extends BaseClassWithDiscriminatorOutputParent {
   discriminatorProperty: "A";
 }
 
 export interface DerivedFromBaseClassWithDiscriminatorBOutput
-  extends BaseClassWithDiscriminatorOutput {
+  extends BaseClassWithDiscriminatorOutputParent {
   discriminatorProperty: "B";
 }
 
@@ -62,3 +63,8 @@ export interface ModelWithPolymorphicPropertyOutput {
   /** Example polymorphic type property. */
   polymorphicProperty: BaseClassWithDiscriminatorOutput;
 }
+
+/** Example base class that has a discriminator property. */
+export type BaseClassWithDiscriminatorOutput =
+  | DerivedFromBaseClassWithDiscriminatorAOutput
+  | DerivedFromBaseClassWithDiscriminatorBOutput;

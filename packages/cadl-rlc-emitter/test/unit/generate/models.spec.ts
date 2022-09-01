@@ -280,19 +280,20 @@ describe("Input/output model type", () => {
       assertEqualContent(
         outputModelFile?.content!,
         `
-        export interface PetOutput {
+        export interface PetOutputParent {
           name: string;
           weight?: number;
           "kind": "Pet" | "cat" | "dog";
         }
-        export interface CatOutput extends PetOutput {
+        export interface CatOutput extends PetOutputParent {
           kind: "cat";
           meow: number;
         }
-        export interface DogOutput extends PetOutput {
+        export interface DogOutput extends PetOutputParent {
           kind: "dog";
           bark: string;
-        }`
+        }
+        export type PetOutput = CatOutput | DogOutput;`
       );
     });
   });

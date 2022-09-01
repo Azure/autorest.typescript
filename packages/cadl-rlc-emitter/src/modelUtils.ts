@@ -413,6 +413,7 @@ function getSchemaForModel(
       required: true,
       description: `Discriminator property for ${model.name}.`
     };
+    modelSchema.isPolyParent = true;
   }
 
   // applyExternalDocs(model, modelSchema);
