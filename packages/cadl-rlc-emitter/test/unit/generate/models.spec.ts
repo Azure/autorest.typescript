@@ -131,8 +131,7 @@ describe("Input/output model type", () => {
       await verifyPropertyType(cadlType, typeScriptType);
     });
 
-    // Error thrown issue tracked here https://github.com/Azure/autorest.typescript/issues/1524
-    xit("should handle type_literals:boolean -> boolean_literals", async () => {
+    it("should handle type_literals:boolean -> boolean_literals", async () => {
       const cadlType = `true`;
       const typeScriptType = `true`;
       await verifyPropertyType(cadlType, typeScriptType);
@@ -232,8 +231,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    // Error thrown issue tracked here https://github.com/Azure/autorest.typescript/issues/1524
-    xit("should handle anonymous model -> effictive type/interface", async () => {
+    it("should handle anonymous model -> effective type/interface", async () => {
       const cadlDefinition = `
       model SimpleModel {
         prop1: string;
@@ -258,9 +256,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    // The output is unexpected, the kind should be `string` but now `"Pet" | "cat" | "dog"`
-    // Issue tracked here https://github.com/Azure/autorest.typescript/issues/1524
-    xit("should handle inheritance model -> multiple types/interfaces", async () => {
+    it("should handle inheritance model -> multiple types/interfaces", async () => {
       const schemaOutput = await emitModelsFromCadl(`
       @discriminator("kind")
       model Pet {
@@ -287,7 +283,7 @@ describe("Input/output model type", () => {
         export interface PetOutput {
           name: string;
           weight?: number;
-          kind: string;
+          "kind": "Pet" | "cat" | "dog";
         }
         export interface CatOutput extends PetOutput {
           kind: "cat";
@@ -310,24 +306,22 @@ describe("Input/output model type", () => {
       await verifyPropertyType("duration", "string");
     });
   });
-  // Unexpected output
-  // Issue tracked here https://github.com/Azure/autorest.typescript/issues/1524
   describe("datetime generation", () => {
-    xit("should handle plainDate -> string in output model &  `Date | string` in input model", async () => {
+    it("should handle plainDate -> string in output model &  `Date | string` in input model", async () => {
       const inputType = "Date | string";
       const outputType = "string";
       await verifyPropertyType("plainDate", inputType, {
         outputType
       });
     });
-    xit("should handle plainTime -> string in output model &  `Date | string` in input model", async () => {
+    it("should handle plainTime -> string in output model &  `Date | string` in input model", async () => {
       const inputType = "Date | string";
       const outputType = "string";
       await verifyPropertyType("plainTime", inputType, {
         outputType
       });
     });
-    xit("should handle zonedDateTime -> string in output model &  `Date | string` in input model", async () => {
+    it("should handle zonedDateTime -> string in output model &  `Date | string` in input model", async () => {
       const inputType = "Date | string";
       const outputType = "string";
       await verifyPropertyType("zonedDateTime", inputType, {
@@ -335,8 +329,6 @@ describe("Input/output model type", () => {
       });
     });
   });
-  // Error thrown
-  // Issue tracked here https://github.com/Azure/autorest.typescript/issues/1524
   describe("record generation", () => {
     it("should handle Record<int32> -> Record<string, number>", async () => {
       await verifyPropertyType("Record<int32>", "Record<string, number>");
