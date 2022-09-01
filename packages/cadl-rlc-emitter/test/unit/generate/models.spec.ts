@@ -175,7 +175,7 @@ describe("Input/output model type", () => {
       await verifyPropertyType(cadlType, typeScriptType);
     });
 
-    it("should handle plainDate[] -> string[]", async () => {
+    it("should handle plainDate[] -> input 'Date[] | string[]' output type 'string[]'", async () => {
       const cadlType = "plainDate[]";
       const inputType = "Date[] | string[]";
       const outputType = "string[]"
