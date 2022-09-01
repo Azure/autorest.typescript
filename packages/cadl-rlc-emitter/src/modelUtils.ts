@@ -420,9 +420,6 @@ function getSchemaForModel(
     return modelSchema;
   }
   for (const [name, prop] of model.properties) {
-    if (name === "modelLabel") {
-      prop;
-    }
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
