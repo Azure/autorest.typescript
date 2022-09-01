@@ -3,8 +3,8 @@
 
 import {
   ImportKind,
-  NameType,
-  normalizeName,
+  // NameType,
+  // normalizeName,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
@@ -71,10 +71,7 @@ function getParameterMetadata(
     SchemaContext.Exception
   ]) as Schema;
   const type = getTypeName(schema);
-  const name = normalizeName(
-    getParameterName(parameter.name),
-    NameType.Parameter
-  );
+  const name = getParameterName(parameter.name);
   return {
     type: paramType,
     name,
@@ -91,7 +88,7 @@ function getParameterName(name: string) {
   if (name === "content-type") {
     return "contentType";
   }
-  return name;
+  return `"${name}"`;
 }
 
 function transformQueryParameters(

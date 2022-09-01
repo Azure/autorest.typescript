@@ -86,7 +86,7 @@ describe("Doc generation testing", () => {
       `
       );
     });
-    xit("should generate header description with custom name", async () => {
+    it("should generate header description with custom name", async () => {
       const parameters = await emitParameterFromCadl(
         `
         op test(@doc("test header") @header("x-my-header") MyHeader: string): string;
@@ -134,7 +134,7 @@ describe("Doc generation testing", () => {
       );
     });
     // issue tracked https://github.com/Azure/autorest.typescript/issues/1525
-    xit("should generate apiVersion description with 'api-version'", async () => {
+    it("should generate apiVersion description with 'api-version'", async () => {
       const parameters = await emitParameterFromCadl(
         `
         @doc("The ApiVersion query parameter.")
@@ -168,7 +168,7 @@ describe("Doc generation testing", () => {
   });
 
   describe("docs in clientDefinitions.ts", () => {
-    it.only("should generate operation description", async () => {
+    it("should generate operation description", async () => {
       const clientDef = await emitClientDefinitionFromCadl(
         `
         @summary("This is a summary")
@@ -202,7 +202,3 @@ describe("Doc generation testing", () => {
     });
   });
 });
-
-// export function assertEqualContent2(actual: string, expected: string) {
-//   assert.strictEqual(actual, expected);
-// }
