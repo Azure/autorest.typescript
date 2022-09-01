@@ -44,7 +44,7 @@ export function transformSchemas(program: Program) {
         context.push(schemaContext);
         program.stateMap(modelKey).set(type, context);
       }
-    } else if ((type as ModelType).name !== "") {
+    } else {
       program.stateMap(modelKey).set(type, [schemaContext]);
     }
   }

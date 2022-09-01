@@ -7,11 +7,11 @@
   "scripts": {
     "clean": "rimraf ./dist ./cadl-output",
     "build": "tsc -p .",
-    "test": "npm run unit-test && npm run integartion-test",
+    "test": "npm run unit-test && npm run integration-test",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
-    "integartion-test": "npm run start-test-server & npm run generate-cadl-only && npm run integration-test:alone",
+    "integration-test": "npm run start-test-server & npm run generate-cadl-only && npm run integration-test:alone",
     "generate-cadl-only": "ts-node ./test/commands/gen-cadl-ranch.ts",
     "start-test-server": "cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http",
     "integration-test:alone": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 ./test/integration/*.spec.ts",
