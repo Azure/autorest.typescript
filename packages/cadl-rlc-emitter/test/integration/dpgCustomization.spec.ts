@@ -12,7 +12,7 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
   });
 
   describe("dpg customization with raw model", () => {
-    // comment out this test cases because the server is not ready
+    // comment out these test cases because the server is not ready
     // https://github.com/Azure/autorest.typescript/issues/1535
     xit("should get model", async () => {
       const result = await client
