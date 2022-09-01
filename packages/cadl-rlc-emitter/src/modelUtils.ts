@@ -670,7 +670,28 @@ function mapCadlIntrinsicModelToTypeScript(
             schema.outputTypeName = `Array<${schema.items.name}Output>`;
           }
         } else {
-          schema.typeName = `${schema.items.type}[]`;
+          if (schema.items.typeName) {
+            schema.typeName = schema.items.typeName
+              .split("|")
+              .map((typeName: string) => {
+                return `${typeName}[]`;
+              })
+              .join(" | ");
+            if (
+              schema.items.outputTypeName &&
+              usage &&
+              usage.includes(SchemaContext.Output)
+            ) {
+              schema.outputTypeName = schema.items.outputTypeName
+                .split("|")
+                .map((typeName: string) => {
+                  return `${typeName}[]`;
+                })
+                .join(" | ");
+            }
+          } else {
+            schema.typeName = `${schema.items.type}[]`;
+          }
         }
       }
 

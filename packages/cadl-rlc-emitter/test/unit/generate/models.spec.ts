@@ -174,9 +174,39 @@ describe("Input/output model type", () => {
       const typeScriptType = "string[]";
       await verifyPropertyType(cadlType, typeScriptType);
     });
+
+    it("should handle plainDate[] -> string[]", async () => {
+      const cadlType = "plainDate[]";
+      const inputType = "Date[] | string[]";
+      const outputType = "string[]"
+      await verifyPropertyType(cadlType, inputType, { outputType });
+    });
   });
   describe("array models generation", () => {
-    // TODO: please add test cases here
+    it("should handle SimpleModel[] -> Array<SimpleModel>", async () => {
+      const cadlDefinition = `
+      model SimpleModel {
+        prop1: string;
+        prop2: int32;
+      }
+      `;
+      const cadlType = "SimpleModel[]";
+      const inputModelName = "Array<SimpleModel>";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `Array<SimpleModelOutput>`,
+        additionalInputContent: `
+        export interface SimpleModel {
+          prop1:string;
+          prop2:number;
+        }`,
+        additionalOutputContent: `
+        export interface SimpleModelOutput {
+          prop1:string;
+          prop2:number;
+        }`
+      });
+    })
   });
   describe("object generation", () => {
     it("should handle basic model -> type/interface", async () => {
@@ -341,6 +371,34 @@ describe("Input/output model type", () => {
       await verifyPropertyType("Record<string>", "Record<string, string>");
     });
   });
+
+  describe("Record Model generation", () => {
+    it("should handle Record<SimpleModel> -> Record<string, SimpleModel>", async () => {
+      const cadlDefinition = `
+      model SimpleModel {
+        prop1: string;
+        prop2: int32;
+      }
+      `;
+      const cadlType = "Record<SimpleModel>";
+      const inputModelName = "Record<string, SimpleModel>";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `Record<string, SimpleModelOutput>`,
+        additionalInputContent: `
+        export interface SimpleModel {
+          prop1:string;
+          prop2:number;
+        }`,
+        additionalOutputContent: `
+        export interface SimpleModelOutput {
+          prop1:string;
+          prop2:number;
+        }`
+      });
+    })
+  });
+  
   describe("property definition correctness", () => {
     // TODO: the behavior isn't finalized
     // Issue track here https://github.com/Azure/autorest.typescript/issues/1524
