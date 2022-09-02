@@ -15,4 +15,3 @@ export function getNormalizedOperationName(
       )
     : normalizeName(`${route.operation.name}`, NameType.Interface);
 }
-

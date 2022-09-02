@@ -16,6 +16,7 @@ import {
   OperationDetails
 } from "@cadl-lang/rest/http";
 import { getSchemaForType } from "../modelUtils.js";
+import { isApiVersion } from "../paramUtil.js";
 
 export function transformPaths(program: Program): Paths {
   const [routes, _diagnostics] = getAllRoutes(program);
@@ -79,6 +80,8 @@ function hasRequiredOptions(routeParameters: HttpOperationParameters) {
   const isRequiredBodyParam = Boolean(routeParameters.bodyParameter?.optional);
   const containsRequiredNonBodyParam = routeParameters.parameters
     .filter((parameter) => ["query", "header"].includes(parameter.type))
+    .filter((parameter) => !isApiVersion(parameter))
+    .filter((parameter) => !!parameter.param)
     .some((parameter) => !Boolean(parameter.param.optional));
   return isRequiredBodyParam || containsRequiredNonBodyParam;
 }

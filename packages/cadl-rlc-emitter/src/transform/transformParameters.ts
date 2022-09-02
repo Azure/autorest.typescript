@@ -20,6 +20,7 @@ import {
   getTypeName,
   getSchemaForType
 } from "../modelUtils.js";
+import { isApiVersion } from "../paramUtil.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -102,10 +103,6 @@ function transformQueryParameters(
   return queryParameters.map((qp) =>
     getParameterMetadata(program, "query", qp)
   );
-}
-
-function isApiVersion(param: HttpOperationParameter) {
-  return param.type === "query" && param.name.toLowerCase() === "api-version";
 }
 
 /**
