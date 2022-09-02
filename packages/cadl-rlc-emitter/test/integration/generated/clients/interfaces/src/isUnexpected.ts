@@ -1,56 +1,48 @@
 import {
-  MultiInterfaceClientGetDogs200Response,
-  MultiInterfaceClientGetDogsDefaultResponse,
-  MultiInterfaceClientSetDogs200Response,
-  MultiInterfaceClientSetDogsDefaultResponse,
-  MultiInterfaceClientGetCats200Response,
-  MultiInterfaceClientGetCatsDefaultResponse,
-  MultiInterfaceClientSetCats200Response,
-  MultiInterfaceClientSetCatsDefaultResponse,
+  DogsGetDogs200Response,
+  DogsGetDogsDefaultResponse,
+  DogsSetDogs200Response,
+  DogsSetDogsDefaultResponse,
+  CatsGetCats200Response,
+  CatsGetCatsDefaultResponse,
+  CatsSetCats200Response,
+  CatsSetCatsDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "GET /dogs": ["200"],
-  "PUT /dogs/models": ["200"],
-  "GET /cats": ["200"],
-  "PUT /cats": ["200"],
+  "GET /multi-interface/dogs": ["200"],
+  "PUT /multi-interface/dogs/models": ["200"],
+  "GET /multi-interface/cats": ["200"],
+  "PUT /multi-interface/cats": ["200"],
 };
 
 export function isUnexpected(
-  response:
-    | MultiInterfaceClientGetDogs200Response
-    | MultiInterfaceClientGetDogsDefaultResponse
-): response is MultiInterfaceClientGetDogsDefaultResponse;
+  response: DogsGetDogs200Response | DogsGetDogsDefaultResponse
+): response is DogsGetDogsDefaultResponse;
+export function isUnexpected(
+  response: DogsSetDogs200Response | DogsSetDogsDefaultResponse
+): response is DogsSetDogsDefaultResponse;
+export function isUnexpected(
+  response: CatsGetCats200Response | CatsGetCatsDefaultResponse
+): response is CatsGetCatsDefaultResponse;
+export function isUnexpected(
+  response: CatsSetCats200Response | CatsSetCatsDefaultResponse
+): response is CatsSetCatsDefaultResponse;
 export function isUnexpected(
   response:
-    | MultiInterfaceClientSetDogs200Response
-    | MultiInterfaceClientSetDogsDefaultResponse
-): response is MultiInterfaceClientSetDogsDefaultResponse;
-export function isUnexpected(
-  response:
-    | MultiInterfaceClientGetCats200Response
-    | MultiInterfaceClientGetCatsDefaultResponse
-): response is MultiInterfaceClientGetCatsDefaultResponse;
-export function isUnexpected(
-  response:
-    | MultiInterfaceClientSetCats200Response
-    | MultiInterfaceClientSetCatsDefaultResponse
-): response is MultiInterfaceClientSetCatsDefaultResponse;
-export function isUnexpected(
-  response:
-    | MultiInterfaceClientGetDogs200Response
-    | MultiInterfaceClientGetDogsDefaultResponse
-    | MultiInterfaceClientSetDogs200Response
-    | MultiInterfaceClientSetDogsDefaultResponse
-    | MultiInterfaceClientGetCats200Response
-    | MultiInterfaceClientGetCatsDefaultResponse
-    | MultiInterfaceClientSetCats200Response
-    | MultiInterfaceClientSetCatsDefaultResponse
+    | DogsGetDogs200Response
+    | DogsGetDogsDefaultResponse
+    | DogsSetDogs200Response
+    | DogsSetDogsDefaultResponse
+    | CatsGetCats200Response
+    | CatsGetCatsDefaultResponse
+    | CatsSetCats200Response
+    | CatsSetCatsDefaultResponse
 ): response is
-  | MultiInterfaceClientGetDogsDefaultResponse
-  | MultiInterfaceClientSetDogsDefaultResponse
-  | MultiInterfaceClientGetCatsDefaultResponse
-  | MultiInterfaceClientSetCatsDefaultResponse {
+  | DogsGetDogsDefaultResponse
+  | DogsSetDogsDefaultResponse
+  | CatsGetCatsDefaultResponse
+  | CatsSetCatsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

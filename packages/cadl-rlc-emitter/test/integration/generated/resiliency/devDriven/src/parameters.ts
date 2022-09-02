@@ -4,6 +4,7 @@ import { Input } from "./models";
 export type DevDrivenGetModelParameters = RequestParameters;
 
 export interface DevDrivenPostModelBodyParam {
+  /** Please put {'hello': 'world!'} */
   body: Input;
 }
 
@@ -11,7 +12,8 @@ export type DevDrivenPostModelParameters = DevDrivenPostModelBodyParam &
   RequestParameters;
 
 export interface DevDrivenGetPagesQueryParamProperties {
-  apiVersion: string;
+  /** The API version to use for this operation. */
+  "api-version": string;
 }
 
 export interface DevDrivenGetPagesQueryParam {

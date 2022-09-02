@@ -48,10 +48,11 @@ import {
 
 export function getSchemaForType(
   program: Program,
-  type: Type,
+  typeInput: Type,
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
+  const type = getEffectiveModelType(typeInput);
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -74,7 +75,25 @@ export function getSchemaForType(
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   }
-
+  function getEffectiveModelType(type: Type) {
+    if (type.kind === "Model") {
+      const effective = program.checker.getEffectiveModelType(
+        type,
+        isSchemaProperty
+      );
+      if (effective.name) {
+        return effective;
+      }
+    }
+    function isSchemaProperty(property: ModelTypeProperty) {
+      const headerInfo = getHeaderFieldName(program, property);
+      const queryInfo = getQueryParamName(program, property);
+      const pathInfo = getPathParamName(program, property);
+      const statusCodeInfo = isStatusCode(program, property);
+      return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+    }
+    return type;
+  }
   reportDiagnostic(program, {
     code: "invalid-schema",
     format: { type: type.kind },
@@ -323,8 +342,29 @@ function getSchemaForModel(
   needRef?: boolean
 ) {
   const friendlyName = getFriendlyName(program, model);
+  let name = model.name;
+  if (
+    !friendlyName &&
+    model.templateArguments &&
+    model.templateArguments.length > 0
+  ) {
+    name =
+      model.name +
+      model.templateArguments
+        .map((it) => {
+          switch (it.kind) {
+            case "Model":
+              return it.name;
+            case "String":
+              return it.value;
+            default:
+              return "";
+          }
+        })
+        .join("");
+  }
   let modelSchema: ObjectSchema = {
-    name: friendlyName ?? model.name,
+    name: friendlyName ?? name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };
@@ -350,13 +390,8 @@ function getSchemaForModel(
     const childSchema = getSchemaForType(program, child, usage, true);
     for (const [name, prop] of child.properties) {
       if (name === discriminator?.propertyName) {
-        const propSchema = getSchemaForType(
-          program,
-          prop.type,
-          usage,
-          true
-        )
-        childSchema.discriminatorValue = propSchema.type.replace(/"/g, '');
+        const propSchema = getSchemaForType(program, prop.type, usage, true);
+        childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
         break;
       }
     }
@@ -378,6 +413,7 @@ function getSchemaForModel(
       required: true,
       description: `Discriminator property for ${model.name}.`
     };
+    modelSchema.isPolyParent = true;
   }
 
   // applyExternalDocs(model, modelSchema);
@@ -397,6 +433,7 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
+    propSchema.usage = usage;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
     if (model.baseModel) {
@@ -411,10 +448,10 @@ function getSchemaForModel(
     if (newPropSchema === undefined) {
       continue;
     }
-    modelSchema.properties[name] = newPropSchema;
     if (description) {
-      // modelSchema.properties[name]['description'] = description;
+      newPropSchema["description"] = description;
     }
+    modelSchema.properties[name] = newPropSchema;
 
     if (prop.default) {
       // modelSchema.properties[name]['default'] = getDefaultValue(program, prop.default);
@@ -466,7 +503,6 @@ function getSchemaForModel(
       immediate: [getSchemaForType(program, model.baseModel, usage, true)]
     };
   }
-
   return modelSchema;
 }
 // Map an Cadl type to an OA schema. Returns undefined when the resulting
@@ -478,11 +514,11 @@ function mapCadlTypeToTypeScript(
 ): any {
   switch (cadlType.kind) {
     case "Number":
-      return { type: cadlType.value };
+      return { type: `${cadlType.value}` };
     case "String":
       return { type: `"${cadlType.value}"` };
     case "Boolean":
-      return { type: cadlType.value };
+      return { type: `${cadlType.value}` };
     case "Model":
     case "ModelProperty":
       return mapCadlIntrinsicModelToTypeScript(program, cadlType, usage);
@@ -603,29 +639,62 @@ function mapCadlIntrinsicModelToTypeScript(
       const name = getIntrinsicModelName(program, indexer.key);
       let schema: any = {};
       if (name === "string") {
+        const valueType = getSchemaForType(
+          program,
+          indexer.value!,
+          usage,
+          true
+        );
         schema = {
-          type: "object",
-          additionalProperties: getSchemaForType(
-            program,
-            indexer.value!,
-            usage,
-            true
-          )
+          type: "dictionary",
+          additionalProperties: valueType,
+          description: getDoc(program, cadlType)
         };
+        if (!isIntrinsic(program, indexer.value)) {
+          schema.typeName = `Record<string, ${valueType.name}>`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
+          }
+        } else {
+          schema.typeName = `Record<string, ${valueType.type}>`;
+        }
       } else if (name === "integer") {
         schema = {
           type: "array",
-          items: getSchemaForType(program, indexer.value!, usage, true)
+          items: getSchemaForType(program, indexer.value!, usage, true),
+          description: getDoc(program, cadlType)
         };
-      }
-      if (!isIntrinsic(program, indexer.value)) {
-        schema.typeName = `Array<${schema.items.name}>`;
-        if (usage && usage.includes(SchemaContext.Output)) {
-          schema.outputTypeName = `Array<${schema.items.name}Output>`;
+        if (!isIntrinsic(program, indexer.value)) {
+          schema.typeName = `Array<${schema.items.name}>`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `Array<${schema.items.name}Output>`;
+          }
+        } else {
+          if (schema.items.typeName) {
+            schema.typeName = schema.items.typeName
+              .split("|")
+              .map((typeName: string) => {
+                return `${typeName}[]`;
+              })
+              .join(" | ");
+            if (
+              schema.items.outputTypeName &&
+              usage &&
+              usage.includes(SchemaContext.Output)
+            ) {
+              schema.outputTypeName = schema.items.outputTypeName
+                .split("|")
+                .map((typeName: string) => {
+                  return `${typeName}[]`;
+                })
+                .join(" | ");
+            }
+          } else {
+            schema.typeName = `${schema.items.type}[]`;
+          }
         }
-      } else {
-        schema.typeName = `${schema.items.type}[]`;
       }
+
       schema.usage = usage;
       return schema;
     }
@@ -634,9 +703,10 @@ function mapCadlIntrinsicModelToTypeScript(
     return undefined;
   }
   const name = getIntrinsicModelName(program, cadlType);
+  const description = getSummary(program, cadlType);
   switch (name) {
     case "bytes":
-      return { type: "string", format: "byte" };
+      return { type: "string", format: "byte", description };
     case "int8":
       return applyIntrinsicDecorators(program, cadlType, {
         type: "number",
@@ -695,15 +765,33 @@ function mapCadlIntrinsicModelToTypeScript(
     case "string":
       return applyIntrinsicDecorators(program, cadlType, { type: "string" });
     case "boolean":
-      return { type: "boolean" };
+      return { type: "boolean", description };
     case "plainDate":
-      return { type: "string", format: "date" };
+      return {
+        type: "string",
+        format: "date",
+        description,
+        typeName: "Date | string",
+        outputTypeName: "string"
+      };
     case "zonedDateTime":
-      return { type: "string", format: "date-time" };
+      return {
+        type: "string",
+        format: "date-time",
+        description,
+        typeName: "Date | string",
+        outputTypeName: "string"
+      };
     case "plainTime":
-      return { type: "string", format: "time" };
+      return {
+        type: "string",
+        format: "time",
+        description,
+        typeName: "Date | string",
+        outputTypeName: "string"
+      };
     case "duration":
-      return { type: "string", format: "duration" };
+      return { type: "string", format: "duration", description };
   }
 }
 

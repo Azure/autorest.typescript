@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface ApplicationDataListResponseOutput {
   /** List of requested objects. */
   value?: Array<ApplicationDataOutput>;
@@ -10,6 +11,7 @@ export interface ApplicationDataListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of application data resource. */
 export interface ApplicationDataOutput {
   /** Application product details. */
   applicationProductDetails?: Array<ApplicationProductDetailOutput>;
@@ -61,6 +63,7 @@ export interface ApplicationDataOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of product used during application. */
 export interface ApplicationProductDetailOutput {
   /** Name of the product applied. */
   productName?: string;
@@ -72,6 +75,7 @@ export interface ApplicationProductDetailOutput {
   totalMaterial?: MeasureOutput;
 }
 
+/** Schema for storing measurement reading and unit. */
 export interface MeasureOutput {
   /** Data unit. */
   unit?: string;
@@ -79,6 +83,10 @@ export interface MeasureOutput {
   value?: number;
 }
 
+/**
+ * An error response from the Azure AgPlatform service.
+ * <see href="https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses">ErrorResponse reference document.</see>.
+ */
 export interface ErrorResponseOutput {
   /** An error from the Azure AgPlatform service. */
   error?: ErrorModelOutput;
@@ -86,6 +94,7 @@ export interface ErrorResponseOutput {
   traceId?: string;
 }
 
+/** An error from the Azure AgPlatform service. */
 export interface ErrorModelOutput {
   /** Server-defined set of error codes. */
   code?: string;
@@ -102,6 +111,10 @@ export interface ErrorModelOutput {
   innererror?: InnerErrorOutput;
 }
 
+/**
+ * Inner error containing list of errors.
+ * <see href="https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#innererror--object">InnerError reference document</see>.
+ */
 export interface InnerErrorOutput extends Record<string, unknown> {
   /**
    * Specific error code than was provided by the
@@ -115,6 +128,7 @@ export interface InnerErrorOutput extends Record<string, unknown> {
   innererror?: InnerErrorOutput;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface AttachmentListResponseOutput {
   /** List of requested objects. */
   value?: Array<AttachmentOutput>;
@@ -124,6 +138,7 @@ export interface AttachmentListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of attachment resource. */
 export interface AttachmentOutput {
   /** Farmer id for this attachment. */
   farmerId?: string;
@@ -152,6 +167,7 @@ export interface AttachmentOutput {
   eTag?: string;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface BoundaryListResponseOutput {
   /** List of requested objects. */
   value?: Array<BoundaryOutput>;
@@ -161,6 +177,7 @@ export interface BoundaryListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of boundary resource. */
 export interface BoundaryOutput {
   /** Farmer ID. */
   farmerId?: string;
@@ -197,10 +214,12 @@ export interface BoundaryOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** GeoJSON abstract class. */
 export interface GeoJsonObjectOutputParent {
   type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
+/** Schema of cascade delete job. */
 export interface CascadeDeleteJobOutput {
   /** Farmer ID. */
   farmerId: string;
@@ -240,6 +259,7 @@ export interface CascadeDeleteJobOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of boundary overlap response. */
 export interface BoundaryOverlapResponseOutput {
   /** Acreage of Main boundary. */
   boundaryAcreage?: number;
@@ -249,6 +269,7 @@ export interface BoundaryOverlapResponseOutput {
   intersectingAcreage?: number;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface CropListResponseOutput {
   /** List of requested objects. */
   value?: Array<CropOutput>;
@@ -258,6 +279,7 @@ export interface CropListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of crop resource. */
 export interface CropOutput {
   /** Crop phenotype. */
   phenotype?: string;
@@ -284,6 +306,7 @@ export interface CropOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface CropVarietyListResponseOutput {
   /** List of requested objects. */
   value?: Array<CropVarietyOutput>;
@@ -293,6 +316,7 @@ export interface CropVarietyListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of crop variety resource. */
 export interface CropVarietyOutput {
   /** ID of the crop it belongs to. */
   cropId?: string;
@@ -323,6 +347,7 @@ export interface CropVarietyOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface FarmerListResponseOutput {
   /** List of requested objects. */
   value?: Array<FarmerOutput>;
@@ -332,6 +357,7 @@ export interface FarmerListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of farmer resource. */
 export interface FarmerOutput {
   /** Unique resource ID. */
   id?: string;
@@ -356,6 +382,7 @@ export interface FarmerOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of farm operation data ingestion job. */
 export interface FarmOperationDataIngestionJobOutput {
   /** Farmer ID. */
   farmerId: string;
@@ -397,6 +424,7 @@ export interface FarmOperationDataIngestionJobOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface FarmListResponseOutput {
   /** List of requested objects. */
   value?: Array<FarmOutput>;
@@ -406,6 +434,7 @@ export interface FarmListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of farm resource. */
 export interface FarmOutput {
   /** Farmer ID. */
   farmerId?: string;
@@ -432,6 +461,7 @@ export interface FarmOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface FieldListResponseOutput {
   /** List of requested objects. */
   value?: Array<FieldOutput>;
@@ -441,6 +471,7 @@ export interface FieldListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of field resource. */
 export interface FieldOutput {
   /** ID of the associated Farm. */
   farmId?: string;
@@ -473,6 +504,7 @@ export interface FieldOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface HarvestDataListResponseOutput {
   /** List of requested objects. */
   value?: Array<HarvestDataOutput>;
@@ -482,6 +514,7 @@ export interface HarvestDataListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of harvest data resource. */
 export interface HarvestDataOutput {
   /** Schema for storing measurement reading and unit. */
   totalYield?: MeasureOutput;
@@ -541,6 +574,7 @@ export interface HarvestDataOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of product used during harvesting. */
 export interface HarvestProductDetailOutput {
   /** Name of the product. */
   productName?: string;
@@ -558,6 +592,7 @@ export interface HarvestProductDetailOutput {
   avgWetMass?: MeasureOutput;
 }
 
+/** ImageProcessingRasterizeJob. */
 export interface ImageProcessingRasterizeJobOutput {
   /** Farmer ID. */
   farmerId: string;
@@ -597,6 +632,7 @@ export interface ImageProcessingRasterizeJobOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface OAuthProviderListResponseOutput {
   /** List of requested objects. */
   value?: Array<OAuthProviderOutput>;
@@ -606,6 +642,7 @@ export interface OAuthProviderListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of OAuth provider resource. */
 export interface OAuthProviderOutput {
   /** OAuth App ID for given OAuth Provider. */
   appId?: string;
@@ -645,6 +682,7 @@ export interface OAuthProviderOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface OAuthTokenListResponseOutput {
   /** List of requested objects. */
   value?: Array<OAuthTokenOutput>;
@@ -654,6 +692,7 @@ export interface OAuthTokenListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of OAuth token resource. */
 export interface OAuthTokenOutput {
   /** Farmer ID for this OAuth config. */
   farmerId: string;
@@ -669,6 +708,7 @@ export interface OAuthTokenOutput {
   modifiedDateTime?: string;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface PlantingDataListResponseOutput {
   /** List of requested objects. */
   value?: Array<PlantingDataOutput>;
@@ -678,6 +718,7 @@ export interface PlantingDataListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of planting data resource. */
 export interface PlantingDataOutput {
   /** Schema for storing measurement reading and unit. */
   avgPlantingRate?: MeasureOutput;
@@ -731,6 +772,7 @@ export interface PlantingDataOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema for Planting product detail. */
 export interface PlantingProductDetailOutput {
   /** Name of the product. */
   productName?: string;
@@ -742,6 +784,7 @@ export interface PlantingProductDetailOutput {
   avgMaterial?: MeasureOutput;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface SceneListResponseOutput {
   /** List of requested objects. */
   value?: Array<SceneOutput>;
@@ -751,6 +794,7 @@ export interface SceneListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of scene resource. */
 export interface SceneOutput {
   /** Date-time of the scene, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   sceneDateTime?: string;
@@ -778,6 +822,7 @@ export interface SceneOutput {
   eTag?: string;
 }
 
+/** Schema of image file resource. */
 export interface ImageFileOutput {
   /** Link of the image file. */
   fileLink?: string;
@@ -789,6 +834,7 @@ export interface ImageFileOutput {
   resolution?: number;
 }
 
+/** Schema of satellite data ingestion job. */
 export interface SatelliteDataIngestionJobOutput {
   /** Farmer ID. */
   farmerId: string;
@@ -836,6 +882,7 @@ export interface SatelliteDataIngestionJobOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Data Model for SatelliteIngestionJobRequest. */
 export interface SatelliteDataOutput {
   /** List of ImageNames. */
   imageNames?: Array<string>;
@@ -845,6 +892,7 @@ export interface SatelliteDataOutput {
   imageResolutions?: Array<number>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface SeasonalFieldListResponseOutput {
   /** List of requested objects. */
   value?: Array<SeasonalFieldOutput>;
@@ -854,6 +902,7 @@ export interface SeasonalFieldListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of seasonal field resource. */
 export interface SeasonalFieldOutput {
   /** Farmer ID. */
   farmerId?: string;
@@ -904,6 +953,7 @@ export interface SeasonalFieldOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface SeasonListResponseOutput {
   /** List of requested objects. */
   value?: Array<SeasonOutput>;
@@ -913,6 +963,7 @@ export interface SeasonListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of season resource. */
 export interface SeasonOutput {
   /** Season start datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   startDateTime?: string;
@@ -943,6 +994,7 @@ export interface SeasonOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface TillageDataListResponseOutput {
   /** List of requested objects. */
   value?: Array<TillageDataOutput>;
@@ -952,6 +1004,7 @@ export interface TillageDataListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of tillage data resource. */
 export interface TillageDataOutput {
   /** Schema for storing measurement reading and unit. */
   tillageDepth?: MeasureOutput;
@@ -1001,6 +1054,7 @@ export interface TillageDataOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface WeatherDataListResponseOutput {
   /** List of requested objects. */
   value?: Array<WeatherDataOutput>;
@@ -1010,6 +1064,7 @@ export interface WeatherDataListResponseOutput {
   nextLink?: string;
 }
 
+/** Schema of weather data. */
 export interface WeatherDataOutput {
   /** Farmer ID. */
   farmerId: string;
@@ -1076,6 +1131,7 @@ export interface WeatherDataOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Location model class. */
 export interface LocationOutput {
   /** Latitude of the location. */
   latitude: number;
@@ -1083,6 +1139,7 @@ export interface LocationOutput {
   longitude: number;
 }
 
+/** Schema of weather ingestion job. */
 export interface WeatherDataIngestionJobOutput {
   /** The id of the boundary object for which weather data is being fetched. */
   boundaryId: string;
@@ -1130,6 +1187,7 @@ export interface WeatherDataIngestionJobOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of weather data delete job. */
 export interface WeatherDataDeleteJobOutput {
   /** ID of the extension to be used for the providerInput. eg. DTN.ClearAg. */
   extensionId: string;
@@ -1177,12 +1235,14 @@ export interface WeatherDataDeleteJobOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** MultiPolygon geometry. */
 export interface MultiPolygonOutput
   extends GeoJsonObjectOutputParent,
     MultiPolygonCoordinatesOutput {
   type: "MultiPolygon";
 }
 
+/** Schema of multi polygon coordinates. */
 export interface MultiPolygonCoordinatesOutput {
   /**
    * Gets or sets Coordinates of GeoJSON Object.
@@ -1193,12 +1253,14 @@ export interface MultiPolygonCoordinatesOutput {
   coordinates: Array<Array<Array<Array<number>>>>;
 }
 
+/** Point geometry. */
 export interface PointOutput
   extends GeoJsonObjectOutputParent,
     PointCoordinatesOutput {
   type: "Point";
 }
 
+/** Schema of the coordinates of a point. */
 export interface PointCoordinatesOutput {
   /**
    * Gets or sets the coordinate of this point.
@@ -1207,12 +1269,14 @@ export interface PointCoordinatesOutput {
   coordinates: Array<number>;
 }
 
+/** Polygon geometry. */
 export interface PolygonOutput
   extends GeoJsonObjectOutputParent,
     PolygonCoordinatesOutput {
   type: "Polygon";
 }
 
+/** Schema of polygon coordinates. */
 export interface PolygonCoordinatesOutput {
   /**
    * Gets or sets type of the GeoJSON Object.
@@ -1223,6 +1287,7 @@ export interface PolygonCoordinatesOutput {
   coordinates: Array<Array<Array<number>>>;
 }
 
+/** GeoJSON abstract class. */
 export type GeoJsonObjectOutput =
   | MultiPolygonOutput
   | PointOutput

@@ -3,8 +3,6 @@
 
 import {
   ImportKind,
-  NameType,
-  normalizeName,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
@@ -17,7 +15,6 @@ import {
   HttpOperationParameter,
   HttpOperationParameters
 } from "@cadl-lang/rest/http";
-import { reportDiagnostic } from "../lib.js";
 import {
   getImportedModelName,
   getTypeName,
@@ -32,17 +29,9 @@ export function transformToParameterTypes(
   const rlcParameters: OperationParameter[] = [];
   let outputImportedSet = new Set<string>();
   for (const route of routes) {
-    if (!route.operation.namespace?.name) {
-      reportDiagnostic(program, {
-        code: "missing-namespace",
-        format: { path: route.path },
-        target: route.operation
-      });
-      continue;
-    }
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: route.operation.namespace?.name,
+      operationGroup: route.container.name,
       operationName: route.operation.name,
       parameters: []
     };
@@ -80,7 +69,7 @@ function getParameterMetadata(
     SchemaContext.Exception
   ]) as Schema;
   const type = getTypeName(schema);
-  const name = normalizeName(getParameterName(parameter.name), NameType.Parameter);
+  const name = getParameterName(parameter.name);
   return {
     type: paramType,
     name,
@@ -88,7 +77,7 @@ function getParameterMetadata(
       name,
       type,
       required: !Boolean(parameter.param.optional),
-      description: getDoc(program, parameter.param.type) ?? ""
+      description: getDoc(program, parameter.param) ?? ""
     }
   };
 }
@@ -97,7 +86,7 @@ function getParameterName(name: string) {
   if (name === "content-type") {
     return "contentType";
   }
-  return name;
+  return `"${name}"`;
 }
 
 function transformQueryParameters(
@@ -144,11 +133,11 @@ function transformBodyParameters(
   parameters: HttpOperationParameters,
   importedModels: Set<string>
 ): ParameterBodyMetadata | undefined {
-  const bodyParameters = parameters.bodyParameter;
-  if (!bodyParameters) {
+  const bodyType = parameters.bodyType ?? parameters.bodyParameter?.type;
+  if (!bodyType) {
     return undefined;
   }
-  const bodySchema = getSchemaForType(program, bodyParameters.type, [
+  const bodySchema = getSchemaForType(program, bodyType, [
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
@@ -163,7 +152,11 @@ function transformBodyParameters(
       {
         name: "body",
         type,
-        required: !Boolean(bodyParameters.optional)
+        required: parameters.bodyParameter
+          ? !Boolean(parameters.bodyParameter.optional)
+          : bodySchema.required,
+        description:
+          parameters.bodyParameter && getDoc(program, parameters.bodyParameter)
       }
     ]
   };

@@ -1,6 +1,6 @@
-import RoundTripBasicClient from "./roundTripBasicClient";
+import RoundTripBasic from "./roundTripBasic";
 
-export * from "./roundTripBasicClient";
+export * from "./roundTripBasic";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -8,4 +8,4 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 
-export default RoundTripBasicClient;
+export default RoundTripBasic;

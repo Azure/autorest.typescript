@@ -122,8 +122,11 @@ function getPolymorphicTypeAlias(
     unionTypes.push(`${name}${nameSuffix}`);
   }
 
+  const description = objectSchema.description;
+  
   return {
     kind: StructureKind.TypeAlias,
+    ...(description && { docs: [{ description }] }),
     name: `${baseName}`,
     type: unionTypes.join(" | "),
     isExported: true
@@ -162,8 +165,10 @@ function getObjectInterfaceDeclaration(
   // Calculate the parents of the current object
   const extendFrom = getImmediateParentsNames(objectSchema, schemaUsage);
 
+  const description = objectSchema.description;
   return {
     kind: StructureKind.Interface,
+    ...(description && { docs: [{ description }] }),
     name: interfaceName,
     isExported: true,
     properties: propertySignatures,

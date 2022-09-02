@@ -45,13 +45,13 @@ export interface SetValueWithPolymorphicProperty {
 }
 
 export interface Routes {
-  /** Resource for '/model' has methods for the following verbs: put */
-  (path: "/model"): SetValue;
-  /** Resource for '/property' has methods for the following verbs: put */
-  (path: "/property"): SetValueWithPolymorphicProperty;
+  /** Resource for '/polymorphic/model' has methods for the following verbs: put */
+  (path: "/polymorphic/model"): SetValue;
+  /** Resource for '/polymorphic/property' has methods for the following verbs: put */
+  (path: "/polymorphic/property"): SetValueWithPolymorphicProperty;
 }
 
-export type InheritanceClient = Client & {
+export type BasicPolymorphicModelsClient = Client & {
   path: Routes;
   basicPolymorphicModels: BasicPolymorphicModelsOperations;
 };

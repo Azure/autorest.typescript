@@ -1,16 +1,16 @@
 import {
-  ServiceDriven1HeadNoParamsParameters,
-  ServiceDriven1GetRequiredParameters,
-  ServiceDriven1PutRequiredOptionalParameters,
-  ServiceDriven1PostParametersParameters,
-  ServiceDriven1GetOptionalParameters,
+  ParamsHeadNoParamsParameters,
+  ParamsGetRequiredParameters,
+  ParamsPutRequiredOptionalParameters,
+  ParamsPostParametersParameters,
+  ParamsGetOptionalParameters,
 } from "./parameters";
 import {
-  ServiceDriven1HeadNoParams200Response,
-  ServiceDriven1GetRequired200Response,
-  ServiceDriven1PutRequiredOptional200Response,
-  ServiceDriven1PostParameters200Response,
-  ServiceDriven1GetOptional200Response,
+  ParamsHeadNoParams200Response,
+  ParamsGetRequired200Response,
+  ParamsPutRequiredOptional200Response,
+  ParamsPostParameters200Response,
+  ParamsGetOptional200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -20,26 +20,26 @@ export interface HeadNoParams {
    *  Initially has no query parameters. After evolution, a new optional query parameter is added
    */
   head(
-    options?: ServiceDriven1HeadNoParamsParameters
-  ): StreamableMethod<ServiceDriven1HeadNoParams200Response>;
+    options?: ParamsHeadNoParamsParameters
+  ): StreamableMethod<ParamsHeadNoParams200Response>;
   /**
    * Get true Boolean value on path.
    *  Initially only has one required Query Parameter. After evolution, a new optional query parameter is added
    */
   get(
-    options: ServiceDriven1GetRequiredParameters
-  ): StreamableMethod<ServiceDriven1GetRequired200Response>;
+    options: ParamsGetRequiredParameters
+  ): StreamableMethod<ParamsGetRequired200Response>;
   /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
   put(
-    options: ServiceDriven1PutRequiredOptionalParameters
-  ): StreamableMethod<ServiceDriven1PutRequiredOptional200Response>;
+    options: ParamsPutRequiredOptionalParameters
+  ): StreamableMethod<ParamsPutRequiredOptional200Response>;
 }
 
 export interface PostParameters {
   /** POST a JSON */
   post(
-    options?: ServiceDriven1PostParametersParameters
-  ): StreamableMethod<ServiceDriven1PostParameters200Response>;
+    options?: ParamsPostParametersParameters
+  ): StreamableMethod<ParamsPostParameters200Response>;
 }
 
 export interface GetOptional {
@@ -48,20 +48,20 @@ export interface GetOptional {
    *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
    */
   get(
-    options?: ServiceDriven1GetOptionalParameters
-  ): StreamableMethod<ServiceDriven1GetOptional200Response>;
+    options?: ParamsGetOptionalParameters
+  ): StreamableMethod<ParamsGetOptional200Response>;
 }
 
 export interface Routes {
-  /** Resource for '/serviceDriven1/parameters' has methods for the following verbs: head, get, put */
-  (path: "/serviceDriven1/parameters"): HeadNoParams;
-  /** Resource for '/serviceDriven1/parameters/\{contentTypePath\}' has methods for the following verbs: post */
+  /** Resource for '/resilency/servicedriven1/parameters' has methods for the following verbs: head, get, put */
+  (path: "/resilency/servicedriven1/parameters"): HeadNoParams;
+  /** Resource for '/resilency/servicedriven1/parameters/\{contentTypePath\}' has methods for the following verbs: post */
   (
-    path: "/serviceDriven1/parameters/{contentTypePath}",
+    path: "/resilency/servicedriven1/parameters/{contentTypePath}",
     contentTypePath: "json"
   ): PostParameters;
-  /** Resource for '/serviceDriven1/moreParameters' has methods for the following verbs: get */
-  (path: "/serviceDriven1/moreParameters"): GetOptional;
+  /** Resource for '/resilency/servicedriven1/moreParameters' has methods for the following verbs: get */
+  (path: "/resilency/servicedriven1/moreParameters"): GetOptional;
 }
 
 export type ResiliencyServiceDriven1Client = Client & {

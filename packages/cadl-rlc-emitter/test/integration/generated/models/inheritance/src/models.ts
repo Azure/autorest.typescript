@@ -1,3 +1,4 @@
+/** Example base type. */
 export interface BaseClass {
   /** An example property. */
   baseClassProperty: string;
@@ -13,21 +14,28 @@ export interface DerivedFromBaseClassB extends BaseClass {
   derivedClassBProperty: string;
 }
 
-export interface BaseClassWithDiscriminator extends BaseClass {
+/** Example base class that has a discriminator property. */
+export interface BaseClassWithDiscriminatorParent extends BaseClass {
   discriminatorProperty: "BaseClassWithDiscriminator" | "A" | "B";
 }
 
 export interface DerivedFromBaseClassWithDiscriminatorA
-  extends BaseClassWithDiscriminator {
+  extends BaseClassWithDiscriminatorParent {
   discriminatorProperty: "A";
 }
 
 export interface DerivedFromBaseClassWithDiscriminatorB
-  extends BaseClassWithDiscriminator {
+  extends BaseClassWithDiscriminatorParent {
   discriminatorProperty: "B";
 }
 
+/** Illustrates case where a basic model has polymorphic properties. */
 export interface ModelWithPolymorphicProperty {
-  /** Example base class that has a discriminator property. */
+  /** Example polymorphic type property. */
   polymorphicProperty: BaseClassWithDiscriminator;
 }
+
+/** Example base class that has a discriminator property. */
+export type BaseClassWithDiscriminator =
+  | DerivedFromBaseClassWithDiscriminatorA
+  | DerivedFromBaseClassWithDiscriminatorB;

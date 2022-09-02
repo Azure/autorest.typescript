@@ -1,59 +1,68 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { PostInput } from "./models";
 
-export interface ServiceDriven2HeadNoParamsQueryParamProperties {
-  newParameter?: string;
+export interface ParamsHeadNoParamsQueryParamProperties {
+  /** I'm a new input optional parameter */
+  new_parameter?: string;
 }
 
-export interface ServiceDriven2HeadNoParamsQueryParam {
-  queryParameters?: ServiceDriven2HeadNoParamsQueryParamProperties;
+export interface ParamsHeadNoParamsQueryParam {
+  queryParameters?: ParamsHeadNoParamsQueryParamProperties;
 }
 
-export type ServiceDriven2HeadNoParamsParameters =
-  ServiceDriven2HeadNoParamsQueryParam & RequestParameters;
+export type ParamsHeadNoParamsParameters = ParamsHeadNoParamsQueryParam &
+  RequestParameters;
 
-export interface ServiceDriven2GetRequiredQueryParamProperties {
+export interface ParamsGetRequiredQueryParamProperties {
+  /** I am a required parameter */
   parameter: string;
-  newParameter?: string;
+  /** I'm a new input optional parameter */
+  new_parameter?: string;
 }
 
-export interface ServiceDriven2GetRequiredQueryParam {
-  queryParameters: ServiceDriven2GetRequiredQueryParamProperties;
+export interface ParamsGetRequiredQueryParam {
+  queryParameters: ParamsGetRequiredQueryParamProperties;
 }
 
-export type ServiceDriven2GetRequiredParameters =
-  ServiceDriven2GetRequiredQueryParam & RequestParameters;
+export type ParamsGetRequiredParameters = ParamsGetRequiredQueryParam &
+  RequestParameters;
 
-export interface ServiceDriven2PutRequiredOptionalQueryParamProperties {
+export interface ParamsPutRequiredOptionalQueryParamProperties {
+  /** I am a required parameter */
   requiredParam: string;
+  /** I am an optional parameter */
   optionalParam?: string;
-  newParameter?: string;
+  /** I'm a new input optional parameter */
+  new_parameter?: string;
 }
 
-export interface ServiceDriven2PutRequiredOptionalQueryParam {
-  queryParameters: ServiceDriven2PutRequiredOptionalQueryParamProperties;
+export interface ParamsPutRequiredOptionalQueryParam {
+  queryParameters: ParamsPutRequiredOptionalQueryParamProperties;
 }
 
-export type ServiceDriven2PutRequiredOptionalParameters =
-  ServiceDriven2PutRequiredOptionalQueryParam & RequestParameters;
+export type ParamsPutRequiredOptionalParameters =
+  ParamsPutRequiredOptionalQueryParam & RequestParameters;
 
-export interface ServiceDriven2PostParametersBodyParam {
+export interface ParamsPostParametersBodyParam {
+  /** I am a body parameter. My only valid JSON entry is { url: "http://example.org/myimage.jpeg" } */
   body: PostInput;
 }
 
-export type ServiceDriven2PostParametersParameters =
-  ServiceDriven2PostParametersBodyParam & RequestParameters;
-export type ServiceDriven2DeleteParametersParameters = RequestParameters;
+export type ParamsPostParametersParameters = ParamsPostParametersBodyParam &
+  RequestParameters;
+export type ParamsDeleteParametersParameters = RequestParameters;
 
-export interface ServiceDriven2GetOptionalQueryParamProperties {
+export interface ParamsGetOptionalQueryParamProperties {
+  /** I am an optional parameter */
   optionalParam?: string;
-  newParameter?: string;
+  /** I'm a new input optional parameter */
+  new_parameter?: string;
 }
 
-export interface ServiceDriven2GetOptionalQueryParam {
-  queryParameters?: ServiceDriven2GetOptionalQueryParamProperties;
+export interface ParamsGetOptionalQueryParam {
+  queryParameters?: ParamsGetOptionalQueryParamProperties;
 }
 
-export type ServiceDriven2GetOptionalParameters =
-  ServiceDriven2GetOptionalQueryParam & RequestParameters;
-export type ServiceDriven2GetNewOperationParameters = RequestParameters;
+export type ParamsGetOptionalParameters = ParamsGetOptionalQueryParam &
+  RequestParameters;
+export type ParamsGetNewOperationParameters = RequestParameters;

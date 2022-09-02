@@ -9,9 +9,8 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-codegen";
-import { Program } from "@cadl-lang/compiler";
+import { Program, getDoc } from "@cadl-lang/compiler";
 import { getAllRoutes, HttpOperationResponse } from "@cadl-lang/rest/http";
-import { reportDiagnostic } from "../lib.js";
 import {
   getImportedModelName,
   getTypeName,
@@ -26,16 +25,8 @@ export function transformToResponseTypes(
   const rlcResponses: OperationResponse[] = [];
   let inputImportedSet = new Set<string>();
   for (const route of routes) {
-    if (!route.operation.namespace?.name) {
-      reportDiagnostic(program, {
-        code: "missing-namespace",
-        format: { path: route.path },
-        target: route.operation
-      });
-      continue;
-    }
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: route.operation.namespace?.name,
+      operationGroup: route.container.name,
       operationName: route.operation.name,
       responses: []
     };
@@ -65,36 +56,50 @@ export function transformToResponseTypes(
   return rlcResponses;
 }
 
+/**
+ * Return undefined if no valid header param
+ * @param program the cadl program
+ * @param response response detail
+ * @returns rlc header shcema
+ */
 function transformHeaders(
   program: Program,
   response: HttpOperationResponse
 ): ResponseHeaderSchema[] | undefined {
   if (!response.responses.length) {
     return;
-  } else if (response.responses.length > 1) {
-    // TODO: handle one status code map to multiple rsps
   }
-  const headers = response.responses[0]?.headers;
-  if (!headers || !Object.keys(headers).length) {
-    return;
-  }
-  return Object.keys(headers)
-    .map((key) => headers[key])
-    .filter((h) => h != undefined)
-    .map((h) => {
-      // TODO: handle the schema part
-      const typeSchema = getSchemaForType(program, h!.type, [
+
+  const rlcHeaders = [];
+  // Current RLC client can't represent different headers per content type.
+  // So we merge headers here, and report any duplicates.
+  // It may be possible in principle to not error for identically declared
+  // headers.
+  for (const data of response.responses) {
+    const headers = data?.headers;
+    if (!headers || !Object.keys(headers).length) {
+      continue;
+    }
+
+    for (const [key, value] of Object.entries(headers)) {
+      if (!value) {
+        continue;
+      }
+      const typeSchema = getSchemaForType(program, value!.type, [
         SchemaContext.Output
       ]) as Schema;
       const type = getTypeName(typeSchema);
       const header: ResponseHeaderSchema = {
-        name: `"${h?.name.toLowerCase()}"`,
+        name: `"${key.toLowerCase()}"`,
         type,
-        required: !Boolean(h?.optional),
-        description: ""
+        required: !Boolean(value?.optional),
+        description: getDoc(program, value!)
       };
-      return header;
-    });
+      rlcHeaders.push(header);
+    }
+  }
+
+  return rlcHeaders.length ? rlcHeaders : undefined;
 }
 
 function transformBody(

@@ -1,8 +1,8 @@
-import HelloClient from "./helloClient";
+import Hello from "./hello";
 
-export * from "./helloClient";
+export * from "./hello";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 
-export default HelloClient;
+export default Hello;

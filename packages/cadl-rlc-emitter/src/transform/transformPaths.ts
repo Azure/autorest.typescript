@@ -15,25 +15,16 @@ import {
   HttpOperationResponse,
   OperationDetails
 } from "@cadl-lang/rest/http";
-import { reportDiagnostic } from "../lib.js";
 import { getSchemaForType } from "../modelUtils.js";
 
 export function transformPaths(program: Program): Paths {
   const [routes, _diagnostics] = getAllRoutes(program);
   const paths: Paths = {};
   for (const route of routes) {
-    if (!route.operation.namespace?.name) {
-      reportDiagnostic(program, {
-        code: "missing-namespace",
-        format: { path: route.path },
-        target: route.operation
-      });
-      continue;
-    }
     const respNames = [];
     for (const resp of route.responses) {
       const respName = getResponseTypeName(
-        route.operation.namespace?.name ?? "",
+        route.container.name,
         route.operation.name,
         resp.statusCode === "*" ? "Default" : resp.statusCode
       );
@@ -43,7 +34,7 @@ export function transformPaths(program: Program): Paths {
       description: getDoc(program, route.operation) ?? "",
       hasOptionalOptions: !hasRequiredOptions(route.parameters),
       optionsName: getParameterTypeName(
-        route.operation.namespace?.name,
+        route.container.name,
         route.operation.name
       ),
       responseTypes: getResponseTypes(route),
@@ -60,7 +51,6 @@ export function transformPaths(program: Program): Paths {
       paths[route.path]?.methods[route.verb]?.push(method);
     } else {
       paths[route.path] = {
-        // TODO: Description
         description: getDoc(program, route.operation) ?? "",
         name: route.operation.name || "Client",
         pathParameters: route.parameters.parameters
@@ -74,7 +64,7 @@ export function transformPaths(program: Program): Paths {
               description: getDoc(program, p.param)
             };
           }),
-        operationGroupName: route.operation.namespace?.name,
+        operationGroupName: route.container.name,
         methods: {
           [route.verb]: [method]
         }
@@ -129,7 +119,7 @@ function getResponseTypes(operation: OperationDetails): ResponseTypes {
           const statusCode =
             r.statusCode == "*" ? `"default"` : `"${r.statusCode}"`;
           const responseName = getResponseTypeName(
-            operation.operation.namespace?.name ?? "",
+            operation.container.name,
             operation.operation.name,
             statusCode
           );

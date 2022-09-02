@@ -199,7 +199,7 @@ stages:
           name: SmokeTest_RLC
           tag: ci_rlc
 
-      - job: Cadl_Compile
+      - job: Cadl_Smoke_Test
         dependsOn: Build
         variables:
           - template: globals.yml
@@ -226,7 +226,7 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: npm run cadl:compile
+          - script: npm run smoke-test
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-test
             displayName: "Generate Code From Cadl"
           - script: npm run check:tree
@@ -260,7 +260,7 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: npm run integartion-test
+          - script: npm run test
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             displayName: "Generate RLC Test Clients from Cadl-ranch"
           - script: npm run check:tree
