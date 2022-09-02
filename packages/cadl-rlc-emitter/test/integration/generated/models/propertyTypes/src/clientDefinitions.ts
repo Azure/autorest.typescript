@@ -85,92 +85,92 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for Boolean operations */
 export interface BooleanOperations {
   get(
-    options?: BooleanGetParameters
+    options: BooleanGetParameters
   ): StreamableMethod<BooleanGet200Response | BooleanGetDefaultResponse>;
   put(
-    options?: BooleanPutParameters
+    options: BooleanPutParameters
   ): StreamableMethod<BooleanPut204Response | BooleanPutDefaultResponse>;
 }
 
 /** Contains operations for String operations */
 export interface StringOperations {
   get(
-    options?: StringGetParameters
+    options: StringGetParameters
   ): StreamableMethod<StringGet200Response | StringGetDefaultResponse>;
   put(
-    options?: StringPutParameters
+    options: StringPutParameters
   ): StreamableMethod<StringPut204Response | StringPutDefaultResponse>;
 }
 
 /** Contains operations for Bytes operations */
 export interface BytesOperations {
   get(
-    options?: BytesGetParameters
+    options: BytesGetParameters
   ): StreamableMethod<BytesGet200Response | BytesGetDefaultResponse>;
   put(
-    options?: BytesPutParameters
+    options: BytesPutParameters
   ): StreamableMethod<BytesPut204Response | BytesPutDefaultResponse>;
 }
 
 /** Contains operations for Int operations */
 export interface IntOperations {
   get(
-    options?: IntGetParameters
+    options: IntGetParameters
   ): StreamableMethod<IntGet200Response | IntGetDefaultResponse>;
   put(
-    options?: IntPutParameters
+    options: IntPutParameters
   ): StreamableMethod<IntPut204Response | IntPutDefaultResponse>;
 }
 
 /** Contains operations for Float operations */
 export interface FloatOperations {
   get(
-    options?: FloatGetParameters
+    options: FloatGetParameters
   ): StreamableMethod<FloatGet200Response | FloatGetDefaultResponse>;
   put(
-    options?: FloatPutParameters
+    options: FloatPutParameters
   ): StreamableMethod<FloatPut204Response | FloatPutDefaultResponse>;
 }
 
 /** Contains operations for Datetime operations */
 export interface DatetimeOperations {
   get(
-    options?: DatetimeGetParameters
+    options: DatetimeGetParameters
   ): StreamableMethod<DatetimeGet200Response | DatetimeGetDefaultResponse>;
   put(
-    options?: DatetimePutParameters
+    options: DatetimePutParameters
   ): StreamableMethod<DatetimePut204Response | DatetimePutDefaultResponse>;
 }
 
 /** Contains operations for Duration operations */
 export interface DurationOperations {
   get(
-    options?: DurationGetParameters
+    options: DurationGetParameters
   ): StreamableMethod<DurationGet200Response | DurationGetDefaultResponse>;
   put(
-    options?: DurationPutParameters
+    options: DurationPutParameters
   ): StreamableMethod<DurationPut204Response | DurationPutDefaultResponse>;
 }
 
 /** Contains operations for Enum operations */
 export interface EnumOperations {
   get(
-    options?: EnumGetParameters
+    options: EnumGetParameters
   ): StreamableMethod<EnumGet200Response | EnumGetDefaultResponse>;
   put(
-    options?: EnumPutParameters
+    options: EnumPutParameters
   ): StreamableMethod<EnumPut204Response | EnumPutDefaultResponse>;
 }
 
 /** Contains operations for ExtensibleEnum operations */
 export interface ExtensibleEnumOperations {
   get(
-    options?: ExtensibleEnumGetParameters
+    options: ExtensibleEnumGetParameters
   ): StreamableMethod<
     ExtensibleEnumGet200Response | ExtensibleEnumGetDefaultResponse
   >;
   put(
-    options?: ExtensibleEnumPutParameters
+    options: ExtensibleEnumPutParameters
   ): StreamableMethod<
     ExtensibleEnumPut204Response | ExtensibleEnumPutDefaultResponse
   >;
@@ -179,22 +179,22 @@ export interface ExtensibleEnumOperations {
 /** Contains operations for Model operations */
 export interface ModelOperations {
   get(
-    options?: ModelGetParameters
+    options: ModelGetParameters
   ): StreamableMethod<ModelGet200Response | ModelGetDefaultResponse>;
   put(
-    options?: ModelPutParameters
+    options: ModelPutParameters
   ): StreamableMethod<ModelPut204Response | ModelPutDefaultResponse>;
 }
 
 /** Contains operations for CollectionsString operations */
 export interface CollectionsStringOperations {
   get(
-    options?: CollectionsStringGetParameters
+    options: CollectionsStringGetParameters
   ): StreamableMethod<
     CollectionsStringGet200Response | CollectionsStringGetDefaultResponse
   >;
   put(
-    options?: CollectionsStringPutParameters
+    options: CollectionsStringPutParameters
   ): StreamableMethod<
     CollectionsStringPut204Response | CollectionsStringPutDefaultResponse
   >;
@@ -203,12 +203,12 @@ export interface CollectionsStringOperations {
 /** Contains operations for CollectionsInt operations */
 export interface CollectionsIntOperations {
   get(
-    options?: CollectionsIntGetParameters
+    options: CollectionsIntGetParameters
   ): StreamableMethod<
     CollectionsIntGet200Response | CollectionsIntGetDefaultResponse
   >;
   put(
-    options?: CollectionsIntPutParameters
+    options: CollectionsIntPutParameters
   ): StreamableMethod<
     CollectionsIntPut204Response | CollectionsIntPutDefaultResponse
   >;
@@ -217,12 +217,12 @@ export interface CollectionsIntOperations {
 /** Contains operations for CollectionsModel operations */
 export interface CollectionsModelOperations {
   get(
-    options?: CollectionsModelGetParameters
+    options: CollectionsModelGetParameters
   ): StreamableMethod<
     CollectionsModelGet200Response | CollectionsModelGetDefaultResponse
   >;
   put(
-    options?: CollectionsModelPutParameters
+    options: CollectionsModelPutParameters
   ): StreamableMethod<
     CollectionsModelPut204Response | CollectionsModelPutDefaultResponse
   >;
@@ -230,84 +230,84 @@ export interface CollectionsModelOperations {
 
 export interface BooleanGet {
   get(
-    options?: BooleanGetParameters
+    options: BooleanGetParameters
   ): StreamableMethod<BooleanGet200Response | BooleanGetDefaultResponse>;
   put(
-    options?: BooleanPutParameters
+    options: BooleanPutParameters
   ): StreamableMethod<BooleanPut204Response | BooleanPutDefaultResponse>;
 }
 
 export interface StringGet {
   get(
-    options?: StringGetParameters
+    options: StringGetParameters
   ): StreamableMethod<StringGet200Response | StringGetDefaultResponse>;
   put(
-    options?: StringPutParameters
+    options: StringPutParameters
   ): StreamableMethod<StringPut204Response | StringPutDefaultResponse>;
 }
 
 export interface BytesGet {
   get(
-    options?: BytesGetParameters
+    options: BytesGetParameters
   ): StreamableMethod<BytesGet200Response | BytesGetDefaultResponse>;
   put(
-    options?: BytesPutParameters
+    options: BytesPutParameters
   ): StreamableMethod<BytesPut204Response | BytesPutDefaultResponse>;
 }
 
 export interface IntGet {
   get(
-    options?: IntGetParameters
+    options: IntGetParameters
   ): StreamableMethod<IntGet200Response | IntGetDefaultResponse>;
   put(
-    options?: IntPutParameters
+    options: IntPutParameters
   ): StreamableMethod<IntPut204Response | IntPutDefaultResponse>;
 }
 
 export interface FloatGet {
   get(
-    options?: FloatGetParameters
+    options: FloatGetParameters
   ): StreamableMethod<FloatGet200Response | FloatGetDefaultResponse>;
   put(
-    options?: FloatPutParameters
+    options: FloatPutParameters
   ): StreamableMethod<FloatPut204Response | FloatPutDefaultResponse>;
 }
 
 export interface DatetimeGet {
   get(
-    options?: DatetimeGetParameters
+    options: DatetimeGetParameters
   ): StreamableMethod<DatetimeGet200Response | DatetimeGetDefaultResponse>;
   put(
-    options?: DatetimePutParameters
+    options: DatetimePutParameters
   ): StreamableMethod<DatetimePut204Response | DatetimePutDefaultResponse>;
 }
 
 export interface DurationGet {
   get(
-    options?: DurationGetParameters
+    options: DurationGetParameters
   ): StreamableMethod<DurationGet200Response | DurationGetDefaultResponse>;
   put(
-    options?: DurationPutParameters
+    options: DurationPutParameters
   ): StreamableMethod<DurationPut204Response | DurationPutDefaultResponse>;
 }
 
 export interface EnumGet {
   get(
-    options?: EnumGetParameters
+    options: EnumGetParameters
   ): StreamableMethod<EnumGet200Response | EnumGetDefaultResponse>;
   put(
-    options?: EnumPutParameters
+    options: EnumPutParameters
   ): StreamableMethod<EnumPut204Response | EnumPutDefaultResponse>;
 }
 
 export interface ExtensibleEnumGet {
   get(
-    options?: ExtensibleEnumGetParameters
+    options: ExtensibleEnumGetParameters
   ): StreamableMethod<
     ExtensibleEnumGet200Response | ExtensibleEnumGetDefaultResponse
   >;
   put(
-    options?: ExtensibleEnumPutParameters
+    options: ExtensibleEnumPutParameters
   ): StreamableMethod<
     ExtensibleEnumPut204Response | ExtensibleEnumPutDefaultResponse
   >;
@@ -315,21 +315,21 @@ export interface ExtensibleEnumGet {
 
 export interface ModelGet {
   get(
-    options?: ModelGetParameters
+    options: ModelGetParameters
   ): StreamableMethod<ModelGet200Response | ModelGetDefaultResponse>;
   put(
-    options?: ModelPutParameters
+    options: ModelPutParameters
   ): StreamableMethod<ModelPut204Response | ModelPutDefaultResponse>;
 }
 
 export interface CollectionsStringGet {
   get(
-    options?: CollectionsStringGetParameters
+    options: CollectionsStringGetParameters
   ): StreamableMethod<
     CollectionsStringGet200Response | CollectionsStringGetDefaultResponse
   >;
   put(
-    options?: CollectionsStringPutParameters
+    options: CollectionsStringPutParameters
   ): StreamableMethod<
     CollectionsStringPut204Response | CollectionsStringPutDefaultResponse
   >;
@@ -337,12 +337,12 @@ export interface CollectionsStringGet {
 
 export interface CollectionsIntGet {
   get(
-    options?: CollectionsIntGetParameters
+    options: CollectionsIntGetParameters
   ): StreamableMethod<
     CollectionsIntGet200Response | CollectionsIntGetDefaultResponse
   >;
   put(
-    options?: CollectionsIntPutParameters
+    options: CollectionsIntPutParameters
   ): StreamableMethod<
     CollectionsIntPut204Response | CollectionsIntPutDefaultResponse
   >;
@@ -350,12 +350,12 @@ export interface CollectionsIntGet {
 
 export interface CollectionsModelGet {
   get(
-    options?: CollectionsModelGetParameters
+    options: CollectionsModelGetParameters
   ): StreamableMethod<
     CollectionsModelGet200Response | CollectionsModelGetDefaultResponse
   >;
   put(
-    options?: CollectionsModelPutParameters
+    options: CollectionsModelPutParameters
   ): StreamableMethod<
     CollectionsModelPut204Response | CollectionsModelPutDefaultResponse
   >;

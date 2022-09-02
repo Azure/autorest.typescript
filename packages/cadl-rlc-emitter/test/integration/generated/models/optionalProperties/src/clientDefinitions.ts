@@ -13,25 +13,25 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for OptionalProperties operations */
 export interface OptionalPropertiesOperations {
   sendOptionalPropertyModel(
-    options?: OptionalPropertiesSendOptionalPropertyModelParameters
+    options: OptionalPropertiesSendOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesSendOptionalPropertyModel200Response>;
   getOptionalPropertyModel(
-    options?: OptionalPropertiesGetOptionalPropertyModelParameters
+    options: OptionalPropertiesGetOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesGetOptionalPropertyModel200Response>;
   setOptionalPropertyModel(
-    options?: OptionalPropertiesSetOptionalPropertyModelParameters
+    options: OptionalPropertiesSetOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesSetOptionalPropertyModel200Response>;
 }
 
 export interface SendOptionalPropertyModel {
   post(
-    options?: OptionalPropertiesSendOptionalPropertyModelParameters
+    options: OptionalPropertiesSendOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesSendOptionalPropertyModel200Response>;
   get(
-    options?: OptionalPropertiesGetOptionalPropertyModelParameters
+    options: OptionalPropertiesGetOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesGetOptionalPropertyModel200Response>;
   put(
-    options?: OptionalPropertiesSetOptionalPropertyModelParameters
+    options: OptionalPropertiesSetOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesSetOptionalPropertyModel200Response>;
 }
 

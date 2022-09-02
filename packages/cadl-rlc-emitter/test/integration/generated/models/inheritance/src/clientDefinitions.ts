@@ -13,13 +13,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for BasicPolymorphicModels operations */
 export interface BasicPolymorphicModelsOperations {
   setValue(
-    options?: BasicPolymorphicModelsSetValueParameters
+    options: BasicPolymorphicModelsSetValueParameters
   ): StreamableMethod<
     | BasicPolymorphicModelsSetValue200Response
     | BasicPolymorphicModelsSetValueDefaultResponse
   >;
   setValueWithPolymorphicProperty(
-    options?: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
+    options: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
   ): StreamableMethod<
     | BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response
     | BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse
@@ -28,7 +28,7 @@ export interface BasicPolymorphicModelsOperations {
 
 export interface SetValue {
   put(
-    options?: BasicPolymorphicModelsSetValueParameters
+    options: BasicPolymorphicModelsSetValueParameters
   ): StreamableMethod<
     | BasicPolymorphicModelsSetValue200Response
     | BasicPolymorphicModelsSetValueDefaultResponse
@@ -37,7 +37,7 @@ export interface SetValue {
 
 export interface SetValueWithPolymorphicProperty {
   put(
-    options?: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
+    options: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
   ): StreamableMethod<
     | BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response
     | BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse

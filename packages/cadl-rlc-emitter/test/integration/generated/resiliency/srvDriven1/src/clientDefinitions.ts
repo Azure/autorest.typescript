@@ -20,7 +20,7 @@ export interface HeadNoParams {
    *  Initially has no query parameters. After evolution, a new optional query parameter is added
    */
   head(
-    options?: ParamsHeadNoParamsParameters
+    options: ParamsHeadNoParamsParameters
   ): StreamableMethod<ParamsHeadNoParams200Response>;
   /**
    * Get true Boolean value on path.
@@ -38,7 +38,7 @@ export interface HeadNoParams {
 export interface PostParameters {
   /** POST a JSON */
   post(
-    options?: ParamsPostParametersParameters
+    options: ParamsPostParametersParameters
   ): StreamableMethod<ParamsPostParameters200Response>;
 }
 
@@ -48,7 +48,7 @@ export interface GetOptional {
    *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
    */
   get(
-    options?: ParamsGetOptionalParameters
+    options: ParamsGetOptionalParameters
   ): StreamableMethod<ParamsGetOptional200Response>;
 }
 

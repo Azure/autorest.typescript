@@ -19,41 +19,41 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for dogs operations */
 export interface dogsOperations {
   getDogs(
-    options?: DogsGetDogsParameters
+    options: DogsGetDogsParameters
   ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
   setDogs(
-    options?: DogsSetDogsParameters
+    options: DogsSetDogsParameters
   ): StreamableMethod<DogsSetDogs200Response | DogsSetDogsDefaultResponse>;
 }
 
 /** Contains operations for cats operations */
 export interface catsOperations {
   getCats(
-    options?: CatsGetCatsParameters
+    options: CatsGetCatsParameters
   ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
   setCats(
-    options?: CatsSetCatsParameters
+    options: CatsSetCatsParameters
   ): StreamableMethod<CatsSetCats200Response | CatsSetCatsDefaultResponse>;
 }
 
 export interface DogsGetDogs {
   get(
-    options?: DogsGetDogsParameters
+    options: DogsGetDogsParameters
   ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
 }
 
 export interface DogsSetDogs {
   put(
-    options?: DogsSetDogsParameters
+    options: DogsSetDogsParameters
   ): StreamableMethod<DogsSetDogs200Response | DogsSetDogsDefaultResponse>;
 }
 
 export interface CatsGetCats {
   get(
-    options?: CatsGetCatsParameters
+    options: CatsGetCatsParameters
   ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
   put(
-    options?: CatsSetCatsParameters
+    options: CatsSetCatsParameters
   ): StreamableMethod<CatsSetCats200Response | CatsSetCatsDefaultResponse>;
 }
 

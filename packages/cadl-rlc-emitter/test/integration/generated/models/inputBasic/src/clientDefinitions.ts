@@ -8,7 +8,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for InputBasic operations */
 export interface InputBasicOperations {
   getModel(
-    options?: InputBasicGetModelParameters
+    options: InputBasicGetModelParameters
   ): StreamableMethod<
     InputBasicGetModel200Response | InputBasicGetModelDefaultResponse
   >;
@@ -16,7 +16,7 @@ export interface InputBasicOperations {
 
 export interface GetModel {
   get(
-    options?: InputBasicGetModelParameters
+    options: InputBasicGetModelParameters
   ): StreamableMethod<
     InputBasicGetModel200Response | InputBasicGetModelDefaultResponse
   >;
