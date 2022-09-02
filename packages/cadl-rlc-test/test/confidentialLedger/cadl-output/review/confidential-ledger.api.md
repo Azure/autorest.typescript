@@ -49,18 +49,7 @@ export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerCreateOrUpdateUserParameters = ConfidentialLedgerCreateOrUpdateUserQueryParam & ConfidentialLedgerCreateOrUpdateUserMediaTypesParam & ConfidentialLedgerCreateOrUpdateUserBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerCreateOrUpdateUserQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerCreateOrUpdateUserQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerCreateOrUpdateUserQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerCreateOrUpdateUserParameters = ConfidentialLedgerCreateOrUpdateUserMediaTypesParam & ConfidentialLedgerCreateOrUpdateUserBodyParam & RequestParameters;
 
 // @public
 export interface ConfidentialLedgerDeleteUser204Response extends HttpResponse {
@@ -77,18 +66,7 @@ export interface ConfidentialLedgerDeleteUserDefaultResponse extends HttpRespons
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerDeleteUserParameters = ConfidentialLedgerDeleteUserQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerDeleteUserQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerDeleteUserQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerDeleteUserQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerDeleteUserParameters = RequestParameters;
 
 // @public
 export interface ConfidentialLedgerGetConsortiumMembers200Response extends HttpResponse {
@@ -105,18 +83,7 @@ export interface ConfidentialLedgerGetConsortiumMembersDefaultResponse extends H
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerGetConsortiumMembersParameters = ConfidentialLedgerGetConsortiumMembersQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetConsortiumMembersQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerGetConsortiumMembersQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetConsortiumMembersQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerGetConsortiumMembersParameters = RequestParameters;
 
 // @public
 export interface ConfidentialLedgerGetConstitution200Response extends HttpResponse {
@@ -133,18 +100,7 @@ export interface ConfidentialLedgerGetConstitutionDefaultResponse extends HttpRe
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerGetConstitutionParameters = ConfidentialLedgerGetConstitutionQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetConstitutionQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerGetConstitutionQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetConstitutionQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerGetConstitutionParameters = RequestParameters;
 
 // @public
 export interface ConfidentialLedgerGetCurrentLedgerEntry200Response extends HttpResponse {
@@ -166,12 +122,11 @@ export type ConfidentialLedgerGetCurrentLedgerEntryParameters = ConfidentialLedg
 // @public (undocumented)
 export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParam {
     // (undocumented)
-    queryParameters: ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties;
+    queryParameters?: ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties {
-    "api-version": string;
     collectionId?: string;
 }
 
@@ -190,18 +145,7 @@ export interface ConfidentialLedgerGetEnclaveQuotesDefaultResponse extends HttpR
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerGetEnclaveQuotesParameters = ConfidentialLedgerGetEnclaveQuotesQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetEnclaveQuotesQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerGetEnclaveQuotesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetEnclaveQuotesQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerGetEnclaveQuotesParameters = RequestParameters;
 
 // @public
 export interface ConfidentialLedgerGetLedgerEntry200Response extends HttpResponse {
@@ -223,12 +167,11 @@ export type ConfidentialLedgerGetLedgerEntryParameters = ConfidentialLedgerGetLe
 // @public (undocumented)
 export interface ConfidentialLedgerGetLedgerEntryQueryParam {
     // (undocumented)
-    queryParameters: ConfidentialLedgerGetLedgerEntryQueryParamProperties;
+    queryParameters?: ConfidentialLedgerGetLedgerEntryQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ConfidentialLedgerGetLedgerEntryQueryParamProperties {
-    "api-version": string;
     collectionId?: string;
 }
 
@@ -247,18 +190,7 @@ export interface ConfidentialLedgerGetReceiptDefaultResponse extends HttpRespons
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerGetReceiptParameters = ConfidentialLedgerGetReceiptQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetReceiptQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerGetReceiptQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetReceiptQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerGetReceiptParameters = RequestParameters;
 
 // @public
 export interface ConfidentialLedgerGetTransactionStatus200Response extends HttpResponse {
@@ -275,18 +207,7 @@ export interface ConfidentialLedgerGetTransactionStatusDefaultResponse extends H
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerGetTransactionStatusParameters = ConfidentialLedgerGetTransactionStatusQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetTransactionStatusQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerGetTransactionStatusQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetTransactionStatusQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerGetTransactionStatusParameters = RequestParameters;
 
 // @public
 export interface ConfidentialLedgerGetUser200Response extends HttpResponse {
@@ -303,18 +224,7 @@ export interface ConfidentialLedgerGetUserDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerGetUserParameters = ConfidentialLedgerGetUserQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetUserQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerGetUserQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerGetUserQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerGetUserParameters = RequestParameters;
 
 // @public
 export interface ConfidentialLedgerListCollections200Response extends HttpResponse {
@@ -333,18 +243,7 @@ export interface ConfidentialLedgerListCollectionsDefaultResponse extends HttpRe
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerListCollectionsParameters = ConfidentialLedgerListCollectionsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ConfidentialLedgerListCollectionsQueryParam {
-    // (undocumented)
-    queryParameters: ConfidentialLedgerListCollectionsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerListCollectionsQueryParamProperties {
-    "api-version": string;
-}
+export type ConfidentialLedgerListCollectionsParameters = RequestParameters;
 
 // @public
 export interface ConfidentialLedgerOperations {
@@ -395,12 +294,11 @@ export type ConfidentialLedgerPostLedgerEntryParameters = ConfidentialLedgerPost
 // @public (undocumented)
 export interface ConfidentialLedgerPostLedgerEntryQueryParam {
     // (undocumented)
-    queryParameters: ConfidentialLedgerPostLedgerEntryQueryParamProperties;
+    queryParameters?: ConfidentialLedgerPostLedgerEntryQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ConfidentialLedgerPostLedgerEntryQueryParamProperties {
-    "api-version": string;
     collectionId?: string;
 }
 
