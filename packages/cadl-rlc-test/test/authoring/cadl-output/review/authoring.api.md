@@ -241,6 +241,7 @@ export interface DeploymentsSwapDeployments202Response extends HttpResponse {
 
 // @public (undocumented)
 export interface DeploymentsSwapDeploymentsBodyParam {
+    // (undocumented)
     body: SwapDeploymentsOptions;
 }
 
@@ -525,6 +526,16 @@ export interface OperationStatusOutput {
 }
 
 // @public
+export interface OptionalPropertiesUpdateableProperties {
+    description?: string;
+    language?: string;
+    multilingual?: boolean;
+    projectKind?: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+    settings?: Record<string, string>;
+    storageInputContainerName?: string;
+}
+
+// @public
 export interface PagedSupportedLanguageOutput {
     nextLink?: string;
     value: Array<SupportedLanguageOutput>;
@@ -592,6 +603,12 @@ export interface ProjectsCreateOrUpdate201Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ProjectsCreateOrUpdateBodyParam {
+    // (undocumented)
+    body?: OptionalPropertiesUpdateableProperties;
+}
+
+// @public (undocumented)
 export interface ProjectsCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -606,7 +623,7 @@ export interface ProjectsCreateOrUpdateMediaTypesParam {
 }
 
 // @public (undocumented)
-export type ProjectsCreateOrUpdateParameters = ProjectsCreateOrUpdateQueryParam & ProjectsCreateOrUpdateMediaTypesParam & RequestParameters;
+export type ProjectsCreateOrUpdateParameters = ProjectsCreateOrUpdateQueryParam & ProjectsCreateOrUpdateMediaTypesParam & ProjectsCreateOrUpdateBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface ProjectsCreateOrUpdateQueryParam {
@@ -844,7 +861,6 @@ export interface ProjectsTrain202Response extends HttpResponse {
 
 // @public (undocumented)
 export interface ProjectsTrainBodyParam {
-    // (undocumented)
     body: TrainingJobOptions;
 }
 

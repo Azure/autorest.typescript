@@ -30,7 +30,6 @@ export type ParamsPutRequiredOptionalParameters =
   ParamsPutRequiredOptionalQueryParam & RequestParameters;
 
 export interface ParamsPostParametersBodyParam {
-  /** I am a body parameter. My only valid JSON entry is { url: "http://example.org/myimage.jpeg" } */
   body: PostInput;
 }
 

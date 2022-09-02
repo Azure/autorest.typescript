@@ -146,7 +146,6 @@ export type ConfidentialLedgerGetUserParameters =
   ConfidentialLedgerGetUserQueryParam & RequestParameters;
 
 export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
-  /** Details about a Confidential Ledger user. */
   body: LedgerUser;
 }
 

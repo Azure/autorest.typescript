@@ -12,7 +12,7 @@ export function transformSchemas(program: Program) {
   const schemaSet: Set<string> = new Set<string>();
   const [routes, _diagnostics] = getAllRoutes(program);
   for (const route of routes) {
-    if (route.parameters.bodyParameter) {
+    if (route.parameters.bodyType) {
       const bodyModel = route.parameters.bodyType;
       if (bodyModel && bodyModel.kind === "Model") {
         getGeneratedModels(bodyModel, SchemaContext.Input);

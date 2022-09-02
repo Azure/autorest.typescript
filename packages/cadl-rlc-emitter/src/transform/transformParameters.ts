@@ -135,11 +135,11 @@ function transformBodyParameters(
   parameters: HttpOperationParameters,
   importedModels: Set<string>
 ): ParameterBodyMetadata | undefined {
-  const bodyParameters = parameters.bodyParameter;
-  if (!bodyParameters) {
+  const bodyType = parameters.bodyType;
+  if (!bodyType) {
     return undefined;
   }
-  const bodySchema = getSchemaForType(program, bodyParameters.type, [
+  const bodySchema = getSchemaForType(program, bodyType, [
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
@@ -154,8 +154,10 @@ function transformBodyParameters(
       {
         name: "body",
         type,
-        required: !Boolean(bodyParameters.optional),
-        description: getDoc(program, bodyParameters)
+        required: parameters.bodyParameter
+          ? !Boolean(parameters.bodyParameter.optional)
+          : bodySchema.required,
+        description: getDoc(program, bodyType)
       }
     ]
   };

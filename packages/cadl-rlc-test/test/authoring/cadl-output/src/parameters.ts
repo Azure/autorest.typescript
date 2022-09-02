@@ -1,5 +1,13 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import { TrainingJobOptions, SwapDeploymentsOptions } from "./models";
+import {
+  OptionalPropertiesUpdateableProperties,
+  TrainingJobOptions,
+  SwapDeploymentsOptions,
+} from "./models";
+
+export interface ProjectsCreateOrUpdateBodyParam {
+  body?: OptionalPropertiesUpdateableProperties;
+}
 
 export interface ProjectsCreateOrUpdateQueryParamProperties {
   /** The API version to use for this operation. */
@@ -17,6 +25,7 @@ export interface ProjectsCreateOrUpdateMediaTypesParam {
 export type ProjectsCreateOrUpdateParameters =
   ProjectsCreateOrUpdateQueryParam &
     ProjectsCreateOrUpdateMediaTypesParam &
+    ProjectsCreateOrUpdateBodyParam &
     RequestParameters;
 
 export interface ProjectsGetQueryParamProperties {
@@ -82,6 +91,7 @@ export type ProjectsImportxParameters = ProjectsImportxQueryParam &
   RequestParameters;
 
 export interface ProjectsTrainBodyParam {
+  /** Training job parameters. */
   body: TrainingJobOptions;
 }
 
@@ -147,7 +157,6 @@ export type DeploymentsListParameters = DeploymentsListQueryParam &
   RequestParameters;
 
 export interface DeploymentsSwapDeploymentsBodyParam {
-  /** The body schema of the operation. */
   body: SwapDeploymentsOptions;
 }
 
