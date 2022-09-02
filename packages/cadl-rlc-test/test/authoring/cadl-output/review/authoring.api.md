@@ -241,7 +241,6 @@ export interface DeploymentsSwapDeployments202Response extends HttpResponse {
 
 // @public (undocumented)
 export interface DeploymentsSwapDeploymentsBodyParam {
-    // (undocumented)
     body: SwapDeploymentsOptions;
 }
 
@@ -861,6 +860,7 @@ export interface ProjectsTrain202Response extends HttpResponse {
 
 // @public (undocumented)
 export interface ProjectsTrainBodyParam {
+    // (undocumented)
     body: TrainingJobOptions;
 }
 

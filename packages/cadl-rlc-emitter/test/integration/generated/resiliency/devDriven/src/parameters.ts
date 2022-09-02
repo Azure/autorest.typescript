@@ -4,6 +4,7 @@ import { Input } from "./models";
 export type DevDrivenGetModelParameters = RequestParameters;
 
 export interface DevDrivenPostModelBodyParam {
+  /** Please put {'hello': 'world!'} */
   body: Input;
 }
 

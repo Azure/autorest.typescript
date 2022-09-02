@@ -91,7 +91,6 @@ export type ProjectsImportxParameters = ProjectsImportxQueryParam &
   RequestParameters;
 
 export interface ProjectsTrainBodyParam {
-  /** Training job parameters. */
   body: TrainingJobOptions;
 }
 
@@ -157,6 +156,7 @@ export type DeploymentsListParameters = DeploymentsListQueryParam &
   RequestParameters;
 
 export interface DeploymentsSwapDeploymentsBodyParam {
+  /** The body schema of the operation. */
   body: SwapDeploymentsOptions;
 }
 

@@ -157,7 +157,9 @@ function transformBodyParameters(
         required: parameters.bodyParameter
           ? !Boolean(parameters.bodyParameter.optional)
           : bodySchema.required,
-        description: getDoc(program, bodyType)
+        description: parameters.bodyParameter
+          ? getDoc(program, parameters.bodyParameter)
+          : getDoc(program, bodyType)
       }
     ]
   };

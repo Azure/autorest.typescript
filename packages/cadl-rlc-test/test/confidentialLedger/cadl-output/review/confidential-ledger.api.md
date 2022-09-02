@@ -31,7 +31,6 @@ export interface ConfidentialLedgerCreateOrUpdateUser200Response extends HttpRes
 
 // @public (undocumented)
 export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
-    // (undocumented)
     body: LedgerUser;
 }
 
