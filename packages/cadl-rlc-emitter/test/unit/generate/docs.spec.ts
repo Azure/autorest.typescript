@@ -58,6 +58,31 @@ describe("Doc generation testing", () => {
       `
       );
     });
+    it("shouldn't generate type description as body property description", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @doc("Body type details")
+        model UserDetailsParameter {
+          username: string;
+        }
+        op createOrUpdateUser(@body username: UserDetailsParameter): OkResponse;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { UserDetailsParameter } from "./models";
+
+        export interface CreateOrUpdateUserBodyParam {
+          body: UserDetailsParameter;
+        }
+
+        export type CreateOrUpdateUserParameters = CreateOrUpdateUserBodyParam & RequestParameters;
+      `
+      );
+    });
     it("should generate query description", async () => {
       const parameters = await emitParameterFromCadl(
         `
