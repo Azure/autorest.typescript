@@ -20,6 +20,7 @@ import {
   getTypeName,
   getSchemaForType
 } from "../modelUtils.js";
+import { isApiVersion } from "../paramUtil.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -94,7 +95,7 @@ function transformQueryParameters(
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
-    (p) => p.type === "query"
+    (p) => p.type === "query" && !isApiVersion(p)
   );
   if (!queryParameters.length) {
     return [];

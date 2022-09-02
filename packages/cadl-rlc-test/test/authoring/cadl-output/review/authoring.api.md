@@ -71,18 +71,7 @@ export interface DeploymentsDeleteDeploymentDefaultResponse extends HttpResponse
 }
 
 // @public (undocumented)
-export type DeploymentsDeleteDeploymentParameters = DeploymentsDeleteDeploymentQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface DeploymentsDeleteDeploymentQueryParam {
-    // (undocumented)
-    queryParameters: DeploymentsDeleteDeploymentQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface DeploymentsDeleteDeploymentQueryParamProperties {
-    "api-version": string;
-}
+export type DeploymentsDeleteDeploymentParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeploymentsDeployProject200Headers {
@@ -123,24 +112,13 @@ export interface DeploymentsDeployProjectDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeploymentsDeployProjectParameters = DeploymentsDeployProjectQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface DeploymentsDeployProjectQueryParam {
-    // (undocumented)
-    queryParameters: DeploymentsDeployProjectQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface DeploymentsDeployProjectQueryParamProperties {
-    "api-version": string;
-}
+export type DeploymentsDeployProjectParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeploymentsGetDeployment {
-    delete(options: DeploymentsDeleteDeploymentParameters): StreamableMethod<DeploymentsDeleteDeployment202Response | DeploymentsDeleteDeploymentDefaultResponse>;
-    get(options: DeploymentsGetDeploymentParameters): StreamableMethod<DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse>;
-    put(options: DeploymentsDeployProjectParameters): StreamableMethod<DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse>;
+    delete(options?: DeploymentsDeleteDeploymentParameters): StreamableMethod<DeploymentsDeleteDeployment202Response | DeploymentsDeleteDeploymentDefaultResponse>;
+    get(options?: DeploymentsGetDeploymentParameters): StreamableMethod<DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse>;
+    put(options?: DeploymentsDeployProjectParameters): StreamableMethod<DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse>;
 }
 
 // @public
@@ -160,22 +138,11 @@ export interface DeploymentsGetDeploymentDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeploymentsGetDeploymentParameters = DeploymentsGetDeploymentQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface DeploymentsGetDeploymentQueryParam {
-    // (undocumented)
-    queryParameters: DeploymentsGetDeploymentQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface DeploymentsGetDeploymentQueryParamProperties {
-    "api-version": string;
-}
+export type DeploymentsGetDeploymentParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeploymentsList {
-    get(options: DeploymentsListParameters): StreamableMethod<DeploymentsList200Response | DeploymentsListDefaultResponse>;
+    get(options?: DeploymentsListParameters): StreamableMethod<DeploymentsList200Response | DeploymentsListDefaultResponse>;
 }
 
 // @public
@@ -195,31 +162,20 @@ export interface DeploymentsListDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeploymentsListParameters = DeploymentsListQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface DeploymentsListQueryParam {
-    // (undocumented)
-    queryParameters: DeploymentsListQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface DeploymentsListQueryParamProperties {
-    "api-version": string;
-}
+export type DeploymentsListParameters = RequestParameters;
 
 // @public
 export interface DeploymentsOperations {
-    deleteDeployment(projectName: string, deploymentName: string, options: DeploymentsDeleteDeploymentParameters): StreamableMethod<DeploymentsDeleteDeployment202Response | DeploymentsDeleteDeploymentDefaultResponse>;
-    deployProject(projectName: string, deploymentName: string, options: DeploymentsDeployProjectParameters): StreamableMethod<DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse>;
-    getDeployment(projectName: string, deploymentName: string, options: DeploymentsGetDeploymentParameters): StreamableMethod<DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse>;
-    list(projectName: string, options: DeploymentsListParameters): StreamableMethod<DeploymentsList200Response | DeploymentsListDefaultResponse>;
-    swapDeployments(projectName: string, options: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
+    deleteDeployment(projectName: string, deploymentName: string, options?: DeploymentsDeleteDeploymentParameters): StreamableMethod<DeploymentsDeleteDeployment202Response | DeploymentsDeleteDeploymentDefaultResponse>;
+    deployProject(projectName: string, deploymentName: string, options?: DeploymentsDeployProjectParameters): StreamableMethod<DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse>;
+    getDeployment(projectName: string, deploymentName: string, options?: DeploymentsGetDeploymentParameters): StreamableMethod<DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse>;
+    list(projectName: string, options?: DeploymentsListParameters): StreamableMethod<DeploymentsList200Response | DeploymentsListDefaultResponse>;
+    swapDeployments(projectName: string, options?: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface DeploymentsSwapDeployments {
-    post(options: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
+    post(options?: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -249,18 +205,7 @@ export interface DeploymentsSwapDeploymentsDefaultResponse extends HttpResponse 
 }
 
 // @public (undocumented)
-export type DeploymentsSwapDeploymentsParameters = DeploymentsSwapDeploymentsQueryParam & DeploymentsSwapDeploymentsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface DeploymentsSwapDeploymentsQueryParam {
-    // (undocumented)
-    queryParameters: DeploymentsSwapDeploymentsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface DeploymentsSwapDeploymentsQueryParamProperties {
-    "api-version": string;
-}
+export type DeploymentsSwapDeploymentsParameters = DeploymentsSwapDeploymentsBodyParam & RequestParameters;
 
 // @public
 export interface ErrorModelOutput {
@@ -279,7 +224,7 @@ export interface ErrorResponseOutput {
 // @public (undocumented)
 export interface GlobalGetSupportedLanguages {
     // (undocumented)
-    get(options: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
+    get(options?: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
 }
 
 // @public
@@ -304,12 +249,11 @@ export type GlobalGetSupportedLanguagesParameters = GlobalGetSupportedLanguagesQ
 // @public (undocumented)
 export interface GlobalGetSupportedLanguagesQueryParam {
     // (undocumented)
-    queryParameters: GlobalGetSupportedLanguagesQueryParamProperties;
+    queryParameters?: GlobalGetSupportedLanguagesQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface GlobalGetSupportedLanguagesQueryParamProperties {
-    "api-version": string;
     // (undocumented)
     maxpagesize?: number;
     // (undocumented)
@@ -321,7 +265,7 @@ export interface GlobalGetSupportedLanguagesQueryParamProperties {
 // @public (undocumented)
 export interface GlobalListTrainingConfigVersions {
     // (undocumented)
-    get(options: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
+    get(options?: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
 }
 
 // @public
@@ -346,12 +290,11 @@ export type GlobalListTrainingConfigVersionsParameters = GlobalListTrainingConfi
 // @public (undocumented)
 export interface GlobalListTrainingConfigVersionsQueryParam {
     // (undocumented)
-    queryParameters: GlobalListTrainingConfigVersionsQueryParamProperties;
+    queryParameters?: GlobalListTrainingConfigVersionsQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface GlobalListTrainingConfigVersionsQueryParamProperties {
-    "api-version": string;
     // (undocumented)
     maxpagesize?: number;
     // (undocumented)
@@ -363,9 +306,9 @@ export interface GlobalListTrainingConfigVersionsQueryParamProperties {
 // @public
 export interface GlobalOperations {
     // (undocumented)
-    getSupportedLanguages(options: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
+    getSupportedLanguages(options?: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
     // (undocumented)
-    listTrainingConfigVersions(options: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
+    listTrainingConfigVersions(options?: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
 }
 
 // @public
@@ -424,7 +367,7 @@ export function isUnexpected(response: GlobalListTrainingConfigVersions200Respon
 
 // @public (undocumented)
 export interface JobsGetDeploymentStatus {
-    get(options: JobsGetDeploymentStatusParameters): StreamableMethod<JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse>;
+    get(options?: JobsGetDeploymentStatusParameters): StreamableMethod<JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse>;
 }
 
 // @public
@@ -444,22 +387,11 @@ export interface JobsGetDeploymentStatusDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type JobsGetDeploymentStatusParameters = JobsGetDeploymentStatusQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobsGetDeploymentStatusQueryParam {
-    // (undocumented)
-    queryParameters: JobsGetDeploymentStatusQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobsGetDeploymentStatusQueryParamProperties {
-    "api-version": string;
-}
+export type JobsGetDeploymentStatusParameters = RequestParameters;
 
 // @public (undocumented)
 export interface JobsGetSwapDeploymentsStatus {
-    get(options: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
+    get(options?: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
 }
 
 // @public
@@ -479,23 +411,12 @@ export interface JobsGetSwapDeploymentsStatusDefaultResponse extends HttpRespons
 }
 
 // @public (undocumented)
-export type JobsGetSwapDeploymentsStatusParameters = JobsGetSwapDeploymentsStatusQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobsGetSwapDeploymentsStatusQueryParam {
-    // (undocumented)
-    queryParameters: JobsGetSwapDeploymentsStatusQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobsGetSwapDeploymentsStatusQueryParamProperties {
-    "api-version": string;
-}
+export type JobsGetSwapDeploymentsStatusParameters = RequestParameters;
 
 // @public
 export interface JobsOperations {
-    getDeploymentStatus(projectName: string, deploymentName: string, jobId: string, options: JobsGetDeploymentStatusParameters): StreamableMethod<JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse>;
-    getSwapDeploymentsStatus(projectName: string, deploymentName: string, jobId: string, options: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
+    getDeploymentStatus(projectName: string, deploymentName: string, jobId: string, options?: JobsGetDeploymentStatusParameters): StreamableMethod<JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse>;
+    getSwapDeploymentsStatus(projectName: string, deploymentName: string, jobId: string, options?: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
 }
 
 // @public
@@ -560,9 +481,9 @@ export interface ProjectOutput {
 
 // @public (undocumented)
 export interface ProjectsCreateOrUpdate {
-    delete(options: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
-    get(options: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
-    patch(options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
+    delete(options?: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
+    get(options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
+    patch(options?: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -616,18 +537,7 @@ export interface ProjectsCreateOrUpdateMediaTypesParam {
 }
 
 // @public (undocumented)
-export type ProjectsCreateOrUpdateParameters = ProjectsCreateOrUpdateQueryParam & ProjectsCreateOrUpdateMediaTypesParam & ProjectsCreateOrUpdateBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsCreateOrUpdateQueryParam {
-    // (undocumented)
-    queryParameters: ProjectsCreateOrUpdateQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ProjectsCreateOrUpdateQueryParamProperties {
-    "api-version": string;
-}
+export type ProjectsCreateOrUpdateParameters = ProjectsCreateOrUpdateMediaTypesParam & ProjectsCreateOrUpdateBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface ProjectsDelete202Headers {
@@ -653,18 +563,7 @@ export interface ProjectsDeleteDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ProjectsDeleteParameters = ProjectsDeleteQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsDeleteQueryParam {
-    // (undocumented)
-    queryParameters: ProjectsDeleteQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ProjectsDeleteQueryParamProperties {
-    "api-version": string;
-}
+export type ProjectsDeleteParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ProjectsExport {
@@ -703,7 +602,6 @@ export interface ProjectsExportQueryParam {
 
 // @public (undocumented)
 export interface ProjectsExportQueryParamProperties {
-    "api-version": string;
     // (undocumented)
     projectFileVersion: string;
 }
@@ -725,22 +623,11 @@ export interface ProjectsGetDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ProjectsGetParameters = ProjectsGetQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsGetQueryParam {
-    // (undocumented)
-    queryParameters: ProjectsGetQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ProjectsGetQueryParamProperties {
-    "api-version": string;
-}
+export type ProjectsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ProjectsImportx {
-    post(options: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
+    post(options?: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -765,22 +652,11 @@ export interface ProjectsImportxDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ProjectsImportxParameters = ProjectsImportxQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsImportxQueryParam {
-    // (undocumented)
-    queryParameters: ProjectsImportxQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ProjectsImportxQueryParamProperties {
-    "api-version": string;
-}
+export type ProjectsImportxParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ProjectsList {
-    get(options: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
+    get(options?: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
 }
 
 // @public
@@ -805,12 +681,11 @@ export type ProjectsListParameters = ProjectsListQueryParam & RequestParameters;
 // @public (undocumented)
 export interface ProjectsListQueryParam {
     // (undocumented)
-    queryParameters: ProjectsListQueryParamProperties;
+    queryParameters?: ProjectsListQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ProjectsListQueryParamProperties {
-    "api-version": string;
     // (undocumented)
     maxpagesize?: number;
     // (undocumented)
@@ -821,18 +696,18 @@ export interface ProjectsListQueryParamProperties {
 
 // @public
 export interface ProjectsOperations {
-    createOrUpdate(projectName: string, options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
-    delete(projectName: string, options: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
+    createOrUpdate(projectName: string, options?: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
+    delete(projectName: string, options?: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
     export(projectName: string, options: ProjectsExportParameters): StreamableMethod<ProjectsExport202Response | ProjectsExportDefaultResponse>;
-    get(projectName: string, options: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
-    importx(projectName: string, options: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
-    list(options: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
-    train(projectName: string, options: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
+    get(projectName: string, options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
+    importx(projectName: string, options?: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
+    list(options?: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
+    train(projectName: string, options?: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface ProjectsTrain {
-    post(options: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
+    post(options?: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -863,18 +738,7 @@ export interface ProjectsTrainDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ProjectsTrainParameters = ProjectsTrainQueryParam & ProjectsTrainBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsTrainQueryParam {
-    // (undocumented)
-    queryParameters: ProjectsTrainQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ProjectsTrainQueryParamProperties {
-    "api-version": string;
-}
+export type ProjectsTrainParameters = ProjectsTrainBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface Routes {

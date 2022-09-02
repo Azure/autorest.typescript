@@ -27,7 +27,7 @@ export interface GetModel {
 export interface GetPages {
   /** Get pages that you will either return to users in pages of raw bodies, or pages of models following growup. */
   get(
-    options: DevDrivenGetPagesParameters
+    options?: DevDrivenGetPagesParameters
   ): StreamableMethod<
     DevDrivenGetPages200Response | DevDrivenGetPagesDefaultResponse
   >;
