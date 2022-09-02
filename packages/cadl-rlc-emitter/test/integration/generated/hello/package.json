@@ -1,5 +1,5 @@
 {
-  "name": "@msinternal/hello-wrold",
+  "name": "@msinternal/hello-world",
   "sdk-type": "client",
   "author": "Microsoft Corporation",
   "version": "1.0.0",
@@ -8,13 +8,13 @@
   "license": "MIT",
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
-  "types": "./types/hello-wrold.d.ts",
+  "types": "./types/hello-world.d.ts",
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
     "dist/",
     "dist-esm/",
-    "types/hello-wrold.d.ts",
+    "types/hello-world.d.ts",
     "README.md",
     "LICENSE",
     "review/*"
