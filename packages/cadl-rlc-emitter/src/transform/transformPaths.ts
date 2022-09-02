@@ -82,7 +82,7 @@ function hasRequiredOptions(routeParameters: HttpOperationParameters) {
     .filter((parameter) => ["query", "header"].includes(parameter.type))
     .filter((parameter) => !isApiVersion(parameter))
     .filter((parameter) => !!parameter.param)
-    .some((parameter) => !Boolean(parameter.param.optional));
+    .some((parameter) => parameter.param.optional === false);
   return isRequiredBodyParam || containsRequiredNonBodyParam;
 }
 
