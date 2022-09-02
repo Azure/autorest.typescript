@@ -196,12 +196,12 @@ describe("LROs", () => {
 
     it("should handle post202NoRetry204", async () => {
       await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
-      check200(lastResponse);
+      check204(lastResponse);
     });
 
     it("should handle deleteNoHeaderInRetry", async () => {
       await client.lROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
-      check200(lastResponse);
+      check204(lastResponse);
         
     });
 
