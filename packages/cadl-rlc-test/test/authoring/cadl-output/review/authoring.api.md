@@ -49,8 +49,7 @@ export interface DeploymentOutput {
 
 // @public (undocumented)
 export interface DeploymentsDeleteDeployment202Headers {
-    // (undocumented)
-    operationlocation?: string;
+    "operation-location"?: string;
 }
 
 // @public
@@ -87,8 +86,7 @@ export interface DeploymentsDeleteDeploymentQueryParamProperties {
 
 // @public (undocumented)
 export interface DeploymentsDeployProject200Headers {
-    // (undocumented)
-    operationlocation: string;
+    "operation-location": string;
 }
 
 // @public
@@ -103,8 +101,7 @@ export interface DeploymentsDeployProject200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface DeploymentsDeployProject201Headers {
-    // (undocumented)
-    operationlocation: string;
+    "operation-location": string;
 }
 
 // @public
@@ -227,8 +224,7 @@ export interface DeploymentsSwapDeployments {
 
 // @public (undocumented)
 export interface DeploymentsSwapDeployments202Headers {
-    // (undocumented)
-    operationlocation: string;
+    "operation-location": string;
 }
 
 // @public
@@ -561,8 +557,7 @@ export interface ProjectsCreateOrUpdate {
 
 // @public (undocumented)
 export interface ProjectsCreateOrUpdate200Headers {
-    // (undocumented)
-    operationlocation: string;
+    "operation-location": string;
 }
 
 // @public
@@ -577,8 +572,7 @@ export interface ProjectsCreateOrUpdate200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface ProjectsCreateOrUpdate201Headers {
-    // (undocumented)
-    operationlocation: string;
+    "operation-location": string;
 }
 
 // @public
@@ -621,8 +615,7 @@ export interface ProjectsCreateOrUpdateQueryParamProperties {
 
 // @public (undocumented)
 export interface ProjectsDelete202Headers {
-    // (undocumented)
-    operationlocation?: string;
+    "operation-location"?: string;
 }
 
 // @public
@@ -664,8 +657,7 @@ export interface ProjectsExport {
 
 // @public (undocumented)
 export interface ProjectsExport202Headers {
-    // (undocumented)
-    operationlocation: string;
+    "operation-location": string;
 }
 
 // @public
@@ -737,8 +729,7 @@ export interface ProjectsImportx {
 
 // @public (undocumented)
 export interface ProjectsImportx202Headers {
-    // (undocumented)
-    operationlocation: string;
+    "operation-location": string;
 }
 
 // @public
@@ -830,8 +821,7 @@ export interface ProjectsTrain {
 
 // @public (undocumented)
 export interface ProjectsTrain202Headers {
-    // (undocumented)
-    operationlocation: string;
+    "operation-location": string;
 }
 
 // @public

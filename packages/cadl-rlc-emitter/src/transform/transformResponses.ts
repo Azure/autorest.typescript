@@ -56,6 +56,12 @@ export function transformToResponseTypes(
   return rlcResponses;
 }
 
+/**
+ * Return undefined if no valid header param
+ * @param program the cadl program
+ * @param response response detail
+ * @returns rlc header shcema
+ */
 function transformHeaders(
   program: Program,
   response: HttpOperationResponse
@@ -93,7 +99,7 @@ function transformHeaders(
     }
   }
 
-  return rlcHeaders;
+  return rlcHeaders.length ? rlcHeaders : undefined;
 }
 
 function transformBody(
