@@ -3,8 +3,6 @@
 
 import {
   ImportKind,
-  // NameType,
-  // normalizeName,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
