@@ -4,8 +4,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/model-inheritance",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "model-inheritance",
     "description": "Model Inheritance Test Service",
     "version": "1.0.0"
   },

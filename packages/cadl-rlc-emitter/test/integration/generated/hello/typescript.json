@@ -4,8 +4,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/hello-wrold",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "hello-world",
     "description": "Hello World Test Service",
     "version": "1.0.0"
   },

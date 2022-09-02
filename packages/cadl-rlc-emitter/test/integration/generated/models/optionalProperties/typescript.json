@@ -4,8 +4,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/optional-property",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "optional-property",
     "description": "Optional Property Test Service",
     "version": "1.0.0"
   },

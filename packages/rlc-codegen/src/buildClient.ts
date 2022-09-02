@@ -120,7 +120,7 @@ function getClientFactoryBody(
     return "";
   }
   const { includeShortcuts, packageDetails } = model.options;
-  let clientPackageName = packageDetails.nameWithoutScope;
+  let clientPackageName = packageDetails.nameWithoutScope ?? "";
   const packageVersion = packageDetails.version;
   const { endpoint, endpointParameterName } = model.options;
   let baseUrl: string;

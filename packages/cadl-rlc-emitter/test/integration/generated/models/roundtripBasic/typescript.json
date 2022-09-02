@@ -3,8 +3,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/roundtrip-basic",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "roundtrip-basic",
     "description": "Roundtrip Basic Test Service",
     "version": "1.0.0"
   },

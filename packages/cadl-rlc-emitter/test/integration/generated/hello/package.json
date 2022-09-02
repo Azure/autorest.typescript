@@ -8,13 +8,13 @@
   "license": "MIT",
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
-  "types": "./types/hello-world.d.ts",
+  "types": "./types/hello-wrold.d.ts",
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
     "dist/",
     "dist-esm/",
-    "types/hello-world.d.ts",
+    "types/hello-wrold.d.ts",
     "README.md",
     "LICENSE",
     "review/*"
