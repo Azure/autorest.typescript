@@ -94,7 +94,7 @@ function transformQueryParameters(
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
-    (p) => p.type === "query"
+    (p) => p.type === "query" && !isApiVersion(p)
   );
   if (!queryParameters.length) {
     return [];
@@ -102,6 +102,10 @@ function transformQueryParameters(
   return queryParameters.map((qp) =>
     getParameterMetadata(program, "query", qp)
   );
+}
+
+function isApiVersion(param: HttpOperationParameter) {
+  return param.type === "query" && param.name.toLowerCase() === "api-version";
 }
 
 /**
