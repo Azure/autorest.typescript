@@ -14,7 +14,8 @@ import {
 } from "./outputModels";
 
 export interface ProjectsCreateOrUpdate200Headers {
-  operationlocation: string;
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has succeeded. */
@@ -25,7 +26,8 @@ export interface ProjectsCreateOrUpdate200Response extends HttpResponse {
 }
 
 export interface ProjectsCreateOrUpdate201Headers {
-  operationlocation: string;
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
@@ -52,7 +54,8 @@ export interface ProjectsGetDefaultResponse extends HttpResponse {
 }
 
 export interface ProjectsDelete202Headers {
-  operationlocation?: string;
+  /** The location for monitoring the operation state. */
+  "operation-location"?: string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
@@ -79,7 +82,8 @@ export interface ProjectsListDefaultResponse extends HttpResponse {
 }
 
 export interface ProjectsExport202Headers {
-  operationlocation: string;
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
@@ -94,7 +98,8 @@ export interface ProjectsExportDefaultResponse extends HttpResponse {
 }
 
 export interface ProjectsImportx202Headers {
-  operationlocation: string;
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
@@ -109,7 +114,8 @@ export interface ProjectsImportxDefaultResponse extends HttpResponse {
 }
 
 export interface ProjectsTrain202Headers {
-  operationlocation: string;
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
@@ -135,7 +141,8 @@ export interface DeploymentsGetDeploymentDefaultResponse extends HttpResponse {
 }
 
 export interface DeploymentsDeployProject200Headers {
-  operationlocation: string;
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has succeeded. */
@@ -146,7 +153,8 @@ export interface DeploymentsDeployProject200Response extends HttpResponse {
 }
 
 export interface DeploymentsDeployProject201Headers {
-  operationlocation: string;
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
@@ -162,7 +170,8 @@ export interface DeploymentsDeployProjectDefaultResponse extends HttpResponse {
 }
 
 export interface DeploymentsDeleteDeployment202Headers {
-  operationlocation?: string;
+  /** The location for monitoring the operation state. */
+  "operation-location"?: string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
@@ -190,7 +199,8 @@ export interface DeploymentsListDefaultResponse extends HttpResponse {
 }
 
 export interface DeploymentsSwapDeployments202Headers {
-  operationlocation: string;
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
