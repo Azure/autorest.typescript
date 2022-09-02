@@ -91,7 +91,7 @@ describe("LRO Rest Client", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "Poller cancelled"
+          "Operation was canceled"
         );
       }
     });
@@ -132,7 +132,7 @@ describe("LRO Rest Client", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long-running operation has failed."
+          "The long-running operation has failed"
         );
       }
     });
@@ -434,7 +434,7 @@ describe("LRO Rest Client", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "Poller cancelled"
+          "Operation was canceled"
         );
       }
     });
@@ -454,7 +454,7 @@ describe("LRO Rest Client", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long-running operation has failed."
+          "The long-running operation has failed"
         );
       }
     });
@@ -534,7 +534,7 @@ describe("LRO Rest Client", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long-running operation has failed."
+          "The long-running operation has failed"
         );
       }
     });
@@ -600,7 +600,7 @@ describe("LRO Rest Client", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "Poller cancelled"
+          "Operation was canceled"
         );
       }
     });
@@ -664,7 +664,7 @@ describe("LRO Rest Client", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "The long-running operation has failed."
+          "The long-running operation has failed"
         );
       }
     });
@@ -704,7 +704,7 @@ describe("LRO Rest Client", () => {
       } catch (e) {
         assert.equal(
           e.message,
-          "Poller cancelled"
+          "Operation was canceled"
         );
       }
     });
