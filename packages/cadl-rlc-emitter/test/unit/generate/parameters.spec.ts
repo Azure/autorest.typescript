@@ -3,7 +3,7 @@ import { emitParameterFromCadl } from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
 describe("Input/output model type", () => {
-  it.only("should't generate apiVersion ", async () => {
+  it("should't generate apiVersion ", async () => {
     const parameters = await emitParameterFromCadl(
       `
           model ApiVersionParameter {
@@ -24,7 +24,7 @@ describe("Input/output model type", () => {
     );
   });
 
-  it.only("should generate user-custom-query ", async () => {
+  it("should generate user-custom-query ", async () => {
     const parameters = await emitParameterFromCadl(
       `
           model CustomParameter {
