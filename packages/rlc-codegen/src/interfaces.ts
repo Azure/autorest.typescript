@@ -123,7 +123,7 @@ export interface Parameter extends Schema {}
 export interface PackageDetails {
   name: string;
   scopeName?: string;
-  nameWithoutScope: string;
+  nameWithoutScope?: string;
   description?: string;
   version: string;
 }

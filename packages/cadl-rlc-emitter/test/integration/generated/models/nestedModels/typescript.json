@@ -4,8 +4,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/nested-model",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "nested-model",
     "description": "Nested Model Test Service",
     "version": "1.0.0"
   },

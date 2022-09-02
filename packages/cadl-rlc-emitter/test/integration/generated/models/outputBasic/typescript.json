@@ -4,8 +4,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/output-basic",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "output-basic",
     "description": "Output Basic Test Service",
     "version": "1.0.0"
   },

@@ -4,8 +4,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/property-types",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "property-types",
     "description": "Property Types Test Service",
     "version": "1.0.0"
   },
