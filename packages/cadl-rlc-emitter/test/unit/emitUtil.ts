@@ -29,7 +29,8 @@ export async function emitParameterFromCadl(cadlContent: string) {
     paths: {},
     libraryName: "test",
     schemas: [],
-    parameters
+    parameters,
+    importSet
   });
 }
 
