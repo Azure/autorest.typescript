@@ -238,7 +238,7 @@ describe("LROs", () => {
 
     it("should handle delete202NoRetry204", async () => {
       await client.lROs.beginDelete202NoRetry204AndWait(LROOptions);
-      check200(lastResponse);
+      check204(lastResponse);
     });
 
     it("should handle deleteProvisioning202Accepted200Succeeded", async () => {
