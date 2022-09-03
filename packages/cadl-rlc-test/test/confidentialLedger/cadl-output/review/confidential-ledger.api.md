@@ -250,21 +250,21 @@ export interface ConfidentialLedgerOperations {
     // (undocumented)
     createOrUpdateUser(userId: string, options: ConfidentialLedgerCreateOrUpdateUserParameters): StreamableMethod<ConfidentialLedgerCreateOrUpdateUser200Response | ConfidentialLedgerCreateOrUpdateUserDefaultResponse>;
     // (undocumented)
-    deleteUser(userId: string, options: ConfidentialLedgerDeleteUserParameters): StreamableMethod<ConfidentialLedgerDeleteUser204Response | ConfidentialLedgerDeleteUserDefaultResponse>;
-    getConsortiumMembers(options: ConfidentialLedgerGetConsortiumMembersParameters): StreamableMethod<ConfidentialLedgerGetConsortiumMembers200Response | ConfidentialLedgerGetConsortiumMembersDefaultResponse>;
-    getConstitution(options: ConfidentialLedgerGetConstitutionParameters): StreamableMethod<ConfidentialLedgerGetConstitution200Response | ConfidentialLedgerGetConstitutionDefaultResponse>;
+    deleteUser(userId: string, options?: ConfidentialLedgerDeleteUserParameters): StreamableMethod<ConfidentialLedgerDeleteUser204Response | ConfidentialLedgerDeleteUserDefaultResponse>;
+    getConsortiumMembers(options?: ConfidentialLedgerGetConsortiumMembersParameters): StreamableMethod<ConfidentialLedgerGetConsortiumMembers200Response | ConfidentialLedgerGetConsortiumMembersDefaultResponse>;
+    getConstitution(options?: ConfidentialLedgerGetConstitutionParameters): StreamableMethod<ConfidentialLedgerGetConstitution200Response | ConfidentialLedgerGetConstitutionDefaultResponse>;
     // (undocumented)
-    getCurrentLedgerEntry(options: ConfidentialLedgerGetCurrentLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetCurrentLedgerEntry200Response | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse>;
-    getEnclaveQuotes(options: ConfidentialLedgerGetEnclaveQuotesParameters): StreamableMethod<ConfidentialLedgerGetEnclaveQuotes200Response | ConfidentialLedgerGetEnclaveQuotesDefaultResponse>;
+    getCurrentLedgerEntry(options?: ConfidentialLedgerGetCurrentLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetCurrentLedgerEntry200Response | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse>;
+    getEnclaveQuotes(options?: ConfidentialLedgerGetEnclaveQuotesParameters): StreamableMethod<ConfidentialLedgerGetEnclaveQuotes200Response | ConfidentialLedgerGetEnclaveQuotesDefaultResponse>;
     // (undocumented)
-    getLedgerEntry(transactionId: string, options: ConfidentialLedgerGetLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetLedgerEntry200Response | ConfidentialLedgerGetLedgerEntryDefaultResponse>;
+    getLedgerEntry(transactionId: string, options?: ConfidentialLedgerGetLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetLedgerEntry200Response | ConfidentialLedgerGetLedgerEntryDefaultResponse>;
     // (undocumented)
-    getReceipt(transactionId: string, options: ConfidentialLedgerGetReceiptParameters): StreamableMethod<ConfidentialLedgerGetReceipt200Response | ConfidentialLedgerGetReceiptDefaultResponse>;
+    getReceipt(transactionId: string, options?: ConfidentialLedgerGetReceiptParameters): StreamableMethod<ConfidentialLedgerGetReceipt200Response | ConfidentialLedgerGetReceiptDefaultResponse>;
     // (undocumented)
-    getTransactionStatus(transactionId: string, options: ConfidentialLedgerGetTransactionStatusParameters): StreamableMethod<ConfidentialLedgerGetTransactionStatus200Response | ConfidentialLedgerGetTransactionStatusDefaultResponse>;
+    getTransactionStatus(transactionId: string, options?: ConfidentialLedgerGetTransactionStatusParameters): StreamableMethod<ConfidentialLedgerGetTransactionStatus200Response | ConfidentialLedgerGetTransactionStatusDefaultResponse>;
     // (undocumented)
-    getUser(userId: string, options: ConfidentialLedgerGetUserParameters): StreamableMethod<ConfidentialLedgerGetUser200Response | ConfidentialLedgerGetUserDefaultResponse>;
-    listCollections(options: ConfidentialLedgerListCollectionsParameters): StreamableMethod<ConfidentialLedgerListCollections200Response | ConfidentialLedgerListCollectionsDefaultResponse>;
+    getUser(userId: string, options?: ConfidentialLedgerGetUserParameters): StreamableMethod<ConfidentialLedgerGetUser200Response | ConfidentialLedgerGetUserDefaultResponse>;
+    listCollections(options?: ConfidentialLedgerListCollectionsParameters): StreamableMethod<ConfidentialLedgerListCollections200Response | ConfidentialLedgerListCollectionsDefaultResponse>;
     postLedgerEntry(options: ConfidentialLedgerPostLedgerEntryParameters): StreamableMethod<ConfidentialLedgerPostLedgerEntry200Response | ConfidentialLedgerPostLedgerEntryDefaultResponse>;
 }
 
@@ -315,9 +315,9 @@ export default createClient;
 // @public (undocumented)
 export interface DeleteUser {
     // (undocumented)
-    delete(options: ConfidentialLedgerDeleteUserParameters): StreamableMethod<ConfidentialLedgerDeleteUser204Response | ConfidentialLedgerDeleteUserDefaultResponse>;
+    delete(options?: ConfidentialLedgerDeleteUserParameters): StreamableMethod<ConfidentialLedgerDeleteUser204Response | ConfidentialLedgerDeleteUserDefaultResponse>;
     // (undocumented)
-    get(options: ConfidentialLedgerGetUserParameters): StreamableMethod<ConfidentialLedgerGetUser200Response | ConfidentialLedgerGetUserDefaultResponse>;
+    get(options?: ConfidentialLedgerGetUserParameters): StreamableMethod<ConfidentialLedgerGetUser200Response | ConfidentialLedgerGetUserDefaultResponse>;
     // (undocumented)
     patch(options: ConfidentialLedgerCreateOrUpdateUserParameters): StreamableMethod<ConfidentialLedgerCreateOrUpdateUser200Response | ConfidentialLedgerCreateOrUpdateUserDefaultResponse>;
 }
@@ -338,41 +338,41 @@ export interface ErrorResponseOutput {
 
 // @public (undocumented)
 export interface GetConsortiumMembers {
-    get(options: ConfidentialLedgerGetConsortiumMembersParameters): StreamableMethod<ConfidentialLedgerGetConsortiumMembers200Response | ConfidentialLedgerGetConsortiumMembersDefaultResponse>;
+    get(options?: ConfidentialLedgerGetConsortiumMembersParameters): StreamableMethod<ConfidentialLedgerGetConsortiumMembers200Response | ConfidentialLedgerGetConsortiumMembersDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface GetConstitution {
-    get(options: ConfidentialLedgerGetConstitutionParameters): StreamableMethod<ConfidentialLedgerGetConstitution200Response | ConfidentialLedgerGetConstitutionDefaultResponse>;
+    get(options?: ConfidentialLedgerGetConstitutionParameters): StreamableMethod<ConfidentialLedgerGetConstitution200Response | ConfidentialLedgerGetConstitutionDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface GetCurrentLedgerEntry {
     // (undocumented)
-    get(options: ConfidentialLedgerGetCurrentLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetCurrentLedgerEntry200Response | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse>;
+    get(options?: ConfidentialLedgerGetCurrentLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetCurrentLedgerEntry200Response | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface GetEnclaveQuotes {
-    get(options: ConfidentialLedgerGetEnclaveQuotesParameters): StreamableMethod<ConfidentialLedgerGetEnclaveQuotes200Response | ConfidentialLedgerGetEnclaveQuotesDefaultResponse>;
+    get(options?: ConfidentialLedgerGetEnclaveQuotesParameters): StreamableMethod<ConfidentialLedgerGetEnclaveQuotes200Response | ConfidentialLedgerGetEnclaveQuotesDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface GetLedgerEntry {
     // (undocumented)
-    get(options: ConfidentialLedgerGetLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetLedgerEntry200Response | ConfidentialLedgerGetLedgerEntryDefaultResponse>;
+    get(options?: ConfidentialLedgerGetLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetLedgerEntry200Response | ConfidentialLedgerGetLedgerEntryDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface GetReceipt {
     // (undocumented)
-    get(options: ConfidentialLedgerGetReceiptParameters): StreamableMethod<ConfidentialLedgerGetReceipt200Response | ConfidentialLedgerGetReceiptDefaultResponse>;
+    get(options?: ConfidentialLedgerGetReceiptParameters): StreamableMethod<ConfidentialLedgerGetReceipt200Response | ConfidentialLedgerGetReceiptDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface GetTransactionStatus {
     // (undocumented)
-    get(options: ConfidentialLedgerGetTransactionStatusParameters): StreamableMethod<ConfidentialLedgerGetTransactionStatus200Response | ConfidentialLedgerGetTransactionStatusDefaultResponse>;
+    get(options?: ConfidentialLedgerGetTransactionStatusParameters): StreamableMethod<ConfidentialLedgerGetTransactionStatus200Response | ConfidentialLedgerGetTransactionStatusDefaultResponse>;
 }
 
 // @public
@@ -436,7 +436,7 @@ export interface LedgerUser {
 
 // @public (undocumented)
 export interface ListCollections {
-    get(options: ConfidentialLedgerListCollectionsParameters): StreamableMethod<ConfidentialLedgerListCollections200Response | ConfidentialLedgerListCollectionsDefaultResponse>;
+    get(options?: ConfidentialLedgerListCollectionsParameters): StreamableMethod<ConfidentialLedgerListCollections200Response | ConfidentialLedgerListCollectionsDefaultResponse>;
 }
 
 // @public (undocumented)

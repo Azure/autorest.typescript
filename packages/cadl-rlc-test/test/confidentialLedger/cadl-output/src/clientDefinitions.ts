@@ -44,28 +44,28 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface ConfidentialLedgerOperations {
   /** Collection ids are user-created collections of ledger entries */
   listCollections(
-    options: ConfidentialLedgerListCollectionsParameters
+    options?: ConfidentialLedgerListCollectionsParameters
   ): StreamableMethod<
     | ConfidentialLedgerListCollections200Response
     | ConfidentialLedgerListCollectionsDefaultResponse
   >;
   /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
   getEnclaveQuotes(
-    options: ConfidentialLedgerGetEnclaveQuotesParameters
+    options?: ConfidentialLedgerGetEnclaveQuotesParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetEnclaveQuotes200Response
     | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
   >;
   /** The constitution is a script that assesses and applies proposals from consortium members. */
   getConstitution(
-    options: ConfidentialLedgerGetConstitutionParameters
+    options?: ConfidentialLedgerGetConstitutionParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetConstitution200Response
     | ConfidentialLedgerGetConstitutionDefaultResponse
   >;
   /** Consortium members can manage the Confidential Ledger. */
   getConsortiumMembers(
-    options: ConfidentialLedgerGetConsortiumMembersParameters
+    options?: ConfidentialLedgerGetConsortiumMembersParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetConsortiumMembers200Response
     | ConfidentialLedgerGetConsortiumMembersDefaultResponse
@@ -79,41 +79,41 @@ export interface ConfidentialLedgerOperations {
   >;
   getLedgerEntry(
     transactionId: string,
-    options: ConfidentialLedgerGetLedgerEntryParameters
+    options?: ConfidentialLedgerGetLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetLedgerEntry200Response
     | ConfidentialLedgerGetLedgerEntryDefaultResponse
   >;
   getReceipt(
     transactionId: string,
-    options: ConfidentialLedgerGetReceiptParameters
+    options?: ConfidentialLedgerGetReceiptParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetReceipt200Response
     | ConfidentialLedgerGetReceiptDefaultResponse
   >;
   getTransactionStatus(
     transactionId: string,
-    options: ConfidentialLedgerGetTransactionStatusParameters
+    options?: ConfidentialLedgerGetTransactionStatusParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetTransactionStatus200Response
     | ConfidentialLedgerGetTransactionStatusDefaultResponse
   >;
   getCurrentLedgerEntry(
-    options: ConfidentialLedgerGetCurrentLedgerEntryParameters
+    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetCurrentLedgerEntry200Response
     | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
   >;
   deleteUser(
     userId: string,
-    options: ConfidentialLedgerDeleteUserParameters
+    options?: ConfidentialLedgerDeleteUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerDeleteUser204Response
     | ConfidentialLedgerDeleteUserDefaultResponse
   >;
   getUser(
     userId: string,
-    options: ConfidentialLedgerGetUserParameters
+    options?: ConfidentialLedgerGetUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetUser200Response
     | ConfidentialLedgerGetUserDefaultResponse
@@ -130,7 +130,7 @@ export interface ConfidentialLedgerOperations {
 export interface ListCollections {
   /** Collection ids are user-created collections of ledger entries */
   get(
-    options: ConfidentialLedgerListCollectionsParameters
+    options?: ConfidentialLedgerListCollectionsParameters
   ): StreamableMethod<
     | ConfidentialLedgerListCollections200Response
     | ConfidentialLedgerListCollectionsDefaultResponse
@@ -140,7 +140,7 @@ export interface ListCollections {
 export interface GetEnclaveQuotes {
   /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
   get(
-    options: ConfidentialLedgerGetEnclaveQuotesParameters
+    options?: ConfidentialLedgerGetEnclaveQuotesParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetEnclaveQuotes200Response
     | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
@@ -150,7 +150,7 @@ export interface GetEnclaveQuotes {
 export interface GetConstitution {
   /** The constitution is a script that assesses and applies proposals from consortium members. */
   get(
-    options: ConfidentialLedgerGetConstitutionParameters
+    options?: ConfidentialLedgerGetConstitutionParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetConstitution200Response
     | ConfidentialLedgerGetConstitutionDefaultResponse
@@ -160,7 +160,7 @@ export interface GetConstitution {
 export interface GetConsortiumMembers {
   /** Consortium members can manage the Confidential Ledger. */
   get(
-    options: ConfidentialLedgerGetConsortiumMembersParameters
+    options?: ConfidentialLedgerGetConsortiumMembersParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetConsortiumMembers200Response
     | ConfidentialLedgerGetConsortiumMembersDefaultResponse
@@ -179,7 +179,7 @@ export interface PostLedgerEntry {
 
 export interface GetLedgerEntry {
   get(
-    options: ConfidentialLedgerGetLedgerEntryParameters
+    options?: ConfidentialLedgerGetLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetLedgerEntry200Response
     | ConfidentialLedgerGetLedgerEntryDefaultResponse
@@ -188,7 +188,7 @@ export interface GetLedgerEntry {
 
 export interface GetReceipt {
   get(
-    options: ConfidentialLedgerGetReceiptParameters
+    options?: ConfidentialLedgerGetReceiptParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetReceipt200Response
     | ConfidentialLedgerGetReceiptDefaultResponse
@@ -197,7 +197,7 @@ export interface GetReceipt {
 
 export interface GetTransactionStatus {
   get(
-    options: ConfidentialLedgerGetTransactionStatusParameters
+    options?: ConfidentialLedgerGetTransactionStatusParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetTransactionStatus200Response
     | ConfidentialLedgerGetTransactionStatusDefaultResponse
@@ -206,7 +206,7 @@ export interface GetTransactionStatus {
 
 export interface GetCurrentLedgerEntry {
   get(
-    options: ConfidentialLedgerGetCurrentLedgerEntryParameters
+    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetCurrentLedgerEntry200Response
     | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
@@ -215,13 +215,13 @@ export interface GetCurrentLedgerEntry {
 
 export interface DeleteUser {
   delete(
-    options: ConfidentialLedgerDeleteUserParameters
+    options?: ConfidentialLedgerDeleteUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerDeleteUser204Response
     | ConfidentialLedgerDeleteUserDefaultResponse
   >;
   get(
-    options: ConfidentialLedgerGetUserParameters
+    options?: ConfidentialLedgerGetUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetUser200Response
     | ConfidentialLedgerGetUserDefaultResponse
