@@ -24,7 +24,7 @@ export interface HeadNoParams {
    *  Initially has no query parameters. After evolution, a new optional query parameter is added
    */
   head(
-    options: ParamsHeadNoParamsParameters
+    options?: ParamsHeadNoParamsParameters
   ): StreamableMethod<ParamsHeadNoParams200Response>;
   /**
    * Get true Boolean value on path.
@@ -42,7 +42,7 @@ export interface HeadNoParams {
    *  Initially the path exists but there is no delete method. After evolution this is a new method in a known path
    */
   delete(
-    options: ParamsDeleteParametersParameters
+    options?: ParamsDeleteParametersParameters
   ): StreamableMethod<ParamsDeleteParameters204Response>;
 }
 
@@ -59,7 +59,7 @@ export interface GetOptional {
    *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
    */
   get(
-    options: ParamsGetOptionalParameters
+    options?: ParamsGetOptionalParameters
   ): StreamableMethod<ParamsGetOptional200Response>;
 }
 
@@ -69,7 +69,7 @@ export interface GetNewOperation {
    *  Initiallty neither path or method exist for this operation. After evolution, this is a new method in a new path
    */
   get(
-    options: ParamsGetNewOperationParameters
+    options?: ParamsGetNewOperationParameters
   ): StreamableMethod<ParamsGetNewOperation200Response>;
 }
 

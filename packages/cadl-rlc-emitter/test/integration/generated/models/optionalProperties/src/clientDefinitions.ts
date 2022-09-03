@@ -16,7 +16,7 @@ export interface OptionalPropertiesOperations {
     options: OptionalPropertiesSendOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesSendOptionalPropertyModel200Response>;
   getOptionalPropertyModel(
-    options: OptionalPropertiesGetOptionalPropertyModelParameters
+    options?: OptionalPropertiesGetOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesGetOptionalPropertyModel200Response>;
   setOptionalPropertyModel(
     options: OptionalPropertiesSetOptionalPropertyModelParameters
@@ -28,7 +28,7 @@ export interface SendOptionalPropertyModel {
     options: OptionalPropertiesSendOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesSendOptionalPropertyModel200Response>;
   get(
-    options: OptionalPropertiesGetOptionalPropertyModelParameters
+    options?: OptionalPropertiesGetOptionalPropertyModelParameters
   ): StreamableMethod<OptionalPropertiesGetOptionalPropertyModel200Response>;
   put(
     options: OptionalPropertiesSetOptionalPropertyModelParameters

@@ -16,7 +16,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetModel {
   /** Get models that you will either return to end users as a raw body, or with a model added during grow up. */
   get(
-    options: DevDrivenGetModelParameters
+    options?: DevDrivenGetModelParameters
   ): StreamableMethod<DevDrivenGetModel200Response>;
   /** Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode. */
   post(
@@ -27,7 +27,7 @@ export interface GetModel {
 export interface GetPages {
   /** Get pages that you will either return to users in pages of raw bodies, or pages of models following growup. */
   get(
-    options: DevDrivenGetPagesParameters
+    options?: DevDrivenGetPagesParameters
   ): StreamableMethod<
     DevDrivenGetPages200Response | DevDrivenGetPagesDefaultResponse
   >;
@@ -36,7 +36,7 @@ export interface GetPages {
 export interface Lro {
   /** Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up. */
   put(
-    options: DevDrivenLroParameters
+    options?: DevDrivenLroParameters
   ): StreamableMethod<DevDrivenLro200Response>;
 }
 

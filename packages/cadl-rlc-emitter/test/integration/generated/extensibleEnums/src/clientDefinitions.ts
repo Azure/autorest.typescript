@@ -15,13 +15,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for String operations */
 export interface StringOperations {
   getKnownValue(
-    options: StringGetKnownValueParameters
+    options?: StringGetKnownValueParameters
   ): StreamableMethod<StringGetKnownValue200Response>;
   putKnownValue(
     options: StringPutKnownValueParameters
   ): StreamableMethod<StringPutKnownValue204Response>;
   getUnknownValue(
-    options: StringGetUnknownValueParameters
+    options?: StringGetUnknownValueParameters
   ): StreamableMethod<StringGetUnknownValue200Response>;
   putUnknownValue(
     options: StringPutUnknownValueParameters
@@ -30,7 +30,7 @@ export interface StringOperations {
 
 export interface GetKnownValue {
   get(
-    options: StringGetKnownValueParameters
+    options?: StringGetKnownValueParameters
   ): StreamableMethod<StringGetKnownValue200Response>;
   put(
     options: StringPutKnownValueParameters
@@ -39,7 +39,7 @@ export interface GetKnownValue {
 
 export interface GetUnknownValue {
   get(
-    options: StringGetUnknownValueParameters
+    options?: StringGetUnknownValueParameters
   ): StreamableMethod<StringGetUnknownValue200Response>;
   put(
     options: StringPutUnknownValueParameters

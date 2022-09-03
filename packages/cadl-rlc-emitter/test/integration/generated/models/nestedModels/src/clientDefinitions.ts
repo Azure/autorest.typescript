@@ -22,7 +22,7 @@ export interface NestedModelsBasicOperations {
     | NestedModelsBasicSendNestedModelDefaultResponse
   >;
   getNestedModel(
-    options: NestedModelsBasicGetNestedModelParameters
+    options?: NestedModelsBasicGetNestedModelParameters
   ): StreamableMethod<
     | NestedModelsBasicGetNestedModel200Response
     | NestedModelsBasicGetNestedModelDefaultResponse
@@ -43,7 +43,7 @@ export interface SendNestedModel {
     | NestedModelsBasicSendNestedModelDefaultResponse
   >;
   get(
-    options: NestedModelsBasicGetNestedModelParameters
+    options?: NestedModelsBasicGetNestedModelParameters
   ): StreamableMethod<
     | NestedModelsBasicGetNestedModel200Response
     | NestedModelsBasicGetNestedModelDefaultResponse

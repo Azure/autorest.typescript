@@ -19,7 +19,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for dogs operations */
 export interface dogsOperations {
   getDogs(
-    options: DogsGetDogsParameters
+    options?: DogsGetDogsParameters
   ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
   setDogs(
     options: DogsSetDogsParameters
@@ -29,7 +29,7 @@ export interface dogsOperations {
 /** Contains operations for cats operations */
 export interface catsOperations {
   getCats(
-    options: CatsGetCatsParameters
+    options?: CatsGetCatsParameters
   ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
   setCats(
     options: CatsSetCatsParameters
@@ -38,7 +38,7 @@ export interface catsOperations {
 
 export interface DogsGetDogs {
   get(
-    options: DogsGetDogsParameters
+    options?: DogsGetDogsParameters
   ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
 }
 
@@ -50,7 +50,7 @@ export interface DogsSetDogs {
 
 export interface CatsGetCats {
   get(
-    options: CatsGetCatsParameters
+    options?: CatsGetCatsParameters
   ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
   put(
     options: CatsSetCatsParameters

@@ -85,7 +85,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for Boolean operations */
 export interface BooleanOperations {
   get(
-    options: BooleanGetParameters
+    options?: BooleanGetParameters
   ): StreamableMethod<BooleanGet200Response | BooleanGetDefaultResponse>;
   put(
     options: BooleanPutParameters
@@ -95,7 +95,7 @@ export interface BooleanOperations {
 /** Contains operations for String operations */
 export interface StringOperations {
   get(
-    options: StringGetParameters
+    options?: StringGetParameters
   ): StreamableMethod<StringGet200Response | StringGetDefaultResponse>;
   put(
     options: StringPutParameters
@@ -105,7 +105,7 @@ export interface StringOperations {
 /** Contains operations for Bytes operations */
 export interface BytesOperations {
   get(
-    options: BytesGetParameters
+    options?: BytesGetParameters
   ): StreamableMethod<BytesGet200Response | BytesGetDefaultResponse>;
   put(
     options: BytesPutParameters
@@ -115,7 +115,7 @@ export interface BytesOperations {
 /** Contains operations for Int operations */
 export interface IntOperations {
   get(
-    options: IntGetParameters
+    options?: IntGetParameters
   ): StreamableMethod<IntGet200Response | IntGetDefaultResponse>;
   put(
     options: IntPutParameters
@@ -125,7 +125,7 @@ export interface IntOperations {
 /** Contains operations for Float operations */
 export interface FloatOperations {
   get(
-    options: FloatGetParameters
+    options?: FloatGetParameters
   ): StreamableMethod<FloatGet200Response | FloatGetDefaultResponse>;
   put(
     options: FloatPutParameters
@@ -135,7 +135,7 @@ export interface FloatOperations {
 /** Contains operations for Datetime operations */
 export interface DatetimeOperations {
   get(
-    options: DatetimeGetParameters
+    options?: DatetimeGetParameters
   ): StreamableMethod<DatetimeGet200Response | DatetimeGetDefaultResponse>;
   put(
     options: DatetimePutParameters
@@ -145,7 +145,7 @@ export interface DatetimeOperations {
 /** Contains operations for Duration operations */
 export interface DurationOperations {
   get(
-    options: DurationGetParameters
+    options?: DurationGetParameters
   ): StreamableMethod<DurationGet200Response | DurationGetDefaultResponse>;
   put(
     options: DurationPutParameters
@@ -155,7 +155,7 @@ export interface DurationOperations {
 /** Contains operations for Enum operations */
 export interface EnumOperations {
   get(
-    options: EnumGetParameters
+    options?: EnumGetParameters
   ): StreamableMethod<EnumGet200Response | EnumGetDefaultResponse>;
   put(
     options: EnumPutParameters
@@ -165,7 +165,7 @@ export interface EnumOperations {
 /** Contains operations for ExtensibleEnum operations */
 export interface ExtensibleEnumOperations {
   get(
-    options: ExtensibleEnumGetParameters
+    options?: ExtensibleEnumGetParameters
   ): StreamableMethod<
     ExtensibleEnumGet200Response | ExtensibleEnumGetDefaultResponse
   >;
@@ -179,7 +179,7 @@ export interface ExtensibleEnumOperations {
 /** Contains operations for Model operations */
 export interface ModelOperations {
   get(
-    options: ModelGetParameters
+    options?: ModelGetParameters
   ): StreamableMethod<ModelGet200Response | ModelGetDefaultResponse>;
   put(
     options: ModelPutParameters
@@ -189,7 +189,7 @@ export interface ModelOperations {
 /** Contains operations for CollectionsString operations */
 export interface CollectionsStringOperations {
   get(
-    options: CollectionsStringGetParameters
+    options?: CollectionsStringGetParameters
   ): StreamableMethod<
     CollectionsStringGet200Response | CollectionsStringGetDefaultResponse
   >;
@@ -203,7 +203,7 @@ export interface CollectionsStringOperations {
 /** Contains operations for CollectionsInt operations */
 export interface CollectionsIntOperations {
   get(
-    options: CollectionsIntGetParameters
+    options?: CollectionsIntGetParameters
   ): StreamableMethod<
     CollectionsIntGet200Response | CollectionsIntGetDefaultResponse
   >;
@@ -217,7 +217,7 @@ export interface CollectionsIntOperations {
 /** Contains operations for CollectionsModel operations */
 export interface CollectionsModelOperations {
   get(
-    options: CollectionsModelGetParameters
+    options?: CollectionsModelGetParameters
   ): StreamableMethod<
     CollectionsModelGet200Response | CollectionsModelGetDefaultResponse
   >;
@@ -230,7 +230,7 @@ export interface CollectionsModelOperations {
 
 export interface BooleanGet {
   get(
-    options: BooleanGetParameters
+    options?: BooleanGetParameters
   ): StreamableMethod<BooleanGet200Response | BooleanGetDefaultResponse>;
   put(
     options: BooleanPutParameters
@@ -239,7 +239,7 @@ export interface BooleanGet {
 
 export interface StringGet {
   get(
-    options: StringGetParameters
+    options?: StringGetParameters
   ): StreamableMethod<StringGet200Response | StringGetDefaultResponse>;
   put(
     options: StringPutParameters
@@ -248,7 +248,7 @@ export interface StringGet {
 
 export interface BytesGet {
   get(
-    options: BytesGetParameters
+    options?: BytesGetParameters
   ): StreamableMethod<BytesGet200Response | BytesGetDefaultResponse>;
   put(
     options: BytesPutParameters
@@ -257,7 +257,7 @@ export interface BytesGet {
 
 export interface IntGet {
   get(
-    options: IntGetParameters
+    options?: IntGetParameters
   ): StreamableMethod<IntGet200Response | IntGetDefaultResponse>;
   put(
     options: IntPutParameters
@@ -266,7 +266,7 @@ export interface IntGet {
 
 export interface FloatGet {
   get(
-    options: FloatGetParameters
+    options?: FloatGetParameters
   ): StreamableMethod<FloatGet200Response | FloatGetDefaultResponse>;
   put(
     options: FloatPutParameters
@@ -275,7 +275,7 @@ export interface FloatGet {
 
 export interface DatetimeGet {
   get(
-    options: DatetimeGetParameters
+    options?: DatetimeGetParameters
   ): StreamableMethod<DatetimeGet200Response | DatetimeGetDefaultResponse>;
   put(
     options: DatetimePutParameters
@@ -284,7 +284,7 @@ export interface DatetimeGet {
 
 export interface DurationGet {
   get(
-    options: DurationGetParameters
+    options?: DurationGetParameters
   ): StreamableMethod<DurationGet200Response | DurationGetDefaultResponse>;
   put(
     options: DurationPutParameters
@@ -293,7 +293,7 @@ export interface DurationGet {
 
 export interface EnumGet {
   get(
-    options: EnumGetParameters
+    options?: EnumGetParameters
   ): StreamableMethod<EnumGet200Response | EnumGetDefaultResponse>;
   put(
     options: EnumPutParameters
@@ -302,7 +302,7 @@ export interface EnumGet {
 
 export interface ExtensibleEnumGet {
   get(
-    options: ExtensibleEnumGetParameters
+    options?: ExtensibleEnumGetParameters
   ): StreamableMethod<
     ExtensibleEnumGet200Response | ExtensibleEnumGetDefaultResponse
   >;
@@ -315,7 +315,7 @@ export interface ExtensibleEnumGet {
 
 export interface ModelGet {
   get(
-    options: ModelGetParameters
+    options?: ModelGetParameters
   ): StreamableMethod<ModelGet200Response | ModelGetDefaultResponse>;
   put(
     options: ModelPutParameters
@@ -324,7 +324,7 @@ export interface ModelGet {
 
 export interface CollectionsStringGet {
   get(
-    options: CollectionsStringGetParameters
+    options?: CollectionsStringGetParameters
   ): StreamableMethod<
     CollectionsStringGet200Response | CollectionsStringGetDefaultResponse
   >;
@@ -337,7 +337,7 @@ export interface CollectionsStringGet {
 
 export interface CollectionsIntGet {
   get(
-    options: CollectionsIntGetParameters
+    options?: CollectionsIntGetParameters
   ): StreamableMethod<
     CollectionsIntGet200Response | CollectionsIntGetDefaultResponse
   >;
@@ -350,7 +350,7 @@ export interface CollectionsIntGet {
 
 export interface CollectionsModelGet {
   get(
-    options: CollectionsModelGetParameters
+    options?: CollectionsModelGetParameters
   ): StreamableMethod<
     CollectionsModelGet200Response | CollectionsModelGetDefaultResponse
   >;
