@@ -13,7 +13,9 @@ import {
   buildRollupConfig,
   buildTsConfig,
   buildApiExtractorConfig,
-  buildPackageFile
+  buildPackageFile,
+  buildPollingHelper,
+  buildPaginateHelper
 } from "@azure-tools/rlc-codegen";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
@@ -32,4 +34,6 @@ export async function $onEmit(program: Program) {
   await emitContentByBuilder(program, buildRollupConfig, rlcModels);
   await emitContentByBuilder(program, buildTsConfig, rlcModels);
   await emitContentByBuilder(program, buildApiExtractorConfig, rlcModels);
+  await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
+  await emitContentByBuilder(program, buildPollingHelper, rlcModels);
 }

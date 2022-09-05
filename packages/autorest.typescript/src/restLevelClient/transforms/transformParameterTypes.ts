@@ -14,9 +14,7 @@ import {
   ImportKind,
   OperationParameter,
   ParameterBodyMetadata,
-  ParameterBodySchema,
   ParameterMetadata,
-  ParameterMetadatas,
   Schema
 } from "@azure-tools/rlc-codegen";
 import { getLanguageMetadata } from "../../utils/languageHelpers";

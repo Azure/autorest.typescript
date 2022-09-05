@@ -9,8 +9,12 @@ export function buildPaginateHelper(model: RLCModel) {
   if (!pagingInfo || pagingInfo.hasPaging !== true || !pagingInfo.pageDetails) {
     return;
   }
+
+  if (!__dirname) {
+    console.log(import.meta);
+  }
   let file: string = readFileSync(
-    path.join(__dirname, "static", "paginateHelper.ts.hbs"),
+    path.join("", "static", "paginateHelper.ts.hbs"),
     {
       encoding: "utf-8"
     }

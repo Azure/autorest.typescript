@@ -66,6 +66,20 @@
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
+    },
+    {
+      "name": "smoke test",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-test",
+      "runtimeArgs": [
+        "npm",
+        "run",
+        "test",
+      ],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     }
   ]
 }

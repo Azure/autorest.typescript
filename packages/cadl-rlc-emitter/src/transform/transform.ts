@@ -19,6 +19,7 @@ import {
   Program
 } from "@cadl-lang/compiler";
 import { join } from "path";
+import { transformPageDetails } from "./transformPageDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
@@ -41,7 +42,8 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     program,
     importSet
   );
-
+  const pageInfo = transformPageDetails(program);
+  console.log("pageInfo", pageInfo);
   return {
     srcPath,
     libraryName,
@@ -51,7 +53,8 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     responses,
     importSet,
     apiVersionParam,
-    parameters
+    parameters,
+    pageInfo
   };
 }
 

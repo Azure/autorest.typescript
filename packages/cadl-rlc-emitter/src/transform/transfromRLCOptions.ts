@@ -2,27 +2,29 @@ import { RLCOptions } from "@azure-tools/rlc-codegen";
 import { getServiceNamespace, Program } from "@cadl-lang/compiler";
 import { getAuthentication, getServers } from "@cadl-lang/rest/http";
 import { readFileSync, existsSync } from "fs";
-import { join } from "path";
+import { join, resolve, normalize } from "path";
 
 export function transformRLCOptions(program: Program): RLCOptions {
   let configFile = join(
-    program.compilerOptions.outputPath ?? "",
+    resolve(program.compilerOptions.outputPath ?? ""),
     "typescript.json"
   );
   if (!existsSync(configFile)) {
     configFile = join(
-      program.compilerOptions.outputPath ?? "",
+      resolve(program.compilerOptions.outputPath ?? ""),
       "..",
       "spec",
       "typescript.json"
     );
   }
+  configFile;
+  console.log(configFile, normalize(configFile));
   const config: RLCOptions = JSON.parse(readFileSync(configFile).toString());
   if (config.packageDetails?.name) {
-    const nameParts = config.packageDetails?.name.split('/');
+    const nameParts = config.packageDetails?.name.split("/");
     if (nameParts.length === 2) {
       config.packageDetails.nameWithoutScope = nameParts[1];
-      config.packageDetails.scopeName = nameParts[0]?.replace('@', '');
+      config.packageDetails.scopeName = nameParts[0]?.replace("@", "");
     }
   }
   const serviceNs = getServiceNamespace(program);
@@ -31,13 +33,12 @@ export function transformRLCOptions(program: Program): RLCOptions {
     if (host?.[0]?.url) {
       config.endpoint = host[0].url;
     }
-    if(host?.[0]?.parameters) {
+    if (host?.[0]?.parameters) {
       // Currently we only support one parameter in the servers definition
-      for(const key of host?.[0]?.parameters.keys()) {
+      for (const key of host?.[0]?.parameters.keys()) {
         config.endpointParameterName = key;
         break;
       }
-      
     }
   }
   const securityInfo = processAuth(program);
