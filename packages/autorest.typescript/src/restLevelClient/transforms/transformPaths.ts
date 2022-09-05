@@ -68,11 +68,7 @@ export function transformPaths(model: CodeModel): Paths {
               description: operationGroup.language.default.description,
               pathParameters,
               methods: {},
-              name: operationName,
-              annotations: {
-                isLongRunning: isLongRunningOperation(operation),
-                isPageable: isPagingOperation(operation)
-              }
+              name: operationName
             };
           }
           const hasOptionalOptions = !hasRequiredOptions(operation);
@@ -88,7 +84,11 @@ export function transformPaths(model: CodeModel): Paths {
             ),
             responseTypes: getResponseTypes(operation),
             successStatus: gerOperationSuccessStatus(operation),
-            operationName
+            operationName,
+            annotations: {
+              isLongRunning: isLongRunningOperation(operation),
+              isPageable: isPagingOperation(operation)
+            }
           };
 
           if (

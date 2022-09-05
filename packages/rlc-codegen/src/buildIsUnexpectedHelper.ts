@@ -36,7 +36,10 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
 
       // LROs may call the same path but with GET
       // to get the operation status.
-      if (details.annotations?.isLongRunning && originalMethod !== "GET") {
+      if (
+        methodDetails[0].annotations?.isLongRunning &&
+        originalMethod !== "GET"
+      ) {
         const operation = `GET ${path}`;
         const success = methodDetails[0].successStatus;
         map = { ...map, ...{ [operation]: success } };

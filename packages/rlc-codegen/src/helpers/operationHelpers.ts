@@ -60,18 +60,22 @@ export function getPathParamDefinitions(
 }
 
 export function hasPagingOperations(model: RLCModel) {
-  for (const [path, details] of Object.entries(model.paths)) {
-    if (Boolean(details.annotations?.isPageable)) {
-      return true;
+  for (const details of Object.values(model.paths)) {
+    for (const method of Object.values(details.methods)) {
+      if (method[0].annotations?.isPageable === true) {
+        return true;
+      }
     }
   }
   return false;
 }
 
 export function hasPollingOperations(model: RLCModel) {
-  for (const [path, details] of Object.entries(model.paths)) {
-    if (Boolean(details.annotations?.isLongRunning)) {
-      return true;
+  for (const details of Object.values(model.paths)) {
+    for (const method of Object.values(details.methods)) {
+      if (method[0].annotations?.isLongRunning === true) {
+        return true;
+      }
     }
   }
   return false;
