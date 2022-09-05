@@ -98,7 +98,7 @@ export interface ProjectsOperations {
   /** Triggers a training job for a project. */
   train(
     projectName: string,
-    options?: ProjectsTrainParameters
+    options: ProjectsTrainParameters
   ): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
 }
 
@@ -142,7 +142,7 @@ export interface DeploymentsOperations {
   /** Swaps two existing deployments with each other. */
   swapDeployments(
     projectName: string,
-    options?: DeploymentsSwapDeploymentsParameters
+    options: DeploymentsSwapDeploymentsParameters
   ): StreamableMethod<
     | DeploymentsSwapDeployments202Response
     | DeploymentsSwapDeploymentsDefaultResponse
@@ -237,7 +237,7 @@ export interface ProjectsImportx {
 export interface ProjectsTrain {
   /** Triggers a training job for a project. */
   post(
-    options?: ProjectsTrainParameters
+    options: ProjectsTrainParameters
   ): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
 }
 
@@ -278,7 +278,7 @@ export interface DeploymentsList {
 export interface DeploymentsSwapDeployments {
   /** Swaps two existing deployments with each other. */
   post(
-    options?: DeploymentsSwapDeploymentsParameters
+    options: DeploymentsSwapDeploymentsParameters
   ): StreamableMethod<
     | DeploymentsSwapDeployments202Response
     | DeploymentsSwapDeploymentsDefaultResponse

@@ -265,7 +265,7 @@ export interface ConfidentialLedgerOperations {
     // (undocumented)
     getUser(userId: string, options?: ConfidentialLedgerGetUserParameters): StreamableMethod<ConfidentialLedgerGetUser200Response | ConfidentialLedgerGetUserDefaultResponse>;
     listCollections(options?: ConfidentialLedgerListCollectionsParameters): StreamableMethod<ConfidentialLedgerListCollections200Response | ConfidentialLedgerListCollectionsDefaultResponse>;
-    postLedgerEntry(options?: ConfidentialLedgerPostLedgerEntryParameters): StreamableMethod<ConfidentialLedgerPostLedgerEntry200Response | ConfidentialLedgerPostLedgerEntryDefaultResponse>;
+    postLedgerEntry(options: ConfidentialLedgerPostLedgerEntryParameters): StreamableMethod<ConfidentialLedgerPostLedgerEntry200Response | ConfidentialLedgerPostLedgerEntryDefaultResponse>;
 }
 
 // @public
@@ -441,7 +441,7 @@ export interface ListCollections {
 
 // @public (undocumented)
 export interface PostLedgerEntry {
-    post(options?: ConfidentialLedgerPostLedgerEntryParameters): StreamableMethod<ConfidentialLedgerPostLedgerEntry200Response | ConfidentialLedgerPostLedgerEntryDefaultResponse>;
+    post(options: ConfidentialLedgerPostLedgerEntryParameters): StreamableMethod<ConfidentialLedgerPostLedgerEntry200Response | ConfidentialLedgerPostLedgerEntryDefaultResponse>;
 }
 
 // @public (undocumented)

@@ -22,7 +22,7 @@ export interface dogsOperations {
     options?: DogsGetDogsParameters
   ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
   setDogs(
-    options?: DogsSetDogsParameters
+    options: DogsSetDogsParameters
   ): StreamableMethod<DogsSetDogs200Response | DogsSetDogsDefaultResponse>;
 }
 
@@ -32,7 +32,7 @@ export interface catsOperations {
     options?: CatsGetCatsParameters
   ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
   setCats(
-    options?: CatsSetCatsParameters
+    options: CatsSetCatsParameters
   ): StreamableMethod<CatsSetCats200Response | CatsSetCatsDefaultResponse>;
 }
 
@@ -44,7 +44,7 @@ export interface DogsGetDogs {
 
 export interface DogsSetDogs {
   put(
-    options?: DogsSetDogsParameters
+    options: DogsSetDogsParameters
   ): StreamableMethod<DogsSetDogs200Response | DogsSetDogsDefaultResponse>;
 }
 
@@ -53,7 +53,7 @@ export interface CatsGetCats {
     options?: CatsGetCatsParameters
   ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
   put(
-    options?: CatsSetCatsParameters
+    options: CatsSetCatsParameters
   ): StreamableMethod<CatsSetCats200Response | CatsSetCatsDefaultResponse>;
 }
 

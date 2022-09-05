@@ -19,7 +19,7 @@ export interface ReadonlyPropertiesOperations {
     | ReadonlyPropertiesGetOptionalPropertyModelDefaultResponse
   >;
   setOptionalPropertyModel(
-    options?: ReadonlyPropertiesSetOptionalPropertyModelParameters
+    options: ReadonlyPropertiesSetOptionalPropertyModelParameters
   ): StreamableMethod<
     | ReadonlyPropertiesSetOptionalPropertyModel200Response
     | ReadonlyPropertiesSetOptionalPropertyModelDefaultResponse
@@ -34,7 +34,7 @@ export interface GetOptionalPropertyModel {
     | ReadonlyPropertiesGetOptionalPropertyModelDefaultResponse
   >;
   put(
-    options?: ReadonlyPropertiesSetOptionalPropertyModelParameters
+    options: ReadonlyPropertiesSetOptionalPropertyModelParameters
   ): StreamableMethod<
     | ReadonlyPropertiesSetOptionalPropertyModel200Response
     | ReadonlyPropertiesSetOptionalPropertyModelDefaultResponse

@@ -170,12 +170,12 @@ export interface DeploymentsOperations {
     deployProject(projectName: string, deploymentName: string, options?: DeploymentsDeployProjectParameters): StreamableMethod<DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse>;
     getDeployment(projectName: string, deploymentName: string, options?: DeploymentsGetDeploymentParameters): StreamableMethod<DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse>;
     list(projectName: string, options?: DeploymentsListParameters): StreamableMethod<DeploymentsList200Response | DeploymentsListDefaultResponse>;
-    swapDeployments(projectName: string, options?: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
+    swapDeployments(projectName: string, options: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface DeploymentsSwapDeployments {
-    post(options?: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
+    post(options: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -702,12 +702,12 @@ export interface ProjectsOperations {
     get(projectName: string, options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
     importx(projectName: string, options?: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
     list(options?: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
-    train(projectName: string, options?: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
+    train(projectName: string, options: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface ProjectsTrain {
-    post(options?: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
+    post(options: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
 }
 
 // @public (undocumented)

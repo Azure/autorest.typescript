@@ -49,7 +49,7 @@ export interface HeadNoParams {
 export interface PostParameters {
   /** POST a JSON or a JPEG */
   post(
-    options?: ParamsPostParametersParameters
+    options: ParamsPostParametersParameters
   ): StreamableMethod<ParamsPostParameters200Response>;
 }
 

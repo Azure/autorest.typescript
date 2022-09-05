@@ -18,13 +18,13 @@ export interface StringOperations {
     options?: StringGetKnownValueParameters
   ): StreamableMethod<StringGetKnownValue200Response>;
   putKnownValue(
-    options?: StringPutKnownValueParameters
+    options: StringPutKnownValueParameters
   ): StreamableMethod<StringPutKnownValue204Response>;
   getUnknownValue(
     options?: StringGetUnknownValueParameters
   ): StreamableMethod<StringGetUnknownValue200Response>;
   putUnknownValue(
-    options?: StringPutUnknownValueParameters
+    options: StringPutUnknownValueParameters
   ): StreamableMethod<StringPutUnknownValue204Response>;
 }
 
@@ -33,7 +33,7 @@ export interface GetKnownValue {
     options?: StringGetKnownValueParameters
   ): StreamableMethod<StringGetKnownValue200Response>;
   put(
-    options?: StringPutKnownValueParameters
+    options: StringPutKnownValueParameters
   ): StreamableMethod<StringPutKnownValue204Response>;
 }
 
@@ -42,7 +42,7 @@ export interface GetUnknownValue {
     options?: StringGetUnknownValueParameters
   ): StreamableMethod<StringGetUnknownValue200Response>;
   put(
-    options?: StringPutUnknownValueParameters
+    options: StringPutUnknownValueParameters
   ): StreamableMethod<StringPutUnknownValue204Response>;
 }
 

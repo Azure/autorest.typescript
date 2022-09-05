@@ -77,7 +77,7 @@ export function transformPaths(program: Program): Paths {
 }
 
 function hasRequiredOptions(routeParameters: HttpOperationParameters) {
-  const isRequiredBodyParam = Boolean(routeParameters.bodyParameter?.optional);
+  const isRequiredBodyParam = routeParameters.bodyParameter?.optional === false;
   const containsRequiredNonBodyParam = routeParameters.parameters
     .filter((parameter) => ["query", "header"].includes(parameter.type))
     .filter((parameter) => !isApiVersion(parameter))

@@ -72,7 +72,7 @@ export interface ConfidentialLedgerOperations {
   >;
   /** A collection id may optionally be specified. */
   postLedgerEntry(
-    options?: ConfidentialLedgerPostLedgerEntryParameters
+    options: ConfidentialLedgerPostLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerPostLedgerEntry200Response
     | ConfidentialLedgerPostLedgerEntryDefaultResponse
@@ -170,7 +170,7 @@ export interface GetConsortiumMembers {
 export interface PostLedgerEntry {
   /** A collection id may optionally be specified. */
   post(
-    options?: ConfidentialLedgerPostLedgerEntryParameters
+    options: ConfidentialLedgerPostLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerPostLedgerEntry200Response
     | ConfidentialLedgerPostLedgerEntryDefaultResponse

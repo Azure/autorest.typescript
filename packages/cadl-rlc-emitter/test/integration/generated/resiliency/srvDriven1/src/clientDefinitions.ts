@@ -38,7 +38,7 @@ export interface HeadNoParams {
 export interface PostParameters {
   /** POST a JSON */
   post(
-    options?: ParamsPostParametersParameters
+    options: ParamsPostParametersParameters
   ): StreamableMethod<ParamsPostParameters200Response>;
 }
 

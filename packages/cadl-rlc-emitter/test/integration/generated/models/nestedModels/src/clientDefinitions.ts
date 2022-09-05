@@ -16,7 +16,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 /** Contains operations for NestedModelsBasic operations */
 export interface NestedModelsBasicOperations {
   sendNestedModel(
-    options?: NestedModelsBasicSendNestedModelParameters
+    options: NestedModelsBasicSendNestedModelParameters
   ): StreamableMethod<
     | NestedModelsBasicSendNestedModel200Response
     | NestedModelsBasicSendNestedModelDefaultResponse
@@ -28,7 +28,7 @@ export interface NestedModelsBasicOperations {
     | NestedModelsBasicGetNestedModelDefaultResponse
   >;
   setNestedModel(
-    options?: NestedModelsBasicSetNestedModelParameters
+    options: NestedModelsBasicSetNestedModelParameters
   ): StreamableMethod<
     | NestedModelsBasicSetNestedModel200Response
     | NestedModelsBasicSetNestedModelDefaultResponse
@@ -37,7 +37,7 @@ export interface NestedModelsBasicOperations {
 
 export interface SendNestedModel {
   post(
-    options?: NestedModelsBasicSendNestedModelParameters
+    options: NestedModelsBasicSendNestedModelParameters
   ): StreamableMethod<
     | NestedModelsBasicSendNestedModel200Response
     | NestedModelsBasicSendNestedModelDefaultResponse
@@ -49,7 +49,7 @@ export interface SendNestedModel {
     | NestedModelsBasicGetNestedModelDefaultResponse
   >;
   put(
-    options?: NestedModelsBasicSetNestedModelParameters
+    options: NestedModelsBasicSetNestedModelParameters
   ): StreamableMethod<
     | NestedModelsBasicSetNestedModel200Response
     | NestedModelsBasicSetNestedModelDefaultResponse

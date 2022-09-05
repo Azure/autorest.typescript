@@ -20,7 +20,7 @@ export interface GetModel {
   ): StreamableMethod<DevDrivenGetModel200Response>;
   /** Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode. */
   post(
-    options?: DevDrivenPostModelParameters
+    options: DevDrivenPostModelParameters
   ): StreamableMethod<DevDrivenPostModel200Response>;
 }
 

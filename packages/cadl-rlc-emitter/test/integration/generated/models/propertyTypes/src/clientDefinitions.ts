@@ -88,7 +88,7 @@ export interface BooleanOperations {
     options?: BooleanGetParameters
   ): StreamableMethod<BooleanGet200Response | BooleanGetDefaultResponse>;
   put(
-    options?: BooleanPutParameters
+    options: BooleanPutParameters
   ): StreamableMethod<BooleanPut204Response | BooleanPutDefaultResponse>;
 }
 
@@ -98,7 +98,7 @@ export interface StringOperations {
     options?: StringGetParameters
   ): StreamableMethod<StringGet200Response | StringGetDefaultResponse>;
   put(
-    options?: StringPutParameters
+    options: StringPutParameters
   ): StreamableMethod<StringPut204Response | StringPutDefaultResponse>;
 }
 
@@ -108,7 +108,7 @@ export interface BytesOperations {
     options?: BytesGetParameters
   ): StreamableMethod<BytesGet200Response | BytesGetDefaultResponse>;
   put(
-    options?: BytesPutParameters
+    options: BytesPutParameters
   ): StreamableMethod<BytesPut204Response | BytesPutDefaultResponse>;
 }
 
@@ -118,7 +118,7 @@ export interface IntOperations {
     options?: IntGetParameters
   ): StreamableMethod<IntGet200Response | IntGetDefaultResponse>;
   put(
-    options?: IntPutParameters
+    options: IntPutParameters
   ): StreamableMethod<IntPut204Response | IntPutDefaultResponse>;
 }
 
@@ -128,7 +128,7 @@ export interface FloatOperations {
     options?: FloatGetParameters
   ): StreamableMethod<FloatGet200Response | FloatGetDefaultResponse>;
   put(
-    options?: FloatPutParameters
+    options: FloatPutParameters
   ): StreamableMethod<FloatPut204Response | FloatPutDefaultResponse>;
 }
 
@@ -138,7 +138,7 @@ export interface DatetimeOperations {
     options?: DatetimeGetParameters
   ): StreamableMethod<DatetimeGet200Response | DatetimeGetDefaultResponse>;
   put(
-    options?: DatetimePutParameters
+    options: DatetimePutParameters
   ): StreamableMethod<DatetimePut204Response | DatetimePutDefaultResponse>;
 }
 
@@ -148,7 +148,7 @@ export interface DurationOperations {
     options?: DurationGetParameters
   ): StreamableMethod<DurationGet200Response | DurationGetDefaultResponse>;
   put(
-    options?: DurationPutParameters
+    options: DurationPutParameters
   ): StreamableMethod<DurationPut204Response | DurationPutDefaultResponse>;
 }
 
@@ -158,7 +158,7 @@ export interface EnumOperations {
     options?: EnumGetParameters
   ): StreamableMethod<EnumGet200Response | EnumGetDefaultResponse>;
   put(
-    options?: EnumPutParameters
+    options: EnumPutParameters
   ): StreamableMethod<EnumPut204Response | EnumPutDefaultResponse>;
 }
 
@@ -170,7 +170,7 @@ export interface ExtensibleEnumOperations {
     ExtensibleEnumGet200Response | ExtensibleEnumGetDefaultResponse
   >;
   put(
-    options?: ExtensibleEnumPutParameters
+    options: ExtensibleEnumPutParameters
   ): StreamableMethod<
     ExtensibleEnumPut204Response | ExtensibleEnumPutDefaultResponse
   >;
@@ -182,7 +182,7 @@ export interface ModelOperations {
     options?: ModelGetParameters
   ): StreamableMethod<ModelGet200Response | ModelGetDefaultResponse>;
   put(
-    options?: ModelPutParameters
+    options: ModelPutParameters
   ): StreamableMethod<ModelPut204Response | ModelPutDefaultResponse>;
 }
 
@@ -194,7 +194,7 @@ export interface CollectionsStringOperations {
     CollectionsStringGet200Response | CollectionsStringGetDefaultResponse
   >;
   put(
-    options?: CollectionsStringPutParameters
+    options: CollectionsStringPutParameters
   ): StreamableMethod<
     CollectionsStringPut204Response | CollectionsStringPutDefaultResponse
   >;
@@ -208,7 +208,7 @@ export interface CollectionsIntOperations {
     CollectionsIntGet200Response | CollectionsIntGetDefaultResponse
   >;
   put(
-    options?: CollectionsIntPutParameters
+    options: CollectionsIntPutParameters
   ): StreamableMethod<
     CollectionsIntPut204Response | CollectionsIntPutDefaultResponse
   >;
@@ -222,7 +222,7 @@ export interface CollectionsModelOperations {
     CollectionsModelGet200Response | CollectionsModelGetDefaultResponse
   >;
   put(
-    options?: CollectionsModelPutParameters
+    options: CollectionsModelPutParameters
   ): StreamableMethod<
     CollectionsModelPut204Response | CollectionsModelPutDefaultResponse
   >;
@@ -233,7 +233,7 @@ export interface BooleanGet {
     options?: BooleanGetParameters
   ): StreamableMethod<BooleanGet200Response | BooleanGetDefaultResponse>;
   put(
-    options?: BooleanPutParameters
+    options: BooleanPutParameters
   ): StreamableMethod<BooleanPut204Response | BooleanPutDefaultResponse>;
 }
 
@@ -242,7 +242,7 @@ export interface StringGet {
     options?: StringGetParameters
   ): StreamableMethod<StringGet200Response | StringGetDefaultResponse>;
   put(
-    options?: StringPutParameters
+    options: StringPutParameters
   ): StreamableMethod<StringPut204Response | StringPutDefaultResponse>;
 }
 
@@ -251,7 +251,7 @@ export interface BytesGet {
     options?: BytesGetParameters
   ): StreamableMethod<BytesGet200Response | BytesGetDefaultResponse>;
   put(
-    options?: BytesPutParameters
+    options: BytesPutParameters
   ): StreamableMethod<BytesPut204Response | BytesPutDefaultResponse>;
 }
 
@@ -260,7 +260,7 @@ export interface IntGet {
     options?: IntGetParameters
   ): StreamableMethod<IntGet200Response | IntGetDefaultResponse>;
   put(
-    options?: IntPutParameters
+    options: IntPutParameters
   ): StreamableMethod<IntPut204Response | IntPutDefaultResponse>;
 }
 
@@ -269,7 +269,7 @@ export interface FloatGet {
     options?: FloatGetParameters
   ): StreamableMethod<FloatGet200Response | FloatGetDefaultResponse>;
   put(
-    options?: FloatPutParameters
+    options: FloatPutParameters
   ): StreamableMethod<FloatPut204Response | FloatPutDefaultResponse>;
 }
 
@@ -278,7 +278,7 @@ export interface DatetimeGet {
     options?: DatetimeGetParameters
   ): StreamableMethod<DatetimeGet200Response | DatetimeGetDefaultResponse>;
   put(
-    options?: DatetimePutParameters
+    options: DatetimePutParameters
   ): StreamableMethod<DatetimePut204Response | DatetimePutDefaultResponse>;
 }
 
@@ -287,7 +287,7 @@ export interface DurationGet {
     options?: DurationGetParameters
   ): StreamableMethod<DurationGet200Response | DurationGetDefaultResponse>;
   put(
-    options?: DurationPutParameters
+    options: DurationPutParameters
   ): StreamableMethod<DurationPut204Response | DurationPutDefaultResponse>;
 }
 
@@ -296,7 +296,7 @@ export interface EnumGet {
     options?: EnumGetParameters
   ): StreamableMethod<EnumGet200Response | EnumGetDefaultResponse>;
   put(
-    options?: EnumPutParameters
+    options: EnumPutParameters
   ): StreamableMethod<EnumPut204Response | EnumPutDefaultResponse>;
 }
 
@@ -307,7 +307,7 @@ export interface ExtensibleEnumGet {
     ExtensibleEnumGet200Response | ExtensibleEnumGetDefaultResponse
   >;
   put(
-    options?: ExtensibleEnumPutParameters
+    options: ExtensibleEnumPutParameters
   ): StreamableMethod<
     ExtensibleEnumPut204Response | ExtensibleEnumPutDefaultResponse
   >;
@@ -318,7 +318,7 @@ export interface ModelGet {
     options?: ModelGetParameters
   ): StreamableMethod<ModelGet200Response | ModelGetDefaultResponse>;
   put(
-    options?: ModelPutParameters
+    options: ModelPutParameters
   ): StreamableMethod<ModelPut204Response | ModelPutDefaultResponse>;
 }
 
@@ -329,7 +329,7 @@ export interface CollectionsStringGet {
     CollectionsStringGet200Response | CollectionsStringGetDefaultResponse
   >;
   put(
-    options?: CollectionsStringPutParameters
+    options: CollectionsStringPutParameters
   ): StreamableMethod<
     CollectionsStringPut204Response | CollectionsStringPutDefaultResponse
   >;
@@ -342,7 +342,7 @@ export interface CollectionsIntGet {
     CollectionsIntGet200Response | CollectionsIntGetDefaultResponse
   >;
   put(
-    options?: CollectionsIntPutParameters
+    options: CollectionsIntPutParameters
   ): StreamableMethod<
     CollectionsIntPut204Response | CollectionsIntPutDefaultResponse
   >;
@@ -355,7 +355,7 @@ export interface CollectionsModelGet {
     CollectionsModelGet200Response | CollectionsModelGetDefaultResponse
   >;
   put(
-    options?: CollectionsModelPutParameters
+    options: CollectionsModelPutParameters
   ): StreamableMethod<
     CollectionsModelPut204Response | CollectionsModelPutDefaultResponse
   >;
