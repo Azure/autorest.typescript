@@ -7,10 +7,6 @@ import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generatePagingHelper } from "./generatePagingHelper";
-import { generatePollingHelper } from "./generatePollingHelper";
-import { hasPagingOperations } from "../utils/extractPaginationDetails";
-import { hasPollingOperations } from "./helpers/hasPollingOperations";
 import { generateKarmaConfigFile } from "../generators/static/karmaConfigFileGenerator";
 import { generateEnvFile } from "../generators/test/envFileGenerator";
 import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
@@ -36,7 +32,9 @@ import {
   buildResponseTypes,
   buildRollupConfig,
   buildTsConfig,
-  buildClient
+  buildClient,
+  buildPaginateHelper,
+  buildPollingHelper
 } from "@azure-tools/rlc-codegen";
 import {
   generateFileByBuilder,
@@ -71,14 +69,6 @@ export async function generateRestLevelClient() {
   // then transform CodeModel to RLCModel
   const rlcModels = transform(model);
 
-  if (hasPagingOperations(model)) {
-    generatePagingHelper(project);
-  }
-
-  if (hasPollingOperations(model)) {
-    generatePollingHelper(project);
-  }
-
   generateReadmeFile(model, project);
   generateLicenseFile(project);
   // buildApiExtractorConfig
@@ -106,6 +96,10 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildIndexFile, rlcModels);
   // buildIsUnexpectedHelper
   generateFileByBuilder(project, buildIsUnexpectedHelper, rlcModels);
+  // buildPaginateHelper
+  generateFileByBuilder(project, buildPaginateHelper, rlcModels);
+  // buildPollingHelper
+  generateFileByBuilder(project, buildPollingHelper, rlcModels);
   generateTopLevelIndexFile(rlcModels, project);
   if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);

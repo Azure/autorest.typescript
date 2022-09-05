@@ -14,7 +14,8 @@
   },
   "types": "./types/index.d.ts",
   "scripts": {
-    "build": "rimraf dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
+    "build": "rimraf dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js && npm run copyFiles",
+    "copyFiles": "ts-node ./src/helpers/copyFiles.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,13 +23,17 @@
   "license": "ISC",
   "dependencies": {
     "ts-morph": "^15.1.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "handlebars": "^4.7.7"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
     "prettier": "~2.7.1",
     "typescript": "^4.6.3",
     "rimraf": "^3.0.2",
-    "@types/lodash": "^4.14.182"
+    "@types/lodash": "^4.14.182",
+    "fs-extra": "^10.0.0",
+    "@types/fs-extra": "^8.1.0",
+    "ts-node": "^10.7.0"
   }
 }

@@ -6,5 +6,8 @@
     "target": "esnext",
     "moduleResolution": "node",
     "sourceMap": true
+  },
+  "ts-node": {
+    "esm": true
   }
 }
