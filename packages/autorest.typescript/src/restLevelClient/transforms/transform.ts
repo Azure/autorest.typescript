@@ -6,8 +6,12 @@ import {
   ImplementationLocation,
   ParameterLocation
 } from "@autorest/codemodel";
-import { ImportKind, RLCModel } from "@azure-tools/rlc-codegen";
+import { ImportKind, RLCModel, PageInfo } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
+import {
+  extractPaginationDetails,
+  hasPagingOperations
+} from "../../utils/extractPaginationDetails";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { isConstantSchema } from "../schemaHelpers";
@@ -32,7 +36,8 @@ export function transform(model: CodeModel): RLCModel {
     responses: transformResponseTypes(model, importDetails),
     importSet: importDetails,
     apiVersionParam: transformApiVersionParam(model),
-    parameters: transformParameterTypes(model, importDetails)
+    parameters: transformParameterTypes(model, importDetails),
+    pageInfo: transformPageDetails(model)
   };
   return rlcModel;
 }
@@ -62,4 +67,34 @@ function transformApiVersionParam(model: CodeModel) {
   }
 
   return undefined;
+}
+
+export function transformPageDetails(model: CodeModel): PageInfo {
+  const nextLinks = new Set<string>();
+  const itemNames = new Set<string>();
+  // Add default values
+  nextLinks.add("nextLink");
+  itemNames.add("value");
+  for (let operationGroup of model.operationGroups) {
+    for (let operation of operationGroup.operations) {
+      const paginationDetails = extractPaginationDetails(operation);
+      if (paginationDetails) {
+        const { nextLinkName, itemName } = paginationDetails;
+        nextLinkName && nextLinks.add(`${nextLinkName}`);
+        itemName && itemNames.add(`${itemName}`);
+      }
+    }
+  }
+
+  // If there are more than one options for nextLink and item names we need to generate a
+  // more complex pagination helper.
+  const isComplexPaging = nextLinks.size > 1 || itemNames.size > 1;
+  return {
+    hasPaging: hasPagingOperations(model),
+    pageDetails: {
+      itemNames: [...itemNames],
+      nextLinkNames: [...nextLinks],
+      isComplexPaging
+    }
+  };
 }

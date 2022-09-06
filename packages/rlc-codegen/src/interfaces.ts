@@ -1,5 +1,28 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+export interface RLCModel {
+  libraryName: string;
+  srcPath: string;
+  paths: Paths;
+  options?: RLCOptions;
+  schemas: Schema[];
+  apiVersionParam?: Parameter;
+  parameters?: OperationParameter[];
+  responses?: OperationResponse[];
+  importSet?: Map<ImportKind, Set<string>>;
+  pageInfo?: PageInfo;
+}
+
+export interface PageInfo {
+  hasPaging: boolean;
+  pageDetails?: PagingDetails;
+}
+
+export interface PagingDetails {
+  itemNames: string[];
+  nextLinkNames: string[];
+  isComplexPaging: boolean;
+}
 
 export type Methods = {
   [key: string]: [OperationMethod];
@@ -57,18 +80,6 @@ export interface RLCOptions {
   azureSdkForJs?: boolean;
   azureOutputDirectory?: string;
   isCadlTest?: boolean;
-}
-
-export interface RLCModel {
-  libraryName: string;
-  srcPath: string;
-  paths: Paths;
-  options?: RLCOptions;
-  schemas: Schema[];
-  apiVersionParam?: Parameter;
-  parameters?: OperationParameter[];
-  responses?: OperationResponse[];
-  importSet?: Map<ImportKind, Set<string>>;
 }
 
 export enum ImportKind {
