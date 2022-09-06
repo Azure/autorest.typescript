@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitParameterFromCadl } from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
-describe("Input/output model type", () => {
+describe("Parameters.ts", () => {
   it("should't generate apiVersion ", async () => {
     const parameters = await emitParameterFromCadl(
       `

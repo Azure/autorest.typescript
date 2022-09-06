@@ -1,3 +1,4 @@
 emitters:
-  '@cadl-lang/ts-rlc': true
-  '@azure-tools/cadl-autorest': true
+  "@cadl-lang/ts-rlc": true
+  "@azure-tools/cadl-autorest": true
+outputPath: ../cadl-output
