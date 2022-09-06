@@ -3,7 +3,7 @@ import { emitResponsesFromCadl } from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
 describe("Responses.ts", () => {
-  describe("property name", () => {
+  describe("property name generation", () => {
     it("should generate property name with custome name", async () => {
       const responses = await emitResponsesFromCadl(`
         @doc("Metadata for long running operation status monitor locations")
@@ -65,7 +65,7 @@ describe("Responses.ts", () => {
     });
   });
 
-  describe("status code", () => {
+  describe("statusCode generation", () => {
     it("should generate property name with custome name", async () => {
       const responses = await emitResponsesFromCadl(`
       @doc("Error")
@@ -101,7 +101,7 @@ describe("Responses.ts", () => {
     });
   });
 
-  describe("body", () => {
+  describe("body generation", () => {
     it("@header contentType not json or text should set format to binary(finally unit8array)", async () => {
       const responses = await emitResponsesFromCadl(`
       @get op read(): {@header contentType: "image/png", @body body: bytes};
@@ -141,7 +141,7 @@ describe("Responses.ts", () => {
     });
   });
 
-  describe("headers", () => {
+  describe("headers generation", () => {
     it("merges headers from multiple responses", async () => {
       const responses = await emitResponsesFromCadl(`
       model Key {

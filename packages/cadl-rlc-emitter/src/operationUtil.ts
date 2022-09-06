@@ -45,6 +45,8 @@ export function isBinaryPayload(body: Type, contentType: string) {
     body.kind === "Model" &&
     body.name === "bytes" &&
     contentType !== "application/json" &&
-    contentType !== "text/plain"
+    contentType !== "text/plain" &&
+    contentType !== `"application/json" | "text/plain"` &&
+    contentType !== `"text/plain" | "application/json"`
   );
 }

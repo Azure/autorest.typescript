@@ -145,6 +145,6 @@ function transformBody(
   return {
     name: "body",
     type: [...typeSet].join("|"),
-    description: [...descriptions].join("\n")
+    description: [...descriptions].join("\n\n")
   };
 }

@@ -18,9 +18,11 @@ import {
 import {
   getImportedModelName,
   getTypeName,
-  getSchemaForType
+  getSchemaForType,
+  getBinaryType
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
+import { isBinaryPayload } from "../operationUtil.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -46,6 +48,7 @@ export function transformToParameterTypes(
     const bodyParameter = transformBodyParameters(
       program,
       parameters,
+      headerParams,
       outputImportedSet
     );
     rlcParameter.parameters.push({
@@ -111,6 +114,7 @@ function transformQueryParameters(
  */
 function transformPathParameters() {
   // TODO
+  // issue tracked https://github.com/Azure/autorest.typescript/issues/1521
   return [];
 }
 
@@ -132,32 +136,49 @@ function transformHeaderParameters(
 function transformBodyParameters(
   program: Program,
   parameters: HttpOperationParameters,
+  headers: ParameterMetadata[],
   importedModels: Set<string>
 ): ParameterBodyMetadata | undefined {
   const bodyType = parameters.bodyType ?? parameters.bodyParameter?.type;
   if (!bodyType) {
-    return undefined;
+    return;
   }
-  const bodySchema = getSchemaForType(program, bodyType, [
-    SchemaContext.Input,
-    SchemaContext.Exception
-  ]) as Schema;
-  const type = getTypeName(bodySchema);
-  const importedNames = getImportedModelName(bodySchema);
-  if (importedNames) {
-    importedNames.forEach(importedModels.add, importedModels);
+  let type: string;
+  let descriptions: string[] = [];
+  if (parameters.bodyParameter && getDoc(program, parameters.bodyParameter)) {
+    descriptions.push(getDoc(program, parameters?.bodyParameter!)!);
   }
+  const contentTypes: string[] = headers
+    .filter((h) => h.name === "contentType")
+    .map((h) => h.param.type);
+  const hasBinaryContent = contentTypes.some((c) =>
+    isBinaryPayload(bodyType, c)
+  );
+  if (hasBinaryContent) {
+    type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
+    descriptions.push("Value may contain any sequence of octets");
+  } else {
+    const bodySchema = getSchemaForType(program, bodyType, [
+      SchemaContext.Input,
+      SchemaContext.Exception
+    ]) as Schema;
+    type = getTypeName(bodySchema);
+    const importedNames = getImportedModelName(bodySchema);
+    if (importedNames) {
+      importedNames.forEach(importedModels.add, importedModels);
+    }
+  }
+
   return {
-    isPartialBody: false, // TODO: handle body is partial case
+    // TODO: handle body is partial case
+    // issue tracked https://github.com/Azure/autorest.typescript/issues/1547
+    isPartialBody: false,
     body: [
       {
         name: "body",
         type,
-        required: parameters.bodyParameter
-          ? !Boolean(parameters.bodyParameter.optional)
-          : bodySchema.required,
-        description:
-          parameters.bodyParameter && getDoc(program, parameters.bodyParameter)
+        required: parameters?.bodyParameter?.optional === false,
+        description: descriptions.join("\n\n")
       }
     ]
   };
