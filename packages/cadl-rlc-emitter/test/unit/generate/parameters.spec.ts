@@ -110,6 +110,8 @@ describe("Parameters.ts", () => {
       );
     });
 
+    // TODO: we need more discussions about current behavior
+    // issue tracked https://github.com/Azure/autorest.typescript/issues/1486
     it("multiple contentTypes defined @header", async () => {
       const parameters = await emitParameterFromCadl(
         `
