@@ -76,8 +76,12 @@ export interface EnumPropertyOutput {
 
 /** Model with extensible enum properties */
 export interface ExtensibleEnumPropertyOutput {
-  /** Property */
-  property: "ValueOne" | "ValueTwo";
+  /**
+   * Property
+   *
+   * Extensible enum that will be used as a property for model InnerExtensibleEnum.
+   */
+  property: string;
 }
 
 /** Model with model properties */

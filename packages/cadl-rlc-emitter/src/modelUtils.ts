@@ -425,7 +425,6 @@ function getSchemaForModel(
       continue;
     }
 
-    const description = getDoc(program, prop);
     const propSchema = getSchemaForType(program, prop.type, usage, true);
     if (propSchema === undefined) {
       continue;
@@ -433,6 +432,7 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
+    const description = getFormattedPropertyDoc(program, prop, propSchema);
     propSchema.usage = usage;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
@@ -831,13 +831,15 @@ function getEnumStringDescription(type: any) {
   return "";
 }
 
-export function getFormattedDoc(
+export function getFormattedPropertyDoc(
   program: Program,
-  cadlType?: Type,
-  schemaType?: any
+  cadlType: ModelTypeProperty,
+  schemaType: any
 ) {
-  if (cadlType) {
-    return getDoc(program, cadlType) ?? getEnumStringDescription(schemaType);
+  const propertyDoc = getDoc(program, cadlType);
+  const enhancedDocFromType = getEnumStringDescription(schemaType);
+  if (propertyDoc && enhancedDocFromType) {
+    return `${propertyDoc}\n\n${enhancedDocFromType}`;
   }
-  return getEnumStringDescription(schemaType);
+  return propertyDoc ?? enhancedDocFromType;
 }

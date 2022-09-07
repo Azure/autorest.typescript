@@ -1,10 +1,11 @@
 export interface ProjectOutput {
   projectName: string;
-  /** The project kind. */
-  projectKind:
-    | "CustomSingleLabelClassification"
-    | "CustomMultiLabelClassification"
-    | "CustomEntityRecognition";
+  /**
+   * The project kind.
+   *
+   * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
+   */
+  projectKind: string;
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
@@ -29,8 +30,12 @@ export interface ProjectOutput {
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /** The status of the operation */
-  status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
+  /**
+   * The status of the operation
+   *
+   * Possible values: InProgress, Succeeded, Failed, Canceled
+   */
+  status: string;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModelOutput;
 }
@@ -92,15 +97,12 @@ export interface DeploymentJobOutput {
   lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
   expirationDateTime: string;
-  /** The job status. */
-  status:
-    | "notStarted"
-    | "running"
-    | "succeeded"
-    | "failed"
-    | "cancelled"
-    | "cancelling"
-    | "partiallyCompleted";
+  /**
+   * The job status.
+   *
+   * Represents the job status.
+   */
+  status: string;
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
@@ -125,15 +127,12 @@ export interface SwapDeploymentsJobOutput {
   lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
   expirationDateTime: string;
-  /** The job status. */
-  status:
-    | "notStarted"
-    | "running"
-    | "succeeded"
-    | "failed"
-    | "cancelled"
-    | "cancelling"
-    | "partiallyCompleted";
+  /**
+   * The job status.
+   *
+   * Represents the job status.
+   */
+  status: string;
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */

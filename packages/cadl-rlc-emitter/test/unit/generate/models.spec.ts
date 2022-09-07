@@ -102,6 +102,7 @@ describe("Input/output model type", () => {
         Chinese,
       }
       model InputOutputModel {
+        @doc("Property description")
         prop: TranslationLanguage;
       }
       @route("/models")
@@ -114,7 +115,11 @@ describe("Input/output model type", () => {
         inputModelFile?.content!,
         `
       export interface InputOutputModel {
-        /** Possible values: English, Chinese */
+        /**
+         * Property description
+         *
+         * Possible values: English, Chinese
+         */
         prop: string;
       }`
       );
@@ -122,7 +127,11 @@ describe("Input/output model type", () => {
         outputModelFile?.content!,
         `
       export interface InputOutputModelOutput {
-        /** Possible values: English, Chinese */
+        /**
+         * Property description
+         *
+         * Possible values: English, Chinese
+         */
         prop: string;
       }`
       );

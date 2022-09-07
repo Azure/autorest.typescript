@@ -19,7 +19,7 @@ import {
   getImportedModelName,
   getTypeName,
   getSchemaForType,
-  getFormattedDoc
+  getFormattedPropertyDoc
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 
@@ -79,7 +79,8 @@ function getParameterMetadata(
       name,
       type,
       required: !Boolean(parameter.param.optional),
-      description: getFormattedDoc(program, parameter.param, schema) ?? ""
+      description:
+        getFormattedPropertyDoc(program, parameter.param, schema) ?? ""
     }
   };
 }
@@ -148,6 +149,9 @@ function transformBodyParameters(
   if (importedNames) {
     importedNames.forEach(importedModels.add, importedModels);
   }
+  const description =
+    parameters.bodyParameter &&
+    getFormattedPropertyDoc(program, parameters.bodyParameter, bodySchema);
   return {
     isPartialBody: false, // TODO: handle body is partial case
     body: [
@@ -157,11 +161,7 @@ function transformBodyParameters(
         required: parameters.bodyParameter
           ? !Boolean(parameters.bodyParameter.optional)
           : bodySchema.required,
-        description: getFormattedDoc(
-          program,
-          parameters.bodyParameter,
-          bodySchema
-        )
+        description: description ?? ""
       }
     ]
   };
