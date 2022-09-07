@@ -9,7 +9,7 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-codegen";
-import { getDoc, Program } from "@cadl-lang/compiler";
+import { Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
   HttpOperationParameter,
@@ -18,7 +18,8 @@ import {
 import {
   getImportedModelName,
   getTypeName,
-  getSchemaForType
+  getSchemaForType,
+  getFormattedDoc
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 
@@ -78,7 +79,7 @@ function getParameterMetadata(
       name,
       type,
       required: !Boolean(parameter.param.optional),
-      description: getDoc(program, parameter.param) ?? ""
+      description: getFormattedDoc(program, parameter.param, schema) ?? ""
     }
   };
 }
@@ -156,8 +157,11 @@ function transformBodyParameters(
         required: parameters.bodyParameter
           ? !Boolean(parameters.bodyParameter.optional)
           : bodySchema.required,
-        description:
-          parameters.bodyParameter && getDoc(program, parameters.bodyParameter)
+        description: getFormattedDoc(
+          program,
+          parameters.bodyParameter,
+          bodySchema
+        )
       }
     ]
   };

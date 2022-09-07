@@ -588,6 +588,13 @@ function applyIntrinsicDecorators(
     if (values) {
       const enumSchema = { ...newTarget, ...getSchemaForEnum(program, values) };
       enumSchema.name = "string";
+      enumSchema.typeName = "string";
+      if (enumSchema.enum) {
+        enumSchema.description =
+          getDoc(program, cadlType) ??
+          `Possible values: ${enumSchema.enum.join(", ")}`;
+      }
+
       return enumSchema;
     }
   }
@@ -816,4 +823,21 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
 
 function getPriorityName(schema: Schema): string {
   return schema.outputTypeName ?? schema.name;
+}
+function getEnumStringDescription(type: any) {
+  if (type.name === "string" && type.enum) {
+    return type.description;
+  }
+  return "";
+}
+
+export function getFormattedDoc(
+  program: Program,
+  cadlType?: Type,
+  schemaType?: any
+) {
+  if (cadlType) {
+    return getDoc(program, cadlType) ?? getEnumStringDescription(schemaType);
+  }
+  return getEnumStringDescription(schemaType);
 }
