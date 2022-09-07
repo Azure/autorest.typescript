@@ -289,7 +289,11 @@ export interface QueriesByteMultiByteQueryParamProperties {
    *
    * Value may contain base64 encoded characters
    */
-  byteQuery?: string;
+  byteQuery?:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface QueriesByteMultiByteQueryParam {
@@ -317,7 +321,11 @@ export interface QueriesByteNullQueryParamProperties {
    *
    * Value may contain base64 encoded characters
    */
-  byteQuery?: string;
+  byteQuery?:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface QueriesByteNullQueryParam {

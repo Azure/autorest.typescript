@@ -298,7 +298,11 @@ export interface HeaderParamByteHeaders {
    *
    * Value may contain base64 encoded characters
    */
-  value: string;
+  value:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface HeaderParamByteHeaderParam {

@@ -116,7 +116,7 @@ export interface StringGetNotProvidedDefaultResponse extends HttpResponse {
 export interface StringGetBase64Encoded200Response extends HttpResponse {
   status: "200";
   /** Value may contain base64 encoded characters */
-  body: string;
+  body: Uint8Array;
 }
 
 /** Get value that is base64 encoded */
@@ -129,7 +129,7 @@ export interface StringGetBase64EncodedDefaultResponse extends HttpResponse {
 export interface StringGetBase64UrlEncoded200Response extends HttpResponse {
   status: "200";
   /** Value may contain base64 encoded characters */
-  body: string;
+  body: Uint8Array;
 }
 
 /** Get value that is base64url encoded */
@@ -154,7 +154,7 @@ export interface StringPutBase64UrlEncodedDefaultResponse extends HttpResponse {
 export interface StringGetNullBase64UrlEncoded200Response extends HttpResponse {
   status: "200";
   /** Value may contain base64 encoded characters */
-  body: string;
+  body: Uint8Array;
 }
 
 /** Get null value that is expected to be base64url encoded */
