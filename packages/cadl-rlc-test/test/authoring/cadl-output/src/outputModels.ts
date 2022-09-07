@@ -100,7 +100,7 @@ export interface DeploymentJobOutput {
   /**
    * The job status.
    *
-   * Represents the job status.
+   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
    */
   status: string;
   /** The warnings that were encountered while executing the job. */
@@ -130,7 +130,7 @@ export interface SwapDeploymentsJobOutput {
   /**
    * The job status.
    *
-   * Represents the job status.
+   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
    */
   status: string;
   /** The warnings that were encountered while executing the job. */

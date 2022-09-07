@@ -589,11 +589,6 @@ function applyIntrinsicDecorators(
       const enumSchema = { ...newTarget, ...getSchemaForEnum(program, values) };
       enumSchema.name = "string";
       enumSchema.typeName = "string";
-      if (enumSchema.enum) {
-        enumSchema.description =
-          getDoc(program, cadlType) ??
-          `Possible values: ${enumSchema.enum.join(", ")}`;
-      }
 
       return enumSchema;
     }
@@ -825,8 +820,8 @@ function getPriorityName(schema: Schema): string {
   return schema.outputTypeName ?? schema.name;
 }
 function getEnumStringDescription(type: any) {
-  if (type.name === "string" && type.enum) {
-    return type.description;
+  if (type.name === "string" && type.enum && type.enum.length > 0) {
+    return `Possible values: ${type.enum.join(", ")}`;
   }
   return "";
 }

@@ -96,6 +96,7 @@ describe("Input/output model type", () => {
       // When extensible_enum is comsumed as body property it should be string only
       const schemaOutput = await emitModelsFromCadl(`
       @knownValues(TranslationLanguageValues)
+      @doc("Extensible enum model description")
       model TranslationLanguage is string;
       enum TranslationLanguageValues {
         English,
