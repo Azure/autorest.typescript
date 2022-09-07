@@ -37,7 +37,7 @@ export interface DeploymentJobOutput {
     id: string;
     jobId: string;
     lastUpdatedDateTime: string;
-    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
+    status: string;
     warnings: Array<JobWarningOutput>;
 }
 
@@ -438,7 +438,7 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
 export interface OperationStatusOutput {
     error?: ErrorModelOutput;
     id: string;
-    status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
+    status: string;
 }
 
 // @public
@@ -446,7 +446,7 @@ export interface OptionalPropertiesUpdateableProperties {
     description?: string;
     language?: string;
     multilingual?: boolean;
-    projectKind?: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+    projectKind?: string;
     settings?: Record<string, string>;
     storageInputContainerName?: string;
 }
@@ -472,7 +472,7 @@ export interface ProjectOutput {
     lastModifiedDateTime: string;
     lastTrainedDateTime: string;
     multilingual?: boolean;
-    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+    projectKind: string;
     // (undocumented)
     projectName: string;
     settings?: Record<string, string>;
@@ -771,7 +771,7 @@ export interface SwapDeploymentsJobOutput {
     id: string;
     jobId: string;
     lastUpdatedDateTime: string;
-    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
+    status: string;
     warnings: Array<JobWarningOutput>;
 }
 

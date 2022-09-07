@@ -425,7 +425,6 @@ function getSchemaForModel(
       continue;
     }
 
-    const description = getDoc(program, prop);
     const propSchema = getSchemaForType(program, prop.type, usage, true);
     if (propSchema === undefined) {
       continue;
@@ -433,6 +432,7 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
+    const description = getFormattedPropertyDoc(program, prop, propSchema);
     propSchema.usage = usage;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
@@ -588,6 +588,8 @@ function applyIntrinsicDecorators(
     if (values) {
       const enumSchema = { ...newTarget, ...getSchemaForEnum(program, values) };
       enumSchema.name = "string";
+      enumSchema.typeName = "string";
+
       return enumSchema;
     }
   }
@@ -816,4 +818,23 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
 
 function getPriorityName(schema: Schema): string {
   return schema.outputTypeName ?? schema.name;
+}
+function getEnumStringDescription(type: any) {
+  if (type.name === "string" && type.enum && type.enum.length > 0) {
+    return `Possible values: ${type.enum.join(", ")}`;
+  }
+  return "";
+}
+
+export function getFormattedPropertyDoc(
+  program: Program,
+  cadlType: ModelTypeProperty,
+  schemaType: any
+) {
+  const propertyDoc = getDoc(program, cadlType);
+  const enhancedDocFromType = getEnumStringDescription(schemaType);
+  if (propertyDoc && enhancedDocFromType) {
+    return `${propertyDoc}\n\n${enhancedDocFromType}`;
+  }
+  return propertyDoc ?? enhancedDocFromType;
 }

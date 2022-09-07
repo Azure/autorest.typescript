@@ -109,27 +109,12 @@ export interface LinkedPlayerIdentityOutput {
    * UnlinkPlayerIdentity
    */
   IdentityLinkId?: string;
-  /** The player identity provider in which the identity exists. */
-  IdentityProvider:
-    | "AndroidDevice"
-    | "Apple"
-    | "CustomId"
-    | "Email"
-    | "FacebookInstantGames"
-    | "GameCenter"
-    | "Google"
-    | "iOSDevice"
-    | "Kongregate"
-    | "NintendoSwitchDevice"
-    | "NintendoAccount"
-    | "OpenId"
-    | "PSN"
-    | "ServerCustomId"
-    | "Steam"
-    | "Twitch"
-    | "Username"
-    | "Xbox"
-    | "GooglePlayGames";
+  /**
+   * The player identity provider in which the identity exists.
+   *
+   * Possible values: AndroidDevice, Apple, CustomId, Email, FacebookInstantGames, GameCenter, Google, iOSDevice, Kongregate, NintendoSwitchDevice, NintendoAccount, OpenId, PSN, ServerCustomId, Steam, Twitch, Username, Xbox, GooglePlayGames
+   */
+  IdentityProvider: string;
   /**
    * The unique identifier of the player identity, as assigned by the player
    * identity provider. The format varies by identity provider
@@ -341,8 +326,10 @@ export interface SetObjectInfoOutput {
   /**
    * Indicates which operation was completed, either Created, Updated, Deleted or
    * None.
+   *
+   * Possible values: Created, Updated, Deleted, None
    */
-  SetResult?: "Created" | "Updated" | "Deleted" | "None";
+  SetResult?: string;
 }
 
 export interface WriteEventsResponseOutput {
