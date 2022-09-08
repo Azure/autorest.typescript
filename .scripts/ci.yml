@@ -72,11 +72,11 @@ stages:
               NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
