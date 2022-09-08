@@ -170,9 +170,12 @@ function transformBodyParameters(
   const description =
     parameters.bodyParameter &&
     getFormattedPropertyDoc(program, parameters.bodyParameter, bodySchema);
-  description ?? descriptions.push(description!);
-  hasBinaryContent ??
+  if (description) {
+    descriptions.push(description!);
+  }
+  if (hasBinaryContent) {
     descriptions.push("Value may contain any sequence of octets");
+  }
   return {
     // TODO: handle body is partial case
     // issue tracked https://github.com/Azure/autorest.typescript/issues/1547
