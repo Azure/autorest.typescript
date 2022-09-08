@@ -29,7 +29,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
   const srcPath = join(program.compilerOptions.outputPath ?? "", "src");
   const options: RLCOptions = transformRLCOptions(program);
   const libraryName = normalizeName(
-    options?.overrideTitle ?? getServiceTitle(program),
+    options?.title ?? getServiceTitle(program),
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();
