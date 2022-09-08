@@ -19,7 +19,7 @@ import {
   getImportedModelName,
   getTypeName,
   getSchemaForType,
-  getBinaryType
+  getBinaryType,
   getFormattedPropertyDoc
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
@@ -145,22 +145,17 @@ function transformBodyParameters(
   if (!bodyType) {
     return;
   }
-  let type: string;
+  let type: string,
+    bodySchema: any = {};
   let descriptions: string[] = [];
-  if (parameters.bodyParameter && getDoc(program, parameters.bodyParameter)) {
-    descriptions.push(getDoc(program, parameters?.bodyParameter!)!);
-  }
   const contentTypes: string[] = headers
     .filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
   const hasBinaryContent = contentTypes.some((c) =>
     isBinaryPayload(bodyType, c)
   );
-  if (hasBinaryContent) {
-    type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
-    descriptions.push("Value may contain any sequence of octets");
-  } else {
-    const bodySchema = getSchemaForType(program, bodyType, [
+  if (!hasBinaryContent) {
+    bodySchema = getSchemaForType(program, bodyType, [
       SchemaContext.Input,
       SchemaContext.Exception
     ]) as Schema;
@@ -169,9 +164,15 @@ function transformBodyParameters(
     if (importedNames) {
       importedNames.forEach(importedModels.add, importedModels);
     }
+  } else {
+    type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
+  }
   const description =
     parameters.bodyParameter &&
     getFormattedPropertyDoc(program, parameters.bodyParameter, bodySchema);
+  description ?? descriptions.push(description!);
+  hasBinaryContent ??
+    descriptions.push("Value may contain any sequence of octets");
   return {
     // TODO: handle body is partial case
     // issue tracked https://github.com/Azure/autorest.typescript/issues/1547
@@ -182,7 +183,6 @@ function transformBodyParameters(
         type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n")
-        description: description ?? ""
       }
     ]
   };
