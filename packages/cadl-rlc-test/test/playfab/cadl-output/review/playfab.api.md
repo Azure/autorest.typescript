@@ -46,7 +46,7 @@ export interface ApiErrorWrapperOutput {
 // @public (undocumented)
 export interface AuthenticateAndroidDeviceIdIdentityRequest {
     AndroidDeviceId: string;
-    BehaviorIfIdentityNotLinked: "CreateAndLinkNewAccount" | "LinkToExistingAccount" | "LeaveUnlinked";
+    BehaviorIfIdentityNotLinked: string;
     CustomTags?: object;
     ExistingMasterPlayerAccountId?: string;
     PlayerAccountPoolId: string;
@@ -55,7 +55,7 @@ export interface AuthenticateAndroidDeviceIdIdentityRequest {
 
 // @public (undocumented)
 export interface AuthenticateCustomIdIdentityRequest {
-    BehaviorIfIdentityNotLinked: "CreateAndLinkNewAccount" | "LinkToExistingAccount" | "LeaveUnlinked";
+    BehaviorIfIdentityNotLinked: string;
     CustomId: string;
     CustomTags?: object;
     ExistingMasterPlayerAccountId?: string;
@@ -80,7 +80,7 @@ export interface AuthenticateIdentityResultOutput {
 
 // @public (undocumented)
 export interface AuthenticateIOSDeviceIdIdentityRequest {
-    BehaviorIfIdentityNotLinked: "CreateAndLinkNewAccount" | "LinkToExistingAccount" | "LeaveUnlinked";
+    BehaviorIfIdentityNotLinked: string;
     CustomTags?: object;
     DeviceId: string;
     ExistingMasterPlayerAccountId?: string;
@@ -90,7 +90,7 @@ export interface AuthenticateIOSDeviceIdIdentityRequest {
 
 // @public (undocumented)
 export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
-    BehaviorIfIdentityNotLinked: "CreateAndLinkNewAccount" | "LinkToExistingAccount" | "LeaveUnlinked";
+    BehaviorIfIdentityNotLinked: string;
     CustomTags?: object;
     ExistingMasterPlayerAccountId?: string;
     NintendoSwitchDeviceId: string;
@@ -350,7 +350,7 @@ export function isUnexpected(response: PlayFabProfilesOperationsLoginPlayer200Re
 // @public (undocumented)
 export interface LinkedPlayerIdentityOutput {
     IdentityLinkId?: string;
-    IdentityProvider: "AndroidDevice" | "Apple" | "CustomId" | "Email" | "FacebookInstantGames" | "GameCenter" | "Google" | "iOSDevice" | "Kongregate" | "NintendoSwitchDevice" | "NintendoAccount" | "OpenId" | "PSN" | "ServerCustomId" | "Steam" | "Twitch" | "Username" | "Xbox" | "GooglePlayGames";
+    IdentityProvider: string;
     IdentityProviderIssuedId?: string;
 }
 
@@ -1121,7 +1121,7 @@ export interface SetObject {
 export interface SetObjectInfoOutput {
     ObjectName?: string;
     OperationReason?: string;
-    SetResult?: "Created" | "Updated" | "Deleted" | "None";
+    SetResult?: string;
 }
 
 // @public

@@ -9,7 +9,7 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-codegen";
-import { getDoc, Program } from "@cadl-lang/compiler";
+import { Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
   HttpOperationParameter,
@@ -20,6 +20,7 @@ import {
   getTypeName,
   getSchemaForType,
   getBinaryType
+  getFormattedPropertyDoc
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 import { isBinaryPayload } from "../operationUtil.js";
@@ -81,7 +82,8 @@ function getParameterMetadata(
       name,
       type,
       required: !Boolean(parameter.param.optional),
-      description: getDoc(program, parameter.param) ?? ""
+      description:
+        getFormattedPropertyDoc(program, parameter.param, schema) ?? ""
     }
   };
 }
@@ -167,8 +169,9 @@ function transformBodyParameters(
     if (importedNames) {
       importedNames.forEach(importedModels.add, importedModels);
     }
-  }
-
+  const description =
+    parameters.bodyParameter &&
+    getFormattedPropertyDoc(program, parameters.bodyParameter, bodySchema);
   return {
     // TODO: handle body is partial case
     // issue tracked https://github.com/Azure/autorest.typescript/issues/1547
@@ -179,6 +182,7 @@ function transformBodyParameters(
         type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n")
+        description: description ?? ""
       }
     ]
   };

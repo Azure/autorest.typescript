@@ -46,11 +46,10 @@ export interface AuthenticateAndroidDeviceIdIdentityRequest {
    * if the master_player_account is already associated with another player
    * identity. 'LeaveUnlinked' leaves the player identity unlinked and returns the
    * 'AccountNotFound' error.
+   *
+   * Possible values: CreateAndLinkNewAccount, LinkToExistingAccount, LeaveUnlinked
    */
-  BehaviorIfIdentityNotLinked:
-    | "CreateAndLinkNewAccount"
-    | "LinkToExistingAccount"
-    | "LeaveUnlinked";
+  BehaviorIfIdentityNotLinked: string;
   /**
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
@@ -93,11 +92,10 @@ export interface AuthenticateCustomIdIdentityRequest {
    * if the master_player_account is already associated with another player
    * identity. 'LeaveUnlinked' leaves the player identity unlinked and returns the
    * 'AccountNotFound' error.
+   *
+   * Possible values: CreateAndLinkNewAccount, LinkToExistingAccount, LeaveUnlinked
    */
-  BehaviorIfIdentityNotLinked:
-    | "CreateAndLinkNewAccount"
-    | "LinkToExistingAccount"
-    | "LeaveUnlinked";
+  BehaviorIfIdentityNotLinked: string;
   /**
    * Custom string value which uniquely identifies a player identity within the
    * player account pool.
@@ -145,11 +143,10 @@ export interface AuthenticateIOSDeviceIdIdentityRequest {
    * if the master_player_account is already associated with another player
    * identity. 'LeaveUnlinked' leaves the player identity unlinked and returns the
    * 'AccountNotFound' error.
+   *
+   * Possible values: CreateAndLinkNewAccount, LinkToExistingAccount, LeaveUnlinked
    */
-  BehaviorIfIdentityNotLinked:
-    | "CreateAndLinkNewAccount"
-    | "LinkToExistingAccount"
-    | "LeaveUnlinked";
+  BehaviorIfIdentityNotLinked: string;
   /**
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
@@ -194,11 +191,10 @@ export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
    * if the master_player_account is already associated with another player
    * identity. 'LeaveUnlinked' leaves the player identity unlinked and returns the
    * 'AccountNotFound' error.
+   *
+   * Possible values: CreateAndLinkNewAccount, LinkToExistingAccount, LeaveUnlinked
    */
-  BehaviorIfIdentityNotLinked:
-    | "CreateAndLinkNewAccount"
-    | "LinkToExistingAccount"
-    | "LeaveUnlinked";
+  BehaviorIfIdentityNotLinked: string;
   /**
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
