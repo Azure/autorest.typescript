@@ -61,11 +61,7 @@ export interface DurationWrapper {
 
 export interface ByteWrapper {
   /** Value may contain base64 encoded characters */
-  field?:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  field?: string;
 }
 
 export interface ArrayWrapper {
@@ -133,11 +129,7 @@ export interface SharkParent extends FishParent {
 
 export interface Sawshark extends SharkParent {
   /** Value may contain base64 encoded characters */
-  picture?:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  picture?: string;
   fishtype: "sawshark";
 }
 

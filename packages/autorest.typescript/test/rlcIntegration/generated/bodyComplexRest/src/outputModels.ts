@@ -66,7 +66,7 @@ export interface DurationWrapperOutput {
 
 export interface ByteWrapperOutput {
   /** Value may contain base64 encoded characters */
-  field?: Uint8Array;
+  field?: string;
 }
 
 export interface ArrayWrapperOutput {
@@ -164,7 +164,7 @@ export interface SharkOutputParent extends FishOutputParent {
 
 export interface SawsharkOutput extends SharkOutputParent {
   /** Value may contain base64 encoded characters */
-  picture?: Uint8Array;
+  picture?: string;
   fishtype: "sawshark";
 }
 

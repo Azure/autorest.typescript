@@ -382,7 +382,7 @@ export interface HeaderParamByteDefaultResponse extends HttpResponse {
 
 export interface HeaderResponseByte200Headers {
   /** response with header values "啊齄丂狛狜隣郎隣兀﨩" */
-  value?: Uint8Array;
+  value?: string;
 }
 
 /** Get a response with header values "啊齄丂狛狜隣郎隣兀﨩" */

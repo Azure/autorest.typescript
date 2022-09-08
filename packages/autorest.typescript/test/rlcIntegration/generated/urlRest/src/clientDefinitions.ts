@@ -333,11 +333,7 @@ export interface PathsOperations {
   ): StreamableMethod<PathsEnumNull400Response | PathsEnumNullDefaultResponse>;
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   byteMultiByte(
-    bytePath:
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream,
+    bytePath: string,
     options?: PathsByteMultiByteParameters
   ): StreamableMethod<
     PathsByteMultiByte200Response | PathsByteMultiByteDefaultResponse
@@ -351,11 +347,7 @@ export interface PathsOperations {
   >;
   /** Get null as byte array (should throw) */
   byteNull(
-    bytePath:
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream,
+    bytePath: string,
     options?: PathsByteNullParameters
   ): StreamableMethod<PathsByteNull400Response | PathsByteNullDefaultResponse>;
   /** Get '2012-01-01' as date */
@@ -386,11 +378,7 @@ export interface PathsOperations {
   >;
   /** Get 'lorem' encoded value as 'bG9yZW0' (base64url) */
   base64Url(
-    base64UrlPath:
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream,
+    base64UrlPath: string,
     options?: PathsBase64UrlParameters
   ): StreamableMethod<
     PathsBase64Url200Response | PathsBase64UrlDefaultResponse
@@ -1374,23 +1362,12 @@ export interface Routes {
   /** Resource for '/paths/byte/multibyte/\{bytePath\}' has methods for the following verbs: get */
   (
     path: "/paths/byte/multibyte/{bytePath}",
-    bytePath:
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream
+    bytePath: string
   ): PathsByteMultiByte;
   /** Resource for '/paths/byte/empty/\{bytePath\}' has methods for the following verbs: get */
   (path: "/paths/byte/empty/{bytePath}", bytePath: ""): PathsByteEmpty;
   /** Resource for '/paths/byte/null/\{bytePath\}' has methods for the following verbs: get */
-  (
-    path: "/paths/byte/null/{bytePath}",
-    bytePath:
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream
-  ): PathsByteNull;
+  (path: "/paths/byte/null/{bytePath}", bytePath: string): PathsByteNull;
   /** Resource for '/paths/date/2012-01-01/\{datePath\}' has methods for the following verbs: get */
   (
     path: "/paths/date/2012-01-01/{datePath}",
@@ -1411,11 +1388,7 @@ export interface Routes {
   /** Resource for '/paths/string/bG9yZW0/\{base64UrlPath\}' has methods for the following verbs: get */
   (
     path: "/paths/string/bG9yZW0/{base64UrlPath}",
-    base64UrlPath:
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream
+    base64UrlPath: string
   ): PathsBase64Url;
   /** Resource for '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/\{arrayPath\}' has methods for the following verbs: get */
   (

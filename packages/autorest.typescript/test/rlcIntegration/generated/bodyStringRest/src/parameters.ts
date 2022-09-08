@@ -74,11 +74,7 @@ export interface StringPutBase64UrlEncodedBodyParam {
    *
    * Value may contain base64 encoded characters
    */
-  body:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  body: string;
 }
 
 export interface StringPutBase64UrlEncodedMediaTypesParam {
