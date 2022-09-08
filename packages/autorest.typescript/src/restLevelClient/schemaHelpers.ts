@@ -116,6 +116,7 @@ export function primitiveSchemaToType(
         : "Date | string";
     case SchemaType.Char:
       return "string";
+    case SchemaType.ByteArray:
     case SchemaType.Duration:
     case SchemaType.Credential:
     case SchemaType.UnixTime:
@@ -123,7 +124,6 @@ export function primitiveSchemaToType(
     case SchemaType.Uuid:
     case SchemaType.String:
       return "string";
-    case SchemaType.ByteArray:
     case SchemaType.Binary:
       return schemaUse.includes(SchemaContext.Output)
         ? "Uint8Array"
