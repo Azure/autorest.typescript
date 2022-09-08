@@ -66,7 +66,7 @@ export interface Routes {
   (path: "/multi-interface/cats"): CatsGetCats;
 }
 
-export type MultiInterfaceClient = Client & {
+export type InterfaceClient = Client & {
   path: Routes;
   dogs: dogsOperations;
   cats: catsOperations;
