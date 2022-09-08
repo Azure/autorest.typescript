@@ -9,11 +9,11 @@ parameters:
 
   - name: OSVmImage
     type: string
-    default: ubuntu-18.04
+    default: ubuntu-20.04
 
 stages:
-  - ? ${{if and(eq(variables['Build.Reason'], 'Manual'), eq(variables['System.TeamProject'], 'internal'))}}
-    : - stage: Release
+  - ${{if and(eq(variables['Build.Reason'], 'Manual'), eq(variables['System.TeamProject'], 'internal'))}}:
+      - stage: Release
         displayName: "Release: @autorest/typescript"
         dependsOn: ${{parameters.DependsOn}}
         jobs:

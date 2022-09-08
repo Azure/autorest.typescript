@@ -155,5 +155,5 @@ export function getStatusCode(response: Response): string {
   // in M4, in reality it can only contain a single status code, hence we are always picking the first one.
   let statusCode = response.protocol.http?.statusCodes[0];
 
-  return `"${statusCode}"`;
+  return `${statusCode}`;
 }

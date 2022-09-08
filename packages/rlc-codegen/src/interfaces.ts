@@ -80,6 +80,7 @@ export interface RLCOptions {
   azureSdkForJs?: boolean;
   azureOutputDirectory?: string;
   isCadlTest?: boolean;
+  title?: string;
 }
 
 export enum ImportKind {

@@ -14,9 +14,9 @@ describe("Doc generation testing", () => {
         model SimpleModel {
             @doc("A test property.")
             prop: string;
-          }
-          op read(): { @body body: SimpleModel };
-          `);
+        }
+        op read(): { @body body: SimpleModel };
+        `);
       assert.ok(models);
       assertEqualContent(
         models!.outputModelFile!.content,

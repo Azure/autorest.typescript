@@ -46,6 +46,12 @@ import {
   isStatusCode
 } from "@cadl-lang/rest/http";
 
+export function getBinaryType(usage: SchemaContext[]) {
+  return usage.includes(SchemaContext.Output)
+    ? "Uint8Array"
+    : "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+}
+
 export function getSchemaForType(
   program: Program,
   typeInput: Type,

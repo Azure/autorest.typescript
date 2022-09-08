@@ -14,8 +14,10 @@ import { getAllRoutes, HttpOperationResponse } from "@cadl-lang/rest/http";
 import {
   getImportedModelName,
   getTypeName,
-  getSchemaForType
+  getSchemaForType,
+  getBinaryType
 } from "../modelUtils.js";
+import { getOperationStatuscode, isBinaryPayload } from "../operationUtil.js";
 
 export function transformToResponseTypes(
   program: Program,
@@ -31,9 +33,7 @@ export function transformToResponseTypes(
       responses: []
     };
     for (const resp of route.responses) {
-      // TODO: verify status code
-      const statusCode =
-        resp.statusCode == "*" ? `"default"` : `"${resp.statusCode}"`;
+      const statusCode = getOperationStatuscode(resp);
       const rlcResponseUnit: ResponseMetadata = {
         statusCode,
         description: resp.description
@@ -109,26 +109,42 @@ function transformBody(
 ) {
   if (!response.responses.length) {
     return;
-  } else if (response.responses.length > 1) {
-    // TODO: handle one status code map to multiple rsps
   }
-  const body = response.responses[0]?.body;
-  if (!body) {
-    return;
+  // Currently RLC reponse only have one header and body defined
+  // So we'll union all body shapes together with "|"
+  const typeSet = new Set<string>();
+  const descriptions = new Set<string>();
+  for (const data of response.responses) {
+    const body = data?.body;
+    if (!body) {
+      continue;
+    }
+    const hasBinaryContent = body.contentTypes.some((contentType) =>
+      isBinaryPayload(body.type, contentType)
+    );
+    if (hasBinaryContent) {
+      typeSet.add(getBinaryType([SchemaContext.Output]));
+      descriptions.add("Value may contain any sequence of octets");
+      continue;
+    }
+    const bodySchema = getSchemaForType(program, body!.type, [
+      SchemaContext.Output
+    ]) as Schema;
+    const bodyType = getTypeName(bodySchema);
+    const importedNames = getImportedModelName(bodySchema);
+    if (importedNames) {
+      importedNames.forEach(importedModels.add, importedModels);
+    }
+    typeSet.add(bodyType);
   }
 
-  const bodySchema = getSchemaForType(program, body!.type, [
-    SchemaContext.Output
-  ]) as Schema;
-  const bodyType = getTypeName(bodySchema);
-  const importedNames = getImportedModelName(bodySchema);
-  if (importedNames) {
-    importedNames.forEach(importedModels.add, importedModels);
+  if (!typeSet.size) {
+    return;
   }
 
   return {
     name: "body",
-    type: bodyType,
-    description: ""
+    type: [...typeSet].join("|"),
+    description: [...descriptions].join("\n\n")
   };
 }
