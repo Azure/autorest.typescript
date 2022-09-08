@@ -98,7 +98,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -137,7 +137,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -207,7 +207,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -241,7 +241,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
