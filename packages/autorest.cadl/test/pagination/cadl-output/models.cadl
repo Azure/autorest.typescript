@@ -22,10 +22,10 @@ enum OperationResultStatusKnownValues {
 }
 
 @knownValues(OperationResultStatusKnownValues)
-model OperationResultStatus is string {}
+model OperationResultStatus is string;
 
 // FIXME: (missing-docs) Add documentation
-model ProductResultValue is Azure.Core.Page<Product> {}
+model ProductResultValue is Azure.Core.Page<Product>;
 
 // FIXME: (missing-docs) Add documentation
 model Product {

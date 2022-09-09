@@ -12,74 +12,89 @@ interface TextAnalysisAuthoringOperations {
   @doc("Lists the existing projects.")
   @route("/authoring/analyze-text/projects")
   @get
-  ListProjects is Azure.Core.Operation<{
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
+  ListProjects is Azure.Core.Foundations.Operation<
+    {
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<ProjectsMetadata>>;
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    Azure.Core.ResourceList<ProjectsMetadata>
+  >;
 
   @doc("Creates a new project or updates an existing one.")
   @route("/authoring/analyze-text/projects/{projectName}")
   @patch
-  CreateProject is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  CreateProject is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The project parameters.")
-    @body
-    body: CreateProjectOptions;
-  }, ProjectMetadata>;
+      @doc("The project parameters.")
+      @body
+      body: CreateProjectOptions;
+    },
+    ProjectMetadata
+  >;
 
   @doc("Gets the details of a project.")
   @route("/authoring/analyze-text/projects/{projectName}")
   @get
-  GetProject is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-  }, ProjectMetadata>;
+  GetProject is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+    },
+    ProjectMetadata
+  >;
 
   @doc("Deletes a project.")
   @route("/authoring/analyze-text/projects/{projectName}")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @delete
-  DeleteProject is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-  }, void>;
+  DeleteProject is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+    },
+    void
+  >;
 
   @doc("Triggers a job to export a project's data.")
   @route("/authoring/analyze-text/projects/{projectName}/:export")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @post
-  Export is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  Export is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("""
+      @doc("""
 Specifies the method used to interpret string offsets. For additional
 information see https://aka.ms/text-analytics-offsets.
 """)
-    @query
-    stringIndexType: StringIndexType;
+      @query
+      stringIndexType: StringIndexType;
 
-    @doc("Kind of asset to export.")
-    @query
-    assetKind: string;
-  }, void>;
+      @doc("Kind of asset to export.")
+      @query
+      assetKind: string;
+    },
+    void
+  >;
 
   @doc("""
 Triggers a job to import a project. If a project with the same name already
@@ -89,143 +104,170 @@ exists, the data of that project is replaced.
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @post
-  Import is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  Import is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The project data to import.")
-    @body
-    body: ExportedProject;
-  }, void>;
+      @doc("The project data to import.")
+      @body
+      body: ExportedProject;
+    },
+    void
+  >;
 
   @doc("Triggers a training job for a project.")
   @route("/authoring/analyze-text/projects/{projectName}/:train")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @post
-  Train is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  Train is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The training input parameters.")
-    @body
-    body: TrainingJobOptions;
-  }, void>;
+      @doc("The training input parameters.")
+      @body
+      body: TrainingJobOptions;
+    },
+    void
+  >;
 
   @doc("Lists the deployments belonging to a project.")
   @route("/authoring/analyze-text/projects/{projectName}/deployments")
   @get
-  ListDeployments is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  ListDeployments is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<ProjectDeployments>>;
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    Azure.Core.ResourceList<ProjectDeployments>
+  >;
 
   @doc("Swaps two existing deployments with each other.")
   @route("/authoring/analyze-text/projects/{projectName}/deployments/:swap")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @post
-  SwapDeployments is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  SwapDeployments is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The job object to swap two deployments.")
-    @body
-    body: SwapDeploymentsOptions;
-  }, void>;
+      @doc("The job object to swap two deployments.")
+      @body
+      body: SwapDeploymentsOptions;
+    },
+    void
+  >;
 
   @doc("Gets the details of a deployment.")
   @route("/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}")
   @get
-  GetDeployment is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetDeployment is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The name of the specific deployment of the project to use.")
-    @path
-    deploymentName: string;
-  }, ProjectDeployment>;
+      @doc("The name of the specific deployment of the project to use.")
+      @path
+      deploymentName: string;
+    },
+    ProjectDeployment
+  >;
 
   @doc("Creates a new deployment or replaces an existing one.")
   @route("/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @put
-  DeployProject is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  DeployProject is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The name of the specific deployment of the project to use.")
-    @path
-    deploymentName: string;
+      @doc("The name of the specific deployment of the project to use.")
+      @path
+      deploymentName: string;
 
-    @doc("The new deployment info.")
-    @body
-    body: CreateDeploymentOptions;
-  }, void>;
+      @doc("The new deployment info.")
+      @body
+      body: CreateDeploymentOptions;
+    },
+    void
+  >;
 
   @doc("Deletes a project deployment.")
   @route("/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @delete
-  DeleteDeployment is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  DeleteDeployment is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The name of the specific deployment of the project to use.")
-    @path
-    deploymentName: string;
-  }, void>;
+      @doc("The name of the specific deployment of the project to use.")
+      @path
+      deploymentName: string;
+    },
+    void
+  >;
 
   @doc("Gets the status of an existing deployment job.")
   @route("/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}")
   @get
-  GetDeploymentStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetDeploymentStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The name of the specific deployment of the project to use.")
-    @path
-    deploymentName: string;
+      @doc("The name of the specific deployment of the project to use.")
+      @path
+      deploymentName: string;
 
-    @doc("The job ID.")
-    @path
-    jobId: string;
-  }, DeploymentJobState>;
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    DeploymentJobState
+  >;
 
   @doc("Gets the status of an existing swap deployment job.")
   @route("/authoring/analyze-text/projects/{projectName}/deployments/swap/jobs/{jobId}")
   @get
-  GetSwapDeploymentsStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetSwapDeploymentsStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The job ID.")
-    @path
-    jobId: string;
-  }, DeploymentJobState>;
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    DeploymentJobState
+  >;
 
   @doc("""
 Gets the status of an export job. Once job completes, returns the project
@@ -233,75 +275,90 @@ metadata, and assets.
 """)
   @route("/authoring/analyze-text/projects/{projectName}/export/jobs/{jobId}")
   @get
-  GetExportStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetExportStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The job ID.")
-    @path
-    jobId: string;
-  }, ExportProjectJobState>;
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    ExportProjectJobState
+  >;
 
   @doc("Gets the status for an import.")
   @route("/authoring/analyze-text/projects/{projectName}/import/jobs/{jobId}")
   @get
-  GetImportStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetImportStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The job ID.")
-    @path
-    jobId: string;
-  }, ImportProjectJobState>;
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    ImportProjectJobState
+  >;
 
   @doc("Lists the trained models belonging to a project.")
   @route("/authoring/analyze-text/projects/{projectName}/models")
   @get
-  ListTrainedModels is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  ListTrainedModels is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<ProjectTrainedModels>>;
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    Azure.Core.ResourceList<ProjectTrainedModels>
+  >;
 
   @doc("Gets the details of a trained model.")
   @route("/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}")
   @get
-  GetTrainedModel is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetTrainedModel is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The trained model label.")
-    @path
-    trainedModelLabel: string;
-  }, ProjectTrainedModel>;
+      @doc("The trained model label.")
+      @path
+      trainedModelLabel: string;
+    },
+    ProjectTrainedModel
+  >;
 
   @doc("Deletes an existing trained model.")
   @route("/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}")
   @delete
-  DeleteTrainedModel is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  DeleteTrainedModel is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The trained model label.")
-    @path
-    trainedModelLabel: string;
-  }, void>;
+      @doc("The trained model label.")
+      @path
+      trainedModelLabel: string;
+    },
+    void
+  >;
 
   @doc("""
 Gets the detailed results of the evaluation for a trained model. This includes
@@ -309,34 +366,37 @@ the raw inference results for the data included in the evaluation process.
 """)
   @route("/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/result")
   @get
-  GetModelEvaluationResults is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetModelEvaluationResults is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The trained model label.")
-    @path
-    trainedModelLabel: string;
+      @doc("The trained model label.")
+      @path
+      trainedModelLabel: string;
 
-    @doc("""
+      @doc("""
 Specifies the method used to interpret string offsets. For additional
 information see https://aka.ms/text-analytics-offsets.
 """)
-    @query
-    stringIndexType: StringIndexType;
+      @query
+      stringIndexType: StringIndexType;
 
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<EvaluationResults>>;
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    Azure.Core.ResourceList<EvaluationResults>
+  >;
 
   @doc("""
 Gets the evaluation summary of a trained model. The summary includes high level
@@ -344,109 +404,130 @@ performance measurements of the model e.g., F1, Precision, Recall, etc.
 """)
   @route("/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/summary-result")
   @get
-  GetModelEvaluationSummary is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetModelEvaluationSummary is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The trained model label.")
-    @path
-    trainedModelLabel: string;
-  }, EvaluationSummary>;
+      @doc("The trained model label.")
+      @path
+      trainedModelLabel: string;
+    },
+    EvaluationSummary
+  >;
 
   @doc("Lists the non-expired training jobs created for a project.")
   @route("/authoring/analyze-text/projects/{projectName}/train/jobs")
   @get
-  ListTrainingJobs is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  ListTrainingJobs is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<TrainingJobs>>;
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    Azure.Core.ResourceList<TrainingJobs>
+  >;
 
   @doc("Gets the status for a training job.")
   @route("/authoring/analyze-text/projects/{projectName}/train/jobs/{jobId}")
   @get
-  GetTrainingStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  GetTrainingStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The job ID.")
-    @path
-    jobId: string;
-  }, TrainingJobState>;
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    TrainingJobState
+  >;
 
   @doc("Triggers a cancellation for a running training job.")
   @route("/authoring/analyze-text/projects/{projectName}/train/jobs/{jobId}/:cancel")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
   @post
-  CancelTrainingJob is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  CancelTrainingJob is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-    @doc("The job ID.")
-    @path
-    jobId: string;
-  }, void>;
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    void
+  >;
 
   @doc("Gets the status for a project deletion job.")
   @route("/authoring/analyze-text/projects/global/deletion-jobs/{jobId}")
   @get
-  GetProjectDeletionStatus is Azure.Core.Operation<{
-    @doc("The job ID.")
-    @path
-    jobId: string;
-  }, ProjectDeletionJobState>;
+  GetProjectDeletionStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    ProjectDeletionJobState
+  >;
 
   @doc("Lists the supported languages.")
   @route("/authoring/analyze-text/projects/global/languages")
   @get
-  GetSupportedLanguages is Azure.Core.Operation<{
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
+  GetSupportedLanguages is Azure.Core.Foundations.Operation<
+    {
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<SupportedLanguages>>;
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    Azure.Core.ResourceList<SupportedLanguages>
+  >;
 
   @doc("Lists the support training config version for a given project type.")
   @route("/authoring/analyze-text/projects/global/training-config-versions")
   @get
-  ListTrainingConfigVersions is Azure.Core.Operation<{
-    @doc("The project kind.")
-    @query
-    projectKind: ProjectKind;
+  ListTrainingConfigVersions is Azure.Core.Foundations.Operation<
+    {
+      @doc("The project kind.")
+      @query
+      projectKind: ProjectKind;
 
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<TrainingConfigVersions>>;
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    Azure.Core.ResourceList<TrainingConfigVersions>
+  >;
 }

@@ -19,7 +19,7 @@ export function generateOperation(operation: CadlOperation) {
     statements.push(fixme);
   }
   statements.push(
-    `@${verb} op ${name} is Azure.Core.Operation<{${
+    `@${verb} op ${name} is Azure.Core.Foundations.Operation<{${
       params ? params : ""
     }}, ${responses.join(" | ")}>;\n\n\n`
   );

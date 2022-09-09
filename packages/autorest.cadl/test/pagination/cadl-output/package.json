@@ -1,7 +1,7 @@
 {
   "name": "autorest-paging-test-service",
   "dependencies": {
-    "@azure-tools/cadl-azure-core": "https://bit.ly/3wwVwa4",
+    "@azure-tools/cadl-azure-core": "0.7.0",
     "@cadl-lang/compiler": "^0.34.0",
     "@cadl-lang/prettier-plugin-cadl": "^0.5.13",
     "@cadl-lang/rest": "^0.16.0",

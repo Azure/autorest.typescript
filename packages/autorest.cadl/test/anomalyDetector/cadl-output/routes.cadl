@@ -18,14 +18,17 @@ user an overall status of the time series.
 """)
   @route("/timeseries/entire/detect")
   @post
-  DetectEntireSeries is Azure.Core.Operation<{
-    @doc("""
+  DetectEntireSeries is Azure.Core.Foundations.Operation<
+    {
+      @doc("""
 Time series points and period if needed. Advanced model parameters can also be
 set in the request.
 """)
-    @body
-    body: DetectRequest;
-  }, EntireDetectResponse>;
+      @body
+      body: DetectRequest;
+    },
+    EntireDetectResponse
+  >;
 
   @summary("Detect anomaly status of the latest point in time series.")
   @doc("""
@@ -36,27 +39,33 @@ real-time monitoring of business metrics.
 """)
   @route("/timeseries/last/detect")
   @post
-  DetectLastPoint is Azure.Core.Operation<{
-    @doc("""
+  DetectLastPoint is Azure.Core.Foundations.Operation<
+    {
+      @doc("""
 Time series points and period if needed. Advanced model parameters can also be
 set in the request.
 """)
-    @body
-    body: DetectRequest;
-  }, LastDetectResponse>;
+      @body
+      body: DetectRequest;
+    },
+    LastDetectResponse
+  >;
 
   @summary("Detect change point for the entire series")
   @doc("Evaluate change point score of every series point")
   @route("/timeseries/changepoint/detect")
   @post
-  DetectChangePoint is Azure.Core.Operation<{
-    @doc("""
+  DetectChangePoint is Azure.Core.Foundations.Operation<
+    {
+      @doc("""
 Time series points and granularity is needed. Advanced model parameters can
 also be set in the request if needed.
 """)
-    @body
-    body: ChangePointDetectRequest;
-  }, ChangePointDetectResponse>;
+      @body
+      body: ChangePointDetectRequest;
+    },
+    ChangePointDetectResponse
+  >;
 
   @summary("Get Multivariate Anomaly Detection Result")
   @doc("""
@@ -65,11 +74,14 @@ DetectAnomalyAsync api
 """)
   @route("/multivariate/entire/detect/{resultId}")
   @get
-  GetDetectionResult is Azure.Core.Operation<{
-    @doc("Result identifier")
-    @path
-    resultId: string;
-  }, DetectionResult>;
+  GetDetectionResult is Azure.Core.Foundations.Operation<
+    {
+      @doc("Result identifier")
+      @path
+      resultId: string;
+    },
+    DetectionResult
+  >;
 
   @summary("Train a Multivariate Anomaly Detection Model")
   @doc("""
@@ -82,35 +94,44 @@ column is value.
 """)
   @route("/multivariate/models")
   @post
-  TrainMultivariateModel is Azure.Core.Operation<{
-    @doc("Training request")
-    @body
-    body: ModelInfo;
-  }, void>;
+  TrainMultivariateModel is Azure.Core.Foundations.Operation<
+    {
+      @doc("Training request")
+      @body
+      body: ModelInfo;
+    },
+    void
+  >;
 
   @summary("List Multivariate Models")
   @doc("List models of a subscription")
   @route("/multivariate/models")
   @get
-  ListMultivariateModel is Azure.Core.Operation<{
-    @doc("$skip indicates how many models will be skipped.")
-    @query
-    $skip: int32;
+  ListMultivariateModel is Azure.Core.Foundations.Operation<
+    {
+      @doc("$skip indicates how many models will be skipped.")
+      @query
+      $skip: int32;
 
-    @doc("$top indicates how many models will be fetched.")
-    @query
-    $top: int32;
-  }, Azure.Core.ResourceList<ModelList>>;
+      @doc("$top indicates how many models will be fetched.")
+      @query
+      $top: int32;
+    },
+    Azure.Core.ResourceList<ModelList>
+  >;
 
   @summary("Delete Multivariate Model")
   @doc("Delete an existing multivariate model according to the modelId")
   @route("/multivariate/models/{modelId}")
   @delete
-  DeleteMultivariateModel is Azure.Core.Operation<{
-    @doc("Model identifier")
-    @path
-    modelId: string;
-  }, void>;
+  DeleteMultivariateModel is Azure.Core.Foundations.Operation<
+    {
+      @doc("Model identifier")
+      @path
+      modelId: string;
+    },
+    void
+  >;
 
   @summary("Get Multivariate Model")
   @doc("""
@@ -119,11 +140,14 @@ and variables used in the model.
 """)
   @route("/multivariate/models/{modelId}")
   @get
-  GetMultivariateModel is Azure.Core.Operation<{
-    @doc("Model identifier")
-    @path
-    modelId: string;
-  }, Model>;
+  GetMultivariateModel is Azure.Core.Foundations.Operation<
+    {
+      @doc("Model identifier")
+      @path
+      modelId: string;
+    },
+    Model
+  >;
 
   @summary("Detect Multivariate Anomaly")
   @doc("""
@@ -138,27 +162,33 @@ second column is value.
 """)
   @route("/multivariate/models/{modelId}/entire/detect")
   @post
-  DetectAnomaly is Azure.Core.Operation<{
-    @doc("Model identifier")
-    @path
-    modelId: string;
+  DetectAnomaly is Azure.Core.Foundations.Operation<
+    {
+      @doc("Model identifier")
+      @path
+      modelId: string;
 
-    @doc("Detect anomaly request")
-    @body
-    body: DetectionRequest;
-  }, void>;
+      @doc("Detect anomaly request")
+      @body
+      body: DetectionRequest;
+    },
+    void
+  >;
 
   @summary("Detect anomalies in the last a few points of the request body")
   @doc("Synchronized API for anomaly detection.")
   @route("/multivariate/models/{modelId}/last/detect")
   @post
-  LastDetectAnomaly is Azure.Core.Operation<{
-    @doc("Model identifier")
-    @path
-    modelId: string;
+  LastDetectAnomaly is Azure.Core.Foundations.Operation<
+    {
+      @doc("Model identifier")
+      @path
+      modelId: string;
 
-    @doc("Request for last detection")
-    @body
-    body: LastDetectionRequest;
-  }, LastDetectionResult>;
+      @doc("Request for last detection")
+      @body
+      body: LastDetectionRequest;
+    },
+    LastDetectionResult
+  >;
 }

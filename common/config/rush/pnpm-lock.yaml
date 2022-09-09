@@ -366,8 +366,8 @@ packages:
         integrity: sha512-1YJExugnM34MhVdCanKP1Z02Tf+Jy7bjc5oOS81LX6ZCIzoPcj4+VCTGxvu6FgNa0VP5RHsE8XqiWxUfqlR60A==
       }
     dependencies:
-      js-yaml: 4.1.0
-      json-serialize-refs: 0.0.6-0
+      '@cadl-lang/compiler': 0.34.0
+      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
     dev: false
 
   /@azure-tools/codegen/2.9.1:
@@ -2440,6 +2440,15 @@ packages:
       "@cadl-lang/compiler": 0.36.0
     dev: false
 
+  /@cadl-lang/rest/0.17.0_@cadl-lang+compiler@0.34.0:
+    resolution: {integrity: sha512-Q5UhVXWXW3XAuri/cAYLw3NJleCXzmqu9TDh6mc+YWbRThvfWx2GYKRbp+7WWCWI1e0zAQt4D49WkYwr/4OJRA==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@cadl-lang/compiler': ~0.35.0
+    dependencies:
+      '@cadl-lang/compiler': 0.34.0
+    dev: false
+
   /@cadl-lang/versioning/0.7.0:
     resolution:
       {
@@ -2534,6 +2543,11 @@ packages:
         integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==
       }
     engines: { node: ">=12.22" }
+    dev: false
+
+  /@humanwhocodes/module-importer/1.0.1:
+    resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
+    engines: {node: '>=12.22'}
     dev: false
 
   /@humanwhocodes/object-schema/1.2.1:
@@ -13623,7 +13637,7 @@ packages:
       require-directory: 2.1.1
       string-width: 4.2.3
       y18n: 5.0.8
-      yargs-parser: 20.2.9
+      yargs-parser: 20.2.4
     dev: false
 
   /yargs/17.3.1:

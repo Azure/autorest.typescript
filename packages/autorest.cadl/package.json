@@ -42,7 +42,7 @@
     "@cadl-lang/rest": "^0.16.0",
     "prettier": "^2.7.1",
     "@cadl-lang/versioning": "^0.7.0",
-    "@azure-tools/cadl-azure-core": "https://bit.ly/3AwV4Ks"
+    "@azure-tools/cadl-azure-core": "^0.7.0"
   },
   "devDependencies": {
     "@types/prettier": "^2.7.0",
@@ -52,6 +52,6 @@
     "fs-extra": "^10.1.0",
     "@types/fs-extra": "^9.0.13",
     "chalk": "~4.1.1",
-    "@azure-tools/cadl-autorest": "https://bit.ly/3AyZWi1"
+    "@azure-tools/cadl-autorest": "latest"
   }
 }

@@ -8,390 +8,244 @@ using Cadl.Http;
 namespace QuestionAnswering;
 
 // FIXME: (missing-docs) Add documentation
-interface QuestionAnsweringOperations {
-  @summary("Answers the specified question using your knowledge base.")
-  @doc("Answers the specified question using your knowledge base.")
-  @route("/:query-knowledgebases")
-  @post
-  GetAnswers is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @query
-    projectName: string;
+interface EndpointSettingsOperations {
+  @summary("Gets endpoint settings for an endpoint.")
+  @doc("Gets endpoint settings for an endpoint.")
+  @route("/endpointSettings")
+  @get
+  GetSettings is Azure.Core.Foundations.Operation<{}, EndpointSettingsDTO>;
 
-    @doc("The name of the specific deployment of the project to use.")
-    @query
-    deploymentName: string;
-
-    @doc("Post body of the request.")
-    @body
-    knowledgeBaseQueryOptions: AnswersOptions;
-  }, AnswersResult>;
-
-  @summary("Answers the specified question using the provided text in the body.")
-  @doc("Answers the specified question using the provided text in the body.")
-  @route("/:query-text")
-  @post
-  GetAnswersFromText is Azure.Core.Operation<{
-    @doc("Post body of the request.")
-    @body
-    textQueryOptions: AnswersFromTextOptions;
-  }, AnswersFromTextResult>;
+  @summary("Updates endpoint settings for an endpoint.")
+  @doc("Updates endpoint settings for an endpoint.")
+  @route("/endpointSettings")
+  @patch
+  UpdateSettings is Azure.Core.Foundations.Operation<
+    {
+      @doc("Post body of the request.")
+      @body
+      endpointSettingsPayload: EndpointSettingsDTO;
+    },
+    void
+  >;
 }
 // FIXME: (missing-docs) Add documentation
-interface QuestionAnsweringProjectsOperations {
-  @summary("Gets all projects for a user.")
-  @doc("Gets all projects for a user.")
-  @route("/query-knowledgebases/projects")
+interface EndpointKeysOperations {
+  @summary("Gets endpoint keys for an endpoint")
+  @doc("Gets endpoint keys for an endpoint")
+  @route("/endpointkeys")
   @get
-  ListProjects is Azure.Core.Operation<{
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
+  GetKeys is Azure.Core.Foundations.Operation<{}, EndpointKeysDTO>;
 
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
-
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<ProjectsMetadata>>;
-
-  @summary("Get the requested project metadata.")
-  @doc("Get the requested project metadata.")
-  @route("/query-knowledgebases/projects/{projectName}")
-  @get
-  GetProjectDetails is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-  }, ProjectMetadata>;
-
-  @summary("Create or update a project.")
-  @doc("Create or update a project.")
-  @route("/query-knowledgebases/projects/{projectName}")
+  @summary("Re-generates an endpoint key.")
+  @doc("Re-generates an endpoint key.")
+  @route("/endpointkeys/{keyType}")
   @patch
-  CreateProject is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  RefreshKeys is Azure.Core.Foundations.Operation<
+    {
+      @doc("Type of Key")
+      @path
+      keyType: string;
+    },
+    EndpointKeysDTO
+  >;
+}
+// FIXME: (missing-docs) Add documentation
+interface AlterationsOperations {
+  @summary("Download alterations from runtime.")
+  @doc("Download alterations from runtime.")
+  @route("/alterations")
+  @get
+  Get is Azure.Core.Foundations.Operation<{}, WordAlterationsDTO>;
 
-    @doc("Parameters needed to create the project.")
-    @body
-    body: CreateProjectOptions;
-  }, ProjectMetadata>;
+  @summary("Replace alterations data.")
+  @doc("Replace alterations data.")
+  @route("/alterations")
+  @put
+  Replace is Azure.Core.Foundations.Operation<
+    {
+      @doc("New alterations data.")
+      @body
+      wordAlterations: WordAlterationsDTO;
+    },
+    void
+  >;
+}
+// FIXME: (missing-docs) Add documentation
+interface KnowledgebaseOperations {
+  @summary("Gets all knowledgebases for a user.")
+  @doc("Gets all knowledgebases for a user.")
+  @route("/knowledgebases")
+  @get
+  ListAll is Azure.Core.Foundations.Operation<{}, KnowledgebasesDTO>;
 
-  @summary("Delete the project.")
-  @doc("Delete the project.")
-  @route("/query-knowledgebases/projects/{projectName}")
-  // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
-  // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
+  @summary("Gets details of a specific knowledgebase.")
+  @doc("Gets details of a specific knowledgebase.")
+  @route("/knowledgebases/{kbId}")
+  @get
+  GetDetails is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
+    },
+    KnowledgebaseDTO
+  >;
+
+  @summary("Deletes the knowledgebase and all its data.")
+  @doc("Deletes the knowledgebase and all its data.")
+  @route("/knowledgebases/{kbId}")
   @delete
-  DeleteProject is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-  }, void>;
+  Delete is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
+    },
+    void
+  >;
 
-  @summary("Gets the status of a Project delete job.")
-  @doc("Gets the status of a Project delete job.")
-  @route("/query-knowledgebases/projects/deletion-jobs/{jobId}")
-  @get
-  GetDeleteStatus is Azure.Core.Operation<{
-    @doc("Job ID.")
-    @path
-    jobId: string;
-  }, JobState>;
-
-  @summary("Export project metadata and assets.")
-  @doc("Export project metadata and assets.")
-  @route("/query-knowledgebases/projects/{projectName}/:export")
-  // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
-  // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
+  @summary("Publishes all changes in test index of a knowledgebase to its prod index.")
+  @doc("Publishes all changes in test index of a knowledgebase to its prod index.")
+  @route("/knowledgebases/{kbId}")
   @post
-  Export is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  Publish is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
+    },
+    void
+  >;
 
-    @doc("Knowledge base Import or Export format.")
-    @query
-    format: Format;
-
-    @doc("Kind of the asset of the project.")
-    @query
-    assetKind: AssetKind;
-  }, ExportJobState | void>;
-
-  @summary("""
-Gets the status of an Export job, once job completes, returns the project
-metadata, and assets.
-""")
-  @doc("""
-Gets the status of an Export job, once job completes, returns the project
-metadata, and assets.
-""")
-  @route("/query-knowledgebases/projects/{projectName}/export/jobs/{jobId}")
-  @get
-  GetExportStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("Job ID.")
-    @path
-    jobId: string;
-  }, ExportJobState>;
-
-  @summary("Import project assets.")
-  @doc("Import project assets.")
-  @route("/query-knowledgebases/projects/{projectName}/:import")
-  // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
-  // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
-  @post
-  Import is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("Knowledge base Import or Export format.")
-    @query
-    format: Format;
-
-    @doc("Kind of the asset of the project.")
-    @query
-    assetKind: AssetKind;
-
-    @doc("Project assets the needs to be imported.")
-    @body
-    body: ImportJobOptions;
-  }, void>;
-
-  @summary("Gets the status of an Import job.")
-  @doc("Gets the status of an Import job.")
-  @route("/query-knowledgebases/projects/{projectName}/import/jobs/{jobId}")
-  @get
-  GetImportStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("Job ID.")
-    @path
-    jobId: string;
-  }, JobState>;
-
-  @summary("Deploy project to production.")
-  @doc("Deploy project to production.")
-  @route("/query-knowledgebases/projects/{projectName}/deployments/{deploymentName}")
-  // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
-  // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
+  @summary("Replace knowledgebase contents.")
+  @doc("Replace knowledgebase contents.")
+  @route("/knowledgebases/{kbId}")
   @put
-  DeployProject is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  Replace is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
 
-    @doc("The name of the specific deployment of the project to use.")
-    @path
-    deploymentName: string;
-  }, void>;
+      @doc("An instance of ReplaceKbDTO which contains list of qnas to be uploaded")
+      @body
+      replaceKb: ReplaceKbDTO;
+    },
+    void
+  >;
 
-  @summary("Gets the status of a Deploy job.")
-  @doc("Gets the status of a Deploy job.")
-  @route("/query-knowledgebases/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}")
-  @get
-  GetDeployStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("The name of the specific deployment of the project to use.")
-    @path
-    deploymentName: string;
-
-    @doc("Job ID.")
-    @path
-    jobId: string;
-  }, JobState>;
-
-  @summary("List all deployments of a project.")
-  @doc("List all deployments of a project.")
-  @route("/query-knowledgebases/projects/{projectName}/deployments")
-  @get
-  ListDeployments is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
-
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
-
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<ProjectDeployments>>;
-
-  @summary("Gets all the synonyms of a project.")
-  @doc("Gets all the synonyms of a project.")
-  @route("/query-knowledgebases/projects/{projectName}/synonyms")
-  @get
-  GetSynonyms is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
-
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
-
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<SynonymAssets>>;
-
-  @summary("Updates all the synonyms of a project.")
-  @doc("Updates all the synonyms of a project.")
-  @route("/query-knowledgebases/projects/{projectName}/synonyms")
-  @put
-  UpdateSynonyms is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("All the synonyms of a project.")
-    @body
-    body: SynonymAssets;
-  }, void>;
-
-  @summary("Gets all the sources of a project.")
-  @doc("Gets all the sources of a project.")
-  @route("/query-knowledgebases/projects/{projectName}/sources")
-  @get
-  GetSources is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
-
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
-
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<QnaSources>>;
-
-  @summary("Updates the sources of a project.")
-  @doc("Updates the sources of a project.")
-  @route("/query-knowledgebases/projects/{projectName}/sources")
-  // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
-  // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
+  @summary("Asynchronous operation to modify a knowledgebase.")
+  @doc("Asynchronous operation to modify a knowledgebase.")
+  @route("/knowledgebases/{kbId}")
   @patch
-  UpdateSources is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  Update is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
 
-    @doc("Update sources parameters of a project.")
-    @body
-    body: UpdateSourceRecord[];
-  }, void>;
+      @doc("Post body of the request.")
+      @body
+      updateKb: UpdateKbOperationDTO;
+    },
+    Operation
+  >;
 
-  @summary("Gets the status of update sources job.")
-  @doc("Gets the status of update sources job.")
-  @route("/query-knowledgebases/projects/{projectName}/sources/jobs/{jobId}")
-  @get
-  GetUpdateSourcesStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("Job ID.")
-    @path
-    jobId: string;
-  }, JobState>;
-
-  @summary("Gets all the QnAs of a project.")
-  @doc("Gets all the QnAs of a project.")
-  @route("/query-knowledgebases/projects/{projectName}/qnas")
-  @get
-  GetQnas is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("Source of the QnA.")
-    @query
-    source: string;
-
-    @doc("The maximum number of resources to return from the collection.")
-    @query
-    top: int32;
-
-    @doc("An offset into the collection of the first resource to be returned.")
-    @query
-    skip: int32;
-
-    @doc("The maximum number of resources to include in a single response.")
-    @query
-    maxpagesize: int32;
-  }, Azure.Core.ResourceList<QnaAssets>>;
-
-  @summary("Updates the QnAs of a project.")
-  @doc("Updates the QnAs of a project.")
-  @route("/query-knowledgebases/projects/{projectName}/qnas")
-  // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
-  // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
-  @patch
-  UpdateQnas is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("Update QnAs parameters of a project.")
-    @body
-    body: UpdateQnaRecord[];
-  }, void>;
-
-  @summary("Gets the status of update QnAs job.")
-  @doc("Gets the status of update QnAs job.")
-  @route("/query-knowledgebases/projects/{projectName}/qnas/jobs/{jobId}")
-  @get
-  GetUpdateQnasStatus is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
-
-    @doc("Job ID.")
-    @path
-    jobId: string;
-  }, JobState>;
-
-  @summary("Update Active Learning feedback.")
-  @doc("Update Active Learning feedback.")
-  @route("/query-knowledgebases/projects/{projectName}/feedback")
+  @summary("Asynchronous operation to create a new knowledgebase.")
+  @doc("Asynchronous operation to create a new knowledgebase.")
+  @route("/knowledgebases/create")
   @post
-  AddFeedback is Azure.Core.Operation<{
-    @doc("The name of the project to use.")
-    @path
-    projectName: string;
+  Create is Azure.Core.Foundations.Operation<
+    {
+      @doc("Post body of the request.")
+      @body
+      createKbPayload: CreateKbDTO;
+    },
+    Operation
+  >;
 
-    @doc("Feedback for Active Learning.")
-    @body
-    body: ActiveLearningFeedback;
-  }, void>;
+  @summary("Download the knowledgebase.")
+  @doc("Download the knowledgebase.")
+  @route("/knowledgebases/{kbId}/{environment}/qna")
+  @get
+  Download is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
+
+      @doc("Specifies whether environment is Test or Prod.")
+      @path
+      environment: EnvironmentType;
+
+      @doc("""
+The source property filter to apply. Sample value: Editorial,
+smartLight%20FAQ.tsv .
+""")
+      @query
+      source: string;
+
+      @doc("""
+changedSince property is used to return all QnAs created or updated after a
+specific time duration. The user can filter QnAs by seconds (s), minutes (m),
+hours (h) and days (d). The user may use any integral value along with the
+suffix for time. For instance, the value of 5m returns all QnA pairs updated or
+created in the last 5 minutes.
+""")
+      @query
+      changedSince: string;
+    },
+    QnADocumentsDTO
+  >;
+}
+// FIXME: (missing-docs) Add documentation
+interface OperationsOperations {
+  @summary("Gets details of a specific long running operation.")
+  @doc("Gets details of a specific long running operation.")
+  @route("/operations/{operationId}")
+  @get
+  GetDetails is Azure.Core.Foundations.Operation<
+    {
+      @doc("Operation id.")
+      @path
+      operationId: string;
+    },
+    Operation
+  >;
+}
+// FIXME: (missing-docs) Add documentation
+interface RuntimeOperations {
+  @summary("GenerateAnswer call to query the knowledgebase.")
+  @doc("GenerateAnswer call to query the knowledgebase.")
+  @route("/knowledgebases/{kbId}/generateAnswer")
+  @post
+  GenerateAnswer is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
+
+      @doc("Post body of the request.")
+      @body
+      generateAnswerPayload: QueryDTO;
+    },
+    QnASearchResultList
+  >;
+
+  @summary("Train call to add suggestions to the knowledgebase.")
+  @doc("Train call to add suggestions to the knowledgebase.")
+  @route("/knowledgebases/{kbId}/train")
+  @post
+  Train is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
+
+      @doc("Post body of the request.")
+      @body
+      trainPayload: FeedbackRecordsDTO;
+    },
+    void
+  >;
 }

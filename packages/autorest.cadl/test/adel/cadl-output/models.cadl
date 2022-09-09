@@ -1,7 +1,4 @@
 import "@cadl-lang/rest";
-
-using Cadl.Rest;
-
 namespace Adel;
 
 // FIXME: (missing-docs) Add documentation
@@ -110,8 +107,10 @@ Criteria that determine which anomalies should trigger an alert and via which
 notification channel(s). This setting can later be applied to a live inference
 schedule. 
 """)
-@discriminator("alertConfigType")
+@Cadl.Rest.resource("alert")
+@Cadl.Rest.discriminator("alertConfigType")
 model AlertConfig {
+  @key
   @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
   alertConfigName: string;
 
@@ -196,14 +195,14 @@ that each variable has at most one data point within each interval.
 Details about your data source, including data source type, location,
 authentication method, and so on.
 """)
-@discriminator("dataSourceType")
+@Cadl.Rest.discriminator("dataSourceType")
 model DataSourceInfo {
   // FIXME: (missing-docs) Add documentation
   authenticationType: AuthenticationType;
 }
 
 @doc("Format and schema details of your data.")
-@discriminator("dataSchemaType")
+@Cadl.Rest.discriminator("dataSchemaType")
 model DataSchema {}
 
 // FIXME: (missing-docs) Add documentation
@@ -309,7 +308,7 @@ model PageHook {
 }
 
 @doc("A hook is a channel to receive alert notifications.")
-@discriminator("hookType")
+@Cadl.Rest.discriminator("hookType")
 model Hook {
   @doc("Unique identifier of a hook. This parameter is case-sensitive.")
   hookName: string;

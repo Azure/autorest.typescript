@@ -13,7 +13,7 @@ enum CMYKColorsKnownValues {
 }
 
 @knownValues(CMYKColorsKnownValues)
-model CMYKColors is string {}
+model CMYKColors is string;
 
 // FIXME: (missing-docs) Add documentation
 enum MyKindKnownValues {
@@ -21,7 +21,7 @@ enum MyKindKnownValues {
 }
 
 @knownValues(MyKindKnownValues)
-model MyKind is string {}
+model MyKind is string;
 
 // FIXME: (missing-docs) Add documentation
 enum GoblinSharkColorKnownValues {
@@ -33,7 +33,7 @@ enum GoblinSharkColorKnownValues {
 }
 
 @knownValues(GoblinSharkColorKnownValues)
-model GoblinSharkColor is string {}
+model GoblinSharkColor is string;
 
 // FIXME: (missing-docs) Add documentation
 model Basic {

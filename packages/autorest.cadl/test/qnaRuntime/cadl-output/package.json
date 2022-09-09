@@ -1,5 +1,5 @@
 {
-  "name": "questionanswering",
+  "name": "qnamaker-runtime-client",
   "dependencies": {
     "@azure-tools/cadl-azure-core": "0.7.0",
     "@cadl-lang/compiler": "^0.34.0",

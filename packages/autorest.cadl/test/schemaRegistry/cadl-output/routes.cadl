@@ -13,7 +13,7 @@ interface SchemaGroupsOperations {
   @doc("Gets the list of schema groups user is authorized to access.")
   @route("/$schemaGroups")
   @get
-  List is Azure.Core.Operation<{}, SchemaGroups>;
+  List is Azure.Core.Foundations.Operation<{}, SchemaGroups>;
 }
 // FIXME: (missing-docs) Add documentation
 interface SchemaOperations {
@@ -25,32 +25,62 @@ serialization of schema requested.
 """)
   @route("/$schemaGroups/$schemas/{id}")
   @get
-  GetById is Azure.Core.Operation<{
-    @doc("References specific schema in registry namespace.")
-    @path
-    id: string;
+  GetById is Azure.Core.Foundations.Operation<
+    {
+      @doc("References specific schema in registry namespace.")
+      @path
+      id: string;
 
-    @doc("Accept header")
-    @header
-    Accept: "application/json; serialization=Avro";
-  }, void>;
+      @doc("Accept header")
+      @header
+      Accept: "application/json; serialization=Avro";
+    },
+    void
+  >;
 
   @summary("Get list schema versions.")
   @doc("Gets the list of all versions of one schema.")
   @route("/$schemaGroups/{groupName}/schemas/{schemaName}/versions")
   @get
-  GetVersions is Azure.Core.Operation<{
-    @doc("""
+  GetVersions is Azure.Core.Foundations.Operation<
+    {
+      @doc("""
 Schema group under which schema is registered.  Group's serialization type
 should match the serialization type specified in the request.
 """)
-    @path
-    groupName: string;
+      @path
+      groupName: string;
 
-    @doc("Name of schema.")
-    @path
-    schemaName: string;
-  }, SchemaVersions>;
+      @doc("Name of schema.")
+      @path
+      schemaName: string;
+    },
+    SchemaVersions
+  >;
+
+  @summary("Get specific schema versions.")
+  @doc("Gets one specific version of one schema.")
+  @route("/$schemaGroups/{groupName}/schemas/{schemaName}/versions/{schemaVersion}")
+  @get
+  GetSchemaVersion is Azure.Core.Foundations.Operation<
+    {
+      @doc("""
+Schema group under which schema is registered.  Group's serialization type
+should match the serialization type specified in the request.
+""")
+      @path
+      groupName: string;
+
+      @doc("Name of schema.")
+      @path
+      schemaName: string;
+
+      @doc("Version number of specific schema.")
+      @path
+      schemaVersion: int32;
+    },
+    void
+  >;
 
   @summary("Get ID for existing schema.")
   @doc("""
@@ -59,22 +89,25 @@ as matched by schema content comparison.
 """)
   @route("/$schemaGroups/{groupName}/schemas/{schemaName}:get-id")
   @post
-  QueryIdByContent is Azure.Core.Operation<{
-    @doc("""
+  QueryIdByContent is Azure.Core.Foundations.Operation<
+    {
+      @doc("""
 Schema group under which schema is registered.  Group's serialization type
 should match the serialization type specified in the request.
 """)
-    @path
-    groupName: string;
+      @path
+      groupName: string;
 
-    @doc("Name of schema.")
-    @path
-    schemaName: string;
+      @doc("Name of schema.")
+      @path
+      schemaName: string;
 
-    @doc("String representation (UTF-8) of the registered schema.")
-    @body
-    schemaContent: bytes;
-  }, void>;
+      @doc("String representation (UTF-8) of the registered schema.")
+      @body
+      schemaContent: bytes;
+    },
+    void
+  >;
 
   @summary("Register new schema")
   @doc("""
@@ -85,20 +118,23 @@ already in specified group, schema is created at latest version + 1.
 """)
   @route("/$schemaGroups/{groupName}/schemas/{schemaName}")
   @put
-  Register is Azure.Core.Operation<{
-    @doc("""
+  Register is Azure.Core.Foundations.Operation<
+    {
+      @doc("""
 Schema group under which schema should be registered.  Group's serialization
 type should match the serialization type specified in the request.
 """)
-    @path
-    groupName: string;
+      @path
+      groupName: string;
 
-    @doc("Name of schema.")
-    @path
-    schemaName: string;
+      @doc("Name of schema.")
+      @path
+      schemaName: string;
 
-    @doc("String representation (UTF-8) of the schema being registered.")
-    @body
-    schemaContent: bytes;
-  }, void>;
+      @doc("String representation (UTF-8) of the schema being registered.")
+      @body
+      schemaContent: bytes;
+    },
+    void
+  >;
 }

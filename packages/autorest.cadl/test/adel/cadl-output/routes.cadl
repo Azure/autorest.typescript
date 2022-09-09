@@ -1,71 +1,64 @@
 import "@azure-tools/cadl-azure-core";
 import "@cadl-lang/rest";
 import "./models.cadl";
-
-using Cadl.Rest;
-using Cadl.Http;
-
 namespace Adel;
 
-// FIXME: (missing-docs) Add documentation
+@Cadl.Http.route("/alertConfigs")
 interface AlertConfigsOperations {
   // FIXME: (missing-docs) Add documentation
-  @route("/alertConfigs")
-  @get
-  List is Azure.Core.Operation<{
+  @Cadl.Rest.segment("/")
+  List is Azure.Core.ResourceList<AlertConfig, {parameters: {
     @doc("""
 The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
-    @query
+    @Cadl.Http.query
     maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy;
-  }, Error | PageAlertConfig>;
+    @Cadl.Http.query orderBy: OrderBy;
+  }}>;
+
 
   // FIXME: (missing-docs) Add documentation
-  @route("/alertConfigs/{alertConfigName}")
-  @put
-  Create is Azure.Core.Operation<{
-    @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
-    @path
+  @Cadl.Rest.segment("/{alertConfigName}")
+  Create is Azure.Core.ResourceCreateOrUpdate<AlertConfig, {parameters: {
+       @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
+    @Cadl.Http.path
     alertConfigName: string;
     // FIXME: (missing-docs) Add documentation
-    @body body: AlertConfig;
-  }, Error | AlertConfig>;
+    @Cadl.Http.body body: AlertConfig;
+  }}>;
 
   // FIXME: (missing-docs) Add documentation
-  @route("/alertConfigs/{alertConfigName}")
-  @get
-  Read is Azure.Core.Operation<{
+  @Cadl.Rest.segment("/{alertConfigName}")
+  Read is Azure.Core.ResourceRead<AlertConfig, {parameters: {
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
-    @path
+    @Cadl.Http.path
     alertConfigName: string;
-  }, Error | AlertConfig>;
+  }}>;
 
   // FIXME: (missing-docs) Add documentation
-  @route("/alertConfigs/{alertConfigName}")
-  @delete
-  Delete is Azure.Core.Operation<{
+  @Cadl.Rest.segment("/{alertConfigName}")
+  Delete is Azure.Core.ResourceDelete<AlertConfig, {parameters: {
     @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
-    @path
+    @Cadl.Http.path
     alertConfigName: string;
-  }, Error | void>;
+  }}>;
 
   // FIXME: (missing-docs) Add documentation
   @route("/alertConfigs/{alertConfigName}")
@@ -89,24 +82,24 @@ The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
-    @query
+    @Cadl.Http.query
     maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy;
+    @Cadl.Http.query orderBy: OrderBy;
   }, Error | PageDataset>;
 
   // FIXME: (missing-docs) Add documentation
@@ -161,24 +154,24 @@ The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
-    @query
+    @Cadl.Http.query
     maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy;
+    @Cadl.Http.query orderBy: OrderBy;
   }, Error | PageHook>;
 
   // FIXME: (missing-docs) Add documentation
@@ -232,26 +225,26 @@ The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
-    @query
+    @Cadl.Http.query
     maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy;
+    @Cadl.Http.query orderBy: OrderBy;
     // FIXME: (missing-docs) Add documentation
-    @query status: ReplayStatus;
+    @Cadl.Http.query status: ReplayStatus;
 
     @doc("""
 Filter replay records by a list of inference schedule name(s). Format the list
@@ -259,7 +252,7 @@ as a comma-separated string, no space allowed. By default, the list of replay
 records are ranked by descending replay created time (UTC) for each inference
 schedule.
 """)
-    @query
+    @Cadl.Http.query
     scheduleName: string;
 
     @doc("""
@@ -267,7 +260,7 @@ The total number of replay records to be returned per inference schedule,
 ordered by created time descending. By default, the full list of replay records
 will be returned for the inference schedule name(s) in your filter.
 """)
-    @query
+    @Cadl.Http.query
     topPerSchedule: int32;
   }, Error | PageScheduleReplay>;
 
@@ -320,26 +313,26 @@ The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
-    @query
+    @Cadl.Http.query
     maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy;
+    @Cadl.Http.query orderBy: OrderBy;
     // FIXME: (missing-docs) Add documentation
-    @query status: ScheduleStatus;
+    @Cadl.Http.query status: ScheduleStatus;
 
     @doc("""
 Filter inference schedules by a list of model name(s). Format the list as a
@@ -347,7 +340,7 @@ comma-separated string, no space allowed. For each model, by default the list
 of inference schedules are ranked by descending inference schedule created time
 (UTC).
 """)
-    @query
+    @Cadl.Http.query
     modelNames: string;
 
     @doc("""
@@ -355,7 +348,7 @@ The total number of inference schedules to be returned per model, ordered by
 created time descending. By default, the full list of inference schedules will
 be returned for the model name(s) in your filter.
 """)
-    @query
+    @Cadl.Http.query
     topPerModel: int32;
   }, Error | PageSchedule>;
 
@@ -424,9 +417,9 @@ the detailed quota and limits.
     // FIXME: (missing-docs) Add documentation
     @path scheduleName: string;
     // FIXME: (missing-docs) Add documentation
-    @query startTime: string;
+    @Cadl.Http.query startTime: string;
     // FIXME: (missing-docs) Add documentation
-    @query endTime: string;
+    @Cadl.Http.query endTime: string;
   }, Error | ScheduleHistoryResult>;
 }
 // FIXME: (missing-docs) Add documentation
@@ -440,33 +433,33 @@ The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
-    @query
+    @Cadl.Http.query
     maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy;
+    @Cadl.Http.query orderBy: OrderBy;
     // FIXME: (missing-docs) Add documentation
-    @query status: EvaluationStatus;
+    @Cadl.Http.query status: EvaluationStatus;
 
     @doc("""
 Filter evaluations by a list of model name(s). Format the list as a
 comma-separated string, no space allowed. For each model, by default the list
 of evaluations are ranked by descending evaluation created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     modelNames: string;
 
     @doc("""
@@ -474,7 +467,7 @@ The total number of evaluations to be returned per model, ordered by created
 time descending. By default, the full list of evaluations will be returned for
 the model name(s) in your filter.
 """)
-    @query
+    @Cadl.Http.query
     topPerModel: int32;
   }, Error | PageEvaluation>;
 
@@ -518,33 +511,33 @@ The number of records to skip from the list of records based on the sorting
 field and ordering method specified. By default, records are ranked by
 descending created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     skip: int32;
 
     @doc("""
 The maximum number of records to be returned per page. If more records are
 requested via the API, @nextLink will contain the link to the next page.
 """)
-    @query
+    @Cadl.Http.query
     maxpagesize: int32;
 
     @doc("""
 The name of the field on which you want to sort records. By default, records
 are sorted by created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     sortBy: string;
     // FIXME: (missing-docs) Add documentation
-    @query orderBy: OrderBy;
+    @Cadl.Http.query orderBy: OrderBy;
     // FIXME: (missing-docs) Add documentation
-    @query status: ModelStatus;
+    @Cadl.Http.query status: ModelStatus;
 
     @doc("""
 Filter models by a list of training dataset name(s). Format the list as a
 comma-separated string, no space allowed. For each dataset, by default the list
 of models are ranked by descending model created time (UTC).
 """)
-    @query
+    @Cadl.Http.query
     datasetNames: string;
 
     @doc("""
@@ -552,7 +545,7 @@ The total number of models to be returned per dataset, ordered by created time
 descending. By default, the full list of models will be returned for the
 dataset name(s) in your filter.
 """)
-    @query
+    @Cadl.Http.query
     topPerDataset: int32;
   }, Error | PageModel>;
 

@@ -11,7 +11,7 @@ enum WebPubSubPermissionKnownValues {
 }
 
 @knownValues(WebPubSubPermissionKnownValues)
-model WebPubSubPermission is string {}
+model WebPubSubPermission is string;
 
 // FIXME: (missing-docs) Add documentation
 enum ContentType {

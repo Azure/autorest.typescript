@@ -19,6 +19,7 @@ import {
 } from "../interfaces";
 import { transformDataType } from "../model";
 import { getOptions } from "../options";
+import { getLogger } from "../utils/logger";
 import { hasLROExtension } from "../utils/lro";
 import { getLanguageMetadata } from "../utils/metadata";
 import { isConstantSchema } from "../utils/schemas";
@@ -203,14 +204,14 @@ export function transformParameter(
 }
 
 function getRequestParameters(operation: Operation): Parameter[] {
+  const logger = getLogger("getRequestParameters");
   if (!operation.requests?.length) {
     return [];
   }
 
   if (operation.requests.length > 1) {
-    throw new Error(
-      `Operation ${operation.language.default.name} has more than one request`
-    );
+    const message = `Operation ${operation.language.default.name} has more than one request`;
+    logger.info(message);
   }
 
   const parameters = operation.requests[0].parameters ?? [];

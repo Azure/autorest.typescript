@@ -17,49 +17,58 @@ each product, and lists the products in the proper display order.
 """)
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @get
-  List is Azure.Core.Operation<{
-    @doc("Subscription ID.")
-    @path
-    subscriptionId: "123456";
+  List is Azure.Core.Foundations.Operation<
+    {
+      @doc("Subscription ID.")
+      @path
+      subscriptionId: "123456";
 
-    @doc("Resource Group ID.")
-    @path
-    resourceGroupName: string;
-  }, CatalogArray>;
+      @doc("Resource Group ID.")
+      @path
+      resourceGroupName: string;
+    },
+    CatalogArray
+  >;
 
   @summary("Create products")
   @doc("Resets products.")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @post
-  Create is Azure.Core.Operation<{
-    @doc("Subscription ID.")
-    @path
-    subscriptionId: string;
+  Create is Azure.Core.Foundations.Operation<
+    {
+      @doc("Subscription ID.")
+      @path
+      subscriptionId: string;
 
-    @doc("Resource Group ID.")
-    @path
-    resourceGroupName: string;
+      @doc("Resource Group ID.")
+      @path
+      resourceGroupName: string;
 
-    @doc("body Parameter")
-    @body
-    bodyParameter: CatalogDictionaryOfArray;
-  }, CatalogDictionary>;
+      @doc("body Parameter")
+      @body
+      bodyParameter: CatalogDictionaryOfArray;
+    },
+    CatalogDictionary
+  >;
 
   @summary("Update products")
   @doc("Resets products.")
   @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
   @put
-  Update is Azure.Core.Operation<{
-    @doc("Subscription ID.")
-    @path
-    subscriptionId: string;
+  Update is Azure.Core.Foundations.Operation<
+    {
+      @doc("Subscription ID.")
+      @path
+      subscriptionId: string;
 
-    @doc("Resource Group ID.")
-    @path
-    resourceGroupName: string;
+      @doc("Resource Group ID.")
+      @path
+      resourceGroupName: string;
 
-    @doc("body Parameter")
-    @body
-    bodyParameter: CatalogArrayOfDictionary;
-  }, CatalogArray>;
+      @doc("body Parameter")
+      @body
+      bodyParameter: CatalogArrayOfDictionary;
+    },
+    CatalogArray
+  >;
 }
