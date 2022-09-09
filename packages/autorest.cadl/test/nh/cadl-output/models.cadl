@@ -4,7 +4,6 @@ using Cadl.Rest;
 
 namespace NotificationHubsClient;
 
-// FIXME: (missing-docs) Add documentation
 enum MSApiVersionTypeKnownValues {
   TwoThousandFifteen01: "2015-01",
   TwoThousandFifteen04: "2015-04",
@@ -15,7 +14,6 @@ enum MSApiVersionTypeKnownValues {
 @knownValues(MSApiVersionTypeKnownValues)
 model MSApiVersionType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum NotificationHubContentModelTypeKnownValues {
   ApplicationXml: "application/xml",
 }
@@ -23,7 +21,6 @@ enum NotificationHubContentModelTypeKnownValues {
 @knownValues(NotificationHubContentModelTypeKnownValues)
 model NotificationHubContentModelType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum NotificationHubDescriptionModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -31,7 +28,6 @@ enum NotificationHubDescriptionModelXmlnsIKnownValues {
 @knownValues(NotificationHubDescriptionModelXmlnsIKnownValues)
 model NotificationHubDescriptionModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum NotificationHubDescriptionModelAuthorizationRulesItemITypeKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -41,7 +37,6 @@ enum NotificationHubDescriptionModelAuthorizationRulesItemITypeKnownValues {
 )
 model NotificationHubDescriptionModelAuthorizationRulesItemIType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum NotificationHubDescriptionModelAuthorizationRulesItemClaimTypeKnownValues {
   "SharedAccessAuthorizationRule",
 }
@@ -51,7 +46,6 @@ enum NotificationHubDescriptionModelAuthorizationRulesItemClaimTypeKnownValues {
 )
 model NotificationHubDescriptionModelAuthorizationRulesItemClaimType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum RegistrationEntryModelXmlnsMKnownValues {
   HttpSchemasMicrosoftComAdo200708DataservicesMetadata: "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata",
 }
@@ -59,7 +53,6 @@ enum RegistrationEntryModelXmlnsMKnownValues {
 @knownValues(RegistrationEntryModelXmlnsMKnownValues)
 model RegistrationEntryModelXmlnsM is string;
 
-// FIXME: (missing-docs) Add documentation
 enum PlatformTypeKnownValues {
   Apns: "apns",
   Wns: "wns",
@@ -71,7 +64,6 @@ enum PlatformTypeKnownValues {
 @knownValues(PlatformTypeKnownValues)
 model PlatformType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum InstallationPatchTypeKnownValues {
   Add: "add",
   Remove: "remove",
@@ -81,7 +73,6 @@ enum InstallationPatchTypeKnownValues {
 @knownValues(InstallationPatchTypeKnownValues)
 model InstallationPatchType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum FormatParameterTypeKnownValues {
   Apple: "apple",
   Baidu: "baidu",
@@ -92,7 +83,6 @@ enum FormatParameterTypeKnownValues {
 @knownValues(FormatParameterTypeKnownValues)
 model FormatParameterType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum RegistrationContentModelTypeKnownValues {
   ApplicationXml: "application/xml",
 }
@@ -100,7 +90,6 @@ enum RegistrationContentModelTypeKnownValues {
 @knownValues(RegistrationContentModelTypeKnownValues)
 model RegistrationContentModelType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum AppleRegistrationContentModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -108,7 +97,6 @@ enum AppleRegistrationContentModelXmlnsIKnownValues {
 @knownValues(AppleRegistrationContentModelXmlnsIKnownValues)
 model AppleRegistrationContentModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum AppleTemplateRegistrationContentModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -116,7 +104,6 @@ enum AppleTemplateRegistrationContentModelXmlnsIKnownValues {
 @knownValues(AppleTemplateRegistrationContentModelXmlnsIKnownValues)
 model AppleTemplateRegistrationContentModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum BaiduRegistrationContentModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -124,7 +111,6 @@ enum BaiduRegistrationContentModelXmlnsIKnownValues {
 @knownValues(BaiduRegistrationContentModelXmlnsIKnownValues)
 model BaiduRegistrationContentModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum BaiduTemplateRegistrationContentModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -132,7 +118,6 @@ enum BaiduTemplateRegistrationContentModelXmlnsIKnownValues {
 @knownValues(BaiduTemplateRegistrationContentModelXmlnsIKnownValues)
 model BaiduTemplateRegistrationContentModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum GcmRegistrationContentModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -140,7 +125,6 @@ enum GcmRegistrationContentModelXmlnsIKnownValues {
 @knownValues(GcmRegistrationContentModelXmlnsIKnownValues)
 model GcmRegistrationContentModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum GcmTemplateRegistrationContentModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -148,7 +132,6 @@ enum GcmTemplateRegistrationContentModelXmlnsIKnownValues {
 @knownValues(GcmTemplateRegistrationContentModelXmlnsIKnownValues)
 model GcmTemplateRegistrationContentModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum WindowsRegistrationContentModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -156,7 +139,6 @@ enum WindowsRegistrationContentModelXmlnsIKnownValues {
 @knownValues(WindowsRegistrationContentModelXmlnsIKnownValues)
 model WindowsRegistrationContentModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum WindowsTemplateRegistrationContentModelXmlnsIKnownValues {
   HttpWwwW3Org2001XMLSchemaInstance: "http://www.w3.org/2001/XMLSchema-instance",
 }
@@ -164,7 +146,6 @@ enum WindowsTemplateRegistrationContentModelXmlnsIKnownValues {
 @knownValues(WindowsTemplateRegistrationContentModelXmlnsIKnownValues)
 model WindowsTemplateRegistrationContentModelXmlnsI is string;
 
-// FIXME: (missing-docs) Add documentation
 enum ApiVersionTypeKnownValues {
   TwoThousandFifteen01: "2015-01",
   TwoThousandFifteen04: "2015-04",
@@ -176,85 +157,53 @@ enum ApiVersionTypeKnownValues {
 @knownValues(ApiVersionTypeKnownValues)
 model ApiVersionType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum ContentType {
   ApplicationJsonCharsetUtf8: "application/json;charset=utf-8",
   ApplicationXmlCharsetUtf8: "application/xml;charset=utf-8",
 }
 
-// FIXME: (missing-docs) Add documentation
 model NotificationHubEntryModel {
-  // FIXME: (missing-docs) Add documentation
   content?: NotificationHubContentModel;
 }
 
-// FIXME: (missing-docs) Add documentation
 model NotificationHubContentModel {
-  // FIXME: (missing-docs) Add documentation
   type?: NotificationHubContentModelType;
-  // FIXME: (missing-docs) Add documentation
   NotificationHubDescription?: NotificationHubDescriptionModel;
 }
 
-// FIXME: (missing-docs) Add documentation
 model NotificationHubDescriptionModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: NotificationHubDescriptionModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   RegistrationTtl?: string;
-  // FIXME: (missing-docs) Add documentation
   Location?: string;
-  // FIXME: (missing-docs) Add documentation
   ApnsCredential?: PropertyBagModelItem[];
-  // FIXME: (missing-docs) Add documentation
   GcmCredential?: PropertyBagModelItem[];
-  // FIXME: (missing-docs) Add documentation
   WnsCredential?: PropertyBagModelItem[];
-  // FIXME: (missing-docs) Add documentation
   AuthorizationRules?: NotificationHubDescriptionModelAuthorizationRulesItem[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model PropertyBagModelItem {
-  // FIXME: (missing-docs) Add documentation
   Name?: string;
-  // FIXME: (missing-docs) Add documentation
   Value?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model NotificationHubDescriptionModelAuthorizationRulesItem {
-  // FIXME: (missing-docs) Add documentation
   "i:type"?: NotificationHubDescriptionModelAuthorizationRulesItemIType;
-  // FIXME: (missing-docs) Add documentation
   ClaimType?: NotificationHubDescriptionModelAuthorizationRulesItemClaimType;
-  // FIXME: (missing-docs) Add documentation
   ClaimValue?: string;
-  // FIXME: (missing-docs) Add documentation
   Rights?: string[];
-  // FIXME: (missing-docs) Add documentation
   CreatedTime?: string;
-  // FIXME: (missing-docs) Add documentation
   ModifiedTime?: string;
-  // FIXME: (missing-docs) Add documentation
   KeyName?: string;
-  // FIXME: (missing-docs) Add documentation
   PrimaryKey?: string;
-  // FIXME: (missing-docs) Add documentation
   SecondaryKey?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model RegistrationEntryModel {
-  // FIXME: (missing-docs) Add documentation
   content?: NotificationHubContentModel;
-  // FIXME: (missing-docs) Add documentation
   "xmlns:m"?: RegistrationEntryModelXmlnsM;
-  // FIXME: (missing-docs) Add documentation
   "m:etag"?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model InstallationModel {
   @doc("Installation Unique Identifier")
   installationId: string;
@@ -290,7 +239,6 @@ Set of secondary tiles associated with the installation. Applies only to the
   secondaryTiles?: Record<InstallationSecondaryTileModel>;
 }
 
-// FIXME: (missing-docs) Add documentation
 model InstallationTemplateModel {
   @doc("Template for the body of the notification.")
   body: string;
@@ -308,7 +256,6 @@ template parameters.
   tags?: string[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model InstallationSecondaryTileModel {
   @doc("ChannelUri for the secondary tile. Applies only to the 'wns' platform.")
   pushChannel: string;
@@ -323,138 +270,81 @@ Set of named templates associated with the secondary tile. Applies only to the
   templates?: Record<InstallationTemplateModel>;
 }
 
-// FIXME: (missing-docs) Add documentation
 model InstallationPatchModelItem {
-  // FIXME: (missing-docs) Add documentation
   "op": InstallationPatchType;
-  // FIXME: (missing-docs) Add documentation
   path: string;
-  // FIXME: (missing-docs) Add documentation
   value?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model RegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   type?: RegistrationContentModelType;
-  // FIXME: (missing-docs) Add documentation
   AppleRegistrationDescription?: AppleRegistrationContentModel;
-  // FIXME: (missing-docs) Add documentation
   AppleTemplateRegistrationDescription?: AppleTemplateRegistrationContentModel;
-  // FIXME: (missing-docs) Add documentation
   BaiduRegistrationDescription?: BaiduRegistrationContentModel;
-  // FIXME: (missing-docs) Add documentation
   BaiduTemplateRegistrationDescription?: BaiduTemplateRegistrationContentModel;
-  // FIXME: (missing-docs) Add documentation
   GcmRegistrationDescription?: GcmRegistrationContentModel;
-  // FIXME: (missing-docs) Add documentation
   GcmTemplateRegistrationDescription?: GcmTemplateRegistrationContentModel;
-  // FIXME: (missing-docs) Add documentation
   WindowsRegistrationDescription?: WindowsRegistrationContentModel;
-  // FIXME: (missing-docs) Add documentation
   WindowsTemplateRegistrationDescription?: WindowsTemplateRegistrationContentModel;
 }
 
-// FIXME: (missing-docs) Add documentation
 model AppleRegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: AppleRegistrationContentModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   Tags?: string;
-  // FIXME: (missing-docs) Add documentation
   DeviceToken: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model AppleTemplateRegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: AppleTemplateRegistrationContentModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   Tags?: string;
-  // FIXME: (missing-docs) Add documentation
   DeviceToken: string;
-  // FIXME: (missing-docs) Add documentation
   BodyTemplate: string;
-  // FIXME: (missing-docs) Add documentation
   Expiry?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model BaiduRegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: BaiduRegistrationContentModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   Tags?: string;
-  // FIXME: (missing-docs) Add documentation
   BaiduUserId: string;
-  // FIXME: (missing-docs) Add documentation
   BaiduChannelId: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model BaiduTemplateRegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: BaiduTemplateRegistrationContentModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   Tags?: string;
-  // FIXME: (missing-docs) Add documentation
   BaiduUserId: string;
-  // FIXME: (missing-docs) Add documentation
   BaiduChannelId: string;
-  // FIXME: (missing-docs) Add documentation
   BodyTemplate: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model GcmRegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: GcmRegistrationContentModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   Tags?: string;
-  // FIXME: (missing-docs) Add documentation
   GcmRegistrationId?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model GcmTemplateRegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: GcmTemplateRegistrationContentModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   Tags?: string;
-  // FIXME: (missing-docs) Add documentation
   GcmRegistrationId: string;
-  // FIXME: (missing-docs) Add documentation
   BodyTemplate: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model WindowsRegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: WindowsRegistrationContentModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   Tags?: string;
-  // FIXME: (missing-docs) Add documentation
   ChannelUri: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model WindowsTemplateRegistrationContentModel {
-  // FIXME: (missing-docs) Add documentation
   "xmlns:i"?: WindowsTemplateRegistrationContentModelXmlnsI;
-  // FIXME: (missing-docs) Add documentation
   Tags?: string;
-  // FIXME: (missing-docs) Add documentation
   ChannelUri: string;
-  // FIXME: (missing-docs) Add documentation
   BodyTemplate: string;
-  // FIXME: (missing-docs) Add documentation
   WnsHeaders?: WindowsTemplateRegistrationContentModelWnsHeadersItem[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model WindowsTemplateRegistrationContentModelWnsHeadersItem {
-  // FIXME: (missing-docs) Add documentation
   Header?: string;
-  // FIXME: (missing-docs) Add documentation
   Value?: string;
 }

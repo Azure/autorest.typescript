@@ -28,7 +28,9 @@ export function transformOperationGroup(
   { language, operations }: OperationGroup,
   codeModel: CodeModel
 ): CadlOperationGroup {
-  const name = `${language.default.name}Operations`;
+  const name = language.default.name
+    ? `${language.default.name}Operations`
+    : "";
   const doc = language.default.description;
   const ops = operations.reduce<CadlOperation[]>((acc, op) => {
     acc = [...acc, ...transformOperation(op, codeModel)];

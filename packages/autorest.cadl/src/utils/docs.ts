@@ -6,7 +6,7 @@ interface WithDocs {
 
 export function generateDocs({ doc }: WithDocs): string {
   if (isEmptyDoc(doc)) {
-    return `// FIXME: (missing-docs) Add documentation `;
+    return ``;
   }
 
   let docString = Array.isArray(doc) ? doc.join("\n") : doc;
