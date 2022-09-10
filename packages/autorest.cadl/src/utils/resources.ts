@@ -1,5 +1,7 @@
 import {
+  ArraySchema,
   CodeModel,
+  HttpMethod,
   isObjectSchema,
   ObjectSchema,
   Operation,
@@ -15,7 +17,7 @@ import {
   isPageableOperation,
   isPageValue,
 } from "./paging";
-import { isArraySchema } from "./schemas";
+import { isArraySchema, isResponseSchema } from "./schemas";
 
 export function markResources(codeModel: CodeModel) {
   for (const operationGroup of codeModel.operationGroups) {
@@ -32,8 +34,10 @@ function getResourceKind(
   codeModel: CodeModel,
   operation: Operation
 ): CadlResource | undefined {
-  if (isPageableOperation(operation)) {
-    return getPageableResource(codeModel, operation);
+  const operationMethod = getHttpMethod(codeModel, operation);
+
+  if (operationMethod === HttpMethod.Get) {
+    return handleGetOperation(codeModel, operation);
   }
 
   return undefined;
@@ -50,6 +54,72 @@ function getResourcePath(operation: Operation): string {
   throw new Error(
     `Couldn't find a resource path for operation ${operation.language.default.name}`
   );
+}
+
+function getHttpMethod(
+  _codeModel: CodeModel,
+  operation: Operation
+): HttpMethod {
+  return operation.requests?.[0].protocol.http?.method;
+}
+
+function getNonPageableListResource(
+  operation: Operation
+): ArraySchema | undefined {
+  if (!operation.responses) {
+    throw new Error(
+      `Operation ${operation.language.default.name} has no defined responses`
+    );
+  }
+  for (const response of operation.responses) {
+    if (!isResponseSchema(response)) {
+      continue;
+    }
+
+    if (!isArraySchema(response.schema)) {
+      return undefined;
+    }
+  }
+
+  const firstResponse = operation.responses[0];
+  return isResponseSchema(firstResponse) && isArraySchema(firstResponse.schema)
+    ? firstResponse.schema
+    : undefined;
+}
+
+function handleGetOperation(
+  codeModel: CodeModel,
+  operation: Operation
+): CadlResource | undefined {
+  if (isPageableOperation(operation)) {
+    return getPageableResource(codeModel, operation);
+  }
+
+  const nonPageableListResource = getNonPageableListResource(operation);
+  if (nonPageableListResource) {
+    markResourceListItem(operation, nonPageableListResource.elementType);
+    const dataTypes = getDataTypes(codeModel);
+    let cadlResponse =
+      dataTypes.get(nonPageableListResource.elementType) ??
+      transformDataType(nonPageableListResource.elementType, codeModel);
+    return {
+      kind: "NonPagedResourceList",
+      response: cadlResponse,
+    };
+  }
+
+  return undefined;
+}
+
+function markResourceListItem(operation: Operation, elementType: Schema) {
+  if (!isObjectSchema(elementType)) {
+    throw new Error(
+      `A Resource type has to be a model but got ${elementType.type}`
+    );
+  }
+
+  markModelWithResource(elementType, getResourcePath(operation));
+  markWithKey(elementType);
 }
 
 function getPageableResource(
@@ -69,8 +139,7 @@ function getPageableResource(
           );
         }
 
-        markModelWithResource(elementType, getResourcePath(operation));
-        markWithKey(elementType);
+        markResourceListItem(operation, elementType);
 
         let cadlResponse =
           dataTypes.get(elementType) ??

@@ -261,24 +261,24 @@ parameters grouped
   @doc("A long-running paging operation that includes a nextLink that has 10 pages")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
-  GetMultiplePagesLRO is Azure.Core.ResourceList<
-    Product,
+  @route("/paging/multiple/lro")
+  @post
+  GetMultiplePagesLRO is Azure.Core.Foundations.Operation<
     {
-      parameters: {
-        @header "client-request-id": string;
+      @header "client-request-id": string;
 
-        @doc("Sets the maximum number of items to return in the response.")
-        @header
-        maxresults: int32;
+      @doc("Sets the maximum number of items to return in the response.")
+      @header
+      maxresults: int32;
 
-        @doc("""
+      @doc("""
 Sets the maximum time that the server can spend processing the request, in
 seconds. The default is 30 seconds.
 """)
-        @header
-        timeout: int32;
-      };
-    }
+      @header
+      timeout: int32;
+    },
+    void
   >;
 
   @doc("""

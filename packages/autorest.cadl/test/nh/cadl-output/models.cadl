@@ -1,6 +1,8 @@
 import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
+using Azure.Core;
 
 namespace NotificationHubsClient;
 
@@ -198,6 +200,7 @@ model NotificationHubDescriptionModelAuthorizationRulesItem {
   SecondaryKey?: string;
 }
 
+@resource("/{hubName}/tags/{tag}/registrations")
 model RegistrationEntryModel {
   content?: NotificationHubContentModel;
   "xmlns:m"?: RegistrationEntryModelXmlnsM;

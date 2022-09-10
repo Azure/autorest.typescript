@@ -39,8 +39,23 @@ export interface CadlOperation extends WithDoc, WithSummary, WithFixMe {
   resource?: CadlResource;
 }
 
+export type ResourceKind =
+  | "ResourceCreateOrUpdate"
+  | "ResourceCreateOrReplace"
+  | "ResourceCreateWithServiceProvidedName"
+  | "ResourceRead"
+  | "ResourceDelete"
+  | "ResourceList"
+  | "NonPagedResourceList"
+  | "ResourceAction"
+  | "ResourceCollectionAction"
+  | "LongRunningResourceCreateOrReplace"
+  | "LongRunningResourceCreateOrUpdate"
+  | "LongRunningResourceCreateWithServiceProvidedName"
+  | "LongRunningResourceDelete";
+
 export interface CadlResource {
-  kind: "ResourceList";
+  kind: ResourceKind;
   response: CadlDataType;
 }
 

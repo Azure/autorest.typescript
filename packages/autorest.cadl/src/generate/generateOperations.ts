@@ -5,7 +5,10 @@ import {
 } from "../interfaces";
 import { generateDocs, generateSummary } from "../utils/docs";
 
-export function generateOperation(operation: CadlOperation) {
+export function generateOperation(
+  operation: CadlOperation,
+  operationGroup: CadlOperationGroup
+) {
   const doc = generateDocs(operation);
   const summary = generateSummary(operation);
   const { verb, name, route, responses, parameters } = operation;
@@ -28,6 +31,7 @@ export function generateOperation(operation: CadlOperation) {
   } else {
     const { resource } = operation;
     statements.push(
+      `${operationGroup.name ? "" : "op "}`,
       `${name} is Azure.Core.${resource.kind}<${
         resource.response.name
       }, { parameters: {${params ? params : ""}}}>;\n\n\n`
@@ -66,7 +70,7 @@ export function generateOperationGroup(operationGroup: CadlOperationGroup) {
   const hasInterface = Boolean(name);
   hasInterface && statements.push(`interface ${name} {`);
   for (const operation of operations) {
-    statements.push(generateOperation(operation));
+    statements.push(generateOperation(operation, operationGroup));
   }
   hasInterface && statements.push(`}`);
 
