@@ -7,68 +7,65 @@ using Cadl.Http;
 
 namespace ComplexModelClient;
 
-// FIXME: (missing-docs) Add documentation
-interface Operations {
-  @summary("Product Types")
-  @doc("""
+@summary("Product Types")
+@doc("""
 The Products endpoint returns information about the Uber products offered at a
 given location. The response includes the display name and other details about
 each product, and lists the products in the proper display order.
 """)
-  @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
-  @get
-  List is Azure.Core.Foundations.Operation<
-    {
-      @doc("Subscription ID.")
-      @path
-      subscriptionId: "123456";
+@route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+@get
+op List is Azure.Core.Foundations.Operation<
+  {
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: "123456";
 
-      @doc("Resource Group ID.")
-      @path
-      resourceGroupName: string;
-    },
-    CatalogArray
-  >;
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string;
+  },
+  void
+>;
 
-  @summary("Create products")
-  @doc("Resets products.")
-  @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
-  @post
-  Create is Azure.Core.Foundations.Operation<
-    {
-      @doc("Subscription ID.")
-      @path
-      subscriptionId: string;
+@summary("Create products")
+@doc("Resets products.")
+@route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+@post
+op Create is Azure.Core.Foundations.Operation<
+  {
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: string;
 
-      @doc("Resource Group ID.")
-      @path
-      resourceGroupName: string;
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string;
 
-      @doc("body Parameter")
-      @body
-      bodyParameter: CatalogDictionaryOfArray;
-    },
-    CatalogDictionary
-  >;
+    @doc("body Parameter")
+    @body
+    bodyParameter: CatalogDictionaryOfArray;
+  },
+  void
+>;
 
-  @summary("Update products")
-  @doc("Resets products.")
-  @route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
-  @put
-  Update is Azure.Core.Foundations.Operation<
-    {
-      @doc("Subscription ID.")
-      @path
-      subscriptionId: string;
+@summary("Update products")
+@doc("Resets products.")
+@route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+@put
+op Update is Azure.Core.Foundations.Operation<
+  {
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: string;
 
-      @doc("Resource Group ID.")
-      @path
-      resourceGroupName: string;
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string;
 
-      @doc("body Parameter")
-      @body
-      bodyParameter: CatalogArrayOfDictionary;
-    },
-    CatalogArray
-  >;
-}
+    @doc("body Parameter")
+    @body
+    bodyParameter: CatalogArrayOfDictionary;
+  },
+  void
+>;

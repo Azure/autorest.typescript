@@ -70,6 +70,7 @@ export function transformObject(
     const discriminatorProperty = getDiscriminator(schema);
     discriminatorProperty && properties.push(discriminatorProperty);
   }
+
   const updatedVisited: CadlObject = {
     name,
     doc,

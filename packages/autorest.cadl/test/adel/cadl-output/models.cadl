@@ -1,24 +1,24 @@
 import "@cadl-lang/rest";
+
+using Cadl.Rest;
+
 namespace Adel;
 
-// FIXME: (missing-docs) Add documentation
 enum OrderByKnownValues {
   Ascending: "ASCENDING",
   Descending: "DESCENDING",
 }
 
 @knownValues(OrderByKnownValues)
-model OrderBy is string {}
+model OrderBy is string;
 
-// FIXME: (missing-docs) Add documentation
 enum AuthenticationTypeKnownValues {
   "ManagedIdentity",
 }
 
 @knownValues(AuthenticationTypeKnownValues)
-model AuthenticationType is string {}
+model AuthenticationType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum DataGranularityUnitKnownValues {
   "Minutes",
   "Hours",
@@ -29,9 +29,8 @@ enum DataGranularityUnitKnownValues {
 }
 
 @knownValues(DataGranularityUnitKnownValues)
-model DataGranularityUnit is string {}
+model DataGranularityUnit is string;
 
-// FIXME: (missing-docs) Add documentation
 enum ReplayStatusKnownValues {
   Created: "CREATED",
   Running: "RUNNING",
@@ -40,9 +39,8 @@ enum ReplayStatusKnownValues {
 }
 
 @knownValues(ReplayStatusKnownValues)
-model ReplayStatus is string {}
+model ReplayStatus is string;
 
-// FIXME: (missing-docs) Add documentation
 enum ScheduleStatusKnownValues {
   Active: "ACTIVE",
   Clientpaused: "CLIENTPAUSED",
@@ -50,9 +48,8 @@ enum ScheduleStatusKnownValues {
 }
 
 @knownValues(ScheduleStatusKnownValues)
-model ScheduleStatus is string {}
+model ScheduleStatus is string;
 
-// FIXME: (missing-docs) Add documentation
 enum EvaluationStatusKnownValues {
   Created: "CREATED",
   Running: "RUNNING",
@@ -61,9 +58,8 @@ enum EvaluationStatusKnownValues {
 }
 
 @knownValues(EvaluationStatusKnownValues)
-model EvaluationStatus is string {}
+model EvaluationStatus is string;
 
-// FIXME: (missing-docs) Add documentation
 enum ModelStatusKnownValues {
   Created: "CREATED",
   Running: "RUNNING",
@@ -72,18 +68,16 @@ enum ModelStatusKnownValues {
 }
 
 @knownValues(ModelStatusKnownValues)
-model ModelStatus is string {}
+model ModelStatus is string;
 
-// FIXME: (missing-docs) Add documentation
 enum AlignModeKnownValues {
   "Inner",
   "Outer",
 }
 
 @knownValues(AlignModeKnownValues)
-model AlignMode is string {}
+model AlignMode is string;
 
-// FIXME: (missing-docs) Add documentation
 enum FillNAMethodKnownValues {
   "Previous",
   "Subsequent",
@@ -92,13 +86,10 @@ enum FillNAMethodKnownValues {
 }
 
 @knownValues(FillNAMethodKnownValues)
-model FillNAMethod is string {}
+model FillNAMethod is string;
 
-// FIXME: (missing-docs) Add documentation
 model PageAlertConfig {
-  // FIXME: (missing-docs) Add documentation
   value: AlertConfig[];
-  // FIXME: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -107,11 +98,10 @@ Criteria that determine which anomalies should trigger an alert and via which
 notification channel(s). This setting can later be applied to a live inference
 schedule. 
 """)
-@Cadl.Rest.resource("alert")
-@Cadl.Rest.discriminator("alertConfigType")
+@discriminator("alertConfigType")
 model AlertConfig {
-  @key
   @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
+  @visibility("read")
   alertConfigName: string;
 
   @doc("(Optional) Detailed description of an alert configuration.")
@@ -125,35 +115,29 @@ alerts will be sent out. This parameter is case-sensitive.
   hookNames?: string[];
 
   @doc("The UTC time at which the alert configuration was created.")
+  @visibility("read")
   createdTime: zonedDateTime;
 
   @doc("""
 The UTC time at which the parameter(s) of the alert configuration was last
 modified by the users (if applicable).
 """)
+  @visibility("read")
   parameterModifiedTime: zonedDateTime;
 }
 
-// FIXME: (missing-docs) Add documentation
 @error
 model Error {
-  // FIXME: (missing-docs) Add documentation
   error: ErrorError;
 }
 
-// FIXME: (missing-docs) Add documentation
 model ErrorError {
-  // FIXME: (missing-docs) Add documentation
   code: string;
-  // FIXME: (missing-docs) Add documentation
   message: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model PageDataset {
-  // FIXME: (missing-docs) Add documentation
   value: Dataset[];
-  // FIXME: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -164,6 +148,7 @@ can be used for either training, evaluation, or real-time inference.
 """)
 model Dataset {
   @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
+  @visibility("read")
   datasetName: string;
 
   @doc("(Optional) Detailed description of a dataset.")
@@ -188,6 +173,7 @@ that each variable has at most one data point within each interval.
   dataGranularityUnit: DataGranularityUnit;
 
   @doc("The UTC time at which the dataset was created.")
+  @visibility("read")
   createdTime: zonedDateTime;
 }
 
@@ -195,17 +181,15 @@ that each variable has at most one data point within each interval.
 Details about your data source, including data source type, location,
 authentication method, and so on.
 """)
-@Cadl.Rest.discriminator("dataSourceType")
+@discriminator("dataSourceType")
 model DataSourceInfo {
-  // FIXME: (missing-docs) Add documentation
   authenticationType: AuthenticationType;
 }
 
 @doc("Format and schema details of your data.")
-@Cadl.Rest.discriminator("dataSchemaType")
+@discriminator("dataSchemaType")
 model DataSchema {}
 
-// FIXME: (missing-docs) Add documentation
 model RequestDataset {
   @doc("(Optional) Detailed description of a dataset.")
   datasetDescription?: string;
@@ -299,38 +283,35 @@ data granularity.
   values: string[][];
 }
 
-// FIXME: (missing-docs) Add documentation
 model PageHook {
-  // FIXME: (missing-docs) Add documentation
   value: Hook[];
-  // FIXME: (missing-docs) Add documentation
   nextLink?: string;
 }
 
 @doc("A hook is a channel to receive alert notifications.")
-@Cadl.Rest.discriminator("hookType")
+@discriminator("hookType")
 model Hook {
   @doc("Unique identifier of a hook. This parameter is case-sensitive.")
+  @visibility("read")
   hookName: string;
 
   @doc("(Optional) Detailed description of a hook.")
   hookDescription?: string;
 
   @doc("The UTC time at which the hook was created.")
+  @visibility("read")
   createdTime: zonedDateTime;
 
   @doc("""
 The UTC time at which the parameter(s) of the hook was last modified by the
 users (if applicable).
 """)
+  @visibility("read")
   parameterModifiedTime: zonedDateTime;
 }
 
-// FIXME: (missing-docs) Add documentation
 model PageScheduleReplay {
-  // FIXME: (missing-docs) Add documentation
   value: ScheduleReplay[];
-  // FIXME: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -344,6 +325,7 @@ model ScheduleReplay {
 Unique identifier of a replay on an inference schedule. This parameter is
 case-sensitive.
 """)
+  @visibility("read")
   replayName: string;
 
   @doc("(Optional) Detailed description of a replay on an inference schedule.")
@@ -368,33 +350,40 @@ relay. If endTime equals to startTime, one single data point will be processed.
   endTime: zonedDateTime;
 
   @doc("Current status of the inference schedule replay job.")
+  @visibility("read")
   status: ReplayStatus;
 
   @doc("""
 The UTC time at which the status of the inference replay was last updated (if
 applicable).
 """)
+  @visibility("read")
   statusUpdatedTime: zonedDateTime;
 
   @doc("Error details if the inference replay job failed.")
+  @visibility("read")
   errors: ErrorResponse[];
 
   @doc("""
 Summarizes information about each variable being used. Ranked by filledNARatio
 in descending order.
 """)
+  @visibility("read")
   variableStates: VariableState[];
 
   @doc("The UTC time at which the inference replay job was created.")
+  @visibility("read")
   createdTime: zonedDateTime;
 }
 
 @doc("Error details for a failed job.")
 model ErrorResponse {
   @doc("The error code.")
+  @visibility("read")
   code: string;
 
   @doc("The message explaining the error reported by the service.")
+  @visibility("read")
   message: string;
 }
 
@@ -404,28 +393,32 @@ descending order.
 """)
 model VariableState {
   @doc("The name of the variable being used.")
+  @visibility("read")
   variable: string;
 
   @doc("Proportion of NaN values filled for the variable.")
+  @visibility("read")
   filledNARatio: float32;
 
   @doc("Number of non-NaN data points for the variable.")
+  @visibility("read")
   effectiveCount: int32;
 
   @doc("""
 The first timestamp taken from the data source for a given variable. Different
 variables may have a different firstTimestamp due to missing values.
 """)
+  @visibility("read")
   firstTimestamp: zonedDateTime;
 
   @doc("""
 The last timestamp taken from the data source for a given variable. Different
 variables may have a different lastTimestamp due to missing values.
 """)
+  @visibility("read")
   lastTimestamp: zonedDateTime;
 }
 
-// FIXME: (missing-docs) Add documentation
 model RequestScheduleReplay {
   @doc("(Optional) Detailed description of a replay on an inference schedule.")
   replayDescription?: string;
@@ -449,11 +442,8 @@ relay. If endTime equals to startTime, one single data point will be processed.
   endTime: zonedDateTime;
 }
 
-// FIXME: (missing-docs) Add documentation
 model PageSchedule {
-  // FIXME: (missing-docs) Add documentation
   value: Schedule[];
-  // FIXME: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -468,6 +458,7 @@ model Schedule {
 Unique identifier of a live streaming inference schedule. This parameter is
 case-sensitive.
 """)
+  @visibility("read")
   scheduleName: string;
 
   @doc("(Optional) Detailed description of a live streaming inference schedule.")
@@ -516,31 +507,36 @@ user. SERVERPAUSED means that the inference schedule was involuntarily paused
 by the server and the detailed reasons can be found under
 scheduleStatusChangeInfo.
 """)
+  @visibility("read")
   status: ScheduleStatus;
 
   @doc("""
 The UTC time at which the status of the inference schedule was last updated (if
 applicable).
 """)
+  @visibility("read")
   statusUpdatedTime: zonedDateTime;
 
   @doc("Detailed reasons if the inference schedule status changed to SERVERPAUSED.")
+  @visibility("read")
   scheduleStatusChangeInfo: string;
 
   @doc("The last timestamp that was processed successfully.")
+  @visibility("read")
   lastSucceededTimestamp: zonedDateTime;
 
   @doc("The UTC time at which the inference schedule was created.")
+  @visibility("read")
   createdTime: zonedDateTime;
 
   @doc("""
 The UTC time at which the parameter(s) of the hook was last modified by the
 users (if applicable).
 """)
+  @visibility("read")
   parameterModifiedTime: zonedDateTime;
 }
 
-// FIXME: (missing-docs) Add documentation
 model RequestSchedule {
   @doc("(Optional) Detailed description of a live streaming inference schedule.")
   scheduleDescription?: string;
@@ -625,21 +621,25 @@ scheduleStatusChangeInfo.
 @doc("Historical anomaly detection results for an inference schedule.")
 model ScheduleHistoryResult {
   @doc("Summarizes the anomaly detection results for each timestamp.")
+  @visibility("read")
   results: AnomalyState[];
 }
 
 @doc("Summarizes the anomaly detection results for each timestamp.")
 model AnomalyState {
   @doc("The timestamp being detected.")
+  @visibility("read")
   timestamp: zonedDateTime;
 
   @doc("""
 Detection results for a given timestamp and information for diagnosing if the
 timestamp is an anomaly.
 """)
+  @visibility("read")
   value: AnomalyValue;
 
   @doc("Error details if the anomaly detection job failed.")
+  @visibility("read")
   errors: ErrorResponse[];
 }
 
@@ -649,9 +649,11 @@ timestamp is an anomaly.
 """)
 model AnomalyValue {
   @doc("True if the given timestamp is an anomaly.")
+  @visibility("read")
   isAnomaly: boolean;
 
   @doc("Raw output of the model.")
+  @visibility("read")
   score: float32;
 
   @doc("""
@@ -659,9 +661,11 @@ Indicates the significance of the anomaly. The higher the severity, the more
 significant the anomaly. Severity is 0 for normal timestamps (i.e., isAnomaly =
 false).
 """)
+  @visibility("read")
   severity: float32;
 
   @doc("A list containing information on variables that contributed to a given anomaly.")
+  @visibility("read")
   interpretation: AnomalyInterpretation[];
 }
 
@@ -671,12 +675,14 @@ applies to timestamps that are detected as anomalies.
 """)
 model AnomalyInterpretation {
   @doc("Name of the top contributing variable to a given anomaly.")
+  @visibility("read")
   variable: string;
 
   @doc("""
 Higher contribution score indicates a higher possibility of this contributing
 variable being the root cause.
 """)
+  @visibility("read")
   contributionScore: float32;
 
   @doc("""
@@ -685,6 +691,7 @@ variable has changed significantly. This field can be empty if there were no
 significant correlation changes between the contributing variable and other
 variables.
 """)
+  @visibility("read")
   correlationChanges: CorrelationChanges;
 }
 
@@ -699,17 +706,16 @@ model CorrelationChanges {
 The list of variable(s) whose correlation to the contributing variable has
 changed.
 """)
+  @visibility("read")
   changedVariables: string[];
 
   @doc("The extent to which the correlation(s) has changed.")
+  @visibility("read")
   changedValues: float32[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model PageEvaluation {
-  // FIXME: (missing-docs) Add documentation
   value: Evaluation[];
-  // FIXME: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -720,6 +726,7 @@ associated metadata.
 """)
 model Evaluation {
   @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
+  @visibility("read")
   evaluationName: string;
 
   @doc("(Optional) Detailed description of a model evaluation.")
@@ -749,34 +756,39 @@ processed.
   endTime: zonedDateTime;
 
   @doc("Current status of the model evaluation job.")
+  @visibility("read")
   status: EvaluationStatus;
 
   @doc("""
 The UTC time at which the status of the model evaluation job was last updated
 (if applicable).
 """)
+  @visibility("read")
   statusUpdatedTime: zonedDateTime;
 
   @doc("Error details if the model evaluation job failed.")
+  @visibility("read")
   errors: ErrorResponse[];
 
   @doc("""
 The Azure blob URL that stores the model evaluation results. This URL will
 expire in 12 hours.
 """)
+  @visibility("read")
   resultUrl: string;
 
   @doc("""
 Summarizes information about each variable being used. Ranked by filledNARatio
 in descending order.
 """)
+  @visibility("read")
   variableStates: VariableState[];
 
   @doc("The UTC time at which the model evaluation job was created.")
+  @visibility("read")
   createdTime: zonedDateTime;
 }
 
-// FIXME: (missing-docs) Add documentation
 model RequestEvaluation {
   @doc("(Optional) Detailed description of a model evaluation.")
   evaluationDescription?: string;
@@ -805,11 +817,8 @@ processed.
   endTime: zonedDateTime;
 }
 
-// FIXME: (missing-docs) Add documentation
 model PageModel {
-  // FIXME: (missing-docs) Add documentation
   value: Model[];
-  // FIXME: (missing-docs) Add documentation
   nextLink?: string;
 }
 
@@ -820,6 +829,7 @@ status, and associated metadata.
 """)
 model Model {
   @doc("Unique identifier of a model. This parameter is case-sensitive.")
+  @visibility("read")
   modelName: string;
 
   @doc("(Optional) Detailed description of a model.")
@@ -847,21 +857,26 @@ interval and how missing values are handled.
   alignPolicy: AlignPolicy;
 
   @doc("Summarizes information about the model and each variable being used.")
+  @visibility("read")
   diagnosticsInfo: DiagnosticsInfo;
 
   @doc("Current status of the model training job.")
+  @visibility("read")
   status: ModelStatus;
 
   @doc("""
 The UTC time at which the training status of the model was last updated (if
 applicable).
 """)
+  @visibility("read")
   statusUpdatedTime: zonedDateTime;
 
   @doc("Error details if the model training job failed.")
+  @visibility("read")
   errors: ErrorResponse[];
 
   @doc("The UTC time at which the model was created.")
+  @visibility("read")
   createdTime: zonedDateTime;
 }
 
@@ -900,31 +915,36 @@ Summarizes information about the model, including name, description, training
 data, the number of variables being used, training status, and associated
 metadata.
 """)
+  @visibility("read")
   modelState: ModelState;
 
   @doc("""
 Summarizes information about each variable being used. Ranked by filledNARatio
 in descending order.
 """)
+  @visibility("read")
   variableStates: VariableState[];
 }
 
 @doc("Summarizes information about a model training process.")
 model ModelState {
   @doc("How many epochs the model has been trained out of a total of 100 epochs.")
+  @visibility("read")
   epochIds: int32[];
 
   @doc("The training loss indicates how well the model fits the training data.")
+  @visibility("read")
   trainLosses: float32[];
 
   @doc("The validation loss indicates how well the model fits the test data.")
+  @visibility("read")
   validationLosses: float32[];
 
   @doc("The time cost for every 10 epochs.")
+  @visibility("read")
   latenciesInSeconds: float32[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model RequestModel {
   @doc("(Optional) Detailed description of a model.")
   modelDescription?: string;
@@ -990,12 +1010,15 @@ model DetectionResult {
 Summarizes information about each variable being used. Ranked by filledNARatio
 in descending order.
 """)
+  @visibility("read")
   variableStates: VariableState[];
 
   @doc("Summarizes the anomaly detection results for each timestamp.")
+  @visibility("read")
   results: AnomalyState[];
 
   @doc("Error details if the anomaly detection job failed.")
+  @visibility("read")
   errors: ErrorResponse[];
 }
 

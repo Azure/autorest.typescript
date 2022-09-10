@@ -9,7 +9,7 @@ export function formatJSONFile(content: string, filepath: string) {
 export function formatCadlFile(
   content: string,
   filepath: string,
-  options: { skip?: boolean } = {}
+  options: { skip?: boolean } = { skip: false }
 ): string {
   if (options.skip) {
     return content;

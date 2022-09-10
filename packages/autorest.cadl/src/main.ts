@@ -19,6 +19,7 @@ import { markPagination } from "./utils/paging";
 import { markErrorModels } from "./utils/errors";
 import { setSession } from "./autorestSession";
 import { emitPackage } from "./emiters/emitPackage";
+import { markResources } from "./utils/resources";
 
 export async function processRequest(host: AutorestExtensionHost) {
   const session = await startSession<CodeModel>(host, codeModelSchema);
@@ -26,6 +27,7 @@ export async function processRequest(host: AutorestExtensionHost) {
   const codeModel = session.model;
   markPagination(codeModel);
   markErrorModels(codeModel);
+  markResources(codeModel);
   const cadlProgramDetails = getModel(codeModel);
   createOutputFolder(getFilePath(session, ""));
   await emitModels(getFilePath(session, "models.cadl"), cadlProgramDetails);

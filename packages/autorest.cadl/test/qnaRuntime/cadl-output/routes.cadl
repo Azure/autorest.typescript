@@ -7,7 +7,6 @@ using Cadl.Http;
 
 namespace QnAMakerRuntimeClient;
 
-// FIXME: (missing-docs) Add documentation
 interface RuntimeOperations {
   @summary("GenerateAnswer call to query the knowledgebase.")
   @doc("GenerateAnswer call to query the knowledgebase.")
@@ -23,7 +22,7 @@ interface RuntimeOperations {
       @body
       generateAnswerPayload: QueryDTO;
     },
-    QnASearchResultList
+    void
   >;
 
   @summary("Train call to add suggestions to the knowledgebase.")

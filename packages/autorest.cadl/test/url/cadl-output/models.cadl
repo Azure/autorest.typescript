@@ -4,18 +4,14 @@ using Cadl.Rest;
 
 namespace AutoRestUrlTestService;
 
-// FIXME: (missing-docs) Add documentation
 enum UriColor {
   RedColor: "red color",
   GreenColor: "green color",
   BlueColor: "blue color",
 }
 
-// FIXME: (missing-docs) Add documentation
 @error
 model Error {
-  // FIXME: (missing-docs) Add documentation
   status?: int32;
-  // FIXME: (missing-docs) Add documentation
   message?: string;
 }

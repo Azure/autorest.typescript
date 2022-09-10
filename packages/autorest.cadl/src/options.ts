@@ -11,10 +11,15 @@ export function getOptions(): CadlOptions {
     options = {
       isAzureSpec: getIsAzureSpec(session),
       namespace: getNamespace(session),
+      guessResourceKey: getGuessResourceKey(session),
     };
   }
 
   return options;
+}
+
+export function getGuessResourceKey(session: Session<CodeModel>) {
+  return session.configuration["guessResourceKey"] !== false;
 }
 
 export function getIsAzureSpec(session: Session<CodeModel>) {

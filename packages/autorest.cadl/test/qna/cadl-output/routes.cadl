@@ -5,15 +5,14 @@ import "./models.cadl";
 using Cadl.Rest;
 using Cadl.Http;
 
-namespace QuestionAnswering;
+namespace QnAMakerClient;
 
-// FIXME: (missing-docs) Add documentation
 interface EndpointSettingsOperations {
   @summary("Gets endpoint settings for an endpoint.")
   @doc("Gets endpoint settings for an endpoint.")
   @route("/endpointSettings")
   @get
-  GetSettings is Azure.Core.Foundations.Operation<{}, EndpointSettingsDTO>;
+  GetSettings is Azure.Core.Foundations.Operation<{}, void>;
 
   @summary("Updates endpoint settings for an endpoint.")
   @doc("Updates endpoint settings for an endpoint.")
@@ -28,13 +27,13 @@ interface EndpointSettingsOperations {
     void
   >;
 }
-// FIXME: (missing-docs) Add documentation
+
 interface EndpointKeysOperations {
   @summary("Gets endpoint keys for an endpoint")
   @doc("Gets endpoint keys for an endpoint")
   @route("/endpointkeys")
   @get
-  GetKeys is Azure.Core.Foundations.Operation<{}, EndpointKeysDTO>;
+  GetKeys is Azure.Core.Foundations.Operation<{}, void>;
 
   @summary("Re-generates an endpoint key.")
   @doc("Re-generates an endpoint key.")
@@ -46,16 +45,16 @@ interface EndpointKeysOperations {
       @path
       keyType: string;
     },
-    EndpointKeysDTO
+    void
   >;
 }
-// FIXME: (missing-docs) Add documentation
+
 interface AlterationsOperations {
   @summary("Download alterations from runtime.")
   @doc("Download alterations from runtime.")
   @route("/alterations")
   @get
-  Get is Azure.Core.Foundations.Operation<{}, WordAlterationsDTO>;
+  Get is Azure.Core.Foundations.Operation<{}, void>;
 
   @summary("Replace alterations data.")
   @doc("Replace alterations data.")
@@ -70,13 +69,13 @@ interface AlterationsOperations {
     void
   >;
 }
-// FIXME: (missing-docs) Add documentation
+
 interface KnowledgebaseOperations {
   @summary("Gets all knowledgebases for a user.")
   @doc("Gets all knowledgebases for a user.")
   @route("/knowledgebases")
   @get
-  ListAll is Azure.Core.Foundations.Operation<{}, KnowledgebasesDTO>;
+  ListAll is Azure.Core.Foundations.Operation<{}, void>;
 
   @summary("Gets details of a specific knowledgebase.")
   @doc("Gets details of a specific knowledgebase.")
@@ -88,7 +87,7 @@ interface KnowledgebaseOperations {
       @path
       kbId: string;
     },
-    KnowledgebaseDTO
+    void
   >;
 
   @summary("Deletes the knowledgebase and all its data.")
@@ -148,7 +147,7 @@ interface KnowledgebaseOperations {
       @body
       updateKb: UpdateKbOperationDTO;
     },
-    Operation
+    void
   >;
 
   @summary("Asynchronous operation to create a new knowledgebase.")
@@ -161,7 +160,7 @@ interface KnowledgebaseOperations {
       @body
       createKbPayload: CreateKbDTO;
     },
-    Operation
+    void
   >;
 
   @summary("Download the knowledgebase.")
@@ -195,10 +194,10 @@ created in the last 5 minutes.
       @query
       changedSince: string;
     },
-    QnADocumentsDTO
+    void
   >;
 }
-// FIXME: (missing-docs) Add documentation
+
 interface OperationsOperations {
   @summary("Gets details of a specific long running operation.")
   @doc("Gets details of a specific long running operation.")
@@ -209,42 +208,6 @@ interface OperationsOperations {
       @doc("Operation id.")
       @path
       operationId: string;
-    },
-    Operation
-  >;
-}
-// FIXME: (missing-docs) Add documentation
-interface RuntimeOperations {
-  @summary("GenerateAnswer call to query the knowledgebase.")
-  @doc("GenerateAnswer call to query the knowledgebase.")
-  @route("/knowledgebases/{kbId}/generateAnswer")
-  @post
-  GenerateAnswer is Azure.Core.Foundations.Operation<
-    {
-      @doc("Knowledgebase id.")
-      @path
-      kbId: string;
-
-      @doc("Post body of the request.")
-      @body
-      generateAnswerPayload: QueryDTO;
-    },
-    QnASearchResultList
-  >;
-
-  @summary("Train call to add suggestions to the knowledgebase.")
-  @doc("Train call to add suggestions to the knowledgebase.")
-  @route("/knowledgebases/{kbId}/train")
-  @post
-  Train is Azure.Core.Foundations.Operation<
-    {
-      @doc("Knowledgebase id.")
-      @path
-      kbId: string;
-
-      @doc("Post body of the request.")
-      @body
-      trainPayload: FeedbackRecordsDTO;
     },
     void
   >;

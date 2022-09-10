@@ -4,7 +4,6 @@ using Cadl.Rest;
 
 namespace AzureWebPubSubServiceRESTAPI;
 
-// FIXME: (missing-docs) Add documentation
 enum WebPubSubPermissionKnownValues {
   SendToGroup: "sendToGroup",
   JoinLeaveGroup: "joinLeaveGroup",
@@ -13,7 +12,6 @@ enum WebPubSubPermissionKnownValues {
 @knownValues(WebPubSubPermissionKnownValues)
 model WebPubSubPermission is string;
 
-// FIXME: (missing-docs) Add documentation
 enum ContentType {
   ApplicationJson: "application/json",
   ApplicationOctetStream: "application/octet-stream",
@@ -40,14 +38,11 @@ model ErrorDetail {
 
   @doc("An array of details about specific errors that led to this reported error.")
   details?: ErrorDetail[];
-  // FIXME: (missing-docs) Add documentation
   inner?: InnerError;
 }
 
-// FIXME: (missing-docs) Add documentation
 model InnerError {
   @doc("A more specific error code than was provided by the containing error.")
   code?: string;
-  // FIXME: (missing-docs) Add documentation
   inner?: InnerError;
 }

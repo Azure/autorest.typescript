@@ -7,6 +7,7 @@ export interface CadlProgram {
 export interface CadlOptions {
   isAzureSpec: boolean;
   namespace?: string;
+  guessResourceKey: boolean;
 }
 
 export interface CadlChoiceValue {
@@ -35,7 +36,14 @@ export interface CadlOperation extends WithDoc, WithSummary, WithFixMe {
   responses: string[];
   parameters: CadlParameter[];
   extensions: Extension[];
+  resource?: CadlResource;
 }
+
+export interface CadlResource {
+  kind: "ResourceList";
+  response: CadlDataType;
+}
+
 export interface ServiceInformation extends WithDoc {
   name: string;
   version?: string;
@@ -84,7 +92,7 @@ export interface CadlObjectProperty extends CadlDataType {
   visibility?: "read";
 }
 
-export interface CadlDecorator {
+export interface CadlDecorator extends WithFixMe {
   name: string;
   arguments?: string[];
   module?: string;

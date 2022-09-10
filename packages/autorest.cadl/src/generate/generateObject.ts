@@ -40,9 +40,7 @@ export function generateObject(cadlObject: CadlObject) {
     decorators && definitions.push(decorators);
 
     definitions.push(
-      ` ${getReadonlyOperator(property)} "${
-        property.name
-      }"${getOptionalOperator(property)}: ${property.type};`
+      `"${property.name}"${getOptionalOperator(property)}: ${property.type};`
     );
   }
   definitions.push("}");
@@ -60,8 +58,4 @@ function getFixme(cadlObject: CadlObject): string | undefined {
 
 function getOptionalOperator(property: CadlObjectProperty) {
   return property.isOptional ? "?" : "";
-}
-
-function getReadonlyOperator(property: CadlObjectProperty) {
-  return property.visibility === "read" ? "readonly " : "";
 }

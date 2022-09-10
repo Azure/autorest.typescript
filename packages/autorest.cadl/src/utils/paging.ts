@@ -1,4 +1,10 @@
-import { CodeModel, Operation, isObjectSchema } from "@autorest/codemodel";
+import {
+  CodeModel,
+  Operation,
+  isObjectSchema,
+  Response,
+  Property,
+} from "@autorest/codemodel";
 import { getLanguageMetadata } from "./metadata";
 import { isResponseSchema } from "./schemas";
 
@@ -32,12 +38,48 @@ export interface PaginationExtension {
   isNextLinkMethod?: boolean;
 }
 
+export function isPageableOperation(operation: Operation): boolean {
+  const languageMetadata = getLanguageMetadata(operation.language);
+  const paginationExtension = languageMetadata.paging;
+  return Boolean(paginationExtension);
+}
+
+export function getPageableResponse(
+  operation: Operation
+): Response | undefined {
+  if (!isPageableOperation(operation)) {
+    return undefined;
+  }
+
+  for (const response of operation.responses ?? []) {
+    if (!isResponseSchema(response)) {
+      continue;
+    }
+
+    if (!isObjectSchema(response.schema)) {
+      continue;
+    }
+
+    if (!response.schema.language.default.paging.isPageable) {
+      continue;
+    }
+
+    return response;
+  }
+
+  return undefined;
+}
+
+export function isPageValue(property: Property) {
+  return Boolean(property.language.default.paging.isValue);
+}
+
 export function markPagination(codeModel: CodeModel) {
   for (const operationGroup of codeModel.operationGroups) {
     for (const operation of operationGroup.operations) {
       const languageMetadata = getLanguageMetadata(operation.language);
       const paginationExtension = languageMetadata.paging;
-      if (!paginationExtension) {
+      if (!isPageableOperation(operation)) {
         continue;
       }
       const itemName = paginationExtension.itemName || "value";

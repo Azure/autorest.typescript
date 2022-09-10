@@ -13,16 +13,26 @@ export function generateOperation(operation: CadlOperation) {
   const statements: string[] = [];
   summary && statements.push(summary);
   statements.push(doc);
-  statements.push(`@route("${route}")`);
   generateMultiResponseWarning(responses, statements);
   for (const fixme of operation.fixMe ?? []) {
     statements.push(fixme);
   }
-  statements.push(
-    `@${verb} op ${name} is Azure.Core.Foundations.Operation<{${
-      params ? params : ""
-    }}, ${responses.join(" | ")}>;\n\n\n`
-  );
+
+  if (!operation.resource) {
+    statements.push(`@route("${route}")`);
+    statements.push(
+      `@${verb} op ${name} is Azure.Core.Foundations.Operation<{${
+        params ? params : ""
+      }}, ${responses.join(" | ")}>;\n\n\n`
+    );
+  } else {
+    const { resource } = operation;
+    statements.push(
+      `${name} is Azure.Core.${resource.kind}<${
+        resource.response.name
+      }, { parameters: {${params ? params : ""}}}>;\n\n\n`
+    );
+  }
   return statements.join("\n");
 }
 

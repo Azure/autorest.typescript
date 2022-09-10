@@ -7,15 +7,14 @@ using Cadl.Http;
 
 namespace AzureSchemaRegistry;
 
-// FIXME: (missing-docs) Add documentation
 interface SchemaGroupsOperations {
   @summary("Get list of schema groups.")
   @doc("Gets the list of schema groups user is authorized to access.")
   @route("/$schemaGroups")
   @get
-  List is Azure.Core.Foundations.Operation<{}, SchemaGroups>;
+  List is Azure.Core.Foundations.Operation<{}, void>;
 }
-// FIXME: (missing-docs) Add documentation
+
 interface SchemaOperations {
   @summary("Get a registered schema by its unique ID reference.")
   @doc("""
@@ -55,7 +54,7 @@ should match the serialization type specified in the request.
       @path
       schemaName: string;
     },
-    SchemaVersions
+    void
   >;
 
   @summary("Get specific schema versions.")

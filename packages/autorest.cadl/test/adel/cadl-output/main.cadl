@@ -1,8 +1,10 @@
 import "@cadl-lang/rest";
 import "./routes.cadl";
 
+using Cadl.Rest;
+using Cadl.Http;
 @serviceTitle("Adel")
-@Cadl.Http.server(
+@server(
   "https://{resource}.cognitiveservices.azure.com",
   "Adel API server.",
   {

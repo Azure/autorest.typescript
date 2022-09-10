@@ -7,7 +7,6 @@ using Cadl.Http;
 
 namespace AzureWebPubSubServiceRESTAPI;
 
-// FIXME: (missing-docs) Add documentation
 interface HealthApiOperations {
   @summary("Get service health status.")
   @doc("Get service health status.")
@@ -15,7 +14,7 @@ interface HealthApiOperations {
   @head
   GetServiceStatus is Azure.Core.Foundations.Operation<{}, void>;
 }
-// FIXME: (missing-docs) Add documentation
+
 interface WebPubSubOperations {
   @summary("Generate token for the client to connect Azure Web PubSub service.")
   @doc("Generate token for the client to connect Azure Web PubSub service.")
@@ -46,7 +45,7 @@ alpha-numeric characters or underscore.
       @header
       Accept: "application/json, text/json";
     },
-    ClientTokenResponse
+    void
   >;
 
   @summary("Close the connections in the hub.")

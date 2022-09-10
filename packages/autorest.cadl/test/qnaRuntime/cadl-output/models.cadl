@@ -4,7 +4,6 @@ using Cadl.Rest;
 
 namespace QnAMakerRuntimeClient;
 
-// FIXME: (missing-docs) Add documentation
 enum StrictFiltersCompoundOperationTypeKnownValues {
   "AND",
   "OR",
@@ -13,7 +12,6 @@ enum StrictFiltersCompoundOperationTypeKnownValues {
 @knownValues(StrictFiltersCompoundOperationTypeKnownValues)
 model StrictFiltersCompoundOperationType is string;
 
-// FIXME: (missing-docs) Add documentation
 enum ErrorCodeTypeKnownValues {
   "BadArgument",
   "Forbidden",

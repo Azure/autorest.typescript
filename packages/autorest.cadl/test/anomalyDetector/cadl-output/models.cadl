@@ -6,7 +6,6 @@ using Azure.Core;
 
 namespace AnomalyDetectorClient;
 
-// FIXME: (missing-docs) Add documentation
 enum ApiVersionKnownValues {
   V11Preview1: "v1.1-preview.1",
 }
@@ -14,7 +13,6 @@ enum ApiVersionKnownValues {
 @knownValues(ApiVersionKnownValues)
 model ApiVersion is string;
 
-// FIXME: (missing-docs) Add documentation
 enum ImputeModeKnownValues {
   Auto: "auto",
   Previous: "previous",
@@ -27,7 +25,6 @@ enum ImputeModeKnownValues {
 @knownValues(ImputeModeKnownValues)
 model ImputeMode is string;
 
-// FIXME: (missing-docs) Add documentation
 enum AnomalyDetectorErrorCodesKnownValues {
   "InvalidCustomInterval",
   "BadArgument",
@@ -45,7 +42,6 @@ enum AnomalyDetectorErrorCodesKnownValues {
 @knownValues(AnomalyDetectorErrorCodesKnownValues)
 model AnomalyDetectorErrorCodes is string;
 
-// FIXME: (missing-docs) Add documentation
 enum FillNAMethodKnownValues {
   "Previous",
   "Subsequent",
@@ -58,7 +54,6 @@ enum FillNAMethodKnownValues {
 @knownValues(FillNAMethodKnownValues)
 model FillNAMethod is string;
 
-// FIXME: (missing-docs) Add documentation
 enum TimeGranularity {
   Yearly: "yearly",
   Monthly: "monthly",
@@ -70,24 +65,24 @@ enum TimeGranularity {
   Microsecond: "microsecond",
   None: "none",
 }
-// FIXME: (missing-docs) Add documentation
+
 enum DetectionStatus {
   Created: "CREATED",
   Running: "RUNNING",
   Ready: "READY",
   Failed: "FAILED",
 }
-// FIXME: (missing-docs) Add documentation
+
 enum DataSchema {
   "OneTable",
   "MultiTable",
 }
-// FIXME: (missing-docs) Add documentation
+
 enum AlignMode {
   "Inner",
   "Outer",
 }
-// FIXME: (missing-docs) Add documentation
+
 enum ModelStatus {
   Created: "CREATED",
   Running: "RUNNING",
@@ -333,6 +328,7 @@ model ChangePointDetectResponse {
 Frequency extracted from the series, zero means no recurrent pattern has been
 found.
 """)
+  @visibility("read")
   period?: int32;
 
   @doc("""
@@ -348,7 +344,6 @@ array is consistent with the input series.
 
 @doc("Detection results for the given resultId.")
 model DetectionResult {
-  // FIXME: (missing-docs) Add documentation
   resultId: string;
 
   @doc("Multivariate anomaly detection status.")
@@ -365,14 +360,12 @@ model DetectionResultSummary {
 
   @doc("Error message when detection is failed.")
   errors?: ErrorResponse[];
-  // FIXME: (missing-docs) Add documentation
   variableStates?: VariableState[];
 
   @doc("Detection request.")
   setupInfo: DetectionRequest;
 }
 
-// FIXME: (missing-docs) Add documentation
 @error
 model ErrorResponse {
   @doc("The error code.")
@@ -382,7 +375,6 @@ model ErrorResponse {
   message: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model VariableState {
   @doc("Variable name.")
   variable?: string;
@@ -426,18 +418,15 @@ date-time.
   endTime: zonedDateTime;
 }
 
-// FIXME: (missing-docs) Add documentation
 model AnomalyState {
   @doc("timestamp")
   timestamp: zonedDateTime;
-  // FIXME: (missing-docs) Add documentation
   value?: AnomalyValue;
 
   @doc("Error message for the current timestamp")
   errors?: ErrorResponse[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model AnomalyValue {
   @doc("True if an anomaly is detected at the current timestamp.")
   isAnomaly: boolean;
@@ -450,21 +439,15 @@ significant the anomaly.
 
   @doc("Raw score from the model.")
   score: float32;
-  // FIXME: (missing-docs) Add documentation
   interpretation?: AnomalyInterpretation[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model AnomalyInterpretation {
-  // FIXME: (missing-docs) Add documentation
   variable?: string;
-  // FIXME: (missing-docs) Add documentation
   contributionScore?: float32;
-  // FIXME: (missing-docs) Add documentation
   correlationChanges?: CorrelationChanges;
 }
 
-// FIXME: (missing-docs) Add documentation
 model CorrelationChanges {
   @doc("correlated variables")
   changedVariables?: string[];
@@ -481,7 +464,6 @@ columns, `timestamp` and `value`. By default, the file name of the variable
 will be used as its variable name.
 """)
   dataSource: string;
-  // FIXME: (missing-docs) Add documentation
   dataSchema?: DataSchema;
 
   @doc("""
@@ -536,21 +518,15 @@ NotFill, when the alignMode is Outer.
 
 @doc("Diagnostics Information for inspecting model/variable states.")
 model DiagnosticsInfo {
-  // FIXME: (missing-docs) Add documentation
   modelState?: ModelState;
-  // FIXME: (missing-docs) Add documentation
   variableStates?: VariableState[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model ModelState {
   @doc("Epoch id")
   epochIds?: int32[];
-  // FIXME: (missing-docs) Add documentation
   trainLosses?: float32[];
-  // FIXME: (missing-docs) Add documentation
   validationLosses?: float32[];
-  // FIXME: (missing-docs) Add documentation
   latenciesInSeconds?: float32[];
 }
 
@@ -572,9 +548,11 @@ model ModelList {
   nextLink?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
+@resource("/multivariate/models")
 model ModelSnapshot {
   @doc("Model identifier.")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   modelId: string;
 
   @doc("Date and time (UTC) when the model was created.")
@@ -585,7 +563,6 @@ model ModelSnapshot {
 
   @doc("Model status. One of CREATED, RUNNING, READY, and FAILED.")
   status: ModelStatus;
-  // FIXME: (missing-docs) Add documentation
   displayName?: string;
 
   @doc("Total number of variables.")
@@ -610,7 +587,6 @@ information.
   modelInfo?: ModelInfo;
 }
 
-// FIXME: (missing-docs) Add documentation
 model LastDetectionRequest {
   @doc("variables")
   variables: VariableValues[];
@@ -619,7 +595,6 @@ model LastDetectionRequest {
   topContributorCount: int32;
 }
 
-// FIXME: (missing-docs) Add documentation
 model VariableValues {
   @doc("variable name")
   name: string;
@@ -631,10 +606,7 @@ model VariableValues {
   values: float32[];
 }
 
-// FIXME: (missing-docs) Add documentation
 model LastDetectionResult {
-  // FIXME: (missing-docs) Add documentation
   variableStates?: VariableState[];
-  // FIXME: (missing-docs) Add documentation
   results?: AnomalyState[];
 }

@@ -4,7 +4,6 @@ using Cadl.Rest;
 
 namespace ComplexModelClient;
 
-// FIXME: (missing-docs) Add documentation
 model CatalogArray {
   @doc("Array of products")
   productArray?: Product[];
@@ -32,28 +31,22 @@ than uberX in Los Angeles.
   image?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 @error
 model Error {
-  // FIXME: (missing-docs) Add documentation
   status?: int32;
-  // FIXME: (missing-docs) Add documentation
   message?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model CatalogDictionaryOfArray {
   @doc("Dictionary of Array of product")
   productDictionaryOfArray?: Record<Product[]>;
 }
 
-// FIXME: (missing-docs) Add documentation
 model CatalogDictionary {
   @doc("Dictionary of products")
   productDictionary?: Record<Product>;
 }
 
-// FIXME: (missing-docs) Add documentation
 model CatalogArrayOfDictionary {
   @doc("Array of dictionary of products")
   productArrayOfDictionary?: Record<Product>[];

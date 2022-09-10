@@ -212,9 +212,11 @@ model InstallationModel {
   userId?: string;
 
   @doc("The date when the installation was made inactivate by the PNS.")
+  @visibility("read")
   lastActiveOn?: string;
 
   @doc("Date in W3C format of last update to this installation.")
+  @visibility("read")
   lastUpdate?: string;
 
   @doc("PNS Platform for the installation")
@@ -224,6 +226,7 @@ model InstallationModel {
   pushChannel: string;
 
   @doc("This is true if the PNS expired the channel.")
+  @visibility("read")
   expiredPushChannel?: boolean;
 
   @doc("The tags for the installation for targeting")

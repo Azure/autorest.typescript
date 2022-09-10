@@ -7,7 +7,6 @@ using Cadl.Http;
 
 namespace AutoRestUrlTestService;
 
-// FIXME: (missing-docs) Add documentation
 interface PathsOperations {
   @doc("Get true Boolean value on path")
   @route("/paths/bool/true/{boolPath}")
@@ -349,7 +348,7 @@ using the csv-array format
     void
   >;
 }
-// FIXME: (missing-docs) Add documentation
+
 interface QueriesOperations {
   @doc("Get true Boolean value on path")
   @route("/queries/bool/true")
@@ -798,7 +797,7 @@ using the pipes-array format
     void
   >;
 }
-// FIXME: (missing-docs) Add documentation
+
 interface PathItemsOperations {
   @doc("""
 send globalStringPath='globalStringPath',

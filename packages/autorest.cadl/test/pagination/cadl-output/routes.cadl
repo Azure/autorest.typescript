@@ -7,63 +7,61 @@ using Cadl.Http;
 
 namespace AutoRestPagingTestService;
 
-// FIXME: (missing-docs) Add documentation
 interface PagingOperations {
   @doc("A paging operation that must return result of the default 'value' node.")
-  @route("/paging/noitemname")
-  @get
-  GetNoItemNamePages is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResultValue>
+  GetNoItemNamePages is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("A paging operation that must ignore any kind of nextLink, and stop after page 1.")
-  @route("/paging/nullnextlink")
-  @get
-  GetNullNextLinkNamePages is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  GetNullNextLinkNamePages is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("A paging operation that finishes on the first call without a nextlink")
-  @route("/paging/single")
-  @get
-  GetSinglePages is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  GetSinglePages is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("""
 A paging operation whose first response's items list is empty, but still
 returns a next link. Second (and final) call, will give you an items list of 1.
 """)
-  @route("/paging/firstResponseEmpty/1")
-  @get
-  FirstResponseEmpty is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResultValue>
+  FirstResponseEmpty is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("A paging operation that includes a nextLink that has 10 pages")
-  @route("/paging/multiple")
-  @get
-  GetMultiplePages is Azure.Core.Foundations.Operation<
+  GetMultiplePages is Azure.Core.ResourceList<
+    Product,
     {
-      // FIXME: (missing-docs) Add documentation
-      @header "client-request-id": string;
+      parameters: {
+        @header "client-request-id": string;
 
-      @doc("Sets the maximum number of items to return in the response.")
-      @header
-      maxresults: int32;
+        @doc("Sets the maximum number of items to return in the response.")
+        @header
+        maxresults: int32;
 
-      @doc("""
+        @doc("""
 Sets the maximum time that the server can spend processing the request, in
 seconds. The default is 30 seconds.
 """)
-      @header
-      timeout: int32;
-    },
-    Azure.Core.ResourceList<ProductResult>
+        @header
+        timeout: int32;
+      };
+    }
   >;
 
   @doc("""
@@ -71,22 +69,22 @@ A paging operation that includes a next operation. It has a different query
 parameter from it's next operation nextOperationWithQueryParams. Returns a
 ProductResult
 """)
-  @route("/paging/multiple/getWithQueryParams")
-  @get
-  GetWithQueryParams is Azure.Core.Foundations.Operation<
+  GetWithQueryParams is Azure.Core.ResourceList<
+    Product,
     {
-      @doc("A required integer query parameter. Put in value '100' to pass test.")
-      @query
-      requiredQueryParameter: int32;
+      parameters: {
+        @doc("A required integer query parameter. Put in value '100' to pass test.")
+        @query
+        requiredQueryParameter: int32;
 
-      @doc("""
+        @doc("""
 A constant. Must be True and will be passed as a query parameter to
 nextOperationWithQueryParams
 """)
-      @query
-      queryConstant: true;
-    },
-    Azure.Core.ResourceList<ProductResult>
+        @query
+        queryConstant: true;
+      };
+    }
   >;
 
   @doc("""
@@ -94,101 +92,99 @@ Define `filter` as a query param for all calls. However, the returned next link
 will also include the `filter` as part of it. Make sure you don't end up
 duplicating the `filter` param in the url sent.
 """)
-  @route("/paging/multiple/duplicateParams/1")
-  @get
-  DuplicateParams is Azure.Core.Foundations.Operation<
+  DuplicateParams is Azure.Core.ResourceList<
+    Product,
     {
-      @doc("OData filter options. Pass in 'foo'")
-      @query
-      $filter: string;
-    },
-    Azure.Core.ResourceList<ProductResult>
+      parameters: {
+        @doc("OData filter options. Pass in 'foo'")
+        @query
+        $filter: string;
+      };
+    }
   >;
 
   @doc("Paging with max page size. We don't want to ")
-  @route("/paging/maxPageSize")
-  @get
-  PageWithMaxPageSize is Azure.Core.Foundations.Operation<
+  PageWithMaxPageSize is Azure.Core.ResourceList<
+    Product,
     {
-      @doc("Max page size query param. Don't send")
-      @query
-      $maxpagesize: "5";
-    },
-    Azure.Core.ResourceList<ProductResult>
+      parameters: {
+        @doc("Max page size query param. Don't send")
+        @query
+        $maxpagesize: "5";
+      };
+    }
   >;
 
   @doc("""
 Next operation for getWithQueryParams. Pass in next=True to pass test. Returns
 a ProductResult
 """)
-  @route("/paging/multiple/nextOperationWithQueryParams")
-  @get
-  NextOperationWithQueryParams is Azure.Core.Foundations.Operation<
+  NextOperationWithQueryParams is Azure.Core.ResourceList<
+    Product,
     {
-      @doc("A constant. Must be True")
-      @query
-      queryConstant: true;
-    },
-    Azure.Core.ResourceList<ProductResult>
+      parameters: {
+        @doc("A constant. Must be True")
+        @query
+        queryConstant: true;
+      };
+    }
   >;
 
   @doc("A paging operation that includes a nextLink in odata format that has 10 pages")
-  @route("/paging/multiple/odata")
-  @get
-  GetOdataMultiplePages is Azure.Core.Foundations.Operation<
+  GetOdataMultiplePages is Azure.Core.ResourceList<
+    Product,
     {
-      // FIXME: (missing-docs) Add documentation
-      @header "client-request-id": string;
+      parameters: {
+        @header "client-request-id": string;
 
-      @doc("Sets the maximum number of items to return in the response.")
-      @header
-      maxresults: int32;
+        @doc("Sets the maximum number of items to return in the response.")
+        @header
+        maxresults: int32;
 
-      @doc("""
+        @doc("""
 Sets the maximum time that the server can spend processing the request, in
 seconds. The default is 30 seconds.
 """)
-      @header
-      timeout: int32;
-    },
-    Azure.Core.ResourceList<OdataProductResult>
+        @header
+        timeout: int32;
+      };
+    }
   >;
 
   @doc("A paging operation that includes a nextLink that has 10 pages")
-  @route("/paging/multiple/withpath/{offset}")
-  @get
-  GetMultiplePagesWithOffset is Azure.Core.Foundations.Operation<
+  GetMultiplePagesWithOffset is Azure.Core.ResourceList<
+    Product,
     {
-      // FIXME: (missing-docs) Add documentation
-      @header "client-request-id": string;
+      parameters: {
+        @header "client-request-id": string;
 
-      @doc("Sets the maximum number of items to return in the response.")
-      @header
-      maxresults: int32;
+        @doc("Sets the maximum number of items to return in the response.")
+        @header
+        maxresults: int32;
 
-      @doc("Offset of return value")
-      @path
-      offset: int32;
+        @doc("Offset of return value")
+        @path
+        offset: int32;
 
-      @doc("""
+        @doc("""
 Sets the maximum time that the server can spend processing the request, in
 seconds. The default is 30 seconds.
 """)
-      @header
-      timeout: int32;
-    },
-    Azure.Core.ResourceList<ProductResult>
+        @header
+        timeout: int32;
+      };
+    }
   >;
 
   @doc("""
 A paging operation that fails on the first call with 500 and then retries and
 then get a response including a nextLink that has 10 pages
 """)
-  @route("/paging/multiple/retryfirst")
-  @get
-  GetMultiplePagesRetryFirst is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  GetMultiplePagesRetryFirst is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("""
@@ -196,105 +192,104 @@ A paging operation that includes a nextLink that has 10 pages, of which the 2nd
 call fails first with 500. The client should retry and finish all 10 pages
 eventually.
 """)
-  @route("/paging/multiple/retrysecond")
-  @get
-  GetMultiplePagesRetrySecond is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  GetMultiplePagesRetrySecond is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("A paging operation that receives a 400 on the first call")
-  @route("/paging/single/failure")
-  @get
-  GetSinglePagesFailure is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  GetSinglePagesFailure is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("A paging operation that receives a 400 on the second call")
-  @route("/paging/multiple/failure")
-  @get
-  GetMultiplePagesFailure is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  GetMultiplePagesFailure is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("A paging operation that receives an invalid nextLink")
-  @route("/paging/multiple/failureuri")
-  @get
-  GetMultiplePagesFailureUri is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  GetMultiplePagesFailureUri is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("A paging operation that doesn't return a full URL, just a fragment")
-  @route("/paging/multiple/fragment/{tenant}")
-  @get
-  GetMultiplePagesFragmentNextLink is Azure.Core.Foundations.Operation<
+  GetMultiplePagesFragmentNextLink is Azure.Core.ResourceList<
+    Product,
     {
-      @doc("Sets the api version to use.")
-      @query
-      api_version: string;
+      parameters: {
+        @doc("Sets the api version to use.")
+        @query
+        api_version: string;
 
-      @doc("Sets the tenant to use.")
-      @path
-      tenant: string;
-    },
-    Azure.Core.ResourceList<OdataProductResult>
+        @doc("Sets the tenant to use.")
+        @path
+        tenant: string;
+      };
+    }
   >;
 
   @doc("""
 A paging operation that doesn't return a full URL, just a fragment with
 parameters grouped
 """)
-  @route("/paging/multiple/fragmentwithgrouping/{tenant}")
-  @get
-  GetMultiplePagesFragmentWithGroupingNextLink is Azure.Core.Foundations.Operation<
+  GetMultiplePagesFragmentWithGroupingNextLink is Azure.Core.ResourceList<
+    Product,
     {
-      @doc("Sets the api version to use.")
-      @query
-      api_version: string;
+      parameters: {
+        @doc("Sets the api version to use.")
+        @query
+        api_version: string;
 
-      @doc("Sets the tenant to use.")
-      @path
-      tenant: string;
-    },
-    Azure.Core.ResourceList<OdataProductResult>
+        @doc("Sets the tenant to use.")
+        @path
+        tenant: string;
+      };
+    }
   >;
 
   @doc("A long-running paging operation that includes a nextLink that has 10 pages")
-  @route("/paging/multiple/lro")
   // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
   // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
-  @post
-  GetMultiplePagesLRO is Azure.Core.Foundations.Operation<
+  GetMultiplePagesLRO is Azure.Core.ResourceList<
+    Product,
     {
-      // FIXME: (missing-docs) Add documentation
-      @header "client-request-id": string;
+      parameters: {
+        @header "client-request-id": string;
 
-      @doc("Sets the maximum number of items to return in the response.")
-      @header
-      maxresults: int32;
+        @doc("Sets the maximum number of items to return in the response.")
+        @header
+        maxresults: int32;
 
-      @doc("""
+        @doc("""
 Sets the maximum time that the server can spend processing the request, in
 seconds. The default is 30 seconds.
 """)
-      @header
-      timeout: int32;
-    },
-    Azure.Core.ResourceList<ProductResult>
+        @header
+        timeout: int32;
+      };
+    }
   >;
 
   @doc("""
 A paging operation with api version. When calling the next link, you want to
 append your client's api version to the next link
 """)
-  @route("/paging/apiVersion/append/1")
-  @get
-  AppendApiVersion is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  AppendApiVersion is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("""
@@ -302,61 +297,61 @@ A paging operation with api version. When calling the next link, you want to
 reformat it and override the returned api version with your client's api
 version
 """)
-  @route("/paging/apiVersion/replace/1")
-  @get
-  ReplaceApiVersion is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResult>
+  ReplaceApiVersion is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 
   @doc("A paging operation that doesn't return a full URL, just a fragment")
-  @route("/paging/multiple/fragment/{tenant}/{nextLink}")
-  @get
-  NextFragment is Azure.Core.Foundations.Operation<
+  NextFragment is Azure.Core.ResourceList<
+    Product,
     {
-      @doc("Sets the api version to use.")
-      @query
-      api_version: string;
+      parameters: {
+        @doc("Sets the api version to use.")
+        @query
+        api_version: string;
 
-      @doc("Sets the tenant to use.")
-      @path
-      tenant: string;
+        @doc("Sets the tenant to use.")
+        @path
+        tenant: string;
 
-      @doc("Next link for list operation.")
-      @path
-      nextLink: string;
-    },
-    Azure.Core.ResourceList<OdataProductResult>
+        @doc("Next link for list operation.")
+        @path
+        nextLink: string;
+      };
+    }
   >;
 
   @doc("A paging operation that doesn't return a full URL, just a fragment")
-  @route("/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}")
-  @get
-  NextFragmentWithGrouping is Azure.Core.Foundations.Operation<
+  NextFragmentWithGrouping is Azure.Core.ResourceList<
+    Product,
     {
-      @doc("Sets the api version to use.")
-      @query
-      api_version: string;
+      parameters: {
+        @doc("Sets the api version to use.")
+        @query
+        api_version: string;
 
-      @doc("Sets the tenant to use.")
-      @path
-      tenant: string;
+        @doc("Sets the tenant to use.")
+        @path
+        tenant: string;
 
-      @doc("Next link for list operation.")
-      @path
-      nextLink: string;
-    },
-    Azure.Core.ResourceList<OdataProductResult>
+        @doc("Next link for list operation.")
+        @path
+        nextLink: string;
+      };
+    }
   >;
 
   @doc("""
 A paging operation that returns a paging model whose item name is is overriden
 by x-ms-client-name 'indexes'.
 """)
-  @route("/paging/itemNameWithXMSClientName")
-  @get
-  GetPagingModelWithItemNameWithXMSClientName is Azure.Core.Foundations.Operation<
-    {},
-    Azure.Core.ResourceList<ProductResultValueWithXMSClientName>
+  GetPagingModelWithItemNameWithXMSClientName is Azure.Core.ResourceList<
+    Product,
+    {
+      parameters: {};
+    }
   >;
 }

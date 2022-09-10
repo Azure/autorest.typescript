@@ -6,7 +6,6 @@ using Azure.Core;
 
 namespace AutoRestPagingTestService;
 
-// FIXME: (missing-docs) Add documentation
 enum OperationResultStatusKnownValues {
   "Succeeded",
   "Failed",
@@ -24,60 +23,45 @@ enum OperationResultStatusKnownValues {
 @knownValues(OperationResultStatusKnownValues)
 model OperationResultStatus is string;
 
-// FIXME: (missing-docs) Add documentation
 model ProductResultValue is Azure.Core.Page<Product>;
 
-// FIXME: (missing-docs) Add documentation
+@resource("/paging/noitemname")
 model Product {
-  // FIXME: (missing-docs) Add documentation
   properties?: ProductProperties;
 }
 
-// FIXME: (missing-docs) Add documentation
 model ProductProperties {
-  // FIXME: (missing-docs) Add documentation
   id?: int32;
-  // FIXME: (missing-docs) Add documentation
   name?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 @pagedResult
 model ProductResult {
-  // FIXME: (missing-docs) Add documentation
   @items
   values?: Product[];
-  // FIXME: (missing-docs) Add documentation
 
   @nextLink
   nextLink?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 @pagedResult
 model OdataProductResult {
-  // FIXME: (missing-docs) Add documentation
   @items
   values?: Product[];
-  // FIXME: (missing-docs) Add documentation
 
   @nextLink
   "odata.nextLink"?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 @pagedResult
 model ProductResultValueWithXMSClientName {
-  // FIXME: (missing-docs) Add documentation
   @items
   values?: Product[];
-  // FIXME: (missing-docs) Add documentation
 
   @nextLink
   nextLink?: string;
 }
 
-// FIXME: (missing-docs) Add documentation
 model OperationResult {
   @doc("The status of the request")
   status?: OperationResultStatus;

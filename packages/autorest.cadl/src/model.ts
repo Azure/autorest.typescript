@@ -46,12 +46,12 @@ function transformModel(codeModel: CodeModel): CadlProgram {
     ...(codeModel.schemas.sealedChoices ?? []),
   ].map((c) => transformEnum(c, codeModel));
 
-  const cadlObjects =
-    codeModel.schemas.objects?.map((o) => transformObject(o, codeModel)) ?? [];
-
   const cadlOperationGroups = codeModel.operationGroups.map((g) =>
     transformOperationGroup(g, codeModel)
   );
+
+  const cadlObjects =
+    codeModel.schemas.objects?.map((o) => transformObject(o, codeModel)) ?? [];
 
   const serviceInformation = transformServiceInformation(codeModel);
 

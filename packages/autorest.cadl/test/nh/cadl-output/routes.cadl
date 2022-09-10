@@ -48,7 +48,7 @@ op GetNotificationHub is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  NotificationHubEntryModel | void
+  void
 >;
 
 @doc("Create or update a notification hub.")
@@ -77,7 +77,7 @@ op CreateOrUpdateNotificationHub is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  NotificationHubEntryModel | void
+  void
 >;
 
 @doc("Retrieves all registrations with a specific tag.")
@@ -199,7 +199,7 @@ op CreateRegistration is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  RegistrationEntryModel | void
+  void
 >;
 
 @doc("Deletes a registration")
@@ -255,7 +255,7 @@ op GetRegistration is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  RegistrationEntryModel | void
+  void
 >;
 
 @doc("Create or update a registration")
@@ -284,7 +284,7 @@ op CreateOrUpdateRegistration is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  RegistrationEntryModel | void
+  void
 >;
 
 @summary("Delete Installation")
@@ -333,7 +333,7 @@ op GetInstallation is Azure.Core.Foundations.Operation<
     @header
     Authorization: string;
   },
-  InstallationModel | void
+  void
 >;
 
 @doc("""
@@ -385,6 +385,166 @@ op CreateOrUpdateInstallation is Azure.Core.Foundations.Operation<
     @header
     Authorization: string;
     @body body: InstallationModel;
+  },
+  void
+>;
+
+@doc("Sends a notification to the specified targets.")
+@route("/{hubName}/messages")
+@post
+op SendMessage is Azure.Core.Foundations.Operation<
+  {
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
+
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
+
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
+
+    @doc("Device handle for the PNS")
+    @header
+    "ServiceBusNotification-DeviceHandle": string;
+
+    @doc("Platform type for the notification")
+    @header
+    "ServiceBusNotification-Format": FormatParameterType;
+
+    @doc("Notification message tags for targeting")
+    @header
+    "ServiceBusNotification-Tags": string;
+
+    @doc("Direct Send")
+    @query
+    direct: boolean;
+
+    @doc("The apns-topic header")
+    @header
+    "apns-topic": string;
+
+    @doc("The apns-priority header")
+    @header
+    "apns-priority": string;
+
+    @doc("The apns-push-type header")
+    @header
+    "apns-push-type": string;
+
+    @doc(" X-WNS-Cache-Policy header parameter")
+    @header
+    "X-WNS-Cache-Policy": string;
+
+    @doc("X-WNS-PRIORITY header parameter")
+    @header
+    "X-WNS-PRIORITY": string;
+
+    @doc("X-WNS-RequestForStatus header parameter")
+    @header
+    "X-WNS-RequestForStatus": string;
+
+    @doc("X-WNS-Tag header parameter")
+    @header
+    "X-WNS-Tag": string;
+
+    @doc("X-WNS-TTL header parameter")
+    @header
+    "X-WNS-TTL": string;
+
+    @doc("X-WNS-Type header parameter")
+    @header
+    "X-WNS-Type": string;
+
+    @doc("Upload file type")
+    @header
+    "Content-Type": ContentType;
+
+    @doc("The notification message body")
+    @body
+    body: string;
+  },
+  void
+>;
+
+@doc("Sends a notification to the specified targets.")
+@route("/{hubName}/messages")
+@post
+op SendMessage is Azure.Core.Foundations.Operation<
+  {
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
+
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
+
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
+
+    @doc("Device handle for the PNS")
+    @header
+    "ServiceBusNotification-DeviceHandle": string;
+
+    @doc("Platform type for the notification")
+    @header
+    "ServiceBusNotification-Format": FormatParameterType;
+
+    @doc("Notification message tags for targeting")
+    @header
+    "ServiceBusNotification-Tags": string;
+
+    @doc("Direct Send")
+    @query
+    direct: boolean;
+
+    @doc("The apns-topic header")
+    @header
+    "apns-topic": string;
+
+    @doc("The apns-priority header")
+    @header
+    "apns-priority": string;
+
+    @doc("The apns-push-type header")
+    @header
+    "apns-push-type": string;
+
+    @doc(" X-WNS-Cache-Policy header parameter")
+    @header
+    "X-WNS-Cache-Policy": string;
+
+    @doc("X-WNS-PRIORITY header parameter")
+    @header
+    "X-WNS-PRIORITY": string;
+
+    @doc("X-WNS-RequestForStatus header parameter")
+    @header
+    "X-WNS-RequestForStatus": string;
+
+    @doc("X-WNS-Tag header parameter")
+    @header
+    "X-WNS-Tag": string;
+
+    @doc("X-WNS-TTL header parameter")
+    @header
+    "X-WNS-TTL": string;
+
+    @doc("X-WNS-Type header parameter")
+    @header
+    "X-WNS-Type": string;
+
+    @doc("Upload file type")
+    @header
+    "Content-Type": ContentType;
+
+    @doc("The notification message body")
+    @body
+    body: string;
   },
   void
 >;

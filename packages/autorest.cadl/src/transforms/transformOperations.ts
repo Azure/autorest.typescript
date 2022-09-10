@@ -18,7 +18,6 @@ import {
   Extension,
 } from "../interfaces";
 import { transformDataType } from "../model";
-import { getOptions } from "../options";
 import { getLogger } from "../utils/logger";
 import { hasLROExtension } from "../utils/lro";
 import { getLanguageMetadata } from "../utils/metadata";
@@ -55,7 +54,6 @@ function transformResponses(
   responses: SchemaResponse[] = [],
   codeModel: CodeModel
 ) {
-  const { isAzureSpec } = getOptions();
   const dataTypes = getDataTypes(codeModel);
   return responses.map(({ schema }) => {
     const responseName = dataTypes.get(schema)?.name;
@@ -64,7 +62,7 @@ function transformResponses(
       return "void";
     }
 
-    if (isAzureSpec && schema.language.default.paging?.isPageable) {
+    if (schema.language.default.paging?.isPageable) {
       return `Azure.Core.ResourceList<${responseName}>`;
     }
 
@@ -113,6 +111,8 @@ function transformRequest(
     extensions.push("Pageable");
   }
 
+  const resource = operation.language.default.resource;
+
   return {
     name,
     doc,
@@ -123,6 +123,7 @@ function transformRequest(
     responses: [...new Set(transformedResponses)],
     fixMe: getFixmes(operation),
     extensions: [],
+    resource,
   };
 }
 
