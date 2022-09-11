@@ -10,9 +10,7 @@ namespace AzureSchemaRegistry;
 interface SchemaGroupsOperations {
   @summary("Get list of schema groups.")
   @doc("Gets the list of schema groups user is authorized to access.")
-  @route("/$schemaGroups")
-  @get
-  List is Azure.Core.Foundations.Operation<{}, void>;
+  List is Azure.Core.ResourceRead<SchemaGroups>;
 }
 
 interface SchemaOperations {
@@ -39,23 +37,7 @@ serialization of schema requested.
 
   @summary("Get list schema versions.")
   @doc("Gets the list of all versions of one schema.")
-  @route("/$schemaGroups/{groupName}/schemas/{schemaName}/versions")
-  @get
-  GetVersions is Azure.Core.Foundations.Operation<
-    {
-      @doc("""
-Schema group under which schema is registered.  Group's serialization type
-should match the serialization type specified in the request.
-""")
-      @path
-      groupName: string;
-
-      @doc("Name of schema.")
-      @path
-      schemaName: string;
-    },
-    void
-  >;
+  GetVersions is Azure.Core.ResourceRead<SchemaVersions>;
 
   @summary("Get specific schema versions.")
   @doc("Gets one specific version of one schema.")

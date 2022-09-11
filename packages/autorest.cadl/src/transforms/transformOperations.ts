@@ -19,7 +19,6 @@ import {
 } from "../interfaces";
 import { transformDataType } from "../model";
 import { getLogger } from "../utils/logger";
-import { hasLROExtension } from "../utils/lro";
 import { getLanguageMetadata } from "../utils/metadata";
 import { isConstantSchema } from "../utils/schemas";
 
@@ -121,20 +120,9 @@ function transformRequest(
     verb: transformVerb(requests![0].protocol),
     route: transformRoute(requests![0].protocol),
     responses: [...new Set(transformedResponses)],
-    fixMe: getFixmes(operation),
     extensions: [],
     resource,
   };
-}
-
-function getFixmes(operation: Operation): string[] {
-  const fixmes: string[] = [];
-  if (hasLROExtension(operation)) {
-    fixmes.push(`// FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
-    // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators`);
-  }
-
-  return fixmes;
 }
 
 function constantValueEquals(schema: Schema, match: string) {

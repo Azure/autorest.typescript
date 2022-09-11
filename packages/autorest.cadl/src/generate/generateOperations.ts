@@ -30,11 +30,18 @@ export function generateOperation(
     );
   } else {
     const { resource } = operation;
+    const resourceParameters = generateParameters(
+      parameters.filter(
+        (param) => !["path", "body"].some((p) => p === param.location)
+      )
+    );
+
+    const parametersString = !resourceParameters
+      ? ``
+      : `, { parameters: {${resourceParameters}}}`;
     statements.push(
       `${operationGroup.name ? "" : "op "}`,
-      `${name} is Azure.Core.${resource.kind}<${
-        resource.response.name
-      }, { parameters: {${params ? params : ""}}}>;\n\n\n`
+      `${name} is Azure.Core.${resource.kind}<${resource.response.name} ${parametersString}>;\n\n\n`
     );
   }
   return statements.join("\n");

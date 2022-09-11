@@ -164,6 +164,7 @@ enum ContentType {
   ApplicationXmlCharsetUtf8: "application/xml;charset=utf-8",
 }
 
+@resource("{hubName}")
 model NotificationHubEntryModel {
   content?: NotificationHubContentModel;
 }
@@ -200,15 +201,18 @@ model NotificationHubDescriptionModelAuthorizationRulesItem {
   SecondaryKey?: string;
 }
 
-@resource("/{hubName}/tags/{tag}/registrations")
+@resource("{hubName}/tags/{tag}/registrations")
 model RegistrationEntryModel {
   content?: NotificationHubContentModel;
   "xmlns:m"?: RegistrationEntryModelXmlnsM;
   "m:etag"?: string;
 }
 
+@resource("{hubName}/installations/{installationId}")
 model InstallationModel {
   @doc("Installation Unique Identifier")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   installationId: string;
 
   @doc("The user ID for the installation")

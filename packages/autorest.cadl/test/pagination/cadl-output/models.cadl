@@ -25,7 +25,7 @@ model OperationResultStatus is string;
 
 model ProductResultValue is Azure.Core.Page<Product>;
 
-@resource("/paging/noitemname")
+@resource("paging/noitemname")
 model Product {
   properties?: ProductProperties;
 }
@@ -36,6 +36,7 @@ model ProductProperties {
 }
 
 @pagedResult
+@resource("paging/multiple/lro")
 model ProductResult {
   @items
   values?: Product[];

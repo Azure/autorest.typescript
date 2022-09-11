@@ -1,6 +1,8 @@
 import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
+using Azure.Core;
 
 namespace AutoRestComplexTestService;
 
@@ -32,6 +34,7 @@ enum GoblinSharkColorKnownValues {
 @knownValues(GoblinSharkColorKnownValues)
 model GoblinSharkColor is string;
 
+@resource("complex/basic/valid")
 model Basic {
   @doc("Basic Id")
   id?: int32;
@@ -50,69 +53,83 @@ model Error {
   message?: string;
 }
 
+@resource("complex/primitive/integer")
 model IntWrapper {
   field1?: int32;
   field2?: int32;
 }
 
+@resource("complex/primitive/long")
 model LongWrapper {
   field1?: int32;
   field2?: int32;
 }
 
+@resource("complex/primitive/float")
 model FloatWrapper {
   field1?: float32;
   field2?: float32;
 }
 
+@resource("complex/primitive/double")
 model DoubleWrapper {
   field1?: float32;
   field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose?: float32;
 }
 
+@resource("complex/primitive/bool")
 model BooleanWrapper {
   field_true?: boolean;
   field_false?: boolean;
 }
 
+@resource("complex/primitive/string")
 model StringWrapper {
   field?: string;
   empty?: string;
   null?: string;
 }
 
+@resource("complex/primitive/date")
 model DateWrapper {
   field?: plainDate;
   leap?: plainDate;
 }
 
+@resource("complex/primitive/datetime")
 model DatetimeWrapper {
   field?: zonedDateTime;
   now?: zonedDateTime;
 }
 
+@resource("complex/primitive/datetimerfc1123")
 model Datetimerfc1123Wrapper {
   field?: zonedDateTime;
   now?: zonedDateTime;
 }
 
+@resource("complex/primitive/duration")
 model DurationWrapper {
   field?: duration;
 }
 
+@resource("complex/primitive/byte")
 model ByteWrapper {
   field?: bytes;
 }
 
+@resource("complex/array/valid")
 model ArrayWrapper {
   array?: string[];
 }
 
+@resource("complex/dictionary/typed/valid")
 model DictionaryWrapper {
   @doc("Dictionary of <string>")
   defaultProgram?: Record<string>;
 }
 
+@resource("complex/inheritance/valid")
 model Siamese {
   ...Cat;
   breed?: string;
@@ -135,6 +152,7 @@ model Pet {
 }
 
 @discriminator("fishtype")
+@resource("complex/polymorphism/valid")
 model Fish {
   species?: string;
   length: float32;
@@ -142,10 +160,12 @@ model Fish {
 }
 
 @discriminator("fish.type")
+@resource("complex/polymorphism/dotsyntax")
 model DotFish {
   species?: string;
 }
 
+@resource("complex/polymorphism/composedWithDiscriminator")
 model DotFishMarket {
   sampleSalmon?: DotSalmon;
   salmons?: DotSalmon[];
@@ -160,11 +180,13 @@ model DotSalmon extends DotFish {
 }
 
 @discriminator("fishtype")
+@resource("complex/polymorphism/complicated")
 model Salmon extends Fish {
   location?: string;
   iswild?: boolean;
 }
 
+@resource("complex/readonlyproperty/valid")
 model ReadonlyObj {
   @visibility("read")
   id?: string;
@@ -172,6 +194,7 @@ model ReadonlyObj {
 }
 
 @discriminator("kind")
+@resource("complex/flatten/valid")
 model MyBaseType {
   propB1?: string;
   helper?: MyBaseHelperType;

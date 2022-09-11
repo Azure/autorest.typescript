@@ -1,6 +1,8 @@
 import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
+using Azure.Core;
 
 namespace Adel;
 
@@ -88,7 +90,10 @@ enum FillNAMethodKnownValues {
 @knownValues(FillNAMethodKnownValues)
 model FillNAMethod is string;
 
+@resource("alertConfigs")
 model PageAlertConfig {
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   value: AlertConfig[];
   nextLink?: string;
 }
@@ -99,9 +104,12 @@ notification channel(s). This setting can later be applied to a live inference
 schedule. 
 """)
 @discriminator("alertConfigType")
+@resource("alertConfigs/{alertConfigName}")
 model AlertConfig {
   @doc("Unique identifier of an alert configuration. This parameter is case-sensitive.")
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   alertConfigName: string;
 
   @doc("(Optional) Detailed description of an alert configuration.")
@@ -136,7 +144,10 @@ model ErrorError {
   message: string;
 }
 
+@resource("datasets")
 model PageDataset {
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   value: Dataset[];
   nextLink?: string;
 }
@@ -146,9 +157,12 @@ Summarizes information about the dataset, including name, description, data
 source type, data schema, data granularity, and associated metadata. A dataset
 can be used for either training, evaluation, or real-time inference.
 """)
+@resource("datasets/{datasetName}")
 model Dataset {
   @doc("Unique identifier of a dataset. This parameter is case-sensitive.")
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   datasetName: string;
 
   @doc("(Optional) Detailed description of a dataset.")
@@ -272,8 +286,11 @@ If endTime equals to startTime, one single data point will be processed.
 }
 
 @doc("Returns data aligned to the data granularity.")
+@resource("datasets/previewData")
 model DatasetPreviewResponse {
   @doc("Column headers.")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   columns: string[];
 
   @doc("""
@@ -283,16 +300,22 @@ data granularity.
   values: string[][];
 }
 
+@resource("hooks")
 model PageHook {
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   value: Hook[];
   nextLink?: string;
 }
 
 @doc("A hook is a channel to receive alert notifications.")
 @discriminator("hookType")
+@resource("hooks/{hookName}")
 model Hook {
   @doc("Unique identifier of a hook. This parameter is case-sensitive.")
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   hookName: string;
 
   @doc("(Optional) Detailed description of a hook.")
@@ -310,7 +333,10 @@ users (if applicable).
   parameterModifiedTime: zonedDateTime;
 }
 
+@resource("inference/replays")
 model PageScheduleReplay {
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   value: ScheduleReplay[];
   nextLink?: string;
 }
@@ -320,12 +346,15 @@ Re-inference a historical time range on an exiting inference schedule. The new
 anomaly detection results will overwrite the historical results in the replay
 time range but no alerts will be sent out.
 """)
+@resource("inference/replays/{replayName}")
 model ScheduleReplay {
   @doc("""
 Unique identifier of a replay on an inference schedule. This parameter is
 case-sensitive.
 """)
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   replayName: string;
 
   @doc("(Optional) Detailed description of a replay on an inference schedule.")
@@ -442,7 +471,10 @@ relay. If endTime equals to startTime, one single data point will be processed.
   endTime: zonedDateTime;
 }
 
+@resource("inference/schedules")
 model PageSchedule {
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   value: Schedule[];
   nextLink?: string;
 }
@@ -453,12 +485,15 @@ real-time. An inference schedule requires a unique name, a trained model, and a
 valid data source. You can also specify the criteria to trigger an anomaly
 alert and the channel(s) to receive alerts in an inference schedule.
 """)
+@resource("inference/schedules/{scheduleName}")
 model Schedule {
   @doc("""
 Unique identifier of a live streaming inference schedule. This parameter is
 case-sensitive.
 """)
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   scheduleName: string;
 
   @doc("(Optional) Detailed description of a live streaming inference schedule.")
@@ -619,9 +654,12 @@ scheduleStatusChangeInfo.
 }
 
 @doc("Historical anomaly detection results for an inference schedule.")
+@resource("inference/schedules/{scheduleName}/getHistory")
 model ScheduleHistoryResult {
   @doc("Summarizes the anomaly detection results for each timestamp.")
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   results: AnomalyState[];
 }
 
@@ -714,7 +752,10 @@ changed.
   changedValues: float32[];
 }
 
+@resource("multivariate/evaluations")
 model PageEvaluation {
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   value: Evaluation[];
   nextLink?: string;
 }
@@ -724,9 +765,12 @@ Specifies information about the model evaluation being used, including name,
 description, model, evaluation data, evaluation time range, status, and
 associated metadata.
 """)
+@resource("multivariate/evaluations/{evaluationName}")
 model Evaluation {
   @doc("Unique identifier of a model evaluation. This parameter is case-sensitive.")
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   evaluationName: string;
 
   @doc("(Optional) Detailed description of a model evaluation.")
@@ -817,7 +861,10 @@ processed.
   endTime: zonedDateTime;
 }
 
+@resource("multivariate/models")
 model PageModel {
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   value: Model[];
   nextLink?: string;
 }
@@ -827,9 +874,12 @@ Summarizes information about the model, including name, description, training
 data, training time range(s), the number of variables being used, training
 status, and associated metadata.
 """)
+@resource("multivariate/models/{modelName}")
 model Model {
   @doc("Unique identifier of a model. This parameter is case-sensitive.")
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   modelName: string;
 
   @doc("(Optional) Detailed description of a model.")
@@ -1005,12 +1055,15 @@ model VariableValues {
 Summarizes information about the variables being used and the anomaly detection
 results for each timestamp.
 """)
+@resource("multivariate/models/{modelName}/detect")
 model DetectionResult {
   @doc("""
 Summarizes information about each variable being used. Ranked by filledNARatio
 in descending order.
 """)
   @visibility("read")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   variableStates: VariableState[];
 
   @doc("Summarizes the anomaly detection results for each timestamp.")

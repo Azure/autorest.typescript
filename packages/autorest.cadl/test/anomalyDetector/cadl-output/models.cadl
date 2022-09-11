@@ -154,11 +154,14 @@ model TimeSeriesPoint {
 }
 
 @doc("The response of entire anomaly detection.")
+@resource("timeseries/entire/detect")
 model EntireDetectResponse {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
 found.
 """)
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   period: int32;
 
   @doc("""
@@ -227,11 +230,14 @@ model AnomalyDetectorError {
 }
 
 @doc("The response of last anomaly detection.")
+@resource("timeseries/last/detect")
 model LastDetectResponse {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
 found.
 """)
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   period: int32;
 
   @doc("Suggested input series points needed for detecting the latest point.")
@@ -323,13 +329,15 @@ be accepted.
 }
 
 @doc("The response of change point detection.")
+@resource("timeseries/changepoint/detect")
 model ChangePointDetectResponse {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
 found.
 """)
   @visibility("read")
-  period?: int32;
+  @key
+  period: int32;
 
   @doc("""
 isChangePoint contains change point properties for each input point. True means
@@ -343,7 +351,10 @@ array is consistent with the input series.
 }
 
 @doc("Detection results for the given resultId.")
+@resource("multivariate/entire/detect/{resultId}")
 model DetectionResult {
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   resultId: string;
 
   @doc("Multivariate anomaly detection status.")
@@ -548,7 +559,7 @@ model ModelList {
   nextLink?: string;
 }
 
-@resource("/multivariate/models")
+@resource("multivariate/models")
 model ModelSnapshot {
   @doc("Model identifier.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
@@ -570,8 +581,11 @@ model ModelSnapshot {
 }
 
 @doc("Response of getting a model.")
+@resource("multivariate/models/{modelId}")
 model Model {
   @doc("Model identifier.")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   modelId: string;
 
   @doc("Date and time (UTC) when the model was created.")
@@ -606,7 +620,10 @@ model VariableValues {
   values: float32[];
 }
 
+@resource("multivariate/models/{modelId}/last/detect")
 model LastDetectionResult {
+  @key
+  id: string;
   variableStates?: VariableState[];
   results?: AnomalyState[];
 }

@@ -98,7 +98,7 @@ model JobStatus is string;
 model ProjectsMetadata is Azure.Core.Page<ProjectMetadata>;
 
 @doc("Represents the metadata of a project.")
-@resource("/authoring/analyze-text/projects")
+@resource("authoring/analyze-text/projects")
 model ProjectMetadata {
   @doc("Represents the project creation datetime.")
   createdDateTime: zonedDateTime;
@@ -282,7 +282,7 @@ evaluation kind is percentage.
 model ProjectDeployments is Azure.Core.Page<ProjectDeployment>;
 
 @doc("Represents a project deployment.")
-@resource("/authoring/analyze-text/projects/{projectName}/deployments")
+@resource("authoring/analyze-text/projects/{projectName}/deployments")
 model ProjectDeployment {
   @doc("Represents deployment name.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
@@ -321,6 +321,7 @@ model CreateDeploymentOptions {
 }
 
 @doc("Represents the state of a deployment job.")
+@resource("authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}")
 model DeploymentJobState {
   ...JobState;
 }
@@ -359,6 +360,7 @@ model Warning {
 }
 
 @doc("Represents the state of an export job.")
+@resource("authoring/analyze-text/projects/{projectName}/export/jobs/{jobId}")
 model ExportProjectJobState {
   ...JobState;
 
@@ -367,6 +369,7 @@ model ExportProjectJobState {
 }
 
 @doc("Represents the state of an import job.")
+@resource("authoring/analyze-text/projects/{projectName}/import/jobs/{jobId}")
 model ImportProjectJobState {
   ...JobState;
 }
@@ -375,7 +378,7 @@ model ImportProjectJobState {
 model ProjectTrainedModels is Azure.Core.Page<ProjectTrainedModel>;
 
 @doc("Represents a trained model.")
-@resource("/authoring/analyze-text/projects/{projectName}/models")
+@resource("authoring/analyze-text/projects/{projectName}/models")
 model ProjectTrainedModel {
   @doc("The trained model label.")
   label: string;
@@ -403,7 +406,7 @@ model EvaluationResults is Azure.Core.Page<DocumentEvaluationResult>;
 
 @doc("Represents the evaluation result of a document.")
 @discriminator("projectKind")
-@resource("/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/result")
+@resource("authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/result")
 model DocumentEvaluationResult {
   @doc("Represents the document path.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
@@ -420,6 +423,7 @@ Spanish etc.
 
 @doc("Represents the summary for an evaluation operation.")
 @discriminator("projectKind")
+@resource("authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/summary-result")
 model EvaluationSummary {
   @doc("Represents the options used running the evaluation.")
   evaluationOptions: EvaluationOptions;
@@ -429,7 +433,7 @@ model EvaluationSummary {
 model TrainingJobs is Azure.Core.Page<TrainingJobState>;
 
 @doc("Represents the state of a training job.")
-@resource("/authoring/analyze-text/projects/{projectName}/train/jobs")
+@resource("authoring/analyze-text/projects/{projectName}/train/jobs")
 model TrainingJobState {
   ...JobState;
 
@@ -473,6 +477,7 @@ model SubTrainingJobState {
 }
 
 @doc("Represents the state of a project deletion job.")
+@resource("authoring/analyze-text/projects/global/deletion-jobs/{jobId}")
 model ProjectDeletionJobState {
   ...JobState;
 }
@@ -481,7 +486,7 @@ model ProjectDeletionJobState {
 model SupportedLanguages is Azure.Core.Page<SupportedLanguage>;
 
 @doc("Represents a supported language.")
-@resource("/authoring/analyze-text/projects/global/languages")
+@resource("authoring/analyze-text/projects/global/languages")
 model SupportedLanguage {
   @doc("The language name.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
@@ -499,7 +504,7 @@ The language code. This is BCP-47 representation of a language. For example,
 model TrainingConfigVersions is Azure.Core.Page<TrainingConfigVersion>;
 
 @doc("Represents a training config version.")
-@resource("/authoring/analyze-text/projects/global/training-config-versions")
+@resource("authoring/analyze-text/projects/global/training-config-versions")
 model TrainingConfigVersion {
   @doc("Represents the version of the config.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one

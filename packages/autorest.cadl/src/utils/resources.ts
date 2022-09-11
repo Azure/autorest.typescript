@@ -12,12 +12,15 @@ import { getDataTypes } from "../dataTypes";
 import { CadlResource } from "../interfaces";
 import { transformDataType } from "../model";
 import { getOptions } from "../options";
+import { hasLROExtension } from "./lro";
 import {
   getPageableResponse,
   isPageableOperation,
   isPageValue,
 } from "./paging";
 import { isArraySchema, isResponseSchema } from "./schemas";
+
+const knownResourceSchema: Map<string, Schema> = new Map();
 
 export function markResources(codeModel: CodeModel) {
   for (const operationGroup of codeModel.operationGroups) {
@@ -30,14 +33,174 @@ export function markResources(codeModel: CodeModel) {
   }
 }
 
+/**
+ * Figures out if the path represents an
+ */
+// function markActionResource(codeModel: CodeModel, operation: Operation): void {
+//   const method = getHttpMethod(codeModel, operation);
+//   const pathParts = getResourcePath(operation).split("/");
+//   const partsLastIndex = pathParts.length - 1;
+
+//   if (method !== HttpMethod.Post) {
+//     return;
+//   }
+
+//   const lastPart = pathParts[partsLastIndex];
+
+//   if (lastPart.startsWith(":")) {
+//     operation.language.default.actionResource = {
+//       resource: pathParts.slice(0, partsLastIndex).join("/"),
+//       action: lastPart,
+//     };
+//   }
+// }
+
 function getResourceKind(
   codeModel: CodeModel,
   operation: Operation
 ): CadlResource | undefined {
   const operationMethod = getHttpMethod(codeModel, operation);
+  if (hasLROExtension(operation)) {
+    const resource = handleLROResource(codeModel, operation);
+    if (resource) {
+      return resource;
+    }
+  }
 
   if (operationMethod === HttpMethod.Get) {
-    return handleGetOperation(codeModel, operation);
+    const resource = handleGetOperation(codeModel, operation);
+    if (resource) {
+      return resource;
+    }
+  }
+
+  if (operationMethod === HttpMethod.Patch) {
+    const resource = handleResource(
+      codeModel,
+      operation,
+      "ResourceCreateOrUpdate"
+    );
+    if (resource) {
+      return resource;
+    }
+  }
+
+  if (operationMethod === HttpMethod.Put) {
+    const resource = handleResource(
+      codeModel,
+      operation,
+      "ResourceCreateOrReplace"
+    );
+    if (resource) {
+      return resource;
+    }
+  }
+
+  if (operationMethod === HttpMethod.Post) {
+    const resource = handleResource(
+      codeModel,
+      operation,
+      "ResourceCreateWithServiceProvidedName"
+    );
+    if (resource) {
+      return resource;
+    }
+  }
+
+  if (operationMethod === HttpMethod.Delete) {
+    const resource = handleResource(codeModel, operation, "ResourceDelete");
+    if (resource) {
+      return resource;
+    }
+  }
+
+  if (operation.language.default.actionResource) {
+    return handleResource(codeModel, operation, "ResourceAction");
+  }
+
+  return undefined;
+}
+
+function handleLROResource(
+  codeModel: CodeModel,
+  operation: Operation
+): CadlResource | undefined {
+  const operationMethod = getHttpMethod(codeModel, operation);
+
+  if (operationMethod === HttpMethod.Patch) {
+    return handleResource(
+      codeModel,
+      operation,
+      "LongRunningResourceCreateOrUpdate"
+    );
+  }
+
+  if (operationMethod === HttpMethod.Put) {
+    return handleResource(
+      codeModel,
+      operation,
+      "LongRunningResourceCreateOrReplace"
+    );
+  }
+
+  if (operationMethod === HttpMethod.Post) {
+    return handleResource(
+      codeModel,
+      operation,
+      "LongRunningResourceCreateWithServiceProvidedName"
+    );
+  }
+
+  if (operationMethod === HttpMethod.Delete) {
+    return handleResource(codeModel, operation, "LongRunningResourceDelete");
+  }
+
+  return undefined;
+}
+
+function handleResource(
+  codeModel: CodeModel,
+  operation: Operation,
+  kind:
+    | "ResourceRead"
+    | "ResourceCreateOrUpdate"
+    | "ResourceCreateOrReplace"
+    | "ResourceCreateWithServiceProvidedName"
+    | "ResourceDelete"
+    | "LongRunningResourceCreateOrReplace"
+    | "LongRunningResourceCreateOrUpdate"
+    | "LongRunningResourceCreateWithServiceProvidedName"
+    | "LongRunningResourceDelete"
+    | "ResourceAction"
+): CadlResource | undefined {
+  const dataTypes = getDataTypes(codeModel);
+  for (const response of operation.responses ?? []) {
+    let schema: Schema | undefined;
+    if (!isResponseSchema(response)) {
+      let resourcePath = getResourcePath(operation);
+      schema = knownResourceSchema.get(resourcePath);
+
+      if (
+        kind === "ResourceAction" &&
+        operation.language.default.actionResource?.resource
+      ) {
+        resourcePath = operation.language.default.actionResource.resource;
+        schema = knownResourceSchema.get(resourcePath);
+      }
+
+      if (!schema) {
+        continue;
+      }
+    } else {
+      schema = response.schema;
+    }
+    markResource(operation, schema);
+    let cadlResponse =
+      dataTypes.get(schema) ?? transformDataType(schema, codeModel);
+    return {
+      kind,
+      response: cadlResponse,
+    };
   }
 
   return undefined;
@@ -72,11 +235,19 @@ function getNonPageableListResource(
     );
   }
   for (const response of operation.responses) {
+    let schema: Schema | undefined;
     if (!isResponseSchema(response)) {
-      continue;
+      const resourcePath = getResourcePath(operation);
+      schema = knownResourceSchema.get(resourcePath);
+
+      if (!schema) {
+        continue;
+      }
+    } else {
+      schema = response.schema;
     }
 
-    if (!isArraySchema(response.schema)) {
+    if (!isArraySchema(schema)) {
       return undefined;
     }
   }
@@ -97,7 +268,7 @@ function handleGetOperation(
 
   const nonPageableListResource = getNonPageableListResource(operation);
   if (nonPageableListResource) {
-    markResourceListItem(operation, nonPageableListResource.elementType);
+    markResource(operation, nonPageableListResource.elementType);
     const dataTypes = getDataTypes(codeModel);
     let cadlResponse =
       dataTypes.get(nonPageableListResource.elementType) ??
@@ -108,10 +279,10 @@ function handleGetOperation(
     };
   }
 
-  return undefined;
+  return handleResource(codeModel, operation, "ResourceRead");
 }
 
-function markResourceListItem(operation: Operation, elementType: Schema) {
+function markResource(operation: Operation, elementType: Schema) {
   if (!isObjectSchema(elementType)) {
     throw new Error(
       `A Resource type has to be a model but got ${elementType.type}`
@@ -139,7 +310,7 @@ function getPageableResource(
           );
         }
 
-        markResourceListItem(operation, elementType);
+        markResource(operation, elementType);
 
         let cadlResponse =
           dataTypes.get(elementType) ??
@@ -158,6 +329,7 @@ function getPageableResource(
 }
 
 function markModelWithResource(elementType: Schema, resource: string) {
+  knownResourceSchema.set(resource, elementType);
   elementType.language.default.resource = resource;
 }
 

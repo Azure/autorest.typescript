@@ -52,6 +52,6 @@
     "fs-extra": "^10.1.0",
     "@types/fs-extra": "^9.0.13",
     "chalk": "~4.1.1",
-    "@azure-tools/cadl-autorest": "latest"
+    "@azure-tools/cadl-autorest": "^0.20.0"
   }
 }

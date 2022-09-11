@@ -18,34 +18,27 @@ interface HealthApiOperations {
 interface WebPubSubOperations {
   @summary("Generate token for the client to connect Azure Web PubSub service.")
   @doc("Generate token for the client to connect Azure Web PubSub service.")
-  @route("/api/hubs/{hub}/:generateToken")
-  @post
-  GenerateClientToken is Azure.Core.Foundations.Operation<
+  GenerateClientToken is Azure.Core.ResourceCreateWithServiceProvidedName<
+    ClientTokenResponse,
     {
-      @doc("""
-Target hub name, which should start with alphabetic characters and only contain
-alpha-numeric characters or underscore.
-""")
-      @path
-      hub: string;
+      parameters: {
+        @doc("User Id.")
+        @query
+        userId: string;
 
-      @doc("User Id.")
-      @query
-      userId: string;
+        @doc("Roles that the connection with the generated token will have.")
+        @query
+        role: string[];
 
-      @doc("Roles that the connection with the generated token will have.")
-      @query
-      role: string[];
+        @doc("The expire time of the generated token.")
+        @query
+        minutesToExpire: int32;
 
-      @doc("The expire time of the generated token.")
-      @query
-      minutesToExpire: int32;
-
-      @doc("Accept header")
-      @header
-      Accept: "application/json, text/json";
-    },
-    void
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
   >;
 
   @summary("Close the connections in the hub.")

@@ -1,6 +1,8 @@
 import "@cadl-lang/rest";
+import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
+using Azure.Core;
 
 namespace QnAMakerClient;
 
@@ -43,6 +45,7 @@ enum EnvironmentTypeKnownValues {
 model EnvironmentType is string;
 
 @doc("Endpoint settings.")
+@resource("endpointSettings")
 model EndpointSettingsDTO {
   @doc("Active Learning settings of the endpoint.")
   activeLearning?: EndpointSettingsDTOActiveLearning;
@@ -115,6 +118,7 @@ the error.
 }
 
 @doc("Schema for EndpointKeys generate/refresh operations.")
+@resource("endpointkeys")
 model EndpointKeysDTO {
   @doc("Primary Access Key.")
   primaryEndpointKey?: string;
@@ -133,8 +137,11 @@ model EndpointKeysDTO {
 }
 
 @doc("Collection of word alterations.")
+@resource("alterations")
 model WordAlterationsDTO {
   @doc("Collection of word alterations.")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   wordAlterations: AlterationsDTO[];
 }
 
@@ -145,12 +152,14 @@ model AlterationsDTO {
 }
 
 @doc("Collection of knowledgebases owned by a user.")
+@resource("knowledgebases")
 model KnowledgebasesDTO {
   @doc("Collection of knowledgebase records.")
   knowledgebases?: KnowledgebaseDTO[];
 }
 
 @doc("Response schema for CreateKb operation.")
+@resource("knowledgebases/{kbId}")
 model KnowledgebaseDTO {
   @doc("Unique id that identifies a knowledgebase.")
   id?: string;
@@ -184,6 +193,7 @@ knowledgebase.
 }
 
 @doc("Record to track long running operation.")
+@resource("knowledgebases/{kbId}")
 model Operation {
   @doc("Operation state.")
   operationState?: OperationStateType;
@@ -500,6 +510,7 @@ target=\"_blank\">here</a>.
 }
 
 @doc("List of QnADTO")
+@resource("knowledgebases/{kbId}/{environment}/qna")
 model QnADocumentsDTO {
   @doc("List of answers.")
   qnaDocuments?: QnAdto[];

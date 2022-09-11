@@ -28,95 +28,78 @@ op DeleteNotificationHub is Azure.Core.Foundations.Operation<
 >;
 
 @doc("Retrieves information about a notification hub.")
-@route("/{hubName}")
-@get
-op GetNotificationHub is Azure.Core.Foundations.Operation<
+op GetNotificationHub is Azure.Core.ResourceRead<
+  NotificationHubEntryModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
 
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-
-    @doc("Accept header")
-    @header
-    Accept: "application/atom+xml;type=entry;charset=utf-8";
-  },
-  void
+      @doc("Accept header")
+      @header
+      Accept: "application/atom+xml;type=entry;charset=utf-8";
+    };
+  }
 >;
 
 @doc("Create or update a notification hub.")
-@route("/{hubName}")
-@put
-op CreateOrUpdateNotificationHub is Azure.Core.Foundations.Operation<
+op CreateOrUpdateNotificationHub is Azure.Core.ResourceCreateOrReplace<
+  NotificationHubEntryModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
 
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
+      @doc("ETag as returned by creation, update, and retrieval, or * (overwrite).")
+      @header
+      "If-Match": string;
 
-    @doc("ETag as returned by creation, update, and retrieval, or * (overwrite).")
-    @header
-    "If-Match": string;
-    @body body: NotificationHubEntryModel;
-
-    @doc("Accept header")
-    @header
-    Accept: "application/atom+xml;type=entry;charset=utf-8";
-  },
-  void
+      @doc("Accept header")
+      @header
+      Accept: "application/atom+xml;type=entry;charset=utf-8";
+    };
+  }
 >;
 
 @doc("Retrieves all registrations with a specific tag.")
-@route("/{hubName}/tags/{tag}/registrations")
-@get
-op GetRegistrationsByTag is Azure.Core.Foundations.Operation<
+op GetRegistrationsByTag is Azure.Core.NonPagedResourceList<
+  RegistrationEntryModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
 
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-
-    @doc("The path for the tag to query")
-    @path
-    tag: string;
-
-    @doc("""
+      @doc("""
 Contains the token to continue the enumeration of registrations, in case there
 are more.
 """)
-    @query
-    ContinuationToken: string;
+      @query
+      ContinuationToken: string;
 
-    @doc("OData top parameter")
-    @query
-    $top: string;
+      @doc("OData top parameter")
+      @query
+      $top: string;
 
-    @doc("Accept header")
-    @header
-    Accept: "application/atom+xml;type=entry;charset=utf-8";
-  },
-  void
+      @doc("Accept header")
+      @header
+      Accept: "application/atom+xml;type=entry;charset=utf-8";
+    };
+  }
 >;
 
 @doc("Create a registration ID")
@@ -140,66 +123,58 @@ op CreateRegistrationId is Azure.Core.Foundations.Operation<
 >;
 
 @doc("Get registrations by the specified criteria")
-@route("/{hubName}/registrations")
-@get
-op GetRegistrations is Azure.Core.Foundations.Operation<
+op GetRegistrations is Azure.Core.NonPagedResourceList<
+  RegistrationEntryModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
 
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-
-    @doc("""
+      @doc("""
 Contains the token to continue the enumeration of registrations, in case there
 are more.
 """)
-    @query
-    ContinuationToken: string;
+      @query
+      ContinuationToken: string;
 
-    @doc("OData filter parameter")
-    @query
-    $filter: string;
+      @doc("OData filter parameter")
+      @query
+      $filter: string;
 
-    @doc("OData top parameter")
-    @query
-    $top: string;
+      @doc("OData top parameter")
+      @query
+      $top: string;
 
-    @doc("Accept header")
-    @header
-    Accept: "application/atom+xml;type=entry;charset=utf-8";
-  },
-  void
+      @doc("Accept header")
+      @header
+      Accept: "application/atom+xml;type=entry;charset=utf-8";
+    };
+  }
 >;
 
 @doc("Creates a registration")
-@route("/{hubName}/registrations")
-@post
-op CreateRegistration is Azure.Core.Foundations.Operation<
+op CreateRegistration is Azure.Core.ResourceCreateWithServiceProvidedName<
+  RegistrationEntryModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
 
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-
-    @doc("Accept header")
-    @header
-    Accept: "application/atom+xml;type=entry;charset=utf-8";
-  },
-  void
+      @doc("Accept header")
+      @header
+      Accept: "application/atom+xml;type=entry;charset=utf-8";
+    };
+  }
 >;
 
 @doc("Deletes a registration")
@@ -231,60 +206,43 @@ op DeleteRegistration is Azure.Core.Foundations.Operation<
 >;
 
 @doc("Get a registration by registration ID")
-@route("/{hubName}/registrations/{registrationId}")
-@get
-op GetRegistration is Azure.Core.Foundations.Operation<
+op GetRegistration is Azure.Core.ResourceRead<
+  RegistrationEntryModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
 
-    @doc("Registration ID parameter")
-    @path
-    registrationId: string;
-
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-
-    @doc("Accept header")
-    @header
-    Accept: "application/atom+xml;type=entry;charset=utf-8";
-  },
-  void
+      @doc("Accept header")
+      @header
+      Accept: "application/atom+xml;type=entry;charset=utf-8";
+    };
+  }
 >;
 
 @doc("Create or update a registration")
-@route("/{hubName}/registrations/{registrationId}")
-@put
-op CreateOrUpdateRegistration is Azure.Core.Foundations.Operation<
+op CreateOrUpdateRegistration is Azure.Core.ResourceCreateOrReplace<
+  RegistrationEntryModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
 
-    @doc("Registration ID parameter")
-    @path
-    registrationId: string;
-
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-    @body body: RegistrationEntryModel;
-
-    @doc("Accept header")
-    @header
-    Accept: "application/atom+xml;type=entry;charset=utf-8";
-  },
-  void
+      @doc("Accept header")
+      @header
+      Accept: "application/atom+xml;type=entry;charset=utf-8";
+    };
+  }
 >;
 
 @summary("Delete Installation")
@@ -313,80 +271,54 @@ op DeleteInstallation is Azure.Core.Foundations.Operation<
 >;
 
 @doc("Get an Installation by Installation ID")
-@route("/{hubName}/installations/{installationId}")
-@get
-op GetInstallation is Azure.Core.Foundations.Operation<
+op GetInstallation is Azure.Core.ResourceRead<
+  InstallationModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
-
-    @doc("Installation ID parameter")
-    @path
-    installationId: string;
-
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-  },
-  void
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
+    };
+  }
 >;
 
 @doc("""
 Azure Notification Hubs supports partial updates to an installation using the
 JSON-Patch standard in [RFC6902](https://tools.ietf.org/html/rfc6902).
 """)
-@route("/{hubName}/installations/{installationId}")
-@patch
-op PatchInstallation is Azure.Core.Foundations.Operation<
+op PatchInstallation is Azure.Core.ResourceCreateOrUpdate<
+  InstallationModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
-
-    @doc("Installation ID parameter")
-    @path
-    installationId: string;
-
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-    @body body: InstallationPatchModelItem[];
-  },
-  void
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
+    };
+  }
 >;
 
 @doc("Creates or overwrites an installation.")
-@route("/{hubName}/installations/{installationId}")
-@put
-op CreateOrUpdateInstallation is Azure.Core.Foundations.Operation<
+op CreateOrUpdateInstallation is Azure.Core.ResourceCreateOrReplace<
+  InstallationModel,
   {
-    @doc("Notification Hub Name")
-    @path
-    hubName: string;
+    parameters: {
+      @doc("API Version")
+      @header
+      "x-ms-version": MSApiVersionType;
 
-    @doc("API Version")
-    @header
-    "x-ms-version": MSApiVersionType;
-
-    @doc("Installation ID parameter")
-    @path
-    installationId: string;
-
-    @doc("Authorization Header value")
-    @header
-    Authorization: string;
-    @body body: InstallationModel;
-  },
-  void
+      @doc("Authorization Header value")
+      @header
+      Authorization: string;
+    };
+  }
 >;
 
 @doc("Sends a notification to the specified targets.")

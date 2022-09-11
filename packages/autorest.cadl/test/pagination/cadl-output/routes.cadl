@@ -9,39 +9,19 @@ namespace AutoRestPagingTestService;
 
 interface PagingOperations {
   @doc("A paging operation that must return result of the default 'value' node.")
-  GetNoItemNamePages is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetNoItemNamePages is Azure.Core.ResourceList<Product>;
 
   @doc("A paging operation that must ignore any kind of nextLink, and stop after page 1.")
-  GetNullNextLinkNamePages is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetNullNextLinkNamePages is Azure.Core.ResourceList<Product>;
 
   @doc("A paging operation that finishes on the first call without a nextlink")
-  GetSinglePages is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetSinglePages is Azure.Core.ResourceList<Product>;
 
   @doc("""
 A paging operation whose first response's items list is empty, but still
 returns a next link. Second (and final) call, will give you an items list of 1.
 """)
-  FirstResponseEmpty is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  FirstResponseEmpty is Azure.Core.ResourceList<Product>;
 
   @doc("A paging operation that includes a nextLink that has 10 pages")
   GetMultiplePages is Azure.Core.ResourceList<
@@ -162,10 +142,6 @@ seconds. The default is 30 seconds.
         @header
         maxresults: int32;
 
-        @doc("Offset of return value")
-        @path
-        offset: int32;
-
         @doc("""
 Sets the maximum time that the server can spend processing the request, in
 seconds. The default is 30 seconds.
@@ -180,48 +156,23 @@ seconds. The default is 30 seconds.
 A paging operation that fails on the first call with 500 and then retries and
 then get a response including a nextLink that has 10 pages
 """)
-  GetMultiplePagesRetryFirst is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetMultiplePagesRetryFirst is Azure.Core.ResourceList<Product>;
 
   @doc("""
 A paging operation that includes a nextLink that has 10 pages, of which the 2nd
 call fails first with 500. The client should retry and finish all 10 pages
 eventually.
 """)
-  GetMultiplePagesRetrySecond is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetMultiplePagesRetrySecond is Azure.Core.ResourceList<Product>;
 
   @doc("A paging operation that receives a 400 on the first call")
-  GetSinglePagesFailure is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetSinglePagesFailure is Azure.Core.ResourceList<Product>;
 
   @doc("A paging operation that receives a 400 on the second call")
-  GetMultiplePagesFailure is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetMultiplePagesFailure is Azure.Core.ResourceList<Product>;
 
   @doc("A paging operation that receives an invalid nextLink")
-  GetMultiplePagesFailureUri is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetMultiplePagesFailureUri is Azure.Core.ResourceList<Product>;
 
   @doc("A paging operation that doesn't return a full URL, just a fragment")
   GetMultiplePagesFragmentNextLink is Azure.Core.ResourceList<
@@ -231,10 +182,6 @@ eventually.
         @doc("Sets the api version to use.")
         @query
         api_version: string;
-
-        @doc("Sets the tenant to use.")
-        @path
-        tenant: string;
       };
     }
   >;
@@ -250,59 +197,43 @@ parameters grouped
         @doc("Sets the api version to use.")
         @query
         api_version: string;
-
-        @doc("Sets the tenant to use.")
-        @path
-        tenant: string;
       };
     }
   >;
 
   @doc("A long-running paging operation that includes a nextLink that has 10 pages")
-  // FIXME: (long-running-operation) This operation is long running please add the corresponding LRO decorators
-  // for more information see: https://github.com/Azure/cadl-azure/tree/main/packages/cadl-azure-core#decorators
-  @route("/paging/multiple/lro")
-  @post
-  GetMultiplePagesLRO is Azure.Core.Foundations.Operation<
+  GetMultiplePagesLRO is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<
+    ProductResult,
     {
-      @header "client-request-id": string;
+      parameters: {
+        @header "client-request-id": string;
 
-      @doc("Sets the maximum number of items to return in the response.")
-      @header
-      maxresults: int32;
+        @doc("Sets the maximum number of items to return in the response.")
+        @header
+        maxresults: int32;
 
-      @doc("""
+        @doc("""
 Sets the maximum time that the server can spend processing the request, in
 seconds. The default is 30 seconds.
 """)
-      @header
-      timeout: int32;
-    },
-    void
+        @header
+        timeout: int32;
+      };
+    }
   >;
 
   @doc("""
 A paging operation with api version. When calling the next link, you want to
 append your client's api version to the next link
 """)
-  AppendApiVersion is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  AppendApiVersion is Azure.Core.ResourceList<Product>;
 
   @doc("""
 A paging operation with api version. When calling the next link, you want to
 reformat it and override the returned api version with your client's api
 version
 """)
-  ReplaceApiVersion is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  ReplaceApiVersion is Azure.Core.ResourceList<Product>;
 
   @doc("A paging operation that doesn't return a full URL, just a fragment")
   NextFragment is Azure.Core.ResourceList<
@@ -312,14 +243,6 @@ version
         @doc("Sets the api version to use.")
         @query
         api_version: string;
-
-        @doc("Sets the tenant to use.")
-        @path
-        tenant: string;
-
-        @doc("Next link for list operation.")
-        @path
-        nextLink: string;
       };
     }
   >;
@@ -332,14 +255,6 @@ version
         @doc("Sets the api version to use.")
         @query
         api_version: string;
-
-        @doc("Sets the tenant to use.")
-        @path
-        tenant: string;
-
-        @doc("Next link for list operation.")
-        @path
-        nextLink: string;
       };
     }
   >;
@@ -348,10 +263,5 @@ version
 A paging operation that returns a paging model whose item name is is overriden
 by x-ms-client-name 'indexes'.
 """)
-  GetPagingModelWithItemNameWithXMSClientName is Azure.Core.ResourceList<
-    Product,
-    {
-      parameters: {};
-    }
-  >;
+  GetPagingModelWithItemNameWithXMSClientName is Azure.Core.ResourceList<Product>;
 }

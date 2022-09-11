@@ -27,8 +27,12 @@ export function getModelDecorators(model: ObjectSchema): CadlDecorator[] {
     decorators.push({ name: "error" });
   }
 
-  const resource = model.language.default.resource;
+  let resource = model.language.default.resource;
   if (resource) {
+    if (resource.startsWith("/")) {
+      // Remove the leading /
+      resource = resource.slice(1);
+    }
     decorators.push({
       name: "resource",
       module: "@azure-tools/cadl-azure-core",
