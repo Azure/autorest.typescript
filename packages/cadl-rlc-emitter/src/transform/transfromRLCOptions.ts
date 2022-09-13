@@ -19,10 +19,10 @@ export function transformRLCOptions(program: Program): RLCOptions {
   }
   const config: RLCOptions = JSON.parse(readFileSync(configFile).toString());
   if (config.packageDetails?.name) {
-    const nameParts = config.packageDetails?.name.split('/');
+    const nameParts = config.packageDetails?.name.split("/");
     if (nameParts.length === 2) {
       config.packageDetails.nameWithoutScope = nameParts[1];
-      config.packageDetails.scopeName = nameParts[0]?.replace('@', '');
+      config.packageDetails.scopeName = nameParts[0]?.replace("@", "");
     }
   }
   const serviceNs = getServiceNamespace(program);
@@ -31,13 +31,12 @@ export function transformRLCOptions(program: Program): RLCOptions {
     if (host?.[0]?.url) {
       config.endpoint = host[0].url;
     }
-    if(host?.[0]?.parameters) {
+    if (host?.[0]?.parameters) {
       // Currently we only support one parameter in the servers definition
-      for(const key of host?.[0]?.parameters.keys()) {
+      for (const key of host?.[0]?.parameters.keys()) {
         config.endpointParameterName = key;
         break;
       }
-      
     }
   }
   const securityInfo = processAuth(program);
@@ -82,14 +81,18 @@ function processAuth(program: Program) {
           break;
         case "oauth2":
           const flow = auth.flows[0];
-          if (flow === undefined) {
+          if (flow === undefined || !flow.scopes) {
             return undefined;
           }
           securityInfo.addCredentials = true;
           if (!securityInfo.credentialScopes) {
             securityInfo.credentialScopes = [];
           }
-          securityInfo.credentialScopes.push(...flow.scopes);
+          securityInfo.credentialScopes.push(
+            ...flow.scopes.map((item) => {
+              return item.value;
+            })
+          );
           break;
         default:
           break;

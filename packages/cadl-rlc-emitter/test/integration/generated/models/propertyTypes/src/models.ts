@@ -37,7 +37,7 @@ export interface DatetimeProperty {
 /** Model with a duration property */
 export interface DurationProperty {
   /** Property */
-  property: Date | string;
+  property: string;
 }
 
 /** Model with enum properties */

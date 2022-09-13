@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
-import { ModelType, Program, Type } from "@cadl-lang/compiler";
+import { Model, Program, Type } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
 const modelKey = Symbol("typescript-models");
@@ -53,10 +53,11 @@ export function transformSchemas(program: Program) {
       if (model.templateArguments && model.templateArguments.length > 0) {
         for (const temp of model.templateArguments) {
           setModelMap(temp, context);
+          break;
         }
       }
       setModelMap(model, context);
-      const indexer = (model as ModelType).indexer;
+      const indexer = (model as Model).indexer;
       if (indexer?.value && !program.stateMap(modelKey).get(indexer?.value)) {
         setModelMap(indexer.value, context);
       }

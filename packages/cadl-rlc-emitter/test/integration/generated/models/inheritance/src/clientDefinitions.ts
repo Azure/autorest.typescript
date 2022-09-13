@@ -4,9 +4,7 @@ import {
 } from "./parameters";
 import {
   BasicPolymorphicModelsSetValue200Response,
-  BasicPolymorphicModelsSetValueDefaultResponse,
   BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response,
-  BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -14,34 +12,22 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface BasicPolymorphicModelsOperations {
   setValue(
     options: BasicPolymorphicModelsSetValueParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValue200Response
-    | BasicPolymorphicModelsSetValueDefaultResponse
-  >;
+  ): StreamableMethod<BasicPolymorphicModelsSetValue200Response>;
   setValueWithPolymorphicProperty(
     options: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response
-    | BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse
-  >;
+  ): StreamableMethod<BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response>;
 }
 
 export interface SetValue {
   put(
     options: BasicPolymorphicModelsSetValueParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValue200Response
-    | BasicPolymorphicModelsSetValueDefaultResponse
-  >;
+  ): StreamableMethod<BasicPolymorphicModelsSetValue200Response>;
 }
 
 export interface SetValueWithPolymorphicProperty {
   put(
     options: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response
-    | BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse
-  >;
+  ): StreamableMethod<BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response>;
 }
 
 export interface Routes {
