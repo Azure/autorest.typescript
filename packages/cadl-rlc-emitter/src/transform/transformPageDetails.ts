@@ -1,10 +1,10 @@
 import { PagedResultMetadata } from "@azure-tools/cadl-azure-core";
 import { PageInfo } from "@azure-tools/rlc-codegen";
-import { ModelType, Program, Type } from "@cadl-lang/compiler";
+import { Model, Program, Type } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import {
-  extractPagedMetadataNested,
-  hasPagingOperations
+  hasPagingOperations,
+  extractPagedMetadataNested
 } from "../operationUtil.js";
 
 export function transformPageDetails(program: Program): PageInfo | undefined {
@@ -56,10 +56,7 @@ function extractPageDetainFromCore(program: Program) {
   itemNames.add("value");
   for (const route of routes) {
     for (const response of route.responses) {
-      const paged = extractPagedMetadataNested(
-        program,
-        response.type as ModelType
-      );
+      const paged = extractPagedMetadataNested(program, response.type as Model);
       if (paged) {
         const nextLinkName = parseNextLinkName(paged);
         if (nextLinkName) {

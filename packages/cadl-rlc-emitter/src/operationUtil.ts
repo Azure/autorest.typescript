@@ -2,8 +2,13 @@
 // Licensed under the MIT License.
 
 import { NameType, normalizeName } from "@azure-tools/rlc-codegen";
-import { ModelType, Program } from "@cadl-lang/compiler";
-import { getAllRoutes, OperationDetails } from "@cadl-lang/rest/http";
+import { Model, Program, Type } from "@cadl-lang/compiler";
+import {
+  getAllRoutes,
+  HttpOperationResponse,
+  OperationDetails,
+  StatusCode
+} from "@cadl-lang/rest/http";
 import {
   getPagedResult,
   PagedResultMetadata
@@ -19,6 +24,39 @@ export function getNormalizedOperationName(
         NameType.Interface
       )
     : normalizeName(`${route.operation.name}`, NameType.Interface);
+}
+
+export function getOperationStatuscode(
+  response: HttpOperationResponse
+): string {
+  switch (response.statusCode) {
+    case "*":
+      return "default";
+    default:
+      return `${response.statusCode}`;
+  }
+}
+
+export function isDefaultStatusCode(statusCode: StatusCode) {
+  return statusCode === "*";
+}
+
+export function isDefinedStatusCode(statusCode: StatusCode) {
+  return statusCode !== "*";
+}
+
+export function isBinaryPayload(body: Type, contentType: string) {
+  if (
+    body.kind === "Model" &&
+    body.name === "bytes" &&
+    contentType !== "application/json" &&
+    contentType !== "text/plain" &&
+    contentType !== `"application/json" | "text/plain"` &&
+    contentType !== `"text/plain" | "application/json"`
+  ) {
+    return true;
+  }
+  return false;
 }
 
 export function isLongRunningOperation(
@@ -42,41 +80,10 @@ export function isPagingOperation(
   operation: OperationDetails
 ) {
   for (const response of operation.responses) {
-    const paged = extractPagedMetadataNested(
-      program,
-      response.type as ModelType
-    );
+    const paged = extractPagedMetadataNested(program, response.type as Model);
     if (paged) {
       return true;
     }
-export function getOperationStatuscode(
-  response: HttpOperationResponse
-): string {
-  switch (response.statusCode) {
-    case "*":
-      return "default";
-    default:
-      return `${response.statusCode}`;
-  }
-}
-
-export function isDefaultStatusCode(statusCode: StatusCode) {
-  return statusCode === "*";
-}
-
-export function isDefinedStatusCode(statusCode: StatusCode) {
-  return statusCode !== "*";
-}
-
-export function isBinaryPayload(body: Type, contentType: string) {
-  return (
-    body.kind === "Model" &&
-    body.name === "bytes" &&
-    contentType !== "application/json" &&
-    contentType !== "text/plain" &&
-    contentType !== `"application/json" | "text/plain"` &&
-    contentType !== `"text/plain" | "application/json"`
-  );
   }
   return false;
 }
@@ -94,23 +101,23 @@ export function hasPagingOperations(program: Program) {
 
 export function extractPagedMetadataNested(
   program: Program,
-  responseType: ModelType
+  type: Model
 ): PagedResultMetadata | undefined {
   // This only works for `is Page<T>` not `extends Page<T>`.
-  let paged = getPagedResult(program, responseType);
+  let paged = getPagedResult(program, type);
   if (paged) {
     return paged;
   }
-  if (responseType.baseModel) {
-    paged = getPagedResult(program, responseType.baseModel);
+  if (type.baseModel) {
+    paged = getPagedResult(program, type.baseModel);
   }
   if (paged) {
     return paged;
   }
-  const templateArguments = responseType.templateArguments;
+  const templateArguments = type.templateArguments;
   if (templateArguments) {
     for (const argument of templateArguments) {
-      const modelArgument = argument as ModelType;
+      const modelArgument = argument as Model;
       if (modelArgument) {
         paged = extractPagedMetadataNested(program, modelArgument);
         if (paged) {
