@@ -336,8 +336,7 @@ Frequency extracted from the series, zero means no recurrent pattern has been
 found.
 """)
   @visibility("read")
-  @key
-  period: int32;
+  period?: int32;
 
   @doc("""
 isChangePoint contains change point properties for each input point. True means
@@ -622,8 +621,6 @@ model VariableValues {
 
 @resource("multivariate/models/{modelId}/last/detect")
 model LastDetectionResult {
-  @key
-  id: string;
   variableStates?: VariableState[];
   results?: AnomalyState[];
 }

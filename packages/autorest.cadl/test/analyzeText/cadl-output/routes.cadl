@@ -38,16 +38,18 @@ interface TextAnalysisAuthoringOperations {
   DeleteProject is Azure.Core.LongRunningResourceDelete<ProjectMetadata>;
 
   @doc("Triggers a job to export a project's data.")
-  Export is Azure.Core.ResourceAction<ProjectMetadata,
+  @route("/authoring/analyze-text/projects/{projectName}/:export")
+  @post
+  Export is Azure.Core.Foundations.Operation<
     {
       @doc("The name of the project to use.")
       @path
       projectName: string;
 
       @doc("""
-            Specifies the method used to interpret string offsets. For additional
-            information see https://aka.ms/text-analytics-offsets.
-          """)
+Specifies the method used to interpret string offsets. For additional
+information see https://aka.ms/text-analytics-offsets.
+""")
       @query
       stringIndexType: StringIndexType;
 
@@ -142,7 +144,7 @@ exists, the data of that project is replaced.
   GetDeploymentStatus is Azure.Core.ResourceRead<DeploymentJobState>;
 
   @doc("Gets the status of an existing swap deployment job.")
-  GetSwapDeploymentsStatus is Azure.Core.ResourceRead<DeploymentJobSwapState>;
+  GetSwapDeploymentsStatus is Azure.Core.ResourceRead<DeploymentJobState>;
 
   @doc("""
 Gets the status of an export job. Once job completes, returns the project

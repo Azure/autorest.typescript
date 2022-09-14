@@ -1,5 +1,5 @@
 {
-  "name": "microsoft-cognitive-language-service---question-answering",
+  "name": "microsoft-cognitive-language-service---question-answering---authoring",
   "dependencies": {
     "@azure-tools/cadl-azure-core": "0.7.0",
     "@cadl-lang/compiler": "^0.34.0",
