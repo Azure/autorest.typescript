@@ -49,7 +49,10 @@ export default function createClient(
       getConsortiumMembers: (options) => {
         return client.path("/app/governance/members").get(options);
       },
-      postLedgerEntry: (options) => {
+      listLedgerEntries: (options) => {
+        return client.path("/app/transactions").get(options);
+      },
+      createLedgerEntry: (options) => {
         return client.path("/app/transactions").post(options);
       },
       getLedgerEntry: (transactionId, options) => {
@@ -68,7 +71,9 @@ export default function createClient(
           .get(options);
       },
       getCurrentLedgerEntry: (options) => {
-        return client.path("/app/transactions/current").get(options);
+        return client
+          .path("/app/transactions:getCurrentLedgerEntry")
+          .get(options);
       },
       deleteUser: (userId, options) => {
         return client.path("/app/users/{userId}", userId).delete(options);

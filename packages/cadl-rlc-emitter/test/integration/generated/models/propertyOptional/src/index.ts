@@ -1,10 +1,10 @@
-import OptionalProperties from "./optionalProperties";
+import ModelsPropertyOptional from "./modelsPropertyOptional";
 
-export * from "./optionalProperties";
+export * from "./modelsPropertyOptional";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default OptionalProperties;
+export default ModelsPropertyOptional;

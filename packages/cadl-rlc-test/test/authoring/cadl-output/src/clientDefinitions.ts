@@ -59,7 +59,7 @@ export interface ProjectsOperations {
   /** Creates a new project or updates an existing one. */
   createOrUpdate(
     projectName: string,
-    options?: ProjectsCreateOrUpdateParameters
+    options: ProjectsCreateOrUpdateParameters
   ): StreamableMethod<
     | ProjectsCreateOrUpdate200Response
     | ProjectsCreateOrUpdate201Response
@@ -191,7 +191,7 @@ export interface GlobalOperations {
 export interface ProjectsCreateOrUpdate {
   /** Creates a new project or updates an existing one. */
   patch(
-    options?: ProjectsCreateOrUpdateParameters
+    options: ProjectsCreateOrUpdateParameters
   ): StreamableMethod<
     | ProjectsCreateOrUpdate200Response
     | ProjectsCreateOrUpdate201Response

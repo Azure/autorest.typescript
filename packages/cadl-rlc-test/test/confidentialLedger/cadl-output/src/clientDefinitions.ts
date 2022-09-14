@@ -3,7 +3,8 @@ import {
   ConfidentialLedgerGetEnclaveQuotesParameters,
   ConfidentialLedgerGetConstitutionParameters,
   ConfidentialLedgerGetConsortiumMembersParameters,
-  ConfidentialLedgerPostLedgerEntryParameters,
+  ConfidentialLedgerListLedgerEntriesParameters,
+  ConfidentialLedgerCreateLedgerEntryParameters,
   ConfidentialLedgerGetLedgerEntryParameters,
   ConfidentialLedgerGetReceiptParameters,
   ConfidentialLedgerGetTransactionStatusParameters,
@@ -21,8 +22,10 @@ import {
   ConfidentialLedgerGetConstitutionDefaultResponse,
   ConfidentialLedgerGetConsortiumMembers200Response,
   ConfidentialLedgerGetConsortiumMembersDefaultResponse,
-  ConfidentialLedgerPostLedgerEntry200Response,
-  ConfidentialLedgerPostLedgerEntryDefaultResponse,
+  ConfidentialLedgerListLedgerEntries200Response,
+  ConfidentialLedgerListLedgerEntriesDefaultResponse,
+  ConfidentialLedgerCreateLedgerEntry201Response,
+  ConfidentialLedgerCreateLedgerEntryDefaultResponse,
   ConfidentialLedgerGetLedgerEntry200Response,
   ConfidentialLedgerGetLedgerEntryDefaultResponse,
   ConfidentialLedgerGetReceipt200Response,
@@ -36,6 +39,7 @@ import {
   ConfidentialLedgerGetUser200Response,
   ConfidentialLedgerGetUserDefaultResponse,
   ConfidentialLedgerCreateOrUpdateUser200Response,
+  ConfidentialLedgerCreateOrUpdateUser201Response,
   ConfidentialLedgerCreateOrUpdateUserDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -70,13 +74,21 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetConsortiumMembers200Response
     | ConfidentialLedgerGetConsortiumMembersDefaultResponse
   >;
-  /** A collection id may optionally be specified. */
-  postLedgerEntry(
-    options: ConfidentialLedgerPostLedgerEntryParameters
+  /** A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned. */
+  listLedgerEntries(
+    options?: ConfidentialLedgerListLedgerEntriesParameters
   ): StreamableMethod<
-    | ConfidentialLedgerPostLedgerEntry200Response
-    | ConfidentialLedgerPostLedgerEntryDefaultResponse
+    | ConfidentialLedgerListLedgerEntries200Response
+    | ConfidentialLedgerListLedgerEntriesDefaultResponse
   >;
+  /** A collection id may optionally be specified. */
+  createLedgerEntry(
+    options?: ConfidentialLedgerCreateLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerCreateLedgerEntry201Response
+    | ConfidentialLedgerCreateLedgerEntryDefaultResponse
+  >;
+  /** Get a LedgerEntry */
   getLedgerEntry(
     transactionId: string,
     options?: ConfidentialLedgerGetLedgerEntryParameters
@@ -84,6 +96,7 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetLedgerEntry200Response
     | ConfidentialLedgerGetLedgerEntryDefaultResponse
   >;
+  /** Runs a custom action on LedgerEntry */
   getReceipt(
     transactionId: string,
     options?: ConfidentialLedgerGetReceiptParameters
@@ -91,6 +104,7 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetReceipt200Response
     | ConfidentialLedgerGetReceiptDefaultResponse
   >;
+  /** Runs a custom action on LedgerEntry */
   getTransactionStatus(
     transactionId: string,
     options?: ConfidentialLedgerGetTransactionStatusParameters
@@ -98,12 +112,14 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetTransactionStatus200Response
     | ConfidentialLedgerGetTransactionStatusDefaultResponse
   >;
+  /** Runs a custom action on LedgerEntry */
   getCurrentLedgerEntry(
     options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetCurrentLedgerEntry200Response
     | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
   >;
+  /** Delete a LedgerUser */
   deleteUser(
     userId: string,
     options?: ConfidentialLedgerDeleteUserParameters
@@ -111,6 +127,7 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerDeleteUser204Response
     | ConfidentialLedgerDeleteUserDefaultResponse
   >;
+  /** Get a LedgerUser */
   getUser(
     userId: string,
     options?: ConfidentialLedgerGetUserParameters
@@ -118,11 +135,13 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetUser200Response
     | ConfidentialLedgerGetUserDefaultResponse
   >;
+  /** Creates or updates a LedgerUser */
   createOrUpdateUser(
     userId: string,
     options: ConfidentialLedgerCreateOrUpdateUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUser201Response
     | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
   >;
 }
@@ -167,17 +186,25 @@ export interface GetConsortiumMembers {
   >;
 }
 
-export interface PostLedgerEntry {
+export interface ListLedgerEntries {
+  /** A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned. */
+  get(
+    options?: ConfidentialLedgerListLedgerEntriesParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerListLedgerEntries200Response
+    | ConfidentialLedgerListLedgerEntriesDefaultResponse
+  >;
   /** A collection id may optionally be specified. */
   post(
-    options: ConfidentialLedgerPostLedgerEntryParameters
+    options?: ConfidentialLedgerCreateLedgerEntryParameters
   ): StreamableMethod<
-    | ConfidentialLedgerPostLedgerEntry200Response
-    | ConfidentialLedgerPostLedgerEntryDefaultResponse
+    | ConfidentialLedgerCreateLedgerEntry201Response
+    | ConfidentialLedgerCreateLedgerEntryDefaultResponse
   >;
 }
 
 export interface GetLedgerEntry {
+  /** Get a LedgerEntry */
   get(
     options?: ConfidentialLedgerGetLedgerEntryParameters
   ): StreamableMethod<
@@ -187,6 +214,7 @@ export interface GetLedgerEntry {
 }
 
 export interface GetReceipt {
+  /** Runs a custom action on LedgerEntry */
   get(
     options?: ConfidentialLedgerGetReceiptParameters
   ): StreamableMethod<
@@ -196,6 +224,7 @@ export interface GetReceipt {
 }
 
 export interface GetTransactionStatus {
+  /** Runs a custom action on LedgerEntry */
   get(
     options?: ConfidentialLedgerGetTransactionStatusParameters
   ): StreamableMethod<
@@ -205,6 +234,7 @@ export interface GetTransactionStatus {
 }
 
 export interface GetCurrentLedgerEntry {
+  /** Runs a custom action on LedgerEntry */
   get(
     options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
@@ -214,22 +244,26 @@ export interface GetCurrentLedgerEntry {
 }
 
 export interface DeleteUser {
+  /** Delete a LedgerUser */
   delete(
     options?: ConfidentialLedgerDeleteUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerDeleteUser204Response
     | ConfidentialLedgerDeleteUserDefaultResponse
   >;
+  /** Get a LedgerUser */
   get(
     options?: ConfidentialLedgerGetUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetUser200Response
     | ConfidentialLedgerGetUserDefaultResponse
   >;
+  /** Creates or updates a LedgerUser */
   patch(
     options: ConfidentialLedgerCreateOrUpdateUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUser201Response
     | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
   >;
 }
@@ -243,8 +277,8 @@ export interface Routes {
   (path: "/app/governance/constitution"): GetConstitution;
   /** Resource for '/app/governance/members' has methods for the following verbs: get */
   (path: "/app/governance/members"): GetConsortiumMembers;
-  /** Resource for '/app/transactions' has methods for the following verbs: post */
-  (path: "/app/transactions"): PostLedgerEntry;
+  /** Resource for '/app/transactions' has methods for the following verbs: get, post */
+  (path: "/app/transactions"): ListLedgerEntries;
   /** Resource for '/app/transactions/\{transactionId\}' has methods for the following verbs: get */
   (
     path: "/app/transactions/{transactionId}",
@@ -260,8 +294,8 @@ export interface Routes {
     path: "/app/transactions/{transactionId}/status",
     transactionId: string
   ): GetTransactionStatus;
-  /** Resource for '/app/transactions/current' has methods for the following verbs: get */
-  (path: "/app/transactions/current"): GetCurrentLedgerEntry;
+  /** Resource for '/app/transactions:getCurrentLedgerEntry' has methods for the following verbs: get */
+  (path: "/app/transactions:getCurrentLedgerEntry"): GetCurrentLedgerEntry;
   /** Resource for '/app/users/\{userId\}' has methods for the following verbs: delete, get, patch */
   (path: "/app/users/{userId}", userId: string): DeleteUser;
 }

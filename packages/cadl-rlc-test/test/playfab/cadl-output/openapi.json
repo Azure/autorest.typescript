@@ -47,7 +47,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "GetEntityTokenRequest",
@@ -95,7 +98,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "WriteEventsRequest",
@@ -142,7 +148,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "AbortFileUploadsRequest",
@@ -190,7 +199,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "DeleteFilesRequest",
@@ -238,7 +250,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "FinalizeFileUploadsRequest",
@@ -286,7 +301,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "GetFilesRequest",
@@ -334,7 +352,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "InitiateFileUploadsRequest",
@@ -382,7 +403,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "GetObjectsRequest",
@@ -430,7 +454,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "SetObjectsRequest",
@@ -471,7 +498,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "AuthenticateAndroidDeviceIdIdentityRequest",
@@ -511,7 +541,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "AuthenticateCustomIdIdentityRequest",
@@ -551,7 +584,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "AuthenticateIOSDeviceIdIdentityRequest",
@@ -591,7 +627,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "AuthenticateNintendoSwitchDeviceIDIdentityRequest",
@@ -638,7 +677,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "GetLinkedPlayerIdentitiesRequest",
@@ -685,7 +727,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "UnlinkPlayerIdentityRequest",
@@ -732,7 +777,10 @@
             "type": "string",
             "enum": [
               "application/json"
-            ]
+            ],
+            "x-ms-enum": {
+              "modelAsString": false
+            }
           },
           {
             "name": "LoginPlayerRequest",

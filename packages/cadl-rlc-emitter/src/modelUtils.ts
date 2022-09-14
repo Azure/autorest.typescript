@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 
 import {
-  EnumMemberType,
-  EnumType,
+  Enum,
+  EnumMember,
   getDoc,
+  getEffectiveModelType,
   getFormat,
   getFriendlyName,
   getIntrinsicModelName,
@@ -24,11 +25,11 @@ import {
   isSecret,
   isStringType,
   isTemplateDeclaration,
-  ModelType,
-  ModelTypeProperty,
+  Model,
+  ModelProperty,
   Program,
   Type,
-  UnionType
+  Union
 } from "@cadl-lang/compiler";
 import { Discriminator, getDiscriminator } from "@cadl-lang/rest";
 import { reportDiagnostic } from "./lib.js";
@@ -58,7 +59,7 @@ export function getSchemaForType(
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
-  const type = getEffectiveModelType(typeInput);
+  const type = getEffectiveModelFromType(typeInput);
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -81,9 +82,10 @@ export function getSchemaForType(
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   }
-  function getEffectiveModelType(type: Type) {
+  function getEffectiveModelFromType(type: Type) {
     if (type.kind === "Model") {
-      const effective = program.checker.getEffectiveModelType(
+      const effective = getEffectiveModelType(
+        program,
         type,
         isSchemaProperty
       );
@@ -91,7 +93,7 @@ export function getSchemaForType(
         return effective;
       }
     }
-    function isSchemaProperty(property: ModelTypeProperty) {
+    function isSchemaProperty(property: ModelProperty) {
       const headerInfo = getHeaderFieldName(program, property);
       const queryInfo = getQueryParamName(program, property);
       const pathInfo = getPathParamName(program, property);
@@ -107,7 +109,7 @@ export function getSchemaForType(
   });
   return undefined;
 }
-export function includeDerivedModel(model: ModelType): boolean {
+export function includeDerivedModel(model: Model): boolean {
   return (
     !isTemplateDeclaration(model) &&
     (model.templateArguments === undefined ||
@@ -125,7 +127,7 @@ function isNullType(program: Program, type: Type): boolean {
 
 function getSchemaForUnion(
   program: Program,
-  union: UnionType,
+  union: Union,
   usage?: SchemaContext[]
 ) {
   let type: string;
@@ -241,7 +243,7 @@ function getStringValues(type: Type): string[] {
 function validateDiscriminator(
   program: Program,
   discriminator: Discriminator,
-  derivedModels: readonly ModelType[]
+  derivedModels: readonly Model[]
 ): boolean {
   const { propertyName } = discriminator;
   const retVals = derivedModels.map((t) => {
@@ -315,7 +317,7 @@ function validateDiscriminator(
  * Headers, parameters, status codes are not schema properties even they are
  * represented as properties in Cadl.
  */
-function isSchemaProperty(program: Program, property: ModelTypeProperty) {
+function isSchemaProperty(program: Program, property: ModelProperty) {
   const headerInfo = getHeaderFieldName(program, property);
   const queryInfo = getQueryParamName(program, property);
   const pathInfo = getPathParamName(program, property);
@@ -343,12 +345,15 @@ function isSchemaProperty(program: Program, property: ModelTypeProperty) {
 // }
 function getSchemaForModel(
   program: Program,
-  model: ModelType,
+  model: Model,
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
   const friendlyName = getFriendlyName(program, model);
   let name = model.name;
+  if (name === '') {
+    model;
+  }
   if (
     !friendlyName &&
     model.templateArguments &&
@@ -532,7 +537,7 @@ function mapCadlTypeToTypeScript(
 }
 function applyIntrinsicDecorators(
   program: Program,
-  cadlType: ModelType | ModelTypeProperty,
+  cadlType: Model | ModelProperty,
   target: any
 ): any {
   const newTarget = { ...target };
@@ -602,20 +607,16 @@ function applyIntrinsicDecorators(
 
   return newTarget;
 }
-function getSchemaForEnum(program: Program, e: EnumType) {
+function getSchemaForEnum(program: Program, e: Enum) {
   const values = [];
-  if (e.members[0] === undefined) {
-    reportDiagnostic(program, { code: "union-unsupported", target: e });
-    return;
-  }
-  const type = enumMemberType(e.members[0]);
-  for (const option of e.members) {
+  const type = enumMemberType(e.members.values().next().value);
+  for (const option of e.members.values()) {
     if (type !== enumMemberType(option)) {
       reportDiagnostic(program, { code: "union-unsupported", target: e });
       continue;
     }
 
-    values.push(option.value ? option.value : option.name);
+    values.push(option.value ?? option.name);
   }
 
   const schema: any = { type, description: getDoc(program, e) };
@@ -628,9 +629,11 @@ function getSchemaForEnum(program: Program, e: EnumType) {
   }
 
   return schema;
-  function enumMemberType(member: EnumMemberType) {
-    if (!member.value || typeof member.value === "string") return "string";
-    return "number";
+  function enumMemberType(member: EnumMember) {
+    if (typeof member.value === "number") {
+      return "number";
+    }
+    return "string";
   }
 }
 /**
@@ -638,10 +641,10 @@ function getSchemaForEnum(program: Program, e: EnumType) {
  */
 function mapCadlIntrinsicModelToTypeScript(
   program: Program,
-  cadlType: ModelType | ModelTypeProperty,
+  cadlType: Model | ModelProperty,
   usage?: SchemaContext[]
 ): any | undefined {
-  const indexer = (cadlType as ModelType).indexer;
+  const indexer = (cadlType as Model).indexer;
   if (indexer !== undefined) {
     if (!isNeverType(indexer.key)) {
       const name = getIntrinsicModelName(program, indexer.key);
@@ -812,9 +815,9 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
   // TODO: Handle more type cases
   switch (schema.type) {
     case "array":
-      return (schema as any).items
+      return [(schema as any).items]
         .filter((i: Schema) => i.type === "object")
-        .map((i: Schema) => i.outputTypeName);
+        .map((i: Schema) => i.outputTypeName?? "");
     case "object":
       return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
     default:
@@ -834,7 +837,7 @@ function getEnumStringDescription(type: any) {
 
 export function getFormattedPropertyDoc(
   program: Program,
-  cadlType: ModelTypeProperty,
+  cadlType: ModelProperty,
   schemaType: any
 ) {
   const propertyDoc = getDoc(program, cadlType);
