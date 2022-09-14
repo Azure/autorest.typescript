@@ -1,4 +1,5 @@
 export interface ProductOutput {
+  key: string;
   received: "raw" | "model";
 }
 

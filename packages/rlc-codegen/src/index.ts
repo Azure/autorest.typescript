@@ -17,3 +17,5 @@ export * from "./buildPackageFile.js";
 export * from "./buildRollupConfig.js";
 export * from "./buildTsConfig.js";
 export * from "./buildApiExtractorConfig.js";
+export * from "./buildPaginateHelper.js";
+export * from "./buildPollingHelper.js";

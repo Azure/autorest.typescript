@@ -5,55 +5,34 @@ import {
 } from "./parameters";
 import {
   NestedModelsBasicSendNestedModel200Response,
-  NestedModelsBasicSendNestedModelDefaultResponse,
   NestedModelsBasicGetNestedModel200Response,
-  NestedModelsBasicGetNestedModelDefaultResponse,
   NestedModelsBasicSetNestedModel200Response,
-  NestedModelsBasicSetNestedModelDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for NestedModelsBasic operations */
 export interface NestedModelsBasicOperations {
   sendNestedModel(
-    options?: NestedModelsBasicSendNestedModelParameters
-  ): StreamableMethod<
-    | NestedModelsBasicSendNestedModel200Response
-    | NestedModelsBasicSendNestedModelDefaultResponse
-  >;
+    options: NestedModelsBasicSendNestedModelParameters
+  ): StreamableMethod<NestedModelsBasicSendNestedModel200Response>;
   getNestedModel(
     options?: NestedModelsBasicGetNestedModelParameters
-  ): StreamableMethod<
-    | NestedModelsBasicGetNestedModel200Response
-    | NestedModelsBasicGetNestedModelDefaultResponse
-  >;
+  ): StreamableMethod<NestedModelsBasicGetNestedModel200Response>;
   setNestedModel(
-    options?: NestedModelsBasicSetNestedModelParameters
-  ): StreamableMethod<
-    | NestedModelsBasicSetNestedModel200Response
-    | NestedModelsBasicSetNestedModelDefaultResponse
-  >;
+    options: NestedModelsBasicSetNestedModelParameters
+  ): StreamableMethod<NestedModelsBasicSetNestedModel200Response>;
 }
 
 export interface SendNestedModel {
   post(
-    options?: NestedModelsBasicSendNestedModelParameters
-  ): StreamableMethod<
-    | NestedModelsBasicSendNestedModel200Response
-    | NestedModelsBasicSendNestedModelDefaultResponse
-  >;
+    options: NestedModelsBasicSendNestedModelParameters
+  ): StreamableMethod<NestedModelsBasicSendNestedModel200Response>;
   get(
     options?: NestedModelsBasicGetNestedModelParameters
-  ): StreamableMethod<
-    | NestedModelsBasicGetNestedModel200Response
-    | NestedModelsBasicGetNestedModelDefaultResponse
-  >;
+  ): StreamableMethod<NestedModelsBasicGetNestedModel200Response>;
   put(
-    options?: NestedModelsBasicSetNestedModelParameters
-  ): StreamableMethod<
-    | NestedModelsBasicSetNestedModel200Response
-    | NestedModelsBasicSetNestedModelDefaultResponse
-  >;
+    options: NestedModelsBasicSetNestedModelParameters
+  ): StreamableMethod<NestedModelsBasicSetNestedModel200Response>;
 }
 
 export interface Routes {

@@ -6,13 +6,9 @@ import {
 } from "./parameters";
 import {
   DogsGetDogs200Response,
-  DogsGetDogsDefaultResponse,
   DogsSetDogs200Response,
-  DogsSetDogsDefaultResponse,
   CatsGetCats200Response,
-  CatsGetCatsDefaultResponse,
   CatsSetCats200Response,
-  CatsSetCatsDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -20,41 +16,37 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface dogsOperations {
   getDogs(
     options?: DogsGetDogsParameters
-  ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
+  ): StreamableMethod<DogsGetDogs200Response>;
   setDogs(
-    options?: DogsSetDogsParameters
-  ): StreamableMethod<DogsSetDogs200Response | DogsSetDogsDefaultResponse>;
+    options: DogsSetDogsParameters
+  ): StreamableMethod<DogsSetDogs200Response>;
 }
 
 /** Contains operations for cats operations */
 export interface catsOperations {
   getCats(
     options?: CatsGetCatsParameters
-  ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
+  ): StreamableMethod<CatsGetCats200Response>;
   setCats(
-    options?: CatsSetCatsParameters
-  ): StreamableMethod<CatsSetCats200Response | CatsSetCatsDefaultResponse>;
+    options: CatsSetCatsParameters
+  ): StreamableMethod<CatsSetCats200Response>;
 }
 
 export interface DogsGetDogs {
   get(
     options?: DogsGetDogsParameters
-  ): StreamableMethod<DogsGetDogs200Response | DogsGetDogsDefaultResponse>;
+  ): StreamableMethod<DogsGetDogs200Response>;
 }
 
 export interface DogsSetDogs {
-  put(
-    options?: DogsSetDogsParameters
-  ): StreamableMethod<DogsSetDogs200Response | DogsSetDogsDefaultResponse>;
+  put(options: DogsSetDogsParameters): StreamableMethod<DogsSetDogs200Response>;
 }
 
 export interface CatsGetCats {
   get(
     options?: CatsGetCatsParameters
-  ): StreamableMethod<CatsGetCats200Response | CatsGetCatsDefaultResponse>;
-  put(
-    options?: CatsSetCatsParameters
-  ): StreamableMethod<CatsSetCats200Response | CatsSetCatsDefaultResponse>;
+  ): StreamableMethod<CatsGetCats200Response>;
+  put(options: CatsSetCatsParameters): StreamableMethod<CatsSetCats200Response>;
 }
 
 export interface Routes {
@@ -66,7 +58,7 @@ export interface Routes {
   (path: "/multi-interface/cats"): CatsGetCats;
 }
 
-export type MultiInterfaceClient = Client & {
+export type InterfaceClient = Client & {
   path: Routes;
   dogs: dogsOperations;
   cats: catsOperations;

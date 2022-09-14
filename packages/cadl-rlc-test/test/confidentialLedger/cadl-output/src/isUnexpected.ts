@@ -7,8 +7,10 @@ import {
   ConfidentialLedgerGetConstitutionDefaultResponse,
   ConfidentialLedgerGetConsortiumMembers200Response,
   ConfidentialLedgerGetConsortiumMembersDefaultResponse,
-  ConfidentialLedgerPostLedgerEntry200Response,
-  ConfidentialLedgerPostLedgerEntryDefaultResponse,
+  ConfidentialLedgerListLedgerEntries200Response,
+  ConfidentialLedgerListLedgerEntriesDefaultResponse,
+  ConfidentialLedgerCreateLedgerEntry201Response,
+  ConfidentialLedgerCreateLedgerEntryDefaultResponse,
   ConfidentialLedgerGetLedgerEntry200Response,
   ConfidentialLedgerGetLedgerEntryDefaultResponse,
   ConfidentialLedgerGetReceipt200Response,
@@ -22,6 +24,7 @@ import {
   ConfidentialLedgerGetUser200Response,
   ConfidentialLedgerGetUserDefaultResponse,
   ConfidentialLedgerCreateOrUpdateUser200Response,
+  ConfidentialLedgerCreateOrUpdateUser201Response,
   ConfidentialLedgerCreateOrUpdateUserDefaultResponse,
 } from "./responses";
 
@@ -30,14 +33,15 @@ const responseMap: Record<string, string[]> = {
   "GET /app/enclaveQuotes": ["200"],
   "GET /app/governance/constitution": ["200"],
   "GET /app/governance/members": ["200"],
-  "POST /app/transactions": ["200"],
+  "GET /app/transactions": ["200"],
+  "POST /app/transactions": ["201"],
   "GET /app/transactions/{transactionId}": ["200"],
   "GET /app/transactions/{transactionId}/receipt": ["200"],
   "GET /app/transactions/{transactionId}/status": ["200"],
-  "GET /app/transactions/current": ["200"],
+  "GET /app/transactions:getCurrentLedgerEntry": ["200"],
   "DELETE /app/users/{userId}": ["204"],
   "GET /app/users/{userId}": ["200"],
-  "PATCH /app/users/{userId}": ["200"],
+  "PATCH /app/users/{userId}": ["200", "201"],
 };
 
 export function isUnexpected(
@@ -62,9 +66,14 @@ export function isUnexpected(
 ): response is ConfidentialLedgerGetConsortiumMembersDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerPostLedgerEntry200Response
-    | ConfidentialLedgerPostLedgerEntryDefaultResponse
-): response is ConfidentialLedgerPostLedgerEntryDefaultResponse;
+    | ConfidentialLedgerListLedgerEntries200Response
+    | ConfidentialLedgerListLedgerEntriesDefaultResponse
+): response is ConfidentialLedgerListLedgerEntriesDefaultResponse;
+export function isUnexpected(
+  response:
+    | ConfidentialLedgerCreateLedgerEntry201Response
+    | ConfidentialLedgerCreateLedgerEntryDefaultResponse
+): response is ConfidentialLedgerCreateLedgerEntryDefaultResponse;
 export function isUnexpected(
   response:
     | ConfidentialLedgerGetLedgerEntry200Response
@@ -98,6 +107,7 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUser201Response
     | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
 ): response is ConfidentialLedgerCreateOrUpdateUserDefaultResponse;
 export function isUnexpected(
@@ -110,8 +120,10 @@ export function isUnexpected(
     | ConfidentialLedgerGetConstitutionDefaultResponse
     | ConfidentialLedgerGetConsortiumMembers200Response
     | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-    | ConfidentialLedgerPostLedgerEntry200Response
-    | ConfidentialLedgerPostLedgerEntryDefaultResponse
+    | ConfidentialLedgerListLedgerEntries200Response
+    | ConfidentialLedgerListLedgerEntriesDefaultResponse
+    | ConfidentialLedgerCreateLedgerEntry201Response
+    | ConfidentialLedgerCreateLedgerEntryDefaultResponse
     | ConfidentialLedgerGetLedgerEntry200Response
     | ConfidentialLedgerGetLedgerEntryDefaultResponse
     | ConfidentialLedgerGetReceipt200Response
@@ -125,13 +137,15 @@ export function isUnexpected(
     | ConfidentialLedgerGetUser200Response
     | ConfidentialLedgerGetUserDefaultResponse
     | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUser201Response
     | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
 ): response is
   | ConfidentialLedgerListCollectionsDefaultResponse
   | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
   | ConfidentialLedgerGetConstitutionDefaultResponse
   | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-  | ConfidentialLedgerPostLedgerEntryDefaultResponse
+  | ConfidentialLedgerListLedgerEntriesDefaultResponse
+  | ConfidentialLedgerCreateLedgerEntryDefaultResponse
   | ConfidentialLedgerGetLedgerEntryDefaultResponse
   | ConfidentialLedgerGetReceiptDefaultResponse
   | ConfidentialLedgerGetTransactionStatusDefaultResponse

@@ -16,15 +16,16 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
     // https://github.com/Azure/autorest.typescript/issues/1535
     xit("should get model", async () => {
       const result = await client
-        .path("/resilency/devdriven/customization/model/{mode}", "raw")
+        .path("/resiliency/devdriven/customization/model/{mode}", "raw")
         .get();
+      console.log(result);
       assert.equal(result.status, "200");
       assert.equal(result.body.received, "raw");
     });
 
     xit("should post model", async () => {
       const result = await client
-        .path("/resilency/devdriven/customization/model/{mode}", "raw")
+        .path("/resiliency/devdriven/customization/model/{mode}", "raw")
         .post({ body: { hello: "world!" } });
       assert.equal(result.status, "200");
       assert.equal(result.body.received, "raw");
@@ -34,7 +35,7 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
   describe("dpg customization with model model", () => {
     xit("should get model", async () => {
       const result = await client
-        .path("/resilency/devdriven/customization/model/{mode}", "model")
+        .path("/resiliency/devdriven/customization/model/{mode}", "model")
         .get();
       assert.equal(result.status, "200");
       assert.equal(result.body.received, "model");
@@ -42,7 +43,7 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
 
     xit("should post model", async () => {
       const result = await client
-        .path("/resilency/devdriven/customization/model/{mode}", "model")
+        .path("/resiliency/devdriven/customization/model/{mode}", "model")
         .post({ body: { hello: "world!" } });
       assert.equal(result.status, "200");
       assert.equal(result.body.received, "model");

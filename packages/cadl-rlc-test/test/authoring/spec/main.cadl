@@ -56,24 +56,20 @@ model Project {
   language: string;
 
   @doc("Represents the project creation datetime.")
-  @format("date-time")
   @visibility("read")
-  createdDateTime: string;
+  createdDateTime: zonedDateTime;
 
   @doc("Represents the project last modification datetime.")
-  @format("date-time")
   @visibility("read")
-  lastModifiedDateTime: string;
+  lastModifiedDateTime: zonedDateTime;
 
   @doc("Represents the project last training datetime.")
-  @format("date-time")
   @visibility("read")
-  lastTrainedDateTime: string;
+  lastTrainedDateTime: zonedDateTime;
 
   @doc("Represents the project last deployment datetime.")
-  @format("date-time")
   @visibility("read")
-  lastDeployedDateTime: string;
+  lastDeployedDateTime: zonedDateTime;
 }
 
 @knownValues(ProjectKindValues)
@@ -106,19 +102,16 @@ model Job {
   jobId: string;
 
   @doc("The creation date time of the job.")
-  @format("date-time")
   @visibility("read")
-  createdDateTime: string;
+  createdDateTime: zonedDateTime;
 
   @doc("The the last date time the job was updated.")
-  @format("date-time")
   @visibility("read")
-  lastUpdatedDateTime: string;
+  lastUpdatedDateTime: zonedDateTime;
 
   @doc("The expiration date time of the job.")
-  @format("date-time")
   @visibility("read")
-  expirationDateTime: string;
+  expirationDateTime: zonedDateTime;
 
   @doc("The job status.")
   status: JobStatus;
@@ -304,19 +297,15 @@ interface Jobs {
 
 @route("projects/global/")
 interface Global {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
   @get
   @route("languages")
-  getSupportedLanguages(
-    ...ListQueryParams,
-    ...Foundations.ApiVersionParameter
-  ): SupportedLanguages | Foundations.ErrorResponse;
+  getSupportedLanguages is Foundations.Operation<ListQueryParams, SupportedLanguages>;
 
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
   @get
   @route("training-config-versions")
-  listTrainingConfigVersions(
-    ...ListQueryParams,
-    ...Foundations.ApiVersionParameter
-  ): TrainingConfigVersions | Foundations.ErrorResponse;
+  listTrainingConfigVersions is Foundations.Operation<ListQueryParams, TrainingConfigVersions>;
 }
 
 // Missing operations

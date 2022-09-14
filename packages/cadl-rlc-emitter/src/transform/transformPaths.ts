@@ -16,6 +16,12 @@ import {
   OperationDetails
 } from "@cadl-lang/rest/http";
 import { getSchemaForType } from "../modelUtils.js";
+import { isApiVersion } from "../paramUtil.js";
+import {
+  getOperationStatuscode,
+  isDefaultStatusCode,
+  isDefinedStatusCode
+} from "../operationUtil.js";
 
 export function transformPaths(program: Program): Paths {
   const [routes, _diagnostics] = getAllRoutes(program);
@@ -26,7 +32,7 @@ export function transformPaths(program: Program): Paths {
       const respName = getResponseTypeName(
         route.container.name,
         route.operation.name,
-        resp.statusCode === "*" ? "Default" : resp.statusCode
+        getOperationStatuscode(resp)
       );
       respNames.push(respName);
     }
@@ -76,15 +82,17 @@ export function transformPaths(program: Program): Paths {
 }
 
 function hasRequiredOptions(routeParameters: HttpOperationParameters) {
-  const isRequiredBodyParam = Boolean(routeParameters.bodyParameter?.optional);
+  const isRequiredBodyParam = routeParameters.bodyParameter?.optional === false;
   const containsRequiredNonBodyParam = routeParameters.parameters
     .filter((parameter) => ["query", "header"].includes(parameter.type))
-    .some((parameter) => !Boolean(parameter.param.optional));
+    .filter((parameter) => !isApiVersion(parameter))
+    .filter((parameter) => !!parameter.param)
+    .some((parameter) => parameter.param.optional === false);
   return isRequiredBodyParam || containsRequiredNonBodyParam;
 }
 
 /**
- * Extracts all success status codes for a give operation
+ * Extracts all success or defined status codes for a give operation
  */
 export function gerOperationSuccessStatus(
   operation: OperationDetails
@@ -93,9 +101,8 @@ export function gerOperationSuccessStatus(
   const status: string[] = [];
 
   for (const response of responses) {
-    let statusCode = response.statusCode;
-    if (statusCode !== "*") {
-      status.push(statusCode);
+    if (isDefinedStatusCode(response.statusCode)) {
+      status.push(response.statusCode);
     }
   }
 
@@ -116,8 +123,7 @@ function getResponseTypes(operation: OperationDetails): ResponseTypes {
       return responses
         .filter((r) => r.statusCode && r.statusCode.length)
         .map((r) => {
-          const statusCode =
-            r.statusCode == "*" ? `"default"` : `"${r.statusCode}"`;
+          const statusCode = getOperationStatuscode(r);
           const responseName = getResponseTypeName(
             operation.container.name,
             operation.operation.name,
@@ -128,10 +134,10 @@ function getResponseTypes(operation: OperationDetails): ResponseTypes {
     }
 
     returnTypes.error = getResponseType(
-      operation.responses.filter((r) => r.statusCode === "*")
+      operation.responses.filter((r) => isDefaultStatusCode(r.statusCode))
     );
     returnTypes.success = getResponseType(
-      operation.responses.filter((r) => r.statusCode !== "*")
+      operation.responses.filter((r) => isDefinedStatusCode(r.statusCode))
     );
   }
   return returnTypes;

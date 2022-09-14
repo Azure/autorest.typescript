@@ -10,16 +10,5 @@ export interface DevDrivenPostModelBodyParam {
 
 export type DevDrivenPostModelParameters = DevDrivenPostModelBodyParam &
   RequestParameters;
-
-export interface DevDrivenGetPagesQueryParamProperties {
-  /** The API version to use for this operation. */
-  "api-version": string;
-}
-
-export interface DevDrivenGetPagesQueryParam {
-  queryParameters: DevDrivenGetPagesQueryParamProperties;
-}
-
-export type DevDrivenGetPagesParameters = DevDrivenGetPagesQueryParam &
-  RequestParameters;
+export type DevDrivenGetPagesParameters = RequestParameters;
 export type DevDrivenLroParameters = RequestParameters;

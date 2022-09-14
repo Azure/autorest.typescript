@@ -4,8 +4,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/input-basic",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "input-basic",
     "description": "Input Basic Test Service",
     "version": "1.0.0"
   },

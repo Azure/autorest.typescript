@@ -1,25 +1,18 @@
 import { InputBasicGetModelParameters } from "./parameters";
-import {
-  InputBasicGetModel200Response,
-  InputBasicGetModelDefaultResponse,
-} from "./responses";
+import { InputBasicGetModel200Response } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for InputBasic operations */
 export interface InputBasicOperations {
   getModel(
-    options?: InputBasicGetModelParameters
-  ): StreamableMethod<
-    InputBasicGetModel200Response | InputBasicGetModelDefaultResponse
-  >;
+    options: InputBasicGetModelParameters
+  ): StreamableMethod<InputBasicGetModel200Response>;
 }
 
 export interface GetModel {
   get(
-    options?: InputBasicGetModelParameters
-  ): StreamableMethod<
-    InputBasicGetModel200Response | InputBasicGetModelDefaultResponse
-  >;
+    options: InputBasicGetModelParameters
+  ): StreamableMethod<InputBasicGetModel200Response>;
 }
 
 export interface Routes {

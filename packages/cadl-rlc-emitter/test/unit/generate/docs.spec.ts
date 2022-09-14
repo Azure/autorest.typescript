@@ -14,9 +14,9 @@ describe("Doc generation testing", () => {
         model SimpleModel {
             @doc("A test property.")
             prop: string;
-          }
-          op read(): { @body body: SimpleModel };
-          `);
+        }
+        op read(): { @body body: SimpleModel };
+        `);
       assert.ok(models);
       assertEqualContent(
         models!.outputModelFile!.content,
@@ -158,38 +158,6 @@ describe("Doc generation testing", () => {
       }
       
       export type TestParameters = TestMediaTypesParam & RequestParameters;
-      `
-      );
-    });
-    // issue tracked https://github.com/Azure/autorest.typescript/issues/1525
-    it("should generate apiVersion description with 'api-version'", async () => {
-      const parameters = await emitParameterFromCadl(
-        `
-        @doc("The ApiVersion query parameter.")
-        model ApiVersionParameter {
-          @query
-          @doc("The API version to use for this operation.")
-          "api-version": string;
-        }
-        op test(...ApiVersionParameter): string;
-        `
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `
-      import { RequestParameters } from "@azure-rest/core-client";
-      
-      export interface TestQueryParamProperties {
-          /** The API version to use for this operation. */
-          "api-version": string;
-      }
-      
-      export interface TestQueryParam {
-          queryParameters: TestQueryParamProperties;
-      }
-      
-      export type TestParameters = TestQueryParam & RequestParameters;
       `
       );
     });

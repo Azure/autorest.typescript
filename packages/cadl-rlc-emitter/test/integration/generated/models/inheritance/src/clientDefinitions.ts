@@ -4,44 +4,30 @@ import {
 } from "./parameters";
 import {
   BasicPolymorphicModelsSetValue200Response,
-  BasicPolymorphicModelsSetValueDefaultResponse,
   BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response,
-  BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for BasicPolymorphicModels operations */
 export interface BasicPolymorphicModelsOperations {
   setValue(
-    options?: BasicPolymorphicModelsSetValueParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValue200Response
-    | BasicPolymorphicModelsSetValueDefaultResponse
-  >;
+    options: BasicPolymorphicModelsSetValueParameters
+  ): StreamableMethod<BasicPolymorphicModelsSetValue200Response>;
   setValueWithPolymorphicProperty(
-    options?: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response
-    | BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse
-  >;
+    options: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
+  ): StreamableMethod<BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response>;
 }
 
 export interface SetValue {
   put(
-    options?: BasicPolymorphicModelsSetValueParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValue200Response
-    | BasicPolymorphicModelsSetValueDefaultResponse
-  >;
+    options: BasicPolymorphicModelsSetValueParameters
+  ): StreamableMethod<BasicPolymorphicModelsSetValue200Response>;
 }
 
 export interface SetValueWithPolymorphicProperty {
   put(
-    options?: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
-  ): StreamableMethod<
-    | BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response
-    | BasicPolymorphicModelsSetValueWithPolymorphicPropertyDefaultResponse
-  >;
+    options: BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters
+  ): StreamableMethod<BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response>;
 }
 
 export interface Routes {

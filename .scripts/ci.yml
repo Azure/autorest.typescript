@@ -10,13 +10,13 @@ parameters:
     default: true
   - name: OSVmImage
     type: string
-    default: ubuntu-18.04
+    default: ubuntu-20.04
 
 variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
 pool:
-  vmImage: ubuntu-18.04
+  vmImage: ubuntu-20.04
 
 stages:
   - stage: BuildStage
@@ -64,7 +64,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -72,11 +72,11 @@ stages:
               NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
@@ -98,7 +98,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -106,11 +106,11 @@ stages:
               NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
@@ -137,7 +137,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -145,11 +145,11 @@ stages:
               NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
@@ -207,7 +207,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -215,11 +215,11 @@ stages:
               NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
@@ -241,7 +241,7 @@ stages:
           matrix:
             macOS_Node16:
               Pool:
-              OSVmImage: "macOS-10.15"
+              OSVmImage: "macOS-12"
               NodeTestVersion: "16.x"
             Browser_Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -249,11 +249,11 @@ stages:
               NodeTestVersion: "16.x"
             Linux_Node14:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
+              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]

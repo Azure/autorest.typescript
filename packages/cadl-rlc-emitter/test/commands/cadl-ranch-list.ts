@@ -25,8 +25,8 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "models/nested-models"
   },
   {
-    outputPath: "models/optionalProperties",
-    inputPath: "models/optional-properties"
+    outputPath: "models/propertyOptional",
+    inputPath: "models/property-optional"
   },
   {
     outputPath: "models/propertyTypes",

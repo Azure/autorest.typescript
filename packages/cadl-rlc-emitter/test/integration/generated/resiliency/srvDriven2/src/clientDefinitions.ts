@@ -49,7 +49,7 @@ export interface HeadNoParams {
 export interface PostParameters {
   /** POST a JSON or a JPEG */
   post(
-    options?: ParamsPostParametersParameters
+    options: ParamsPostParametersParameters
   ): StreamableMethod<ParamsPostParameters200Response>;
 }
 
@@ -66,7 +66,7 @@ export interface GetOptional {
 export interface GetNewOperation {
   /**
    * I'm a new operation.
-   *  Initiallty neither path or method exist for this operation. After evolution, this is a new method in a new path
+   *  Initially neither path or method exist for this operation. After evolution, this is a new method in a new path
    */
   get(
     options?: ParamsGetNewOperationParameters

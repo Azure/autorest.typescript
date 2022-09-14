@@ -20,14 +20,14 @@ export interface GetModel {
   ): StreamableMethod<DevDrivenGetModel200Response>;
   /** Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode. */
   post(
-    options?: DevDrivenPostModelParameters
+    options: DevDrivenPostModelParameters
   ): StreamableMethod<DevDrivenPostModel200Response>;
 }
 
 export interface GetPages {
-  /** Get pages that you will either return to users in pages of raw bodies, or pages of models following growup. */
+  /** Get pages that you will either return to users in pages of raw bodies, or pages of models following group. */
   get(
-    options: DevDrivenGetPagesParameters
+    options?: DevDrivenGetPagesParameters
   ): StreamableMethod<
     DevDrivenGetPages200Response | DevDrivenGetPagesDefaultResponse
   >;
@@ -41,16 +41,16 @@ export interface Lro {
 }
 
 export interface Routes {
-  /** Resource for '/resilency/devdriven/customization/model/\{mode\}' has methods for the following verbs: get, post */
+  /** Resource for '/resiliency/devdriven/customization/model/\{mode\}' has methods for the following verbs: get, post */
   (
-    path: "/resilency/devdriven/customization/model/{mode}",
+    path: "/resiliency/devdriven/customization/model/{mode}",
     mode: "raw" | "model"
   ): GetModel;
-  /** Resource for '/resilency/devdriven' has methods for the following verbs: get */
-  (path: "/resilency/devdriven"): GetPages;
-  /** Resource for '/resilency/devdriven/customization/lro/\{mode\}' has methods for the following verbs: put */
+  /** Resource for '/resiliency/devdriven/products' has methods for the following verbs: get */
+  (path: "/resiliency/devdriven/products"): GetPages;
+  /** Resource for '/resiliency/devdriven/customization/lro/\{mode\}' has methods for the following verbs: put */
   (
-    path: "/resilency/devdriven/customization/lro/{mode}",
+    path: "/resiliency/devdriven/customization/lro/{mode}",
     mode: "raw" | "model"
   ): Lro;
 }

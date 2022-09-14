@@ -4,10 +4,9 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/client-interface",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "client-interface",
     "description": "Client Interface Test Service",
     "version": "1.0.0"
   },
-  "isCadlTest": true
+  "isCadlTest": true,
+  "title": "InterfaceClient"
 }

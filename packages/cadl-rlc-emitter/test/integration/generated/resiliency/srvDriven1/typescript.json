@@ -3,8 +3,6 @@
   "addCredentials": false,
   "packageDetails": {
     "name": "@msinternal/srv-driven-1",
-    "scopeName": "msinternal",
-    "nameWithoutScope": "srv-driven-1",
     "description": "Srv Driven 1 Test Service",
     "version": "1.0.0"
   },
