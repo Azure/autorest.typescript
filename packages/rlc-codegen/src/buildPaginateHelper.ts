@@ -11,6 +11,7 @@ export function buildPaginateHelper(model: RLCModel) {
   }
   let file: string = readFileSync(
     path.join(__dirname, "static", "paginateHelper.ts.hbs"),
+    // new URL("../static/paginateHelper.ts.hbs", import.meta.url),
     {
       encoding: "utf-8"
     }
