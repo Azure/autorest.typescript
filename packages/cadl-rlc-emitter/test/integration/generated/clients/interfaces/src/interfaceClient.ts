@@ -1,9 +1,9 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { MultiInterfaceClient } from "./clientDefinitions";
+import { InterfaceClient } from "./clientDefinitions";
 
 export default function createClient(
   options: ClientOptions = {}
-): MultiInterfaceClient {
+): InterfaceClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
   options.apiVersion = options.apiVersion ?? "1.0.0";
 
@@ -19,7 +19,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as MultiInterfaceClient;
+  const client = getClient(baseUrl, options) as InterfaceClient;
 
   return {
     ...client,

@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { emitModelsFromCadl } from "../emitUtil.js";
+import { emitModelsFromCadl, emitParameterFromCadl } from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
 type VerifyPropertyConfig = {
@@ -92,23 +92,80 @@ describe("Input/output model type", () => {
     });
   });
   describe("string generation", () => {
-    // TODO: how to handle extensible enum is not fanilized this could be changed in future
-    // issue tracked https://github.com/Azure/autorest.typescript/issues/1524
-    xit("should handle extensible_enum -> string", async () => {
+    it("should handle extensible_enum as property -> string", async () => {
       // When extensible_enum is comsumed as body property it should be string only
-      const cadlTypeDefinition = `
+      const schemaOutput = await emitModelsFromCadl(`
+      @knownValues(TranslationLanguageValues)
+      @doc("Extensible enum model description")
+      model TranslationLanguage is string;
+      enum TranslationLanguageValues {
+        English,
+        Chinese,
+      }
+      model InputOutputModel {
+        @doc("Property description")
+        prop: TranslationLanguage;
+      }
+      @route("/models")
+      @get
+      op getModel(@body input: InputOutputModel): InputOutputModel;
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface InputOutputModel {
+        /**
+         * Property description
+         *
+         * Possible values: English, Chinese
+         */
+        prop: string;
+      }`
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface InputOutputModelOutput {
+        /**
+         * Property description
+         *
+         * Possible values: English, Chinese
+         */
+        prop: string;
+      }`
+      );
+    });
+    it("should handle extensible_enum as body -> string", async () => {
+      // When extensible_enum is comsumed as body property it should be string only
+      const schemaOutput = await emitParameterFromCadl(`
       @knownValues(TranslationLanguageValues)
       model TranslationLanguage is string;
       enum TranslationLanguageValues {
         English,
         Chinese,
-      }`;
-      const cadlType = "TranslationLanguage";
-      // TODO: ensure this trick is working
-      const typeScriptType = `"English" | "Chinese" | string & {}`;
-      await verifyPropertyType(cadlType, typeScriptType, {
-        additionalCadlDefinition: cadlTypeDefinition
-      });
+      }
+      model InputOutputModel {
+        prop: TranslationLanguage;
+      }
+      @route("/models")
+      @get
+      op getModel(@body input: TranslationLanguage): InputOutputModel;
+      `);
+      assert.ok(schemaOutput);
+      assertEqualContent(
+        schemaOutput?.content!,
+        `
+      import { RequestParameters } from "@azure-rest/core-client";
+      
+      export interface GetModelBodyParam {
+        /** Possible values: English, Chinese */
+        body: string;
+      }
+      
+      export type GetModelParameters = GetModelBodyParam & RequestParameters;`
+      );
     });
 
     // TODO: Is enum convered to string literals only? Do we need to generate enum instaed?

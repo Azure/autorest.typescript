@@ -10,7 +10,7 @@ export interface ProjectsCreateOrUpdateBodyParam {
 }
 
 export interface ProjectsCreateOrUpdateMediaTypesParam {
-  contentType?: "application/merge-patch+json";
+  contentType: "application/merge-patch+json";
 }
 
 export type ProjectsCreateOrUpdateParameters =

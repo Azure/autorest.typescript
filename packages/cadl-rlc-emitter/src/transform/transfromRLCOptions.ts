@@ -83,14 +83,18 @@ function processAuth(program: Program) {
           break;
         case "oauth2":
           const flow = auth.flows[0];
-          if (flow === undefined) {
+          if (flow === undefined || !flow.scopes) {
             return undefined;
           }
           securityInfo.addCredentials = true;
           if (!securityInfo.credentialScopes) {
             securityInfo.credentialScopes = [];
           }
-          securityInfo.credentialScopes.push(...flow.scopes);
+          securityInfo.credentialScopes.push(
+            ...flow.scopes.map((item) => {
+              return item.value;
+            })
+          );
           break;
         default:
           break;

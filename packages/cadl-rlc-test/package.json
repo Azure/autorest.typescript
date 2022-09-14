@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@cadl-lang/compiler": "0.34.0",
+    "@cadl-lang/compiler": "0.35.0",
     "@cadl-lang/ts-rlc": "0.0.1",
-    "@cadl-lang/rest": "0.16.0",
-    "@cadl-lang/openapi": "0.11.0",
-    "@cadl-lang/versioning": "0.7.0",
-    "@azure-tools/cadl-azure-core": "0.6.0"
+    "@cadl-lang/rest": "0.17.0",
+    "@cadl-lang/openapi": "0.12.0",
+    "@cadl-lang/versioning": "0.8.0",
+    "@azure-tools/cadl-azure-core": "0.7.0",
+    "@azure-tools/cadl-autorest": "0.20.0"
   },
   "devDependencies": {
     "ts-node": "^8.5.2",
@@ -17,8 +18,7 @@
   "scripts": {
     "smoke-test": "ts-node ./eng/smoke-test.js",
     "build": "echo skip",
-    "check:tree": "ts-node ./eng/check-clean-tree.js",
-    "test": "cadl compile ./test/authoring/spec/main.cadl --output-path=./test/authoring/cadl-output"
+    "check:tree": "ts-node ./eng/check-clean-tree.js"
   },
   "private": true
 }

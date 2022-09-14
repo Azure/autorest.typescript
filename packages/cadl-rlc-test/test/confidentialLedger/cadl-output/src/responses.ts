@@ -1,11 +1,20 @@
+import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
-import { CollectionArrayOutput, ErrorResponseOutput } from "./outputModels";
+import {
+  CollectionOutput,
+  ErrorResponseOutput,
+  PagedLedgerEntriesOutput,
+  LedgerEntryOutput,
+  TransactionReceiptOutput,
+  TransactionStatusOutput,
+  LedgerUserOutput,
+} from "./outputModels";
 
 /** The request has succeeded. */
 export interface ConfidentialLedgerListCollections200Response
   extends HttpResponse {
   status: "200";
-  body: CollectionArrayOutput;
+  body: Array<CollectionOutput>;
 }
 
 export interface ConfidentialLedgerListCollectionsDefaultResponse
@@ -51,12 +60,30 @@ export interface ConfidentialLedgerGetConsortiumMembersDefaultResponse
 }
 
 /** The request has succeeded. */
-export interface ConfidentialLedgerPostLedgerEntry200Response
+export interface ConfidentialLedgerListLedgerEntries200Response
   extends HttpResponse {
   status: "200";
+  body: PagedLedgerEntriesOutput;
 }
 
-export interface ConfidentialLedgerPostLedgerEntryDefaultResponse
+export interface ConfidentialLedgerListLedgerEntriesDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
+}
+
+export interface ConfidentialLedgerCreateLedgerEntry201Headers {
+  location: string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
+export interface ConfidentialLedgerCreateLedgerEntry201Response
+  extends HttpResponse {
+  status: "201";
+  headers: RawHttpHeaders & ConfidentialLedgerCreateLedgerEntry201Headers;
+}
+
+export interface ConfidentialLedgerCreateLedgerEntryDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
@@ -66,6 +93,7 @@ export interface ConfidentialLedgerPostLedgerEntryDefaultResponse
 export interface ConfidentialLedgerGetLedgerEntry200Response
   extends HttpResponse {
   status: "200";
+  body: LedgerEntryOutput;
 }
 
 export interface ConfidentialLedgerGetLedgerEntryDefaultResponse
@@ -77,6 +105,7 @@ export interface ConfidentialLedgerGetLedgerEntryDefaultResponse
 /** The request has succeeded. */
 export interface ConfidentialLedgerGetReceipt200Response extends HttpResponse {
   status: "200";
+  body: TransactionReceiptOutput;
 }
 
 export interface ConfidentialLedgerGetReceiptDefaultResponse
@@ -89,6 +118,7 @@ export interface ConfidentialLedgerGetReceiptDefaultResponse
 export interface ConfidentialLedgerGetTransactionStatus200Response
   extends HttpResponse {
   status: "200";
+  body: TransactionStatusOutput;
 }
 
 export interface ConfidentialLedgerGetTransactionStatusDefaultResponse
@@ -101,6 +131,7 @@ export interface ConfidentialLedgerGetTransactionStatusDefaultResponse
 export interface ConfidentialLedgerGetCurrentLedgerEntry200Response
   extends HttpResponse {
   status: "200";
+  body: LedgerEntryOutput;
 }
 
 export interface ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
@@ -123,6 +154,7 @@ export interface ConfidentialLedgerDeleteUserDefaultResponse
 /** The request has succeeded. */
 export interface ConfidentialLedgerGetUser200Response extends HttpResponse {
   status: "200";
+  body: LedgerUserOutput;
 }
 
 export interface ConfidentialLedgerGetUserDefaultResponse extends HttpResponse {
@@ -134,6 +166,14 @@ export interface ConfidentialLedgerGetUserDefaultResponse extends HttpResponse {
 export interface ConfidentialLedgerCreateOrUpdateUser200Response
   extends HttpResponse {
   status: "200";
+  body: LedgerUserOutput;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
+export interface ConfidentialLedgerCreateOrUpdateUser201Response
+  extends HttpResponse {
+  status: "201";
+  body: LedgerUserOutput;
 }
 
 export interface ConfidentialLedgerCreateOrUpdateUserDefaultResponse

@@ -1,28 +1,32 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import { LedgerEntry, LedgerUser } from "./models";
+import {
+  UpdateablePropertiesDefaultKeyVisibility,
+  OptionalPropertiesUpdateableProperties,
+} from "./models";
 
 export type ConfidentialLedgerListCollectionsParameters = RequestParameters;
 export type ConfidentialLedgerGetEnclaveQuotesParameters = RequestParameters;
 export type ConfidentialLedgerGetConstitutionParameters = RequestParameters;
 export type ConfidentialLedgerGetConsortiumMembersParameters =
   RequestParameters;
+export type ConfidentialLedgerListLedgerEntriesParameters = RequestParameters;
 
-export interface ConfidentialLedgerPostLedgerEntryBodyParam {
-  body: LedgerEntry;
+export interface ConfidentialLedgerCreateLedgerEntryBodyParam {
+  body?: UpdateablePropertiesDefaultKeyVisibility;
 }
 
-export interface ConfidentialLedgerPostLedgerEntryQueryParamProperties {
+export interface ConfidentialLedgerCreateLedgerEntryQueryParamProperties {
   /** The collection id. */
   collectionId?: string;
 }
 
-export interface ConfidentialLedgerPostLedgerEntryQueryParam {
-  queryParameters?: ConfidentialLedgerPostLedgerEntryQueryParamProperties;
+export interface ConfidentialLedgerCreateLedgerEntryQueryParam {
+  queryParameters?: ConfidentialLedgerCreateLedgerEntryQueryParamProperties;
 }
 
-export type ConfidentialLedgerPostLedgerEntryParameters =
-  ConfidentialLedgerPostLedgerEntryQueryParam &
-    ConfidentialLedgerPostLedgerEntryBodyParam &
+export type ConfidentialLedgerCreateLedgerEntryParameters =
+  ConfidentialLedgerCreateLedgerEntryQueryParam &
+    ConfidentialLedgerCreateLedgerEntryBodyParam &
     RequestParameters;
 
 export interface ConfidentialLedgerGetLedgerEntryQueryParamProperties {
@@ -55,8 +59,7 @@ export type ConfidentialLedgerDeleteUserParameters = RequestParameters;
 export type ConfidentialLedgerGetUserParameters = RequestParameters;
 
 export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
-  /** Details about a Confidential Ledger user. */
-  body: LedgerUser;
+  body?: OptionalPropertiesUpdateableProperties;
 }
 
 export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {

@@ -9,7 +9,7 @@ export function buildPollingHelper(model: RLCModel) {
     return;
   }
   let file: string = readFileSync(
-    path.join(path.resolve(), "static", "pollingHelper.ts.hbs"),
+    path.join(__dirname, "static", "pollingHelper.ts.hbs"),
     {
       encoding: "utf-8"
     }

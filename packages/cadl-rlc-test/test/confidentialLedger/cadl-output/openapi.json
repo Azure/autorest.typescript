@@ -64,7 +64,12 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "$ref": "#/definitions/CollectionArray"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Collection"
+              },
+              "x-ms-identifiers": [],
+              "x-cadl-name": "Collection[]"
             }
           },
           "default": {
@@ -146,29 +151,72 @@
       }
     },
     "/app/transactions": {
-      "post": {
-        "operationId": "ConfidentialLedger_PostLedgerEntry",
-        "summary": "Writes a ledger entry.",
-        "description": "A collection id may optionally be specified.",
+      "get": {
+        "operationId": "ConfidentialLedger_ListLedgerEntries",
+        "summary": "Gets ledger entries from a collection corresponding to a range.",
+        "description": "A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned.",
         "parameters": [
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/CollectionIdParameter"
-          },
-          {
-            "name": "entry",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/LedgerEntry"
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedLedgerEntries"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      },
+      "post": {
+        "operationId": "ConfidentialLedger_CreateLedgerEntry",
+        "summary": "Writes a ledger entry.",
+        "description": "A collection id may optionally be specified.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/CollectionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "contents": {
+                  "type": "string",
+                  "description": "Contents of the ledger entry."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "required": [
+                "contents"
+              ],
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<LedgerEntry, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "Location": {
+                "description": "The location of an instance of LedgerEntry",
+                "type": "string"
+              }
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -183,20 +231,24 @@
       "get": {
         "operationId": "ConfidentialLedger_GetLedgerEntry",
         "summary": "Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate the collection from which to fetch the value.",
+        "description": "Get a LedgerEntry",
         "parameters": [
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+            "$ref": "#/parameters/LedgerEntry.transactionId"
           },
           {
             "$ref": "#/parameters/CollectionIdParameter"
           },
           {
-            "$ref": "#/parameters/TransactionIdParameter"
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/LedgerEntry"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -211,17 +263,21 @@
       "get": {
         "operationId": "ConfidentialLedger_GetReceipt",
         "summary": "Gets a receipt certifying ledger contents at a particular transaction id.",
+        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+            "$ref": "#/parameters/LedgerEntry.transactionId"
           },
           {
-            "$ref": "#/parameters/TransactionIdParameter"
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TransactionReceipt"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -235,18 +291,22 @@
     "/app/transactions/{transactionId}/status": {
       "get": {
         "operationId": "ConfidentialLedger_GetTransactionStatus",
-        "summary": "Gets the status of an entry identified by a transaction id.",
+        "summary": "Gets a receipt certifying ledger contents at a particular transaction id.",
+        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+            "$ref": "#/parameters/LedgerEntry.transactionId"
           },
           {
-            "$ref": "#/parameters/TransactionIdParameter"
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TransactionStatus"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -257,21 +317,25 @@
         }
       }
     },
-    "/app/transactions/current": {
+    "/app/transactions:getCurrentLedgerEntry": {
       "get": {
         "operationId": "ConfidentialLedger_GetCurrentLedgerEntry",
         "summary": "Gets the current value available in the ledger.",
+        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+            "$ref": "#/parameters/CollectionIdParameter"
           },
           {
-            "$ref": "#/parameters/CollectionIdParameter"
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/LedgerEntry"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -286,12 +350,13 @@
       "delete": {
         "operationId": "ConfidentialLedger_DeleteUser",
         "summary": "Deletes a user from the Confidential Ledger.",
+        "description": "Delete a LedgerUser",
         "parameters": [
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+            "$ref": "#/parameters/LedgerUser.userId"
           },
           {
-            "$ref": "#/parameters/UserIdParameter"
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -309,17 +374,21 @@
       "get": {
         "operationId": "ConfidentialLedger_GetUser",
         "summary": "Gets a user.",
+        "description": "Get a LedgerUser",
         "parameters": [
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+            "$ref": "#/parameters/LedgerUser.userId"
           },
           {
-            "$ref": "#/parameters/UserIdParameter"
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/LedgerUser"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -332,20 +401,75 @@
       "patch": {
         "operationId": "ConfidentialLedger_CreateOrUpdateUser",
         "summary": "Adds a user or updates a user's fields.",
+        "description": "Creates or updates a LedgerUser",
         "parameters": [
+          {
+            "$ref": "#/parameters/LedgerUser.userId"
+          },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
-            "$ref": "#/parameters/UserIdParameter"
-          },
-          {
-            "$ref": "#/parameters/UserDetailsParameter.userDetails"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "assignedRole": {
+                  "$ref": "#/definitions/LedgerUserRole",
+                  "description": "The user's assigned role."
+                }
+              },
+              "description": "The template for adding optional properties.",
+              "x-cadl-name": "OptionalProperties<UpdateableProperties<DefaultKeyVisibility<LedgerUser, read>>>"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "description": "The user id, either an AAD object ID or certificate fingerprint.",
+                  "x-ms-skip-url-encoding": true
+                },
+                "assignedRole": {
+                  "$ref": "#/definitions/LedgerUserRole",
+                  "description": "The user's assigned role."
+                }
+              },
+              "required": [
+                "userId",
+                "assignedRole"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "description": "The user id, either an AAD object ID or certificate fingerprint.",
+                  "x-ms-skip-url-encoding": true
+                },
+                "assignedRole": {
+                  "$ref": "#/definitions/LedgerUserRole",
+                  "description": "The user's assigned role."
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "userId",
+                "assignedRole"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -439,47 +563,20 @@
         "collectionId"
       ]
     },
-    "CollectionArray": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Collection"
-          },
-          "x-ms-identifiers": [],
-          "x-cadl-name": "Collection[]"
-        }
-      },
-      "description": "A list of identifiers for ledger collections.",
-      "required": [
-        "items"
-      ]
-    },
-    "ConfidentialLedgerUserRoleName": {
-      "type": "string",
-      "description": "Represents an assignable role",
-      "enum": [
-        "Administrator",
-        "Contributor",
-        "Reader"
-      ],
-      "x-ms-enum": {
-        "name": "ConfidentialLedgerUserRoleName",
-        "modelAsString": false
-      }
-    },
     "LedgerEntry": {
       "type": "object",
       "properties": {
         "contents": {
-          "type": "string"
+          "type": "string",
+          "description": "Contents of the ledger entry."
         },
         "collectionId": {
-          "type": "string"
+          "type": "string",
+          "readOnly": true
         },
         "transactionId": {
-          "type": "string"
+          "$ref": "#/definitions/TransactionId",
+          "readOnly": true
         }
       },
       "required": [
@@ -488,19 +585,132 @@
         "transactionId"
       ]
     },
+    "LedgerQueryState": {
+      "type": "string",
+      "description": "State of a ledger query.",
+      "enum": [
+        "Loading",
+        "Ready"
+      ],
+      "x-ms-enum": {
+        "name": "LedgerQueryState",
+        "modelAsString": true
+      }
+    },
     "LedgerUser": {
       "type": "object",
       "properties": {
-        "assignedRole": {
-          "$ref": "#/definitions/ConfidentialLedgerUserRoleName"
-        },
         "userId": {
-          "type": "string"
+          "type": "string",
+          "description": "The user id, either an AAD object ID or certificate fingerprint.",
+          "x-ms-skip-url-encoding": true
+        },
+        "assignedRole": {
+          "$ref": "#/definitions/LedgerUserRole",
+          "description": "The user's assigned role."
         }
       },
+      "description": "Details about a Confidential ledger user.",
       "required": [
-        "assignedRole",
-        "userId"
+        "userId",
+        "assignedRole"
+      ]
+    },
+    "LedgerUserRole": {
+      "type": "string",
+      "description": "Represents an assignable role.",
+      "enum": [
+        "Administrator",
+        "Contributor",
+        "Reader"
+      ],
+      "x-ms-enum": {
+        "name": "LedgerUserRole",
+        "modelAsString": true
+      }
+    },
+    "PagedLedgerEntries": {
+      "type": "object",
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LedgerEntry"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "LedgerEntry[]",
+          "description": "Array of ledger entries."
+        },
+        "state": {
+          "$ref": "#/definitions/LedgerQueryState",
+          "description": "State of the ledger query."
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "Path from which to retrieve the next page of results.",
+          "x-cadl-name": "Rest.ResourceLocation<LedgerEntry>"
+        }
+      },
+      "description": "Paginated ledger entries returned in response to a query.",
+      "required": [
+        "entries",
+        "state"
+      ]
+    },
+    "ReceiptContents": {
+      "type": "object",
+      "properties": {}
+    },
+    "TransactionId": {
+      "type": "string",
+      "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read."
+    },
+    "TransactionReceipt": {
+      "type": "object",
+      "properties": {
+        "receipt": {
+          "$ref": "#/definitions/ReceiptContents"
+        },
+        "state": {
+          "$ref": "#/definitions/LedgerQueryState"
+        },
+        "transactionId": {
+          "$ref": "#/definitions/TransactionId"
+        }
+      },
+      "description": "A receipt certifying the transaction at the specified id.",
+      "required": [
+        "receipt",
+        "state",
+        "transactionId"
+      ]
+    },
+    "TransactionState": {
+      "type": "string",
+      "description": "Represents the state of the transaction.",
+      "enum": [
+        "Committed",
+        "Pending"
+      ],
+      "x-ms-enum": {
+        "name": "TransactionState",
+        "modelAsString": true
+      }
+    },
+    "TransactionStatus": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/TransactionState"
+        },
+        "transactionId": {
+          "$ref": "#/definitions/TransactionId"
+        }
+      },
+      "description": "Response returned to a query for the transaction status.",
+      "required": [
+        "state",
+        "transactionId"
       ]
     }
   },
@@ -522,25 +732,15 @@
       "type": "string",
       "x-ms-parameter-location": "method"
     },
-    "TransactionIdParameter": {
+    "LedgerEntry.transactionId": {
       "name": "transactionId",
       "in": "path",
       "required": true,
-      "description": "Identifies a write transaction.",
+      "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
       "type": "string",
       "x-ms-parameter-location": "method"
     },
-    "UserDetailsParameter.userDetails": {
-      "name": "userDetails",
-      "in": "body",
-      "required": true,
-      "description": "Details about a Confidential Ledger user.",
-      "schema": {
-        "$ref": "#/definitions/LedgerUser"
-      },
-      "x-ms-parameter-location": "method"
-    },
-    "UserIdParameter": {
+    "LedgerUser.userId": {
       "name": "userId",
       "in": "path",
       "required": true,

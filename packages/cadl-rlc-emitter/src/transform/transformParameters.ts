@@ -9,7 +9,7 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-codegen";
-import { getDoc, Program } from "@cadl-lang/compiler";
+import { Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
   HttpOperationParameter,
@@ -18,9 +18,12 @@ import {
 import {
   getImportedModelName,
   getTypeName,
-  getSchemaForType
+  getSchemaForType,
+  getBinaryType,
+  getFormattedPropertyDoc
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
+import { isBinaryPayload } from "../operationUtil.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -46,6 +49,7 @@ export function transformToParameterTypes(
     const bodyParameter = transformBodyParameters(
       program,
       parameters,
+      headerParams,
       outputImportedSet
     );
     rlcParameter.parameters.push({
@@ -78,7 +82,8 @@ function getParameterMetadata(
       name,
       type,
       required: !Boolean(parameter.param.optional),
-      description: getDoc(program, parameter.param) ?? ""
+      description:
+        getFormattedPropertyDoc(program, parameter.param, schema) ?? ""
     }
   };
 }
@@ -111,6 +116,7 @@ function transformQueryParameters(
  */
 function transformPathParameters() {
   // TODO
+  // issue tracked https://github.com/Azure/autorest.typescript/issues/1521
   return [];
 }
 
@@ -132,32 +138,54 @@ function transformHeaderParameters(
 function transformBodyParameters(
   program: Program,
   parameters: HttpOperationParameters,
+  headers: ParameterMetadata[],
   importedModels: Set<string>
 ): ParameterBodyMetadata | undefined {
   const bodyType = parameters.bodyType ?? parameters.bodyParameter?.type;
   if (!bodyType) {
-    return undefined;
+    return;
   }
-  const bodySchema = getSchemaForType(program, bodyType, [
-    SchemaContext.Input,
-    SchemaContext.Exception
-  ]) as Schema;
-  const type = getTypeName(bodySchema);
-  const importedNames = getImportedModelName(bodySchema);
-  if (importedNames) {
-    importedNames.forEach(importedModels.add, importedModels);
+  let type: string,
+    bodySchema: any = {};
+  let descriptions: string[] = [];
+  const contentTypes: string[] = headers
+    .filter((h) => h.name === "contentType")
+    .map((h) => h.param.type);
+  const hasBinaryContent = contentTypes.some((c) =>
+    isBinaryPayload(bodyType, c)
+  );
+  if (!hasBinaryContent) {
+    bodySchema = getSchemaForType(program, bodyType, [
+      SchemaContext.Input,
+      SchemaContext.Exception
+    ]) as Schema;
+    type = getTypeName(bodySchema);
+    const importedNames = getImportedModelName(bodySchema);
+    if (importedNames) {
+      importedNames.forEach(importedModels.add, importedModels);
+    }
+  } else {
+    type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
+  }
+  const description =
+    parameters.bodyParameter &&
+    getFormattedPropertyDoc(program, parameters.bodyParameter, bodySchema);
+  if (description) {
+    descriptions.push(description!);
+  }
+  if (hasBinaryContent) {
+    descriptions.push("Value may contain any sequence of octets");
   }
   return {
-    isPartialBody: false, // TODO: handle body is partial case
+    // TODO: handle body is partial case
+    // issue tracked https://github.com/Azure/autorest.typescript/issues/1547
+    isPartialBody: false,
     body: [
       {
         name: "body",
         type,
-        required: parameters.bodyParameter
-          ? !Boolean(parameters.bodyParameter.optional)
-          : bodySchema.required,
-        description:
-          parameters.bodyParameter && getDoc(program, parameters.bodyParameter)
+        required: parameters?.bodyParameter?.optional === false,
+        description: descriptions.join("\n\n")
       }
     ]
   };

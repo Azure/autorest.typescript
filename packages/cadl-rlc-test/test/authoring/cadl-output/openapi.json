@@ -84,10 +84,11 @@
                   "x-cadl-name": "Rest.ResourceLocation<Project>"
                 }
               },
+              "description": "Paged collection of Project items",
               "required": [
                 "value"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.Foundations.CustomPage<Project, (anonymous model)>>"
+              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Project, (anonymous model)>"
             }
           },
           "default": {
@@ -190,26 +191,26 @@
                 },
                 "createdDateTime": {
                   "type": "string",
-                  "description": "Represents the project creation datetime.",
                   "format": "date-time",
+                  "description": "Represents the project creation datetime.",
                   "readOnly": true
                 },
                 "lastModifiedDateTime": {
                   "type": "string",
-                  "description": "Represents the project last modification datetime.",
                   "format": "date-time",
+                  "description": "Represents the project last modification datetime.",
                   "readOnly": true
                 },
                 "lastTrainedDateTime": {
                   "type": "string",
-                  "description": "Represents the project last training datetime.",
                   "format": "date-time",
+                  "description": "Represents the project last training datetime.",
                   "readOnly": true
                 },
                 "lastDeployedDateTime": {
                   "type": "string",
-                  "description": "Represents the project last deployment datetime.",
                   "format": "date-time",
+                  "description": "Represents the project last deployment datetime.",
                   "readOnly": true
                 }
               },
@@ -266,26 +267,26 @@
                 },
                 "createdDateTime": {
                   "type": "string",
-                  "description": "Represents the project creation datetime.",
                   "format": "date-time",
+                  "description": "Represents the project creation datetime.",
                   "readOnly": true
                 },
                 "lastModifiedDateTime": {
                   "type": "string",
-                  "description": "Represents the project last modification datetime.",
                   "format": "date-time",
+                  "description": "Represents the project last modification datetime.",
                   "readOnly": true
                 },
                 "lastTrainedDateTime": {
                   "type": "string",
-                  "description": "Represents the project last training datetime.",
                   "format": "date-time",
+                  "description": "Represents the project last training datetime.",
                   "readOnly": true
                 },
                 "lastDeployedDateTime": {
                   "type": "string",
-                  "description": "Represents the project last deployment datetime.",
                   "format": "date-time",
+                  "description": "Represents the project last deployment datetime.",
                   "readOnly": true
                 }
               },
@@ -329,71 +330,7 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "projectName": {
-                  "type": "string"
-                },
-                "projectKind": {
-                  "$ref": "#/definitions/ProjectKind",
-                  "description": "The project kind."
-                },
-                "storageInputContainerName": {
-                  "type": "string",
-                  "description": "The storage container name."
-                },
-                "settings": {
-                  "$ref": "#/definitions/ProjectSettings",
-                  "description": "The project settings."
-                },
-                "multilingual": {
-                  "type": "boolean",
-                  "description": "Whether the project would be used for multiple languages or not."
-                },
-                "description": {
-                  "type": "string",
-                  "description": "The project description."
-                },
-                "language": {
-                  "type": "string",
-                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
-                },
-                "createdDateTime": {
-                  "type": "string",
-                  "description": "Represents the project creation datetime.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "lastModifiedDateTime": {
-                  "type": "string",
-                  "description": "Represents the project last modification datetime.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "lastTrainedDateTime": {
-                  "type": "string",
-                  "description": "Represents the project last training datetime.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "lastDeployedDateTime": {
-                  "type": "string",
-                  "description": "Represents the project last deployment datetime.",
-                  "format": "date-time",
-                  "readOnly": true
-                }
-              },
-              "required": [
-                "projectName",
-                "projectKind",
-                "storageInputContainerName",
-                "language",
-                "createdDateTime",
-                "lastModifiedDateTime",
-                "lastTrainedDateTime",
-                "lastDeployedDateTime"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+              "$ref": "#/definitions/Project"
             }
           },
           "default": {
@@ -589,10 +526,11 @@
                   "x-cadl-name": "Rest.ResourceLocation<Deployment>"
                 }
               },
+              "description": "Paged collection of Deployment items",
               "required": [
                 "value"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.Foundations.CustomPage<Deployment, {}>>"
+              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Deployment, {}>"
             }
           },
           "default": {
@@ -626,16 +564,7 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "name"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+              "$ref": "#/definitions/Deployment"
             }
           },
           "default": {
@@ -785,62 +714,7 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "jobId": {
-                  "type": "string",
-                  "description": "The job ID."
-                },
-                "createdDateTime": {
-                  "type": "string",
-                  "description": "The creation date time of the job.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "lastUpdatedDateTime": {
-                  "type": "string",
-                  "description": "The the last date time the job was updated.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "expirationDateTime": {
-                  "type": "string",
-                  "description": "The expiration date time of the job.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "status": {
-                  "$ref": "#/definitions/JobStatus",
-                  "description": "The job status."
-                },
-                "warnings": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/JobWarning"
-                  },
-                  "x-ms-identifiers": [],
-                  "x-cadl-name": "JobWarning[]",
-                  "description": "The warnings that were encountered while executing the job."
-                },
-                "errors": {
-                  "$ref": "#/definitions/Azure.Core.Foundations.Error",
-                  "description": "The errors encountered while executing the job."
-                },
-                "id": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "jobId",
-                "createdDateTime",
-                "lastUpdatedDateTime",
-                "expirationDateTime",
-                "status",
-                "warnings",
-                "errors",
-                "id"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+              "$ref": "#/definitions/DeploymentJob"
             }
           },
           "default": {
@@ -874,62 +748,7 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "jobId": {
-                  "type": "string",
-                  "description": "The job ID."
-                },
-                "createdDateTime": {
-                  "type": "string",
-                  "description": "The creation date time of the job.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "lastUpdatedDateTime": {
-                  "type": "string",
-                  "description": "The the last date time the job was updated.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "expirationDateTime": {
-                  "type": "string",
-                  "description": "The expiration date time of the job.",
-                  "format": "date-time",
-                  "readOnly": true
-                },
-                "status": {
-                  "$ref": "#/definitions/JobStatus",
-                  "description": "The job status."
-                },
-                "warnings": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/JobWarning"
-                  },
-                  "x-ms-identifiers": [],
-                  "x-cadl-name": "JobWarning[]",
-                  "description": "The warnings that were encountered while executing the job."
-                },
-                "errors": {
-                  "$ref": "#/definitions/Azure.Core.Foundations.Error",
-                  "description": "The errors encountered while executing the job."
-                },
-                "id": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "jobId",
-                "createdDateTime",
-                "lastUpdatedDateTime",
-                "expirationDateTime",
-                "status",
-                "warnings",
-                "errors",
-                "id"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+              "$ref": "#/definitions/SwapDeploymentsJob"
             }
           },
           "default": {
@@ -1139,6 +958,63 @@
         "name"
       ]
     },
+    "DeploymentJob": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string",
+          "description": "The job ID."
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation date time of the job.",
+          "readOnly": true
+        },
+        "lastUpdatedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The the last date time the job was updated.",
+          "readOnly": true
+        },
+        "expirationDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The expiration date time of the job.",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/JobStatus",
+          "description": "The job status."
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/JobWarning"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "JobWarning[]",
+          "description": "The warnings that were encountered while executing the job."
+        },
+        "errors": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The errors encountered while executing the job."
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "jobId",
+        "createdDateTime",
+        "lastUpdatedDateTime",
+        "expirationDateTime",
+        "status",
+        "warnings",
+        "errors",
+        "id"
+      ]
+    },
     "JobStatus": {
       "type": "string",
       "description": "Represents the job status.",
@@ -1252,26 +1128,26 @@
         },
         "createdDateTime": {
           "type": "string",
-          "description": "Represents the project creation datetime.",
           "format": "date-time",
+          "description": "Represents the project creation datetime.",
           "readOnly": true
         },
         "lastModifiedDateTime": {
           "type": "string",
-          "description": "Represents the project last modification datetime.",
           "format": "date-time",
+          "description": "Represents the project last modification datetime.",
           "readOnly": true
         },
         "lastTrainedDateTime": {
           "type": "string",
-          "description": "Represents the project last training datetime.",
           "format": "date-time",
+          "description": "Represents the project last training datetime.",
           "readOnly": true
         },
         "lastDeployedDateTime": {
           "type": "string",
-          "description": "Represents the project last deployment datetime.",
           "format": "date-time",
+          "description": "Represents the project last deployment datetime.",
           "readOnly": true
         }
       },
@@ -1339,6 +1215,63 @@
       "required": [
         "languageName",
         "languageCode"
+      ]
+    },
+    "SwapDeploymentsJob": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string",
+          "description": "The job ID."
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation date time of the job.",
+          "readOnly": true
+        },
+        "lastUpdatedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The the last date time the job was updated.",
+          "readOnly": true
+        },
+        "expirationDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The expiration date time of the job.",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/JobStatus",
+          "description": "The job status."
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/JobWarning"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "JobWarning[]",
+          "description": "The warnings that were encountered while executing the job."
+        },
+        "errors": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The errors encountered while executing the job."
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "jobId",
+        "createdDateTime",
+        "lastUpdatedDateTime",
+        "expirationDateTime",
+        "status",
+        "warnings",
+        "errors",
+        "id"
       ]
     },
     "SwapDeploymentsOptions": {

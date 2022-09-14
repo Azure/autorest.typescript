@@ -37,7 +37,7 @@ export interface DeploymentJobOutput {
     id: string;
     jobId: string;
     lastUpdatedDateTime: string;
-    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
+    status: string;
     warnings: Array<JobWarningOutput>;
 }
 
@@ -438,7 +438,7 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
 export interface OperationStatusOutput {
     error?: ErrorModelOutput;
     id: string;
-    status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
+    status: string;
 }
 
 // @public
@@ -446,7 +446,7 @@ export interface OptionalPropertiesUpdateableProperties {
     description?: string;
     language?: string;
     multilingual?: boolean;
-    projectKind?: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+    projectKind?: string;
     settings?: Record<string, string>;
     storageInputContainerName?: string;
 }
@@ -472,7 +472,7 @@ export interface ProjectOutput {
     lastModifiedDateTime: string;
     lastTrainedDateTime: string;
     multilingual?: boolean;
-    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+    projectKind: string;
     // (undocumented)
     projectName: string;
     settings?: Record<string, string>;
@@ -483,7 +483,7 @@ export interface ProjectOutput {
 export interface ProjectsCreateOrUpdate {
     delete(options?: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
     get(options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
-    patch(options?: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
+    patch(options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -533,7 +533,7 @@ export interface ProjectsCreateOrUpdateDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export interface ProjectsCreateOrUpdateMediaTypesParam {
     // (undocumented)
-    contentType?: "application/merge-patch+json";
+    contentType: "application/merge-patch+json";
 }
 
 // @public (undocumented)
@@ -696,7 +696,7 @@ export interface ProjectsListQueryParamProperties {
 
 // @public
 export interface ProjectsOperations {
-    createOrUpdate(projectName: string, options?: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
+    createOrUpdate(projectName: string, options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
     delete(projectName: string, options?: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
     export(projectName: string, options: ProjectsExportParameters): StreamableMethod<ProjectsExport202Response | ProjectsExportDefaultResponse>;
     get(projectName: string, options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
@@ -771,7 +771,7 @@ export interface SwapDeploymentsJobOutput {
     id: string;
     jobId: string;
     lastUpdatedDateTime: string;
-    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
+    status: string;
     warnings: Array<JobWarningOutput>;
 }
 

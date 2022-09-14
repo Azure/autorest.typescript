@@ -1,11 +1,15 @@
-export interface LedgerEntry {
+/** The template for adding updateable properties. */
+export interface UpdateablePropertiesDefaultKeyVisibility {
+  /** Contents of the ledger entry. */
   contents: string;
-  collectionId: string;
-  transactionId: string;
 }
 
-export interface LedgerUser {
-  /** Represents an assignable role */
-  assignedRole: "Administrator" | "Contributor" | "Reader";
-  userId: string;
+/** The template for adding optional properties. */
+export interface OptionalPropertiesUpdateableProperties {
+  /**
+   * The user's assigned role.
+   *
+   * Possible values: Administrator, Contributor, Reader
+   */
+  assignedRole?: string;
 }

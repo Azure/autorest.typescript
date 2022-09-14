@@ -1,8 +1,3 @@
-/** A list of identifiers for ledger collections. */
-export interface CollectionArrayOutput {
-  items: Array<CollectionOutput>;
-}
-
 /** Identifier for collections. */
 export interface CollectionOutput {
   collectionId: string;
@@ -34,4 +29,57 @@ export interface InnerErrorOutput {
   code: string;
   /** Inner error. */
   innererror?: InnerErrorOutput;
+}
+
+/** Paginated ledger entries returned in response to a query. */
+export interface PagedLedgerEntriesOutput {
+  /** Array of ledger entries. */
+  entries: Array<LedgerEntryOutput>;
+  /**
+   * State of the ledger query.
+   *
+   * Possible values: Loading, Ready
+   */
+  state: string;
+  /** Path from which to retrieve the next page of results. */
+  nextLink?: string;
+}
+
+export interface LedgerEntryOutput {
+  /** Contents of the ledger entry. */
+  contents: string;
+  collectionId: string;
+  /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
+  transactionId: string;
+}
+
+/** A receipt certifying the transaction at the specified id. */
+export interface TransactionReceiptOutput {
+  receipt: ReceiptContentsOutput;
+  /** Possible values: Loading, Ready */
+  state: string;
+  /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
+  transactionId: string;
+}
+
+export interface ReceiptContentsOutput {}
+
+/** Response returned to a query for the transaction status. */
+export interface TransactionStatusOutput {
+  /** Possible values: Committed, Pending */
+  state: string;
+  /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
+  transactionId: string;
+}
+
+/** Details about a Confidential ledger user. */
+export interface LedgerUserOutput {
+  /** The user id, either an AAD object ID or certificate fingerprint. */
+  userId: string;
+  /**
+   * The user's assigned role.
+   *
+   * Possible values: Administrator, Contributor, Reader
+   */
+  assignedRole: string;
 }

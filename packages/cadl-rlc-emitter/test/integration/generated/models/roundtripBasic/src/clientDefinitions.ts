@@ -1,16 +1,11 @@
 import { RoundTripBasicGetModelParameters } from "./parameters";
-import {
-  RoundTripBasicGetModel200Response,
-  RoundTripBasicGetModelDefaultResponse,
-} from "./responses";
+import { RoundTripBasicGetModel200Response } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetModel {
   get(
     options: RoundTripBasicGetModelParameters
-  ): StreamableMethod<
-    RoundTripBasicGetModel200Response | RoundTripBasicGetModelDefaultResponse
-  >;
+  ): StreamableMethod<RoundTripBasicGetModel200Response>;
 }
 
 export interface Routes {

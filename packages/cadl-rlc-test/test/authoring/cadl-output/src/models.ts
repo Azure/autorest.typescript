@@ -1,10 +1,11 @@
 /** The template for adding optional properties. */
 export interface OptionalPropertiesUpdateableProperties {
-  /** The project kind. */
-  projectKind?:
-    | "CustomSingleLabelClassification"
-    | "CustomMultiLabelClassification"
-    | "CustomEntityRecognition";
+  /**
+   * The project kind.
+   *
+   * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
+   */
+  projectKind?: string;
   /** The storage container name. */
   storageInputContainerName?: string;
   /** The project settings. */

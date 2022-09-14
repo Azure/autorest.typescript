@@ -49,6 +49,34 @@ export function isPagingOperation(
     if (paged) {
       return true;
     }
+export function getOperationStatuscode(
+  response: HttpOperationResponse
+): string {
+  switch (response.statusCode) {
+    case "*":
+      return "default";
+    default:
+      return `${response.statusCode}`;
+  }
+}
+
+export function isDefaultStatusCode(statusCode: StatusCode) {
+  return statusCode === "*";
+}
+
+export function isDefinedStatusCode(statusCode: StatusCode) {
+  return statusCode !== "*";
+}
+
+export function isBinaryPayload(body: Type, contentType: string) {
+  return (
+    body.kind === "Model" &&
+    body.name === "bytes" &&
+    contentType !== "application/json" &&
+    contentType !== "text/plain" &&
+    contentType !== `"application/json" | "text/plain"` &&
+    contentType !== `"text/plain" | "application/json"`
+  );
   }
   return false;
 }
