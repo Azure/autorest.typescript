@@ -41,7 +41,10 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         originalMethod !== "GET"
       ) {
         const operation = `GET ${path}`;
-        const success = methodDetails[0].successStatus;
+        const success =
+          (pathDictionary[path].methods["get"] &&
+            pathDictionary[path].methods["get"][0]?.successStatus) ??
+          methodDetails[0].successStatus;
         map = { ...map, ...{ [operation]: success } };
       }
 
