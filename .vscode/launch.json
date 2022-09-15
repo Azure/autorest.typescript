@@ -28,9 +28,27 @@
       ]
     },
     {
+      "name": "Run Debug Integration Test Autorest",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "runtimeArgs": [
+        "ts-node",
+        "./test/commands/test-swagger-gen.ts",
+        "--",
+        "rlc"
+      ],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js"
+      ]
+    },
+    {
       "name": "Generate code for CadlRlcTest",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-rlc-test",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-test/test/authoring",
       "runtimeArgs": ["cadl", "compile", "./spec/main.cadl"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
@@ -71,11 +89,7 @@
       "name": "smoke test",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/cadl-rlc-test",
-      "runtimeArgs": [
-        "npm",
-        "run",
-        "test",
-      ],
+      "runtimeArgs": ["npm", "run", "test"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",

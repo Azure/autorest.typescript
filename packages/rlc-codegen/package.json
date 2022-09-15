@@ -14,10 +14,9 @@
   },
   "types": "./types/index.d.ts",
   "scripts": {
-    "build": "rimraf dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js && npm run copyFiles",
-    "build:cjs":"rimraf dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js && npm run copyFiles",
-    "build:esm":"rimraf dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js && npm run copyFiles",
-    "copyFiles": "ts-node ./src/helpers/copyFiles.ts",
+    "build": "rimraf dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
+    "build:cjs":"rimraf dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js",
+    "build:esm":"rimraf dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
