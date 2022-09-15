@@ -118,6 +118,8 @@
         "wait-port": "^0.2.6",
         "webpack": "^5.72.0",
         "webpack-cli": "^4.9.2",
-        "yargs": "^17.4.1"
+        "yargs": "^17.4.1",
+        "tslib": "^2.3.1",
+        "openapi-types": "^7.0.0"
     }
 }

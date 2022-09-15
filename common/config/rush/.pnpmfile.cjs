@@ -28,13 +28,5 @@ module.exports = {
  * The return value is the updated object.
  */
 function readPackage(packageJson, context) {
-  
-  // snap-shot-it takes a hard dependency on 10.2.0 but we want a fix in 10.2.1
-  if (packageJson.name === "oav" && packageJson.dependencies['@ts-common/commonmark-to-markdown']) {
-    packageJson.dependencies['@ts-common/commonmark-to-markdown'] = "2.0.2"
-  }
-  if (packageJson.name === "oav" && packageJson.dependencies['swagger-parser']) {
-    packageJson.dependencies['swagger-parser'] = "10.0.3"
-  }
   return packageJson;
 }
