@@ -7,6 +7,8 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
+import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
@@ -370,6 +372,9 @@ export interface ErrorResponseOutput {
     error: ErrorModelOutput;
 }
 
+// @public
+export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
+
 // @public (undocumented)
 export interface GetConsortiumMembers {
     get(options?: ConfidentialLedgerGetConsortiumMembersParameters): StreamableMethod<ConfidentialLedgerGetConsortiumMembers200Response | ConfidentialLedgerGetConsortiumMembersDefaultResponse>;
@@ -394,6 +399,12 @@ export interface GetEnclaveQuotes {
 export interface GetLedgerEntry {
     get(options?: ConfidentialLedgerGetLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetLedgerEntry200Response | ConfidentialLedgerGetLedgerEntryDefaultResponse>;
 }
+
+// @public
+export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+    page: TPage;
+    nextPageLink?: string;
+}>;
 
 // @public (undocumented)
 export interface GetReceipt {
@@ -485,6 +496,25 @@ export interface PagedLedgerEntriesOutput {
     entries: Array<LedgerEntryOutput>;
     nextLink?: string;
     state: string;
+}
+
+// @public
+export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+
+// @public
+export type PaginateReturn<TResult> = TResult extends {
+    body: {
+        value?: infer TPage;
+    };
+} | {
+    body: {
+        entries?: infer TPage;
+    };
+} ? GetArrayType<TPage> : Array<unknown>;
+
+// @public
+export interface PagingOptions<TResponse> {
+    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
 // @public (undocumented)

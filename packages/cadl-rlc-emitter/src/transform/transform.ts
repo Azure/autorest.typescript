@@ -46,7 +46,6 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     importSet
   );
   const pageInfo = transformPageDetails(program);
-  console.log("pageInfo", pageInfo);
   return {
     srcPath,
     libraryName,
