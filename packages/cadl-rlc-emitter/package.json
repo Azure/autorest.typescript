@@ -35,6 +35,7 @@
     "prettier": "~2.7.1",
     "@azure-tools/cadl-azure-core": "~0.7.0",
     "@azure-tools/cadl-ranch-specs": "~0.1.11",
+    "@cadl-lang/versioning": "0.8.0",
     "@azure-tools/cadl-ranch-expect": "~0.1.9",
     "@azure-tools/cadl-ranch": "~0.1.9",
     "chalk": "^4.0.0",
