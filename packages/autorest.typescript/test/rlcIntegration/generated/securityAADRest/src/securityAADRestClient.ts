@@ -9,8 +9,7 @@ export default function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {}
 ): SecurityAADRestClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
-
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options = {
     ...options,
     credentials: {

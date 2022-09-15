@@ -11,8 +11,13 @@ export interface RLCModel {
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
   pageInfo?: PageInfo;
+  uriInfo?: UriInfo
 }
 
+export interface UriInfo {
+  endpoint?: string,
+  uriParameters?: PathParameter[]
+}
 export interface PageInfo {
   hasPaging: boolean;
   pageDetails?: PagingDetails;
@@ -72,8 +77,6 @@ export interface RLCOptions {
   addCredentials?: boolean;
   credentialScopes?: string[];
   credentialKeyHeaderName?: string;
-  endpoint?: string;
-  endpointParameterName?: string;
   generateMetadata?: boolean;
   generateTest?: boolean;
   generateSample?: boolean;

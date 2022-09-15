@@ -26,7 +26,7 @@ export function buildClient(model: RLCModel): File | undefined {
 
   // Get all paths
   const clientName = model.libraryName;
-  const uriParameter = model.options?.endpointParameterName;
+  const uriParameters = model?.uriInfo?.uriParameters;
 
   if (!model.options) {
     return undefined;
@@ -42,14 +42,7 @@ export function buildClient(model: RLCModel): File | undefined {
   }
 
   const commonClientParams = [
-    ...(uriParameter
-      ? [
-          {
-            name: uriParameter,
-            type: "string"
-          }
-        ]
-      : []),
+    ...(uriParameters ?? []),
     ...(addCredentials === false ||
     !isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
       ? []
@@ -116,19 +109,23 @@ function getClientFactoryBody(
   model: RLCModel,
   clientTypeName: string
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
-  if (!model.options || !model.options.packageDetails) {
+  if (!model.options || !model.options.packageDetails || !model.uriInfo) {
     return "";
   }
   const { includeShortcuts, packageDetails } = model.options;
   let clientPackageName = packageDetails.nameWithoutScope ?? "";
   const packageVersion = packageDetails.version;
-  const { endpoint, endpointParameterName } = model.options;
+  const { endpoint, uriParameters } = model.uriInfo;
   let baseUrl: string;
-  if (endpointParameterName) {
-    const parsedEndpoint = endpoint?.replace(
-      `{${endpointParameterName}}`,
-      `\${${endpointParameterName}}`
-    );
+  if (uriParameters && endpoint) {
+    let parsedEndpoint = endpoint;
+    uriParameters.forEach((uriParameter) => {
+      parsedEndpoint = parsedEndpoint.replace(
+        `{${uriParameter.name}}`,
+        `\${${uriParameter.name}}`
+      );
+    });
+
     baseUrl = `options.baseUrl ?? \`${parsedEndpoint}\``;
   } else {
     baseUrl = `options.baseUrl ?? "${endpoint}"`;

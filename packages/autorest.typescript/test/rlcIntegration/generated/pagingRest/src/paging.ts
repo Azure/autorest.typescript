@@ -7,9 +7,8 @@ import { PagingClient } from "./clientDefinitions";
 export default function createClient(
   options: ClientOptions = {}
 ): PagingClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-
   const userAgentInfo = `azsdk-js-paging-service-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

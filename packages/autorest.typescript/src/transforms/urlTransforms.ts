@@ -1,14 +1,17 @@
 import {
   CodeModel,
   ImplementationLocation,
-  ParameterLocation
+  ParameterLocation,
+  SchemaContext
 } from "@autorest/codemodel";
+import { PathParameter } from "@azure-tools/rlc-codegen";
+import { primitiveSchemaToType } from "../restLevelClient/schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export interface EndpointDetails {
   isCustom: boolean;
   endpoint?: string;
-  parameterName?: string;
+  uriParameters?: PathParameter[];
 }
 
 export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
@@ -20,14 +23,13 @@ export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
     return name === "$host" && Boolean(p.clientDefaultValue);
   });
 
-  let parameterName: string | undefined;
-
+  let uriParameters: PathParameter[] = [];
   if (!$host) {
     // There are some swaggers that contain no operations for those we'll keep an empty endpoint
     if (codeModel.operationGroups && codeModel.operationGroups.length) {
       // No support yet for multi-baseUrl yet Issue #553
       const { requests } = codeModel.operationGroups[0].operations[0];
-      parameterName = getEndpointParameter(codeModel);
+      uriParameters = getEndpointParameter(codeModel);
       isCustom = true;
       endpoint = requests![0].protocol.http!.uri;
     }
@@ -36,7 +38,7 @@ export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
   }
 
   return {
-    parameterName,
+    uriParameters,
     endpoint: endpoint,
     isCustom
   };
@@ -44,7 +46,7 @@ export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
 
 function getEndpointParameter(codeModel: CodeModel) {
   if (!codeModel.globalParameters || !codeModel.globalParameters.length) {
-    return;
+    return [];
   }
 
   const uriParameters = codeModel.globalParameters.filter(
@@ -54,12 +56,16 @@ function getEndpointParameter(codeModel: CodeModel) {
   );
 
   // Currently only support one parametrized host
-  if (
-    !uriParameters.length ||
-    !getLanguageMetadata(uriParameters[0].language).serializedName
-  ) {
-    return;
+  if (!uriParameters.length) {
+    return [];
   }
 
-  return getLanguageMetadata(uriParameters[0].language).serializedName;
+  return uriParameters.map(uriParameter => {
+    return {
+      name: getLanguageMetadata(uriParameter.language).serializedName,
+      type: primitiveSchemaToType(uriParameter.schema, [SchemaContext.Input]),
+      description: getLanguageMetadata(uriParameter.language).description
+    }
+  })
+
 }

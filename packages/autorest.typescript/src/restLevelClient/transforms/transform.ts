@@ -6,8 +6,9 @@ import {
   ImplementationLocation,
   ParameterLocation
 } from "@autorest/codemodel";
-import { ImportKind, RLCModel, PageInfo } from "@azure-tools/rlc-codegen";
+import { ImportKind, RLCModel, PageInfo, UriInfo } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
+import { transformBaseUrl } from "../../transforms/urlTransforms";
 import {
   extractPaginationDetails,
   hasPagingOperations
@@ -37,7 +38,8 @@ export function transform(model: CodeModel): RLCModel {
     importSet: importDetails,
     apiVersionParam: transformApiVersionParam(model),
     parameters: transformParameterTypes(model, importDetails),
-    pageInfo: transformPageDetails(model)
+    pageInfo: transformPageDetails(model),
+    uriInfo: transformUriInfo(model)
   };
   return rlcModel;
 }
@@ -97,4 +99,9 @@ export function transformPageDetails(model: CodeModel): PageInfo {
       isComplexPaging
     }
   };
+}
+
+function transformUriInfo(model: CodeModel): UriInfo {
+  const { endpoint, uriParameters } = transformBaseUrl(model);
+  return { endpoint, uriParameters }
 }

@@ -7,8 +7,7 @@ import { UrlRestClient } from "./clientDefinitions";
 export default function createClient(
   options: ClientOptions = {}
 ): UrlRestClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
-
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-url-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

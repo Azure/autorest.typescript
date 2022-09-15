@@ -4,9 +4,8 @@ import { BasicPolymorphicModelsClient } from "./clientDefinitions";
 export default function createClient(
   options: ClientOptions = {}
 ): BasicPolymorphicModelsClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-
   const userAgentInfo = `azsdk-js-model-inheritance-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

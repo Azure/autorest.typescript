@@ -1,4 +1,5 @@
 import {
+  buildClient,
   buildClientDefinitions,
   buildParameterTypes,
   buildResponseTypes,
@@ -8,6 +9,7 @@ import {
 import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
 import { transformSchemas } from "../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
+import { transformUriInfo } from "../../src/transform/transform.js"
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { rlcEmitterFor } from "./testUtil.js";
 
@@ -44,6 +46,24 @@ export async function emitClientDefinitionFromCadl(cadlContent: string) {
     libraryName: "test",
     schemas: [],
     paths
+  });
+}
+
+export async function emitClientFactoryFromCadl(cadlContent: string) {
+  const program = await rlcEmitterFor(cadlContent);
+  const uriInfo = transformUriInfo(program);
+  return buildClient({
+    srcPath: "",
+    libraryName: "test",
+    schemas: [],
+    paths: {},
+    uriInfo,
+    options: {
+      packageDetails: {
+        name: "test",
+        version: "1.0.0-beta.1"
+      }
+    }
   });
 }
 

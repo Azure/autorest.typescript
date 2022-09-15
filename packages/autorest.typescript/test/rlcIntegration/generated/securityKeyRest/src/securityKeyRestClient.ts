@@ -9,8 +9,7 @@ export default function createClient(
   credentials: KeyCredential,
   options: ClientOptions = {}
 ): SecurityKeyRestClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
-
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options = {
     ...options,
     credentials: {

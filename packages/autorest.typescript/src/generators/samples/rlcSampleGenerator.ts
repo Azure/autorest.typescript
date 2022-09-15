@@ -202,13 +202,13 @@ function convertClientLevelParameters(
     return clientParams;
   }
 
-  const { parameterName } = transformBaseUrl(model);
+  const { uriParameters } = transformBaseUrl(model);
   const {
     addCredentials,
     credentialScopes,
     credentialKeyHeaderName
   } = getSecurityInfoFromModel(model.security);
-  const hasUriParameter = !!parameterName,
+  const hasUriParameter = !!uriParameters,
     hasCredentials =
       addCredentials &&
       ((credentialScopes && credentialScopes.length > 0) ||
@@ -219,14 +219,20 @@ function convertClientLevelParameters(
   if (hasUriParameter && rawUriParameters.length > 0) {
     // Currently only support one parametrized host
     // TODO: support more parameters in url once the bug fixs - https://github.com/Azure/autorest.typescript/issues/1399
-    const urlValue = getParameterAssignment(
-      rawUriParameters[0].exampleValue,
-      true
-    );
-    clientParams.push({
-      name: parameterName,
-      assignment: `const ${parameterName} = ` + urlValue + `;`
-    });
+    const clientParamAssignments = uriParameters.map(uriParameter => {
+      const exampleUriParam = rawUriParameters.filter(param => 
+        getLanguageMetadata(param.parameter.language).serializedName === uriParameter.name)
+      const urlValue = getParameterAssignment(
+        exampleUriParam[0].exampleValue,
+        true
+      );
+      return {
+        name: uriParameter.name,
+        assignment: `const ${uriParameter.name} = ` + urlValue + `;`
+      }
+    })
+
+    clientParams.push(...clientParamAssignments);
   }
   if (hasCredentials) {
     // Currently only support token credential
@@ -430,16 +436,19 @@ export function createSampleData(model: TestCodeModel) {
   const clientInterfaceName = clientName.endsWith("Client")
     ? `${clientName}`
     : `${clientName}Client`;
-  const { parameterName } = transformBaseUrl(model);
-  const hasUriParameter = !!parameterName,
+  const { uriParameters } = transformBaseUrl(model);
+  const hasUriParameter = !!uriParameters,
     hasCredentials = addCredentials;
   const clientParameters = [];
   const clientParamAssignments = [];
   if (hasUriParameter) {
-    clientParamAssignments.push(
-      `const ${parameterName} = process.env["ENDPOINT"] || "<${parameterName}>"`
-    );
-    clientParameters.push(`${parameterName}`);
+    uriParameters.forEach(uriParameter => {
+      clientParamAssignments.push(
+        `const ${uriParameter.name} = process.env["ENDPOINT"] || "<${uriParameter.name}>"`
+      );
+      clientParameters.push(`${uriParameter.name}`);
+    })
+
   }
   if (hasCredentials) {
     clientParamAssignments.push(
