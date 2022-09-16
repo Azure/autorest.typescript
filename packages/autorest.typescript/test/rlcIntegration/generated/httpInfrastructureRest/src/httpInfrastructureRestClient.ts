@@ -4,6 +4,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { HttpInfrastructureRestClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class HttpInfrastructureRestClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): HttpInfrastructureRestClient {

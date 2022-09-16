@@ -1,6 +1,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { NestedModelsBasicClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class NestedModelsBasicClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): NestedModelsBasicClient {

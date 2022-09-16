@@ -98,7 +98,7 @@ export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
     TitleId?: string;
 }
 
-// @public (undocumented)
+// @public
 function createClient(endpoint: string, options?: ClientOptions): PlayFabClient;
 export default createClient;
 

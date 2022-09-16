@@ -59,6 +59,17 @@ export function buildClient(model: RLCModel): File | undefined {
       ...commonClientParams,
       { name: "options", type: "ClientOptions = {}" }
     ],
+    docs: [
+      {
+        description:
+          `Initialize a new instance of the class ${clientInterfaceName} class. \n` +
+          commonClientParams
+            .map((param) => {
+              return `@param ${param.name} type: ${param.type} ${param.description ?? ""}`;
+            })
+            .join("\n")
+      }
+    ],
     returnType: clientInterfaceName,
     isDefaultExport: false,
     statements: getClientFactoryBody(model, clientInterfaceName)

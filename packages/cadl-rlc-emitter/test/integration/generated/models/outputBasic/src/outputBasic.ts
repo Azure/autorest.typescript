@@ -1,6 +1,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { OutputBasicClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class OutputBasicClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): OutputBasicClient {

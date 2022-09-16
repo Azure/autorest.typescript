@@ -4,6 +4,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { BodyStringRestClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class BodyStringRestClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): BodyStringRestClient {

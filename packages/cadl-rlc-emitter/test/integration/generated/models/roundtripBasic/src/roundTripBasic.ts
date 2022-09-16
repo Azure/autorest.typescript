@@ -1,6 +1,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { RoundTripBasicClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class RoundTripBasicClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): RoundTripBasicClient {

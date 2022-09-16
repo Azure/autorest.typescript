@@ -4,6 +4,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { HeaderRestClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class HeaderRestClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): HeaderRestClient {

@@ -4,6 +4,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { PagingClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class PagingClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): PagingClient {

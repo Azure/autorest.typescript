@@ -1,6 +1,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ReadonlyPropertiesClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class ReadonlyPropertiesClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): ReadonlyPropertiesClient {
