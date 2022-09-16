@@ -12,7 +12,7 @@ import {
   RLCModel,
   RLCOptions,
   Schema,
-  UriInfo
+  UrlInfo
 } from "@azure-tools/rlc-codegen";
 import {
   getDoc,
@@ -49,7 +49,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     program,
     importSet
   );
-  const uriInfo = transformUriInfo(program);
+  const urlInfo = transformUrlInfo(program);
 
   return {
     srcPath,
@@ -61,7 +61,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     importSet,
     apiVersionParam,
     parameters,
-    uriInfo
+    urlInfo
   };
 }
 
@@ -77,10 +77,10 @@ function transformApiVersionParam(program: Program): Parameter | undefined {
   return undefined;
 }
 
-export function transformUriInfo(program: Program): UriInfo | undefined {
+export function transformUrlInfo(program: Program): UrlInfo | undefined {
   const serviceNs = getServiceNamespace(program);
   let endpoint = undefined;
-  let uriParameters = []
+  let urlParameters = []
   if (serviceNs) {
     const host = getServers(program, serviceNs);
     if (host?.[0]?.url) {
@@ -91,7 +91,7 @@ export function transformUriInfo(program: Program): UriInfo | undefined {
       for (const key of host?.[0]?.parameters.keys()) {
         const type = host?.[0]?.parameters.get(key)?.type;
         if (type) {
-          uriParameters.push({
+          urlParameters.push({
             name: key,
             type: getSchemaForType(program, type).type,
             description: getDoc(program, type)
@@ -101,5 +101,5 @@ export function transformUriInfo(program: Program): UriInfo | undefined {
       }
     }
   }
-  return { endpoint, uriParameters }
+  return { endpoint, urlParameters }
 }

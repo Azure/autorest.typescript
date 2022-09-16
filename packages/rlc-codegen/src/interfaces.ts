@@ -11,12 +11,12 @@ export interface RLCModel {
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
   pageInfo?: PageInfo;
-  uriInfo?: UriInfo
+  urlInfo?: UrlInfo
 }
 
-export interface UriInfo {
+export interface UrlInfo {
   endpoint?: string,
-  uriParameters?: PathParameter[]
+  urlParameters?: PathParameter[]
 }
 export interface PageInfo {
   hasPaging: boolean;

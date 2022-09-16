@@ -6,7 +6,7 @@ import {
   ImplementationLocation,
   ParameterLocation
 } from "@autorest/codemodel";
-import { ImportKind, RLCModel, PageInfo, UriInfo } from "@azure-tools/rlc-codegen";
+import { ImportKind, RLCModel, PageInfo, UrlInfo } from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
 import {
@@ -39,7 +39,7 @@ export function transform(model: CodeModel): RLCModel {
     apiVersionParam: transformApiVersionParam(model),
     parameters: transformParameterTypes(model, importDetails),
     pageInfo: transformPageDetails(model),
-    uriInfo: transformUriInfo(model)
+    urlInfo: transformUrlInfo(model)
   };
   return rlcModel;
 }
@@ -101,7 +101,7 @@ export function transformPageDetails(model: CodeModel): PageInfo {
   };
 }
 
-function transformUriInfo(model: CodeModel): UriInfo {
-  const { endpoint, uriParameters } = transformBaseUrl(model);
-  return { endpoint, uriParameters }
+function transformUrlInfo(model: CodeModel): UrlInfo {
+  const { endpoint, urlParameters } = transformBaseUrl(model);
+  return { endpoint, urlParameters }
 }

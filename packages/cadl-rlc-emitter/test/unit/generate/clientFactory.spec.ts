@@ -20,6 +20,10 @@ describe("Client Factory generation testing", () => {
         import { getClient, ClientOptions } from "@azure-rest/core-client";
         import { testClient } from "./clientDefinitions";
         
+        /**
+         * Initialize a new instance of the class testClient class.
+         *
+         */
         export default function createClient(options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`localhost\`;
         
@@ -61,7 +65,11 @@ describe("Client Factory generation testing", () => {
         `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
           import { testClient } from "./clientDefinitions";
-          
+
+          /**
+           * Initialize a new instance of the class testClient class.
+           * @param Endpoint type: string The endpoint to use.
+           */
           export default function createClient(
             Endpoint: string,
             options: ClientOptions = {}
@@ -115,6 +123,11 @@ describe("Client Factory generation testing", () => {
             import { getClient, ClientOptions } from "@azure-rest/core-client";
             import { testClient } from "./clientDefinitions";
             
+            /**
+             * Initialize a new instance of the class testClient class.
+             * @param Endpoint type: string The endpoint to use.
+             * @param Version type: "V1"|"V2" The version to use
+             */
             export default function createClient(
               Endpoint: string,
               Version: "V1" | "V2",

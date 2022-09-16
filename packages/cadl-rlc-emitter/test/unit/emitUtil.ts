@@ -9,7 +9,7 @@ import {
 import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
 import { transformSchemas } from "../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
-import { transformUriInfo } from "../../src/transform/transform.js"
+import { transformUrlInfo } from "../../src/transform/transform.js"
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { rlcEmitterFor } from "./testUtil.js";
 
@@ -51,13 +51,13 @@ export async function emitClientDefinitionFromCadl(cadlContent: string) {
 
 export async function emitClientFactoryFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
-  const uriInfo = transformUriInfo(program);
+  const urlInfo = transformUrlInfo(program);
   return buildClient({
     srcPath: "",
     libraryName: "test",
     schemas: [],
     paths: {},
-    uriInfo,
+    urlInfo,
     options: {
       packageDetails: {
         name: "test",
