@@ -202,13 +202,13 @@ function convertClientLevelParameters(
     return clientParams;
   }
 
-  const { parameterName } = transformBaseUrl(model);
+  const { urlParameters } = transformBaseUrl(model);
   const {
     addCredentials,
     credentialScopes,
     credentialKeyHeaderName
   } = getSecurityInfoFromModel(model.security);
-  const hasUriParameter = !!parameterName,
+  const hasUrlParameter = !!urlParameters,
     hasCredentials =
       addCredentials &&
       ((credentialScopes && credentialScopes.length > 0) ||
@@ -216,17 +216,23 @@ function convertClientLevelParameters(
   const rawUriParameters = rawClientParams.filter(
     p => p.parameter.protocol.http?.in === ParameterLocation.Uri
   );
-  if (hasUriParameter && rawUriParameters.length > 0) {
+  if (hasUrlParameter && rawUriParameters.length > 0) {
     // Currently only support one parametrized host
     // TODO: support more parameters in url once the bug fixs - https://github.com/Azure/autorest.typescript/issues/1399
-    const urlValue = getParameterAssignment(
-      rawUriParameters[0].exampleValue,
-      true
-    );
-    clientParams.push({
-      name: parameterName,
-      assignment: `const ${parameterName} = ` + urlValue + `;`
-    });
+    const clientParamAssignments = urlParameters.map(urlParameter => {
+      const exampleUriParam = rawUriParameters.filter(param => 
+        getLanguageMetadata(param.parameter.language).serializedName === urlParameter.name)
+      const urlValue = getParameterAssignment(
+        exampleUriParam[0].exampleValue,
+        true
+      );
+      return {
+        name: urlParameter.name,
+        assignment: `const ${urlParameter.name} = ` + urlValue + `;`
+      }
+    })
+
+    clientParams.push(...clientParamAssignments);
   }
   if (hasCredentials) {
     // Currently only support token credential
@@ -430,16 +436,19 @@ export function createSampleData(model: TestCodeModel) {
   const clientInterfaceName = clientName.endsWith("Client")
     ? `${clientName}`
     : `${clientName}Client`;
-  const { parameterName } = transformBaseUrl(model);
-  const hasUriParameter = !!parameterName,
+  const { urlParameters } = transformBaseUrl(model);
+  const hasUrlParameter = !!urlParameters,
     hasCredentials = addCredentials;
   const clientParameters = [];
   const clientParamAssignments = [];
-  if (hasUriParameter) {
-    clientParamAssignments.push(
-      `const ${parameterName} = process.env["ENDPOINT"] || "<${parameterName}>"`
-    );
-    clientParameters.push(`${parameterName}`);
+  if (hasUrlParameter) {
+    urlParameters.forEach(urlParameter => {
+      clientParamAssignments.push(
+        `const ${urlParameter.name} = process.env["ENDPOINT"] || "<${urlParameter.name}>"`
+      );
+      clientParameters.push(`${urlParameter.name}`);
+    })
+
   }
   if (hasCredentials) {
     clientParamAssignments.push(

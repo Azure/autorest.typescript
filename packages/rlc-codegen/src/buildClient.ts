@@ -26,7 +26,7 @@ export function buildClient(model: RLCModel): File | undefined {
 
   // Get all paths
   const clientName = model.libraryName;
-  const uriParameter = model.options?.endpointParameterName;
+  const urlParameters = model?.urlInfo?.urlParameters;
 
   if (!model.options) {
     return undefined;
@@ -42,14 +42,7 @@ export function buildClient(model: RLCModel): File | undefined {
   }
 
   const commonClientParams = [
-    ...(uriParameter
-      ? [
-          {
-            name: uriParameter,
-            type: "string"
-          }
-        ]
-      : []),
+    ...(urlParameters ?? []),
     ...(addCredentials === false ||
     !isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
       ? []
@@ -65,6 +58,17 @@ export function buildClient(model: RLCModel): File | undefined {
     parameters: [
       ...commonClientParams,
       { name: "options", type: "ClientOptions = {}" }
+    ],
+    docs: [
+      {
+        description:
+          `Initialize a new instance of the class ${clientInterfaceName} class. \n` +
+          commonClientParams
+            .map((param) => {
+              return `@param ${param.name} type: ${param.type} ${param.description ?? ""}`;
+            })
+            .join("\n")
+      }
     ],
     returnType: clientInterfaceName,
     isDefaultExport: false,
@@ -116,19 +120,23 @@ function getClientFactoryBody(
   model: RLCModel,
   clientTypeName: string
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
-  if (!model.options || !model.options.packageDetails) {
+  if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
   }
   const { includeShortcuts, packageDetails } = model.options;
   let clientPackageName = packageDetails.nameWithoutScope ?? "";
   const packageVersion = packageDetails.version;
-  const { endpoint, endpointParameterName } = model.options;
+  const { endpoint, urlParameters } = model.urlInfo;
   let baseUrl: string;
-  if (endpointParameterName) {
-    const parsedEndpoint = endpoint?.replace(
-      `{${endpointParameterName}}`,
-      `\${${endpointParameterName}}`
-    );
+  if (urlParameters && endpoint) {
+    let parsedEndpoint = endpoint;
+    urlParameters.forEach((urlParameter) => {
+      parsedEndpoint = parsedEndpoint.replace(
+        `{${urlParameter.name}}`,
+        `\${${urlParameter.name}}`
+      );
+    });
+
     baseUrl = `options.baseUrl ?? \`${parsedEndpoint}\``;
   } else {
     baseUrl = `options.baseUrl ?? "${endpoint}"`;

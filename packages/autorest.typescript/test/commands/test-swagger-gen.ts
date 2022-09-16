@@ -1076,6 +1076,16 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     isTestPackage: true
   },
+  multipleUrlParameters: {
+    swaggerOrConfig: "test/rlcIntegration/swaggers/multipleUrlParameter.json",
+    clientName: "MultipleUrlParameterRestClient",
+    packageName: "multiple-url-parameter-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    isTestPackage: true
+  },
   azureReport: {
     swaggerOrConfig: "azure-report.json",
     clientName: "ReportClient",
