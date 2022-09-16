@@ -3678,6 +3678,13 @@ packages:
       ieee754: 1.2.1
     dev: false
 
+  /buffer/6.0.3:
+    resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
+    dependencies:
+      base64-js: 1.5.1
+      ieee754: 1.2.1
+    dev: false
+
   /builtin-status-codes/3.0.0:
     resolution: {integrity: sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==}
     dev: false
@@ -11143,7 +11150,7 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-AjxfbiH8qPWYLvh/XP/24ayAksD9qGUnQ7OW8TrRm2yZHZZLXF4ch5MQxFftt6+dGp3NxdWVcAIE3vzXqF/hZQ==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-/ZGss3MndTZdgBdNKTBohOlxUAgLyKSG/kFybmhBOGvcuYYmzxr94VwmJ10AsH0JuIoLywNzh70QZO4dr6zPHg==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
@@ -11179,6 +11186,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.32.0_43a51d9e2446a740dea4259743d3ab3e
       '@typescript-eslint/parser': 5.32.0_eslint@8.21.0+typescript@4.7.4
       autorest: 3.6.2
+      buffer: 6.0.3
       chai: 4.3.6
       chalk: 4.1.2
       directory-tree: 2.3.1
