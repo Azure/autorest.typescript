@@ -116,6 +116,18 @@ packages:
       - utf-8-validate
     dev: false
 
+  /@azure-rest/core-client/1.0.0:
+    resolution: {integrity: sha512-wZkjx7tR184kz2OBHWNmF+WCkilErBLSLVlMj0LjmFnLoBo15foPtLxMJA5Lvy6dopRJ2YCUo1P9ayRdScbLcQ==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@azure/core-auth': 1.4.0
+      '@azure/core-rest-pipeline': 1.9.1
+      '@azure/core-util': 1.0.0
+      tslib: 2.4.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@azure-rest/core-client/1.0.0-beta.10:
     resolution: {integrity: sha512-qsiepIEskvu+J815SFZ+u0wh0pPHtQVGtyT+yKbLN1YCIFtfM0L5XdaegfwMBWDG/NIXwF2fmqjM75Sqz8dAwA==}
     engines: {node: '>=12.0.0'}
@@ -10403,7 +10415,7 @@ packages:
     dev: false
 
   /verror/1.10.0:
-    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
+    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -11131,14 +11143,14 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-vEuSoMzPh8kfnYucCHYPsW0OjKs8Stfe9uYT3KZdSXvKWFVDLTy9ubx/LbO9FHR9FoMpanUzkqFrfp8RdlibCw==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-AjxfbiH8qPWYLvh/XP/24ayAksD9qGUnQ7OW8TrRm2yZHZZLXF4ch5MQxFftt6+dGp3NxdWVcAIE3vzXqF/hZQ==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
       '@autorest/codemodel': 4.18.2
       '@autorest/extension-base': 3.5.0
       '@autorest/testmodeler': 2.3.0_3198c54f382fcd72d367d3e6abb1ba15
-      '@azure-rest/core-client': 1.0.0-beta.10
+      '@azure-rest/core-client': 1.0.0
       '@azure-tools/codegen': 2.9.1
       '@azure-tools/test-recorder': 1.0.2
       '@azure/abort-controller': 1.1.0
