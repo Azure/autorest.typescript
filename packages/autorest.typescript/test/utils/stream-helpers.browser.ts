@@ -5,10 +5,19 @@
  * Reads data from a stream into a Buffer.
  * @param stream Node.js Readable stream.
  */
-export function readStreamToBuffer(
-  _stream: NodeJS.ReadableStream
+export async function readStreamToBuffer(
+  stream: ReadableStream<Uint8Array>
 ): Promise<Buffer> {
-  throw new Error("NYI");
+  const reader = stream.getReader();
+
+  const buffer: Buffer[] = [];
+  let readResult = await reader.read();
+  while (!readResult.done) {
+    const chunk = readResult.value.buffer;
+    buffer.push(Buffer.from(chunk));
+    readResult = await reader.read();
+  }
+  return Buffer.concat(buffer);
 }
 
 export function stringToStream(text: string): ReadableStream {

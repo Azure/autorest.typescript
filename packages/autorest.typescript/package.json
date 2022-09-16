@@ -120,6 +120,7 @@
         "webpack-cli": "^4.9.2",
         "yargs": "^17.4.1",
         "tslib": "^2.3.1",
-        "openapi-types": "^7.0.0"
+        "openapi-types": "^7.0.0",
+        "buffer": "^6.0.3"
     }
 }

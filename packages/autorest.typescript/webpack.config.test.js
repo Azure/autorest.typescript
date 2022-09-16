@@ -1,5 +1,6 @@
 const { readdirSync, statSync } = require("fs");
 const { join: joinPath, sep, extname } = require("path");
+const webpack = require("webpack");
 
 function getIntegrationTestFiles() {
   let hlcDirPath = joinPath(__dirname, "test-browser", "integration");
@@ -52,5 +53,15 @@ module.exports = {
     }
   ],
   mode: "development",
-  devtool: "inline-source-map"
+  devtool: "inline-source-map",
+  resolve: {
+    fallback: {
+      buffer: require.resolve("buffer/")
+    }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      Buffer: ["buffer", "Buffer"]
+    })
+  ]
 };
