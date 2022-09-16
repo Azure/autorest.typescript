@@ -1,6 +1,7 @@
 import { RLCModel } from "./interfaces.js";
 import * as path from "path";
-import * as hbs from "handlebars";
+// @ts-ignore: to fix the handlebars issue
+import hbs from "handlebars";
 import { hasPollingOperations } from "./helpers/operationHelpers.js";
 import { pollingContent } from "./static/pollingContent.js";
 

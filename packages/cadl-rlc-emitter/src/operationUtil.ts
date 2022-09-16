@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { NameType, normalizeName } from "@azure-tools/rlc-codegen";
-import { Model, Program, Type } from "@cadl-lang/compiler";
+import { DecoratedType, Model, Program, Type } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
   HttpOperationResponse,
@@ -63,15 +63,34 @@ export function isLongRunningOperation(
   program: Program,
   operation: OperationDetails
 ) {
-  // TODO: add logic here
   program;
-  operation;
+  for (const resp of operation.responses) {
+    if (!resp.responses || !resp.responses.length) {
+      continue;
+    }
+    for (const unit of resp.responses) {
+      for (const [_, header] of Object.entries(unit.headers!)) {
+        if (hasDecorator(header, "$pollingLocation")) {
+          return true;
+        }
+      }
+    }
+  }
   return false;
 }
 
+function hasDecorator(type: DecoratedType, name: string): boolean {
+  return type.decorators.find((it) => it.decorator.name === name) !== undefined;
+}
+
 export function hasPollingOperations(program: Program) {
-  // TODO: add logic here
-  program;
+  const [routes, _diagnostics] = getAllRoutes(program);
+  for (const route of routes) {
+    if (isLongRunningOperation(program, route)) {
+      return true;
+    }
+  }
+
   return false;
 }
 

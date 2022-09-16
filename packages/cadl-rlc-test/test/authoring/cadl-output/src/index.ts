@@ -8,5 +8,6 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 export * from "./paginateHelper";
+export * from "./pollingHelper";
 
 export default MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoring;
