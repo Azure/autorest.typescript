@@ -13,6 +13,7 @@ import { existsSync, mkdirSync } from "fs";
 import { join } from "path";
 import { getModel } from "./model";
 import { emitModels } from "./emiters/emitModels";
+import { emitCadlConfig } from "./emiters/emitCadlConfig";
 import { emitRoutes } from "./emiters/emitRoutes";
 import { emitMain } from "./emiters/emitMain";
 import { markPagination } from "./utils/paging";
@@ -34,6 +35,7 @@ export async function processRequest(host: AutorestExtensionHost) {
   await emitRoutes(getFilePath(session, "routes.cadl"), cadlProgramDetails);
   await emitMain(getFilePath(session, "main.cadl"), cadlProgramDetails);
   await emitPackage(getFilePath(session, "package.json"), cadlProgramDetails);
+  await emitCadlConfig(getFilePath(session, "cadl-project.yaml"));
 }
 
 function createOutputFolder(dir: string) {

@@ -1,0 +1,4518 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Adel",
+    "version": "0000-00-00",
+    "description": "Adel API server.",
+    "x-cadl-generated": [
+      {
+        "emitter": "@azure-tools/cadl-autorest"
+      }
+    ]
+  },
+  "schemes": [
+    "https"
+  ],
+  "x-ms-parameterized-host": {
+    "hostTemplate": "https://{resource}.cognitiveservices.azure.com",
+    "useSchemePrefix": false,
+    "parameters": [
+      {
+        "name": "resource",
+        "in": "path",
+        "required": true,
+        "description": "Resource name",
+        "type": "string"
+      }
+    ]
+  },
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "tags": [],
+  "paths": {
+    "/alertConfigs/{value}": {
+      "get": {
+        "operationId": "AlertConfigsOperations_List",
+        "description": "Get a PageAlertConfig",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageAlertConfig.value"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": true,
+            "description": "The number of records to skip from the list of records based on the sorting\nfield and ordering method specified. By default, records are ranked by\ndescending created time (UTC).",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": true,
+            "description": "The maximum number of records to be returned per page. If more records are\nrequested via the API, @nextLink will contain the link to the next page.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": true,
+            "description": "The name of the field on which you want to sort records. By default, records\nare sorted by created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ASCENDING",
+              "DESCENDING"
+            ],
+            "x-ms-enum": {
+              "name": "OrderBy",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Ascending",
+                  "value": "ASCENDING"
+                },
+                {
+                  "name": "Descending",
+                  "value": "DESCENDING"
+                }
+              ]
+            }
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PageAlertConfig"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/alertConfigs/{alertConfigName}/{alertConfigName}": {
+      "put": {
+        "operationId": "AlertConfigsOperations_Create",
+        "description": "Creates or replaces a AlertConfig",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AlertConfig.alertConfigName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "alertDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of an alert configuration."
+                },
+                "hookNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Specifies the list of notification channel(s) through which the\nalerts will be sent. If left blank, anomalies will still be detected but no\nalerts will be sent out. This parameter is case-sensitive."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<AlertConfig, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "alertConfigName": {
+                  "type": "string",
+                  "description": "Unique identifier of an alert configuration. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "alertDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of an alert configuration."
+                },
+                "hookNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Specifies the list of notification channel(s) through which the\nalerts will be sent. If left blank, anomalies will still be detected but no\nalerts will be sent out. This parameter is case-sensitive."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the alert configuration was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the alert configuration was last\nmodified by the users (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "alertConfigName",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "alertConfigName": {
+                  "type": "string",
+                  "description": "Unique identifier of an alert configuration. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "alertDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of an alert configuration."
+                },
+                "hookNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Specifies the list of notification channel(s) through which the\nalerts will be sent. If left blank, anomalies will still be detected but no\nalerts will be sent out. This parameter is case-sensitive."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the alert configuration was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the alert configuration was last\nmodified by the users (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "alertConfigName",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "AlertConfigsOperations_Read",
+        "description": "Get a AlertConfig",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AlertConfig.alertConfigName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AlertConfig"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "AlertConfigsOperations_Delete",
+        "description": "Delete a AlertConfig",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AlertConfig.alertConfigName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "AlertConfigsOperations_Update",
+        "description": "Creates or updates a AlertConfig",
+        "parameters": [
+          {
+            "$ref": "#/parameters/AlertConfig.alertConfigName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "alertDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of an alert configuration."
+                },
+                "hookNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Specifies the list of notification channel(s) through which the\nalerts will be sent. If left blank, anomalies will still be detected but no\nalerts will be sent out. This parameter is case-sensitive."
+                }
+              },
+              "description": "The template for adding optional properties.",
+              "x-cadl-name": "OptionalProperties<UpdateableProperties<DefaultKeyVisibility<AlertConfig, read>>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "alertConfigName": {
+                  "type": "string",
+                  "description": "Unique identifier of an alert configuration. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "alertDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of an alert configuration."
+                },
+                "hookNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Specifies the list of notification channel(s) through which the\nalerts will be sent. If left blank, anomalies will still be detected but no\nalerts will be sent out. This parameter is case-sensitive."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the alert configuration was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the alert configuration was last\nmodified by the users (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "alertConfigName",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "alertConfigName": {
+                  "type": "string",
+                  "description": "Unique identifier of an alert configuration. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "alertDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of an alert configuration."
+                },
+                "hookNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Specifies the list of notification channel(s) through which the\nalerts will be sent. If left blank, anomalies will still be detected but no\nalerts will be sent out. This parameter is case-sensitive."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the alert configuration was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the alert configuration was last\nmodified by the users (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "alertConfigName",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      }
+    },
+    "/datasets/{value}": {
+      "get": {
+        "operationId": "DatasetsOperations_List",
+        "description": "Get a PageDataset",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageDataset.value"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": true,
+            "description": "The number of records to skip from the list of records based on the sorting\nfield and ordering method specified. By default, records are ranked by\ndescending created time (UTC).",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": true,
+            "description": "The maximum number of records to be returned per page. If more records are\nrequested via the API, @nextLink will contain the link to the next page.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": true,
+            "description": "The name of the field on which you want to sort records. By default, records\nare sorted by created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ASCENDING",
+              "DESCENDING"
+            ],
+            "x-ms-enum": {
+              "name": "OrderBy",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Ascending",
+                  "value": "ASCENDING"
+                },
+                {
+                  "name": "Descending",
+                  "value": "DESCENDING"
+                }
+              ]
+            }
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PageDataset"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/datasets/{datasetName}/{datasetName}": {
+      "put": {
+        "operationId": "DatasetsOperations_Create",
+        "description": "Creates or replaces a Dataset",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Dataset.datasetName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "datasetDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a dataset."
+                },
+                "dataSourceInfo": {
+                  "$ref": "#/definitions/DataSourceInfo",
+                  "description": "Details about your data source, including data source type, location,\nauthentication method, and so on."
+                },
+                "dataSchema": {
+                  "$ref": "#/definitions/DataSchema",
+                  "description": "Format and schema details of the dataset."
+                },
+                "dataGranularityNumber": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The frequency interval at which new records are added to your data. Make sure\nthat each variable has at most one data point within each interval."
+                },
+                "dataGranularityUnit": {
+                  "$ref": "#/definitions/DataGranularityUnit",
+                  "description": "The unit of your data frequency interval."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "required": [
+                "dataSourceInfo",
+                "dataSchema",
+                "dataGranularityNumber",
+                "dataGranularityUnit"
+              ],
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<Dataset, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "datasetName": {
+                  "type": "string",
+                  "description": "Unique identifier of a dataset. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "datasetDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a dataset."
+                },
+                "dataSourceInfo": {
+                  "$ref": "#/definitions/DataSourceInfo",
+                  "description": "Details about your data source, including data source type, location,\nauthentication method, and so on."
+                },
+                "dataSchema": {
+                  "$ref": "#/definitions/DataSchema",
+                  "description": "Format and schema details of the dataset."
+                },
+                "dataGranularityNumber": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The frequency interval at which new records are added to your data. Make sure\nthat each variable has at most one data point within each interval."
+                },
+                "dataGranularityUnit": {
+                  "$ref": "#/definitions/DataGranularityUnit",
+                  "description": "The unit of your data frequency interval."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the dataset was created.",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "datasetName",
+                "dataSourceInfo",
+                "dataSchema",
+                "dataGranularityNumber",
+                "dataGranularityUnit",
+                "createdTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "datasetName": {
+                  "type": "string",
+                  "description": "Unique identifier of a dataset. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "datasetDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a dataset."
+                },
+                "dataSourceInfo": {
+                  "$ref": "#/definitions/DataSourceInfo",
+                  "description": "Details about your data source, including data source type, location,\nauthentication method, and so on."
+                },
+                "dataSchema": {
+                  "$ref": "#/definitions/DataSchema",
+                  "description": "Format and schema details of the dataset."
+                },
+                "dataGranularityNumber": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The frequency interval at which new records are added to your data. Make sure\nthat each variable has at most one data point within each interval."
+                },
+                "dataGranularityUnit": {
+                  "$ref": "#/definitions/DataGranularityUnit",
+                  "description": "The unit of your data frequency interval."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the dataset was created.",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "datasetName",
+                "dataSourceInfo",
+                "dataSchema",
+                "dataGranularityNumber",
+                "dataGranularityUnit",
+                "createdTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "DatasetsOperations_Read",
+        "description": "Get a Dataset",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Dataset.datasetName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Dataset"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DatasetsOperations_Delete",
+        "description": "Delete a Dataset",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Dataset.datasetName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/datasets/previewData": {
+      "post": {
+        "operationId": "DatasetsOperations_PreviewData",
+        "summary": "Query data from data source to preview",
+        "description": "Verify data schema and preview data before/after a dataset is created. View raw\ndata to better diagnose and explain a detected anomaly.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "x-cadl-name": "string[]"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "string[][]",
+                  "description": "Values for the corresponding columns headers. This values are aligned to the\ndata granularity."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "required": [
+                "values"
+              ],
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<DatasetPreviewResponse, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "Location": {
+                "description": "The location of an instance of DatasetPreviewResponse",
+                "type": "string"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/hooks/{value}": {
+      "get": {
+        "operationId": "HooksOperations_List",
+        "description": "Get a PageHook",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageHook.value"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": true,
+            "description": "The number of records to skip from the list of records based on the sorting\nfield and ordering method specified. By default, records are ranked by\ndescending created time (UTC).",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": true,
+            "description": "The maximum number of records to be returned per page. If more records are\nrequested via the API, @nextLink will contain the link to the next page.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": true,
+            "description": "The name of the field on which you want to sort records. By default, records\nare sorted by created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ASCENDING",
+              "DESCENDING"
+            ],
+            "x-ms-enum": {
+              "name": "OrderBy",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Ascending",
+                  "value": "ASCENDING"
+                },
+                {
+                  "name": "Descending",
+                  "value": "DESCENDING"
+                }
+              ]
+            }
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PageHook"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/hooks/{hookName}/{hookName}": {
+      "put": {
+        "operationId": "HooksOperations_Create",
+        "description": "Creates or replaces a Hook",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Hook.hookName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hookDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a hook."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<Hook, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hookName": {
+                  "type": "string",
+                  "description": "Unique identifier of a hook. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "hookDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a hook."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the hook was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "hookName",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hookName": {
+                  "type": "string",
+                  "description": "Unique identifier of a hook. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "hookDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a hook."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the hook was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "hookName",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "HooksOperations_Read",
+        "description": "Get a Hook",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Hook.hookName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Hook"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "HooksOperations_Delete",
+        "description": "Delete a Hook",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Hook.hookName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "HooksOperations_Update",
+        "description": "Creates or updates a Hook",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Hook.hookName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hookDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a hook."
+                }
+              },
+              "description": "The template for adding optional properties.",
+              "x-cadl-name": "OptionalProperties<UpdateableProperties<DefaultKeyVisibility<Hook, read>>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hookName": {
+                  "type": "string",
+                  "description": "Unique identifier of a hook. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "hookDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a hook."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the hook was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "hookName",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hookName": {
+                  "type": "string",
+                  "description": "Unique identifier of a hook. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "hookDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a hook."
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the hook was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "hookName",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      }
+    },
+    "/inference/replays/{value}": {
+      "get": {
+        "operationId": "ReplaysOperations_List",
+        "description": "Get a PageScheduleReplay",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageScheduleReplay.value"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": true,
+            "description": "The number of records to skip from the list of records based on the sorting\nfield and ordering method specified. By default, records are ranked by\ndescending created time (UTC).",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": true,
+            "description": "The maximum number of records to be returned per page. If more records are\nrequested via the API, @nextLink will contain the link to the next page.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": true,
+            "description": "The name of the field on which you want to sort records. By default, records\nare sorted by created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ASCENDING",
+              "DESCENDING"
+            ],
+            "x-ms-enum": {
+              "name": "OrderBy",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Ascending",
+                  "value": "ASCENDING"
+                },
+                {
+                  "name": "Descending",
+                  "value": "DESCENDING"
+                }
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "RUNNING",
+              "COMPLETED",
+              "FAILED"
+            ],
+            "x-ms-enum": {
+              "name": "ReplayStatus",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Created",
+                  "value": "CREATED"
+                },
+                {
+                  "name": "Running",
+                  "value": "RUNNING"
+                },
+                {
+                  "name": "Completed",
+                  "value": "COMPLETED"
+                },
+                {
+                  "name": "Failed",
+                  "value": "FAILED"
+                }
+              ]
+            }
+          },
+          {
+            "name": "scheduleName",
+            "in": "query",
+            "required": true,
+            "description": "Filter replay records by a list of inference schedule name(s). Format the list\nas a comma-separated string, no space allowed. By default, the list of replay\nrecords are ranked by descending replay created time (UTC) for each inference\nschedule.",
+            "type": "string"
+          },
+          {
+            "name": "topPerSchedule",
+            "in": "query",
+            "required": true,
+            "description": "The total number of replay records to be returned per inference schedule,\nordered by created time descending. By default, the full list of replay records\nwill be returned for the inference schedule name(s) in your filter.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PageScheduleReplay"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/inference/replays/{replayName}/{replayName}": {
+      "put": {
+        "operationId": "ReplaysOperations_Create",
+        "description": "Creates or replaces a ScheduleReplay",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScheduleReplay.replayName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "replayDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a replay on an inference schedule."
+                },
+                "scheduleName": {
+                  "type": "string",
+                  "description": "The inference schedule whose settings will be used for replay. This parameter\nis case-sensitive."
+                },
+                "startTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The first timestamp equal to or greater than the start time given will be used\nfor replay."
+                },
+                "endTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp equal to or less than the end time given will be used for\nrelay. If endTime equals to startTime, one single data point will be processed."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "required": [
+                "scheduleName",
+                "startTime",
+                "endTime"
+              ],
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<ScheduleReplay, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "replayName": {
+                  "type": "string",
+                  "description": "Unique identifier of a replay on an inference schedule. This parameter is\ncase-sensitive.",
+                  "readOnly": true
+                },
+                "replayDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a replay on an inference schedule."
+                },
+                "scheduleName": {
+                  "type": "string",
+                  "description": "The inference schedule whose settings will be used for replay. This parameter\nis case-sensitive."
+                },
+                "startTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The first timestamp equal to or greater than the start time given will be used\nfor replay."
+                },
+                "endTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp equal to or less than the end time given will be used for\nrelay. If endTime equals to startTime, one single data point will be processed."
+                },
+                "status": {
+                  "$ref": "#/definitions/ReplayStatus",
+                  "description": "Current status of the inference schedule replay job.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the status of the inference replay was last updated (if\napplicable).",
+                  "readOnly": true
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "ErrorResponse[]",
+                  "description": "Error details if the inference replay job failed.",
+                  "readOnly": true
+                },
+                "variableStates": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/VariableState"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "VariableState[]",
+                  "description": "Summarizes information about each variable being used. Ranked by filledNARatio\nin descending order.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the inference replay job was created.",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "replayName",
+                "scheduleName",
+                "startTime",
+                "endTime",
+                "status",
+                "statusUpdatedTime",
+                "errors",
+                "variableStates",
+                "createdTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "replayName": {
+                  "type": "string",
+                  "description": "Unique identifier of a replay on an inference schedule. This parameter is\ncase-sensitive.",
+                  "readOnly": true
+                },
+                "replayDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a replay on an inference schedule."
+                },
+                "scheduleName": {
+                  "type": "string",
+                  "description": "The inference schedule whose settings will be used for replay. This parameter\nis case-sensitive."
+                },
+                "startTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The first timestamp equal to or greater than the start time given will be used\nfor replay."
+                },
+                "endTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp equal to or less than the end time given will be used for\nrelay. If endTime equals to startTime, one single data point will be processed."
+                },
+                "status": {
+                  "$ref": "#/definitions/ReplayStatus",
+                  "description": "Current status of the inference schedule replay job.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the status of the inference replay was last updated (if\napplicable).",
+                  "readOnly": true
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "ErrorResponse[]",
+                  "description": "Error details if the inference replay job failed.",
+                  "readOnly": true
+                },
+                "variableStates": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/VariableState"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "VariableState[]",
+                  "description": "Summarizes information about each variable being used. Ranked by filledNARatio\nin descending order.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the inference replay job was created.",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "replayName",
+                "scheduleName",
+                "startTime",
+                "endTime",
+                "status",
+                "statusUpdatedTime",
+                "errors",
+                "variableStates",
+                "createdTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "ReplaysOperations_Read",
+        "description": "Get a ScheduleReplay",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScheduleReplay.replayName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ScheduleReplay"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ReplaysOperations_Delete",
+        "description": "Delete a ScheduleReplay",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScheduleReplay.replayName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/inference/schedules/{value}": {
+      "get": {
+        "operationId": "SchedulesOperations_List",
+        "description": "Get a PageSchedule",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageSchedule.value"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": true,
+            "description": "The number of records to skip from the list of records based on the sorting\nfield and ordering method specified. By default, records are ranked by\ndescending created time (UTC).",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": true,
+            "description": "The maximum number of records to be returned per page. If more records are\nrequested via the API, @nextLink will contain the link to the next page.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": true,
+            "description": "The name of the field on which you want to sort records. By default, records\nare sorted by created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ASCENDING",
+              "DESCENDING"
+            ],
+            "x-ms-enum": {
+              "name": "OrderBy",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Ascending",
+                  "value": "ASCENDING"
+                },
+                {
+                  "name": "Descending",
+                  "value": "DESCENDING"
+                }
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "CLIENTPAUSED",
+              "SERVERPAUSED"
+            ],
+            "x-ms-enum": {
+              "name": "ScheduleStatus",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "name": "Clientpaused",
+                  "value": "CLIENTPAUSED"
+                },
+                {
+                  "name": "Serverpaused",
+                  "value": "SERVERPAUSED"
+                }
+              ]
+            }
+          },
+          {
+            "name": "modelNames",
+            "in": "query",
+            "required": true,
+            "description": "Filter inference schedules by a list of model name(s). Format the list as a\ncomma-separated string, no space allowed. For each model, by default the list\nof inference schedules are ranked by descending inference schedule created time\n(UTC).",
+            "type": "string"
+          },
+          {
+            "name": "topPerModel",
+            "in": "query",
+            "required": true,
+            "description": "The total number of inference schedules to be returned per model, ordered by\ncreated time descending. By default, the full list of inference schedules will\nbe returned for the model name(s) in your filter.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PageSchedule"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/inference/schedules/{scheduleName}/{scheduleName}": {
+      "put": {
+        "operationId": "SchedulesOperations_Create",
+        "description": "Creates or replaces a Schedule",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Schedule.scheduleName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scheduleDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a live streaming inference schedule."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The name of the previously trained model being used to create the live\nstreaming inference schedule. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for live streaming inference. This parameter is case-sensitive."
+                },
+                "startInferenceSince": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "(Optional) This start time can't be in the past. The first timestamp equal to\nor greater than the start time given will be used. Your data source must have\ndata at the specified start time and the number of data points available must\nequal to or greater than your training sliding window."
+                },
+                "dataDelayOffsetInSeconds": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "(Optional) The amount of time (in seconds) you expect the data to be delayed\nfor inference. For example, your source data comes every 5 minutes, so by\ndefault (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes\nthat records with a timestamp of 01:30:00 will be ready for inference by\n01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and\nso on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds =\n600), then the scheduler will inference records with a timestamp of 01:30:00 at\n01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so\non."
+                },
+                "alertConfigNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Criteria that determine which anomalies should trigger an alert and\nvia which notification channel(s). This parameter is case-sensitive."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "required": [
+                "modelName",
+                "datasetName"
+              ],
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<Schedule, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scheduleName": {
+                  "type": "string",
+                  "description": "Unique identifier of a live streaming inference schedule. This parameter is\ncase-sensitive.",
+                  "readOnly": true
+                },
+                "scheduleDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a live streaming inference schedule."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The name of the previously trained model being used to create the live\nstreaming inference schedule. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for live streaming inference. This parameter is case-sensitive."
+                },
+                "startInferenceSince": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "(Optional) This start time can't be in the past. The first timestamp equal to\nor greater than the start time given will be used. Your data source must have\ndata at the specified start time and the number of data points available must\nequal to or greater than your training sliding window."
+                },
+                "dataDelayOffsetInSeconds": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "(Optional) The amount of time (in seconds) you expect the data to be delayed\nfor inference. For example, your source data comes every 5 minutes, so by\ndefault (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes\nthat records with a timestamp of 01:30:00 will be ready for inference by\n01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and\nso on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds =\n600), then the scheduler will inference records with a timestamp of 01:30:00 at\n01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so\non."
+                },
+                "alertConfigNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Criteria that determine which anomalies should trigger an alert and\nvia which notification channel(s). This parameter is case-sensitive."
+                },
+                "status": {
+                  "$ref": "#/definitions/ScheduleStatus",
+                  "description": "Current status of the inference schedule (ACTIVE/CLIENTPAUSED/SERVERPAUSED).\nCLIENTPAUSED means that the inference schedule was involuntarily paused by the\nuser. SERVERPAUSED means that the inference schedule was involuntarily paused\nby the server and the detailed reasons can be found under\nscheduleStatusChangeInfo.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the status of the inference schedule was last updated (if\napplicable).",
+                  "readOnly": true
+                },
+                "scheduleStatusChangeInfo": {
+                  "type": "string",
+                  "description": "Detailed reasons if the inference schedule status changed to SERVERPAUSED.",
+                  "readOnly": true
+                },
+                "lastSucceededTimestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp that was processed successfully.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the inference schedule was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "scheduleName",
+                "modelName",
+                "datasetName",
+                "status",
+                "statusUpdatedTime",
+                "scheduleStatusChangeInfo",
+                "lastSucceededTimestamp",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scheduleName": {
+                  "type": "string",
+                  "description": "Unique identifier of a live streaming inference schedule. This parameter is\ncase-sensitive.",
+                  "readOnly": true
+                },
+                "scheduleDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a live streaming inference schedule."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The name of the previously trained model being used to create the live\nstreaming inference schedule. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for live streaming inference. This parameter is case-sensitive."
+                },
+                "startInferenceSince": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "(Optional) This start time can't be in the past. The first timestamp equal to\nor greater than the start time given will be used. Your data source must have\ndata at the specified start time and the number of data points available must\nequal to or greater than your training sliding window."
+                },
+                "dataDelayOffsetInSeconds": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "(Optional) The amount of time (in seconds) you expect the data to be delayed\nfor inference. For example, your source data comes every 5 minutes, so by\ndefault (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes\nthat records with a timestamp of 01:30:00 will be ready for inference by\n01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and\nso on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds =\n600), then the scheduler will inference records with a timestamp of 01:30:00 at\n01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so\non."
+                },
+                "alertConfigNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Criteria that determine which anomalies should trigger an alert and\nvia which notification channel(s). This parameter is case-sensitive."
+                },
+                "status": {
+                  "$ref": "#/definitions/ScheduleStatus",
+                  "description": "Current status of the inference schedule (ACTIVE/CLIENTPAUSED/SERVERPAUSED).\nCLIENTPAUSED means that the inference schedule was involuntarily paused by the\nuser. SERVERPAUSED means that the inference schedule was involuntarily paused\nby the server and the detailed reasons can be found under\nscheduleStatusChangeInfo.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the status of the inference schedule was last updated (if\napplicable).",
+                  "readOnly": true
+                },
+                "scheduleStatusChangeInfo": {
+                  "type": "string",
+                  "description": "Detailed reasons if the inference schedule status changed to SERVERPAUSED.",
+                  "readOnly": true
+                },
+                "lastSucceededTimestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp that was processed successfully.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the inference schedule was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "scheduleName",
+                "modelName",
+                "datasetName",
+                "status",
+                "statusUpdatedTime",
+                "scheduleStatusChangeInfo",
+                "lastSucceededTimestamp",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "SchedulesOperations_Read",
+        "description": "Get a Schedule",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Schedule.scheduleName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Schedule"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "SchedulesOperations_Delete",
+        "description": "Delete a Schedule",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Schedule.scheduleName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "SchedulesOperations_Update",
+        "summary": "Update an inference schedule",
+        "description": "Pause/resume or update selected properties of an inference schedule.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Schedule.scheduleName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scheduleDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a live streaming inference schedule."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The name of the previously trained model being used to create the live\nstreaming inference schedule. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for live streaming inference. This parameter is case-sensitive."
+                },
+                "startInferenceSince": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "(Optional) This start time can't be in the past. The first timestamp equal to\nor greater than the start time given will be used. Your data source must have\ndata at the specified start time and the number of data points available must\nequal to or greater than your training sliding window."
+                },
+                "dataDelayOffsetInSeconds": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "(Optional) The amount of time (in seconds) you expect the data to be delayed\nfor inference. For example, your source data comes every 5 minutes, so by\ndefault (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes\nthat records with a timestamp of 01:30:00 will be ready for inference by\n01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and\nso on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds =\n600), then the scheduler will inference records with a timestamp of 01:30:00 at\n01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so\non."
+                },
+                "alertConfigNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Criteria that determine which anomalies should trigger an alert and\nvia which notification channel(s). This parameter is case-sensitive."
+                }
+              },
+              "description": "The template for adding optional properties.",
+              "x-cadl-name": "OptionalProperties<UpdateableProperties<DefaultKeyVisibility<Schedule, read>>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scheduleName": {
+                  "type": "string",
+                  "description": "Unique identifier of a live streaming inference schedule. This parameter is\ncase-sensitive.",
+                  "readOnly": true
+                },
+                "scheduleDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a live streaming inference schedule."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The name of the previously trained model being used to create the live\nstreaming inference schedule. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for live streaming inference. This parameter is case-sensitive."
+                },
+                "startInferenceSince": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "(Optional) This start time can't be in the past. The first timestamp equal to\nor greater than the start time given will be used. Your data source must have\ndata at the specified start time and the number of data points available must\nequal to or greater than your training sliding window."
+                },
+                "dataDelayOffsetInSeconds": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "(Optional) The amount of time (in seconds) you expect the data to be delayed\nfor inference. For example, your source data comes every 5 minutes, so by\ndefault (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes\nthat records with a timestamp of 01:30:00 will be ready for inference by\n01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and\nso on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds =\n600), then the scheduler will inference records with a timestamp of 01:30:00 at\n01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so\non."
+                },
+                "alertConfigNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Criteria that determine which anomalies should trigger an alert and\nvia which notification channel(s). This parameter is case-sensitive."
+                },
+                "status": {
+                  "$ref": "#/definitions/ScheduleStatus",
+                  "description": "Current status of the inference schedule (ACTIVE/CLIENTPAUSED/SERVERPAUSED).\nCLIENTPAUSED means that the inference schedule was involuntarily paused by the\nuser. SERVERPAUSED means that the inference schedule was involuntarily paused\nby the server and the detailed reasons can be found under\nscheduleStatusChangeInfo.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the status of the inference schedule was last updated (if\napplicable).",
+                  "readOnly": true
+                },
+                "scheduleStatusChangeInfo": {
+                  "type": "string",
+                  "description": "Detailed reasons if the inference schedule status changed to SERVERPAUSED.",
+                  "readOnly": true
+                },
+                "lastSucceededTimestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp that was processed successfully.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the inference schedule was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "scheduleName",
+                "modelName",
+                "datasetName",
+                "status",
+                "statusUpdatedTime",
+                "scheduleStatusChangeInfo",
+                "lastSucceededTimestamp",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scheduleName": {
+                  "type": "string",
+                  "description": "Unique identifier of a live streaming inference schedule. This parameter is\ncase-sensitive.",
+                  "readOnly": true
+                },
+                "scheduleDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a live streaming inference schedule."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The name of the previously trained model being used to create the live\nstreaming inference schedule. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for live streaming inference. This parameter is case-sensitive."
+                },
+                "startInferenceSince": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "(Optional) This start time can't be in the past. The first timestamp equal to\nor greater than the start time given will be used. Your data source must have\ndata at the specified start time and the number of data points available must\nequal to or greater than your training sliding window."
+                },
+                "dataDelayOffsetInSeconds": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "(Optional) The amount of time (in seconds) you expect the data to be delayed\nfor inference. For example, your source data comes every 5 minutes, so by\ndefault (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes\nthat records with a timestamp of 01:30:00 will be ready for inference by\n01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and\nso on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds =\n600), then the scheduler will inference records with a timestamp of 01:30:00 at\n01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so\non."
+                },
+                "alertConfigNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-cadl-name": "string[]",
+                  "description": "(Optional) Criteria that determine which anomalies should trigger an alert and\nvia which notification channel(s). This parameter is case-sensitive."
+                },
+                "status": {
+                  "$ref": "#/definitions/ScheduleStatus",
+                  "description": "Current status of the inference schedule (ACTIVE/CLIENTPAUSED/SERVERPAUSED).\nCLIENTPAUSED means that the inference schedule was involuntarily paused by the\nuser. SERVERPAUSED means that the inference schedule was involuntarily paused\nby the server and the detailed reasons can be found under\nscheduleStatusChangeInfo.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the status of the inference schedule was last updated (if\napplicable).",
+                  "readOnly": true
+                },
+                "scheduleStatusChangeInfo": {
+                  "type": "string",
+                  "description": "Detailed reasons if the inference schedule status changed to SERVERPAUSED.",
+                  "readOnly": true
+                },
+                "lastSucceededTimestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp that was processed successfully.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the inference schedule was created.",
+                  "readOnly": true
+                },
+                "parameterModifiedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "scheduleName",
+                "modelName",
+                "datasetName",
+                "status",
+                "statusUpdatedTime",
+                "scheduleStatusChangeInfo",
+                "lastSucceededTimestamp",
+                "createdTime",
+                "parameterModifiedTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      }
+    },
+    "/inference/schedules/{scheduleName}/getHistory/{results}": {
+      "get": {
+        "operationId": "SchedulesOperations_GetHistory",
+        "summary": "Get historical detection results from the inference schedule",
+        "description": "Use this API to retrieve detected anomalies over a historical time period\nspecified in the request body. Please refer to the official documentation for\nthe detailed quota and limits.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ScheduleHistoryResult"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ScheduleHistoryResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/multivariate/evaluations/{value}": {
+      "get": {
+        "operationId": "EvaluationsOperations_List",
+        "description": "Get a PageEvaluation",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageEvaluation.value"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": true,
+            "description": "The number of records to skip from the list of records based on the sorting\nfield and ordering method specified. By default, records are ranked by\ndescending created time (UTC).",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": true,
+            "description": "The maximum number of records to be returned per page. If more records are\nrequested via the API, @nextLink will contain the link to the next page.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": true,
+            "description": "The name of the field on which you want to sort records. By default, records\nare sorted by created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ASCENDING",
+              "DESCENDING"
+            ],
+            "x-ms-enum": {
+              "name": "OrderBy",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Ascending",
+                  "value": "ASCENDING"
+                },
+                {
+                  "name": "Descending",
+                  "value": "DESCENDING"
+                }
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "RUNNING",
+              "COMPLETED",
+              "FAILED"
+            ],
+            "x-ms-enum": {
+              "name": "EvaluationStatus",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Created",
+                  "value": "CREATED"
+                },
+                {
+                  "name": "Running",
+                  "value": "RUNNING"
+                },
+                {
+                  "name": "Completed",
+                  "value": "COMPLETED"
+                },
+                {
+                  "name": "Failed",
+                  "value": "FAILED"
+                }
+              ]
+            }
+          },
+          {
+            "name": "modelNames",
+            "in": "query",
+            "required": true,
+            "description": "Filter evaluations by a list of model name(s). Format the list as a\ncomma-separated string, no space allowed. For each model, by default the list\nof evaluations are ranked by descending evaluation created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "topPerModel",
+            "in": "query",
+            "required": true,
+            "description": "The total number of evaluations to be returned per model, ordered by created\ntime descending. By default, the full list of evaluations will be returned for\nthe model name(s) in your filter.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PageEvaluation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/multivariate/evaluations/{evaluationName}/{evaluationName}": {
+      "put": {
+        "operationId": "EvaluationsOperations_Create",
+        "description": "Creates or replaces a Evaluation",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Evaluation.evaluationName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "evaluationDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a model evaluation."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The model being evaluated. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "The data being used to evaluate the model. This evaluation dataset should have\nthe same schema and data granularity as the training dataset for the model.\nThis parameter is case-sensitive."
+                },
+                "startTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The first timestamp equal to or greater than the start time given will be used\nfor model evaluation."
+                },
+                "endTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp equal to or less than the end time given will be used for\nmodel evaluation. If endTime equals to startTime, one single data point will be\nprocessed."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "required": [
+                "modelName",
+                "datasetName",
+                "startTime",
+                "endTime"
+              ],
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<Evaluation, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "evaluationName": {
+                  "type": "string",
+                  "description": "Unique identifier of a model evaluation. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "evaluationDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a model evaluation."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The model being evaluated. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "The data being used to evaluate the model. This evaluation dataset should have\nthe same schema and data granularity as the training dataset for the model.\nThis parameter is case-sensitive."
+                },
+                "startTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The first timestamp equal to or greater than the start time given will be used\nfor model evaluation."
+                },
+                "endTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp equal to or less than the end time given will be used for\nmodel evaluation. If endTime equals to startTime, one single data point will be\nprocessed."
+                },
+                "status": {
+                  "$ref": "#/definitions/EvaluationStatus",
+                  "description": "Current status of the model evaluation job.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the status of the model evaluation job was last updated\n(if applicable).",
+                  "readOnly": true
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "ErrorResponse[]",
+                  "description": "Error details if the model evaluation job failed.",
+                  "readOnly": true
+                },
+                "resultUrl": {
+                  "type": "string",
+                  "description": "The Azure blob URL that stores the model evaluation results. This URL will\nexpire in 12 hours.",
+                  "readOnly": true
+                },
+                "variableStates": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/VariableState"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "VariableState[]",
+                  "description": "Summarizes information about each variable being used. Ranked by filledNARatio\nin descending order.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the model evaluation job was created.",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "evaluationName",
+                "modelName",
+                "datasetName",
+                "startTime",
+                "endTime",
+                "status",
+                "statusUpdatedTime",
+                "errors",
+                "resultUrl",
+                "variableStates",
+                "createdTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "evaluationName": {
+                  "type": "string",
+                  "description": "Unique identifier of a model evaluation. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "evaluationDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a model evaluation."
+                },
+                "modelName": {
+                  "type": "string",
+                  "description": "The model being evaluated. This parameter is case-sensitive."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "The data being used to evaluate the model. This evaluation dataset should have\nthe same schema and data granularity as the training dataset for the model.\nThis parameter is case-sensitive."
+                },
+                "startTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The first timestamp equal to or greater than the start time given will be used\nfor model evaluation."
+                },
+                "endTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The last timestamp equal to or less than the end time given will be used for\nmodel evaluation. If endTime equals to startTime, one single data point will be\nprocessed."
+                },
+                "status": {
+                  "$ref": "#/definitions/EvaluationStatus",
+                  "description": "Current status of the model evaluation job.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the status of the model evaluation job was last updated\n(if applicable).",
+                  "readOnly": true
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "ErrorResponse[]",
+                  "description": "Error details if the model evaluation job failed.",
+                  "readOnly": true
+                },
+                "resultUrl": {
+                  "type": "string",
+                  "description": "The Azure blob URL that stores the model evaluation results. This URL will\nexpire in 12 hours.",
+                  "readOnly": true
+                },
+                "variableStates": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/VariableState"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "VariableState[]",
+                  "description": "Summarizes information about each variable being used. Ranked by filledNARatio\nin descending order.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the model evaluation job was created.",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "evaluationName",
+                "modelName",
+                "datasetName",
+                "startTime",
+                "endTime",
+                "status",
+                "statusUpdatedTime",
+                "errors",
+                "resultUrl",
+                "variableStates",
+                "createdTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "EvaluationsOperations_Read",
+        "description": "Get a Evaluation",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Evaluation.evaluationName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Evaluation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "EvaluationsOperations_Delete",
+        "description": "Delete a Evaluation",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Evaluation.evaluationName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/multivariate/models/{value}": {
+      "get": {
+        "operationId": "ModelsOperations_List",
+        "description": "Get a PageModel",
+        "parameters": [
+          {
+            "$ref": "#/parameters/PageModel.value"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": true,
+            "description": "The number of records to skip from the list of records based on the sorting\nfield and ordering method specified. By default, records are ranked by\ndescending created time (UTC).",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": true,
+            "description": "The maximum number of records to be returned per page. If more records are\nrequested via the API, @nextLink will contain the link to the next page.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": true,
+            "description": "The name of the field on which you want to sort records. By default, records\nare sorted by created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ASCENDING",
+              "DESCENDING"
+            ],
+            "x-ms-enum": {
+              "name": "OrderBy",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Ascending",
+                  "value": "ASCENDING"
+                },
+                {
+                  "name": "Descending",
+                  "value": "DESCENDING"
+                }
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "RUNNING",
+              "COMPLETED",
+              "FAILED"
+            ],
+            "x-ms-enum": {
+              "name": "ModelStatus",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "Created",
+                  "value": "CREATED"
+                },
+                {
+                  "name": "Running",
+                  "value": "RUNNING"
+                },
+                {
+                  "name": "Completed",
+                  "value": "COMPLETED"
+                },
+                {
+                  "name": "Failed",
+                  "value": "FAILED"
+                }
+              ]
+            }
+          },
+          {
+            "name": "datasetNames",
+            "in": "query",
+            "required": true,
+            "description": "Filter models by a list of training dataset name(s). Format the list as a\ncomma-separated string, no space allowed. For each dataset, by default the list\nof models are ranked by descending model created time (UTC).",
+            "type": "string"
+          },
+          {
+            "name": "topPerDataset",
+            "in": "query",
+            "required": true,
+            "description": "The total number of models to be returned per dataset, ordered by created time\ndescending. By default, the full list of models will be returned for the\ndataset name(s) in your filter.",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PageModel"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/multivariate/models/{modelName}/{modelName}": {
+      "put": {
+        "operationId": "ModelsOperations_Create",
+        "description": "Creates or replaces a Model",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Model.modelName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "modelDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a model."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for model training. This parameter is case-sensitive."
+                },
+                "trainingTimeRangeList": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/TimeRange"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "TimeRange[]",
+                  "description": "A list of time ranges used for model training. Both the start and end\ntimestamps are inclusive."
+                },
+                "slidingWindow": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Controls how many previous data points get used to determine if the next data\npoint is an anomaly."
+                },
+                "alignPolicy": {
+                  "$ref": "#/definitions/AlignPolicy",
+                  "description": "Settings that control how variables are aligned to the same data frequency\ninterval and how missing values are handled."
+                }
+              },
+              "description": "The template for adding updateable properties.",
+              "required": [
+                "datasetName",
+                "trainingTimeRangeList",
+                "alignPolicy"
+              ],
+              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<Model, read>>"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "modelName": {
+                  "type": "string",
+                  "description": "Unique identifier of a model. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "modelDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a model."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for model training. This parameter is case-sensitive."
+                },
+                "trainingTimeRangeList": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/TimeRange"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "TimeRange[]",
+                  "description": "A list of time ranges used for model training. Both the start and end\ntimestamps are inclusive."
+                },
+                "slidingWindow": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Controls how many previous data points get used to determine if the next data\npoint is an anomaly."
+                },
+                "alignPolicy": {
+                  "$ref": "#/definitions/AlignPolicy",
+                  "description": "Settings that control how variables are aligned to the same data frequency\ninterval and how missing values are handled."
+                },
+                "diagnosticsInfo": {
+                  "$ref": "#/definitions/DiagnosticsInfo",
+                  "description": "Summarizes information about the model and each variable being used.",
+                  "readOnly": true
+                },
+                "status": {
+                  "$ref": "#/definitions/ModelStatus",
+                  "description": "Current status of the model training job.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the training status of the model was last updated (if\napplicable).",
+                  "readOnly": true
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "ErrorResponse[]",
+                  "description": "Error details if the model training job failed.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the model was created.",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "modelName",
+                "datasetName",
+                "trainingTimeRangeList",
+                "alignPolicy",
+                "diagnosticsInfo",
+                "status",
+                "statusUpdatedTime",
+                "errors",
+                "createdTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "modelName": {
+                  "type": "string",
+                  "description": "Unique identifier of a model. This parameter is case-sensitive.",
+                  "readOnly": true
+                },
+                "modelDescription": {
+                  "type": "string",
+                  "description": "(Optional) Detailed description of a model."
+                },
+                "datasetName": {
+                  "type": "string",
+                  "description": "Data used for model training. This parameter is case-sensitive."
+                },
+                "trainingTimeRangeList": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/TimeRange"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "TimeRange[]",
+                  "description": "A list of time ranges used for model training. Both the start and end\ntimestamps are inclusive."
+                },
+                "slidingWindow": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Controls how many previous data points get used to determine if the next data\npoint is an anomaly."
+                },
+                "alignPolicy": {
+                  "$ref": "#/definitions/AlignPolicy",
+                  "description": "Settings that control how variables are aligned to the same data frequency\ninterval and how missing values are handled."
+                },
+                "diagnosticsInfo": {
+                  "$ref": "#/definitions/DiagnosticsInfo",
+                  "description": "Summarizes information about the model and each variable being used.",
+                  "readOnly": true
+                },
+                "status": {
+                  "$ref": "#/definitions/ModelStatus",
+                  "description": "Current status of the model training job.",
+                  "readOnly": true
+                },
+                "statusUpdatedTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the training status of the model was last updated (if\napplicable).",
+                  "readOnly": true
+                },
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  },
+                  "x-ms-identifiers": [],
+                  "x-cadl-name": "ErrorResponse[]",
+                  "description": "Error details if the model training job failed.",
+                  "readOnly": true
+                },
+                "createdTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "The UTC time at which the model was created.",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "modelName",
+                "datasetName",
+                "trainingTimeRangeList",
+                "alignPolicy",
+                "diagnosticsInfo",
+                "status",
+                "statusUpdatedTime",
+                "errors",
+                "createdTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "ModelsOperations_Read",
+        "description": "Get a Model",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Model.modelName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Model"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ModelsOperations_Delete",
+        "description": "Delete a Model",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Model.modelName"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/multivariate/models/{modelName}/detect": {
+      "post": {
+        "operationId": "ModelsOperations_Detect",
+        "summary": "Detect Multivariate Anomaly - Sync",
+        "description": "Detect anomalies with a trained model and multivariate time-series data points\nspecified in the request body. This API is recommended to be embedded in an\ninference schedule set up for continuous real-time inference. Please refer to\nthe official documentation for the detailed quota and limits.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "Location": {
+                "description": "The location of an instance of DetectionResult",
+                "type": "string"
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AlertConfig": {
+      "type": "object",
+      "properties": {
+        "alertConfigType": {
+          "type": "string",
+          "description": "Discriminator property for AlertConfig."
+        },
+        "alertConfigName": {
+          "type": "string",
+          "description": "Unique identifier of an alert configuration. This parameter is case-sensitive.",
+          "readOnly": true
+        },
+        "alertDescription": {
+          "type": "string",
+          "description": "(Optional) Detailed description of an alert configuration."
+        },
+        "hookNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "(Optional) Specifies the list of notification channel(s) through which the\nalerts will be sent. If left blank, anomalies will still be detected but no\nalerts will be sent out. This parameter is case-sensitive."
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the alert configuration was created.",
+          "readOnly": true
+        },
+        "parameterModifiedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the parameter(s) of the alert configuration was last\nmodified by the users (if applicable).",
+          "readOnly": true
+        }
+      },
+      "description": "Criteria that determine which anomalies should trigger an alert and via which\nnotification channel(s). This setting can later be applied to a live inference\nschedule. ",
+      "discriminator": "alertConfigType",
+      "required": [
+        "alertConfigType",
+        "alertConfigName",
+        "createdTime",
+        "parameterModifiedTime"
+      ]
+    },
+    "AlignMode": {
+      "type": "string",
+      "enum": [
+        "Inner",
+        "Outer"
+      ],
+      "x-ms-enum": {
+        "name": "AlignMode",
+        "modelAsString": true
+      }
+    },
+    "AlignPolicy": {
+      "type": "object",
+      "properties": {
+        "alignMode": {
+          "$ref": "#/definitions/AlignMode",
+          "description": "How to align variables to the same data frequency interval before further\nprocessing. Inner mode returns results on timestamps where EVERY variable has a\nvalue. Outer mode returns results on timestamps where ANY variable has a value.\nThe default mode is Outer."
+        },
+        "fillNAMethod": {
+          "$ref": "#/definitions/FillNAMethod",
+          "description": "How to populate any missing values in the dataset. The default method is Linear\nwhere missing values are filled by linear interpolation. If Customized method\nis selected, all missing values are filled by the value specified in\npaddingValue."
+        },
+        "paddingValue": {
+          "type": "number",
+          "format": "float",
+          "description": "Specify the value to be used for Customized fillNAMethod. This is required if\nyou chose Customized fillNAMethod but optional for other methods."
+        }
+      },
+      "description": "Settings that control how variables are aligned to the same data frequency\ninterval and how missing values are handled.",
+      "required": [
+        "alignMode",
+        "fillNAMethod"
+      ]
+    },
+    "AnomalyInterpretation": {
+      "type": "object",
+      "properties": {
+        "variable": {
+          "type": "string",
+          "description": "Name of the top contributing variable to a given anomaly.",
+          "readOnly": true
+        },
+        "contributionScore": {
+          "type": "number",
+          "format": "float",
+          "description": "Higher contribution score indicates a higher possibility of this contributing\nvariable being the root cause.",
+          "readOnly": true
+        },
+        "correlationChanges": {
+          "$ref": "#/definitions/CorrelationChanges",
+          "description": "A list of correlated variable(s) whose correlation with this contributing\nvariable has changed significantly. This field can be empty if there were no\nsignificant correlation changes between the contributing variable and other\nvariables.",
+          "readOnly": true
+        }
+      },
+      "description": "Information on variables that contributed to a given anomaly. This field only\napplies to timestamps that are detected as anomalies.",
+      "required": [
+        "variable",
+        "contributionScore",
+        "correlationChanges"
+      ]
+    },
+    "AnomalyState": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp being detected.",
+          "readOnly": true
+        },
+        "value": {
+          "$ref": "#/definitions/AnomalyValue",
+          "description": "Detection results for a given timestamp and information for diagnosing if the\ntimestamp is an anomaly.",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "ErrorResponse[]",
+          "description": "Error details if the anomaly detection job failed.",
+          "readOnly": true
+        }
+      },
+      "description": "Summarizes the anomaly detection results for each timestamp.",
+      "required": [
+        "timestamp",
+        "value",
+        "errors"
+      ]
+    },
+    "AnomalyValue": {
+      "type": "object",
+      "properties": {
+        "isAnomaly": {
+          "type": "boolean",
+          "description": "True if the given timestamp is an anomaly.",
+          "readOnly": true
+        },
+        "score": {
+          "type": "number",
+          "format": "float",
+          "description": "Raw output of the model.",
+          "readOnly": true
+        },
+        "severity": {
+          "type": "number",
+          "format": "float",
+          "description": "Indicates the significance of the anomaly. The higher the severity, the more\nsignificant the anomaly. Severity is 0 for normal timestamps (i.e., isAnomaly =\nfalse).",
+          "readOnly": true
+        },
+        "interpretation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnomalyInterpretation"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "AnomalyInterpretation[]",
+          "description": "A list containing information on variables that contributed to a given anomaly.",
+          "readOnly": true
+        }
+      },
+      "description": "Detection results for a given timestamp and information for diagnosing if the\ntimestamp is an anomaly.",
+      "required": [
+        "isAnomaly",
+        "score",
+        "severity",
+        "interpretation"
+      ]
+    },
+    "AuthenticationType": {
+      "type": "string",
+      "enum": [
+        "ManagedIdentity"
+      ],
+      "x-ms-enum": {
+        "name": "AuthenticationType",
+        "modelAsString": true
+      }
+    },
+    "Azure.Core.Foundations.Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of a server-defined set of error codes."
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable representation of the error."
+        },
+        "target": {
+          "type": "string",
+          "description": "The target of the error."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Azure.Core.Foundations.Error"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Azure.Core.Foundations.Error[]",
+          "description": "An array of details about specific errors that led to this reported error."
+        },
+        "innererror": {
+          "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
+          "description": "An object containing more specific information than the current object about the error."
+        }
+      },
+      "description": "The error object.",
+      "required": [
+        "code",
+        "message",
+        "details"
+      ]
+    },
+    "Azure.Core.Foundations.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The error object."
+        }
+      },
+      "description": "A response containing error details.",
+      "required": [
+        "error"
+      ]
+    },
+    "Azure.Core.Foundations.InnerError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of a server-defined set of error codes."
+        },
+        "innererror": {
+          "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
+          "description": "Inner error."
+        }
+      },
+      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.",
+      "required": [
+        "code"
+      ]
+    },
+    "CorrelationChanges": {
+      "type": "object",
+      "properties": {
+        "changedVariables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "The list of variable(s) whose correlation to the contributing variable has\nchanged.",
+          "readOnly": true
+        },
+        "changedValues": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          },
+          "x-cadl-name": "float32[]",
+          "description": "The extent to which the correlation(s) has changed.",
+          "readOnly": true
+        }
+      },
+      "description": "A list of correlated variable(s) whose correlation with this contributing\nvariable has changed significantly. This field can be empty if there were no\nsignificant correlation changes between the contributing variable and other\nvariables.",
+      "required": [
+        "changedVariables",
+        "changedValues"
+      ]
+    },
+    "DataGranularityUnit": {
+      "type": "string",
+      "enum": [
+        "Minutes",
+        "Hours",
+        "Days",
+        "Weeks",
+        "Months",
+        "Years"
+      ],
+      "x-ms-enum": {
+        "name": "DataGranularityUnit",
+        "modelAsString": true
+      }
+    },
+    "DataNotAvailableAlertConfig": {
+      "type": "object",
+      "properties": {},
+      "description": "DataNotAvailable alert will be triggered if no data can be fetched from the\ndata source.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AlertConfig"
+        }
+      ],
+      "x-ms-discriminator-value": "DataNotAvailable"
+    },
+    "DataSchema": {
+      "type": "object",
+      "properties": {
+        "dataSchemaType": {
+          "type": "string",
+          "description": "Discriminator property for DataSchema."
+        }
+      },
+      "description": "Format and schema details of your data.",
+      "discriminator": "dataSchemaType",
+      "required": [
+        "dataSchemaType"
+      ]
+    },
+    "DataSourceInfo": {
+      "type": "object",
+      "properties": {
+        "dataSourceType": {
+          "type": "string",
+          "description": "Discriminator property for DataSourceInfo."
+        },
+        "authenticationType": {
+          "$ref": "#/definitions/AuthenticationType"
+        }
+      },
+      "description": "Details about your data source, including data source type, location,\nauthentication method, and so on.",
+      "discriminator": "dataSourceType",
+      "required": [
+        "dataSourceType",
+        "authenticationType"
+      ]
+    },
+    "Dataset": {
+      "type": "object",
+      "properties": {
+        "datasetName": {
+          "type": "string",
+          "description": "Unique identifier of a dataset. This parameter is case-sensitive.",
+          "readOnly": true
+        },
+        "datasetDescription": {
+          "type": "string",
+          "description": "(Optional) Detailed description of a dataset."
+        },
+        "dataSourceInfo": {
+          "$ref": "#/definitions/DataSourceInfo",
+          "description": "Details about your data source, including data source type, location,\nauthentication method, and so on."
+        },
+        "dataSchema": {
+          "$ref": "#/definitions/DataSchema",
+          "description": "Format and schema details of the dataset."
+        },
+        "dataGranularityNumber": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The frequency interval at which new records are added to your data. Make sure\nthat each variable has at most one data point within each interval."
+        },
+        "dataGranularityUnit": {
+          "$ref": "#/definitions/DataGranularityUnit",
+          "description": "The unit of your data frequency interval."
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the dataset was created.",
+          "readOnly": true
+        }
+      },
+      "description": "Summarizes information about the dataset, including name, description, data\nsource type, data schema, data granularity, and associated metadata. A dataset\ncan be used for either training, evaluation, or real-time inference.",
+      "required": [
+        "datasetName",
+        "dataSourceInfo",
+        "dataSchema",
+        "dataGranularityNumber",
+        "dataGranularityUnit",
+        "createdTime"
+      ]
+    },
+    "DiagnosticsInfo": {
+      "type": "object",
+      "properties": {
+        "modelState": {
+          "$ref": "#/definitions/ModelState",
+          "description": "Summarizes information about the model, including name, description, training\ndata, the number of variables being used, training status, and associated\nmetadata.",
+          "readOnly": true
+        },
+        "variableStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableState"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "VariableState[]",
+          "description": "Summarizes information about each variable being used. Ranked by filledNARatio\nin descending order.",
+          "readOnly": true
+        }
+      },
+      "description": "Summarizes information about the model and each variable being used.",
+      "required": [
+        "modelState",
+        "variableStates"
+      ]
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "The error code.",
+          "readOnly": true
+        },
+        "message": {
+          "type": "string",
+          "description": "The message explaining the error reported by the service.",
+          "readOnly": true
+        }
+      },
+      "description": "Error details for a failed job.",
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "Evaluation": {
+      "type": "object",
+      "properties": {
+        "evaluationName": {
+          "type": "string",
+          "description": "Unique identifier of a model evaluation. This parameter is case-sensitive.",
+          "readOnly": true
+        },
+        "evaluationDescription": {
+          "type": "string",
+          "description": "(Optional) Detailed description of a model evaluation."
+        },
+        "modelName": {
+          "type": "string",
+          "description": "The model being evaluated. This parameter is case-sensitive."
+        },
+        "datasetName": {
+          "type": "string",
+          "description": "The data being used to evaluate the model. This evaluation dataset should have\nthe same schema and data granularity as the training dataset for the model.\nThis parameter is case-sensitive."
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The first timestamp equal to or greater than the start time given will be used\nfor model evaluation."
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last timestamp equal to or less than the end time given will be used for\nmodel evaluation. If endTime equals to startTime, one single data point will be\nprocessed."
+        },
+        "status": {
+          "$ref": "#/definitions/EvaluationStatus",
+          "description": "Current status of the model evaluation job.",
+          "readOnly": true
+        },
+        "statusUpdatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the status of the model evaluation job was last updated\n(if applicable).",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "ErrorResponse[]",
+          "description": "Error details if the model evaluation job failed.",
+          "readOnly": true
+        },
+        "resultUrl": {
+          "type": "string",
+          "description": "The Azure blob URL that stores the model evaluation results. This URL will\nexpire in 12 hours.",
+          "readOnly": true
+        },
+        "variableStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableState"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "VariableState[]",
+          "description": "Summarizes information about each variable being used. Ranked by filledNARatio\nin descending order.",
+          "readOnly": true
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the model evaluation job was created.",
+          "readOnly": true
+        }
+      },
+      "description": "Specifies information about the model evaluation being used, including name,\ndescription, model, evaluation data, evaluation time range, status, and\nassociated metadata.",
+      "required": [
+        "evaluationName",
+        "modelName",
+        "datasetName",
+        "startTime",
+        "endTime",
+        "status",
+        "statusUpdatedTime",
+        "errors",
+        "resultUrl",
+        "variableStates",
+        "createdTime"
+      ]
+    },
+    "EvaluationStatus": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
+      "x-ms-enum": {
+        "name": "EvaluationStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Created",
+            "value": "CREATED"
+          },
+          {
+            "name": "Running",
+            "value": "RUNNING"
+          },
+          {
+            "name": "Completed",
+            "value": "COMPLETED"
+          },
+          {
+            "name": "Failed",
+            "value": "FAILED"
+          }
+        ]
+      }
+    },
+    "FillNAMethod": {
+      "type": "string",
+      "enum": [
+        "Previous",
+        "Subsequent",
+        "Linear",
+        "Customized"
+      ],
+      "x-ms-enum": {
+        "name": "FillNAMethod",
+        "modelAsString": true
+      }
+    },
+    "Hook": {
+      "type": "object",
+      "properties": {
+        "hookType": {
+          "type": "string",
+          "description": "Discriminator property for Hook."
+        },
+        "hookName": {
+          "type": "string",
+          "description": "Unique identifier of a hook. This parameter is case-sensitive.",
+          "readOnly": true
+        },
+        "hookDescription": {
+          "type": "string",
+          "description": "(Optional) Detailed description of a hook."
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the hook was created.",
+          "readOnly": true
+        },
+        "parameterModifiedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+          "readOnly": true
+        }
+      },
+      "description": "A hook is a channel to receive alert notifications.",
+      "discriminator": "hookType",
+      "required": [
+        "hookType",
+        "hookName",
+        "createdTime",
+        "parameterModifiedTime"
+      ]
+    },
+    "LongTable": {
+      "type": "object",
+      "properties": {
+        "timestampColumnName": {
+          "type": "string",
+          "description": "Header of the column that contains datetime values. This parameter is\ncase-sensitive."
+        },
+        "variableColumnName": {
+          "type": "string",
+          "description": "Header of the column that contains the name of the variable for each data\npoint. This parameter is case-sensitive."
+        },
+        "valueColumnName": {
+          "type": "string",
+          "description": "Header of the column that contains numeric values. This parameter is\ncase-sensitive. "
+        }
+      },
+      "description": "A long-form data table has a single column that stores all the variables.",
+      "required": [
+        "timestampColumnName",
+        "variableColumnName",
+        "valueColumnName"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/DataSchema"
+        }
+      ],
+      "x-ms-discriminator-value": "LongTable"
+    },
+    "Model": {
+      "type": "object",
+      "properties": {
+        "modelName": {
+          "type": "string",
+          "description": "Unique identifier of a model. This parameter is case-sensitive.",
+          "readOnly": true
+        },
+        "modelDescription": {
+          "type": "string",
+          "description": "(Optional) Detailed description of a model."
+        },
+        "datasetName": {
+          "type": "string",
+          "description": "Data used for model training. This parameter is case-sensitive."
+        },
+        "trainingTimeRangeList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeRange"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "TimeRange[]",
+          "description": "A list of time ranges used for model training. Both the start and end\ntimestamps are inclusive."
+        },
+        "slidingWindow": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Controls how many previous data points get used to determine if the next data\npoint is an anomaly."
+        },
+        "alignPolicy": {
+          "$ref": "#/definitions/AlignPolicy",
+          "description": "Settings that control how variables are aligned to the same data frequency\ninterval and how missing values are handled."
+        },
+        "diagnosticsInfo": {
+          "$ref": "#/definitions/DiagnosticsInfo",
+          "description": "Summarizes information about the model and each variable being used.",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/ModelStatus",
+          "description": "Current status of the model training job.",
+          "readOnly": true
+        },
+        "statusUpdatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the training status of the model was last updated (if\napplicable).",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "ErrorResponse[]",
+          "description": "Error details if the model training job failed.",
+          "readOnly": true
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the model was created.",
+          "readOnly": true
+        }
+      },
+      "description": "Summarizes information about the model, including name, description, training\ndata, training time range(s), the number of variables being used, training\nstatus, and associated metadata.",
+      "required": [
+        "modelName",
+        "datasetName",
+        "trainingTimeRangeList",
+        "alignPolicy",
+        "diagnosticsInfo",
+        "status",
+        "statusUpdatedTime",
+        "errors",
+        "createdTime"
+      ]
+    },
+    "ModelState": {
+      "type": "object",
+      "properties": {
+        "epochIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "x-cadl-name": "int32[]",
+          "description": "How many epochs the model has been trained out of a total of 100 epochs.",
+          "readOnly": true
+        },
+        "trainLosses": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          },
+          "x-cadl-name": "float32[]",
+          "description": "The training loss indicates how well the model fits the training data.",
+          "readOnly": true
+        },
+        "validationLosses": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          },
+          "x-cadl-name": "float32[]",
+          "description": "The validation loss indicates how well the model fits the test data.",
+          "readOnly": true
+        },
+        "latenciesInSeconds": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          },
+          "x-cadl-name": "float32[]",
+          "description": "The time cost for every 10 epochs.",
+          "readOnly": true
+        }
+      },
+      "description": "Summarizes information about a model training process.",
+      "required": [
+        "epochIds",
+        "trainLosses",
+        "validationLosses",
+        "latenciesInSeconds"
+      ]
+    },
+    "ModelStatus": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
+      "x-ms-enum": {
+        "name": "ModelStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Created",
+            "value": "CREATED"
+          },
+          {
+            "name": "Running",
+            "value": "RUNNING"
+          },
+          {
+            "name": "Completed",
+            "value": "COMPLETED"
+          },
+          {
+            "name": "Failed",
+            "value": "FAILED"
+          }
+        ]
+      }
+    },
+    "MultiVariateAnomalyAlertConfig": {
+      "type": "object",
+      "properties": {
+        "sensitivity": {
+          "type": "integer",
+          "format": "int32",
+          "description": "An integer between 1 and 100. Set a lower sensitivity if you only want to be\nnotified when severe anomalies are detected. Set a higher number if you want to\nreport as many anomalies as possible."
+        },
+        "correlationWindow": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of time-series data points to look back and correlate anomalies. For\nexample, if the window is set to 5 and there is an anomaly at 01:30. Assume\nyour data comes every 5 minutes, then the service will check if the last\nanomaly detected was within the past 25 minutes (i.e., window size * data\nfrequency). If so, the service will correlate this new anomaly at 01:30 with\nthe last anomaly and show an correlation ID in the alert notification. By\ndefault, the window is set to 0 and each anomaly is considered an individual\nincident."
+        },
+        "suppressCorrelatedAlerts": {
+          "type": "boolean",
+          "description": "True if you only want to receive one alert for each group of correlated\nanomalies (the alert will be sent for the earliest anomaly detected in this\ngroup). False if you want to receive an alert for every anomaly detected\n(regardless whether they are correlated or not)."
+        }
+      },
+      "description": "MultiVariateAnomaly alert will be triggered for anomalies detected on\nmultivariate time-series data based on the criteria specified.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AlertConfig"
+        }
+      ],
+      "x-ms-discriminator-value": "MultiVariateAnomaly"
+    },
+    "PageAlertConfig": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlertConfig"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "AlertConfig[]"
+        },
+        "nextLink": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PageDataset": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Dataset"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Dataset[]"
+        },
+        "nextLink": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PageEvaluation": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Evaluation"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Evaluation[]"
+        },
+        "nextLink": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PageHook": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Hook"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Hook[]"
+        },
+        "nextLink": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PageModel": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Model"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Model[]"
+        },
+        "nextLink": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PageSchedule": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Schedule"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Schedule[]"
+        },
+        "nextLink": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PageScheduleReplay": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScheduleReplay"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "ScheduleReplay[]"
+        },
+        "nextLink": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ReplayStatus": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ],
+      "x-ms-enum": {
+        "name": "ReplayStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Created",
+            "value": "CREATED"
+          },
+          {
+            "name": "Running",
+            "value": "RUNNING"
+          },
+          {
+            "name": "Completed",
+            "value": "COMPLETED"
+          },
+          {
+            "name": "Failed",
+            "value": "FAILED"
+          }
+        ]
+      }
+    },
+    "Schedule": {
+      "type": "object",
+      "properties": {
+        "scheduleName": {
+          "type": "string",
+          "description": "Unique identifier of a live streaming inference schedule. This parameter is\ncase-sensitive.",
+          "readOnly": true
+        },
+        "scheduleDescription": {
+          "type": "string",
+          "description": "(Optional) Detailed description of a live streaming inference schedule."
+        },
+        "modelName": {
+          "type": "string",
+          "description": "The name of the previously trained model being used to create the live\nstreaming inference schedule. This parameter is case-sensitive."
+        },
+        "datasetName": {
+          "type": "string",
+          "description": "Data used for live streaming inference. This parameter is case-sensitive."
+        },
+        "startInferenceSince": {
+          "type": "string",
+          "format": "date-time",
+          "description": "(Optional) This start time can't be in the past. The first timestamp equal to\nor greater than the start time given will be used. Your data source must have\ndata at the specified start time and the number of data points available must\nequal to or greater than your training sliding window."
+        },
+        "dataDelayOffsetInSeconds": {
+          "type": "integer",
+          "format": "int32",
+          "description": "(Optional) The amount of time (in seconds) you expect the data to be delayed\nfor inference. For example, your source data comes every 5 minutes, so by\ndefault (i.e., dataDelayOffsetInSeconds = 0) the inference schedule assumes\nthat records with a timestamp of 01:30:00 will be ready for inference by\n01:35:00, records with a timestamp of 01:35:00 will be ready at 01:40:00, and\nso on. If you expect a 10-minute data delay (i.e., dataDelayOffsetInSeconds =\n600), then the scheduler will inference records with a timestamp of 01:30:00 at\n01:45:00, inference records with a timestamp of 01:35:00 at 01:50:00, and so\non."
+        },
+        "alertConfigNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "(Optional) Criteria that determine which anomalies should trigger an alert and\nvia which notification channel(s). This parameter is case-sensitive."
+        },
+        "status": {
+          "$ref": "#/definitions/ScheduleStatus",
+          "description": "Current status of the inference schedule (ACTIVE/CLIENTPAUSED/SERVERPAUSED).\nCLIENTPAUSED means that the inference schedule was involuntarily paused by the\nuser. SERVERPAUSED means that the inference schedule was involuntarily paused\nby the server and the detailed reasons can be found under\nscheduleStatusChangeInfo.",
+          "readOnly": true
+        },
+        "statusUpdatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the status of the inference schedule was last updated (if\napplicable).",
+          "readOnly": true
+        },
+        "scheduleStatusChangeInfo": {
+          "type": "string",
+          "description": "Detailed reasons if the inference schedule status changed to SERVERPAUSED.",
+          "readOnly": true
+        },
+        "lastSucceededTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last timestamp that was processed successfully.",
+          "readOnly": true
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the inference schedule was created.",
+          "readOnly": true
+        },
+        "parameterModifiedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the parameter(s) of the hook was last modified by the\nusers (if applicable).",
+          "readOnly": true
+        }
+      },
+      "description": "An inference schedule sets up a live inference pipeline to analyze new data in\nreal-time. An inference schedule requires a unique name, a trained model, and a\nvalid data source. You can also specify the criteria to trigger an anomaly\nalert and the channel(s) to receive alerts in an inference schedule.",
+      "required": [
+        "scheduleName",
+        "modelName",
+        "datasetName",
+        "status",
+        "statusUpdatedTime",
+        "scheduleStatusChangeInfo",
+        "lastSucceededTimestamp",
+        "createdTime",
+        "parameterModifiedTime"
+      ]
+    },
+    "ScheduleHistoryResult": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnomalyState"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "AnomalyState[]",
+          "description": "Summarizes the anomaly detection results for each timestamp.",
+          "readOnly": true
+        }
+      },
+      "description": "Historical anomaly detection results for an inference schedule.",
+      "required": [
+        "results"
+      ]
+    },
+    "ScheduleReplay": {
+      "type": "object",
+      "properties": {
+        "replayName": {
+          "type": "string",
+          "description": "Unique identifier of a replay on an inference schedule. This parameter is\ncase-sensitive.",
+          "readOnly": true
+        },
+        "replayDescription": {
+          "type": "string",
+          "description": "(Optional) Detailed description of a replay on an inference schedule."
+        },
+        "scheduleName": {
+          "type": "string",
+          "description": "The inference schedule whose settings will be used for replay. This parameter\nis case-sensitive."
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The first timestamp equal to or greater than the start time given will be used\nfor replay."
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last timestamp equal to or less than the end time given will be used for\nrelay. If endTime equals to startTime, one single data point will be processed."
+        },
+        "status": {
+          "$ref": "#/definitions/ReplayStatus",
+          "description": "Current status of the inference schedule replay job.",
+          "readOnly": true
+        },
+        "statusUpdatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the status of the inference replay was last updated (if\napplicable).",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "ErrorResponse[]",
+          "description": "Error details if the inference replay job failed.",
+          "readOnly": true
+        },
+        "variableStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableState"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "VariableState[]",
+          "description": "Summarizes information about each variable being used. Ranked by filledNARatio\nin descending order.",
+          "readOnly": true
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time at which the inference replay job was created.",
+          "readOnly": true
+        }
+      },
+      "description": "Re-inference a historical time range on an exiting inference schedule. The new\nanomaly detection results will overwrite the historical results in the replay\ntime range but no alerts will be sent out.",
+      "required": [
+        "replayName",
+        "scheduleName",
+        "startTime",
+        "endTime",
+        "status",
+        "statusUpdatedTime",
+        "errors",
+        "variableStates",
+        "createdTime"
+      ]
+    },
+    "ScheduleStatus": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "CLIENTPAUSED",
+        "SERVERPAUSED"
+      ],
+      "x-ms-enum": {
+        "name": "ScheduleStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Active",
+            "value": "ACTIVE"
+          },
+          {
+            "name": "Clientpaused",
+            "value": "CLIENTPAUSED"
+          },
+          {
+            "name": "Serverpaused",
+            "value": "SERVERPAUSED"
+          }
+        ]
+      }
+    },
+    "SqlServer": {
+      "type": "object",
+      "properties": {
+        "serverName": {
+          "type": "string",
+          "description": "Name of a SQL Server."
+        },
+        "databaseName": {
+          "type": "string",
+          "description": "Name of a SQL Database. This parameter is case-sensitive."
+        },
+        "tableName": {
+          "type": "string",
+          "description": "Name of a SQL table or view. This parameter is case-sensitive."
+        }
+      },
+      "description": "Information required for Azure SQLServer data source type.",
+      "required": [
+        "serverName",
+        "databaseName",
+        "tableName"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/DataSourceInfo"
+        }
+      ],
+      "x-ms-discriminator-value": "SqlServer"
+    },
+    "TimeRange": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The first timestamp equal to or greater than the start time given will be\nprocessed."
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last timestamp equal to or less than the end time given will be processed.\nIf endTime equals to startTime, one single data point will be processed."
+        }
+      },
+      "description": "A time range of data for processing. Both the start and end time are inclusive.",
+      "required": [
+        "startTime",
+        "endTime"
+      ]
+    },
+    "VariableState": {
+      "type": "object",
+      "properties": {
+        "variable": {
+          "type": "string",
+          "description": "The name of the variable being used.",
+          "readOnly": true
+        },
+        "filledNARatio": {
+          "type": "number",
+          "format": "float",
+          "description": "Proportion of NaN values filled for the variable.",
+          "readOnly": true
+        },
+        "effectiveCount": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of non-NaN data points for the variable.",
+          "readOnly": true
+        },
+        "firstTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The first timestamp taken from the data source for a given variable. Different\nvariables may have a different firstTimestamp due to missing values.",
+          "readOnly": true
+        },
+        "lastTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last timestamp taken from the data source for a given variable. Different\nvariables may have a different lastTimestamp due to missing values.",
+          "readOnly": true
+        }
+      },
+      "description": "Summarizes information about each variable. Ranked by filledNARatio in\ndescending order.",
+      "required": [
+        "variable",
+        "filledNARatio",
+        "effectiveCount",
+        "firstTimestamp",
+        "lastTimestamp"
+      ]
+    },
+    "Webhook": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "description": "The API address to be called when an alert is triggered. MUST be Https."
+        },
+        "header": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-cadl-name": "Record<string>",
+          "description": "(Optional) Custom headers in the API call. A string map include key-value pairs."
+        },
+        "credential": {
+          "type": "string",
+          "description": "(Optional) For authenticating to the endpoint. Optional if authentication is\nnot needed."
+        }
+      },
+      "description": "A webhook is a notification channel that sends alerts to a user-defined\nendpoint.",
+      "required": [
+        "endpoint"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/Hook"
+        }
+      ],
+      "x-ms-discriminator-value": "Webhook"
+    }
+  },
+  "parameters": {
+    "AlertConfig.alertConfigName": {
+      "name": "alertConfigName",
+      "in": "path",
+      "required": true,
+      "description": "Unique identifier of an alert configuration. This parameter is case-sensitive.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "Azure.Core.Foundations.ApiVersionParameter": {
+      "name": "api-version",
+      "in": "query",
+      "required": true,
+      "description": "The API version to use for this operation.",
+      "minLength": 1,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "Dataset.datasetName": {
+      "name": "datasetName",
+      "in": "path",
+      "required": true,
+      "description": "Unique identifier of a dataset. This parameter is case-sensitive.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "Evaluation.evaluationName": {
+      "name": "evaluationName",
+      "in": "path",
+      "required": true,
+      "description": "Unique identifier of a model evaluation. This parameter is case-sensitive.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "Hook.hookName": {
+      "name": "hookName",
+      "in": "path",
+      "required": true,
+      "description": "Unique identifier of a hook. This parameter is case-sensitive.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "Model.modelName": {
+      "name": "modelName",
+      "in": "path",
+      "required": true,
+      "description": "Unique identifier of a model. This parameter is case-sensitive.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "PageAlertConfig.value": {
+      "name": "value",
+      "in": "path",
+      "required": true,
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AlertConfig"
+      },
+      "x-ms-identifiers": [],
+      "x-ms-parameter-location": "method"
+    },
+    "PageDataset.value": {
+      "name": "value",
+      "in": "path",
+      "required": true,
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Dataset"
+      },
+      "x-ms-identifiers": [],
+      "x-ms-parameter-location": "method"
+    },
+    "PageEvaluation.value": {
+      "name": "value",
+      "in": "path",
+      "required": true,
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Evaluation"
+      },
+      "x-ms-identifiers": [],
+      "x-ms-parameter-location": "method"
+    },
+    "PageHook.value": {
+      "name": "value",
+      "in": "path",
+      "required": true,
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Hook"
+      },
+      "x-ms-identifiers": [],
+      "x-ms-parameter-location": "method"
+    },
+    "PageModel.value": {
+      "name": "value",
+      "in": "path",
+      "required": true,
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Model"
+      },
+      "x-ms-identifiers": [],
+      "x-ms-parameter-location": "method"
+    },
+    "PageSchedule.value": {
+      "name": "value",
+      "in": "path",
+      "required": true,
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Schedule"
+      },
+      "x-ms-identifiers": [],
+      "x-ms-parameter-location": "method"
+    },
+    "PageScheduleReplay.value": {
+      "name": "value",
+      "in": "path",
+      "required": true,
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ScheduleReplay"
+      },
+      "x-ms-identifiers": [],
+      "x-ms-parameter-location": "method"
+    },
+    "Schedule.scheduleName": {
+      "name": "scheduleName",
+      "in": "path",
+      "required": true,
+      "description": "Unique identifier of a live streaming inference schedule. This parameter is\ncase-sensitive.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "ScheduleHistoryResult": {
+      "name": "results",
+      "in": "path",
+      "required": true,
+      "description": "Summarizes the anomaly detection results for each timestamp.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AnomalyState"
+      },
+      "x-ms-identifiers": [],
+      "x-ms-parameter-location": "method"
+    },
+    "ScheduleReplay.replayName": {
+      "name": "replayName",
+      "in": "path",
+      "required": true,
+      "description": "Unique identifier of a replay on an inference schedule. This parameter is\ncase-sensitive.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    }
+  }
+}

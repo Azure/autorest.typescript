@@ -1,6 +1,6 @@
 import { format } from "prettier";
 
-export function formatJSONFile(content: string, filepath: string) {
+export function formatFile(content: string, filepath: string) {
   return format(content, {
     filepath,
   });

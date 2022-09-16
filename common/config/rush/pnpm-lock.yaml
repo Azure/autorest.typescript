@@ -366,8 +366,8 @@ packages:
         integrity: sha512-1YJExugnM34MhVdCanKP1Z02Tf+Jy7bjc5oOS81LX6ZCIzoPcj4+VCTGxvu6FgNa0VP5RHsE8XqiWxUfqlR60A==
       }
     dependencies:
-      '@cadl-lang/compiler': 0.34.0
-      '@cadl-lang/rest': 0.16.0_@cadl-lang+compiler@0.34.0
+      '@cadl-lang/compiler': 0.35.0
+      '@cadl-lang/rest': 0.17.0_@cadl-lang+compiler@0.35.0
     dev: false
 
   /@azure-tools/codegen/2.9.1:
@@ -2446,7 +2446,7 @@ packages:
     peerDependencies:
       '@cadl-lang/compiler': ~0.35.0
     dependencies:
-      '@cadl-lang/compiler': 0.34.0
+      '@cadl-lang/compiler': 0.35.0
     dev: false
 
   /@cadl-lang/versioning/0.7.0:
@@ -9760,6 +9760,15 @@ packages:
         integrity: sha512-KtpD1YhGszhntMpBDyp5lyagk8KIMopC1LEb7cQUAh7zcosaX5uK8HnbNb2i3NTQK3sIawCItS0uFC3QzcLHdg==
       }
     engines: { node: ^12.20.0 || ^14.13.1 || >=16.0.0 }
+    dependencies:
+      data-uri-to-buffer: 4.0.0
+      fetch-blob: 3.2.0
+      formdata-polyfill: 4.0.10
+    dev: false
+
+  /node-fetch/3.2.8:
+    resolution: {integrity: sha512-KtpD1YhGszhntMpBDyp5lyagk8KIMopC1LEb7cQUAh7zcosaX5uK8HnbNb2i3NTQK3sIawCItS0uFC3QzcLHdg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       data-uri-to-buffer: 4.0.0
       fetch-blob: 3.2.0
