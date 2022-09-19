@@ -1,3 +1,4 @@
+export const pollingContent = `
 import { Client, HttpResponse } from "@azure-rest/core-client";
 import {
   LongRunningOperation,
@@ -57,7 +58,7 @@ function getLroResponse<TResult extends HttpResponse>(
 ): LroResponse<TResult> {
   if (Number.isNaN(response.status)) {
     throw new TypeError(
-      `Status code of the response is not a number. Value: ${response.status}`
+      \`Status code of the response is not a number. Value: \${response.status}\`
     );
   }
 
@@ -70,3 +71,4 @@ function getLroResponse<TResult extends HttpResponse>(
     }
   };
 }
+`;

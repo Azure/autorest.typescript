@@ -11112,7 +11112,7 @@ packages:
     dev: false
 
   file:projects/ts-rlc.tgz:
-    resolution: {integrity: sha512-D2Ue6V+7Agud3NPBu4TjmVe45K23GjB7luEsRx+fOpdizEOzm/6QyzJ84Ig3pi13/2kD7FDaKU7SZLDWmSry+A==, tarball: file:projects/ts-rlc.tgz}
+    resolution: {integrity: sha512-Xu8Lvz65p8es8RmFmLSD75GP29vvywsiBs42k5yWPMtHUDzyVoDVAGSFz0ogenvJnEJAQ6Q5oylhgnzIB84D6g==, tarball: file:projects/ts-rlc.tgz}
     name: '@rush-temp/ts-rlc'
     version: 0.0.0
     dependencies:
@@ -11122,6 +11122,7 @@ packages:
       '@azure-tools/cadl-ranch-expect': 0.1.9_3daf81b5856042b4b38a8c9c26a7b5cf
       '@azure-tools/cadl-ranch-specs': 0.1.11_9febff54d04fe0bc2ab272c61155c9bc
       '@azure/core-auth': 1.4.0
+      '@azure/core-paging': 1.3.0
       '@cadl-lang/compiler': 0.35.0
       '@cadl-lang/rest': 0.17.0_@cadl-lang+compiler@0.35.0
       '@cadl-lang/versioning': 0.8.0

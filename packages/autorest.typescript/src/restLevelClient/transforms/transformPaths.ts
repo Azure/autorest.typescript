@@ -9,7 +9,12 @@ import {
   Response,
   SchemaContext
 } from "@autorest/codemodel";
-import { Paths, PathParameter, ResponseTypes } from "@azure-tools/rlc-codegen";
+import {
+  Paths,
+  PathParameter,
+  ResponseTypes,
+  OperationMethod
+} from "@azure-tools/rlc-codegen";
 import { isEqual } from "lodash";
 import { isPagingOperation } from "../../utils/extractPaginationDetails";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
@@ -68,16 +73,12 @@ export function transformPaths(model: CodeModel): Paths {
               description: operationGroup.language.default.description,
               pathParameters,
               methods: {},
-              name: operationName,
-              annotations: {
-                isLongRunning: isLongRunningOperation(operation),
-                isPageable: isPagingOperation(operation)
-              }
+              name: operationName
             };
           }
           const hasOptionalOptions = !hasRequiredOptions(operation);
 
-          const newMethod = {
+          const newMethod: OperationMethod = {
             description: operationDescription,
             optionsName: getOperationOptionsType(operation, importedParameters),
             hasOptionalOptions,
@@ -88,7 +89,11 @@ export function transformPaths(model: CodeModel): Paths {
             ),
             responseTypes: getResponseTypes(operation),
             successStatus: gerOperationSuccessStatus(operation),
-            operationName
+            operationName,
+            annotations: {
+              isLongRunning: isLongRunningOperation(operation),
+              isPageable: isPagingOperation(operation)
+            }
           };
 
           if (

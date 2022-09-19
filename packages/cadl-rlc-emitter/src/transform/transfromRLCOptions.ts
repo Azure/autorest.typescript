@@ -2,16 +2,16 @@ import { RLCOptions } from "@azure-tools/rlc-codegen";
 import { getServiceNamespace, Program } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
 import { readFileSync, existsSync } from "fs";
-import { join } from "path";
+import { join, resolve } from "path";
 
 export function transformRLCOptions(program: Program): RLCOptions {
   let configFile = join(
-    program.compilerOptions.outputPath ?? "",
+    resolve(program.compilerOptions.outputPath ?? ""),
     "typescript.json"
   );
   if (!existsSync(configFile)) {
     configFile = join(
-      program.compilerOptions.outputPath ?? "",
+      resolve(program.compilerOptions.outputPath ?? ""),
       "..",
       "spec",
       "typescript.json"

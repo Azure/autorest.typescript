@@ -10,16 +10,17 @@ export interface RLCModel {
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
-  pageInfo?: PageInfo;
-  urlInfo?: UrlInfo
+  annotations?: AnnotationDetails;
+  urlInfo?: UrlInfo;
 }
 
 export interface UrlInfo {
-  endpoint?: string,
-  urlParameters?: PathParameter[]
+  endpoint?: string;
+  urlParameters?: PathParameter[];
 }
-export interface PageInfo {
-  hasPaging: boolean;
+export interface AnnotationDetails {
+  hasPaging?: boolean;
+  hasLongRunning?: boolean;
   pageDetails?: PagingDetails;
 }
 
@@ -46,12 +47,12 @@ export interface OperationMethod {
   successStatus: string[];
   responseTypes: ResponseTypes;
   operationName: string;
+  annotations?: OperationAnnotations;
 }
 export interface PathMetadata {
   name: string;
   pathParameters: PathParameter[];
   methods: Methods;
-  annotations?: OperationAnnotations;
   operationGroupName: string;
   description: string;
 }

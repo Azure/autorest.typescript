@@ -6,7 +6,12 @@ import {
   ImplementationLocation,
   ParameterLocation
 } from "@autorest/codemodel";
-import { ImportKind, RLCModel, PageInfo, UrlInfo } from "@azure-tools/rlc-codegen";
+import {
+  ImportKind,
+  RLCModel,
+  AnnotationDetails,
+  UrlInfo
+} from "@azure-tools/rlc-codegen";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
 import {
@@ -15,6 +20,7 @@ import {
 } from "../../utils/extractPaginationDetails";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
+import { hasPollingOperations } from "../helpers/hasPollingOperations";
 import { isConstantSchema } from "../schemaHelpers";
 import { transformOptions } from "./transformOptions";
 import { transformParameterTypes } from "./transformParameterTypes";
@@ -38,7 +44,7 @@ export function transform(model: CodeModel): RLCModel {
     importSet: importDetails,
     apiVersionParam: transformApiVersionParam(model),
     parameters: transformParameterTypes(model, importDetails),
-    pageInfo: transformPageDetails(model),
+    annotations: transformAnnotationDetails(model),
     urlInfo: transformUrlInfo(model)
   };
   return rlcModel;
@@ -71,7 +77,9 @@ function transformApiVersionParam(model: CodeModel) {
   return undefined;
 }
 
-export function transformPageDetails(model: CodeModel): PageInfo {
+export function transformAnnotationDetails(
+  model: CodeModel
+): AnnotationDetails {
   const nextLinks = new Set<string>();
   const itemNames = new Set<string>();
   // Add default values
@@ -93,6 +101,7 @@ export function transformPageDetails(model: CodeModel): PageInfo {
   const isComplexPaging = nextLinks.size > 1 || itemNames.size > 1;
   return {
     hasPaging: hasPagingOperations(model),
+    hasLongRunning: hasPollingOperations(model),
     pageDetails: {
       itemNames: [...itemNames],
       nextLinkNames: [...nextLinks],
@@ -103,5 +112,5 @@ export function transformPageDetails(model: CodeModel): PageInfo {
 
 function transformUrlInfo(model: CodeModel): UrlInfo {
   const { endpoint, urlParameters } = transformBaseUrl(model);
-  return { endpoint, urlParameters }
+  return { endpoint, urlParameters };
 }
