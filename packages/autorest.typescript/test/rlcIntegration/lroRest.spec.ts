@@ -17,7 +17,7 @@ function createClient() {
   return client;
 }
 
-describe.only("LRO Rest Client", () => {
+describe("LRO Rest Client", () => {
   let client: LRORestClient;
 
   beforeEach(() => {
