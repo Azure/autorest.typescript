@@ -17,7 +17,7 @@ function createClient() {
   return client;
 }
 
-describe("LRO Rest Client", () => {
+describe.only("LRO Rest Client", () => {
   let client: LRORestClient;
 
   beforeEach(() => {
@@ -89,10 +89,8 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Operation was canceled"
-        );
+        console.log(e);
+        assert.equal(e.message, "Operation was canceled");
       }
     });
 
@@ -130,10 +128,7 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long-running operation has failed"
-        );
+        assert.equal(e.message, "The long-running operation has failed");
       }
     });
   });
@@ -178,7 +173,7 @@ describe("LRO Rest Client", () => {
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "204");
       assert.equal(result.body, undefined);
-  });
+    });
 
     it("should handle put202Retry200", async () => {
       const initialResponse = await client.path("/lro/put/202/retry/200").put();
@@ -432,10 +427,7 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Operation was canceled"
-        );
+        assert.equal(e.message, "Operation was canceled");
       }
     });
 
@@ -452,10 +444,7 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long-running operation has failed"
-        );
+        assert.equal(e.message, "The long-running operation has failed");
       }
     });
 
@@ -532,10 +521,7 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long-running operation has failed"
-        );
+        assert.equal(e.message, "The long-running operation has failed");
       }
     });
 
@@ -598,10 +584,7 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Operation was canceled"
-        );
+        assert.equal(e.message, "Operation was canceled");
       }
     });
 
@@ -662,10 +645,7 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long-running operation has failed"
-        );
+        assert.equal(e.message, "The long-running operation has failed");
       }
     });
 
@@ -702,10 +682,7 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Operation was canceled"
-        );
+        assert.equal(e.message, "Operation was canceled");
       }
     });
   });
@@ -809,21 +786,12 @@ describe("LRO Rest Client", () => {
 
   describe("LRO Sad scenarios", () => {
     it("should handle PutNonRetry400 ", async () => {
-      try {
-        //   await client.lrosaDs.beginPutNonRetry400AndWait(LROOptions);
-        const initialResponse = await client
-          .path("/lro/nonretryerror/put/400")
-          .put();
-
-        const poller = getLongRunningPoller(client, initialResponse, {
-          intervalInMs: 0
-        });
-
-        await poller.pollUntilDone();
-        throw new Error("should have thrown instead");
-      } catch (error) {
-        assert.equal(error.statusCode, 400);
-      }
+      //   await client.lrosaDs.beginPutNonRetry400AndWait(LROOptions);
+      const initialResponse = await client
+        .path("/lro/nonretryerror/put/400")
+        .put();
+      assert.equal(initialResponse.status, "400");
+      assert.isTrue(isUnexpected(initialResponse));
     });
 
     it("should handle putNonRetry201Creating400 ", async () => {
@@ -831,15 +799,17 @@ describe("LRO Rest Client", () => {
         const initialResponse = await client
           .path("/lro/nonretryerror/put/201/creating/400")
           .put();
-
+        assert.equal(initialResponse.status, "201");
+        assert.isNotTrue(isUnexpected(initialResponse));
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
-
-        await poller.pollUntilDone();
-        throw new Error("Expected to throw");
+        // Will not throw exception when response code is 400
+        const result = await poller.pollUntilDone();
+        assert.equal(result.status, "400");
+        assert.isTrue(isUnexpected(result));
       } catch (error) {
-        assert.equal(error.statusCode, 400);
+        assert.fail("Scenario should throw");
       }
     });
 
@@ -848,15 +818,17 @@ describe("LRO Rest Client", () => {
         const initialResponse = await client
           .path("/lro/nonretryerror/put/201/creating/400/invalidjson")
           .put();
-
+        assert.equal(initialResponse.status, "201");
+        assert.isNotTrue(isUnexpected(initialResponse));
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
-
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.isTrue(isUnexpected(result));
+        assert.equal(result.status, "400");
       } catch (error) {
-        assert.equal(error.statusCode, 400);
+        console.log(error);
+        assert.fail("Scenario should throw");
       }
     });
 
@@ -865,15 +837,18 @@ describe("LRO Rest Client", () => {
         const initialResponse = await client
           .path("/lro/nonretryerror/putasync/retry/400")
           .put();
-
+        assert.equal(initialResponse.status, "200");
+        assert.isNotTrue(isUnexpected(initialResponse));
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.isTrue(isUnexpected(result));
+        assert.equal(result.status, "400");
       } catch (error) {
-        assert.equal(error.statusCode, 400);
+        console.log(error);
+        assert.fail("Scenario should throw");
       }
     });
 
@@ -883,67 +858,57 @@ describe("LRO Rest Client", () => {
           .path("/lro/nonretryerror/delete/202/retry/400")
           .delete();
 
+        assert.equal(initialResponse.status, "202");
+        assert.isNotTrue(isUnexpected(initialResponse));
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.isTrue(isUnexpected(result));
+        assert.equal(result.status, "400");
       } catch (error) {
-        assert.equal(error.statusCode, 400);
+        console.log(error);
+        assert.fail("Scenario should throw");
       }
     });
 
     it("should handle deleteNonRetry400 ", async () => {
-      try {
-        const initialResponse = await client
-          .path("/lro/nonretryerror/delete/400")
-          .delete();
-
-        const poller = getLongRunningPoller(client, initialResponse, {
-          intervalInMs: 0
-        });
-
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
-      } catch (error) {
-        assert.equal(error.statusCode, 400);
-      }
+      const initialResponse = await client
+        .path("/lro/nonretryerror/delete/400")
+        .delete();
+      assert.equal(initialResponse.status, "400");
+      assert.isTrue(isUnexpected(initialResponse));
     });
 
-    // Re-enable when fix from PR#17573 is released
-    it.skip("should handle deleteAsyncRelativeRetry400 ", async () => {
+    it("should handle deleteAsyncRelativeRetry400 ", async () => {
       try {
         const initialResponse = await client
           .path("/lro/nonretryerror/deleteasync/retry/400")
           .delete();
 
+        assert.equal(initialResponse.status, "202");
+        assert.isNotTrue(isUnexpected(initialResponse));
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.isTrue(isUnexpected(result));
+        assert.equal(result.status, "400");
       } catch (error) {
-        assert.equal(error.statusCode, 400);
+        console.log(error);
+        assert.fail("Scenario should throw");
       }
     });
 
     it("should handle postNonRetry400 ", async () => {
-      try {
-        const initialResponse = await client
-          .path("/lro/nonretryerror/post/400")
-          .post();
+      const initialResponse = await client
+        .path("/lro/nonretryerror/post/400")
+        .post();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
-          intervalInMs: 0
-        });
-
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
-      } catch (error) {
-        assert.equal(error.statusCode, 400);
-      }
+      assert.equal(initialResponse.status, "400");
+      assert.isTrue(isUnexpected(initialResponse));
     });
 
     it("should handle post202NonRetry400 ", async () => {
@@ -956,15 +921,16 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.isTrue(isUnexpected(result));
+        assert.equal(result.status, "400");
       } catch (error) {
-        assert.equal(error.statusCode, 400);
+        console.log(error);
+        assert.fail("Scenario should throw");
       }
     });
 
-    // Re-enable when fix from PR#17573 is released
-    it.skip("should handle postAsyncRelativeRetry400 ", async () => {
+    it("should handle postAsyncRelativeRetry400 ", async () => {
       try {
         const initialResponse = await client
           .path("/lro/nonretryerror/postasync/retry/400")
@@ -974,9 +940,11 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
+        const result = await poller.pollUntilDone();
+        console.log(result);
         assert.fail("Scenario should throw");
       } catch (error) {
+        console.log(error);
         assert.equal(error.statusCode, 400);
       }
     });
@@ -1098,10 +1066,11 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.isTrue(isUnexpected(result));
+        assert.equal(result.status, "404");
       } catch (error) {
-        assert.equal(error.statusCode, 404);
+        assert.fail("Scenario should throw");
       }
     });
 
@@ -1115,10 +1084,11 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.equal(result.status, "404");
       } catch (error) {
-        assert.equal(error.statusCode, 404);
+        console.log(error);
+        assert.fail("Scenario should throw");
       }
     });
 
@@ -1132,10 +1102,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.equal(result.status, "404");
       } catch (error) {
-        assert.equal(error.statusCode, 404);
+        assert.fail("Scenario should throw");
       }
     });
 
@@ -1165,10 +1135,11 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.equal(result.status, "404");
       } catch (error) {
-        assert.equal(error.statusCode, 404);
+        console.log(error);
+        assert.fail("Scenario should throw");
       }
     });
 
@@ -1182,10 +1153,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        await poller.pollUntilDone();
-        assert.fail("Scenario should throw");
+        const result = await poller.pollUntilDone();
+        assert.equal(result.status, "404");
       } catch (error) {
-        assert.equal(error.statusCode, 404);
+        assert.fail("Scenario should throw");
       }
     });
 
