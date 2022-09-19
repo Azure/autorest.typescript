@@ -17,8 +17,6 @@ export function transformRLCOptions(program: Program): RLCOptions {
       "typescript.json"
     );
   }
-  configFile;
-  console.log(configFile, normalize(configFile));
   const config: RLCOptions = JSON.parse(readFileSync(configFile).toString());
   if (config.packageDetails?.name) {
     const nameParts = config.packageDetails?.name.split("/");
