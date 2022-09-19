@@ -23,7 +23,8 @@ import {
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
-import { transformPageDetails } from "./transformPageDetails.js";
+import { getSchemaForType } from "../modelUtils.js";
+import { transformAnnotationDetails } from "./transformPageDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
@@ -49,7 +50,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     program,
     importSet
   );
-  const pageInfo = transformPageDetails(program);
+  const annotations = transformAnnotationDetails(program);
   const urlInfo = transformUrlInfo(program);
   return {
     srcPath,
@@ -61,7 +62,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     importSet,
     apiVersionParam,
     parameters,
-    pageInfo
+    annotations,
     urlInfo
   };
 }
@@ -81,7 +82,7 @@ function transformApiVersionParam(program: Program): Parameter | undefined {
 export function transformUrlInfo(program: Program): UrlInfo | undefined {
   const serviceNs = getServiceNamespace(program);
   let endpoint = undefined;
-  let urlParameters = []
+  let urlParameters = [];
   if (serviceNs) {
     const host = getServers(program, serviceNs);
     if (host?.[0]?.url) {
@@ -96,11 +97,10 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
             name: key,
             type: getSchemaForType(program, type).type,
             description: getDoc(program, type)
-          })
+          });
         }
-   
       }
     }
   }
-  return { endpoint, urlParameters }
+  return { endpoint, urlParameters };
 }

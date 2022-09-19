@@ -1,17 +1,23 @@
 import { PagedResultMetadata } from "@azure-tools/cadl-azure-core";
-import { PageInfo } from "@azure-tools/rlc-codegen";
+import { AnnotationDetails } from "@azure-tools/rlc-codegen";
 import { Model, Program, Type } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import {
   hasPagingOperations,
-  extractPagedMetadataNested
+  extractPagedMetadataNested,
+  hasPollingOperations
 } from "../operationUtil.js";
 
-export function transformPageDetails(program: Program): PageInfo | undefined {
+export function transformAnnotationDetails(
+  program: Program
+): AnnotationDetails | undefined {
   // Extract paged metadata from Azure.Core.Page
   const details = extractPageDetainFromCore(program);
   if (details) {
-    return details;
+    return {
+      ...details,
+      hasLongRunning: hasPollingOperations(program)
+    };
   }
   // TODO: Remove this when @pageable is finally removed.
   const nextLinks = new Set<string>();
@@ -29,6 +35,7 @@ export function transformPageDetails(program: Program): PageInfo | undefined {
   }
   return {
     hasPaging: true,
+    hasLongRunning: hasPollingOperations(program),
     pageDetails: {
       itemNames: ["value"],
       nextLinkNames: [...nextLinks],

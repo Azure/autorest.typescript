@@ -5,7 +5,7 @@ import hbs from "handlebars";
 import { paginateContent } from "./static/paginateContent.js";
 
 export function buildPaginateHelper(model: RLCModel) {
-  const pagingInfo = model.pageInfo;
+  const pagingInfo = model.annotations;
   // return directly if no paging info
   if (!pagingInfo || pagingInfo.hasPaging !== true || !pagingInfo.pageDetails) {
     return;
