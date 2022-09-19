@@ -12,7 +12,7 @@ export function transformAnnotationDetails(
   program: Program
 ): AnnotationDetails | undefined {
   // Extract paged metadata from Azure.Core.Page
-  const details = extractPageDetainFromCore(program);
+  const details = extractPageDetailFromCore(program);
   if (details) {
     return {
       ...details,
@@ -51,7 +51,7 @@ export function getPageable(
   return program.stateMap(pageableOperationsKey).get(entity);
 }
 
-function extractPageDetainFromCore(program: Program) {
+function extractPageDetailFromCore(program: Program) {
   if (!hasPagingOperations(program)) {
     return;
   }
