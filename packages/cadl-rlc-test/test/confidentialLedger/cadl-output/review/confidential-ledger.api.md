@@ -347,7 +347,7 @@ export type ConfidentialLedgerServiceClient = Client & {
     confidentialLedger: ConfidentialLedgerOperations;
 };
 
-// @public (undocumented)
+// @public
 function createClient(ledgerUri: string, credentials: TokenCredential, options?: ClientOptions): ConfidentialLedgerServiceClient;
 export default createClient;
 

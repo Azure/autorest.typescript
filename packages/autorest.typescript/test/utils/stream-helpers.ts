@@ -14,8 +14,11 @@ export function stringToStream(
  * @param stream Node.js Readable stream.
  */
 export function readStreamToBuffer(
-  stream: NodeJS.ReadableStream
+  stream: NodeJS.ReadableStream | ReadableStream
 ): Promise<Buffer> {
+  if (!isNodeReadableStream(stream)) {
+    throw new Error("Browser streams are not supported in NodeJS");
+  }
   return new Promise<Buffer>((resolve, reject) => {
     const chunks: Buffer[] = [];
     stream.on("error", reject);

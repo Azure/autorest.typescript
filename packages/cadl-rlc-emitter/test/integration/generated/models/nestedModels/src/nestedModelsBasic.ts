@@ -1,12 +1,15 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { NestedModelsBasicClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class NestedModelsBasicClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): NestedModelsBasicClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-
   const userAgentInfo = `azsdk-js-nested-model-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

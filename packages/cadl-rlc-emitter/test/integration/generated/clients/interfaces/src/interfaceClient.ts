@@ -1,12 +1,15 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { InterfaceClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class InterfaceClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): InterfaceClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-
   const userAgentInfo = `azsdk-js-client-interface-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

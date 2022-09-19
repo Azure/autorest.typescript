@@ -5,6 +5,11 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 import { PurviewAccountClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class PurviewAccountClient class.
+ * @param endpoint type: string The account endpoint of your Purview account. Example: https://{accountName}.purview.azure.com/account/
+ * @param credentials type: TokenCredential
+ */
 export function createClient(
   endpoint: string,
   credentials: TokenCredential,

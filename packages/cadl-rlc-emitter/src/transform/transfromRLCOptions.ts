@@ -1,6 +1,6 @@
 import { RLCOptions } from "@azure-tools/rlc-codegen";
 import { getServiceNamespace, Program } from "@cadl-lang/compiler";
-import { getAuthentication, getServers } from "@cadl-lang/rest/http";
+import { getAuthentication } from "@cadl-lang/rest/http";
 import { readFileSync, existsSync } from "fs";
 import { join, resolve, normalize } from "path";
 
@@ -25,20 +25,6 @@ export function transformRLCOptions(program: Program): RLCOptions {
     if (nameParts.length === 2) {
       config.packageDetails.nameWithoutScope = nameParts[1];
       config.packageDetails.scopeName = nameParts[0]?.replace("@", "");
-    }
-  }
-  const serviceNs = getServiceNamespace(program);
-  if (serviceNs) {
-    const host = getServers(program, serviceNs);
-    if (host?.[0]?.url) {
-      config.endpoint = host[0].url;
-    }
-    if (host?.[0]?.parameters) {
-      // Currently we only support one parameter in the servers definition
-      for (const key of host?.[0]?.parameters.keys()) {
-        config.endpointParameterName = key;
-        break;
-      }
     }
   }
   const securityInfo = processAuth(program);
