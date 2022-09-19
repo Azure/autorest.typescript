@@ -11,14 +11,19 @@ import {
   Paths,
   RLCModel,
   RLCOptions,
-  Schema
+  Schema,
+  UrlInfo
 } from "@azure-tools/rlc-codegen";
 import {
+  getDoc,
+  getServiceNamespace,
   getServiceTitle,
   getServiceVersion,
   Program
 } from "@cadl-lang/compiler";
+import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
+import { getSchemaForType } from "../modelUtils.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
@@ -44,6 +49,7 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     program,
     importSet
   );
+  const urlInfo = transformUrlInfo(program);
 
   return {
     srcPath,
@@ -54,7 +60,8 @@ export async function transformRLCModel(program: Program): Promise<RLCModel> {
     responses,
     importSet,
     apiVersionParam,
-    parameters
+    parameters,
+    urlInfo
   };
 }
 
@@ -68,4 +75,31 @@ function transformApiVersionParam(program: Program): Parameter | undefined {
     };
   }
   return undefined;
+}
+
+export function transformUrlInfo(program: Program): UrlInfo | undefined {
+  const serviceNs = getServiceNamespace(program);
+  let endpoint = undefined;
+  let urlParameters = []
+  if (serviceNs) {
+    const host = getServers(program, serviceNs);
+    if (host?.[0]?.url) {
+      endpoint = host[0].url;
+    }
+    if (host?.[0]?.parameters) {
+      // Currently we only support one parameter in the servers definition
+      for (const key of host?.[0]?.parameters.keys()) {
+        const type = host?.[0]?.parameters.get(key)?.type;
+        if (type) {
+          urlParameters.push({
+            name: key,
+            type: getSchemaForType(program, type).type,
+            description: getDoc(program, type)
+          })
+        }
+   
+      }
+    }
+  }
+  return { endpoint, urlParameters }
 }

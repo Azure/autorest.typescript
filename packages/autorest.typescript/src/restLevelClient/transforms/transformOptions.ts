@@ -34,8 +34,5 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.addCredentials = addCredentials;
   options.credentialScopes = credentialScopes;
   options.credentialKeyHeaderName = credentialKeyHeaderName;
-  const { endpoint, parameterName } = transformBaseUrl(model);
-  options.endpoint = endpoint;
-  options.endpointParameterName = parameterName;
   return options;
 }
