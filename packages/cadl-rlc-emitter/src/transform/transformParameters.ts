@@ -9,7 +9,7 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-codegen";
-import { Program } from "@cadl-lang/compiler";
+import { Model, Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,
   HttpOperationParameter,
@@ -24,6 +24,7 @@ import {
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 import { isBinaryPayload } from "../operationUtil.js";
+import { getResourceOperation } from "@cadl-lang/rest";
 
 export function transformToParameterTypes(
   program: Program,
@@ -33,6 +34,7 @@ export function transformToParameterTypes(
   const rlcParameters: OperationParameter[] = [];
   let outputImportedSet = new Set<string>();
   for (const route of routes) {
+    const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationGroup: route.container.name,
@@ -46,11 +48,16 @@ export function transformToParameterTypes(
     // transform header param includeing content-type
     const headerParams = transformHeaderParameters(program, parameters);
     // transform body
+    let bodyType = undefined;
+    if (operation) {
+      bodyType = operation.resourceType;
+    }
     const bodyParameter = transformBodyParameters(
       program,
       parameters,
       headerParams,
-      outputImportedSet
+      outputImportedSet,
+      bodyType
     );
     rlcParameter.parameters.push({
       parameters: [...queryParams, ...pathParams, ...headerParams],
@@ -139,9 +146,10 @@ function transformBodyParameters(
   program: Program,
   parameters: HttpOperationParameters,
   headers: ParameterMetadata[],
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  inputBodyType?: Model 
 ): ParameterBodyMetadata | undefined {
-  const bodyType = parameters.bodyType ?? parameters.bodyParameter?.type;
+  const bodyType = inputBodyType ?? parameters.bodyType ?? parameters.bodyParameter?.type;
   if (!bodyType) {
     return;
   }

@@ -26,6 +26,34 @@ export interface ProjectOutput {
   lastDeployedDateTime: string;
 }
 
+export interface ProjectOutput {
+  projectName: string;
+  /**
+   * The project kind.
+   *
+   * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
+   */
+  projectKind: string;
+  /** The storage container name. */
+  storageInputContainerName: string;
+  /** The project settings. */
+  settings?: Record<string, string>;
+  /** Whether the project would be used for multiple languages or not. */
+  multilingual?: boolean;
+  /** The project description. */
+  description?: string;
+  /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
+  language: string;
+  /** Represents the project creation datetime. */
+  createdDateTime: string;
+  /** Represents the project last modification datetime. */
+  lastModifiedDateTime: string;
+  /** Represents the project last training datetime. */
+  lastTrainedDateTime: string;
+  /** Represents the project last deployment datetime. */
+  lastDeployedDateTime: string;
+}
+
 /** Status monitor resource for long running operations */
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
@@ -80,6 +108,10 @@ export interface DeploymentOutput {
   name: string;
 }
 
+export interface DeploymentOutput {
+  name: string;
+}
+
 /** Paged collection of Deployment items */
 export interface CustomPageDeploymentOutput {
   /** The Deployment items on this page */
@@ -116,6 +148,50 @@ export interface JobWarningOutput {
   code: string;
   /** The warning message. */
   message: string;
+}
+
+export interface DeploymentJobOutput {
+  /** The job ID. */
+  jobId: string;
+  /** The creation date time of the job. */
+  createdDateTime: string;
+  /** The the last date time the job was updated. */
+  lastUpdatedDateTime: string;
+  /** The expiration date time of the job. */
+  expirationDateTime: string;
+  /**
+   * The job status.
+   *
+   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
+   */
+  status: string;
+  /** The warnings that were encountered while executing the job. */
+  warnings: Array<JobWarningOutput>;
+  /** The errors encountered while executing the job. */
+  errors: ErrorModelOutput;
+  id: string;
+}
+
+export interface SwapDeploymentsJobOutput {
+  /** The job ID. */
+  jobId: string;
+  /** The creation date time of the job. */
+  createdDateTime: string;
+  /** The the last date time the job was updated. */
+  lastUpdatedDateTime: string;
+  /** The expiration date time of the job. */
+  expirationDateTime: string;
+  /**
+   * The job status.
+   *
+   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
+   */
+  status: string;
+  /** The warnings that were encountered while executing the job. */
+  warnings: Array<JobWarningOutput>;
+  /** The errors encountered while executing the job. */
+  errors: ErrorModelOutput;
+  id: string;
 }
 
 export interface SwapDeploymentsJobOutput {

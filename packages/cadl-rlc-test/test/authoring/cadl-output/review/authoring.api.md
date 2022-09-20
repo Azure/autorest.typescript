@@ -34,6 +34,25 @@ export interface CustomPageProjectOutput {
 }
 
 // @public (undocumented)
+export interface Deployment {
+    // (undocumented)
+    name: string;
+}
+
+// @public (undocumented)
+export interface DeploymentJob {
+    createdDateTime: Date | string;
+    errors: ErrorModel;
+    expirationDateTime: Date | string;
+    // (undocumented)
+    id: string;
+    jobId: string;
+    lastUpdatedDateTime: Date | string;
+    status: string;
+    warnings: Array<JobWarning>;
+}
+
+// @public (undocumented)
 export interface DeploymentJobOutput {
     createdDateTime: string;
     errors: ErrorModelOutput;
@@ -44,6 +63,25 @@ export interface DeploymentJobOutput {
     lastUpdatedDateTime: string;
     status: string;
     warnings: Array<JobWarningOutput>;
+}
+
+// @public (undocumented)
+export interface DeploymentJobOutput {
+    createdDateTime: string;
+    errors: ErrorModelOutput;
+    expirationDateTime: string;
+    // (undocumented)
+    id: string;
+    jobId: string;
+    lastUpdatedDateTime: string;
+    status: string;
+    warnings: Array<JobWarningOutput>;
+}
+
+// @public (undocumented)
+export interface DeploymentOutput {
+    // (undocumented)
+    name: string;
 }
 
 // @public (undocumented)
@@ -68,6 +106,12 @@ export interface DeploymentsDeleteDeployment202Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeploymentsDeleteDeploymentBodyParam {
+    // (undocumented)
+    body?: Deployment;
+}
+
+// @public (undocumented)
 export interface DeploymentsDeleteDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -76,7 +120,7 @@ export interface DeploymentsDeleteDeploymentDefaultResponse extends HttpResponse
 }
 
 // @public (undocumented)
-export type DeploymentsDeleteDeploymentParameters = RequestParameters;
+export type DeploymentsDeleteDeploymentParameters = DeploymentsDeleteDeploymentBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface DeploymentsDeployProject200Headers {
@@ -109,6 +153,12 @@ export interface DeploymentsDeployProject201Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeploymentsDeployProjectBodyParam {
+    // (undocumented)
+    body?: Deployment;
+}
+
+// @public (undocumented)
 export interface DeploymentsDeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -117,7 +167,7 @@ export interface DeploymentsDeployProjectDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeploymentsDeployProjectParameters = RequestParameters;
+export type DeploymentsDeployProjectParameters = DeploymentsDeployProjectBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface DeploymentsGetDeployment {
@@ -135,6 +185,12 @@ export interface DeploymentsGetDeployment200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeploymentsGetDeploymentBodyParam {
+    // (undocumented)
+    body?: Deployment;
+}
+
+// @public (undocumented)
 export interface DeploymentsGetDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -143,7 +199,7 @@ export interface DeploymentsGetDeploymentDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeploymentsGetDeploymentParameters = RequestParameters;
+export type DeploymentsGetDeploymentParameters = DeploymentsGetDeploymentBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface DeploymentsList {
@@ -159,6 +215,12 @@ export interface DeploymentsList200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeploymentsListBodyParam {
+    // (undocumented)
+    body?: Deployment;
+}
+
+// @public (undocumented)
 export interface DeploymentsListDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -167,7 +229,7 @@ export interface DeploymentsListDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeploymentsListParameters = RequestParameters;
+export type DeploymentsListParameters = DeploymentsListBodyParam & RequestParameters;
 
 // @public
 export interface DeploymentsOperations {
@@ -211,6 +273,15 @@ export interface DeploymentsSwapDeploymentsDefaultResponse extends HttpResponse 
 
 // @public (undocumented)
 export type DeploymentsSwapDeploymentsParameters = DeploymentsSwapDeploymentsBodyParam & RequestParameters;
+
+// @public
+export interface ErrorModel {
+    code: string;
+    details: Array<ErrorModel>;
+    innererror?: InnerError;
+    message: string;
+    target?: string;
+}
 
 // @public
 export interface ErrorModelOutput {
@@ -329,6 +400,12 @@ export interface GlobalOperations {
 }
 
 // @public
+export interface InnerError {
+    code: string;
+    innererror?: InnerError;
+}
+
+// @public
 export interface InnerErrorOutput {
     code: string;
     innererror?: InnerErrorOutput;
@@ -396,6 +473,12 @@ export interface JobsGetDeploymentStatus200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface JobsGetDeploymentStatusBodyParam {
+    // (undocumented)
+    body?: DeploymentJob;
+}
+
+// @public (undocumented)
 export interface JobsGetDeploymentStatusDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -404,7 +487,7 @@ export interface JobsGetDeploymentStatusDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type JobsGetDeploymentStatusParameters = RequestParameters;
+export type JobsGetDeploymentStatusParameters = JobsGetDeploymentStatusBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface JobsGetSwapDeploymentsStatus {
@@ -420,6 +503,12 @@ export interface JobsGetSwapDeploymentsStatus200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface JobsGetSwapDeploymentsStatusBodyParam {
+    // (undocumented)
+    body?: SwapDeploymentsJob;
+}
+
+// @public (undocumented)
 export interface JobsGetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -428,12 +517,18 @@ export interface JobsGetSwapDeploymentsStatusDefaultResponse extends HttpRespons
 }
 
 // @public (undocumented)
-export type JobsGetSwapDeploymentsStatusParameters = RequestParameters;
+export type JobsGetSwapDeploymentsStatusParameters = JobsGetSwapDeploymentsStatusBodyParam & RequestParameters;
 
 // @public
 export interface JobsOperations {
     getDeploymentStatus(projectName: string, deploymentName: string, jobId: string, options?: JobsGetDeploymentStatusParameters): StreamableMethod<JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse>;
     getSwapDeploymentsStatus(projectName: string, deploymentName: string, jobId: string, options?: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
+}
+
+// @public
+export interface JobWarning {
+    code: string;
+    message: string;
 }
 
 // @public
@@ -456,16 +551,6 @@ export interface OperationStatusOutput {
     error?: ErrorModelOutput;
     id: string;
     status: string;
-}
-
-// @public
-export interface OptionalPropertiesUpdateableProperties {
-    description?: string;
-    language?: string;
-    multilingual?: boolean;
-    projectKind?: string;
-    settings?: Record<string, string>;
-    storageInputContainerName?: string;
 }
 
 // @public
@@ -493,6 +578,38 @@ export type PaginateReturn<TResult> = TResult extends {
 // @public
 export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
+}
+
+// @public (undocumented)
+export interface Project {
+    createdDateTime: Date | string;
+    description?: string;
+    language: string;
+    lastDeployedDateTime: Date | string;
+    lastModifiedDateTime: Date | string;
+    lastTrainedDateTime: Date | string;
+    multilingual?: boolean;
+    projectKind: string;
+    // (undocumented)
+    projectName: string;
+    settings?: Record<string, string>;
+    storageInputContainerName: string;
+}
+
+// @public (undocumented)
+export interface ProjectOutput {
+    createdDateTime: string;
+    description?: string;
+    language: string;
+    lastDeployedDateTime: string;
+    lastModifiedDateTime: string;
+    lastTrainedDateTime: string;
+    multilingual?: boolean;
+    projectKind: string;
+    // (undocumented)
+    projectName: string;
+    settings?: Record<string, string>;
+    storageInputContainerName: string;
 }
 
 // @public (undocumented)
@@ -551,7 +668,7 @@ export interface ProjectsCreateOrUpdate201Response extends HttpResponse {
 // @public (undocumented)
 export interface ProjectsCreateOrUpdateBodyParam {
     // (undocumented)
-    body?: OptionalPropertiesUpdateableProperties;
+    body?: Project;
 }
 
 // @public (undocumented)
@@ -587,6 +704,12 @@ export interface ProjectsDelete202Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ProjectsDeleteBodyParam {
+    // (undocumented)
+    body?: Project;
+}
+
+// @public (undocumented)
 export interface ProjectsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -595,7 +718,7 @@ export interface ProjectsDeleteDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ProjectsDeleteParameters = RequestParameters;
+export type ProjectsDeleteParameters = ProjectsDeleteBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface ProjectsExport {
@@ -647,6 +770,12 @@ export interface ProjectsGet200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ProjectsGetBodyParam {
+    // (undocumented)
+    body?: Project;
+}
+
+// @public (undocumented)
 export interface ProjectsGetDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -655,7 +784,7 @@ export interface ProjectsGetDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ProjectsGetParameters = RequestParameters;
+export type ProjectsGetParameters = ProjectsGetBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface ProjectsImportx {
@@ -700,6 +829,12 @@ export interface ProjectsList200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ProjectsListBodyParam {
+    // (undocumented)
+    body?: Project;
+}
+
+// @public (undocumented)
 export interface ProjectsListDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -708,7 +843,7 @@ export interface ProjectsListDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ProjectsListParameters = ProjectsListQueryParam & RequestParameters;
+export type ProjectsListParameters = ProjectsListQueryParam & ProjectsListBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface ProjectsListQueryParam {
@@ -792,6 +927,32 @@ export interface Routes {
 export interface SupportedLanguageOutput {
     languageCode: string;
     languageName: string;
+}
+
+// @public (undocumented)
+export interface SwapDeploymentsJob {
+    createdDateTime: Date | string;
+    errors: ErrorModel;
+    expirationDateTime: Date | string;
+    // (undocumented)
+    id: string;
+    jobId: string;
+    lastUpdatedDateTime: Date | string;
+    status: string;
+    warnings: Array<JobWarning>;
+}
+
+// @public (undocumented)
+export interface SwapDeploymentsJobOutput {
+    createdDateTime: string;
+    errors: ErrorModelOutput;
+    expirationDateTime: string;
+    // (undocumented)
+    id: string;
+    jobId: string;
+    lastUpdatedDateTime: string;
+    status: string;
+    warnings: Array<JobWarningOutput>;
 }
 
 // @public (undocumented)

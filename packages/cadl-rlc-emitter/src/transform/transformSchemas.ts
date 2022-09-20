@@ -3,6 +3,7 @@
 
 import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
 import { Model, Program, Type } from "@cadl-lang/compiler";
+import { getResourceOperation } from "@cadl-lang/rest";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
 const modelKey = Symbol("typescript-models");
@@ -12,7 +13,13 @@ export function transformSchemas(program: Program) {
   const schemaSet: Set<string> = new Set<string>();
   const [routes, _diagnostics] = getAllRoutes(program);
   for (const route of routes) {
-    if (route.parameters.bodyType) {
+    const operation = getResourceOperation(program, route.operation);
+    if (operation) {
+      const bodyModel = operation.resourceType;
+      if (bodyModel && bodyModel.kind === "Model") {
+        getGeneratedModels(bodyModel, SchemaContext.Input);
+      }
+    } else if (route.parameters.bodyType) {
       const bodyModel = route.parameters.bodyType;
       if (bodyModel && bodyModel.kind === "Model") {
         getGeneratedModels(bodyModel, SchemaContext.Input);
