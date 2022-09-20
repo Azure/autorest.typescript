@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createCustomUrlRestClient from "@msinternal/custom-url-rest";
+import createCustomUrlRestClient, {
+  PathsGetEmptyParameters
+} from "@msinternal/custom-url-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,7 +19,8 @@ dotenv.config();
 async function pathsGetEmpty() {
   const host = "host:3000";
   const client = createCustomUrlRestClient(host);
-  const result = await client.path("/customuri").get();
+  const options: PathsGetEmptyParameters = {};
+  const result = await client.path("/customuri").get(options);
   console.log(result);
 }
 

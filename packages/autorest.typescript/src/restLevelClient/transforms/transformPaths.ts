@@ -76,7 +76,7 @@ export function transformPaths(model: CodeModel): Paths {
               name: operationName
             };
           }
-          const hasOptionalOptions = !hasRequiredOptions(operation);
+          const hasOptionalOptions = !hasRequiredOptions(operation, model);
 
           const newMethod: OperationMethod = {
             description: operationDescription,
@@ -126,11 +126,20 @@ function getOperationOptionsType(
   return paramsName;
 }
 
-function hasRequiredOptions(operation: Operation) {
-  return getOperationParameters(operation)
+function hasRequiredOptions(operation: Operation, model: CodeModel) {
+  const pathParamRequired = (operation.parameters ?? [])
+    .filter(
+      p =>
+        p.protocol.http?.in === ParameterLocation.Uri &&
+        model.globalParameters?.indexOf(p) === -1
+    )
+    .some(p => p.required);
+  const otherOptionsRequired = getOperationParameters(operation)
     .filter(p => p.implementation === ImplementationLocation.Method)
     .filter(p => ["query", "body", "headers"].includes(p.protocol.http?.in))
     .some(p => p.required);
+
+  return pathParamRequired || otherOptionsRequired;
 }
 
 /**
