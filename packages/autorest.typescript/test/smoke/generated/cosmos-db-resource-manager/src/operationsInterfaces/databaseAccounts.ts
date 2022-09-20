@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   DatabaseAccountGetResults,
   DatabaseAccountsListOptionalParams,
@@ -125,8 +125,8 @@ export interface DatabaseAccounts {
     updateParameters: DatabaseAccountUpdateParameters,
     options?: DatabaseAccountsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DatabaseAccountsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DatabaseAccountsUpdateResponse>,
       DatabaseAccountsUpdateResponse
     >
   >;
@@ -157,8 +157,8 @@ export interface DatabaseAccounts {
     createUpdateParameters: DatabaseAccountCreateUpdateParameters,
     options?: DatabaseAccountsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DatabaseAccountsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DatabaseAccountsCreateOrUpdateResponse>,
       DatabaseAccountsCreateOrUpdateResponse
     >
   >;
@@ -186,7 +186,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: DatabaseAccountsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -213,7 +213,7 @@ export interface DatabaseAccounts {
     accountName: string,
     failoverParameters: FailoverPolicies,
     options?: DatabaseAccountsFailoverPriorityChangeOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0
    * indicates a write region. The maximum value for a failover priority = (total number of regions - 1).
@@ -264,7 +264,7 @@ export interface DatabaseAccounts {
     accountName: string,
     regionParameterForOffline: RegionForOnlineOffline,
     options?: DatabaseAccountsOfflineRegionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Offline the specified region for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -290,7 +290,7 @@ export interface DatabaseAccounts {
     accountName: string,
     regionParameterForOnline: RegionForOnlineOffline,
     options?: DatabaseAccountsOnlineRegionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Online the specified region for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -338,7 +338,7 @@ export interface DatabaseAccounts {
     accountName: string,
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
     options?: DatabaseAccountsRegenerateKeyOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Regenerates an access key for the specified Azure Cosmos DB database account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.

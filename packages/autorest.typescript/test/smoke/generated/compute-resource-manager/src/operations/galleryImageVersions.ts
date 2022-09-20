@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   GalleryImageVersion,
   GalleryImageVersionsListByGalleryImageNextOptionalParams,
@@ -145,8 +149,8 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
     galleryImageVersion: GalleryImageVersion,
     options?: GalleryImageVersionsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<GalleryImageVersionsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<GalleryImageVersionsCreateOrUpdateResponse>,
       GalleryImageVersionsCreateOrUpdateResponse
     >
   > {
@@ -156,7 +160,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
     ): Promise<GalleryImageVersionsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -189,9 +193,9 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         galleryName,
         galleryImageName,
@@ -199,10 +203,13 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
         galleryImageVersion,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GalleryImageVersionsCreateOrUpdateResponse,
+      OperationState<GalleryImageVersionsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -261,8 +268,8 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
     galleryImageVersion: GalleryImageVersionUpdate,
     options?: GalleryImageVersionsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<GalleryImageVersionsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<GalleryImageVersionsUpdateResponse>,
       GalleryImageVersionsUpdateResponse
     >
   > {
@@ -272,7 +279,7 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
     ): Promise<GalleryImageVersionsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -305,9 +312,9 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         galleryName,
         galleryImageName,
@@ -315,10 +322,13 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
         galleryImageVersion,
         options
       },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GalleryImageVersionsUpdateResponse,
+      OperationState<GalleryImageVersionsUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -397,14 +407,14 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
     galleryImageName: string,
     galleryImageVersionName: string,
     options?: GalleryImageVersionsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -437,19 +447,19 @@ export class GalleryImageVersionsImpl implements GalleryImageVersions {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         galleryName,
         galleryImageName,
         galleryImageVersionName,
         options
       },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

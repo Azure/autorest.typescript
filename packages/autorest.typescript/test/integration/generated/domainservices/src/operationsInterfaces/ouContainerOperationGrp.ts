@@ -1,5 +1,5 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   OuContainer,
   OuContainerListOptionalParams,
@@ -59,8 +59,8 @@ export interface OuContainerOperationGrp {
     containerAccount: ContainerAccount,
     options?: OuContainerCreateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<OuContainerCreateResponse>,
+    SimplePollerLike<
+      OperationState<OuContainerCreateResponse>,
       OuContainerCreateResponse
     >
   >;
@@ -94,7 +94,7 @@ export interface OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     options?: OuContainerDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * The Delete OuContainer operation deletes specified OuContainer.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -125,8 +125,8 @@ export interface OuContainerOperationGrp {
     containerAccount: ContainerAccount,
     options?: OuContainerUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<OuContainerUpdateResponse>,
+    SimplePollerLike<
+      OperationState<OuContainerUpdateResponse>,
       OuContainerUpdateResponse
     >
   >;

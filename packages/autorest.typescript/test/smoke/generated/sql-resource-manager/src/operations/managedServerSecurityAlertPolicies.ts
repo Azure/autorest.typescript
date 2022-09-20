@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ManagedServerSecurityAlertPolicy,
   ManagedServerSecurityAlertPoliciesListByInstanceNextOptionalParams,
@@ -154,10 +158,8 @@ export class ManagedServerSecurityAlertPoliciesImpl
     parameters: ManagedServerSecurityAlertPolicy,
     options?: ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse
-      >,
+    SimplePollerLike<
+      OperationState<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>,
       ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse
     >
   > {
@@ -167,7 +169,7 @@ export class ManagedServerSecurityAlertPoliciesImpl
     ): Promise<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -200,19 +202,22 @@ export class ManagedServerSecurityAlertPoliciesImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         managedInstanceName,
         securityAlertPolicyName,
         parameters,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse,
+      OperationState<ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

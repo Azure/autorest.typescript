@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   Server,
   ServersListByResourceGroupNextOptionalParams,
@@ -197,8 +201,8 @@ export class ServersImpl implements Servers {
     parameters: Server,
     options?: ServersCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ServersCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ServersCreateOrUpdateResponse>,
       ServersCreateOrUpdateResponse
     >
   > {
@@ -208,7 +212,7 @@ export class ServersImpl implements Servers {
     ): Promise<ServersCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -241,13 +245,16 @@ export class ServersImpl implements Servers {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ServersCreateOrUpdateResponse,
+      OperationState<ServersCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -288,14 +295,14 @@ export class ServersImpl implements Servers {
     resourceGroupName: string,
     serverName: string,
     options?: ServersDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -328,13 +335,13 @@ export class ServersImpl implements Servers {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -375,7 +382,10 @@ export class ServersImpl implements Servers {
     parameters: ServerUpdate,
     options?: ServersUpdateOptionalParams
   ): Promise<
-    PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
+    SimplePollerLike<
+      OperationState<ServersUpdateResponse>,
+      ServersUpdateResponse
+    >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
@@ -383,7 +393,7 @@ export class ServersImpl implements Servers {
     ): Promise<ServersUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -416,13 +426,16 @@ export class ServersImpl implements Servers {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, parameters, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, parameters, options },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ServersUpdateResponse,
+      OperationState<ServersUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -476,8 +489,8 @@ export class ServersImpl implements Servers {
     parameters: ImportNewDatabaseDefinition,
     options?: ServersImportDatabaseOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ServersImportDatabaseResponse>,
+    SimplePollerLike<
+      OperationState<ServersImportDatabaseResponse>,
       ServersImportDatabaseResponse
     >
   > {
@@ -487,7 +500,7 @@ export class ServersImpl implements Servers {
     ): Promise<ServersImportDatabaseResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -520,13 +533,16 @@ export class ServersImpl implements Servers {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, parameters, options },
-      importDatabaseOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, parameters, options },
+      spec: importDatabaseOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ServersImportDatabaseResponse,
+      OperationState<ServersImportDatabaseResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

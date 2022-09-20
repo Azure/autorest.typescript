@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ManagedDatabase,
   ManagedDatabasesListByInstanceNextOptionalParams,
@@ -247,8 +251,8 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     parameters: ManagedDatabase,
     options?: ManagedDatabasesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedDatabasesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedDatabasesCreateOrUpdateResponse>,
       ManagedDatabasesCreateOrUpdateResponse
     >
   > {
@@ -258,7 +262,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     ): Promise<ManagedDatabasesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -291,19 +295,22 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         managedInstanceName,
         databaseName,
         parameters,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ManagedDatabasesCreateOrUpdateResponse,
+      OperationState<ManagedDatabasesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -349,14 +356,14 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     options?: ManagedDatabasesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -389,13 +396,13 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, managedInstanceName, databaseName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, managedInstanceName, databaseName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -441,8 +448,8 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     parameters: ManagedDatabaseUpdate,
     options?: ManagedDatabasesUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedDatabasesUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedDatabasesUpdateResponse>,
       ManagedDatabasesUpdateResponse
     >
   > {
@@ -452,7 +459,7 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     ): Promise<ManagedDatabasesUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -485,19 +492,22 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         managedInstanceName,
         databaseName,
         parameters,
         options
       },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ManagedDatabasesUpdateResponse,
+      OperationState<ManagedDatabasesUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -545,14 +555,14 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
     databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
     options?: ManagedDatabasesCompleteRestoreOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -585,19 +595,19 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         managedInstanceName,
         databaseName,
         parameters,
         options
       },
-      completeRestoreOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: completeRestoreOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

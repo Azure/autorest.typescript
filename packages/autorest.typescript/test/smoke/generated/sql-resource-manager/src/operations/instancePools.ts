@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   InstancePool,
   InstancePoolsListByResourceGroupNextOptionalParams,
@@ -175,8 +179,8 @@ export class InstancePoolsImpl implements InstancePools {
     parameters: InstancePool,
     options?: InstancePoolsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<InstancePoolsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<InstancePoolsCreateOrUpdateResponse>,
       InstancePoolsCreateOrUpdateResponse
     >
   > {
@@ -186,7 +190,7 @@ export class InstancePoolsImpl implements InstancePools {
     ): Promise<InstancePoolsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -219,13 +223,16 @@ export class InstancePoolsImpl implements InstancePools {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, instancePoolName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, instancePoolName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      InstancePoolsCreateOrUpdateResponse,
+      OperationState<InstancePoolsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -266,14 +273,14 @@ export class InstancePoolsImpl implements InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     options?: InstancePoolsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -306,13 +313,13 @@ export class InstancePoolsImpl implements InstancePools {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, instancePoolName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, instancePoolName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -353,8 +360,8 @@ export class InstancePoolsImpl implements InstancePools {
     parameters: InstancePoolUpdate,
     options?: InstancePoolsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<InstancePoolsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<InstancePoolsUpdateResponse>,
       InstancePoolsUpdateResponse
     >
   > {
@@ -364,7 +371,7 @@ export class InstancePoolsImpl implements InstancePools {
     ): Promise<InstancePoolsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -397,13 +404,16 @@ export class InstancePoolsImpl implements InstancePools {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, instancePoolName, parameters, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, instancePoolName, parameters, options },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      InstancePoolsUpdateResponse,
+      OperationState<InstancePoolsUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

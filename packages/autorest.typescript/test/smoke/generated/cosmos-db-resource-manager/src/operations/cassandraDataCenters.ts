@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   DataCenterResource,
   CassandraDataCentersListOptionalParams,
@@ -136,14 +140,14 @@ export class CassandraDataCentersImpl implements CassandraDataCenters {
     clusterName: string,
     dataCenterName: string,
     options?: CassandraDataCentersDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -176,13 +180,13 @@ export class CassandraDataCentersImpl implements CassandraDataCenters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, dataCenterName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, dataCenterName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -227,8 +231,8 @@ export class CassandraDataCentersImpl implements CassandraDataCenters {
     body: DataCenterResource,
     options?: CassandraDataCentersCreateUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<CassandraDataCentersCreateUpdateResponse>,
+    SimplePollerLike<
+      OperationState<CassandraDataCentersCreateUpdateResponse>,
       CassandraDataCentersCreateUpdateResponse
     >
   > {
@@ -238,7 +242,7 @@ export class CassandraDataCentersImpl implements CassandraDataCenters {
     ): Promise<CassandraDataCentersCreateUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -271,13 +275,16 @@ export class CassandraDataCentersImpl implements CassandraDataCenters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, dataCenterName, body, options },
-      createUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, dataCenterName, body, options },
+      spec: createUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      CassandraDataCentersCreateUpdateResponse,
+      OperationState<CassandraDataCentersCreateUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -325,8 +332,8 @@ export class CassandraDataCentersImpl implements CassandraDataCenters {
     body: DataCenterResource,
     options?: CassandraDataCentersUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<CassandraDataCentersUpdateResponse>,
+    SimplePollerLike<
+      OperationState<CassandraDataCentersUpdateResponse>,
       CassandraDataCentersUpdateResponse
     >
   > {
@@ -336,7 +343,7 @@ export class CassandraDataCentersImpl implements CassandraDataCenters {
     ): Promise<CassandraDataCentersUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -369,13 +376,16 @@ export class CassandraDataCentersImpl implements CassandraDataCenters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, dataCenterName, body, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, dataCenterName, body, options },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      CassandraDataCentersUpdateResponse,
+      OperationState<CassandraDataCentersUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   ManagedDatabase,
   ManagedDatabasesListByInstanceOptionalParams,
@@ -81,8 +81,8 @@ export interface ManagedDatabases {
     parameters: ManagedDatabase,
     options?: ManagedDatabasesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedDatabasesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedDatabasesCreateOrUpdateResponse>,
       ManagedDatabasesCreateOrUpdateResponse
     >
   >;
@@ -115,7 +115,7 @@ export interface ManagedDatabases {
     managedInstanceName: string,
     databaseName: string,
     options?: ManagedDatabasesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -146,8 +146,8 @@ export interface ManagedDatabases {
     parameters: ManagedDatabaseUpdate,
     options?: ManagedDatabasesUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedDatabasesUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedDatabasesUpdateResponse>,
       ManagedDatabasesUpdateResponse
     >
   >;
@@ -182,7 +182,7 @@ export interface ManagedDatabases {
     databaseName: string,
     parameters: CompleteDatabaseRestoreDefinition,
     options?: ManagedDatabasesCompleteRestoreOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Completes the restore operation on a managed database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

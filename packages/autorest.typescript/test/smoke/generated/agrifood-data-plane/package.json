@@ -63,7 +63,8 @@
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
     "@azure/core-paging": "^1.2.0",
-    "@azure/core-lro": "^2.2.0"
+    "@azure/core-lro": "^2.3.0",
+    "@azure/abort-controller": "^1.0.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "7.18.11",

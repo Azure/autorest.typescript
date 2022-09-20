@@ -6,9 +6,9 @@
 
 import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
+import { OperationState } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
-import { PollerLike } from '@azure/core-lro';
-import { PollOperationState } from '@azure/core-lro';
+import { SimplePollerLike } from '@azure/core-lro';
 
 // @public
 export interface AccessPolicyEntry {
@@ -568,13 +568,13 @@ export interface ManagedHsmResource {
 
 // @public
 export interface ManagedHsms {
-    beginCreateOrUpdate(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedHsmsCreateOrUpdateResponse>, ManagedHsmsCreateOrUpdateResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsCreateOrUpdateOptionalParams): Promise<SimplePollerLike<OperationState<ManagedHsmsCreateOrUpdateResponse>, ManagedHsmsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsCreateOrUpdateOptionalParams): Promise<ManagedHsmsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, name: string, options?: ManagedHsmsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDelete(resourceGroupName: string, name: string, options?: ManagedHsmsDeleteOptionalParams): Promise<SimplePollerLike<OperationState<void>, void>>;
     beginDeleteAndWait(resourceGroupName: string, name: string, options?: ManagedHsmsDeleteOptionalParams): Promise<void>;
-    beginPurgeDeleted(name: string, location: string, options?: ManagedHsmsPurgeDeletedOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPurgeDeleted(name: string, location: string, options?: ManagedHsmsPurgeDeletedOptionalParams): Promise<SimplePollerLike<OperationState<void>, void>>;
     beginPurgeDeletedAndWait(name: string, location: string, options?: ManagedHsmsPurgeDeletedOptionalParams): Promise<void>;
-    beginUpdate(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsUpdateOptionalParams): Promise<PollerLike<PollOperationState<ManagedHsmsUpdateResponse>, ManagedHsmsUpdateResponse>>;
+    beginUpdate(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsUpdateOptionalParams): Promise<SimplePollerLike<OperationState<ManagedHsmsUpdateResponse>, ManagedHsmsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, name: string, parameters: ManagedHsm, options?: ManagedHsmsUpdateOptionalParams): Promise<ManagedHsmsUpdateResponse>;
     get(resourceGroupName: string, name: string, options?: ManagedHsmsGetOptionalParams): Promise<ManagedHsmsGetResponse>;
     getDeleted(name: string, location: string, options?: ManagedHsmsGetDeletedOptionalParams): Promise<ManagedHsmsGetDeletedResponse>;
@@ -735,7 +735,7 @@ export interface MhsmPrivateEndpointConnectionItem {
 
 // @public
 export interface MhsmPrivateEndpointConnections {
-    beginDelete(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: MhsmPrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<MhsmPrivateEndpointConnectionsDeleteResponse>, MhsmPrivateEndpointConnectionsDeleteResponse>>;
+    beginDelete(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: MhsmPrivateEndpointConnectionsDeleteOptionalParams): Promise<SimplePollerLike<OperationState<MhsmPrivateEndpointConnectionsDeleteResponse>, MhsmPrivateEndpointConnectionsDeleteResponse>>;
     beginDeleteAndWait(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: MhsmPrivateEndpointConnectionsDeleteOptionalParams): Promise<MhsmPrivateEndpointConnectionsDeleteResponse>;
     get(resourceGroupName: string, name: string, privateEndpointConnectionName: string, options?: MhsmPrivateEndpointConnectionsGetOptionalParams): Promise<MhsmPrivateEndpointConnectionsGetResponse>;
     listByResource(resourceGroupName: string, name: string, options?: MhsmPrivateEndpointConnectionsListByResourceOptionalParams): PagedAsyncIterableIterator<MhsmPrivateEndpointConnection>;
@@ -931,7 +931,7 @@ export type PrivateEndpointConnectionProvisioningState = string;
 
 // @public
 export interface PrivateEndpointConnections {
-    beginDelete(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<PrivateEndpointConnectionsDeleteResponse>, PrivateEndpointConnectionsDeleteResponse>>;
+    beginDelete(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<SimplePollerLike<OperationState<PrivateEndpointConnectionsDeleteResponse>, PrivateEndpointConnectionsDeleteResponse>>;
     beginDeleteAndWait(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<PrivateEndpointConnectionsDeleteResponse>;
     get(resourceGroupName: string, vaultName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams): Promise<PrivateEndpointConnectionsGetResponse>;
     listByResource(resourceGroupName: string, vaultName: string, options?: PrivateEndpointConnectionsListByResourceOptionalParams): PagedAsyncIterableIterator<PrivateEndpointConnection>;
@@ -1284,9 +1284,9 @@ export type VaultProvisioningState = string;
 
 // @public
 export interface Vaults {
-    beginCreateOrUpdate(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: VaultsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VaultsCreateOrUpdateResponse>, VaultsCreateOrUpdateResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: VaultsCreateOrUpdateOptionalParams): Promise<SimplePollerLike<OperationState<VaultsCreateOrUpdateResponse>, VaultsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: VaultsCreateOrUpdateOptionalParams): Promise<VaultsCreateOrUpdateResponse>;
-    beginPurgeDeleted(vaultName: string, location: string, options?: VaultsPurgeDeletedOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPurgeDeleted(vaultName: string, location: string, options?: VaultsPurgeDeletedOptionalParams): Promise<SimplePollerLike<OperationState<void>, void>>;
     beginPurgeDeletedAndWait(vaultName: string, location: string, options?: VaultsPurgeDeletedOptionalParams): Promise<void>;
     checkNameAvailability(vaultName: VaultCheckNameAvailabilityParameters, options?: VaultsCheckNameAvailabilityOptionalParams): Promise<VaultsCheckNameAvailabilityResponse>;
     delete(resourceGroupName: string, vaultName: string, options?: VaultsDeleteOptionalParams): Promise<void>;

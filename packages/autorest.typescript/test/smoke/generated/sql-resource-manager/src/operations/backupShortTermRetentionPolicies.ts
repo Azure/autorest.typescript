@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   BackupShortTermRetentionPolicy,
   BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams,
@@ -164,10 +168,8 @@ export class BackupShortTermRetentionPoliciesImpl
     parameters: BackupShortTermRetentionPolicy,
     options?: BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        BackupShortTermRetentionPoliciesCreateOrUpdateResponse
-      >,
+    SimplePollerLike<
+      OperationState<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>,
       BackupShortTermRetentionPoliciesCreateOrUpdateResponse
     >
   > {
@@ -177,7 +179,7 @@ export class BackupShortTermRetentionPoliciesImpl
     ): Promise<BackupShortTermRetentionPoliciesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -210,9 +212,9 @@ export class BackupShortTermRetentionPoliciesImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         serverName,
         databaseName,
@@ -220,10 +222,13 @@ export class BackupShortTermRetentionPoliciesImpl
         parameters,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      BackupShortTermRetentionPoliciesCreateOrUpdateResponse,
+      OperationState<BackupShortTermRetentionPoliciesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -277,8 +282,8 @@ export class BackupShortTermRetentionPoliciesImpl
     parameters: BackupShortTermRetentionPolicy,
     options?: BackupShortTermRetentionPoliciesUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<BackupShortTermRetentionPoliciesUpdateResponse>,
+    SimplePollerLike<
+      OperationState<BackupShortTermRetentionPoliciesUpdateResponse>,
       BackupShortTermRetentionPoliciesUpdateResponse
     >
   > {
@@ -288,7 +293,7 @@ export class BackupShortTermRetentionPoliciesImpl
     ): Promise<BackupShortTermRetentionPoliciesUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -321,9 +326,9 @@ export class BackupShortTermRetentionPoliciesImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         serverName,
         databaseName,
@@ -331,10 +336,13 @@ export class BackupShortTermRetentionPoliciesImpl
         parameters,
         options
       },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      BackupShortTermRetentionPoliciesUpdateResponse,
+      OperationState<BackupShortTermRetentionPoliciesUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   VirtualNetworkRule,
   VirtualNetworkRulesListByServerNextOptionalParams,
@@ -148,8 +152,8 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     parameters: VirtualNetworkRule,
     options?: VirtualNetworkRulesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<VirtualNetworkRulesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<VirtualNetworkRulesCreateOrUpdateResponse>,
       VirtualNetworkRulesCreateOrUpdateResponse
     >
   > {
@@ -159,7 +163,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     ): Promise<VirtualNetworkRulesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -192,19 +196,22 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         serverName,
         virtualNetworkRuleName,
         parameters,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      VirtualNetworkRulesCreateOrUpdateResponse,
+      OperationState<VirtualNetworkRulesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -250,14 +257,14 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
     serverName: string,
     virtualNetworkRuleName: string,
     options?: VirtualNetworkRulesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -290,13 +297,13 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, virtualNetworkRuleName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, virtualNetworkRuleName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

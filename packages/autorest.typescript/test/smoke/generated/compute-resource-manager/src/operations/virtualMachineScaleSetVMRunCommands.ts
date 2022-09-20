@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   VirtualMachineRunCommand,
   VirtualMachineScaleSetVMRunCommandsListNextOptionalParams,
@@ -141,10 +145,8 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     runCommand: VirtualMachineRunCommand,
     options?: VirtualMachineScaleSetVMRunCommandsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse
-      >,
+    SimplePollerLike<
+      OperationState<VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse>,
       VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse
     >
   > {
@@ -154,7 +156,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     ): Promise<VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -187,9 +189,9 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         vmScaleSetName,
         instanceId,
@@ -197,10 +199,13 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
         runCommand,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse,
+      OperationState<VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -252,8 +257,8 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     runCommand: VirtualMachineRunCommandUpdate,
     options?: VirtualMachineScaleSetVMRunCommandsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<VirtualMachineScaleSetVMRunCommandsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<VirtualMachineScaleSetVMRunCommandsUpdateResponse>,
       VirtualMachineScaleSetVMRunCommandsUpdateResponse
     >
   > {
@@ -263,7 +268,7 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     ): Promise<VirtualMachineScaleSetVMRunCommandsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -296,9 +301,9 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         vmScaleSetName,
         instanceId,
@@ -306,10 +311,13 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
         runCommand,
         options
       },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      VirtualMachineScaleSetVMRunCommandsUpdateResponse,
+      OperationState<VirtualMachineScaleSetVMRunCommandsUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -358,14 +366,14 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
     instanceId: string,
     runCommandName: string,
     options?: VirtualMachineScaleSetVMRunCommandsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -398,19 +406,19 @@ export class VirtualMachineScaleSetVMRunCommandsImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         vmScaleSetName,
         instanceId,
         runCommandName,
         options
       },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

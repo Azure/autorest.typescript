@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   VirtualCluster,
   VirtualClustersListOptionalParams,
@@ -77,7 +77,7 @@ export interface VirtualClusters {
     resourceGroupName: string,
     virtualClusterName: string,
     options?: VirtualClustersDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a virtual cluster.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -104,8 +104,8 @@ export interface VirtualClusters {
     parameters: VirtualClusterUpdate,
     options?: VirtualClustersUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<VirtualClustersUpdateResponse>,
+    SimplePollerLike<
+      OperationState<VirtualClustersUpdateResponse>,
       VirtualClustersUpdateResponse
     >
   >;

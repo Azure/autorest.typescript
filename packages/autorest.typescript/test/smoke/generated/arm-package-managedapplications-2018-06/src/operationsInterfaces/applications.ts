@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   Application,
   ApplicationsListByResourceGroupOptionalParams,
@@ -68,7 +68,7 @@ export interface Applications {
     resourceGroupName: string,
     applicationName: string,
     options?: ApplicationsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the managed application.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -93,8 +93,8 @@ export interface Applications {
     parameters: Application,
     options?: ApplicationsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ApplicationsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ApplicationsCreateOrUpdateResponse>,
       ApplicationsCreateOrUpdateResponse
     >
   >;
@@ -144,7 +144,7 @@ export interface Applications {
   beginDeleteById(
     applicationId: string,
     options?: ApplicationsDeleteByIdOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the managed application.
    * @param applicationId The fully qualified ID of the managed application, including the managed
@@ -169,8 +169,8 @@ export interface Applications {
     parameters: Application,
     options?: ApplicationsCreateOrUpdateByIdOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ApplicationsCreateOrUpdateByIdResponse>,
+    SimplePollerLike<
+      OperationState<ApplicationsCreateOrUpdateByIdResponse>,
       ApplicationsCreateOrUpdateByIdResponse
     >
   >;

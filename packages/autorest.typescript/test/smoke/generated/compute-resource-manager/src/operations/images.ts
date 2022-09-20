@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   Image,
   ImagesListByResourceGroupNextOptionalParams,
@@ -156,8 +160,8 @@ export class ImagesImpl implements Images {
     parameters: Image,
     options?: ImagesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ImagesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ImagesCreateOrUpdateResponse>,
       ImagesCreateOrUpdateResponse
     >
   > {
@@ -167,7 +171,7 @@ export class ImagesImpl implements Images {
     ): Promise<ImagesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -200,13 +204,16 @@ export class ImagesImpl implements Images {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, imageName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, imageName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ImagesCreateOrUpdateResponse,
+      OperationState<ImagesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -248,7 +255,7 @@ export class ImagesImpl implements Images {
     parameters: ImageUpdate,
     options?: ImagesUpdateOptionalParams
   ): Promise<
-    PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>
+    SimplePollerLike<OperationState<ImagesUpdateResponse>, ImagesUpdateResponse>
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
@@ -256,7 +263,7 @@ export class ImagesImpl implements Images {
     ): Promise<ImagesUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -289,13 +296,16 @@ export class ImagesImpl implements Images {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, imageName, parameters, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, imageName, parameters, options },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ImagesUpdateResponse,
+      OperationState<ImagesUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -334,14 +344,14 @@ export class ImagesImpl implements Images {
     resourceGroupName: string,
     imageName: string,
     options?: ImagesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -374,13 +384,13 @@ export class ImagesImpl implements Images {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, imageName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, imageName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
