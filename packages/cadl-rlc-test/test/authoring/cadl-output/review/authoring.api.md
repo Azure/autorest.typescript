@@ -518,22 +518,6 @@ export interface ProjectOutput {
 }
 
 // @public (undocumented)
-export interface ProjectOutput {
-    createdDateTime: string;
-    description?: string;
-    language: string;
-    lastDeployedDateTime: string;
-    lastModifiedDateTime: string;
-    lastTrainedDateTime: string;
-    multilingual?: boolean;
-    projectKind: string;
-    // (undocumented)
-    projectName: string;
-    settings?: Record<string, string>;
-    storageInputContainerName: string;
-}
-
-// @public (undocumented)
 export interface ProjectsCreateOrUpdate {
     delete(options?: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
     get(options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;

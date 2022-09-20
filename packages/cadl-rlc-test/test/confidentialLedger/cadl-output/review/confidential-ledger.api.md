@@ -477,22 +477,8 @@ export interface LedgerEntryOutput {
     transactionId: string;
 }
 
-// @public (undocumented)
-export interface LedgerEntryOutput {
-    // (undocumented)
-    collectionId: string;
-    contents: string;
-    transactionId: string;
-}
-
 // @public
 export interface LedgerUser {
-    assignedRole: string;
-    userId: string;
-}
-
-// @public
-export interface LedgerUserOutput {
     assignedRole: string;
     userId: string;
 }
