@@ -147,9 +147,12 @@ function transformBodyParameters(
   parameters: HttpOperationParameters,
   headers: ParameterMetadata[],
   importedModels: Set<string>,
-  inputBodyType?: Model 
+  inputBodyType?: Model
 ): ParameterBodyMetadata | undefined {
-  const bodyType = inputBodyType ?? parameters.bodyType ?? parameters.bodyParameter?.type;
+  const bodyType =
+    (parameters.bodyType ?? parameters.bodyParameter?.type) && inputBodyType
+      ? inputBodyType
+      : parameters.bodyType ?? parameters.bodyParameter?.type;
   if (!bodyType) {
     return;
   }

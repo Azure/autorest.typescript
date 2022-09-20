@@ -1,12 +1,5 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import {
-  Project,
-  TrainingJobOptions,
-  Deployment,
-  SwapDeploymentsOptions,
-  DeploymentJob,
-  SwapDeploymentsJob,
-} from "./models";
+import { Project, TrainingJobOptions, SwapDeploymentsOptions } from "./models";
 
 export interface ProjectsCreateOrUpdateBodyParam {
   body?: Project;
@@ -20,23 +13,8 @@ export type ProjectsCreateOrUpdateParameters =
   ProjectsCreateOrUpdateMediaTypesParam &
     ProjectsCreateOrUpdateBodyParam &
     RequestParameters;
-
-export interface ProjectsGetBodyParam {
-  body?: Project;
-}
-
-export type ProjectsGetParameters = ProjectsGetBodyParam & RequestParameters;
-
-export interface ProjectsDeleteBodyParam {
-  body?: Project;
-}
-
-export type ProjectsDeleteParameters = ProjectsDeleteBodyParam &
-  RequestParameters;
-
-export interface ProjectsListBodyParam {
-  body?: Project;
-}
+export type ProjectsGetParameters = RequestParameters;
+export type ProjectsDeleteParameters = RequestParameters;
 
 export interface ProjectsListQueryParamProperties {
   top?: number;
@@ -48,9 +26,7 @@ export interface ProjectsListQueryParam {
   queryParameters?: ProjectsListQueryParamProperties;
 }
 
-export type ProjectsListParameters = ProjectsListQueryParam &
-  ProjectsListBodyParam &
-  RequestParameters;
+export type ProjectsListParameters = ProjectsListQueryParam & RequestParameters;
 
 export interface ProjectsExportQueryParamProperties {
   projectFileVersion: string;
@@ -70,34 +46,10 @@ export interface ProjectsTrainBodyParam {
 
 export type ProjectsTrainParameters = ProjectsTrainBodyParam &
   RequestParameters;
-
-export interface DeploymentsGetDeploymentBodyParam {
-  body?: Deployment;
-}
-
-export type DeploymentsGetDeploymentParameters =
-  DeploymentsGetDeploymentBodyParam & RequestParameters;
-
-export interface DeploymentsDeployProjectBodyParam {
-  body?: Deployment;
-}
-
-export type DeploymentsDeployProjectParameters =
-  DeploymentsDeployProjectBodyParam & RequestParameters;
-
-export interface DeploymentsDeleteDeploymentBodyParam {
-  body?: Deployment;
-}
-
-export type DeploymentsDeleteDeploymentParameters =
-  DeploymentsDeleteDeploymentBodyParam & RequestParameters;
-
-export interface DeploymentsListBodyParam {
-  body?: Deployment;
-}
-
-export type DeploymentsListParameters = DeploymentsListBodyParam &
-  RequestParameters;
+export type DeploymentsGetDeploymentParameters = RequestParameters;
+export type DeploymentsDeployProjectParameters = RequestParameters;
+export type DeploymentsDeleteDeploymentParameters = RequestParameters;
+export type DeploymentsListParameters = RequestParameters;
 
 export interface DeploymentsSwapDeploymentsBodyParam {
   /** The body schema of the operation. */
@@ -106,20 +58,8 @@ export interface DeploymentsSwapDeploymentsBodyParam {
 
 export type DeploymentsSwapDeploymentsParameters =
   DeploymentsSwapDeploymentsBodyParam & RequestParameters;
-
-export interface JobsGetDeploymentStatusBodyParam {
-  body?: DeploymentJob;
-}
-
-export type JobsGetDeploymentStatusParameters =
-  JobsGetDeploymentStatusBodyParam & RequestParameters;
-
-export interface JobsGetSwapDeploymentsStatusBodyParam {
-  body?: SwapDeploymentsJob;
-}
-
-export type JobsGetSwapDeploymentsStatusParameters =
-  JobsGetSwapDeploymentsStatusBodyParam & RequestParameters;
+export type JobsGetDeploymentStatusParameters = RequestParameters;
+export type JobsGetSwapDeploymentsStatusParameters = RequestParameters;
 
 export interface GlobalGetSupportedLanguagesQueryParamProperties {
   top?: number;

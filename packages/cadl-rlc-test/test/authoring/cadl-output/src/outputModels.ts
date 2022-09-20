@@ -108,10 +108,6 @@ export interface DeploymentOutput {
   name: string;
 }
 
-export interface DeploymentOutput {
-  name: string;
-}
-
 /** Paged collection of Deployment items */
 export interface CustomPageDeploymentOutput {
   /** The Deployment items on this page */
@@ -148,50 +144,6 @@ export interface JobWarningOutput {
   code: string;
   /** The warning message. */
   message: string;
-}
-
-export interface DeploymentJobOutput {
-  /** The job ID. */
-  jobId: string;
-  /** The creation date time of the job. */
-  createdDateTime: string;
-  /** The the last date time the job was updated. */
-  lastUpdatedDateTime: string;
-  /** The expiration date time of the job. */
-  expirationDateTime: string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
-  /** The warnings that were encountered while executing the job. */
-  warnings: Array<JobWarningOutput>;
-  /** The errors encountered while executing the job. */
-  errors: ErrorModelOutput;
-  id: string;
-}
-
-export interface SwapDeploymentsJobOutput {
-  /** The job ID. */
-  jobId: string;
-  /** The creation date time of the job. */
-  createdDateTime: string;
-  /** The the last date time the job was updated. */
-  lastUpdatedDateTime: string;
-  /** The expiration date time of the job. */
-  expirationDateTime: string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
-  /** The warnings that were encountered while executing the job. */
-  warnings: Array<JobWarningOutput>;
-  /** The errors encountered while executing the job. */
-  errors: ErrorModelOutput;
-  id: string;
 }
 
 export interface SwapDeploymentsJobOutput {

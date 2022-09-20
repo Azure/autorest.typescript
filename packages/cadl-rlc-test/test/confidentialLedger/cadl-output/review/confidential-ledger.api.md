@@ -37,7 +37,7 @@ export interface ConfidentialLedgerCreateLedgerEntry201Response extends HttpResp
 // @public (undocumented)
 export interface ConfidentialLedgerCreateLedgerEntryBodyParam {
     // (undocumented)
-    body?: UpdateablePropertiesDefaultKeyVisibility;
+    body?: LedgerEntry;
 }
 
 // @public (undocumented)
@@ -81,7 +81,7 @@ export interface ConfidentialLedgerCreateOrUpdateUser201Response extends HttpRes
 // @public (undocumented)
 export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
     // (undocumented)
-    body?: OptionalPropertiesUpdateableProperties;
+    body?: LedgerUser;
 }
 
 // @public (undocumented)
@@ -462,11 +462,39 @@ export function isUnexpected(response: ConfidentialLedgerGetUser200Response | Co
 export function isUnexpected(response: ConfidentialLedgerCreateOrUpdateUser200Response | ConfidentialLedgerCreateOrUpdateUser201Response | ConfidentialLedgerCreateOrUpdateUserDefaultResponse): response is ConfidentialLedgerCreateOrUpdateUserDefaultResponse;
 
 // @public (undocumented)
+export interface LedgerEntry {
+    // (undocumented)
+    collectionId: string;
+    contents: string;
+    transactionId: string;
+}
+
+// @public (undocumented)
 export interface LedgerEntryOutput {
     // (undocumented)
     collectionId: string;
     contents: string;
     transactionId: string;
+}
+
+// @public (undocumented)
+export interface LedgerEntryOutput {
+    // (undocumented)
+    collectionId: string;
+    contents: string;
+    transactionId: string;
+}
+
+// @public
+export interface LedgerUser {
+    assignedRole: string;
+    userId: string;
+}
+
+// @public
+export interface LedgerUserOutput {
+    assignedRole: string;
+    userId: string;
 }
 
 // @public
@@ -484,11 +512,6 @@ export interface ListCollections {
 export interface ListLedgerEntries {
     get(options?: ConfidentialLedgerListLedgerEntriesParameters): StreamableMethod<ConfidentialLedgerListLedgerEntries200Response | ConfidentialLedgerListLedgerEntriesDefaultResponse>;
     post(options?: ConfidentialLedgerCreateLedgerEntryParameters): StreamableMethod<ConfidentialLedgerCreateLedgerEntry201Response | ConfidentialLedgerCreateLedgerEntryDefaultResponse>;
-}
-
-// @public
-export interface OptionalPropertiesUpdateableProperties {
-    assignedRole?: string;
 }
 
 // @public
@@ -547,11 +570,6 @@ export interface TransactionReceiptOutput {
 export interface TransactionStatusOutput {
     state: string;
     transactionId: string;
-}
-
-// @public
-export interface UpdateablePropertiesDefaultKeyVisibility {
-    contents: string;
 }
 
 // (No @packageDocumentation comment for this package)

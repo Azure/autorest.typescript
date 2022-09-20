@@ -26,35 +26,9 @@ export interface Project {
   lastDeployedDateTime: Date | string;
 }
 
-/** The error object. */
-export interface ErrorModel {
-  /** One of a server-defined set of error codes. */
-  code: string;
-  /** A human-readable representation of the error. */
-  message: string;
-  /** The target of the error. */
-  target?: string;
-  /** An array of details about specific errors that led to this reported error. */
-  details: Array<ErrorModel>;
-  /** An object containing more specific information than the current object about the error. */
-  innererror?: InnerError;
-}
-
-/** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
-export interface InnerError {
-  /** One of a server-defined set of error codes. */
-  code: string;
-  /** Inner error. */
-  innererror?: InnerError;
-}
-
 /** Training job parameters. */
 export interface TrainingJobOptions {
   modelLabel: string;
-}
-
-export interface Deployment {
-  name: string;
 }
 
 export interface SwapDeploymentsOptions {
@@ -62,56 +36,4 @@ export interface SwapDeploymentsOptions {
   firstDeploymentName: string;
   /** Represents the second deployment name. */
   secondDeploymentName: string;
-}
-
-export interface DeploymentJob {
-  /** The job ID. */
-  jobId: string;
-  /** The creation date time of the job. */
-  createdDateTime: Date | string;
-  /** The the last date time the job was updated. */
-  lastUpdatedDateTime: Date | string;
-  /** The expiration date time of the job. */
-  expirationDateTime: Date | string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
-  /** The warnings that were encountered while executing the job. */
-  warnings: Array<JobWarning>;
-  /** The errors encountered while executing the job. */
-  errors: ErrorModel;
-  id: string;
-}
-
-/** Represents a warning that was encountered while executing the request. */
-export interface JobWarning {
-  /** The warning code. */
-  code: string;
-  /** The warning message. */
-  message: string;
-}
-
-export interface SwapDeploymentsJob {
-  /** The job ID. */
-  jobId: string;
-  /** The creation date time of the job. */
-  createdDateTime: Date | string;
-  /** The the last date time the job was updated. */
-  lastUpdatedDateTime: Date | string;
-  /** The expiration date time of the job. */
-  expirationDateTime: Date | string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
-  /** The warnings that were encountered while executing the job. */
-  warnings: Array<JobWarning>;
-  /** The errors encountered while executing the job. */
-  errors: ErrorModel;
-  id: string;
 }

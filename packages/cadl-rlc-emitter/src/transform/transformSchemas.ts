@@ -13,14 +13,12 @@ export function transformSchemas(program: Program) {
   const schemaSet: Set<string> = new Set<string>();
   const [routes, _diagnostics] = getAllRoutes(program);
   for (const route of routes) {
-    const operation = getResourceOperation(program, route.operation);
-    if (operation) {
-      const bodyModel = operation.resourceType;
-      if (bodyModel && bodyModel.kind === "Model") {
-        getGeneratedModels(bodyModel, SchemaContext.Input);
+    if (route.parameters.bodyType) {
+      let bodyModel = route.parameters.bodyType;
+      const operation = getResourceOperation(program, route.operation);
+      if (operation) {
+        bodyModel = operation.resourceType;
       }
-    } else if (route.parameters.bodyType) {
-      const bodyModel = route.parameters.bodyType;
       if (bodyModel && bodyModel.kind === "Model") {
         getGeneratedModels(bodyModel, SchemaContext.Input);
       }
