@@ -8,9 +8,18 @@ import {
   ClassificationAssociateRequest
 } from "./models";
 
+export interface EntityCreateOrUpdatePathParameters {
+  /** Account Name */
+  accountName: string;
+}
+
 export interface EntityCreateOrUpdateBodyParam {
   /** Atlas entity with extended information. */
   body: AtlasEntityWithExtInfo;
+}
+
+export interface EntityCreateOrUpdatePathParam {
+  pathParameters: EntityCreateOrUpdatePathParameters;
 }
 
 export interface EntityCreateOrUpdateMediaTypesParam {
@@ -18,9 +27,15 @@ export interface EntityCreateOrUpdateMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type EntityCreateOrUpdateParameters = EntityCreateOrUpdateMediaTypesParam &
+export type EntityCreateOrUpdateParameters = EntityCreateOrUpdatePathParam &
+  EntityCreateOrUpdateMediaTypesParam &
   EntityCreateOrUpdateBodyParam &
   RequestParameters;
+
+export interface EntityListByGuidsPathParameters {
+  /** Account Name */
+  accountName: string;
+}
 
 export interface EntityListByGuidsQueryParamProperties {
   /** An array of GUIDs of entities to list. */
@@ -37,12 +52,26 @@ export interface EntityListByGuidsQueryParam {
   queryParameters: EntityListByGuidsQueryParamProperties;
 }
 
+export interface EntityListByGuidsPathParam {
+  pathParameters: EntityListByGuidsPathParameters;
+}
+
 export type EntityListByGuidsParameters = EntityListByGuidsQueryParam &
+  EntityListByGuidsPathParam &
   RequestParameters;
+
+export interface EntityCreateOrUpdateEntitiesPathParameters {
+  /** Account Name */
+  accountName: string;
+}
 
 export interface EntityCreateOrUpdateEntitiesBodyParam {
   /** An array of entities to create or update. */
   body: AtlasEntitiesWithExtInfo;
+}
+
+export interface EntityCreateOrUpdateEntitiesPathParam {
+  pathParameters: EntityCreateOrUpdateEntitiesPathParameters;
 }
 
 export interface EntityCreateOrUpdateEntitiesMediaTypesParam {
@@ -50,9 +79,15 @@ export interface EntityCreateOrUpdateEntitiesMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type EntityCreateOrUpdateEntitiesParameters = EntityCreateOrUpdateEntitiesMediaTypesParam &
+export type EntityCreateOrUpdateEntitiesParameters = EntityCreateOrUpdateEntitiesPathParam &
+  EntityCreateOrUpdateEntitiesMediaTypesParam &
   EntityCreateOrUpdateEntitiesBodyParam &
   RequestParameters;
+
+export interface EntityDeleteByGuidsPathParameters {
+  /** Account Name */
+  accountName: string;
+}
 
 export interface EntityDeleteByGuidsQueryParamProperties {
   /** An array of GUIDs of entities to delete. */
@@ -63,12 +98,26 @@ export interface EntityDeleteByGuidsQueryParam {
   queryParameters: EntityDeleteByGuidsQueryParamProperties;
 }
 
+export interface EntityDeleteByGuidsPathParam {
+  pathParameters: EntityDeleteByGuidsPathParameters;
+}
+
 export type EntityDeleteByGuidsParameters = EntityDeleteByGuidsQueryParam &
+  EntityDeleteByGuidsPathParam &
   RequestParameters;
+
+export interface EntityAddClassificationPathParameters {
+  /** Account Name */
+  accountName: string;
+}
 
 export interface EntityAddClassificationBodyParam {
   /** The request to associate a classification to multiple entities. */
   body: ClassificationAssociateRequest;
+}
+
+export interface EntityAddClassificationPathParam {
+  pathParameters: EntityAddClassificationPathParameters;
 }
 
 export interface EntityAddClassificationMediaTypesParam {
@@ -76,9 +125,15 @@ export interface EntityAddClassificationMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type EntityAddClassificationParameters = EntityAddClassificationMediaTypesParam &
+export type EntityAddClassificationParameters = EntityAddClassificationPathParam &
+  EntityAddClassificationMediaTypesParam &
   EntityAddClassificationBodyParam &
   RequestParameters;
+
+export interface EntityGetByGuidPathParameters {
+  /** Account Name */
+  accountName: string;
+}
 
 export interface EntityGetByGuidQueryParamProperties {
   /** Whether to return minimal information for referred entities. */
@@ -91,8 +146,18 @@ export interface EntityGetByGuidQueryParam {
   queryParameters?: EntityGetByGuidQueryParamProperties;
 }
 
+export interface EntityGetByGuidPathParam {
+  pathParameters: EntityGetByGuidPathParameters;
+}
+
 export type EntityGetByGuidParameters = EntityGetByGuidQueryParam &
+  EntityGetByGuidPathParam &
   RequestParameters;
+
+export interface EntityPartialUpdateEntityAttributeByGuidPathParameters {
+  /** Account Name */
+  accountName: string;
+}
 
 export interface EntityPartialUpdateEntityAttributeByGuidBodyParam {
   /** The value of the attribute. */
@@ -108,13 +173,29 @@ export interface EntityPartialUpdateEntityAttributeByGuidQueryParam {
   queryParameters: EntityPartialUpdateEntityAttributeByGuidQueryParamProperties;
 }
 
+export interface EntityPartialUpdateEntityAttributeByGuidPathParam {
+  pathParameters: EntityPartialUpdateEntityAttributeByGuidPathParameters;
+}
+
 export interface EntityPartialUpdateEntityAttributeByGuidMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
 export type EntityPartialUpdateEntityAttributeByGuidParameters = EntityPartialUpdateEntityAttributeByGuidQueryParam &
+  EntityPartialUpdateEntityAttributeByGuidPathParam &
   EntityPartialUpdateEntityAttributeByGuidMediaTypesParam &
   EntityPartialUpdateEntityAttributeByGuidBodyParam &
   RequestParameters;
-export type EntityDeleteByGuidParameters = RequestParameters;
+
+export interface EntityDeleteByGuidPathParameters {
+  /** Account Name */
+  accountName: string;
+}
+
+export interface EntityDeleteByGuidPathParam {
+  pathParameters: EntityDeleteByGuidPathParameters;
+}
+
+export type EntityDeleteByGuidParameters = EntityDeleteByGuidPathParam &
+  RequestParameters;
