@@ -12,8 +12,8 @@ export function generatePollingHelper(project: Project) {
   });
 
   const readmeFileContents = hbs.compile(file, { noEscape: true });
-  const { srcPath } = getAutorestOptions();
-  project.createSourceFile(path.join(srcPath, "pollingHelper.ts"), readmeFileContents({}), {
+  const { srcPath, useLegacyLro } = getAutorestOptions();
+  project.createSourceFile(path.join(srcPath, "pollingHelper.ts"), readmeFileContents({ useLegacyLro }), {
     overwrite: true
   });
 }

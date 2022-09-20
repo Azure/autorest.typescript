@@ -10,6 +10,7 @@ import { NameType, normalizeName } from "./nameUtils";
 export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const host = getHost();
   const useCoreV2 = await getUseCoreV2(host);
+  const useLegacyLro = await getUseLegacyLro(host);
   const restLevelClient = await getRestLevelClient(host);
   const rlcShortcut = await getHasShortcutMethods(host);
   const azureArm = await getIsAzureArm(host);
@@ -73,7 +74,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     azureSdkForJs,
     productDocLink,
     coreHttpCompatMode,
-    dependencyInfo
+    dependencyInfo,
+    useLegacyLro
   };
 }
 
@@ -220,6 +222,11 @@ async function getUseCoreV2(host: AutorestExtensionHost): Promise<boolean> {
   return useCoreV2Option === null ? true : Boolean(useCoreV2Option);
 }
 
+async function getUseLegacyLro(host: AutorestExtensionHost): Promise<boolean> {
+  const useLegacyLroOption = await host.getValue("use-legacy-lro");
+  return useLegacyLroOption === null ? false : Boolean(useLegacyLroOption);
+}
+
 async function getTracingInfo(
   host: AutorestExtensionHost
 ): Promise<TracingInfo | undefined> {
@@ -276,7 +283,7 @@ export async function getSecurityScopes(
   host: AutorestExtensionHost
 ): Promise<string[] | undefined> {
   const securityScopes: string | undefined = await host.getValue("security-scopes");
-  if(securityScopes !== undefined && typeof securityScopes === "string") {
+  if (securityScopes !== undefined && typeof securityScopes === "string") {
     return securityScopes.split(",");
   }
   return securityScopes;

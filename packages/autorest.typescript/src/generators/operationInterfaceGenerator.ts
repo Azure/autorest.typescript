@@ -29,6 +29,7 @@ import {
 } from "./utils/pagingOperations";
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
+import { createLroType } from "../utils/lroHelpers";
 
 /**
  * Function that writes the code for all the operations.
@@ -111,9 +112,10 @@ function getReturnType(
     importedModels,
     modelNames
   );
+  const { useLegacyLro } = getAutorestOptions();
 
   return operation.isLro
-    ? `Promise<PollerLike<PollOperationState<${responseName}>,${responseName}>>`
+    ? createLroType({ responseName, useLegacyLro })
     : `Promise<${responseName}>`;
 }
 
@@ -236,7 +238,7 @@ function addImports(
   operationGroupFile: SourceFile,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2 } = getAutorestOptions();
+  const { useCoreV2, useLegacyLro } = getAutorestOptions();
   addPagingEsNextRef(operationGroupDetails.operations, operationGroupFile);
   addTracingOperationImports(operationGroupFile);
   addPagingImports(operationGroupDetails.operations, operationGroupFile);
@@ -259,7 +261,7 @@ function addImports(
 
   if (hasLroOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["PollerLike", "PollOperationState"],
+      namedImports: useLegacyLro ? ["PollerLike", "PollOperationState"] : ["SimplePollerLike", "OperationState"],
       moduleSpecifier: "@azure/core-lro"
     });
   }
