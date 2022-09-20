@@ -40897,7 +40897,7 @@
       "integrity": "sha512-hf+3bwuBwtXsugA2ULBc95qxrOqP2pOekLz34BJhcAKawt94vfeNyUKpYc0lZQ/3sCP6LqRa7UAdHA7i5UODzQ=="
     },
     "@rush-temp/cadl-rest-test": {
-      "version": "file:projects\\cadl-rest-test.tgz",
+      "version": "file:projects/cadl-rest-test.tgz",
       "integrity": "sha512-fvm6NSXQTBbdWVb7lYF6FiNwvx/u8SjeqAEM7eDjHYn/pjqqhscJ47EnAOCgh3Bei+8d8YpB4oksSH8DW1ArxA==",
       "requires": {
         "@cadl-lang/compiler": "latest",
@@ -40905,7 +40905,7 @@
       }
     },
     "@rush-temp/rlc-codegen": {
-      "version": "file:projects\\rlc-codegen.tgz",
+      "version": "file:projects/rlc-codegen.tgz",
       "integrity": "sha512-xxyf29dDxJnrbXFVJlXJ8lK98GF6bDGA3+Ur8cLf73N7qF6o09CdgJWLlSQHCyQFsMtFb+QXJ+lDhMQUaU6TVA==",
       "requires": {
         "@types/node": "^18.0.0",
@@ -40915,7 +40915,7 @@
       }
     },
     "@rush-temp/ts-rlc": {
-      "version": "file:projects\\ts-rlc.tgz",
+      "version": "file:projects/ts-rlc.tgz",
       "integrity": "sha512-e5jNCFBpspCx4L00c3T23Eb2ixReMjEzJnEXtIDezwyWuPNESYgLmYgZyDTzVN2rRWktDmgpssO2uYFBw+fdVQ==",
       "requires": {
         "@cadl-lang/compiler": "latest",
@@ -40944,7 +40944,7 @@
       }
     },
     "@rush-temp/typescript": {
-      "version": "file:projects\\typescript.tgz",
+      "version": "file:projects/typescript.tgz",
       "integrity": "sha512-+xm/oXUb+WYqK6qG9WEQWYVV0quj0jxTZ23vYVio1taB0h9ZomoTn4EGkzVAa0xNt8DVpKy1nM6SMgPNIHXqZg==",
       "requires": {
         "@autorest/codemodel": "~4.18.2",
