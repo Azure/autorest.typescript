@@ -845,10 +845,10 @@ describe("LRO Rest Client", () => {
 
         const result = await poller.pollUntilDone();
         console.log(result);
-        assert.fail("Scenario should throw");
+        assert.equal(result.status, "400");
       } catch (error) {
         console.log(error.message);
-        assert.equal(error.message, "");
+        assert.fail("Scenario should throw");
       }
     });
 
