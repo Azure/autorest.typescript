@@ -4,9 +4,9 @@ import {
   ProjectOutput,
   ErrorResponseOutput,
   OperationStatusOutput,
-  CustomPageProjectOutput,
+  ProjectListOutput,
   DeploymentOutput,
-  CustomPageDeploymentOutput,
+  DeploymentListOutput,
   DeploymentJobOutput,
   SwapDeploymentsJobOutput,
   PagedSupportedLanguageOutput,
@@ -73,7 +73,7 @@ export interface ProjectsDeleteDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ProjectsList200Response extends HttpResponse {
   status: "200";
-  body: CustomPageProjectOutput;
+  body: ProjectListOutput;
 }
 
 export interface ProjectsListDefaultResponse extends HttpResponse {
@@ -190,7 +190,7 @@ export interface DeploymentsDeleteDeploymentDefaultResponse
 /** The request has succeeded. */
 export interface DeploymentsList200Response extends HttpResponse {
   status: "200";
-  body: CustomPageDeploymentOutput;
+  body: DeploymentListOutput;
 }
 
 export interface DeploymentsListDefaultResponse extends HttpResponse {

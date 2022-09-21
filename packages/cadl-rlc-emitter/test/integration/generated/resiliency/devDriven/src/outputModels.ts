@@ -8,7 +8,7 @@ export interface LROProductOutput extends ProductOutput {
 }
 
 /** Paged collection of Product items */
-export interface CustomPageProductOutput {
+export interface ProductListOutput {
   /** The Product items on this page */
   value: Array<ProductOutput>;
   /** The link to the next page of items */

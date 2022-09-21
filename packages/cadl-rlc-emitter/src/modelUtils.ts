@@ -46,6 +46,7 @@ import {
   getQueryParamName,
   isStatusCode
 } from "@cadl-lang/rest/http";
+import { getPagedResult } from "@azure-tools/cadl-azure-core";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -84,11 +85,7 @@ export function getSchemaForType(
   }
   function getEffectiveModelFromType(type: Type) {
     if (type.kind === "Model") {
-      const effective = getEffectiveModelType(
-        program,
-        type,
-        isSchemaProperty
-      );
+      const effective = getEffectiveModelType(program, type, isSchemaProperty);
       if (effective.name) {
         return effective;
       }
@@ -351,16 +348,13 @@ function getSchemaForModel(
 ) {
   const friendlyName = getFriendlyName(program, model);
   let name = model.name;
-  if (name === '') {
-    model;
-  }
   if (
     !friendlyName &&
     model.templateArguments &&
-    model.templateArguments.length > 0
+    model.templateArguments.length > 0 &&
+    getPagedResult(program, model)
   ) {
     name =
-      model.name +
       model.templateArguments
         .map((it) => {
           switch (it.kind) {
@@ -372,7 +366,7 @@ function getSchemaForModel(
               return "";
           }
         })
-        .join("");
+        .join("") + "List";
   }
   let modelSchema: ObjectSchema = {
     name: friendlyName ?? name,
@@ -817,7 +811,7 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
     case "array":
       return [(schema as any).items]
         .filter((i: Schema) => i.type === "object")
-        .map((i: Schema) => i.outputTypeName?? "");
+        .map((i: Schema) => i.outputTypeName ?? "");
     case "object":
       return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
     default:
