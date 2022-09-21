@@ -47,19 +47,23 @@ interface QuestionAnsweringProjectsOperations {
 
   @summary("Export project metadata and assets.")
   @doc("Export project metadata and assets.")
-  Export is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<
-    ExportJobState,
+  @route("/query-knowledgebases/projects/{projectName}/:export")
+  @post
+  Export is Azure.Core.Foundations.Operation<
     {
-      parameters: {
-        @doc("Knowledge base Import or Export format.")
-        @query
-        format: Format;
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-        @doc("Kind of the asset of the project.")
-        @query
-        assetKind: AssetKind;
-      };
-    }
+      @doc("Knowledge base Import or Export format.")
+      @query
+      format: Format;
+
+      @doc("Kind of the asset of the project.")
+      @query
+      assetKind: AssetKind;
+    },
+    ExportJobState | void
   >;
 
   @summary("""

@@ -3,7 +3,7 @@ import "./routes.cadl";
 
 using Cadl.Rest;
 using Cadl.Http;
-@serviceTitle("Microsoft Cognitive Language Service - Question Answering")
+@serviceTitle("QnA Maker")
 @serviceVersion("2022-07-01-preview")
 @server(
   "{Endpoint}/language",
@@ -24,4 +24,4 @@ phrase extraction, language detection and question answering. Further
 documentation can be found in <a
 href=\"https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/overview\">https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/overview</a>.
 """)
-namespace MicrosoftCognitiveLanguageServiceQuestionAnswering;
+namespace Azure.Language.QnAMaker;

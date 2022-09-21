@@ -30,7 +30,7 @@ export function getModelDecorators(model: ObjectSchema): CadlDecorator[] {
   let resource = model.language.default.resource;
   if (resource) {
     if (resource.startsWith("/")) {
-      // Remove the leading /
+      // Remove the leading
       resource = resource.slice(1);
     }
     decorators.push({

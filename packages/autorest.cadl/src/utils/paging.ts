@@ -71,7 +71,7 @@ export function getPageableResponse(
 }
 
 export function isPageValue(property: Property) {
-  return Boolean(property.language.default.paging.isValue);
+  return Boolean(property.language.default.paging?.isValue);
 }
 
 export function markPagination(codeModel: CodeModel) {

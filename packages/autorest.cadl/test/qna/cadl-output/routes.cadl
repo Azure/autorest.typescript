@@ -5,27 +5,40 @@ import "./models.cadl";
 using Cadl.Rest;
 using Cadl.Http;
 
-namespace MicrosoftCognitiveLanguageServiceQuestionAnswering;
+namespace Azure.Language.QnAMaker;
 
 interface QuestionAnsweringOperations {
   @summary("Answers the specified question using your knowledge base.")
   @doc("Answers the specified question using your knowledge base.")
-  GetAnswers is Azure.Core.ResourceCreateWithServiceProvidedName<
-    AnswersResult,
+  @route("/:query-knowledgebases")
+  @post
+  GetAnswers is Azure.Core.Foundations.Operation<
     {
-      parameters: {
-        @doc("The name of the project to use.")
-        @query
-        projectName: string;
+      @doc("The name of the project to use.")
+      @query
+      projectName: string;
 
-        @doc("The name of the specific deployment of the project to use.")
-        @query
-        deploymentName: string;
-      };
-    }
+      @doc("The name of the specific deployment of the project to use.")
+      @query
+      deploymentName: string;
+
+      @doc("Post body of the request.")
+      @body
+      knowledgeBaseQueryOptions: AnswersOptions;
+    },
+    void
   >;
 
   @summary("Answers the specified question using the provided text in the body.")
   @doc("Answers the specified question using the provided text in the body.")
-  GetAnswersFromText is Azure.Core.ResourceCreateWithServiceProvidedName<AnswersFromTextResult>;
+  @route("/:query-text")
+  @post
+  GetAnswersFromText is Azure.Core.Foundations.Operation<
+    {
+      @doc("Post body of the request.")
+      @body
+      textQueryOptions: AnswersFromTextOptions;
+    },
+    void
+  >;
 }

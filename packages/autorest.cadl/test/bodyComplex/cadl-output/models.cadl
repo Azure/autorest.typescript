@@ -4,8 +4,6 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
-namespace AutoRestComplexTestService;
-
 enum CMYKColorsKnownValues {
   Cyan: "cyan",
   "Magenta",
@@ -155,6 +153,9 @@ model Pet {
 @resource("complex/polymorphism/valid")
 model Fish {
   species?: string;
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+
+  @key
   length: float32;
   siblings?: Fish[];
 }

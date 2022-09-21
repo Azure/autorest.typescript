@@ -1,10 +1,6 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
-using Azure.Core;
-
-namespace MicrosoftCognitiveLanguageServiceQuestionAnswering;
 
 enum RankerKindKnownValues {
   "QuestionOnly",
@@ -168,7 +164,6 @@ to 1.
 }
 
 @doc("Represents List of Question Answers.")
-@resource(":query-knowledgebases")
 model AnswersResult {
   @doc("Represents Answer Result list.")
   answers?: KnowledgeBaseAnswer[];
@@ -330,7 +325,6 @@ model TextDocument {
 }
 
 @doc("Represents the answer results.")
-@resource(":query-text")
 model AnswersFromTextResult {
   @doc("Represents the answer results.")
   answers?: TextAnswer[];

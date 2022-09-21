@@ -40,6 +40,7 @@ function generate(path: string, debug = false) {
       inputFile,
       "--use=.",
       `--output-folder=${dirname(path)}`,
+      "--guessResourceKey=true",
       ...(debug ? ["--cadl-init.debugger"] : []),
     ],
     { stdio: "inherit" }

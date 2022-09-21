@@ -3,7 +3,7 @@ import "./routes.cadl";
 
 using Cadl.Rest;
 using Cadl.Http;
-@serviceTitle("Azure Web PubSub Service REST API")
+@serviceTitle("AzureMessagingWebPubSubServiceClient")
 @serviceVersion("2021-10-01")
 @server(
   "{Endpoint}",
@@ -14,4 +14,4 @@ using Cadl.Http;
   }
 )
 @doc("// FIXME: (miissing-service-description) Add service description")
-namespace AzureWebPubSubServiceRESTAPI;
+namespace AzureMessagingWebPubSubServiceClient;

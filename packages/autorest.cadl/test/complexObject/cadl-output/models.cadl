@@ -4,8 +4,6 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
-namespace ComplexModelClient;
-
 @resource("subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
 model CatalogArray {
   @doc("Array of products")

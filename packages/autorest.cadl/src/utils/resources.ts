@@ -1,10 +1,12 @@
 import {
   ArraySchema,
   CodeModel,
+  ComplexSchema,
   HttpMethod,
   isObjectSchema,
   ObjectSchema,
   Operation,
+  Property,
   Schema,
   SchemaResponse,
 } from "@autorest/codemodel";
@@ -55,10 +57,22 @@ export function markResources(codeModel: CodeModel) {
 //   }
 // }
 
+function isActionOperation(operation: Operation) {
+  const path = getResourcePath(operation);
+  const pathParts = path.split("/");
+  const lastPart = pathParts[pathParts.length - 1];
+  return lastPart.startsWith(":");
+}
+
 function getResourceKind(
   codeModel: CodeModel,
   operation: Operation
 ): CadlResource | undefined {
+  if (isActionOperation(operation)) {
+    // Actions are not yet supported
+    return undefined;
+  }
+
   const operationMethod = getHttpMethod(codeModel, operation);
   if (hasLROExtension(operation)) {
     const resource = handleLROResource(codeModel, operation);
@@ -333,20 +347,75 @@ function markModelWithResource(elementType: Schema, resource: string) {
   elementType.language.default.resource = resource;
 }
 
-function markWithKey({ properties }: ObjectSchema) {
+function markWithKey(schema: ObjectSchema) {
+  const { properties, parents } = schema;
   const { guessResourceKey } = getOptions();
 
   if (!guessResourceKey) {
     return;
   }
 
-  const requiredProperties = properties?.filter((p) => p.required === true);
-
-  if (!requiredProperties || !requiredProperties.length) {
-    return;
+  if (parents && parents.immediate.length) {
+    if (hasParentWithKey(parents.immediate)) {
+      return;
+    }
+    const defaultKeyInParent = shouldTryDefaultKeyInParent(schema);
+    if (markParents(parents.immediate, defaultKeyInParent)) {
+      return;
+    }
   }
 
-  for (const property of requiredProperties) {
+  markKeyProperty(properties ?? [], true);
+}
+
+function hasParentWithKey(parents: ComplexSchema[]) {
+  for (const parent of parents) {
+    if (!isObjectSchema(parent)) {
+      continue;
+    }
+
+    const properties = parent.properties ?? [];
+
+    if (properties.some((p) => p.language.default.isResourceKey)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function markParents(
+  parents: ComplexSchema[],
+  defaultToFirst = false
+): boolean {
+  for (const parent of parents) {
+    if (!isObjectSchema(parent)) {
+      continue;
+    }
+
+    const properties = parent.properties ?? [];
+    if (markKeyProperty(properties, defaultToFirst)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function shouldTryDefaultKeyInParent(schema: ObjectSchema) {
+  if (schema.properties && schema.properties.some((p) => p.required)) {
+    return false;
+  }
+
+  return true;
+}
+
+function markKeyProperty(allProperties: Property[], defaultToFirst = false) {
+  const properties = allProperties.filter(
+    (p) => p.required && !p.isDiscriminator
+  );
+
+  for (const property of properties) {
     const serializedName = property.serializedName.toLowerCase();
     if (
       serializedName.endsWith("name") ||
@@ -354,9 +423,16 @@ function markWithKey({ properties }: ObjectSchema) {
       serializedName.endsWith("id")
     ) {
       property.language.default.isResourceKey = true;
-      return;
+      return true;
     }
   }
 
-  requiredProperties[0].language.default.isResourceKey = true;
+  if (defaultToFirst) {
+    const firstRequired = properties.find((p) => p.required);
+    if (firstRequired) {
+      firstRequired.language.default.isResourceKey = true;
+    }
+  }
+
+  return false;
 }

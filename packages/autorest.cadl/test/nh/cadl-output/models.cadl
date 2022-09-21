@@ -4,8 +4,6 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
-namespace NotificationHubsClient;
-
 enum MSApiVersionTypeKnownValues {
   TwoThousandFifteen01: "2015-01",
   TwoThousandFifteen04: "2015-04",

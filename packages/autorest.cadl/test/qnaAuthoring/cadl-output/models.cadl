@@ -4,8 +4,6 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
-namespace MicrosoftCognitiveLanguageServiceQuestionAnsweringAuthoring;
-
 enum ErrorCodeKnownValues {
   "InvalidRequest",
   "InvalidArgument",
@@ -231,6 +229,9 @@ model JobState {
 model JobMetadata {
   createdDateTime: zonedDateTime;
   expirationDateTime?: zonedDateTime;
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+
+  @key
   jobId: string;
   lastUpdatedDateTime: zonedDateTime;
 
@@ -244,7 +245,7 @@ model Errors {
 }
 
 @doc("Export job status, project metadata, and assets.")
-@resource("query-knowledgebases/projects/{projectName}/:export")
+@resource("query-knowledgebases/projects/{projectName}/export/jobs/{jobId}")
 model ExportJobState {
   ...JobState;
   ...ExportJobResultUrl;
@@ -253,6 +254,8 @@ model ExportJobState {
 @doc("URL to download the result of the Export Job.")
 model ExportJobResultUrl {
   @doc("URL to download the result of the Export Job.")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   resultUrl: string;
 }
 
@@ -433,6 +436,8 @@ the complete URL if it's a 'url' source.
   source?: string;
 
   @doc("URI location for the file or url.")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   sourceUri: string;
 
   @doc("Supported source types.")

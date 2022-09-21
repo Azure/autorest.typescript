@@ -4,8 +4,6 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
-namespace Azure.Language.Authoring;
-
 enum ProjectKindKnownValues {
   "CustomSingleLabelClassification",
   "CustomMultiLabelClassification",
@@ -329,6 +327,8 @@ model DeploymentJobState {
 @doc("Represents a job's state.")
 model JobState {
   @doc("The job ID.")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   jobId: string;
 
   @doc("The creation date time of the job.")
@@ -426,6 +426,8 @@ Spanish etc.
 @resource("authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/summary-result")
 model EvaluationSummary {
   @doc("Represents the options used running the evaluation.")
+  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
+  @key
   evaluationOptions: EvaluationOptions;
 }
 
@@ -438,8 +440,6 @@ model TrainingJobState {
   ...JobState;
 
   @doc("Represents training tasks detailed result.")
-  // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
-  @key
   result: TrainingJobResult;
 }
 
