@@ -13,6 +13,7 @@ import {
   CollectionsStringPropertyOutput,
   CollectionsIntPropertyOutput,
   CollectionsModelPropertyOutput,
+  DictionaryStringPropertyOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
@@ -155,5 +156,16 @@ export interface CollectionsModelGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface CollectionsModelPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface DictionaryStringGet200Response extends HttpResponse {
+  status: "200";
+  body: DictionaryStringPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface DictionaryStringPut204Response extends HttpResponse {
   status: "204";
 }

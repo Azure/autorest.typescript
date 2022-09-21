@@ -28,6 +28,12 @@ export interface CollectionsByteProperty {
   property?: string[];
 }
 
+/** Model with collection models properties */
+export interface CollectionsModelProperty {
+  /** Property */
+  property?: Array<StringProperty>;
+}
+
 /** Model with required and optional properties */
 export interface RequiredAndOptionalProperty {
   /** optional string property */

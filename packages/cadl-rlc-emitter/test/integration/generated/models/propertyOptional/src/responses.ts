@@ -5,6 +5,7 @@ import {
   DatetimePropertyOutput,
   DurationPropertyOutput,
   CollectionsBytePropertyOutput,
+  CollectionsModelPropertyOutput,
   RequiredAndOptionalPropertyOutput,
 } from "./outputModels";
 
@@ -121,13 +122,13 @@ export interface CollectionsBytePutDefault204Response extends HttpResponse {
 /** The request has succeeded. */
 export interface CollectionsModelGetAll200Response extends HttpResponse {
   status: "200";
-  body: CollectionsBytePropertyOutput;
+  body: CollectionsModelPropertyOutput;
 }
 
 /** The request has succeeded. */
 export interface CollectionsModelGetDefault200Response extends HttpResponse {
   status: "200";
-  body: CollectionsBytePropertyOutput;
+  body: CollectionsModelPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */

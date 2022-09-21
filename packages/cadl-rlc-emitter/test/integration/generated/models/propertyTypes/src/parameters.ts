@@ -13,6 +13,7 @@ import {
   CollectionsStringProperty,
   CollectionsIntProperty,
   CollectionsModelProperty,
+  DictionaryStringProperty,
 } from "./models";
 
 export type BooleanGetParameters = RequestParameters;
@@ -109,4 +110,12 @@ export interface CollectionsModelPutBodyParam {
 }
 
 export type CollectionsModelPutParameters = CollectionsModelPutBodyParam &
+  RequestParameters;
+export type DictionaryStringGetParameters = RequestParameters;
+
+export interface DictionaryStringPutBodyParam {
+  body: DictionaryStringProperty;
+}
+
+export type DictionaryStringPutParameters = DictionaryStringPutBodyParam &
   RequestParameters;

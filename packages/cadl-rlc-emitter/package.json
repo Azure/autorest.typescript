@@ -34,8 +34,7 @@
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3",
     "prettier": "~2.7.1",
-    "@azure-tools/cadl-azure-core": "~0.7.0",
-    "@azure-tools/cadl-ranch-specs": "~0.1.11",
+    "@azure-tools/cadl-ranch-specs": "~0.1.12",
     "@cadl-lang/versioning": "0.8.0",
     "@azure-tools/cadl-ranch-expect": "~0.1.9",
     "@azure-tools/cadl-ranch": "~0.1.9",
@@ -47,6 +46,7 @@
   },
   "dependencies": {
     "@cadl-lang/compiler": "0.35.0",
+    "@azure-tools/cadl-azure-core": "~0.7.0",
     "@cadl-lang/rest": "0.17.0",
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",

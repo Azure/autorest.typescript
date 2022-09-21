@@ -204,8 +204,8 @@ packages:
       '@cadl-lang/rest': 0.17.0_@cadl-lang+compiler@0.35.0
     dev: false
 
-  /@azure-tools/cadl-ranch-specs/0.1.11_9febff54d04fe0bc2ab272c61155c9bc:
-    resolution: {integrity: sha512-wotWtnaeut8UTBXZZmy9UVON3yO9OhVNLAzBxD0bjvPsMShsl3Qg7LbS5JGqW4lXB2GTCiu0/RRlsLAI1gvZuw==}
+  /@azure-tools/cadl-ranch-specs/0.1.12_9febff54d04fe0bc2ab272c61155c9bc:
+    resolution: {integrity: sha512-kVAO/wI6OFBeeuqy9/QjOma4ZNkqj65yi75W6nB2IJp9BXuMo80xsMQz99C+7pmQE4aGNdZSag8p8yL2M1kCOA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-azure-core': ~0.7.0
@@ -11112,7 +11112,7 @@ packages:
     dev: false
 
   file:projects/ts-rlc.tgz:
-    resolution: {integrity: sha512-Xu8Lvz65p8es8RmFmLSD75GP29vvywsiBs42k5yWPMtHUDzyVoDVAGSFz0ogenvJnEJAQ6Q5oylhgnzIB84D6g==, tarball: file:projects/ts-rlc.tgz}
+    resolution: {integrity: sha512-SGMPD4G+nxTbNrPzKGCaNtH+bT+9bddMiE7PRhpwqh3XoQ5V+uziR9LeCZjUzrB92WtyKXw7tnAzdMXlfwnzTA==, tarball: file:projects/ts-rlc.tgz}
     name: '@rush-temp/ts-rlc'
     version: 0.0.0
     dependencies:
@@ -11120,7 +11120,7 @@ packages:
       '@azure-tools/cadl-azure-core': 0.7.0_3daf81b5856042b4b38a8c9c26a7b5cf
       '@azure-tools/cadl-ranch': 0.1.9
       '@azure-tools/cadl-ranch-expect': 0.1.9_3daf81b5856042b4b38a8c9c26a7b5cf
-      '@azure-tools/cadl-ranch-specs': 0.1.11_9febff54d04fe0bc2ab272c61155c9bc
+      '@azure-tools/cadl-ranch-specs': 0.1.12_9febff54d04fe0bc2ab272c61155c9bc
       '@azure/core-auth': 1.4.0
       '@azure/core-paging': 1.3.0
       '@cadl-lang/compiler': 0.35.0

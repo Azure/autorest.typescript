@@ -25,6 +25,8 @@ import {
   CollectionsIntPutParameters,
   CollectionsModelGetParameters,
   CollectionsModelPutParameters,
+  DictionaryStringGetParameters,
+  DictionaryStringPutParameters,
 } from "./parameters";
 import {
   BooleanGet200Response,
@@ -53,6 +55,8 @@ import {
   CollectionsIntPut204Response,
   CollectionsModelGet200Response,
   CollectionsModelPut204Response,
+  DictionaryStringGet200Response,
+  DictionaryStringPut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -154,6 +158,16 @@ export interface CollectionsModelOperations {
   ): StreamableMethod<CollectionsModelPut204Response>;
 }
 
+/** Contains operations for DictionaryString operations */
+export interface DictionaryStringOperations {
+  get(
+    options?: DictionaryStringGetParameters
+  ): StreamableMethod<DictionaryStringGet200Response>;
+  put(
+    options: DictionaryStringPutParameters
+  ): StreamableMethod<DictionaryStringPut204Response>;
+}
+
 export interface BooleanGet {
   get(options?: BooleanGetParameters): StreamableMethod<BooleanGet200Response>;
   put(options: BooleanPutParameters): StreamableMethod<BooleanPut204Response>;
@@ -239,6 +253,15 @@ export interface CollectionsModelGet {
   ): StreamableMethod<CollectionsModelPut204Response>;
 }
 
+export interface DictionaryStringGet {
+  get(
+    options?: DictionaryStringGetParameters
+  ): StreamableMethod<DictionaryStringGet200Response>;
+  put(
+    options: DictionaryStringPutParameters
+  ): StreamableMethod<DictionaryStringPut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/models/properties/types/boolean' has methods for the following verbs: get, put */
   (path: "/models/properties/types/boolean"): BooleanGet;
@@ -266,6 +289,8 @@ export interface Routes {
   (path: "/models/properties/types/collections/int"): CollectionsIntGet;
   /** Resource for '/models/properties/types/collections/model' has methods for the following verbs: get, put */
   (path: "/models/properties/types/collections/model"): CollectionsModelGet;
+  /** Resource for '/models/properties/types/dictionary/string' has methods for the following verbs: get, put */
+  (path: "/models/properties/types/dictionary/string"): DictionaryStringGet;
 }
 
 export type ModelsPropertyTypesClient = Client & {
@@ -283,4 +308,5 @@ export type ModelsPropertyTypesClient = Client & {
   collectionsString: CollectionsStringOperations;
   collectionsInt: CollectionsIntOperations;
   collectionsModel: CollectionsModelOperations;
+  dictionaryString: DictionaryStringOperations;
 };
