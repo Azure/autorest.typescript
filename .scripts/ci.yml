@@ -266,6 +266,7 @@ stages:
           - script: npm run coverage
             displayName: "Check Coverage"
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
+            condition: and(eq(variables['System.TeamProject'], 'internal'))
             continueOnError: true
           - publish: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter/cadl-ranch-coverage-typescript.json
             artifact: CoverageReport
