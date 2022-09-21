@@ -267,9 +267,9 @@ stages:
             displayName: "Check Coverage"
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             continueOnError: true
-            condition: and(succeeded(), eq(variables['System.TeamProject'], 'internal'))
           - publish: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter/cadl-ranch-coverage-typescript.json
             artifact: CoverageReport
+            condition: and(succeeded(), eq(variables['System.TeamProject'], 'internal'))
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             displayName: "Check git Tree"
