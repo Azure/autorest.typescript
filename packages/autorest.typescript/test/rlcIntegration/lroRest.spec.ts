@@ -844,11 +844,11 @@ describe("LRO Rest Client", () => {
         });
 
         const result = await poller.pollUntilDone();
-        assert.isTrue(isUnexpected(result));
-        assert.equal(result.status, "400");
-      } catch (error) {
-        console.log(error);
+        console.log(result);
         assert.fail("Scenario should throw");
+      } catch (error) {
+        console.log(error.message);
+        assert.equal(error.message, "");
       }
     });
 
@@ -864,12 +864,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        assert.isTrue(isUnexpected(result));
-        assert.equal(result.status, "400");
-      } catch (error) {
-        console.log(error);
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
@@ -893,12 +891,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        assert.isTrue(isUnexpected(result));
-        assert.equal(result.status, "400");
-      } catch (error) {
-        console.log(error);
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "status.toLowerCase is not a function");
       }
     });
 
@@ -921,12 +917,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        assert.isTrue(isUnexpected(result));
-        assert.equal(result.status, "400");
-      } catch (error) {
-        console.log(error);
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
@@ -940,12 +934,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        console.log(result);
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
       } catch (error) {
-        console.log(error);
-        assert.equal(error.statusCode, 400);
+        assert.equal(error.message, "status.toLowerCase is not a function");
       }
     });
 
@@ -1084,11 +1076,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        assert.equal(result.status, "404");
-      } catch (error) {
-        console.log(error);
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
@@ -1135,11 +1126,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        assert.equal(result.status, "404");
-      } catch (error) {
-        console.log(error);
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
