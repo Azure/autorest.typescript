@@ -32,11 +32,11 @@ These documents are Typescript-specific, see [our main docs][main_docs] for more
 [main_generate]: https://github.com/Azure/autorest/tree/main/docs/generate/readme.md
 [typescript_generate]: ./overview.md
 [typescript_client]: ./client/readme.md
-[main_client]: https://github.com/Azure/autorest/tree/main/docs/generate/client.md
+[main_client]: https://github.com/Azure/autorest/tree/main/docs/client/readme.md
 [main_migrate]: https://github.com/Azure/autorest/tree/main/docs/migrate/readme.md
 [typescript_migrate]: ./migrate/readme.md
 [typescript_dev]: https://github.com/Azure/autorest.typescript/blob/main/CONTRIBUTING.md
-[main_dev]: https://github.com/Azure/autorest/tree/master/docs/dev/readme.md
+[main_dev]: https://github.com/Azure/autorest/tree/main/docs/developer/readme.md
 [sample]: ./samples/readme.md
 [faq]: ./faq.md
 [trobleshooting]: https://github.com/Azure/autorest/blob/main/docs/troubleshooting.md
