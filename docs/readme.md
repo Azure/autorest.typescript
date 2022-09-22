@@ -24,19 +24,19 @@ These documents are Typescript-specific, see [our main docs][main_docs] for more
 
 6. [FAQ][faq]
 
-7. [Troubleshooting][troubleshooting]
+7. [Troubleshooting](troubleshooting)
 
 <!-- LINKS -->
 
-[main_docs]: https://github.com/Azure/autorest/tree/master/docs
-[main_generate]: https://github.com/Azure/autorest/tree/master/docs/generate/readme.md
-[typescript_generate]: ./docs/migrate/readme.md
+[main_docs]: https://github.com/Azure/autorest/tree/main/docs
+[main_generate]: https://github.com/Azure/autorest/tree/main/docs/generate/readme.md
+[typescript_generate]: ./migrate/readme.md
 [typescript_client]: ./client/readme.md
-[main_client]: https://github.com/Azure/autorest/tree/master/docs/generate/client.md
-[main_migrate]: https://github.com/Azure/autorest/tree/master/docs/migrate/readme.md
+[main_client]: https://github.com/Azure/autorest/tree/main/docs/generate/client.md
+[main_migrate]: https://github.com/Azure/autorest/tree/main/docs/migrate/readme.md
 [typescript_migrate]: ./migrate/readme.md
 [typescript_dev]: ./developer/readme.md
 [main_dev]: https://github.com/Azure/autorest/tree/master/docs/dev/readme.md
 [sample]: ./samples/readme.md
 [faq]: ./faq.md
-[trobleshooting]: ./troubleshooting.md
+[trobleshooting]: https://github.com/Azure/autorest/blob/main/docs/troubleshooting.md
