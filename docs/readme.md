@@ -30,7 +30,7 @@ These documents are Typescript-specific, see [our main docs][main_docs] for more
 
 [main_docs]: https://github.com/Azure/autorest/tree/main/docs
 [main_generate]: https://github.com/Azure/autorest/tree/main/docs/generate/readme.md
-[typescript_generate]: ./migrate/readme.md
+[typescript_generate]: ./overview.md
 [typescript_client]: ./client/readme.md
 [main_client]: https://github.com/Azure/autorest/tree/main/docs/generate/client.md
 [main_migrate]: https://github.com/Azure/autorest/tree/main/docs/migrate/readme.md
