@@ -1,6 +1,6 @@
 {
-  "Authentication_ApiKey_valid": "not-implemented",
-  "Authentication_ApiKey_invalid": "not-implemented",
+  "Authentication_ApiKey_valid": "pass",
+  "Authentication_ApiKey_invalid": "fail",
   "Authentication_OAuth2_valid": "not-implemented",
   "Authentication_OAuth2_invalid": "not-implemented",
   "Dictionary_Int32Value_get": "not-implemented",
