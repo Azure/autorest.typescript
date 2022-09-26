@@ -20,4 +20,5 @@ export * from "./buildApiExtractorConfig.js";
 export * from "./buildPaginateHelper.js";
 export * from "./buildPollingHelper.js";
 export * from "./buildESLintConfig.js";
-export * from "./buildKarmaConfig.js";
+export * from "./test/buildKarmaConfig.js";
+export * from "./test/buildEnvFile.js";

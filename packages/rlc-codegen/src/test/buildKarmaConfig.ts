@@ -1,6 +1,6 @@
 import * as hbs from "handlebars";
-import { RLCModel } from "./interfaces";
-import { karmaConfig } from "./static/karmaConfig.js";
+import { RLCModel } from "../interfaces.js";
+import { karmaConfig } from "./karmaConfig.js";
 
 export function buildKarmaConfigFile(model: RLCModel) {
   const generateTest = Boolean(model.options?.generateTest);

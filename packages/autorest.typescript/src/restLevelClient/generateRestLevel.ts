@@ -7,7 +7,6 @@ import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generateEnvFile } from "../generators/test/envFileGenerator";
 import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
@@ -34,7 +33,9 @@ import {
   buildPaginateHelper,
   buildPollingHelper,
   buildEsLintConfig,
-  buildKarmaConfigFile
+  buildKarmaConfigFile,
+  buildEnvFile,
+  buildEnvBrowserFile
 } from "@azure-tools/rlc-codegen";
 import {
   generateFileByBuilder,
@@ -79,8 +80,10 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildEsLintConfig, rlcModels);
   // buildKarmaConfigFile
   generateFileByBuilder(project, buildKarmaConfigFile, rlcModels);
-  generateEnvFile(project);
-  generateEnvBrowserFile(project);
+  // buildEnvFile
+  generateFileByBuilder(project, buildEnvFile, rlcModels);
+  // buildEnvBrowserFile
+  generateFileByBuilder(project, buildEnvBrowserFile, rlcModels);
   generateRecordedClientFile(project);
   generateSampleTestFile(project);
 
