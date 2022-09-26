@@ -7,6 +7,7 @@ import { matrix } from "../util/matrix.js";
 interface TypeDetail {
   type: string;
   defaultValue: any;
+  convertedToFn?: (_: any) => any;
 }
 
 const testedTypes: TypeDetail[] = [
@@ -32,7 +33,8 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "datetime",
-    defaultValue: "2022-08-26T18:38:00.000Z"
+    defaultValue: "2022-08-26T18:38:00Z",
+    convertedToFn: (value: string) => new Date(value).toISOString()
   },
   {
     type: "duration",
@@ -68,15 +70,15 @@ const testedTypes: TypeDetail[] = [
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {
-  matrix([testedTypes], async (params: TypeDetail) => {
-    let client: ModelsPropertyTypesClient;
+  let client: ModelsPropertyTypesClient;
 
-    beforeEach(() => {
-      client = ModelsPropertyTypesClientFactory({
-        allowInsecureConnection: true
-      });
+  beforeEach(() => {
+    client = ModelsPropertyTypesClientFactory({
+      allowInsecureConnection: true
     });
+  });
 
+  matrix([testedTypes], async (params: TypeDetail) => {
     it(`should get a ${params.type} value`, async () => {
       try {
         const result = await client
@@ -98,11 +100,17 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
 
     it(`should put a ${params.type} value`, async () => {
       try {
+        let property;
+        if (params.convertedToFn) {
+          property = params.convertedToFn(params.defaultValue);
+        } else {
+          property = params.defaultValue;
+        }
         const result = await client
           .path(`/models/properties/types/${params.type}` as any)
           .put({
             body: {
-              property: params.defaultValue
+              property
             }
           });
         assert.strictEqual(result.status, "204");
