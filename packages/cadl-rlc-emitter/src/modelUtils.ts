@@ -34,6 +34,7 @@ import {
 import { Discriminator, getDiscriminator } from "@cadl-lang/rest";
 import { reportDiagnostic } from "./lib.js";
 import {
+  DictionarySchema,
   NameType,
   normalizeName,
   ObjectSchema,
@@ -84,11 +85,7 @@ export function getSchemaForType(
   }
   function getEffectiveModelFromType(type: Type) {
     if (type.kind === "Model") {
-      const effective = getEffectiveModelType(
-        program,
-        type,
-        isSchemaProperty
-      );
+      const effective = getEffectiveModelType(program, type, isSchemaProperty);
       if (effective.name) {
         return effective;
       }
@@ -101,6 +98,9 @@ export function getSchemaForType(
       return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
     }
     return type;
+  }
+  if (type.kind === "Intrinsic" && type.name === "unknown") {
+    return { type: "unknown" };
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
@@ -351,7 +351,7 @@ function getSchemaForModel(
 ) {
   const friendlyName = getFriendlyName(program, model);
   let name = model.name;
-  if (name === '') {
+  if (name === "") {
     model;
   }
   if (
@@ -661,10 +661,18 @@ function mapCadlIntrinsicModelToTypeScript(
           additionalProperties: valueType,
           description: getDoc(program, cadlType)
         };
-        if (!isIntrinsic(program, indexer.value)) {
+        if (
+          !isIntrinsic(program, indexer.value) &&
+          !(
+            indexer.value?.kind === "Intrinsic" &&
+            indexer.value.name === "unknown"
+          )
+        ) {
           schema.typeName = `Record<string, ${valueType.name}>`;
+          schema.valueTypeName = valueType.name;
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
+            schema.outputValueTypeName = `${valueType.name}Output>`;
           }
         } else {
           schema.typeName = `Record<string, ${valueType.type}>`;
@@ -710,6 +718,13 @@ function mapCadlIntrinsicModelToTypeScript(
       return schema;
     }
   }
+  return getSchemaForIntrinsic(program, cadlType);
+}
+
+function getSchemaForIntrinsic(
+  program: Program,
+  cadlType: Model | ModelProperty
+) {
   if (!isIntrinsic(program, cadlType)) {
     return undefined;
   }
@@ -817,16 +832,22 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
     case "array":
       return [(schema as any).items]
         .filter((i: Schema) => i.type === "object")
-        .map((i: Schema) => i.outputTypeName?? "");
+        .map((i: Schema) => i.outputTypeName ?? "");
     case "object":
       return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
+    case "dictionary":
+      const importName = getDictionaryValueName(schema as DictionarySchema);
+      return importName? [importName]: undefined; 
     default:
       return;
   }
 }
 
 function getPriorityName(schema: Schema): string {
-  return schema.outputTypeName ?? schema.name;
+  return schema.outputTypeName ?? schema.typeName ?? schema.name;
+}
+function getDictionaryValueName(schema: DictionarySchema): string | undefined {
+  return schema.outputValueTypeName ?? schema.valueTypeName ?? undefined;
 }
 function getEnumStringDescription(type: any) {
   if (type.name === "string" && type.enum && type.enum.length > 0) {

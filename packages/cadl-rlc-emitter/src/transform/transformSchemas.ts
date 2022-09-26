@@ -29,8 +29,16 @@ export function transformSchemas(program: Program) {
     }
   }
   program.stateMap(modelKey).forEach((context, cadlModel) => {
+    if (cadlModel.kind === "Intrinsic"  && cadlModel.name === 'unknown') {
+      cadlModel;
+    }
     const model = getSchemaForType(program, cadlModel, context);
-    model.usage = context;
+    if (model) {
+      model.usage = context;
+    } else {
+      cadlModel;
+    }
+
     const modelStr = JSON.stringify(model);
     if (!schemaSet.has(modelStr)) {
       schemas.push(model);

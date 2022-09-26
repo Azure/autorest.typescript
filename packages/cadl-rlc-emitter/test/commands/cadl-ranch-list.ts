@@ -16,12 +16,10 @@ export const cadls: CadlRanchConfig[] = [
     outputPath: "clients/interfaces",
     inputPath: "clients/interfaces"
   },
-  // TODO: support dict type
-  // issue tracked https://github.com/Azure/autorest.typescript/issues/1579
-  // {
-  //   outputPath: "dictionary",
-  //   inputPath: "dictionary"
-  // },
+  {
+    outputPath: "dictionary",
+    inputPath: "dictionary"
+  },
   {
     outputPath: "extensibleEnums",
     inputPath: "extensible-enums"
