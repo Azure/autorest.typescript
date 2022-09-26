@@ -30,7 +30,10 @@ export function transformSchemas(program: Program) {
   }
   program.stateMap(modelKey).forEach((context, cadlModel) => {
     const model = getSchemaForType(program, cadlModel, context);
-    model.usage = context;
+    if (model) {
+      model.usage = context;
+    }
+
     const modelStr = JSON.stringify(model);
     if (!schemaSet.has(modelStr)) {
       schemas.push(model);
