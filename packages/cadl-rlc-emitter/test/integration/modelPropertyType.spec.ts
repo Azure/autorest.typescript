@@ -52,22 +52,23 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "collections/string",
-    defaultValue: { property: ["hello", "world"] }
+    defaultValue: ["hello", "world"]
   },
   {
     type: "collections/int",
-    defaultValue: { property: [1, 2] }
+    defaultValue: [1, 2]
   },
   {
     type: "collections/model",
     defaultValue: [{ property: "hello" }, { property: "world" }]
-  },
-  {
-    type: "dictionary/string",
-    defaultValue: { k1: "hello", k2: "world" }
   }
+  // TOOD: to enable this in future
+  // {
+  //   type: "dictionary/string",
+  //   defaultValue: { k1: "hello", k2: "world" }
+  // }
 ];
-describe.only("ModelsPropertyTypesClient Rest Client", () => {
+describe("ModelsPropertyTypesClient Rest Client", () => {
   matrix([testedTypes], async (params: TypeDetail) => {
     let client: ModelsPropertyTypesClient;
 
@@ -83,7 +84,7 @@ describe.only("ModelsPropertyTypesClient Rest Client", () => {
           .path(`/models/properties/types/${params.type}` as any)
           .get();
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body.property, params.defaultValue);
+        assert.deepEqual(result.body.property, params.defaultValue);
       } catch (err) {
         assert.fail(err as string);
       }
