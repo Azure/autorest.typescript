@@ -3,8 +3,8 @@ import { RLCModel } from "./interfaces";
 import { karmaConfig } from "./static/karmaConfig.js";
 
 export function buildKarmaConfigFile(model: RLCModel) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
+  const generateTest = Boolean(model.options?.generateTest);
+  if (!generateTest) {
     return;
   }
   return {
