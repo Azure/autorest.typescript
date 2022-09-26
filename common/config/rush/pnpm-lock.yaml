@@ -193,6 +193,18 @@ packages:
       - '@types/express'
     dev: false
 
+  /@azure-tools/cadl-ranch-coverage-sdk/0.1.1:
+    resolution: {integrity: sha512-FRPArDHV+Ue3JxiSJDRMI6KsWgec9AsRyZk71NZ4asqUiqDKrWm6In64B5/Ioh6gjY3p9ugCAgz98pqarGj+2Q==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@azure/identity': 3.0.0
+      '@azure/storage-blob': 12.11.0
+      '@types/node': 18.7.21
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
   /@azure-tools/cadl-ranch-expect/0.1.9_3daf81b5856042b4b38a8c9c26a7b5cf:
     resolution: {integrity: sha512-enkSUFbaYjElU/RuFY5MxQCJ7CUTyoFkaFvJM/LeAhB8p7QSwAbkpVJfisqfbwVn3syDH3edTBcWGh8Q7SEH6Q==}
     engines: {node: '>=16.0.0'}
@@ -204,8 +216,8 @@ packages:
       '@cadl-lang/rest': 0.17.0_@cadl-lang+compiler@0.35.0
     dev: false
 
-  /@azure-tools/cadl-ranch-specs/0.1.12_9febff54d04fe0bc2ab272c61155c9bc:
-    resolution: {integrity: sha512-kVAO/wI6OFBeeuqy9/QjOma4ZNkqj65yi75W6nB2IJp9BXuMo80xsMQz99C+7pmQE4aGNdZSag8p8yL2M1kCOA==}
+  /@azure-tools/cadl-ranch-specs/0.2.0_9febff54d04fe0bc2ab272c61155c9bc:
+    resolution: {integrity: sha512-VR0TS6eEaWe5BwiyweuSRDiqOXf9a4c992sWTmeZgttLbTB++deW2chiZcOVLbhXUub2pdi6OtMNkaOUVgHTkg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-azure-core': ~0.7.0
@@ -215,7 +227,7 @@ packages:
       '@cadl-lang/versioning': ~0.8.0
     dependencies:
       '@azure-tools/cadl-azure-core': 0.7.0_3daf81b5856042b4b38a8c9c26a7b5cf
-      '@azure-tools/cadl-ranch': 0.1.9
+      '@azure-tools/cadl-ranch': 0.2.0
       '@azure-tools/cadl-ranch-api': 0.1.9
       '@azure-tools/cadl-ranch-expect': 0.1.9_3daf81b5856042b4b38a8c9c26a7b5cf
       '@cadl-lang/compiler': 0.35.0
@@ -223,15 +235,19 @@ packages:
       '@cadl-lang/versioning': 0.8.0
     transitivePeerDependencies:
       - '@types/express'
+      - encoding
+      - supports-color
     dev: false
 
-  /@azure-tools/cadl-ranch/0.1.9:
-    resolution: {integrity: sha512-cxUVNiq2gOAulcaPRKpFHqle801eeU30/xn6wA05uHqHbrGYLJpemqtmTZ7cWneEGEwlcP69U4JUjzfzdE4ZxA==}
+  /@azure-tools/cadl-ranch/0.2.0:
+    resolution: {integrity: sha512-R90MU00rK21/2npjswf90yBLsQMDR6mwCb5dqGdpodeoq7tDvoLZXxbtUKr9v9iyFXOZiioDc4Ue6biBOC8WCg==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
       '@azure-tools/cadl-ranch-api': 0.1.9
+      '@azure-tools/cadl-ranch-coverage-sdk': 0.1.1
       '@azure-tools/cadl-ranch-expect': 0.1.9_3daf81b5856042b4b38a8c9c26a7b5cf
+      '@azure/identity': 3.0.0
       '@cadl-lang/compiler': 0.35.0
       '@cadl-lang/rest': 0.17.0_@cadl-lang+compiler@0.35.0
       '@types/js-yaml': 4.0.5
@@ -251,6 +267,8 @@ packages:
       yargs: 17.5.1
     transitivePeerDependencies:
       - '@types/express'
+      - encoding
+      - supports-color
     dev: false
 
   /@azure-tools/codegen/2.9.1:
@@ -553,6 +571,30 @@ packages:
       - supports-color
     dev: false
 
+  /@azure/identity/3.0.0:
+    resolution: {integrity: sha512-MAwrefZE6T15wJe/tOA6dffdTNCh+S6DOQe2otO6drEEVCHDF0zb+GItlK6kQzD5hPm/YueFCW6sN1q6F4XYuQ==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@azure/abort-controller': 1.1.0
+      '@azure/core-auth': 1.4.0
+      '@azure/core-client': 1.6.1
+      '@azure/core-rest-pipeline': 1.9.1
+      '@azure/core-tracing': 1.0.1
+      '@azure/core-util': 1.0.0
+      '@azure/logger': 1.0.3
+      '@azure/msal-browser': 2.28.1
+      '@azure/msal-common': 7.3.0
+      '@azure/msal-node': 1.12.1
+      events: 3.3.0
+      jws: 4.0.0
+      open: 8.4.0
+      stoppable: 1.1.0
+      tslib: 2.4.0
+      uuid: 8.3.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@azure/logger/1.0.3:
     resolution: {integrity: sha512-aK4s3Xxjrx3daZr3VylxejK3vG5ExXck5WOHDJ8in/k9AqlfIyFMMT1uG7u8mNjX+QRILTIn0/Xgschfh/dQ9g==}
     engines: {node: '>=12.0.0'}
@@ -617,6 +659,22 @@ packages:
       commonmark: 0.28.1
       js-yaml: 3.14.1
       tslib: 1.14.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@azure/storage-blob/12.11.0:
+    resolution: {integrity: sha512-na+FisoARuaOWaHWpmdtk3FeuTWf2VWamdJ9/TJJzj5ZdXPLC3juoDgFs6XVuJIoK30yuBpyFBEDXVRK4pB7Tg==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@azure/abort-controller': 1.1.0
+      '@azure/core-http': 2.2.6
+      '@azure/core-lro': 2.2.4
+      '@azure/core-paging': 1.3.0
+      '@azure/core-tracing': 1.0.0-preview.13
+      '@azure/logger': 1.0.3
+      events: 3.3.0
+      tslib: 2.4.0
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -1932,7 +1990,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       chalk: 4.1.2
       jest-message-util: 27.5.1
       jest-util: 27.5.1
@@ -1953,7 +2011,7 @@ packages:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.8.1
@@ -1990,7 +2048,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       jest-mock: 27.5.1
     dev: false
 
@@ -2000,7 +2058,7 @@ packages:
     dependencies:
       '@jest/types': 27.5.1
       '@sinonjs/fake-timers': 8.1.0
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       jest-message-util: 27.5.1
       jest-mock: 27.5.1
       jest-util: 27.5.1
@@ -2029,7 +2087,7 @@ packages:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       chalk: 4.1.2
       collect-v8-coverage: 1.0.1
       exit: 0.1.2
@@ -2113,7 +2171,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       '@types/yargs': 16.0.4
       chalk: 4.1.2
     dev: false
@@ -2521,7 +2579,7 @@ packages:
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
     dev: false
 
   /@types/istanbul-lib-coverage/2.0.4:
@@ -2571,7 +2629,7 @@ packages:
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       form-data: 3.0.1
     dev: false
 
@@ -2589,6 +2647,10 @@ packages:
 
   /@types/node/18.6.4:
     resolution: {integrity: sha512-I4BD3L+6AWiUobfxZ49DlU43gtI+FTHSv9pE2Zekg6KjMpre4ByusaljW3vYSLJrvQ1ck1hUaeVu8HVlY3vzHg==}
+    dev: false
+
+  /@types/node/18.7.21:
+    resolution: {integrity: sha512-rLFzK5bhM0YPyCoTC8bolBjMk7bwnZ8qeZUBslBfjZQou2ssJdWslx9CZ8DGM+Dx7QXQiiTVZ/6QO6kwtHkZCA==}
     dev: false
 
   /@types/prettier/1.19.1:
@@ -2620,13 +2682,13 @@ packages:
   /@types/tunnel/0.0.1:
     resolution: {integrity: sha512-AOqu6bQu5MSWwYvehMXLukFHnupHrpZ8nvgae5Ggie9UwzDR1CCwoXgSSWNZJuyOlCdfdsWMA5F2LlmvyoTv8A==}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
     dev: false
 
   /@types/tunnel/0.0.3:
     resolution: {integrity: sha512-sOUTGn6h1SfQ+gbgqC364jLFBw2lnFqkgF3q0WovEHRLMrVD1sd5aufqi/aJObLekJO+Aq5z646U4Oxy6shXMA==}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
     dev: false
 
   /@types/xmlbuilder/0.0.34:
@@ -2653,7 +2715,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
     dev: false
     optional: true
 
@@ -4660,7 +4722,7 @@ packages:
     dependencies:
       '@types/cookie': 0.4.1
       '@types/cors': 2.8.12
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.4.2
@@ -6437,7 +6499,7 @@ packages:
       '@jest/environment': 27.5.1
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       chalk: 4.1.2
       co: 4.6.0
       dedent: 0.7.0
@@ -6563,7 +6625,7 @@ packages:
       '@jest/environment': 27.5.1
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       jest-mock: 27.5.1
       jest-util: 27.5.1
       jsdom: 16.7.0
@@ -6581,7 +6643,7 @@ packages:
       '@jest/environment': 27.5.1
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       jest-mock: 27.5.1
       jest-util: 27.5.1
     dev: false
@@ -6597,7 +6659,7 @@ packages:
     dependencies:
       '@jest/types': 27.5.1
       '@types/graceful-fs': 4.1.5
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       anymatch: 3.1.2
       fb-watchman: 2.0.1
       graceful-fs: 4.2.10
@@ -6619,7 +6681,7 @@ packages:
       '@jest/source-map': 27.5.1
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       chalk: 4.1.2
       co: 4.6.0
       expect: 27.5.1
@@ -6684,7 +6746,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
     dev: false
 
   /jest-pnp-resolver/1.2.2_jest-resolve@27.5.1:
@@ -6740,7 +6802,7 @@ packages:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       chalk: 4.1.2
       emittery: 0.8.1
       graceful-fs: 4.2.10
@@ -6797,7 +6859,7 @@ packages:
     resolution: {integrity: sha512-jZCyo6iIxO1aqUxpuBlwTDMkzOAJS4a3eYz3YzgxxVQFwLeSA7Jfq5cbqCY+JLvTDrWirgusI/0KwxKMgrdf7w==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       graceful-fs: 4.2.10
     dev: false
 
@@ -6836,7 +6898,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       chalk: 4.1.2
       ci-info: 3.3.2
       graceful-fs: 4.2.10
@@ -6861,7 +6923,7 @@ packages:
     dependencies:
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       jest-util: 27.5.1
@@ -6872,7 +6934,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.21
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: false
@@ -11112,15 +11174,15 @@ packages:
     dev: false
 
   file:projects/ts-rlc.tgz:
-    resolution: {integrity: sha512-SGMPD4G+nxTbNrPzKGCaNtH+bT+9bddMiE7PRhpwqh3XoQ5V+uziR9LeCZjUzrB92WtyKXw7tnAzdMXlfwnzTA==, tarball: file:projects/ts-rlc.tgz}
+    resolution: {integrity: sha512-w1Ec66sO1Wgf/cBWjX/ezUxAga/K+OBU2qwvLOGReQXTRdWMeECpszAFd/dJZy2GMd/qC5EvWh5uKsmIC9wu+w==, tarball: file:projects/ts-rlc.tgz}
     name: '@rush-temp/ts-rlc'
     version: 0.0.0
     dependencies:
       '@azure-rest/core-client': 1.0.0-beta.10
       '@azure-tools/cadl-azure-core': 0.7.0_3daf81b5856042b4b38a8c9c26a7b5cf
-      '@azure-tools/cadl-ranch': 0.1.9
+      '@azure-tools/cadl-ranch': 0.2.0
       '@azure-tools/cadl-ranch-expect': 0.1.9_3daf81b5856042b4b38a8c9c26a7b5cf
-      '@azure-tools/cadl-ranch-specs': 0.1.12_9febff54d04fe0bc2ab272c61155c9bc
+      '@azure-tools/cadl-ranch-specs': 0.2.0_9febff54d04fe0bc2ab272c61155c9bc
       '@azure/core-auth': 1.4.0
       '@azure/core-paging': 1.3.0
       '@cadl-lang/compiler': 0.35.0
@@ -11147,6 +11209,7 @@ packages:
       - '@swc/core'
       - '@swc/wasm'
       - '@types/express'
+      - encoding
       - supports-color
     dev: false
 

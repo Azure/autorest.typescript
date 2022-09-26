@@ -85,9 +85,9 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
         assert.strictEqual(result.status, "200");
         console.log(
           `${params.type}`,
-          "input",
+          "input value:",
           params.defaultValue,
-          "output",
+          "ranch value:",
           result.body.property
         );
         assert.deepEqual(result.body.property, params.defaultValue);
