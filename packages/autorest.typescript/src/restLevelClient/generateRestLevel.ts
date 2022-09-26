@@ -7,8 +7,6 @@ import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
-import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
@@ -34,7 +32,9 @@ import {
   buildEsLintConfig,
   buildKarmaConfigFile,
   buildEnvFile,
-  buildEnvBrowserFile
+  buildEnvBrowserFile,
+  buildRecordedClientFile,
+  buildSampleTest
 } from "@azure-tools/rlc-codegen";
 import {
   generateFileByBuilder,
@@ -85,7 +85,8 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildEnvBrowserFile, rlcModels);
   // buildRecordedClientFile
   generateFileByBuilder(project, buildRecordedClientFile, rlcModels);
-  generateSampleTestFile(project);
+  // buildSampleTest
+  generateFileByBuilder(project, buildSampleTest, rlcModels);
 
   // buildResponseTypes
   generateFileByBuilder(project, buildResponseTypes, rlcModels);
