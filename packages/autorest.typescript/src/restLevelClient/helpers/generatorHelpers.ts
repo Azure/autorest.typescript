@@ -8,15 +8,20 @@ import { buildSchemaTypes } from "@azure-tools/rlc-codegen";
 
 export function generateFileByBuilder(
   project: Project,
-  buildFn: ContentBuilder,
+  buildFnOrList: ContentBuilder | ContentBuilder[],
   rlcModels: RLCModel,
   hasSampleGenerated?: boolean
 ) {
-  const preparedFile: RLCFile | undefined = buildFn(
-    rlcModels,
-    hasSampleGenerated
-  );
-  generateFile(preparedFile, project);
+  if (!Array.isArray(buildFnOrList)) {
+    buildFnOrList = [buildFnOrList];
+  }
+  for (const buildFn of buildFnOrList) {
+    const preparedFile: RLCFile | undefined = buildFn(
+      rlcModels,
+      hasSampleGenerated
+    );
+    generateFile(preparedFile, project);
+  }
 }
 
 export function generateSchemaTypes(project: Project, rlcModels: RLCModel) {

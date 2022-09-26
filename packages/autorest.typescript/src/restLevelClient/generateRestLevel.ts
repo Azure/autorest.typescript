@@ -3,7 +3,6 @@
 
 import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
-import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
@@ -34,7 +33,8 @@ import {
   buildEnvFile,
   buildEnvBrowserFile,
   buildRecordedClientFile,
-  buildSampleTest
+  buildSampleTest,
+  buildLicenseFile
 } from "@azure-tools/rlc-codegen";
 import {
   generateFileByBuilder,
@@ -70,7 +70,8 @@ export async function generateRestLevelClient() {
   const rlcModels = transform(model);
 
   generateReadmeFile(model, project);
-  generateLicenseFile(project);
+  // buildLicenseFile
+  generateFileByBuilder(project, buildLicenseFile, rlcModels);
   // buildApiExtractorConfig
   generateFileByBuilder(project, buildApiExtractorConfig, rlcModels);
   // buildRollupConfig

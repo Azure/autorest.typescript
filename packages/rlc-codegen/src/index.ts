@@ -24,3 +24,4 @@ export * from "./metadata/buildPackageFile.js";
 export * from "./metadata/buildRollupConfig.js";
 export * from "./metadata/buildTsConfig.js";
 export * from "./metadata/buildESLintConfig.js";
+export * from "./metadata/buildLicenseFile.js";
