@@ -1,3 +1,4 @@
+export const karmaConfig = `
 // https://github.com/karma-runner/karma-chrome-launcher
 process.env.CHROME_BIN = require("puppeteer").executablePath();
 require("dotenv").config();
@@ -124,3 +125,4 @@ module.exports = function (config) {
     },
   });
 };
+`;

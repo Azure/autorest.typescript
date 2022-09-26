@@ -16,7 +16,8 @@ import {
   buildPackageFile,
   buildPollingHelper,
   buildPaginateHelper,
-  buildEsLintConfig
+  buildEsLintConfig,
+  buildKarmaConfigFile
 } from "@azure-tools/rlc-codegen";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
@@ -38,4 +39,5 @@ export async function $onEmit(program: Program) {
   await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
   await emitContentByBuilder(program, buildPollingHelper, rlcModels);
   await emitContentByBuilder(program, buildEsLintConfig, rlcModels);
+  await emitContentByBuilder(program, buildKarmaConfigFile, rlcModels);
 }
