@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
-import { RLCModel } from "./interfaces.js";
+import { RLCModel } from "../interfaces.js";
 
 const restLevelTsConfigInAzureSdkForJs: Record<string, any> = {
   extends: "../../../tsconfig.package",

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
-import { RLCModel } from "./interfaces.js";
+import { RLCModel } from "../interfaces.js";
 
 export function buildApiExtractorConfig(model: RLCModel) {
   const generateMetadata = Boolean(model.options?.generateMetadata);

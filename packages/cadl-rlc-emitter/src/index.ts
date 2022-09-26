@@ -17,7 +17,11 @@ import {
   buildPollingHelper,
   buildPaginateHelper,
   buildEsLintConfig,
-  buildKarmaConfigFile
+  buildKarmaConfigFile,
+  buildEnvFile,
+  buildEnvBrowserFile,
+  buildRecordedClientFile,
+  buildSampleTest
 } from "@azure-tools/rlc-codegen";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
@@ -32,12 +36,30 @@ export async function $onEmit(program: Program) {
   await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels);
   await emitContentByBuilder(program, buildIndexFile, rlcModels);
   await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
-  await emitContentByBuilder(program, buildPackageFile, rlcModels);
-  await emitContentByBuilder(program, buildRollupConfig, rlcModels);
-  await emitContentByBuilder(program, buildTsConfig, rlcModels);
-  await emitContentByBuilder(program, buildApiExtractorConfig, rlcModels);
   await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
   await emitContentByBuilder(program, buildPollingHelper, rlcModels);
-  await emitContentByBuilder(program, buildEsLintConfig, rlcModels);
-  await emitContentByBuilder(program, buildKarmaConfigFile, rlcModels);
+  // build metadata relevant files
+  await emitContentByBuilder(
+    program,
+    [
+      buildEsLintConfig,
+      buildRollupConfig,
+      buildTsConfig,
+      buildApiExtractorConfig,
+      buildPackageFile
+    ],
+    rlcModels
+  );
+  // build test relevant files
+  await emitContentByBuilder(
+    program,
+    [
+      buildKarmaConfigFile,
+      buildEnvFile,
+      buildEnvBrowserFile,
+      buildRecordedClientFile,
+      buildSampleTest
+    ],
+    rlcModels
+  );
 }

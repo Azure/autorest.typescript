@@ -5,8 +5,8 @@ import { Project } from "ts-morph";
 import {
   hasPagingOperations,
   hasPollingOperations
-} from "./helpers/operationHelpers.js";
-import { RLCModel } from "./interfaces.js";
+} from "../helpers/operationHelpers.js";
+import { RLCModel } from "../interfaces.js";
 
 export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
   const generateMetadata = Boolean(model.options?.generateMetadata);

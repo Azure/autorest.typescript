@@ -1,5 +1,5 @@
 import { Project } from "ts-morph";
-import { RLCModel } from "./interfaces.js";
+import { RLCModel } from "../interfaces.js";
 
 const esLintConfig = {
   plugins: ["@azure/azure-sdk"],
