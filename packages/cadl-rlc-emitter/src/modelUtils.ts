@@ -351,9 +351,6 @@ function getSchemaForModel(
 ) {
   const friendlyName = getFriendlyName(program, model);
   let name = model.name;
-  if (name === "") {
-    model;
-  }
   if (
     !friendlyName &&
     model.templateArguments &&
