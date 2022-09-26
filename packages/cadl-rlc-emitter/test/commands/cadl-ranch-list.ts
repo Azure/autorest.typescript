@@ -17,6 +17,7 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "clients/interfaces"
   },
   // TODO: support dict type
+  // issue tracked https://github.com/Azure/autorest.typescript/issues/1579
   // {
   //   outputPath: "dictionary",
   //   inputPath: "dictionary"
