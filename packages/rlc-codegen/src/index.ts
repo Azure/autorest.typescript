@@ -23,3 +23,4 @@ export * from "./buildESLintConfig.js";
 export * from "./test/buildKarmaConfig.js";
 export * from "./test/buildEnvFile.js";
 export * from "./test/buildRecordedClient.js";
+export * from "./test/buildSampleTest.js";
