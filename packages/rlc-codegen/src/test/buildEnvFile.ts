@@ -1,5 +1,5 @@
 import * as hbs from "handlebars";
-import { envContent } from "./envContent.js";
+import { envContent } from "./template.js";
 import { RLCModel } from "../interfaces.js";
 
 export function buildEnvFile(model: RLCModel) {

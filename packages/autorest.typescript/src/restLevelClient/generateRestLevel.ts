@@ -7,7 +7,6 @@ import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
@@ -84,7 +83,8 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildEnvFile, rlcModels);
   // buildEnvBrowserFile
   generateFileByBuilder(project, buildEnvBrowserFile, rlcModels);
-  generateRecordedClientFile(project);
+  // buildRecordedClientFile
+  generateFileByBuilder(project, buildRecordedClientFile, rlcModels);
   generateSampleTestFile(project);
 
   // buildResponseTypes
