@@ -12,7 +12,6 @@ import { generateEnvFile } from "../generators/test/envFileGenerator";
 import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
 import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
-import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
 import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
@@ -34,7 +33,8 @@ import {
   buildTsConfig,
   buildClient,
   buildPaginateHelper,
-  buildPollingHelper
+  buildPollingHelper,
+  buildEsLintConfig
 } from "@azure-tools/rlc-codegen";
 import {
   generateFileByBuilder,
@@ -75,7 +75,8 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildApiExtractorConfig, rlcModels);
   // buildRollupConfig
   generateFileByBuilder(project, buildRollupConfig, rlcModels);
-  generateEsLintConfig(project);
+  // buildEsLintConfig
+  generateFileByBuilder(project, buildEsLintConfig, rlcModels);
   generateKarmaConfigFile(project);
   generateEnvFile(project);
   generateEnvBrowserFile(project);
