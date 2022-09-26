@@ -32,7 +32,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "datetime",
-    defaultValue: "2022-08-26T18:38:00Z"
+    defaultValue: "2022-08-26T18:38:00.000Z"
   },
   {
     type: "duration",
@@ -61,12 +61,11 @@ const testedTypes: TypeDetail[] = [
   {
     type: "collections/model",
     defaultValue: [{ property: "hello" }, { property: "world" }]
+  },
+  {
+    type: "dictionary/string",
+    defaultValue: { k1: "hello", k2: "world" }
   }
-  // TOOD: to enable this in future
-  // {
-  //   type: "dictionary/string",
-  //   defaultValue: { k1: "hello", k2: "world" }
-  // }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {
   matrix([testedTypes], async (params: TypeDetail) => {
