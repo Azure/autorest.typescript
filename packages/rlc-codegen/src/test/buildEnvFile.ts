@@ -1,4 +1,5 @@
-import * as hbs from "handlebars";
+// @ts-ignore: to fix the handlebars issue
+import hbs from "handlebars";
 import { envContent } from "./template.js";
 import { RLCModel } from "../interfaces.js";
 

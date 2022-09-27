@@ -1,4 +1,5 @@
-import * as hbs from "handlebars";
+// @ts-ignore: to fix the handlebars issue
+import hbs from "handlebars";
 import { RLCModel } from "../interfaces.js";
 import { recordedClientContent } from "./template.js";
 
