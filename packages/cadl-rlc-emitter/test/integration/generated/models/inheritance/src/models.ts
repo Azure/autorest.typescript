@@ -1,41 +1,40 @@
-/** Example base type. */
-export interface BaseClass {
-  /** An example property. */
-  baseClassProperty: string;
+/** The third level model in the normal multiple levels inheritance. */
+export interface Siamese extends Cat {
+  smart: boolean;
 }
 
-export interface DerivedFromBaseClassA extends BaseClass {
-  /** An example property on a derived type */
-  derivedClassAProperty: string;
+/** This is base model for polymorphic multiple levels inheritance with a discriminator. */
+export interface FishParent {
+  age: number;
+  kind: "Fish" | "shark" | "salmon";
 }
 
-export interface DerivedFromBaseClassB extends BaseClass {
-  /** An example property on a derived type */
-  derivedClassBProperty: string;
+/** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
+export interface SharkParent extends FishParent {
+  kind: "shark";
+  sharktype: "Shark" | "saw" | "goblin";
 }
 
-/** Example base class that has a discriminator property. */
-export interface BaseClassWithDiscriminatorParent extends BaseClass {
-  discriminatorProperty: "BaseClassWithDiscriminator" | "A" | "B";
+/** The third level model SawShark in polymorphic multiple levels inheritance. */
+export interface SawShark extends SharkParent {
+  sharktype: "saw";
 }
 
-export interface DerivedFromBaseClassWithDiscriminatorA
-  extends BaseClassWithDiscriminatorParent {
-  discriminatorProperty: "A";
+/** The third level model GoblinShark in polymorphic multiple levels inheritance. */
+export interface GoblinShark extends SharkParent {
+  sharktype: "goblin";
 }
 
-export interface DerivedFromBaseClassWithDiscriminatorB
-  extends BaseClassWithDiscriminatorParent {
-  discriminatorProperty: "B";
+/** The second level model in polymorphic multiple levels inheritance which contains references to other polymorphic instances. */
+export interface Salmon extends FishParent {
+  kind: "salmon";
+  friends?: Array<Fish>;
+  hate?: Record<string, Fish>;
+  /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
+  partner?: Fish;
 }
 
-/** Illustrates case where a basic model has polymorphic properties. */
-export interface ModelWithPolymorphicProperty {
-  /** Example polymorphic type property. */
-  polymorphicProperty: BaseClassWithDiscriminator;
-}
-
-/** Example base class that has a discriminator property. */
-export type BaseClassWithDiscriminator =
-  | DerivedFromBaseClassWithDiscriminatorA
-  | DerivedFromBaseClassWithDiscriminatorB;
+/** This is base model for polymorphic multiple levels inheritance with a discriminator. */
+export type Fish = Shark | Salmon;
+/** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
+export type Shark = SawShark | GoblinShark;

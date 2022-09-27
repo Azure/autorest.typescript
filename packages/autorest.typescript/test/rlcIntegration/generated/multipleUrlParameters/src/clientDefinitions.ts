@@ -75,7 +75,7 @@ export interface EntityOperations {
   /** Get complete definition of an entity given its GUID. */
   getByGuid(
     guid: string,
-    options?: EntityGetByGuidParameters
+    options: EntityGetByGuidParameters
   ): StreamableMethod<
     EntityGetByGuid200Response | EntityGetByGuidDefaultResponse
   >;
@@ -95,7 +95,7 @@ export interface EntityOperations {
   /** Delete an entity identified by its GUID. */
   deleteByGuid(
     guid: string,
-    options?: EntityDeleteByGuidParameters
+    options: EntityDeleteByGuidParameters
   ): StreamableMethod<
     EntityDeleteByGuid200Response | EntityDeleteByGuidDefaultResponse
   >;
@@ -152,7 +152,7 @@ export interface AddClassification {
 export interface GetByGuid {
   /** Get complete definition of an entity given its GUID. */
   get(
-    options?: EntityGetByGuidParameters
+    options: EntityGetByGuidParameters
   ): StreamableMethod<
     EntityGetByGuid200Response | EntityGetByGuidDefaultResponse
   >;
@@ -170,7 +170,7 @@ export interface GetByGuid {
   >;
   /** Delete an entity identified by its GUID. */
   delete(
-    options?: EntityDeleteByGuidParameters
+    options: EntityDeleteByGuidParameters
   ): StreamableMethod<
     EntityDeleteByGuid200Response | EntityDeleteByGuidDefaultResponse
   >;

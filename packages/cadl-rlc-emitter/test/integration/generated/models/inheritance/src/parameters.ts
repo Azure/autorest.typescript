@@ -1,17 +1,35 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import { BaseClass, ModelWithPolymorphicProperty } from "./models";
+import { Siamese, Fish } from "./models";
 
-export interface BasicPolymorphicModelsSetValueBodyParam {
-  body: BaseClass;
+export interface InheritancePostValidBodyParam {
+  body: Siamese;
 }
 
-export type BasicPolymorphicModelsSetValueParameters =
-  BasicPolymorphicModelsSetValueBodyParam & RequestParameters;
+export type InheritancePostValidParameters = InheritancePostValidBodyParam &
+  RequestParameters;
+export type InheritanceGetValidParameters = RequestParameters;
 
-export interface BasicPolymorphicModelsSetValueWithPolymorphicPropertyBodyParam {
-  body: ModelWithPolymorphicProperty;
+export interface InheritancePutValidBodyParam {
+  body: Siamese;
 }
 
-export type BasicPolymorphicModelsSetValueWithPolymorphicPropertyParameters =
-  BasicPolymorphicModelsSetValueWithPolymorphicPropertyBodyParam &
-    RequestParameters;
+export type InheritancePutValidParameters = InheritancePutValidBodyParam &
+  RequestParameters;
+export type DiscriminatedGetModelParameters = RequestParameters;
+
+export interface DiscriminatedPutModelBodyParam {
+  body: Fish;
+}
+
+export type DiscriminatedPutModelParameters = DiscriminatedPutModelBodyParam &
+  RequestParameters;
+export type DiscriminatedGetRecursiveModelParameters = RequestParameters;
+
+export interface DiscriminatedPutRecursiveModelBodyParam {
+  body: Fish;
+}
+
+export type DiscriminatedPutRecursiveModelParameters =
+  DiscriminatedPutRecursiveModelBodyParam & RequestParameters;
+export type DiscriminatedGetMissingDiscriminatorParameters = RequestParameters;
+export type DiscriminatedGetWrongDiscriminatorParameters = RequestParameters;

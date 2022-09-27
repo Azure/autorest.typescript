@@ -1,10 +1,10 @@
-import BasicPolymorphicModels from "./basicPolymorphicModels";
+import ModelsInheritance from "./modelsInheritance";
 
-export * from "./basicPolymorphicModels";
+export * from "./modelsInheritance";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default BasicPolymorphicModels;
+export default ModelsInheritance;

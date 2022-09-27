@@ -1,42 +1,40 @@
-/** Example base type. */
-export interface BaseClassOutput {
-  /** An example property. */
-  baseClassProperty: string;
+/** The third level model in the normal multiple levels inheritance. */
+export interface SiameseOutput extends CatOutput {
+  smart: boolean;
 }
 
-export interface DerivedFromBaseClassAOutput extends BaseClassOutput {
-  /** An example property on a derived type */
-  derivedClassAProperty: string;
+/** This is base model for polymorphic multiple levels inheritance with a discriminator. */
+export interface FishOutputParent {
+  age: number;
+  kind: "Fish" | "shark" | "salmon";
 }
 
-export interface DerivedFromBaseClassBOutput extends BaseClassOutput {
-  /** An example property on a derived type */
-  derivedClassBProperty: string;
+/** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
+export interface SharkOutputParent extends FishOutputParent {
+  kind: "shark";
+  sharktype: "Shark" | "saw" | "goblin";
 }
 
-/** Example base class that has a discriminator property. */
-export interface BaseClassWithDiscriminatorOutputParent
-  extends BaseClassOutput {
-  discriminatorProperty: "BaseClassWithDiscriminator" | "A" | "B";
+/** The third level model SawShark in polymorphic multiple levels inheritance. */
+export interface SawSharkOutput extends SharkOutputParent {
+  sharktype: "saw";
 }
 
-export interface DerivedFromBaseClassWithDiscriminatorAOutput
-  extends BaseClassWithDiscriminatorOutputParent {
-  discriminatorProperty: "A";
+/** The third level model GoblinShark in polymorphic multiple levels inheritance. */
+export interface GoblinSharkOutput extends SharkOutputParent {
+  sharktype: "goblin";
 }
 
-export interface DerivedFromBaseClassWithDiscriminatorBOutput
-  extends BaseClassWithDiscriminatorOutputParent {
-  discriminatorProperty: "B";
+/** The second level model in polymorphic multiple levels inheritance which contains references to other polymorphic instances. */
+export interface SalmonOutput extends FishOutputParent {
+  kind: "salmon";
+  friends?: Array<FishOutput>;
+  hate?: Record<string, FishOutput>;
+  /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
+  partner?: FishOutput;
 }
 
-/** Illustrates case where a basic model has polymorphic properties. */
-export interface ModelWithPolymorphicPropertyOutput {
-  /** Example polymorphic type property. */
-  polymorphicProperty: BaseClassWithDiscriminatorOutput;
-}
-
-/** Example base class that has a discriminator property. */
-export type BaseClassWithDiscriminatorOutput =
-  | DerivedFromBaseClassWithDiscriminatorAOutput
-  | DerivedFromBaseClassWithDiscriminatorBOutput;
+/** This is base model for polymorphic multiple levels inheritance with a discriminator. */
+export type FishOutput = SharkOutput | SalmonOutput;
+/** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
+export type SharkOutput = SawSharkOutput | GoblinSharkOutput;

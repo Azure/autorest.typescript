@@ -18,7 +18,8 @@ export default function createClient(
   options: ClientOptions = {}
 ): MultipleUrlParameterRestClient {
   const baseUrl =
-    options.baseUrl ?? `${Endpoint}/catalog/api/atlas/${serviceVersion}`;
+    options.baseUrl ??
+    `${Endpoint}/catalog/api/atlas/${serviceVersion}/{accountName}`;
 
   options = {
     ...options,

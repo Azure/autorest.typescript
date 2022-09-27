@@ -19,13 +19,19 @@ export interface DatetimeProperty {
 /** Model with a duration property */
 export interface DurationProperty {
   /** Property */
-  property?: Date | string;
+  property?: string;
 }
 
 /** Model with collection bytes properties */
 export interface CollectionsByteProperty {
   /** Property */
   property?: string[];
+}
+
+/** Model with collection models properties */
+export interface CollectionsModelProperty {
+  /** Property */
+  property?: Array<StringProperty>;
 }
 
 /** Model with required and optional properties */

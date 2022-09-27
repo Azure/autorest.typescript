@@ -1042,7 +1042,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    generateSample: true
+    generateSample: false // have issues in custom url samples
   },
   httpInfrastructureRest: {
     swaggerOrConfig: "httpInfrastructure.json",

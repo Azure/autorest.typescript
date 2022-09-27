@@ -6,7 +6,7 @@
     "version": "2022-03-01-preview"
   },
   "x-ms-parameterized-host": {
-    "hostTemplate": "{Endpoint}/catalog/api/atlas/{serviceVersion}",
+    "hostTemplate": "{Endpoint}/catalog/api/atlas/{serviceVersion}/{accountName}",
     "useSchemePrefix": false,
     "parameters": [
       {
@@ -14,6 +14,14 @@
       },
       {
         "$ref": "#/parameters/serviceVersion"
+      },
+      {
+        "name": "accountName",
+        "description": "Account Name",
+        "required": true,
+        "type": "string",
+        "in": "path",
+        "x-ms-skip-url-encoding": true
       }
     ]
   },
