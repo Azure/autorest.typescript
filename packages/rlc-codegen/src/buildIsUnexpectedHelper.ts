@@ -112,7 +112,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           } pathDetails = responseMap[\`\${method} \${url.pathname}\`];
           if (!pathDetails) {`,
         hasTemplate
-          ? "pathDetails = geParametrizedPathSuccess(url.pathname);"
+          ? "pathDetails = geParametrizedPathSuccess(method, url.pathname);"
           : `return true;`,
         `  }
           return !pathDetails.includes(response.status);
@@ -124,6 +124,10 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         isExported: false,
         name: "geParametrizedPathSuccess",
         parameters: [
+          {
+            name: "method",
+            type: "string"
+          },
           {
             name: "path",
             type: "string"
@@ -138,6 +142,9 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         for (const [key, value] of Object.entries(responseMap)) {
           // Extracting the path from the map key which is in format
           // GET /path/foo
+          if (!key.startsWith(method)) {
+            continue;
+          }
           const candidatePath = getPathFromMapKey(key);
           // Get each part of the url path
           const candidateParts = candidatePath.split("/");
