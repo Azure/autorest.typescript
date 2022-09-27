@@ -62,7 +62,7 @@ export interface KqlScriptsGetAll200Response extends HttpResponse {
 }
 
 /** Get all KQL scripts */
-export interface KqlScriptsGetAlldefaultResponse extends HttpResponse {
+export interface KqlScriptsGetAllDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -80,7 +80,7 @@ export interface KqlScriptCreateOrUpdate202Response extends HttpResponse {
 }
 
 /** Creates or updates a KQL Script */
-export interface KqlScriptCreateOrUpdatedefaultResponse extends HttpResponse {
+export interface KqlScriptCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -92,7 +92,7 @@ export interface KqlScriptGetByName200Response extends HttpResponse {
 }
 
 /** Get KQL script by name */
-export interface KqlScriptGetByNamedefaultResponse extends HttpResponse {
+export interface KqlScriptGetByNameDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -116,7 +116,7 @@ export interface KqlScriptDeleteByName204Response extends HttpResponse {
 }
 
 /** Delete KQL script by name */
-export interface KqlScriptDeleteByNamedefaultResponse extends HttpResponse {
+export interface KqlScriptDeleteByNameDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -134,7 +134,7 @@ export interface KqlScriptRename202Response extends HttpResponse {
 }
 
 /** Rename KQL script */
-export interface KqlScriptRenamedefaultResponse extends HttpResponse {
+export interface KqlScriptRenameDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -146,7 +146,7 @@ export interface MetastoreRegister201Response extends HttpResponse {
 }
 
 /** Register files in Syms */
-export interface MetastoreRegisterdefaultResponse extends HttpResponse {
+export interface MetastoreRegisterDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -159,7 +159,7 @@ export interface MetastoreGetDatabaseOperations200Response
 }
 
 /** Gets status of the database */
-export interface MetastoreGetDatabaseOperationsdefaultResponse
+export interface MetastoreGetDatabaseOperationsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
@@ -172,7 +172,7 @@ export interface MetastoreUpdate201Response extends HttpResponse {
 }
 
 /** Update files in Syms */
-export interface MetastoreUpdatedefaultResponse extends HttpResponse {
+export interface MetastoreUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -184,7 +184,7 @@ export interface MetastoreDelete204Response extends HttpResponse {
 }
 
 /** Remove files in Syms */
-export interface MetastoreDeletedefaultResponse extends HttpResponse {
+export interface MetastoreDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -197,7 +197,7 @@ export interface SparkConfigurationGetSparkConfigurationsByWorkspace200Response
 }
 
 /** Lists sparkconfigurations. */
-export interface SparkConfigurationGetSparkConfigurationsByWorkspacedefaultResponse
+export interface SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorOutput;
@@ -218,7 +218,7 @@ export interface SparkConfigurationCreateOrUpdateSparkConfiguration202Response
 }
 
 /** Creates or updates a sparkconfiguration. */
-export interface SparkConfigurationCreateOrUpdateSparkConfigurationdefaultResponse
+export interface SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorOutput;
@@ -239,7 +239,7 @@ export interface SparkConfigurationGetSparkConfiguration304Response
 }
 
 /** Gets a sparkConfiguration. */
-export interface SparkConfigurationGetSparkConfigurationdefaultResponse
+export interface SparkConfigurationGetSparkConfigurationDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorOutput;
@@ -267,7 +267,7 @@ export interface SparkConfigurationDeleteSparkConfiguration204Response
 }
 
 /** Deletes a sparkConfiguration. */
-export interface SparkConfigurationDeleteSparkConfigurationdefaultResponse
+export interface SparkConfigurationDeleteSparkConfigurationDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorOutput;
@@ -288,7 +288,7 @@ export interface SparkConfigurationRenameSparkConfiguration202Response
 }
 
 /** Renames a sparkConfiguration. */
-export interface SparkConfigurationRenameSparkConfigurationdefaultResponse
+export interface SparkConfigurationRenameSparkConfigurationDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorOutput;
@@ -301,7 +301,7 @@ export interface BigDataPoolsList200Response extends HttpResponse {
 }
 
 /** List Big Data Pools */
-export interface BigDataPoolsListdefaultResponse extends HttpResponse {
+export interface BigDataPoolsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -313,7 +313,7 @@ export interface BigDataPoolsGet200Response extends HttpResponse {
 }
 
 /** Get Big Data Pool */
-export interface BigDataPoolsGetdefaultResponse extends HttpResponse {
+export interface BigDataPoolsGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -333,7 +333,7 @@ export interface DataFlowCreateOrUpdateDataFlow202Response
 }
 
 /** Creates or updates a data flow. */
-export interface DataFlowCreateOrUpdateDataFlowdefaultResponse
+export interface DataFlowCreateOrUpdateDataFlowDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -346,7 +346,7 @@ export interface DataFlowGetDataFlow200Response extends HttpResponse {
 }
 
 /** Gets a data flow. */
-export interface DataFlowGetDataFlowdefaultResponse extends HttpResponse {
+export interface DataFlowGetDataFlowDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -370,7 +370,7 @@ export interface DataFlowDeleteDataFlow204Response extends HttpResponse {
 }
 
 /** Deletes a data flow. */
-export interface DataFlowDeleteDataFlowdefaultResponse extends HttpResponse {
+export interface DataFlowDeleteDataFlowDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -388,7 +388,7 @@ export interface DataFlowRenameDataFlow202Response extends HttpResponse {
 }
 
 /** Renames a dataflow. */
-export interface DataFlowRenameDataFlowdefaultResponse extends HttpResponse {
+export interface DataFlowRenameDataFlowDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -401,7 +401,7 @@ export interface DataFlowGetDataFlowsByWorkspace200Response
 }
 
 /** Lists data flows. */
-export interface DataFlowGetDataFlowsByWorkspacedefaultResponse
+export interface DataFlowGetDataFlowsByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -429,7 +429,7 @@ export interface DataFlowDebugSessionCreateDataFlowDebugSession202Response
 }
 
 /** Creates a data flow debug session. */
-export interface DataFlowDebugSessionCreateDataFlowDebugSessiondefaultResponse
+export interface DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -443,7 +443,7 @@ export interface DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Res
 }
 
 /** Query all active data flow debug sessions. */
-export interface DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspacedefaultResponse
+export interface DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -457,7 +457,7 @@ export interface DataFlowDebugSessionAddDataFlow200Response
 }
 
 /** Add a data flow into debug session. */
-export interface DataFlowDebugSessionAddDataFlowdefaultResponse
+export interface DataFlowDebugSessionAddDataFlowDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -471,7 +471,7 @@ export interface DataFlowDebugSessionDeleteDataFlowDebugSession200Response
 }
 
 /** Deletes a data flow debug session. */
-export interface DataFlowDebugSessionDeleteDataFlowDebugSessiondefaultResponse
+export interface DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -498,7 +498,7 @@ export interface DataFlowDebugSessionExecuteCommand202Response
 }
 
 /** Execute a data flow debug command. */
-export interface DataFlowDebugSessionExecuteCommanddefaultResponse
+export interface DataFlowDebugSessionExecuteCommandDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -511,7 +511,7 @@ export interface DatasetGetDatasetsByWorkspace200Response extends HttpResponse {
 }
 
 /** Lists datasets. */
-export interface DatasetGetDatasetsByWorkspacedefaultResponse
+export interface DatasetGetDatasetsByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -530,7 +530,7 @@ export interface DatasetCreateOrUpdateDataset202Response extends HttpResponse {
 }
 
 /** Creates or updates a dataset. */
-export interface DatasetCreateOrUpdateDatasetdefaultResponse
+export interface DatasetCreateOrUpdateDatasetDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -549,7 +549,7 @@ export interface DatasetGetDataset304Response extends HttpResponse {
 }
 
 /** Gets a dataset. */
-export interface DatasetGetDatasetdefaultResponse extends HttpResponse {
+export interface DatasetGetDatasetDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -573,7 +573,7 @@ export interface DatasetDeleteDataset204Response extends HttpResponse {
 }
 
 /** Deletes a dataset. */
-export interface DatasetDeleteDatasetdefaultResponse extends HttpResponse {
+export interface DatasetDeleteDatasetDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -591,7 +591,7 @@ export interface DatasetRenameDataset202Response extends HttpResponse {
 }
 
 /** Renames a dataset. */
-export interface DatasetRenameDatasetdefaultResponse extends HttpResponse {
+export interface DatasetRenameDatasetDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -610,7 +610,7 @@ export interface IntegrationRuntimesList200Response extends HttpResponse {
 }
 
 /** List Integration Runtimes */
-export interface IntegrationRuntimesListdefaultResponse extends HttpResponse {
+export interface IntegrationRuntimesListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -622,7 +622,7 @@ export interface IntegrationRuntimesGet200Response extends HttpResponse {
 }
 
 /** Get Integration Runtime */
-export interface IntegrationRuntimesGetdefaultResponse extends HttpResponse {
+export interface IntegrationRuntimesGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -634,7 +634,7 @@ export interface LibraryList200Response extends HttpResponse {
 }
 
 /** Lists Library. */
-export interface LibraryListdefaultResponse extends HttpResponse {
+export interface LibraryListDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -652,7 +652,7 @@ export interface LibraryFlush202Response extends HttpResponse {
 }
 
 /** Flush Library */
-export interface LibraryFlushdefaultResponse extends HttpResponse {
+export interface LibraryFlushDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -670,7 +670,7 @@ export interface LibraryGetOperationResult202Response extends HttpResponse {
 }
 
 /** Get Operation result for Library */
-export interface LibraryGetOperationResultdefaultResponse extends HttpResponse {
+export interface LibraryGetOperationResultDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -694,7 +694,7 @@ export interface LibraryDelete409Response extends HttpResponse {
 }
 
 /** Delete Library */
-export interface LibraryDeletedefaultResponse extends HttpResponse {
+export interface LibraryDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -712,7 +712,7 @@ export interface LibraryGet304Response extends HttpResponse {
 }
 
 /** Get Library */
-export interface LibraryGetdefaultResponse extends HttpResponse {
+export interface LibraryGetDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -730,7 +730,7 @@ export interface LibraryCreate202Response extends HttpResponse {
 }
 
 /** Creates a library with the library name. */
-export interface LibraryCreatedefaultResponse extends HttpResponse {
+export interface LibraryCreateDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -742,7 +742,7 @@ export interface LibraryAppend201Response extends HttpResponse {
 }
 
 /** Append the content to the library resource created using the create operation. The maximum content size is 4MiB. Content larger than 4MiB must be appended in 4MiB chunks */
-export interface LibraryAppenddefaultResponse extends HttpResponse {
+export interface LibraryAppendDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -755,7 +755,7 @@ export interface LinkedServiceGetLinkedServicesByWorkspace200Response
 }
 
 /** Lists linked services. */
-export interface LinkedServiceGetLinkedServicesByWorkspacedefaultResponse
+export interface LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -776,7 +776,7 @@ export interface LinkedServiceCreateOrUpdateLinkedService202Response
 }
 
 /** Creates or updates a linked service. */
-export interface LinkedServiceCreateOrUpdateLinkedServicedefaultResponse
+export interface LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -795,7 +795,7 @@ export interface LinkedServiceGetLinkedService304Response extends HttpResponse {
 }
 
 /** Gets a linked service. */
-export interface LinkedServiceGetLinkedServicedefaultResponse
+export interface LinkedServiceGetLinkedServiceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -823,7 +823,7 @@ export interface LinkedServiceDeleteLinkedService204Response
 }
 
 /** Deletes a linked service. */
-export interface LinkedServiceDeleteLinkedServicedefaultResponse
+export interface LinkedServiceDeleteLinkedServiceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -844,7 +844,7 @@ export interface LinkedServiceRenameLinkedService202Response
 }
 
 /** Renames a linked service. */
-export interface LinkedServiceRenameLinkedServicedefaultResponse
+export interface LinkedServiceRenameLinkedServiceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -858,7 +858,7 @@ export interface NotebookGetNotebooksByWorkspace200Response
 }
 
 /** Lists Notebooks. */
-export interface NotebookGetNotebooksByWorkspacedefaultResponse
+export interface NotebookGetNotebooksByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -872,7 +872,7 @@ export interface NotebookGetNotebookSummaryByWorkSpace200Response
 }
 
 /** Lists a summary of Notebooks. */
-export interface NotebookGetNotebookSummaryByWorkSpacedefaultResponse
+export interface NotebookGetNotebookSummaryByWorkSpaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -893,7 +893,7 @@ export interface NotebookCreateOrUpdateNotebook202Response
 }
 
 /** Creates or updates a Note Book. */
-export interface NotebookCreateOrUpdateNotebookdefaultResponse
+export interface NotebookCreateOrUpdateNotebookDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -912,7 +912,7 @@ export interface NotebookGetNotebook304Response extends HttpResponse {
 }
 
 /** Gets a Note Book. */
-export interface NotebookGetNotebookdefaultResponse extends HttpResponse {
+export interface NotebookGetNotebookDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -936,7 +936,7 @@ export interface NotebookDeleteNotebook204Response extends HttpResponse {
 }
 
 /** Deletes a Note book. */
-export interface NotebookDeleteNotebookdefaultResponse extends HttpResponse {
+export interface NotebookDeleteNotebookDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -954,7 +954,7 @@ export interface NotebookRenameNotebook202Response extends HttpResponse {
 }
 
 /** Renames a notebook. */
-export interface NotebookRenameNotebookdefaultResponse extends HttpResponse {
+export interface NotebookRenameNotebookDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -984,7 +984,7 @@ export interface NotebookOperationResultGet204Response extends HttpResponse {
 }
 
 /** Get notebook operation result */
-export interface NotebookOperationResultGetdefaultResponse
+export interface NotebookOperationResultGetDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
@@ -998,7 +998,7 @@ export interface PipelineGetPipelinesByWorkspace200Response
 }
 
 /** Lists pipelines. */
-export interface PipelineGetPipelinesByWorkspacedefaultResponse
+export interface PipelineGetPipelinesByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1019,7 +1019,7 @@ export interface PipelineCreateOrUpdatePipeline202Response
 }
 
 /** Creates or updates a pipeline. */
-export interface PipelineCreateOrUpdatePipelinedefaultResponse
+export interface PipelineCreateOrUpdatePipelineDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1038,7 +1038,7 @@ export interface PipelineGetPipeline304Response extends HttpResponse {
 }
 
 /** Gets a pipeline. */
-export interface PipelineGetPipelinedefaultResponse extends HttpResponse {
+export interface PipelineGetPipelineDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1062,7 +1062,7 @@ export interface PipelineDeletePipeline204Response extends HttpResponse {
 }
 
 /** Deletes a pipeline. */
-export interface PipelineDeletePipelinedefaultResponse extends HttpResponse {
+export interface PipelineDeletePipelineDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1080,7 +1080,7 @@ export interface PipelineRenamePipeline202Response extends HttpResponse {
 }
 
 /** Renames a pipeline. */
-export interface PipelineRenamePipelinedefaultResponse extends HttpResponse {
+export interface PipelineRenamePipelineDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1092,7 +1092,7 @@ export interface PipelineCreatePipelineRun202Response extends HttpResponse {
 }
 
 /** Creates a run of a pipeline. */
-export interface PipelineCreatePipelineRundefaultResponse extends HttpResponse {
+export interface PipelineCreatePipelineRunDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1105,7 +1105,7 @@ export interface PipelineRunQueryPipelineRunsByWorkspace200Response
 }
 
 /** Query pipeline runs in the workspace based on input filter conditions. */
-export interface PipelineRunQueryPipelineRunsByWorkspacedefaultResponse
+export interface PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1118,7 +1118,7 @@ export interface PipelineRunGetPipelineRun200Response extends HttpResponse {
 }
 
 /** Get a pipeline run by its run ID. */
-export interface PipelineRunGetPipelineRundefaultResponse extends HttpResponse {
+export interface PipelineRunGetPipelineRunDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1130,7 +1130,7 @@ export interface PipelineRunQueryActivityRuns200Response extends HttpResponse {
 }
 
 /** Query activity runs based on input filter conditions. */
-export interface PipelineRunQueryActivityRunsdefaultResponse
+export interface PipelineRunQueryActivityRunsDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1143,7 +1143,7 @@ export interface PipelineRunCancelPipelineRun200Response extends HttpResponse {
 }
 
 /** Cancel a pipeline run by its run ID. */
-export interface PipelineRunCancelPipelineRundefaultResponse
+export interface PipelineRunCancelPipelineRunDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1157,7 +1157,7 @@ export interface SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
 }
 
 /** Lists spark job definitions. */
-export interface SparkJobDefinitionGetSparkJobDefinitionsByWorkspacedefaultResponse
+export interface SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1178,7 +1178,7 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
 }
 
 /** Creates or updates a Spark Job Definition. */
-export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinitiondefaultResponse
+export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1199,7 +1199,7 @@ export interface SparkJobDefinitionGetSparkJobDefinition304Response
 }
 
 /** Gets a Spark Job Definition. */
-export interface SparkJobDefinitionGetSparkJobDefinitiondefaultResponse
+export interface SparkJobDefinitionGetSparkJobDefinitionDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1227,7 +1227,7 @@ export interface SparkJobDefinitionDeleteSparkJobDefinition204Response
 }
 
 /** Deletes a Spark Job Definition. */
-export interface SparkJobDefinitionDeleteSparkJobDefinitiondefaultResponse
+export interface SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1248,7 +1248,7 @@ export interface SparkJobDefinitionExecuteSparkJobDefinition202Response
 }
 
 /** Executes the spark job definition. */
-export interface SparkJobDefinitionExecuteSparkJobDefinitiondefaultResponse
+export interface SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1269,7 +1269,7 @@ export interface SparkJobDefinitionRenameSparkJobDefinition202Response
 }
 
 /** Renames a sparkJobDefinition. */
-export interface SparkJobDefinitionRenameSparkJobDefinitiondefaultResponse
+export interface SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1290,7 +1290,7 @@ export interface SparkJobDefinitionDebugSparkJobDefinition202Response
 }
 
 /** Debug the spark job definition. */
-export interface SparkJobDefinitionDebugSparkJobDefinitiondefaultResponse
+export interface SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1303,7 +1303,7 @@ export interface SqlPoolsList200Response extends HttpResponse {
 }
 
 /** List Sql Pools */
-export interface SqlPoolsListdefaultResponse extends HttpResponse {
+export interface SqlPoolsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -1315,7 +1315,7 @@ export interface SqlPoolsGet200Response extends HttpResponse {
 }
 
 /** Get Sql Pool */
-export interface SqlPoolsGetdefaultResponse extends HttpResponse {
+export interface SqlPoolsGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }
@@ -1328,7 +1328,7 @@ export interface SqlScriptGetSqlScriptsByWorkspace200Response
 }
 
 /** Lists sql scripts. */
-export interface SqlScriptGetSqlScriptsByWorkspacedefaultResponse
+export interface SqlScriptGetSqlScriptsByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1349,7 +1349,7 @@ export interface SqlScriptCreateOrUpdateSqlScript202Response
 }
 
 /** Creates or updates a Sql Script. */
-export interface SqlScriptCreateOrUpdateSqlScriptdefaultResponse
+export interface SqlScriptCreateOrUpdateSqlScriptDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1368,7 +1368,7 @@ export interface SqlScriptGetSqlScript304Response extends HttpResponse {
 }
 
 /** Gets a sql script. */
-export interface SqlScriptGetSqlScriptdefaultResponse extends HttpResponse {
+export interface SqlScriptGetSqlScriptDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1392,7 +1392,7 @@ export interface SqlScriptDeleteSqlScript204Response extends HttpResponse {
 }
 
 /** Deletes a Sql Script. */
-export interface SqlScriptDeleteSqlScriptdefaultResponse extends HttpResponse {
+export interface SqlScriptDeleteSqlScriptDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1410,7 +1410,7 @@ export interface SqlScriptRenameSqlScript202Response extends HttpResponse {
 }
 
 /** Renames a sqlScript. */
-export interface SqlScriptRenameSqlScriptdefaultResponse extends HttpResponse {
+export interface SqlScriptRenameSqlScriptDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1422,7 +1422,7 @@ export interface TriggerGetTriggersByWorkspace200Response extends HttpResponse {
 }
 
 /** Lists triggers. */
-export interface TriggerGetTriggersByWorkspacedefaultResponse
+export interface TriggerGetTriggersByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1441,7 +1441,7 @@ export interface TriggerCreateOrUpdateTrigger202Response extends HttpResponse {
 }
 
 /** Creates or updates a trigger. */
-export interface TriggerCreateOrUpdateTriggerdefaultResponse
+export interface TriggerCreateOrUpdateTriggerDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1460,7 +1460,7 @@ export interface TriggerGetTrigger304Response extends HttpResponse {
 }
 
 /** Gets a trigger. */
-export interface TriggerGetTriggerdefaultResponse extends HttpResponse {
+export interface TriggerGetTriggerDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1484,7 +1484,7 @@ export interface TriggerDeleteTrigger204Response extends HttpResponse {
 }
 
 /** Deletes a trigger. */
-export interface TriggerDeleteTriggerdefaultResponse extends HttpResponse {
+export interface TriggerDeleteTriggerDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1504,7 +1504,7 @@ export interface TriggerSubscribeTriggerToEvents202Response
 }
 
 /** Subscribe event trigger to events. */
-export interface TriggerSubscribeTriggerToEventsdefaultResponse
+export interface TriggerSubscribeTriggerToEventsDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1518,7 +1518,7 @@ export interface TriggerGetEventSubscriptionStatus200Response
 }
 
 /** Get a trigger's event subscription status. */
-export interface TriggerGetEventSubscriptionStatusdefaultResponse
+export interface TriggerGetEventSubscriptionStatusDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1539,7 +1539,7 @@ export interface TriggerUnsubscribeTriggerFromEvents202Response
 }
 
 /** Unsubscribe event trigger from events. */
-export interface TriggerUnsubscribeTriggerFromEventsdefaultResponse
+export interface TriggerUnsubscribeTriggerFromEventsDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1552,7 +1552,7 @@ export interface TriggerStartTrigger200Response extends HttpResponse {
 }
 
 /** Starts a trigger. */
-export interface TriggerStartTriggerdefaultResponse extends HttpResponse {
+export interface TriggerStartTriggerDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1564,7 +1564,7 @@ export interface TriggerStopTrigger200Response extends HttpResponse {
 }
 
 /** Stops a trigger. */
-export interface TriggerStopTriggerdefaultResponse extends HttpResponse {
+export interface TriggerStopTriggerDefaultResponse extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
 }
@@ -1577,7 +1577,7 @@ export interface TriggerRunRerunTriggerInstance200Response
 }
 
 /** Rerun single trigger instance by runId. */
-export interface TriggerRunRerunTriggerInstancedefaultResponse
+export interface TriggerRunRerunTriggerInstanceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1591,7 +1591,7 @@ export interface TriggerRunCancelTriggerInstance200Response
 }
 
 /** Cancel single trigger instance by runId. */
-export interface TriggerRunCancelTriggerInstancedefaultResponse
+export interface TriggerRunCancelTriggerInstanceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1605,7 +1605,7 @@ export interface TriggerRunQueryTriggerRunsByWorkspace200Response
 }
 
 /** Query trigger runs. */
-export interface TriggerRunQueryTriggerRunsByWorkspacedefaultResponse
+export interface TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse
   extends HttpResponse {
   status: string;
   body: CloudErrorAutoGeneratedOutput;
@@ -1618,7 +1618,7 @@ export interface WorkspaceGet200Response extends HttpResponse {
 }
 
 /** Get Workspace */
-export interface WorkspaceGetdefaultResponse extends HttpResponse {
+export interface WorkspaceGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorContractOutput;
 }

@@ -2,39 +2,43 @@
 // Licensed under the MIT license.
 
 import {
-  GetFileParameters,
-  GetFileLargeParameters,
-  GetEmptyFileParameters
+  FilesGetFileParameters,
+  FilesGetFileLargeParameters,
+  FilesGetEmptyFileParameters
 } from "./parameters";
 import {
-  GetFile200Response,
-  GetFiledefaultResponse,
-  GetFileLarge200Response,
-  GetFileLargedefaultResponse,
-  GetEmptyFile200Response,
-  GetEmptyFiledefaultResponse
+  FilesGetFile200Response,
+  FilesGetFileDefaultResponse,
+  FilesGetFileLarge200Response,
+  FilesGetFileLargeDefaultResponse,
+  FilesGetEmptyFile200Response,
+  FilesGetEmptyFileDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetFile {
   /** Get file */
   get(
-    options?: GetFileParameters
-  ): StreamableMethod<GetFile200Response | GetFiledefaultResponse>;
+    options?: FilesGetFileParameters
+  ): StreamableMethod<FilesGetFile200Response | FilesGetFileDefaultResponse>;
 }
 
 export interface GetFileLarge {
   /** Get a large file */
   get(
-    options?: GetFileLargeParameters
-  ): StreamableMethod<GetFileLarge200Response | GetFileLargedefaultResponse>;
+    options?: FilesGetFileLargeParameters
+  ): StreamableMethod<
+    FilesGetFileLarge200Response | FilesGetFileLargeDefaultResponse
+  >;
 }
 
 export interface GetEmptyFile {
   /** Get empty file */
   get(
-    options?: GetEmptyFileParameters
-  ): StreamableMethod<GetEmptyFile200Response | GetEmptyFiledefaultResponse>;
+    options?: FilesGetEmptyFileParameters
+  ): StreamableMethod<
+    FilesGetEmptyFile200Response | FilesGetEmptyFileDefaultResponse
+  >;
 }
 
 export interface Routes {

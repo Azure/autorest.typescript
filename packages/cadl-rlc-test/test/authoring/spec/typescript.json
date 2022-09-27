@@ -1,0 +1,9 @@
+{
+  "generateMetadata": true,
+  "includeShortcuts": true,
+  "packageDetails": {
+    "name": "@msinternal/authoring",
+    "description": "Authoring Ledger Service",
+    "version": "1.0.0-beta.1"
+  }
+}

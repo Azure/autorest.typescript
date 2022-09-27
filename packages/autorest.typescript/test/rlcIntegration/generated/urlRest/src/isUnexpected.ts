@@ -3,137 +3,137 @@
 
 import {
   PathsGetBooleanTrue200Response,
-  PathsGetBooleanTruedefaultResponse,
+  PathsGetBooleanTrueDefaultResponse,
   PathsGetBooleanFalse200Response,
-  PathsGetBooleanFalsedefaultResponse,
+  PathsGetBooleanFalseDefaultResponse,
   PathsGetIntOneMillion200Response,
-  PathsGetIntOneMilliondefaultResponse,
+  PathsGetIntOneMillionDefaultResponse,
   PathsGetIntNegativeOneMillion200Response,
-  PathsGetIntNegativeOneMilliondefaultResponse,
+  PathsGetIntNegativeOneMillionDefaultResponse,
   PathsGetTenBillion200Response,
-  PathsGetTenBilliondefaultResponse,
+  PathsGetTenBillionDefaultResponse,
   PathsGetNegativeTenBillion200Response,
-  PathsGetNegativeTenBilliondefaultResponse,
+  PathsGetNegativeTenBillionDefaultResponse,
   PathsFloatScientificPositive200Response,
-  PathsFloatScientificPositivedefaultResponse,
+  PathsFloatScientificPositiveDefaultResponse,
   PathsFloatScientificNegative200Response,
-  PathsFloatScientificNegativedefaultResponse,
+  PathsFloatScientificNegativeDefaultResponse,
   PathsDoubleDecimalPositive200Response,
-  PathsDoubleDecimalPositivedefaultResponse,
+  PathsDoubleDecimalPositiveDefaultResponse,
   PathsDoubleDecimalNegative200Response,
-  PathsDoubleDecimalNegativedefaultResponse,
+  PathsDoubleDecimalNegativeDefaultResponse,
   PathsStringUnicode200Response,
-  PathsStringUnicodedefaultResponse,
+  PathsStringUnicodeDefaultResponse,
   PathsStringUrlEncoded200Response,
-  PathsStringUrlEncodeddefaultResponse,
+  PathsStringUrlEncodedDefaultResponse,
   PathsStringUrlNonEncoded200Response,
-  PathsStringUrlNonEncodeddefaultResponse,
+  PathsStringUrlNonEncodedDefaultResponse,
   PathsStringEmpty200Response,
-  PathsStringEmptydefaultResponse,
+  PathsStringEmptyDefaultResponse,
   PathsStringNull400Response,
-  PathsStringNulldefaultResponse,
+  PathsStringNullDefaultResponse,
   PathsEnumValid200Response,
-  PathsEnumValiddefaultResponse,
+  PathsEnumValidDefaultResponse,
   PathsEnumNull400Response,
-  PathsEnumNulldefaultResponse,
+  PathsEnumNullDefaultResponse,
   PathsByteMultiByte200Response,
-  PathsByteMultiBytedefaultResponse,
+  PathsByteMultiByteDefaultResponse,
   PathsByteEmpty200Response,
-  PathsByteEmptydefaultResponse,
+  PathsByteEmptyDefaultResponse,
   PathsByteNull400Response,
-  PathsByteNulldefaultResponse,
+  PathsByteNullDefaultResponse,
   PathsDateValid200Response,
-  PathsDateValiddefaultResponse,
+  PathsDateValidDefaultResponse,
   PathsDateNull400Response,
-  PathsDateNulldefaultResponse,
+  PathsDateNullDefaultResponse,
   PathsDateTimeValid200Response,
-  PathsDateTimeValiddefaultResponse,
+  PathsDateTimeValidDefaultResponse,
   PathsDateTimeNull400Response,
-  PathsDateTimeNulldefaultResponse,
+  PathsDateTimeNullDefaultResponse,
   PathsBase64Url200Response,
-  PathsBase64UrldefaultResponse,
+  PathsBase64UrlDefaultResponse,
   PathsArrayCsvInPath200Response,
-  PathsArrayCsvInPathdefaultResponse,
+  PathsArrayCsvInPathDefaultResponse,
   PathsUnixTimeUrl200Response,
-  PathsUnixTimeUrldefaultResponse,
+  PathsUnixTimeUrlDefaultResponse,
   QueriesGetBooleanTrue200Response,
-  QueriesGetBooleanTruedefaultResponse,
+  QueriesGetBooleanTrueDefaultResponse,
   QueriesGetBooleanFalse200Response,
-  QueriesGetBooleanFalsedefaultResponse,
+  QueriesGetBooleanFalseDefaultResponse,
   QueriesGetBooleanNull200Response,
-  QueriesGetBooleanNulldefaultResponse,
+  QueriesGetBooleanNullDefaultResponse,
   QueriesGetIntOneMillion200Response,
-  QueriesGetIntOneMilliondefaultResponse,
+  QueriesGetIntOneMillionDefaultResponse,
   QueriesGetIntNegativeOneMillion200Response,
-  QueriesGetIntNegativeOneMilliondefaultResponse,
+  QueriesGetIntNegativeOneMillionDefaultResponse,
   QueriesGetIntNull200Response,
-  QueriesGetIntNulldefaultResponse,
+  QueriesGetIntNullDefaultResponse,
   QueriesGetTenBillion200Response,
-  QueriesGetTenBilliondefaultResponse,
+  QueriesGetTenBillionDefaultResponse,
   QueriesGetNegativeTenBillion200Response,
-  QueriesGetNegativeTenBilliondefaultResponse,
+  QueriesGetNegativeTenBillionDefaultResponse,
   QueriesGetLongNull200Response,
-  QueriesGetLongNulldefaultResponse,
+  QueriesGetLongNullDefaultResponse,
   QueriesFloatScientificPositive200Response,
-  QueriesFloatScientificPositivedefaultResponse,
+  QueriesFloatScientificPositiveDefaultResponse,
   QueriesFloatScientificNegative200Response,
-  QueriesFloatScientificNegativedefaultResponse,
+  QueriesFloatScientificNegativeDefaultResponse,
   QueriesFloatNull200Response,
-  QueriesFloatNulldefaultResponse,
+  QueriesFloatNullDefaultResponse,
   QueriesDoubleDecimalPositive200Response,
-  QueriesDoubleDecimalPositivedefaultResponse,
+  QueriesDoubleDecimalPositiveDefaultResponse,
   QueriesDoubleDecimalNegative200Response,
-  QueriesDoubleDecimalNegativedefaultResponse,
+  QueriesDoubleDecimalNegativeDefaultResponse,
   QueriesDoubleNull200Response,
-  QueriesDoubleNulldefaultResponse,
+  QueriesDoubleNullDefaultResponse,
   QueriesStringUnicode200Response,
-  QueriesStringUnicodedefaultResponse,
+  QueriesStringUnicodeDefaultResponse,
   QueriesStringUrlEncoded200Response,
-  QueriesStringUrlEncodeddefaultResponse,
+  QueriesStringUrlEncodedDefaultResponse,
   QueriesStringEmpty200Response,
-  QueriesStringEmptydefaultResponse,
+  QueriesStringEmptyDefaultResponse,
   QueriesStringNull200Response,
-  QueriesStringNulldefaultResponse,
+  QueriesStringNullDefaultResponse,
   QueriesEnumValid200Response,
-  QueriesEnumValiddefaultResponse,
+  QueriesEnumValidDefaultResponse,
   QueriesEnumNull200Response,
-  QueriesEnumNulldefaultResponse,
+  QueriesEnumNullDefaultResponse,
   QueriesByteMultiByte200Response,
-  QueriesByteMultiBytedefaultResponse,
+  QueriesByteMultiByteDefaultResponse,
   QueriesByteEmpty200Response,
-  QueriesByteEmptydefaultResponse,
+  QueriesByteEmptyDefaultResponse,
   QueriesByteNull200Response,
-  QueriesByteNulldefaultResponse,
+  QueriesByteNullDefaultResponse,
   QueriesDateValid200Response,
-  QueriesDateValiddefaultResponse,
+  QueriesDateValidDefaultResponse,
   QueriesDateNull200Response,
-  QueriesDateNulldefaultResponse,
+  QueriesDateNullDefaultResponse,
   QueriesDateTimeValid200Response,
-  QueriesDateTimeValiddefaultResponse,
+  QueriesDateTimeValidDefaultResponse,
   QueriesDateTimeNull200Response,
-  QueriesDateTimeNulldefaultResponse,
+  QueriesDateTimeNullDefaultResponse,
   QueriesArrayStringCsvValid200Response,
-  QueriesArrayStringCsvValiddefaultResponse,
+  QueriesArrayStringCsvValidDefaultResponse,
   QueriesArrayStringCsvNull200Response,
-  QueriesArrayStringCsvNulldefaultResponse,
+  QueriesArrayStringCsvNullDefaultResponse,
   QueriesArrayStringCsvEmpty200Response,
-  QueriesArrayStringCsvEmptydefaultResponse,
+  QueriesArrayStringCsvEmptyDefaultResponse,
   QueriesArrayStringNoCollectionFormatEmpty200Response,
-  QueriesArrayStringNoCollectionFormatEmptydefaultResponse,
+  QueriesArrayStringNoCollectionFormatEmptyDefaultResponse,
   QueriesArrayStringSsvValid200Response,
-  QueriesArrayStringSsvValiddefaultResponse,
+  QueriesArrayStringSsvValidDefaultResponse,
   QueriesArrayStringTsvValid200Response,
-  QueriesArrayStringTsvValiddefaultResponse,
+  QueriesArrayStringTsvValidDefaultResponse,
   QueriesArrayStringPipesValid200Response,
-  QueriesArrayStringPipesValiddefaultResponse,
+  QueriesArrayStringPipesValidDefaultResponse,
   PathItemsGetAllWithValues200Response,
-  PathItemsGetAllWithValuesdefaultResponse,
+  PathItemsGetAllWithValuesDefaultResponse,
   PathItemsGetGlobalQueryNull200Response,
-  PathItemsGetGlobalQueryNulldefaultResponse,
+  PathItemsGetGlobalQueryNullDefaultResponse,
   PathItemsGetGlobalAndLocalQueryNull200Response,
-  PathItemsGetGlobalAndLocalQueryNulldefaultResponse,
+  PathItemsGetGlobalAndLocalQueryNullDefaultResponse,
   PathItemsGetLocalPathItemQueryNull200Response,
-  PathItemsGetLocalPathItemQueryNulldefaultResponse
+  PathItemsGetLocalPathItemQueryNullDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -220,493 +220,496 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: PathsGetBooleanTrue200Response | PathsGetBooleanTruedefaultResponse
-): response is PathsGetBooleanTruedefaultResponse;
+  response: PathsGetBooleanTrue200Response | PathsGetBooleanTrueDefaultResponse
+): response is PathsGetBooleanTrueDefaultResponse;
 export function isUnexpected(
   response:
     | PathsGetBooleanFalse200Response
-    | PathsGetBooleanFalsedefaultResponse
-): response is PathsGetBooleanFalsedefaultResponse;
+    | PathsGetBooleanFalseDefaultResponse
+): response is PathsGetBooleanFalseDefaultResponse;
 export function isUnexpected(
   response:
     | PathsGetIntOneMillion200Response
-    | PathsGetIntOneMilliondefaultResponse
-): response is PathsGetIntOneMilliondefaultResponse;
+    | PathsGetIntOneMillionDefaultResponse
+): response is PathsGetIntOneMillionDefaultResponse;
 export function isUnexpected(
   response:
     | PathsGetIntNegativeOneMillion200Response
-    | PathsGetIntNegativeOneMilliondefaultResponse
-): response is PathsGetIntNegativeOneMilliondefaultResponse;
+    | PathsGetIntNegativeOneMillionDefaultResponse
+): response is PathsGetIntNegativeOneMillionDefaultResponse;
 export function isUnexpected(
-  response: PathsGetTenBillion200Response | PathsGetTenBilliondefaultResponse
-): response is PathsGetTenBilliondefaultResponse;
+  response: PathsGetTenBillion200Response | PathsGetTenBillionDefaultResponse
+): response is PathsGetTenBillionDefaultResponse;
 export function isUnexpected(
   response:
     | PathsGetNegativeTenBillion200Response
-    | PathsGetNegativeTenBilliondefaultResponse
-): response is PathsGetNegativeTenBilliondefaultResponse;
+    | PathsGetNegativeTenBillionDefaultResponse
+): response is PathsGetNegativeTenBillionDefaultResponse;
 export function isUnexpected(
   response:
     | PathsFloatScientificPositive200Response
-    | PathsFloatScientificPositivedefaultResponse
-): response is PathsFloatScientificPositivedefaultResponse;
+    | PathsFloatScientificPositiveDefaultResponse
+): response is PathsFloatScientificPositiveDefaultResponse;
 export function isUnexpected(
   response:
     | PathsFloatScientificNegative200Response
-    | PathsFloatScientificNegativedefaultResponse
-): response is PathsFloatScientificNegativedefaultResponse;
+    | PathsFloatScientificNegativeDefaultResponse
+): response is PathsFloatScientificNegativeDefaultResponse;
 export function isUnexpected(
   response:
     | PathsDoubleDecimalPositive200Response
-    | PathsDoubleDecimalPositivedefaultResponse
-): response is PathsDoubleDecimalPositivedefaultResponse;
+    | PathsDoubleDecimalPositiveDefaultResponse
+): response is PathsDoubleDecimalPositiveDefaultResponse;
 export function isUnexpected(
   response:
     | PathsDoubleDecimalNegative200Response
-    | PathsDoubleDecimalNegativedefaultResponse
-): response is PathsDoubleDecimalNegativedefaultResponse;
+    | PathsDoubleDecimalNegativeDefaultResponse
+): response is PathsDoubleDecimalNegativeDefaultResponse;
 export function isUnexpected(
-  response: PathsStringUnicode200Response | PathsStringUnicodedefaultResponse
-): response is PathsStringUnicodedefaultResponse;
+  response: PathsStringUnicode200Response | PathsStringUnicodeDefaultResponse
+): response is PathsStringUnicodeDefaultResponse;
 export function isUnexpected(
   response:
     | PathsStringUrlEncoded200Response
-    | PathsStringUrlEncodeddefaultResponse
-): response is PathsStringUrlEncodeddefaultResponse;
+    | PathsStringUrlEncodedDefaultResponse
+): response is PathsStringUrlEncodedDefaultResponse;
 export function isUnexpected(
   response:
     | PathsStringUrlNonEncoded200Response
-    | PathsStringUrlNonEncodeddefaultResponse
-): response is PathsStringUrlNonEncodeddefaultResponse;
+    | PathsStringUrlNonEncodedDefaultResponse
+): response is PathsStringUrlNonEncodedDefaultResponse;
 export function isUnexpected(
-  response: PathsStringEmpty200Response | PathsStringEmptydefaultResponse
-): response is PathsStringEmptydefaultResponse;
+  response: PathsStringEmpty200Response | PathsStringEmptyDefaultResponse
+): response is PathsStringEmptyDefaultResponse;
 export function isUnexpected(
-  response: PathsStringNull400Response | PathsStringNulldefaultResponse
-): response is PathsStringNulldefaultResponse;
+  response: PathsStringNull400Response | PathsStringNullDefaultResponse
+): response is PathsStringNullDefaultResponse;
 export function isUnexpected(
-  response: PathsEnumValid200Response | PathsEnumValiddefaultResponse
-): response is PathsEnumValiddefaultResponse;
+  response: PathsEnumValid200Response | PathsEnumValidDefaultResponse
+): response is PathsEnumValidDefaultResponse;
 export function isUnexpected(
-  response: PathsEnumNull400Response | PathsEnumNulldefaultResponse
-): response is PathsEnumNulldefaultResponse;
+  response: PathsEnumNull400Response | PathsEnumNullDefaultResponse
+): response is PathsEnumNullDefaultResponse;
 export function isUnexpected(
-  response: PathsByteMultiByte200Response | PathsByteMultiBytedefaultResponse
-): response is PathsByteMultiBytedefaultResponse;
+  response: PathsByteMultiByte200Response | PathsByteMultiByteDefaultResponse
+): response is PathsByteMultiByteDefaultResponse;
 export function isUnexpected(
-  response: PathsByteEmpty200Response | PathsByteEmptydefaultResponse
-): response is PathsByteEmptydefaultResponse;
+  response: PathsByteEmpty200Response | PathsByteEmptyDefaultResponse
+): response is PathsByteEmptyDefaultResponse;
 export function isUnexpected(
-  response: PathsByteNull400Response | PathsByteNulldefaultResponse
-): response is PathsByteNulldefaultResponse;
+  response: PathsByteNull400Response | PathsByteNullDefaultResponse
+): response is PathsByteNullDefaultResponse;
 export function isUnexpected(
-  response: PathsDateValid200Response | PathsDateValiddefaultResponse
-): response is PathsDateValiddefaultResponse;
+  response: PathsDateValid200Response | PathsDateValidDefaultResponse
+): response is PathsDateValidDefaultResponse;
 export function isUnexpected(
-  response: PathsDateNull400Response | PathsDateNulldefaultResponse
-): response is PathsDateNulldefaultResponse;
+  response: PathsDateNull400Response | PathsDateNullDefaultResponse
+): response is PathsDateNullDefaultResponse;
 export function isUnexpected(
-  response: PathsDateTimeValid200Response | PathsDateTimeValiddefaultResponse
-): response is PathsDateTimeValiddefaultResponse;
+  response: PathsDateTimeValid200Response | PathsDateTimeValidDefaultResponse
+): response is PathsDateTimeValidDefaultResponse;
 export function isUnexpected(
-  response: PathsDateTimeNull400Response | PathsDateTimeNulldefaultResponse
-): response is PathsDateTimeNulldefaultResponse;
+  response: PathsDateTimeNull400Response | PathsDateTimeNullDefaultResponse
+): response is PathsDateTimeNullDefaultResponse;
 export function isUnexpected(
-  response: PathsBase64Url200Response | PathsBase64UrldefaultResponse
-): response is PathsBase64UrldefaultResponse;
+  response: PathsBase64Url200Response | PathsBase64UrlDefaultResponse
+): response is PathsBase64UrlDefaultResponse;
 export function isUnexpected(
-  response: PathsArrayCsvInPath200Response | PathsArrayCsvInPathdefaultResponse
-): response is PathsArrayCsvInPathdefaultResponse;
+  response: PathsArrayCsvInPath200Response | PathsArrayCsvInPathDefaultResponse
+): response is PathsArrayCsvInPathDefaultResponse;
 export function isUnexpected(
-  response: PathsUnixTimeUrl200Response | PathsUnixTimeUrldefaultResponse
-): response is PathsUnixTimeUrldefaultResponse;
+  response: PathsUnixTimeUrl200Response | PathsUnixTimeUrlDefaultResponse
+): response is PathsUnixTimeUrlDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesGetBooleanTrue200Response
-    | QueriesGetBooleanTruedefaultResponse
-): response is QueriesGetBooleanTruedefaultResponse;
+    | QueriesGetBooleanTrueDefaultResponse
+): response is QueriesGetBooleanTrueDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesGetBooleanFalse200Response
-    | QueriesGetBooleanFalsedefaultResponse
-): response is QueriesGetBooleanFalsedefaultResponse;
+    | QueriesGetBooleanFalseDefaultResponse
+): response is QueriesGetBooleanFalseDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesGetBooleanNull200Response
-    | QueriesGetBooleanNulldefaultResponse
-): response is QueriesGetBooleanNulldefaultResponse;
+    | QueriesGetBooleanNullDefaultResponse
+): response is QueriesGetBooleanNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesGetIntOneMillion200Response
-    | QueriesGetIntOneMilliondefaultResponse
-): response is QueriesGetIntOneMilliondefaultResponse;
+    | QueriesGetIntOneMillionDefaultResponse
+): response is QueriesGetIntOneMillionDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesGetIntNegativeOneMillion200Response
-    | QueriesGetIntNegativeOneMilliondefaultResponse
-): response is QueriesGetIntNegativeOneMilliondefaultResponse;
+    | QueriesGetIntNegativeOneMillionDefaultResponse
+): response is QueriesGetIntNegativeOneMillionDefaultResponse;
 export function isUnexpected(
-  response: QueriesGetIntNull200Response | QueriesGetIntNulldefaultResponse
-): response is QueriesGetIntNulldefaultResponse;
+  response: QueriesGetIntNull200Response | QueriesGetIntNullDefaultResponse
+): response is QueriesGetIntNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesGetTenBillion200Response
-    | QueriesGetTenBilliondefaultResponse
-): response is QueriesGetTenBilliondefaultResponse;
+    | QueriesGetTenBillionDefaultResponse
+): response is QueriesGetTenBillionDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesGetNegativeTenBillion200Response
-    | QueriesGetNegativeTenBilliondefaultResponse
-): response is QueriesGetNegativeTenBilliondefaultResponse;
+    | QueriesGetNegativeTenBillionDefaultResponse
+): response is QueriesGetNegativeTenBillionDefaultResponse;
 export function isUnexpected(
-  response: QueriesGetLongNull200Response | QueriesGetLongNulldefaultResponse
-): response is QueriesGetLongNulldefaultResponse;
+  response: QueriesGetLongNull200Response | QueriesGetLongNullDefaultResponse
+): response is QueriesGetLongNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesFloatScientificPositive200Response
-    | QueriesFloatScientificPositivedefaultResponse
-): response is QueriesFloatScientificPositivedefaultResponse;
+    | QueriesFloatScientificPositiveDefaultResponse
+): response is QueriesFloatScientificPositiveDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesFloatScientificNegative200Response
-    | QueriesFloatScientificNegativedefaultResponse
-): response is QueriesFloatScientificNegativedefaultResponse;
+    | QueriesFloatScientificNegativeDefaultResponse
+): response is QueriesFloatScientificNegativeDefaultResponse;
 export function isUnexpected(
-  response: QueriesFloatNull200Response | QueriesFloatNulldefaultResponse
-): response is QueriesFloatNulldefaultResponse;
+  response: QueriesFloatNull200Response | QueriesFloatNullDefaultResponse
+): response is QueriesFloatNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesDoubleDecimalPositive200Response
-    | QueriesDoubleDecimalPositivedefaultResponse
-): response is QueriesDoubleDecimalPositivedefaultResponse;
+    | QueriesDoubleDecimalPositiveDefaultResponse
+): response is QueriesDoubleDecimalPositiveDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesDoubleDecimalNegative200Response
-    | QueriesDoubleDecimalNegativedefaultResponse
-): response is QueriesDoubleDecimalNegativedefaultResponse;
+    | QueriesDoubleDecimalNegativeDefaultResponse
+): response is QueriesDoubleDecimalNegativeDefaultResponse;
 export function isUnexpected(
-  response: QueriesDoubleNull200Response | QueriesDoubleNulldefaultResponse
-): response is QueriesDoubleNulldefaultResponse;
+  response: QueriesDoubleNull200Response | QueriesDoubleNullDefaultResponse
+): response is QueriesDoubleNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesStringUnicode200Response
-    | QueriesStringUnicodedefaultResponse
-): response is QueriesStringUnicodedefaultResponse;
+    | QueriesStringUnicodeDefaultResponse
+): response is QueriesStringUnicodeDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesStringUrlEncoded200Response
-    | QueriesStringUrlEncodeddefaultResponse
-): response is QueriesStringUrlEncodeddefaultResponse;
+    | QueriesStringUrlEncodedDefaultResponse
+): response is QueriesStringUrlEncodedDefaultResponse;
 export function isUnexpected(
-  response: QueriesStringEmpty200Response | QueriesStringEmptydefaultResponse
-): response is QueriesStringEmptydefaultResponse;
+  response: QueriesStringEmpty200Response | QueriesStringEmptyDefaultResponse
+): response is QueriesStringEmptyDefaultResponse;
 export function isUnexpected(
-  response: QueriesStringNull200Response | QueriesStringNulldefaultResponse
-): response is QueriesStringNulldefaultResponse;
+  response: QueriesStringNull200Response | QueriesStringNullDefaultResponse
+): response is QueriesStringNullDefaultResponse;
 export function isUnexpected(
-  response: QueriesEnumValid200Response | QueriesEnumValiddefaultResponse
-): response is QueriesEnumValiddefaultResponse;
+  response: QueriesEnumValid200Response | QueriesEnumValidDefaultResponse
+): response is QueriesEnumValidDefaultResponse;
 export function isUnexpected(
-  response: QueriesEnumNull200Response | QueriesEnumNulldefaultResponse
-): response is QueriesEnumNulldefaultResponse;
+  response: QueriesEnumNull200Response | QueriesEnumNullDefaultResponse
+): response is QueriesEnumNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesByteMultiByte200Response
-    | QueriesByteMultiBytedefaultResponse
-): response is QueriesByteMultiBytedefaultResponse;
+    | QueriesByteMultiByteDefaultResponse
+): response is QueriesByteMultiByteDefaultResponse;
 export function isUnexpected(
-  response: QueriesByteEmpty200Response | QueriesByteEmptydefaultResponse
-): response is QueriesByteEmptydefaultResponse;
+  response: QueriesByteEmpty200Response | QueriesByteEmptyDefaultResponse
+): response is QueriesByteEmptyDefaultResponse;
 export function isUnexpected(
-  response: QueriesByteNull200Response | QueriesByteNulldefaultResponse
-): response is QueriesByteNulldefaultResponse;
+  response: QueriesByteNull200Response | QueriesByteNullDefaultResponse
+): response is QueriesByteNullDefaultResponse;
 export function isUnexpected(
-  response: QueriesDateValid200Response | QueriesDateValiddefaultResponse
-): response is QueriesDateValiddefaultResponse;
+  response: QueriesDateValid200Response | QueriesDateValidDefaultResponse
+): response is QueriesDateValidDefaultResponse;
 export function isUnexpected(
-  response: QueriesDateNull200Response | QueriesDateNulldefaultResponse
-): response is QueriesDateNulldefaultResponse;
+  response: QueriesDateNull200Response | QueriesDateNullDefaultResponse
+): response is QueriesDateNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesDateTimeValid200Response
-    | QueriesDateTimeValiddefaultResponse
-): response is QueriesDateTimeValiddefaultResponse;
+    | QueriesDateTimeValidDefaultResponse
+): response is QueriesDateTimeValidDefaultResponse;
 export function isUnexpected(
-  response: QueriesDateTimeNull200Response | QueriesDateTimeNulldefaultResponse
-): response is QueriesDateTimeNulldefaultResponse;
+  response: QueriesDateTimeNull200Response | QueriesDateTimeNullDefaultResponse
+): response is QueriesDateTimeNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesArrayStringCsvValid200Response
-    | QueriesArrayStringCsvValiddefaultResponse
-): response is QueriesArrayStringCsvValiddefaultResponse;
+    | QueriesArrayStringCsvValidDefaultResponse
+): response is QueriesArrayStringCsvValidDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesArrayStringCsvNull200Response
-    | QueriesArrayStringCsvNulldefaultResponse
-): response is QueriesArrayStringCsvNulldefaultResponse;
+    | QueriesArrayStringCsvNullDefaultResponse
+): response is QueriesArrayStringCsvNullDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesArrayStringCsvEmpty200Response
-    | QueriesArrayStringCsvEmptydefaultResponse
-): response is QueriesArrayStringCsvEmptydefaultResponse;
+    | QueriesArrayStringCsvEmptyDefaultResponse
+): response is QueriesArrayStringCsvEmptyDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesArrayStringNoCollectionFormatEmpty200Response
-    | QueriesArrayStringNoCollectionFormatEmptydefaultResponse
-): response is QueriesArrayStringNoCollectionFormatEmptydefaultResponse;
+    | QueriesArrayStringNoCollectionFormatEmptyDefaultResponse
+): response is QueriesArrayStringNoCollectionFormatEmptyDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesArrayStringSsvValid200Response
-    | QueriesArrayStringSsvValiddefaultResponse
-): response is QueriesArrayStringSsvValiddefaultResponse;
+    | QueriesArrayStringSsvValidDefaultResponse
+): response is QueriesArrayStringSsvValidDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesArrayStringTsvValid200Response
-    | QueriesArrayStringTsvValiddefaultResponse
-): response is QueriesArrayStringTsvValiddefaultResponse;
+    | QueriesArrayStringTsvValidDefaultResponse
+): response is QueriesArrayStringTsvValidDefaultResponse;
 export function isUnexpected(
   response:
     | QueriesArrayStringPipesValid200Response
-    | QueriesArrayStringPipesValiddefaultResponse
-): response is QueriesArrayStringPipesValiddefaultResponse;
+    | QueriesArrayStringPipesValidDefaultResponse
+): response is QueriesArrayStringPipesValidDefaultResponse;
 export function isUnexpected(
   response:
     | PathItemsGetAllWithValues200Response
-    | PathItemsGetAllWithValuesdefaultResponse
-): response is PathItemsGetAllWithValuesdefaultResponse;
+    | PathItemsGetAllWithValuesDefaultResponse
+): response is PathItemsGetAllWithValuesDefaultResponse;
 export function isUnexpected(
   response:
     | PathItemsGetGlobalQueryNull200Response
-    | PathItemsGetGlobalQueryNulldefaultResponse
-): response is PathItemsGetGlobalQueryNulldefaultResponse;
+    | PathItemsGetGlobalQueryNullDefaultResponse
+): response is PathItemsGetGlobalQueryNullDefaultResponse;
 export function isUnexpected(
   response:
     | PathItemsGetGlobalAndLocalQueryNull200Response
-    | PathItemsGetGlobalAndLocalQueryNulldefaultResponse
-): response is PathItemsGetGlobalAndLocalQueryNulldefaultResponse;
+    | PathItemsGetGlobalAndLocalQueryNullDefaultResponse
+): response is PathItemsGetGlobalAndLocalQueryNullDefaultResponse;
 export function isUnexpected(
   response:
     | PathItemsGetLocalPathItemQueryNull200Response
-    | PathItemsGetLocalPathItemQueryNulldefaultResponse
-): response is PathItemsGetLocalPathItemQueryNulldefaultResponse;
+    | PathItemsGetLocalPathItemQueryNullDefaultResponse
+): response is PathItemsGetLocalPathItemQueryNullDefaultResponse;
 export function isUnexpected(
   response:
     | PathsGetBooleanTrue200Response
-    | PathsGetBooleanTruedefaultResponse
+    | PathsGetBooleanTrueDefaultResponse
     | PathsGetBooleanFalse200Response
-    | PathsGetBooleanFalsedefaultResponse
+    | PathsGetBooleanFalseDefaultResponse
     | PathsGetIntOneMillion200Response
-    | PathsGetIntOneMilliondefaultResponse
+    | PathsGetIntOneMillionDefaultResponse
     | PathsGetIntNegativeOneMillion200Response
-    | PathsGetIntNegativeOneMilliondefaultResponse
+    | PathsGetIntNegativeOneMillionDefaultResponse
     | PathsGetTenBillion200Response
-    | PathsGetTenBilliondefaultResponse
+    | PathsGetTenBillionDefaultResponse
     | PathsGetNegativeTenBillion200Response
-    | PathsGetNegativeTenBilliondefaultResponse
+    | PathsGetNegativeTenBillionDefaultResponse
     | PathsFloatScientificPositive200Response
-    | PathsFloatScientificPositivedefaultResponse
+    | PathsFloatScientificPositiveDefaultResponse
     | PathsFloatScientificNegative200Response
-    | PathsFloatScientificNegativedefaultResponse
+    | PathsFloatScientificNegativeDefaultResponse
     | PathsDoubleDecimalPositive200Response
-    | PathsDoubleDecimalPositivedefaultResponse
+    | PathsDoubleDecimalPositiveDefaultResponse
     | PathsDoubleDecimalNegative200Response
-    | PathsDoubleDecimalNegativedefaultResponse
+    | PathsDoubleDecimalNegativeDefaultResponse
     | PathsStringUnicode200Response
-    | PathsStringUnicodedefaultResponse
+    | PathsStringUnicodeDefaultResponse
     | PathsStringUrlEncoded200Response
-    | PathsStringUrlEncodeddefaultResponse
+    | PathsStringUrlEncodedDefaultResponse
     | PathsStringUrlNonEncoded200Response
-    | PathsStringUrlNonEncodeddefaultResponse
+    | PathsStringUrlNonEncodedDefaultResponse
     | PathsStringEmpty200Response
-    | PathsStringEmptydefaultResponse
+    | PathsStringEmptyDefaultResponse
     | PathsStringNull400Response
-    | PathsStringNulldefaultResponse
+    | PathsStringNullDefaultResponse
     | PathsEnumValid200Response
-    | PathsEnumValiddefaultResponse
+    | PathsEnumValidDefaultResponse
     | PathsEnumNull400Response
-    | PathsEnumNulldefaultResponse
+    | PathsEnumNullDefaultResponse
     | PathsByteMultiByte200Response
-    | PathsByteMultiBytedefaultResponse
+    | PathsByteMultiByteDefaultResponse
     | PathsByteEmpty200Response
-    | PathsByteEmptydefaultResponse
+    | PathsByteEmptyDefaultResponse
     | PathsByteNull400Response
-    | PathsByteNulldefaultResponse
+    | PathsByteNullDefaultResponse
     | PathsDateValid200Response
-    | PathsDateValiddefaultResponse
+    | PathsDateValidDefaultResponse
     | PathsDateNull400Response
-    | PathsDateNulldefaultResponse
+    | PathsDateNullDefaultResponse
     | PathsDateTimeValid200Response
-    | PathsDateTimeValiddefaultResponse
+    | PathsDateTimeValidDefaultResponse
     | PathsDateTimeNull400Response
-    | PathsDateTimeNulldefaultResponse
+    | PathsDateTimeNullDefaultResponse
     | PathsBase64Url200Response
-    | PathsBase64UrldefaultResponse
+    | PathsBase64UrlDefaultResponse
     | PathsArrayCsvInPath200Response
-    | PathsArrayCsvInPathdefaultResponse
+    | PathsArrayCsvInPathDefaultResponse
     | PathsUnixTimeUrl200Response
-    | PathsUnixTimeUrldefaultResponse
+    | PathsUnixTimeUrlDefaultResponse
     | QueriesGetBooleanTrue200Response
-    | QueriesGetBooleanTruedefaultResponse
+    | QueriesGetBooleanTrueDefaultResponse
     | QueriesGetBooleanFalse200Response
-    | QueriesGetBooleanFalsedefaultResponse
+    | QueriesGetBooleanFalseDefaultResponse
     | QueriesGetBooleanNull200Response
-    | QueriesGetBooleanNulldefaultResponse
+    | QueriesGetBooleanNullDefaultResponse
     | QueriesGetIntOneMillion200Response
-    | QueriesGetIntOneMilliondefaultResponse
+    | QueriesGetIntOneMillionDefaultResponse
     | QueriesGetIntNegativeOneMillion200Response
-    | QueriesGetIntNegativeOneMilliondefaultResponse
+    | QueriesGetIntNegativeOneMillionDefaultResponse
     | QueriesGetIntNull200Response
-    | QueriesGetIntNulldefaultResponse
+    | QueriesGetIntNullDefaultResponse
     | QueriesGetTenBillion200Response
-    | QueriesGetTenBilliondefaultResponse
+    | QueriesGetTenBillionDefaultResponse
     | QueriesGetNegativeTenBillion200Response
-    | QueriesGetNegativeTenBilliondefaultResponse
+    | QueriesGetNegativeTenBillionDefaultResponse
     | QueriesGetLongNull200Response
-    | QueriesGetLongNulldefaultResponse
+    | QueriesGetLongNullDefaultResponse
     | QueriesFloatScientificPositive200Response
-    | QueriesFloatScientificPositivedefaultResponse
+    | QueriesFloatScientificPositiveDefaultResponse
     | QueriesFloatScientificNegative200Response
-    | QueriesFloatScientificNegativedefaultResponse
+    | QueriesFloatScientificNegativeDefaultResponse
     | QueriesFloatNull200Response
-    | QueriesFloatNulldefaultResponse
+    | QueriesFloatNullDefaultResponse
     | QueriesDoubleDecimalPositive200Response
-    | QueriesDoubleDecimalPositivedefaultResponse
+    | QueriesDoubleDecimalPositiveDefaultResponse
     | QueriesDoubleDecimalNegative200Response
-    | QueriesDoubleDecimalNegativedefaultResponse
+    | QueriesDoubleDecimalNegativeDefaultResponse
     | QueriesDoubleNull200Response
-    | QueriesDoubleNulldefaultResponse
+    | QueriesDoubleNullDefaultResponse
     | QueriesStringUnicode200Response
-    | QueriesStringUnicodedefaultResponse
+    | QueriesStringUnicodeDefaultResponse
     | QueriesStringUrlEncoded200Response
-    | QueriesStringUrlEncodeddefaultResponse
+    | QueriesStringUrlEncodedDefaultResponse
     | QueriesStringEmpty200Response
-    | QueriesStringEmptydefaultResponse
+    | QueriesStringEmptyDefaultResponse
     | QueriesStringNull200Response
-    | QueriesStringNulldefaultResponse
+    | QueriesStringNullDefaultResponse
     | QueriesEnumValid200Response
-    | QueriesEnumValiddefaultResponse
+    | QueriesEnumValidDefaultResponse
     | QueriesEnumNull200Response
-    | QueriesEnumNulldefaultResponse
+    | QueriesEnumNullDefaultResponse
     | QueriesByteMultiByte200Response
-    | QueriesByteMultiBytedefaultResponse
+    | QueriesByteMultiByteDefaultResponse
     | QueriesByteEmpty200Response
-    | QueriesByteEmptydefaultResponse
+    | QueriesByteEmptyDefaultResponse
     | QueriesByteNull200Response
-    | QueriesByteNulldefaultResponse
+    | QueriesByteNullDefaultResponse
     | QueriesDateValid200Response
-    | QueriesDateValiddefaultResponse
+    | QueriesDateValidDefaultResponse
     | QueriesDateNull200Response
-    | QueriesDateNulldefaultResponse
+    | QueriesDateNullDefaultResponse
     | QueriesDateTimeValid200Response
-    | QueriesDateTimeValiddefaultResponse
+    | QueriesDateTimeValidDefaultResponse
     | QueriesDateTimeNull200Response
-    | QueriesDateTimeNulldefaultResponse
+    | QueriesDateTimeNullDefaultResponse
     | QueriesArrayStringCsvValid200Response
-    | QueriesArrayStringCsvValiddefaultResponse
+    | QueriesArrayStringCsvValidDefaultResponse
     | QueriesArrayStringCsvNull200Response
-    | QueriesArrayStringCsvNulldefaultResponse
+    | QueriesArrayStringCsvNullDefaultResponse
     | QueriesArrayStringCsvEmpty200Response
-    | QueriesArrayStringCsvEmptydefaultResponse
+    | QueriesArrayStringCsvEmptyDefaultResponse
     | QueriesArrayStringNoCollectionFormatEmpty200Response
-    | QueriesArrayStringNoCollectionFormatEmptydefaultResponse
+    | QueriesArrayStringNoCollectionFormatEmptyDefaultResponse
     | QueriesArrayStringSsvValid200Response
-    | QueriesArrayStringSsvValiddefaultResponse
+    | QueriesArrayStringSsvValidDefaultResponse
     | QueriesArrayStringTsvValid200Response
-    | QueriesArrayStringTsvValiddefaultResponse
+    | QueriesArrayStringTsvValidDefaultResponse
     | QueriesArrayStringPipesValid200Response
-    | QueriesArrayStringPipesValiddefaultResponse
+    | QueriesArrayStringPipesValidDefaultResponse
     | PathItemsGetAllWithValues200Response
-    | PathItemsGetAllWithValuesdefaultResponse
+    | PathItemsGetAllWithValuesDefaultResponse
     | PathItemsGetGlobalQueryNull200Response
-    | PathItemsGetGlobalQueryNulldefaultResponse
+    | PathItemsGetGlobalQueryNullDefaultResponse
     | PathItemsGetGlobalAndLocalQueryNull200Response
-    | PathItemsGetGlobalAndLocalQueryNulldefaultResponse
+    | PathItemsGetGlobalAndLocalQueryNullDefaultResponse
     | PathItemsGetLocalPathItemQueryNull200Response
-    | PathItemsGetLocalPathItemQueryNulldefaultResponse
+    | PathItemsGetLocalPathItemQueryNullDefaultResponse
 ): response is
-  | PathsGetBooleanTruedefaultResponse
-  | PathsGetBooleanFalsedefaultResponse
-  | PathsGetIntOneMilliondefaultResponse
-  | PathsGetIntNegativeOneMilliondefaultResponse
-  | PathsGetTenBilliondefaultResponse
-  | PathsGetNegativeTenBilliondefaultResponse
-  | PathsFloatScientificPositivedefaultResponse
-  | PathsFloatScientificNegativedefaultResponse
-  | PathsDoubleDecimalPositivedefaultResponse
-  | PathsDoubleDecimalNegativedefaultResponse
-  | PathsStringUnicodedefaultResponse
-  | PathsStringUrlEncodeddefaultResponse
-  | PathsStringUrlNonEncodeddefaultResponse
-  | PathsStringEmptydefaultResponse
-  | PathsStringNulldefaultResponse
-  | PathsEnumValiddefaultResponse
-  | PathsEnumNulldefaultResponse
-  | PathsByteMultiBytedefaultResponse
-  | PathsByteEmptydefaultResponse
-  | PathsByteNulldefaultResponse
-  | PathsDateValiddefaultResponse
-  | PathsDateNulldefaultResponse
-  | PathsDateTimeValiddefaultResponse
-  | PathsDateTimeNulldefaultResponse
-  | PathsBase64UrldefaultResponse
-  | PathsArrayCsvInPathdefaultResponse
-  | PathsUnixTimeUrldefaultResponse
-  | QueriesGetBooleanTruedefaultResponse
-  | QueriesGetBooleanFalsedefaultResponse
-  | QueriesGetBooleanNulldefaultResponse
-  | QueriesGetIntOneMilliondefaultResponse
-  | QueriesGetIntNegativeOneMilliondefaultResponse
-  | QueriesGetIntNulldefaultResponse
-  | QueriesGetTenBilliondefaultResponse
-  | QueriesGetNegativeTenBilliondefaultResponse
-  | QueriesGetLongNulldefaultResponse
-  | QueriesFloatScientificPositivedefaultResponse
-  | QueriesFloatScientificNegativedefaultResponse
-  | QueriesFloatNulldefaultResponse
-  | QueriesDoubleDecimalPositivedefaultResponse
-  | QueriesDoubleDecimalNegativedefaultResponse
-  | QueriesDoubleNulldefaultResponse
-  | QueriesStringUnicodedefaultResponse
-  | QueriesStringUrlEncodeddefaultResponse
-  | QueriesStringEmptydefaultResponse
-  | QueriesStringNulldefaultResponse
-  | QueriesEnumValiddefaultResponse
-  | QueriesEnumNulldefaultResponse
-  | QueriesByteMultiBytedefaultResponse
-  | QueriesByteEmptydefaultResponse
-  | QueriesByteNulldefaultResponse
-  | QueriesDateValiddefaultResponse
-  | QueriesDateNulldefaultResponse
-  | QueriesDateTimeValiddefaultResponse
-  | QueriesDateTimeNulldefaultResponse
-  | QueriesArrayStringCsvValiddefaultResponse
-  | QueriesArrayStringCsvNulldefaultResponse
-  | QueriesArrayStringCsvEmptydefaultResponse
-  | QueriesArrayStringNoCollectionFormatEmptydefaultResponse
-  | QueriesArrayStringSsvValiddefaultResponse
-  | QueriesArrayStringTsvValiddefaultResponse
-  | QueriesArrayStringPipesValiddefaultResponse
-  | PathItemsGetAllWithValuesdefaultResponse
-  | PathItemsGetGlobalQueryNulldefaultResponse
-  | PathItemsGetGlobalAndLocalQueryNulldefaultResponse
-  | PathItemsGetLocalPathItemQueryNulldefaultResponse {
+  | PathsGetBooleanTrueDefaultResponse
+  | PathsGetBooleanFalseDefaultResponse
+  | PathsGetIntOneMillionDefaultResponse
+  | PathsGetIntNegativeOneMillionDefaultResponse
+  | PathsGetTenBillionDefaultResponse
+  | PathsGetNegativeTenBillionDefaultResponse
+  | PathsFloatScientificPositiveDefaultResponse
+  | PathsFloatScientificNegativeDefaultResponse
+  | PathsDoubleDecimalPositiveDefaultResponse
+  | PathsDoubleDecimalNegativeDefaultResponse
+  | PathsStringUnicodeDefaultResponse
+  | PathsStringUrlEncodedDefaultResponse
+  | PathsStringUrlNonEncodedDefaultResponse
+  | PathsStringEmptyDefaultResponse
+  | PathsStringNullDefaultResponse
+  | PathsEnumValidDefaultResponse
+  | PathsEnumNullDefaultResponse
+  | PathsByteMultiByteDefaultResponse
+  | PathsByteEmptyDefaultResponse
+  | PathsByteNullDefaultResponse
+  | PathsDateValidDefaultResponse
+  | PathsDateNullDefaultResponse
+  | PathsDateTimeValidDefaultResponse
+  | PathsDateTimeNullDefaultResponse
+  | PathsBase64UrlDefaultResponse
+  | PathsArrayCsvInPathDefaultResponse
+  | PathsUnixTimeUrlDefaultResponse
+  | QueriesGetBooleanTrueDefaultResponse
+  | QueriesGetBooleanFalseDefaultResponse
+  | QueriesGetBooleanNullDefaultResponse
+  | QueriesGetIntOneMillionDefaultResponse
+  | QueriesGetIntNegativeOneMillionDefaultResponse
+  | QueriesGetIntNullDefaultResponse
+  | QueriesGetTenBillionDefaultResponse
+  | QueriesGetNegativeTenBillionDefaultResponse
+  | QueriesGetLongNullDefaultResponse
+  | QueriesFloatScientificPositiveDefaultResponse
+  | QueriesFloatScientificNegativeDefaultResponse
+  | QueriesFloatNullDefaultResponse
+  | QueriesDoubleDecimalPositiveDefaultResponse
+  | QueriesDoubleDecimalNegativeDefaultResponse
+  | QueriesDoubleNullDefaultResponse
+  | QueriesStringUnicodeDefaultResponse
+  | QueriesStringUrlEncodedDefaultResponse
+  | QueriesStringEmptyDefaultResponse
+  | QueriesStringNullDefaultResponse
+  | QueriesEnumValidDefaultResponse
+  | QueriesEnumNullDefaultResponse
+  | QueriesByteMultiByteDefaultResponse
+  | QueriesByteEmptyDefaultResponse
+  | QueriesByteNullDefaultResponse
+  | QueriesDateValidDefaultResponse
+  | QueriesDateNullDefaultResponse
+  | QueriesDateTimeValidDefaultResponse
+  | QueriesDateTimeNullDefaultResponse
+  | QueriesArrayStringCsvValidDefaultResponse
+  | QueriesArrayStringCsvNullDefaultResponse
+  | QueriesArrayStringCsvEmptyDefaultResponse
+  | QueriesArrayStringNoCollectionFormatEmptyDefaultResponse
+  | QueriesArrayStringSsvValidDefaultResponse
+  | QueriesArrayStringTsvValidDefaultResponse
+  | QueriesArrayStringPipesValidDefaultResponse
+  | PathItemsGetAllWithValuesDefaultResponse
+  | PathItemsGetGlobalQueryNullDefaultResponse
+  | PathItemsGetGlobalAndLocalQueryNullDefaultResponse
+  | PathItemsGetLocalPathItemQueryNullDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
   let pathDetails = responseMap[`${method} ${url.pathname}`];
   if (!pathDetails) {
-    pathDetails = geParametrizedPathSuccess(url.pathname);
+    pathDetails = geParametrizedPathSuccess(method, url.pathname);
   }
   return !pathDetails.includes(response.status);
 }
 
-function geParametrizedPathSuccess(path: string): string[] {
+function geParametrizedPathSuccess(method: string, path: string): string[] {
   const pathParts = path.split("/");
 
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(responseMap)) {
     // Extracting the path from the map key which is in format
     // GET /path/foo
+    if (!key.startsWith(method)) {
+      continue;
+    }
     const candidatePath = getPathFromMapKey(key);
     // Get each part of the url path
     const candidateParts = candidatePath.split("/");
@@ -721,8 +724,8 @@ function geParametrizedPathSuccess(path: string): string[] {
       let found = true;
       for (let i = 0; i < candidateParts.length; i++) {
         if (
-          candidateParts[i].startsWith("{") &&
-          candidateParts[i].endsWith("}")
+          candidateParts[i]?.startsWith("{") &&
+          candidateParts[i]?.endsWith("}")
         ) {
           // If the current part of the candidate is a "template" part
           // it is a match with the actual path part on hand

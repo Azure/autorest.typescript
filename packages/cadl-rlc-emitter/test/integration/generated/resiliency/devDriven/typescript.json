@@ -1,0 +1,10 @@
+{
+  "generateMetadata": true,
+  "addCredentials": false,
+  "packageDetails": {
+    "name": "@msinternal/dev-driven",
+    "description": "Dev Driven Test Service",
+    "version": "1.0.0"
+  },
+  "isCadlTest": true
+}

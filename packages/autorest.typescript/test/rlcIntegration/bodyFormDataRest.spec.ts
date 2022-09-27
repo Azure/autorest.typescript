@@ -2,7 +2,12 @@ import BodyFormData, {
   BodyFormDataClient
 } from "./generated/bodyFormDataRest/src";
 import { assert } from "chai";
-import { isUnexpected } from "./generated/bodyFormDataRest/src";
+import { isNode } from "@azure/core-util";
+import { readStreamToBuffer } from "../utils/stream-helpers";
+import {
+  HttpBrowserStreamResponse,
+  HttpNodeStreamResponse
+} from "@azure-rest/core-client";
 
 describe("Integration tests for BodyFormData", () => {
   let client: BodyFormDataClient;
@@ -25,21 +30,28 @@ describe("Integration tests for BodyFormData", () => {
       100
     ]);
 
-    const result = await client.path("/formdata/stream/uploadfile").post({
-      contentType: "multipart/form-data",
-      body: { fileContent: content, fileName },
-      binaryResponse: true
-    });
-
-    assert.equal(result.status, "200");
-
-    if (isUnexpected(result)) {
-      const error = `Unexpected error ${result.status}`;
-      assert.fail(error);
-      throw error;
+    let result: HttpNodeStreamResponse | HttpBrowserStreamResponse;
+    if (isNode) {
+      result = await client
+        .path("/formdata/stream/uploadfile")
+        .post({
+          contentType: "multipart/form-data",
+          body: { fileContent: content, fileName }
+        })
+        .asNodeStream();
+    } else {
+      result = await client
+        .path("/formdata/stream/uploadfile")
+        .post({
+          contentType: "multipart/form-data",
+          body: { fileContent: content, fileName }
+        })
+        .asBrowserStream();
     }
 
-    assert.deepInclude(result.body, content);
+    assert.equal(result.status, "200");
+    const buffer = await readStreamToBuffer(result.body!);
+    assert.deepInclude(new Uint8Array(buffer), content);
   });
 
   it("should correctly accept file via body", async () => {
@@ -58,19 +70,26 @@ describe("Integration tests for BodyFormData", () => {
       100
     ]);
 
-    const response = await client.path("/formdata/stream/uploadfile").put({
-      body: content,
-      binaryResponse: true,
-      contentType: "application/octet-stream"
-    });
-
-    if (isUnexpected(response)) {
-      const error = `Unexpected error ${response.status}`;
-      assert.fail(error);
-      throw error;
+    let response: HttpNodeStreamResponse | HttpBrowserStreamResponse;
+    if (isNode) {
+      response = await client
+        .path("/formdata/stream/uploadfile")
+        .put({
+          body: content,
+          contentType: "application/octet-stream"
+        })
+        .asNodeStream();
+    } else {
+      response = await client
+        .path("/formdata/stream/uploadfile")
+        .put({
+          body: content,
+          contentType: "application/octet-stream"
+        })
+        .asBrowserStream();
     }
-
     assert.equal(response.status, "200");
-    assert.deepInclude(response.body, content);
+    const buffer = await readStreamToBuffer(response.body!);
+    assert.deepInclude(new Uint8Array(buffer), content);
   });
 });

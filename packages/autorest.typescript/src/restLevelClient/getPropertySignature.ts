@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Parameter, Property, SchemaContext } from "@autorest/codemodel";
 import { PropertySignatureStructure, StructureKind } from "ts-morph";
 import { getLanguageMetadata } from "../utils/languageHelpers";

@@ -1,0 +1,12 @@
+{
+  "generateMetadata": true,
+  "includeShortcuts": true,
+  "addCredentials": false,
+  "packageDetails": {
+    "name": "@msinternal/client-interface",
+    "description": "Client Interface Test Service",
+    "version": "1.0.0"
+  },
+  "isCadlTest": true,
+  "title": "InterfaceClient"
+}

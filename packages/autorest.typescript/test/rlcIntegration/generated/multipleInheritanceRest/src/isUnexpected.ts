@@ -3,15 +3,15 @@
 
 import {
   GetHorse200Response,
-  GetHorsedefaultResponse,
+  GetHorseDefaultResponse,
   GetPet200Response,
-  GetPetdefaultResponse,
+  GetPetDefaultResponse,
   GetFeline200Response,
-  GetFelinedefaultResponse,
+  GetFelineDefaultResponse,
   GetCat200Response,
-  GetCatdefaultResponse,
+  GetCatDefaultResponse,
   GetKitten200Response,
-  GetKittendefaultResponse
+  GetKittenDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -28,38 +28,38 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: GetHorse200Response | GetHorsedefaultResponse
-): response is GetHorsedefaultResponse;
+  response: GetHorse200Response | GetHorseDefaultResponse
+): response is GetHorseDefaultResponse;
 export function isUnexpected(
-  response: GetPet200Response | GetPetdefaultResponse
-): response is GetPetdefaultResponse;
+  response: GetPet200Response | GetPetDefaultResponse
+): response is GetPetDefaultResponse;
 export function isUnexpected(
-  response: GetFeline200Response | GetFelinedefaultResponse
-): response is GetFelinedefaultResponse;
+  response: GetFeline200Response | GetFelineDefaultResponse
+): response is GetFelineDefaultResponse;
 export function isUnexpected(
-  response: GetCat200Response | GetCatdefaultResponse
-): response is GetCatdefaultResponse;
+  response: GetCat200Response | GetCatDefaultResponse
+): response is GetCatDefaultResponse;
 export function isUnexpected(
-  response: GetKitten200Response | GetKittendefaultResponse
-): response is GetKittendefaultResponse;
+  response: GetKitten200Response | GetKittenDefaultResponse
+): response is GetKittenDefaultResponse;
 export function isUnexpected(
   response:
     | GetHorse200Response
-    | GetHorsedefaultResponse
+    | GetHorseDefaultResponse
     | GetPet200Response
-    | GetPetdefaultResponse
+    | GetPetDefaultResponse
     | GetFeline200Response
-    | GetFelinedefaultResponse
+    | GetFelineDefaultResponse
     | GetCat200Response
-    | GetCatdefaultResponse
+    | GetCatDefaultResponse
     | GetKitten200Response
-    | GetKittendefaultResponse
+    | GetKittenDefaultResponse
 ): response is
-  | GetHorsedefaultResponse
-  | GetPetdefaultResponse
-  | GetFelinedefaultResponse
-  | GetCatdefaultResponse
-  | GetKittendefaultResponse {
+  | GetHorseDefaultResponse
+  | GetPetDefaultResponse
+  | GetFelineDefaultResponse
+  | GetCatDefaultResponse
+  | GetKittenDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

@@ -1,0 +1,867 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Purview Catalog Service REST API Document",
+    "description": "Purview Catalog Service is a fully managed cloud service whose users can discover the data sources they need and understand the data sources they find. At the same time, Data Catalog helps organizations get more value from their existing investments. This spec defines REST API of Purview Catalog Service.",
+    "version": "2022-03-01-preview"
+  },
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{Endpoint}/catalog/api/atlas/{serviceVersion}/{accountName}",
+    "useSchemePrefix": false,
+    "parameters": [
+      {
+        "$ref": "#/parameters/Endpoint"
+      },
+      {
+        "$ref": "#/parameters/serviceVersion"
+      },
+      {
+        "name": "accountName",
+        "description": "Account Name",
+        "required": true,
+        "type": "string",
+        "in": "path",
+        "x-ms-skip-url-encoding": true
+      }
+    ]
+  },
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "securityDefinitions": {
+    "azure_auth": {
+      "flow": "implicit",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "scopes": {
+        "user_impersonation": "impersonate your user account"
+      },
+      "type": "oauth2",
+      "description": "Azure Active Directory OAuth2 Flow."
+    }
+  },
+  "security": [
+    {
+      "azure_auth": ["user_impersonation"]
+    }
+  ],
+  "paths": {
+    "/entity": {
+      "post": {
+        "tags": ["Entity"],
+        "description": "Create or update an entity in Atlas.\nExisting entity is matched using its unique guid if supplied or by its unique attributes eg: qualifiedName.\nMap and array of collections are not well supported. E.g., array<array<int>>, array<map<string, int>>.",
+        "operationId": "Entity_CreateOrUpdate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "entity",
+            "description": "Atlas entity with extended information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AtlasEntityWithExtInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created with EntityMutationResponse.",
+            "schema": {
+              "$ref": "#/definitions/EntityMutationResponse"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/entity/bulk": {
+      "get": {
+        "tags": ["Entity"],
+        "description": "List entities in bulk identified by its GUIDs.",
+        "operationId": "Entity_ListByGuids",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "query",
+            "description": "An array of GUIDs of entities to list.",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "x-ms-client-name": "guids"
+          },
+          {
+            "$ref": "#/parameters/minExtInfo"
+          },
+          {
+            "$ref": "#/parameters/ignoreRelationships"
+          },
+          {
+            "$ref": "#/parameters/excludeRelationshipTypes"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "schema": {
+              "$ref": "#/definitions/AtlasEntitiesWithExtInfo"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Entity"],
+        "description": "Create or update entities in Atlas in bulk.\nExisting entity is matched using its unique guid if supplied or by its unique attributes eg: qualifiedName.\nMap and array of collections are not well supported. E.g., array<array<int>>, array<map<string, int>>.",
+        "operationId": "Entity_CreateOrUpdateEntities",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "entities",
+            "description": "An array of entities to create or update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AtlasEntitiesWithExtInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok.",
+            "schema": {
+              "$ref": "#/definitions/EntityMutationResponse"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Entity"],
+        "description": "Delete a list of entities in bulk identified by their GUIDs or unique attributes.",
+        "operationId": "Entity_DeleteByGuids",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "query",
+            "description": "An array of GUIDs of entities to delete.",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "x-ms-client-name": "guids"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted with EntityMutationResponse.",
+            "schema": {
+              "$ref": "#/definitions/EntityMutationResponse"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/entity/bulk/classification": {
+      "post": {
+        "tags": ["Entity"],
+        "description": "Associate a classification to multiple entities in bulk.",
+        "operationId": "Entity_AddClassification",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "The request to associate a classification to multiple entities.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClassificationAssociateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content."
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/entity/guid/{guid}": {
+      "get": {
+        "tags": ["Entity"],
+        "operationId": "Entity_GetByGuid",
+        "description": "Get complete definition of an entity given its GUID.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/guid"
+          },
+          {
+            "$ref": "#/parameters/minExtInfo"
+          },
+          {
+            "$ref": "#/parameters/ignoreRelationships"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "schema": {
+              "$ref": "#/definitions/AtlasEntityWithExtInfo"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Entity"],
+        "description": "Update entity partially - create or update entity attribute identified by its GUID.\nSupports only primitive attribute type and entity references.\nIt does not support updating complex types like arrays, and maps.\nNull updates are not possible.",
+        "operationId": "Entity_PartialUpdateEntityAttributeByGuid",
+        "parameters": [
+          {
+            "$ref": "#/parameters/guid"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The name of the attribute.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The value of the attribute.",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated with EntityMutationResponse.",
+            "schema": {
+              "$ref": "#/definitions/EntityMutationResponse"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Entity"],
+        "description": "Delete an entity identified by its GUID.",
+        "operationId": "Entity_DeleteByGuid",
+        "parameters": [
+          {
+            "$ref": "#/parameters/guid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted with EntityMutationResponse.",
+            "schema": {
+              "$ref": "#/definitions/EntityMutationResponse"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AtlasEntityWithExtInfo": {
+      "type": "object",
+      "title": "AtlasEntityWithExtInfo",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AtlasEntityExtInfo"
+        },
+        {
+          "properties": {
+            "entity": {
+              "$ref": "#/definitions/AtlasEntity"
+            }
+          }
+        }
+      ],
+      "description": "An instance of an entity along with extended info - like hive_table, hive_database."
+    },
+    "EntityMutationResponse": {
+      "type": "object",
+      "properties": {
+        "guidAssignments": {
+          "type": "object",
+          "description": "A map of GUID assignments with entities.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "mutatedEntities": {
+          "type": "object",
+          "description": "The entity headers of mutated entities.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/AtlasEntityHeader"
+            }
+          }
+        },
+        "partialUpdatedEntities": {
+          "type": "array",
+          "description": "An array of entity headers that partially updated.",
+          "items": {
+            "$ref": "#/definitions/AtlasEntityHeader"
+          }
+        }
+      },
+      "title": "EntityMutationResponse",
+      "description": "The mutation response of entity."
+    },
+    "AtlasEntitiesWithExtInfo": {
+      "type": "object",
+      "title": "AtlasEntitiesWithExtInfo",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AtlasEntityExtInfo"
+        },
+        {
+          "properties": {
+            "entities": {
+              "type": "array",
+              "description": "An array of entities.",
+              "items": {
+                "$ref": "#/definitions/AtlasEntity"
+              }
+            }
+          }
+        }
+      ],
+      "description": "An instance of an entity along with extended info - like hive_table, hive_database."
+    },
+    "ClassificationAssociateRequest": {
+      "type": "object",
+      "properties": {
+        "classification": {
+          "$ref": "#/definitions/AtlasClassification"
+        },
+        "entityGuids": {
+          "type": "array",
+          "description": "The GUID of the entity.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ClassificationAssociateRequest",
+      "description": "The request for classification association."
+    },
+    "AtlasEntityExtInfo": {
+      "type": "object",
+      "properties": {
+        "referredEntities": {
+          "type": "object",
+          "description": "The referred entities.",
+          "additionalProperties": {
+            "$ref": "#/definitions/AtlasEntity"
+          }
+        }
+      },
+      "title": "AtlasEntityExtInfo",
+      "description": "An instance of an entity along with extended info - like hive_table, hive_database."
+    },
+    "AtlasStruct": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "type": "object",
+          "description": "The attributes of the struct.",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        "typeName": {
+          "type": "string",
+          "description": "The name of the type."
+        },
+        "lastModifiedTS": {
+          "$ref": "#/definitions/LastModifiedTS"
+        }
+      },
+      "title": "AtlasStruct",
+      "description": "Captures details of struct contents. Not instantiated directly, used only via AtlasEntity, AtlasClassification."
+    },
+    "LastModifiedTS": {
+      "type": "string",
+      "title": "lastModifiedTS",
+      "description": "ETag for concurrency control."
+    },
+    "AtlasEntity": {
+      "type": "object",
+      "title": "AtlasEntity",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AtlasStruct"
+        },
+        {
+          "properties": {
+            "businessAttributes": {
+              "readOnly": false,
+              "description": "Business Attributes",
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            },
+            "classifications": {
+              "type": "array",
+              "description": "An array of classifications.",
+              "items": {
+                "$ref": "#/definitions/AtlasClassification"
+              }
+            },
+            "createTime": {
+              "type": "number",
+              "description": "The created time of the record."
+            },
+            "createdBy": {
+              "type": "string",
+              "description": "The user who created the record."
+            },
+            "customAttributes": {
+              "readOnly": false,
+              "description": "Custom Attribute",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "guid": {
+              "type": "string",
+              "description": "The GUID of the entity."
+            },
+            "homeId": {
+              "type": "string",
+              "description": "The home ID of the entity."
+            },
+            "isIncomplete": {
+              "readOnly": false,
+              "description": "Whether it is a shell entity",
+              "type": "boolean"
+            },
+            "labels": {
+              "readOnly": false,
+              "description": "labels",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "meanings": {
+              "type": "array",
+              "description": "An array of term assignment headers indicating the meanings of the entity.",
+              "items": {
+                "$ref": "#/definitions/AtlasTermAssignmentHeader"
+              }
+            },
+            "provenanceType": {
+              "readOnly": false,
+              "description": "Used to record the provenance of an instance of an entity or relationship.",
+              "type": "number"
+            },
+            "proxy": {
+              "type": "boolean",
+              "description": "Determines if there's a proxy."
+            },
+            "relationshipAttributes": {
+              "type": "object",
+              "description": "The attributes of relationship.",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "status": {
+              "$ref": "#/definitions/Status"
+            },
+            "updateTime": {
+              "type": "number",
+              "description": "The update time of the record."
+            },
+            "updatedBy": {
+              "type": "string",
+              "description": "The user who updated the record."
+            },
+            "version": {
+              "type": "number",
+              "description": "The version of the entity."
+            },
+            "source": {
+              "type": "string",
+              "description": "indicate the source who create the classification detail"
+            },
+            "sourceDetails": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "description": "more detail on source information"
+            },
+            "contacts": {
+              "type": "object",
+              "description": "The dictionary of contacts for terms. Key could be Expert or Owner.",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ContactBasic"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "An instance of an entity - like hive_table, hive_database."
+    },
+    "Status": {
+      "type": "string",
+      "title": "Status",
+      "description": "Status of the entity - can be active or deleted. Deleted entities are not removed from Atlas store.",
+      "enum": ["ACTIVE", "DELETED"],
+      "x-ms-enum": {
+        "name": "Status",
+        "modelAsString": true
+      }
+    },
+    "ContactBasic": {
+      "title": "ContactBasic",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Azure Active Directory object Id."
+        },
+        "info": {
+          "type": "string",
+          "description": "additional information to describe this contact."
+        }
+      }
+    },
+    "AtlasTermAssignmentHeader": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The confidence of the term assignment."
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The user who created the record."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the term assignment."
+        },
+        "displayText": {
+          "type": "string",
+          "description": "The display text."
+        },
+        "expression": {
+          "type": "string",
+          "description": "The expression of the term assignment."
+        },
+        "relationGuid": {
+          "type": "string",
+          "description": "The GUID of the relationship."
+        },
+        "source": {
+          "type": "string",
+          "description": "The source of the term."
+        },
+        "status": {
+          "$ref": "#/definitions/AtlasTermAssignmentStatus"
+        },
+        "steward": {
+          "type": "string",
+          "description": "The steward of the term."
+        },
+        "termGuid": {
+          "type": "string",
+          "description": "The GUID of the term."
+        }
+      },
+      "title": "AtlasTermAssignmentHeader",
+      "description": "The header for term assignment."
+    },
+    "AtlasEntityHeader": {
+      "type": "object",
+      "title": "AtlasEntityHeader",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AtlasStruct"
+        },
+        {
+          "properties": {
+            "classificationNames": {
+              "type": "array",
+              "description": "An array of classification names.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "classifications": {
+              "type": "array",
+              "description": "An array of classifications.",
+              "items": {
+                "$ref": "#/definitions/AtlasClassification"
+              }
+            },
+            "displayText": {
+              "type": "string",
+              "description": "The display text."
+            },
+            "guid": {
+              "type": "string",
+              "description": "The GUID of the record."
+            },
+            "isIncomplete": {
+              "readOnly": false,
+              "description": "Whether it is a shell entity",
+              "type": "boolean"
+            },
+            "labels": {
+              "readOnly": false,
+              "description": "labels",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "meaningNames": {
+              "type": "array",
+              "description": "An array of meanings.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "meanings": {
+              "type": "array",
+              "description": "An array of term assignment headers.",
+              "items": {
+                "$ref": "#/definitions/AtlasTermAssignmentHeader"
+              }
+            },
+            "status": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        }
+      ],
+      "description": "An instance of an entity - like hive_table, hive_database."
+    },
+    "AtlasTermAssignmentStatus": {
+      "type": "string",
+      "title": "AtlasTermAssignmentStatus",
+      "description": "The status of terms assignment.",
+      "enum": [
+        "DISCOVERED",
+        "PROPOSED",
+        "IMPORTED",
+        "VALIDATED",
+        "DEPRECATED",
+        "OBSOLETE",
+        "OTHER"
+      ],
+      "x-ms-enum": {
+        "name": "AtlasTermAssignmentStatus",
+        "modelAsString": true
+      }
+    },
+    "AtlasClassification": {
+      "type": "object",
+      "title": "AtlasClassification",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AtlasStruct"
+        },
+        {
+          "properties": {
+            "entityGuid": {
+              "type": "string",
+              "description": "The GUID of the entity."
+            },
+            "entityStatus": {
+              "$ref": "#/definitions/Status"
+            },
+            "removePropagationsOnEntityDelete": {
+              "type": "boolean",
+              "description": "Determines if propagations will be removed on entity deletion."
+            },
+            "validityPeriods": {
+              "type": "array",
+              "description": "An array of time boundaries indicating validity periods.",
+              "items": {
+                "$ref": "#/definitions/TimeBoundary"
+              }
+            },
+            "source": {
+              "type": "string",
+              "description": "indicate the source who create the classification detail"
+            },
+            "sourceDetails": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {}
+              },
+              "description": "more detail on source information"
+            }
+          }
+        }
+      ],
+      "description": "An instance of a classification; it doesn't have an identity, this object exists only when associated with an entity."
+    },
+    "TimeBoundary": {
+      "type": "object",
+      "properties": {
+        "endTime": {
+          "type": "string",
+          "description": "The end of the time boundary."
+        },
+        "startTime": {
+          "type": "string",
+          "description": "The start of the time boundary."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The timezone of the time boundary."
+        }
+      },
+      "title": "TimeBoundary",
+      "description": "Captures time-boundary details"
+    },
+    "ErrorResponse": {
+      "description": "An error response from the service",
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "description": "The request ID."
+        },
+        "errorCode": {
+          "type": "string",
+          "description": "The error code."
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "The error message."
+        }
+      }
+    }
+  },
+  "parameters": {
+    "Endpoint": {
+      "name": "Endpoint",
+      "description": "The catalog endpoint of your Purview account. Example: https://{accountName}.purview.azure.com",
+      "x-ms-parameter-location": "client",
+      "required": true,
+      "type": "string",
+      "in": "path",
+      "x-ms-skip-url-encoding": true
+    },
+    "guid": {
+      "name": "guid",
+      "description": "The globally unique identifier of the entity.",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "x-ms-parameter-location": "method"
+    },
+    "serviceVersion": {
+      "name": "serviceVersion",
+      "description": "the version of api",
+      "type": "string",
+      "in": "path",
+      "required": true,
+      "enum": ["v2", "v1"],
+      "x-ms-enum": {
+        "name": "serviceVersionEnum",
+        "modelAsString": true
+      }
+    },
+    "minExtInfo": {
+      "name": "minExtInfo",
+      "description": "Whether to return minimal information for referred entities.",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "default": false,
+      "x-ms-parameter-location": "method"
+    },
+    "ignoreRelationships": {
+      "name": "ignoreRelationships",
+      "description": "Whether to ignore relationship attributes.",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "default": false,
+      "x-ms-parameter-location": "method"
+    },
+    "excludeRelationshipTypes": {
+      "name": "excludeRelationshipTypes",
+      "description": "An array of the relationship types need to be excluded from the response.",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "collectionFormat": "multi",
+      "x-ms-parameter-location": "method"
+    }
+  }
+}

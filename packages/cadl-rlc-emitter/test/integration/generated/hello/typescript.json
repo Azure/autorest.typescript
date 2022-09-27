@@ -1,0 +1,11 @@
+{
+  "generateMetadata": true,
+  "includeShortcuts": true,
+  "addCredentials": false,
+  "packageDetails": {
+    "name": "@msinternal/hello-world",
+    "description": "Hello World Test Service",
+    "version": "1.0.0"
+  },
+  "isCadlTest": true
+}

@@ -13,7 +13,7 @@ import {
 import {
   AnalyzeBody200Response,
   AnalyzeBodyNoAcceptHeader202Response,
-  AnalyzeBodyNoAcceptHeaderdefaultResponse,
+  AnalyzeBodyNoAcceptHeaderDefaultResponse,
   ContentTypeWithEncoding200Response,
   BinaryBodyWithTwoContentTypes200Response,
   BinaryBodyWithThreeContentTypes200Response,
@@ -35,7 +35,7 @@ export interface AnalyzeBodyNoAcceptHeader {
     options?: AnalyzeBodyNoAcceptHeaderParameters
   ): StreamableMethod<
     | AnalyzeBodyNoAcceptHeader202Response
-    | AnalyzeBodyNoAcceptHeaderdefaultResponse
+    | AnalyzeBodyNoAcceptHeaderDefaultResponse
   >;
 }
 

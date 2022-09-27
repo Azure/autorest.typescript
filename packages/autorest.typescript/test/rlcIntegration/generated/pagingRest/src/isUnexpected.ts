@@ -2,54 +2,54 @@
 // Licensed under the MIT license.
 
 import {
-  GetNoItemNamePages200Response,
-  GetNoItemNamePagesdefaultResponse,
-  GetNullNextLinkNamePages200Response,
-  GetNullNextLinkNamePagesdefaultResponse,
-  GetSinglePages200Response,
-  GetSinglePagesdefaultResponse,
-  FirstResponseEmpty200Response,
-  FirstResponseEmptydefaultResponse,
-  GetMultiplePages200Response,
-  GetMultiplePagesdefaultResponse,
-  GetWithQueryParams200Response,
-  GetWithQueryParamsdefaultResponse,
-  DuplicateParams200Response,
-  DuplicateParamsdefaultResponse,
-  PageWithMaxPageSize200Response,
-  PageWithMaxPageSizedefaultResponse,
-  NextOperationWithQueryParams200Response,
-  NextOperationWithQueryParamsdefaultResponse,
-  GetOdataMultiplePages200Response,
-  GetOdataMultiplePagesdefaultResponse,
-  GetMultiplePagesWithOffset200Response,
-  GetMultiplePagesWithOffsetdefaultResponse,
-  GetMultiplePagesRetryFirst200Response,
-  GetMultiplePagesRetryFirstdefaultResponse,
-  GetMultiplePagesRetrySecond200Response,
-  GetMultiplePagesRetrySeconddefaultResponse,
-  GetSinglePagesFailure200Response,
-  GetSinglePagesFailuredefaultResponse,
-  GetMultiplePagesFailure200Response,
-  GetMultiplePagesFailuredefaultResponse,
-  GetMultiplePagesFailureUri200Response,
-  GetMultiplePagesFailureUridefaultResponse,
-  GetMultiplePagesFragmentNextLink200Response,
-  GetMultiplePagesFragmentNextLinkdefaultResponse,
-  GetMultiplePagesFragmentWithGroupingNextLink200Response,
-  GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse,
-  GetMultiplePagesLRO202Response,
-  GetMultiplePagesLROdefaultResponse,
-  AppendApiVersion200Response,
-  AppendApiVersiondefaultResponse,
-  ReplaceApiVersion200Response,
-  ReplaceApiVersiondefaultResponse,
-  NextFragment200Response,
-  NextFragmentdefaultResponse,
-  NextFragmentWithGrouping200Response,
-  NextFragmentWithGroupingdefaultResponse,
-  GetPagingModelWithItemNameWithXMSClientName200Response,
-  GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
+  PagingGetNoItemNamePages200Response,
+  PagingGetNoItemNamePagesDefaultResponse,
+  PagingGetNullNextLinkNamePages200Response,
+  PagingGetNullNextLinkNamePagesDefaultResponse,
+  PagingGetSinglePages200Response,
+  PagingGetSinglePagesDefaultResponse,
+  PagingFirstResponseEmpty200Response,
+  PagingFirstResponseEmptyDefaultResponse,
+  PagingGetMultiplePages200Response,
+  PagingGetMultiplePagesDefaultResponse,
+  PagingGetWithQueryParams200Response,
+  PagingGetWithQueryParamsDefaultResponse,
+  PagingDuplicateParams200Response,
+  PagingDuplicateParamsDefaultResponse,
+  PagingPageWithMaxPageSize200Response,
+  PagingPageWithMaxPageSizeDefaultResponse,
+  PagingNextOperationWithQueryParams200Response,
+  PagingNextOperationWithQueryParamsDefaultResponse,
+  PagingGetOdataMultiplePages200Response,
+  PagingGetOdataMultiplePagesDefaultResponse,
+  PagingGetMultiplePagesWithOffset200Response,
+  PagingGetMultiplePagesWithOffsetDefaultResponse,
+  PagingGetMultiplePagesRetryFirst200Response,
+  PagingGetMultiplePagesRetryFirstDefaultResponse,
+  PagingGetMultiplePagesRetrySecond200Response,
+  PagingGetMultiplePagesRetrySecondDefaultResponse,
+  PagingGetSinglePagesFailure200Response,
+  PagingGetSinglePagesFailureDefaultResponse,
+  PagingGetMultiplePagesFailure200Response,
+  PagingGetMultiplePagesFailureDefaultResponse,
+  PagingGetMultiplePagesFailureUri200Response,
+  PagingGetMultiplePagesFailureUriDefaultResponse,
+  PagingGetMultiplePagesFragmentNextLink200Response,
+  PagingGetMultiplePagesFragmentNextLinkDefaultResponse,
+  PagingGetMultiplePagesFragmentWithGroupingNextLink200Response,
+  PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse,
+  PagingGetMultiplePagesLRO202Response,
+  PagingGetMultiplePagesLRODefaultResponse,
+  PagingAppendApiVersion200Response,
+  PagingAppendApiVersionDefaultResponse,
+  PagingReplaceApiVersion200Response,
+  PagingReplaceApiVersionDefaultResponse,
+  PagingNextFragment200Response,
+  PagingNextFragmentDefaultResponse,
+  PagingNextFragmentWithGrouping200Response,
+  PagingNextFragmentWithGroupingDefaultResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientName200Response,
+  PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -81,195 +81,218 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: GetNoItemNamePages200Response | GetNoItemNamePagesdefaultResponse
-): response is GetNoItemNamePagesdefaultResponse;
+  response:
+    | PagingGetNoItemNamePages200Response
+    | PagingGetNoItemNamePagesDefaultResponse
+): response is PagingGetNoItemNamePagesDefaultResponse;
 export function isUnexpected(
   response:
-    | GetNullNextLinkNamePages200Response
-    | GetNullNextLinkNamePagesdefaultResponse
-): response is GetNullNextLinkNamePagesdefaultResponse;
-export function isUnexpected(
-  response: GetSinglePages200Response | GetSinglePagesdefaultResponse
-): response is GetSinglePagesdefaultResponse;
-export function isUnexpected(
-  response: FirstResponseEmpty200Response | FirstResponseEmptydefaultResponse
-): response is FirstResponseEmptydefaultResponse;
-export function isUnexpected(
-  response: GetMultiplePages200Response | GetMultiplePagesdefaultResponse
-): response is GetMultiplePagesdefaultResponse;
-export function isUnexpected(
-  response: GetWithQueryParams200Response | GetWithQueryParamsdefaultResponse
-): response is GetWithQueryParamsdefaultResponse;
-export function isUnexpected(
-  response: DuplicateParams200Response | DuplicateParamsdefaultResponse
-): response is DuplicateParamsdefaultResponse;
-export function isUnexpected(
-  response: PageWithMaxPageSize200Response | PageWithMaxPageSizedefaultResponse
-): response is PageWithMaxPageSizedefaultResponse;
+    | PagingGetNullNextLinkNamePages200Response
+    | PagingGetNullNextLinkNamePagesDefaultResponse
+): response is PagingGetNullNextLinkNamePagesDefaultResponse;
 export function isUnexpected(
   response:
-    | NextOperationWithQueryParams200Response
-    | NextOperationWithQueryParamsdefaultResponse
-): response is NextOperationWithQueryParamsdefaultResponse;
+    | PagingGetSinglePages200Response
+    | PagingGetSinglePagesDefaultResponse
+): response is PagingGetSinglePagesDefaultResponse;
 export function isUnexpected(
   response:
-    | GetOdataMultiplePages200Response
-    | GetOdataMultiplePagesdefaultResponse
-): response is GetOdataMultiplePagesdefaultResponse;
+    | PagingFirstResponseEmpty200Response
+    | PagingFirstResponseEmptyDefaultResponse
+): response is PagingFirstResponseEmptyDefaultResponse;
 export function isUnexpected(
   response:
-    | GetMultiplePagesWithOffset200Response
-    | GetMultiplePagesWithOffsetdefaultResponse
-): response is GetMultiplePagesWithOffsetdefaultResponse;
+    | PagingGetMultiplePages200Response
+    | PagingGetMultiplePagesDefaultResponse
+): response is PagingGetMultiplePagesDefaultResponse;
 export function isUnexpected(
   response:
-    | GetMultiplePagesRetryFirst200Response
-    | GetMultiplePagesRetryFirstdefaultResponse
-): response is GetMultiplePagesRetryFirstdefaultResponse;
+    | PagingGetWithQueryParams200Response
+    | PagingGetWithQueryParamsDefaultResponse
+): response is PagingGetWithQueryParamsDefaultResponse;
 export function isUnexpected(
   response:
-    | GetMultiplePagesRetrySecond200Response
-    | GetMultiplePagesRetrySeconddefaultResponse
-): response is GetMultiplePagesRetrySeconddefaultResponse;
+    | PagingDuplicateParams200Response
+    | PagingDuplicateParamsDefaultResponse
+): response is PagingDuplicateParamsDefaultResponse;
 export function isUnexpected(
   response:
-    | GetSinglePagesFailure200Response
-    | GetSinglePagesFailuredefaultResponse
-): response is GetSinglePagesFailuredefaultResponse;
+    | PagingPageWithMaxPageSize200Response
+    | PagingPageWithMaxPageSizeDefaultResponse
+): response is PagingPageWithMaxPageSizeDefaultResponse;
 export function isUnexpected(
   response:
-    | GetMultiplePagesFailure200Response
-    | GetMultiplePagesFailuredefaultResponse
-): response is GetMultiplePagesFailuredefaultResponse;
+    | PagingNextOperationWithQueryParams200Response
+    | PagingNextOperationWithQueryParamsDefaultResponse
+): response is PagingNextOperationWithQueryParamsDefaultResponse;
 export function isUnexpected(
   response:
-    | GetMultiplePagesFailureUri200Response
-    | GetMultiplePagesFailureUridefaultResponse
-): response is GetMultiplePagesFailureUridefaultResponse;
+    | PagingGetOdataMultiplePages200Response
+    | PagingGetOdataMultiplePagesDefaultResponse
+): response is PagingGetOdataMultiplePagesDefaultResponse;
 export function isUnexpected(
   response:
-    | GetMultiplePagesFragmentNextLink200Response
-    | GetMultiplePagesFragmentNextLinkdefaultResponse
-): response is GetMultiplePagesFragmentNextLinkdefaultResponse;
+    | PagingGetMultiplePagesWithOffset200Response
+    | PagingGetMultiplePagesWithOffsetDefaultResponse
+): response is PagingGetMultiplePagesWithOffsetDefaultResponse;
 export function isUnexpected(
   response:
-    | GetMultiplePagesFragmentWithGroupingNextLink200Response
-    | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
-): response is GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse;
-export function isUnexpected(
-  response: GetMultiplePagesLRO202Response | GetMultiplePagesLROdefaultResponse
-): response is GetMultiplePagesLROdefaultResponse;
-export function isUnexpected(
-  response: AppendApiVersion200Response | AppendApiVersiondefaultResponse
-): response is AppendApiVersiondefaultResponse;
-export function isUnexpected(
-  response: ReplaceApiVersion200Response | ReplaceApiVersiondefaultResponse
-): response is ReplaceApiVersiondefaultResponse;
-export function isUnexpected(
-  response: NextFragment200Response | NextFragmentdefaultResponse
-): response is NextFragmentdefaultResponse;
+    | PagingGetMultiplePagesRetryFirst200Response
+    | PagingGetMultiplePagesRetryFirstDefaultResponse
+): response is PagingGetMultiplePagesRetryFirstDefaultResponse;
 export function isUnexpected(
   response:
-    | NextFragmentWithGrouping200Response
-    | NextFragmentWithGroupingdefaultResponse
-): response is NextFragmentWithGroupingdefaultResponse;
+    | PagingGetMultiplePagesRetrySecond200Response
+    | PagingGetMultiplePagesRetrySecondDefaultResponse
+): response is PagingGetMultiplePagesRetrySecondDefaultResponse;
 export function isUnexpected(
   response:
-    | GetPagingModelWithItemNameWithXMSClientName200Response
-    | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
-): response is GetPagingModelWithItemNameWithXMSClientNamedefaultResponse;
+    | PagingGetSinglePagesFailure200Response
+    | PagingGetSinglePagesFailureDefaultResponse
+): response is PagingGetSinglePagesFailureDefaultResponse;
 export function isUnexpected(
   response:
-    | GetNoItemNamePages200Response
-    | GetNoItemNamePagesdefaultResponse
-    | GetNullNextLinkNamePages200Response
-    | GetNullNextLinkNamePagesdefaultResponse
-    | GetSinglePages200Response
-    | GetSinglePagesdefaultResponse
-    | FirstResponseEmpty200Response
-    | FirstResponseEmptydefaultResponse
-    | GetMultiplePages200Response
-    | GetMultiplePagesdefaultResponse
-    | GetWithQueryParams200Response
-    | GetWithQueryParamsdefaultResponse
-    | DuplicateParams200Response
-    | DuplicateParamsdefaultResponse
-    | PageWithMaxPageSize200Response
-    | PageWithMaxPageSizedefaultResponse
-    | NextOperationWithQueryParams200Response
-    | NextOperationWithQueryParamsdefaultResponse
-    | GetOdataMultiplePages200Response
-    | GetOdataMultiplePagesdefaultResponse
-    | GetMultiplePagesWithOffset200Response
-    | GetMultiplePagesWithOffsetdefaultResponse
-    | GetMultiplePagesRetryFirst200Response
-    | GetMultiplePagesRetryFirstdefaultResponse
-    | GetMultiplePagesRetrySecond200Response
-    | GetMultiplePagesRetrySeconddefaultResponse
-    | GetSinglePagesFailure200Response
-    | GetSinglePagesFailuredefaultResponse
-    | GetMultiplePagesFailure200Response
-    | GetMultiplePagesFailuredefaultResponse
-    | GetMultiplePagesFailureUri200Response
-    | GetMultiplePagesFailureUridefaultResponse
-    | GetMultiplePagesFragmentNextLink200Response
-    | GetMultiplePagesFragmentNextLinkdefaultResponse
-    | GetMultiplePagesFragmentWithGroupingNextLink200Response
-    | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
-    | GetMultiplePagesLRO202Response
-    | GetMultiplePagesLROdefaultResponse
-    | AppendApiVersion200Response
-    | AppendApiVersiondefaultResponse
-    | ReplaceApiVersion200Response
-    | ReplaceApiVersiondefaultResponse
-    | NextFragment200Response
-    | NextFragmentdefaultResponse
-    | NextFragmentWithGrouping200Response
-    | NextFragmentWithGroupingdefaultResponse
-    | GetPagingModelWithItemNameWithXMSClientName200Response
-    | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
+    | PagingGetMultiplePagesFailure200Response
+    | PagingGetMultiplePagesFailureDefaultResponse
+): response is PagingGetMultiplePagesFailureDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingGetMultiplePagesFailureUri200Response
+    | PagingGetMultiplePagesFailureUriDefaultResponse
+): response is PagingGetMultiplePagesFailureUriDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingGetMultiplePagesFragmentNextLink200Response
+    | PagingGetMultiplePagesFragmentNextLinkDefaultResponse
+): response is PagingGetMultiplePagesFragmentNextLinkDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingGetMultiplePagesFragmentWithGroupingNextLink200Response
+    | PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse
+): response is PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingGetMultiplePagesLRO202Response
+    | PagingGetMultiplePagesLRODefaultResponse
+): response is PagingGetMultiplePagesLRODefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingAppendApiVersion200Response
+    | PagingAppendApiVersionDefaultResponse
+): response is PagingAppendApiVersionDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingReplaceApiVersion200Response
+    | PagingReplaceApiVersionDefaultResponse
+): response is PagingReplaceApiVersionDefaultResponse;
+export function isUnexpected(
+  response: PagingNextFragment200Response | PagingNextFragmentDefaultResponse
+): response is PagingNextFragmentDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingNextFragmentWithGrouping200Response
+    | PagingNextFragmentWithGroupingDefaultResponse
+): response is PagingNextFragmentWithGroupingDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingGetPagingModelWithItemNameWithXMSClientName200Response
+    | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
+): response is PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingGetNoItemNamePages200Response
+    | PagingGetNoItemNamePagesDefaultResponse
+    | PagingGetNullNextLinkNamePages200Response
+    | PagingGetNullNextLinkNamePagesDefaultResponse
+    | PagingGetSinglePages200Response
+    | PagingGetSinglePagesDefaultResponse
+    | PagingFirstResponseEmpty200Response
+    | PagingFirstResponseEmptyDefaultResponse
+    | PagingGetMultiplePages200Response
+    | PagingGetMultiplePagesDefaultResponse
+    | PagingGetWithQueryParams200Response
+    | PagingGetWithQueryParamsDefaultResponse
+    | PagingDuplicateParams200Response
+    | PagingDuplicateParamsDefaultResponse
+    | PagingPageWithMaxPageSize200Response
+    | PagingPageWithMaxPageSizeDefaultResponse
+    | PagingNextOperationWithQueryParams200Response
+    | PagingNextOperationWithQueryParamsDefaultResponse
+    | PagingGetOdataMultiplePages200Response
+    | PagingGetOdataMultiplePagesDefaultResponse
+    | PagingGetMultiplePagesWithOffset200Response
+    | PagingGetMultiplePagesWithOffsetDefaultResponse
+    | PagingGetMultiplePagesRetryFirst200Response
+    | PagingGetMultiplePagesRetryFirstDefaultResponse
+    | PagingGetMultiplePagesRetrySecond200Response
+    | PagingGetMultiplePagesRetrySecondDefaultResponse
+    | PagingGetSinglePagesFailure200Response
+    | PagingGetSinglePagesFailureDefaultResponse
+    | PagingGetMultiplePagesFailure200Response
+    | PagingGetMultiplePagesFailureDefaultResponse
+    | PagingGetMultiplePagesFailureUri200Response
+    | PagingGetMultiplePagesFailureUriDefaultResponse
+    | PagingGetMultiplePagesFragmentNextLink200Response
+    | PagingGetMultiplePagesFragmentNextLinkDefaultResponse
+    | PagingGetMultiplePagesFragmentWithGroupingNextLink200Response
+    | PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse
+    | PagingGetMultiplePagesLRO202Response
+    | PagingGetMultiplePagesLRODefaultResponse
+    | PagingAppendApiVersion200Response
+    | PagingAppendApiVersionDefaultResponse
+    | PagingReplaceApiVersion200Response
+    | PagingReplaceApiVersionDefaultResponse
+    | PagingNextFragment200Response
+    | PagingNextFragmentDefaultResponse
+    | PagingNextFragmentWithGrouping200Response
+    | PagingNextFragmentWithGroupingDefaultResponse
+    | PagingGetPagingModelWithItemNameWithXMSClientName200Response
+    | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
 ): response is
-  | GetNoItemNamePagesdefaultResponse
-  | GetNullNextLinkNamePagesdefaultResponse
-  | GetSinglePagesdefaultResponse
-  | FirstResponseEmptydefaultResponse
-  | GetMultiplePagesdefaultResponse
-  | GetWithQueryParamsdefaultResponse
-  | DuplicateParamsdefaultResponse
-  | PageWithMaxPageSizedefaultResponse
-  | NextOperationWithQueryParamsdefaultResponse
-  | GetOdataMultiplePagesdefaultResponse
-  | GetMultiplePagesWithOffsetdefaultResponse
-  | GetMultiplePagesRetryFirstdefaultResponse
-  | GetMultiplePagesRetrySeconddefaultResponse
-  | GetSinglePagesFailuredefaultResponse
-  | GetMultiplePagesFailuredefaultResponse
-  | GetMultiplePagesFailureUridefaultResponse
-  | GetMultiplePagesFragmentNextLinkdefaultResponse
-  | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
-  | GetMultiplePagesLROdefaultResponse
-  | AppendApiVersiondefaultResponse
-  | ReplaceApiVersiondefaultResponse
-  | NextFragmentdefaultResponse
-  | NextFragmentWithGroupingdefaultResponse
-  | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse {
+  | PagingGetNoItemNamePagesDefaultResponse
+  | PagingGetNullNextLinkNamePagesDefaultResponse
+  | PagingGetSinglePagesDefaultResponse
+  | PagingFirstResponseEmptyDefaultResponse
+  | PagingGetMultiplePagesDefaultResponse
+  | PagingGetWithQueryParamsDefaultResponse
+  | PagingDuplicateParamsDefaultResponse
+  | PagingPageWithMaxPageSizeDefaultResponse
+  | PagingNextOperationWithQueryParamsDefaultResponse
+  | PagingGetOdataMultiplePagesDefaultResponse
+  | PagingGetMultiplePagesWithOffsetDefaultResponse
+  | PagingGetMultiplePagesRetryFirstDefaultResponse
+  | PagingGetMultiplePagesRetrySecondDefaultResponse
+  | PagingGetSinglePagesFailureDefaultResponse
+  | PagingGetMultiplePagesFailureDefaultResponse
+  | PagingGetMultiplePagesFailureUriDefaultResponse
+  | PagingGetMultiplePagesFragmentNextLinkDefaultResponse
+  | PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse
+  | PagingGetMultiplePagesLRODefaultResponse
+  | PagingAppendApiVersionDefaultResponse
+  | PagingReplaceApiVersionDefaultResponse
+  | PagingNextFragmentDefaultResponse
+  | PagingNextFragmentWithGroupingDefaultResponse
+  | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
   let pathDetails = responseMap[`${method} ${url.pathname}`];
   if (!pathDetails) {
-    pathDetails = geParametrizedPathSuccess(url.pathname);
+    pathDetails = geParametrizedPathSuccess(method, url.pathname);
   }
   return !pathDetails.includes(response.status);
 }
 
-function geParametrizedPathSuccess(path: string): string[] {
+function geParametrizedPathSuccess(method: string, path: string): string[] {
   const pathParts = path.split("/");
 
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(responseMap)) {
     // Extracting the path from the map key which is in format
     // GET /path/foo
+    if (!key.startsWith(method)) {
+      continue;
+    }
     const candidatePath = getPathFromMapKey(key);
     // Get each part of the url path
     const candidateParts = candidatePath.split("/");
@@ -284,8 +307,8 @@ function geParametrizedPathSuccess(path: string): string[] {
       let found = true;
       for (let i = 0; i < candidateParts.length; i++) {
         if (
-          candidateParts[i].startsWith("{") &&
-          candidateParts[i].endsWith("}")
+          candidateParts[i]?.startsWith("{") &&
+          candidateParts[i]?.endsWith("}")
         ) {
           // If the current part of the candidate is a "template" part
           // it is a match with the actual path part on hand

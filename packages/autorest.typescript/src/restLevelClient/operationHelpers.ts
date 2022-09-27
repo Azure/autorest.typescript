@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import {
   AnyObjectSchema,
   Operation,
@@ -17,7 +20,7 @@ export function getResponseTypeName(
   const statusCode = getStatusCode(response);
 
   return normalizeName(
-    `${getLanguageMetadata(operation.language).name}${statusCode}Response`,
+    `${getLanguageMetadata(operation.language).name}_${statusCode}Response`,
     NameType.Interface
   );
 }

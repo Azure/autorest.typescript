@@ -1,14 +1,17 @@
 import {
   CodeModel,
   ImplementationLocation,
-  ParameterLocation
+  ParameterLocation,
+  SchemaContext
 } from "@autorest/codemodel";
+import { PathParameter } from "@azure-tools/rlc-codegen";
+import { primitiveSchemaToType } from "../restLevelClient/schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export interface EndpointDetails {
   isCustom: boolean;
   endpoint?: string;
-  parameterName?: string;
+  urlParameters?: PathParameter[];
 }
 
 export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
@@ -20,14 +23,13 @@ export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
     return name === "$host" && Boolean(p.clientDefaultValue);
   });
 
-  let parameterName: string | undefined;
-
+  let urlParameters: PathParameter[] = [];
   if (!$host) {
     // There are some swaggers that contain no operations for those we'll keep an empty endpoint
     if (codeModel.operationGroups && codeModel.operationGroups.length) {
       // No support yet for multi-baseUrl yet Issue #553
       const { requests } = codeModel.operationGroups[0].operations[0];
-      parameterName = getEndpointParameter(codeModel);
+      urlParameters = getEndpointParameter(codeModel);
       isCustom = true;
       endpoint = requests![0].protocol.http!.uri;
     }
@@ -36,7 +38,7 @@ export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
   }
 
   return {
-    parameterName,
+    urlParameters,
     endpoint: endpoint,
     isCustom
   };
@@ -44,22 +46,26 @@ export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
 
 function getEndpointParameter(codeModel: CodeModel) {
   if (!codeModel.globalParameters || !codeModel.globalParameters.length) {
-    return;
+    return [];
   }
 
-  const uriParameters = codeModel.globalParameters.filter(
+  const urlParameters = codeModel.globalParameters.filter(
     gp =>
       gp.implementation === ImplementationLocation.Client &&
       gp.protocol.http?.in === ParameterLocation.Uri
   );
 
   // Currently only support one parametrized host
-  if (
-    !uriParameters.length ||
-    !getLanguageMetadata(uriParameters[0].language).serializedName
-  ) {
-    return;
+  if (!urlParameters.length) {
+    return [];
   }
 
-  return getLanguageMetadata(uriParameters[0].language).serializedName;
+  return urlParameters.map(urlParameter => {
+    return {
+      name: getLanguageMetadata(urlParameter.language).serializedName,
+      type: primitiveSchemaToType(urlParameter.schema, [SchemaContext.Input]),
+      description: getLanguageMetadata(urlParameter.language).description
+    }
+  })
+
 }

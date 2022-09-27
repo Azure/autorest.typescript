@@ -5,12 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 import { SecurityKeyRestClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class SecurityKeyRestClient class.
+ * @param credentials type: KeyCredential
+ */
 export default function createClient(
   credentials: KeyCredential,
   options: ClientOptions = {}
 ): SecurityKeyRestClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
-
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options = {
     ...options,
     credentials: {

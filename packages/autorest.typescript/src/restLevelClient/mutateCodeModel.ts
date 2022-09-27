@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { CodeModel, Operation, Parameter, Schema } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
@@ -20,12 +23,10 @@ function setOperationName(model: CodeModel) {
       if (!o.language.typescript) {
         o.language.typescript = { ...o.language.default };
       }
-      // No need to append operation group name if there is only a single OperationGroup
-      if (model.operationGroups.length > 1) {
-        o.language.typescript.name = `${
-          getLanguageMetadata(og.language).name
-        }${operationName}`;
-      }
+      // Always append operation group name
+      o.language.typescript.name = `${
+        getLanguageMetadata(og.language).name
+      }${operationName}`;
     })
   );
 }

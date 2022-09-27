@@ -1042,7 +1042,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    generateSample: true
+    generateSample: false // have issues in custom url samples
   },
   httpInfrastructureRest: {
     swaggerOrConfig: "httpInfrastructure.json",
@@ -1070,6 +1070,16 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig: "security-key.json",
     clientName: "SecurityKeyRestClient",
     packageName: "security-key-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    rlcShortcut: true,
+    allowInsecureConnection: true,
+    isTestPackage: true
+  },
+  multipleUrlParameters: {
+    swaggerOrConfig: "test/rlcIntegration/swaggers/multipleUrlParameter.json",
+    clientName: "MultipleUrlParameterRestClient",
+    packageName: "multiple-url-parameter-rest",
     licenseHeader: true,
     restLevelClient: true,
     rlcShortcut: true,

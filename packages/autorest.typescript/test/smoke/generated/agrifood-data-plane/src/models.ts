@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Schema of application data resource. */
 export interface ApplicationData {
   /** Application product details. */
   applicationProductDetails?: Array<ApplicationProductDetail>;
@@ -52,6 +53,7 @@ export interface ApplicationData {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of product used during application. */
 export interface ApplicationProductDetail {
   /** Name of the product applied. */
   productName?: string;
@@ -63,6 +65,7 @@ export interface ApplicationProductDetail {
   totalMaterial?: Measure;
 }
 
+/** Schema for storing measurement reading and unit. */
 export interface Measure {
   /** Data unit. */
   unit?: string;
@@ -70,6 +73,7 @@ export interface Measure {
   value?: number;
 }
 
+/** Schema of boundary resource. */
 export interface Boundary {
   /** Farmer ID. */
   farmerId?: string;
@@ -106,10 +110,12 @@ export interface Boundary {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** GeoJSON abstract class. */
 export interface GeoJsonObjectParent {
   type: "GeoJsonObject" | "MultiPolygon" | "Point" | "Polygon";
 }
 
+/** SearchAllBoundaries and SearchBoundaries parameters. */
 export interface SearchBoundaryQuery {
   /** Ids of the resource. */
   ids?: Array<string>;
@@ -151,6 +157,7 @@ export interface SearchBoundaryQuery {
   intersectsWithGeometry?: GeoJsonObject;
 }
 
+/** Schema of crop resource. */
 export interface Crop {
   /** Crop phenotype. */
   phenotype?: string;
@@ -177,6 +184,7 @@ export interface Crop {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of crop variety resource. */
 export interface CropVariety {
   /** ID of the crop it belongs to. */
   cropId?: string;
@@ -207,6 +215,7 @@ export interface CropVariety {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of farmer resource. */
 export interface Farmer {
   /** Unique resource ID. */
   id?: string;
@@ -231,6 +240,7 @@ export interface Farmer {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of farm operation data ingestion job. */
 export interface FarmOperationDataIngestionJob {
   /** Farmer ID. */
   farmerId: string;
@@ -272,6 +282,7 @@ export interface FarmOperationDataIngestionJob {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of farm resource. */
 export interface Farm {
   /** Farmer ID. */
   farmerId?: string;
@@ -298,6 +309,7 @@ export interface Farm {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of field resource. */
 export interface Field {
   /** ID of the associated Farm. */
   farmId?: string;
@@ -330,6 +342,7 @@ export interface Field {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of harvest data resource. */
 export interface HarvestData {
   /** Schema for storing measurement reading and unit. */
   totalYield?: Measure;
@@ -389,6 +402,7 @@ export interface HarvestData {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of product used during harvesting. */
 export interface HarvestProductDetail {
   /** Name of the product. */
   productName?: string;
@@ -406,6 +420,7 @@ export interface HarvestProductDetail {
   avgWetMass?: Measure;
 }
 
+/** ImageProcessingRasterizeJob. */
 export interface ImageProcessingRasterizeJob {
   /** Farmer ID. */
   farmerId: string;
@@ -445,6 +460,7 @@ export interface ImageProcessingRasterizeJob {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of OAuth provider resource. */
 export interface OAuthProvider {
   /** OAuth App ID for given OAuth Provider. */
   appId?: string;
@@ -484,6 +500,7 @@ export interface OAuthProvider {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Get OAuth config query parameters. */
 export interface OAuthConnectRequest {
   /** ID of the farmer. */
   farmerId: string;
@@ -495,6 +512,7 @@ export interface OAuthConnectRequest {
   userRedirectState?: string;
 }
 
+/** Schema of planting data resource. */
 export interface PlantingData {
   /** Schema for storing measurement reading and unit. */
   avgPlantingRate?: Measure;
@@ -548,6 +566,7 @@ export interface PlantingData {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema for Planting product detail. */
 export interface PlantingProductDetail {
   /** Name of the product. */
   productName?: string;
@@ -559,6 +578,7 @@ export interface PlantingProductDetail {
   avgMaterial?: Measure;
 }
 
+/** Schema of satellite data ingestion job. */
 export interface SatelliteDataIngestionJob {
   /** Farmer ID. */
   farmerId: string;
@@ -606,6 +626,7 @@ export interface SatelliteDataIngestionJob {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Data Model for SatelliteIngestionJobRequest. */
 export interface SatelliteData {
   /** List of ImageNames. */
   imageNames?: Array<string>;
@@ -615,6 +636,7 @@ export interface SatelliteData {
   imageResolutions?: Array<number>;
 }
 
+/** Schema of seasonal field resource. */
 export interface SeasonalField {
   /** Farmer ID. */
   farmerId?: string;
@@ -665,6 +687,7 @@ export interface SeasonalField {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of season resource. */
 export interface Season {
   /** Season start datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   startDateTime?: Date | string;
@@ -695,6 +718,7 @@ export interface Season {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of tillage data resource. */
 export interface TillageData {
   /** Schema for storing measurement reading and unit. */
   tillageDepth?: Measure;
@@ -744,6 +768,7 @@ export interface TillageData {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of weather ingestion job. */
 export interface WeatherDataIngestionJob {
   /** The id of the boundary object for which weather data is being fetched. */
   boundaryId: string;
@@ -791,6 +816,7 @@ export interface WeatherDataIngestionJob {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** Schema of weather data delete job. */
 export interface WeatherDataDeleteJob {
   /** ID of the extension to be used for the providerInput. eg. DTN.ClearAg. */
   extensionId: string;
@@ -838,12 +864,14 @@ export interface WeatherDataDeleteJob {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+/** MultiPolygon geometry. */
 export interface MultiPolygon
   extends GeoJsonObjectParent,
     MultiPolygonCoordinates {
   type: "MultiPolygon";
 }
 
+/** Schema of multi polygon coordinates. */
 export interface MultiPolygonCoordinates {
   /**
    * Gets or sets Coordinates of GeoJSON Object.
@@ -854,10 +882,12 @@ export interface MultiPolygonCoordinates {
   coordinates: Array<Array<Array<Array<number>>>>;
 }
 
+/** Point geometry. */
 export interface Point extends GeoJsonObjectParent, PointCoordinates {
   type: "Point";
 }
 
+/** Schema of the coordinates of a point. */
 export interface PointCoordinates {
   /**
    * Gets or sets the coordinate of this point.
@@ -866,10 +896,12 @@ export interface PointCoordinates {
   coordinates: Array<number>;
 }
 
+/** Polygon geometry. */
 export interface Polygon extends GeoJsonObjectParent, PolygonCoordinates {
   type: "Polygon";
 }
 
+/** Schema of polygon coordinates. */
 export interface PolygonCoordinates {
   /**
    * Gets or sets type of the GeoJSON Object.
@@ -880,4 +912,5 @@ export interface PolygonCoordinates {
   coordinates: Array<Array<Array<number>>>;
 }
 
+/** GeoJSON abstract class. */
 export type GeoJsonObject = MultiPolygon | Point | Polygon;

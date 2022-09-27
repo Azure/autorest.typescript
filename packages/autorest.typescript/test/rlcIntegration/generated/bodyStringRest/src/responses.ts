@@ -11,7 +11,7 @@ export interface StringGetNull200Response extends HttpResponse {
 }
 
 /** Get null string value value */
-export interface StringGetNulldefaultResponse extends HttpResponse {
+export interface StringGetNullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -23,7 +23,7 @@ export interface StringPutNull200Response extends HttpResponse {
 }
 
 /** Set string value null */
-export interface StringPutNulldefaultResponse extends HttpResponse {
+export interface StringPutNullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -35,7 +35,7 @@ export interface StringGetEmpty200Response extends HttpResponse {
 }
 
 /** Get empty string value value '' */
-export interface StringGetEmptydefaultResponse extends HttpResponse {
+export interface StringGetEmptyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -47,7 +47,7 @@ export interface StringPutEmpty200Response extends HttpResponse {
 }
 
 /** Set string value empty '' */
-export interface StringPutEmptydefaultResponse extends HttpResponse {
+export interface StringPutEmptyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -59,7 +59,7 @@ export interface StringGetMbcs200Response extends HttpResponse {
 }
 
 /** Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
-export interface StringGetMbcsdefaultResponse extends HttpResponse {
+export interface StringGetMbcsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -71,7 +71,7 @@ export interface StringPutMbcs200Response extends HttpResponse {
 }
 
 /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
-export interface StringPutMbcsdefaultResponse extends HttpResponse {
+export interface StringPutMbcsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -83,7 +83,7 @@ export interface StringGetWhitespace200Response extends HttpResponse {
 }
 
 /** Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
-export interface StringGetWhitespacedefaultResponse extends HttpResponse {
+export interface StringGetWhitespaceDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -95,7 +95,7 @@ export interface StringPutWhitespace200Response extends HttpResponse {
 }
 
 /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
-export interface StringPutWhitespacedefaultResponse extends HttpResponse {
+export interface StringPutWhitespaceDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -107,7 +107,7 @@ export interface StringGetNotProvided200Response extends HttpResponse {
 }
 
 /** Get String value when no string value is sent in response payload */
-export interface StringGetNotProvideddefaultResponse extends HttpResponse {
+export interface StringGetNotProvidedDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -120,7 +120,7 @@ export interface StringGetBase64Encoded200Response extends HttpResponse {
 }
 
 /** Get value that is base64 encoded */
-export interface StringGetBase64EncodeddefaultResponse extends HttpResponse {
+export interface StringGetBase64EncodedDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -133,7 +133,7 @@ export interface StringGetBase64UrlEncoded200Response extends HttpResponse {
 }
 
 /** Get value that is base64url encoded */
-export interface StringGetBase64UrlEncodeddefaultResponse extends HttpResponse {
+export interface StringGetBase64UrlEncodedDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -145,7 +145,7 @@ export interface StringPutBase64UrlEncoded200Response extends HttpResponse {
 }
 
 /** Put value that is base64url encoded */
-export interface StringPutBase64UrlEncodeddefaultResponse extends HttpResponse {
+export interface StringPutBase64UrlEncodedDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -158,7 +158,7 @@ export interface StringGetNullBase64UrlEncoded200Response extends HttpResponse {
 }
 
 /** Get null value that is expected to be base64url encoded */
-export interface StringGetNullBase64UrlEncodeddefaultResponse
+export interface StringGetNullBase64UrlEncodedDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
@@ -171,7 +171,7 @@ export interface EnumGetNotExpandable200Response extends HttpResponse {
 }
 
 /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
-export interface EnumGetNotExpandabledefaultResponse extends HttpResponse {
+export interface EnumGetNotExpandableDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -183,7 +183,7 @@ export interface EnumPutNotExpandable200Response extends HttpResponse {
 }
 
 /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
-export interface EnumPutNotExpandabledefaultResponse extends HttpResponse {
+export interface EnumPutNotExpandableDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -195,7 +195,7 @@ export interface EnumGetReferenced200Response extends HttpResponse {
 }
 
 /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
-export interface EnumGetReferenceddefaultResponse extends HttpResponse {
+export interface EnumGetReferencedDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -207,7 +207,7 @@ export interface EnumPutReferenced200Response extends HttpResponse {
 }
 
 /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
-export interface EnumPutReferenceddefaultResponse extends HttpResponse {
+export interface EnumPutReferencedDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -219,7 +219,7 @@ export interface EnumGetReferencedConstant200Response extends HttpResponse {
 }
 
 /** Get value 'green-color' from the constant. */
-export interface EnumGetReferencedConstantdefaultResponse extends HttpResponse {
+export interface EnumGetReferencedConstantDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -231,7 +231,7 @@ export interface EnumPutReferencedConstant200Response extends HttpResponse {
 }
 
 /** Sends value 'green-color' from a constant */
-export interface EnumPutReferencedConstantdefaultResponse extends HttpResponse {
+export interface EnumPutReferencedConstantDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }

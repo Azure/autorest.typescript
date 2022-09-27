@@ -18,7 +18,7 @@ export interface GetHorse200Response extends HttpResponse {
 }
 
 /** Get a horse with name 'Fred' and isAShowHorse true */
-export interface GetHorsedefaultResponse extends HttpResponse {
+export interface GetHorseDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -36,7 +36,7 @@ export interface GetPet200Response extends HttpResponse {
 }
 
 /** Get a pet with name 'Peanut' */
-export interface GetPetdefaultResponse extends HttpResponse {
+export interface GetPetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -54,7 +54,7 @@ export interface GetFeline200Response extends HttpResponse {
 }
 
 /** Get a feline where meows and hisses are true */
-export interface GetFelinedefaultResponse extends HttpResponse {
+export interface GetFelineDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -72,7 +72,7 @@ export interface GetCat200Response extends HttpResponse {
 }
 
 /** Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true */
-export interface GetCatdefaultResponse extends HttpResponse {
+export interface GetCatDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -90,7 +90,7 @@ export interface GetKitten200Response extends HttpResponse {
 }
 
 /** Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false */
-export interface GetKittendefaultResponse extends HttpResponse {
+export interface GetKittenDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }

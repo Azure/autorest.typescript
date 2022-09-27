@@ -11,63 +11,61 @@
       "port": 9229
     },
     {
-      "type": "node",
+      "name": "Run Debug Smoke Test",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}\\dist\\src\\main.js",
-      "preLaunchTask": "tsc: build - tsconfig.json",
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "runtimeArgs": [
+        "ts-node",
+        "./test/commands/smoke-test.ts",
+        "--tag=debug"
+      ],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js"
+      ]
     },
     {
-      "type": "node",
+      "name": "Generate code for CadlRlcTest",
       "request": "launch",
-      "name": "UnitTests",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": [
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-test",
+      "runtimeArgs": ["cadl", "compile", "./spec/main.cadl"],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
+    },
+    {
+      "name": "Generate code for CadlEmitter",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-emitter",
+      "runtimeArgs": ["ts-node", "./test/commands/gen-cadl-ranch.ts"],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
+    },
+    {
+      "name": "Cadl Unit or Integration Test",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-emitter",
+      "runtimeArgs": [
+        "mocha",
         "-r",
         "ts-node/register",
+        "--experimental-specifier-resolution=node",
+        "--experimental-modules=true",
         "--timeout",
         "999999",
         "--colors",
-        "${workspaceFolder}/test/unit/**/*.spec.ts"
+        "./test/unit/**/*.spec.ts"
       ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "protocol": "inspector"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "IntegrationTests",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": [
-        "-r",
-        "ts-node/register",
-        "--timeout",
-        "999999",
-        "--colors",
-        "${workspaceFolder}/test/integration/**/*.spec.ts"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "protocol": "inspector"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "IntegrationTests - Current File",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": [
-        "-r",
-        "ts-node/register",
-        "--timeout",
-        "999999",
-        "--colors",
-        "${workspaceFolder}/${relativeFile}"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "protocol": "inspector"
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     }
   ]
 }

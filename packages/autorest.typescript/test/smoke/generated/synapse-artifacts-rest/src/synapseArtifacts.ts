@@ -5,6 +5,11 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 import { SynapseArtifactsClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class SynapseArtifactsClient class.
+ * @param endpoint type: string The workspace development endpoint, for example https://myworkspace.dev.azuresynapse.net.
+ * @param credentials type: TokenCredential
+ */
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential,

@@ -1,0 +1,11 @@
+{
+  "generateMetadata": true,
+  "includeShortcuts": true,
+  "addCredentials": false,
+  "packageDetails": {
+    "name": "@msinternal/nested-model",
+    "description": "Nested Model Test Service",
+    "version": "1.0.0"
+  },
+  "isCadlTest": true
+}

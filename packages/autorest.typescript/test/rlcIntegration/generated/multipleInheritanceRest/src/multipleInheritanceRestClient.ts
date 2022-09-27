@@ -4,11 +4,14 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { MultipleInheritanceRestClient } from "./clientDefinitions";
 
+/**
+ * Initialize a new instance of the class MultipleInheritanceRestClient class.
+ *
+ */
 export default function createClient(
   options: ClientOptions = {}
 ): MultipleInheritanceRestClient {
-  const baseUrl = options.baseUrl ?? "http://localhost:3000";
-
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-multiple-inheritance-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig-common.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "commonjs",
+    "outDir": "dist/",
+    "target": "es2015"
+  }
+}

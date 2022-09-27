@@ -3,13 +3,13 @@
 
 import {
   MetadataRolesList200Response,
-  MetadataRolesListdefaultResponse,
+  MetadataRolesListDefaultResponse,
   MetadataPolicyListAll200Response,
-  MetadataPolicyListAlldefaultResponse,
+  MetadataPolicyListAllDefaultResponse,
   MetadataPolicyUpdate200Response,
-  MetadataPolicyUpdatedefaultResponse,
+  MetadataPolicyUpdateDefaultResponse,
   MetadataPolicyGet200Response,
-  MetadataPolicyGetdefaultResponse
+  MetadataPolicyGetDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -20,53 +20,56 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: MetadataRolesList200Response | MetadataRolesListdefaultResponse
-): response is MetadataRolesListdefaultResponse;
+  response: MetadataRolesList200Response | MetadataRolesListDefaultResponse
+): response is MetadataRolesListDefaultResponse;
 export function isUnexpected(
   response:
     | MetadataPolicyListAll200Response
-    | MetadataPolicyListAlldefaultResponse
-): response is MetadataPolicyListAlldefaultResponse;
+    | MetadataPolicyListAllDefaultResponse
+): response is MetadataPolicyListAllDefaultResponse;
 export function isUnexpected(
   response:
     | MetadataPolicyUpdate200Response
-    | MetadataPolicyUpdatedefaultResponse
-): response is MetadataPolicyUpdatedefaultResponse;
+    | MetadataPolicyUpdateDefaultResponse
+): response is MetadataPolicyUpdateDefaultResponse;
 export function isUnexpected(
-  response: MetadataPolicyGet200Response | MetadataPolicyGetdefaultResponse
-): response is MetadataPolicyGetdefaultResponse;
+  response: MetadataPolicyGet200Response | MetadataPolicyGetDefaultResponse
+): response is MetadataPolicyGetDefaultResponse;
 export function isUnexpected(
   response:
     | MetadataRolesList200Response
-    | MetadataRolesListdefaultResponse
+    | MetadataRolesListDefaultResponse
     | MetadataPolicyListAll200Response
-    | MetadataPolicyListAlldefaultResponse
+    | MetadataPolicyListAllDefaultResponse
     | MetadataPolicyUpdate200Response
-    | MetadataPolicyUpdatedefaultResponse
+    | MetadataPolicyUpdateDefaultResponse
     | MetadataPolicyGet200Response
-    | MetadataPolicyGetdefaultResponse
+    | MetadataPolicyGetDefaultResponse
 ): response is
-  | MetadataRolesListdefaultResponse
-  | MetadataPolicyListAlldefaultResponse
-  | MetadataPolicyUpdatedefaultResponse
-  | MetadataPolicyGetdefaultResponse {
+  | MetadataRolesListDefaultResponse
+  | MetadataPolicyListAllDefaultResponse
+  | MetadataPolicyUpdateDefaultResponse
+  | MetadataPolicyGetDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
   let pathDetails = responseMap[`${method} ${url.pathname}`];
   if (!pathDetails) {
-    pathDetails = geParametrizedPathSuccess(url.pathname);
+    pathDetails = geParametrizedPathSuccess(method, url.pathname);
   }
   return !pathDetails.includes(response.status);
 }
 
-function geParametrizedPathSuccess(path: string): string[] {
+function geParametrizedPathSuccess(method: string, path: string): string[] {
   const pathParts = path.split("/");
 
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(responseMap)) {
     // Extracting the path from the map key which is in format
     // GET /path/foo
+    if (!key.startsWith(method)) {
+      continue;
+    }
     const candidatePath = getPathFromMapKey(key);
     // Get each part of the url path
     const candidateParts = candidatePath.split("/");
@@ -81,8 +84,8 @@ function geParametrizedPathSuccess(path: string): string[] {
       let found = true;
       for (let i = 0; i < candidateParts.length; i++) {
         if (
-          candidateParts[i].startsWith("{") &&
-          candidateParts[i].endsWith("}")
+          candidateParts[i]?.startsWith("{") &&
+          candidateParts[i]?.endsWith("}")
         ) {
           // If the current part of the candidate is a "template" part
           // it is a match with the actual path part on hand

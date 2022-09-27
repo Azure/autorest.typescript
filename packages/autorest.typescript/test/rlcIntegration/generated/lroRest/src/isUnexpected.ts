@@ -4,190 +4,190 @@
 import {
   LROsPut200Succeeded200Response,
   LROsPut200Succeeded204Response,
-  LROsPut200SucceededdefaultResponse,
+  LROsPut200SucceededDefaultResponse,
   LROsPatch200SucceededIgnoreHeaders200Response,
-  LROsPatch200SucceededIgnoreHeadersdefaultResponse,
+  LROsPatch200SucceededIgnoreHeadersDefaultResponse,
   LROsPatch201RetryWithAsyncHeader200Response,
   LROsPatch201RetryWithAsyncHeader201Response,
-  LROsPatch201RetryWithAsyncHeaderdefaultResponse,
+  LROsPatch201RetryWithAsyncHeaderDefaultResponse,
   LROsPatch202RetryWithAsyncAndLocationHeader200Response,
   LROsPatch202RetryWithAsyncAndLocationHeader202Response,
-  LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse,
+  LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse,
   LROsPut201Succeeded201Response,
-  LROsPut201SucceededdefaultResponse,
+  LROsPut201SucceededDefaultResponse,
   LROsPost202List200Response,
   LROsPost202List202Response,
-  LROsPost202ListdefaultResponse,
+  LROsPost202ListDefaultResponse,
   LROsPut200SucceededNoState200Response,
-  LROsPut200SucceededNoStatedefaultResponse,
+  LROsPut200SucceededNoStateDefaultResponse,
   LROsPut202Retry200202Response,
-  LROsPut202Retry200defaultResponse,
+  LROsPut202Retry200DefaultResponse,
   LROsPut201CreatingSucceeded200200Response,
   LROsPut201CreatingSucceeded200201Response,
-  LROsPut201CreatingSucceeded200defaultResponse,
+  LROsPut201CreatingSucceeded200DefaultResponse,
   LROsPut200UpdatingSucceeded204200Response,
-  LROsPut200UpdatingSucceeded204defaultResponse,
+  LROsPut200UpdatingSucceeded204DefaultResponse,
   LROsPut201CreatingFailed200200Response,
   LROsPut201CreatingFailed200201Response,
-  LROsPut201CreatingFailed200defaultResponse,
+  LROsPut201CreatingFailed200DefaultResponse,
   LROsPut200Acceptedcanceled200200Response,
-  LROsPut200Acceptedcanceled200defaultResponse,
+  LROsPut200Acceptedcanceled200DefaultResponse,
   LROsPutNoHeaderInRetry202Response,
-  LROsPutNoHeaderInRetrydefaultResponse,
+  LROsPutNoHeaderInRetryDefaultResponse,
   LROsPutAsyncRetrySucceeded200Response,
-  LROsPutAsyncRetrySucceededdefaultResponse,
+  LROsPutAsyncRetrySucceededDefaultResponse,
   LROsPutAsyncNoRetrySucceeded200Response,
-  LROsPutAsyncNoRetrySucceededdefaultResponse,
+  LROsPutAsyncNoRetrySucceededDefaultResponse,
   LROsPutAsyncRetryFailed200Response,
-  LROsPutAsyncRetryFaileddefaultResponse,
+  LROsPutAsyncRetryFailedDefaultResponse,
   LROsPutAsyncNoRetrycanceled200Response,
-  LROsPutAsyncNoRetrycanceleddefaultResponse,
+  LROsPutAsyncNoRetrycanceledDefaultResponse,
   LROsPutAsyncNoHeaderInRetry201Response,
-  LROsPutAsyncNoHeaderInRetrydefaultResponse,
+  LROsPutAsyncNoHeaderInRetryDefaultResponse,
   LROsPutNonResource202Response,
-  LROsPutNonResourcedefaultResponse,
+  LROsPutNonResourceDefaultResponse,
   LROsPutAsyncNonResource202Response,
-  LROsPutAsyncNonResourcedefaultResponse,
+  LROsPutAsyncNonResourceDefaultResponse,
   LROsPutSubResource202Response,
-  LROsPutSubResourcedefaultResponse,
+  LROsPutSubResourceDefaultResponse,
   LROsPutAsyncSubResource202Response,
-  LROsPutAsyncSubResourcedefaultResponse,
+  LROsPutAsyncSubResourceDefaultResponse,
   LROsDeleteProvisioning202Accepted200Succeeded200Response,
   LROsDeleteProvisioning202Accepted200Succeeded202Response,
-  LROsDeleteProvisioning202Accepted200SucceededdefaultResponse,
+  LROsDeleteProvisioning202Accepted200SucceededDefaultResponse,
   LROsDeleteProvisioning202DeletingFailed200200Response,
   LROsDeleteProvisioning202DeletingFailed200202Response,
-  LROsDeleteProvisioning202DeletingFailed200defaultResponse,
+  LROsDeleteProvisioning202DeletingFailed200DefaultResponse,
   LROsDeleteProvisioning202Deletingcanceled200200Response,
   LROsDeleteProvisioning202Deletingcanceled200202Response,
-  LROsDeleteProvisioning202Deletingcanceled200defaultResponse,
+  LROsDeleteProvisioning202Deletingcanceled200DefaultResponse,
   LROsDelete204Succeeded204Response,
-  LROsDelete204SucceededdefaultResponse,
+  LROsDelete204SucceededDefaultResponse,
   LROsDelete202Retry200200Response,
   LROsDelete202Retry200202Response,
-  LROsDelete202Retry200defaultResponse,
+  LROsDelete202Retry200DefaultResponse,
   LROsDelete202NoRetry204200Response,
   LROsDelete202NoRetry204202Response,
-  LROsDelete202NoRetry204defaultResponse,
+  LROsDelete202NoRetry204DefaultResponse,
   LROsDeleteNoHeaderInRetry202Response,
   LROsDeleteNoHeaderInRetry204Response,
-  LROsDeleteNoHeaderInRetrydefaultResponse,
+  LROsDeleteNoHeaderInRetryDefaultResponse,
   LROsDeleteAsyncNoHeaderInRetry202Response,
   LROsDeleteAsyncNoHeaderInRetry204Response,
-  LROsDeleteAsyncNoHeaderInRetrydefaultResponse,
+  LROsDeleteAsyncNoHeaderInRetryDefaultResponse,
   LROsDeleteAsyncRetrySucceeded202Response,
-  LROsDeleteAsyncRetrySucceededdefaultResponse,
+  LROsDeleteAsyncRetrySucceededDefaultResponse,
   LROsDeleteAsyncNoRetrySucceeded202Response,
-  LROsDeleteAsyncNoRetrySucceededdefaultResponse,
+  LROsDeleteAsyncNoRetrySucceededDefaultResponse,
   LROsDeleteAsyncRetryFailed202Response,
-  LROsDeleteAsyncRetryFaileddefaultResponse,
+  LROsDeleteAsyncRetryFailedDefaultResponse,
   LROsDeleteAsyncRetrycanceled202Response,
-  LROsDeleteAsyncRetrycanceleddefaultResponse,
+  LROsDeleteAsyncRetrycanceledDefaultResponse,
   LROsPost200WithPayload200Response,
   LROsPost200WithPayload202Response,
-  LROsPost200WithPayloaddefaultResponse,
+  LROsPost200WithPayloadDefaultResponse,
   LROsPost202Retry200202Response,
-  LROsPost202Retry200defaultResponse,
+  LROsPost202Retry200DefaultResponse,
   LROsPost202NoRetry204202Response,
-  LROsPost202NoRetry204defaultResponse,
+  LROsPost202NoRetry204DefaultResponse,
   LROsPostDoubleHeadersFinalLocationGet202Response,
-  LROsPostDoubleHeadersFinalLocationGetdefaultResponse,
+  LROsPostDoubleHeadersFinalLocationGetDefaultResponse,
   LROsPostDoubleHeadersFinalAzureHeaderGet202Response,
-  LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse,
   LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response,
-  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse,
   LROsPostAsyncRetrySucceeded200Response,
   LROsPostAsyncRetrySucceeded202Response,
-  LROsPostAsyncRetrySucceededdefaultResponse,
+  LROsPostAsyncRetrySucceededDefaultResponse,
   LROsPostAsyncNoRetrySucceeded200Response,
   LROsPostAsyncNoRetrySucceeded202Response,
-  LROsPostAsyncNoRetrySucceededdefaultResponse,
+  LROsPostAsyncNoRetrySucceededDefaultResponse,
   LROsPostAsyncRetryFailed202Response,
-  LROsPostAsyncRetryFaileddefaultResponse,
+  LROsPostAsyncRetryFailedDefaultResponse,
   LROsPostAsyncRetrycanceled202Response,
-  LROsPostAsyncRetrycanceleddefaultResponse,
+  LROsPostAsyncRetrycanceledDefaultResponse,
   LRORetrysPut201CreatingSucceeded200200Response,
   LRORetrysPut201CreatingSucceeded200201Response,
-  LRORetrysPut201CreatingSucceeded200defaultResponse,
+  LRORetrysPut201CreatingSucceeded200DefaultResponse,
   LRORetrysPutAsyncRelativeRetrySucceeded200Response,
-  LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse,
+  LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse,
   LRORetrysDeleteProvisioning202Accepted200Succeeded200Response,
   LRORetrysDeleteProvisioning202Accepted200Succeeded202Response,
-  LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse,
+  LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse,
   LRORetrysDelete202Retry200202Response,
-  LRORetrysDelete202Retry200defaultResponse,
+  LRORetrysDelete202Retry200DefaultResponse,
   LRORetrysDeleteAsyncRelativeRetrySucceeded202Response,
-  LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse,
+  LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse,
   LRORetrysPost202Retry200202Response,
-  LRORetrysPost202Retry200defaultResponse,
+  LRORetrysPost202Retry200DefaultResponse,
   LRORetrysPostAsyncRelativeRetrySucceeded202Response,
-  LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse,
+  LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse,
   LrosaDsPutNonRetry400200Response,
   LrosaDsPutNonRetry400201Response,
-  LrosaDsPutNonRetry400defaultResponse,
+  LrosaDsPutNonRetry400DefaultResponse,
   LrosaDsPutNonRetry201Creating400200Response,
   LrosaDsPutNonRetry201Creating400201Response,
-  LrosaDsPutNonRetry201Creating400defaultResponse,
+  LrosaDsPutNonRetry201Creating400DefaultResponse,
   LrosaDsPutNonRetry201Creating400InvalidJson200Response,
   LrosaDsPutNonRetry201Creating400InvalidJson201Response,
-  LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse,
+  LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse,
   LrosaDsPutAsyncRelativeRetry400200Response,
-  LrosaDsPutAsyncRelativeRetry400defaultResponse,
+  LrosaDsPutAsyncRelativeRetry400DefaultResponse,
   LrosaDsDeleteNonRetry400202Response,
-  LrosaDsDeleteNonRetry400defaultResponse,
+  LrosaDsDeleteNonRetry400DefaultResponse,
   LrosaDsDelete202NonRetry400202Response,
-  LrosaDsDelete202NonRetry400defaultResponse,
+  LrosaDsDelete202NonRetry400DefaultResponse,
   LrosaDsDeleteAsyncRelativeRetry400202Response,
-  LrosaDsDeleteAsyncRelativeRetry400defaultResponse,
+  LrosaDsDeleteAsyncRelativeRetry400DefaultResponse,
   LrosaDsPostNonRetry400202Response,
-  LrosaDsPostNonRetry400defaultResponse,
+  LrosaDsPostNonRetry400DefaultResponse,
   LrosaDsPost202NonRetry400202Response,
-  LrosaDsPost202NonRetry400defaultResponse,
+  LrosaDsPost202NonRetry400DefaultResponse,
   LrosaDsPostAsyncRelativeRetry400202Response,
-  LrosaDsPostAsyncRelativeRetry400defaultResponse,
+  LrosaDsPostAsyncRelativeRetry400DefaultResponse,
   LrosaDsPutError201NoProvisioningStatePayload200Response,
   LrosaDsPutError201NoProvisioningStatePayload201Response,
-  LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse,
+  LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse,
   LrosaDsPutAsyncRelativeRetryNoStatus200Response,
-  LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse,
+  LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse,
   LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response,
-  LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse,
+  LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse,
   LrosaDsDelete204Succeeded204Response,
-  LrosaDsDelete204SucceededdefaultResponse,
+  LrosaDsDelete204SucceededDefaultResponse,
   LrosaDsDeleteAsyncRelativeRetryNoStatus202Response,
-  LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse,
   LrosaDsPost202NoLocation202Response,
-  LrosaDsPost202NoLocationdefaultResponse,
+  LrosaDsPost202NoLocationDefaultResponse,
   LrosaDsPostAsyncRelativeRetryNoPayload202Response,
-  LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse,
+  LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse,
   LrosaDsPut200InvalidJson200Response,
   LrosaDsPut200InvalidJson204Response,
-  LrosaDsPut200InvalidJsondefaultResponse,
+  LrosaDsPut200InvalidJsonDefaultResponse,
   LrosaDsPutAsyncRelativeRetryInvalidHeader200Response,
-  LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse,
   LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response,
-  LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
   LrosaDsDelete202RetryInvalidHeader202Response,
-  LrosaDsDelete202RetryInvalidHeaderdefaultResponse,
+  LrosaDsDelete202RetryInvalidHeaderDefaultResponse,
   LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response,
-  LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse,
   LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response,
-  LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
   LrosaDsPost202RetryInvalidHeader202Response,
-  LrosaDsPost202RetryInvalidHeaderdefaultResponse,
+  LrosaDsPost202RetryInvalidHeaderDefaultResponse,
   LrosaDsPostAsyncRelativeRetryInvalidHeader202Response,
-  LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse,
   LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response,
-  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
   LROsCustomHeaderPutAsyncRetrySucceeded200Response,
-  LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse,
+  LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse,
   LROsCustomHeaderPut201CreatingSucceeded200200Response,
   LROsCustomHeaderPut201CreatingSucceeded200201Response,
-  LROsCustomHeaderPut201CreatingSucceeded200defaultResponse,
+  LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse,
   LROsCustomHeaderPost202Retry200202Response,
-  LROsCustomHeaderPost202Retry200defaultResponse,
+  LROsCustomHeaderPost202Retry200DefaultResponse,
   LROsCustomHeaderPostAsyncRetrySucceeded202Response,
-  LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
+  LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -365,691 +365,691 @@ export function isUnexpected(
   response:
     | LROsPut200Succeeded200Response
     | LROsPut200Succeeded204Response
-    | LROsPut200SucceededdefaultResponse
-): response is LROsPut200SucceededdefaultResponse;
+    | LROsPut200SucceededDefaultResponse
+): response is LROsPut200SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPatch200SucceededIgnoreHeaders200Response
-    | LROsPatch200SucceededIgnoreHeadersdefaultResponse
-): response is LROsPatch200SucceededIgnoreHeadersdefaultResponse;
+    | LROsPatch200SucceededIgnoreHeadersDefaultResponse
+): response is LROsPatch200SucceededIgnoreHeadersDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPatch201RetryWithAsyncHeader200Response
     | LROsPatch201RetryWithAsyncHeader201Response
-    | LROsPatch201RetryWithAsyncHeaderdefaultResponse
-): response is LROsPatch201RetryWithAsyncHeaderdefaultResponse;
+    | LROsPatch201RetryWithAsyncHeaderDefaultResponse
+): response is LROsPatch201RetryWithAsyncHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPatch202RetryWithAsyncAndLocationHeader200Response
     | LROsPatch202RetryWithAsyncAndLocationHeader202Response
-    | LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse
-): response is LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse;
+    | LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse
+): response is LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse;
 export function isUnexpected(
-  response: LROsPut201Succeeded201Response | LROsPut201SucceededdefaultResponse
-): response is LROsPut201SucceededdefaultResponse;
+  response: LROsPut201Succeeded201Response | LROsPut201SucceededDefaultResponse
+): response is LROsPut201SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPost202List200Response
     | LROsPost202List202Response
-    | LROsPost202ListdefaultResponse
-): response is LROsPost202ListdefaultResponse;
+    | LROsPost202ListDefaultResponse
+): response is LROsPost202ListDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut200SucceededNoState200Response
-    | LROsPut200SucceededNoStatedefaultResponse
-): response is LROsPut200SucceededNoStatedefaultResponse;
+    | LROsPut200SucceededNoStateDefaultResponse
+): response is LROsPut200SucceededNoStateDefaultResponse;
 export function isUnexpected(
-  response: LROsPut202Retry200202Response | LROsPut202Retry200defaultResponse
-): response is LROsPut202Retry200defaultResponse;
+  response: LROsPut202Retry200202Response | LROsPut202Retry200DefaultResponse
+): response is LROsPut202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut201CreatingSucceeded200200Response
     | LROsPut201CreatingSucceeded200201Response
-    | LROsPut201CreatingSucceeded200defaultResponse
-): response is LROsPut201CreatingSucceeded200defaultResponse;
+    | LROsPut201CreatingSucceeded200DefaultResponse
+): response is LROsPut201CreatingSucceeded200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut200UpdatingSucceeded204200Response
-    | LROsPut200UpdatingSucceeded204defaultResponse
-): response is LROsPut200UpdatingSucceeded204defaultResponse;
+    | LROsPut200UpdatingSucceeded204DefaultResponse
+): response is LROsPut200UpdatingSucceeded204DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut201CreatingFailed200200Response
     | LROsPut201CreatingFailed200201Response
-    | LROsPut201CreatingFailed200defaultResponse
-): response is LROsPut201CreatingFailed200defaultResponse;
+    | LROsPut201CreatingFailed200DefaultResponse
+): response is LROsPut201CreatingFailed200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut200Acceptedcanceled200200Response
-    | LROsPut200Acceptedcanceled200defaultResponse
-): response is LROsPut200Acceptedcanceled200defaultResponse;
+    | LROsPut200Acceptedcanceled200DefaultResponse
+): response is LROsPut200Acceptedcanceled200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutNoHeaderInRetry202Response
-    | LROsPutNoHeaderInRetrydefaultResponse
-): response is LROsPutNoHeaderInRetrydefaultResponse;
+    | LROsPutNoHeaderInRetryDefaultResponse
+): response is LROsPutNoHeaderInRetryDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncRetrySucceeded200Response
-    | LROsPutAsyncRetrySucceededdefaultResponse
-): response is LROsPutAsyncRetrySucceededdefaultResponse;
+    | LROsPutAsyncRetrySucceededDefaultResponse
+): response is LROsPutAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncNoRetrySucceeded200Response
-    | LROsPutAsyncNoRetrySucceededdefaultResponse
-): response is LROsPutAsyncNoRetrySucceededdefaultResponse;
+    | LROsPutAsyncNoRetrySucceededDefaultResponse
+): response is LROsPutAsyncNoRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncRetryFailed200Response
-    | LROsPutAsyncRetryFaileddefaultResponse
-): response is LROsPutAsyncRetryFaileddefaultResponse;
+    | LROsPutAsyncRetryFailedDefaultResponse
+): response is LROsPutAsyncRetryFailedDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncNoRetrycanceled200Response
-    | LROsPutAsyncNoRetrycanceleddefaultResponse
-): response is LROsPutAsyncNoRetrycanceleddefaultResponse;
+    | LROsPutAsyncNoRetrycanceledDefaultResponse
+): response is LROsPutAsyncNoRetrycanceledDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncNoHeaderInRetry201Response
-    | LROsPutAsyncNoHeaderInRetrydefaultResponse
-): response is LROsPutAsyncNoHeaderInRetrydefaultResponse;
+    | LROsPutAsyncNoHeaderInRetryDefaultResponse
+): response is LROsPutAsyncNoHeaderInRetryDefaultResponse;
 export function isUnexpected(
-  response: LROsPutNonResource202Response | LROsPutNonResourcedefaultResponse
-): response is LROsPutNonResourcedefaultResponse;
+  response: LROsPutNonResource202Response | LROsPutNonResourceDefaultResponse
+): response is LROsPutNonResourceDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncNonResource202Response
-    | LROsPutAsyncNonResourcedefaultResponse
-): response is LROsPutAsyncNonResourcedefaultResponse;
+    | LROsPutAsyncNonResourceDefaultResponse
+): response is LROsPutAsyncNonResourceDefaultResponse;
 export function isUnexpected(
-  response: LROsPutSubResource202Response | LROsPutSubResourcedefaultResponse
-): response is LROsPutSubResourcedefaultResponse;
+  response: LROsPutSubResource202Response | LROsPutSubResourceDefaultResponse
+): response is LROsPutSubResourceDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncSubResource202Response
-    | LROsPutAsyncSubResourcedefaultResponse
-): response is LROsPutAsyncSubResourcedefaultResponse;
+    | LROsPutAsyncSubResourceDefaultResponse
+): response is LROsPutAsyncSubResourceDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteProvisioning202Accepted200Succeeded200Response
     | LROsDeleteProvisioning202Accepted200Succeeded202Response
-    | LROsDeleteProvisioning202Accepted200SucceededdefaultResponse
-): response is LROsDeleteProvisioning202Accepted200SucceededdefaultResponse;
+    | LROsDeleteProvisioning202Accepted200SucceededDefaultResponse
+): response is LROsDeleteProvisioning202Accepted200SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteProvisioning202DeletingFailed200200Response
     | LROsDeleteProvisioning202DeletingFailed200202Response
-    | LROsDeleteProvisioning202DeletingFailed200defaultResponse
-): response is LROsDeleteProvisioning202DeletingFailed200defaultResponse;
+    | LROsDeleteProvisioning202DeletingFailed200DefaultResponse
+): response is LROsDeleteProvisioning202DeletingFailed200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteProvisioning202Deletingcanceled200200Response
     | LROsDeleteProvisioning202Deletingcanceled200202Response
-    | LROsDeleteProvisioning202Deletingcanceled200defaultResponse
-): response is LROsDeleteProvisioning202Deletingcanceled200defaultResponse;
+    | LROsDeleteProvisioning202Deletingcanceled200DefaultResponse
+): response is LROsDeleteProvisioning202Deletingcanceled200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsDelete204Succeeded204Response
-    | LROsDelete204SucceededdefaultResponse
-): response is LROsDelete204SucceededdefaultResponse;
+    | LROsDelete204SucceededDefaultResponse
+): response is LROsDelete204SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDelete202Retry200200Response
     | LROsDelete202Retry200202Response
-    | LROsDelete202Retry200defaultResponse
-): response is LROsDelete202Retry200defaultResponse;
+    | LROsDelete202Retry200DefaultResponse
+): response is LROsDelete202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsDelete202NoRetry204200Response
     | LROsDelete202NoRetry204202Response
-    | LROsDelete202NoRetry204defaultResponse
-): response is LROsDelete202NoRetry204defaultResponse;
+    | LROsDelete202NoRetry204DefaultResponse
+): response is LROsDelete202NoRetry204DefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteNoHeaderInRetry202Response
     | LROsDeleteNoHeaderInRetry204Response
-    | LROsDeleteNoHeaderInRetrydefaultResponse
-): response is LROsDeleteNoHeaderInRetrydefaultResponse;
+    | LROsDeleteNoHeaderInRetryDefaultResponse
+): response is LROsDeleteNoHeaderInRetryDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncNoHeaderInRetry202Response
     | LROsDeleteAsyncNoHeaderInRetry204Response
-    | LROsDeleteAsyncNoHeaderInRetrydefaultResponse
-): response is LROsDeleteAsyncNoHeaderInRetrydefaultResponse;
+    | LROsDeleteAsyncNoHeaderInRetryDefaultResponse
+): response is LROsDeleteAsyncNoHeaderInRetryDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncRetrySucceeded202Response
-    | LROsDeleteAsyncRetrySucceededdefaultResponse
-): response is LROsDeleteAsyncRetrySucceededdefaultResponse;
+    | LROsDeleteAsyncRetrySucceededDefaultResponse
+): response is LROsDeleteAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncNoRetrySucceeded202Response
-    | LROsDeleteAsyncNoRetrySucceededdefaultResponse
-): response is LROsDeleteAsyncNoRetrySucceededdefaultResponse;
+    | LROsDeleteAsyncNoRetrySucceededDefaultResponse
+): response is LROsDeleteAsyncNoRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncRetryFailed202Response
-    | LROsDeleteAsyncRetryFaileddefaultResponse
-): response is LROsDeleteAsyncRetryFaileddefaultResponse;
+    | LROsDeleteAsyncRetryFailedDefaultResponse
+): response is LROsDeleteAsyncRetryFailedDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncRetrycanceled202Response
-    | LROsDeleteAsyncRetrycanceleddefaultResponse
-): response is LROsDeleteAsyncRetrycanceleddefaultResponse;
+    | LROsDeleteAsyncRetrycanceledDefaultResponse
+): response is LROsDeleteAsyncRetrycanceledDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPost200WithPayload200Response
     | LROsPost200WithPayload202Response
-    | LROsPost200WithPayloaddefaultResponse
-): response is LROsPost200WithPayloaddefaultResponse;
+    | LROsPost200WithPayloadDefaultResponse
+): response is LROsPost200WithPayloadDefaultResponse;
 export function isUnexpected(
-  response: LROsPost202Retry200202Response | LROsPost202Retry200defaultResponse
-): response is LROsPost202Retry200defaultResponse;
+  response: LROsPost202Retry200202Response | LROsPost202Retry200DefaultResponse
+): response is LROsPost202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPost202NoRetry204202Response
-    | LROsPost202NoRetry204defaultResponse
-): response is LROsPost202NoRetry204defaultResponse;
+    | LROsPost202NoRetry204DefaultResponse
+): response is LROsPost202NoRetry204DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostDoubleHeadersFinalLocationGet202Response
-    | LROsPostDoubleHeadersFinalLocationGetdefaultResponse
-): response is LROsPostDoubleHeadersFinalLocationGetdefaultResponse;
+    | LROsPostDoubleHeadersFinalLocationGetDefaultResponse
+): response is LROsPostDoubleHeadersFinalLocationGetDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostDoubleHeadersFinalAzureHeaderGet202Response
-    | LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse
-): response is LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse;
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+): response is LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response
-    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse
-): response is LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse;
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse
+): response is LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostAsyncRetrySucceeded200Response
     | LROsPostAsyncRetrySucceeded202Response
-    | LROsPostAsyncRetrySucceededdefaultResponse
-): response is LROsPostAsyncRetrySucceededdefaultResponse;
+    | LROsPostAsyncRetrySucceededDefaultResponse
+): response is LROsPostAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostAsyncNoRetrySucceeded200Response
     | LROsPostAsyncNoRetrySucceeded202Response
-    | LROsPostAsyncNoRetrySucceededdefaultResponse
-): response is LROsPostAsyncNoRetrySucceededdefaultResponse;
+    | LROsPostAsyncNoRetrySucceededDefaultResponse
+): response is LROsPostAsyncNoRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostAsyncRetryFailed202Response
-    | LROsPostAsyncRetryFaileddefaultResponse
-): response is LROsPostAsyncRetryFaileddefaultResponse;
+    | LROsPostAsyncRetryFailedDefaultResponse
+): response is LROsPostAsyncRetryFailedDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostAsyncRetrycanceled202Response
-    | LROsPostAsyncRetrycanceleddefaultResponse
-): response is LROsPostAsyncRetrycanceleddefaultResponse;
+    | LROsPostAsyncRetrycanceledDefaultResponse
+): response is LROsPostAsyncRetrycanceledDefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysPut201CreatingSucceeded200200Response
     | LRORetrysPut201CreatingSucceeded200201Response
-    | LRORetrysPut201CreatingSucceeded200defaultResponse
-): response is LRORetrysPut201CreatingSucceeded200defaultResponse;
+    | LRORetrysPut201CreatingSucceeded200DefaultResponse
+): response is LRORetrysPut201CreatingSucceeded200DefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysPutAsyncRelativeRetrySucceeded200Response
-    | LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse
-): response is LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse;
+    | LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse
+): response is LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysDeleteProvisioning202Accepted200Succeeded200Response
     | LRORetrysDeleteProvisioning202Accepted200Succeeded202Response
-    | LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse
-): response is LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse;
+    | LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse
+): response is LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysDelete202Retry200202Response
-    | LRORetrysDelete202Retry200defaultResponse
-): response is LRORetrysDelete202Retry200defaultResponse;
+    | LRORetrysDelete202Retry200DefaultResponse
+): response is LRORetrysDelete202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysDeleteAsyncRelativeRetrySucceeded202Response
-    | LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse
-): response is LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse;
+    | LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse
+): response is LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysPost202Retry200202Response
-    | LRORetrysPost202Retry200defaultResponse
-): response is LRORetrysPost202Retry200defaultResponse;
+    | LRORetrysPost202Retry200DefaultResponse
+): response is LRORetrysPost202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysPostAsyncRelativeRetrySucceeded202Response
-    | LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse
-): response is LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse;
+    | LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse
+): response is LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutNonRetry400200Response
     | LrosaDsPutNonRetry400201Response
-    | LrosaDsPutNonRetry400defaultResponse
-): response is LrosaDsPutNonRetry400defaultResponse;
+    | LrosaDsPutNonRetry400DefaultResponse
+): response is LrosaDsPutNonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutNonRetry201Creating400200Response
     | LrosaDsPutNonRetry201Creating400201Response
-    | LrosaDsPutNonRetry201Creating400defaultResponse
-): response is LrosaDsPutNonRetry201Creating400defaultResponse;
+    | LrosaDsPutNonRetry201Creating400DefaultResponse
+): response is LrosaDsPutNonRetry201Creating400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutNonRetry201Creating400InvalidJson200Response
     | LrosaDsPutNonRetry201Creating400InvalidJson201Response
-    | LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse
-): response is LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse;
+    | LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse
+): response is LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetry400200Response
-    | LrosaDsPutAsyncRelativeRetry400defaultResponse
-): response is LrosaDsPutAsyncRelativeRetry400defaultResponse;
+    | LrosaDsPutAsyncRelativeRetry400DefaultResponse
+): response is LrosaDsPutAsyncRelativeRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteNonRetry400202Response
-    | LrosaDsDeleteNonRetry400defaultResponse
-): response is LrosaDsDeleteNonRetry400defaultResponse;
+    | LrosaDsDeleteNonRetry400DefaultResponse
+): response is LrosaDsDeleteNonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDelete202NonRetry400202Response
-    | LrosaDsDelete202NonRetry400defaultResponse
-): response is LrosaDsDelete202NonRetry400defaultResponse;
+    | LrosaDsDelete202NonRetry400DefaultResponse
+): response is LrosaDsDelete202NonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteAsyncRelativeRetry400202Response
-    | LrosaDsDeleteAsyncRelativeRetry400defaultResponse
-): response is LrosaDsDeleteAsyncRelativeRetry400defaultResponse;
+    | LrosaDsDeleteAsyncRelativeRetry400DefaultResponse
+): response is LrosaDsDeleteAsyncRelativeRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostNonRetry400202Response
-    | LrosaDsPostNonRetry400defaultResponse
-): response is LrosaDsPostNonRetry400defaultResponse;
+    | LrosaDsPostNonRetry400DefaultResponse
+): response is LrosaDsPostNonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPost202NonRetry400202Response
-    | LrosaDsPost202NonRetry400defaultResponse
-): response is LrosaDsPost202NonRetry400defaultResponse;
+    | LrosaDsPost202NonRetry400DefaultResponse
+): response is LrosaDsPost202NonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostAsyncRelativeRetry400202Response
-    | LrosaDsPostAsyncRelativeRetry400defaultResponse
-): response is LrosaDsPostAsyncRelativeRetry400defaultResponse;
+    | LrosaDsPostAsyncRelativeRetry400DefaultResponse
+): response is LrosaDsPostAsyncRelativeRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutError201NoProvisioningStatePayload200Response
     | LrosaDsPutError201NoProvisioningStatePayload201Response
-    | LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse
-): response is LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse;
+    | LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse
+): response is LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetryNoStatus200Response
-    | LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse
-): response is LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse;
+    | LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse
+): response is LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response
-    | LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse
-): response is LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse;
+    | LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse
+): response is LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDelete204Succeeded204Response
-    | LrosaDsDelete204SucceededdefaultResponse
-): response is LrosaDsDelete204SucceededdefaultResponse;
+    | LrosaDsDelete204SucceededDefaultResponse
+): response is LrosaDsDelete204SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteAsyncRelativeRetryNoStatus202Response
-    | LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse
-): response is LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse;
+    | LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse
+): response is LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPost202NoLocation202Response
-    | LrosaDsPost202NoLocationdefaultResponse
-): response is LrosaDsPost202NoLocationdefaultResponse;
+    | LrosaDsPost202NoLocationDefaultResponse
+): response is LrosaDsPost202NoLocationDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostAsyncRelativeRetryNoPayload202Response
-    | LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse
-): response is LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse;
+    | LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse
+): response is LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPut200InvalidJson200Response
     | LrosaDsPut200InvalidJson204Response
-    | LrosaDsPut200InvalidJsondefaultResponse
-): response is LrosaDsPut200InvalidJsondefaultResponse;
+    | LrosaDsPut200InvalidJsonDefaultResponse
+): response is LrosaDsPut200InvalidJsonDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetryInvalidHeader200Response
-    | LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse
-): response is LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse;
+    | LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse
+): response is LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response
-    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse
-): response is LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse;
+    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+): response is LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDelete202RetryInvalidHeader202Response
-    | LrosaDsDelete202RetryInvalidHeaderdefaultResponse
-): response is LrosaDsDelete202RetryInvalidHeaderdefaultResponse;
+    | LrosaDsDelete202RetryInvalidHeaderDefaultResponse
+): response is LrosaDsDelete202RetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse
-): response is LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse;
+    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse
+): response is LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse
-): response is LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse;
+    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+): response is LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPost202RetryInvalidHeader202Response
-    | LrosaDsPost202RetryInvalidHeaderdefaultResponse
-): response is LrosaDsPost202RetryInvalidHeaderdefaultResponse;
+    | LrosaDsPost202RetryInvalidHeaderDefaultResponse
+): response is LrosaDsPost202RetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse
-): response is LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse;
+    | LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse
+): response is LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse
-): response is LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse;
+    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+): response is LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse;
 export function isUnexpected(
   response:
     | LROsCustomHeaderPutAsyncRetrySucceeded200Response
-    | LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse
-): response is LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse;
+    | LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse
+): response is LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsCustomHeaderPut201CreatingSucceeded200200Response
     | LROsCustomHeaderPut201CreatingSucceeded200201Response
-    | LROsCustomHeaderPut201CreatingSucceeded200defaultResponse
-): response is LROsCustomHeaderPut201CreatingSucceeded200defaultResponse;
+    | LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse
+): response is LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsCustomHeaderPost202Retry200202Response
-    | LROsCustomHeaderPost202Retry200defaultResponse
-): response is LROsCustomHeaderPost202Retry200defaultResponse;
+    | LROsCustomHeaderPost202Retry200DefaultResponse
+): response is LROsCustomHeaderPost202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsCustomHeaderPostAsyncRetrySucceeded202Response
-    | LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
-): response is LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse;
+    | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
+): response is LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut200Succeeded200Response
     | LROsPut200Succeeded204Response
-    | LROsPut200SucceededdefaultResponse
+    | LROsPut200SucceededDefaultResponse
     | LROsPatch200SucceededIgnoreHeaders200Response
-    | LROsPatch200SucceededIgnoreHeadersdefaultResponse
+    | LROsPatch200SucceededIgnoreHeadersDefaultResponse
     | LROsPatch201RetryWithAsyncHeader200Response
     | LROsPatch201RetryWithAsyncHeader201Response
-    | LROsPatch201RetryWithAsyncHeaderdefaultResponse
+    | LROsPatch201RetryWithAsyncHeaderDefaultResponse
     | LROsPatch202RetryWithAsyncAndLocationHeader200Response
     | LROsPatch202RetryWithAsyncAndLocationHeader202Response
-    | LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse
+    | LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse
     | LROsPut201Succeeded201Response
-    | LROsPut201SucceededdefaultResponse
+    | LROsPut201SucceededDefaultResponse
     | LROsPost202List200Response
     | LROsPost202List202Response
-    | LROsPost202ListdefaultResponse
+    | LROsPost202ListDefaultResponse
     | LROsPut200SucceededNoState200Response
-    | LROsPut200SucceededNoStatedefaultResponse
+    | LROsPut200SucceededNoStateDefaultResponse
     | LROsPut202Retry200202Response
-    | LROsPut202Retry200defaultResponse
+    | LROsPut202Retry200DefaultResponse
     | LROsPut201CreatingSucceeded200200Response
     | LROsPut201CreatingSucceeded200201Response
-    | LROsPut201CreatingSucceeded200defaultResponse
+    | LROsPut201CreatingSucceeded200DefaultResponse
     | LROsPut200UpdatingSucceeded204200Response
-    | LROsPut200UpdatingSucceeded204defaultResponse
+    | LROsPut200UpdatingSucceeded204DefaultResponse
     | LROsPut201CreatingFailed200200Response
     | LROsPut201CreatingFailed200201Response
-    | LROsPut201CreatingFailed200defaultResponse
+    | LROsPut201CreatingFailed200DefaultResponse
     | LROsPut200Acceptedcanceled200200Response
-    | LROsPut200Acceptedcanceled200defaultResponse
+    | LROsPut200Acceptedcanceled200DefaultResponse
     | LROsPutNoHeaderInRetry202Response
-    | LROsPutNoHeaderInRetrydefaultResponse
+    | LROsPutNoHeaderInRetryDefaultResponse
     | LROsPutAsyncRetrySucceeded200Response
-    | LROsPutAsyncRetrySucceededdefaultResponse
+    | LROsPutAsyncRetrySucceededDefaultResponse
     | LROsPutAsyncNoRetrySucceeded200Response
-    | LROsPutAsyncNoRetrySucceededdefaultResponse
+    | LROsPutAsyncNoRetrySucceededDefaultResponse
     | LROsPutAsyncRetryFailed200Response
-    | LROsPutAsyncRetryFaileddefaultResponse
+    | LROsPutAsyncRetryFailedDefaultResponse
     | LROsPutAsyncNoRetrycanceled200Response
-    | LROsPutAsyncNoRetrycanceleddefaultResponse
+    | LROsPutAsyncNoRetrycanceledDefaultResponse
     | LROsPutAsyncNoHeaderInRetry201Response
-    | LROsPutAsyncNoHeaderInRetrydefaultResponse
+    | LROsPutAsyncNoHeaderInRetryDefaultResponse
     | LROsPutNonResource202Response
-    | LROsPutNonResourcedefaultResponse
+    | LROsPutNonResourceDefaultResponse
     | LROsPutAsyncNonResource202Response
-    | LROsPutAsyncNonResourcedefaultResponse
+    | LROsPutAsyncNonResourceDefaultResponse
     | LROsPutSubResource202Response
-    | LROsPutSubResourcedefaultResponse
+    | LROsPutSubResourceDefaultResponse
     | LROsPutAsyncSubResource202Response
-    | LROsPutAsyncSubResourcedefaultResponse
+    | LROsPutAsyncSubResourceDefaultResponse
     | LROsDeleteProvisioning202Accepted200Succeeded200Response
     | LROsDeleteProvisioning202Accepted200Succeeded202Response
-    | LROsDeleteProvisioning202Accepted200SucceededdefaultResponse
+    | LROsDeleteProvisioning202Accepted200SucceededDefaultResponse
     | LROsDeleteProvisioning202DeletingFailed200200Response
     | LROsDeleteProvisioning202DeletingFailed200202Response
-    | LROsDeleteProvisioning202DeletingFailed200defaultResponse
+    | LROsDeleteProvisioning202DeletingFailed200DefaultResponse
     | LROsDeleteProvisioning202Deletingcanceled200200Response
     | LROsDeleteProvisioning202Deletingcanceled200202Response
-    | LROsDeleteProvisioning202Deletingcanceled200defaultResponse
+    | LROsDeleteProvisioning202Deletingcanceled200DefaultResponse
     | LROsDelete204Succeeded204Response
-    | LROsDelete204SucceededdefaultResponse
+    | LROsDelete204SucceededDefaultResponse
     | LROsDelete202Retry200200Response
     | LROsDelete202Retry200202Response
-    | LROsDelete202Retry200defaultResponse
+    | LROsDelete202Retry200DefaultResponse
     | LROsDelete202NoRetry204200Response
     | LROsDelete202NoRetry204202Response
-    | LROsDelete202NoRetry204defaultResponse
+    | LROsDelete202NoRetry204DefaultResponse
     | LROsDeleteNoHeaderInRetry202Response
     | LROsDeleteNoHeaderInRetry204Response
-    | LROsDeleteNoHeaderInRetrydefaultResponse
+    | LROsDeleteNoHeaderInRetryDefaultResponse
     | LROsDeleteAsyncNoHeaderInRetry202Response
     | LROsDeleteAsyncNoHeaderInRetry204Response
-    | LROsDeleteAsyncNoHeaderInRetrydefaultResponse
+    | LROsDeleteAsyncNoHeaderInRetryDefaultResponse
     | LROsDeleteAsyncRetrySucceeded202Response
-    | LROsDeleteAsyncRetrySucceededdefaultResponse
+    | LROsDeleteAsyncRetrySucceededDefaultResponse
     | LROsDeleteAsyncNoRetrySucceeded202Response
-    | LROsDeleteAsyncNoRetrySucceededdefaultResponse
+    | LROsDeleteAsyncNoRetrySucceededDefaultResponse
     | LROsDeleteAsyncRetryFailed202Response
-    | LROsDeleteAsyncRetryFaileddefaultResponse
+    | LROsDeleteAsyncRetryFailedDefaultResponse
     | LROsDeleteAsyncRetrycanceled202Response
-    | LROsDeleteAsyncRetrycanceleddefaultResponse
+    | LROsDeleteAsyncRetrycanceledDefaultResponse
     | LROsPost200WithPayload200Response
     | LROsPost200WithPayload202Response
-    | LROsPost200WithPayloaddefaultResponse
+    | LROsPost200WithPayloadDefaultResponse
     | LROsPost202Retry200202Response
-    | LROsPost202Retry200defaultResponse
+    | LROsPost202Retry200DefaultResponse
     | LROsPost202NoRetry204202Response
-    | LROsPost202NoRetry204defaultResponse
+    | LROsPost202NoRetry204DefaultResponse
     | LROsPostDoubleHeadersFinalLocationGet202Response
-    | LROsPostDoubleHeadersFinalLocationGetdefaultResponse
+    | LROsPostDoubleHeadersFinalLocationGetDefaultResponse
     | LROsPostDoubleHeadersFinalAzureHeaderGet202Response
-    | LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
     | LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response
-    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse
     | LROsPostAsyncRetrySucceeded200Response
     | LROsPostAsyncRetrySucceeded202Response
-    | LROsPostAsyncRetrySucceededdefaultResponse
+    | LROsPostAsyncRetrySucceededDefaultResponse
     | LROsPostAsyncNoRetrySucceeded200Response
     | LROsPostAsyncNoRetrySucceeded202Response
-    | LROsPostAsyncNoRetrySucceededdefaultResponse
+    | LROsPostAsyncNoRetrySucceededDefaultResponse
     | LROsPostAsyncRetryFailed202Response
-    | LROsPostAsyncRetryFaileddefaultResponse
+    | LROsPostAsyncRetryFailedDefaultResponse
     | LROsPostAsyncRetrycanceled202Response
-    | LROsPostAsyncRetrycanceleddefaultResponse
+    | LROsPostAsyncRetrycanceledDefaultResponse
     | LRORetrysPut201CreatingSucceeded200200Response
     | LRORetrysPut201CreatingSucceeded200201Response
-    | LRORetrysPut201CreatingSucceeded200defaultResponse
+    | LRORetrysPut201CreatingSucceeded200DefaultResponse
     | LRORetrysPutAsyncRelativeRetrySucceeded200Response
-    | LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse
     | LRORetrysDeleteProvisioning202Accepted200Succeeded200Response
     | LRORetrysDeleteProvisioning202Accepted200Succeeded202Response
-    | LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse
+    | LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse
     | LRORetrysDelete202Retry200202Response
-    | LRORetrysDelete202Retry200defaultResponse
+    | LRORetrysDelete202Retry200DefaultResponse
     | LRORetrysDeleteAsyncRelativeRetrySucceeded202Response
-    | LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse
     | LRORetrysPost202Retry200202Response
-    | LRORetrysPost202Retry200defaultResponse
+    | LRORetrysPost202Retry200DefaultResponse
     | LRORetrysPostAsyncRelativeRetrySucceeded202Response
-    | LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse
     | LrosaDsPutNonRetry400200Response
     | LrosaDsPutNonRetry400201Response
-    | LrosaDsPutNonRetry400defaultResponse
+    | LrosaDsPutNonRetry400DefaultResponse
     | LrosaDsPutNonRetry201Creating400200Response
     | LrosaDsPutNonRetry201Creating400201Response
-    | LrosaDsPutNonRetry201Creating400defaultResponse
+    | LrosaDsPutNonRetry201Creating400DefaultResponse
     | LrosaDsPutNonRetry201Creating400InvalidJson200Response
     | LrosaDsPutNonRetry201Creating400InvalidJson201Response
-    | LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse
+    | LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse
     | LrosaDsPutAsyncRelativeRetry400200Response
-    | LrosaDsPutAsyncRelativeRetry400defaultResponse
+    | LrosaDsPutAsyncRelativeRetry400DefaultResponse
     | LrosaDsDeleteNonRetry400202Response
-    | LrosaDsDeleteNonRetry400defaultResponse
+    | LrosaDsDeleteNonRetry400DefaultResponse
     | LrosaDsDelete202NonRetry400202Response
-    | LrosaDsDelete202NonRetry400defaultResponse
+    | LrosaDsDelete202NonRetry400DefaultResponse
     | LrosaDsDeleteAsyncRelativeRetry400202Response
-    | LrosaDsDeleteAsyncRelativeRetry400defaultResponse
+    | LrosaDsDeleteAsyncRelativeRetry400DefaultResponse
     | LrosaDsPostNonRetry400202Response
-    | LrosaDsPostNonRetry400defaultResponse
+    | LrosaDsPostNonRetry400DefaultResponse
     | LrosaDsPost202NonRetry400202Response
-    | LrosaDsPost202NonRetry400defaultResponse
+    | LrosaDsPost202NonRetry400DefaultResponse
     | LrosaDsPostAsyncRelativeRetry400202Response
-    | LrosaDsPostAsyncRelativeRetry400defaultResponse
+    | LrosaDsPostAsyncRelativeRetry400DefaultResponse
     | LrosaDsPutError201NoProvisioningStatePayload200Response
     | LrosaDsPutError201NoProvisioningStatePayload201Response
-    | LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse
+    | LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse
     | LrosaDsPutAsyncRelativeRetryNoStatus200Response
-    | LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse
     | LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response
-    | LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse
+    | LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse
     | LrosaDsDelete204Succeeded204Response
-    | LrosaDsDelete204SucceededdefaultResponse
+    | LrosaDsDelete204SucceededDefaultResponse
     | LrosaDsDeleteAsyncRelativeRetryNoStatus202Response
-    | LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse
     | LrosaDsPost202NoLocation202Response
-    | LrosaDsPost202NoLocationdefaultResponse
+    | LrosaDsPost202NoLocationDefaultResponse
     | LrosaDsPostAsyncRelativeRetryNoPayload202Response
-    | LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse
+    | LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse
     | LrosaDsPut200InvalidJson200Response
     | LrosaDsPut200InvalidJson204Response
-    | LrosaDsPut200InvalidJsondefaultResponse
+    | LrosaDsPut200InvalidJsonDefaultResponse
     | LrosaDsPutAsyncRelativeRetryInvalidHeader200Response
-    | LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse
     | LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response
-    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse
     | LrosaDsDelete202RetryInvalidHeader202Response
-    | LrosaDsDelete202RetryInvalidHeaderdefaultResponse
+    | LrosaDsDelete202RetryInvalidHeaderDefaultResponse
     | LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse
     | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse
     | LrosaDsPost202RetryInvalidHeader202Response
-    | LrosaDsPost202RetryInvalidHeaderdefaultResponse
+    | LrosaDsPost202RetryInvalidHeaderDefaultResponse
     | LrosaDsPostAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse
     | LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse
     | LROsCustomHeaderPutAsyncRetrySucceeded200Response
-    | LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse
+    | LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse
     | LROsCustomHeaderPut201CreatingSucceeded200200Response
     | LROsCustomHeaderPut201CreatingSucceeded200201Response
-    | LROsCustomHeaderPut201CreatingSucceeded200defaultResponse
+    | LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse
     | LROsCustomHeaderPost202Retry200202Response
-    | LROsCustomHeaderPost202Retry200defaultResponse
+    | LROsCustomHeaderPost202Retry200DefaultResponse
     | LROsCustomHeaderPostAsyncRetrySucceeded202Response
-    | LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
+    | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
 ): response is
-  | LROsPut200SucceededdefaultResponse
-  | LROsPatch200SucceededIgnoreHeadersdefaultResponse
-  | LROsPatch201RetryWithAsyncHeaderdefaultResponse
-  | LROsPatch202RetryWithAsyncAndLocationHeaderdefaultResponse
-  | LROsPut201SucceededdefaultResponse
-  | LROsPost202ListdefaultResponse
-  | LROsPut200SucceededNoStatedefaultResponse
-  | LROsPut202Retry200defaultResponse
-  | LROsPut201CreatingSucceeded200defaultResponse
-  | LROsPut200UpdatingSucceeded204defaultResponse
-  | LROsPut201CreatingFailed200defaultResponse
-  | LROsPut200Acceptedcanceled200defaultResponse
-  | LROsPutNoHeaderInRetrydefaultResponse
-  | LROsPutAsyncRetrySucceededdefaultResponse
-  | LROsPutAsyncNoRetrySucceededdefaultResponse
-  | LROsPutAsyncRetryFaileddefaultResponse
-  | LROsPutAsyncNoRetrycanceleddefaultResponse
-  | LROsPutAsyncNoHeaderInRetrydefaultResponse
-  | LROsPutNonResourcedefaultResponse
-  | LROsPutAsyncNonResourcedefaultResponse
-  | LROsPutSubResourcedefaultResponse
-  | LROsPutAsyncSubResourcedefaultResponse
-  | LROsDeleteProvisioning202Accepted200SucceededdefaultResponse
-  | LROsDeleteProvisioning202DeletingFailed200defaultResponse
-  | LROsDeleteProvisioning202Deletingcanceled200defaultResponse
-  | LROsDelete204SucceededdefaultResponse
-  | LROsDelete202Retry200defaultResponse
-  | LROsDelete202NoRetry204defaultResponse
-  | LROsDeleteNoHeaderInRetrydefaultResponse
-  | LROsDeleteAsyncNoHeaderInRetrydefaultResponse
-  | LROsDeleteAsyncRetrySucceededdefaultResponse
-  | LROsDeleteAsyncNoRetrySucceededdefaultResponse
-  | LROsDeleteAsyncRetryFaileddefaultResponse
-  | LROsDeleteAsyncRetrycanceleddefaultResponse
-  | LROsPost200WithPayloaddefaultResponse
-  | LROsPost202Retry200defaultResponse
-  | LROsPost202NoRetry204defaultResponse
-  | LROsPostDoubleHeadersFinalLocationGetdefaultResponse
-  | LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse
-  | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse
-  | LROsPostAsyncRetrySucceededdefaultResponse
-  | LROsPostAsyncNoRetrySucceededdefaultResponse
-  | LROsPostAsyncRetryFaileddefaultResponse
-  | LROsPostAsyncRetrycanceleddefaultResponse
-  | LRORetrysPut201CreatingSucceeded200defaultResponse
-  | LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse
-  | LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse
-  | LRORetrysDelete202Retry200defaultResponse
-  | LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse
-  | LRORetrysPost202Retry200defaultResponse
-  | LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse
-  | LrosaDsPutNonRetry400defaultResponse
-  | LrosaDsPutNonRetry201Creating400defaultResponse
-  | LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse
-  | LrosaDsPutAsyncRelativeRetry400defaultResponse
-  | LrosaDsDeleteNonRetry400defaultResponse
-  | LrosaDsDelete202NonRetry400defaultResponse
-  | LrosaDsDeleteAsyncRelativeRetry400defaultResponse
-  | LrosaDsPostNonRetry400defaultResponse
-  | LrosaDsPost202NonRetry400defaultResponse
-  | LrosaDsPostAsyncRelativeRetry400defaultResponse
-  | LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse
-  | LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse
-  | LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse
-  | LrosaDsDelete204SucceededdefaultResponse
-  | LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse
-  | LrosaDsPost202NoLocationdefaultResponse
-  | LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse
-  | LrosaDsPut200InvalidJsondefaultResponse
-  | LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse
-  | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse
-  | LrosaDsDelete202RetryInvalidHeaderdefaultResponse
-  | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse
-  | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse
-  | LrosaDsPost202RetryInvalidHeaderdefaultResponse
-  | LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse
-  | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse
-  | LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse
-  | LROsCustomHeaderPut201CreatingSucceeded200defaultResponse
-  | LROsCustomHeaderPost202Retry200defaultResponse
-  | LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse {
+  | LROsPut200SucceededDefaultResponse
+  | LROsPatch200SucceededIgnoreHeadersDefaultResponse
+  | LROsPatch201RetryWithAsyncHeaderDefaultResponse
+  | LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse
+  | LROsPut201SucceededDefaultResponse
+  | LROsPost202ListDefaultResponse
+  | LROsPut200SucceededNoStateDefaultResponse
+  | LROsPut202Retry200DefaultResponse
+  | LROsPut201CreatingSucceeded200DefaultResponse
+  | LROsPut200UpdatingSucceeded204DefaultResponse
+  | LROsPut201CreatingFailed200DefaultResponse
+  | LROsPut200Acceptedcanceled200DefaultResponse
+  | LROsPutNoHeaderInRetryDefaultResponse
+  | LROsPutAsyncRetrySucceededDefaultResponse
+  | LROsPutAsyncNoRetrySucceededDefaultResponse
+  | LROsPutAsyncRetryFailedDefaultResponse
+  | LROsPutAsyncNoRetrycanceledDefaultResponse
+  | LROsPutAsyncNoHeaderInRetryDefaultResponse
+  | LROsPutNonResourceDefaultResponse
+  | LROsPutAsyncNonResourceDefaultResponse
+  | LROsPutSubResourceDefaultResponse
+  | LROsPutAsyncSubResourceDefaultResponse
+  | LROsDeleteProvisioning202Accepted200SucceededDefaultResponse
+  | LROsDeleteProvisioning202DeletingFailed200DefaultResponse
+  | LROsDeleteProvisioning202Deletingcanceled200DefaultResponse
+  | LROsDelete204SucceededDefaultResponse
+  | LROsDelete202Retry200DefaultResponse
+  | LROsDelete202NoRetry204DefaultResponse
+  | LROsDeleteNoHeaderInRetryDefaultResponse
+  | LROsDeleteAsyncNoHeaderInRetryDefaultResponse
+  | LROsDeleteAsyncRetrySucceededDefaultResponse
+  | LROsDeleteAsyncNoRetrySucceededDefaultResponse
+  | LROsDeleteAsyncRetryFailedDefaultResponse
+  | LROsDeleteAsyncRetrycanceledDefaultResponse
+  | LROsPost200WithPayloadDefaultResponse
+  | LROsPost202Retry200DefaultResponse
+  | LROsPost202NoRetry204DefaultResponse
+  | LROsPostDoubleHeadersFinalLocationGetDefaultResponse
+  | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+  | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse
+  | LROsPostAsyncRetrySucceededDefaultResponse
+  | LROsPostAsyncNoRetrySucceededDefaultResponse
+  | LROsPostAsyncRetryFailedDefaultResponse
+  | LROsPostAsyncRetrycanceledDefaultResponse
+  | LRORetrysPut201CreatingSucceeded200DefaultResponse
+  | LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse
+  | LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse
+  | LRORetrysDelete202Retry200DefaultResponse
+  | LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse
+  | LRORetrysPost202Retry200DefaultResponse
+  | LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse
+  | LrosaDsPutNonRetry400DefaultResponse
+  | LrosaDsPutNonRetry201Creating400DefaultResponse
+  | LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse
+  | LrosaDsPutAsyncRelativeRetry400DefaultResponse
+  | LrosaDsDeleteNonRetry400DefaultResponse
+  | LrosaDsDelete202NonRetry400DefaultResponse
+  | LrosaDsDeleteAsyncRelativeRetry400DefaultResponse
+  | LrosaDsPostNonRetry400DefaultResponse
+  | LrosaDsPost202NonRetry400DefaultResponse
+  | LrosaDsPostAsyncRelativeRetry400DefaultResponse
+  | LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse
+  | LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse
+  | LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse
+  | LrosaDsDelete204SucceededDefaultResponse
+  | LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse
+  | LrosaDsPost202NoLocationDefaultResponse
+  | LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse
+  | LrosaDsPut200InvalidJsonDefaultResponse
+  | LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse
+  | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+  | LrosaDsDelete202RetryInvalidHeaderDefaultResponse
+  | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse
+  | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+  | LrosaDsPost202RetryInvalidHeaderDefaultResponse
+  | LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse
+  | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+  | LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse
+  | LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse
+  | LROsCustomHeaderPost202Retry200DefaultResponse
+  | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

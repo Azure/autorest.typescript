@@ -3,34 +3,34 @@
 
 import {
   AccountsGetAccountProperties200Response,
-  AccountsGetAccountPropertiesdefaultResponse,
+  AccountsGetAccountPropertiesDefaultResponse,
   AccountsUpdateAccountProperties200Response,
-  AccountsUpdateAccountPropertiesdefaultResponse,
+  AccountsUpdateAccountPropertiesDefaultResponse,
   AccountsGetAccessKeys200Response,
-  AccountsGetAccessKeysdefaultResponse,
+  AccountsGetAccessKeysDefaultResponse,
   AccountsRegenerateAccessKey200Response,
-  AccountsRegenerateAccessKeydefaultResponse,
+  AccountsRegenerateAccessKeyDefaultResponse,
   CollectionsGetCollection200Response,
-  CollectionsGetCollectiondefaultResponse,
+  CollectionsGetCollectionDefaultResponse,
   CollectionsCreateOrUpdateCollection200Response,
-  CollectionsCreateOrUpdateCollectiondefaultResponse,
+  CollectionsCreateOrUpdateCollectionDefaultResponse,
   CollectionsDeleteCollection204Response,
-  CollectionsDeleteCollectiondefaultResponse,
+  CollectionsDeleteCollectionDefaultResponse,
   CollectionsListCollections200Response,
-  CollectionsListCollectionsdefaultResponse,
+  CollectionsListCollectionsDefaultResponse,
   CollectionsListChildCollectionNames200Response,
-  CollectionsListChildCollectionNamesdefaultResponse,
+  CollectionsListChildCollectionNamesDefaultResponse,
   CollectionsGetCollectionPath200Response,
-  CollectionsGetCollectionPathdefaultResponse,
+  CollectionsGetCollectionPathDefaultResponse,
   ResourceSetRulesGetResourceSetRule200Response,
-  ResourceSetRulesGetResourceSetRuledefaultResponse,
+  ResourceSetRulesGetResourceSetRuleDefaultResponse,
   ResourceSetRulesCreateOrUpdateResourceSetRule200Response,
-  ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse,
+  ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse,
   ResourceSetRulesDeleteResourceSetRule200Response,
   ResourceSetRulesDeleteResourceSetRule204Response,
-  ResourceSetRulesDeleteResourceSetRuledefaultResponse,
+  ResourceSetRulesDeleteResourceSetRuleDefaultResponse,
   ResourceSetRulesListResourceSetRules200Response,
-  ResourceSetRulesListResourceSetRulesdefaultResponse
+  ResourceSetRulesListResourceSetRulesDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -53,137 +53,140 @@ const responseMap: Record<string, string[]> = {
 export function isUnexpected(
   response:
     | AccountsGetAccountProperties200Response
-    | AccountsGetAccountPropertiesdefaultResponse
-): response is AccountsGetAccountPropertiesdefaultResponse;
+    | AccountsGetAccountPropertiesDefaultResponse
+): response is AccountsGetAccountPropertiesDefaultResponse;
 export function isUnexpected(
   response:
     | AccountsUpdateAccountProperties200Response
-    | AccountsUpdateAccountPropertiesdefaultResponse
-): response is AccountsUpdateAccountPropertiesdefaultResponse;
+    | AccountsUpdateAccountPropertiesDefaultResponse
+): response is AccountsUpdateAccountPropertiesDefaultResponse;
 export function isUnexpected(
   response:
     | AccountsGetAccessKeys200Response
-    | AccountsGetAccessKeysdefaultResponse
-): response is AccountsGetAccessKeysdefaultResponse;
+    | AccountsGetAccessKeysDefaultResponse
+): response is AccountsGetAccessKeysDefaultResponse;
 export function isUnexpected(
   response:
     | AccountsRegenerateAccessKey200Response
-    | AccountsRegenerateAccessKeydefaultResponse
-): response is AccountsRegenerateAccessKeydefaultResponse;
+    | AccountsRegenerateAccessKeyDefaultResponse
+): response is AccountsRegenerateAccessKeyDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsGetCollection200Response
-    | CollectionsGetCollectiondefaultResponse
-): response is CollectionsGetCollectiondefaultResponse;
+    | CollectionsGetCollectionDefaultResponse
+): response is CollectionsGetCollectionDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsCreateOrUpdateCollection200Response
-    | CollectionsCreateOrUpdateCollectiondefaultResponse
-): response is CollectionsCreateOrUpdateCollectiondefaultResponse;
+    | CollectionsCreateOrUpdateCollectionDefaultResponse
+): response is CollectionsCreateOrUpdateCollectionDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsDeleteCollection204Response
-    | CollectionsDeleteCollectiondefaultResponse
-): response is CollectionsDeleteCollectiondefaultResponse;
+    | CollectionsDeleteCollectionDefaultResponse
+): response is CollectionsDeleteCollectionDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsListCollections200Response
-    | CollectionsListCollectionsdefaultResponse
-): response is CollectionsListCollectionsdefaultResponse;
+    | CollectionsListCollectionsDefaultResponse
+): response is CollectionsListCollectionsDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsListChildCollectionNames200Response
-    | CollectionsListChildCollectionNamesdefaultResponse
-): response is CollectionsListChildCollectionNamesdefaultResponse;
+    | CollectionsListChildCollectionNamesDefaultResponse
+): response is CollectionsListChildCollectionNamesDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsGetCollectionPath200Response
-    | CollectionsGetCollectionPathdefaultResponse
-): response is CollectionsGetCollectionPathdefaultResponse;
+    | CollectionsGetCollectionPathDefaultResponse
+): response is CollectionsGetCollectionPathDefaultResponse;
 export function isUnexpected(
   response:
     | ResourceSetRulesGetResourceSetRule200Response
-    | ResourceSetRulesGetResourceSetRuledefaultResponse
-): response is ResourceSetRulesGetResourceSetRuledefaultResponse;
+    | ResourceSetRulesGetResourceSetRuleDefaultResponse
+): response is ResourceSetRulesGetResourceSetRuleDefaultResponse;
 export function isUnexpected(
   response:
     | ResourceSetRulesCreateOrUpdateResourceSetRule200Response
-    | ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse
-): response is ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse;
+    | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse
+): response is ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse;
 export function isUnexpected(
   response:
     | ResourceSetRulesDeleteResourceSetRule200Response
     | ResourceSetRulesDeleteResourceSetRule204Response
-    | ResourceSetRulesDeleteResourceSetRuledefaultResponse
-): response is ResourceSetRulesDeleteResourceSetRuledefaultResponse;
+    | ResourceSetRulesDeleteResourceSetRuleDefaultResponse
+): response is ResourceSetRulesDeleteResourceSetRuleDefaultResponse;
 export function isUnexpected(
   response:
     | ResourceSetRulesListResourceSetRules200Response
-    | ResourceSetRulesListResourceSetRulesdefaultResponse
-): response is ResourceSetRulesListResourceSetRulesdefaultResponse;
+    | ResourceSetRulesListResourceSetRulesDefaultResponse
+): response is ResourceSetRulesListResourceSetRulesDefaultResponse;
 export function isUnexpected(
   response:
     | AccountsGetAccountProperties200Response
-    | AccountsGetAccountPropertiesdefaultResponse
+    | AccountsGetAccountPropertiesDefaultResponse
     | AccountsUpdateAccountProperties200Response
-    | AccountsUpdateAccountPropertiesdefaultResponse
+    | AccountsUpdateAccountPropertiesDefaultResponse
     | AccountsGetAccessKeys200Response
-    | AccountsGetAccessKeysdefaultResponse
+    | AccountsGetAccessKeysDefaultResponse
     | AccountsRegenerateAccessKey200Response
-    | AccountsRegenerateAccessKeydefaultResponse
+    | AccountsRegenerateAccessKeyDefaultResponse
     | CollectionsGetCollection200Response
-    | CollectionsGetCollectiondefaultResponse
+    | CollectionsGetCollectionDefaultResponse
     | CollectionsCreateOrUpdateCollection200Response
-    | CollectionsCreateOrUpdateCollectiondefaultResponse
+    | CollectionsCreateOrUpdateCollectionDefaultResponse
     | CollectionsDeleteCollection204Response
-    | CollectionsDeleteCollectiondefaultResponse
+    | CollectionsDeleteCollectionDefaultResponse
     | CollectionsListCollections200Response
-    | CollectionsListCollectionsdefaultResponse
+    | CollectionsListCollectionsDefaultResponse
     | CollectionsListChildCollectionNames200Response
-    | CollectionsListChildCollectionNamesdefaultResponse
+    | CollectionsListChildCollectionNamesDefaultResponse
     | CollectionsGetCollectionPath200Response
-    | CollectionsGetCollectionPathdefaultResponse
+    | CollectionsGetCollectionPathDefaultResponse
     | ResourceSetRulesGetResourceSetRule200Response
-    | ResourceSetRulesGetResourceSetRuledefaultResponse
+    | ResourceSetRulesGetResourceSetRuleDefaultResponse
     | ResourceSetRulesCreateOrUpdateResourceSetRule200Response
-    | ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse
+    | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse
     | ResourceSetRulesDeleteResourceSetRule200Response
     | ResourceSetRulesDeleteResourceSetRule204Response
-    | ResourceSetRulesDeleteResourceSetRuledefaultResponse
+    | ResourceSetRulesDeleteResourceSetRuleDefaultResponse
     | ResourceSetRulesListResourceSetRules200Response
-    | ResourceSetRulesListResourceSetRulesdefaultResponse
+    | ResourceSetRulesListResourceSetRulesDefaultResponse
 ): response is
-  | AccountsGetAccountPropertiesdefaultResponse
-  | AccountsUpdateAccountPropertiesdefaultResponse
-  | AccountsGetAccessKeysdefaultResponse
-  | AccountsRegenerateAccessKeydefaultResponse
-  | CollectionsGetCollectiondefaultResponse
-  | CollectionsCreateOrUpdateCollectiondefaultResponse
-  | CollectionsDeleteCollectiondefaultResponse
-  | CollectionsListCollectionsdefaultResponse
-  | CollectionsListChildCollectionNamesdefaultResponse
-  | CollectionsGetCollectionPathdefaultResponse
-  | ResourceSetRulesGetResourceSetRuledefaultResponse
-  | ResourceSetRulesCreateOrUpdateResourceSetRuledefaultResponse
-  | ResourceSetRulesDeleteResourceSetRuledefaultResponse
-  | ResourceSetRulesListResourceSetRulesdefaultResponse {
+  | AccountsGetAccountPropertiesDefaultResponse
+  | AccountsUpdateAccountPropertiesDefaultResponse
+  | AccountsGetAccessKeysDefaultResponse
+  | AccountsRegenerateAccessKeyDefaultResponse
+  | CollectionsGetCollectionDefaultResponse
+  | CollectionsCreateOrUpdateCollectionDefaultResponse
+  | CollectionsDeleteCollectionDefaultResponse
+  | CollectionsListCollectionsDefaultResponse
+  | CollectionsListChildCollectionNamesDefaultResponse
+  | CollectionsGetCollectionPathDefaultResponse
+  | ResourceSetRulesGetResourceSetRuleDefaultResponse
+  | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse
+  | ResourceSetRulesDeleteResourceSetRuleDefaultResponse
+  | ResourceSetRulesListResourceSetRulesDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
   let pathDetails = responseMap[`${method} ${url.pathname}`];
   if (!pathDetails) {
-    pathDetails = geParametrizedPathSuccess(url.pathname);
+    pathDetails = geParametrizedPathSuccess(method, url.pathname);
   }
   return !pathDetails.includes(response.status);
 }
 
-function geParametrizedPathSuccess(path: string): string[] {
+function geParametrizedPathSuccess(method: string, path: string): string[] {
   const pathParts = path.split("/");
 
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(responseMap)) {
     // Extracting the path from the map key which is in format
     // GET /path/foo
+    if (!key.startsWith(method)) {
+      continue;
+    }
     const candidatePath = getPathFromMapKey(key);
     // Get each part of the url path
     const candidateParts = candidatePath.split("/");
@@ -198,8 +201,8 @@ function geParametrizedPathSuccess(path: string): string[] {
       let found = true;
       for (let i = 0; i < candidateParts.length; i++) {
         if (
-          candidateParts[i].startsWith("{") &&
-          candidateParts[i].endsWith("}")
+          candidateParts[i]?.startsWith("{") &&
+          candidateParts[i]?.endsWith("}")
         ) {
           // If the current part of the candidate is a "template" part
           // it is a match with the actual path part on hand

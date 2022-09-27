@@ -7,9 +7,16 @@
   "scripts": {
     "clean": "rimraf ./dist ./cadl-output",
     "build": "tsc -p .",
-    "test": "mocha",
+    "test": "npm run unit-test && npm run integration-test",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
+    "integration-test": "npm run start-test-server & npm run generate-cadl-only && npm run integration-test:alone",
+    "generate-cadl-only": "ts-node ./test/commands/gen-cadl-ranch.ts",
+    "start-test-server": "cd ./node_modules/@azure-tools/cadl-ranch-specs && cadl-ranch serve ./http  --coverageFile ./cadl-ranch-coverage-typescript.json",
+    "coverage":"cd ./node_modules/@azure-tools/cadl-ranch-specs && cadl-ranch check-coverage ./http --coverageFiles ./cadl-ranch-coverage-typescript.json",
+    "integration-test:alone": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 ./test/integration/*.spec.ts",
+    "unit-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true './test/unit/**/*.spec.ts'"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
@@ -26,20 +33,30 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3",
-    "prettier": "~2.7.1"
+    "prettier": "~2.7.1",
+    "@azure-tools/cadl-ranch-specs": "latest",
+    "@cadl-lang/versioning": "0.8.0",
+    "@azure-tools/cadl-ranch-expect": "latest",
+    "@azure-tools/cadl-ranch": "latest",
+    "chalk": "^4.0.0",
+    "@azure-rest/core-client": "1.0.0-beta.10",
+    "@azure/core-auth": "^1.3.2",
+    "cross-env": "^7.0.3",
+    "@azure/core-paging": "^1.2.0"
   },
   "dependencies": {
-    "@cadl-lang/compiler": "latest",
-    "@cadl-lang/rest": "latest",
+    "@cadl-lang/compiler": "0.35.0",
+    "@azure-tools/cadl-azure-core": "~0.7.0",
+    "@cadl-lang/rest": "0.17.0",
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-codegen": "1.0.0"
+    "@azure-tools/rlc-codegen": "1.0.0",
+    "ts-morph": "^15.1.0"
   },
   "mocha": {
     "extension": [
       "ts"
     ],
-    "spec": "test/**/*.spec.ts",
     "loader": "ts-node/esm"
   }
 }

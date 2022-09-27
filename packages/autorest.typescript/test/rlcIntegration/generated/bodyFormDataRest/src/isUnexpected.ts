@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import {
-  UploadFile200Response,
-  UploadFiledefaultResponse,
-  UploadFileViaBody200Response,
-  UploadFileViaBodydefaultResponse,
-  UploadFiles200Response,
-  UploadFilesdefaultResponse
+  FormdataUploadFile200Response,
+  FormdataUploadFileDefaultResponse,
+  FormdataUploadFileViaBody200Response,
+  FormdataUploadFileViaBodyDefaultResponse,
+  FormdataUploadFiles200Response,
+  FormdataUploadFilesDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -17,26 +17,28 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: UploadFile200Response | UploadFiledefaultResponse
-): response is UploadFiledefaultResponse;
-export function isUnexpected(
-  response: UploadFileViaBody200Response | UploadFileViaBodydefaultResponse
-): response is UploadFileViaBodydefaultResponse;
-export function isUnexpected(
-  response: UploadFiles200Response | UploadFilesdefaultResponse
-): response is UploadFilesdefaultResponse;
+  response: FormdataUploadFile200Response | FormdataUploadFileDefaultResponse
+): response is FormdataUploadFileDefaultResponse;
 export function isUnexpected(
   response:
-    | UploadFile200Response
-    | UploadFiledefaultResponse
-    | UploadFileViaBody200Response
-    | UploadFileViaBodydefaultResponse
-    | UploadFiles200Response
-    | UploadFilesdefaultResponse
+    | FormdataUploadFileViaBody200Response
+    | FormdataUploadFileViaBodyDefaultResponse
+): response is FormdataUploadFileViaBodyDefaultResponse;
+export function isUnexpected(
+  response: FormdataUploadFiles200Response | FormdataUploadFilesDefaultResponse
+): response is FormdataUploadFilesDefaultResponse;
+export function isUnexpected(
+  response:
+    | FormdataUploadFile200Response
+    | FormdataUploadFileDefaultResponse
+    | FormdataUploadFileViaBody200Response
+    | FormdataUploadFileViaBodyDefaultResponse
+    | FormdataUploadFiles200Response
+    | FormdataUploadFilesDefaultResponse
 ): response is
-  | UploadFiledefaultResponse
-  | UploadFileViaBodydefaultResponse
-  | UploadFilesdefaultResponse {
+  | FormdataUploadFileDefaultResponse
+  | FormdataUploadFileViaBodyDefaultResponse
+  | FormdataUploadFilesDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
