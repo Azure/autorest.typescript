@@ -1,8 +1,5 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import {
-  UpdateablePropertiesDefaultKeyVisibility,
-  OptionalPropertiesUpdateableProperties,
-} from "./models";
+import { LedgerEntry, LedgerUser } from "./models";
 
 export type ConfidentialLedgerListCollectionsParameters = RequestParameters;
 export type ConfidentialLedgerGetEnclaveQuotesParameters = RequestParameters;
@@ -12,7 +9,7 @@ export type ConfidentialLedgerGetConsortiumMembersParameters =
 export type ConfidentialLedgerListLedgerEntriesParameters = RequestParameters;
 
 export interface ConfidentialLedgerCreateLedgerEntryBodyParam {
-  body?: UpdateablePropertiesDefaultKeyVisibility;
+  body?: LedgerEntry;
 }
 
 export interface ConfidentialLedgerCreateLedgerEntryQueryParamProperties {
@@ -59,7 +56,7 @@ export type ConfidentialLedgerDeleteUserParameters = RequestParameters;
 export type ConfidentialLedgerGetUserParameters = RequestParameters;
 
 export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
-  body?: OptionalPropertiesUpdateableProperties;
+  body?: LedgerUser;
 }
 
 export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {

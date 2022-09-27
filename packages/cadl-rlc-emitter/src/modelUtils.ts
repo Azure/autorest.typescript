@@ -47,6 +47,7 @@ import {
   getQueryParamName,
   isStatusCode
 } from "@cadl-lang/rest/http";
+import { getPagedResult } from "@azure-tools/cadl-azure-core";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -354,10 +355,10 @@ function getSchemaForModel(
   if (
     !friendlyName &&
     model.templateArguments &&
-    model.templateArguments.length > 0
+    model.templateArguments.length > 0 &&
+    getPagedResult(program, model)
   ) {
     name =
-      model.name +
       model.templateArguments
         .map((it) => {
           switch (it.kind) {
@@ -369,7 +370,7 @@ function getSchemaForModel(
               return "";
           }
         })
-        .join("");
+        .join("") + "List";
   }
   let modelSchema: ObjectSchema = {
     name: friendlyName ?? name,

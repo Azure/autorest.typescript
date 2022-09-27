@@ -1,12 +1,8 @@
 import { RequestParameters } from "@azure-rest/core-client";
-import {
-  OptionalPropertiesUpdateableProperties,
-  TrainingJobOptions,
-  SwapDeploymentsOptions,
-} from "./models";
+import { Project, TrainingJobOptions, SwapDeploymentsOptions } from "./models";
 
 export interface ProjectsCreateOrUpdateBodyParam {
-  body?: OptionalPropertiesUpdateableProperties;
+  body?: Project;
 }
 
 export interface ProjectsCreateOrUpdateMediaTypesParam {

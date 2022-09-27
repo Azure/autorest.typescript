@@ -21,18 +21,6 @@ import { StreamableMethod } from '@azure-rest/core-client';
 function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
 export default createClient;
 
-// @public
-export interface CustomPageDeploymentOutput {
-    nextLink?: string;
-    value: Array<DeploymentOutput>;
-}
-
-// @public
-export interface CustomPageProjectOutput {
-    nextLink?: string;
-    value: Array<ProjectOutput>;
-}
-
 // @public (undocumented)
 export interface DeploymentJobOutput {
     createdDateTime: string;
@@ -44,6 +32,12 @@ export interface DeploymentJobOutput {
     lastUpdatedDateTime: string;
     status: string;
     warnings: Array<JobWarningOutput>;
+}
+
+// @public
+export interface DeploymentListOutput {
+    nextLink?: string;
+    value: Array<DeploymentOutput>;
 }
 
 // @public (undocumented)
@@ -153,7 +147,7 @@ export interface DeploymentsList {
 // @public
 export interface DeploymentsList200Response extends HttpResponse {
     // (undocumented)
-    body: CustomPageDeploymentOutput;
+    body: DeploymentListOutput;
     // (undocumented)
     status: "200";
 }
@@ -459,16 +453,6 @@ export interface OperationStatusOutput {
 }
 
 // @public
-export interface OptionalPropertiesUpdateableProperties {
-    description?: string;
-    language?: string;
-    multilingual?: boolean;
-    projectKind?: string;
-    settings?: Record<string, string>;
-    storageInputContainerName?: string;
-}
-
-// @public
 export interface PagedSupportedLanguageOutput {
     nextLink?: string;
     value: Array<SupportedLanguageOutput>;
@@ -493,6 +477,28 @@ export type PaginateReturn<TResult> = TResult extends {
 // @public
 export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
+}
+
+// @public (undocumented)
+export interface Project {
+    createdDateTime: Date | string;
+    description?: string;
+    language: string;
+    lastDeployedDateTime: Date | string;
+    lastModifiedDateTime: Date | string;
+    lastTrainedDateTime: Date | string;
+    multilingual?: boolean;
+    projectKind: string;
+    // (undocumented)
+    projectName: string;
+    settings?: Record<string, string>;
+    storageInputContainerName: string;
+}
+
+// @public
+export interface ProjectListOutput {
+    nextLink?: string;
+    value: Array<ProjectOutput>;
 }
 
 // @public (undocumented)
@@ -551,7 +557,7 @@ export interface ProjectsCreateOrUpdate201Response extends HttpResponse {
 // @public (undocumented)
 export interface ProjectsCreateOrUpdateBodyParam {
     // (undocumented)
-    body?: OptionalPropertiesUpdateableProperties;
+    body?: Project;
 }
 
 // @public (undocumented)
@@ -694,7 +700,7 @@ export interface ProjectsList {
 // @public
 export interface ProjectsList200Response extends HttpResponse {
     // (undocumented)
-    body: CustomPageProjectOutput;
+    body: ProjectListOutput;
     // (undocumented)
     status: "200";
 }

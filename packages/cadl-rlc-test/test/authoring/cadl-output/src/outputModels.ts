@@ -69,7 +69,7 @@ export interface InnerErrorOutput {
 }
 
 /** Paged collection of Project items */
-export interface CustomPageProjectOutput {
+export interface ProjectListOutput {
   /** The Project items on this page */
   value: Array<ProjectOutput>;
   /** The link to the next page of items */
@@ -81,7 +81,7 @@ export interface DeploymentOutput {
 }
 
 /** Paged collection of Deployment items */
-export interface CustomPageDeploymentOutput {
+export interface DeploymentListOutput {
   /** The Deployment items on this page */
   value: Array<DeploymentOutput>;
   /** The link to the next page of items */

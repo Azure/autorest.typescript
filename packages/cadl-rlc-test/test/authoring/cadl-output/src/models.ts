@@ -1,13 +1,13 @@
-/** The template for adding optional properties. */
-export interface OptionalPropertiesUpdateableProperties {
+export interface Project {
+  projectName: string;
   /**
    * The project kind.
    *
    * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
    */
-  projectKind?: string;
+  projectKind: string;
   /** The storage container name. */
-  storageInputContainerName?: string;
+  storageInputContainerName: string;
   /** The project settings. */
   settings?: Record<string, string>;
   /** Whether the project would be used for multiple languages or not. */
@@ -15,7 +15,15 @@ export interface OptionalPropertiesUpdateableProperties {
   /** The project description. */
   description?: string;
   /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
-  language?: string;
+  language: string;
+  /** Represents the project creation datetime. */
+  createdDateTime: Date | string;
+  /** Represents the project last modification datetime. */
+  lastModifiedDateTime: Date | string;
+  /** Represents the project last training datetime. */
+  lastTrainedDateTime: Date | string;
+  /** Represents the project last deployment datetime. */
+  lastDeployedDateTime: Date | string;
 }
 
 /** Training job parameters. */

@@ -3,6 +3,7 @@
 
 import { Schema, SchemaContext } from "@azure-tools/rlc-codegen";
 import { Model, Program, Type } from "@cadl-lang/compiler";
+import { getResourceOperation } from "@cadl-lang/rest";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
 const modelKey = Symbol("typescript-models");
@@ -13,7 +14,11 @@ export function transformSchemas(program: Program) {
   const [routes, _diagnostics] = getAllRoutes(program);
   for (const route of routes) {
     if (route.parameters.bodyType) {
-      const bodyModel = route.parameters.bodyType;
+      let bodyModel = route.parameters.bodyType;
+      const operation = getResourceOperation(program, route.operation);
+      if (operation) {
+        bodyModel = operation.resourceType;
+      }
       if (bodyModel && bodyModel.kind === "Model") {
         getGeneratedModels(bodyModel, SchemaContext.Input);
       }
@@ -34,12 +39,27 @@ export function transformSchemas(program: Program) {
       model.usage = context;
     }
 
-    const modelStr = JSON.stringify(model);
+    const modelStr = JSON.stringify(trimUsage(model));
     if (!schemaSet.has(modelStr)) {
       schemas.push(model);
       schemaSet.add(modelStr);
     }
   });
+  function trimUsage(model: any) {
+    if (typeof model !== "object") {
+      return model;
+    }
+    const tmpModel = Object.assign({}, model);
+    const tmpModelKeys = Object.keys(tmpModel).filter(item => {return item !== "usage"});
+    const ordered = tmpModelKeys.sort().reduce(
+      (obj, key) => {
+        (obj as any)[key] = trimUsage(tmpModel[key]);
+        return obj;
+      }, 
+      {}
+    );
+    return ordered;
+  }
   function setModelMap(type: Type, schemaContext: SchemaContext) {
     if (program.stateMap(modelKey).get(type)) {
       const context = program.stateMap(modelKey).get(type);
