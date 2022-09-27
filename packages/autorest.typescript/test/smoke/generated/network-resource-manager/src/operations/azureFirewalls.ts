@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   AzureFirewall,
   AzureFirewallsListNextOptionalParams,
@@ -149,14 +153,14 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     options?: AzureFirewallsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -189,15 +193,15 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, azureFirewallName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, azureFirewallName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -252,8 +256,8 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     parameters: AzureFirewall,
     options?: AzureFirewallsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<AzureFirewallsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<AzureFirewallsCreateOrUpdateResponse>,
       AzureFirewallsCreateOrUpdateResponse
     >
   > {
@@ -263,7 +267,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     ): Promise<AzureFirewallsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -296,15 +300,18 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, azureFirewallName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, azureFirewallName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      AzureFirewallsCreateOrUpdateResponse,
+      OperationState<AzureFirewallsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;
@@ -345,8 +352,8 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     parameters: TagsObject,
     options?: AzureFirewallsUpdateTagsOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<AzureFirewallsUpdateTagsResponse>,
+    SimplePollerLike<
+      OperationState<AzureFirewallsUpdateTagsResponse>,
       AzureFirewallsUpdateTagsResponse
     >
   > {
@@ -356,7 +363,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     ): Promise<AzureFirewallsUpdateTagsResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -389,15 +396,18 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, azureFirewallName, parameters, options },
-      updateTagsOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, azureFirewallName, parameters, options },
+      spec: updateTagsOperationSpec
+    });
+    const poller = await createHttpPoller<
+      AzureFirewallsUpdateTagsResponse,
+      OperationState<AzureFirewallsUpdateTagsResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;

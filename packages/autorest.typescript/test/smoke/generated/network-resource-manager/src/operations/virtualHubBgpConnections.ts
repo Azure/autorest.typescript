@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   BgpConnection,
   VirtualHubBgpConnectionsListNextOptionalParams,
@@ -128,8 +132,8 @@ export class VirtualHubBgpConnectionsImpl implements VirtualHubBgpConnections {
     connectionName: string,
     options?: VirtualHubBgpConnectionsListLearnedRoutesOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<VirtualHubBgpConnectionsListLearnedRoutesResponse>,
+    SimplePollerLike<
+      OperationState<VirtualHubBgpConnectionsListLearnedRoutesResponse>,
       VirtualHubBgpConnectionsListLearnedRoutesResponse
     >
   > {
@@ -139,7 +143,7 @@ export class VirtualHubBgpConnectionsImpl implements VirtualHubBgpConnections {
     ): Promise<VirtualHubBgpConnectionsListLearnedRoutesResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -172,15 +176,18 @@ export class VirtualHubBgpConnectionsImpl implements VirtualHubBgpConnections {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, hubName, connectionName, options },
-      listLearnedRoutesOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, hubName, connectionName, options },
+      spec: listLearnedRoutesOperationSpec
+    });
+    const poller = await createHttpPoller<
+      VirtualHubBgpConnectionsListLearnedRoutesResponse,
+      OperationState<VirtualHubBgpConnectionsListLearnedRoutesResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -221,8 +228,8 @@ export class VirtualHubBgpConnectionsImpl implements VirtualHubBgpConnections {
     connectionName: string,
     options?: VirtualHubBgpConnectionsListAdvertisedRoutesOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<VirtualHubBgpConnectionsListAdvertisedRoutesResponse>,
+    SimplePollerLike<
+      OperationState<VirtualHubBgpConnectionsListAdvertisedRoutesResponse>,
       VirtualHubBgpConnectionsListAdvertisedRoutesResponse
     >
   > {
@@ -232,7 +239,7 @@ export class VirtualHubBgpConnectionsImpl implements VirtualHubBgpConnections {
     ): Promise<VirtualHubBgpConnectionsListAdvertisedRoutesResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -265,15 +272,18 @@ export class VirtualHubBgpConnectionsImpl implements VirtualHubBgpConnections {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, hubName, connectionName, options },
-      listAdvertisedRoutesOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, hubName, connectionName, options },
+      spec: listAdvertisedRoutesOperationSpec
+    });
+    const poller = await createHttpPoller<
+      VirtualHubBgpConnectionsListAdvertisedRoutesResponse,
+      OperationState<VirtualHubBgpConnectionsListAdvertisedRoutesResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

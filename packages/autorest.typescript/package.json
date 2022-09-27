@@ -60,7 +60,7 @@
         "@azure/core-client": "1.6.1-alpha.20220725.3",
         "@azure/core-http": "^1.2.4",
         "@azure/core-http-compat": "^1.2.0",
-        "@azure/core-lro": "^2.1.0",
+        "@azure/core-lro": "^2.3.0",
         "@azure/core-paging": "^1.2.0",
         "@azure/core-rest-pipeline": "^1.8.0",
         "@azure/core-tracing": "^1.0.0",

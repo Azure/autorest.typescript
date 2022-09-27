@@ -32,6 +32,7 @@ import { ParameterDetails } from "../models/parameterDetails";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { PackageDetails } from "../models/packageDetails";
 import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
+import { createLroImports } from "../utils/lroHelpers";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -41,7 +42,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     hideClients,
     srcPath,
     packageDetails,
-    coreHttpCompatMode
+    coreHttpCompatMode,
+    useLegacyLro
   } = getAutorestOptions();
   const { addCredentials } = getSecurityInfoFromModel(clientDetails.security);
   const hasMappers = !!clientDetails.mappers.length;
@@ -135,11 +137,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
   if (hasInlineOperations && hasLro) {
     clientFile.addImportDeclaration({
-      namedImports: ["PollerLike", "PollOperationState", "LroEngine"],
+      namedImports: createLroImports(useLegacyLro),
       moduleSpecifier: "@azure/core-lro"
     });
     clientFile.addImportDeclaration({
-      namedImports: ["LroImpl"],
+      namedImports: ["createLroSpec"],
       moduleSpecifier: `./lroImpl`
     });
   }
@@ -191,8 +193,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: !useCoreV2
       ? "coreHttp.ServiceClient"
       : coreHttpCompatMode
-        ? "coreHttpCompat.ExtendedServiceClient"
-        : "coreClient.ServiceClient",
+      ? "coreHttpCompat.ExtendedServiceClient"
+      : "coreClient.ServiceClient",
     isExported: true
   });
 
@@ -405,11 +407,12 @@ function writeConstructor(
   ]);
   if (useCoreV2 && apiVersionParam) {
     clientConstructor.addStatements(
-      `this.addCustomApiVersionPolicy(${!apiVersionParam.required ||
+      `this.addCustomApiVersionPolicy(${
+        !apiVersionParam.required ||
         !!apiVersionParam.defaultValue ||
         apiVersionParam.schemaType === SchemaType.Constant
-        ? "options."
-        : ""
+          ? "options."
+          : ""
       }apiVersion);`
     );
   }
@@ -569,7 +572,11 @@ function getTrack2DefaultContent(
   packageDetails: PackageDetails,
   clientDetails: ClientDetails
 ) {
-  const { azureArm, allowInsecureConnection, addCredentials } = getAutorestOptions();
+  const {
+    azureArm,
+    allowInsecureConnection,
+    addCredentials
+  } = getAutorestOptions();
 
   const defaultContent = `// Initializing default values for options
   if (!options) {
@@ -664,11 +671,11 @@ function writeDefaultOptions(
   return !useCoreV2
     ? getTrack1DefaultContent(addScopes, hasCredentials)
     : getTrack2DefaultContent(
-      addScopes,
-      defaults,
-      packageDetails,
-      clientDetails
-    );
+        addScopes,
+        defaults,
+        packageDetails,
+        clientDetails
+      );
 }
 
 function isAddScopes(
@@ -685,13 +692,15 @@ function isAddScopes(
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
-  return `this.baseUri = options.endpoint ?? ${endpoint ? `"${endpoint}"` : `""`
-    };`;
+  return `this.baseUri = options.endpoint ?? ${
+    endpoint ? `"${endpoint}"` : `""`
+  };`;
 }
 
 function getEndpoint({ endpoint }: EndpointDetails) {
-  return `options.endpoint ?? options.baseUri ?? ${endpoint ? `"${endpoint}"` : `""`
-    }`;
+  return `options.endpoint ?? options.baseUri ?? ${
+    endpoint ? `"${endpoint}"` : `""`
+  }`;
 }
 
 function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {

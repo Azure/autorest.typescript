@@ -131,7 +131,8 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
         "@azure/core-paging": "^1.2.0"
       }),
       ...(hasLRO && {
-        "@azure/core-lro": "^2.2.0"
+        "@azure/core-lro": "^2.3.0",
+        "@azure/abort-controller": "^1.0.0"
       })
     },
     devDependencies: {

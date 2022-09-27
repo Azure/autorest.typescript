@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ServerDnsAlias,
   ServerDnsAliasesListByServerNextOptionalParams,
@@ -149,8 +153,8 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     dnsAliasName: string,
     options?: ServerDnsAliasesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ServerDnsAliasesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ServerDnsAliasesCreateOrUpdateResponse>,
       ServerDnsAliasesCreateOrUpdateResponse
     >
   > {
@@ -160,7 +164,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     ): Promise<ServerDnsAliasesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -193,13 +197,16 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, dnsAliasName, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, dnsAliasName, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ServerDnsAliasesCreateOrUpdateResponse,
+      OperationState<ServerDnsAliasesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -242,14 +249,14 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     options?: ServerDnsAliasesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -282,13 +289,13 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, dnsAliasName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, dnsAliasName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -352,8 +359,8 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     parameters: ServerDnsAliasAcquisition,
     options?: ServerDnsAliasesAcquireOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ServerDnsAliasesAcquireResponse>,
+    SimplePollerLike<
+      OperationState<ServerDnsAliasesAcquireResponse>,
       ServerDnsAliasesAcquireResponse
     >
   > {
@@ -363,7 +370,7 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
     ): Promise<ServerDnsAliasesAcquireResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -396,13 +403,22 @@ export class ServerDnsAliasesImpl implements ServerDnsAliases {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, dnsAliasName, parameters, options },
-      acquireOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        serverName,
+        dnsAliasName,
+        parameters,
+        options
+      },
+      spec: acquireOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ServerDnsAliasesAcquireResponse,
+      OperationState<ServerDnsAliasesAcquireResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

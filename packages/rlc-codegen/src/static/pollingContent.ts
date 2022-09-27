@@ -1,5 +1,6 @@
 export const pollingContent = `
 import { Client, HttpResponse } from "@azure-rest/core-client";
+{{#if useLegacyLro}}
 import {
   LongRunningOperation,
   LroEngine,
@@ -8,7 +9,16 @@ import {
   PollerLike,
   PollOperationState
 } from "@azure/core-lro";
-
+{{else}}
+import {
+  CreateHttpPollerOptions,
+  LongRunningOperation,
+  LroResponse,
+  OperationState,
+  SimplePollerLike,
+  createHttpPoller
+} from "@azure/core-lro";
+{{/if}}
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -16,12 +26,17 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
-export function getLongRunningPoller<TResult extends HttpResponse>(
+export async function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,
+  {{#if useLegacyLro}}
   options: LroEngineOptions<TResult, PollOperationState<TResult>> = {}
-): PollerLike<PollOperationState<TResult>, TResult> {
-  const poller: LongRunningOperation<TResult> = {
+  ): Promise<PollerLike<PollOperationState<TResult>, TResult>> {
+    {{else}}
+    options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {}
+    ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
+    {{/if}}  
+    const poller: LongRunningOperation<TResult> = {
     requestMethod: initialResponse.request.method,
     requestPath: initialResponse.request.url,
     sendInitialRequest: async () => {
@@ -45,13 +60,19 @@ export function getLongRunningPoller<TResult extends HttpResponse>(
     }
   };
 
-  return new LroEngine(poller, options);
+  {{#if useLegacyLro}}
+  const poller = new LroEngine(poller, options);
+  await poller.poll();
+  return poller;
+  {{else}}
+  return await createHttpPoller(poller, options);
+  {{/if}}
 }
 
 /**
- * Converts a Rest Client response to a response that the LRO engine knows about
+ * Converts a Rest Client response to a response that the LRO implementation understands
  * @param response - a rest client http response
- * @returns - An LRO response that the LRO engine can work with
+ * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResult extends HttpResponse>(
   response: TResult

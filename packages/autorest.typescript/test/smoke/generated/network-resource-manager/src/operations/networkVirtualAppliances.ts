@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   NetworkVirtualAppliance,
   NetworkVirtualAppliancesListByResourceGroupNextOptionalParams,
@@ -152,14 +156,14 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
     resourceGroupName: string,
     networkVirtualApplianceName: string,
     options?: NetworkVirtualAppliancesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -192,15 +196,15 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkVirtualApplianceName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, networkVirtualApplianceName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -274,8 +278,8 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
     parameters: NetworkVirtualAppliance,
     options?: NetworkVirtualAppliancesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>,
       NetworkVirtualAppliancesCreateOrUpdateResponse
     >
   > {
@@ -285,7 +289,7 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
     ): Promise<NetworkVirtualAppliancesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -318,15 +322,23 @@ export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkVirtualApplianceName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        networkVirtualApplianceName,
+        parameters,
+        options
+      },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      NetworkVirtualAppliancesCreateOrUpdateResponse,
+      OperationState<NetworkVirtualAppliancesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;

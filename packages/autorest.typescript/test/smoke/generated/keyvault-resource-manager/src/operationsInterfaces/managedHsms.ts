@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   ManagedHsm,
   ManagedHsmsListByResourceGroupOptionalParams,
@@ -66,8 +66,8 @@ export interface ManagedHsms {
     parameters: ManagedHsm,
     options?: ManagedHsmsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedHsmsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedHsmsCreateOrUpdateResponse>,
       ManagedHsmsCreateOrUpdateResponse
     >
   >;
@@ -97,8 +97,8 @@ export interface ManagedHsms {
     parameters: ManagedHsm,
     options?: ManagedHsmsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedHsmsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedHsmsUpdateResponse>,
       ManagedHsmsUpdateResponse
     >
   >;
@@ -125,7 +125,7 @@ export interface ManagedHsms {
     resourceGroupName: string,
     name: string,
     options?: ManagedHsmsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the specified managed HSM Pool.
    * @param resourceGroupName Name of the resource group that contains the managed HSM pool.
@@ -169,7 +169,7 @@ export interface ManagedHsms {
     name: string,
     location: string,
     options?: ManagedHsmsPurgeDeletedOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Permanently deletes the specified managed HSM.
    * @param name The name of the soft-deleted managed HSM.

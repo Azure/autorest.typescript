@@ -4,8 +4,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { DomainServicesClient } from "../domainServicesClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   OuContainer,
   OuContainerListNextOptionalParams,
@@ -162,8 +166,8 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     containerAccount: ContainerAccount,
     options?: OuContainerCreateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<OuContainerCreateResponse>,
+    SimplePollerLike<
+      OperationState<OuContainerCreateResponse>,
       OuContainerCreateResponse
     >
   > {
@@ -173,7 +177,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     ): Promise<OuContainerCreateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -206,19 +210,22 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         domainServiceName,
         ouContainerName,
         containerAccount,
         options
       },
-      createOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOperationSpec
+    });
+    const poller = await createHttpPoller<
+      OuContainerCreateResponse,
+      OperationState<OuContainerCreateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -265,14 +272,14 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     options?: OuContainerDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -305,13 +312,13 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, domainServiceName, ouContainerName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, domainServiceName, ouContainerName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -357,8 +364,8 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     containerAccount: ContainerAccount,
     options?: OuContainerUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<OuContainerUpdateResponse>,
+    SimplePollerLike<
+      OperationState<OuContainerUpdateResponse>,
       OuContainerUpdateResponse
     >
   > {
@@ -368,7 +375,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     ): Promise<OuContainerUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -401,19 +408,22 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         domainServiceName,
         ouContainerName,
         containerAccount,
         options
       },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      OuContainerUpdateResponse,
+      OperationState<OuContainerUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

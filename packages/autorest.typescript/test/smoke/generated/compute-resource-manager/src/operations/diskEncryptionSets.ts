@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   DiskEncryptionSet,
   DiskEncryptionSetsListByResourceGroupNextOptionalParams,
@@ -235,8 +239,8 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     diskEncryptionSet: DiskEncryptionSet,
     options?: DiskEncryptionSetsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DiskEncryptionSetsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DiskEncryptionSetsCreateOrUpdateResponse>,
       DiskEncryptionSetsCreateOrUpdateResponse
     >
   > {
@@ -246,7 +250,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     ): Promise<DiskEncryptionSetsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -279,13 +283,21 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, diskEncryptionSetName, diskEncryptionSet, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        diskEncryptionSetName,
+        diskEncryptionSet,
+        options
+      },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      DiskEncryptionSetsCreateOrUpdateResponse,
+      OperationState<DiskEncryptionSetsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -333,8 +345,8 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     diskEncryptionSet: DiskEncryptionSetUpdate,
     options?: DiskEncryptionSetsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DiskEncryptionSetsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DiskEncryptionSetsUpdateResponse>,
       DiskEncryptionSetsUpdateResponse
     >
   > {
@@ -344,7 +356,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     ): Promise<DiskEncryptionSetsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -377,13 +389,21 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, diskEncryptionSetName, diskEncryptionSet, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        diskEncryptionSetName,
+        diskEncryptionSet,
+        options
+      },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      DiskEncryptionSetsUpdateResponse,
+      OperationState<DiskEncryptionSetsUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -446,14 +466,14 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     options?: DiskEncryptionSetsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -486,13 +506,13 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, diskEncryptionSetName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, diskEncryptionSetName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

@@ -11,6 +11,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const host = getHost();
   const useCoreV2 = await getUseCoreV2(host);
   const restLevelClient = await getRestLevelClient(host);
+  const useLegacyLro = await getUseLegacyLro(host);
   const rlcShortcut = await getHasShortcutMethods(host);
   const azureArm = await getIsAzureArm(host);
   const addCredentials = await getAddCredentials(host);
@@ -73,8 +74,14 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     azureSdkForJs,
     productDocLink,
     coreHttpCompatMode,
-    dependencyInfo
+    dependencyInfo,
+    useLegacyLro
   };
+}
+
+async function getUseLegacyLro(host: AutorestExtensionHost): Promise<boolean> {
+  const useLegacyLroOption = await host.getValue("use-legacy-lro");
+  return useLegacyLroOption === null ? false : Boolean(useLegacyLroOption);
 }
 
 async function getHasShortcutMethods(
@@ -100,7 +107,9 @@ async function getGenerateSample(
   host: AutorestExtensionHost
 ): Promise<boolean> {
   const generateSample = await host.getValue("generate-sample");
-  return generateSample === undefined || generateSample === null ? false : Boolean(generateSample);
+  return generateSample === undefined || generateSample === null
+    ? false
+    : Boolean(generateSample);
 }
 
 async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
@@ -199,7 +208,7 @@ async function getSecurity(
   host: AutorestExtensionHost
 ): Promise<string | undefined> {
   const security: string | undefined = await host.getValue("security");
-  return security
+  return security;
 }
 
 async function getIsAzureArm(host: AutorestExtensionHost): Promise<boolean> {
@@ -275,8 +284,10 @@ async function getPackageDetails(
 export async function getSecurityScopes(
   host: AutorestExtensionHost
 ): Promise<string[] | undefined> {
-  const securityScopes: string | undefined = await host.getValue("security-scopes");
-  if(securityScopes !== undefined && typeof securityScopes === "string") {
+  const securityScopes: string | undefined = await host.getValue(
+    "security-scopes"
+  );
+  if (securityScopes !== undefined && typeof securityScopes === "string") {
     return securityScopes.split(",");
   }
   return securityScopes;

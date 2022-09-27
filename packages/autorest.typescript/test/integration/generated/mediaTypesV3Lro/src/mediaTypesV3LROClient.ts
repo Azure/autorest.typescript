@@ -8,8 +8,12 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "./lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "./lroImpl";
 import * as Parameters from "./models/parameters";
 import {
   MediaTypesV3LROClientOptionalParams,
@@ -77,7 +81,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
     contentType: "application/octet-stream",
     data: coreRestPipeline.RequestBodyType,
     options?: SendOnDefault$binaryOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Send payload to Foo service.
    * @param contentType Upload file type
@@ -88,7 +92,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
     contentType: "text/plain",
     data: string,
     options?: SendOnDefault$textOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Send payload to Foo service.
    * @param args Includes all the parameters for this operation.
@@ -101,7 +105,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
           SendOnDefault$binaryOptionalParams?
         ]
       | ["text/plain", string, SendOnDefault$textOptionalParams?]
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     let operationSpec: coreClient.OperationSpec;
     let operationArguments: coreClient.OperationArguments;
     let options;
@@ -133,7 +137,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
     ): Promise<void> => {
       return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -166,9 +170,13 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
       };
     };
 
-    const lro = new LroImpl(sendOperation, operationArguments, operationSpec);
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: operationArguments,
+      spec: operationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   DeletedServer,
   DeletedServersListNextOptionalParams,
@@ -191,8 +195,8 @@ export class DeletedServersImpl implements DeletedServers {
     deletedServerName: string,
     options?: DeletedServersRecoverOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DeletedServersRecoverResponse>,
+    SimplePollerLike<
+      OperationState<DeletedServersRecoverResponse>,
       DeletedServersRecoverResponse
     >
   > {
@@ -202,7 +206,7 @@ export class DeletedServersImpl implements DeletedServers {
     ): Promise<DeletedServersRecoverResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -235,13 +239,16 @@ export class DeletedServersImpl implements DeletedServers {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { locationName, deletedServerName, options },
-      recoverOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { locationName, deletedServerName, options },
+      spec: recoverOperationSpec
+    });
+    const poller = await createHttpPoller<
+      DeletedServersRecoverResponse,
+      OperationState<DeletedServersRecoverResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

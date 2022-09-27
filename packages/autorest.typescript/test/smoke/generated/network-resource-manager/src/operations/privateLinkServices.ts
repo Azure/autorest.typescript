@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   PrivateLinkService,
   PrivateLinkServicesListNextOptionalParams,
@@ -376,14 +380,14 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     options?: PrivateLinkServicesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -416,15 +420,15 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serviceName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serviceName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -479,8 +483,8 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     parameters: PrivateLinkService,
     options?: PrivateLinkServicesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PrivateLinkServicesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<PrivateLinkServicesCreateOrUpdateResponse>,
       PrivateLinkServicesCreateOrUpdateResponse
     >
   > {
@@ -490,7 +494,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     ): Promise<PrivateLinkServicesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -523,15 +527,18 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serviceName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serviceName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PrivateLinkServicesCreateOrUpdateResponse,
+      OperationState<PrivateLinkServicesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;
@@ -640,14 +647,14 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     serviceName: string,
     peConnectionName: string,
     options?: PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -680,15 +687,15 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serviceName, peConnectionName, options },
-      deletePrivateEndpointConnectionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serviceName, peConnectionName, options },
+      spec: deletePrivateEndpointConnectionOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -744,8 +751,8 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     parameters: CheckPrivateLinkServiceVisibilityRequest,
     options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse
       >,
       PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse
@@ -757,7 +764,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     ): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -790,15 +797,20 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { location, parameters, options },
-      checkPrivateLinkServiceVisibilityOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { location, parameters, options },
+      spec: checkPrivateLinkServiceVisibilityOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse,
+      OperationState<
+        PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -836,8 +848,8 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     parameters: CheckPrivateLinkServiceVisibilityRequest,
     options?: PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
       >,
       PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
@@ -849,7 +861,7 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
     ): Promise<PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -882,15 +894,20 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { location, resourceGroupName, parameters, options },
-      checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { location, resourceGroupName, parameters, options },
+      spec: checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse,
+      OperationState<
+        PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   StorageAccount,
   StorageAccountsListOptionalParams,
@@ -96,8 +96,8 @@ export interface StorageAccounts {
     parameters: StorageAccountCreateParameters,
     options?: StorageAccountsCreateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<StorageAccountsCreateResponse>,
+    SimplePollerLike<
+      OperationState<StorageAccountsCreateResponse>,
       StorageAccountsCreateResponse
     >
   >;
@@ -250,7 +250,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsFailoverOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Failover request can be triggered for a storage account in case of availability issues. The failover
    * occurs from the storage account's primary cluster to secondary cluster for RA-GRS accounts. The
@@ -285,7 +285,7 @@ export interface StorageAccounts {
     accountName: string,
     requestType: string,
     options?: StorageAccountsHierarchicalNamespaceMigrationOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Live Migration of storage account to enable Hns
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -318,7 +318,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsAbortHierarchicalNamespaceMigrationOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Abort live Migration of storage account to enable Hns
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -349,8 +349,8 @@ export interface StorageAccounts {
     parameters: BlobRestoreParameters,
     options?: StorageAccountsRestoreBlobRangesOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<StorageAccountsRestoreBlobRangesResponse>,
+    SimplePollerLike<
+      OperationState<StorageAccountsRestoreBlobRangesResponse>,
       StorageAccountsRestoreBlobRangesResponse
     >
   >;

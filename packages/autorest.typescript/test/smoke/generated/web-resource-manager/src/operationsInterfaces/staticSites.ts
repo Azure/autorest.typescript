@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   StaticSiteARMResource,
   StaticSitesListOptionalParams,
@@ -252,8 +252,8 @@ export interface StaticSites {
     staticSiteEnvelope: StaticSiteARMResource,
     options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<StaticSitesCreateOrUpdateStaticSiteResponse>,
+    SimplePollerLike<
+      OperationState<StaticSitesCreateOrUpdateStaticSiteResponse>,
       StaticSitesCreateOrUpdateStaticSiteResponse
     >
   >;
@@ -281,7 +281,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDeleteStaticSiteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deletes a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -364,7 +364,7 @@ export interface StaticSites {
     name: string,
     environmentName: string,
     options?: StaticSitesDeleteStaticSiteBuildOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deletes a static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -470,8 +470,8 @@ export interface StaticSites {
     staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
     options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
       >,
       StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
@@ -527,7 +527,7 @@ export interface StaticSites {
     environmentName: string,
     staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
     options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deploys zipped content to a specific environment of a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -613,10 +613,8 @@ export interface StaticSites {
     staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
     options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse
-      >,
+    SimplePollerLike<
+      OperationState<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>,
       StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse
     >
   >;
@@ -649,7 +647,7 @@ export interface StaticSites {
     name: string,
     domainName: string,
     options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deletes a custom domain.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -678,7 +676,7 @@ export interface StaticSites {
     domainName: string,
     staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
     options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Validates a particular custom domain can be added to a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -705,7 +703,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDetachStaticSiteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Detaches a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -789,8 +787,8 @@ export interface StaticSites {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
       >,
       StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
@@ -824,8 +822,8 @@ export interface StaticSites {
     privateEndpointConnectionName: string,
     options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<StaticSitesDeletePrivateEndpointConnectionResponse>,
+    SimplePollerLike<
+      OperationState<StaticSitesDeletePrivateEndpointConnectionResponse>,
       StaticSitesDeletePrivateEndpointConnectionResponse
     >
   >;
@@ -895,8 +893,8 @@ export interface StaticSites {
     staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
     options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
       >,
       StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
@@ -944,7 +942,7 @@ export interface StaticSites {
     name: string,
     staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
     options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deploys zipped content to a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

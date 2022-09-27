@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
@@ -245,8 +245,8 @@ export interface Paging {
   getMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PagingGetMultiplePagesLROResponse>,
+    SimplePollerLike<
+      OperationState<PagingGetMultiplePagesLROResponse>,
       PagingGetMultiplePagesLROResponse
     >
   >;

@@ -11,8 +11,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PagingNoIteratorsClient } from "../pagingNoIteratorsClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
@@ -369,8 +373,8 @@ export class PagingImpl implements Paging {
   async getMultiplePagesLRO(
     options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PagingGetMultiplePagesLROResponse>,
+    SimplePollerLike<
+      OperationState<PagingGetMultiplePagesLROResponse>,
       PagingGetMultiplePagesLROResponse
     >
   > {
@@ -380,7 +384,7 @@ export class PagingImpl implements Paging {
     ): Promise<PagingGetMultiplePagesLROResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -413,13 +417,16 @@ export class PagingImpl implements Paging {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      getMultiplePagesLROOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: getMultiplePagesLROOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PagingGetMultiplePagesLROResponse,
+      OperationState<PagingGetMultiplePagesLROResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

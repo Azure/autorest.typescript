@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ExtendedServerBlobAuditingPolicy,
   ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams,
@@ -144,10 +148,8 @@ export class ExtendedServerBlobAuditingPoliciesImpl
     parameters: ExtendedServerBlobAuditingPolicy,
     options?: ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
-      >,
+    SimplePollerLike<
+      OperationState<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>,
       ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
     >
   > {
@@ -157,7 +159,7 @@ export class ExtendedServerBlobAuditingPoliciesImpl
     ): Promise<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -190,13 +192,16 @@ export class ExtendedServerBlobAuditingPoliciesImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse,
+      OperationState<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

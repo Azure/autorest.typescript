@@ -6,9 +6,9 @@
 
 import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
+import { OperationState } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
-import { PollerLike } from '@azure/core-lro';
-import { PollOperationState } from '@azure/core-lro';
+import { SimplePollerLike } from '@azure/core-lro';
 
 // @public (undocumented)
 export interface AccessPolicy {
@@ -94,7 +94,7 @@ export interface BlobContainer extends AzureEntityResource {
 
 // @public
 export interface BlobContainers {
-    beginObjectLevelWorm(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersObjectLevelWormOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginObjectLevelWorm(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersObjectLevelWormOptionalParams): Promise<SimplePollerLike<OperationState<void>, void>>;
     beginObjectLevelWormAndWait(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersObjectLevelWormOptionalParams): Promise<void>;
     clearLegalHold(resourceGroupName: string, accountName: string, containerName: string, legalHold: LegalHold, options?: BlobContainersClearLegalHoldOptionalParams): Promise<BlobContainersClearLegalHoldResponse>;
     create(resourceGroupName: string, accountName: string, containerName: string, blobContainer: BlobContainer, options?: BlobContainersCreateOptionalParams): Promise<BlobContainersCreateResponse>;
@@ -2178,15 +2178,15 @@ export interface StorageAccountRegenerateKeyParameters {
 
 // @public
 export interface StorageAccounts {
-    beginAbortHierarchicalNamespaceMigration(resourceGroupName: string, accountName: string, options?: StorageAccountsAbortHierarchicalNamespaceMigrationOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginAbortHierarchicalNamespaceMigration(resourceGroupName: string, accountName: string, options?: StorageAccountsAbortHierarchicalNamespaceMigrationOptionalParams): Promise<SimplePollerLike<OperationState<void>, void>>;
     beginAbortHierarchicalNamespaceMigrationAndWait(resourceGroupName: string, accountName: string, options?: StorageAccountsAbortHierarchicalNamespaceMigrationOptionalParams): Promise<void>;
-    beginCreate(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: StorageAccountsCreateOptionalParams): Promise<PollerLike<PollOperationState<StorageAccountsCreateResponse>, StorageAccountsCreateResponse>>;
+    beginCreate(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: StorageAccountsCreateOptionalParams): Promise<SimplePollerLike<OperationState<StorageAccountsCreateResponse>, StorageAccountsCreateResponse>>;
     beginCreateAndWait(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: StorageAccountsCreateOptionalParams): Promise<StorageAccountsCreateResponse>;
-    beginFailover(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginFailover(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<SimplePollerLike<OperationState<void>, void>>;
     beginFailoverAndWait(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<void>;
-    beginHierarchicalNamespaceMigration(resourceGroupName: string, accountName: string, requestType: string, options?: StorageAccountsHierarchicalNamespaceMigrationOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginHierarchicalNamespaceMigration(resourceGroupName: string, accountName: string, requestType: string, options?: StorageAccountsHierarchicalNamespaceMigrationOptionalParams): Promise<SimplePollerLike<OperationState<void>, void>>;
     beginHierarchicalNamespaceMigrationAndWait(resourceGroupName: string, accountName: string, requestType: string, options?: StorageAccountsHierarchicalNamespaceMigrationOptionalParams): Promise<void>;
-    beginRestoreBlobRanges(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: StorageAccountsRestoreBlobRangesOptionalParams): Promise<PollerLike<PollOperationState<StorageAccountsRestoreBlobRangesResponse>, StorageAccountsRestoreBlobRangesResponse>>;
+    beginRestoreBlobRanges(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: StorageAccountsRestoreBlobRangesOptionalParams): Promise<SimplePollerLike<OperationState<StorageAccountsRestoreBlobRangesResponse>, StorageAccountsRestoreBlobRangesResponse>>;
     beginRestoreBlobRangesAndWait(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: StorageAccountsRestoreBlobRangesOptionalParams): Promise<StorageAccountsRestoreBlobRangesResponse>;
     checkNameAvailability(accountName: StorageAccountCheckNameAvailabilityParameters, options?: StorageAccountsCheckNameAvailabilityOptionalParams): Promise<StorageAccountsCheckNameAvailabilityResponse>;
     delete(resourceGroupName: string, accountName: string, options?: StorageAccountsDeleteOptionalParams): Promise<void>;

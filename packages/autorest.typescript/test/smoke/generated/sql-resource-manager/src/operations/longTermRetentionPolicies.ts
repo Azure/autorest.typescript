@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   LongTermRetentionPolicy,
   LongTermRetentionPoliciesListByDatabaseNextOptionalParams,
@@ -162,8 +166,8 @@ export class LongTermRetentionPoliciesImpl
     parameters: LongTermRetentionPolicy,
     options?: LongTermRetentionPoliciesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LongTermRetentionPoliciesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<LongTermRetentionPoliciesCreateOrUpdateResponse>,
       LongTermRetentionPoliciesCreateOrUpdateResponse
     >
   > {
@@ -173,7 +177,7 @@ export class LongTermRetentionPoliciesImpl
     ): Promise<LongTermRetentionPoliciesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -206,9 +210,9 @@ export class LongTermRetentionPoliciesImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         serverName,
         databaseName,
@@ -216,10 +220,13 @@ export class LongTermRetentionPoliciesImpl
         parameters,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LongTermRetentionPoliciesCreateOrUpdateResponse,
+      OperationState<LongTermRetentionPoliciesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

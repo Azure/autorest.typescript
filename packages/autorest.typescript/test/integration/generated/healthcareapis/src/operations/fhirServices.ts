@@ -4,8 +4,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HealthCareApisClient } from "../healthCareApisClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   FhirService,
   FhirServicesListByWorkspaceNextOptionalParams,
@@ -157,8 +161,8 @@ export class FhirServicesImpl implements FhirServices {
     fhirservice: FhirService,
     options?: FhirServicesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<FhirServicesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<FhirServicesCreateOrUpdateResponse>,
       FhirServicesCreateOrUpdateResponse
     >
   > {
@@ -168,7 +172,7 @@ export class FhirServicesImpl implements FhirServices {
     ): Promise<FhirServicesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -201,19 +205,22 @@ export class FhirServicesImpl implements FhirServices {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         workspaceName,
         fhirServiceName,
         fhirservice,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      FhirServicesCreateOrUpdateResponse,
+      OperationState<FhirServicesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -260,8 +267,8 @@ export class FhirServicesImpl implements FhirServices {
     fhirservicePatchResource: FhirServicePatchResource,
     options?: FhirServicesUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<FhirServicesUpdateResponse>,
+    SimplePollerLike<
+      OperationState<FhirServicesUpdateResponse>,
       FhirServicesUpdateResponse
     >
   > {
@@ -271,7 +278,7 @@ export class FhirServicesImpl implements FhirServices {
     ): Promise<FhirServicesUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -304,19 +311,22 @@ export class FhirServicesImpl implements FhirServices {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         fhirServiceName,
         workspaceName,
         fhirservicePatchResource,
         options
       },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      FhirServicesUpdateResponse,
+      OperationState<FhirServicesUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -360,14 +370,14 @@ export class FhirServicesImpl implements FhirServices {
     fhirServiceName: string,
     workspaceName: string,
     options?: FhirServicesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -400,13 +410,13 @@ export class FhirServicesImpl implements FhirServices {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, fhirServiceName, workspaceName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, fhirServiceName, workspaceName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

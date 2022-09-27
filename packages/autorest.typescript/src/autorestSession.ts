@@ -41,6 +41,7 @@ export interface AutorestOptions {
   coreHttpCompatMode?: boolean;
   dependencyInfo?: DependencyInfo;
   lenientModelDeduplication?: boolean;
+  useLegacyLro?: boolean;
 }
 
 let host: AutorestExtensionHost;

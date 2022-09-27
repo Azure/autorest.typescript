@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   DeploymentScriptUnion,
   DeploymentScriptsListBySubscriptionOptionalParams,
@@ -57,8 +57,8 @@ export interface DeploymentScripts {
     deploymentScript: DeploymentScriptUnion,
     options?: DeploymentScriptsCreateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DeploymentScriptsCreateResponse>,
+    SimplePollerLike<
+      OperationState<DeploymentScriptsCreateResponse>,
       DeploymentScriptsCreateResponse
     >
   >;

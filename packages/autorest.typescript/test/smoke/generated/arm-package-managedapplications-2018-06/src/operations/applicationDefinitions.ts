@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ApplicationClient } from "../applicationClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ApplicationDefinition,
   ApplicationDefinitionsListByResourceGroupNextOptionalParams,
@@ -125,14 +129,14 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     options?: ApplicationDefinitionsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -165,13 +169,13 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, applicationDefinitionName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, applicationDefinitionName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -210,8 +214,8 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
       ApplicationDefinitionsCreateOrUpdateResponse
     >
   > {
@@ -221,7 +225,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     ): Promise<ApplicationDefinitionsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -254,13 +258,21 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, applicationDefinitionName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        applicationDefinitionName,
+        parameters,
+        options
+      },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ApplicationDefinitionsCreateOrUpdateResponse,
+      OperationState<ApplicationDefinitionsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -333,14 +345,14 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   async beginDeleteById(
     applicationDefinitionId: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -373,13 +385,13 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { applicationDefinitionId, options },
-      deleteByIdOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { applicationDefinitionId, options },
+      spec: deleteByIdOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -416,8 +428,8 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
+    SimplePollerLike<
+      OperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
       ApplicationDefinitionsCreateOrUpdateByIdResponse
     >
   > {
@@ -427,7 +439,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
     ): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -460,13 +472,16 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { applicationDefinitionId, parameters, options },
-      createOrUpdateByIdOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { applicationDefinitionId, parameters, options },
+      spec: createOrUpdateByIdOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ApplicationDefinitionsCreateOrUpdateByIdResponse,
+      OperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

@@ -28,7 +28,7 @@ async function farmOperationsCreateDataIngestionJob() {
   const initialResponse = await client
     .path("/farm-operations/ingest-data/{jobId}", jobId)
     .put();
-  const poller = getLongRunningPoller(client, initialResponse);
+  const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);
 }

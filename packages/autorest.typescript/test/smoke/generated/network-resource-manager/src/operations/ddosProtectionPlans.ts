@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   DdosProtectionPlan,
   DdosProtectionPlansListNextOptionalParams,
@@ -152,14 +156,14 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
     resourceGroupName: string,
     ddosProtectionPlanName: string,
     options?: DdosProtectionPlansDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -192,15 +196,15 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, ddosProtectionPlanName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, ddosProtectionPlanName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -255,8 +259,8 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
     parameters: DdosProtectionPlan,
     options?: DdosProtectionPlansCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DdosProtectionPlansCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DdosProtectionPlansCreateOrUpdateResponse>,
       DdosProtectionPlansCreateOrUpdateResponse
     >
   > {
@@ -266,7 +270,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
     ): Promise<DdosProtectionPlansCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -299,15 +303,18 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, ddosProtectionPlanName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, ddosProtectionPlanName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      DdosProtectionPlansCreateOrUpdateResponse,
+      OperationState<DdosProtectionPlansCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;

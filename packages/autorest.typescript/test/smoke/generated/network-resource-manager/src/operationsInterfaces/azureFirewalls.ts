@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   AzureFirewall,
   AzureFirewallsListOptionalParams,
@@ -51,7 +51,7 @@ export interface AzureFirewalls {
     resourceGroupName: string,
     azureFirewallName: string,
     options?: AzureFirewallsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the specified Azure Firewall.
    * @param resourceGroupName The name of the resource group.
@@ -87,8 +87,8 @@ export interface AzureFirewalls {
     parameters: AzureFirewall,
     options?: AzureFirewallsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<AzureFirewallsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<AzureFirewallsCreateOrUpdateResponse>,
       AzureFirewallsCreateOrUpdateResponse
     >
   >;
@@ -118,8 +118,8 @@ export interface AzureFirewalls {
     parameters: TagsObject,
     options?: AzureFirewallsUpdateTagsOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<AzureFirewallsUpdateTagsResponse>,
+    SimplePollerLike<
+      OperationState<AzureFirewallsUpdateTagsResponse>,
       AzureFirewallsUpdateTagsResponse
     >
   >;

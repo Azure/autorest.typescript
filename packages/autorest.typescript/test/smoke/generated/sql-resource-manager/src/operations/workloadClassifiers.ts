@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   WorkloadClassifier,
   WorkloadClassifiersListByWorkloadGroupNextOptionalParams,
@@ -181,8 +185,8 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     parameters: WorkloadClassifier,
     options?: WorkloadClassifiersCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WorkloadClassifiersCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<WorkloadClassifiersCreateOrUpdateResponse>,
       WorkloadClassifiersCreateOrUpdateResponse
     >
   > {
@@ -192,7 +196,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     ): Promise<WorkloadClassifiersCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -225,9 +229,9 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         serverName,
         databaseName,
@@ -236,10 +240,13 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
         parameters,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WorkloadClassifiersCreateOrUpdateResponse,
+      OperationState<WorkloadClassifiersCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -295,14 +302,14 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     workloadGroupName: string,
     workloadClassifierName: string,
     options?: WorkloadClassifiersDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -335,9 +342,9 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         serverName,
         databaseName,
@@ -345,10 +352,10 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
         workloadClassifierName,
         options
       },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

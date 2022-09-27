@@ -7,8 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "./lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "./lroImpl";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
@@ -65,8 +69,8 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
     accountName: string,
     options?: PollWithParameterizedEndpointsOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PollWithParameterizedEndpointsResponse>,
+    SimplePollerLike<
+      OperationState<PollWithParameterizedEndpointsResponse>,
       PollWithParameterizedEndpointsResponse
     >
   > {
@@ -76,7 +80,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
     ): Promise<PollWithParameterizedEndpointsResponse> => {
       return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -109,15 +113,18 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { accountName, options },
-      pollWithParameterizedEndpointsOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { accountName, options },
+      spec: pollWithParameterizedEndpointsOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PollWithParameterizedEndpointsResponse,
+      OperationState<PollWithParameterizedEndpointsResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -148,8 +155,8 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
     accountName: string,
     options?: PollWithConstantParameterizedEndpointsOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PollWithConstantParameterizedEndpointsResponse>,
+    SimplePollerLike<
+      OperationState<PollWithConstantParameterizedEndpointsResponse>,
       PollWithConstantParameterizedEndpointsResponse
     >
   > {
@@ -159,7 +166,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
     ): Promise<PollWithConstantParameterizedEndpointsResponse> => {
       return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -192,13 +199,16 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { accountName, options },
-      pollWithConstantParameterizedEndpointsOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { accountName, options },
+      spec: pollWithConstantParameterizedEndpointsOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PollWithConstantParameterizedEndpointsResponse,
+      OperationState<PollWithConstantParameterizedEndpointsResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

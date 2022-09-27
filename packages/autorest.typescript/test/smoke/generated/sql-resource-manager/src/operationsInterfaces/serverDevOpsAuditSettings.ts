@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   ServerDevOpsAuditingSettings,
   ServerDevOpsAuditSettingsListByServerOptionalParams,
@@ -64,8 +64,8 @@ export interface ServerDevOpsAuditSettings {
     parameters: ServerDevOpsAuditingSettings,
     options?: ServerDevOpsAuditSettingsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ServerDevOpsAuditSettingsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ServerDevOpsAuditSettingsCreateOrUpdateResponse>,
       ServerDevOpsAuditSettingsCreateOrUpdateResponse
     >
   >;

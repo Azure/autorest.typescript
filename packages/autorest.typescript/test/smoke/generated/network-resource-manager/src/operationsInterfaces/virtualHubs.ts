@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   VirtualHub,
   VirtualHubsListByResourceGroupOptionalParams,
@@ -66,8 +66,8 @@ export interface VirtualHubs {
     virtualHubParameters: VirtualHub,
     options?: VirtualHubsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<VirtualHubsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<VirtualHubsCreateOrUpdateResponse>,
       VirtualHubsCreateOrUpdateResponse
     >
   >;
@@ -107,7 +107,7 @@ export interface VirtualHubs {
     resourceGroupName: string,
     virtualHubName: string,
     options?: VirtualHubsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a VirtualHub.
    * @param resourceGroupName The resource group name of the VirtualHub.
@@ -129,7 +129,7 @@ export interface VirtualHubs {
     resourceGroupName: string,
     virtualHubName: string,
     options?: VirtualHubsGetEffectiveVirtualHubRoutesOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Gets the effective routes configured for the Virtual Hub resource or the specified resource .
    * @param resourceGroupName The resource group name of the VirtualHub.

@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   Metric,
   DatabasesListMetricsOptionalParams,
@@ -142,8 +142,8 @@ export interface Databases {
     parameters: Database,
     options?: DatabasesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DatabasesCreateOrUpdateResponse>,
       DatabasesCreateOrUpdateResponse
     >
   >;
@@ -176,7 +176,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -207,8 +207,8 @@ export interface Databases {
     parameters: DatabaseUpdate,
     options?: DatabasesUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DatabasesUpdateResponse>,
       DatabasesUpdateResponse
     >
   >;
@@ -241,7 +241,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesFailoverOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Failovers a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -270,8 +270,8 @@ export interface Databases {
     databaseName: string,
     options?: DatabasesPauseOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesPauseResponse>,
+    SimplePollerLike<
+      OperationState<DatabasesPauseResponse>,
       DatabasesPauseResponse
     >
   >;
@@ -303,8 +303,8 @@ export interface Databases {
     databaseName: string,
     options?: DatabasesResumeOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesResumeResponse>,
+    SimplePollerLike<
+      OperationState<DatabasesResumeResponse>,
       DatabasesResumeResponse
     >
   >;
@@ -335,7 +335,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesUpgradeDataWarehouseOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Upgrades a data warehouse.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -382,8 +382,8 @@ export interface Databases {
     parameters: ImportExistingDatabaseDefinition,
     options?: DatabasesImportOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesImportResponse>,
+    SimplePollerLike<
+      OperationState<DatabasesImportResponse>,
       DatabasesImportResponse
     >
   >;
@@ -419,8 +419,8 @@ export interface Databases {
     parameters: ExportDatabaseDefinition,
     options?: DatabasesExportOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DatabasesExportResponse>,
+    SimplePollerLike<
+      OperationState<DatabasesExportResponse>,
       DatabasesExportResponse
     >
   >;

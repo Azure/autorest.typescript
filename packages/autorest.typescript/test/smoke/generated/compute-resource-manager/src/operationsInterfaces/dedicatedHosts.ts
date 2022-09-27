@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   DedicatedHost,
   DedicatedHostsListByHostGroupOptionalParams,
@@ -51,8 +51,8 @@ export interface DedicatedHosts {
     parameters: DedicatedHost,
     options?: DedicatedHostsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DedicatedHostsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DedicatedHostsCreateOrUpdateResponse>,
       DedicatedHostsCreateOrUpdateResponse
     >
   >;
@@ -86,8 +86,8 @@ export interface DedicatedHosts {
     parameters: DedicatedHostUpdate,
     options?: DedicatedHostsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DedicatedHostsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DedicatedHostsUpdateResponse>,
       DedicatedHostsUpdateResponse
     >
   >;
@@ -118,7 +118,7 @@ export interface DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     options?: DedicatedHostsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete a dedicated host.
    * @param resourceGroupName The name of the resource group.

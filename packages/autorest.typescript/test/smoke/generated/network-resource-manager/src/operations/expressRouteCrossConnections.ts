@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ExpressRouteCrossConnection,
   ExpressRouteCrossConnectionsListNextOptionalParams,
@@ -203,8 +207,8 @@ export class ExpressRouteCrossConnectionsImpl
     parameters: ExpressRouteCrossConnection,
     options?: ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>,
       ExpressRouteCrossConnectionsCreateOrUpdateResponse
     >
   > {
@@ -214,7 +218,7 @@ export class ExpressRouteCrossConnectionsImpl
     ): Promise<ExpressRouteCrossConnectionsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -247,15 +251,18 @@ export class ExpressRouteCrossConnectionsImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, crossConnectionName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, crossConnectionName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ExpressRouteCrossConnectionsCreateOrUpdateResponse,
+      OperationState<ExpressRouteCrossConnectionsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;
@@ -323,8 +330,8 @@ export class ExpressRouteCrossConnectionsImpl
     devicePath: string,
     options?: ExpressRouteCrossConnectionsListArpTableOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
+    SimplePollerLike<
+      OperationState<ExpressRouteCrossConnectionsListArpTableResponse>,
       ExpressRouteCrossConnectionsListArpTableResponse
     >
   > {
@@ -334,7 +341,7 @@ export class ExpressRouteCrossConnectionsImpl
     ): Promise<ExpressRouteCrossConnectionsListArpTableResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -367,21 +374,24 @@ export class ExpressRouteCrossConnectionsImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         crossConnectionName,
         peeringName,
         devicePath,
         options
       },
-      listArpTableOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: listArpTableOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ExpressRouteCrossConnectionsListArpTableResponse,
+      OperationState<ExpressRouteCrossConnectionsListArpTableResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -428,8 +438,8 @@ export class ExpressRouteCrossConnectionsImpl
     devicePath: string,
     options?: ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
       >,
       ExpressRouteCrossConnectionsListRoutesTableSummaryResponse
@@ -441,7 +451,7 @@ export class ExpressRouteCrossConnectionsImpl
     ): Promise<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -474,21 +484,24 @@ export class ExpressRouteCrossConnectionsImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         crossConnectionName,
         peeringName,
         devicePath,
         options
       },
-      listRoutesTableSummaryOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: listRoutesTableSummaryOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ExpressRouteCrossConnectionsListRoutesTableSummaryResponse,
+      OperationState<ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -535,8 +548,8 @@ export class ExpressRouteCrossConnectionsImpl
     devicePath: string,
     options?: ExpressRouteCrossConnectionsListRoutesTableOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
+    SimplePollerLike<
+      OperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>,
       ExpressRouteCrossConnectionsListRoutesTableResponse
     >
   > {
@@ -546,7 +559,7 @@ export class ExpressRouteCrossConnectionsImpl
     ): Promise<ExpressRouteCrossConnectionsListRoutesTableResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -579,21 +592,24 @@ export class ExpressRouteCrossConnectionsImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         crossConnectionName,
         peeringName,
         devicePath,
         options
       },
-      listRoutesTableOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: listRoutesTableOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ExpressRouteCrossConnectionsListRoutesTableResponse,
+      OperationState<ExpressRouteCrossConnectionsListRoutesTableResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

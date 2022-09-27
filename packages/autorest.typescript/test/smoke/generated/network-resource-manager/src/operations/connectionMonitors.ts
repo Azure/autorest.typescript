@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ConnectionMonitorResult,
   ConnectionMonitorsListOptionalParams,
@@ -121,8 +125,8 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     parameters: ConnectionMonitor,
     options?: ConnectionMonitorsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ConnectionMonitorsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ConnectionMonitorsCreateOrUpdateResponse>,
       ConnectionMonitorsCreateOrUpdateResponse
     >
   > {
@@ -132,7 +136,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     ): Promise<ConnectionMonitorsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -165,21 +169,24 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         networkWatcherName,
         connectionMonitorName,
         parameters,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ConnectionMonitorsCreateOrUpdateResponse,
+      OperationState<ConnectionMonitorsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;
@@ -241,14 +248,14 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -281,15 +288,20 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkWatcherName, connectionMonitorName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -356,14 +368,14 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsStopOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -396,15 +408,20 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkWatcherName, connectionMonitorName, options },
-      stopOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      spec: stopOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -444,14 +461,14 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsStartOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -484,15 +501,20 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkWatcherName, connectionMonitorName, options },
-      startOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      spec: startOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -533,8 +555,8 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     connectionMonitorName: string,
     options?: ConnectionMonitorsQueryOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ConnectionMonitorsQueryResponse>,
+    SimplePollerLike<
+      OperationState<ConnectionMonitorsQueryResponse>,
       ConnectionMonitorsQueryResponse
     >
   > {
@@ -544,7 +566,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
     ): Promise<ConnectionMonitorsQueryResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -577,15 +599,23 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkWatcherName, connectionMonitorName, options },
-      queryOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      spec: queryOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ConnectionMonitorsQueryResponse,
+      OperationState<ConnectionMonitorsQueryResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

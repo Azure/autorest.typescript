@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   NetworkInterface,
   NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextOptionalParams,
@@ -636,14 +640,14 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     networkInterfaceName: string,
     options?: NetworkInterfacesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -676,15 +680,15 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkInterfaceName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, networkInterfaceName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -739,8 +743,8 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     parameters: NetworkInterface,
     options?: NetworkInterfacesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<NetworkInterfacesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<NetworkInterfacesCreateOrUpdateResponse>,
       NetworkInterfacesCreateOrUpdateResponse
     >
   > {
@@ -750,7 +754,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     ): Promise<NetworkInterfacesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -783,15 +787,18 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkInterfaceName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, networkInterfaceName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      NetworkInterfacesCreateOrUpdateResponse,
+      OperationState<NetworkInterfacesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;
@@ -874,8 +881,8 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     networkInterfaceName: string,
     options?: NetworkInterfacesGetEffectiveRouteTableOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<NetworkInterfacesGetEffectiveRouteTableResponse>,
+    SimplePollerLike<
+      OperationState<NetworkInterfacesGetEffectiveRouteTableResponse>,
       NetworkInterfacesGetEffectiveRouteTableResponse
     >
   > {
@@ -885,7 +892,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     ): Promise<NetworkInterfacesGetEffectiveRouteTableResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -918,15 +925,18 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkInterfaceName, options },
-      getEffectiveRouteTableOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, networkInterfaceName, options },
+      spec: getEffectiveRouteTableOperationSpec
+    });
+    const poller = await createHttpPoller<
+      NetworkInterfacesGetEffectiveRouteTableResponse,
+      OperationState<NetworkInterfacesGetEffectiveRouteTableResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -962,8 +972,8 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     networkInterfaceName: string,
     options?: NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
       >,
       NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
@@ -975,7 +985,7 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     ): Promise<NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1008,15 +1018,20 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, networkInterfaceName, options },
-      listEffectiveNetworkSecurityGroupsOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, networkInterfaceName, options },
+      spec: listEffectiveNetworkSecurityGroupsOperationSpec
+    });
+    const poller = await createHttpPoller<
+      NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse,
+      OperationState<
+        NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

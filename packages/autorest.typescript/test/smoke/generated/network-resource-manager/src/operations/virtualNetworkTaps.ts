@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   VirtualNetworkTap,
   VirtualNetworkTapsListAllNextOptionalParams,
@@ -152,14 +156,14 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
     resourceGroupName: string,
     tapName: string,
     options?: VirtualNetworkTapsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -192,15 +196,15 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, tapName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, tapName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -251,8 +255,8 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
     parameters: VirtualNetworkTap,
     options?: VirtualNetworkTapsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<VirtualNetworkTapsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<VirtualNetworkTapsCreateOrUpdateResponse>,
       VirtualNetworkTapsCreateOrUpdateResponse
     >
   > {
@@ -262,7 +266,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
     ): Promise<VirtualNetworkTapsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -295,15 +299,18 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, tapName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, tapName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      VirtualNetworkTapsCreateOrUpdateResponse,
+      OperationState<VirtualNetworkTapsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;

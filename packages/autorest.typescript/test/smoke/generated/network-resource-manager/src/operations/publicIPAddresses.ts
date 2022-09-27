@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   PublicIPAddress,
   PublicIPAddressesListCloudServicePublicIPAddressesNextOptionalParams,
@@ -592,14 +596,14 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     options?: PublicIPAddressesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -632,15 +636,15 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, publicIpAddressName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, publicIpAddressName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -695,8 +699,8 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     parameters: PublicIPAddress,
     options?: PublicIPAddressesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PublicIPAddressesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<PublicIPAddressesCreateOrUpdateResponse>,
       PublicIPAddressesCreateOrUpdateResponse
     >
   > {
@@ -706,7 +710,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     ): Promise<PublicIPAddressesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -739,15 +743,18 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, publicIpAddressName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, publicIpAddressName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PublicIPAddressesCreateOrUpdateResponse,
+      OperationState<PublicIPAddressesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;

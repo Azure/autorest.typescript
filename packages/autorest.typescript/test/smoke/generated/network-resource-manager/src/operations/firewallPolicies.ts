@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClient } from "../networkManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   FirewallPolicy,
   FirewallPoliciesListNextOptionalParams,
@@ -146,14 +150,14 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
     resourceGroupName: string,
     firewallPolicyName: string,
     options?: FirewallPoliciesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -186,15 +190,15 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, firewallPolicyName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, firewallPolicyName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -249,8 +253,8 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
     parameters: FirewallPolicy,
     options?: FirewallPoliciesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<FirewallPoliciesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<FirewallPoliciesCreateOrUpdateResponse>,
       FirewallPoliciesCreateOrUpdateResponse
     >
   > {
@@ -260,7 +264,7 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
     ): Promise<FirewallPoliciesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -293,15 +297,18 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, firewallPolicyName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, firewallPolicyName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      FirewallPoliciesCreateOrUpdateResponse,
+      OperationState<FirewallPoliciesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;
