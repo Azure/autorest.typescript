@@ -4,6 +4,8 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
+namespace AzureSchemaRegistry;
+
 @doc("Array received from the registry containing the list of schema groups.")
 @resource("$schemaGroups")
 model SchemaGroups {

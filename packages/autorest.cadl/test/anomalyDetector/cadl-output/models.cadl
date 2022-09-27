@@ -4,6 +4,8 @@ import "@azure-tools/cadl-azure-core";
 using Cadl.Rest;
 using Azure.Core;
 
+namespace AnomalyDetectorClient;
+
 enum ApiVersionKnownValues {
   V11Preview1: "v1.1-preview.1",
 }

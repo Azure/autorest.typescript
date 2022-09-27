@@ -1,6 +1,6 @@
 {
   "name": "@autorest/cadl-init",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Autorest plugin to scaffold a CADL definition from an OpenAPI document",
   "main": "dist/src/main.js",
   "typings": "dist/main.d.ts",
@@ -30,6 +30,12 @@
   "bugs": {
     "url": "https://github.com/Azure/autorest.typescript/issues"
   },
+  "files": [
+    "src",
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
   "homepage": "https://github.com/Azure/autorest.typescript#readme",
   "dependencies": {
     "typescript": "^4.7.4",

@@ -41,6 +41,7 @@ function generate(path: string, debug = false) {
       "--use=.",
       `--output-folder=${dirname(path)}`,
       "--guessResourceKey=true",
+      "--src-path=cadl-output",
       ...(debug ? ["--cadl-init.debugger"] : []),
     ],
     { stdio: "inherit" }

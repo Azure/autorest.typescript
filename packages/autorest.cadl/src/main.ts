@@ -40,14 +40,14 @@ export async function processRequest(host: AutorestExtensionHost) {
 
 function createOutputFolder(dir: string) {
   if (!existsSync(dir)) {
-    mkdirSync(dir);
+    mkdirSync(dir, { recursive: true });
   }
 }
 
 function getOutuptDirectory(session: Session<CodeModel>) {
-  const outputFolder = session.configuration["output-folder"];
-  const srcPath = session.configuration["src-path"] ?? "cadl-output";
-  return outputFolder ? join(outputFolder, srcPath) : srcPath;
+  const outputFolder = session.configuration["output-folder"] ?? ".";
+  const srcPath = session.configuration["src-path"] ?? "";
+  return join(outputFolder, srcPath);
 }
 
 function getFilePath(session: Session<CodeModel>, fileName: string) {
