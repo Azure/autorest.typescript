@@ -1,19 +1,57 @@
 import { HttpResponse } from "@azure-rest/core-client";
-import {
-  BaseClassOutput,
-  ModelWithPolymorphicPropertyOutput,
-} from "./outputModels";
+import { SiameseOutput, FishOutput } from "./outputModels";
 
 /** The request has succeeded. */
-export interface BasicPolymorphicModelsSetValue200Response
-  extends HttpResponse {
+export interface InheritancePostValid200Response extends HttpResponse {
   status: "200";
-  body: BaseClassOutput;
 }
 
 /** The request has succeeded. */
-export interface BasicPolymorphicModelsSetValueWithPolymorphicProperty200Response
+export interface InheritanceGetValid200Response extends HttpResponse {
+  status: "200";
+  body: SiameseOutput;
+}
+
+/** The request has succeeded. */
+export interface InheritancePutValid200Response extends HttpResponse {
+  status: "200";
+  body: SiameseOutput;
+}
+
+/** The request has succeeded. */
+export interface DiscriminatedGetModel200Response extends HttpResponse {
+  status: "200";
+  body: FishOutput;
+}
+
+/** The request has succeeded. */
+export interface DiscriminatedPutModel200Response extends HttpResponse {
+  status: "200";
+}
+
+/** The request has succeeded. */
+export interface DiscriminatedGetRecursiveModel200Response
   extends HttpResponse {
   status: "200";
-  body: ModelWithPolymorphicPropertyOutput;
+  body: FishOutput;
+}
+
+/** The request has succeeded. */
+export interface DiscriminatedPutRecursiveModel200Response
+  extends HttpResponse {
+  status: "200";
+}
+
+/** The request has succeeded. */
+export interface DiscriminatedGetMissingDiscriminator200Response
+  extends HttpResponse {
+  status: "200";
+  body: FishOutput;
+}
+
+/** The request has succeeded. */
+export interface DiscriminatedGetWrongDiscriminator200Response
+  extends HttpResponse {
+  status: "200";
+  body: FishOutput;
 }

@@ -212,7 +212,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/models/properties/optional/collections/bytes/all")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.property?.length, 2)
+      assert.strictEqual(result.body.property?.length, 2);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -234,7 +234,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/models/properties/optional/collections/bytes/all")
         .put({
-          body: { property: [ 'aGVsbG8sIHdvcmxkIQ==', 'aGVsbG8sIHdvcmxkIQ==' ] }
+          body: { property: ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="] }
         });
       assert.strictEqual(result.status, "204");
     } catch (err) {
@@ -261,7 +261,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/models/properties/optional/collections/model/all")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.property?.length, 2)
+      assert.strictEqual(result.body.property?.length, 2);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -278,19 +278,18 @@ describe("ModelsPropertyOptional Rest Client", () => {
     }
   });
 
-  // it("should put all collections model", async () => {
-  //   try {
-  //     const result = await client
-  //       .path("/models/properties/optional/collections/model/all")
-  //       .put({
-  //         body: {property:[{property:"hello"},{property:"world"}]}
-  //       });
-  //     console.log(JSON.stringify(result));
-  //     assert.strictEqual(result.status, "204");
-  //   } catch (err) {
-  //     assert.fail(err as string);
-  //   }
-  // });
+  it("should put all collections model", async () => {
+    try {
+      const result = await client
+        .path("/models/properties/optional/collections/model/all")
+        .put({
+          body: { property: [{ property: "hello" }, { property: "world" }] }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 
   it("should put default collections model", async () => {
     try {
@@ -298,6 +297,62 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/models/properties/optional/collections/model/default")
         .put({
           body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get models that will return all properties in the model", async () => {
+    try {
+      const result = await client
+        .path("/models/properties/optional/requiredAndOptional/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.optionalProperty, "hello");
+      assert.strictEqual(result.body.requiredProperty, 42);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get models that will return only the required properties", async () => {
+    try {
+      const result = await client
+        .path("/models/properties/optional/requiredAndOptional/requiredOnly")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.requiredProperty, 42);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put a body with all properties present", async () => {
+    try {
+      const result = await client
+        .path("/models/properties/optional/requiredAndOptional/all")
+        .put({
+          body: {
+            requiredProperty: 42,
+            optionalProperty: "hello"
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put a body with only required properties", async () => {
+    try {
+      const result = await client
+        .path("/models/properties/optional/requiredAndOptional/requiredOnly")
+        .put({
+          body: {
+            requiredProperty: 42
+          }
         });
       assert.strictEqual(result.status, "204");
     } catch (err) {

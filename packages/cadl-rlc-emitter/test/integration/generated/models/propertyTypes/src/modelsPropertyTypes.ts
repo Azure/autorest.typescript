@@ -146,5 +146,17 @@ export default function createClient(
           .put(options);
       },
     },
+    dictionaryString: {
+      get: (options) => {
+        return client
+          .path("/models/properties/types/dictionary/string")
+          .get(options);
+      },
+      put: (options) => {
+        return client
+          .path("/models/properties/types/dictionary/string")
+          .put(options);
+      },
+    },
   };
 }

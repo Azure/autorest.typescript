@@ -132,6 +132,11 @@ export interface ObjectSchema extends Schema {
   };
 }
 
+export interface DictionarySchema extends Schema {
+  valueTypeName?: string;
+  outputValueTypeName?: string;
+}
+
 export interface Property extends Schema {}
 
 export interface Parameter extends Schema {}
