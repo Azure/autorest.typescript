@@ -5,12 +5,28 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
-    outputPath: "hello",
-    inputPath: "hello"
+    outputPath: "authentication/apiKey",
+    inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/oauth2",
+    inputPath: "authentication/oauth2"
+  },
+  {
+    outputPath: "clients/interfaces",
+    inputPath: "clients/interfaces"
+  },
+  {
+    outputPath: "dictionary",
+    inputPath: "dictionary"
   },
   {
     outputPath: "extensibleEnums",
     inputPath: "extensible-enums"
+  },
+  {
+    outputPath: "hello",
+    inputPath: "hello"
   },
   {
     outputPath: "models/inheritance",
@@ -25,6 +41,10 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "models/nested-models"
   },
   {
+    outputPath: "models/outputBasic",
+    inputPath: "models/output-basic"
+  },
+  {
     outputPath: "models/propertyOptional",
     inputPath: "models/property-optional"
   },
@@ -33,20 +53,12 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "models/property-types"
   },
   {
-    outputPath: "models/outputBasic",
-    inputPath: "models/output-basic"
-  },
-  {
     outputPath: "models/readonlyProperties",
     inputPath: "models/readonly-properties"
   },
   {
     outputPath: "models/roundtripBasic",
     inputPath: "models/roundtrip-basic"
-  },
-  {
-    outputPath: "clients/interfaces",
-    inputPath: "clients/interfaces"
   },
   {
     outputPath: "resiliency/devDriven",

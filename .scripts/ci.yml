@@ -267,8 +267,9 @@ stages:
             displayName: "Check Coverage"
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             continueOnError: true
-          - publish: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter/cadl-ranch-coverage-typescript.json
+          - publish: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage-typescript.json
             artifact: CoverageReport
+            displayName: "Publish coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter

@@ -5,6 +5,7 @@ import {
   DatetimeProperty,
   DurationProperty,
   CollectionsByteProperty,
+  CollectionsModelProperty,
   RequiredAndOptionalProperty,
 } from "./models";
 
@@ -90,14 +91,14 @@ export type CollectionsModelGetAllParameters = RequestParameters;
 export type CollectionsModelGetDefaultParameters = RequestParameters;
 
 export interface CollectionsModelPutAllBodyParam {
-  body: CollectionsByteProperty;
+  body: CollectionsModelProperty;
 }
 
 export type CollectionsModelPutAllParameters = CollectionsModelPutAllBodyParam &
   RequestParameters;
 
 export interface CollectionsModelPutDefaultBodyParam {
-  body: CollectionsByteProperty;
+  body: CollectionsModelProperty;
 }
 
 export type CollectionsModelPutDefaultParameters =

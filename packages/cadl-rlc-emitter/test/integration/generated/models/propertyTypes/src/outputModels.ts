@@ -85,3 +85,9 @@ export interface CollectionsModelPropertyOutput {
   /** Property */
   property: Array<InnerModelOutput>;
 }
+
+/** Model with dictionary string properties */
+export interface DictionaryStringPropertyOutput {
+  /** Property */
+  property: Record<string, string>;
+}
