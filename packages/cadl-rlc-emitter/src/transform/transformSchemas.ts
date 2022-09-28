@@ -50,14 +50,13 @@ export function transformSchemas(program: Program) {
       return model;
     }
     const tmpModel = Object.assign({}, model);
-    const tmpModelKeys = Object.keys(tmpModel).filter(item => {return item !== "usage"});
-    const ordered = tmpModelKeys.sort().reduce(
-      (obj, key) => {
-        (obj as any)[key] = trimUsage(tmpModel[key]);
-        return obj;
-      }, 
-      {}
-    );
+    const tmpModelKeys = Object.keys(tmpModel).filter((item) => {
+      return item !== "usage";
+    });
+    const ordered = tmpModelKeys.sort().reduce((obj, key) => {
+      (obj as any)[key] = trimUsage(tmpModel[key]);
+      return obj;
+    }, {});
     return ordered;
   }
   function setModelMap(type: Type, schemaContext: SchemaContext) {
@@ -92,6 +91,15 @@ export function transformSchemas(program: Program) {
         ) {
           getGeneratedModels(prop[1].type, context);
         }
+      }
+      const baseModel = model.baseModel;
+      if (
+        baseModel &&
+        baseModel.kind === "Model" &&
+        (!program.stateMap(modelKey).get(baseModel) ||
+          !program.stateMap(modelKey).get(baseModel)?.includes(context))
+      ) {
+        getGeneratedModels(baseModel, context);
       }
       const derivedModels = model.derivedModels.filter(includeDerivedModel);
 
