@@ -135,7 +135,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       })
     },
     devDependencies: {
-      "@microsoft/api-extractor": "7.18.11",
+      "@microsoft/api-extractor": "^7.31.1",
       autorest: "latest",
       "@types/node": "^12.0.0",
       dotenv: "^8.2.0",

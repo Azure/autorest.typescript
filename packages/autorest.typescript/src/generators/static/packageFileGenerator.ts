@@ -108,7 +108,7 @@ function regularAutorestPackage(
     module: `./dist-esm/index.js`,
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@microsoft/api-extractor": "7.18.11",
+      "@microsoft/api-extractor": "^7.31.1",
       "@rollup/plugin-commonjs": "^21.0.1",
       "@rollup/plugin-json": "^4.1.0",
       "@rollup/plugin-multi-entry": "^4.1.0",

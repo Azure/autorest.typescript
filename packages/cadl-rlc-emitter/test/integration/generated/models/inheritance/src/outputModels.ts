@@ -3,6 +3,16 @@ export interface SiameseOutput extends CatOutput {
   smart: boolean;
 }
 
+/** The second level model in the normal multiple levels inheritance. */
+export interface CatOutput extends PetOutput {
+  age: number;
+}
+
+/** This is base model for non-discriminator normal multiple levels inheritance. */
+export interface PetOutput {
+  name: string;
+}
+
 /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
 export interface FishOutputParent {
   age: number;
