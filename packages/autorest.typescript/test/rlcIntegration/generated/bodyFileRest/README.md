@@ -1,3 +1,4 @@
+
 # BodyFile client library for JavaScript
 
 Test Infrastructure for AutoRest Swagger BAT
@@ -7,7 +8,6 @@ Test Infrastructure for AutoRest Swagger BAT
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/body-file)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -27,7 +27,7 @@ Install the BodyFile client REST client library for JavaScript with `npm`:
 npm install @msinternal/body-file
 ```
 
-### Create and authenticate a `BodyFile`
+### Create and authenticate a `BodyFileClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

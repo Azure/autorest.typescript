@@ -188,6 +188,9 @@ function createMetadata(model: RLCModel): Metadata | undefined {
 }
 
 function getServiceName(model: RLCModel) {
+  const azureHuh =
+    model?.options?.packageDetails?.scopeName === "azure" ||
+    model?.options?.packageDetails?.scopeName === "azure-rest";
   const libraryName = model.libraryName;
   const serviceTitle = model.options?.serviceInfo?.title ?? model.libraryName;
   const batch = model?.options?.batch,
@@ -207,9 +210,11 @@ function getServiceName(model: RLCModel) {
     serviceTitle.match(/(.*) Service/)?.[1] ??
     simpleServiceName;
 
-  return simpleServiceName.startsWith("Azure")
-    ? simpleServiceName
-    : `Azure ${simpleServiceName}`;
+  return azureHuh
+    ? simpleServiceName.startsWith("Azure")
+      ? simpleServiceName
+      : `Azure ${simpleServiceName}`
+    : simpleServiceName;
 }
 
 function getClientName(model: RLCModel) {

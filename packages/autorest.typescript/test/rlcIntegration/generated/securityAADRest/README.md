@@ -1,3 +1,4 @@
+
 # SecurityAADRest client library for JavaScript
 
 Autorest Security Aad REST APIs
@@ -7,7 +8,6 @@ Autorest Security Aad REST APIs
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/security-aad-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

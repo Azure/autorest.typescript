@@ -1,3 +1,4 @@
+
 # HeaderRest client library for JavaScript
 
 Test Infrastructure for AutoRest
@@ -7,7 +8,6 @@ Test Infrastructure for AutoRest
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/header-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
