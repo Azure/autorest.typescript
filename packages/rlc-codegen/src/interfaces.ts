@@ -87,6 +87,7 @@ export interface RLCOptions {
   title?: string;
   dependencyInfo?: DependencyInfo;
   productDocLink?: string;
+  serviceTile?: string;
 }
 
 export interface DependencyInfo {

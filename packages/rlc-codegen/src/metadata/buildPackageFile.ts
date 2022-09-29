@@ -65,7 +65,9 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     "sdk-type": "client",
     author: "Microsoft Corporation",
     version: `${packageDetails.version}`,
-    description: `${packageDetails.description}`,
+    description:
+      `${packageDetails.description}` ||
+      `A generated SDK for ${model.libraryName}.`,
     keywords: ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
     license: "MIT",
     main: "dist/index.js",
@@ -254,7 +256,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
 
   if (generateSample && hasSamplesGenerated) {
     packageInfo["//sampleConfiguration"] = {
-      productName: description,
+      productName: model.options.serviceTile ?? model.libraryName,
       productSlugs: ["azure"],
       disableDocsMs: true,
       apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`

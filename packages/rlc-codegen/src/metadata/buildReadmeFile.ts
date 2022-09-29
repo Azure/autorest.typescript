@@ -75,7 +75,6 @@ setLogLevel("info");
 \`\`\`
 
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
-
 `;
 
 /**
@@ -150,7 +149,9 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     batch
   } = model.options;
 
-  const azureHuh = "azure-rest";
+  const azureHuh =
+    packageDetails?.scopeName === "azure" ||
+    packageDetails?.scopeName === "azure-rest";
   const repoURL = "https://github.com/Azure/azure-sdk-for-js";
   const relativePackageSourcePath = azureOutputDirectory;
   const packageSourceURL =
@@ -186,7 +187,8 @@ function createMetadata(model: RLCModel): Metadata | undefined {
 }
 
 function getServiceName(model: RLCModel) {
-  const serviceTitle = model.libraryName;
+  const libraryName = model.libraryName;
+  const serviceTitle = model.options?.serviceTile ?? model.libraryName;
   const batch = model?.options?.batch,
     packageDetails = model?.options?.packageDetails!;
   let simpleServiceName =
@@ -199,8 +201,8 @@ function getServiceName(model: RLCModel) {
      * "Client".
      */
     serviceTitle.match(/(.*) Client/)?.[1] ??
-    /** I noticed management-plane swaggers do not use spaces in their titles */
     serviceTitle.match(/(.*)Client/)?.[1] ??
+    libraryName.match(/(.*)Client/)?.[1] ??
     serviceTitle.match(/(.*) Service/)?.[1] ??
     simpleServiceName;
 
