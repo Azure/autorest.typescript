@@ -100,7 +100,9 @@ async function getGenerateSample(
   host: AutorestExtensionHost
 ): Promise<boolean> {
   const generateSample = await host.getValue("generate-sample");
-  return generateSample === undefined || generateSample === null ? false : Boolean(generateSample);
+  return generateSample === undefined || generateSample === null
+    ? false
+    : Boolean(generateSample);
 }
 
 async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
@@ -199,7 +201,7 @@ async function getSecurity(
   host: AutorestExtensionHost
 ): Promise<string | undefined> {
   const security: string | undefined = await host.getValue("security");
-  return security
+  return security;
 }
 
 async function getIsAzureArm(host: AutorestExtensionHost): Promise<boolean> {
@@ -263,11 +265,14 @@ async function getPackageDetails(
   const version: string =
     (await host.getValue("package-version")) || "1.0.0-beta.1";
 
+  const description = Boolean(model.language.default.description)
+    ? model.language.default.description
+    : model.info.description;
   return {
     name: packageName,
     scopeName: packageNameParts[2],
     nameWithoutScope: packageNameParts[3],
-    description: model.language.default.description,
+    description,
     version
   };
 }
@@ -275,8 +280,10 @@ async function getPackageDetails(
 export async function getSecurityScopes(
   host: AutorestExtensionHost
 ): Promise<string[] | undefined> {
-  const securityScopes: string | undefined = await host.getValue("security-scopes");
-  if(securityScopes !== undefined && typeof securityScopes === "string") {
+  const securityScopes: string | undefined = await host.getValue(
+    "security-scopes"
+  );
+  if (securityScopes !== undefined && typeof securityScopes === "string") {
     return securityScopes.split(",");
   }
   return securityScopes;
