@@ -21,7 +21,8 @@ import {
   buildEnvFile,
   buildEnvBrowserFile,
   buildRecordedClientFile,
-  buildSampleTest
+  buildSampleTest,
+  buildReadmeFile
 } from "@azure-tools/rlc-codegen";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
@@ -46,7 +47,8 @@ export async function $onEmit(program: Program) {
       buildRollupConfig,
       buildTsConfig,
       buildApiExtractorConfig,
-      buildPackageFile
+      buildPackageFile,
+      buildReadmeFile
     ],
     rlcModels
   );
