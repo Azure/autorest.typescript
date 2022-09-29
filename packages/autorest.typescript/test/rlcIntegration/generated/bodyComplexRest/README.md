@@ -1,4 +1,3 @@
-
 # BodyComplexRest client library for JavaScript
 
 Test Infrastructure for AutoRest

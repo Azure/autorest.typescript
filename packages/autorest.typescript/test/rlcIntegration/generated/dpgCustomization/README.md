@@ -1,4 +1,3 @@
-
 # DPGCustomization client library for JavaScript
 
 DPG Swagger that tests our ability to grow up.

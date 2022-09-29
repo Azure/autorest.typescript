@@ -1,4 +1,3 @@
-
 # SecurityKeyRest client library for JavaScript
 
 Autorest Security Key REST APIs

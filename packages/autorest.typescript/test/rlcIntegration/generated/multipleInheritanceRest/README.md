@@ -1,4 +1,3 @@
-
 # MultipleInheritanceRest client library for JavaScript
 
 Service client for multiinheritance client testing

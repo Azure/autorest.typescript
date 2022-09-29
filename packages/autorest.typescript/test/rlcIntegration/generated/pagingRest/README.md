@@ -1,4 +1,3 @@
-
 # Paging client library for JavaScript
 
 Long-running Operation for AutoRest

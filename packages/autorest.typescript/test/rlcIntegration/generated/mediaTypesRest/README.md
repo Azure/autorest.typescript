@@ -1,4 +1,3 @@
-
 # MediaTypes client library for JavaScript
 
 Play with produces/consumes and media-types in general.

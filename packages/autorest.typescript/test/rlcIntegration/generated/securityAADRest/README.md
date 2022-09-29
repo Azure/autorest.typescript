@@ -1,4 +1,3 @@
-
 # SecurityAADRest client library for JavaScript
 
 Autorest Security Aad REST APIs
