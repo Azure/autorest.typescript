@@ -2,7 +2,7 @@
   "name": "@msinternal/web-resource-manager",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
-  "description": "WebSite Management Client",
+  "description": "A generated SDK for WebSiteManagementClient.",
   "version": "1.0.0-beta.1",
   "engines": { "node": ">=12.0.0" },
   "dependencies": {
@@ -97,7 +97,7 @@
   },
   "autoPublish": true,
   "//sampleConfiguration": {
-    "productName": "WebSite Management Client",
+    "productName": "",
     "productSlugs": ["azure"],
     "disableDocsMs": true,
     "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/web-resource-manager?view=azure-node-preview"
