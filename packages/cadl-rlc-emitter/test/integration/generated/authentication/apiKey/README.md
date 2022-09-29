@@ -1,5 +1,4 @@
-
-# Azure AuthApiKey client library for JavaScript
+# AuthApiKey client library for JavaScript
 
 Auth api key Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/auth-apikey` package
 
-Install the Azure AuthApiKey client REST client library for JavaScript with `npm`:
+Install the AuthApiKey client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/auth-apikey

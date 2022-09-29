@@ -1,4 +1,3 @@
-
 # Azure AgriFoodPlatform Data Plane client library for JavaScript
 
 APIs documentation for Azure AgPlatform DataPlane Service.

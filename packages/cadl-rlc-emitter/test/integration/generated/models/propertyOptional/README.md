@@ -1,5 +1,4 @@
-
-# Azure ModelsPropertyOptional client library for JavaScript
+# ModelsPropertyOptional client library for JavaScript
 
 Optional Property Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/optional-property` package
 
-Install the Azure ModelsPropertyOptional client REST client library for JavaScript with `npm`:
+Install the ModelsPropertyOptional client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/optional-property

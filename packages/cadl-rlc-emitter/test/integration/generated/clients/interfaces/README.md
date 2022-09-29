@@ -1,5 +1,4 @@
-
-# Azure MultiInterface client library for JavaScript
+# MultiInterface client library for JavaScript
 
 Client Interface Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/client-interface` package
 
-Install the Azure MultiInterface client REST client library for JavaScript with `npm`:
+Install the MultiInterface client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/client-interface

@@ -1,5 +1,4 @@
-
-# Azure Dict client library for JavaScript
+# Dict client library for JavaScript
 
 Dictionary Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/dictionary` package
 
-Install the Azure Dict client REST client library for JavaScript with `npm`:
+Install the Dict client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/dictionary

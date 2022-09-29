@@ -1,5 +1,4 @@
-
-# Azure ModelsUsage client library for JavaScript
+# ModelsUsage client library for JavaScript
 
 Usage Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/usage` package
 
-Install the Azure ModelsUsage client REST client library for JavaScript with `npm`:
+Install the ModelsUsage client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/usage

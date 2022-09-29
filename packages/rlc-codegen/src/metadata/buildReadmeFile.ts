@@ -3,8 +3,7 @@ import { RLCModel } from "../interfaces.js";
 import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 
-const readmeTemplate = `
-# {{ clientDescriptiveName }} library for JavaScript
+const readmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
 {{ description }}
 

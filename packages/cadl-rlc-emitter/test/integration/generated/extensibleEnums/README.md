@@ -1,5 +1,4 @@
-
-# Azure ExtensibleEnums client library for JavaScript
+# ExtensibleEnums client library for JavaScript
 
 Extensible Enums Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/extensible-enums` package
 
-Install the Azure ExtensibleEnums client REST client library for JavaScript with `npm`:
+Install the ExtensibleEnums client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/extensible-enums

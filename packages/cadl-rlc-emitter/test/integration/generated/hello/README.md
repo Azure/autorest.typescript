@@ -1,5 +1,4 @@
-
-# Azure Hello client library for JavaScript
+# Hello client library for JavaScript
 
 Hello World Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/hello-world` package
 
-Install the Azure Hello client REST client library for JavaScript with `npm`:
+Install the Hello client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/hello-world

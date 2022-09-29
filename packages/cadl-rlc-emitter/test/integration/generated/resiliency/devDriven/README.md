@@ -1,5 +1,4 @@
-
-# Azure ResiliencyDevDriven client library for JavaScript
+# ResiliencyDevDriven client library for JavaScript
 
 Dev Driven Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/dev-driven` package
 
-Install the Azure ResiliencyDevDriven client REST client library for JavaScript with `npm`:
+Install the ResiliencyDevDriven client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/dev-driven

@@ -1,5 +1,4 @@
-
-# Azure ModelsInheritance client library for JavaScript
+# ModelsInheritance client library for JavaScript
 
 Model Inheritance Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/model-inheritance` package
 
-Install the Azure ModelsInheritance client REST client library for JavaScript with `npm`:
+Install the ModelsInheritance client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/model-inheritance

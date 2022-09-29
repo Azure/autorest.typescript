@@ -1,5 +1,4 @@
-
-# Azure AuthOauth2 client library for JavaScript
+# AuthOauth2 client library for JavaScript
 
 Auth oauth2 Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/auth-oauth2` package
 
-Install the Azure AuthOauth2 client REST client library for JavaScript with `npm`:
+Install the AuthOauth2 client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/auth-oauth2

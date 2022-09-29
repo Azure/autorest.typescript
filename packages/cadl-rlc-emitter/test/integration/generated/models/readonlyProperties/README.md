@@ -1,5 +1,4 @@
-
-# Azure ReadonlyProperties client library for JavaScript
+# ReadonlyProperties client library for JavaScript
 
 Readonly Property Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/readonly-property` package
 
-Install the Azure ReadonlyProperties client REST client library for JavaScript with `npm`:
+Install the ReadonlyProperties client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/readonly-property

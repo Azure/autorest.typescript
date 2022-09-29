@@ -1,5 +1,4 @@
-
-# Azure Confidential Ledger client library for JavaScript
+# Confidential Ledger client library for JavaScript
 
 Confidential Ledger Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/confidential-ledger` package
 
-Install the Azure Confidential Ledger client REST client library for JavaScript with `npm`:
+Install the Confidential Ledger client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/confidential-ledger

@@ -1,5 +1,4 @@
-
-# Azure ModelsPropertyTypes client library for JavaScript
+# ModelsPropertyTypes client library for JavaScript
 
 Property Types Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/property-types` package
 
-Install the Azure ModelsPropertyTypes client REST client library for JavaScript with `npm`:
+Install the ModelsPropertyTypes client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/property-types

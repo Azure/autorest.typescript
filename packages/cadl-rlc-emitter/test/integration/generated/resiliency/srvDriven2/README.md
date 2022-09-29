@@ -1,5 +1,4 @@
-
-# Azure ResiliencyServiceDriven2 client library for JavaScript
+# ResiliencyServiceDriven2 client library for JavaScript
 
 Srv Driven 2 Test Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/srv-driven-2` package
 
-Install the Azure ResiliencyServiceDriven2 client REST client library for JavaScript with `npm`:
+Install the ResiliencyServiceDriven2 client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/srv-driven-2

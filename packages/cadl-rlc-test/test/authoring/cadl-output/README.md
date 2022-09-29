@@ -1,5 +1,4 @@
-
-# Azure Microsoft Cognitive Language client library for JavaScript
+# Microsoft Cognitive Language client library for JavaScript
 
 Authoring Ledger Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/authoring` package
 
-Install the Azure Microsoft Cognitive Language client REST client library for JavaScript with `npm`:
+Install the Microsoft Cognitive Language client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/authoring

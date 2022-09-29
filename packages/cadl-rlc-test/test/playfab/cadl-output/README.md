@@ -1,5 +1,4 @@
-
-# Azure PlayFab client library for JavaScript
+# PlayFab client library for JavaScript
 
 PlayFab Service
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/playfab` package
 
-Install the Azure PlayFab client REST client library for JavaScript with `npm`:
+Install the PlayFab client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/playfab
