@@ -2,7 +2,7 @@
   "name": "@msinternal/arm-package-deploymentscripts-2019-10-preview",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
-  "description": "The APIs listed in this specification can be used to manage Deployment Scripts resource through the Azure Resource Manager.",
+  "description": "A generated SDK for DeploymentScriptsClient.",
   "version": "1.0.0-beta.1",
   "engines": { "node": ">=12.0.0" },
   "dependencies": {

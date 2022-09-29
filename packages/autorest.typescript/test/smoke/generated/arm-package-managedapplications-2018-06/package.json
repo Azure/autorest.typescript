@@ -2,7 +2,7 @@
   "name": "@msinternal/arm-package-managedapplications-2018-06",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
-  "description": "ARM applications",
+  "description": "A generated SDK for ApplicationClient.",
   "version": "1.0.0-beta.1",
   "engines": { "node": ">=12.0.0" },
   "dependencies": {
