@@ -85,6 +85,13 @@ export interface RLCOptions {
   azureOutputDirectory?: string;
   isCadlTest?: boolean;
   title?: string;
+  dependencyInfo?: DependencyInfo;
+  productDocLink?: string;
+}
+
+export interface DependencyInfo {
+  link: string;
+  description: string;
 }
 
 export enum ImportKind {

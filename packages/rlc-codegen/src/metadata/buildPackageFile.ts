@@ -43,8 +43,8 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     return;
   }
 
-  const packageDetails = model.options.packageDetails;
   const {
+    packageDetails,
     generateTest,
     generateSample,
     azureOutputDirectory,

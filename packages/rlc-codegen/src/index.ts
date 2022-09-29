@@ -19,6 +19,7 @@ export * from "./test/buildKarmaConfig.js";
 export * from "./test/buildEnvFile.js";
 export * from "./test/buildRecordedClient.js";
 export * from "./test/buildSampleTest.js";
+export * from "./metadata/buildReadmeFile.js";
 export * from "./metadata/buildApiExtractorConfig.js";
 export * from "./metadata/buildPackageFile.js";
 export * from "./metadata/buildRollupConfig.js";

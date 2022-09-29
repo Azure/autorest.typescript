@@ -34,7 +34,8 @@ import {
   buildEnvBrowserFile,
   buildRecordedClientFile,
   buildSampleTest,
-  buildLicenseFile
+  buildLicenseFile,
+  buildReadmeFile
 } from "@azure-tools/rlc-codegen";
 import {
   generateFileByBuilder,
@@ -69,7 +70,9 @@ export async function generateRestLevelClient() {
   // then transform CodeModel to RLCModel
   const rlcModels = transform(model);
 
-  generateReadmeFile(model, project);
+  // generateReadmeFile(model, project);
+  // buildReadmeFile
+  generateFileByBuilder(project, buildReadmeFile, rlcModels);
   // buildLicenseFile
   generateFileByBuilder(project, buildLicenseFile, rlcModels);
   // buildApiExtractorConfig
