@@ -6,7 +6,6 @@ import { Project, IndentationText } from "ts-morph";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
@@ -70,7 +69,6 @@ export async function generateRestLevelClient() {
   // then transform CodeModel to RLCModel
   const rlcModels = transform(model);
 
-  // generateReadmeFile(model, project);
   // buildReadmeFile
   generateFileByBuilder(project, buildReadmeFile, rlcModels);
   // buildLicenseFile
