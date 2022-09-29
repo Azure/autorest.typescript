@@ -2,7 +2,7 @@
   "name": "@msinternal/arm-package-policy-2019-09",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
-  "description": "A generated SDK for PolicyClient.",
+  "description": "To manage and control access to your resources, you can define customized policies and assign them at a scope.",
   "version": "1.0.0-beta.1",
   "engines": { "node": ">=12.0.0" },
   "dependencies": {

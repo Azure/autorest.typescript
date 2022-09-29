@@ -256,7 +256,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
 
   if (generateSample && hasSamplesGenerated) {
     packageInfo["//sampleConfiguration"] = {
-      productName: model.options.serviceTile ?? model.libraryName,
+      productName: model.options.serviceInfo?.title ?? model.libraryName,
       productSlugs: ["azure"],
       disableDocsMs: true,
       apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`

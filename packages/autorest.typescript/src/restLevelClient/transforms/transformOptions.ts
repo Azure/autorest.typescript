@@ -29,7 +29,10 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.azureSdkForJs = azureSdkForJs;
   options.dependencyInfo = dependencyInfo;
   options.productDocLink = productDocLink;
-  options.serviceTile = model.info.title ?? model.language.default.name;
+  options.serviceInfo = {
+    title: model.info.title ?? model.language.default.name,
+    description: model.info.description
+  };
   const {
     addCredentials,
     credentialScopes,

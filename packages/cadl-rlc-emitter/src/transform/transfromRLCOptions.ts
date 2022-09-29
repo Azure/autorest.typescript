@@ -22,7 +22,9 @@ export function transformRLCOptions(program: Program): RLCOptions {
     );
   }
   const config: RLCOptions = JSON.parse(readFileSync(configFile).toString());
-  config.serviceTile = getServiceTitle(program);
+  config.serviceInfo = {
+    title: getServiceTitle(program)
+  };
   if (config.packageDetails?.name) {
     const nameParts = config.packageDetails?.name.split("/");
     if (nameParts.length === 2) {

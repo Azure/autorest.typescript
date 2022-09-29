@@ -265,14 +265,11 @@ async function getPackageDetails(
   const version: string =
     (await host.getValue("package-version")) || "1.0.0-beta.1";
 
-  const description = Boolean(model.language.default.description)
-    ? model.language.default.description
-    : model.info.description;
   return {
     name: packageName,
     scopeName: packageNameParts[2],
     nameWithoutScope: packageNameParts[3],
-    description,
+    description: model.language.default.description,
     version
   };
 }

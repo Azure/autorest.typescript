@@ -146,7 +146,8 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     productDocLink,
     dependencyInfo,
     multiClient,
-    batch
+    batch,
+    serviceInfo
   } = model.options;
 
   const azureHuh =
@@ -172,7 +173,7 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     clientClassName,
     clientPackageName: clientPackageName,
     clientDescriptiveName: `${serviceName} client`,
-    description: packageDetails.description,
+    description: serviceInfo?.description ?? packageDetails.description,
     serviceDocURL: productDocLink,
     packageSourceURL: packageSourceURL,
     packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
@@ -188,7 +189,7 @@ function createMetadata(model: RLCModel): Metadata | undefined {
 
 function getServiceName(model: RLCModel) {
   const libraryName = model.libraryName;
-  const serviceTitle = model.options?.serviceTile ?? model.libraryName;
+  const serviceTitle = model.options?.serviceInfo?.title ?? model.libraryName;
   const batch = model?.options?.batch,
     packageDetails = model?.options?.packageDetails!;
   let simpleServiceName =

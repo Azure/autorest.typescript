@@ -2,7 +2,7 @@
   "name": "@msinternal/arm-package-resources-2019-08",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
-  "description": "A generated SDK for ResourceManagementClient.",
+  "description": "Provides operations for working with resources and resource groups.",
   "version": "1.0.0-beta.1",
   "engines": { "node": ">=12.0.0" },
   "dependencies": {

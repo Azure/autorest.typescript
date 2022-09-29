@@ -2,7 +2,7 @@
   "name": "@msinternal/sql-resource-manager",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
-  "description": "A generated SDK for SqlManagementClient.",
+  "description": "The Azure SQL Database management API provides a RESTful set of web services that interact with Azure SQL Database services to manage your databases. The API enables you to create, retrieve, update, and delete databases.",
   "version": "1.0.0-beta.1",
   "engines": { "node": ">=12.0.0" },
   "dependencies": {
@@ -97,7 +97,7 @@
   },
   "autoPublish": true,
   "//sampleConfiguration": {
-    "productName": "",
+    "productName": "The Azure SQL Database management API provides a RESTful set of web services that interact with Azure SQL Database services to manage your databases. The API enables you to create, retrieve, update, and delete databases.",
     "productSlugs": ["azure"],
     "disableDocsMs": true,
     "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/sql-resource-manager?view=azure-node-preview"
