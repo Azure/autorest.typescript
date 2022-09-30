@@ -2,7 +2,7 @@ import { IndentationText, Project } from "ts-morph";
 import { assert } from "chai";
 import * as autorestSession from "../../../src/autorestSession";
 import * as sinon from "sinon";
-import { buildReadmeFile } from "@azure-tools/rlc-codegen";
+import { buildReadmeFile } from "@azure-tools/rlc-common";
 import { CodeModel } from "@autorest/codemodel";
 import { transform } from "../../../src/restLevelClient/transforms/transform";
 import { generateFileByBuilder } from "../../../src/restLevelClient/helpers/generatorHelpers";

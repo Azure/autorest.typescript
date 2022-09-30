@@ -1,5 +1,5 @@
 import { CodeModel } from "@autorest/codemodel";
-import { RLCOptions } from "@azure-tools/rlc-codegen";
+import { RLCOptions } from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 

@@ -8,7 +8,7 @@ import {
   Paths,
   ResponseTypes,
   OperationMethod
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import { getDoc, Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,

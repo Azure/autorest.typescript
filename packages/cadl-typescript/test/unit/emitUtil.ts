@@ -5,7 +5,7 @@ import {
   buildResponseTypes,
   buildSchemaTypes,
   ImportKind
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
 import { transformSchemas } from "../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";

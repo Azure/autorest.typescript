@@ -16,7 +16,7 @@ import {
   ParameterBodyMetadata,
   ParameterMetadata,
   Schema
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getDocs } from "../getPropertySignature";

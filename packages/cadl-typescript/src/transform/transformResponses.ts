@@ -8,7 +8,7 @@ import {
   ResponseMetadata,
   Schema,
   SchemaContext
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import { Program, getDoc } from "@cadl-lang/compiler";
 import { getAllRoutes, HttpOperationResponse } from "@cadl-lang/rest/http";
 import {

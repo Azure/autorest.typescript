@@ -15,7 +15,7 @@ import {
   ResponseMetadata,
   ResponseBodySchema,
   ResponseHeaderSchema
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { responseToSchemaResponse } from "../operationHelpers";
 import {

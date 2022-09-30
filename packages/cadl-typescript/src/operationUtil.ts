@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NameType, normalizeName } from "@azure-tools/rlc-codegen";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { DecoratedType, Model, Program, Type } from "@cadl-lang/compiler";
 import {
   getAllRoutes,

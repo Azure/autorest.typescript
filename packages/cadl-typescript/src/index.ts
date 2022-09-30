@@ -23,7 +23,7 @@ import {
   buildRecordedClientFile,
   buildSampleTest,
   buildReadmeFile
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
 

@@ -5,7 +5,7 @@ import { paramMessage, createCadlLibrary } from "@cadl-lang/compiler";
 import { Options } from "prettier";
 
 const libDef = {
-  name: "@cadl-lang/ts-rlc",
+  name: "@azure-tools/cadl-typescript",
   diagnostics: {
     "security-service-namespace": {
       severity: "error",
