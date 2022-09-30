@@ -7,7 +7,6 @@ Test Infrastructure for AutoRest
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/body-complex-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

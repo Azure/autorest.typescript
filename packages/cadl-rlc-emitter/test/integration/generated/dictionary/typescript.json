@@ -8,5 +8,6 @@
     "version": "1.0.0"
   },
   "isCadlTest": true,
-  "title": "DictClient"
+  "title": "DictClient",
+  "generateTest": true
 }

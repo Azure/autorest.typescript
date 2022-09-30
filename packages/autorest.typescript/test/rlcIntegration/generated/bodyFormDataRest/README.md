@@ -7,7 +7,6 @@ Test Infrastructure for AutoRest Swagger BAT
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/body-formdata-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -27,7 +26,7 @@ Install the BodyFormData client REST client library for JavaScript with `npm`:
 npm install @msinternal/body-formdata-rest
 ```
 
-### Create and authenticate a `BodyFormData`
+### Create and authenticate a `BodyFormDataClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

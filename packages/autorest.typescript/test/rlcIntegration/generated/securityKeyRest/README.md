@@ -7,7 +7,6 @@ Autorest Security Key REST APIs
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/security-key-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

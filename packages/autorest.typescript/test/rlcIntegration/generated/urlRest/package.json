@@ -3,7 +3,7 @@
   "sdk-type": "client",
   "author": "Microsoft Corporation",
   "version": "1.0.0-preview1",
-  "description": "",
+  "description": "A generated SDK for UrlRestClient.",
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "dist/index.js",

@@ -165,17 +165,13 @@ function createMetadata(codeModel: CodeModel): Metadata {
 }
 
 export function generateReadmeFile(codeModel: CodeModel, project: Project) {
-  const { generateMetadata, restLevelClient } = getAutorestOptions();
-
+  const { generateMetadata } = getAutorestOptions();
   if (!generateMetadata) {
     return;
   }
 
   const metadata = createMetadata(codeModel);
-  const templateFile = !restLevelClient
-    ? "hlcREADME.md.hbs"
-    : "rlcREADME.md.hbs";
-  const file = fs.readFileSync(path.join(__dirname, templateFile), {
+  const file = fs.readFileSync(path.join(__dirname, "hlcREADME.md.hbs"), {
     encoding: "utf-8"
   });
   const readmeFileContents = hbs.compile(file, { noEscape: true });

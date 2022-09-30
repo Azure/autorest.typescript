@@ -7,7 +7,6 @@ Long-running Operation for AutoRest
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/paging-service)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -27,7 +26,7 @@ Install the Paging client REST client library for JavaScript with `npm`:
 npm install @msinternal/paging-service
 ```
 
-### Create and authenticate a `Paging`
+### Create and authenticate a `PagingClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

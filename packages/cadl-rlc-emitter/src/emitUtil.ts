@@ -21,12 +21,17 @@ export async function emitModels(rlcModels: RLCModel, program: Program) {
 
 export async function emitContentByBuilder(
   program: Program,
-  builderFn: ContentBuilder,
+  builderFnOrList: ContentBuilder | ContentBuilder[],
   rlcModels: RLCModel
 ) {
-  const contentFile = builderFn(rlcModels);
-  if (contentFile) {
-    await emitFile(contentFile, program);
+  if (!Array.isArray(builderFnOrList)) {
+    builderFnOrList = [builderFnOrList];
+  }
+  for (const builderFn of builderFnOrList) {
+    const contentFile = builderFn(rlcModels);
+    if (contentFile) {
+      await emitFile(contentFile, program);
+    }
   }
 }
 

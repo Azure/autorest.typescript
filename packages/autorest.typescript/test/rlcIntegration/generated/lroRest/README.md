@@ -7,7 +7,6 @@ Long-running Operation for AutoRest
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/lro-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
