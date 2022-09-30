@@ -1,8 +1,8 @@
-# Paging client library for JavaScript
+# Paging REST client library for JavaScript
 
 Long-running Operation for AutoRest
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
@@ -20,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/paging-service` package
 
-Install the Paging client REST client library for JavaScript with `npm`:
+Install the Paging REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/paging-service

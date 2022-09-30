@@ -1,8 +1,8 @@
-# BodyFile client library for JavaScript
+# BodyFile REST client library for JavaScript
 
 Test Infrastructure for AutoRest Swagger BAT
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
@@ -20,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/body-file` package
 
-Install the BodyFile client REST client library for JavaScript with `npm`:
+Install the BodyFile REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/body-file

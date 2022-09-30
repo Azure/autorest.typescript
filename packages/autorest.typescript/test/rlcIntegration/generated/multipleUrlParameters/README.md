@@ -1,8 +1,8 @@
-# MultipleUrlParameterRest client library for JavaScript
+# MultipleUrlParameterRest REST client library for JavaScript
 
 Purview Catalog Service is a fully managed cloud service whose users can discover the data sources they need and understand the data sources they find. At the same time, Data Catalog helps organizations get more value from their existing investments. This spec defines REST API of Purview Catalog Service.
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
@@ -20,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/multiple-url-parameter-rest` package
 
-Install the MultipleUrlParameterRest client REST client library for JavaScript with `npm`:
+Install the MultipleUrlParameterRest REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/multiple-url-parameter-rest

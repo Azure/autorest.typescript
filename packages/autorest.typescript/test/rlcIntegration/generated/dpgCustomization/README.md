@@ -1,8 +1,8 @@
-# DPGCustomization client library for JavaScript
+# DPGCustomization REST client library for JavaScript
 
 DPG Swagger that tests our ability to grow up.
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
@@ -20,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/dpg-customization-rest` package
 
-Install the DPGCustomization client REST client library for JavaScript with `npm`:
+Install the DPGCustomization REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/dpg-customization-rest
