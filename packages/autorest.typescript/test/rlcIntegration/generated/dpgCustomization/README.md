@@ -7,7 +7,6 @@ DPG Swagger that tests our ability to grow up.
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/dpg-customization-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

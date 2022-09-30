@@ -7,7 +7,6 @@ Purview Catalog Service is a fully managed cloud service whose users can discove
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/multiple-url-parameter-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

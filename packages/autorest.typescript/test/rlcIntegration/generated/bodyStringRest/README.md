@@ -7,7 +7,6 @@ Test Infrastructure for AutoRest Swagger BAT
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/body-string-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -27,7 +26,7 @@ Install the BodyStringRest client REST client library for JavaScript with `npm`:
 npm install @msinternal/body-string-rest
 ```
 
-### Create and authenticate a `BodyStringRest`
+### Create and authenticate a `BodyStringRestClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

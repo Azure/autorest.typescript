@@ -1,5 +1,6 @@
 {
   "generateMetadata": true,
+  "generateTest": true,
   "includeShortcuts": true,
   "packageDetails": {
     "name": "@msinternal/authoring",
