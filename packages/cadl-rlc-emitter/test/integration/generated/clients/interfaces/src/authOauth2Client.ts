@@ -1,16 +1,16 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InterfaceClient } from "./clientDefinitions";
+import { AuthOauth2Client } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class InterfaceClient class.
+ * Initialize a new instance of the class AuthOauth2Client class.
  *
  */
 export default function createClient(
   options: ClientOptions = {}
-): InterfaceClient {
+): AuthOauth2Client {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  const userAgentInfo = `azsdk-js-client-interface-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-auth-oauth2-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -22,7 +22,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as InterfaceClient;
+  const client = getClient(baseUrl, options) as AuthOauth2Client;
 
   return {
     ...client,

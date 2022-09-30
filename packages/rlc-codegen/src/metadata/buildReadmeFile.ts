@@ -7,7 +7,7 @@ const readmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
 {{ description }}
 
-**Please rely heavily on {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
@@ -171,7 +171,7 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     serviceName,
     clientClassName,
     clientPackageName: clientPackageName,
-    clientDescriptiveName: `${serviceName} client`,
+    clientDescriptiveName: `${serviceName} REST client`,
     description: serviceInfo?.description ?? packageDetails.description,
     serviceDocURL: productDocLink,
     packageSourceURL: packageSourceURL,

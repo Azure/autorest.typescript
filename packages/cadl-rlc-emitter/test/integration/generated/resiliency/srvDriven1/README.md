@@ -1,8 +1,8 @@
-# ResiliencyServiceDriven1 client library for JavaScript
+# ResiliencyServiceDriven1 REST client library for JavaScript
 
 Srv Driven 1 Test Service
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
@@ -20,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/srv-driven-1` package
 
-Install the ResiliencyServiceDriven1 client REST client library for JavaScript with `npm`:
+Install the ResiliencyServiceDriven1 REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/srv-driven-1

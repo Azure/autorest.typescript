@@ -58,7 +58,7 @@ export interface Routes {
   (path: "/multi-interface/cats"): CatsGetCats;
 }
 
-export type InterfaceClient = Client & {
+export type AuthOauth2Client = Client & {
   path: Routes;
   dogs: dogsOperations;
   cats: catsOperations;

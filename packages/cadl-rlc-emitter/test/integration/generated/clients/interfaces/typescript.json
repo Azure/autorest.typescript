@@ -1,13 +1,12 @@
 {
-  "generateMetadata": true,
+  "generateMetadata": false,
   "includeShortcuts": true,
   "addCredentials": false,
   "packageDetails": {
-    "name": "@msinternal/client-interface",
-    "description": "Client Interface Test Service",
+    "name": "@msinternal/auth-oauth2",
+    "description": "Auth oauth2 Test Service",
     "version": "1.0.0"
   },
   "isCadlTest": true,
-  "title": "InterfaceClient",
-  "generateTest": true
+  "title": "AuthOauth2Client"
 }

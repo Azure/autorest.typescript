@@ -1,8 +1,8 @@
-# ExtensibleEnums client library for JavaScript
+# ExtensibleEnums REST client library for JavaScript
 
 Extensible Enums Test Service
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
@@ -20,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/extensible-enums` package
 
-Install the ExtensibleEnums client REST client library for JavaScript with `npm`:
+Install the ExtensibleEnums REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/extensible-enums
