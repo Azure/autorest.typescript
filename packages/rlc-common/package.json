@@ -1,5 +1,5 @@
 {
-  "name": "@azure-tools/rlc-codegen",
+  "name": "@azure-tools/rlc-common",
   "version": "1.0.0",
   "description": "",
   "type": "module",
