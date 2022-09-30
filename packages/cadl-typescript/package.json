@@ -1,5 +1,5 @@
 {
-  "name": "@cadl-lang/ts-rlc",
+  "name": "@azure-tools/cadl-typescript",
   "version": "0.0.1",
   "description": "An experimental CADL emitter for TypeScript RLC",
   "main": "dist/src/index.js",
