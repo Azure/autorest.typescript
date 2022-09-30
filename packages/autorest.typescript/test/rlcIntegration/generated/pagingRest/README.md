@@ -1,13 +1,12 @@
-# Paging client library for JavaScript
+# Paging REST client library for JavaScript
 
 Long-running Operation for AutoRest
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/paging-service)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -21,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/paging-service` package
 
-Install the Paging client REST client library for JavaScript with `npm`:
+Install the Paging REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/paging-service
 ```
 
-### Create and authenticate a `Paging`
+### Create and authenticate a `PagingClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

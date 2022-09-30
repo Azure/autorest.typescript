@@ -1,4 +1,4 @@
-# PurviewAdministrationRest client library for JavaScript
+# PurviewAdministrationRest REST client library for JavaScript
 
 Purview Account Client
 
@@ -21,13 +21,13 @@ Key links:
 
 ### Install the `@msinternal/purview-administration-rest` package
 
-Install the PurviewAdministrationRest client REST client library for JavaScript with `npm`:
+Install the PurviewAdministrationRest REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/purview-administration-rest
 ```
 
-### Create and authenticate a `PurviewAccount`
+### Create and authenticate a `PurviewAccountClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

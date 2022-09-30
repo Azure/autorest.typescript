@@ -3,7 +3,7 @@
   "sdk-type": "client",
   "author": "Microsoft Corporation",
   "version": "1.0.0-preview1",
-  "description": "",
+  "description": "A generated SDK for HeaderRestClient.",
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "dist/index.js",
@@ -77,7 +77,7 @@
     "uglify-js": "^3.4.9"
   },
   "//sampleConfiguration": {
-    "productName": "",
+    "productName": "HeaderRestClient",
     "productSlugs": ["azure"],
     "disableDocsMs": true,
     "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/header-rest"

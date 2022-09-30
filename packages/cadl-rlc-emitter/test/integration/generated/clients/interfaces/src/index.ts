@@ -1,10 +1,10 @@
-import InterfaceClient from "./interfaceClient";
+import AuthOauth2Client from "./authOauth2Client";
 
-export * from "./interfaceClient";
+export * from "./authOauth2Client";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default InterfaceClient;
+export default AuthOauth2Client;

@@ -1,13 +1,12 @@
-# LRORest client library for JavaScript
+# LRORest REST client library for JavaScript
 
 Long-running Operation for AutoRest
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/lro-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/lro-rest` package
 
-Install the LRORest client REST client library for JavaScript with `npm`:
+Install the LRORest REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/lro-rest

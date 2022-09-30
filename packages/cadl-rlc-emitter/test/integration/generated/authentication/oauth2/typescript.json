@@ -1,5 +1,5 @@
 {
-  "generateMetadata": true,
+  "generateMetadata": false,
   "includeShortcuts": true,
   "addCredentials": false,
   "packageDetails": {
@@ -8,5 +8,6 @@
     "version": "1.0.0"
   },
   "isCadlTest": true,
-  "title": "AuthOauth2Client"
+  "title": "AuthOauth2Client",
+  "generateTest": true
 }

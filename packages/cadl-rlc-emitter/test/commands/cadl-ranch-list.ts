@@ -33,18 +33,6 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "models/inheritance"
   },
   {
-    outputPath: "models/inputBasic",
-    inputPath: "models/input-basic"
-  },
-  {
-    outputPath: "models/nestedModels",
-    inputPath: "models/nested-models"
-  },
-  {
-    outputPath: "models/outputBasic",
-    inputPath: "models/output-basic"
-  },
-  {
     outputPath: "models/propertyOptional",
     inputPath: "models/property-optional"
   },
@@ -57,8 +45,8 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "models/readonly-properties"
   },
   {
-    outputPath: "models/roundtripBasic",
-    inputPath: "models/roundtrip-basic"
+    outputPath: "models/usage",
+    inputPath: "models/usage"
   },
   {
     outputPath: "resiliency/devDriven",

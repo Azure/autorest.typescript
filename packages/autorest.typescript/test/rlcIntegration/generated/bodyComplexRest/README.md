@@ -1,13 +1,12 @@
-# BodyComplexRest client library for JavaScript
+# BodyComplexRest REST client library for JavaScript
 
 Test Infrastructure for AutoRest
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/body-complex-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/body-complex-rest` package
 
-Install the BodyComplexRest client REST client library for JavaScript with `npm`:
+Install the BodyComplexRest REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/body-complex-rest

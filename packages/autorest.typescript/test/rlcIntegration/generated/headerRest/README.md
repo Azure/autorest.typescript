@@ -1,13 +1,12 @@
-# HeaderRest client library for JavaScript
+# HeaderRest REST client library for JavaScript
 
 Test Infrastructure for AutoRest
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/header-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/header-rest` package
 
-Install the HeaderRest client REST client library for JavaScript with `npm`:
+Install the HeaderRest REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/header-rest

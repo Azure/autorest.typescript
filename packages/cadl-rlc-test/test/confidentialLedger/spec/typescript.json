@@ -1,5 +1,6 @@
 {
   "generateMetadata": true,
+  "generateTest": false,
   "includeShortcuts": true,
   "packageDetails": {
     "name": "@msinternal/confidential-ledger",
