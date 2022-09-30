@@ -13,7 +13,6 @@ const readmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 **Please rely heavily on {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 {{/if}}
 
-
 Key links:
 
 {{#if packageSourceURL}}
