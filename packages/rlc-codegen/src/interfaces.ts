@@ -88,6 +88,7 @@ export interface RLCOptions {
   dependencyInfo?: DependencyInfo;
   productDocLink?: string;
   serviceInfo?: ServiceInfo;
+  azureArm?: boolean;
 }
 
 export interface ServiceInfo {

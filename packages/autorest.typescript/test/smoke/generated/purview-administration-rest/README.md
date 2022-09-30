@@ -1,8 +1,8 @@
-# PurviewAdministrationRest client library for JavaScript
+# PurviewAdministrationRest REST client library for JavaScript
 
 Purview Account Client
 
-**Please rely heavily on [the service's documentation](https://azure.microsoft.com/en-us/services/purview/) and our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at [the service's documentation](https://azure.microsoft.com/en-us/services/purview/) and our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
@@ -21,7 +21,7 @@ Key links:
 
 ### Install the `@msinternal/purview-administration-rest` package
 
-Install the PurviewAdministrationRest client REST client library for JavaScript with `npm`:
+Install the PurviewAdministrationRest REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/purview-administration-rest

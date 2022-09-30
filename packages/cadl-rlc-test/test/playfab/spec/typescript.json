@@ -1,6 +1,7 @@
 {
   "generateMetadata": true,
   "includeShortcuts": true,
+  "azureArm": true,
   "packageDetails": {
     "name": "@msinternal/playfab",
     "description": "PlayFab Service",

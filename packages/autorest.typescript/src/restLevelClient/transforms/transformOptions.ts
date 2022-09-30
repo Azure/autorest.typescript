@@ -15,7 +15,8 @@ export function transformOptions(model: CodeModel): RLCOptions {
     azureOutputDirectory,
     azureSdkForJs,
     dependencyInfo,
-    productDocLink
+    productDocLink,
+    azureArm
   } = getAutorestOptions();
   const options: RLCOptions = {};
   options.includeShortcuts = rlcShortcut;
@@ -29,6 +30,7 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.azureSdkForJs = azureSdkForJs;
   options.dependencyInfo = dependencyInfo;
   options.productDocLink = productDocLink;
+  options.azureArm = azureArm;
   options.serviceInfo = {
     title: model.info.title ?? model.language.default.name,
     description: model.info.description

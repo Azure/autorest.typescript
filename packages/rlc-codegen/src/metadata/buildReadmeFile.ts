@@ -7,7 +7,12 @@ const readmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
 {{ description }}
 
+{{#if azureArm}}
 **If you are not familiar with our REST client, please spend 5 minutes to take a look at {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
+{{else}}
+**Please rely heavily on {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+{{/if}}
+
 
 Key links:
 
@@ -113,6 +118,8 @@ interface Metadata {
   hasMultiClients?: boolean;
   /** The URL to the API reference */
   apiRefURL?: string;
+  /** Check if the rp is management plane */
+  azureArm?: boolean;
 }
 
 export function buildReadmeFile(model: RLCModel) {
@@ -182,7 +189,8 @@ function createMetadata(model: RLCModel): Metadata | undefined {
       : undefined,
     dependencyDescription: dependencyInfo?.description,
     dependencyLink: dependencyInfo?.link,
-    hasMultiClients: multiClient && batch && batch.length > 1
+    hasMultiClients: multiClient && batch && batch.length > 1,
+    azureArm: Boolean(model.options.azureArm)
   };
 }
 
