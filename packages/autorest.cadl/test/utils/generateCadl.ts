@@ -2,6 +2,7 @@ import { readdir } from "fs/promises";
 import { join, dirname, extname } from "path";
 import { spawnSync } from "child_process";
 import { resolveProject } from "./resolveRoot";
+import { readFileSync } from "fs";
 
 export async function generateCadl(folder: string, debug = false) {
   const { path: root } = await resolveProject(__dirname);
@@ -32,6 +33,12 @@ function generate(path: string, debug = false) {
   const inputFile =
     extension === ".json" ? `--input-file=${path}` : `--require=${path}`;
 
+  let overrideGuess = false;
+  if (extension === ".md") {
+    const fileContent = readFileSync(path, "utf-8");
+    overrideGuess = fileContent.includes("guessResourceKey: false");
+  }
+
   console.log(inputFile);
   spawnSync(
     "autorest",
@@ -40,9 +47,11 @@ function generate(path: string, debug = false) {
       inputFile,
       "--use=.",
       `--output-folder=${dirname(path)}`,
-      "--guessResourceKey=true",
       "--src-path=cadl-output",
       ...(debug ? ["--cadl-init.debugger"] : []),
+      ...(overrideGuess
+        ? ["--guessResourceKey=false"]
+        : ["--guessResourceKey=true"]),
     ],
     { stdio: "inherit" }
   );

@@ -208,7 +208,9 @@ function handleResource(
     } else {
       schema = response.schema;
     }
-    markResource(operation, schema);
+    if (!markResource(operation, schema)) {
+      return undefined;
+    }
     let cadlResponse =
       dataTypes.get(schema) ?? transformDataType(schema, codeModel);
     return {
@@ -282,7 +284,9 @@ function handleGetOperation(
 
   const nonPageableListResource = getNonPageableListResource(operation);
   if (nonPageableListResource) {
-    markResource(operation, nonPageableListResource.elementType);
+    if (!markResource(operation, nonPageableListResource.elementType)) {
+      return undefined;
+    }
     const dataTypes = getDataTypes(codeModel);
     let cadlResponse =
       dataTypes.get(nonPageableListResource.elementType) ??
@@ -303,14 +307,19 @@ function markResource(operation: Operation, elementType: Schema) {
     );
   }
 
-  markModelWithResource(elementType, getResourcePath(operation));
-  markWithKey(elementType);
+  const hasKey = markWithKey(elementType);
+  if (hasKey) {
+    markModelWithResource(elementType, getResourcePath(operation));
+    return true;
+  }
+
+  return false;
 }
 
 function getPageableResource(
   codeModel: CodeModel,
   operation: Operation
-): CadlResource {
+): CadlResource | undefined {
   const response = getPageableResponse(operation) as SchemaResponse;
   if (isObjectSchema(response.schema)) {
     for (const property of response.schema.properties ?? []) {
@@ -324,7 +333,9 @@ function getPageableResource(
           );
         }
 
-        markResource(operation, elementType);
+        if (!markResource(operation, elementType)) {
+          return undefined;
+        }
 
         let cadlResponse =
           dataTypes.get(elementType) ??
@@ -347,25 +358,25 @@ function markModelWithResource(elementType: Schema, resource: string) {
   elementType.language.default.resource = resource;
 }
 
-function markWithKey(schema: ObjectSchema) {
+function markWithKey(schema: ObjectSchema): boolean {
   const { properties, parents } = schema;
   const { guessResourceKey } = getOptions();
 
   if (!guessResourceKey) {
-    return;
+    return false;
   }
 
   if (parents && parents.immediate.length) {
     if (hasParentWithKey(parents.immediate)) {
-      return;
+      return false;
     }
     const defaultKeyInParent = shouldTryDefaultKeyInParent(schema);
     if (markParents(parents.immediate, defaultKeyInParent)) {
-      return;
+      return false;
     }
   }
 
-  markKeyProperty(properties ?? [], true);
+  return markKeyProperty(properties ?? [], true);
 }
 
 function hasParentWithKey(parents: ComplexSchema[]) {
@@ -410,7 +421,10 @@ function shouldTryDefaultKeyInParent(schema: ObjectSchema) {
   return true;
 }
 
-function markKeyProperty(allProperties: Property[], defaultToFirst = false) {
+function markKeyProperty(
+  allProperties: Property[],
+  defaultToFirst = false
+): boolean {
   const properties = allProperties.filter(
     (p) => p.required && !p.isDiscriminator
   );

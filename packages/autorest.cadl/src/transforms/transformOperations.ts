@@ -61,7 +61,10 @@ function transformResponses(
       return "void";
     }
 
-    if (schema.language.default.paging?.isPageable) {
+    if (
+      schema.language.default.paging?.isPageable &&
+      schema.language.default.resource
+    ) {
       return `Azure.Core.ResourceList<${responseName}>`;
     }
 
