@@ -10,6 +10,7 @@ export function generateDocs({ doc }: WithDocs): string {
   }
 
   let docString = Array.isArray(doc) ? doc.join("\n") : doc;
+  docString = docString.replace(/\\/g, "\\\\");
   docString = docString.replace(/"/g, '\\"');
   docString = lineWrap(docString);
 

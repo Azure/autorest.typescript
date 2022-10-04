@@ -1,0 +1,2207 @@
+import "@azure-tools/cadl-azure-core";
+import "@cadl-lang/rest";
+import "./models.cadl";
+
+using Cadl.Rest;
+using Cadl.Http;
+
+namespace Compute;
+
+interface OperationsOperations {
+  @doc("Gets a list of compute operations.")
+  List is Azure.Core.ResourceList<ComputeOperationValue>;
+}
+
+interface UsageOperations {
+  @doc("""
+Gets, for the specified location, the current compute resource usage
+information as well as the limits for compute resources under the subscription.
+""")
+  List is Azure.Core.ResourceList<Usage>;
+}
+
+interface VirtualMachineSizesOperations {
+  @doc("""
+This API is deprecated. Use [Resources
+Skus](https://docs.microsoft.com/rest/api/compute/resourceskus/list)
+""")
+  List is Azure.Core.ResourceList<VirtualMachineSize>;
+}
+
+interface VirtualMachineScaleSetsOperations {
+  @doc("""
+Gets all the VM scale sets under the specified subscription for the specified
+location.
+""")
+  ListByLocation is Azure.Core.ResourceList<VirtualMachineScaleSet>;
+
+  @doc("Create or update a VM scale set.")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<VirtualMachineScaleSet>;
+
+  @doc("Update a VM scale set.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<VirtualMachineScaleSet>;
+
+  @doc("Deletes a VM scale set.")
+  Delete is Azure.Core.LongRunningResourceDelete<
+    VirtualMachineScaleSet,
+    {
+      parameters: {
+        @doc("Optional parameter to force delete a VM scale set. (Feature in Preview)")
+        @query
+        forceDeletion: boolean;
+      };
+    }
+  >;
+
+  @doc("Display information about a virtual machine scale set.")
+  Get is Azure.Core.ResourceRead<
+    VirtualMachineScaleSet,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. 'UserData' retrieves the
+UserData property of the VM scale set that was provided by the user during the
+VM scale set Create/Update operation
+""")
+        @query
+        $expand: ExpandTypesForGetVMScaleSets;
+      };
+    }
+  >;
+
+  @doc("""
+Deallocates specific virtual machines in a VM scale set. Shuts down the virtual
+machines and releases the compute resources. You are not billed for the compute
+resources that this virtual machine scale set deallocates.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/deallocate")
+  @post
+  Deallocate is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceIDs;
+    },
+    void
+  >;
+
+  @doc("Deletes virtual machines in a VM scale set.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/delete")
+  @post
+  DeleteInstances is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Optional parameter to force delete virtual machines from the VM scale set.
+(Feature in Preview)
+""")
+      @query
+      forceDeletion: boolean;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs;
+    },
+    void
+  >;
+
+  @doc("Gets the status of a VM scale set instance.")
+  GetInstanceView is Azure.Core.ResourceRead<VirtualMachineScaleSetInstanceView>;
+
+  @doc("Gets a list of all VM scale sets under a resource group.")
+  List is Azure.Core.ResourceList<VirtualMachineScaleSet>;
+
+  @doc("""
+Gets a list of all VM Scale Sets in the subscription, regardless of the
+associated resource group. Use nextLink property in the response to get the
+next page of VM Scale Sets. Do this till nextLink is null to fetch all the VM
+Scale Sets.
+""")
+  ListAll is Azure.Core.ResourceList<VirtualMachineScaleSet>;
+
+  @doc("""
+Gets a list of SKUs available for your VM scale set, including the minimum and
+maximum VM instances allowed for each SKU.
+""")
+  ListSkus is Azure.Core.ResourceList<VirtualMachineScaleSetSku>;
+
+  @doc("Gets list of OS upgrades on a VM scale set instance.")
+  GetOSUpgradeHistory is Azure.Core.ResourceList<UpgradeOperationHistoricalStatusInfo>;
+
+  @doc("""
+Power off (stop) one or more virtual machines in a VM scale set. Note that
+resources are still attached and you are getting charged for the resources.
+Instead, use deallocate to release resources and avoid charges.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/poweroff")
+  @post
+  PowerOff is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+The parameter to request non-graceful VM shutdown. True value for this flag
+indicates non-graceful shutdown whereas false indicates otherwise. Default
+value for this flag is false if not specified
+""")
+      @query
+      skipShutdown: boolean;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceIDs;
+    },
+    void
+  >;
+
+  @doc("Restarts one or more virtual machines in a VM scale set.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/restart")
+  @post
+  Restart is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceIDs;
+    },
+    void
+  >;
+
+  @doc("Starts one or more virtual machines in a VM scale set.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/start")
+  @post
+  Start is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceIDs;
+    },
+    void
+  >;
+
+  @doc("""
+Shuts down all the virtual machines in the virtual machine scale set, moves
+them to a new node, and powers them back on.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/redeploy")
+  @post
+  Redeploy is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceIDs;
+    },
+    void
+  >;
+
+  @doc("""
+Perform maintenance on one or more virtual machines in a VM scale set.
+Operation on instances which are not eligible for perform maintenance will be
+failed. Please refer to best practices for more details:
+https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-maintenance-notifications
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/performMaintenance")
+  @post
+  PerformMaintenance is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceIDs;
+    },
+    void
+  >;
+
+  @doc("""
+Upgrades one or more virtual machines to the latest SKU set in the VM scale set
+model.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/manualupgrade")
+  @post
+  UpdateInstances is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs;
+    },
+    void
+  >;
+
+  @doc("""
+Reimages (upgrade the operating system) one or more virtual machines in a VM
+scale set which don't have a ephemeral OS disk, for virtual machines who have a
+ephemeral OS disk the virtual machine is reset to initial state.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/reimage")
+  @post
+  Reimage is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("Parameters for Reimaging VM ScaleSet.")
+      @body
+      vmScaleSetReimageInput: VirtualMachineScaleSetReimageParameters;
+    },
+    void
+  >;
+
+  @doc("""
+Reimages all the disks ( including data disks ) in the virtual machines in a VM
+scale set. This operation is only supported for managed disks.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/reimageall")
+  @post
+  ReimageAll is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("A list of virtual machine instance IDs from the VM scale set.")
+      @body
+      vmInstanceIDs: VirtualMachineScaleSetVMInstanceIDs;
+    },
+    void
+  >;
+
+  @doc("""
+Manual platform update domain walk to update virtual machines in a service
+fabric virtual machine scale set.
+""")
+  ForceRecoveryServiceFabricPlatformUpdateDomainWalk is Azure.Core.ResourceCreateWithServiceProvidedName<
+    RecoveryWalkResponse,
+    {
+      parameters: {
+        @doc("The platform update domain for which a manual recovery walk is requested")
+        @query
+        platformUpdateDomain: int32;
+
+        @doc("""
+The zone in which the manual recovery walk is requested for cross zone virtual
+machine scale set
+""")
+        @query
+        zone: string;
+
+        @doc("The placement group id for which the manual recovery walk is requested.")
+        @query
+        placementGroupId: string;
+      };
+    }
+  >;
+
+  @doc("""
+Converts SinglePlacementGroup property to false for a existing virtual machine
+scale set.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/convertToSinglePlacementGroup")
+  @post
+  ConvertToSinglePlacementGroup is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine scale set to create or update.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("The input object for ConvertToSinglePlacementGroup API.")
+      @body
+      parameters: VMScaleSetConvertToSinglePlacementGroupInput;
+    },
+    void
+  >;
+
+  @doc("Changes ServiceState property for a given service")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/setOrchestrationServiceState")
+  @post
+  SetOrchestrationServiceState is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine scale set to create or update.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("The input object for SetOrchestrationServiceState API.")
+      @body
+      parameters: OrchestrationServiceStateInput;
+    },
+    void
+  >;
+}
+
+interface VirtualMachineScaleSetExtensionsOperations {
+  @doc("The operation to create or update an extension.")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<VirtualMachineScaleSetExtension>;
+
+  @doc("The operation to update an extension.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<VirtualMachineScaleSetExtension>;
+
+  @doc("The operation to delete the extension.")
+  Delete is Azure.Core.LongRunningResourceDelete<VirtualMachineScaleSetExtension>;
+
+  @doc("The operation to get the extension.")
+  Get is Azure.Core.ResourceRead<
+    VirtualMachineScaleSetExtension,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+      };
+    }
+  >;
+
+  @doc("Gets a list of all extensions in a VM scale set.")
+  List is Azure.Core.ResourceList<VirtualMachineScaleSetExtension>;
+}
+
+interface VirtualMachineScaleSetRollingUpgradesOperations {
+  @doc("Cancels the current virtual machine scale set rolling upgrade.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/rollingUpgrades/cancel")
+  @post
+  Cancel is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+Starts a rolling upgrade to move all virtual machine scale set instances to the
+latest available Platform Image OS version. Instances which are already running
+the latest available OS version are not affected.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/osRollingUpgrade")
+  @post
+  StartOSUpgrade is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+Starts a rolling upgrade to move all extensions for all virtual machine scale
+set instances to the latest available extension version. Instances which are
+already running the latest extension versions are not affected.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensionRollingUpgrade")
+  @post
+  StartExtensionUpgrade is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("Gets the status of the latest virtual machine scale set rolling upgrade.")
+  GetLatest is Azure.Core.ResourceRead<RollingUpgradeStatusInfo>;
+}
+
+interface VirtualMachineScaleSetVMExtensionsOperations {
+  @doc("The operation to create or update the VMSS VM extension.")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<VirtualMachineScaleSetVMExtension>;
+
+  @doc("The operation to update the VMSS VM extension.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<VirtualMachineScaleSetVMExtension>;
+
+  @doc("The operation to delete the VMSS VM extension.")
+  Delete is Azure.Core.LongRunningResourceDelete<VirtualMachineScaleSetVMExtension>;
+
+  @doc("The operation to get the VMSS VM extension.")
+  Get is Azure.Core.ResourceRead<
+    VirtualMachineScaleSetVMExtension,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+      };
+    }
+  >;
+
+  @doc("The operation to get all extensions of an instance in Virtual Machine Scaleset.")
+  List is Azure.Core.ResourceRead<
+    VirtualMachineScaleSetVMExtensionsListResult,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+      };
+    }
+  >;
+}
+
+interface VirtualMachineScaleSetVMsOperations {
+  @doc("""
+Reimages (upgrade the operating system) a specific virtual machine in a VM
+scale set.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/reimage")
+  @post
+  Reimage is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("Parameters for the Reimaging Virtual machine in ScaleSet.")
+      @body
+      vmScaleSetVMReimageInput: VirtualMachineScaleSetVMReimageParameters;
+    },
+    void
+  >;
+
+  @doc("""
+Allows you to re-image all the disks ( including data disks ) in the a VM scale
+set instance. This operation is only supported for managed disks.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/reimageall")
+  @post
+  ReimageAll is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+Deallocates a specific virtual machine in a VM scale set. Shuts down the
+virtual machine and releases the compute resources it uses. You are not billed
+for the compute resources of this virtual machine once it is deallocated.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/deallocate")
+  @post
+  Deallocate is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("Updates a virtual machine of a VM scale set.")
+  Update is Azure.Core.LongRunningResourceCreateOrReplace<VirtualMachineScaleSetVM>;
+
+  @doc("Deletes a virtual machine from a VM scale set.")
+  Delete is Azure.Core.LongRunningResourceDelete<
+    VirtualMachineScaleSetVM,
+    {
+      parameters: {
+        @doc("""
+Optional parameter to force delete a virtual machine from a VM scale set.
+(Feature in Preview)
+""")
+        @query
+        forceDeletion: boolean;
+      };
+    }
+  >;
+
+  @doc("Gets a virtual machine from a VM scale set.")
+  Get is Azure.Core.ResourceRead<
+    VirtualMachineScaleSetVM,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. 'InstanceView' will retrieve
+the instance view of the virtual machine. 'UserData' will retrieve the UserData
+of the virtual machine.
+""")
+        @query
+        $expand: InstanceViewTypes;
+      };
+    }
+  >;
+
+  @doc("Gets the status of a virtual machine from a VM scale set.")
+  GetInstanceView is Azure.Core.ResourceRead<VirtualMachineScaleSetVMInstanceView>;
+
+  @doc("Gets a list of all virtual machines in a VM scale sets.")
+  List is Azure.Core.ResourceList<
+    VirtualMachineScaleSetVM,
+    {
+      parameters: {
+        @doc("""
+The filter to apply to the operation. Allowed values are
+'startswith(instanceView/statuses/code, 'PowerState') eq true',
+'properties/latestModelApplied eq true', 'properties/latestModelApplied eq
+false'.
+""")
+        @query
+        $filter: string;
+
+        @doc("The list parameters. Allowed values are 'instanceView', 'instanceView/statuses'.")
+        @query
+        $select: string;
+
+        @doc("""
+The expand expression to apply to the operation. Allowed values are
+'instanceView'.
+""")
+        @query
+        $expand: string;
+      };
+    }
+  >;
+
+  @doc("""
+Power off (stop) a virtual machine in a VM scale set. Note that resources are
+still attached and you are getting charged for the resources. Instead, use
+deallocate to release resources and avoid charges.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/poweroff")
+  @post
+  PowerOff is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+The parameter to request non-graceful VM shutdown. True value for this flag
+indicates non-graceful shutdown whereas false indicates otherwise. Default
+value for this flag is false if not specified
+""")
+      @query
+      skipShutdown: boolean;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("Restarts a virtual machine in a VM scale set.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/restart")
+  @post
+  Restart is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("Starts a virtual machine in a VM scale set.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/start")
+  @post
+  Start is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+Shuts down the virtual machine in the virtual machine scale set, moves it to a
+new node, and powers it back on.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/redeploy")
+  @post
+  Redeploy is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+The operation to retrieve SAS URIs of boot diagnostic logs for a virtual
+machine in a VM scale set.
+""")
+  RetrieveBootDiagnosticsData is Azure.Core.ResourceCreateWithServiceProvidedName<
+    RetrieveBootDiagnosticsDataResult,
+    {
+      parameters: {
+        @doc("""
+Expiration duration in minutes for the SAS URIs with a value between 1 to 1440
+minutes. <br><br>NOTE: If not specified, SAS URIs will be generated with a
+default expiration duration of 120 minutes.
+""")
+        @query
+        sasUriExpirationTimeInMinutes: int32;
+      };
+    }
+  >;
+
+  @doc("Performs maintenance on a virtual machine in a VM scale set.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/performMaintenance")
+  @post
+  PerformMaintenance is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+The operation to simulate the eviction of spot virtual machine in a VM scale
+set.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/simulateEviction")
+  @post
+  SimulateEviction is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the VM scale set.")
+      @path
+      vmScaleSetName: string;
+
+      @doc("The instance ID of the virtual machine.")
+      @path
+      instanceId: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("Run command on a virtual machine in a VM scale set.")
+  RunCommand is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<
+    RunCommandResult,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+}
+
+interface VirtualMachineExtensionsOperations {
+  @doc("The operation to create or update the extension.")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<VirtualMachineExtension>;
+
+  @doc("The operation to update the extension.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<VirtualMachineExtension>;
+
+  @doc("The operation to delete the extension.")
+  Delete is Azure.Core.LongRunningResourceDelete<VirtualMachineExtension>;
+
+  @doc("The operation to get the extension.")
+  Get is Azure.Core.ResourceRead<
+    VirtualMachineExtension,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+      };
+    }
+  >;
+
+  @doc("The operation to get all extensions of a Virtual Machine.")
+  List is Azure.Core.ResourceRead<
+    VirtualMachineExtensionsListResult,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+      };
+    }
+  >;
+}
+
+interface VirtualMachinesOperations {
+  @doc("""
+Gets all the virtual machines under the specified subscription for the
+specified location.
+""")
+  ListByLocation is Azure.Core.ResourceList<VirtualMachine>;
+
+  @doc("""
+Captures the VM by copying virtual hard disks of the VM and outputs a template
+that can be used to create similar VMs.
+""")
+  Capture is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<VirtualMachineCaptureResult>;
+
+  @doc("""
+The operation to create or update a virtual machine. Please note some
+properties can be set only during virtual machine creation.
+""")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<VirtualMachine>;
+
+  @doc("The operation to update a virtual machine.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<VirtualMachine>;
+
+  @doc("The operation to delete a virtual machine.")
+  Delete is Azure.Core.LongRunningResourceDelete<
+    VirtualMachine,
+    {
+      parameters: {
+        @doc("Optional parameter to force delete virtual machines.")
+        @query
+        forceDeletion: boolean;
+      };
+    }
+  >;
+
+  @doc("""
+Retrieves information about the model view or the instance view of a virtual
+machine.
+""")
+  Get is Azure.Core.ResourceRead<
+    VirtualMachine,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. 'InstanceView' retrieves a
+snapshot of the runtime properties of the virtual machine that is managed by
+the platform and can change outside of control plane operations. 'UserData'
+retrieves the UserData property as part of the VM model view that was provided
+by the user during the VM Create/Update operation.
+""")
+        @query
+        $expand: InstanceViewTypes;
+      };
+    }
+  >;
+
+  @doc("Retrieves information about the run-time state of a virtual machine.")
+  InstanceView is Azure.Core.ResourceRead<VirtualMachineInstanceView>;
+
+  @doc("""
+Converts virtual machine disks from blob-based to managed disks. Virtual
+machine must be stop-deallocated before invoking this operation.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/convertToManagedDisks")
+  @post
+  ConvertToManagedDisks is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+Shuts down the virtual machine and releases the compute resources. You are not
+billed for the compute resources that this virtual machine uses.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/deallocate")
+  @post
+  Deallocate is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("Optional parameter to hibernate a virtual machine. (Feature in Preview)")
+      @query
+      hibernate: boolean;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+Sets the OS state of the virtual machine to generalized. It is recommended to
+sysprep the virtual machine before performing this operation. <br>For Windows,
+please refer to [Create a managed image of a generalized VM in
+Azure](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource).<br>For
+Linux, please refer to [How to create an image of a virtual machine or
+VHD](https://docs.microsoft.com/azure/virtual-machines/linux/capture-image).
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/generalize")
+  @post
+  Generalize is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+Lists all of the virtual machines in the specified resource group. Use the
+nextLink property in the response to get the next page of virtual machines.
+""")
+  List is Azure.Core.ResourceList<
+    VirtualMachine,
+    {
+      parameters: {
+        @doc("""
+The system query option to filter VMs returned in the response. Allowed value
+is 'virtualMachineScaleSet/id' eq
+/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}'
+""")
+        @query
+        $filter: string;
+      };
+    }
+  >;
+
+  @doc("""
+Lists all of the virtual machines in the specified subscription. Use the
+nextLink property in the response to get the next page of virtual machines.
+""")
+  ListAll is Azure.Core.ResourceList<
+    VirtualMachine,
+    {
+      parameters: {
+        @doc("""
+statusOnly=true enables fetching run time status of all Virtual Machines in the
+subscription.
+""")
+        @query
+        statusOnly: string;
+
+        @doc("""
+The system query option to filter VMs returned in the response. Allowed value
+is 'virtualMachineScaleSet/id' eq
+/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}'
+""")
+        @query
+        $filter: string;
+      };
+    }
+  >;
+
+  @doc("""
+Lists all available virtual machine sizes to which the specified virtual
+machine can be resized.
+""")
+  ListAvailableSizes is Azure.Core.ResourceList<VirtualMachineSize>;
+
+  @doc("""
+The operation to power off (stop) a virtual machine. The virtual machine can be
+restarted with the same provisioned resources. You are still charged for this
+virtual machine.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/powerOff")
+  @post
+  PowerOff is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+The parameter to request non-graceful VM shutdown. True value for this flag
+indicates non-graceful shutdown whereas false indicates otherwise. Default
+value for this flag is false if not specified
+""")
+      @query
+      skipShutdown: boolean;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("The operation to reapply a virtual machine's state.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/reapply")
+  @post
+  Reapply is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("The operation to restart a virtual machine.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/restart")
+  @post
+  Restart is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("The operation to start a virtual machine.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/start")
+  @post
+  Start is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("Shuts down the virtual machine, moves it to a new node, and powers it back on.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/redeploy")
+  @post
+  Redeploy is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("""
+Reimages the virtual machine which has an ephemeral OS disk back to its initial
+state.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/reimage")
+  @post
+  Reimage is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+
+      @doc("Parameters supplied to the Reimage Virtual Machine operation.")
+      @body
+      parameters: VirtualMachineReimageParameters;
+    },
+    void
+  >;
+
+  @doc("The operation to retrieve SAS URIs for a virtual machine's boot diagnostic logs.")
+  RetrieveBootDiagnosticsData is Azure.Core.ResourceCreateWithServiceProvidedName<
+    RetrieveBootDiagnosticsDataResult,
+    {
+      parameters: {
+        @doc("""
+Expiration duration in minutes for the SAS URIs with a value between 1 to 1440
+minutes. <br><br>NOTE: If not specified, SAS URIs will be generated with a
+default expiration duration of 120 minutes.
+""")
+        @query
+        sasUriExpirationTimeInMinutes: int32;
+      };
+    }
+  >;
+
+  @doc("The operation to perform maintenance on a virtual machine.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/performMaintenance")
+  @post
+  PerformMaintenance is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("The operation to simulate the eviction of spot virtual machine.")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/simulateEviction")
+  @post
+  SimulateEviction is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the virtual machine.")
+      @path
+      vmName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+
+  @doc("Assess patches on the VM.")
+  AssessPatches is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<VirtualMachineAssessPatchesResult>;
+
+  @doc("Installs patches on the VM.")
+  InstallPatches is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<VirtualMachineInstallPatchesResult>;
+
+  @doc("Run command on the VM.")
+  RunCommand is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<
+    RunCommandResult,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+}
+
+interface VirtualMachineImagesOperations {
+  @doc("Gets a virtual machine image.")
+  Get is Azure.Core.ResourceRead<VirtualMachineImage>;
+
+  @doc("""
+Gets a list of all virtual machine image versions for the specified location,
+publisher, offer, and SKU.
+""")
+  List is Azure.Core.NonPagedResourceList<
+    VirtualMachineImageResource,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+        @query $top: int32;
+        @query $orderby: string;
+      };
+    }
+  >;
+
+  @doc("""
+Gets a list of virtual machine image offers for the specified location and
+publisher.
+""")
+  ListOffers is Azure.Core.NonPagedResourceList<VirtualMachineImageResource>;
+
+  @doc("""
+Gets a list of virtual machine image publishers for the specified Azure
+location.
+""")
+  ListPublishers is Azure.Core.NonPagedResourceList<VirtualMachineImageResource>;
+
+  @doc("""
+Gets a list of virtual machine image SKUs for the specified location,
+publisher, and offer.
+""")
+  ListSkus is Azure.Core.NonPagedResourceList<VirtualMachineImageResource>;
+
+  @doc("Gets a list of all virtual machine image versions for the specified edge zone")
+  ListByEdgeZone is Azure.Core.ResourceRead<VmImagesInEdgeZoneListResult>;
+}
+
+interface VirtualMachineImagesEdgeZoneOperations {
+  @doc("Gets a virtual machine image in an edge zone.")
+  Get is Azure.Core.ResourceRead<VirtualMachineImage>;
+
+  @doc("""
+Gets a list of all virtual machine image versions for the specified location,
+edge zone, publisher, offer, and SKU.
+""")
+  List is Azure.Core.NonPagedResourceList<
+    VirtualMachineImageResource,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+
+        @doc("""
+An integer value specifying the number of images to return that matches
+supplied values.
+""")
+        @query
+        $top: int32;
+
+        @doc("Specifies the order of the results returned. Formatted as an OData query.")
+        @query
+        $orderby: string;
+      };
+    }
+  >;
+
+  @doc("""
+Gets a list of virtual machine image offers for the specified location, edge
+zone and publisher.
+""")
+  ListOffers is Azure.Core.NonPagedResourceList<VirtualMachineImageResource>;
+
+  @doc("""
+Gets a list of virtual machine image publishers for the specified Azure
+location and edge zone.
+""")
+  ListPublishers is Azure.Core.NonPagedResourceList<VirtualMachineImageResource>;
+
+  @doc("""
+Gets a list of virtual machine image SKUs for the specified location, edge
+zone, publisher, and offer.
+""")
+  ListSkus is Azure.Core.NonPagedResourceList<VirtualMachineImageResource>;
+}
+
+interface VirtualMachineExtensionImagesOperations {
+  @doc("Gets a virtual machine extension image.")
+  Get is Azure.Core.ResourceRead<VirtualMachineExtensionImage>;
+
+  @doc("Gets a list of virtual machine extension image types.")
+  ListTypes is Azure.Core.NonPagedResourceList<VirtualMachineExtensionImage>;
+
+  @doc("Gets a list of virtual machine extension image versions.")
+  ListVersions is Azure.Core.NonPagedResourceList<
+    VirtualMachineExtensionImage,
+    {
+      parameters: {
+        @doc("The filter to apply on the operation.")
+        @query
+        $filter: string;
+        @query $top: int32;
+        @query $orderby: string;
+      };
+    }
+  >;
+}
+
+interface AvailabilitySetsOperations {
+  @doc("Create or update an availability set.")
+  CreateOrUpdate is Azure.Core.ResourceCreateOrReplace<AvailabilitySet>;
+
+  @doc("Update an availability set.")
+  Update is Azure.Core.ResourceCreateOrUpdate<AvailabilitySet>;
+
+  @doc("Delete an availability set.")
+  Delete is Azure.Core.ResourceDelete<AvailabilitySet>;
+
+  @doc("Retrieves information about an availability set.")
+  Get is Azure.Core.ResourceRead<AvailabilitySet>;
+
+  @doc("Lists all availability sets in a subscription.")
+  ListBySubscription is Azure.Core.ResourceList<
+    AvailabilitySet,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply to the operation. Allowed values are
+'instanceView'.
+""")
+        @query
+        $expand: string;
+      };
+    }
+  >;
+
+  @doc("Lists all availability sets in a resource group.")
+  List is Azure.Core.ResourceList<AvailabilitySet>;
+
+  @doc("""
+Lists all available virtual machine sizes that can be used to create a new
+virtual machine in an existing availability set.
+""")
+  ListAvailableSizes is Azure.Core.ResourceList<VirtualMachineSize>;
+}
+
+interface ProximityPlacementGroupsOperations {
+  @doc("Create or update a proximity placement group.")
+  CreateOrUpdate is Azure.Core.ResourceCreateOrReplace<ProximityPlacementGroup>;
+
+  @doc("Update a proximity placement group.")
+  Update is Azure.Core.ResourceCreateOrUpdate<ProximityPlacementGroup>;
+
+  @doc("Delete a proximity placement group.")
+  Delete is Azure.Core.ResourceDelete<ProximityPlacementGroup>;
+
+  @doc("Retrieves information about a proximity placement group .")
+  Get is Azure.Core.ResourceRead<
+    ProximityPlacementGroup,
+    {
+      parameters: {
+        @doc("""
+includeColocationStatus=true enables fetching the colocation status of all the
+resources in the proximity placement group.
+""")
+        @query
+        includeColocationStatus: string;
+      };
+    }
+  >;
+
+  @doc("Lists all proximity placement groups in a subscription.")
+  ListBySubscription is Azure.Core.ResourceList<ProximityPlacementGroup>;
+
+  @doc("Lists all proximity placement groups in a resource group.")
+  ListByResourceGroup is Azure.Core.ResourceList<ProximityPlacementGroup>;
+}
+
+interface DedicatedHostGroupsOperations {
+  @doc("""
+Create or update a dedicated host group. For details of Dedicated Host and
+Dedicated Host Groups please see [Dedicated Host Documentation]
+(https://go.microsoft.com/fwlink/?linkid=2082596)
+""")
+  CreateOrUpdate is Azure.Core.ResourceCreateOrReplace<DedicatedHostGroup>;
+
+  @doc("Update an dedicated host group.")
+  Update is Azure.Core.ResourceCreateOrUpdate<DedicatedHostGroup>;
+
+  @doc("Delete a dedicated host group.")
+  Delete is Azure.Core.ResourceDelete<DedicatedHostGroup>;
+
+  @doc("Retrieves information about a dedicated host group.")
+  Get is Azure.Core.ResourceRead<
+    DedicatedHostGroup,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. 'InstanceView' will retrieve
+the list of instance views of the dedicated hosts under the dedicated host
+group. 'UserData' is not supported for dedicated host group.
+""")
+        @query
+        $expand: InstanceViewTypes;
+      };
+    }
+  >;
+
+  @doc("""
+Lists all of the dedicated host groups in the specified resource group. Use the
+nextLink property in the response to get the next page of dedicated host
+groups.
+""")
+  ListByResourceGroup is Azure.Core.ResourceList<DedicatedHostGroup>;
+
+  @doc("""
+Lists all of the dedicated host groups in the subscription. Use the nextLink
+property in the response to get the next page of dedicated host groups.
+""")
+  ListBySubscription is Azure.Core.ResourceList<DedicatedHostGroup>;
+}
+
+interface DedicatedHostsOperations {
+  @doc("Create or update a dedicated host .")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<DedicatedHost>;
+
+  @doc("Update an dedicated host .")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<DedicatedHost>;
+
+  @doc("Delete a dedicated host.")
+  Delete is Azure.Core.LongRunningResourceDelete<DedicatedHost>;
+
+  @doc("Retrieves information about a dedicated host.")
+  Get is Azure.Core.ResourceRead<
+    DedicatedHost,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. 'InstanceView' will retrieve
+the list of instance views of the dedicated host. 'UserData' is not supported
+for dedicated host.
+""")
+        @query
+        $expand: InstanceViewTypes;
+      };
+    }
+  >;
+
+  @doc("""
+Lists all of the dedicated hosts in the specified dedicated host group. Use the
+nextLink property in the response to get the next page of dedicated hosts.
+""")
+  ListByHostGroup is Azure.Core.ResourceList<DedicatedHost>;
+
+  @doc("""
+Restart the dedicated host. The operation will complete successfully once the
+dedicated host has restarted and is running. To determine the health of VMs
+deployed on the dedicated host after the restart check the Resource Health
+Center in the Azure Portal. Please refer to
+https://docs.microsoft.com/azure/service-health/resource-health-overview for
+more details.
+""")
+  @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}/hosts/{hostName}/restart")
+  @post
+  Restart is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the resource group.")
+      @path
+      resourceGroupName: string;
+
+      @doc("The name of the dedicated host group.")
+      @path
+      hostGroupName: string;
+
+      @doc("The name of the dedicated host.")
+      @path
+      hostName: string;
+
+      @doc("""
+Subscription credentials which uniquely identify Microsoft Azure subscription.
+The subscription ID forms part of the URI for every service call.
+""")
+      @path
+      subscriptionId: string;
+    },
+    void
+  >;
+}
+
+interface SshPublicKeysOperations {
+  @doc("""
+Lists all of the SSH public keys in the subscription. Use the nextLink property
+in the response to get the next page of SSH public keys.
+""")
+  ListBySubscription is Azure.Core.ResourceList<SshPublicKeyResource>;
+
+  @doc("""
+Lists all of the SSH public keys in the specified resource group. Use the
+nextLink property in the response to get the next page of SSH public keys.
+""")
+  ListByResourceGroup is Azure.Core.ResourceList<SshPublicKeyResource>;
+
+  @doc("Creates a new SSH public key resource.")
+  Create is Azure.Core.ResourceCreateOrReplace<SshPublicKeyResource>;
+
+  @doc("Updates a new SSH public key resource.")
+  Update is Azure.Core.ResourceCreateOrUpdate<SshPublicKeyResource>;
+
+  @doc("Delete an SSH public key.")
+  Delete is Azure.Core.ResourceDelete<SshPublicKeyResource>;
+
+  @doc("Retrieves information about an SSH public key.")
+  Get is Azure.Core.ResourceRead<SshPublicKeyResource>;
+
+  @doc("""
+Generates and returns a public/private key pair and populates the SSH public
+key resource with the public key. The length of the key will be 3072 bits. This
+operation can only be performed once per SSH public key resource.
+""")
+  GenerateKeyPair is Azure.Core.ResourceCreateWithServiceProvidedName<SshPublicKeyGenerateKeyPairResult>;
+}
+
+interface ImagesOperations {
+  @doc("Create or update an image.")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<Image>;
+
+  @doc("Update an image.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<Image>;
+
+  @doc("Deletes an Image.")
+  Delete is Azure.Core.LongRunningResourceDelete<Image>;
+
+  @doc("Gets an image.")
+  Get is Azure.Core.ResourceRead<
+    Image,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+      };
+    }
+  >;
+
+  @doc("Gets the list of images under a resource group.")
+  ListByResourceGroup is Azure.Core.ResourceList<Image>;
+
+  @doc("""
+Gets the list of Images in the subscription. Use nextLink property in the
+response to get the next page of Images. Do this till nextLink is null to fetch
+all the Images.
+""")
+  List is Azure.Core.ResourceList<Image>;
+}
+
+interface RestorePointCollectionsOperations {
+  @doc("""
+The operation to create or update the restore point collection. Please refer to
+https://aka.ms/RestorePoints for more details. When updating a restore point
+collection, only tags may be modified.
+""")
+  CreateOrUpdate is Azure.Core.ResourceCreateOrReplace<RestorePointCollection>;
+
+  @doc("The operation to update the restore point collection.")
+  Update is Azure.Core.ResourceCreateOrUpdate<RestorePointCollection>;
+
+  @doc("""
+The operation to delete the restore point collection. This operation will also
+delete all the contained restore points.
+""")
+  Delete is Azure.Core.LongRunningResourceDelete<RestorePointCollection>;
+
+  @doc("The operation to get the restore point collection.")
+  Get is Azure.Core.ResourceRead<
+    RestorePointCollection,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. If expand=restorePoints,
+server will return all contained restore points in the restorePointCollection.
+""")
+        @query
+        $expand: RestorePointCollectionExpandOptions;
+      };
+    }
+  >;
+
+  @doc("Gets the list of restore point collections in a resource group.")
+  List is Azure.Core.ResourceList<RestorePointCollection>;
+
+  @doc("""
+Gets the list of restore point collections in the subscription. Use nextLink
+property in the response to get the next page of restore point collections. Do
+this till nextLink is not null to fetch all the restore point collections.
+""")
+  ListAll is Azure.Core.ResourceList<RestorePointCollection>;
+}
+
+interface RestorePointsOperations {
+  @doc("""
+The operation to create the restore point. Updating properties of an existing
+restore point is not allowed
+""")
+  Create is Azure.Core.LongRunningResourceCreateOrReplace<RestorePoint>;
+
+  @doc("The operation to delete the restore point.")
+  Delete is Azure.Core.LongRunningResourceDelete<RestorePoint>;
+
+  @doc("The operation to get the restore point.")
+  Get is Azure.Core.ResourceRead<
+    RestorePoint,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. 'InstanceView' retrieves
+information about the run-time state of a restore point.
+""")
+        @query
+        $expand: RestorePointExpandOptions;
+      };
+    }
+  >;
+}
+
+interface CapacityReservationGroupsOperations {
+  @doc("""
+The operation to create or update a capacity reservation group. When updating a
+capacity reservation group, only tags may be modified. Please refer to
+https://aka.ms/CapacityReservation for more details.
+""")
+  CreateOrUpdate is Azure.Core.ResourceCreateOrReplace<CapacityReservationGroup>;
+
+  @doc("""
+The operation to update a capacity reservation group. When updating a capacity
+reservation group, only tags may be modified.
+""")
+  Update is Azure.Core.ResourceCreateOrUpdate<CapacityReservationGroup>;
+
+  @doc("""
+The operation to delete a capacity reservation group. This operation is allowed
+only if all the associated resources are disassociated from the reservation
+group and all capacity reservations under the reservation group have also been
+deleted. Please refer to https://aka.ms/CapacityReservation for more details.
+""")
+  Delete is Azure.Core.ResourceDelete<CapacityReservationGroup>;
+
+  @doc("The operation that retrieves information about a capacity reservation group.")
+  Get is Azure.Core.ResourceRead<
+    CapacityReservationGroup,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. 'InstanceView' will retrieve
+the list of instance views of the capacity reservations under the capacity
+reservation group which is a snapshot of the runtime properties of a capacity
+reservation that is managed by the platform and can change outside of control
+plane operations.
+""")
+        @query
+        $expand: CapacityReservationGroupInstanceViewTypes;
+      };
+    }
+  >;
+
+  @doc("""
+Lists all of the capacity reservation groups in the specified resource group.
+Use the nextLink property in the response to get the next page of capacity
+reservation groups.
+""")
+  ListByResourceGroup is Azure.Core.ResourceList<
+    CapacityReservationGroup,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. Based on the expand param(s)
+specified we return Virtual Machine or ScaleSet VM Instance or both resource
+Ids which are associated to capacity reservation group in the response.
+""")
+        @query
+        $expand: ExpandTypesForGetCapacityReservationGroups;
+      };
+    }
+  >;
+
+  @doc("""
+Lists all of the capacity reservation groups in the subscription. Use the
+nextLink property in the response to get the next page of capacity reservation
+groups.
+""")
+  ListBySubscription is Azure.Core.ResourceList<
+    CapacityReservationGroup,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. Based on the expand param(s)
+specified we return Virtual Machine or ScaleSet VM Instance or both resource
+Ids which are associated to capacity reservation group in the response.
+""")
+        @query
+        $expand: ExpandTypesForGetCapacityReservationGroups;
+      };
+    }
+  >;
+}
+
+interface CapacityReservationsOperations {
+  @doc("""
+The operation to create or update a capacity reservation. Please note some
+properties can be set only during capacity reservation creation. Please refer
+to https://aka.ms/CapacityReservation for more details.
+""")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<CapacityReservation>;
+
+  @doc("The operation to update a capacity reservation.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<CapacityReservation>;
+
+  @doc("""
+The operation to delete a capacity reservation. This operation is allowed only
+when all the associated resources are disassociated from the capacity
+reservation. Please refer to https://aka.ms/CapacityReservation for more
+details.
+""")
+  Delete is Azure.Core.LongRunningResourceDelete<CapacityReservation>;
+
+  @doc("The operation that retrieves information about the capacity reservation.")
+  Get is Azure.Core.ResourceRead<
+    CapacityReservation,
+    {
+      parameters: {
+        @doc("""
+The expand expression to apply on the operation. 'InstanceView' retrieves a
+snapshot of the runtime properties of the capacity reservation that is managed
+by the platform and can change outside of control plane operations.
+""")
+        @query
+        $expand: CapacityReservationInstanceViewTypes;
+      };
+    }
+  >;
+
+  @doc("""
+Lists all of the capacity reservations in the specified capacity reservation
+group. Use the nextLink property in the response to get the next page of
+capacity reservations.
+""")
+  ListByCapacityReservationGroup is Azure.Core.ResourceList<CapacityReservation>;
+}
+
+interface LogAnalyticsOperations {
+  @doc("""
+Export logs that show Api requests made by this subscription in the given time
+window to show throttling activities.
+""")
+  ExportRequestRateByInterval is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<LogAnalyticsOperationResult>;
+
+  @doc("""
+Export logs that show total throttled Api requests for this subscription in the
+given time window.
+""")
+  ExportThrottledRequests is Azure.Core.LongRunningResourceCreateWithServiceProvidedName<LogAnalyticsOperationResult>;
+}
+
+interface VirtualMachineRunCommandsOperations {
+  @doc("Lists all available run commands for a subscription in a location.")
+  List is Azure.Core.ResourceList<
+    RunCommandDocumentBase,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("Gets specific run command for a subscription in a location.")
+  Get is Azure.Core.ResourceRead<
+    RunCommandDocument,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("The operation to create or update the run command.")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("The operation to update the run command.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("The operation to delete the run command.")
+  Delete is Azure.Core.LongRunningResourceDelete<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("The operation to get the run command.")
+  GetByVirtualMachine is Azure.Core.ResourceRead<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("The operation to get all run commands of a Virtual Machine.")
+  ListByVirtualMachine is Azure.Core.ResourceList<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+}
+
+interface VirtualMachineScaleSetVMRunCommandsOperations {
+  @doc("The operation to create or update the VMSS VM run command.")
+  CreateOrUpdate is Azure.Core.LongRunningResourceCreateOrReplace<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("The operation to update the VMSS VM run command.")
+  Update is Azure.Core.LongRunningResourceCreateOrUpdate<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("The operation to delete the VMSS VM run command.")
+  Delete is Azure.Core.LongRunningResourceDelete<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("The operation to get the VMSS VM run command.")
+  Get is Azure.Core.ResourceRead<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+
+  @doc("""
+The operation to get all run commands of an instance in Virtual Machine
+Scaleset.
+""")
+  List is Azure.Core.ResourceList<
+    VirtualMachineRunCommand,
+    {
+      parameters: {
+        @doc("The expand expression to apply on the operation.")
+        @query
+        $expand: string;
+
+        @doc("Accept header")
+        @header
+        Accept: "application/json, text/json";
+      };
+    }
+  >;
+}
