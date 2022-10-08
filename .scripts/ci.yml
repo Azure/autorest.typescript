@@ -267,13 +267,16 @@ stages:
             displayName: "Check Coverage"
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             continueOnError: true
+          - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
+            displayName: "Check git Tree"
           - publish: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage-typescript.json
             artifact: CoverageReport
             displayName: "Publish coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
-          - script: npm run check:tree
-            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
-            displayName: "Check git Tree"
+          - script: npm run upload-coverage-result
+            displayName: "Upload coverage result"
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
 
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
