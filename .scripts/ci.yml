@@ -278,7 +278,6 @@ stages:
           - task: AzureCLI@2
             displayName: "Upload to Cadl Ranch Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
-            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             inputs:
               azureSubscription: "Azure SDK Playground"
               scriptType: "bash"
