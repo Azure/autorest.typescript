@@ -13,7 +13,8 @@ parameters:
     default: ubuntu-20.04
 
 variables:
-  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
+  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
+  CADL_TESTSERVER_COVERAGE_REPORT: "$(Build.SourcesDirectory)/packages/cadl-rlc-emitter/coverage/cadl-ranch-coverage-typescript.json"
 
 pool:
   vmImage: ubuntu-20.04
@@ -266,16 +267,16 @@ stages:
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             displayName: "Check git Tree"
-          - script: npm run coverage
+          - script: npx cadl-ranch check-coverage ./node_modules/@azure-tools/cadl-ranch-specs/http --coverageFiles $(CADL_TESTSERVER_COVERAGE_REPORT)
             displayName: "Check Coverage"
             workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             continueOnError: true
-          - publish: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage-typescript.json
+          - publish: $(CADL_TESTSERVER_COVERAGE_REPORT)
             artifact: CoverageReport
             displayName: "Publish coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
-          - script: npx cadl-ranch upload-coverage --coverageFile ./cadl-ranch-coverage-typescript.json --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion 0.0.1
-            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter/node_modules/@azure-tools/cadl-ranch-specs
+          - script: npx cadl-ranch upload-coverage --coverageFile $(CADL_TESTSERVER_COVERAGE_REPORT) --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion 0.0.1
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
             displayName: "Upload coverage result"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
 

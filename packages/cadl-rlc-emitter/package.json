@@ -13,9 +13,7 @@
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
     "integration-test": "npm run start-test-server & npm run generate-cadl-only && npm run integration-test:alone",
     "generate-cadl-only": "ts-node ./test/commands/gen-cadl-ranch.ts",
-    "start-test-server": "cd ./node_modules/@azure-tools/cadl-ranch-specs && cadl-ranch serve ./http  --coverageFile ./cadl-ranch-coverage-typescript.json",
-    "coverage":"cadl-ranch check-coverage ./node_modules/@azure-tools/cadl-ranch-specs/http --coverageFiles ./node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage-typescript.json && cadl-ranch upload-coverage --coverageFile ./node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage-typescript.json --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion 0.0.1",
-    "upload-coverage-result":"cadl-ranch upload-coverage --coverageFile ./node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage-typescript.json --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion 0.0.1",
+    "start-test-server": "npx cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http  --coverageFile ./coverage/cadl-ranch-coverage-typescript.json",
     "integration-test:alone": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 ./test/integration/*.spec.ts",
     "unit-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true './test/unit/**/*.spec.ts'"
   },
