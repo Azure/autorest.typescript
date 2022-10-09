@@ -87,9 +87,8 @@ describe("LRO Rest Client", () => {
         });
 
         await poller.pollUntilDone();
-        throw new Error("should have thrown instead");
+        assert.fail("should have thrown instead");
       } catch (e) {
-        console.log(e);
         assert.equal(e.message, "Operation was canceled");
       }
     });
@@ -107,7 +106,6 @@ describe("LRO Rest Client", () => {
       if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
-        throw new Error(error);
       }
 
       assert.deepEqual(result.body.properties?.provisioningState, "Succeeded");
@@ -804,12 +802,10 @@ describe("LRO Rest Client", () => {
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
-        // Will not throw exception when response code is 400
-        const result = await poller.pollUntilDone();
-        assert.equal(result.status, "400");
-        assert.isTrue(isUnexpected(result));
-      } catch (error) {
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
@@ -823,12 +819,10 @@ describe("LRO Rest Client", () => {
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
-        const result = await poller.pollUntilDone();
-        assert.isTrue(isUnexpected(result));
-        assert.equal(result.status, "400");
-      } catch (error) {
-        console.log(error);
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
@@ -843,12 +837,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        console.log(result);
-        assert.equal(result.status, "400");
-      } catch (error) {
-        console.log(error.message);
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
@@ -890,11 +882,13 @@ describe("LRO Rest Client", () => {
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
-
         await poller.pollUntilDone();
         assert.fail("Scenario should throw");
       } catch (error) {
-        assert.equal(error.message, "status.toLowerCase is not a function");
+        assert.equal(
+          error.message,
+          "Polling was unsuccessful. Expected status to have a string value or no value but it has instead: 400. This doesn't necessarily indicate the operation has failed. Check your Azure subscription or resource status for more information."
+        );
       }
     });
 
@@ -937,7 +931,10 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         assert.fail("Scenario should throw");
       } catch (error) {
-        assert.equal(error.message, "status.toLowerCase is not a function");
+        assert.equal(
+          error.message,
+          "Polling was unsuccessful. Expected status to have a string value or no value but it has instead: 400. This doesn't necessarily indicate the operation has failed. Check your Azure subscription or resource status for more information."
+        );
       }
     });
 
@@ -1057,12 +1054,10 @@ describe("LRO Rest Client", () => {
         const poller = getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
-
-        const result = await poller.pollUntilDone();
-        assert.isTrue(isUnexpected(result));
-        assert.equal(result.status, "404");
-      } catch (error) {
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
@@ -1093,10 +1088,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        assert.equal(result.status, "404");
-      } catch (error) {
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
@@ -1143,10 +1138,10 @@ describe("LRO Rest Client", () => {
           intervalInMs: 0
         });
 
-        const result = await poller.pollUntilDone();
-        assert.equal(result.status, "404");
-      } catch (error) {
+        await poller.pollUntilDone();
         assert.fail("Scenario should throw");
+      } catch (error) {
+        assert.equal(error.message, "The long-running operation has failed");
       }
     });
 
