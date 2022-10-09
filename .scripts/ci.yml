@@ -274,8 +274,8 @@ stages:
             artifact: CoverageReport
             displayName: "Publish coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
-          - script: npm run upload-coverage-result
-            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
+          - script: cadl-ranch upload-coverage --coverageFile ./cadl-ranch-coverage-typescript.json --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion 0.0.1
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter/node_modules/@azure-tools/cadl-ranch-specs
             displayName: "Upload coverage result"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
 
