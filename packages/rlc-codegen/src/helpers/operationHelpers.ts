@@ -60,21 +60,11 @@ export function getPathParamDefinitions(
 }
 
 export function hasPagingOperations(model: RLCModel) {
-  for (const [path, details] of Object.entries(model.paths)) {
-    if (Boolean(details.annotations?.isPageable)) {
-      return true;
-    }
-  }
-  return false;
+  return Boolean(model.annotations?.hasPaging);
 }
 
 export function hasPollingOperations(model: RLCModel) {
-  for (const [path, details] of Object.entries(model.paths)) {
-    if (Boolean(details.annotations?.isLongRunning)) {
-      return true;
-    }
-  }
-  return false;
+  return Boolean(model.annotations?.hasLongRunning);
 }
 
 export function hasUnexpectedHelper(model: RLCModel) {

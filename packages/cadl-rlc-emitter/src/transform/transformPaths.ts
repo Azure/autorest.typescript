@@ -6,7 +6,8 @@ import {
   getParameterTypeName,
   PathMetadata,
   Paths,
-  ResponseTypes
+  ResponseTypes,
+  OperationMethod
 } from "@azure-tools/rlc-codegen";
 import { getDoc, Program } from "@cadl-lang/compiler";
 import {
@@ -20,7 +21,9 @@ import { isApiVersion } from "../paramUtil.js";
 import {
   getOperationStatuscode,
   isDefaultStatusCode,
-  isDefinedStatusCode
+  isDefinedStatusCode,
+  isLongRunningOperation,
+  isPagingOperation
 } from "../operationUtil.js";
 
 export function transformPaths(program: Program): Paths {
@@ -36,7 +39,7 @@ export function transformPaths(program: Program): Paths {
       );
       respNames.push(respName);
     }
-    const method = {
+    const method: OperationMethod = {
       description: getDoc(program, route.operation) ?? "",
       hasOptionalOptions: !hasRequiredOptions(route.parameters),
       optionsName: getParameterTypeName(
@@ -46,7 +49,11 @@ export function transformPaths(program: Program): Paths {
       responseTypes: getResponseTypes(route),
       returnType: respNames.join(" | "),
       successStatus: gerOperationSuccessStatus(route),
-      operationName: route.operation.name
+      operationName: route.operation.name,
+      annotations: {
+        isLongRunning: isLongRunningOperation(program, route),
+        isPageable: isPagingOperation(program, route)
+      }
     };
     if (
       paths[route.path] !== undefined &&

@@ -1,20 +1,15 @@
 import { RLCModel } from "./interfaces.js";
-import { readFileSync } from "fs";
 import * as path from "path";
-import * as hbs from "handlebars";
+// @ts-ignore: to fix the handlebars issue
+import hbs from "handlebars";
+import { paginateContent } from "./static/paginateContent.js";
 
 export function buildPaginateHelper(model: RLCModel) {
-  const pagingInfo = model.pageInfo;
-  // return directly if paging info
+  const pagingInfo = model.annotations;
+  // return directly if no paging info
   if (!pagingInfo || pagingInfo.hasPaging !== true || !pagingInfo.pageDetails) {
     return;
   }
-  let file: string = readFileSync(
-    path.join(__dirname, "static", "paginateHelper.ts.hbs"),
-    {
-      encoding: "utf-8"
-    }
-  );
 
   hbs.registerHelper(
     "quoteWrap",
@@ -28,7 +23,9 @@ export function buildPaginateHelper(model: RLCModel) {
   );
 
   const { srcPath } = model;
-  const paginateHelperContents = hbs.compile(file, { noEscape: true });
+  const paginateHelperContents = hbs.compile(paginateContent, {
+    noEscape: true
+  });
   return {
     path: path.join(srcPath, "paginateHelper.ts"),
     content: paginateHelperContents(pagingInfo.pageDetails)

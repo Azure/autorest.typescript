@@ -1,12 +1,12 @@
 import {
   getPagedAsyncIterator,
   PagedAsyncIterableIterator,
-  PagedResult
+  PagedResult,
 } from "@azure/core-paging";
 import {
   Client,
   createRestError,
-  PathUncheckedResponse
+  PathUncheckedResponse,
 } from "@azure-rest/core-client";
 
 /**
@@ -31,8 +31,8 @@ export type GetPage<TPage> = (
 export interface PagingOptions<TResponse> {
   /**
    * Custom function to extract pagination details for crating the PagedAsyncIterableIterator
-  */
-  customGetPage?: GetPage<PaginateReturn<TResponse>[]>
+   */
+  customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
 /**
@@ -42,13 +42,9 @@ export interface PagingOptions<TResponse> {
  * where the page items are found. The default value is `value`.
  * This type will allow us to provide strongly typed Iterator based on the response we get as second parameter
  */
-export type PaginateReturn<TResult> = TResult extends  {{#each itemNames}}
-  {
- 
-  body: { {{this}}?: infer TPage } 
-  
-} {{#if @last }}{{else}} | {{/if}}
-{{/each}}
+export type PaginateReturn<TResult> = TResult extends {
+  body: { value?: infer TPage };
+}
   ? GetArrayType<TPage>
   : Array<unknown>;
 
@@ -67,15 +63,8 @@ export function paginate<TResponse extends PathUncheckedResponse>(
   // Extract element type from initial response
   type TElement = PaginateReturn<TResponse>;
   let firstRun = true;
-  {{#if isComplexPaging}}
-  // We need to check the response for success before trying to inspect it looking for
-  // the properties to use for nextLink and itemName
-  checkPagingRequest(initialResponse);
-  const { itemName, nextLinkName } = getPaginationProperties(initialResponse);
-  {{else}}
-  const itemName = {{ quoteWrap itemNames }};
-  const nextLinkName = {{quoteWrap nextLinkNames}};
-  {{/if}}
+  const itemName = "value";
+  const nextLinkName = "nextLink";
   const { customGetPage } = options;
   const pagedResult: PagedResult<TElement[]> = {
     firstPageLink: "",
@@ -92,9 +81,9 @@ export function paginate<TResponse extends PathUncheckedResponse>(
             const values = getElements<TElement>(result.body, itemName);
             return {
               page: values,
-              nextPageLink: nextLink
+              nextPageLink: nextLink,
             };
-          }
+          },
   };
 
   return getPagedAsyncIterator(pagedResult);
@@ -104,7 +93,7 @@ export function paginate<TResponse extends PathUncheckedResponse>(
  * Gets for the value of nextLink in the body
  */
 function getNextLink(body: unknown, nextLinkName?: string): string | undefined {
-   if (!nextLinkName) {
+  if (!nextLinkName) {
     return undefined;
   }
 
@@ -151,7 +140,7 @@ function checkPagingRequest(response: PathUncheckedResponse): void {
     "206",
     "207",
     "208",
-    "226"
+    "226",
   ];
   if (!Http2xxStatusCodes.includes(response.status)) {
     throw createRestError(
@@ -160,49 +149,3 @@ function checkPagingRequest(response: PathUncheckedResponse): void {
     );
   }
 }
-
-{{#if isComplexPaging}}
-/**
- * Extracts the itemName and nextLinkName from the initial response to use them for pagination
- */
-function getPaginationProperties(initialResponse: PathUncheckedResponse) {
-  // Build a set with the passed custom nextLinkNames
-  const nextLinkNames = new Set([{{ quoteWrap nextLinkNames }}]);
-
-  // Build a set with the passed custom set of itemNames
-  const itemNames = new Set([{{ quoteWrap itemNames }}]);
-
-  let nextLinkName: string | undefined;
-  let itemName: string | undefined;
-
-  for (const name of nextLinkNames) {
-    const nextLink = (initialResponse.body as Record<string, unknown>)[
-      name
-    ] as string;
-    if (nextLink) {
-      nextLinkName = name;
-      break;
-    }
-  }
-
-  for (const name of itemNames) {
-    const item = (initialResponse.body as Record<string, unknown>)[
-      name
-    ] as string;
-    if (item) {
-      itemName = name;
-      break;
-    }
-  }
-
-  if (!itemName) {
-    throw new Error(
-      `Couldn't paginate response\n Body doesn't contain an array property with name: ${[
-        ...itemNames
-      ].join(" OR ")}`
-    );
-  }
-
-  return { itemName, nextLinkName };
-}
-{{/if}}
