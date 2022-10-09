@@ -12,6 +12,8 @@ import {
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetSinglePagesOptionalParams,
+  BodyParam,
+  PagingGetSinglePagesWithBodyParamsOptionalParams,
   PagingFirstResponseEmptyOptionalParams,
   PagingGetMultiplePagesOptionalParams,
   PagingGetWithQueryParamsOptionalParams,
@@ -59,6 +61,15 @@ export interface Paging {
    */
   listSinglePages(
     options?: PagingGetSinglePagesOptionalParams
+  ): PagedAsyncIterableIterator<Product>;
+  /**
+   * A paging operation that finishes on the first call with body params without a nextlink
+   * @param parameters put {'name': 'body'} to pass the test
+   * @param options The options parameters.
+   */
+  listSinglePagesWithBodyParams(
+    parameters: BodyParam,
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**
    * A paging operation whose first response's items list is empty, but still returns a next link. Second
