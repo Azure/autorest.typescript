@@ -10,19 +10,19 @@ export function check(code: number) {
 }
 
 export function check200(response: any) {
-  return check(200);
+  return check(200)(response);
 }
 
 export function check201(response: any) {
-  return check(201);
+  return check(201)(response);
 }
 
 export function check202(response: any) {
-  return check(202);
+  return check(202)(response);
 }
 
 export function check204(response: any) {
-  return check(204);
+  return check(204)(response);
 }
 
 export const responseStatusChecker = {

@@ -14,7 +14,7 @@ export function addCookiePolicies(pipeline: Pipeline): void {
         return result;
       }
     },
-    { afterPhase: "Deserialize" }
+    { afterPhase: "Retry" }
   );
   pipeline.addPolicy(
     {
@@ -27,6 +27,6 @@ export function addCookiePolicies(pipeline: Pipeline): void {
         return next(req);
       }
     },
-    { afterPhase: "Deserialize" }
+    { afterPhase: "Retry" }
   );
 }
