@@ -189,12 +189,8 @@ describe("LROs", () => {
     });
 
     it("should handle post202NoRetry204", async () => {
-      try {
-        await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
-        throw new Error("should have thrown instead");
-      } catch (e) {
-        assert.equal(e.message, "should have thrown instead");
-      }
+      await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
+      check204(lastResponse);
     });
 
     it("should handle deleteNoHeaderInRetry", async () => {
