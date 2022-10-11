@@ -13,7 +13,7 @@
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
     "integration-test": "npm run start-test-server & npm run generate-cadl-only && npm run integration-test:alone",
     "generate-cadl-only": "ts-node ./test/commands/gen-cadl-ranch.ts",
-    "start-test-server": "npx cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http  --coverageFile ./coverage/cadl-ranch-coverage-typescript.json",
+    "start-test-server": "mkdir coverage && npx cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http  --coverageFile ./coverage/cadl-ranch-coverage-typescript.json",
     "integration-test:alone": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 ./test/integration/*.spec.ts",
     "unit-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true './test/unit/**/*.spec.ts'"
   },
@@ -36,7 +36,7 @@
     "@azure-tools/cadl-ranch-specs": "~0.3.2",
     "@cadl-lang/versioning": "0.8.0",
     "@azure-tools/cadl-ranch-expect": "~0.1.10",
-    "@azure-tools/cadl-ranch": "~0.2.3",
+    "@azure-tools/cadl-ranch": "~0.2.4",
     "chalk": "^4.0.0",
     "@azure-rest/core-client": "1.0.0-beta.10",
     "@azure/core-auth": "^1.3.2",
