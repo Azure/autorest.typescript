@@ -11,6 +11,7 @@ import {
   OperationURLParameter,
   OperationQueryParameter
 } from "@azure/core-client";
+import { BodyParam as BodyParamMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -34,6 +35,23 @@ export const $host: OperationURLParameter = {
     }
   },
   skipEncoding: true
+};
+
+export const contentType: OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    defaultValue: "application/json",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const parameters: OperationParameter = {
+  parameterPath: "parameters",
+  mapper: BodyParamMapper
 };
 
 export const clientRequestId: OperationParameter = {

@@ -27,6 +27,10 @@ export interface ProductResult {
   nextLink?: string;
 }
 
+export interface BodyParam {
+  name?: string;
+}
+
 export interface OdataProductResult {
   values?: Product[];
   odataNextLink?: string;
@@ -149,6 +153,13 @@ export interface PagingGetSinglePagesOptionalParams
 
 /** Contains response data for the getSinglePages operation. */
 export type PagingGetSinglePagesResponse = ProductResult;
+
+/** Optional parameters. */
+export interface PagingGetSinglePagesWithBodyParamsOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the getSinglePagesWithBodyParams operation. */
+export type PagingGetSinglePagesWithBodyParamsResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingFirstResponseEmptyOptionalParams
@@ -335,6 +346,13 @@ export interface PagingGetSinglePagesNextOptionalParams
 
 /** Contains response data for the getSinglePagesNext operation. */
 export type PagingGetSinglePagesNextResponse = ProductResult;
+
+/** Optional parameters. */
+export interface PagingGetSinglePagesWithBodyParamsNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the getSinglePagesWithBodyParamsNext operation. */
+export type PagingGetSinglePagesWithBodyParamsNextResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingFirstResponseEmptyNextOptionalParams
