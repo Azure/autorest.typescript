@@ -22,7 +22,7 @@ interface RuntimeOperations {
       @body
       generateAnswerPayload: QueryDTO;
     },
-    void
+    QnASearchResultList
   >;
 
   @summary("Train call to add suggestions to the knowledgebase.")

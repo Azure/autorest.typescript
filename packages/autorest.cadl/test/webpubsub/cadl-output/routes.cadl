@@ -73,7 +73,7 @@ alpha-numeric characters or underscore.
       @header
       Accept: "application/json, text/json";
     },
-    void
+    ClientTokenResponse
   >;
 
   @summary("Broadcast content inside request body to all the connected client connections.")

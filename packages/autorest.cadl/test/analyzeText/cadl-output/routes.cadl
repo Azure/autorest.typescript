@@ -157,7 +157,7 @@ exists, the data of that project is replaced.
       @path
       jobId: string;
     },
-    void
+    DeploymentJobState
   >;
 
   @doc("Gets the status of an existing swap deployment job.")
@@ -173,7 +173,7 @@ exists, the data of that project is replaced.
       @path
       jobId: string;
     },
-    void
+    DeploymentJobState
   >;
 
   @doc("""
@@ -192,7 +192,7 @@ metadata, and assets.
       @path
       jobId: string;
     },
-    void
+    ExportProjectJobState
   >;
 
   @doc("Gets the status for an import.")
@@ -208,7 +208,7 @@ metadata, and assets.
       @path
       jobId: string;
     },
-    void
+    ImportProjectJobState
   >;
 
   @doc("Lists the trained models belonging to a project.")
@@ -272,7 +272,7 @@ information see https://aka.ms/text-analytics-offsets.
       @query
       maxpagesize: int32;
     },
-    void
+    EvaluationResults
   >;
 
   @doc("""
@@ -291,7 +291,7 @@ performance measurements of the model e.g., F1, Precision, Recall, etc.
       @path
       trainedModelLabel: string;
     },
-    void
+    EvaluationSummary
   >;
 
   @doc("Lists the non-expired training jobs created for a project.")
@@ -315,7 +315,7 @@ performance measurements of the model e.g., F1, Precision, Recall, etc.
       @query
       maxpagesize: int32;
     },
-    void
+    TrainingJobs
   >;
 
   @doc("Gets the status for a training job.")
@@ -331,7 +331,7 @@ performance measurements of the model e.g., F1, Precision, Recall, etc.
       @path
       jobId: string;
     },
-    void
+    TrainingJobState
   >;
 
   @doc("Triggers a cancellation for a running training job.")
@@ -359,7 +359,7 @@ performance measurements of the model e.g., F1, Precision, Recall, etc.
       @path
       jobId: string;
     },
-    void
+    ProjectDeletionJobState
   >;
 
   @doc("Lists the supported languages.")
@@ -403,6 +403,6 @@ performance measurements of the model e.g., F1, Precision, Recall, etc.
       @query
       maxpagesize: int32;
     },
-    void
+    TrainingConfigVersions
   >;
 }

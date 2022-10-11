@@ -12,7 +12,7 @@ interface SchemaGroupsOperations {
   @doc("Gets the list of schema groups user is authorized to access.")
   @route("/$schemaGroups")
   @get
-  List is Azure.Core.Foundations.Operation<{}, void>;
+  List is Azure.Core.Foundations.Operation<{}, SchemaGroups>;
 }
 
 interface SchemaOperations {
@@ -54,7 +54,7 @@ should match the serialization type specified in the request.
       @path
       schemaName: string;
     },
-    void
+    SchemaVersions
   >;
 
   @summary("Get specific schema versions.")

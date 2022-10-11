@@ -25,7 +25,7 @@ set in the request.
     @body
     body: DetectRequest;
   },
-  void
+  EntireDetectResponse
 >;
 
 @summary("Detect anomaly status of the latest point in time series.")
@@ -46,7 +46,7 @@ set in the request.
     @body
     body: DetectRequest;
   },
-  void
+  LastDetectResponse
 >;
 
 @summary("Detect change point for the entire series")
@@ -62,7 +62,7 @@ also be set in the request if needed.
     @body
     body: ChangePointDetectRequest;
   },
-  void
+  ChangePointDetectResponse
 >;
 
 @summary("Get Multivariate Anomaly Detection Result")
@@ -169,5 +169,5 @@ op LastDetectAnomaly is Azure.Core.Foundations.Operation<
     @body
     body: LastDetectionRequest;
   },
-  void
+  LastDetectionResult
 >;

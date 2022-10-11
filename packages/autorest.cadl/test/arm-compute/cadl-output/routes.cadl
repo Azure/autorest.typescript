@@ -11,7 +11,7 @@ interface OperationsOperations {
   @doc("Gets a list of compute operations.")
   @route("/providers/Microsoft.Compute/operations")
   @get
-  List is Azure.Core.Foundations.Operation<{}, void>;
+  List is Azure.Core.Foundations.Operation<{}, ComputeOperationListResult>;
 }
 
 interface UsageOperations {
@@ -34,7 +34,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    ListUsagesResult
   >;
 }
 
@@ -58,7 +58,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineSizeListResult
   >;
 }
 
@@ -82,7 +82,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetListResult
   >;
 
   @doc("Create or update a VM scale set.")
@@ -109,7 +109,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: VirtualMachineScaleSet;
     },
-    void
+    VirtualMachineScaleSet
   >;
 
   @doc("Update a VM scale set.")
@@ -282,7 +282,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetInstanceView
   >;
 
   @doc("Gets a list of all VM scale sets under a resource group.")
@@ -301,7 +301,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetListResult
   >;
 
   @doc("""
@@ -321,7 +321,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetListWithLinkResult
   >;
 
   @doc("""
@@ -347,7 +347,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetListSkusResult
   >;
 
   @doc("Gets list of OS upgrades on a VM scale set instance.")
@@ -370,7 +370,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetListOSUpgradeHistory
   >;
 
   @doc("""
@@ -657,7 +657,7 @@ machine scale set
       @query
       placementGroupId: string;
     },
-    void
+    RecoveryWalkResponse
   >;
 
   @doc("""
@@ -747,7 +747,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       extensionParameters: VirtualMachineScaleSetExtension;
     },
-    void
+    VirtualMachineScaleSetExtension
   >;
 
   @doc("The operation to update an extension.")
@@ -859,7 +859,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetExtensionListResult
   >;
 }
 
@@ -961,7 +961,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    RollingUpgradeStatusInfo
   >;
 }
 
@@ -998,7 +998,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       extensionParameters: VirtualMachineScaleSetVMExtension;
     },
-    void
+    VirtualMachineScaleSetVMExtension
   >;
 
   @doc("The operation to update the VMSS VM extension.")
@@ -1130,7 +1130,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetVMExtensionsListResult
   >;
 }
 
@@ -1258,7 +1258,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: VirtualMachineScaleSetVM;
     },
-    void
+    VirtualMachineScaleSetVM
   >;
 
   @doc("Deletes a virtual machine from a VM scale set.")
@@ -1397,7 +1397,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineScaleSetVMListResult
   >;
 
   @doc("""
@@ -1558,7 +1558,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    RetrieveBootDiagnosticsDataResult
   >;
 
   @doc("Performs maintenance on a virtual machine in a VM scale set.")
@@ -1650,7 +1650,7 @@ The subscription ID forms part of the URI for every service call.
       @header
       Accept: "application/json, text/json";
     },
-    void
+    RunCommandResult | void
   >;
 }
 
@@ -1686,7 +1686,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       extensionParameters: VirtualMachineExtension;
     },
-    void
+    VirtualMachineExtension
   >;
 
   @doc("The operation to update the extension.")
@@ -1802,7 +1802,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineExtensionsListResult
   >;
 }
 
@@ -1826,7 +1826,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineListResult
   >;
 
   @doc("""
@@ -1856,7 +1856,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: VirtualMachineCaptureParameters;
     },
-    void
+    VirtualMachineCaptureResult | void
   >;
 
   @doc("""
@@ -1886,7 +1886,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: VirtualMachine;
     },
-    void
+    VirtualMachine
   >;
 
   @doc("The operation to update a virtual machine.")
@@ -2115,7 +2115,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineListResult
   >;
 
   @doc("""
@@ -2148,7 +2148,7 @@ is 'virtualMachineScaleSet/id' eq
       @query
       $filter: string;
     },
-    void
+    VirtualMachineListResult
   >;
 
   @doc("""
@@ -2174,7 +2174,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineSizeListResult
   >;
 
   @doc("""
@@ -2362,7 +2362,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    RetrieveBootDiagnosticsDataResult
   >;
 
   @doc("The operation to perform maintenance on a virtual machine.")
@@ -2431,7 +2431,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineAssessPatchesResult | void
   >;
 
   @doc("Installs patches on the VM.")
@@ -2458,7 +2458,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       installPatchesInput: VirtualMachineInstallPatchesParameters;
     },
-    void
+    VirtualMachineInstallPatchesResult | void
   >;
 
   @doc("Run command on the VM.")
@@ -2489,7 +2489,7 @@ The subscription ID forms part of the URI for every service call.
       @header
       Accept: "application/json, text/json";
     },
-    void
+    RunCommandResult | void
   >;
 }
 
@@ -2526,7 +2526,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineImage
   >;
 
   @doc("""
@@ -2667,7 +2667,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VmImagesInEdgeZoneListResult
   >;
 }
 
@@ -2708,7 +2708,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineImage
   >;
 
   @doc("""
@@ -2875,7 +2875,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineExtensionImage
   >;
 
   @doc("Gets a list of virtual machine extension image types.")
@@ -2951,7 +2951,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: AvailabilitySet;
     },
-    void
+    AvailabilitySet
   >;
 
   @doc("Update an availability set.")
@@ -3046,7 +3046,7 @@ The expand expression to apply to the operation. Allowed values are
       @query
       $expand: string;
     },
-    void
+    AvailabilitySetListResult
   >;
 
   @doc("Lists all availability sets in a resource group.")
@@ -3065,7 +3065,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    AvailabilitySetListResult
   >;
 
   @doc("""
@@ -3091,7 +3091,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    VirtualMachineSizeListResult
   >;
 }
 
@@ -3120,7 +3120,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: ProximityPlacementGroup;
     },
-    void
+    ProximityPlacementGroup
   >;
 
   @doc("Update a proximity placement group.")
@@ -3215,7 +3215,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    ProximityPlacementGroupListResult
   >;
 
   @doc("Lists all proximity placement groups in a resource group.")
@@ -3234,7 +3234,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    ProximityPlacementGroupListResult
   >;
 }
 
@@ -3267,7 +3267,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: DedicatedHostGroup;
     },
-    void
+    DedicatedHostGroup
   >;
 
   @doc("Update an dedicated host group.")
@@ -3371,7 +3371,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    DedicatedHostGroupListResult
   >;
 
   @doc("""
@@ -3389,7 +3389,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    DedicatedHostGroupListResult
   >;
 }
 
@@ -3422,7 +3422,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: DedicatedHost;
     },
-    void
+    DedicatedHost
   >;
 
   @doc("Update an dedicated host .")
@@ -3541,7 +3541,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    DedicatedHostListResult
   >;
 
   @doc("""
@@ -3595,7 +3595,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    SshPublicKeysGroupListResult
   >;
 
   @doc("""
@@ -3617,7 +3617,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    SshPublicKeysGroupListResult
   >;
 
   @doc("Creates a new SSH public key resource.")
@@ -3644,7 +3644,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: SshPublicKeyResource;
     },
-    void
+    SshPublicKeyResource
   >;
 
   @doc("Updates a new SSH public key resource.")
@@ -3744,7 +3744,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    SshPublicKeyGenerateKeyPairResult
   >;
 }
 
@@ -3773,7 +3773,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: Image;
     },
-    void
+    Image
   >;
 
   @doc("Update an image.")
@@ -3869,7 +3869,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    ImageListResult
   >;
 
   @doc("""
@@ -3888,7 +3888,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    ImageListResult
   >;
 }
 
@@ -3921,7 +3921,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: RestorePointCollection;
     },
-    void
+    RestorePointCollection
   >;
 
   @doc("The operation to update the restore point collection.")
@@ -4023,7 +4023,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       resourceGroupName: string;
     },
-    void
+    RestorePointCollectionListResult
   >;
 
   @doc("""
@@ -4042,7 +4042,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    RestorePointCollectionListResult
   >;
 }
 
@@ -4078,7 +4078,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: RestorePoint;
     },
-    void
+    RestorePoint
   >;
 
   @doc("The operation to delete the restore point.")
@@ -4172,7 +4172,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: CapacityReservationGroup;
     },
-    void
+    CapacityReservationGroup
   >;
 
   @doc("""
@@ -4294,7 +4294,7 @@ Ids which are associated to capacity reservation group in the response.
       @query
       $expand: ExpandTypesForGetCapacityReservationGroups;
     },
-    void
+    CapacityReservationGroupListResult
   >;
 
   @doc("""
@@ -4321,7 +4321,7 @@ Ids which are associated to capacity reservation group in the response.
       @query
       $expand: ExpandTypesForGetCapacityReservationGroups;
     },
-    void
+    CapacityReservationGroupListResult
   >;
 }
 
@@ -4358,7 +4358,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: CapacityReservation;
     },
-    void
+    CapacityReservation
   >;
 
   @doc("The operation to update a capacity reservation.")
@@ -4483,7 +4483,7 @@ The subscription ID forms part of the URI for every service call.
       @path
       subscriptionId: string;
     },
-    void
+    CapacityReservationListResult
   >;
 }
 
@@ -4511,7 +4511,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: RequestRateByIntervalInput;
     },
-    void
+    LogAnalyticsOperationResult | void
   >;
 
   @doc("""
@@ -4537,7 +4537,7 @@ The subscription ID forms part of the URI for every service call.
       @body
       parameters: ThrottledRequestsInput;
     },
-    void
+    LogAnalyticsOperationResult | void
   >;
 }
 
@@ -4562,7 +4562,7 @@ The subscription ID forms part of the URI for every service call.
       @header
       Accept: "application/json, text/json";
     },
-    void
+    RunCommandListResult
   >;
 
   @doc("Gets specific run command for a subscription in a location.")
@@ -4589,7 +4589,7 @@ The subscription ID forms part of the URI for every service call.
       @header
       Accept: "application/json, text/json";
     },
-    void
+    RunCommandDocument
   >;
 
   @doc("The operation to create or update the run command.")
@@ -4627,7 +4627,7 @@ The subscription ID forms part of the URI for every service call.
       @header
       Accept: "application/json, text/json";
     },
-    void
+    VirtualMachineRunCommand
   >;
 
   @doc("The operation to update the run command.")
@@ -4759,7 +4759,7 @@ The subscription ID forms part of the URI for every service call.
       @header
       Accept: "application/json, text/json";
     },
-    void
+    VirtualMachineRunCommandsListResult
   >;
 }
 
@@ -4951,6 +4951,6 @@ The subscription ID forms part of the URI for every service call.
       @header
       Accept: "application/json, text/json";
     },
-    void
+    VirtualMachineRunCommandsListResult
   >;
 }

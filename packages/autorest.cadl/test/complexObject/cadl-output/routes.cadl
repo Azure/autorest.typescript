@@ -25,7 +25,7 @@ op List is Azure.Core.Foundations.Operation<
     @path
     resourceGroupName: string;
   },
-  void
+  CatalogArray
 >;
 
 @summary("Create products")
@@ -46,7 +46,7 @@ op Create is Azure.Core.Foundations.Operation<
     @body
     bodyParameter: CatalogDictionaryOfArray;
   },
-  void
+  CatalogDictionary
 >;
 
 @summary("Update products")
@@ -67,5 +67,5 @@ op Update is Azure.Core.Foundations.Operation<
     @body
     bodyParameter: CatalogArrayOfDictionary;
   },
-  void
+  CatalogArray
 >;

@@ -48,7 +48,7 @@ op GetNotificationHub is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  void
+  NotificationHubEntryModel | void
 >;
 
 @doc("Create or update a notification hub.")
@@ -77,7 +77,7 @@ op CreateOrUpdateNotificationHub is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  void
+  NotificationHubEntryModel | void
 >;
 
 @doc("Retrieves all registrations with a specific tag.")
@@ -199,7 +199,7 @@ op CreateRegistration is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  void
+  RegistrationEntryModel | void
 >;
 
 @doc("Deletes a registration")
@@ -255,7 +255,7 @@ op GetRegistration is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  void
+  RegistrationEntryModel | void
 >;
 
 @doc("Create or update a registration")
@@ -284,7 +284,7 @@ op CreateOrUpdateRegistration is Azure.Core.Foundations.Operation<
     @header
     Accept: "application/atom+xml;type=entry;charset=utf-8";
   },
-  void
+  RegistrationEntryModel | void
 >;
 
 @summary("Delete Installation")

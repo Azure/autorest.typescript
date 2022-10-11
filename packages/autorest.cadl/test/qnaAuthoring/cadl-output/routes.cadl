@@ -26,7 +26,7 @@ interface QuestionAnsweringProjectsOperations {
       @query
       maxpagesize: int32;
     },
-    void
+    ProjectsMetadata
   >;
 
   @summary("Get the requested project metadata.")
@@ -39,7 +39,7 @@ interface QuestionAnsweringProjectsOperations {
       @path
       projectName: string;
     },
-    void
+    ProjectMetadata
   >;
 
   @summary("Create or update a project.")
@@ -56,7 +56,7 @@ interface QuestionAnsweringProjectsOperations {
       @body
       body: CreateProjectOptions;
     },
-    void
+    ProjectMetadata
   >;
 
   @summary("Delete the project.")
@@ -82,7 +82,7 @@ interface QuestionAnsweringProjectsOperations {
       @path
       jobId: string;
     },
-    void
+    JobState
   >;
 
   @summary("Export project metadata and assets.")
@@ -103,7 +103,7 @@ interface QuestionAnsweringProjectsOperations {
       @query
       assetKind: AssetKind;
     },
-    void
+    ExportJobState | void
   >;
 
   @summary("""
@@ -126,7 +126,7 @@ metadata, and assets.
       @path
       jobId: string;
     },
-    void
+    ExportJobState
   >;
 
   @summary("Import project assets.")
@@ -168,7 +168,7 @@ metadata, and assets.
       @path
       jobId: string;
     },
-    void
+    JobState
   >;
 
   @summary("Deploy project to production.")
@@ -206,7 +206,7 @@ metadata, and assets.
       @path
       jobId: string;
     },
-    void
+    JobState
   >;
 
   @summary("List all deployments of a project.")
@@ -231,7 +231,7 @@ metadata, and assets.
       @query
       maxpagesize: int32;
     },
-    void
+    ProjectDeployments
   >;
 
   @summary("Gets all the synonyms of a project.")
@@ -256,7 +256,7 @@ metadata, and assets.
       @query
       maxpagesize: int32;
     },
-    void
+    SynonymAssets
   >;
 
   @summary("Updates all the synonyms of a project.")
@@ -298,7 +298,7 @@ metadata, and assets.
       @query
       maxpagesize: int32;
     },
-    void
+    QnaSources
   >;
 
   @summary("Updates the sources of a project.")
@@ -332,7 +332,7 @@ metadata, and assets.
       @path
       jobId: string;
     },
-    void
+    JobState
   >;
 
   @summary("Gets all the QnAs of a project.")
@@ -361,7 +361,7 @@ metadata, and assets.
       @query
       maxpagesize: int32;
     },
-    void
+    QnaAssets
   >;
 
   @summary("Updates the QnAs of a project.")
@@ -395,7 +395,7 @@ metadata, and assets.
       @path
       jobId: string;
     },
-    void
+    JobState
   >;
 
   @summary("Update Active Learning feedback.")
