@@ -282,7 +282,8 @@ stages:
               azureSubscription: "Azure SDK Playground"
               scriptType: "bash"
               scriptLocation: "inlineScript"
-              inlineScript: cadl-ranch upload-coverage --coverageFile $(CADL_TESTSERVER_COVERAGE_REPORT) --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('./packages/cadl-rlc-emitter/package.json').version")
+              workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
+              inlineScript: npx cadl-ranch upload-coverage --coverageFile $(CADL_TESTSERVER_COVERAGE_REPORT) --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('./package.json').version")
 
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
