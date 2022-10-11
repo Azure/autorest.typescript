@@ -227,7 +227,7 @@ packages:
       '@cadl-lang/versioning': ~0.8.0
     dependencies:
       '@azure-tools/cadl-azure-core': 0.7.0_3daf81b5856042b4b38a8c9c26a7b5cf
-      '@azure-tools/cadl-ranch': 0.2.3
+      '@azure-tools/cadl-ranch': 0.2.4
       '@azure-tools/cadl-ranch-api': 0.1.9
       '@azure-tools/cadl-ranch-expect': 0.1.10_3daf81b5856042b4b38a8c9c26a7b5cf
       '@cadl-lang/compiler': 0.35.0
@@ -239,8 +239,8 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-tools/cadl-ranch/0.2.3:
-    resolution: {integrity: sha512-x0FX+5W4/GA4y3stgOiLcppeSv+5wpqAwlKUhMpWD0Z0exx8DWHFukgsEcx3mVqnsnlzlef9554OQPTE0AkD5g==}
+  /@azure-tools/cadl-ranch/0.2.4:
+    resolution: {integrity: sha512-WFT+ulkb0NIeClZIixNUFXz8UNRSW+U/wkldIOOU3R+VJM1K8pDW8q3EcdRYtlCbq+IyvlHsXuXJHNnQzg6i2g==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
@@ -259,6 +259,7 @@ packages:
       glob: 8.0.3
       js-yaml: 4.1.0
       morgan: 1.10.0
+      node-fetch: 3.2.10
       picocolors: 1.0.0
       prettier: 2.7.1
       source-map-support: 0.5.21
@@ -7000,6 +7001,15 @@ packages:
       whatwg-url: 5.0.0
     dev: false
 
+  /node-fetch/3.2.10:
+    resolution: {integrity: sha512-MhuzNwdURnZ1Cp4XTazr69K0BTizsBroX7Zx3UgDSVcZYKF/6p0CBe4EUb/hLqmzVhl0UpYfgRljQ4yxE+iCxA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      data-uri-to-buffer: 4.0.0
+      fetch-blob: 3.2.0
+      formdata-polyfill: 4.0.10
+    dev: false
+
   /node-fetch/3.2.8:
     resolution: {integrity: sha512-KtpD1YhGszhntMpBDyp5lyagk8KIMopC1LEb7cQUAh7zcosaX5uK8HnbNb2i3NTQK3sIawCItS0uFC3QzcLHdg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -9940,13 +9950,13 @@ packages:
     dev: false
 
   file:projects/ts-rlc.tgz:
-    resolution: {integrity: sha512-YIZrRkj35f0UGCrxFuRYcVJSHESTTBF2h2bhm87IkGZ0kfdN8ItA3twH78wcFAEdDYl603DO++zFe+PzKyWidg==, tarball: file:projects/ts-rlc.tgz}
+    resolution: {integrity: sha512-7YYSP0E7aDd8V7zCsemDwxDmlQXk0ECrA4Wi1+ZSzozhsiXZwtMMZ9EjQih/NRSgVqMCOYt4qfdt0AmjzUlT1A==, tarball: file:projects/ts-rlc.tgz}
     name: '@rush-temp/ts-rlc'
     version: 0.0.0
     dependencies:
       '@azure-rest/core-client': 1.0.0-beta.10
       '@azure-tools/cadl-azure-core': 0.7.0_3daf81b5856042b4b38a8c9c26a7b5cf
-      '@azure-tools/cadl-ranch': 0.2.3
+      '@azure-tools/cadl-ranch': 0.2.4
       '@azure-tools/cadl-ranch-expect': 0.1.10_3daf81b5856042b4b38a8c9c26a7b5cf
       '@azure-tools/cadl-ranch-specs': 0.3.2_a9c903c552d40c6b98236935505dcc85
       '@azure/core-auth': 1.4.0
