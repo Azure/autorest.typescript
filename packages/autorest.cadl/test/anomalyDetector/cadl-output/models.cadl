@@ -154,7 +154,6 @@ model TimeSeriesPoint {
 }
 
 @doc("The response of entire anomaly detection.")
-@resource("timeseries/entire/detect")
 model EntireDetectResponse {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
@@ -230,7 +229,6 @@ model AnomalyDetectorError {
 }
 
 @doc("The response of last anomaly detection.")
-@resource("timeseries/last/detect")
 model LastDetectResponse {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
@@ -329,7 +327,6 @@ be accepted.
 }
 
 @doc("The response of change point detection.")
-@resource("timeseries/changepoint/detect")
 model ChangePointDetectResponse {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
@@ -619,7 +616,6 @@ model VariableValues {
   values: float32[];
 }
 
-@resource("multivariate/models/{modelId}/last/detect")
 model LastDetectionResult {
   variableStates?: VariableState[];
   results?: AnomalyState[];

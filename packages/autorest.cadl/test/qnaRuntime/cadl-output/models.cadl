@@ -1,8 +1,6 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
-using Azure.Core;
 
 namespace QnAMakerRuntimeClient;
 
@@ -98,7 +96,6 @@ model MetadataDTO {
 }
 
 @doc("Represents List of Question Answers.")
-@resource("knowledgebases/{kbId}/generateAnswer")
 model QnASearchResultList {
   @doc("Represents Search Result list.")
   answers?: QnASearchResult[];

@@ -2,7 +2,6 @@ import "@cadl-lang/rest";
 import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
-using Azure.Core;
 
 namespace MicrosoftCognitiveLanguageServiceQuestionAnsweringAuthoring;
 
@@ -108,7 +107,6 @@ model UpdateOperationKind is string;
 model ProjectsMetadata is Azure.Core.Page<ProjectMetadata>;
 
 @doc("Represents the project.")
-@resource("query-knowledgebases/projects")
 model ProjectMetadata {
   @doc("Name of the project.")
   projectName?: string;
@@ -221,7 +219,6 @@ same resource.
 }
 
 @doc("Job state represents the job metadata and any errors.")
-@resource("query-knowledgebases/projects/deletion-jobs/{jobId}")
 model JobState {
   ...JobMetadata;
   ...Errors;
@@ -247,7 +244,6 @@ model Errors {
 }
 
 @doc("Export job status, project metadata, and assets.")
-@resource("query-knowledgebases/projects/{projectName}/export/jobs/{jobId}")
 model ExportJobState {
   ...JobState;
   ...ExportJobResultUrl;
@@ -283,7 +279,6 @@ model Assets {
 }
 
 @doc("Collection of word alterations.")
-@resource("query-knowledgebases/projects/{projectName}/synonyms")
 model WordAlterations {
   @doc("Collection of word alterations.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
@@ -298,7 +293,6 @@ model ImportQnaRecord {
 }
 
 @doc("QnA Record with last updated date-time.")
-@resource("query-knowledgebases/projects/{projectName}/qnas")
 model RetrieveQnaRecord {
   ...QnaRecord;
   ...LastUpdatedDateTimeParameter;
@@ -404,7 +398,6 @@ model SourceDisplayNameParameter {
 model ProjectDeployments is Azure.Core.Page<ProjectDeployment>;
 
 @doc("Project deployment details.")
-@resource("query-knowledgebases/projects/{projectName}/deployments")
 model ProjectDeployment {
   @doc("Name of the deployment.")
   deploymentName?: string;
@@ -420,7 +413,6 @@ model SynonymAssets is Azure.Core.Page<WordAlterations>;
 model QnaSources is Azure.Core.Page<QnaSourceRecord>;
 
 @doc("Custom source record with last updated date-time.")
-@resource("query-knowledgebases/projects/{projectName}/sources")
 model QnaSourceRecord {
   ...QnaSourceMetadata;
   ...LastUpdatedDateTimeParameter;

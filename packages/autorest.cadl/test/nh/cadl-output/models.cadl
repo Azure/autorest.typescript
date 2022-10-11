@@ -164,7 +164,6 @@ enum ContentType {
   ApplicationXmlCharsetUtf8: "application/xml;charset=utf-8",
 }
 
-@resource("{hubName}")
 model NotificationHubEntryModel {
   content?: NotificationHubContentModel;
 }
@@ -201,7 +200,6 @@ model NotificationHubDescriptionModelAuthorizationRulesItem {
   SecondaryKey?: string;
 }
 
-@resource("{hubName}/tags/{tag}/registrations")
 model RegistrationEntryModel {
   content?: NotificationHubContentModel;
   "xmlns:m"?: RegistrationEntryModelXmlnsM;

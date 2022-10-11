@@ -1,13 +1,10 @@
 import "@cadl-lang/rest";
-import "@azure-tools/cadl-azure-core";
 
 using Cadl.Rest;
-using Azure.Core;
 
 namespace AzureSchemaRegistry;
 
 @doc("Array received from the registry containing the list of schema groups.")
-@resource("$schemaGroups")
 model SchemaGroups {
   @doc("Array of schema groups.")
   schemaGroups?: string[];
@@ -36,7 +33,6 @@ model ErrorDetail {
 Array received from the registry containing the list of versions for specific
 schema.
 """)
-@resource("$schemaGroups/{groupName}/schemas/{schemaName}/versions")
 model SchemaVersions {
   @doc("Array of schema groups.")
   schemaVersions?: int32[];

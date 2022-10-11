@@ -13,12 +13,59 @@ The Products endpoint returns information about the Uber products offered at a
 given location. The response includes the display name and other details about
 each product, and lists the products in the proper display order.
 """)
-op List is Azure.Core.ResourceRead<CatalogArray>;
+@route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+@get
+op List is Azure.Core.Foundations.Operation<
+  {
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: "123456";
+
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string;
+  },
+  void
+>;
 
 @summary("Create products")
 @doc("Resets products.")
-op Create is Azure.Core.ResourceCreateWithServiceProvidedName<CatalogDictionary>;
+@route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+@post
+op Create is Azure.Core.Foundations.Operation<
+  {
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: string;
+
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string;
+
+    @doc("body Parameter")
+    @body
+    bodyParameter: CatalogDictionaryOfArray;
+  },
+  void
+>;
 
 @summary("Update products")
 @doc("Resets products.")
-op Update is Azure.Core.ResourceCreateOrReplace<CatalogArray>;
+@route("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis")
+@put
+op Update is Azure.Core.Foundations.Operation<
+  {
+    @doc("Subscription ID.")
+    @path
+    subscriptionId: string;
+
+    @doc("Resource Group ID.")
+    @path
+    resourceGroupName: string;
+
+    @doc("body Parameter")
+    @body
+    bodyParameter: CatalogArrayOfDictionary;
+  },
+  void
+>;

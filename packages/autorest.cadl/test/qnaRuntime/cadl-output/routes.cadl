@@ -10,7 +10,20 @@ namespace QnAMakerRuntimeClient;
 interface RuntimeOperations {
   @summary("GenerateAnswer call to query the knowledgebase.")
   @doc("GenerateAnswer call to query the knowledgebase.")
-  GenerateAnswer is Azure.Core.ResourceCreateWithServiceProvidedName<QnASearchResultList>;
+  @route("/knowledgebases/{kbId}/generateAnswer")
+  @post
+  GenerateAnswer is Azure.Core.Foundations.Operation<
+    {
+      @doc("Knowledgebase id.")
+      @path
+      kbId: string;
+
+      @doc("Post body of the request.")
+      @body
+      generateAnswerPayload: QueryDTO;
+    },
+    void
+  >;
 
   @summary("Train call to add suggestions to the knowledgebase.")
   @doc("Train call to add suggestions to the knowledgebase.")

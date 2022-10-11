@@ -32,7 +32,6 @@ enum ConfidentialLedgerUserRoleNameKnownValues {
 model ConfidentialLedgerUserRoleName is string;
 
 @doc("The governance script for the application.")
-@resource("app/governance/constitution")
 model Constitution {
   @doc("SHA256 digest of the constitution script.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
@@ -147,7 +146,6 @@ model PagedLedgerEntries {
 }
 
 @doc("An entry in the ledger.")
-@resource("app/transactions")
 model LedgerEntry {
   @doc("Contents of the ledger entry.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
@@ -180,7 +178,6 @@ model LedgerWriteResult {
 The result of querying for a ledger entry from an older transaction id. The
 ledger entry is available in the response only if the returned state is Ready.
 """)
-@resource("app/transactions/{transactionId}")
 model LedgerQueryResult {
   @doc("State of a ledger query.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
@@ -249,7 +246,6 @@ LedgerEntry, it indicates the state from which the entry was read.
 }
 
 @doc("Details about a Confidential Ledger user.")
-@resource("app/users/{userId}")
 model LedgerUser {
   @doc("Represents an assignable role.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one

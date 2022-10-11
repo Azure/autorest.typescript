@@ -28,78 +28,95 @@ op DeleteNotificationHub is Azure.Core.Foundations.Operation<
 >;
 
 @doc("Retrieves information about a notification hub.")
-op GetNotificationHub is Azure.Core.ResourceRead<
-  NotificationHubEntryModel,
+@route("/{hubName}")
+@get
+op GetNotificationHub is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("API Version")
-      @header
-      "x-ms-version": MSApiVersionType;
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
 
-      @doc("Authorization Header value")
-      @header
-      Authorization: string;
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
 
-      @doc("Accept header")
-      @header
-      Accept: "application/atom+xml;type=entry;charset=utf-8";
-    };
-  }
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
+
+    @doc("Accept header")
+    @header
+    Accept: "application/atom+xml;type=entry;charset=utf-8";
+  },
+  void
 >;
 
 @doc("Create or update a notification hub.")
-op CreateOrUpdateNotificationHub is Azure.Core.ResourceCreateOrReplace<
-  NotificationHubEntryModel,
+@route("/{hubName}")
+@put
+op CreateOrUpdateNotificationHub is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("API Version")
-      @header
-      "x-ms-version": MSApiVersionType;
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
 
-      @doc("Authorization Header value")
-      @header
-      Authorization: string;
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
 
-      @doc("ETag as returned by creation, update, and retrieval, or * (overwrite).")
-      @header
-      "If-Match": string;
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
 
-      @doc("Accept header")
-      @header
-      Accept: "application/atom+xml;type=entry;charset=utf-8";
-    };
-  }
+    @doc("ETag as returned by creation, update, and retrieval, or * (overwrite).")
+    @header
+    "If-Match": string;
+    @body body: NotificationHubEntryModel;
+
+    @doc("Accept header")
+    @header
+    Accept: "application/atom+xml;type=entry;charset=utf-8";
+  },
+  void
 >;
 
 @doc("Retrieves all registrations with a specific tag.")
-op GetRegistrationsByTag is Azure.Core.NonPagedResourceList<
-  RegistrationEntryModel,
+@route("/{hubName}/tags/{tag}/registrations")
+@get
+op GetRegistrationsByTag is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("API Version")
-      @header
-      "x-ms-version": MSApiVersionType;
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
 
-      @doc("Authorization Header value")
-      @header
-      Authorization: string;
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
 
-      @doc("""
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
+
+    @doc("The path for the tag to query")
+    @path
+    tag: string;
+
+    @doc("""
 Contains the token to continue the enumeration of registrations, in case there
 are more.
 """)
-      @query
-      ContinuationToken: string;
+    @query
+    ContinuationToken: string;
 
-      @doc("OData top parameter")
-      @query
-      $top: string;
+    @doc("OData top parameter")
+    @query
+    $top: string;
 
-      @doc("Accept header")
-      @header
-      Accept: "application/atom+xml;type=entry;charset=utf-8";
-    };
-  }
+    @doc("Accept header")
+    @header
+    Accept: "application/atom+xml;type=entry;charset=utf-8";
+  },
+  void
 >;
 
 @doc("Create a registration ID")
@@ -123,58 +140,66 @@ op CreateRegistrationId is Azure.Core.Foundations.Operation<
 >;
 
 @doc("Get registrations by the specified criteria")
-op GetRegistrations is Azure.Core.NonPagedResourceList<
-  RegistrationEntryModel,
+@route("/{hubName}/registrations")
+@get
+op GetRegistrations is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("API Version")
-      @header
-      "x-ms-version": MSApiVersionType;
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
 
-      @doc("Authorization Header value")
-      @header
-      Authorization: string;
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
 
-      @doc("""
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
+
+    @doc("""
 Contains the token to continue the enumeration of registrations, in case there
 are more.
 """)
-      @query
-      ContinuationToken: string;
+    @query
+    ContinuationToken: string;
 
-      @doc("OData filter parameter")
-      @query
-      $filter: string;
+    @doc("OData filter parameter")
+    @query
+    $filter: string;
 
-      @doc("OData top parameter")
-      @query
-      $top: string;
+    @doc("OData top parameter")
+    @query
+    $top: string;
 
-      @doc("Accept header")
-      @header
-      Accept: "application/atom+xml;type=entry;charset=utf-8";
-    };
-  }
+    @doc("Accept header")
+    @header
+    Accept: "application/atom+xml;type=entry;charset=utf-8";
+  },
+  void
 >;
 
 @doc("Creates a registration")
-op CreateRegistration is Azure.Core.ResourceCreateWithServiceProvidedName<
-  RegistrationEntryModel,
+@route("/{hubName}/registrations")
+@post
+op CreateRegistration is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("API Version")
-      @header
-      "x-ms-version": MSApiVersionType;
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
 
-      @doc("Authorization Header value")
-      @header
-      Authorization: string;
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
 
-      @doc("Accept header")
-      @header
-      Accept: "application/atom+xml;type=entry;charset=utf-8";
-    };
-  }
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
+
+    @doc("Accept header")
+    @header
+    Accept: "application/atom+xml;type=entry;charset=utf-8";
+  },
+  void
 >;
 
 @doc("Deletes a registration")
@@ -206,43 +231,60 @@ op DeleteRegistration is Azure.Core.Foundations.Operation<
 >;
 
 @doc("Get a registration by registration ID")
-op GetRegistration is Azure.Core.ResourceRead<
-  RegistrationEntryModel,
+@route("/{hubName}/registrations/{registrationId}")
+@get
+op GetRegistration is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("API Version")
-      @header
-      "x-ms-version": MSApiVersionType;
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
 
-      @doc("Authorization Header value")
-      @header
-      Authorization: string;
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
 
-      @doc("Accept header")
-      @header
-      Accept: "application/atom+xml;type=entry;charset=utf-8";
-    };
-  }
+    @doc("Registration ID parameter")
+    @path
+    registrationId: string;
+
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
+
+    @doc("Accept header")
+    @header
+    Accept: "application/atom+xml;type=entry;charset=utf-8";
+  },
+  void
 >;
 
 @doc("Create or update a registration")
-op CreateOrUpdateRegistration is Azure.Core.ResourceCreateOrReplace<
-  RegistrationEntryModel,
+@route("/{hubName}/registrations/{registrationId}")
+@put
+op CreateOrUpdateRegistration is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("API Version")
-      @header
-      "x-ms-version": MSApiVersionType;
+    @doc("Notification Hub Name")
+    @path
+    hubName: string;
 
-      @doc("Authorization Header value")
-      @header
-      Authorization: string;
+    @doc("API Version")
+    @header
+    "x-ms-version": MSApiVersionType;
 
-      @doc("Accept header")
-      @header
-      Accept: "application/atom+xml;type=entry;charset=utf-8";
-    };
-  }
+    @doc("Registration ID parameter")
+    @path
+    registrationId: string;
+
+    @doc("Authorization Header value")
+    @header
+    Authorization: string;
+    @body body: RegistrationEntryModel;
+
+    @doc("Accept header")
+    @header
+    Accept: "application/atom+xml;type=entry;charset=utf-8";
+  },
+  void
 >;
 
 @summary("Delete Installation")

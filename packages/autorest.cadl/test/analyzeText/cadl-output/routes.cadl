@@ -141,19 +141,75 @@ exists, the data of that project is replaced.
   DeleteDeployment is Azure.Core.LongRunningResourceDelete<ProjectDeployment>;
 
   @doc("Gets the status of an existing deployment job.")
-  GetDeploymentStatus is Azure.Core.ResourceRead<DeploymentJobState>;
+  @route("/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}")
+  @get
+  GetDeploymentStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+
+      @doc("The name of the specific deployment of the project to use.")
+      @path
+      deploymentName: string;
+
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    void
+  >;
 
   @doc("Gets the status of an existing swap deployment job.")
-  GetSwapDeploymentsStatus is Azure.Core.ResourceRead<DeploymentJobState>;
+  @route("/authoring/analyze-text/projects/{projectName}/deployments/swap/jobs/{jobId}")
+  @get
+  GetSwapDeploymentsStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    void
+  >;
 
   @doc("""
 Gets the status of an export job. Once job completes, returns the project
 metadata, and assets.
 """)
-  GetExportStatus is Azure.Core.ResourceRead<ExportProjectJobState>;
+  @route("/authoring/analyze-text/projects/{projectName}/export/jobs/{jobId}")
+  @get
+  GetExportStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    void
+  >;
 
   @doc("Gets the status for an import.")
-  GetImportStatus is Azure.Core.ResourceRead<ImportProjectJobState>;
+  @route("/authoring/analyze-text/projects/{projectName}/import/jobs/{jobId}")
+  @get
+  GetImportStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    void
+  >;
 
   @doc("Lists the trained models belonging to a project.")
   ListTrainedModels is Azure.Core.ResourceList<
@@ -185,60 +241,98 @@ metadata, and assets.
 Gets the detailed results of the evaluation for a trained model. This includes
 the raw inference results for the data included in the evaluation process.
 """)
-  GetModelEvaluationResults is Azure.Core.ResourceList<
-    DocumentEvaluationResult,
+  @route("/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/result")
+  @get
+  GetModelEvaluationResults is Azure.Core.Foundations.Operation<
     {
-      parameters: {
-        @doc("""
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+
+      @doc("The trained model label.")
+      @path
+      trainedModelLabel: string;
+
+      @doc("""
 Specifies the method used to interpret string offsets. For additional
 information see https://aka.ms/text-analytics-offsets.
 """)
-        @query
-        stringIndexType: StringIndexType;
+      @query
+      stringIndexType: StringIndexType;
 
-        @doc("The maximum number of resources to return from the collection.")
-        @query
-        top: int32;
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-        @doc("An offset into the collection of the first resource to be returned.")
-        @query
-        skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-        @doc("The maximum number of resources to include in a single response.")
-        @query
-        maxpagesize: int32;
-      };
-    }
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    void
   >;
 
   @doc("""
 Gets the evaluation summary of a trained model. The summary includes high level
 performance measurements of the model e.g., F1, Precision, Recall, etc.
 """)
-  GetModelEvaluationSummary is Azure.Core.ResourceRead<EvaluationSummary>;
+  @route("/authoring/analyze-text/projects/{projectName}/models/{trainedModelLabel}/evaluation/summary-result")
+  @get
+  GetModelEvaluationSummary is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+
+      @doc("The trained model label.")
+      @path
+      trainedModelLabel: string;
+    },
+    void
+  >;
 
   @doc("Lists the non-expired training jobs created for a project.")
-  ListTrainingJobs is Azure.Core.ResourceList<
-    TrainingJobState,
+  @route("/authoring/analyze-text/projects/{projectName}/train/jobs")
+  @get
+  ListTrainingJobs is Azure.Core.Foundations.Operation<
     {
-      parameters: {
-        @doc("The maximum number of resources to return from the collection.")
-        @query
-        top: int32;
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
 
-        @doc("An offset into the collection of the first resource to be returned.")
-        @query
-        skip: int32;
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-        @doc("The maximum number of resources to include in a single response.")
-        @query
-        maxpagesize: int32;
-      };
-    }
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
+
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    void
   >;
 
   @doc("Gets the status for a training job.")
-  GetTrainingStatus is Azure.Core.ResourceRead<TrainingJobState>;
+  @route("/authoring/analyze-text/projects/{projectName}/train/jobs/{jobId}")
+  @get
+  GetTrainingStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The name of the project to use.")
+      @path
+      projectName: string;
+
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    void
+  >;
 
   @doc("Triggers a cancellation for a running training job.")
   @route("/authoring/analyze-text/projects/{projectName}/train/jobs/{jobId}/:cancel")
@@ -257,7 +351,16 @@ performance measurements of the model e.g., F1, Precision, Recall, etc.
   >;
 
   @doc("Gets the status for a project deletion job.")
-  GetProjectDeletionStatus is Azure.Core.ResourceRead<ProjectDeletionJobState>;
+  @route("/authoring/analyze-text/projects/global/deletion-jobs/{jobId}")
+  @get
+  GetProjectDeletionStatus is Azure.Core.Foundations.Operation<
+    {
+      @doc("The job ID.")
+      @path
+      jobId: string;
+    },
+    void
+  >;
 
   @doc("Lists the supported languages.")
   GetSupportedLanguages is Azure.Core.ResourceList<
@@ -280,26 +383,26 @@ performance measurements of the model e.g., F1, Precision, Recall, etc.
   >;
 
   @doc("Lists the support training config version for a given project type.")
-  ListTrainingConfigVersions is Azure.Core.ResourceList<
-    TrainingConfigVersion,
+  @route("/authoring/analyze-text/projects/global/training-config-versions")
+  @get
+  ListTrainingConfigVersions is Azure.Core.Foundations.Operation<
     {
-      parameters: {
-        @doc("The project kind.")
-        @query
-        projectKind: ProjectKind;
+      @doc("The project kind.")
+      @query
+      projectKind: ProjectKind;
 
-        @doc("The maximum number of resources to return from the collection.")
-        @query
-        top: int32;
+      @doc("The maximum number of resources to return from the collection.")
+      @query
+      top: int32;
 
-        @doc("An offset into the collection of the first resource to be returned.")
-        @query
-        skip: int32;
+      @doc("An offset into the collection of the first resource to be returned.")
+      @query
+      skip: int32;
 
-        @doc("The maximum number of resources to include in a single response.")
-        @query
-        maxpagesize: int32;
-      };
-    }
+      @doc("The maximum number of resources to include in a single response.")
+      @query
+      maxpagesize: int32;
+    },
+    void
   >;
 }

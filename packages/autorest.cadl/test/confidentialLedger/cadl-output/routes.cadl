@@ -12,7 +12,9 @@ namespace Azure.Language.Authoring;
 The constitution is a script that assesses and applies proposals from
 consortium members.
 """)
-op GetConstitution is Azure.Core.ResourceRead<Constitution>;
+@route("/app/governance/constitution")
+@get
+op GetConstitution is Azure.Core.Foundations.Operation<{}, Constitution>;
 
 @summary("Lists the consortium members.")
 @doc("Consortium members can manage the Confidential Ledger.")
@@ -34,23 +36,23 @@ op ListCollections is Azure.Core.ResourceList<Collection>;
 A collection id may optionally be specified. Only entries in the specified (or
 default) collection will be returned.
 """)
-op ListLedgerEntries is Azure.Core.ResourceList<
-  LedgerEntry,
+@route("/app/transactions")
+@get
+op ListLedgerEntries is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("The collection id.")
-      @query
-      collectionId: string;
+    @doc("The collection id.")
+    @query
+    collectionId: string;
 
-      @doc("Specify the first transaction ID in a range.")
-      @query
-      fromTransactionId: string;
+    @doc("Specify the first transaction ID in a range.")
+    @query
+    fromTransactionId: string;
 
-      @doc("Specify the last transaction ID in a range.")
-      @query
-      toTransactionId: string;
-    };
-  }
+    @doc("Specify the last transaction ID in a range.")
+    @query
+    toTransactionId: string;
+  },
+  PagedLedgerEntries
 >;
 
 @summary("Writes a ledger entry.")
@@ -77,15 +79,19 @@ read from disk and validated. To prevent blocking within the enclave, the
 response will indicate whether the entry is ready and part of the response, or
 if the loading is still ongoing.
 """)
-op GetLedgerEntry is Azure.Core.ResourceRead<
-  LedgerQueryResult,
+@route("/app/transactions/{transactionId}")
+@get
+op GetLedgerEntry is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("The collection id.")
-      @query
-      collectionId: string;
-    };
-  }
+    @doc("The collection id.")
+    @query
+    collectionId: string;
+
+    @doc("Identifies a write transaction.")
+    @path
+    transactionId: string;
+  },
+  LedgerQueryResult
 >;
 
 @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
@@ -98,15 +104,15 @@ op GetTransactionStatus is Azure.Core.ResourceRead<TransactionStatus>;
 
 @summary("Gets the current value available in the ledger.")
 @doc("A collection id may optionally be specified.")
-op GetCurrentLedgerEntry is Azure.Core.ResourceRead<
-  LedgerEntry,
+@route("/app/transactions/current")
+@get
+op GetCurrentLedgerEntry is Azure.Core.Foundations.Operation<
   {
-    parameters: {
-      @doc("The collection id.")
-      @query
-      collectionId: string;
-    };
-  }
+    @doc("The collection id.")
+    @query
+    collectionId: string;
+  },
+  LedgerEntry
 >;
 
 @summary("Deletes a user from the Confidential Ledger.")
@@ -124,8 +130,30 @@ op DeleteUser is Azure.Core.Foundations.Operation<
 
 @summary("Gets a user.")
 @doc("Gets a user.")
-op GetUser is Azure.Core.ResourceRead<LedgerUser>;
+@route("/app/users/{userId}")
+@get
+op GetUser is Azure.Core.Foundations.Operation<
+  {
+    @doc("The user id, either an AAD object ID or certificate fingerprint.")
+    @path
+    userId: string;
+  },
+  LedgerUser
+>;
 
 @summary("Adds a user or updates a user's fields.")
 @doc("A JSON merge patch is applied for existing users")
-op CreateOrUpdateUser is Azure.Core.ResourceCreateOrUpdate<LedgerUser>;
+@route("/app/users/{userId}")
+@patch
+op CreateOrUpdateUser is Azure.Core.Foundations.Operation<
+  {
+    @doc("The user id, either an AAD object ID or certificate fingerprint.")
+    @path
+    userId: string;
+
+    @doc("Details about a Confidential Ledger user.")
+    @body
+    userDetails: LedgerUser;
+  },
+  LedgerUser
+>;
