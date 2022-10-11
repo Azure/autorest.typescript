@@ -5,6 +5,7 @@ import {
   PagingGetNoItemNamePagesParameters,
   PagingGetNullNextLinkNamePagesParameters,
   PagingGetSinglePagesParameters,
+  PagingGetSinglePagesWithBodyParamsParameters,
   PagingFirstResponseEmptyParameters,
   PagingGetMultiplePagesParameters,
   PagingGetWithQueryParamsParameters,
@@ -34,6 +35,8 @@ import {
   PagingGetNullNextLinkNamePagesDefaultResponse,
   PagingGetSinglePages200Response,
   PagingGetSinglePagesDefaultResponse,
+  PagingGetSinglePagesWithBodyParams200Response,
+  PagingGetSinglePagesWithBodyParamsDefaultResponse,
   PagingFirstResponseEmpty200Response,
   PagingFirstResponseEmptyDefaultResponse,
   PagingGetMultiplePages200Response,
@@ -105,6 +108,16 @@ export interface GetSinglePages {
     options?: PagingGetSinglePagesParameters
   ): StreamableMethod<
     PagingGetSinglePages200Response | PagingGetSinglePagesDefaultResponse
+  >;
+}
+
+export interface GetSinglePagesWithBodyParams {
+  /** A paging operation that finishes on the first call with body params without a nextlink */
+  get(
+    options: PagingGetSinglePagesWithBodyParamsParameters
+  ): StreamableMethod<
+    | PagingGetSinglePagesWithBodyParams200Response
+    | PagingGetSinglePagesWithBodyParamsDefaultResponse
   >;
 }
 
@@ -320,6 +333,8 @@ export interface Routes {
   (path: "/paging/nullnextlink"): GetNullNextLinkNamePages;
   /** Resource for '/paging/single' has methods for the following verbs: get */
   (path: "/paging/single"): GetSinglePages;
+  /** Resource for '/paging/single/getWithBodyParams' has methods for the following verbs: get */
+  (path: "/paging/single/getWithBodyParams"): GetSinglePagesWithBodyParams;
   /** Resource for '/paging/firstResponseEmpty/1' has methods for the following verbs: get */
   (path: "/paging/firstResponseEmpty/1"): FirstResponseEmpty;
   /** Resource for '/paging/multiple' has methods for the following verbs: get */

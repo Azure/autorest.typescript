@@ -22,6 +22,9 @@ import {
   PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetSinglePagesNextOptionalParams,
   PagingGetSinglePagesOptionalParams,
+  BodyParam,
+  PagingGetSinglePagesWithBodyParamsNextOptionalParams,
+  PagingGetSinglePagesWithBodyParamsOptionalParams,
   PagingFirstResponseEmptyNextOptionalParams,
   PagingFirstResponseEmptyOptionalParams,
   PagingGetMultiplePagesNextOptionalParams,
@@ -63,6 +66,7 @@ import {
   PagingGetNoItemNamePagesResponse,
   PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesResponse,
+  PagingGetSinglePagesWithBodyParamsResponse,
   PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesResponse,
   PagingGetWithQueryParamsResponse,
@@ -86,6 +90,7 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingGetNoItemNamePagesNextResponse,
   PagingGetSinglePagesNextResponse,
+  PagingGetSinglePagesWithBodyParamsNextResponse,
   PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextResponse,
   PagingDuplicateParamsNextResponse,
@@ -232,6 +237,62 @@ export class PagingImpl implements Paging {
     options?: PagingGetSinglePagesOptionalParams
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getSinglePagesPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation that finishes on the first call with body params without a nextlink
+   * @param parameters put {'name': 'body'} to pass the test
+   * @param options The options parameters.
+   */
+  public listSinglePagesWithBodyParams(
+    parameters: BodyParam,
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+  ): PagedAsyncIterableIterator<Product> {
+    const iter = this.getSinglePagesWithBodyParamsPagingAll(
+      parameters,
+      options
+    );
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: () => {
+        return this.getSinglePagesWithBodyParamsPagingPage(parameters, options);
+      }
+    };
+  }
+
+  private async *getSinglePagesWithBodyParamsPagingPage(
+    parameters: BodyParam,
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+  ): AsyncIterableIterator<Product[]> {
+    let result = await this._getSinglePagesWithBodyParams(parameters, options);
+    yield result.values || [];
+    let continuationToken = result.nextLink;
+    while (continuationToken) {
+      result = await this._getSinglePagesWithBodyParamsNext(
+        parameters,
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      yield result.values || [];
+    }
+  }
+
+  private async *getSinglePagesWithBodyParamsPagingAll(
+    parameters: BodyParam,
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getSinglePagesWithBodyParamsPagingPage(
+      parameters,
+      options
+    )) {
       yield* page;
     }
   }
@@ -1329,6 +1390,27 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * A paging operation that finishes on the first call with body params without a nextlink
+   * @param parameters put {'name': 'body'} to pass the test
+   * @param options The options parameters.
+   */
+  private async _getSinglePagesWithBodyParams(
+    parameters: BodyParam,
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+  ): Promise<PagingGetSinglePagesWithBodyParamsResponse> {
+    return tracingClient.withSpan(
+      "PagingClient._getSinglePagesWithBodyParams",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { parameters, options },
+          getSinglePagesWithBodyParamsOperationSpec
+        ) as Promise<PagingGetSinglePagesWithBodyParamsResponse>;
+      }
+    );
+  }
+
+  /**
    * A paging operation whose first response's items list is empty, but still returns a next link. Second
    * (and final) call, will give you an items list of 1.
    * @param options The options parameters.
@@ -1854,6 +1936,30 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * GetSinglePagesWithBodyParamsNext
+   * @param parameters put {'name': 'body'} to pass the test
+   * @param nextLink The nextLink from the previous successful call to the GetSinglePagesWithBodyParams
+   *                 method.
+   * @param options The options parameters.
+   */
+  private async _getSinglePagesWithBodyParamsNext(
+    parameters: BodyParam,
+    nextLink: string,
+    options?: PagingGetSinglePagesWithBodyParamsNextOptionalParams
+  ): Promise<PagingGetSinglePagesWithBodyParamsNextResponse> {
+    return tracingClient.withSpan(
+      "PagingClient._getSinglePagesWithBodyParamsNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { parameters, nextLink, options },
+          getSinglePagesWithBodyParamsNextOperationSpec
+        ) as Promise<PagingGetSinglePagesWithBodyParamsNextResponse>;
+      }
+    );
+  }
+
+  /**
    * FirstResponseEmptyNext
    * @param nextLink The nextLink from the previous successful call to the FirstResponseEmpty method.
    * @param options The options parameters.
@@ -2220,6 +2326,20 @@ const getSinglePagesOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const getSinglePagesWithBodyParamsOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/single/getWithBodyParams",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
 const firstResponseEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/paging/firstResponseEmpty/1",
   httpMethod: "GET",
@@ -2559,6 +2679,20 @@ const getSinglePagesNextOperationSpec: coreClient.OperationSpec = {
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const getSinglePagesWithBodyParamsNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const firstResponseEmptyNextOperationSpec: coreClient.OperationSpec = {

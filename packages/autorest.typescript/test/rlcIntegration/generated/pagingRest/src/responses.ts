@@ -47,6 +47,20 @@ export interface PagingGetSinglePagesDefaultResponse extends HttpResponse {
   body: Record<string, unknown>;
 }
 
+/** A paging operation that finishes on the first call with body params without a nextlink */
+export interface PagingGetSinglePagesWithBodyParams200Response
+  extends HttpResponse {
+  status: "200";
+  body: ProductResultOutput;
+}
+
+/** A paging operation that finishes on the first call with body params without a nextlink */
+export interface PagingGetSinglePagesWithBodyParamsDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: Record<string, unknown>;
+}
+
 /** A paging operation whose first response's items list is empty, but still returns a next link. Second (and final) call, will give you an items list of 1. */
 export interface PagingFirstResponseEmpty200Response extends HttpResponse {
   status: "200";
