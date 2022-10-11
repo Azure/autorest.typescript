@@ -275,15 +275,16 @@ stages:
             artifact: CoverageReport
             displayName: "Publish coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
-          - task: AzureCLI@2
-            displayName: "Upload to Cadl Ranch Coverage Report"
-            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
-            inputs:
-              azureSubscription: "Azure SDK Playground"
-              scriptType: "bash"
-              scriptLocation: "inlineScript"
-              workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
-              inlineScript: npx cadl-ranch upload-coverage --coverageFile $(CADL_TESTSERVER_COVERAGE_REPORT) --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('./package.json').version")
+          - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
+              - task: AzureCLI@2
+                displayName: "Upload to Cadl Ranch Coverage Report"
+                condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
+                inputs:
+                  azureSubscription: "Azure SDK Playground"
+                  scriptType: "bash"
+                  scriptLocation: "inlineScript"
+                  workingDirectory: $(Build.SourcesDirectory)/packages/cadl-rlc-emitter
+                  inlineScript: npx cadl-ranch upload-coverage --coverageFile $(CADL_TESTSERVER_COVERAGE_REPORT) --generatorName typescript --storageAccountName cadlranchcoverage --generatorVersion $(node -p -e "require('./package.json').version")
 
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
