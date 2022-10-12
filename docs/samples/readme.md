@@ -10,7 +10,7 @@ Here are our samples for common generation scenarios
 
 <!-- LINKS -->
 [basic_readme]: ./specification/basic/readme.md
-[basic_generated]: ./specification/basic/generated
+[basic_generated]: ./specification/basic/generated.md
 [mgmt]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane#control-plane
 [mgmt_readme]: ./specification/management/readme.md
 [mgmt_generated]: ./specification/management/generated
