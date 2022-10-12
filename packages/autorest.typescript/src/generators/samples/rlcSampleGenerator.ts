@@ -24,7 +24,7 @@ import { isLongRunningOperation } from "../../restLevelClient/helpers/hasPolling
 import { isPagingOperation } from "../../utils/extractPaginationDetails";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 import { getParameterAssignment } from "../../utils/valueHelpers";
-import { Paths, PathMetadata } from "@azure-tools/rlc-codegen";
+import { Paths, PathMetadata } from "@azure-tools/rlc-common";
 import { transformPaths } from "../../restLevelClient/transforms/transformPaths";
 
 const tokenCredentialPackage = "@azure/identity";

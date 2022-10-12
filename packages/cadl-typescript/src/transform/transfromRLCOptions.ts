@@ -1,4 +1,4 @@
-import { RLCOptions } from "@azure-tools/rlc-codegen";
+import { RLCOptions } from "@azure-tools/rlc-common";
 import {
   getServiceNamespace,
   getServiceTitle,

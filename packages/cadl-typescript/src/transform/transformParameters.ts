@@ -8,7 +8,7 @@ import {
   ParameterMetadata,
   Schema,
   SchemaContext
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import { Model, Program } from "@cadl-lang/compiler";
 import {
   getAllRoutes,

@@ -4,7 +4,7 @@ import {
   Parameter
 } from "@autorest/codemodel";
 import { OptionalKind, ParameterDeclarationStructure } from "ts-morph";
-import { PathParameter } from "@azure-tools/rlc-codegen";
+import { PathParameter } from "@azure-tools/rlc-common";
 
 /**
  * Given an operation, extract all its parameters

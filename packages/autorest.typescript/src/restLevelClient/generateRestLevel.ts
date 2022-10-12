@@ -35,7 +35,7 @@ import {
   buildSampleTest,
   buildLicenseFile,
   buildReadmeFile
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
   generateSchemaTypes,

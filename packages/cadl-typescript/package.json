@@ -1,6 +1,6 @@
 {
-  "name": "@cadl-lang/ts-rlc",
-  "version": "0.0.1",
+  "name": "@azure-tools/cadl-typescript",
+  "version": "0.1.0",
   "description": "An experimental CADL emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -50,7 +50,7 @@
     "@cadl-lang/rest": "0.17.0",
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-codegen": "1.0.0",
+    "@azure-tools/rlc-common": "^0.1.0",
     "ts-morph": "^15.1.0"
   },
   "mocha": {

@@ -1,6 +1,6 @@
 {
-  "name": "@azure-tools/rlc-codegen",
-  "version": "1.0.0",
+  "name": "@azure-tools/rlc-common",
+  "version": "0.1.0",
   "description": "",
   "type": "module",
   "main": "dist/index.js",

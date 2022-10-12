@@ -40,7 +40,7 @@ import {
   ObjectSchema,
   Schema,
   SchemaContext
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import {
   getHeaderFieldName,
   getPathParamName,

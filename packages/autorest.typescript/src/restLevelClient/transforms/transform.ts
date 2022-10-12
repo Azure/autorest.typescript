@@ -11,7 +11,7 @@ import {
   RLCModel,
   AnnotationDetails,
   UrlInfo
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
 import {

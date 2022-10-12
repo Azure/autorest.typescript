@@ -13,7 +13,7 @@ import {
   RLCOptions,
   Schema,
   UrlInfo
-} from "@azure-tools/rlc-codegen";
+} from "@azure-tools/rlc-common";
 import {
   getDoc,
   getServiceNamespace,

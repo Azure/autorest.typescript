@@ -4,7 +4,7 @@ import {
   ParameterLocation,
   SchemaContext
 } from "@autorest/codemodel";
-import { PathParameter } from "@azure-tools/rlc-codegen";
+import { PathParameter } from "@azure-tools/rlc-common";
 import { primitiveSchemaToType } from "../restLevelClient/schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 

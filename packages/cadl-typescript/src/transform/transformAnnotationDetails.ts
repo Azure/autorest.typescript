@@ -1,5 +1,5 @@
 import { PagedResultMetadata } from "@azure-tools/cadl-azure-core";
-import { AnnotationDetails } from "@azure-tools/rlc-codegen";
+import { AnnotationDetails } from "@azure-tools/rlc-common";
 import { Model, Program, Type } from "@cadl-lang/compiler";
 import { getAllRoutes } from "@cadl-lang/rest/http";
 import {
