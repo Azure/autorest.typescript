@@ -86,7 +86,7 @@
         "@types/fs-extra": "^8.1.0",
         "@types/js-yaml": "3.12.1",
         "@types/mocha": "^5.2.7",
-        "@types/node": "^12.7.12",
+        "@types/node": "^18.0.0",
         "@types/prettier": "^1.18.4",
         "@types/sinon": "^10.0.0",
         "@types/xmlbuilder": "0.0.34",

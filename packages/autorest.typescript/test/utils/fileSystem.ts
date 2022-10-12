@@ -7,14 +7,17 @@ import {
   existsSync as existsSnc
 } from "fs";
 
-export function readFileSync(file: string, options: string): string;
+export function readFileSync(file: string, options: BufferEncoding): string;
 export function readFileSync(
   file: string,
-  options?: { encoding?: string | null; flag?: string } | null
+  options?: { encoding?: BufferEncoding | null; flag?: string } | null
 ): Uint8Array;
 export function readFileSync(
   file: string,
-  options?: { encoding?: string | null; flag?: string } | string | null
+  options?:
+    | { encoding?: BufferEncoding | null; flag?: string }
+    | BufferEncoding
+    | null
 ): Uint8Array | string {
   return readSync(file, options);
 }
