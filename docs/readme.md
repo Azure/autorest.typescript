@@ -24,7 +24,7 @@ These documents are Typescript-specific, see [our main docs][main_docs] for more
 
 6. [FAQ][faq]
 
-7. [Troubleshooting](troubleshooting)
+7. [Troubleshooting][troubleshooting]
 
 <!-- LINKS -->
 
@@ -39,4 +39,4 @@ These documents are Typescript-specific, see [our main docs][main_docs] for more
 [main_dev]: https://github.com/Azure/autorest/tree/main/docs/developer/readme.md
 [sample]: ./samples/readme.md
 [faq]: ./faq.md
-[trobleshooting]: ./troubleshooting.md
+[troubleshooting]: ./troubleshooting.md

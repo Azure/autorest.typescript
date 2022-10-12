@@ -1,4 +1,4 @@
-# <img align="center" src="../images/logo.png">  Troubleshooting
+# <img align="center" src="./images/logo.png">  Troubleshooting
 
 ## Generation Errors
 
@@ -31,8 +31,8 @@ Our [main docs][main_debugging] show you how to pass in flags (`--verbose` / `--
 If you'd like to actually debug through our code, you need to first clone the `v6` branch of our [repo][repo], then include flag `--typescript.debugger` on our command line. You should now be able to step through the Typescript generator's code base.
 
 <!-- LINKS -->
-[main_docs]: https://github.com/Azure/autorest/tree/master/docs/generate/troubleshooting.md
+[main_docs]: https://github.com/Azure/autorest/blob/main/docs/troubleshooting.md
 [autorest_issues]: https://github.com/Azure/autorest/issues
 [autorest_typescript_issues]: https://github.com/Azure/autorest.typescript/issues
-[main_debugging]: https://github.com/Azure/autorest/tree/master/docs/generate/troubleshooting.md#debugging
+[main_debugging]: https://github.com/Azure/autorest/blob/main/docs/troubleshooting.md#debugging
 [repo]: https://github.com/Azure/autorest.typescript/tree/v6
