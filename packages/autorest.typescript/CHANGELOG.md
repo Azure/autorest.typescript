@@ -1,3 +1,7 @@
+## 6.0.0-rc.2 (2022-10-13)
+
+- First release after rlc cadl support refactor  
+
 ## 6.0.0-rc.1 (2022-06-24)
 
 - [Feature] Support security definitions in swagger. Please refer to [#1336](https://github.com/Azure/autorest.typescript/issues/1385) for further details.

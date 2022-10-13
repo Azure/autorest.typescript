@@ -13,7 +13,7 @@ parameters:
 
 stages:
   - ${{if and(eq(variables['Build.Reason'], 'Manual'), eq(variables['System.TeamProject'], 'internal'))}}:
-      - stage: Release
+      - stage: AutorestTypescriptRelease
         displayName: "Release: @autorest/typescript"
         dependsOn: ${{parameters.DependsOn}}
         jobs:
@@ -64,7 +64,7 @@ stages:
                         npm publish $(TAR_NAME) --access public --tag latest
                         npm config delete //registry.npmjs.org/:_authToken
                       displayName: "Publish to NPM"
-      - stage: Release
+      - stage: CadlTypescriptRelease
         displayName: "Release: @azure-tools/cadl-typescript"
         dependsOn: ${{parameters.DependsOn}}
         jobs:
@@ -116,7 +116,7 @@ stages:
                         npm config delete //registry.npmjs.org/:_authToken
                       displayName: "Publish to NPM"
 
-      - stage: Release
+      - stage: RLCCommonRelease
         displayName: "Release: @azure-tools/rlc-common"
         dependsOn: ${{parameters.DependsOn}}
         jobs:
