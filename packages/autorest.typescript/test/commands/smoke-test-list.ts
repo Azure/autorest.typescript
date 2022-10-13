@@ -230,6 +230,24 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
+  },
+  {
+    path: joinPath(`${__dirname}`, "..", "./smoke/swagger/compute-rest.md"),
+    params: [
+      AutorestParams.RestClient,
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.GenerateSamples
+    ],
+    buildTag: "ci_rlc"
+  },
+  {
+    path: joinPath(`${__dirname}`, "..", "./smoke/swagger/network-rest.md"),
+    params: [
+      AutorestParams.RestClient,
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.GenerateSamples
+    ],
+    buildTag: "ci_rlc"
   }
   // {
   //   path:
