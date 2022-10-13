@@ -132,13 +132,6 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
           isLRO: false,
           isPaging: false
         };
-        if (
-          sample.originalFileLocation ===
-          "specification/compute/resource-manager/Microsoft.Compute/ComputeRP/stable/2022-08-01/examples/computeRPCommonExamples/Operations_List_MaximumSet_Gen.json"
-        ) {
-          const ssample = sample;
-          ssample;
-        }
         // convert the parameters to the intermidate model - SampleParameters
         const rawParamters: TestSampleParameters = {
           client: rawSample.clientParameters,
@@ -406,17 +399,24 @@ function enrichLROAndPagingInSample(
   operation: Operation,
   importedDict: Record<string, Set<string>>
 ) {
-  if (isLongRunningOperation(operation)) {
+  const session = getSession();
+  const isLRO = isLongRunningOperation(operation),
+    isPaging = isPagingOperation(operation);
+  if (isPaging) {
+    if (isLRO) {
+      session.info(
+        `${operation?.language?.default?.name} is an LRO and paging operation. Currently we only support paging when sample generation.`
+      );
+    }
+    sample.isPaging = true;
+    addValueInImportedDict(getPackageName(), "paginate", importedDict);
+  } else if (isLRO) {
     sample.isLRO = true;
     addValueInImportedDict(
       getPackageName(),
       "getLongRunningPoller",
       importedDict
     );
-  }
-  if (isPagingOperation(operation)) {
-    sample.isPaging = true;
-    addValueInImportedDict(getPackageName(), "paginate", importedDict);
   }
 }
 

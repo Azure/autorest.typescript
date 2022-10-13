@@ -232,16 +232,11 @@ export const readmes: SpecDefinition[] = [
     buildTag: "ci_rlc"
   },
   {
-    path: joinPath(`${__dirname}`, "..", "./smoke/swagger/compute-rest.md"),
-    params: [
-      AutorestParams.RestClient,
-      AutorestParams.AzureSdkForJs,
-      AutorestParams.GenerateSamples
-    ],
-    buildTag: "ci_rlc"
-  },
-  {
-    path: joinPath(`${__dirname}`, "..", "./smoke/swagger/network-rest.md"),
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "./smoke/swagger/anomaly-detector-rest.md"
+    ),
     params: [
       AutorestParams.RestClient,
       AutorestParams.AzureSdkForJs,
