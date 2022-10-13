@@ -246,12 +246,12 @@ stages:
                     tree .
                     npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
                   displayName: "Publish @azure-tools/rlc-common to GitHub"
-      - deployment: PublishToNpm
+      - deployment: PublishAutorestTypescriptToNpm
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
           TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackAutorestTypescriptArtifacts.TAR_NAME'] ]
         environment: npmtsjssdk
-        displayName: Publish dev version to NPM
+        displayName: Publish @autorest/typescript dev version to NPM
         pool:
           name: ${{ parameters.LinuxPool }}
           vmImage: ${{ parameters.OSVmImage }}
@@ -268,4 +268,50 @@ stages:
                     npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
                     npm publish $(TAR_NAME) --access public --tag dev
                     npm config delete //registry.npmjs.org/:_authToken
-                  displayName: "Publish to NPM"
+                  displayName: "Publish @autorest/typescript to NPM"
+      - deployment: PublishCadlAutorestToNpm
+        condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+        variables:
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
+        environment: npmtsjssdk
+        displayName: Publish @azure-tools/cadl-autorest dev version to NPM
+        pool:
+          name: ${{ parameters.LinuxPool }}
+          vmImage: ${{ parameters.OSVmImage }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: NodeTool@0
+                  inputs:
+                    versionSpec: "16.x"
+                  displayName: "Install Node.js"
+                - script: |
+                    cd $(Pipeline.Workspace)/packages
+                    npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+                    npm publish $(TAR_NAME) --access public --tag dev
+                    npm config delete //registry.npmjs.org/:_authToken
+                  displayName: "Publish @azure-tools/cadl-typescript to NPM"
+      - deployment: PublishRLCCommonToNpm
+        condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+        variables:
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackRLCCommonArtifacts.TAR_NAME'] ]
+        environment: npmtsjssdk
+        displayName: Publish @azure-tools/rlc-common dev version to NPM
+        pool:
+          name: ${{ parameters.LinuxPool }}
+          vmImage: ${{ parameters.OSVmImage }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: NodeTool@0
+                  inputs:
+                    versionSpec: "16.x"
+                  displayName: "Install Node.js"
+                - script: |
+                    cd $(Pipeline.Workspace)/packages
+                    npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+                    npm publish $(TAR_NAME) --access public --tag dev
+                    npm config delete //registry.npmjs.org/:_authToken
+                  displayName: "Publish @azure-tools/rlc-common to NPM"
