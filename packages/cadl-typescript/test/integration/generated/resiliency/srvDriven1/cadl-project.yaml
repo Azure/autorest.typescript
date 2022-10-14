@@ -1,0 +1,9 @@
+emitters:
+  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: true
+    addCredentials: false
+    isCadlTest: true
+    packageDetails:
+      name: "@msinternal/srv-driven-1"
+      description: "Srv Driven 1 Test Service"
+      version: "1.0.0"
