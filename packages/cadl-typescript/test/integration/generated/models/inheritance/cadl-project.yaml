@@ -1,0 +1,10 @@
+emitters:
+  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: true
+    includeShortcuts: true
+    addCredentials: false
+    isCadlTest: true
+    packageDetails:
+      name: "@msinternal/model-inheritance"
+      description: "Model Inheritance Test Service"
+      version: "1.0.0"

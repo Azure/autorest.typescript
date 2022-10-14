@@ -1,0 +1,12 @@
+emitters:
+  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: true
+    generateTest: true
+    includeShortcuts: true
+    addCredentials: false
+    isCadlTest: true
+    title: AuthApiKeyClient
+    packageDetails:
+      name: "@msinternal/auth-apikey"
+      description: "Auth api key Test Service"
+      version: "1.0.0"

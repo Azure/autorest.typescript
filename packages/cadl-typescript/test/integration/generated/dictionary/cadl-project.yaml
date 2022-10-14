@@ -1,0 +1,11 @@
+emitters:
+  "../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: true
+    includeShortcuts: true
+    addCredentials: false
+    isCadlTest: true
+    title: DictClient
+    packageDetails:
+      name: "@msinternal/dictionary"
+      description: "Dictionary Test Service"
+      version: "1.0.0"
