@@ -1,3 +1,0 @@
-emitters:
-  "@azure-tools/cadl-typescript": true
-  "@azure-tools/cadl-autorest": true

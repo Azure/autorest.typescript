@@ -22,13 +22,14 @@ import {
   buildEnvBrowserFile,
   buildRecordedClientFile,
   buildSampleTest,
-  buildReadmeFile
+  buildReadmeFile,
+  RLCOptions
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
 
-export async function $onEmit(program: Program) {
-  const rlcModels = await transformRLCModel(program);
+export async function $onEmit(program: Program, options: RLCOptions) {
+  const rlcModels = await transformRLCModel(program, options);
   await emitModels(rlcModels, program);
   await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
   await emitContentByBuilder(program, buildResponseTypes, rlcModels);
