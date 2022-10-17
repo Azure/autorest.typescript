@@ -199,7 +199,7 @@ function convertClientLevelParameters(
 ): SampleParameter[] {
   const clientParams: SampleParameter[] = [];
   if (!rawClientParams || rawClientParams.length == 0) {
-    return clientParams;
+    rawClientParams = [];
   }
 
   const { urlParameters } = transformBaseUrl(model);
@@ -220,8 +220,11 @@ function convertClientLevelParameters(
     // Currently only support one parametrized host
     // TODO: support more parameters in url once the bug fixs - https://github.com/Azure/autorest.typescript/issues/1399
     const clientParamAssignments = urlParameters.map(urlParameter => {
-      const exampleUriParam = rawUriParameters.filter(param => 
-        getLanguageMetadata(param.parameter.language).serializedName === urlParameter.name)
+      const exampleUriParam = rawUriParameters.filter(
+        param =>
+          getLanguageMetadata(param.parameter.language).serializedName ===
+          urlParameter.name
+      );
       const urlValue = getParameterAssignment(
         exampleUriParam[0].exampleValue,
         true
@@ -229,8 +232,8 @@ function convertClientLevelParameters(
       return {
         name: urlParameter.name,
         assignment: `const ${urlParameter.name} = ` + urlValue + `;`
-      }
-    })
+      };
+    });
 
     clientParams.push(...clientParamAssignments);
   }
@@ -329,9 +332,9 @@ function convertMethodLevelParameters(
   rawMethodParams
     .filter(p => p.parameter.protocol.http?.in == ParameterLocation.Query)
     .forEach(p => {
-      const name =
-        getLanguageMetadata(p.parameter.language).serializedName ||
-        p.parameter.language.default.name;
+      const name = `"${getLanguageMetadata(p.parameter.language)
+        .serializedName || p.parameter.language.default.name}"`;
+
       querySideAssignments.push(
         `${name}: ` + getParameterAssignment(p.exampleValue, true)
       );
@@ -396,17 +399,24 @@ function enrichLROAndPagingInSample(
   operation: Operation,
   importedDict: Record<string, Set<string>>
 ) {
-  if (isLongRunningOperation(operation)) {
+  const session = getSession();
+  const isLRO = isLongRunningOperation(operation),
+    isPaging = isPagingOperation(operation);
+  if (isPaging) {
+    if (isLRO) {
+      session.info(
+        `${operation?.language?.default?.name} is an LRO and paging operation. Currently we only support paging when sample generation.`
+      );
+    }
+    sample.isPaging = true;
+    addValueInImportedDict(getPackageName(), "paginate", importedDict);
+  } else if (isLRO) {
     sample.isLRO = true;
     addValueInImportedDict(
       getPackageName(),
       "getLongRunningPoller",
       importedDict
     );
-  }
-  if (isPagingOperation(operation)) {
-    sample.isPaging = true;
-    addValueInImportedDict(getPackageName(), "paginate", importedDict);
   }
 }
 
@@ -447,8 +457,7 @@ export function createSampleData(model: TestCodeModel) {
         `const ${urlParameter.name} = process.env["ENDPOINT"] || "<${urlParameter.name}>"`
       );
       clientParameters.push(`${urlParameter.name}`);
-    })
-
+    });
   }
   if (hasCredentials) {
     clientParamAssignments.push(

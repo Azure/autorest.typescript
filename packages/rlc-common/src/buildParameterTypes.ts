@@ -296,8 +296,12 @@ function buildHeaderParameterDefinitions(
     baseName
   );
 
+  let isOptional = true;
   if (headersInterface) {
     parametersFile.addInterface(headersInterface);
+    isOptional = !(headersInterface.properties || []).some(
+      (prop) => prop.hasQuestionToken === false
+    );
   }
 
   internalReferences.add(headerParameterInterfaceName);
@@ -310,7 +314,8 @@ function buildHeaderParameterDefinitions(
       {
         name: "headers",
         type: `RawHttpHeadersInput & ${baseName}Headers`,
-        kind: StructureKind.PropertySignature
+        kind: StructureKind.PropertySignature,
+        hasQuestionToken: isOptional
       }
     ]
   };
