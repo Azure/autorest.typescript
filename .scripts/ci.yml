@@ -28,25 +28,60 @@ stages:
           - script: |
               export MAIN_VERSION=$(node -p -e "require('./package.json').version")
               echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
-            name: SetMainVersion
+            name: SetAutorestTypescriptMainVersion
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
+          - script: |
+              export MAIN_VERSION=$(node -p -e "require('./package.json').version")
+              echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
+            name: SetCadlTypescriptMainVersion
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-typescript
+          - script: |
+              export MAIN_VERSION=$(node -p -e "require('./package.json').version")
+              echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
+            name: SetRLCCommonMainVersion
+            workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
+          - script: |
+              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$(Build.BuildNumber)
+              echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
+              npm version --no-git-tag-version $DEV_VERSION
+            condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+            name: SetAutorestTypescriptDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
           - script: |
               export DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$(Build.BuildNumber)
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
               npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
-            name: SetDevVersion
+            name: SetCadlTypescriptDevVersion
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-typescript
+          - script: |
+              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$(Build.BuildNumber)
+              echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
+              npm version --no-git-tag-version $DEV_VERSION
+            condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+            name: SetRLCCommonDevVersion
+            workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
+          - script: |
+              export TAR_NAME=$(npm pack -q)
+              echo $TAR_NAME
+              echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
+            name: PackAutorestTypescriptArtifacts
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
           - script: |
               export TAR_NAME=$(npm pack -q)
               echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
-            name: PackArtifacts
-            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
-
+            name: PackCadlTypescriptArtifacts
+            workingDirectory: $(Build.SourcesDirectory)/packages/cadl-typescript
+          - script: |
+              export TAR_NAME=$(npm pack -q)
+              echo $TAR_NAME
+              echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
+            name: PackRLCCommonArtifacts
+            workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
           - task: CopyFiles@2
             inputs:
-              contents: "$(Build.SourcesDirectory)/packages/autorest.typescript/*.tgz"
+              contents: "$(Build.SourcesDirectory)/packages/*/*.tgz"
               targetFolder: $(Build.ArtifactStagingDirectory)
               flattenFolders: true
             displayName: "Copy packages"

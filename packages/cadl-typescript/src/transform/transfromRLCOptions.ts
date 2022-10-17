@@ -5,23 +5,9 @@ import {
   Program
 } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
-import { readFileSync, existsSync } from "fs";
-import { join, resolve } from "path";
 
-export function transformRLCOptions(program: Program): RLCOptions {
-  let configFile = join(
-    resolve(program.compilerOptions.outputPath ?? ""),
-    "typescript.json"
-  );
-  if (!existsSync(configFile)) {
-    configFile = join(
-      resolve(program.compilerOptions.outputPath ?? ""),
-      "..",
-      "spec",
-      "typescript.json"
-    );
-  }
-  const config: RLCOptions = JSON.parse(readFileSync(configFile).toString());
+export function transformRLCOptions(program: Program, options: RLCOptions): RLCOptions {
+  const config = options;
   config.serviceInfo = {
     title: getServiceTitle(program)
   };

@@ -1,8 +1,70 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { paramMessage, createCadlLibrary } from "@cadl-lang/compiler";
+import {
+  paramMessage,
+  createCadlLibrary,
+  JSONSchemaType
+} from "@cadl-lang/compiler";
+import { RLCOptions } from "@azure-tools/rlc-common";
 import { Options } from "prettier";
+
+export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
+  type: "object",
+  additionalProperties: true,
+  properties: {
+    includeShortcuts: { type: "boolean", nullable: true },
+    multiClient: { type: "boolean", nullable: true },
+    batch: { type: "array", nullable: true, items: { 
+      type: "string",
+    } },
+    packageDetails: {
+      type: "object",
+      additionalProperties: true,
+      properties: {
+        name: { type: "string", nullable: false },
+        scopeName: { type: "string", nullable: true },
+        nameWithoutScope: { type: "string", nullable: true },
+        description: { type: "string", nullable: true },
+        version: { type: "string", nullable: false }
+      },
+      required: ["name", "version"],
+      nullable: true
+    },
+    addCredentials: { type: "boolean", nullable: true },
+    credentialScopes: { type: "array", nullable: true, items: { type: "string"}},
+    credentialKeyHeaderName: { type: "string", nullable: true },
+    generateMetadata: { type: "boolean", nullable: true },
+    generateTest: { type: "boolean", nullable: true },
+    generateSample: { type: "boolean", nullable: true },
+    azureSdkForJs: { type: "boolean", nullable: true },
+    azureOutputDirectory: { type: "string", nullable: true },
+    isCadlTest: { type: "boolean", nullable: true },
+    title: { type: "string", nullable: true },
+    dependencyInfo: {
+      type: "object",
+      additionalProperties: true,
+      properties: {
+        link: { type: "string", nullable: false },
+        description: { type: "string", nullable: false }
+      },
+      required: [],
+      nullable: true
+    },
+    productDocLink: { type: "string", nullable: true },
+    serviceInfo: {
+      type: "object",
+      additionalProperties: true,
+      properties: {
+        title: { type: "string", nullable: true },
+        description: { type: "string", nullable: true }
+      },
+      nullable: true
+    },
+    azureArm: { type: "boolean", nullable: true }
+  },
+  required: []
+};
 
 const libDef = {
   name: "@azure-tools/cadl-typescript",
@@ -87,6 +149,9 @@ const libDef = {
         default: paramMessage`Invalid type '${"type"}' for a default value`
       }
     }
+  },
+  emitter: {
+    options: RLCOptionsSchema
   }
 } as const;
 
