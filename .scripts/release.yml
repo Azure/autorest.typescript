@@ -28,6 +28,7 @@ stages:
 
             variables:
               MAIN_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackAutorestTypescriptArtifacts.MAIN_VERSION'] ]
+              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackAutorestTypescriptArtifacts.TAR_NAME'] ]
 
             strategy:
               runOnce:
@@ -38,9 +39,11 @@ stages:
                         versionSpec: "16.x"
                       displayName: "Install Node.js"
                     - script: |
+                        tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
+                    - script: |
                         cd package
                         npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(MAIN_VERSION) --tag v$(MAIN_VERSION) --notes='release  build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
-                      displayName: "Publish to GitHub"
+                      displayName: "Publish @autorest/typescript to GitHub"
           - deployment: PublishToNpm
             variables:
               TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackAutorestTypescriptArtifacts.TAR_NAME'] ]
@@ -79,6 +82,7 @@ stages:
 
             variables:
               MAIN_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.MAIN_VERSION'] ]
+              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
 
             strategy:
               runOnce:
@@ -89,14 +93,16 @@ stages:
                         versionSpec: "16.x"
                       displayName: "Install Node.js"
                     - script: |
+                        tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)                  
+                    - script: |
                         cd package
                         npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(MAIN_VERSION) --tag v$(MAIN_VERSION) --notes='release  build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
-                      displayName: "Publish to GitHub"
+                      displayName: "Publish @azure-tools/cadl-typescript to GitHub"
           - deployment: PublishToNpm
             variables:
               TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
             environment: npm
-            displayName: Publish NPM
+            displayName: Publish @azure-tools/cadl-typescript to NPM
             condition: ne(variables['SetDevVersion'], 'true')
             pool:
               name: ${{ parameters.LinuxPool }}
@@ -131,6 +137,7 @@ stages:
 
             variables:
               MAIN_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackRLCCommonArtifacts.MAIN_VERSION'] ]
+              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackRLCCommonArtifacts.TAR_NAME'] ]
 
             strategy:
               runOnce:
@@ -141,14 +148,16 @@ stages:
                         versionSpec: "16.x"
                       displayName: "Install Node.js"
                     - script: |
+                        tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
+                    - script: |
                         cd package
                         npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(MAIN_VERSION) --tag v$(MAIN_VERSION) --notes='release  build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
-                      displayName: "Publish to GitHub"
+                      displayName: "Publish @azure-tools/rlc-common to GitHub"
           - deployment: PublishToNpm
             variables:
               TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackRLCCommonArtifacts.TAR_NAME'] ]
             environment: npm
-            displayName: Publish NPM
+            displayName: Publish @azure-tools/rlc-commo to NPM
             condition: ne(variables['SetDevVersion'], 'true')
             pool:
               name: ${{ parameters.LinuxPool }}
