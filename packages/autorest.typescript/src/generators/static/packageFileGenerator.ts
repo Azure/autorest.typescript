@@ -195,6 +195,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
+    packageInfo.devDependencies["@types/node"] = "^18.11.0";
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
