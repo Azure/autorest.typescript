@@ -33,7 +33,7 @@ export interface PagingGetMultiplePagesHeaders {
 }
 
 export interface PagingGetMultiplePagesHeaderParam {
-  headers: RawHttpHeadersInput & PagingGetMultiplePagesHeaders;
+  headers?: RawHttpHeadersInput & PagingGetMultiplePagesHeaders;
 }
 
 export type PagingGetMultiplePagesParameters = PagingGetMultiplePagesHeaderParam &
@@ -98,7 +98,7 @@ export interface PagingGetOdataMultiplePagesHeaders {
 }
 
 export interface PagingGetOdataMultiplePagesHeaderParam {
-  headers: RawHttpHeadersInput & PagingGetOdataMultiplePagesHeaders;
+  headers?: RawHttpHeadersInput & PagingGetOdataMultiplePagesHeaders;
 }
 
 export type PagingGetOdataMultiplePagesParameters = PagingGetOdataMultiplePagesHeaderParam &
@@ -113,7 +113,7 @@ export interface PagingGetMultiplePagesWithOffsetHeaders {
 }
 
 export interface PagingGetMultiplePagesWithOffsetHeaderParam {
-  headers: RawHttpHeadersInput & PagingGetMultiplePagesWithOffsetHeaders;
+  headers?: RawHttpHeadersInput & PagingGetMultiplePagesWithOffsetHeaders;
 }
 
 export type PagingGetMultiplePagesWithOffsetParameters = PagingGetMultiplePagesWithOffsetHeaderParam &
@@ -157,7 +157,7 @@ export interface PagingGetMultiplePagesLROHeaders {
 }
 
 export interface PagingGetMultiplePagesLROHeaderParam {
-  headers: RawHttpHeadersInput & PagingGetMultiplePagesLROHeaders;
+  headers?: RawHttpHeadersInput & PagingGetMultiplePagesLROHeaders;
 }
 
 export type PagingGetMultiplePagesLROParameters = PagingGetMultiplePagesLROHeaderParam &
