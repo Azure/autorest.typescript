@@ -48,7 +48,7 @@ stages:
             variables:
               TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackAutorestTypescriptArtifacts.TAR_NAME'] ]
             environment: npm
-            displayName: Publish NPM
+            displayName: Publish @autorest/typescript to NPM
             condition: ne(variables['SetDevVersion'], 'true')
             pool:
               name: ${{ parameters.LinuxPool }}
