@@ -26,7 +26,7 @@ export interface ProjectOutput {
   lastDeployedDateTime: string;
 }
 
-/** Status monitor resource for long running operations */
+/** Provides status details for long running operations. */
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
@@ -38,6 +38,8 @@ export interface OperationStatusOutput {
   status: string;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModelOutput;
+  /** The result of the operation. */
+  result?: never;
 }
 
 /** A response containing error details. */

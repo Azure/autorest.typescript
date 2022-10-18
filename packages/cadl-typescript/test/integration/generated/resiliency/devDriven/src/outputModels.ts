@@ -1,9 +1,14 @@
+/** Product resource */
 export interface ProductOutput {
+  /** key of product */
   key: string;
+  /** received mode */
   received: "raw" | "model";
 }
 
+/** Final response from LRO call */
 export interface LROProductOutput extends ProductOutput {
+  /** Provisioning state returned by the service */
   provisioningState: string;
 }
 

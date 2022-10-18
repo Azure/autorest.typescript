@@ -1,12 +1,12 @@
-# Dict REST client library for JavaScript
+# AzureLro REST client library for JavaScript
 
-Dictionary Test Service
+LRO Basic Test Service
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/dictionary)
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/lro-basic)
 
 ## Getting started
 
@@ -18,15 +18,15 @@ Key links:
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@msinternal/dictionary` package
+### Install the `@msinternal/lro-basic` package
 
-Install the Dict REST client REST client library for JavaScript with `npm`:
+Install the AzureLro REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @msinternal/dictionary
+npm install @msinternal/lro-basic
 ```
 
-### Create and authenticate a `DictClient`
+### Create and authenticate a `AzureLroClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

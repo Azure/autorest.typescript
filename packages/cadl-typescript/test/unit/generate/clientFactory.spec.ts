@@ -10,7 +10,7 @@ describe("Client Factory generation testing", () => {
         "localhost",
         "Language Service"
       )
-      @serviceTitle("PetStoreClient")
+      @service( {title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);
@@ -43,7 +43,8 @@ describe("Client Factory generation testing", () => {
         
         return client;
     }
-    `);
+    `
+      );
     });
     it("should handle one parameter", async () => {
       const models = await emitClientFactoryFromCadl(`
@@ -54,7 +55,7 @@ describe("Client Factory generation testing", () => {
               Endpoint: Endpoint,
             }
           )
-          @serviceTitle("PetStoreClient")
+          @service( {title: "PetStoreClient"})
           namespace PetStore;
           @doc("The endpoint to use.")
           model Endpoint is string;
@@ -97,7 +98,7 @@ describe("Client Factory generation testing", () => {
     });
 
     it("should handle two parameters", async () => {
-        const models = await emitClientFactoryFromCadl(`
+      const models = await emitClientFactoryFromCadl(`
             @server(
               "{Endpoint}/language/{Version}",
               "Language Service",
@@ -106,7 +107,7 @@ describe("Client Factory generation testing", () => {
                 Version: Version
               }
             )
-            @serviceTitle("PetStoreClient")
+            @service( {title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
             model Endpoint is string;
@@ -116,10 +117,10 @@ describe("Client Factory generation testing", () => {
               V2
             }
             `);
-        assert.ok(models);
-        assertEqualContent(
-          models!.content,
-          `
+      assert.ok(models);
+      assertEqualContent(
+        models!.content,
+        `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
             import { testClient } from "./clientDefinitions";
             
@@ -152,7 +153,7 @@ describe("Client Factory generation testing", () => {
               return client;
           }
           `
-        );
-      });
+      );
+    });
   });
 });

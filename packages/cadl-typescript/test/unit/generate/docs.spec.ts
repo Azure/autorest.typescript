@@ -177,12 +177,12 @@ describe("Doc generation testing", () => {
         clientDef?.content!,
         `
         import { ReadParameters } from "./parameters";
-        import { Read204Response } from "./responses";
+        import { Read200Response } from "./responses";
         import { Client, StreamableMethod } from "@azure-rest/core-client";
   
         export interface Read {
             /** This is the longer description */
-            get(options?: ReadParameters): StreamableMethod<Read204Response>;
+            get(options?: ReadParameters): StreamableMethod<Read200Response>;
         }
   
         export interface Routes {

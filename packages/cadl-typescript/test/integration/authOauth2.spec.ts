@@ -2,7 +2,7 @@ import Outh2ClientFactory, {
   AuthOauth2Client
 } from "./generated/authentication/oauth2/src/index.js";
 import { assert } from "chai";
-describe("AuthOauth2Client Rest Client", () => {
+describe.skip("AuthOauth2Client Rest Client", () => {
   let client: AuthOauth2Client;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe("AuthOauth2Client Rest Client", () => {
     );
   });
 
-  it.skip("should return 204 when the token is valid", async () => {
+  it("should return 204 when the token is valid", async () => {
     try {
       const result = await client.path("/authentication/oauth2/valid").get();
       assert.strictEqual(result.status, "204");
@@ -29,7 +29,7 @@ describe("AuthOauth2Client Rest Client", () => {
     }
   });
 
-  it.skip("should return 403 when the token is invalid", async () => {
+  it("should return 403 when the token is invalid", async () => {
     try {
       const result = await client.path("/authentication/oauth2/invalid").get();
       assert.strictEqual(result.status, "403");

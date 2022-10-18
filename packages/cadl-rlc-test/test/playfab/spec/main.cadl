@@ -3,7 +3,8 @@ import "./routes.cadl";
 
 using Cadl.Rest;
 using Cadl.Http;
-@serviceTitle("PlayFab")
+
+@service({title: "PlayFab"})
 @server(
   "{endpoint}",
   "This feature is in private preview with a set of managed partners.  The Authentication APIs provide a convenient way to convert classic authentication responses into entity authentication models. These APIs will provide you with the entity authentication token needed for subsequent Entity API calls. APIs for authenticating player identities from a variety of identity providers (IDPs), linking them to PlayFab player accounts (master_player_account entities), and managing these links between identities and player accounts",

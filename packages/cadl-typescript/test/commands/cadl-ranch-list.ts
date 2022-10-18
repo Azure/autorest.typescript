@@ -16,10 +16,11 @@ export const cadls: CadlRanchConfig[] = [
     outputPath: "clients/interfaces",
     inputPath: "clients/interfaces"
   },
-  {
-    outputPath: "dictionary",
-    inputPath: "dictionary"
-  },
+  // TODO: comment this out once the dict issue resolved
+  // {
+  //   outputPath: "dictionary",
+  //   inputPath: "dictionary"
+  // },
   {
     outputPath: "extensibleEnums",
     inputPath: "extensible-enums"
@@ -27,6 +28,10 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "hello",
     inputPath: "hello"
+  },
+  {
+    outputPath: "lro/lroBasic",
+    inputPath: "lro/lro-basic"
   },
   {
     outputPath: "models/inheritance",

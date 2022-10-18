@@ -88,7 +88,6 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerCreateLedgerEntry201Response
     | ConfidentialLedgerCreateLedgerEntryDefaultResponse
   >;
-  /** Get a LedgerEntry */
   getLedgerEntry(
     transactionId: string,
     options?: ConfidentialLedgerGetLedgerEntryParameters
@@ -96,7 +95,6 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetLedgerEntry200Response
     | ConfidentialLedgerGetLedgerEntryDefaultResponse
   >;
-  /** Runs a custom action on LedgerEntry */
   getReceipt(
     transactionId: string,
     options?: ConfidentialLedgerGetReceiptParameters
@@ -104,7 +102,6 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetReceipt200Response
     | ConfidentialLedgerGetReceiptDefaultResponse
   >;
-  /** Runs a custom action on LedgerEntry */
   getTransactionStatus(
     transactionId: string,
     options?: ConfidentialLedgerGetTransactionStatusParameters
@@ -112,14 +109,12 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetTransactionStatus200Response
     | ConfidentialLedgerGetTransactionStatusDefaultResponse
   >;
-  /** Runs a custom action on LedgerEntry */
   getCurrentLedgerEntry(
     options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetCurrentLedgerEntry200Response
     | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
   >;
-  /** Delete a LedgerUser */
   deleteUser(
     userId: string,
     options?: ConfidentialLedgerDeleteUserParameters
@@ -127,7 +122,6 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerDeleteUser204Response
     | ConfidentialLedgerDeleteUserDefaultResponse
   >;
-  /** Get a LedgerUser */
   getUser(
     userId: string,
     options?: ConfidentialLedgerGetUserParameters
@@ -135,7 +129,6 @@ export interface ConfidentialLedgerOperations {
     | ConfidentialLedgerGetUser200Response
     | ConfidentialLedgerGetUserDefaultResponse
   >;
-  /** Creates or updates a LedgerUser */
   createOrUpdateUser(
     userId: string,
     options: ConfidentialLedgerCreateOrUpdateUserParameters
@@ -204,7 +197,6 @@ export interface ListLedgerEntries {
 }
 
 export interface GetLedgerEntry {
-  /** Get a LedgerEntry */
   get(
     options?: ConfidentialLedgerGetLedgerEntryParameters
   ): StreamableMethod<
@@ -214,7 +206,6 @@ export interface GetLedgerEntry {
 }
 
 export interface GetReceipt {
-  /** Runs a custom action on LedgerEntry */
   get(
     options?: ConfidentialLedgerGetReceiptParameters
   ): StreamableMethod<
@@ -224,7 +215,6 @@ export interface GetReceipt {
 }
 
 export interface GetTransactionStatus {
-  /** Runs a custom action on LedgerEntry */
   get(
     options?: ConfidentialLedgerGetTransactionStatusParameters
   ): StreamableMethod<
@@ -234,7 +224,6 @@ export interface GetTransactionStatus {
 }
 
 export interface GetCurrentLedgerEntry {
-  /** Runs a custom action on LedgerEntry */
   get(
     options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
@@ -244,21 +233,18 @@ export interface GetCurrentLedgerEntry {
 }
 
 export interface DeleteUser {
-  /** Delete a LedgerUser */
   delete(
     options?: ConfidentialLedgerDeleteUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerDeleteUser204Response
     | ConfidentialLedgerDeleteUserDefaultResponse
   >;
-  /** Get a LedgerUser */
   get(
     options?: ConfidentialLedgerGetUserParameters
   ): StreamableMethod<
     | ConfidentialLedgerGetUser200Response
     | ConfidentialLedgerGetUserDefaultResponse
   >;
-  /** Creates or updates a LedgerUser */
   patch(
     options: ConfidentialLedgerCreateOrUpdateUserParameters
   ): StreamableMethod<
