@@ -1,7 +1,7 @@
 emitters:
   "@azure-tools/cadl-typescript":
     generateMetadata: true
-    generateTest: false
+    generateTest: true
     includeShortcuts: true
     packageDetails:
       name: "@msinternal/confidential-ledger"
