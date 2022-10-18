@@ -32,8 +32,8 @@ import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 
 export async function transformRLCModel(program: Program, emitterOptions: RLCOptions): Promise<RLCModel> {
-  const srcPath = join(program.compilerOptions.outputPath ?? "", "src");
   const options: RLCOptions = transformRLCOptions(program, emitterOptions);
+  const srcPath = join(program.compilerOptions.outputPath ?? "", "src");
   const libraryName = normalizeName(
     options?.title ?? getServiceTitle(program),
     NameType.Class
