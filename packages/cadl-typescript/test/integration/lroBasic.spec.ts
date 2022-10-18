@@ -2,7 +2,7 @@ import AzureLroClientFactory, {
   AzureLroClient
 } from "./generated/lro/lroBasic/src/index.js";
 import { assert } from "chai";
-describe.skip("AzureLroClient Rest Client", () => {
+describe("AzureLroClient Rest Client", () => {
   let client: AzureLroClient;
 
   beforeEach(() => {
