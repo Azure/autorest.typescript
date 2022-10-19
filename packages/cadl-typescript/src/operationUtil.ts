@@ -4,9 +4,9 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { DecoratedType, Model, Program, Type } from "@cadl-lang/compiler";
 import {
-  getAllRoutes,
+  getAllHttpServices,
+  HttpOperation,
   HttpOperationResponse,
-  OperationDetails,
   StatusCode
 } from "@cadl-lang/rest/http";
 import {
@@ -15,7 +15,7 @@ import {
 } from "@azure-tools/cadl-azure-core";
 
 export function getNormalizedOperationName(
-  route: OperationDetails,
+  route: HttpOperation,
   includeGroupName = true
 ) {
   return includeGroupName
@@ -61,7 +61,7 @@ export function isBinaryPayload(body: Type, contentType: string) {
 
 export function isLongRunningOperation(
   program: Program,
-  operation: OperationDetails
+  operation: HttpOperation
 ) {
   program;
   for (const resp of operation.responses) {
@@ -87,7 +87,8 @@ function hasDecorator(type: DecoratedType, name: string): boolean {
 }
 
 export function hasPollingOperations(program: Program) {
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   for (const route of routes) {
     if (isLongRunningOperation(program, route)) {
       return true;
@@ -97,10 +98,7 @@ export function hasPollingOperations(program: Program) {
   return false;
 }
 
-export function isPagingOperation(
-  program: Program,
-  operation: OperationDetails
-) {
+export function isPagingOperation(program: Program, operation: HttpOperation) {
   for (const response of operation.responses) {
     const paged = extractPagedMetadataNested(program, response.type as Model);
     if (paged) {
@@ -111,7 +109,8 @@ export function isPagingOperation(
 }
 
 export function hasPagingOperations(program: Program) {
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   for (const route of routes) {
     if (isPagingOperation(program, route)) {
       return true;

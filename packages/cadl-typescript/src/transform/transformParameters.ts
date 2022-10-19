@@ -11,7 +11,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { Model, Program } from "@cadl-lang/compiler";
 import {
-  getAllRoutes,
+  getAllHttpServices,
   HttpOperationParameter,
   HttpOperationParameters
 } from "@cadl-lang/rest/http";
@@ -30,7 +30,8 @@ export function transformToParameterTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>
 ): OperationParameter[] {
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   const rlcParameters: OperationParameter[] = [];
   let outputImportedSet = new Set<string>();
   for (const route of routes) {

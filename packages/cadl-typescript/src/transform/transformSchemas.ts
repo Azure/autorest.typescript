@@ -4,14 +4,15 @@
 import { Schema, SchemaContext } from "@azure-tools/rlc-common";
 import { Model, Program, Type } from "@cadl-lang/compiler";
 import { getResourceOperation } from "@cadl-lang/rest";
-import { getAllRoutes } from "@cadl-lang/rest/http";
+import { getAllHttpServices } from "@cadl-lang/rest/http";
 import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
 const modelKey = Symbol("typescript-models");
 
 export function transformSchemas(program: Program) {
   const schemas: Schema[] = [];
   const schemaSet: Set<string> = new Set<string>();
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   for (const route of routes) {
     if (route.parameters.bodyType) {
       let bodyModel = route.parameters.bodyType;

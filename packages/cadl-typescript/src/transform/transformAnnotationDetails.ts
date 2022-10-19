@@ -1,7 +1,7 @@
 import { PagedResultMetadata } from "@azure-tools/cadl-azure-core";
 import { AnnotationDetails } from "@azure-tools/rlc-common";
 import { Model, Program, Type } from "@cadl-lang/compiler";
-import { getAllRoutes } from "@cadl-lang/rest/http";
+import { getAllHttpServices } from "@cadl-lang/rest/http";
 import {
   hasPagingOperations,
   extractPagedMetadataNested,
@@ -24,7 +24,8 @@ export function transformAnnotationDetails(
   }
   // TODO: Remove this when @pageable is finally removed.
   const nextLinks = new Set<string>();
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   for (const route of routes) {
     if (getPageable(program, route.operation)) {
       const nextLinkName = getPageable(program, route.operation) || "nextLink";
@@ -58,7 +59,8 @@ function extractPageDetailFromCore(program: Program) {
   if (!hasPagingOperations(program)) {
     return;
   }
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   const nextLinks = new Set<string>();
   const itemNames = new Set<string>();
   // Add default values
