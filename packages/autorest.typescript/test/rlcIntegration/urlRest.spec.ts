@@ -1,5 +1,6 @@
 import { assert } from "chai";
 import UrlRest, {
+  getBooleanTrue,
   UrlRestClient
 } from "./generated/urlRest/src";
 export type UriColor = "red color" | "green color" | "blue color";
@@ -134,9 +135,7 @@ describe("Integration tests for UrlRest", () => {
     });
 
     it("should work when path has bool", async function() {
-      const result = await client
-        .path("/paths/bool/true/{boolPath}", true)
-        .get();
+      const result = await getBooleanTrue(client, true);
       const result1 = await client
         .path("/paths/bool/false/{boolPath}", false)
         .get();

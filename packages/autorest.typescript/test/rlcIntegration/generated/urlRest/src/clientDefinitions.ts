@@ -1505,8 +1505,5 @@ export interface Routes {
 }
 
 export type UrlRestClient = Client & {
-  path: Routes;
-  paths: PathsOperations;
-  queries: QueriesOperations;
-  pathItems: PathItemsOperations;
+  path: Routes
 };
