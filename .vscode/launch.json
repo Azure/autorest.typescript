@@ -40,7 +40,7 @@
     {
       "name": "Generate code for CadlEmitter",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-rlc-emitter",
+      "cwd": "${workspaceFolder}/packages/cadl-typescript",
       "runtimeArgs": ["ts-node", "./test/commands/gen-cadl-ranch.ts"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
@@ -50,7 +50,7 @@
     {
       "name": "Cadl Unit or Integration Test",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-rlc-emitter",
+      "cwd": "${workspaceFolder}/packages/cadl-typescript",
       "runtimeArgs": [
         "mocha",
         "-r",
@@ -60,7 +60,7 @@
         "--timeout",
         "999999",
         "--colors",
-        "./test/unit/**/*.spec.ts"
+        "./test/integration/*.spec.ts"
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
