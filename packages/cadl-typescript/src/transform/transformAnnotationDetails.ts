@@ -12,11 +12,14 @@ export function transformAnnotationDetails(
   program: Program
 ): AnnotationDetails | undefined {
   // Extract paged metadata from Azure.Core.Page
+  let annotationDetails = {
+    hasLongRunning: hasPollingOperations(program)
+  };
   const details = extractPageDetailFromCore(program);
   if (details) {
     return {
       ...details,
-      hasLongRunning: hasPollingOperations(program)
+      ...annotationDetails
     };
   }
   // TODO: Remove this when @pageable is finally removed.
@@ -31,11 +34,11 @@ export function transformAnnotationDetails(
     }
   }
   if (nextLinks.size === 0) {
-    return;
+    return annotationDetails;
   }
   return {
+    ...annotationDetails,
     hasPaging: true,
-    hasLongRunning: hasPollingOperations(program),
     pageDetails: {
       itemNames: ["value"],
       nextLinkNames: [...nextLinks],

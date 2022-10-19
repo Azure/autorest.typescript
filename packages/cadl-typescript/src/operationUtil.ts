@@ -68,6 +68,9 @@ export function isLongRunningOperation(
     if (!resp.responses || !resp.responses.length) {
       continue;
     }
+    if (hasDecorator(operation.operation, "$pollingOperation")) {
+      return true;
+    }
     for (const unit of resp.responses) {
       for (const [_, header] of Object.entries(unit.headers!)) {
         if (hasDecorator(header, "$pollingLocation")) {
