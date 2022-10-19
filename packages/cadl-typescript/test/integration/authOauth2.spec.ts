@@ -2,7 +2,7 @@ import Outh2ClientFactory, {
   AuthOauth2Client
 } from "./generated/authentication/oauth2/src/index.js";
 import { assert } from "chai";
-describe("AuthOauth2Client Rest Client", () => {
+describe.skip("AuthOauth2Client Rest Client", () => {
   let client: AuthOauth2Client;
 
   beforeEach(() => {
