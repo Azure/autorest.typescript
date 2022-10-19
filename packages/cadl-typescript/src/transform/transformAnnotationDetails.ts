@@ -12,7 +12,7 @@ export function transformAnnotationDetails(
   program: Program
 ): AnnotationDetails | undefined {
   // Extract paged metadata from Azure.Core.Page
-  let annotationDetails = {
+  const annotationDetails = {
     hasLongRunning: hasPollingOperations(program)
   };
   const details = extractPageDetailFromCore(program);
