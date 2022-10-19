@@ -9940,7 +9940,7 @@ packages:
     dev: false
 
   file:projects/cadl-typescript.tgz:
-    resolution: {integrity: sha512-DDJsIfjYm+FwfYlK7SqDAaN9LVJL/Hs+u2NgdJuXTKRdOTsShbtF40qUZ0c0WrG9E5KytHqrmorQ82KxXP8nVg==, tarball: file:projects/cadl-typescript.tgz}
+    resolution: {integrity: sha512-tkz5UQMbfDtzvYm3P5IhH9oMyiXlc5Ipp2ejDWoqUF2yGEZ18bHxzxc0yFYiRDBo4AbFZeO4u5tHjFAMflFnvQ==, tarball: file:projects/cadl-typescript.tgz}
     name: '@rush-temp/cadl-typescript'
     version: 0.0.0
     dependencies:
@@ -9953,6 +9953,7 @@ packages:
       '@azure/core-auth': 1.4.0
       '@azure/core-lro': 2.4.0
       '@azure/core-paging': 1.3.0
+      '@azure/core-rest-pipeline': 1.9.2
       '@cadl-lang/compiler': 0.36.0
       '@cadl-lang/rest': 0.18.0_@cadl-lang+compiler@0.36.0
       '@cadl-lang/versioning': 0.8.0
