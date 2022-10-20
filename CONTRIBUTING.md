@@ -35,11 +35,18 @@ Want to get started hacking on the code? Great! Keep reading. This contributing 
 
 ### General Autorest generation design
 
-_TBA_
+Inside this project, we support both high level client generation and rest level client generation. In the rest level client generation, we support generate code from both rest api specs and cadl. In the high level client generation, we currently only support generation from rest api specs, the support of generate high level client from cadl is planning. 
+This project is managed by rush, there're four components inside the `./packages` folder.
+1. `packages/autorest.typescript` contains the original high level client generation and the rest level client generation, mostly including the transformation from autorest code model into RLC model part.
+1. `packages/rlc-common` contains the common generation logic from RLC model into rest client libraries code part. Which is depended by both `package/autorest.typescript` rlc generation part and `packages/cadl-typescript`.
+1. `packages/cadl-typescript` is the typescript cadl emitter, which contains the transformation from cadl model into RLC model.
+1. `packages/cadl-rlc-test` is for cadl rlc emitter smoke test. 
 
 ### Typescript/Javascript SDK generator Design
 
-The generated Typescript/Javascript SDK has the following structure:
+The generated Typescript/Javascript SDK has the following structure: 
+
+**Please Note that the following content are based on you are already inside the packages/autorest.typescript folder**
 
 1. Client (Handled by [clientFileGenerator.ts](./src/generators/clientFileGenerator.ts))
 2. Client Context (Handled by [clientContextFileGenerator.ts](./src/generators/clientContextFileGenerator.ts))
@@ -72,9 +79,8 @@ git clone https://github.com/Azure/autorest.typescript.git
 
 ```
 npm install -g @autorest/autorest
-cd autorest.typescript
-npm install
-npm run build
+rush update
+rush rebuild
 ```
 
 3. There are 3 test-suites in the generator:
@@ -232,6 +238,6 @@ If your test case is working fine as expected, now you are ready to create the P
 Our generated SDKs take dependency on various packages which you can see in the generated package.json files. These will need to be upgraded from time to time to stay on the latest major version so that we get bug fixes automatically due to semver.
 
 - Update the version of the dependency you are looking for in the methods `restLevelPackage` and/or `regularAutorestPackage` in the [`packageFileGenerator.ts`](https://github.com/Azure/autorest.typescript/blob/main/src/generators/static/packageFileGenerator.ts) file.
-- Run `npm run build && npm run generate-swaggers && npm run smoke-tests` to update the generated files in the repo and run smoke tests before creating the PR.
+- Run `rush rebuild && npm run generate-swaggers && npm run smoke-tests` to update the generated files in the repo and run smoke tests before creating the PR.
 
 For example, see the [PR 1271](https://github.com/Azure/autorest.typescript/pull/1271) that updates the version of `prettier` that the generated SDKs depend on.
