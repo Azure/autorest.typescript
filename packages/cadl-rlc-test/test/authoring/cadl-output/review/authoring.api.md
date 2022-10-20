@@ -48,7 +48,7 @@ export interface DeploymentOutput {
 
 // @public (undocumented)
 export interface DeploymentsDeleteDeployment202Headers {
-    "operation-location"?: string;
+    "operation-location": string;
 }
 
 // @public
@@ -449,6 +449,7 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
 export interface OperationStatusOutput {
     error?: ErrorModelOutput;
     id: string;
+    result?: never;
     status: string;
 }
 
@@ -570,7 +571,6 @@ export interface ProjectsCreateOrUpdateDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export interface ProjectsCreateOrUpdateMediaTypesParam {
-    // (undocumented)
     contentType: "application/merge-patch+json";
 }
 
@@ -579,7 +579,7 @@ export type ProjectsCreateOrUpdateParameters = ProjectsCreateOrUpdateMediaTypesP
 
 // @public (undocumented)
 export interface ProjectsDelete202Headers {
-    "operation-location"?: string;
+    "operation-location": string;
 }
 
 // @public

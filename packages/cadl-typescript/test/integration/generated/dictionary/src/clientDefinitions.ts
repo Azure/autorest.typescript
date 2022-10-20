@@ -21,26 +21,26 @@ import {
   RecursiveModelValuePutParameters,
 } from "./parameters";
 import {
-  Int32ValueGet204Response,
-  Int32ValuePut200Response,
-  Int64ValueGet204Response,
-  Int64ValuePut200Response,
-  BooleanValueGet204Response,
-  BooleanValuePut200Response,
-  StringValueGet204Response,
-  StringValuePut200Response,
-  Float32ValueGet204Response,
-  Float32ValuePut200Response,
-  DatetimeValueGet204Response,
-  DatetimeValuePut200Response,
-  DurationValueGet204Response,
-  DurationValuePut200Response,
-  UnknownValueGet204Response,
-  UnknownValuePut200Response,
-  ModelValueGet204Response,
-  ModelValuePut200Response,
-  RecursiveModelValueGet204Response,
-  RecursiveModelValuePut200Response,
+  Int32ValueGet200Response,
+  Int32ValuePut204Response,
+  Int64ValueGet200Response,
+  Int64ValuePut204Response,
+  BooleanValueGet200Response,
+  BooleanValuePut204Response,
+  StringValueGet200Response,
+  StringValuePut204Response,
+  Float32ValueGet200Response,
+  Float32ValuePut204Response,
+  DatetimeValueGet200Response,
+  DatetimeValuePut204Response,
+  DurationValueGet200Response,
+  DurationValuePut204Response,
+  UnknownValueGet200Response,
+  UnknownValuePut204Response,
+  ModelValueGet200Response,
+  ModelValuePut204Response,
+  RecursiveModelValueGet200Response,
+  RecursiveModelValuePut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -48,190 +48,190 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface Int32ValueOperations {
   get(
     options?: Int32ValueGetParameters
-  ): StreamableMethod<Int32ValueGet204Response>;
+  ): StreamableMethod<Int32ValueGet200Response>;
   put(
     options: Int32ValuePutParameters
-  ): StreamableMethod<Int32ValuePut200Response>;
+  ): StreamableMethod<Int32ValuePut204Response>;
 }
 
 /** Contains operations for Int64Value operations */
 export interface Int64ValueOperations {
   get(
     options?: Int64ValueGetParameters
-  ): StreamableMethod<Int64ValueGet204Response>;
+  ): StreamableMethod<Int64ValueGet200Response>;
   put(
     options: Int64ValuePutParameters
-  ): StreamableMethod<Int64ValuePut200Response>;
+  ): StreamableMethod<Int64ValuePut204Response>;
 }
 
 /** Contains operations for BooleanValue operations */
 export interface BooleanValueOperations {
   get(
     options?: BooleanValueGetParameters
-  ): StreamableMethod<BooleanValueGet204Response>;
+  ): StreamableMethod<BooleanValueGet200Response>;
   put(
     options: BooleanValuePutParameters
-  ): StreamableMethod<BooleanValuePut200Response>;
+  ): StreamableMethod<BooleanValuePut204Response>;
 }
 
 /** Contains operations for StringValue operations */
 export interface StringValueOperations {
   get(
     options?: StringValueGetParameters
-  ): StreamableMethod<StringValueGet204Response>;
+  ): StreamableMethod<StringValueGet200Response>;
   put(
     options: StringValuePutParameters
-  ): StreamableMethod<StringValuePut200Response>;
+  ): StreamableMethod<StringValuePut204Response>;
 }
 
 /** Contains operations for Float32Value operations */
 export interface Float32ValueOperations {
   get(
     options?: Float32ValueGetParameters
-  ): StreamableMethod<Float32ValueGet204Response>;
+  ): StreamableMethod<Float32ValueGet200Response>;
   put(
     options: Float32ValuePutParameters
-  ): StreamableMethod<Float32ValuePut200Response>;
+  ): StreamableMethod<Float32ValuePut204Response>;
 }
 
 /** Contains operations for DatetimeValue operations */
 export interface DatetimeValueOperations {
   get(
     options?: DatetimeValueGetParameters
-  ): StreamableMethod<DatetimeValueGet204Response>;
+  ): StreamableMethod<DatetimeValueGet200Response>;
   put(
     options: DatetimeValuePutParameters
-  ): StreamableMethod<DatetimeValuePut200Response>;
+  ): StreamableMethod<DatetimeValuePut204Response>;
 }
 
 /** Contains operations for DurationValue operations */
 export interface DurationValueOperations {
   get(
     options?: DurationValueGetParameters
-  ): StreamableMethod<DurationValueGet204Response>;
+  ): StreamableMethod<DurationValueGet200Response>;
   put(
     options: DurationValuePutParameters
-  ): StreamableMethod<DurationValuePut200Response>;
+  ): StreamableMethod<DurationValuePut204Response>;
 }
 
 /** Contains operations for UnknownValue operations */
 export interface UnknownValueOperations {
   get(
     options?: UnknownValueGetParameters
-  ): StreamableMethod<UnknownValueGet204Response>;
+  ): StreamableMethod<UnknownValueGet200Response>;
   put(
     options: UnknownValuePutParameters
-  ): StreamableMethod<UnknownValuePut200Response>;
+  ): StreamableMethod<UnknownValuePut204Response>;
 }
 
 /** Contains operations for ModelValue operations */
 export interface ModelValueOperations {
   get(
     options?: ModelValueGetParameters
-  ): StreamableMethod<ModelValueGet204Response>;
+  ): StreamableMethod<ModelValueGet200Response>;
   put(
     options: ModelValuePutParameters
-  ): StreamableMethod<ModelValuePut200Response>;
+  ): StreamableMethod<ModelValuePut204Response>;
 }
 
 /** Contains operations for RecursiveModelValue operations */
 export interface RecursiveModelValueOperations {
   get(
     options?: RecursiveModelValueGetParameters
-  ): StreamableMethod<RecursiveModelValueGet204Response>;
+  ): StreamableMethod<RecursiveModelValueGet200Response>;
   put(
     options: RecursiveModelValuePutParameters
-  ): StreamableMethod<RecursiveModelValuePut200Response>;
+  ): StreamableMethod<RecursiveModelValuePut204Response>;
 }
 
 export interface Int32ValueGet {
   get(
     options?: Int32ValueGetParameters
-  ): StreamableMethod<Int32ValueGet204Response>;
+  ): StreamableMethod<Int32ValueGet200Response>;
   put(
     options: Int32ValuePutParameters
-  ): StreamableMethod<Int32ValuePut200Response>;
+  ): StreamableMethod<Int32ValuePut204Response>;
 }
 
 export interface Int64ValueGet {
   get(
     options?: Int64ValueGetParameters
-  ): StreamableMethod<Int64ValueGet204Response>;
+  ): StreamableMethod<Int64ValueGet200Response>;
   put(
     options: Int64ValuePutParameters
-  ): StreamableMethod<Int64ValuePut200Response>;
+  ): StreamableMethod<Int64ValuePut204Response>;
 }
 
 export interface BooleanValueGet {
   get(
     options?: BooleanValueGetParameters
-  ): StreamableMethod<BooleanValueGet204Response>;
+  ): StreamableMethod<BooleanValueGet200Response>;
   put(
     options: BooleanValuePutParameters
-  ): StreamableMethod<BooleanValuePut200Response>;
+  ): StreamableMethod<BooleanValuePut204Response>;
 }
 
 export interface StringValueGet {
   get(
     options?: StringValueGetParameters
-  ): StreamableMethod<StringValueGet204Response>;
+  ): StreamableMethod<StringValueGet200Response>;
   put(
     options: StringValuePutParameters
-  ): StreamableMethod<StringValuePut200Response>;
+  ): StreamableMethod<StringValuePut204Response>;
 }
 
 export interface Float32ValueGet {
   get(
     options?: Float32ValueGetParameters
-  ): StreamableMethod<Float32ValueGet204Response>;
+  ): StreamableMethod<Float32ValueGet200Response>;
   put(
     options: Float32ValuePutParameters
-  ): StreamableMethod<Float32ValuePut200Response>;
+  ): StreamableMethod<Float32ValuePut204Response>;
 }
 
 export interface DatetimeValueGet {
   get(
     options?: DatetimeValueGetParameters
-  ): StreamableMethod<DatetimeValueGet204Response>;
+  ): StreamableMethod<DatetimeValueGet200Response>;
   put(
     options: DatetimeValuePutParameters
-  ): StreamableMethod<DatetimeValuePut200Response>;
+  ): StreamableMethod<DatetimeValuePut204Response>;
 }
 
 export interface DurationValueGet {
   get(
     options?: DurationValueGetParameters
-  ): StreamableMethod<DurationValueGet204Response>;
+  ): StreamableMethod<DurationValueGet200Response>;
   put(
     options: DurationValuePutParameters
-  ): StreamableMethod<DurationValuePut200Response>;
+  ): StreamableMethod<DurationValuePut204Response>;
 }
 
 export interface UnknownValueGet {
   get(
     options?: UnknownValueGetParameters
-  ): StreamableMethod<UnknownValueGet204Response>;
+  ): StreamableMethod<UnknownValueGet200Response>;
   put(
     options: UnknownValuePutParameters
-  ): StreamableMethod<UnknownValuePut200Response>;
+  ): StreamableMethod<UnknownValuePut204Response>;
 }
 
 export interface ModelValueGet {
   get(
     options?: ModelValueGetParameters
-  ): StreamableMethod<ModelValueGet204Response>;
+  ): StreamableMethod<ModelValueGet200Response>;
   put(
     options: ModelValuePutParameters
-  ): StreamableMethod<ModelValuePut200Response>;
+  ): StreamableMethod<ModelValuePut204Response>;
 }
 
 export interface RecursiveModelValueGet {
   get(
     options?: RecursiveModelValueGetParameters
-  ): StreamableMethod<RecursiveModelValueGet204Response>;
+  ): StreamableMethod<RecursiveModelValueGet200Response>;
   put(
     options: RecursiveModelValuePutParameters
-  ): StreamableMethod<RecursiveModelValuePut200Response>;
+  ): StreamableMethod<RecursiveModelValuePut204Response>;
 }
 
 export interface Routes {

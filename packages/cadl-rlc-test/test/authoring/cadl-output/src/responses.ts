@@ -55,7 +55,7 @@ export interface ProjectsGetDefaultResponse extends HttpResponse {
 
 export interface ProjectsDelete202Headers {
   /** The location for monitoring the operation state. */
-  "operation-location"?: string;
+  "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
@@ -171,7 +171,7 @@ export interface DeploymentsDeployProjectDefaultResponse extends HttpResponse {
 
 export interface DeploymentsDeleteDeployment202Headers {
   /** The location for monitoring the operation state. */
-  "operation-location"?: string;
+  "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */

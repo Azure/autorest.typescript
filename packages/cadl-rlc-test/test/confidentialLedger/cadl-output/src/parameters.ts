@@ -60,6 +60,7 @@ export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
 }
 
 export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {
+  /** This request has a JSON Merge Patch body. */
   contentType: "application/merge-patch+json";
 }
 
