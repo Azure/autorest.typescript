@@ -28,6 +28,24 @@
       ]
     },
     {
+      "type": "node",
+      "request": "launch",
+      "name": "[autorest.typescript]-IntegrationTests",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "program": "./node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "./test/integration/**/*.spec.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "protocol": "inspector"
+    },
+    {
       "name": "Generate code for CadlRlcTest",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/cadl-rlc-test",

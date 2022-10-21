@@ -141,7 +141,7 @@ Now, the code will wait for the debugger to be attached. Open the repository in 
 
 #### Spec file
 
-If you would like to debug the `testUserCase.spec.ts` file (after the SDK is generated), Open the repository in VS Code -> Open the `testUserCase.spec.ts` file -> Select `Run and Debug` section -> Click `IntegrationTests - Current File`.
+If you would like to debug the `testUserCase.spec.ts` file (after the SDK is generated), Open the repository in VS Code -> Open the `testUserCase.spec.ts` file -> Select `Run and Debug` section -> Click `[autorest.typescript]-IntegrationTests`.
 
 #### How to debug an unit test case
 
@@ -162,7 +162,7 @@ If you would like to debug the `testUserCase.spec.ts` file (after the SDK is gen
 - Once the Test Server is running
 
   1. In VSCode go to the debugger tab
-  2. Select the "IntegrationTests" profile from the drop down
+  2. Select the "[autorest.typescript]-IntegrationTests" profile from the drop down
   3. Click the "Play" button
 
 - **\*\***IMPORTANT**\*\***: Running Integration Tests for debugging, does not re-generate the test clients so make sure that after each change you do:
