@@ -30,6 +30,24 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "[autorest.typescript]-UnitTests",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "program": "./node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "./test/unit/**/*.spec.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "protocol": "inspector"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "[autorest.typescript]-IntegrationTests",
       "cwd": "${workspaceFolder}/packages/autorest.typescript",
       "program": "./node_modules/mocha/bin/_mocha",
@@ -40,6 +58,24 @@
         "999999",
         "--colors",
         "./test/integration/**/*.spec.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "protocol": "inspector"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "[autorest.typescript]-IntegrationTests - Current File",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "program": "./node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceFolder}/${relativeFile}"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",

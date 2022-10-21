@@ -141,14 +141,14 @@ Now, the code will wait for the debugger to be attached. Open the repository in 
 
 #### Spec file
 
-If you would like to debug the `testUserCase.spec.ts` file (after the SDK is generated), Open the repository in VS Code -> Open the `testUserCase.spec.ts` file -> Select `Run and Debug` section -> Click `[autorest.typescript]-IntegrationTests`.
+If you would like to debug the `testUserCase.spec.ts` file (after the SDK is generated), Open the repository in VS Code -> Open the `testUserCase.spec.ts` file -> Select `Run and Debug` section -> Click `[autorest.typescript]-IntegrationTests - Current File`.
 
 #### How to debug an unit test case
 
 - In VS Code, We have created a Debugging profile for UnitTests to start debugging:
 
   1. Go to the debugger tab
-  2. Select the "Unit Test" Profile
+  2. Select the "[autorest.typescript]-UnitTests" Profile
   3. Click the "Play" button
 
 - Your breakpoints will start hitting, you can set breakpoints in either Test or Generator code
