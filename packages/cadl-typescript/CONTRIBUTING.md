@@ -1,0 +1,127 @@
+# Introduction
+
+This library is the cadl typescript emitter for Rest Level Client. It take cadl as input, transform it into RLCModel, then call rlc-common library to generate the RLC code.
+
+On a high level, the entire Rest Level Client generation process would be:
+
+Cadl Input -> Cadl Compiler -> Cadl Program -> Transform RLCModel -> Call RLC Common library to Generate Code
+
+Within the Transform RLCModel, it has the following stages:
+
+Cadl Program + User Options -> Transform RLCModel Paths -> Transform RLCModel Options -> Transform RLCModel Schemas -> Transform RLCModel Response and Parameter Types -> call RLCCommon libraries to generate the code.
+
+### Steps to clone, build & test
+
+1. Use the following command to clone the Typescript/Javascript SDK generator repository:
+
+```
+git clone https://github.com/Azure/autorest.typescript.git
+```
+
+2. Use the following commands to build the SDK generator:
+
+```
+npm install -g @cadl-lang/compiler
+rush update
+rush rebuild
+```
+
+3. There are also 3 test-suites in the RLC generator:
+   1. Unit tests (which could be found at `test/unit/*`)
+   2. Integration tests (which could be found at `test/integration/*`)
+   3. Smoke tests (which could be found at `../../packages/cadl-rlc-test`)
+4. You can run the Unit tests & Integration tests using the following command:
+
+```
+npm run test
+```
+
+Running the command above will do the following things:
+
+- Start TestServer
+- Build Cadl Typescript
+- Generate all scenarios in parallel (i.e. Dictionary, Extensible Enums, Models, Resiliency)
+- Run all the tests under test/integration
+- Stop TestServer
+
+**_Note_**: If your development environment is Windows, then run the command `npm run start-test-server:v2`(in a seperate window) before running `npm run test` and run the command `npm run stop-test-server` after. (In non windows machines, we could run the test-server in the background automatically. But, in Windows machines, it has to be done manually.)
+
+5. You can run the Smoke tests using the following command:
+
+```
+cd ../../packages/cadl-rlc-test
+npm run smoke-test
+```
+
+### How to add an integration test case
+
+Whenever you work on adding a feature/fixing a bug, this would probably be your first step. You create a test case and then run it through the generator, see the result, modify the generator, run it again and so on, until you get the desired output.
+
+1. Pick up a cadl as your test input in cadl-ranch. Below are some examples
+
+Let us say your test input will be called `testUserCase.json`.
+
+2. Now add an entry to the CadlRanchConfig to the file [`cadl-ranch-list.ts`](./test/commands/cadl-ranch-list.ts). In the file, add the following to the array.
+
+```
+  {
+    outputPath: "authentication/apiKey",
+    inputPath: "authentication/api-key"
+  },
+```
+
+3. Now, You can generate the RLC for your test case with the following command: (Initially, during your development, you do not want to run all the cases during every step of your development, you can comment out other test cases. But, once your code changes are complete for your case, then you need to run the entire suite to ensure that your changes did not cause any unwanted changes.)
+
+```
+npm run generate-cadl-only
+```
+
+4. Once you are satisfied with the generated code, you can add a spec file such as `testUserCaseRest.spec.ts` file [here](./test/integration). You can find several examples in the same place.
+
+### How to debug an integration test case
+
+#### `generate-cadl-only` step
+
+If you would like to debug the `generate-cadl-only` step for our test input, use the following command:
+
+```
+npm run generate-cadl-only -- -b -i testUserCase --debug
+```
+
+Now, the code will wait for the debugger to be attached. Open the repository in VS Code -> Select `Run and Debug` section -> Click `Attach`.
+
+#### Spec file
+
+If you would like to debug the `testUserCase.spec.ts` file (after the SDK is generated), Open the repository in VS Code -> Open the `testUserCase.spec.ts` file -> Select `Run and Debug` section -> Click `IntegrationTests - Current File`.
+
+#### How to debug an unit test case
+
+- In VS Code, We have created a Debugging profile for UnitTests to start debugging:
+
+  1. Go to the debugger tab
+  2. Select the "Unit Test" Profile
+  3. Click the "Play" button
+
+- Your breakpoints will start hitting, you can set breakpoints in either Test or Generator code
+
+#### Integration Tests
+
+- In order to debug integration tests you need to start the test server, by running:
+
+      npm run start-test-server:v1
+
+- Once the Test Server is running
+
+  1. In VSCode go to the debugger tab
+  2. Select the "IntegrationTests" profile from the drop down
+  3. Click the "Play" button
+
+- **\*\***IMPORTANT**\*\***: Running Integration Tests for debugging, does not re-generate the test clients so make sure that after each change you do:
+
+  - Re-generate all the test swaggers
+
+        npm run generate-cadl-only -- --build
+
+  - Re-generate a specific swagger
+
+        npm run generate-cadl-only -- -i bodyComplexRest -b
