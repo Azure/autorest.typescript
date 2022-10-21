@@ -39,9 +39,9 @@ Inside this project, we support both high level client generation and rest level
   
 This project is managed by rush, there're four components inside the `./packages` folder.
 
-1. `packages/autorest.typescript` contains the original high level client generation and the rest level client generation, mostly including the transformation from autorest code model into RLC model part. see the [Contributing.md](./packages/autorest.typescript/CONTRUBUTING.md) for this package.  
-1. `packages/rlc-common` contains the common generation logic from RLC model into rest client libraries code part. Which is depended by both `package/autorest.typescript` rlc generation part and `packages/cadl-typescript`. see the [Contributing.md](./packages/rlc-common/CONTRIBUTING.md) for this package.
-1. `packages/cadl-typescript` is the typescript cadl emitter, which contains the transformation from cadl model into RLC model. see the [Contributing.md](./packages/cadl-typescript/CONTRIBUTING.md) for this package.
+1. `packages/autorest.typescript` contains the original high level client generation and the rest level client generation, mostly including the transformation from autorest code model into RLC model part. see the [CONTRIBUTING.md](./packages/autorest.typescript/CONTRIBUTING.md) for this package.  
+1. `packages/rlc-common` contains the common generation logic from RLC model into rest client libraries code part. Which is depended by both `package/autorest.typescript` rlc generation part and `packages/cadl-typescript`. see the [CONTRIBUTING.md](./packages/rlc-common/CONTRIBUTING.md) for this package.
+1. `packages/cadl-typescript` is the typescript cadl emitter, which contains the transformation from cadl model into RLC model. see the [CONTRIBUTING.md](./packages/cadl-typescript/CONTRIBUTING.md) for this package.
 1. `packages/cadl-rlc-test` is for cadl rlc emitter smoke test. 
 
 ### Things to keep in mind when contributing
