@@ -1,0 +1,294 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/versioning";
+import "@azure-tools/cadl-azure-core";
+
+using Cadl.Http;
+using Cadl.Rest;
+using Cadl.Versioning;
+using Azure.Core;
+
+@service({
+  title: "Contoso Widget Manager",
+})
+@versioned(Contoso.WidgetManager.Versions)
+@versionedDependency(
+  [[Contoso.WidgetManager.Versions.v2022_08_31, Azure.Core.Versions.v1_0_Preview_1]]
+)
+enum Contoso { WidgetManager, WidgetManagerSecond }
+namespace Contoso.WidgetManager {
+  enum Versions {
+    v2022_08_31: "2022-08-31",
+  }
+
+  enum Clients { WidgetClient, PartsClient };
+
+  // Models ////////////////////
+
+  @doc("The color of a widget.")
+  @knownValues(WidgetColorValues)
+  model WidgetColor is string;
+
+  enum WidgetColorValues {
+    Black,
+    White,
+    Red,
+    Green,
+    Blue,
+  }
+
+  @doc("A widget.")
+  @resource("widgets")
+  model Widget {
+    @key("widgetName")
+    @doc("The widget name.")
+    @visibility("read")
+    name: string;
+
+    @doc("The widget color.")
+    color: WidgetColor;
+
+    @doc("The ID of the widget's manufacturer.")
+    manufacturerId: string;
+    ...EtagProperty;
+  }
+
+  @doc("The repair state of a widget.")
+  @knownValues(WidgetRepairStateValues)
+  model WidgetRepairState is string;
+
+  @lroStatus
+  enum WidgetRepairStateValues {
+    Succeeded,
+    Failed,
+    Canceled,
+    SentToManufacturer,
+  }
+
+  @doc("A submitted repair request for a widget.")
+  model WidgetRepairRequest {
+    @doc("The state of the widget repair request.")
+    requestState: WidgetRepairState;
+
+    @doc("The date and time when the repair is scheduled to occur.")
+    scheduledDateTime: zonedDateTime;
+
+    @doc("The date and time when the request was created.")
+    createdDateTime: zonedDateTime;
+
+    @doc("The date and time when the request was updated.")
+    updatedDateTime: zonedDateTime;
+
+    @doc("The date and time when the request was completed.")
+    completedDateTime: zonedDateTime;
+  }
+
+  @doc("The parameters for a widget status request")
+  model WidgetRepairStatusParams {
+    @doc("The ID of the widget being repaired.")
+    @path
+    widgetId: string;
+  }
+
+  @doc("A widget's part.")
+  @resource("parts")
+  @parentResource(Widget)
+  model WidgetPart {
+    @key("widgetPartName")
+    @doc("The name of the part.")
+    @visibility("read")
+    name: string;
+
+    @doc("The ID to use for reordering the part.")
+    partId: string;
+
+    @doc("The ID of the part's manufacturer.")
+    manufacturerId: string;
+    ...EtagProperty;
+  }
+
+  @doc("The details of a reorder request for a WidgetPart.")
+  model WidgetPartReorderRequest {
+    @doc("Identifies who signed off the reorder request.")
+    signedOffBy: string;
+  }
+
+  // An example of a singleton resource
+  @doc("Provides analytics about the use and maintenance of a Widget.")
+  @resource("analytics")
+  @parentResource(Widget)
+  model WidgetAnalytics {
+    @key("analyticsId")
+    @doc("The identifier for the analytics object.  There is only one named 'current'.")
+    id: "current";
+
+    @doc("The number of uses of the widget.")
+    useCount: int64;
+
+    @doc("The number of times the widget was repaired.")
+    repairCount: int64;
+  }
+
+  // Operations ////////////////////
+  @client(Clients.WidgetClient)
+  interface Widgets {
+    // Operation Status
+    @doc("Gets status of a Widget operation.")
+    getWidgetOperationStatus is GetResourceOperationStatus<Widget>;
+
+    // Widget Operations
+    @doc("Creates or updates a Widget asynchronously")
+    @pollingOperation(Widgets.getWidgetOperationStatus)
+    createOrUpdateWidget is LongRunningResourceCreateOrUpdate<
+      Widget,
+      {
+        parameters: RepeatabilityRequestHeaders;
+        response: RepeatabilityResponseHeaders;
+      }
+    >;
+
+    @doc("Get a Widget")
+    getWidget is ResourceRead<
+      Widget,
+      {
+        parameters: ConditionalRequestHeaders;
+        response: EtagResponseEnvelope;
+      }
+    >;
+
+    @doc("Delete a Widget asynchronously.")
+    @pollingOperation(Widgets.getWidgetOperationStatus)
+    deleteWidget is LongRunningResourceDelete<
+      Widget,
+      {
+        parameters: RepeatabilityRequestHeaders;
+        response: RepeatabilityResponseHeaders;
+      }
+    >;
+
+    @doc("List Widget resources")
+    listWidgets is ResourceList<
+      Widget,
+      {
+        parameters: StandardListQueryParameters & SelectQueryParameter;
+      }
+    >;
+
+    // Widget Analytics
+    @doc("Get a WidgetAnalytics")
+    getAnalytics is ResourceRead<WidgetAnalytics>;
+
+    @doc("Creates or updates a WidgetAnalytics")
+    updateAnalytics is ResourceCreateOrUpdate<WidgetAnalytics>;
+
+    // Widget Repair Operations
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is a custom operation status endpoint."
+    @doc("Get the status of a WidgetRepairRequest.")
+    @route("/widgets/{widgetId}/repairs/{operationId}")
+    getRepairStatus is Foundations.GetOperationStatus<WidgetRepairStatusParams, WidgetRepairRequest>;
+
+    @doc("Schedule a widget for repairs.")
+    @pollingOperation(Widgets.getWidgetOperationStatus)
+    scheduleRepairs is ResourceAction<
+      Widget,
+      WidgetRepairRequest & RepeatabilityRequestHeaders,
+      WidgetRepairRequest & RepeatabilityResponseHeaders
+    >;
+  }
+
+  @client(Clients.PartsClient)
+  interface WidgetParts {
+    @doc("Gets status of a WidgetPart operation.")
+    getWidgetPartOperationStatus is GetResourceOperationStatus<WidgetPart>;
+
+    @doc("Creates a WidgetPart")
+    createWidgetPart is ResourceCreateWithServiceProvidedName<
+      WidgetPart,
+      {
+        parameters: RepeatabilityRequestHeaders;
+        response: RepeatabilityResponseHeaders;
+      }
+    >;
+
+    @doc("Get a WidgetPart")
+    getWidgetPart is ResourceRead<
+      WidgetPart,
+      {
+        parameters: ConditionalRequestHeaders;
+        response: EtagResponseEnvelope;
+      }
+    >;
+
+    @doc("Delete a WidgetPart")
+    deleteWidgetPart is ResourceDelete<
+      WidgetPart,
+      {
+        parameters: RepeatabilityRequestHeaders;
+        response: RepeatabilityResponseHeaders;
+      }
+    >;
+
+    @doc("List WidgetPart resources")
+    listWidgetParts is ResourceList<WidgetPart>;
+
+    @doc("Reorder all parts for the widget.")
+    @pollingOperation(WidgetParts.getWidgetPartOperationStatus)
+    reorderParts is LongRunningResourceCollectionAction<
+      WidgetPart,
+      WidgetPartReorderRequest,
+      Cadl.Http.AcceptedResponse
+    >;
+  }
+
+}
+  
+namespace Contoso.WidgetManagerSecond {
+  @doc("A manufacturer of widgets.")
+  @resource("manufacturers")
+  model Manufacturer {
+      @key("manufacturerId")
+      @doc("The manufacturer's unique ID.")
+      id: string;
+
+      @doc("The manufacturer's name.")
+      name: string;
+
+      @doc("The manufacturer's full address.")
+      address: string;
+      ...EtagProperty;
+  }
+  interface Manufacturers {
+    @doc("Gets status of a Manufacturer operation.")
+    getManufacturerOperationStatus is GetResourceOperationStatus<Manufacturer>;
+
+    @doc("Creates or replaces a Manufacturer")
+    createManufacturer is ResourceCreateOrReplace<
+      Manufacturer,
+      {
+        parameters: RepeatabilityRequestHeaders;
+        response: RepeatabilityResponseHeaders;
+      }
+    >;
+
+    @doc("Get a Manufacturer")
+    getManufacturer is ResourceRead<
+      Manufacturer,
+      {
+        parameters: ConditionalRequestHeaders;
+        response: EtagResponseEnvelope;
+      }
+    >;
+
+    @doc("Delete a Manufacturer asynchronously.")
+    @pollingOperation(Manufacturers.getManufacturerOperationStatus)
+    deleteManufacturer is LongRunningResourceDelete<
+      Manufacturer,
+      {
+        parameters: RepeatabilityRequestHeaders;
+        response: RepeatabilityResponseHeaders;
+      }
+    >;
+
+    @doc("List Manufacturer resources")
+    listManufacturers is ResourceList<Manufacturer>;
+  }
+}
