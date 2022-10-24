@@ -18,4 +18,4 @@ The generated Typescript/Javascript Rest Level Client has the following structur
 
 If there's a new feature request, Contributors can add properties in RLCModel and RLCOptions and then add the build logic like other files to generate the type.
 
-We don't have any tests in this library, as this library is replied by both autorest.typescript and cadl-typescript, we think add test in these two libraries if we want to test something.   
+We don't have tests in this library as it is invoked by autorest.typescript and cadl-typescript, adding tests in those two libraries directly if you want to test a feature.   
