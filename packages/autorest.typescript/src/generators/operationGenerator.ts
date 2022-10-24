@@ -553,7 +553,8 @@ export function writeOperations(
     operationGroupDetails,
     clientDetails,
     operationGroupClass,
-    importedModels
+    importedModels,
+    modelNames
   );
   operationGroupDetails.operations.forEach(operation => {
     const {
