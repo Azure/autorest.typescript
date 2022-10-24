@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  DetectChangePointParameters
+  DetectUnivariateChangePointParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -19,14 +19,9 @@ dotenv.config();
  */
 async function detectChangePointExample() {
   const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
-    credential
-  );
-  const options: DetectChangePointParameters = {
+  const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const options: DetectUnivariateChangePointParameters = {
     body: {
       customInterval: 5,
       granularity: "minutely",
@@ -296,7 +291,7 @@ async function detectChangePointExample() {
     headers: { "Content-Type": "application/json" }
   };
   const result = await client
-    .path("/timeseries/changepoint/detect")
+    .path("/{ApiVersion}/timeseries/changepoint/detect")
     .post(options);
   console.log(result);
 }

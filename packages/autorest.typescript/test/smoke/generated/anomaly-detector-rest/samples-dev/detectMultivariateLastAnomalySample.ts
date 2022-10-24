@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  LastDetectAnomalyParameters
+  DetectMultivariateLastAnomalyParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -19,15 +19,10 @@ dotenv.config();
  */
 async function detectAnomalyWithMultivariateModel() {
   const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
-    credential
-  );
+  const client = createAnomalyDetectorRestClient(Endpoint, credential);
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
-  const options: LastDetectAnomalyParameters = {
+  const options: DetectMultivariateLastAnomalyParameters = {
     body: {
       topContributorCount: 10,
       variables: [
@@ -237,7 +232,7 @@ async function detectAnomalyWithMultivariateModel() {
     headers: { "Content-Type": "application/json" }
   };
   const result = await client
-    .path("/multivariate/models/{modelId}:detect-last", modelId)
+    .path("/{ApiVersion}/multivariate/models/{modelId}:detect-last", modelId)
     .post(options);
   console.log(result);
 }
