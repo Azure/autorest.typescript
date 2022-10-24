@@ -180,7 +180,7 @@ describe("Parameters.ts", () => {
       );
     });
 
-    it.only("contentTypes has multiple form data", async () => {
+    it("contentTypes has multiple form data", async () => {
       const parameters = await emitParameterFromCadl(
         `
         @route("/uploadFile")
@@ -199,19 +199,19 @@ describe("Parameters.ts", () => {
         `
       import { RequestParameters } from "@azure-rest/core-client";
       
-      export interface FormdataUploadFileFormBody {
+      export interface UploadFileBodyParam {
+        body: UploadFileFormBody;
+      }
+      
+      export interface UploadFileFormBody {
+        name: string;
         file:
           | string
           | Uint8Array
           | ReadableStream<Uint8Array>
           | NodeJS.ReadableStream;
-        name: string;
       }
 
-      export interface UploadFileBodyParam {
-        body: FormdataUploadFileFormBody;
-      }
-      
       export interface UploadFileMediaTypesParam {
         contentType: "multipart/form-data";
       }
@@ -223,15 +223,14 @@ describe("Parameters.ts", () => {
       );
     });
 
-    it.skip("contentTypes has array data defined in form body", async () => {
+    it("contentTypes has array data defined in form body", async () => {
       const parameters = await emitParameterFromCadl(
         `
-        @route("/uploadFile")
-        @post op uploadFile(
+        @route("/uploadFiles")
+        @post op uploadFiles(
         @header contentType: "multipart/form-data",
         @body body: {
-          name: string;
-          file: bytes;
+          files: bytes[];
         }
       ): void;
         `
@@ -240,6 +239,25 @@ describe("Parameters.ts", () => {
       assertEqualContent(
         parameters?.content!,
         `
+        import { RequestParameters } from "@azure-rest/core-client";
+      
+        export interface UploadFilesBodyParam {
+          body: UploadFilesFormBody;
+        }
+        
+        export interface UploadFilesFormBody {
+          files: Array<
+            string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream
+          >;
+        }
+        
+        export interface UploadFilesMediaTypesParam {
+          contentType: "multipart/form-data";
+        }
+        
+        export type UploadFilesParameters = UploadFilesMediaTypesParam &
+          UploadFilesBodyParam &
+          RequestParameters;
         `
       );
     });

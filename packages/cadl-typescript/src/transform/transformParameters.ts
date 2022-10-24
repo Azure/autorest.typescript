@@ -261,7 +261,21 @@ function transformMultiFormBody(
   };
 
   for (let [paramName, paramType] of bodyType.properties) {
-    const type = extractNameFromCadlType(program, paramType, importedModels);
+    let type: string;
+    let bodySchema = getSchemaForType(program, paramType.type, [
+      SchemaContext.Input,
+      SchemaContext.Exception
+    ]) as any;
+    if (bodySchema?.format === "byte") {
+      type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
+    } else if (bodySchema?.items?.format === "byte") {
+      type = `Array<${getBinaryType([
+        SchemaContext.Input,
+        SchemaContext.Exception
+      ])}>`;
+    } else {
+      type = extractNameFromCadlType(program, paramType.type, importedModels);
+    }
     bodyParameters.body!.push({
       name: paramName,
       type,
@@ -279,7 +293,7 @@ function getBodyDetail(bodyType: Type, headers: ParameterMetadata[]) {
   const hasBinaryContent = contentTypes.some((c) =>
     isBinaryPayload(bodyType, c)
   );
-  const hasFormContent = contentTypes.includes("multipart/form-data");
+  const hasFormContent = contentTypes.includes(`"multipart/form-data"`);
   return { hasBinaryContent, hasFormContent };
 }
 
