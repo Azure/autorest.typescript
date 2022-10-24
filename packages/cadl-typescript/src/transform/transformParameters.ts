@@ -9,7 +9,7 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { Model, Program } from "@cadl-lang/compiler";
+import { Model, Program, Type } from "@cadl-lang/compiler";
 import {
   getAllHttpServices,
   HttpOperationParameter,
@@ -157,48 +157,162 @@ function transformBodyParameters(
   if (!bodyType) {
     return;
   }
-  let type: string,
-    bodySchema: any = {};
-  let descriptions: string[] = [];
-  const contentTypes: string[] = headers
-    .filter((h) => h.name === "contentType")
-    .map((h) => h.param.type);
-  const hasBinaryContent = contentTypes.some((c) =>
-    isBinaryPayload(bodyType, c)
-  );
-  if (!hasBinaryContent) {
-    bodySchema = getSchemaForType(program, bodyType, [
-      SchemaContext.Input,
-      SchemaContext.Exception
-    ]) as Schema;
-    type = getTypeName(bodySchema);
-    const importedNames = getImportedModelName(bodySchema);
-    if (importedNames) {
-      importedNames.forEach(importedModels.add, importedModels);
-    }
+  const { hasBinaryContent, hasFormContent } = getBodyDetail(bodyType, headers);
+
+  if (!hasBinaryContent && !hasFormContent) {
+    // Case 1: Handle the normal case without binary or form data
+    return transformNormalBody(program, bodyType, parameters, importedModels);
+  } else if (hasBinaryContent) {
+    // Case 2: Handle the binary body
+    return transformBinaryBody(program, parameters);
   } else {
-    type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
+    // Case 3: Handle the form data
+    return transformMultiFormBody(
+      program,
+      bodyType,
+      parameters,
+      importedModels
+    );
   }
-  const description =
-    parameters.bodyParameter &&
-    getFormattedPropertyDoc(program, parameters.bodyParameter, bodySchema);
-  if (description) {
-    descriptions.push(description!);
-  }
-  if (hasBinaryContent) {
-    descriptions.push("Value may contain any sequence of octets");
-  }
+}
+
+function transformNormalBody(
+  program: Program,
+  bodyType: Type,
+  parameters: HttpOperationParameters,
+  importedModels: Set<string>
+) {
+  const description = extractDescriptionsFromBody(
+    program,
+    bodyType,
+    parameters
+  ).join("\n\n");
+  const type = extractNameFromCadlType(program, bodyType, importedModels);
   return {
-    // TODO: handle body is partial case
-    // issue tracked https://github.com/Azure/autorest.typescript/issues/1547
     isPartialBody: false,
     body: [
       {
         name: "body",
         type,
         required: parameters?.bodyParameter?.optional === false,
+        description
+      }
+    ]
+  };
+}
+
+function transformBinaryBody(
+  program: Program,
+  parameters: HttpOperationParameters
+) {
+  let descriptions: string[] = [];
+  const description =
+    parameters.bodyParameter &&
+    getFormattedPropertyDoc(program, parameters.bodyParameter, {});
+  if (description) {
+    descriptions.push(description!);
+  }
+  descriptions.push("Value may contain any sequence of octets");
+  return {
+    isPartialBody: false,
+    body: [
+      {
+        name: "body",
+        type: getBinaryType([SchemaContext.Input, SchemaContext.Exception]),
+        required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n")
       }
     ]
   };
+}
+
+function transformMultiFormBody(
+  program: Program,
+  bodyType: Type,
+  parameters: HttpOperationParameters,
+  importedModels: Set<string>
+): ParameterBodyMetadata | undefined {
+  const isModelBody = bodyType.kind === "Model";
+
+  if (!isModelBody) {
+    const type = extractNameFromCadlType(program, bodyType, importedModels);
+    const description = extractDescriptionsFromBody(
+      program,
+      bodyType,
+      parameters
+    ).join("\n\n");
+    return {
+      isPartialBody: true,
+      body: [
+        {
+          name: "body",
+          type,
+          required: parameters?.bodyParameter?.optional === false,
+          description
+        }
+      ]
+    };
+  }
+
+  // If the body is model type we'll spread the properties into body parameters
+  const bodyParameters: ParameterBodyMetadata = {
+    isPartialBody: true,
+    body: []
+  };
+
+  for (let [paramName, paramType] of bodyType.properties) {
+    const type = extractNameFromCadlType(program, paramType, importedModels);
+    bodyParameters.body!.push({
+      name: paramName,
+      type,
+      required: paramType.optional === false
+    });
+  }
+
+  return bodyParameters;
+}
+
+function getBodyDetail(bodyType: Type, headers: ParameterMetadata[]) {
+  const contentTypes: string[] = headers
+    .filter((h) => h.name === "contentType")
+    .map((h) => h.param.type);
+  const hasBinaryContent = contentTypes.some((c) =>
+    isBinaryPayload(bodyType, c)
+  );
+  const hasFormContent = contentTypes.includes("multipart/form-data");
+  return { hasBinaryContent, hasFormContent };
+}
+
+function extractNameFromCadlType(
+  program: Program,
+  cadlType: Type,
+  importedModels: Set<string>
+) {
+  let bodySchema = getSchemaForType(program, cadlType, [
+    SchemaContext.Input,
+    SchemaContext.Exception
+  ]) as Schema;
+  const importedNames = getImportedModelName(bodySchema);
+  if (importedNames) {
+    importedNames.forEach(importedModels.add, importedModels);
+  }
+  return getTypeName(bodySchema);
+}
+
+function extractDescriptionsFromBody(
+  program: Program,
+  bodyType: Type,
+  parameters: HttpOperationParameters
+) {
+  const description =
+    parameters.bodyParameter &&
+    getFormattedPropertyDoc(
+      program,
+      parameters.bodyParameter,
+      getSchemaForType(program, bodyType, [
+        SchemaContext.Input,
+        SchemaContext.Exception
+      ])
+    );
+  return description ? [description] : [];
 }
