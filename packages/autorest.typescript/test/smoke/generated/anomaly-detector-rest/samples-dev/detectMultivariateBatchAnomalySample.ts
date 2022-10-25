@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  BatchDetectAnomalyParameters,
+  DetectMultivariateBatchAnomalyParameters,
   getLongRunningPoller
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -20,15 +20,10 @@ dotenv.config();
  */
 async function detectAnomalyWithMultivariateModel() {
   const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
-    credential
-  );
+  const client = createAnomalyDetectorRestClient(Endpoint, credential);
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
-  const options: BatchDetectAnomalyParameters = {
+  const options: DetectMultivariateBatchAnomalyParameters = {
     body: {
       dataSource:
         "https://multiadsample.blob.core.windows.net/data/sample_data_2_1000.csv",
@@ -39,7 +34,7 @@ async function detectAnomalyWithMultivariateModel() {
     headers: { "Content-Type": "application/json" }
   };
   const initialResponse = await client
-    .path("/multivariate/models/{modelId}:detect-batch", modelId)
+    .path("/{ApiVersion}/multivariate/models/{modelId}:detect-batch", modelId)
     .post(options);
   const poller = getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
