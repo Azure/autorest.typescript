@@ -57,7 +57,7 @@
         "@autorest/testmodeler": "^2.2.5",
         "@azure-rest/core-client": "^1.0.0",
         "@azure-tools/codegen": "^2.5.294",
-        "@azure/core-client": "1.6.1-alpha.20220725.3",
+        "@azure/core-client": "^1.6.1",
         "@azure/core-http": "^1.2.4",
         "@azure/core-http-compat": "^1.2.0",
         "@azure/core-lro": "^2.4.0",
