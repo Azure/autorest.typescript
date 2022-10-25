@@ -238,6 +238,24 @@ describe("Input/output model type", () => {
       const outputType = "string[]";
       await verifyPropertyType(cadlType, inputType, { outputType });
     });
+
+    it("should handle true[] -> true[]", async () => {
+      const cadlType = "true[]";
+      const typeScriptType = "true[]";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle 32[] -> 32[]", async () => {
+      const cadlType = "32[]";
+      const typeScriptType = "32[]";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle 'job'[] -> 'job'[]", async () => {
+      const cadlType = `"job"[]`;
+      const typeScriptType = `"job"[]`;
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
   });
   describe("array models generation", () => {
     it("should handle SimpleModel[] -> Array<SimpleModel>", async () => {

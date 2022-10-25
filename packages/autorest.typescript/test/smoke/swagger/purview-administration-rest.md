@@ -9,7 +9,7 @@ title: PurviewAccount
 description: Purview Account Client
 output-folder: ../generated/purview-administration-rest
 source-code-folder-path: ./src/account
-input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/purview/data-plane/Azure.Analytics.Purview.Account/preview/2019-11-01-preview/account.json
+input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/021e5ab6ec840d651d32a2c6bdf832800cdf8eb6/specification/purview/data-plane/Azure.Analytics.Purview.Account/preview/2019-11-01-preview/account.json
 security: AADToken
 security-scopes: "https://purview.azure.net/.default"
 ```
@@ -19,7 +19,7 @@ title: PurviewMetadataPolicies
 description: Purview Metadata Policies Client
 output-folder: ../generated/purview-administration-rest
 source-code-folder-path: ./src/metadataPolicies
-input-file:  https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/purview/data-plane/Azure.Analytics.Purview.MetadataPolicies/preview/2021-07-01-preview/purviewMetadataPolicy.json
+input-file:  https://raw.githubusercontent.com/Azure/azure-rest-api-specs/021e5ab6ec840d651d32a2c6bdf832800cdf8eb6/specification/purview/data-plane/Azure.Analytics.Purview.MetadataPolicies/preview/2021-07-01-preview/purviewMetadataPolicy.json
 security: AzureKey
 security-header-name: CustomAuth
 ```
