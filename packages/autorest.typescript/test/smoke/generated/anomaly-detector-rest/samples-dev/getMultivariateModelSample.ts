@@ -17,16 +17,11 @@ dotenv.config();
  */
 async function getMultivariateModel() {
   const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
-    credential
-  );
+  const client = createAnomalyDetectorRestClient(Endpoint, credential);
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
   const result = await client
-    .path("/multivariate/models/{modelId}", modelId)
+    .path("/{ApiVersion}/multivariate/models/{modelId}", modelId)
     .get();
   console.log(result);
 }
