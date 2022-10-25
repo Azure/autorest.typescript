@@ -128,18 +128,6 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-rest/core-client/1.0.0-beta.10:
-    resolution: {integrity: sha512-qsiepIEskvu+J815SFZ+u0wh0pPHtQVGtyT+yKbLN1YCIFtfM0L5XdaegfwMBWDG/NIXwF2fmqjM75Sqz8dAwA==}
-    engines: {node: '>=12.0.0'}
-    dependencies:
-      '@azure/core-auth': 1.4.0
-      '@azure/core-rest-pipeline': 1.9.2
-      '@azure/core-util': 1.1.1
-      tslib: 2.4.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@azure-tools/async-io/3.0.254:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
     engines: {node: '>=10.12.0'}
@@ -361,14 +349,6 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@azure/core-auth/1.4.0-alpha.20220725.3:
-    resolution: {integrity: sha512-WJfWcazRrU65RPSG1QxyXV/LqiurgsTuZLVFs8vU6cA+gpsjmeQIUIopuXt20b/1Wxp6TV8f9BmKP/ivOon4kA==}
-    engines: {node: '>=12.0.0'}
-    dependencies:
-      '@azure/abort-controller': 1.1.0
-      tslib: 2.4.0
-    dev: false
-
   /@azure/core-client/1.6.1:
     resolution: {integrity: sha512-mZ1MSKhZBYoV8GAWceA+PEJFWV2VpdNSpxxcj1wjIAOi00ykRuIQChT99xlQGZWLY3/NApWhSImlFwsmCEs4vA==}
     engines: {node: '>=12.0.0'}
@@ -376,21 +356,6 @@ packages:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.4.0
       '@azure/core-rest-pipeline': 1.9.2
-      '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.1.1
-      '@azure/logger': 1.0.3
-      tslib: 2.4.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
-  /@azure/core-client/1.6.1-alpha.20220725.3:
-    resolution: {integrity: sha512-0EtJ7ZNsW9CIgiormBa+U+D9nQEWsmydfFBH0tPhShUOpLuxcW4jApF0528Bgc1LsFgT0b9nVx4ohV/fU0enwQ==}
-    engines: {node: '>=12.0.0'}
-    dependencies:
-      '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.4.0-alpha.20220725.3
-      '@azure/core-rest-pipeline': 1.9.1-alpha.20220725.3
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.1.1
       '@azure/logger': 1.0.3
@@ -483,24 +448,6 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       tslib: 2.4.0
-    dev: false
-
-  /@azure/core-rest-pipeline/1.9.1-alpha.20220725.3:
-    resolution: {integrity: sha512-Vgcu9Ve0SUo5vCidlASpF/GZTIpoRaDV6c734tLFUQctNaPrtzF0Gw8ge3yRD0EnLEl1YRxxSo4T/SZZ87MOQQ==}
-    engines: {node: '>=12.0.0'}
-    dependencies:
-      '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.4.0-alpha.20220725.3
-      '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.1.1
-      '@azure/logger': 1.0.3
-      form-data: 4.0.0
-      http-proxy-agent: 5.0.0
-      https-proxy-agent: 5.0.1
-      tslib: 2.4.0
-      uuid: 8.3.2
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /@azure/core-rest-pipeline/1.9.2:
@@ -9292,7 +9239,7 @@ packages:
     dev: false
 
   /verror/1.10.0:
-    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
+    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -9923,7 +9870,7 @@ packages:
     dev: false
 
   file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-KcZd++0HWzCalpK7zflqfZviec2TbDkKmSHHUysP8vLBAIe8/UmZy0Z/3RanX9mhp5WCDn8YNiexFclz+JSzUw==, tarball: file:projects/cadl-rest-test.tgz}
+    resolution: {integrity: sha512-CQ8e1Ulchl5tKe0L7CS2JYk0hB4ezbKWmsiyx06cRXK7K3rVh2UfaCORBIBeaBnPn5cU9U/EaDj5JtzcuKXd1g==, tarball: file:projects/cadl-rest-test.tgz}
     name: '@rush-temp/cadl-rest-test'
     version: 0.0.0
     dependencies:
@@ -9940,11 +9887,11 @@ packages:
     dev: false
 
   file:projects/cadl-typescript.tgz:
-    resolution: {integrity: sha512-tkz5UQMbfDtzvYm3P5IhH9oMyiXlc5Ipp2ejDWoqUF2yGEZ18bHxzxc0yFYiRDBo4AbFZeO4u5tHjFAMflFnvQ==, tarball: file:projects/cadl-typescript.tgz}
+    resolution: {integrity: sha512-J3fnm5Ndk/JW3LlOowD0W8cqJPubfP9e95LNA+go0PXfqiSldhjM6LLqZKFb3lotOAEkw79rJg+a3YmJcuknqQ==, tarball: file:projects/cadl-typescript.tgz}
     name: '@rush-temp/cadl-typescript'
     version: 0.0.0
     dependencies:
-      '@azure-rest/core-client': 1.0.0-beta.10
+      '@azure-rest/core-client': 1.0.0
       '@azure-tools/cadl-azure-core': 0.8.0_dbc7c933933f9aad7e8fe898f45a319f
       '@azure-tools/cadl-dpg': 0.1.0_dbc7c933933f9aad7e8fe898f45a319f
       '@azure-tools/cadl-ranch': 0.2.6
@@ -10004,7 +9951,7 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-QS/0GG0/qHBKaMai5tuHYq7ezPzQPIeggN7vmc6kFTrj1ajFwQB3u7Lcv36I4HRKc/Y4YLhU/5gi9eOS4w7Eew==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-AC8ulEA1RcaHfTr8M6fKMJDYe08C0+C0WXsskEJtJJocOYKKxUTY9WbSmlDGlyr0DCm4EaDthqQ9RHkRdf8sxQ==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
@@ -10016,7 +9963,7 @@ packages:
       '@azure-tools/test-recorder': 1.0.2
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.4.0
-      '@azure/core-client': 1.6.1-alpha.20220725.3
+      '@azure/core-client': 1.6.1
       '@azure/core-http': 1.2.6
       '@azure/core-http-compat': 1.3.0
       '@azure/core-lro': 2.4.0
