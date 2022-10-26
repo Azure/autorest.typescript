@@ -12,7 +12,10 @@ export function transformRLCOptions(
   options: RLCOptions
 ): RLCOptions {
   const config = options;
-  config.azureSdkForJs = options.azureSdkForJs === false ? false : true;
+  config.azureSdkForJs =
+    options.azureSdkForJs === undefined || options.azureSdkForJs === null
+      ? true
+      : Boolean(options.azureSdkForJs);
   config.serviceInfo = {
     title: getServiceTitle(program)
   };
