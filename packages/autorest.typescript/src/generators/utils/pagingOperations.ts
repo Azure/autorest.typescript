@@ -59,6 +59,10 @@ export function addPagingImports(
       {
         namedImports: ["PagedAsyncIterableIterator", "PageSettings"],
         moduleSpecifier: "@azure/core-paging"
+      },
+      {
+        namedImports: ["setContinuationToken"],
+        moduleSpecifier: "../pagingHelper"
       }
     ]);
   }
@@ -405,8 +409,10 @@ function writePageMethod(
     `let continuationToken = settings?.continuationToken;`,
     `if (!continuationToken) {`,
     ...firstRequestStatements,
-    `yield result.${itemName} || [];`,
+    `let page = result.${itemName} || [];`,
     `continuationToken = result.${nextLinkProperty}`,
+    `setContinuationToken(page, continuationToken);`,
+    `yield page;`,
     `}`
   ]);
 
@@ -426,8 +432,10 @@ function writePageMethod(
     method.addStatements([
       `while (continuationToken) {
         result = await this.${pagingMethodSettings.nextMethod.name}(${nextParameters});
-        continuationToken = result.${nextLinkProperty}
-        yield result.${itemName} || [];
+        continuationToken = result.${nextLinkProperty};
+        let page = result.${itemName} || [];
+        setContinuationToken(page, continuationToken);
+        yield page;
       }`
     ]);
   }
