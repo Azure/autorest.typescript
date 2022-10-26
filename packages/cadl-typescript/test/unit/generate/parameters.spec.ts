@@ -145,7 +145,7 @@ describe("Parameters.ts", () => {
     });
   });
 
-  describe.only("Array generation", () => {
+  describe("Array generation", () => {
     it("string array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
       @post op read(@body body: string[]): void;
