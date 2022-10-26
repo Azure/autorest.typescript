@@ -196,17 +196,11 @@ export class PagingImpl implements Paging {
 
   private async *getNullNextLinkNamePagesPagingPage(
     options?: PagingGetNullNextLinkNamePagesOptionalParams,
-    settings?: PageSettings
+    _settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetNullNextLinkNamePagesResponse;
-    let continuationToken = settings?.continuationToken;
-    if (!continuationToken) {
-      result = await this._getNullNextLinkNamePages(options);
-      let page = result.values || [];
-      continuationToken = result.nextLink;
-      setContinuationToken(page, continuationToken);
-      yield page;
-    }
+    result = await this._getNullNextLinkNamePages(options);
+    yield result.values || [];
   }
 
   private async *getNullNextLinkNamePagesPagingAll(

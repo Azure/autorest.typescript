@@ -13,7 +13,7 @@ import {
   SendRequest
 } from "@azure/core-rest-pipeline";
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
+import { setContinuationToken } from "./pagingHelper";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
