@@ -145,138 +145,174 @@ describe("Parameters.ts", () => {
     });
   });
 
-  describe("Array generation", () => {
+  describe.only("Array generation", () => {
     it("string array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): string[];
+      @post op read(@body body: string[]): void;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body:string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
 
     it("int32 array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): int32[];
+      @post op read(@body body: int32[]): void ;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body:number[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
 
     it("int64 array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): int64[];
+      @post op read(@body body: int64[]): void ;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body:number[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
 
     it("float32 array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): float32[];
+      @post op read(@body body: float32[]): void ;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body:number[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
 
     it("boolean array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): boolean[];
+      @post op read(@body body: boolean[]): void ;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body:boolean[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
 
     it("bytes array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): bytes[];
+      @post op read(@body body: bytes[]): void ;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body:string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
 
     it("plainDate array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): plainDate[];
+      @post op read(@body body: plainDate[]): void;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body: Date[] | string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
 
     it("datetime array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): zonedDateTime[];
+      @post op read(@body body: zonedDateTime[]): void;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body: Date[] | string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
     
     it("duration array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(): duration[];
+      @post op read(@body body:  duration[]): void;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+
+        export interface ReadBodyParam {
+          body:string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
@@ -287,15 +323,20 @@ describe("Parameters.ts", () => {
         prop1: string;
         prop2: int32;
       }
-      @post op read(): SimpleModel[];
+      @post op read(@body body: SimpleModel[]): void;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+        import {  } from "./models";
+
+        export interface ReadBodyParam {
+          body:Array<SimpleModel>;
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
@@ -306,15 +347,20 @@ describe("Parameters.ts", () => {
         property: string;
         children?: InnerModel[];
       }
-      @post op read(): InnerModel[];
+      @post op read(@body body: InnerModel[]): void;
       `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-          
-        export type ReadParameters =  RequestParameters;
+        import {  } from "./models";
+
+        export interface ReadBodyParam {
+          body:Array<InnerModel>;
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
       `
       );
     });
