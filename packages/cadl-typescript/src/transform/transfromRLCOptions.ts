@@ -7,8 +7,12 @@ import {
 import { getAuthentication } from "@cadl-lang/rest/http";
 import { isAbsolute } from "path";
 
-export function transformRLCOptions(program: Program, options: RLCOptions): RLCOptions {
+export function transformRLCOptions(
+  program: Program,
+  options: RLCOptions
+): RLCOptions {
   const config = options;
+  config.azureSdkForJs = options.azureSdkForJs === false ? false : true;
   config.serviceInfo = {
     title: getServiceTitle(program)
   };

@@ -3,6 +3,7 @@ emitters:
     generateMetadata: true
     generateTest: true
     includeShortcuts: true
+    azureSdkForJs: false
     addCredentials: false
     isCadlTest: true
     title: AuthApiKeyClient

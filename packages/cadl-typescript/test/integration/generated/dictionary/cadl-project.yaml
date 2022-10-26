@@ -3,6 +3,7 @@ emitters:
     generateMetadata: true
     includeShortcuts: true
     addCredentials: false
+    azureSdkForJs: false
     isCadlTest: true
     title: DictClient
     packageDetails:
