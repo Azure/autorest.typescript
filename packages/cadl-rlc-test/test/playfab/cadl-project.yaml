@@ -3,6 +3,7 @@ emitters:
     generateMetadata: true
     includeShortcuts: true
     azureArm: true
+    azureSdkForJs: false
     packageDetails:
       name: "@msinternal/playfab"
       description: "PlayFab Service"
