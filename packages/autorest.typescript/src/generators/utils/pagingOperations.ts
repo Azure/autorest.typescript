@@ -51,7 +51,8 @@ interface PagingMethodSettings {
  */
 export function addPagingImports(
   operations: OperationDetails[],
-  sourceFile: SourceFile
+  sourceFile: SourceFile,
+  isClient = false
 ) {
   const { disablePagingAsyncIterators } = getAutorestOptions();
   if (!disablePagingAsyncIterators && hasAsyncIteratorOperations(operations)) {
@@ -62,7 +63,7 @@ export function addPagingImports(
       },
       {
         namedImports: ["setContinuationToken"],
-        moduleSpecifier: "../pagingHelper"
+        moduleSpecifier: isClient ? "./pagingHelper" : "../pagingHelper"
       }
     ]);
   }
