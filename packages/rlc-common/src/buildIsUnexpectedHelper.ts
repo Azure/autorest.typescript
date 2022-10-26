@@ -157,7 +157,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           ) {
             // track if we have found a match to return the values found.
             let found = true;
-            for (let i = 0; i < candidateParts.length; i++) {
+            for (let i = candidateParts.length - 1; i >= 1; i--) {
               if (
                 candidateParts[i]?.startsWith("{") &&
                 candidateParts[i]?.endsWith("}")
