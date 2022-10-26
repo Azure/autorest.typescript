@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,9 +17,9 @@ import {
   Product,
   PagingGetPagesPartialUrlNextOptionalParams,
   PagingGetPagesPartialUrlOptionalParams,
+  PagingGetPagesPartialUrlResponse,
   PagingGetPagesPartialUrlOperationNextOptionalParams,
   PagingGetPagesPartialUrlOperationOptionalParams,
-  PagingGetPagesPartialUrlResponse,
   PagingGetPagesPartialUrlOperationResponse,
   PagingGetPagesPartialUrlOperationNextResponse,
   PagingGetPagesPartialUrlNextResponse
@@ -54,19 +55,30 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getPagesPartialUrlPagingPage(accountName, options);
+      byPage: (settings?: PageSettings) => {
+        return this.getPagesPartialUrlPagingPage(
+          accountName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *getPagesPartialUrlPagingPage(
     accountName: string,
-    options?: PagingGetPagesPartialUrlOptionalParams
+    options?: PagingGetPagesPartialUrlOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getPagesPartialUrl(accountName, options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetPagesPartialUrlResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getPagesPartialUrl(accountName, options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getPagesPartialUrlNext(
         accountName,
@@ -74,7 +86,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -110,19 +124,30 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getPagesPartialUrlOperationPagingPage(accountName, options);
+      byPage: (settings?: PageSettings) => {
+        return this.getPagesPartialUrlOperationPagingPage(
+          accountName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *getPagesPartialUrlOperationPagingPage(
     accountName: string,
-    options?: PagingGetPagesPartialUrlOperationOptionalParams
+    options?: PagingGetPagesPartialUrlOperationOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getPagesPartialUrlOperation(accountName, options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetPagesPartialUrlOperationResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getPagesPartialUrlOperation(accountName, options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getPagesPartialUrlOperationNext(
         accountName,
@@ -130,7 +155,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -169,11 +196,12 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.getPagesPartialUrlOperationNextPagingPage(
           accountName,
           nextLink,
-          options
+          options,
+          settings
         );
       }
     };
@@ -182,15 +210,22 @@ export class PagingImpl implements Paging {
   private async *getPagesPartialUrlOperationNextPagingPage(
     accountName: string,
     nextLink: string,
-    options?: PagingGetPagesPartialUrlOperationNextOptionalParams
+    options?: PagingGetPagesPartialUrlOperationNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getPagesPartialUrlOperationNext(
-      accountName,
-      nextLink,
-      options
-    );
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetPagesPartialUrlOperationNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getPagesPartialUrlOperationNext(
+        accountName,
+        nextLink,
+        options
+      );
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getPagesPartialUrlOperationNext(
         accountName,
@@ -198,7 +233,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

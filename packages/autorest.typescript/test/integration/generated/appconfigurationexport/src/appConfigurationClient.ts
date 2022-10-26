@@ -12,7 +12,8 @@ import {
   PipelineResponse,
   SendRequest
 } from "@azure/core-rest-pipeline";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
@@ -20,18 +21,20 @@ import {
   Key,
   GetKeysNextOptionalParams,
   GetKeysOptionalParams,
+  GetKeysResponse,
   KeyValue,
   GetKeyValuesNextOptionalParams,
   GetKeyValuesOptionalParams,
+  GetKeyValuesResponse,
   Label,
   GetLabelsNextOptionalParams,
   GetLabelsOptionalParams,
+  GetLabelsResponse,
   GetRevisionsNextOptionalParams,
   GetRevisionsOptionalParams,
-  GetKeysResponse,
+  GetRevisionsResponse,
   CheckKeysOptionalParams,
   CheckKeysResponse,
-  GetKeyValuesResponse,
   CheckKeyValuesOptionalParams,
   CheckKeyValuesResponse,
   GetKeyValueOptionalParams,
@@ -42,14 +45,12 @@ import {
   DeleteKeyValueResponse,
   CheckKeyValueOptionalParams,
   CheckKeyValueResponse,
-  GetLabelsResponse,
   CheckLabelsOptionalParams,
   CheckLabelsResponse,
   PutLockOptionalParams,
   PutLockResponse,
   DeleteLockOptionalParams,
   DeleteLockResponse,
-  GetRevisionsResponse,
   CheckRevisionsOptionalParams,
   CheckRevisionsResponse,
   GetKeysNextResponse,
@@ -152,22 +153,31 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getKeysPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.getKeysPagingPage(options, settings);
       }
     };
   }
 
   private async *getKeysPagingPage(
-    options?: GetKeysOptionalParams
+    options?: GetKeysOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Key[]> {
-    let result = await this._getKeys(options);
-    yield result.items || [];
-    let continuationToken = result.nextLink;
+    let result: GetKeysResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getKeys(options);
+      let page = result.items || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getKeysNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.items || [];
+      let page = result.items || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -194,22 +204,31 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getKeyValuesPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.getKeyValuesPagingPage(options, settings);
       }
     };
   }
 
   private async *getKeyValuesPagingPage(
-    options?: GetKeyValuesOptionalParams
+    options?: GetKeyValuesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<KeyValue[]> {
-    let result = await this._getKeyValues(options);
-    yield result.items || [];
-    let continuationToken = result.nextLink;
+    let result: GetKeyValuesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getKeyValues(options);
+      let page = result.items || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getKeyValuesNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.items || [];
+      let page = result.items || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -236,22 +255,31 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getLabelsPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.getLabelsPagingPage(options, settings);
       }
     };
   }
 
   private async *getLabelsPagingPage(
-    options?: GetLabelsOptionalParams
+    options?: GetLabelsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Label[]> {
-    let result = await this._getLabels(options);
-    yield result.items || [];
-    let continuationToken = result.nextLink;
+    let result: GetLabelsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getLabels(options);
+      let page = result.items || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getLabelsNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.items || [];
+      let page = result.items || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -278,22 +306,31 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getRevisionsPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.getRevisionsPagingPage(options, settings);
       }
     };
   }
 
   private async *getRevisionsPagingPage(
-    options?: GetRevisionsOptionalParams
+    options?: GetRevisionsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<KeyValue[]> {
-    let result = await this._getRevisions(options);
-    yield result.items || [];
-    let continuationToken = result.nextLink;
+    let result: GetRevisionsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getRevisions(options);
+      let page = result.items || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getRevisionsNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.items || [];
+      let page = result.items || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

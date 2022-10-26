@@ -1,4 +1,5 @@
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { ManagedVirtualNetworks } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -52,11 +53,12 @@ export class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByFactoryPagingPage(
           resourceGroupName,
           factoryName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -65,15 +67,22 @@ export class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks {
   private async *listByFactoryPagingPage(
     resourceGroupName: string,
     factoryName: string,
-    options?: ManagedVirtualNetworksListByFactoryOptionalParams
+    options?: ManagedVirtualNetworksListByFactoryOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ManagedVirtualNetworkResource[]> {
-    let result = await this._listByFactory(
-      resourceGroupName,
-      factoryName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ManagedVirtualNetworksListByFactoryResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByFactory(
+        resourceGroupName,
+        factoryName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByFactoryNext(
         resourceGroupName,
@@ -82,7 +91,9 @@ export class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

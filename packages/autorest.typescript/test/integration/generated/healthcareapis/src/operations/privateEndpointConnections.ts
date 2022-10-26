@@ -1,4 +1,5 @@
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { PrivateEndpointConnections } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -55,11 +56,12 @@ export class PrivateEndpointConnectionsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByServicePagingPage(
           resourceGroupName,
           resourceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -68,14 +70,22 @@ export class PrivateEndpointConnectionsImpl
   private async *listByServicePagingPage(
     resourceGroupName: string,
     resourceName: string,
-    options?: PrivateEndpointConnectionsListByServiceOptionalParams
+    options?: PrivateEndpointConnectionsListByServiceOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<PrivateEndpointConnectionDescription[]> {
-    let result = await this._listByService(
-      resourceGroupName,
-      resourceName,
-      options
-    );
-    yield result.value || [];
+    let result: PrivateEndpointConnectionsListByServiceResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByService(
+        resourceGroupName,
+        resourceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
   }
 
   private async *listByServicePagingAll(
