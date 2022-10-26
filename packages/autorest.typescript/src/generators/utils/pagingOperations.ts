@@ -380,6 +380,20 @@ function writePageMethod(
     NameType.Property
   );
 
+  const hasNextMethod = Boolean(pagingMethodSettings.nextMethod);
+
+  const pageMethodParameters = pagingMethodSettings.pageMethod.parameters.map(
+    p => {
+      if (!hasNextMethod && p.type === "PageSettings") {
+        return {
+          ...p,
+          name: `_${p.name}`
+        };
+      }
+      return p;
+    }
+  );
+
   // Extract the names for the initial method parameters
   const initialMethodParameters = pagingMethodSettings.initialMethod.parameters
     .map(p => p.name)
@@ -387,7 +401,7 @@ function writePageMethod(
 
   const method = operationGroupClass.addMethod({
     name: `*${pagingMethodSettings.pageMethod.name}`,
-    parameters: pagingMethodSettings.pageMethod.parameters,
+    parameters: pageMethodParameters,
     scope: Scope.Private,
     returnType,
     isAsync: true
@@ -405,17 +419,25 @@ function writePageMethod(
     ];
   }
 
-  method.addStatements([
-    `let result: ${pagingMethodSettings.rawResponseType};`,
-    `let continuationToken = settings?.continuationToken;`,
-    `if (!continuationToken) {`,
-    ...firstRequestStatements,
-    `let page = result.${itemName} || [];`,
-    `continuationToken = result.${nextLinkProperty}`,
-    `setContinuationToken(page, continuationToken);`,
-    `yield page;`,
-    `}`
-  ]);
+  if (hasNextMethod) {
+    method.addStatements([
+      `let result: ${pagingMethodSettings.rawResponseType};`,
+      `let continuationToken = settings?.continuationToken;`,
+      `if (!continuationToken) {`,
+      ...firstRequestStatements,
+      `let page = result.${itemName} || [];`,
+      `continuationToken = result.${nextLinkProperty}`,
+      `setContinuationToken(page, continuationToken);`,
+      `yield page;`,
+      `}`
+    ]);
+  } else {
+    method.addStatements([
+      `let result: ${pagingMethodSettings.rawResponseType};`,
+      ...firstRequestStatements,
+      `yield result.${itemName} || [];`
+    ]);
+  }
 
   // There is a scenario where there is no nextMethod, just the initial one, in that case we don't need to loop
   // until we no longer have a continuationToken, we just stop there.
@@ -423,12 +445,10 @@ function writePageMethod(
   if (pagingMethodSettings.nextMethod) {
     // Extract the parameters to send to the nextMethod
     const nextParameters = pagingMethodSettings.nextMethod.parameters
-      // renaming nextLink to continuationToken sice it is the name we are using below and to avoid collisions with the
+      // renaming nextLink to continuationToken since it is the name we are using below and to avoid collisions with the
       // nextLink parameter that this (page method) takes.
       .map(p => (p.name === "nextLink" ? "continuationToken" : p.name))
       .join();
-
-    method.addStatements([]);
 
     method.addStatements([
       `while (continuationToken) {
