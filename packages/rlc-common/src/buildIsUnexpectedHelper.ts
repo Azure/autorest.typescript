@@ -112,7 +112,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           } pathDetails = responseMap[\`\${method} \${url.pathname}\`];
           if (!pathDetails) {`,
         hasTemplate
-          ? "pathDetails = geParametrizedPathSuccess(method, url.pathname);"
+          ? "pathDetails = getParametrizedPathSuccess(method, url.pathname);"
           : `return true;`,
         `  }
           return !pathDetails.includes(response.status);
@@ -122,7 +122,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
     if (hasTemplate) {
       isErrorHelper.addFunction({
         isExported: false,
-        name: "geParametrizedPathSuccess",
+        name: "getParametrizedPathSuccess",
         parameters: [
           {
             name: "method",
@@ -149,40 +149,37 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           // Get each part of the url path
           const candidateParts = candidatePath.split("/");
       
-          // If the candidate and actual paths don't match in size
-          // we move on to the next candidate path
-          if (
-            candidateParts.length === pathParts.length &&
-            hasParametrizedPath(key)
+          // track if we have found a match to return the values found.
+          let found = true;
+          for (
+            let i = candidateParts.length - 1, j = pathParts.length - 1;
+            i >= 1 && j >= 1;
+            i--, j--
           ) {
-            // track if we have found a match to return the values found.
-            let found = true;
-            for (let i = candidateParts.length - 1; i >= 1; i--) {
-              if (
-                candidateParts[i]?.startsWith("{") &&
-                candidateParts[i]?.endsWith("}")
-              ) {
-                // If the current part of the candidate is a "template" part
-                // it is a match with the actual path part on hand
-                // skip as the parameterized part can match anything
-                continue;
-              }
-      
-              // If the candidate part is not a template and
-              // the parts don't match mark the candidate as not found
-              // to move on with the next candidate path.
-              if (candidateParts[i] !== pathParts[i]) {
-                found = false;
-                break;
-              }
+            if (
+              candidateParts[i]?.startsWith("{") &&
+              candidateParts[i]?.endsWith("}")
+            ) {
+              // If the current part of the candidate is a "template" part
+              // it is a match with the actual path part on hand
+              // skip as the parameterized part can match anything
+              continue;
             }
       
-            // We finished evaluating the current candidate parts
-            // if all parts matched we return the success values form
-            // the path mapping.
-            if (found) {
-              return value;
+            // If the candidate part is not a template and
+            // the parts don't match mark the candidate as not found
+            // to move on with the next candidate path.
+            if (candidateParts[i] !== pathParts[j]) {
+              found = false;
+              break;
             }
+          }
+      
+          // We finished evaluating the current candidate parts
+          // if all parts matched we return the success values form
+          // the path mapping.
+          if (found) {
+            return value;
           }
         }
       
@@ -190,19 +187,6 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         return [];
         `
         ]
-      });
-
-      isErrorHelper.addFunction({
-        isExported: false,
-        name: "hasParametrizedPath",
-        parameters: [
-          {
-            name: "path",
-            type: "string"
-          }
-        ],
-        returnType: `boolean`,
-        statements: [`return path.includes("/{");`]
       });
 
       isErrorHelper.addFunction({
