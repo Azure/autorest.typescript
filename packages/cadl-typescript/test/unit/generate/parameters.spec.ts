@@ -330,7 +330,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import {  } from "./models";
+        import { SimpleModel } from "./models";
 
         export interface ReadBodyParam {
           body:Array<SimpleModel>;
@@ -354,7 +354,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import {  } from "./models";
+        import { InnerModel } from "./models";
 
         export interface ReadBodyParam {
           body:Array<InnerModel>;
