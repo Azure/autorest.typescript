@@ -143,5 +143,123 @@ describe("Parameters.ts", () => {
         `
       );
     });
+
+    it("contentTypes has binary data", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @route("/uploadFileViaBody")
+        @post op uploadFileViaBody(
+          @header contentType: "application/octet-stream",
+          @body body: bytes
+        ): void;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface UploadFileViaBodyBodyParam {
+          /** Value may contain any sequence of octets */
+          body:
+          | string
+          | Uint8Array
+          | ReadableStream<Uint8Array>
+          | NodeJS.ReadableStream;
+        }
+        
+        export interface UploadFileViaBodyMediaTypesParam {
+          contentType: "application/octet-stream";
+        }
+        
+        export type UploadFileViaBodyParameters = UploadFileViaBodyMediaTypesParam &
+        UploadFileViaBodyBodyParam &
+          RequestParameters;
+        `
+      );
+    });
+
+    it("contentTypes has multiple form data", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @route("/uploadFile")
+        @post op uploadFile(
+        @header contentType: "multipart/form-data",
+        @body body: {
+          name: string;
+          file: bytes;
+        }
+      ): void;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+      import { RequestParameters } from "@azure-rest/core-client";
+      
+      export interface UploadFileBodyParam {
+        body: UploadFileFormBody;
+      }
+      
+      export interface UploadFileFormBody {
+        name: string;
+        file:
+          | string
+          | Uint8Array
+          | ReadableStream<Uint8Array>
+          | NodeJS.ReadableStream;
+      }
+
+      export interface UploadFileMediaTypesParam {
+        contentType: "multipart/form-data";
+      }
+      
+      export type UploadFileParameters = UploadFileMediaTypesParam &
+        UploadFileBodyParam &
+        RequestParameters;
+        `
+      );
+    });
+
+    it("contentTypes has array data defined in form body", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @route("/uploadFiles")
+        @post op uploadFiles(
+        @header contentType: "multipart/form-data",
+        @body body: {
+          files: bytes[];
+        }
+      ): void;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+      
+        export interface UploadFilesBodyParam {
+          body: UploadFilesFormBody;
+        }
+        
+        export interface UploadFilesFormBody {
+          files: Array<
+            string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream
+          >;
+        }
+        
+        export interface UploadFilesMediaTypesParam {
+          contentType: "multipart/form-data";
+        }
+        
+        export type UploadFilesParameters = UploadFilesMediaTypesParam &
+          UploadFilesBodyParam &
+          RequestParameters;
+        `
+      );
+    });
   });
 });
