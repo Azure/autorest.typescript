@@ -33,16 +33,18 @@ If your contribution is significantly big it is better to first check with the p
 
 Want to get started hacking on the code? Great! Keep reading. This contributing guide helps you to start working with and contributing to the Azure Typescript/Javascript SDK Generator.
 
-### General Introduction
+## Prerequisites  
 
-Inside this project, we support both high level client generation and rest level client generation. In the rest level client generation, we support generate code from both rest api specs and cadl. In the high level client generation, we only support generation from rest api specs, the support of generate high level client from cadl is planning.  
-  
-This project is managed by rush, there're four components inside the `./packages` folder.
+In order contribute to this project, You will need to install some prerequisite dependencies to get start.
 
-1. `packages/autorest.typescript` contains the original high level client generation and the rest level client generation, mostly including the transformation from autorest code model into RLC model part. see the [CONTRIBUTING.md](./packages/autorest.typescript/CONTRIBUTING.md) for this package.  
-1. `packages/rlc-common` contains the common generation logic from RLC model into rest client libraries code part. Which is depended by both `package/autorest.typescript` rlc generation part and `packages/cadl-typescript`. see the [CONTRIBUTING.md](./packages/rlc-common/CONTRIBUTING.md) for this package.
-1. `packages/cadl-typescript` is the typescript cadl emitter, which contains the transformation from cadl model into RLC model. see the [CONTRIBUTING.md](./packages/cadl-typescript/CONTRIBUTING.md) for this package.
-1. `packages/cadl-rlc-test` is for cadl rlc emitter smoke test. 
+- Git
+- Any of the [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
+- Rush 5.x
+  - Install / update Rush globally via `npm install -g @microsoft/rush`.
+  - Rush will automatically manage the specific version needed by this repo as long as you have any v5 version installed.
+  - If you're unable to install a global tool, you can instead call the wrapper script `node <repo root>/common/scripts/install-run-rush.js` any time the guide instructs you to run `rush`. The wrapper script will install a managed copy of Rush in a temporary directory for you.
+- [Autorest](https://www.npmjs.com/package/autorest), if you're planning contribute to the generator code from swagger either for high level client or for rest level client.  
+- [Cadl Compiler](https://www.npmjs.com/package/@cadl-lang/compiler), if you're planning contribute to the generator code from cadl.
 
 ### Things to keep in mind when contributing
 

@@ -29,4 +29,4 @@ export AZURE_LOG_LEVEL=info
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs][logger-docs]
 
 <!-- LINKS -->
-[logger_docs]: https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/core/logger
+[logger_docs]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger
