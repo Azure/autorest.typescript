@@ -877,3 +877,25 @@ export function getFormattedPropertyDoc(
   }
   return propertyDoc ?? enhancedDocFromType;
 }
+
+export function getBodyTypeWithContentType(schema: ObjectSchema, contentType: string) {
+  const readOnlyProperties = [];
+  if (schema.properties) {
+    for(const propertyName of Object.keys(schema.properties)) {
+      const prop = schema.properties[propertyName];
+      if (prop?.readOnly) {
+        readOnlyProperties.push(`"${propertyName}"`);
+      }
+    }
+  }
+
+  if (contentType.endsWith("merge+patch")) {
+    if (readOnlyProperties.length > 0) {
+      const type = `Partial<Omit<${schema.name}, ${readOnlyProperties.join(" | ")}>>`;
+    } else {
+      const type = `Partial<${schema.name}>`;
+    }
+  } else if (contentType === "json/patch") {
+
+  }
+}

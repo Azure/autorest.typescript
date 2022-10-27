@@ -26,6 +26,8 @@ export interface Project {
   lastDeployedDateTime: Date | string;
 }
 
+export type ProjectMergePatch = Partial<Omit<Project, "createdDateTime">>
+
 /** Training job parameters. */
 export interface TrainingJobOptions {
   modelLabel: string;
