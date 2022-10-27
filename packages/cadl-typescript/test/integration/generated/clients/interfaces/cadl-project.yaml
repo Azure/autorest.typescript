@@ -3,6 +3,7 @@ emitters:
     generateMetadata: false
     includeShortcuts: true
     addCredentials: false
+    azureSdkForJs: false
     isCadlTest: true
     title: AuthOauth2Client
     packageDetails:

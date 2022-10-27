@@ -175,4 +175,225 @@ describe("Responses.ts", () => {
       );
     });
   });
+
+  describe("Array generation", () => {
+    it("verify string array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): string[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: string[];
+      }
+      `
+      );
+    });
+
+    it("verify int32 array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): int32[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: number[];
+      }
+      `
+      );
+    });
+
+    it("verify int64 array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): int64[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: number[];
+      }
+      `
+      );
+    });
+
+    it("verify float32 array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): float32[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: number[];
+      }
+      `
+      );
+    });
+
+    it("verify boolean array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): boolean[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: boolean[];
+      }
+      `
+      );
+    });
+
+    it("verify bytes array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): bytes[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: string[];
+      }
+      `
+      );
+    });
+
+    it("verify plainDate array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): plainDate[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: string[];
+      }
+      `
+      );
+    });
+
+    it("verify datetime array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): zonedDateTime[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: string[];
+      }
+      `
+      );
+    });
+
+    it("verify duration array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      @get op read(): duration[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: string[];
+      }
+      `
+      );
+    });
+
+    it("verify SimpleModel array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      model SimpleModel {
+        prop1: string;
+        prop2: int32;
+      }
+      @get op read(): SimpleModel[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      import { SimpleModelOutput } from "./outputModels";
+
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: Array<SimpleModelOutput>;
+      }
+      `
+      );
+    });
+
+    it("verify InnerModel array from responses", async () => {
+      const responses = await emitResponsesFromCadl(`
+      model InnerModel {
+        property: string;
+        children?: InnerModel[];
+      }
+      @get op read(): InnerModel[];
+      `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+      import { HttpResponse } from "@azure-rest/core-client";
+      import { InnerModelOutput } from "./outputModels";
+
+      /** The request has succeeded. */
+      export interface Read200Response extends HttpResponse {
+        status: "200";
+        body: Array<InnerModelOutput>;
+      }
+      `
+      );
+    });
+  });
 });
