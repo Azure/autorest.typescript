@@ -1230,6 +1230,9 @@ export interface FailoverPolicy {
     locationName?: string;
 }
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export interface GremlinDatabaseCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;

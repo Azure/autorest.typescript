@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { Domains } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -48,16 +48,18 @@ export class DomainsImpl implements Domains {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: DomainsListOptionalParams
+    options?: DomainsListOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<Domain[]> {
-    let result = await this._list(options);
+    let result: DomainsListResponse;
+    result = await this._list(options);
     yield result.value || [];
   }
 

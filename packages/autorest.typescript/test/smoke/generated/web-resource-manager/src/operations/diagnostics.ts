@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Diagnostics } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,56 +17,56 @@ import {
   DetectorResponse,
   DiagnosticsListHostingEnvironmentDetectorResponsesNextOptionalParams,
   DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams,
+  DiagnosticsListHostingEnvironmentDetectorResponsesResponse,
   DiagnosticsListSiteDetectorResponsesNextOptionalParams,
   DiagnosticsListSiteDetectorResponsesOptionalParams,
+  DiagnosticsListSiteDetectorResponsesResponse,
   DiagnosticCategory,
   DiagnosticsListSiteDiagnosticCategoriesNextOptionalParams,
   DiagnosticsListSiteDiagnosticCategoriesOptionalParams,
+  DiagnosticsListSiteDiagnosticCategoriesResponse,
   AnalysisDefinition,
   DiagnosticsListSiteAnalysesNextOptionalParams,
   DiagnosticsListSiteAnalysesOptionalParams,
+  DiagnosticsListSiteAnalysesResponse,
   DetectorDefinitionResource,
   DiagnosticsListSiteDetectorsNextOptionalParams,
   DiagnosticsListSiteDetectorsOptionalParams,
+  DiagnosticsListSiteDetectorsResponse,
   DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams,
   DiagnosticsListSiteDetectorResponsesSlotOptionalParams,
+  DiagnosticsListSiteDetectorResponsesSlotResponse,
   DiagnosticsListSiteDiagnosticCategoriesSlotNextOptionalParams,
   DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams,
+  DiagnosticsListSiteDiagnosticCategoriesSlotResponse,
   DiagnosticsListSiteAnalysesSlotNextOptionalParams,
   DiagnosticsListSiteAnalysesSlotOptionalParams,
+  DiagnosticsListSiteAnalysesSlotResponse,
   DiagnosticsListSiteDetectorsSlotNextOptionalParams,
   DiagnosticsListSiteDetectorsSlotOptionalParams,
-  DiagnosticsListHostingEnvironmentDetectorResponsesResponse,
+  DiagnosticsListSiteDetectorsSlotResponse,
   DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams,
   DiagnosticsGetHostingEnvironmentDetectorResponseResponse,
-  DiagnosticsListSiteDetectorResponsesResponse,
   DiagnosticsGetSiteDetectorResponseOptionalParams,
   DiagnosticsGetSiteDetectorResponseResponse,
-  DiagnosticsListSiteDiagnosticCategoriesResponse,
   DiagnosticsGetSiteDiagnosticCategoryOptionalParams,
   DiagnosticsGetSiteDiagnosticCategoryResponse,
-  DiagnosticsListSiteAnalysesResponse,
   DiagnosticsGetSiteAnalysisOptionalParams,
   DiagnosticsGetSiteAnalysisResponse,
   DiagnosticsExecuteSiteAnalysisOptionalParams,
   DiagnosticsExecuteSiteAnalysisResponse,
-  DiagnosticsListSiteDetectorsResponse,
   DiagnosticsGetSiteDetectorOptionalParams,
   DiagnosticsGetSiteDetectorResponse,
   DiagnosticsExecuteSiteDetectorOptionalParams,
   DiagnosticsExecuteSiteDetectorResponse,
-  DiagnosticsListSiteDetectorResponsesSlotResponse,
   DiagnosticsGetSiteDetectorResponseSlotOptionalParams,
   DiagnosticsGetSiteDetectorResponseSlotResponse,
-  DiagnosticsListSiteDiagnosticCategoriesSlotResponse,
   DiagnosticsGetSiteDiagnosticCategorySlotOptionalParams,
   DiagnosticsGetSiteDiagnosticCategorySlotResponse,
-  DiagnosticsListSiteAnalysesSlotResponse,
   DiagnosticsGetSiteAnalysisSlotOptionalParams,
   DiagnosticsGetSiteAnalysisSlotResponse,
   DiagnosticsExecuteSiteAnalysisSlotOptionalParams,
   DiagnosticsExecuteSiteAnalysisSlotResponse,
-  DiagnosticsListSiteDetectorsSlotResponse,
   DiagnosticsGetSiteDetectorSlotOptionalParams,
   DiagnosticsGetSiteDetectorSlotResponse,
   DiagnosticsExecuteSiteDetectorSlotOptionalParams,
@@ -117,11 +118,12 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listHostingEnvironmentDetectorResponsesPagingPage(
           resourceGroupName,
           name,
-          options
+          options,
+          settings
         );
       }
     };
@@ -130,15 +132,22 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listHostingEnvironmentDetectorResponsesPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
+    options?: DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DetectorResponse[]> {
-    let result = await this._listHostingEnvironmentDetectorResponses(
-      resourceGroupName,
-      name,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListHostingEnvironmentDetectorResponsesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listHostingEnvironmentDetectorResponses(
+        resourceGroupName,
+        name,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listHostingEnvironmentDetectorResponsesNext(
         resourceGroupName,
@@ -147,7 +156,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -188,11 +199,12 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listSiteDetectorResponsesPagingPage(
           resourceGroupName,
           siteName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -201,15 +213,22 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listSiteDetectorResponsesPagingPage(
     resourceGroupName: string,
     siteName: string,
-    options?: DiagnosticsListSiteDetectorResponsesOptionalParams
+    options?: DiagnosticsListSiteDetectorResponsesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DetectorResponse[]> {
-    let result = await this._listSiteDetectorResponses(
-      resourceGroupName,
-      siteName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListSiteDetectorResponsesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSiteDetectorResponses(
+        resourceGroupName,
+        siteName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSiteDetectorResponsesNext(
         resourceGroupName,
@@ -218,7 +237,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -259,11 +280,12 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listSiteDiagnosticCategoriesPagingPage(
           resourceGroupName,
           siteName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -272,15 +294,22 @@ export class DiagnosticsImpl implements Diagnostics {
   private async *listSiteDiagnosticCategoriesPagingPage(
     resourceGroupName: string,
     siteName: string,
-    options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams
+    options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DiagnosticCategory[]> {
-    let result = await this._listSiteDiagnosticCategories(
-      resourceGroupName,
-      siteName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListSiteDiagnosticCategoriesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSiteDiagnosticCategories(
+        resourceGroupName,
+        siteName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSiteDiagnosticCategoriesNext(
         resourceGroupName,
@@ -289,7 +318,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -333,12 +364,13 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listSiteAnalysesPagingPage(
           resourceGroupName,
           siteName,
           diagnosticCategory,
-          options
+          options,
+          settings
         );
       }
     };
@@ -348,16 +380,23 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: DiagnosticsListSiteAnalysesOptionalParams
+    options?: DiagnosticsListSiteAnalysesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<AnalysisDefinition[]> {
-    let result = await this._listSiteAnalyses(
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListSiteAnalysesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSiteAnalyses(
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSiteAnalysesNext(
         resourceGroupName,
@@ -367,7 +406,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -413,12 +454,13 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listSiteDetectorsPagingPage(
           resourceGroupName,
           siteName,
           diagnosticCategory,
-          options
+          options,
+          settings
         );
       }
     };
@@ -428,16 +470,23 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     diagnosticCategory: string,
-    options?: DiagnosticsListSiteDetectorsOptionalParams
+    options?: DiagnosticsListSiteDetectorsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DetectorDefinitionResource[]> {
-    let result = await this._listSiteDetectors(
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListSiteDetectorsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSiteDetectors(
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSiteDetectorsNext(
         resourceGroupName,
@@ -447,7 +496,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -493,12 +544,13 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listSiteDetectorResponsesSlotPagingPage(
           resourceGroupName,
           siteName,
           slot,
-          options
+          options,
+          settings
         );
       }
     };
@@ -508,16 +560,23 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams
+    options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DetectorResponse[]> {
-    let result = await this._listSiteDetectorResponsesSlot(
-      resourceGroupName,
-      siteName,
-      slot,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListSiteDetectorResponsesSlotResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSiteDetectorResponsesSlot(
+        resourceGroupName,
+        siteName,
+        slot,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSiteDetectorResponsesSlotNext(
         resourceGroupName,
@@ -527,7 +586,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -573,12 +634,13 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listSiteDiagnosticCategoriesSlotPagingPage(
           resourceGroupName,
           siteName,
           slot,
-          options
+          options,
+          settings
         );
       }
     };
@@ -588,16 +650,23 @@ export class DiagnosticsImpl implements Diagnostics {
     resourceGroupName: string,
     siteName: string,
     slot: string,
-    options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
+    options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DiagnosticCategory[]> {
-    let result = await this._listSiteDiagnosticCategoriesSlot(
-      resourceGroupName,
-      siteName,
-      slot,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListSiteDiagnosticCategoriesSlotResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSiteDiagnosticCategoriesSlot(
+        resourceGroupName,
+        siteName,
+        slot,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSiteDiagnosticCategoriesSlotNext(
         resourceGroupName,
@@ -607,7 +676,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -656,13 +727,14 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listSiteAnalysesSlotPagingPage(
           resourceGroupName,
           siteName,
           diagnosticCategory,
           slot,
-          options
+          options,
+          settings
         );
       }
     };
@@ -673,17 +745,24 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: DiagnosticsListSiteAnalysesSlotOptionalParams
+    options?: DiagnosticsListSiteAnalysesSlotOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<AnalysisDefinition[]> {
-    let result = await this._listSiteAnalysesSlot(
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      slot,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListSiteAnalysesSlotResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSiteAnalysesSlot(
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        slot,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSiteAnalysesSlotNext(
         resourceGroupName,
@@ -694,7 +773,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -745,13 +826,14 @@ export class DiagnosticsImpl implements Diagnostics {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listSiteDetectorsSlotPagingPage(
           resourceGroupName,
           siteName,
           diagnosticCategory,
           slot,
-          options
+          options,
+          settings
         );
       }
     };
@@ -762,17 +844,24 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     diagnosticCategory: string,
     slot: string,
-    options?: DiagnosticsListSiteDetectorsSlotOptionalParams
+    options?: DiagnosticsListSiteDetectorsSlotOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DetectorDefinitionResource[]> {
-    let result = await this._listSiteDetectorsSlot(
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      slot,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiagnosticsListSiteDetectorsSlotResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSiteDetectorsSlot(
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        slot,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSiteDetectorsSlotNext(
         resourceGroupName,
@@ -783,7 +872,9 @@ export class DiagnosticsImpl implements Diagnostics {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

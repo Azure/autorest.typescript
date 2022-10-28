@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { VirtualMachineScaleSetVMs } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,6 +19,7 @@ import {
   VirtualMachineScaleSetVM,
   VirtualMachineScaleSetVMsListNextOptionalParams,
   VirtualMachineScaleSetVMsListOptionalParams,
+  VirtualMachineScaleSetVMsListResponse,
   VirtualMachineScaleSetVMsReimageOptionalParams,
   VirtualMachineScaleSetVMsReimageAllOptionalParams,
   VirtualMachineScaleSetVMsDeallocateOptionalParams,
@@ -28,7 +30,6 @@ import {
   VirtualMachineScaleSetVMsGetResponse,
   VirtualMachineScaleSetVMsGetInstanceViewOptionalParams,
   VirtualMachineScaleSetVMsGetInstanceViewResponse,
-  VirtualMachineScaleSetVMsListResponse,
   VirtualMachineScaleSetVMsPowerOffOptionalParams,
   VirtualMachineScaleSetVMsRestartOptionalParams,
   VirtualMachineScaleSetVMsStartOptionalParams,
@@ -80,11 +81,12 @@ export class VirtualMachineScaleSetVMsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -93,15 +95,22 @@ export class VirtualMachineScaleSetVMsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: VirtualMachineScaleSetVMsListOptionalParams
+    options?: VirtualMachineScaleSetVMsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<VirtualMachineScaleSetVM[]> {
-    let result = await this._list(
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: VirtualMachineScaleSetVMsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         resourceGroupName,
@@ -110,7 +119,9 @@ export class VirtualMachineScaleSetVMsImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

@@ -747,6 +747,9 @@ export interface GenericResourceFilter {
     tagvalue?: string;
 }
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export interface HttpMessage {
     content?: Record<string, unknown>;

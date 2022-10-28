@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { FirewallPolicyRuleCollectionGroups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,12 +19,12 @@ import {
   FirewallPolicyRuleCollectionGroup,
   FirewallPolicyRuleCollectionGroupsListNextOptionalParams,
   FirewallPolicyRuleCollectionGroupsListOptionalParams,
+  FirewallPolicyRuleCollectionGroupsListResponse,
   FirewallPolicyRuleCollectionGroupsDeleteOptionalParams,
   FirewallPolicyRuleCollectionGroupsGetOptionalParams,
   FirewallPolicyRuleCollectionGroupsGetResponse,
   FirewallPolicyRuleCollectionGroupsCreateOrUpdateOptionalParams,
   FirewallPolicyRuleCollectionGroupsCreateOrUpdateResponse,
-  FirewallPolicyRuleCollectionGroupsListResponse,
   FirewallPolicyRuleCollectionGroupsListNextResponse
 } from "../models";
 
@@ -64,11 +65,12 @@ export class FirewallPolicyRuleCollectionGroupsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listPagingPage(
           resourceGroupName,
           firewallPolicyName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -77,15 +79,18 @@ export class FirewallPolicyRuleCollectionGroupsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     firewallPolicyName: string,
-    options?: FirewallPolicyRuleCollectionGroupsListOptionalParams
+    options?: FirewallPolicyRuleCollectionGroupsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<FirewallPolicyRuleCollectionGroup[]> {
-    let result = await this._list(
-      resourceGroupName,
-      firewallPolicyName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: FirewallPolicyRuleCollectionGroupsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(resourceGroupName, firewallPolicyName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         resourceGroupName,
@@ -94,7 +99,9 @@ export class FirewallPolicyRuleCollectionGroupsImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

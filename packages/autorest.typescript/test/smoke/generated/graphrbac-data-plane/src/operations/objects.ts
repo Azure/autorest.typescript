@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Objects } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -52,26 +53,39 @@ export class ObjectsImpl implements Objects {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getObjectsByObjectIdsPagingPage(parameters, options);
+      byPage: (settings?: PageSettings) => {
+        return this.getObjectsByObjectIdsPagingPage(
+          parameters,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *getObjectsByObjectIdsPagingPage(
     parameters: GetObjectsParameters,
-    options?: ObjectsGetObjectsByObjectIdsOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._getObjectsByObjectIds(parameters, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: ObjectsGetObjectsByObjectIdsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getObjectsByObjectIds(parameters, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getObjectsByObjectIdsNext(
         continuationToken,
         options
       );
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -104,26 +118,39 @@ export class ObjectsImpl implements Objects {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getObjectsByObjectIdsNextPagingPage(nextLink, options);
+      byPage: (settings?: PageSettings) => {
+        return this.getObjectsByObjectIdsNextPagingPage(
+          nextLink,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *getObjectsByObjectIdsNextPagingPage(
     nextLink: string,
-    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._getObjectsByObjectIdsNext(nextLink, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: ObjectsGetObjectsByObjectIdsNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getObjectsByObjectIdsNext(nextLink, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getObjectsByObjectIdsNext(
         continuationToken,
         options
       );
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

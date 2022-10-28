@@ -3185,6 +3185,9 @@ export interface GeoRegionCollection {
     value: GeoRegion[];
 }
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export interface GetPublishingUserOptionalParams extends coreClient.OperationOptions {
 }

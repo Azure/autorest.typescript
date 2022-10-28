@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { NetworkWatchers } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -17,7 +17,9 @@ import { LroImpl } from "../lroImpl";
 import {
   NetworkWatcher,
   NetworkWatchersListOptionalParams,
+  NetworkWatchersListResponse,
   NetworkWatchersListAllOptionalParams,
+  NetworkWatchersListAllResponse,
   NetworkWatchersCreateOrUpdateOptionalParams,
   NetworkWatchersCreateOrUpdateResponse,
   NetworkWatchersGetOptionalParams,
@@ -26,8 +28,6 @@ import {
   TagsObject,
   NetworkWatchersUpdateTagsOptionalParams,
   NetworkWatchersUpdateTagsResponse,
-  NetworkWatchersListResponse,
-  NetworkWatchersListAllResponse,
   TopologyParameters,
   NetworkWatchersGetTopologyOptionalParams,
   NetworkWatchersGetTopologyResponse,
@@ -96,17 +96,19 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
   }
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: NetworkWatchersListOptionalParams
+    options?: NetworkWatchersListOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<NetworkWatcher[]> {
-    let result = await this._list(resourceGroupName, options);
+    let result: NetworkWatchersListResponse;
+    result = await this._list(resourceGroupName, options);
     yield result.value || [];
   }
 
@@ -134,16 +136,18 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listAllPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listAllPagingPage(options, settings);
       }
     };
   }
 
   private async *listAllPagingPage(
-    options?: NetworkWatchersListAllOptionalParams
+    options?: NetworkWatchersListAllOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<NetworkWatcher[]> {
-    let result = await this._listAll(options);
+    let result: NetworkWatchersListAllResponse;
+    result = await this._listAll(options);
     yield result.value || [];
   }
 

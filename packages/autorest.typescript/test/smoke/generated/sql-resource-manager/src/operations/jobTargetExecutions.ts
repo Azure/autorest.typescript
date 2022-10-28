@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { JobTargetExecutions } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,9 +17,9 @@ import {
   JobExecution,
   JobTargetExecutionsListByJobExecutionNextOptionalParams,
   JobTargetExecutionsListByJobExecutionOptionalParams,
+  JobTargetExecutionsListByJobExecutionResponse,
   JobTargetExecutionsListByStepNextOptionalParams,
   JobTargetExecutionsListByStepOptionalParams,
-  JobTargetExecutionsListByJobExecutionResponse,
   JobTargetExecutionsListByStepResponse,
   JobTargetExecutionsGetOptionalParams,
   JobTargetExecutionsGetResponse,
@@ -72,14 +73,15 @@ export class JobTargetExecutionsImpl implements JobTargetExecutions {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByJobExecutionPagingPage(
           resourceGroupName,
           serverName,
           jobAgentName,
           jobName,
           jobExecutionId,
-          options
+          options,
+          settings
         );
       }
     };
@@ -91,18 +93,25 @@ export class JobTargetExecutionsImpl implements JobTargetExecutions {
     jobAgentName: string,
     jobName: string,
     jobExecutionId: string,
-    options?: JobTargetExecutionsListByJobExecutionOptionalParams
+    options?: JobTargetExecutionsListByJobExecutionOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<JobExecution[]> {
-    let result = await this._listByJobExecution(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      jobExecutionId,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: JobTargetExecutionsListByJobExecutionResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByJobExecution(
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        jobExecutionId,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByJobExecutionNext(
         resourceGroupName,
@@ -114,7 +123,9 @@ export class JobTargetExecutionsImpl implements JobTargetExecutions {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -174,7 +185,7 @@ export class JobTargetExecutionsImpl implements JobTargetExecutions {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByStepPagingPage(
           resourceGroupName,
           serverName,
@@ -182,7 +193,8 @@ export class JobTargetExecutionsImpl implements JobTargetExecutions {
           jobName,
           jobExecutionId,
           stepName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -195,19 +207,26 @@ export class JobTargetExecutionsImpl implements JobTargetExecutions {
     jobName: string,
     jobExecutionId: string,
     stepName: string,
-    options?: JobTargetExecutionsListByStepOptionalParams
+    options?: JobTargetExecutionsListByStepOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<JobExecution[]> {
-    let result = await this._listByStep(
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      jobExecutionId,
-      stepName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: JobTargetExecutionsListByStepResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByStep(
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        jobExecutionId,
+        stepName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByStepNext(
         resourceGroupName,
@@ -220,7 +239,9 @@ export class JobTargetExecutionsImpl implements JobTargetExecutions {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

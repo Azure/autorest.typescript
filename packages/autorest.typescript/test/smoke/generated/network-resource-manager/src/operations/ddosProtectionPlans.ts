@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { DdosProtectionPlans } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,8 +19,10 @@ import {
   DdosProtectionPlan,
   DdosProtectionPlansListNextOptionalParams,
   DdosProtectionPlansListOptionalParams,
+  DdosProtectionPlansListResponse,
   DdosProtectionPlansListByResourceGroupNextOptionalParams,
   DdosProtectionPlansListByResourceGroupOptionalParams,
+  DdosProtectionPlansListByResourceGroupResponse,
   DdosProtectionPlansDeleteOptionalParams,
   DdosProtectionPlansGetOptionalParams,
   DdosProtectionPlansGetResponse,
@@ -28,8 +31,6 @@ import {
   TagsObject,
   DdosProtectionPlansUpdateTagsOptionalParams,
   DdosProtectionPlansUpdateTagsResponse,
-  DdosProtectionPlansListResponse,
-  DdosProtectionPlansListByResourceGroupResponse,
   DdosProtectionPlansListNextResponse,
   DdosProtectionPlansListByResourceGroupNextResponse
 } from "../models";
@@ -62,22 +63,31 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: DdosProtectionPlansListOptionalParams
+    options?: DdosProtectionPlansListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DdosProtectionPlan[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DdosProtectionPlansListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -106,19 +116,30 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: DdosProtectionPlansListByResourceGroupOptionalParams
+    options?: DdosProtectionPlansListByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DdosProtectionPlan[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DdosProtectionPlansListByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByResourceGroup(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
@@ -126,7 +147,9 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

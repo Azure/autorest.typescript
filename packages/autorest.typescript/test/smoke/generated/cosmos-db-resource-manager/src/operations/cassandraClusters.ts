@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { CassandraClusters } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -17,8 +17,8 @@ import { LroImpl } from "../lroImpl";
 import {
   ClusterResource,
   CassandraClustersListBySubscriptionOptionalParams,
-  CassandraClustersListByResourceGroupOptionalParams,
   CassandraClustersListBySubscriptionResponse,
+  CassandraClustersListByResourceGroupOptionalParams,
   CassandraClustersListByResourceGroupResponse,
   CassandraClustersGetOptionalParams,
   CassandraClustersGetResponse,
@@ -64,16 +64,18 @@ export class CassandraClustersImpl implements CassandraClusters {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listBySubscriptionPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listBySubscriptionPagingPage(options, settings);
       }
     };
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: CassandraClustersListBySubscriptionOptionalParams
+    options?: CassandraClustersListBySubscriptionOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<ClusterResource[]> {
-    let result = await this._listBySubscription(options);
+    let result: CassandraClustersListBySubscriptionResponse;
+    result = await this._listBySubscription(options);
     yield result.value || [];
   }
 
@@ -102,17 +104,23 @@ export class CassandraClustersImpl implements CassandraClusters {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: CassandraClustersListByResourceGroupOptionalParams
+    options?: CassandraClustersListByResourceGroupOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<ClusterResource[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+    let result: CassandraClustersListByResourceGroupResponse;
+    result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
   }
 

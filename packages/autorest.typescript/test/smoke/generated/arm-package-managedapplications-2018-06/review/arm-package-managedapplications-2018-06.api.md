@@ -291,6 +291,9 @@ export interface GenericResource extends Resource {
     sku?: Sku;
 }
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export interface Identity {
     readonly principalId?: string;

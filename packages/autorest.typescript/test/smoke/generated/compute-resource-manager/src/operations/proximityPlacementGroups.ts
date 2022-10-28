@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { ProximityPlacementGroups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,8 +17,10 @@ import {
   ProximityPlacementGroup,
   ProximityPlacementGroupsListBySubscriptionNextOptionalParams,
   ProximityPlacementGroupsListBySubscriptionOptionalParams,
+  ProximityPlacementGroupsListBySubscriptionResponse,
   ProximityPlacementGroupsListByResourceGroupNextOptionalParams,
   ProximityPlacementGroupsListByResourceGroupOptionalParams,
+  ProximityPlacementGroupsListByResourceGroupResponse,
   ProximityPlacementGroupsCreateOrUpdateOptionalParams,
   ProximityPlacementGroupsCreateOrUpdateResponse,
   ProximityPlacementGroupUpdate,
@@ -26,8 +29,6 @@ import {
   ProximityPlacementGroupsDeleteOptionalParams,
   ProximityPlacementGroupsGetOptionalParams,
   ProximityPlacementGroupsGetResponse,
-  ProximityPlacementGroupsListBySubscriptionResponse,
-  ProximityPlacementGroupsListByResourceGroupResponse,
   ProximityPlacementGroupsListBySubscriptionNextResponse,
   ProximityPlacementGroupsListByResourceGroupNextResponse
 } from "../models";
@@ -60,22 +61,31 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listBySubscriptionPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listBySubscriptionPagingPage(options, settings);
       }
     };
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
+    options?: ProximityPlacementGroupsListBySubscriptionOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ProximityPlacementGroup[]> {
-    let result = await this._listBySubscription(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ProximityPlacementGroupsListBySubscriptionResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listBySubscription(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listBySubscriptionNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -104,19 +114,30 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
+    options?: ProximityPlacementGroupsListByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ProximityPlacementGroup[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ProximityPlacementGroupsListByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByResourceGroup(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
@@ -124,7 +145,9 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

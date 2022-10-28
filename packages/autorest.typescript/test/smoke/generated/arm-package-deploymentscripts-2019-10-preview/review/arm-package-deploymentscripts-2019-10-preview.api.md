@@ -252,6 +252,9 @@ export interface ErrorResponse {
     readonly target?: string;
 }
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export enum KnownCleanupOptions {
     Always = "Always",

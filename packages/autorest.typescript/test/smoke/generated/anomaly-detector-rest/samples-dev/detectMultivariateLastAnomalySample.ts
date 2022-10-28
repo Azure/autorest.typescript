@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  LastDetectAnomalyParameters
+  DetectMultivariateLastAnomalyParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -27,7 +27,7 @@ async function detectAnomalyWithMultivariateModel() {
     credential
   );
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
-  const options: LastDetectAnomalyParameters = {
+  const options: DetectMultivariateLastAnomalyParameters = {
     body: {
       topContributorCount: 10,
       variables: [

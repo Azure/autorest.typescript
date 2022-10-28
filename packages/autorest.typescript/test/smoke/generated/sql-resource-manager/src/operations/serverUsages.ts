@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { ServerUsages } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -55,11 +55,12 @@ export class ServerUsagesImpl implements ServerUsages {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByServerPagingPage(
           resourceGroupName,
           serverName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -68,13 +69,11 @@ export class ServerUsagesImpl implements ServerUsages {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: ServerUsagesListByServerOptionalParams
+    options?: ServerUsagesListByServerOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<ServerUsage[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+    let result: ServerUsagesListByServerResponse;
+    result = await this._listByServer(resourceGroupName, serverName, options);
     yield result.value || [];
   }
 

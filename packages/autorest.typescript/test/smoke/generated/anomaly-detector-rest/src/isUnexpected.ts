@@ -2,26 +2,26 @@
 // Licensed under the MIT license.
 
 import {
-  DetectEntireSeries200Response,
-  DetectEntireSeriesDefaultResponse,
-  DetectLastPoint200Response,
-  DetectLastPointDefaultResponse,
-  DetectChangePoint200Response,
-  DetectChangePointDefaultResponse,
-  GetBatchDetectionResult200Response,
-  GetBatchDetectionResultDefaultResponse,
-  CreateMultivariateModel201Response,
-  CreateMultivariateModelDefaultResponse,
-  ListMultivariateModel200Response,
-  ListMultivariateModelDefaultResponse,
+  DetectUnivariateEntireSeries200Response,
+  DetectUnivariateEntireSeriesDefaultResponse,
+  DetectUnivariateLastPoint200Response,
+  DetectUnivariateLastPointDefaultResponse,
+  DetectUnivariateChangePoint200Response,
+  DetectUnivariateChangePointDefaultResponse,
+  GetMultivariateBatchDetectionResult200Response,
+  GetMultivariateBatchDetectionResultDefaultResponse,
+  CreateAndTrainMultivariateModel201Response,
+  CreateAndTrainMultivariateModelDefaultResponse,
+  ListMultivariateModels200Response,
+  ListMultivariateModelsDefaultResponse,
   DeleteMultivariateModel204Response,
   DeleteMultivariateModelDefaultResponse,
   GetMultivariateModel200Response,
   GetMultivariateModelDefaultResponse,
-  BatchDetectAnomaly202Response,
-  BatchDetectAnomalyDefaultResponse,
-  LastDetectAnomaly200Response,
-  LastDetectAnomalyDefaultResponse
+  DetectMultivariateBatchAnomaly202Response,
+  DetectMultivariateBatchAnomalyDefaultResponse,
+  DetectMultivariateLastAnomaly200Response,
+  DetectMultivariateLastAnomalyDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -39,29 +39,35 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: DetectEntireSeries200Response | DetectEntireSeriesDefaultResponse
-): response is DetectEntireSeriesDefaultResponse;
-export function isUnexpected(
-  response: DetectLastPoint200Response | DetectLastPointDefaultResponse
-): response is DetectLastPointDefaultResponse;
-export function isUnexpected(
-  response: DetectChangePoint200Response | DetectChangePointDefaultResponse
-): response is DetectChangePointDefaultResponse;
+  response:
+    | DetectUnivariateEntireSeries200Response
+    | DetectUnivariateEntireSeriesDefaultResponse
+): response is DetectUnivariateEntireSeriesDefaultResponse;
 export function isUnexpected(
   response:
-    | GetBatchDetectionResult200Response
-    | GetBatchDetectionResultDefaultResponse
-): response is GetBatchDetectionResultDefaultResponse;
+    | DetectUnivariateLastPoint200Response
+    | DetectUnivariateLastPointDefaultResponse
+): response is DetectUnivariateLastPointDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateMultivariateModel201Response
-    | CreateMultivariateModelDefaultResponse
-): response is CreateMultivariateModelDefaultResponse;
+    | DetectUnivariateChangePoint200Response
+    | DetectUnivariateChangePointDefaultResponse
+): response is DetectUnivariateChangePointDefaultResponse;
 export function isUnexpected(
   response:
-    | ListMultivariateModel200Response
-    | ListMultivariateModelDefaultResponse
-): response is ListMultivariateModelDefaultResponse;
+    | GetMultivariateBatchDetectionResult200Response
+    | GetMultivariateBatchDetectionResultDefaultResponse
+): response is GetMultivariateBatchDetectionResultDefaultResponse;
+export function isUnexpected(
+  response:
+    | CreateAndTrainMultivariateModel201Response
+    | CreateAndTrainMultivariateModelDefaultResponse
+): response is CreateAndTrainMultivariateModelDefaultResponse;
+export function isUnexpected(
+  response:
+    | ListMultivariateModels200Response
+    | ListMultivariateModelsDefaultResponse
+): response is ListMultivariateModelsDefaultResponse;
 export function isUnexpected(
   response:
     | DeleteMultivariateModel204Response
@@ -73,44 +79,48 @@ export function isUnexpected(
     | GetMultivariateModelDefaultResponse
 ): response is GetMultivariateModelDefaultResponse;
 export function isUnexpected(
-  response: BatchDetectAnomaly202Response | BatchDetectAnomalyDefaultResponse
-): response is BatchDetectAnomalyDefaultResponse;
-export function isUnexpected(
-  response: LastDetectAnomaly200Response | LastDetectAnomalyDefaultResponse
-): response is LastDetectAnomalyDefaultResponse;
+  response:
+    | DetectMultivariateBatchAnomaly202Response
+    | DetectMultivariateBatchAnomalyDefaultResponse
+): response is DetectMultivariateBatchAnomalyDefaultResponse;
 export function isUnexpected(
   response:
-    | DetectEntireSeries200Response
-    | DetectEntireSeriesDefaultResponse
-    | DetectLastPoint200Response
-    | DetectLastPointDefaultResponse
-    | DetectChangePoint200Response
-    | DetectChangePointDefaultResponse
-    | GetBatchDetectionResult200Response
-    | GetBatchDetectionResultDefaultResponse
-    | CreateMultivariateModel201Response
-    | CreateMultivariateModelDefaultResponse
-    | ListMultivariateModel200Response
-    | ListMultivariateModelDefaultResponse
+    | DetectMultivariateLastAnomaly200Response
+    | DetectMultivariateLastAnomalyDefaultResponse
+): response is DetectMultivariateLastAnomalyDefaultResponse;
+export function isUnexpected(
+  response:
+    | DetectUnivariateEntireSeries200Response
+    | DetectUnivariateEntireSeriesDefaultResponse
+    | DetectUnivariateLastPoint200Response
+    | DetectUnivariateLastPointDefaultResponse
+    | DetectUnivariateChangePoint200Response
+    | DetectUnivariateChangePointDefaultResponse
+    | GetMultivariateBatchDetectionResult200Response
+    | GetMultivariateBatchDetectionResultDefaultResponse
+    | CreateAndTrainMultivariateModel201Response
+    | CreateAndTrainMultivariateModelDefaultResponse
+    | ListMultivariateModels200Response
+    | ListMultivariateModelsDefaultResponse
     | DeleteMultivariateModel204Response
     | DeleteMultivariateModelDefaultResponse
     | GetMultivariateModel200Response
     | GetMultivariateModelDefaultResponse
-    | BatchDetectAnomaly202Response
-    | BatchDetectAnomalyDefaultResponse
-    | LastDetectAnomaly200Response
-    | LastDetectAnomalyDefaultResponse
+    | DetectMultivariateBatchAnomaly202Response
+    | DetectMultivariateBatchAnomalyDefaultResponse
+    | DetectMultivariateLastAnomaly200Response
+    | DetectMultivariateLastAnomalyDefaultResponse
 ): response is
-  | DetectEntireSeriesDefaultResponse
-  | DetectLastPointDefaultResponse
-  | DetectChangePointDefaultResponse
-  | GetBatchDetectionResultDefaultResponse
-  | CreateMultivariateModelDefaultResponse
-  | ListMultivariateModelDefaultResponse
+  | DetectUnivariateEntireSeriesDefaultResponse
+  | DetectUnivariateLastPointDefaultResponse
+  | DetectUnivariateChangePointDefaultResponse
+  | GetMultivariateBatchDetectionResultDefaultResponse
+  | CreateAndTrainMultivariateModelDefaultResponse
+  | ListMultivariateModelsDefaultResponse
   | DeleteMultivariateModelDefaultResponse
   | GetMultivariateModelDefaultResponse
-  | BatchDetectAnomalyDefaultResponse
-  | LastDetectAnomalyDefaultResponse {
+  | DetectMultivariateBatchAnomalyDefaultResponse
+  | DetectMultivariateLastAnomalyDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

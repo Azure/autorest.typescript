@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { RecoverableManagedDatabases } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -60,11 +61,12 @@ export class RecoverableManagedDatabasesImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByInstancePagingPage(
           resourceGroupName,
           managedInstanceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -73,15 +75,22 @@ export class RecoverableManagedDatabasesImpl
   private async *listByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: RecoverableManagedDatabasesListByInstanceOptionalParams
+    options?: RecoverableManagedDatabasesListByInstanceOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<RecoverableManagedDatabase[]> {
-    let result = await this._listByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: RecoverableManagedDatabasesListByInstanceResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByInstance(
+        resourceGroupName,
+        managedInstanceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByInstanceNext(
         resourceGroupName,
@@ -90,7 +99,9 @@ export class RecoverableManagedDatabasesImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

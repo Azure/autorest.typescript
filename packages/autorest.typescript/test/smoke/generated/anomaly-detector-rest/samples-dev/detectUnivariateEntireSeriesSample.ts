@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  DetectEntireSeriesParameters
+  DetectUnivariateEntireSeriesParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -26,7 +26,7 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
     ApiVersion,
     credential
   );
-  const options: DetectEntireSeriesParameters = {
+  const options: DetectUnivariateEntireSeriesParameters = {
     body: {
       granularity: "monthly",
       imputeMode: "auto",

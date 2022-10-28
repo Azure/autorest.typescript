@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { Usages } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -48,17 +48,19 @@ export class UsagesImpl implements Usages {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByLocationPagingPage(location, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listByLocationPagingPage(location, options, settings);
       }
     };
   }
 
   private async *listByLocationPagingPage(
     location: string,
-    options?: UsagesListByLocationOptionalParams
+    options?: UsagesListByLocationOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<Usage[]> {
-    let result = await this._listByLocation(location, options);
+    let result: UsagesListByLocationResponse;
+    result = await this._listByLocation(location, options);
     yield result.value || [];
   }
 

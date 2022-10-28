@@ -13,7 +13,8 @@ import {
   SendRequest
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "./pagingHelper";
 import { FeaturesImpl } from "./operations";
 import { Features } from "./operationsInterfaces";
 import * as Parameters from "./models/parameters";
@@ -129,22 +130,31 @@ export class FeatureClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listOperationsPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listOperationsPagingPage(options, settings);
       }
     };
   }
 
   private async *listOperationsPagingPage(
-    options?: ListOperationsOptionalParams
+    options?: ListOperationsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Operation[]> {
-    let result = await this._listOperations(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ListOperationsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listOperations(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listOperationsNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

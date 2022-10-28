@@ -9,6 +9,9 @@ import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public (undocumented)
 export class ManagementLinkClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;

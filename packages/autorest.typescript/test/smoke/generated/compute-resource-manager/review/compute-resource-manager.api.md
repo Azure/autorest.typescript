@@ -2523,6 +2523,9 @@ export interface GalleryUpdate extends UpdateResourceDefinition {
     softDeletePolicy?: SoftDeletePolicy;
 }
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export interface GrantAccessData {
     // (undocumented)

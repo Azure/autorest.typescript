@@ -27,6 +27,9 @@ export interface AuthorizationOperationsListOptionalParams extends coreClient.Op
 // @public
 export type AuthorizationOperationsListResponse = OperationListResult;
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export enum KnownLockLevel {
     CanNotDelete = "CanNotDelete",

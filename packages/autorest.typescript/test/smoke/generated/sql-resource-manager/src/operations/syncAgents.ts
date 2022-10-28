@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { SyncAgents } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,18 +19,18 @@ import {
   SyncAgent,
   SyncAgentsListByServerNextOptionalParams,
   SyncAgentsListByServerOptionalParams,
+  SyncAgentsListByServerResponse,
   SyncAgentLinkedDatabase,
   SyncAgentsListLinkedDatabasesNextOptionalParams,
   SyncAgentsListLinkedDatabasesOptionalParams,
+  SyncAgentsListLinkedDatabasesResponse,
   SyncAgentsGetOptionalParams,
   SyncAgentsGetResponse,
   SyncAgentsCreateOrUpdateOptionalParams,
   SyncAgentsCreateOrUpdateResponse,
   SyncAgentsDeleteOptionalParams,
-  SyncAgentsListByServerResponse,
   SyncAgentsGenerateKeyOptionalParams,
   SyncAgentsGenerateKeyResponse,
-  SyncAgentsListLinkedDatabasesResponse,
   SyncAgentsListByServerNextResponse,
   SyncAgentsListLinkedDatabasesNextResponse
 } from "../models";
@@ -71,11 +72,12 @@ export class SyncAgentsImpl implements SyncAgents {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByServerPagingPage(
           resourceGroupName,
           serverName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -84,15 +86,18 @@ export class SyncAgentsImpl implements SyncAgents {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: SyncAgentsListByServerOptionalParams
+    options?: SyncAgentsListByServerOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<SyncAgent[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: SyncAgentsListByServerResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByServer(resourceGroupName, serverName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByServerNext(
         resourceGroupName,
@@ -101,7 +106,9 @@ export class SyncAgentsImpl implements SyncAgents {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -146,12 +153,13 @@ export class SyncAgentsImpl implements SyncAgents {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listLinkedDatabasesPagingPage(
           resourceGroupName,
           serverName,
           syncAgentName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -161,16 +169,23 @@ export class SyncAgentsImpl implements SyncAgents {
     resourceGroupName: string,
     serverName: string,
     syncAgentName: string,
-    options?: SyncAgentsListLinkedDatabasesOptionalParams
+    options?: SyncAgentsListLinkedDatabasesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<SyncAgentLinkedDatabase[]> {
-    let result = await this._listLinkedDatabases(
-      resourceGroupName,
-      serverName,
-      syncAgentName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: SyncAgentsListLinkedDatabasesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listLinkedDatabases(
+        resourceGroupName,
+        serverName,
+        syncAgentName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listLinkedDatabasesNext(
         resourceGroupName,
@@ -180,7 +195,9 @@ export class SyncAgentsImpl implements SyncAgents {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

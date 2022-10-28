@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { OAuth2PermissionGrantOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -17,10 +18,10 @@ import {
   OAuth2PermissionGrantListNextOptionalParams,
   OAuth2PermissionGrantListOptionalParams,
   OAuth2PermissionGrantListResponse,
+  OAuth2PermissionGrantListNextResponse,
   OAuth2PermissionGrantCreateOptionalParams,
   OAuth2PermissionGrantCreateResponse,
-  OAuth2PermissionGrantDeleteOptionalParams,
-  OAuth2PermissionGrantListNextResponse
+  OAuth2PermissionGrantDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -52,22 +53,31 @@ export class OAuth2PermissionGrantOperationsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: OAuth2PermissionGrantListOptionalParams
+    options?: OAuth2PermissionGrantListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<OAuth2PermissionGrant[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: OAuth2PermissionGrantListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -96,23 +106,32 @@ export class OAuth2PermissionGrantOperationsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listNextPagingPage(nextLink, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listNextPagingPage(nextLink, options, settings);
       }
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: OAuth2PermissionGrantListNextOptionalParams
+    options?: OAuth2PermissionGrantListNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<OAuth2PermissionGrant[]> {
-    let result = await this._listNext(nextLink, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: OAuth2PermissionGrantListNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listNext(nextLink, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

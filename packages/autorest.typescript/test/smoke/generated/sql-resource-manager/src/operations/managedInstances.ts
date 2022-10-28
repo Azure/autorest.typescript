@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { ManagedInstances } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,16 +19,17 @@ import {
   ManagedInstance,
   ManagedInstancesListByInstancePoolNextOptionalParams,
   ManagedInstancesListByInstancePoolOptionalParams,
+  ManagedInstancesListByInstancePoolResponse,
   ManagedInstancesListNextOptionalParams,
   ManagedInstancesListOptionalParams,
+  ManagedInstancesListResponse,
   ManagedInstancesListByResourceGroupNextOptionalParams,
   ManagedInstancesListByResourceGroupOptionalParams,
+  ManagedInstancesListByResourceGroupResponse,
   TopQueries,
   ManagedInstancesListByManagedInstanceNextOptionalParams,
   ManagedInstancesListByManagedInstanceOptionalParams,
-  ManagedInstancesListByInstancePoolResponse,
-  ManagedInstancesListResponse,
-  ManagedInstancesListByResourceGroupResponse,
+  ManagedInstancesListByManagedInstanceResponse,
   ManagedInstancesGetOptionalParams,
   ManagedInstancesGetResponse,
   ManagedInstancesCreateOrUpdateOptionalParams,
@@ -36,7 +38,6 @@ import {
   ManagedInstanceUpdate,
   ManagedInstancesUpdateOptionalParams,
   ManagedInstancesUpdateResponse,
-  ManagedInstancesListByManagedInstanceResponse,
   ManagedInstancesFailoverOptionalParams,
   ManagedInstancesListByInstancePoolNextResponse,
   ManagedInstancesListNextResponse,
@@ -81,11 +82,12 @@ export class ManagedInstancesImpl implements ManagedInstances {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByInstancePoolPagingPage(
           resourceGroupName,
           instancePoolName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -94,15 +96,22 @@ export class ManagedInstancesImpl implements ManagedInstances {
   private async *listByInstancePoolPagingPage(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: ManagedInstancesListByInstancePoolOptionalParams
+    options?: ManagedInstancesListByInstancePoolOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ManagedInstance[]> {
-    let result = await this._listByInstancePool(
-      resourceGroupName,
-      instancePoolName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ManagedInstancesListByInstancePoolResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByInstancePool(
+        resourceGroupName,
+        instancePoolName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByInstancePoolNext(
         resourceGroupName,
@@ -111,7 +120,9 @@ export class ManagedInstancesImpl implements ManagedInstances {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -144,22 +155,31 @@ export class ManagedInstancesImpl implements ManagedInstances {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: ManagedInstancesListOptionalParams
+    options?: ManagedInstancesListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ManagedInstance[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ManagedInstancesListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -189,19 +209,30 @@ export class ManagedInstancesImpl implements ManagedInstances {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: ManagedInstancesListByResourceGroupOptionalParams
+    options?: ManagedInstancesListByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ManagedInstance[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ManagedInstancesListByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByResourceGroup(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
@@ -209,7 +240,9 @@ export class ManagedInstancesImpl implements ManagedInstances {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -249,11 +282,12 @@ export class ManagedInstancesImpl implements ManagedInstances {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByManagedInstancePagingPage(
           resourceGroupName,
           managedInstanceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -262,15 +296,22 @@ export class ManagedInstancesImpl implements ManagedInstances {
   private async *listByManagedInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: ManagedInstancesListByManagedInstanceOptionalParams
+    options?: ManagedInstancesListByManagedInstanceOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<TopQueries[]> {
-    let result = await this._listByManagedInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ManagedInstancesListByManagedInstanceResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByManagedInstance(
+        resourceGroupName,
+        managedInstanceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByManagedInstanceNext(
         resourceGroupName,
@@ -279,7 +320,9 @@ export class ManagedInstancesImpl implements ManagedInstances {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

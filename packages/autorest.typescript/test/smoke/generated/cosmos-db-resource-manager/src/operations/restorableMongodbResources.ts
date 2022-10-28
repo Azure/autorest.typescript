@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { RestorableMongodbResources } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -53,8 +53,8 @@ export class RestorableMongodbResourcesImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(location, instanceId, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(location, instanceId, options, settings);
       }
     };
   }
@@ -62,9 +62,11 @@ export class RestorableMongodbResourcesImpl
   private async *listPagingPage(
     location: string,
     instanceId: string,
-    options?: RestorableMongodbResourcesListOptionalParams
+    options?: RestorableMongodbResourcesListOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<DatabaseRestoreResource[]> {
-    let result = await this._list(location, instanceId, options);
+    let result: RestorableMongodbResourcesListResponse;
+    result = await this._list(location, instanceId, options);
     yield result.value || [];
   }
 

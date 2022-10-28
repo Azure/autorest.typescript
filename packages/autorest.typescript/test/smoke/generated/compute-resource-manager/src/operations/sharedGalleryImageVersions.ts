@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { SharedGalleryImageVersions } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -63,12 +64,13 @@ export class SharedGalleryImageVersionsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listPagingPage(
           location,
           galleryUniqueName,
           galleryImageName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -78,16 +80,23 @@ export class SharedGalleryImageVersionsImpl
     location: string,
     galleryUniqueName: string,
     galleryImageName: string,
-    options?: SharedGalleryImageVersionsListOptionalParams
+    options?: SharedGalleryImageVersionsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<SharedGalleryImageVersion[]> {
-    let result = await this._list(
-      location,
-      galleryUniqueName,
-      galleryImageName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: SharedGalleryImageVersionsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(
+        location,
+        galleryUniqueName,
+        galleryImageName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         location,
@@ -97,7 +106,9 @@ export class SharedGalleryImageVersionsImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

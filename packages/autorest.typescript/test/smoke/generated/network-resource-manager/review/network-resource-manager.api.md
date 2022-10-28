@@ -4427,6 +4427,9 @@ export interface GetBastionShareableLinkOptionalParams extends coreClient.Operat
 // @public
 export type GetBastionShareableLinkResponse = BastionShareableLinkListResult;
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export interface GetVpnSitesConfigurationRequest {
     outputBlobSasUrl: string;

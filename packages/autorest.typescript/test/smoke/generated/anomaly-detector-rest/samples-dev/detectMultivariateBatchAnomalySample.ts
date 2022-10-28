@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  BatchDetectAnomalyParameters,
+  DetectMultivariateBatchAnomalyParameters,
   getLongRunningPoller
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -28,7 +28,7 @@ async function detectAnomalyWithMultivariateModel() {
     credential
   );
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
-  const options: BatchDetectAnomalyParameters = {
+  const options: DetectMultivariateBatchAnomalyParameters = {
     body: {
       dataSource:
         "https://multiadsample.blob.core.windows.net/data/sample_data_2_1000.csv",

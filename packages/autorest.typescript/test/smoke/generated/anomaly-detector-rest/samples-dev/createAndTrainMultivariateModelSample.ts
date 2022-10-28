@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  CreateMultivariateModelParameters
+  CreateAndTrainMultivariateModelParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -26,7 +26,7 @@ async function trainMultivariateModel() {
     ApiVersion,
     credential
   );
-  const options: CreateMultivariateModelParameters = {
+  const options: CreateAndTrainMultivariateModelParameters = {
     body: {
       alignPolicy: {
         alignMode: "Outer",

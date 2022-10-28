@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { ManagedDatabases } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,9 +19,10 @@ import {
   ManagedDatabase,
   ManagedDatabasesListByInstanceNextOptionalParams,
   ManagedDatabasesListByInstanceOptionalParams,
+  ManagedDatabasesListByInstanceResponse,
   ManagedDatabasesListInaccessibleByInstanceNextOptionalParams,
   ManagedDatabasesListInaccessibleByInstanceOptionalParams,
-  ManagedDatabasesListByInstanceResponse,
+  ManagedDatabasesListInaccessibleByInstanceResponse,
   ManagedDatabasesGetOptionalParams,
   ManagedDatabasesGetResponse,
   ManagedDatabasesCreateOrUpdateOptionalParams,
@@ -31,7 +33,6 @@ import {
   ManagedDatabasesUpdateResponse,
   CompleteDatabaseRestoreDefinition,
   ManagedDatabasesCompleteRestoreOptionalParams,
-  ManagedDatabasesListInaccessibleByInstanceResponse,
   ManagedDatabasesListByInstanceNextResponse,
   ManagedDatabasesListInaccessibleByInstanceNextResponse
 } from "../models";
@@ -73,11 +74,12 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByInstancePagingPage(
           resourceGroupName,
           managedInstanceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -86,15 +88,22 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   private async *listByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: ManagedDatabasesListByInstanceOptionalParams
+    options?: ManagedDatabasesListByInstanceOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ManagedDatabase[]> {
-    let result = await this._listByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ManagedDatabasesListByInstanceResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByInstance(
+        resourceGroupName,
+        managedInstanceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByInstanceNext(
         resourceGroupName,
@@ -103,7 +112,9 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -145,11 +156,12 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listInaccessibleByInstancePagingPage(
           resourceGroupName,
           managedInstanceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -158,15 +170,22 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
   private async *listInaccessibleByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams
+    options?: ManagedDatabasesListInaccessibleByInstanceOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ManagedDatabase[]> {
-    let result = await this._listInaccessibleByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ManagedDatabasesListInaccessibleByInstanceResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listInaccessibleByInstance(
+        resourceGroupName,
+        managedInstanceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listInaccessibleByInstanceNext(
         resourceGroupName,
@@ -175,7 +194,9 @@ export class ManagedDatabasesImpl implements ManagedDatabases {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

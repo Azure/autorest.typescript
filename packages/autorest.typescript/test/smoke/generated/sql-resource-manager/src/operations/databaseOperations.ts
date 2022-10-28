@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { DatabaseOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,8 +17,8 @@ import {
   DatabaseOperation,
   DatabaseOperationsListByDatabaseNextOptionalParams,
   DatabaseOperationsListByDatabaseOptionalParams,
-  DatabaseOperationsCancelOptionalParams,
   DatabaseOperationsListByDatabaseResponse,
+  DatabaseOperationsCancelOptionalParams,
   DatabaseOperationsListByDatabaseNextResponse
 } from "../models";
 
@@ -61,12 +62,13 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByDatabasePagingPage(
           resourceGroupName,
           serverName,
           databaseName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -76,16 +78,23 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabaseOperationsListByDatabaseOptionalParams
+    options?: DatabaseOperationsListByDatabaseOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DatabaseOperation[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DatabaseOperationsListByDatabaseResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByDatabase(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByDatabaseNext(
         resourceGroupName,
@@ -95,7 +104,9 @@ export class DatabaseOperationsImpl implements DatabaseOperations {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

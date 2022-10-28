@@ -131,6 +131,9 @@ export interface ErrorModel {
     readonly message?: string;
 }
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export type IdentityType = string;
 

@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  DetectChangePointParameters
+  DetectUnivariateChangePointParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -26,7 +26,7 @@ async function detectChangePointExample() {
     ApiVersion,
     credential
   );
-  const options: DetectChangePointParameters = {
+  const options: DetectUnivariateChangePointParameters = {
     body: {
       customInterval: 5,
       granularity: "minutely",

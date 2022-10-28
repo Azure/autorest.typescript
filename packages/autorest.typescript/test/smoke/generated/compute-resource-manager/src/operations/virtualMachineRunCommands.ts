@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { VirtualMachineRunCommands } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,10 +19,11 @@ import {
   RunCommandDocumentBase,
   VirtualMachineRunCommandsListNextOptionalParams,
   VirtualMachineRunCommandsListOptionalParams,
+  VirtualMachineRunCommandsListResponse,
   VirtualMachineRunCommand,
   VirtualMachineRunCommandsListByVirtualMachineNextOptionalParams,
   VirtualMachineRunCommandsListByVirtualMachineOptionalParams,
-  VirtualMachineRunCommandsListResponse,
+  VirtualMachineRunCommandsListByVirtualMachineResponse,
   VirtualMachineRunCommandsGetOptionalParams,
   VirtualMachineRunCommandsGetResponse,
   VirtualMachineRunCommandsCreateOrUpdateOptionalParams,
@@ -32,7 +34,6 @@ import {
   VirtualMachineRunCommandsDeleteOptionalParams,
   VirtualMachineRunCommandsGetByVirtualMachineOptionalParams,
   VirtualMachineRunCommandsGetByVirtualMachineResponse,
-  VirtualMachineRunCommandsListByVirtualMachineResponse,
   VirtualMachineRunCommandsListNextResponse,
   VirtualMachineRunCommandsListByVirtualMachineNextResponse
 } from "../models";
@@ -68,23 +69,32 @@ export class VirtualMachineRunCommandsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(location, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(location, options, settings);
       }
     };
   }
 
   private async *listPagingPage(
     location: string,
-    options?: VirtualMachineRunCommandsListOptionalParams
+    options?: VirtualMachineRunCommandsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<RunCommandDocumentBase[]> {
-    let result = await this._list(location, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: VirtualMachineRunCommandsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(location, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(location, continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -120,11 +130,12 @@ export class VirtualMachineRunCommandsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByVirtualMachinePagingPage(
           resourceGroupName,
           vmName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -133,15 +144,22 @@ export class VirtualMachineRunCommandsImpl
   private async *listByVirtualMachinePagingPage(
     resourceGroupName: string,
     vmName: string,
-    options?: VirtualMachineRunCommandsListByVirtualMachineOptionalParams
+    options?: VirtualMachineRunCommandsListByVirtualMachineOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<VirtualMachineRunCommand[]> {
-    let result = await this._listByVirtualMachine(
-      resourceGroupName,
-      vmName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: VirtualMachineRunCommandsListByVirtualMachineResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByVirtualMachine(
+        resourceGroupName,
+        vmName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByVirtualMachineNext(
         resourceGroupName,
@@ -150,7 +168,9 @@ export class VirtualMachineRunCommandsImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { ServicePrincipals } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,30 +17,30 @@ import {
   ServicePrincipal,
   ServicePrincipalsListNextOptionalParams,
   ServicePrincipalsListOptionalParams,
+  ServicePrincipalsListResponse,
   DirectoryObjectUnion,
   ServicePrincipalsListOwnersNextOptionalParams,
   ServicePrincipalsListOwnersOptionalParams,
+  ServicePrincipalsListOwnersResponse,
   KeyCredential,
   ServicePrincipalsListKeyCredentialsOptionalParams,
+  ServicePrincipalsListKeyCredentialsResponse,
   PasswordCredential,
   ServicePrincipalsListPasswordCredentialsOptionalParams,
+  ServicePrincipalsListPasswordCredentialsResponse,
+  ServicePrincipalsListNextResponse,
   ServicePrincipalCreateParameters,
   ServicePrincipalsCreateOptionalParams,
   ServicePrincipalsCreateResponse,
-  ServicePrincipalsListResponse,
   ServicePrincipalUpdateParameters,
   ServicePrincipalsUpdateOptionalParams,
   ServicePrincipalsDeleteOptionalParams,
   ServicePrincipalsGetOptionalParams,
   ServicePrincipalsGetResponse,
-  ServicePrincipalsListOwnersResponse,
-  ServicePrincipalsListKeyCredentialsResponse,
   KeyCredentialsUpdateParameters,
   ServicePrincipalsUpdateKeyCredentialsOptionalParams,
-  ServicePrincipalsListPasswordCredentialsResponse,
   PasswordCredentialsUpdateParameters,
   ServicePrincipalsUpdatePasswordCredentialsOptionalParams,
-  ServicePrincipalsListNextResponse,
   ServicePrincipalsListOwnersNextResponse
 } from "../models";
 
@@ -71,22 +72,31 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: ServicePrincipalsListOptionalParams
+    options?: ServicePrincipalsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ServicePrincipal[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: ServicePrincipalsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -115,23 +125,32 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listOwnersPagingPage(objectId, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listOwnersPagingPage(objectId, options, settings);
       }
     };
   }
 
   private async *listOwnersPagingPage(
     objectId: string,
-    options?: ServicePrincipalsListOwnersOptionalParams
+    options?: ServicePrincipalsListOwnersOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._listOwners(objectId, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: ServicePrincipalsListOwnersResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listOwners(objectId, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listOwnersNext(objectId, continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -161,17 +180,19 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listKeyCredentialsPagingPage(objectId, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listKeyCredentialsPagingPage(objectId, options, settings);
       }
     };
   }
 
   private async *listKeyCredentialsPagingPage(
     objectId: string,
-    options?: ServicePrincipalsListKeyCredentialsOptionalParams
+    options?: ServicePrincipalsListKeyCredentialsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<KeyCredential[]> {
-    let result = await this._listKeyCredentials(objectId, options);
+    let result: ServicePrincipalsListKeyCredentialsResponse;
+    result = await this._listKeyCredentials(objectId, options);
     yield result.value || [];
   }
 
@@ -204,17 +225,23 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPasswordCredentialsPagingPage(objectId, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPasswordCredentialsPagingPage(
+          objectId,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listPasswordCredentialsPagingPage(
     objectId: string,
-    options?: ServicePrincipalsListPasswordCredentialsOptionalParams
+    options?: ServicePrincipalsListPasswordCredentialsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<PasswordCredential[]> {
-    let result = await this._listPasswordCredentials(objectId, options);
+    let result: ServicePrincipalsListPasswordCredentialsResponse;
+    result = await this._listPasswordCredentials(objectId, options);
     yield result.value || [];
   }
 
@@ -247,23 +274,32 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listNextPagingPage(nextLink, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listNextPagingPage(nextLink, options, settings);
       }
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: ServicePrincipalsListNextOptionalParams
+    options?: ServicePrincipalsListNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ServicePrincipal[]> {
-    let result = await this._listNext(nextLink, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: ServicePrincipalsListNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listNext(nextLink, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

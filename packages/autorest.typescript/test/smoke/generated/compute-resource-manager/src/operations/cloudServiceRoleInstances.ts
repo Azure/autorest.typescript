@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { CloudServiceRoleInstances } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,12 +19,12 @@ import {
   RoleInstance,
   CloudServiceRoleInstancesListNextOptionalParams,
   CloudServiceRoleInstancesListOptionalParams,
+  CloudServiceRoleInstancesListResponse,
   CloudServiceRoleInstancesDeleteOptionalParams,
   CloudServiceRoleInstancesGetOptionalParams,
   CloudServiceRoleInstancesGetResponse,
   CloudServiceRoleInstancesGetInstanceViewOptionalParams,
   CloudServiceRoleInstancesGetInstanceViewResponse,
-  CloudServiceRoleInstancesListResponse,
   CloudServiceRoleInstancesRestartOptionalParams,
   CloudServiceRoleInstancesReimageOptionalParams,
   CloudServiceRoleInstancesRebuildOptionalParams,
@@ -70,11 +71,12 @@ export class CloudServiceRoleInstancesImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listPagingPage(
           resourceGroupName,
           cloudServiceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -83,11 +85,18 @@ export class CloudServiceRoleInstancesImpl
   private async *listPagingPage(
     resourceGroupName: string,
     cloudServiceName: string,
-    options?: CloudServiceRoleInstancesListOptionalParams
+    options?: CloudServiceRoleInstancesListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<RoleInstance[]> {
-    let result = await this._list(resourceGroupName, cloudServiceName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: CloudServiceRoleInstancesListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(resourceGroupName, cloudServiceName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         resourceGroupName,
@@ -96,7 +105,9 @@ export class CloudServiceRoleInstancesImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

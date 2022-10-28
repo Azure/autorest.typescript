@@ -867,6 +867,9 @@ export interface GeoReplicationStats {
 // @public
 export type GeoReplicationStatus = string;
 
+// @public (undocumented)
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public
 export type HttpProtocol = "https,http" | "https";
 

@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { TopLevelDomains } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,14 +17,14 @@ import {
   TopLevelDomain,
   TopLevelDomainsListNextOptionalParams,
   TopLevelDomainsListOptionalParams,
+  TopLevelDomainsListResponse,
   TldLegalAgreement,
   TopLevelDomainAgreementOption,
   TopLevelDomainsListAgreementsNextOptionalParams,
   TopLevelDomainsListAgreementsOptionalParams,
-  TopLevelDomainsListResponse,
+  TopLevelDomainsListAgreementsResponse,
   TopLevelDomainsGetOptionalParams,
   TopLevelDomainsGetResponse,
-  TopLevelDomainsListAgreementsResponse,
   TopLevelDomainsListNextResponse,
   TopLevelDomainsListAgreementsNextResponse
 } from "../models";
@@ -56,22 +57,31 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: TopLevelDomainsListOptionalParams
+    options?: TopLevelDomainsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<TopLevelDomain[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: TopLevelDomainsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -102,8 +112,13 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listAgreementsPagingPage(name, agreementOption, options);
+      byPage: (settings?: PageSettings) => {
+        return this.listAgreementsPagingPage(
+          name,
+          agreementOption,
+          options,
+          settings
+        );
       }
     };
   }
@@ -111,11 +126,18 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
   private async *listAgreementsPagingPage(
     name: string,
     agreementOption: TopLevelDomainAgreementOption,
-    options?: TopLevelDomainsListAgreementsOptionalParams
+    options?: TopLevelDomainsListAgreementsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<TldLegalAgreement[]> {
-    let result = await this._listAgreements(name, agreementOption, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: TopLevelDomainsListAgreementsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listAgreements(name, agreementOption, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listAgreementsNext(
         name,
@@ -124,7 +146,9 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

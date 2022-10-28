@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Databases } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -17,18 +18,20 @@ import { LroImpl } from "../lroImpl";
 import {
   Metric,
   DatabasesListMetricsOptionalParams,
+  DatabasesListMetricsResponse,
   MetricDefinition,
   DatabasesListMetricDefinitionsOptionalParams,
+  DatabasesListMetricDefinitionsResponse,
   Database,
   DatabasesListByServerNextOptionalParams,
   DatabasesListByServerOptionalParams,
+  DatabasesListByServerResponse,
   DatabasesListByElasticPoolNextOptionalParams,
   DatabasesListByElasticPoolOptionalParams,
+  DatabasesListByElasticPoolResponse,
   DatabasesListInaccessibleByServerNextOptionalParams,
   DatabasesListInaccessibleByServerOptionalParams,
-  DatabasesListMetricsResponse,
-  DatabasesListMetricDefinitionsResponse,
-  DatabasesListByServerResponse,
+  DatabasesListInaccessibleByServerResponse,
   DatabasesGetOptionalParams,
   DatabasesGetResponse,
   DatabasesCreateOrUpdateOptionalParams,
@@ -37,9 +40,7 @@ import {
   DatabaseUpdate,
   DatabasesUpdateOptionalParams,
   DatabasesUpdateResponse,
-  DatabasesListByElasticPoolResponse,
   DatabasesFailoverOptionalParams,
-  DatabasesListInaccessibleByServerResponse,
   DatabasesPauseOptionalParams,
   DatabasesPauseResponse,
   DatabasesResumeOptionalParams,
@@ -101,13 +102,14 @@ export class DatabasesImpl implements Databases {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listMetricsPagingPage(
           resourceGroupName,
           serverName,
           databaseName,
           filter,
-          options
+          options,
+          settings
         );
       }
     };
@@ -118,9 +120,11 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: DatabasesListMetricsOptionalParams
+    options?: DatabasesListMetricsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<Metric[]> {
-    let result = await this._listMetrics(
+    let result: DatabasesListMetricsResponse;
+    result = await this._listMetrics(
       resourceGroupName,
       serverName,
       databaseName,
@@ -175,12 +179,13 @@ export class DatabasesImpl implements Databases {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listMetricDefinitionsPagingPage(
           resourceGroupName,
           serverName,
           databaseName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -190,9 +195,11 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesListMetricDefinitionsOptionalParams
+    options?: DatabasesListMetricDefinitionsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<MetricDefinition[]> {
-    let result = await this._listMetricDefinitions(
+    let result: DatabasesListMetricDefinitionsResponse;
+    result = await this._listMetricDefinitions(
       resourceGroupName,
       serverName,
       databaseName,
@@ -241,11 +248,12 @@ export class DatabasesImpl implements Databases {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByServerPagingPage(
           resourceGroupName,
           serverName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -254,15 +262,18 @@ export class DatabasesImpl implements Databases {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: DatabasesListByServerOptionalParams
+    options?: DatabasesListByServerOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Database[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DatabasesListByServerResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByServer(resourceGroupName, serverName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByServerNext(
         resourceGroupName,
@@ -271,7 +282,9 @@ export class DatabasesImpl implements Databases {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -316,12 +329,13 @@ export class DatabasesImpl implements Databases {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listByElasticPoolPagingPage(
           resourceGroupName,
           serverName,
           elasticPoolName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -331,16 +345,23 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: DatabasesListByElasticPoolOptionalParams
+    options?: DatabasesListByElasticPoolOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Database[]> {
-    let result = await this._listByElasticPool(
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DatabasesListByElasticPoolResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByElasticPool(
+        resourceGroupName,
+        serverName,
+        elasticPoolName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByElasticPoolNext(
         resourceGroupName,
@@ -350,7 +371,9 @@ export class DatabasesImpl implements Databases {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -394,11 +417,12 @@ export class DatabasesImpl implements Databases {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
         return this.listInaccessibleByServerPagingPage(
           resourceGroupName,
           serverName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -407,15 +431,22 @@ export class DatabasesImpl implements Databases {
   private async *listInaccessibleByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: DatabasesListInaccessibleByServerOptionalParams
+    options?: DatabasesListInaccessibleByServerOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Database[]> {
-    let result = await this._listInaccessibleByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DatabasesListInaccessibleByServerResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listInaccessibleByServer(
+        resourceGroupName,
+        serverName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listInaccessibleByServerNext(
         resourceGroupName,
@@ -424,7 +455,9 @@ export class DatabasesImpl implements Databases {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

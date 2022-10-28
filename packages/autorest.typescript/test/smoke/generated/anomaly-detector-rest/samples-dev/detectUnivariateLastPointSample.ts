@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  DetectLastPointParameters
+  DetectUnivariateLastPointParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -26,7 +26,7 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
     ApiVersion,
     credential
   );
-  const options: DetectLastPointParameters = {
+  const options: DetectUnivariateLastPointParameters = {
     body: {
       granularity: "monthly",
       imputeFixedValue: 800,
