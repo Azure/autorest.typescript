@@ -33,7 +33,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "datetime",
-    defaultValue: "2022-08-26T18:38:00.000Z",
+    defaultValue: "2022-08-26T18:38:00Z",
     convertedToFn: (value: string) => new Date(value).toISOString()
   },
   {
@@ -69,7 +69,7 @@ const testedTypes: TypeDetail[] = [
     defaultValue: { k1: "hello", k2: "world" }
   }
 ];
-describe("ModelsPropertyTypesClient Rest Client", () => {
+describe.only("ModelsPropertyTypesClient Rest Client", () => {
   let client: ModelsPropertyTypesClient;
 
   beforeEach(() => {
