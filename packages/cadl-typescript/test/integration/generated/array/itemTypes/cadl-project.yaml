@@ -1,0 +1,12 @@
+emitters:
+  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: false
+    includeShortcuts: true
+    addCredentials: false
+    azureSdkForJs: false
+    isCadlTest: true
+    title: ArrayItemTypesClient
+    packageDetails:
+      name: "@msinternal/array-itemtypes"
+      description: "Array item-types Test Service"
+      version: "1.0.0"

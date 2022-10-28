@@ -5,16 +5,16 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
+    outputPath: "array/itemTypes",
+    inputPath: "array/item-types"
+  },
+  {
     outputPath: "authentication/apiKey",
     inputPath: "authentication/api-key"
   },
   {
     outputPath: "authentication/oauth2",
     inputPath: "authentication/oauth2"
-  },
-  {
-    outputPath: "clients/interfaces",
-    inputPath: "clients/interfaces"
   },
   {
     outputPath: "dictionary",
