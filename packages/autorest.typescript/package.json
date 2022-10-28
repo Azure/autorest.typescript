@@ -36,7 +36,7 @@
         "generate-version-tolerance": "ts-node ./test/commands/version-tolerance.ts",
         "generate-version-tolerance:tests": "ts-node ./test/commands/version-tolerance.ts --test-gen",
         "test-version-tolerance": "mocha -r ts-node/register --timeout 2000 \"./test/version-tolerance/**/!(sampleTest).spec.ts\"",
-        "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
+        "clone:specs": "git clone -c core.longpaths=true https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
         "smoke-test": "ts-node ./test/commands/smoke-test.ts",
         "copyFiles": "ts-node ./src/utils/copyFiles.ts"
     },
