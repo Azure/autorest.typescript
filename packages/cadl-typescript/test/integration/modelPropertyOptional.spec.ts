@@ -114,7 +114,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/models/properties/optional/datetime/all")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.property, "2022-08-26T18:38:00Z");
+      assert.strictEqual(result.body.property, "2022-08-26T18:38:00.000Z");
     } catch (err) {
       assert.fail(err as string);
     }

@@ -33,7 +33,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "datetime",
-    defaultValue: "2022-08-26T18:38:00Z",
+    defaultValue: "2022-08-26T18:38:00.000Z",
     convertedToFn: (value: string) => new Date(value).toISOString()
   },
   {
