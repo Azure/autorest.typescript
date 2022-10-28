@@ -69,7 +69,7 @@ const testedTypes: TypeDetail[] = [
     defaultValue: { k1: "hello", k2: "world" }
   }
 ];
-describe.only("ModelsPropertyTypesClient Rest Client", () => {
+describe("ModelsPropertyTypesClient Rest Client", () => {
   let client: ModelsPropertyTypesClient;
 
   beforeEach(() => {
