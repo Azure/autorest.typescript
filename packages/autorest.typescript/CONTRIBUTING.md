@@ -1,4 +1,4 @@
-# Introduction  
+# Contributing  
 
 This package contains the High Level Client generation and the Rest Level Client generation from swagger. We will introduce both on how to contribute to high level client generation and rest level client generation.  
 
@@ -23,7 +23,11 @@ Swagger Input -> Autorest Core & Modeler -> CodeModel -> TS/JS SDK Generator -> 
 
 Within the TS/JS SDK Generator, it has the following stages:
 
-CodeModel + User Options -> Transform CodeModel -> Generate Client -> Generate Client Context -> Generate Operations/Interfaces -> Generate Models -> Generate Parameters -> Generate Index -> Format & Output Generated SDK
+CodeModel + User Options -> Transform CodeModel -> Generate Client -> Generate Client Context -> Generate Operations/Interfaces -> Generate Models -> Generate Parameters -> Generate Index -> Format & Output Generated SDK  
+
+### Prerequisite
+
+Please follow the **[Prerequisite](../../CONTRIBUTING.md#prerequisites)** part to install the dependencies.
 
 ### Steps to clone, build & test
 

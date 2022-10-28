@@ -23,7 +23,7 @@ This repository is the code generator libraries for Azure TypeScript SDK and Azu
 
 ### General Introduction
 
-Inside this project, we support both high level client generation and rest level client generation. In the rest level client generation, we support generate code from both rest api specs and cadl. In the high level client generation, we only support generation from rest api specs, the support of generate high level client from cadl is planning.  
+Inside this project, we support both high level client generation and rest level client generation. In the rest level client generation, we support generate code from both rest api specs and cadl. In the high level client generation, we only support generation from rest api specs.  
 
 - [**@autorest/typescript:**](https://github.com/Azure/autorest.typescript/tree/main/packages/autorest.typescript) contains the original high level client generation and the rest level client generation, mostly including the transformation from autorest code model into RLC model part.
 - [**@azure-tools/cadl-typescript:**](https://github.com/Azure/autorest.typescript/tree/main/packages/cadl-typescript) is the typescript cadl emitter, which contains the transformation from cadl model into RLC model.

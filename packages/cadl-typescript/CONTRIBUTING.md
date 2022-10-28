@@ -1,16 +1,10 @@
-# Introduction
+# How to Contribute
 
-This library is the cadl typescript emitter for Rest Level Client. It take cadl as input, transform it into RLCModel, then call rlc-common library to generate the RLC code.
+## Prerequisite
 
-On a high level, the entire Rest Level Client generation process would be:
+Please follow the **[Prerequisite](../../CONTRIBUTING.md#prerequisites)** part to install the dependencies.
 
-Cadl Input -> Cadl Compiler -> Cadl Program -> Transform RLCModel -> Call RLC Common library to Generate Code
-
-Within the Transform RLCModel, it has the following stages:
-
-Cadl Program + User Options -> Transform RLCModel Paths -> Transform RLCModel Options -> Transform RLCModel Schemas -> Transform RLCModel Response and Parameter Types -> call RLCCommon libraries to generate the code.
-
-### Steps to clone, build & test
+## Steps to clone, build & test
 
 1. Use the following command to clone the Typescript/Javascript SDK generator repository:
 
@@ -21,7 +15,6 @@ git clone https://github.com/Azure/autorest.typescript.git
 2. Use the following commands to build the SDK generator:
 
 ```
-npm install -g @cadl-lang/compiler
 rush update
 rush rebuild
 ```
@@ -30,7 +23,8 @@ rush rebuild
    1. Unit tests (which could be found at `test/unit/*`)
    2. Integration tests (which could be found at `test/integration/*`)
    3. Smoke tests (which could be found at `../../packages/cadl-rlc-test`)
-4. You can run the Unit tests & Integration tests using the following command:
+
+1. You can run the Unit tests & Integration tests using the following command:
 
 ```
 npm run test
@@ -53,7 +47,7 @@ cd ../../packages/cadl-rlc-test
 npm run smoke-test
 ```
 
-### How to add an integration test case
+## How to add an integration test case
 
 Whenever you work on adding a feature/fixing a bug, this would probably be your first step. You create a test case and then run it through the generator, see the result, modify the generator, run it again and so on, until you get the desired output.
 
@@ -78,9 +72,9 @@ npm run generate-cadl-only
 
 4. Once you are satisfied with the generated code, you can add a spec file such as `testUserCaseRest.spec.ts` file [here](./test/integration). You can find several examples in the same place.
 
-### How to debug an integration test case
+## How to debug
 
-#### `generate-cadl-only` step
+### `generate-cadl-only` step
 
 If you would like to debug the `generate-cadl-only` step for our test input, use the following command:
 
@@ -90,11 +84,11 @@ npm run generate-cadl-only -- -b -i testUserCase --debug
 
 Now, the code will wait for the debugger to be attached. Open the repository in VS Code -> Select `Run and Debug` section -> Click `Attach`.
 
-#### Spec file
+### Spec file
 
 If you would like to debug the `testUserCase.spec.ts` file (after the SDK is generated), Open the repository in VS Code -> Open the `testUserCase.spec.ts` file -> Select `Run and Debug` section -> Click `IntegrationTests - Current File`.
 
-#### How to debug an unit test case
+### How to debug an unit test case
 
 - In VS Code, We have created a Debugging profile for UnitTests to start debugging:
 
@@ -104,7 +98,7 @@ If you would like to debug the `testUserCase.spec.ts` file (after the SDK is gen
 
 - Your breakpoints will start hitting, you can set breakpoints in either Test or Generator code
 
-#### Integration Tests
+### Integration Tests
 
 - In order to debug integration tests you need to start the test server, by running:
 
