@@ -204,7 +204,7 @@
               "required": [
                 "contents"
               ],
-              "x-cadl-name": "UpdateableProperties<DefaultKeyVisibility<LedgerEntry, read>>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrReplaceModel<LedgerEntry>"
             }
           }
         ],
@@ -214,7 +214,8 @@
             "headers": {
               "Location": {
                 "description": "The location of an instance of LedgerEntry",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             }
           },
@@ -231,10 +232,13 @@
       "get": {
         "operationId": "ConfidentialLedger_GetLedgerEntry",
         "summary": "Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate the collection from which to fetch the value.",
-        "description": "Get a LedgerEntry",
         "parameters": [
           {
-            "$ref": "#/parameters/LedgerEntry.transactionId"
+            "name": "transactionId",
+            "in": "path",
+            "required": true,
+            "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/CollectionIdParameter"
@@ -263,10 +267,13 @@
       "get": {
         "operationId": "ConfidentialLedger_GetReceipt",
         "summary": "Gets a receipt certifying ledger contents at a particular transaction id.",
-        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
-            "$ref": "#/parameters/LedgerEntry.transactionId"
+            "name": "transactionId",
+            "in": "path",
+            "required": true,
+            "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -292,10 +299,13 @@
       "get": {
         "operationId": "ConfidentialLedger_GetTransactionStatus",
         "summary": "Gets a receipt certifying ledger contents at a particular transaction id.",
-        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
-            "$ref": "#/parameters/LedgerEntry.transactionId"
+            "name": "transactionId",
+            "in": "path",
+            "required": true,
+            "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -321,7 +331,6 @@
       "get": {
         "operationId": "ConfidentialLedger_GetCurrentLedgerEntry",
         "summary": "Gets the current value available in the ledger.",
-        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
             "$ref": "#/parameters/CollectionIdParameter"
@@ -350,10 +359,14 @@
       "delete": {
         "operationId": "ConfidentialLedger_DeleteUser",
         "summary": "Deletes a user from the Confidential Ledger.",
-        "description": "Delete a LedgerUser",
         "parameters": [
           {
-            "$ref": "#/parameters/LedgerUser.userId"
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "The user id, either an AAD object ID or certificate fingerprint.",
+            "type": "string",
+            "x-ms-skip-url-encoding": true
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -374,10 +387,14 @@
       "get": {
         "operationId": "ConfidentialLedger_GetUser",
         "summary": "Gets a user.",
-        "description": "Get a LedgerUser",
         "parameters": [
           {
-            "$ref": "#/parameters/LedgerUser.userId"
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "The user id, either an AAD object ID or certificate fingerprint.",
+            "type": "string",
+            "x-ms-skip-url-encoding": true
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -401,10 +418,14 @@
       "patch": {
         "operationId": "ConfidentialLedger_CreateOrUpdateUser",
         "summary": "Adds a user or updates a user's fields.",
-        "description": "Creates or updates a LedgerUser",
         "parameters": [
           {
-            "$ref": "#/parameters/LedgerUser.userId"
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "The user id, either an AAD object ID or certificate fingerprint.",
+            "type": "string",
+            "x-ms-skip-url-encoding": true
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -421,7 +442,7 @@
                 }
               },
               "description": "The template for adding optional properties.",
-              "x-cadl-name": "OptionalProperties<UpdateableProperties<DefaultKeyVisibility<LedgerUser, read>>>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrUpdateModel<LedgerUser>"
             }
           }
         ],
@@ -445,7 +466,7 @@
                 "userId",
                 "assignedRole"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
             }
           },
           "201": {
@@ -468,7 +489,7 @@
                 "userId",
                 "assignedRole"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -563,6 +584,10 @@
         "collectionId"
       ]
     },
+    "CollectionIdParameter": {
+      "type": "object",
+      "properties": {}
+    },
     "LedgerEntry": {
       "type": "object",
       "properties": {
@@ -597,6 +622,17 @@
         "modelAsString": true
       }
     },
+    "LedgerQueryStateKV": {
+      "type": "string",
+      "enum": [
+        "Loading",
+        "Ready"
+      ],
+      "x-ms-enum": {
+        "name": "LedgerQueryStateKV",
+        "modelAsString": false
+      }
+    },
     "LedgerUser": {
       "type": "object",
       "properties": {
@@ -629,6 +665,58 @@
         "modelAsString": true
       }
     },
+    "LedgerUserRoleKV": {
+      "type": "string",
+      "enum": [
+        "Administrator",
+        "Contributor",
+        "Reader"
+      ],
+      "x-ms-enum": {
+        "name": "LedgerUserRoleKV",
+        "modelAsString": false
+      }
+    },
+    "MyFlow": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "implicit"
+          ]
+        },
+        "authorizationUrl": {
+          "type": "string",
+          "enum": [
+            "https://login.microsoftonline.com/common/v2.0/oauth2/authorize"
+          ],
+          "x-ms-enum": {
+            "modelAsString": false
+          }
+        },
+        "tokenUrl": {
+          "type": "string",
+          "enum": [
+            "https://login.microsoftonline.com/common/v2.0/oauth2/token"
+          ],
+          "x-ms-enum": {
+            "modelAsString": false
+          }
+        },
+        "scopes": {
+          "type": "array",
+          "items": {},
+          "x-cadl-name": "[https://confidential-ledger.azure.com/.default]"
+        }
+      },
+      "required": [
+        "type",
+        "authorizationUrl",
+        "tokenUrl",
+        "scopes"
+      ]
+    },
     "PagedLedgerEntries": {
       "type": "object",
       "properties": {
@@ -648,6 +736,7 @@
         "nextLink": {
           "type": "string",
           "description": "Path from which to retrieve the next page of results.",
+          "format": "uri",
           "x-cadl-name": "Rest.ResourceLocation<LedgerEntry>"
         }
       },
@@ -697,6 +786,17 @@
         "modelAsString": true
       }
     },
+    "TransactionStateKV": {
+      "type": "string",
+      "enum": [
+        "Committed",
+        "Pending"
+      ],
+      "x-ms-enum": {
+        "name": "TransactionStateKV",
+        "modelAsString": false
+      }
+    },
     "TransactionStatus": {
       "type": "object",
       "properties": {
@@ -730,23 +830,6 @@
       "required": false,
       "description": "The collection id.",
       "type": "string",
-      "x-ms-parameter-location": "method"
-    },
-    "LedgerEntry.transactionId": {
-      "name": "transactionId",
-      "in": "path",
-      "required": true,
-      "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
-      "type": "string",
-      "x-ms-parameter-location": "method"
-    },
-    "LedgerUser.userId": {
-      "name": "userId",
-      "in": "path",
-      "required": true,
-      "description": "The user id, either an AAD object ID or certificate fingerprint.",
-      "type": "string",
-      "x-ms-skip-url-encoding": true,
       "x-ms-parameter-location": "method"
     }
   }

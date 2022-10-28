@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 
 import {
+  Discriminator,
   Enum,
   EnumMember,
+  getDiscriminator,
   getDoc,
   getEffectiveModelType,
   getFormat,
@@ -31,7 +33,6 @@ import {
   Type,
   Union
 } from "@cadl-lang/compiler";
-import { Discriminator, getDiscriminator } from "@cadl-lang/rest";
 import { reportDiagnostic } from "./lib.js";
 import {
   DictionarySchema,
@@ -102,6 +103,9 @@ export function getSchemaForType(
   }
   if (type.kind === "Intrinsic" && type.name === "unknown") {
     return { type: "unknown" };
+  }
+  if (type.kind === "Intrinsic" && type.name === "never") {
+    return { type: "never" };
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
@@ -532,6 +536,13 @@ function mapCadlTypeToTypeScript(
     case "ModelProperty":
       return mapCadlIntrinsicModelToTypeScript(program, cadlType, usage);
   }
+  if (cadlType.kind === undefined) {
+    if (typeof cadlType === "string") {
+      return { type: `"${cadlType}"` };
+    } else if (typeof cadlType === "number" || typeof cadlType === "boolean") {
+      return { type: `${cadlType}` };
+    }
+  }
 }
 function applyIntrinsicDecorators(
   program: Program,
@@ -670,7 +681,7 @@ function mapCadlIntrinsicModelToTypeScript(
           schema.valueTypeName = valueType.name;
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
-            schema.outputValueTypeName = `${valueType.name}Output>`;
+            schema.outputValueTypeName = `${valueType.name}Output`;
           }
         } else {
           schema.typeName = `Record<string, ${valueType.type}>`;
@@ -681,7 +692,7 @@ function mapCadlIntrinsicModelToTypeScript(
           items: getSchemaForType(program, indexer.value!, usage, true),
           description: getDoc(program, cadlType)
         };
-        if (!isIntrinsic(program, indexer.value)) {
+        if (!isIntrinsic(program, indexer.value) && indexer.value?.kind) {
           schema.typeName = `Array<${schema.items.name}>`;
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `Array<${schema.items.name}Output>`;
@@ -830,12 +841,12 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
     case "array":
       return [(schema as any).items]
         .filter((i: Schema) => i.type === "object")
-        .map((i: Schema) => i.outputTypeName ?? "");
+        .map((i: Schema) => getPriorityName(i) ?? "");
     case "object":
       return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
     case "dictionary":
       const importName = getDictionaryValueName(schema as DictionarySchema);
-      return importName? [importName]: undefined; 
+      return importName ? [importName] : undefined;
     default:
       return;
   }

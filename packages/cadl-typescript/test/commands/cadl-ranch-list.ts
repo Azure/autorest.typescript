@@ -29,6 +29,10 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "hello"
   },
   {
+    outputPath: "lro/lroBasic",
+    inputPath: "lro/lro-basic"
+  },
+  {
     outputPath: "models/inheritance",
     inputPath: "models/inheritance"
   },

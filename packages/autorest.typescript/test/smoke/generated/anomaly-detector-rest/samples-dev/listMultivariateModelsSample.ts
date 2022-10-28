@@ -20,18 +20,13 @@ dotenv.config();
  */
 async function listMultivariateModel() {
   const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
-    credential
-  );
+  const client = createAnomalyDetectorRestClient(Endpoint, credential);
   const options: ListMultivariateModelsParameters = {
     queryParameters: { skip: 0, top: 10 }
   };
   const initialResponse = await client
-    .path("/multivariate/models")
+    .path("/{ApiVersion}/multivariate/models")
     .get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];

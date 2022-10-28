@@ -6,6 +6,7 @@ export interface ProjectsCreateOrUpdateBodyParam {
 }
 
 export interface ProjectsCreateOrUpdateMediaTypesParam {
+  /** This request has a JSON Merge Patch body. */
   contentType: "application/merge-patch+json";
 }
 

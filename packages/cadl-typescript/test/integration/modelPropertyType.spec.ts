@@ -85,13 +85,6 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
           .path(`/models/properties/types/${params.type}` as any)
           .get();
         assert.strictEqual(result.status, "200");
-        console.log(
-          `${params.type}`,
-          "input value:",
-          params.defaultValue,
-          "ranch value:",
-          result.body.property
-        );
         assert.deepEqual(result.body.property, params.defaultValue);
       } catch (err) {
         assert.fail(err as string);

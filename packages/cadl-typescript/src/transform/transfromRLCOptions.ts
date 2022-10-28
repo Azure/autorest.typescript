@@ -5,9 +5,17 @@ import {
   Program
 } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
+import { isAbsolute } from "path";
 
-export function transformRLCOptions(program: Program, options: RLCOptions): RLCOptions {
+export function transformRLCOptions(
+  program: Program,
+  options: RLCOptions
+): RLCOptions {
   const config = options;
+  config.azureSdkForJs =
+    options.azureSdkForJs === undefined || options.azureSdkForJs === null
+      ? true
+      : Boolean(options.azureSdkForJs);
   config.serviceInfo = {
     title: getServiceTitle(program)
   };
@@ -17,6 +25,9 @@ export function transformRLCOptions(program: Program, options: RLCOptions): RLCO
       config.packageDetails.nameWithoutScope = nameParts[1];
       config.packageDetails.scopeName = nameParts[0]?.replace("@", "");
     }
+  }
+  if (options["sdk-folder"] && isAbsolute(options["sdk-folder"])) {
+    program.compilerOptions.outputPath = options["sdk-folder"];
   }
   const securityInfo = processAuth(program);
   config.addCredentials =

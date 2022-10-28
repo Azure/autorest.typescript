@@ -25,17 +25,17 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "POST /timeseries/entire/detect": ["200"],
-  "POST /timeseries/last/detect": ["200"],
-  "POST /timeseries/changepoint/detect": ["200"],
-  "GET /multivariate/detect-batch/{resultId}": ["200"],
-  "POST /multivariate/models": ["201"],
-  "GET /multivariate/models": ["200"],
-  "DELETE /multivariate/models/{modelId}": ["204"],
-  "GET /multivariate/models/{modelId}": ["200"],
-  "POST /multivariate/models/{modelId}:detect-batch": ["202"],
-  "GET /multivariate/models/{modelId}:detect-batch": ["202"],
-  "POST /multivariate/models/{modelId}:detect-last": ["200"]
+  "POST /{ApiVersion}/timeseries/entire/detect": ["200"],
+  "POST /{ApiVersion}/timeseries/last/detect": ["200"],
+  "POST /{ApiVersion}/timeseries/changepoint/detect": ["200"],
+  "GET /{ApiVersion}/multivariate/detect-batch/{resultId}": ["200"],
+  "POST /{ApiVersion}/multivariate/models": ["201"],
+  "GET /{ApiVersion}/multivariate/models": ["200"],
+  "DELETE /{ApiVersion}/multivariate/models/{modelId}": ["204"],
+  "GET /{ApiVersion}/multivariate/models/{modelId}": ["200"],
+  "POST /{ApiVersion}/multivariate/models/{modelId}:detect-batch": ["202"],
+  "GET /{ApiVersion}/multivariate/models/{modelId}:detect-batch": ["202"],
+  "POST /{ApiVersion}/multivariate/models/{modelId}:detect-last": ["200"]
 };
 
 export function isUnexpected(

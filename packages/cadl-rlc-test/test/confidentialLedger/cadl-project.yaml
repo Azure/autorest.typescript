@@ -1,8 +1,9 @@
 emitters:
   "@azure-tools/cadl-typescript":
     generateMetadata: true
-    generateTest: false
+    generateTest: true
     includeShortcuts: true
+    azureSdkForJs: false
     packageDetails:
       name: "@msinternal/confidential-ledger"
       description: "Confidential Ledger Service"

@@ -1,0 +1,11 @@
+emitters:
+  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: true
+    includeShortcuts: true
+    addCredentials: false
+    azureSdkForJs: false
+    isCadlTest: true
+    packageDetails:
+      name: "@msinternal/lro-basic"
+      description: "LRO Basic Test Service"
+      version: "1.0.0"

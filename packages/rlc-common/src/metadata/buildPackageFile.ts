@@ -196,6 +196,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^2.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
+    packageInfo.devDependencies["@types/mocha"] = "^7.0.2";
     packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";

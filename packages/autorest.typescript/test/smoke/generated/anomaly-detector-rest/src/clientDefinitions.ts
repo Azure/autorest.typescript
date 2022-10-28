@@ -129,32 +129,36 @@ export interface DetectMultivariateLastAnomaly {
 }
 
 export interface Routes {
-  /** Resource for '/timeseries/entire/detect' has methods for the following verbs: post */
-  (path: "/timeseries/entire/detect"): DetectUnivariateEntireSeries;
-  /** Resource for '/timeseries/last/detect' has methods for the following verbs: post */
-  (path: "/timeseries/last/detect"): DetectUnivariateLastPoint;
-  /** Resource for '/timeseries/changepoint/detect' has methods for the following verbs: post */
-  (path: "/timeseries/changepoint/detect"): DetectUnivariateChangePoint;
-  /** Resource for '/multivariate/detect-batch/\{resultId\}' has methods for the following verbs: get */
+  /** Resource for '/\{ApiVersion\}/timeseries/entire/detect' has methods for the following verbs: post */
   (
-    path: "/multivariate/detect-batch/{resultId}",
+    path: "/{ApiVersion}/timeseries/entire/detect"
+  ): DetectUnivariateEntireSeries;
+  /** Resource for '/\{ApiVersion\}/timeseries/last/detect' has methods for the following verbs: post */
+  (path: "/{ApiVersion}/timeseries/last/detect"): DetectUnivariateLastPoint;
+  /** Resource for '/\{ApiVersion\}/timeseries/changepoint/detect' has methods for the following verbs: post */
+  (
+    path: "/{ApiVersion}/timeseries/changepoint/detect"
+  ): DetectUnivariateChangePoint;
+  /** Resource for '/\{ApiVersion\}/multivariate/detect-batch/\{resultId\}' has methods for the following verbs: get */
+  (
+    path: "/{ApiVersion}/multivariate/detect-batch/{resultId}",
     resultId: string
   ): GetMultivariateBatchDetectionResult;
-  /** Resource for '/multivariate/models' has methods for the following verbs: post, get */
-  (path: "/multivariate/models"): CreateAndTrainMultivariateModel;
-  /** Resource for '/multivariate/models/\{modelId\}' has methods for the following verbs: delete, get */
+  /** Resource for '/\{ApiVersion\}/multivariate/models' has methods for the following verbs: post, get */
+  (path: "/{ApiVersion}/multivariate/models"): CreateAndTrainMultivariateModel;
+  /** Resource for '/\{ApiVersion\}/multivariate/models/\{modelId\}' has methods for the following verbs: delete, get */
   (
-    path: "/multivariate/models/{modelId}",
+    path: "/{ApiVersion}/multivariate/models/{modelId}",
     modelId: string
   ): DeleteMultivariateModel;
-  /** Resource for '/multivariate/models/\{modelId\}:detect-batch' has methods for the following verbs: post */
+  /** Resource for '/\{ApiVersion\}/multivariate/models/\{modelId\}:detect-batch' has methods for the following verbs: post */
   (
-    path: "/multivariate/models/{modelId}:detect-batch",
+    path: "/{ApiVersion}/multivariate/models/{modelId}:detect-batch",
     modelId: string
   ): DetectMultivariateBatchAnomaly;
-  /** Resource for '/multivariate/models/\{modelId\}:detect-last' has methods for the following verbs: post */
+  /** Resource for '/\{ApiVersion\}/multivariate/models/\{modelId\}:detect-last' has methods for the following verbs: post */
   (
-    path: "/multivariate/models/{modelId}:detect-last",
+    path: "/{ApiVersion}/multivariate/models/{modelId}:detect-last",
     modelId: string
   ): DetectMultivariateLastAnomaly;
 }

@@ -4,9 +4,9 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { DecoratedType, Model, Program, Type } from "@cadl-lang/compiler";
 import {
-  getAllRoutes,
+  getAllHttpServices,
+  HttpOperation,
   HttpOperationResponse,
-  OperationDetails,
   StatusCode
 } from "@cadl-lang/rest/http";
 import {
@@ -15,7 +15,7 @@ import {
 } from "@azure-tools/cadl-azure-core";
 
 export function getNormalizedOperationName(
-  route: OperationDetails,
+  route: HttpOperation,
   includeGroupName = true
 ) {
   return includeGroupName
@@ -46,11 +46,12 @@ export function isDefinedStatusCode(statusCode: StatusCode) {
 }
 
 export function isBinaryPayload(body: Type, contentType: string) {
+  contentType = `"${contentType}"`;
   if (
     body.kind === "Model" &&
     body.name === "bytes" &&
-    contentType !== "application/json" &&
-    contentType !== "text/plain" &&
+    contentType !== `"application/json"` &&
+    contentType !== `"text/plain"` &&
     contentType !== `"application/json" | "text/plain"` &&
     contentType !== `"text/plain" | "application/json"`
   ) {
@@ -61,12 +62,15 @@ export function isBinaryPayload(body: Type, contentType: string) {
 
 export function isLongRunningOperation(
   program: Program,
-  operation: OperationDetails
+  operation: HttpOperation
 ) {
   program;
   for (const resp of operation.responses) {
     if (!resp.responses || !resp.responses.length) {
       continue;
+    }
+    if (hasDecorator(operation.operation, "$pollingOperation")) {
+      return true;
     }
     for (const unit of resp.responses) {
       for (const [_, header] of Object.entries(unit.headers!)) {
@@ -84,7 +88,8 @@ function hasDecorator(type: DecoratedType, name: string): boolean {
 }
 
 export function hasPollingOperations(program: Program) {
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   for (const route of routes) {
     if (isLongRunningOperation(program, route)) {
       return true;
@@ -94,10 +99,7 @@ export function hasPollingOperations(program: Program) {
   return false;
 }
 
-export function isPagingOperation(
-  program: Program,
-  operation: OperationDetails
-) {
+export function isPagingOperation(program: Program, operation: HttpOperation) {
   for (const response of operation.responses) {
     const paged = extractPagedMetadataNested(program, response.type as Model);
     if (paged) {
@@ -108,7 +110,8 @@ export function isPagingOperation(
 }
 
 export function hasPagingOperations(program: Program) {
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   for (const route of routes) {
     if (isPagingOperation(program, route)) {
       return true;

@@ -883,6 +883,18 @@
         "modelAsString": true
       }
     },
+    "AccountLinkActionKnownValues": {
+      "type": "string",
+      "enum": [
+        "CreateAndLinkNewAccount",
+        "LinkToExistingAccount",
+        "LeaveUnlinked"
+      ],
+      "x-ms-enum": {
+        "name": "AccountLinkActionKnownValues",
+        "modelAsString": false
+      }
+    },
     "ApiErrorWrapper": {
       "type": "object",
       "properties": {
@@ -1699,6 +1711,19 @@
         "modelAsString": true
       }
     },
+    "OperationTypesKnownValues": {
+      "type": "string",
+      "enum": [
+        "Created",
+        "Updated",
+        "Deleted",
+        "None"
+      ],
+      "x-ms-enum": {
+        "name": "OperationTypesKnownValues",
+        "modelAsString": false
+      }
+    },
     "PlayerIdentityProvider": {
       "type": "string",
       "enum": [
@@ -1725,6 +1750,34 @@
       "x-ms-enum": {
         "name": "PlayerIdentityProvider",
         "modelAsString": true
+      }
+    },
+    "PlayerIdentityProviderKnownValues": {
+      "type": "string",
+      "enum": [
+        "AndroidDevice",
+        "Apple",
+        "CustomId",
+        "Email",
+        "FacebookInstantGames",
+        "GameCenter",
+        "Google",
+        "iOSDevice",
+        "Kongregate",
+        "NintendoSwitchDevice",
+        "NintendoAccount",
+        "OpenId",
+        "PSN",
+        "ServerCustomId",
+        "Steam",
+        "Twitch",
+        "Username",
+        "Xbox",
+        "GooglePlayGames"
+      ],
+      "x-ms-enum": {
+        "name": "PlayerIdentityProviderKnownValues",
+        "modelAsString": false
       }
     },
     "SetObject": {
@@ -1922,6 +1975,227 @@
           },
           "x-cadl-name": "string[]",
           "description": "The unique identifiers assigned by the server to the events, in the same order\nas the events in the request. Only returned if FlushToPlayStream option is\ntrue."
+        }
+      }
+    },
+    "components·1844r51·responses·authenticateidentityresult·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/AuthenticateIdentityResult"
+        }
+      }
+    },
+    "components·18v6dkm·responses·abortfileuploadsresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/AbortFileUploadsResponse"
+        }
+      }
+    },
+    "components·1a6kevj·responses·getobjectsresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/GetObjectsResponse"
+        }
+      }
+    },
+    "components·1aq1w36·responses·initiatefileuploadsresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/InitiateFileUploadsResponse"
+        }
+      }
+    },
+    "components·1fy2dsy·responses·unlinkplayeridentityresult·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/UnlinkPlayerIdentityResult"
+        }
+      }
+    },
+    "components·1ipme60·responses·loginplayerresult·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/LoginPlayerResult"
+        }
+      }
+    },
+    "components·1szmkd8·responses·finalizefileuploadsresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/FinalizeFileUploadsResponse"
+        }
+      }
+    },
+    "components·1x7gyin·responses·writeeventsresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/WriteEventsResponse"
+        }
+      }
+    },
+    "components·1yvtk6i·responses·getlinkedplayeridentitiesresult·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/GetLinkedPlayerIdentitiesResult"
+        }
+      }
+    },
+    "components·d2akhj·responses·getfilesresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/GetFilesResponse"
+        }
+      }
+    },
+    "components·me0qjf·responses·getentitytokenresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/GetEntityTokenResponse"
+        }
+      }
+    },
+    "components·nl7v6y·responses·deletefilesresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/DeleteFilesResponse"
+        }
+      }
+    },
+    "components·vb2pt1·responses·setobjectsresponse·content·application_json·schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The Http status code. If X-ReportErrorAsSuccess header is set to true, this\nwill report the actual http error code."
+        },
+        "status": {
+          "type": "string",
+          "description": "The Http status code as a string."
+        },
+        "data": {
+          "$ref": "#/definitions/SetObjectsResponse"
         }
       }
     },

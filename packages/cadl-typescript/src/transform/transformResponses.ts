@@ -10,7 +10,10 @@ import {
   SchemaContext
 } from "@azure-tools/rlc-common";
 import { Program, getDoc } from "@cadl-lang/compiler";
-import { getAllRoutes, HttpOperationResponse } from "@cadl-lang/rest/http";
+import {
+  getAllHttpServices,
+  HttpOperationResponse
+} from "@cadl-lang/rest/http";
 import {
   getImportedModelName,
   getTypeName,
@@ -23,7 +26,8 @@ export function transformToResponseTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>
 ): OperationResponse[] {
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   const rlcResponses: OperationResponse[] = [];
   let inputImportedSet = new Set<string>();
   for (const route of routes) {

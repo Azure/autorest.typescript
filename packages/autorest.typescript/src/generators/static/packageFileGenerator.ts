@@ -90,7 +90,7 @@ function regularAutorestPackage(
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
       ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
-      ...(useCoreV2 && { "@azure/core-client": "^1.5.0" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.6.1" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 &&
         coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
@@ -195,6 +195,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
+    packageInfo.devDependencies["@types/node"] = "^14.0.0";
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";

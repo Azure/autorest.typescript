@@ -11,10 +11,10 @@ import {
 } from "@azure-tools/rlc-common";
 import { getDoc, Program } from "@cadl-lang/compiler";
 import {
-  getAllRoutes,
+  getAllHttpServices,
+  HttpOperation,
   HttpOperationParameters,
-  HttpOperationResponse,
-  OperationDetails
+  HttpOperationResponse
 } from "@cadl-lang/rest/http";
 import { getSchemaForType } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
@@ -27,7 +27,8 @@ import {
 } from "../operationUtil.js";
 
 export function transformPaths(program: Program): Paths {
-  const [routes, _diagnostics] = getAllRoutes(program);
+  const [services, _diagnostics] = getAllHttpServices(program);
+  const routes = services.flatMap((service) => service.operations);
   const paths: Paths = {};
   for (const route of routes) {
     const respNames = [];
@@ -101,9 +102,7 @@ function hasRequiredOptions(routeParameters: HttpOperationParameters) {
 /**
  * Extracts all success or defined status codes for a give operation
  */
-export function gerOperationSuccessStatus(
-  operation: OperationDetails
-): string[] {
+export function gerOperationSuccessStatus(operation: HttpOperation): string[] {
   const responses = operation.responses ?? [];
   const status: string[] = [];
 
@@ -120,7 +119,7 @@ export function gerOperationSuccessStatus(
  * This function computes all the response types error and success
  * an operation can end up returning.
  */
-function getResponseTypes(operation: OperationDetails): ResponseTypes {
+function getResponseTypes(operation: HttpOperation): ResponseTypes {
   let returnTypes: ResponseTypes = {
     error: [],
     success: []

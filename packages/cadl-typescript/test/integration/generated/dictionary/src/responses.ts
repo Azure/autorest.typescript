@@ -1,101 +1,112 @@
 import { HttpResponse } from "@azure-rest/core-client";
+import { InnerModelOutput } from "./outputModels";
+
+/** The request has succeeded. */
+export interface Int32ValueGet200Response extends HttpResponse {
+  status: "200";
+  body: Record<string, number>;
+}
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Int32ValueGet204Response extends HttpResponse {
+export interface Int32ValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Int32ValuePut200Response extends HttpResponse {
+export interface Int64ValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, number>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Int64ValueGet204Response extends HttpResponse {
+export interface Int64ValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Int64ValuePut200Response extends HttpResponse {
+export interface BooleanValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, boolean>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface BooleanValueGet204Response extends HttpResponse {
+export interface BooleanValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface BooleanValuePut200Response extends HttpResponse {
+export interface StringValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, string>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface StringValueGet204Response extends HttpResponse {
+export interface StringValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface StringValuePut200Response extends HttpResponse {
+export interface Float32ValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, number>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Float32ValueGet204Response extends HttpResponse {
+export interface Float32ValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Float32ValuePut200Response extends HttpResponse {
+export interface DatetimeValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, string>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface DatetimeValueGet204Response extends HttpResponse {
+export interface DatetimeValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface DatetimeValuePut200Response extends HttpResponse {
+export interface DurationValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, string>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface DurationValueGet204Response extends HttpResponse {
+export interface DurationValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface DurationValuePut200Response extends HttpResponse {
+export interface UnknownValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, unknown>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface UnknownValueGet204Response extends HttpResponse {
+export interface UnknownValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface UnknownValuePut200Response extends HttpResponse {
+export interface ModelValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, InnerModelOutput>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface ModelValueGet204Response extends HttpResponse {
+export interface ModelValuePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface ModelValuePut200Response extends HttpResponse {
+export interface RecursiveModelValueGet200Response extends HttpResponse {
   status: "200";
+  body: Record<string, InnerModelOutput>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface RecursiveModelValueGet204Response extends HttpResponse {
+export interface RecursiveModelValuePut204Response extends HttpResponse {
   status: "204";
-}
-
-/** The request has succeeded. */
-export interface RecursiveModelValuePut200Response extends HttpResponse {
-  status: "200";
 }

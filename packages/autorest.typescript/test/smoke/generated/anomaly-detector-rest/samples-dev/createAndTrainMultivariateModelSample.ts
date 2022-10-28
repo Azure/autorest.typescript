@@ -19,13 +19,8 @@ dotenv.config();
  */
 async function trainMultivariateModel() {
   const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
-    credential
-  );
+  const client = createAnomalyDetectorRestClient(Endpoint, credential);
   const options: CreateAndTrainMultivariateModelParameters = {
     body: {
       alignPolicy: {
@@ -43,7 +38,9 @@ async function trainMultivariateModel() {
     },
     headers: { "Content-Type": "application/json" }
   };
-  const result = await client.path("/multivariate/models").post(options);
+  const result = await client
+    .path("/{ApiVersion}/multivariate/models")
+    .post(options);
   console.log(result);
 }
 

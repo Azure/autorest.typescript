@@ -3,6 +3,7 @@ emitters:
     generateMetadata: true
     addCredentials: false
     isCadlTest: true
+    azureSdkForJs: false
     packageDetails:
       name: "@msinternal/usage"
       description: "Usage Test Service"
