@@ -164,16 +164,16 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
             ) {
               if (
                 candidateParts[i]?.startsWith("{") &&
-                candidateParts[i].indexOf("}") !== -1
+                candidateParts[i]?.indexOf("}") !== -1
               ) {
-                const start = candidateParts[i].indexOf("}") + 1,
-                  end = candidateParts[i].length;
+                const start = candidateParts[i]?.indexOf("}") + 1,
+                  end = candidateParts[i]?.length;
                 // If the current part of the candidate is a "template" part
                 // Try to use the suffix of pattern to match the path
                 // {guid} ==> $
                 // {guid}:export ==> :export$
                 const isMatched = new RegExp(
-                  \`\${candidateParts[i].slice(start, end)}\`
+                  \`\${candidateParts[i]?.slice(start, end)}\`
                 ).test(pathParts[j]);
         
                 if (!isMatched) {
