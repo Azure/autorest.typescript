@@ -133,3 +133,25 @@ export interface EntityDeleteByGuidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
+
+/**
+ * Update entity partially - create or update entity attribute identified by its GUID.
+ * Supports only primitive attribute type and entity references.
+ * It does not support updating complex types like arrays, and maps.
+ * Null updates are not possible.
+ */
+export interface EntityExportGuid202Response extends HttpResponse {
+  status: "202";
+  body: EntityMutationResponseOutput;
+}
+
+/**
+ * Update entity partially - create or update entity attribute identified by its GUID.
+ * Supports only primitive attribute type and entity references.
+ * It does not support updating complex types like arrays, and maps.
+ * Null updates are not possible.
+ */
+export interface EntityExportGuidDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponseOutput;
+}

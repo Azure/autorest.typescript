@@ -297,6 +297,12 @@ export function isUnexpected(
 function getParametrizedPathSuccess(method: string, path: string): string[] {
   const pathParts = path.split("/");
 
+  // Traverse list to match the longest candidate
+  // matchedLen: the length of candidate path
+  // matchedValue: the matched status code array
+  let matchedLen = -1,
+    matchedValue: string[] = [];
+
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(responseMap)) {
     // Extracting the path from the map key which is in format
@@ -317,11 +323,22 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
     ) {
       if (
         candidateParts[i]?.startsWith("{") &&
-        candidateParts[i]?.endsWith("}")
+        candidateParts[i].indexOf("}") !== -1
       ) {
+        const start = candidateParts[i].indexOf("}") + 1,
+          end = candidateParts[i].length;
         // If the current part of the candidate is a "template" part
-        // it is a match with the actual path part on hand
-        // skip as the parameterized part can match anything
+        // Try to use the suffix of pattern to match the path
+        // {guid} ==> $
+        // {guid}:export ==> :export$
+        const isMatched = new RegExp(
+          `${candidateParts[i].slice(start, end)}`
+        ).test(pathParts[j]);
+
+        if (!isMatched) {
+          found = false;
+          break;
+        }
         continue;
       }
 
@@ -335,15 +352,14 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
     }
 
     // We finished evaluating the current candidate parts
-    // if all parts matched we return the success values form
-    // the path mapping.
-    if (found) {
-      return value;
+    // Update the matched value if and only if we found the longer pattern
+    if (found && candidatePath.length > matchedLen) {
+      matchedLen = candidatePath.length;
+      matchedValue = value;
     }
   }
 
-  // No match was found, return an empty array.
-  return [];
+  return matchedValue;
 }
 
 function getPathFromMapKey(mapKey: string): string {

@@ -199,3 +199,37 @@ export interface EntityDeleteByGuidPathParam {
 
 export type EntityDeleteByGuidParameters = EntityDeleteByGuidPathParam &
   RequestParameters;
+
+export interface EntityExportGuidPathParameters {
+  /** Account Name */
+  accountName: string;
+}
+
+export interface EntityExportGuidBodyParam {
+  /** The value of the attribute. */
+  body: Record<string, unknown>;
+}
+
+export interface EntityExportGuidQueryParamProperties {
+  /** The name of the attribute. */
+  name: string;
+}
+
+export interface EntityExportGuidQueryParam {
+  queryParameters: EntityExportGuidQueryParamProperties;
+}
+
+export interface EntityExportGuidPathParam {
+  pathParameters: EntityExportGuidPathParameters;
+}
+
+export interface EntityExportGuidMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type EntityExportGuidParameters = EntityExportGuidQueryParam &
+  EntityExportGuidPathParam &
+  EntityExportGuidMediaTypesParam &
+  EntityExportGuidBodyParam &
+  RequestParameters;

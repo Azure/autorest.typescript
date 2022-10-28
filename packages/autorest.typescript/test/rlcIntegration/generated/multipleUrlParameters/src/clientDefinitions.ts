@@ -9,7 +9,8 @@ import {
   EntityAddClassificationParameters,
   EntityGetByGuidParameters,
   EntityPartialUpdateEntityAttributeByGuidParameters,
-  EntityDeleteByGuidParameters
+  EntityDeleteByGuidParameters,
+  EntityExportGuidParameters
 } from "./parameters";
 import {
   EntityCreateOrUpdate200Response,
@@ -27,7 +28,9 @@ import {
   EntityPartialUpdateEntityAttributeByGuid200Response,
   EntityPartialUpdateEntityAttributeByGuidDefaultResponse,
   EntityDeleteByGuid200Response,
-  EntityDeleteByGuidDefaultResponse
+  EntityDeleteByGuidDefaultResponse,
+  EntityExportGuid202Response,
+  EntityExportGuidDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -98,6 +101,18 @@ export interface EntityOperations {
     options: EntityDeleteByGuidParameters
   ): StreamableMethod<
     EntityDeleteByGuid200Response | EntityDeleteByGuidDefaultResponse
+  >;
+  /**
+   * Update entity partially - create or update entity attribute identified by its GUID.
+   * Supports only primitive attribute type and entity references.
+   * It does not support updating complex types like arrays, and maps.
+   * Null updates are not possible.
+   */
+  exportGuid(
+    guid: string,
+    options: EntityExportGuidParameters
+  ): StreamableMethod<
+    EntityExportGuid202Response | EntityExportGuidDefaultResponse
   >;
 }
 
@@ -176,6 +191,20 @@ export interface GetByGuid {
   >;
 }
 
+export interface ExportGuid {
+  /**
+   * Update entity partially - create or update entity attribute identified by its GUID.
+   * Supports only primitive attribute type and entity references.
+   * It does not support updating complex types like arrays, and maps.
+   * Null updates are not possible.
+   */
+  put(
+    options: EntityExportGuidParameters
+  ): StreamableMethod<
+    EntityExportGuid202Response | EntityExportGuidDefaultResponse
+  >;
+}
+
 export interface Routes {
   /** Resource for '/entity' has methods for the following verbs: post */
   (path: "/entity"): CreateOrUpdate;
@@ -185,6 +214,8 @@ export interface Routes {
   (path: "/entity/bulk/classification"): AddClassification;
   /** Resource for '/entity/guid/\{guid\}' has methods for the following verbs: get, put, delete */
   (path: "/entity/guid/{guid}", guid: string): GetByGuid;
+  /** Resource for '/entity/guid/\{guid\}:export' has methods for the following verbs: put */
+  (path: "/entity/guid/{guid}:export", guid: string): ExportGuid;
 }
 
 export type MultipleUrlParameterRestClient = Client & {
