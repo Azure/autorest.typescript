@@ -54,6 +54,9 @@ export class SharedGalleriesImpl implements SharedGalleries {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(location, options, settings);
       }
     };

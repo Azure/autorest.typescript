@@ -191,6 +191,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -244,6 +247,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -312,6 +318,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCapacitiesPagingPage(
           resourceGroupName,
           name,
@@ -392,6 +401,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.changeVnetPagingPage(
           resourceGroupName,
           name,
@@ -480,6 +492,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getInboundNetworkDependenciesEndpointsPagingPage(
           resourceGroupName,
           name,
@@ -561,6 +576,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMultiRolePoolsPagingPage(
           resourceGroupName,
           name,
@@ -642,6 +660,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMultiRolePoolInstanceMetricDefinitionsPagingPage(
           resourceGroupName,
           name,
@@ -729,6 +750,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMultiRoleMetricDefinitionsPagingPage(
           resourceGroupName,
           name,
@@ -810,6 +834,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMultiRolePoolSkusPagingPage(
           resourceGroupName,
           name,
@@ -891,6 +918,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMultiRoleUsagesPagingPage(
           resourceGroupName,
           name,
@@ -973,6 +1003,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getOutboundNetworkDependenciesEndpointsPagingPage(
           resourceGroupName,
           name,
@@ -1054,6 +1087,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPrivateEndpointConnectionListPagingPage(
           resourceGroupName,
           name,
@@ -1131,6 +1167,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.resumePagingPage(
           resourceGroupName,
           name,
@@ -1209,6 +1248,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAppServicePlansPagingPage(
           resourceGroupName,
           name,
@@ -1286,6 +1328,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWebAppsPagingPage(
           resourceGroupName,
           name,
@@ -1359,6 +1404,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.suspendPagingPage(
           resourceGroupName,
           name,
@@ -1433,6 +1481,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listUsagesPagingPage(
           resourceGroupName,
           name,
@@ -1510,6 +1561,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWorkerPoolsPagingPage(
           resourceGroupName,
           name,
@@ -1594,6 +1648,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWorkerPoolInstanceMetricDefinitionsPagingPage(
           resourceGroupName,
           name,
@@ -1690,6 +1747,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWebWorkerMetricDefinitionsPagingPage(
           resourceGroupName,
           name,
@@ -1780,6 +1840,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWorkerPoolSkusPagingPage(
           resourceGroupName,
           name,
@@ -1870,6 +1933,9 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWebWorkerUsagesPagingPage(
           resourceGroupName,
           name,

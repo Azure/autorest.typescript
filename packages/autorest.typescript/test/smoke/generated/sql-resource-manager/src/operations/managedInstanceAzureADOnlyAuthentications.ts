@@ -68,6 +68,9 @@ export class ManagedInstanceAzureADOnlyAuthenticationsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByInstancePagingPage(
           resourceGroupName,
           managedInstanceName,

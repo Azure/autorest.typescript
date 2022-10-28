@@ -2090,7 +2090,7 @@ export type GeoBackupPolicyName = string;
 // @public
 export type GeoBackupPolicyState = "Disabled" | "Enabled";
 
-// @public (undocumented)
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public

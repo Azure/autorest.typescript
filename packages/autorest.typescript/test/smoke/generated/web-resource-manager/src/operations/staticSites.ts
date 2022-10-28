@@ -167,6 +167,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -223,6 +226,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getStaticSitesByResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -301,6 +307,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listStaticSiteUsersPagingPage(
           resourceGroupName,
           name,
@@ -388,6 +397,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getStaticSiteBuildsPagingPage(
           resourceGroupName,
           name,
@@ -472,6 +484,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listStaticSiteBuildFunctionsPagingPage(
           resourceGroupName,
           name,
@@ -563,6 +578,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getUserProvidedFunctionAppsForStaticSiteBuildPagingPage(
           resourceGroupName,
           name,
@@ -650,6 +668,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listStaticSiteCustomDomainsPagingPage(
           resourceGroupName,
           name,
@@ -731,6 +752,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listStaticSiteFunctionsPagingPage(
           resourceGroupName,
           name,
@@ -812,6 +836,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPrivateEndpointConnectionListPagingPage(
           resourceGroupName,
           name,
@@ -893,6 +920,9 @@ export class StaticSitesImpl implements StaticSites {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getUserProvidedFunctionAppsForStaticSitePagingPage(
           resourceGroupName,
           name,

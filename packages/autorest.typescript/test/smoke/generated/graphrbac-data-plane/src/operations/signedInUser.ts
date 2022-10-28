@@ -52,6 +52,9 @@ export class SignedInUserImpl implements SignedInUser {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listOwnedObjectsPagingPage(options, settings);
       }
     };
@@ -105,6 +108,9 @@ export class SignedInUserImpl implements SignedInUser {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listOwnedObjectsNextPagingPage(nextLink, options, settings);
       }
     };

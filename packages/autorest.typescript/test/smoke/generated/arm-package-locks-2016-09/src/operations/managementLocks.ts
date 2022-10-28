@@ -87,6 +87,9 @@ export class ManagementLocksImpl implements ManagementLocks {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtResourceGroupLevelPagingPage(
           resourceGroupName,
           options,
@@ -169,6 +172,9 @@ export class ManagementLocksImpl implements ManagementLocks {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtResourceLevelPagingPage(
           resourceGroupName,
           resourceProviderNamespace,
@@ -260,6 +266,9 @@ export class ManagementLocksImpl implements ManagementLocks {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtSubscriptionLevelPagingPage(options, settings);
       }
     };
@@ -320,6 +329,9 @@ export class ManagementLocksImpl implements ManagementLocks {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByScopePagingPage(scope, options, settings);
       }
     };

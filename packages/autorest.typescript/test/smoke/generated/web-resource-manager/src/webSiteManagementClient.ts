@@ -241,6 +241,9 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSourceControlsPagingPage(options, settings);
       }
     };
@@ -292,6 +295,9 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBillingMetersPagingPage(options, settings);
       }
     };
@@ -343,6 +349,9 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listGeoRegionsPagingPage(options, settings);
       }
     };
@@ -399,6 +408,9 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteIdentifiersAssignedToHostNamePagingPage(
           nameIdentifier,
           options,
@@ -466,6 +478,9 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPremierAddOnOffersPagingPage(options, settings);
       }
     };

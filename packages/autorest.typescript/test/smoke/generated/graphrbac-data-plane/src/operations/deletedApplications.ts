@@ -53,6 +53,9 @@ export class DeletedApplicationsImpl implements DeletedApplications {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -106,6 +109,9 @@ export class DeletedApplicationsImpl implements DeletedApplications {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listNextPagingPage(nextLink, options, settings);
       }
     };

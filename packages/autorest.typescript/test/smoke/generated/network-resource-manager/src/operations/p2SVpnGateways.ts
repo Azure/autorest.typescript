@@ -78,6 +78,9 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -142,6 +145,9 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };

@@ -63,6 +63,9 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
@@ -120,6 +123,9 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAllPagingPage(options, settings);
       }
     };

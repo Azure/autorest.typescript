@@ -89,6 +89,9 @@ export class CassandraResourcesImpl implements CassandraResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCassandraKeyspacesPagingPage(
           resourceGroupName,
           accountName,
@@ -155,6 +158,9 @@ export class CassandraResourcesImpl implements CassandraResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCassandraTablesPagingPage(
           resourceGroupName,
           accountName,

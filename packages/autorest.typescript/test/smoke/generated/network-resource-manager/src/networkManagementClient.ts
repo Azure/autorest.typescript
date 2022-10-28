@@ -535,6 +535,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.putBastionShareableLinkPagingPage(
           resourceGroupName,
           bastionHostName,
@@ -626,6 +629,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getBastionShareableLinkPagingPage(
           resourceGroupName,
           bastionHostName,
@@ -713,6 +719,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getActiveSessionsPagingPage(
           resourceGroupName,
           bastionHostName,
@@ -798,6 +807,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.disconnectActiveSessionsPagingPage(
           resourceGroupName,
           bastionHostName,

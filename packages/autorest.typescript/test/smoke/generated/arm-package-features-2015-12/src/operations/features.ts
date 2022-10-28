@@ -60,6 +60,9 @@ export class FeaturesImpl implements Features {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAllPagingPage(options, settings);
       }
     };
@@ -114,6 +117,9 @@ export class FeaturesImpl implements Features {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(
           resourceProviderNamespace,
           options,

@@ -69,6 +69,9 @@ export class DatabaseImpl implements Database {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMetricsPagingPage(
           resourceGroupName,
           accountName,
@@ -145,6 +148,9 @@ export class DatabaseImpl implements Database {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listUsagesPagingPage(
           resourceGroupName,
           accountName,
@@ -216,6 +222,9 @@ export class DatabaseImpl implements Database {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMetricDefinitionsPagingPage(
           resourceGroupName,
           accountName,

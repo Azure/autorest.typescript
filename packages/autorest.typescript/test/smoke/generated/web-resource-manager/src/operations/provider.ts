@@ -77,6 +77,9 @@ export class ProviderImpl implements Provider {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getAvailableStacksPagingPage(options, settings);
       }
     };
@@ -128,6 +131,9 @@ export class ProviderImpl implements Provider {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getFunctionAppStacksPagingPage(options, settings);
       }
     };
@@ -184,6 +190,9 @@ export class ProviderImpl implements Provider {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getFunctionAppStacksForLocationPagingPage(
           location,
           options,
@@ -250,6 +259,9 @@ export class ProviderImpl implements Provider {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getWebAppStacksForLocationPagingPage(
           location,
           options,
@@ -315,6 +327,9 @@ export class ProviderImpl implements Provider {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listOperationsPagingPage(options, settings);
       }
     };
@@ -366,6 +381,9 @@ export class ProviderImpl implements Provider {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getWebAppStacksPagingPage(options, settings);
       }
     };
@@ -417,6 +435,9 @@ export class ProviderImpl implements Provider {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getAvailableStacksOnPremPagingPage(options, settings);
       }
     };

@@ -78,6 +78,9 @@ export class DiskAccessesImpl implements DiskAccesses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -142,6 +145,9 @@ export class DiskAccessesImpl implements DiskAccesses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -203,6 +209,9 @@ export class DiskAccessesImpl implements DiskAccesses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPrivateEndpointConnectionsPagingPage(
           resourceGroupName,
           diskAccessName,

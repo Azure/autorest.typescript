@@ -106,6 +106,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCloudServiceRoleInstanceNetworkInterfacesPagingPage(
           resourceGroupName,
           cloudServiceName,
@@ -193,6 +196,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCloudServiceNetworkInterfacesPagingPage(
           resourceGroupName,
           cloudServiceName,
@@ -266,6 +272,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAllPagingPage(options, settings);
       }
     };
@@ -319,6 +328,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
@@ -387,6 +399,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listVirtualMachineScaleSetVMNetworkInterfacesPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,
@@ -474,6 +489,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listVirtualMachineScaleSetNetworkInterfacesPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,
@@ -561,6 +579,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listVirtualMachineScaleSetIpConfigurationsPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,

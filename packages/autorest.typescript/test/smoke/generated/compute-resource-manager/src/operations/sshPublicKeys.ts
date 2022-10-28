@@ -65,6 +65,9 @@ export class SshPublicKeysImpl implements SshPublicKeys {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBySubscriptionPagingPage(options, settings);
       }
     };
@@ -119,6 +122,9 @@ export class SshPublicKeysImpl implements SshPublicKeys {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,

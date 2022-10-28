@@ -67,6 +67,9 @@ export class ResourceHealthMetadataOperationsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -121,6 +124,9 @@ export class ResourceHealthMetadataOperationsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -190,6 +196,9 @@ export class ResourceHealthMetadataOperationsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBySitePagingPage(
           resourceGroupName,
           name,
@@ -271,6 +280,9 @@ export class ResourceHealthMetadataOperationsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBySiteSlotPagingPage(
           resourceGroupName,
           name,

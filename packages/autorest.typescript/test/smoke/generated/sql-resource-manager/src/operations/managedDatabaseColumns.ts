@@ -68,6 +68,9 @@ export class ManagedDatabaseColumnsImpl implements ManagedDatabaseColumns {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByDatabasePagingPage(
           resourceGroupName,
           managedInstanceName,
@@ -165,6 +168,9 @@ export class ManagedDatabaseColumnsImpl implements ManagedDatabaseColumns {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByTablePagingPage(
           resourceGroupName,
           managedInstanceName,

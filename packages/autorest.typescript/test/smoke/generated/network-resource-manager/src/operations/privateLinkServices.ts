@@ -87,6 +87,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
@@ -144,6 +147,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBySubscriptionPagingPage(options, settings);
       }
     };
@@ -203,6 +209,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPrivateEndpointConnectionsPagingPage(
           resourceGroupName,
           serviceName,
@@ -282,6 +291,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAutoApprovedPrivateLinkServicesPagingPage(
           location,
           options,
@@ -358,6 +370,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAutoApprovedPrivateLinkServicesByResourceGroupPagingPage(
           location,
           resourceGroupName,

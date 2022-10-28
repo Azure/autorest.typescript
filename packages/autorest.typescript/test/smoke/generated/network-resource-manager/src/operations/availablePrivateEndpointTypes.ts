@@ -58,6 +58,9 @@ export class AvailablePrivateEndpointTypesImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(location, options, settings);
       }
     };
@@ -120,6 +123,9 @@ export class AvailablePrivateEndpointTypesImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           location,
           resourceGroupName,

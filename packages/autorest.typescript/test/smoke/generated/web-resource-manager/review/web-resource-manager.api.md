@@ -3185,7 +3185,7 @@ export interface GeoRegionCollection {
     value: GeoRegion[];
 }
 
-// @public (undocumented)
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public

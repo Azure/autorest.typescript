@@ -69,6 +69,9 @@ export class LoadBalancersImpl implements LoadBalancers {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAllPagingPage(options, settings);
       }
     };
@@ -122,6 +125,9 @@ export class LoadBalancersImpl implements LoadBalancers {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(resourceGroupName, options, settings);
       }
     };

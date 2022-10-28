@@ -92,6 +92,9 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCloudServicePublicIPAddressesPagingPage(
           resourceGroupName,
           cloudServiceName,
@@ -183,6 +186,9 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCloudServiceRoleInstancePublicIPAddressesPagingPage(
           resourceGroupName,
           cloudServiceName,
@@ -274,6 +280,9 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAllPagingPage(options, settings);
       }
     };
@@ -327,6 +336,9 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
@@ -392,6 +404,9 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listVirtualMachineScaleSetPublicIPAddressesPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,
@@ -483,6 +498,9 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listVirtualMachineScaleSetVMPublicIPAddressesPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,

@@ -59,6 +59,9 @@ export class ResourceLinksImpl implements ResourceLinks {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtSubscriptionPagingPage(options, settings);
       }
     };
@@ -114,6 +117,9 @@ export class ResourceLinksImpl implements ResourceLinks {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtSourceScopePagingPage(scope, options, settings);
       }
     };

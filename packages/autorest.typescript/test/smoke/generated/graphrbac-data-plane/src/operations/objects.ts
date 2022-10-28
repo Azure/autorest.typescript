@@ -54,6 +54,9 @@ export class ObjectsImpl implements Objects {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getObjectsByObjectIdsPagingPage(
           parameters,
           options,
@@ -119,6 +122,9 @@ export class ObjectsImpl implements Objects {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getObjectsByObjectIdsNextPagingPage(
           nextLink,
           options,

@@ -82,6 +82,9 @@ export class ElasticPoolsImpl implements ElasticPools {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMetricsPagingPage(
           resourceGroupName,
           serverName,
@@ -159,6 +162,9 @@ export class ElasticPoolsImpl implements ElasticPools {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMetricDefinitionsPagingPage(
           resourceGroupName,
           serverName,
@@ -228,6 +234,9 @@ export class ElasticPoolsImpl implements ElasticPools {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByServerPagingPage(
           resourceGroupName,
           serverName,

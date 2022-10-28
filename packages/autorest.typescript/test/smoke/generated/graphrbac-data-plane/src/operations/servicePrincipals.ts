@@ -73,6 +73,9 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -126,6 +129,9 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listOwnersPagingPage(objectId, options, settings);
       }
     };
@@ -181,6 +187,9 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listKeyCredentialsPagingPage(objectId, options, settings);
       }
     };
@@ -226,6 +235,9 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPasswordCredentialsPagingPage(
           objectId,
           options,
@@ -275,6 +287,9 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listNextPagingPage(nextLink, options, settings);
       }
     };

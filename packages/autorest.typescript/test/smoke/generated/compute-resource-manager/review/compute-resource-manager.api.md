@@ -2523,7 +2523,7 @@ export interface GalleryUpdate extends UpdateResourceDefinition {
     softDeletePolicy?: SoftDeletePolicy;
 }
 
-// @public (undocumented)
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public

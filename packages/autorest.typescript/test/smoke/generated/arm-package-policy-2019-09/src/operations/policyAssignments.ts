@@ -85,6 +85,9 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listForResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -187,6 +190,9 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listForResourcePagingPage(
           resourceGroupName,
           resourceProviderNamespace,
@@ -293,6 +299,9 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listForManagementGroupPagingPage(
           managementGroupId,
           filter,
@@ -375,6 +384,9 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };

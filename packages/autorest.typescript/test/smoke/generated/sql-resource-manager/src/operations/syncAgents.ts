@@ -73,6 +73,9 @@ export class SyncAgentsImpl implements SyncAgents {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByServerPagingPage(
           resourceGroupName,
           serverName,
@@ -154,6 +157,9 @@ export class SyncAgentsImpl implements SyncAgents {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listLinkedDatabasesPagingPage(
           resourceGroupName,
           serverName,

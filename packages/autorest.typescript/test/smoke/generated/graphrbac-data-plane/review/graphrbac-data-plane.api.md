@@ -330,7 +330,7 @@ export interface DomainsListOptionalParams extends coreClient.OperationOptions {
 // @public
 export type DomainsListResponse = DomainListResult;
 
-// @public (undocumented)
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public

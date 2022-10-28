@@ -65,6 +65,9 @@ export class CassandraClustersImpl implements CassandraClusters {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBySubscriptionPagingPage(options, settings);
       }
     };
@@ -105,6 +108,9 @@ export class CassandraClustersImpl implements CassandraClusters {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,

@@ -92,6 +92,9 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMongoDBDatabasesPagingPage(
           resourceGroupName,
           accountName,
@@ -158,6 +161,9 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMongoDBCollectionsPagingPage(
           resourceGroupName,
           accountName,

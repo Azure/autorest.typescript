@@ -137,6 +137,9 @@ export class SqlResourcesImpl implements SqlResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlDatabasesPagingPage(
           resourceGroupName,
           accountName,
@@ -203,6 +206,9 @@ export class SqlResourcesImpl implements SqlResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlContainersPagingPage(
           resourceGroupName,
           accountName,
@@ -277,6 +283,9 @@ export class SqlResourcesImpl implements SqlResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlStoredProceduresPagingPage(
           resourceGroupName,
           accountName,
@@ -356,6 +365,9 @@ export class SqlResourcesImpl implements SqlResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlUserDefinedFunctionsPagingPage(
           resourceGroupName,
           accountName,
@@ -435,6 +447,9 @@ export class SqlResourcesImpl implements SqlResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlTriggersPagingPage(
           resourceGroupName,
           accountName,
@@ -508,6 +523,9 @@ export class SqlResourcesImpl implements SqlResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlRoleDefinitionsPagingPage(
           resourceGroupName,
           accountName,
@@ -571,6 +589,9 @@ export class SqlResourcesImpl implements SqlResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlRoleAssignmentsPagingPage(
           resourceGroupName,
           accountName,

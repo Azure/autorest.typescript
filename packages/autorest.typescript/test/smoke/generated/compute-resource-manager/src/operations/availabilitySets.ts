@@ -65,6 +65,9 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBySubscriptionPagingPage(options, settings);
       }
     };
@@ -118,6 +121,9 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
@@ -184,6 +190,9 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAvailableSizesPagingPage(
           resourceGroupName,
           availabilitySetName,

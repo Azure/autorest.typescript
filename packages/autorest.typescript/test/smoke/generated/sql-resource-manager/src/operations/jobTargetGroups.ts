@@ -67,6 +67,9 @@ export class JobTargetGroupsImpl implements JobTargetGroups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByAgentPagingPage(
           resourceGroupName,
           serverName,

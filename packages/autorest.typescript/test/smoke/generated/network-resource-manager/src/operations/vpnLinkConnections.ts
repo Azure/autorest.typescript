@@ -66,6 +66,9 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByVpnConnectionPagingPage(
           resourceGroupName,
           gatewayName,

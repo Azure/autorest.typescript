@@ -65,6 +65,9 @@ export class RouteFilterRulesImpl implements RouteFilterRules {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByRouteFilterPagingPage(
           resourceGroupName,
           routeFilterName,

@@ -67,6 +67,9 @@ export class ManagedDatabaseTablesImpl implements ManagedDatabaseTables {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBySchemaPagingPage(
           resourceGroupName,
           managedInstanceName,

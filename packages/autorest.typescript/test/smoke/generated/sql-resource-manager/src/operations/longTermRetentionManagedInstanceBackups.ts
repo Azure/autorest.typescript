@@ -90,6 +90,9 @@ export class LongTermRetentionManagedInstanceBackupsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByDatabasePagingPage(
           locationName,
           managedInstanceName,
@@ -177,6 +180,9 @@ export class LongTermRetentionManagedInstanceBackupsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByInstancePagingPage(
           locationName,
           managedInstanceName,
@@ -252,6 +258,9 @@ export class LongTermRetentionManagedInstanceBackupsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByLocationPagingPage(locationName, options, settings);
       }
     };
@@ -327,6 +336,9 @@ export class LongTermRetentionManagedInstanceBackupsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupDatabasePagingPage(
           resourceGroupName,
           locationName,
@@ -424,6 +436,9 @@ export class LongTermRetentionManagedInstanceBackupsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupInstancePagingPage(
           resourceGroupName,
           locationName,
@@ -512,6 +527,9 @@ export class LongTermRetentionManagedInstanceBackupsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupLocationPagingPage(
           resourceGroupName,
           locationName,

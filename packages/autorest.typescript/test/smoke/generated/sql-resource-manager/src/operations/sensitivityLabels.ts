@@ -76,6 +76,9 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCurrentByDatabasePagingPage(
           resourceGroupName,
           serverName,
@@ -167,6 +170,9 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listRecommendedByDatabasePagingPage(
           resourceGroupName,
           serverName,

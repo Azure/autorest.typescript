@@ -63,6 +63,9 @@ export class ElasticPoolOperationsImpl implements ElasticPoolOperations {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByElasticPoolPagingPage(
           resourceGroupName,
           serverName,

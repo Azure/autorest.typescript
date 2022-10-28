@@ -78,6 +78,9 @@ export class RecommendationsImpl implements Recommendations {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -137,6 +140,9 @@ export class RecommendationsImpl implements Recommendations {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listHistoryForHostingEnvironmentPagingPage(
           resourceGroupName,
           hostingEnvironmentName,
@@ -218,6 +224,9 @@ export class RecommendationsImpl implements Recommendations {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listRecommendedRulesForHostingEnvironmentPagingPage(
           resourceGroupName,
           hostingEnvironmentName,
@@ -299,6 +308,9 @@ export class RecommendationsImpl implements Recommendations {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listHistoryForWebAppPagingPage(
           resourceGroupName,
           siteName,
@@ -380,6 +392,9 @@ export class RecommendationsImpl implements Recommendations {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listRecommendedRulesForWebAppPagingPage(
           resourceGroupName,
           siteName,

@@ -31,7 +31,7 @@ export interface ErrorResponse {
     readonly target?: string;
 }
 
-// @public (undocumented)
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public

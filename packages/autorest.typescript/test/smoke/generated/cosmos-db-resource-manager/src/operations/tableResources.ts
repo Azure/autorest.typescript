@@ -72,6 +72,9 @@ export class TableResourcesImpl implements TableResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listTablesPagingPage(
           resourceGroupName,
           accountName,

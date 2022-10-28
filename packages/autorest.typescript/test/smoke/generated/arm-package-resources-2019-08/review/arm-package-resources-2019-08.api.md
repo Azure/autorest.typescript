@@ -747,7 +747,7 @@ export interface GenericResourceFilter {
     tagvalue?: string;
 }
 
-// @public (undocumented)
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public

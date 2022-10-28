@@ -67,6 +67,9 @@ export class JobsImpl implements Jobs {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByAgentPagingPage(
           resourceGroupName,
           serverName,

@@ -68,6 +68,9 @@ export class DatabaseColumnsImpl implements DatabaseColumns {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByDatabasePagingPage(
           resourceGroupName,
           serverName,
@@ -165,6 +168,9 @@ export class DatabaseColumnsImpl implements DatabaseColumns {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByTablePagingPage(
           resourceGroupName,
           serverName,

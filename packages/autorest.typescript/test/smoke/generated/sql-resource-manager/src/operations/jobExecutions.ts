@@ -75,6 +75,9 @@ export class JobExecutionsImpl implements JobExecutions {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByAgentPagingPage(
           resourceGroupName,
           serverName,
@@ -169,6 +172,9 @@ export class JobExecutionsImpl implements JobExecutions {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByJobPagingPage(
           resourceGroupName,
           serverName,

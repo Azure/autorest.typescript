@@ -119,6 +119,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listHostingEnvironmentDetectorResponsesPagingPage(
           resourceGroupName,
           name,
@@ -200,6 +203,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteDetectorResponsesPagingPage(
           resourceGroupName,
           siteName,
@@ -281,6 +287,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteDiagnosticCategoriesPagingPage(
           resourceGroupName,
           siteName,
@@ -365,6 +374,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteAnalysesPagingPage(
           resourceGroupName,
           siteName,
@@ -455,6 +467,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteDetectorsPagingPage(
           resourceGroupName,
           siteName,
@@ -545,6 +560,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteDetectorResponsesSlotPagingPage(
           resourceGroupName,
           siteName,
@@ -635,6 +653,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteDiagnosticCategoriesSlotPagingPage(
           resourceGroupName,
           siteName,
@@ -728,6 +749,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteAnalysesSlotPagingPage(
           resourceGroupName,
           siteName,
@@ -827,6 +851,9 @@ export class DiagnosticsImpl implements Diagnostics {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteDetectorsSlotPagingPage(
           resourceGroupName,
           siteName,

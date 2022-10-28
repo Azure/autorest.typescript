@@ -925,6 +925,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -978,6 +981,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -1046,6 +1052,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBackupsPagingPage(
           resourceGroupName,
           name,
@@ -1124,6 +1133,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBasicPublishingCredentialsPoliciesPagingPage(
           resourceGroupName,
           name,
@@ -1205,6 +1217,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listConfigurationsPagingPage(
           resourceGroupName,
           name,
@@ -1282,6 +1297,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getAppSettingsKeyVaultReferencesPagingPage(
           resourceGroupName,
           name,
@@ -1363,6 +1381,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getSiteConnectionStringKeyVaultReferencesPagingPage(
           resourceGroupName,
           name,
@@ -1445,6 +1466,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listConfigurationSnapshotInfoPagingPage(
           resourceGroupName,
           name,
@@ -1526,6 +1550,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listContinuousWebJobsPagingPage(
           resourceGroupName,
           name,
@@ -1607,6 +1634,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listDeploymentsPagingPage(
           resourceGroupName,
           name,
@@ -1684,6 +1714,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listDomainOwnershipIdentifiersPagingPage(
           resourceGroupName,
           name,
@@ -1761,6 +1794,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listFunctionsPagingPage(
           resourceGroupName,
           name,
@@ -1838,6 +1874,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listHostNameBindingsPagingPage(
           resourceGroupName,
           name,
@@ -1919,6 +1958,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceIdentifiersPagingPage(
           resourceGroupName,
           name,
@@ -2005,6 +2047,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceProcessesPagingPage(
           resourceGroupName,
           name,
@@ -2100,6 +2145,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceProcessModulesPagingPage(
           resourceGroupName,
           name,
@@ -2201,6 +2249,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceProcessThreadsPagingPage(
           resourceGroupName,
           name,
@@ -2294,6 +2345,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteBackupsPagingPage(
           resourceGroupName,
           name,
@@ -2371,6 +2425,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPerfMonCountersPagingPage(
           resourceGroupName,
           name,
@@ -2452,6 +2509,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPrivateEndpointConnectionListPagingPage(
           resourceGroupName,
           name,
@@ -2530,6 +2590,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listProcessesPagingPage(
           resourceGroupName,
           name,
@@ -2611,6 +2674,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listProcessModulesPagingPage(
           resourceGroupName,
           name,
@@ -2702,6 +2768,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listProcessThreadsPagingPage(
           resourceGroupName,
           name,
@@ -2789,6 +2858,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPublicCertificatesPagingPage(
           resourceGroupName,
           name,
@@ -2870,6 +2942,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteExtensionsPagingPage(
           resourceGroupName,
           name,
@@ -2943,6 +3018,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSlotsPagingPage(
           resourceGroupName,
           name,
@@ -3024,6 +3102,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBackupsSlotPagingPage(
           resourceGroupName,
           name,
@@ -3115,6 +3196,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBasicPublishingCredentialsPoliciesSlotPagingPage(
           resourceGroupName,
           name,
@@ -3206,6 +3290,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listConfigurationsSlotPagingPage(
           resourceGroupName,
           name,
@@ -3296,6 +3383,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getAppSettingsKeyVaultReferencesSlotPagingPage(
           resourceGroupName,
           name,
@@ -3386,6 +3476,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getSiteConnectionStringKeyVaultReferencesSlotPagingPage(
           resourceGroupName,
           name,
@@ -3478,6 +3571,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listConfigurationSnapshotInfoSlotPagingPage(
           resourceGroupName,
           name,
@@ -3569,6 +3665,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listContinuousWebJobsSlotPagingPage(
           resourceGroupName,
           name,
@@ -3660,6 +3759,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listDeploymentsSlotPagingPage(
           resourceGroupName,
           name,
@@ -3751,6 +3853,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listDomainOwnershipIdentifiersSlotPagingPage(
           resourceGroupName,
           name,
@@ -3841,6 +3946,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceFunctionsSlotPagingPage(
           resourceGroupName,
           name,
@@ -3932,6 +4040,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listHostNameBindingsSlotPagingPage(
           resourceGroupName,
           name,
@@ -4023,6 +4134,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceIdentifiersSlotPagingPage(
           resourceGroupName,
           name,
@@ -4119,6 +4233,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceProcessesSlotPagingPage(
           resourceGroupName,
           name,
@@ -4224,6 +4341,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceProcessModulesSlotPagingPage(
           resourceGroupName,
           name,
@@ -4335,6 +4455,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInstanceProcessThreadsSlotPagingPage(
           resourceGroupName,
           name,
@@ -4438,6 +4561,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteBackupsSlotPagingPage(
           resourceGroupName,
           name,
@@ -4528,6 +4654,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPerfMonCountersSlotPagingPage(
           resourceGroupName,
           name,
@@ -4618,6 +4747,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPrivateEndpointConnectionListSlotPagingPage(
           resourceGroupName,
           name,
@@ -4710,6 +4842,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listProcessesSlotPagingPage(
           resourceGroupName,
           name,
@@ -4805,6 +4940,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listProcessModulesSlotPagingPage(
           resourceGroupName,
           name,
@@ -4906,6 +5044,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listProcessThreadsSlotPagingPage(
           resourceGroupName,
           name,
@@ -5003,6 +5144,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPublicCertificatesSlotPagingPage(
           resourceGroupName,
           name,
@@ -5094,6 +5238,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSiteExtensionsSlotPagingPage(
           resourceGroupName,
           name,
@@ -5188,6 +5335,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSlotDifferencesSlotPagingPage(
           resourceGroupName,
           name,
@@ -5284,6 +5434,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSnapshotsSlotPagingPage(
           resourceGroupName,
           name,
@@ -5374,6 +5527,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSnapshotsFromDRSecondarySlotPagingPage(
           resourceGroupName,
           name,
@@ -5465,6 +5621,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listTriggeredWebJobsSlotPagingPage(
           resourceGroupName,
           name,
@@ -5559,6 +5718,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listTriggeredWebJobHistorySlotPagingPage(
           resourceGroupName,
           name,
@@ -5656,6 +5818,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listUsagesSlotPagingPage(
           resourceGroupName,
           name,
@@ -5747,6 +5912,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWebJobsSlotPagingPage(
           resourceGroupName,
           name,
@@ -5837,6 +6005,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSlotDifferencesFromProductionPagingPage(
           resourceGroupName,
           name,
@@ -5920,6 +6091,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSnapshotsPagingPage(
           resourceGroupName,
           name,
@@ -5997,6 +6171,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSnapshotsFromDRSecondaryPagingPage(
           resourceGroupName,
           name,
@@ -6078,6 +6255,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listTriggeredWebJobsPagingPage(
           resourceGroupName,
           name,
@@ -6162,6 +6342,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listTriggeredWebJobHistoryPagingPage(
           resourceGroupName,
           name,
@@ -6245,6 +6428,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listUsagesPagingPage(
           resourceGroupName,
           name,
@@ -6318,6 +6504,9 @@ export class WebAppsImpl implements WebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWebJobsPagingPage(
           resourceGroupName,
           name,

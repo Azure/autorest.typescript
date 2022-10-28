@@ -103,6 +103,9 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMetricsPagingPage(
           resourceGroupName,
           serverName,
@@ -180,6 +183,9 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMetricDefinitionsPagingPage(
           resourceGroupName,
           serverName,
@@ -249,6 +255,9 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByServerPagingPage(
           resourceGroupName,
           serverName,
@@ -330,6 +339,9 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByElasticPoolPagingPage(
           resourceGroupName,
           serverName,
@@ -418,6 +430,9 @@ export class DatabasesImpl implements Databases {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listInaccessibleByServerPagingPage(
           resourceGroupName,
           serverName,

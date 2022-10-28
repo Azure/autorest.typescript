@@ -56,6 +56,9 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -109,6 +112,9 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByLocationPagingPage(location, options, settings);
       }
     };

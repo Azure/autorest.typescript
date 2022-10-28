@@ -80,6 +80,9 @@ export class SyncGroupsImpl implements SyncGroups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSyncDatabaseIdsPagingPage(
           locationName,
           options,
@@ -159,6 +162,9 @@ export class SyncGroupsImpl implements SyncGroups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listHubSchemasPagingPage(
           resourceGroupName,
           serverName,
@@ -268,6 +274,9 @@ export class SyncGroupsImpl implements SyncGroups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listLogsPagingPage(
           resourceGroupName,
           serverName,
@@ -383,6 +392,9 @@ export class SyncGroupsImpl implements SyncGroups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByDatabasePagingPage(
           resourceGroupName,
           serverName,

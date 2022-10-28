@@ -134,6 +134,9 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtScopePagingPage(scope, options, settings);
       }
     };
@@ -187,6 +190,9 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtTenantScopePagingPage(options, settings);
       }
     };
@@ -240,6 +246,9 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtManagementGroupScopePagingPage(
           groupId,
           options,
@@ -304,6 +313,9 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtSubscriptionScopePagingPage(options, settings);
       }
     };
@@ -361,6 +373,9 @@ export class DeploymentsImpl implements Deployments {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,

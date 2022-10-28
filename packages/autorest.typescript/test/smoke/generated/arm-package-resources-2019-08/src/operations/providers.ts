@@ -62,6 +62,9 @@ export class ProvidersImpl implements Providers {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -113,6 +116,9 @@ export class ProvidersImpl implements Providers {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAtTenantScopePagingPage(options, settings);
       }
     };

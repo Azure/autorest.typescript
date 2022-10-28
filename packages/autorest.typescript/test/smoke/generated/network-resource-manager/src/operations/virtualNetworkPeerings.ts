@@ -65,6 +65,9 @@ export class VirtualNetworkPeeringsImpl implements VirtualNetworkPeerings {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(
           resourceGroupName,
           virtualNetworkName,

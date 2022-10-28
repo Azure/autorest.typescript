@@ -89,6 +89,9 @@ export class GremlinResourcesImpl implements GremlinResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listGremlinDatabasesPagingPage(
           resourceGroupName,
           accountName,
@@ -155,6 +158,9 @@ export class GremlinResourcesImpl implements GremlinResources {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listGremlinGraphsPagingPage(
           resourceGroupName,
           accountName,

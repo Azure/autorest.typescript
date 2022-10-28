@@ -99,6 +99,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByDatabasePagingPage(
           locationName,
           longTermRetentionServerName,
@@ -180,6 +183,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByLocationPagingPage(locationName, options, settings);
       }
     };
@@ -248,6 +254,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByServerPagingPage(
           locationName,
           longTermRetentionServerName,
@@ -336,6 +345,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupDatabasePagingPage(
           resourceGroupName,
           locationName,
@@ -430,6 +442,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupLocationPagingPage(
           resourceGroupName,
           locationName,
@@ -515,6 +530,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupServerPagingPage(
           resourceGroupName,
           locationName,

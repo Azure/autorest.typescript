@@ -102,6 +102,9 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
@@ -167,6 +170,9 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listConnectionsPagingPage(
           resourceGroupName,
           virtualNetworkGatewayName,

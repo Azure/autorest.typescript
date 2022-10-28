@@ -291,7 +291,7 @@ export interface GenericResource extends Resource {
     sku?: Sku;
 }
 
-// @public (undocumented)
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public

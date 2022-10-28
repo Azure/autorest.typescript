@@ -115,6 +115,9 @@ export class AppServicePlansImpl implements AppServicePlans {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(options, settings);
       }
     };
@@ -168,6 +171,9 @@ export class AppServicePlansImpl implements AppServicePlans {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -246,6 +252,9 @@ export class AppServicePlansImpl implements AppServicePlans {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWebAppsByHybridConnectionPagingPage(
           resourceGroupName,
           name,
@@ -339,6 +348,9 @@ export class AppServicePlansImpl implements AppServicePlans {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listHybridConnectionsPagingPage(
           resourceGroupName,
           name,
@@ -416,6 +428,9 @@ export class AppServicePlansImpl implements AppServicePlans {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listWebAppsPagingPage(
           resourceGroupName,
           name,
@@ -489,6 +504,9 @@ export class AppServicePlansImpl implements AppServicePlans {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listUsagesPagingPage(
           resourceGroupName,
           name,
