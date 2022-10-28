@@ -138,6 +138,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getNoItemNamePagesPagingPage(options, settings);
       }
     };
@@ -189,6 +192,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getNullNextLinkNamePagesPagingPage(options, settings);
       }
     };
@@ -227,6 +233,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getSinglePagesPagingPage(options, settings);
       }
     };
@@ -283,6 +292,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getSinglePagesWithBodyParamsPagingPage(
           parameters,
           options,
@@ -348,6 +360,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.firstResponseEmptyPagingPage(options, settings);
       }
     };
@@ -399,6 +414,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesPagingPage(options, settings);
       }
     };
@@ -456,6 +474,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getWithQueryParamsPagingPage(
           requiredQueryParameter,
           options,
@@ -518,6 +539,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.duplicateParamsPagingPage(options, settings);
       }
     };
@@ -569,6 +593,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.pageWithMaxPageSizePagingPage(options, settings);
       }
     };
@@ -620,6 +647,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getOdataMultiplePagesPagingPage(options, settings);
       }
     };
@@ -679,6 +709,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesWithOffsetPagingPage(
           pagingGetMultiplePagesWithOffsetOptions,
           options,
@@ -747,6 +780,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesRetryFirstPagingPage(options, settings);
       }
     };
@@ -804,6 +840,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesRetrySecondPagingPage(options, settings);
       }
     };
@@ -860,6 +899,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getSinglePagesFailurePagingPage(options, settings);
       }
     };
@@ -914,6 +956,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesFailurePagingPage(options, settings);
       }
     };
@@ -968,6 +1013,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesFailureUriPagingPage(options, settings);
       }
     };
@@ -1032,6 +1080,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesFragmentNextLinkPagingPage(
           apiVersion,
           tenant,
@@ -1110,6 +1161,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesFragmentWithGroupingNextLinkPagingPage(
           customParameterGroup,
           options,
@@ -1177,6 +1231,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesLROPagingPage(options, settings);
       }
     };
@@ -1230,6 +1287,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.appendApiVersionPagingPage(options, settings);
       }
     };
@@ -1282,6 +1342,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.replaceApiVersionPagingPage(options, settings);
       }
     };
@@ -1344,6 +1407,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.nextFragmentPagingPage(
           apiVersion,
           tenant,
@@ -1425,6 +1491,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.nextFragmentWithGroupingPagingPage(
           nextLink,
           customParameterGroup,
@@ -1500,6 +1569,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPagingModelWithItemNameWithXMSClientNamePagingPage(
           options,
           settings

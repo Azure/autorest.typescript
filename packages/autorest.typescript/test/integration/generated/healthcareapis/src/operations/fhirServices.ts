@@ -60,6 +60,9 @@ export class FhirServicesImpl implements FhirServices {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByWorkspacePagingPage(
           resourceGroupName,
           workspaceName,

@@ -51,6 +51,9 @@ export class PrivateEndPointConnectionsImpl
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByFactoryPagingPage(
           resourceGroupName,
           factoryName,

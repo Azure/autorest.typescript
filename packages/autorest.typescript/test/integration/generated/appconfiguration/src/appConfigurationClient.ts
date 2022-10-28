@@ -153,6 +153,9 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getKeysPagingPage(options, settings);
       }
     };
@@ -204,6 +207,9 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getKeyValuesPagingPage(options, settings);
       }
     };
@@ -255,6 +261,9 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getLabelsPagingPage(options, settings);
       }
     };
@@ -306,6 +315,9 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getRevisionsPagingPage(options, settings);
       }
     };

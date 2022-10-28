@@ -56,6 +56,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPagesPartialUrlPagingPage(
           accountName,
           options,
@@ -125,6 +128,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPagesPartialUrlOperationPagingPage(
           accountName,
           options,
@@ -197,6 +203,9 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPagesPartialUrlOperationNextPagingPage(
           accountName,
           nextLink,

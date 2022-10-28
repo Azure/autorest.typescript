@@ -86,6 +86,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listBySubscriptionPagingPage(options, settings);
       }
     };
@@ -139,6 +142,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
@@ -211,6 +217,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listValidSkusPagingPage(
           provisioningServiceName,
           resourceGroupName,
@@ -294,6 +303,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
         return this;
       },
       byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listKeysPagingPage(
           provisioningServiceName,
           resourceGroupName,
