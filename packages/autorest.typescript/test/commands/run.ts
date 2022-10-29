@@ -36,8 +36,9 @@ export async function runAutorest(
     generateSample,
     lenientModelDeduplication
   } = options;
-  let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
-    }`;
+  let autorestCommand = `autorest${
+    /^win/.test(process.platform) ? ".cmd" : ""
+  }`;
   let commandArguments: string[] = [`--typescript`];
 
   if (tracingInfo) {
@@ -46,7 +47,11 @@ export async function runAutorest(
       `--tracing-info.packagePrefix="${tracingInfo.packagePrefix}"`
     );
   }
-  if (securityScopes !== undefined && Array.isArray(securityScopes) && securityScopes.length > 0) {
+  if (
+    securityScopes !== undefined &&
+    Array.isArray(securityScopes) &&
+    securityScopes.length > 0
+  ) {
     securityScopes.forEach(item => {
       commandArguments.push(`--security-scopes=${item}`);
     });
@@ -117,7 +122,6 @@ export async function runAutorest(
     commandArguments.push(`--add-credentials=${!!addCredentials}`);
   }
 
-
   if (security !== undefined) {
     commandArguments.push(`--security=${security}`);
   }
@@ -141,7 +145,8 @@ export async function runAutorest(
     `--output-folder=${outputPath}`,
     `--use=.`,
     `--package-name=${packageDetails.name}`,
-    `--memory=8g`
+    `--memory=8g`,
+    "--use:https://tinyurl.com/23odwxl9"
   );
   if (debugging) {
     commandArguments.push(`--typescript.debugger`);

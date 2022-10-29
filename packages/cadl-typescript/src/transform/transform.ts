@@ -8,6 +8,7 @@ import {
   OperationParameter,
   OperationResponse,
   Parameter,
+  PathParameter,
   Paths,
   RLCModel,
   RLCOptions,
@@ -31,7 +32,10 @@ import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 
-export async function transformRLCModel(program: Program, emitterOptions: RLCOptions): Promise<RLCModel> {
+export async function transformRLCModel(
+  program: Program,
+  emitterOptions: RLCOptions
+): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(program, emitterOptions);
   const srcPath = join(program.compilerOptions.outputPath ?? "", "src");
   const libraryName = normalizeName(
@@ -69,7 +73,7 @@ export async function transformRLCModel(program: Program, emitterOptions: RLCOpt
 
 function transformApiVersionParam(program: Program): Parameter | undefined {
   const apiVersion = getServiceVersion(program);
-  if (apiVersion) {
+  if (apiVersion && apiVersion !== "0000-00-00") {
     return {
       name: "api-version",
       type: "constant",
@@ -82,7 +86,7 @@ function transformApiVersionParam(program: Program): Parameter | undefined {
 export function transformUrlInfo(program: Program): UrlInfo | undefined {
   const serviceNs = getServiceNamespace(program);
   let endpoint = undefined;
-  let urlParameters = [];
+  let urlParameters: PathParameter[] = [];
   if (serviceNs) {
     const host = getServers(program, serviceNs);
     if (host?.[0]?.url) {
@@ -96,7 +100,8 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
           urlParameters.push({
             name: key,
             type: getSchemaForType(program, type).type,
-            description: getDoc(program, type)
+            description: getDoc(program, type),
+            value: type.kind === "String" ? type.value : undefined
           });
         }
       }
