@@ -143,5 +143,344 @@ describe("Parameters.ts", () => {
         `
       );
     });
+
+    it("contentTypes has binary data", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @route("/uploadFileViaBody")
+        @post op uploadFileViaBody(
+          @header contentType: "application/octet-stream",
+          @body body: bytes
+        ): void;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface UploadFileViaBodyBodyParam {
+          /** Value may contain any sequence of octets */
+          body:
+          | string
+          | Uint8Array
+          | ReadableStream<Uint8Array>
+          | NodeJS.ReadableStream;
+        }
+        
+        export interface UploadFileViaBodyMediaTypesParam {
+          contentType: "application/octet-stream";
+        }
+        
+        export type UploadFileViaBodyParameters = UploadFileViaBodyMediaTypesParam &
+        UploadFileViaBodyBodyParam &
+          RequestParameters;
+        `
+      );
+    });
+
+    it("contentTypes has multiple form data", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @route("/uploadFile")
+        @post op uploadFile(
+        @header contentType: "multipart/form-data",
+        @body body: {
+          name: string;
+          file: bytes;
+        }
+      ): void;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+      import { RequestParameters } from "@azure-rest/core-client";
+      
+      export interface UploadFileBodyParam {
+        body: UploadFileFormBody;
+      }
+      
+      export interface UploadFileFormBody {
+        name: string;
+        file:
+          | string
+          | Uint8Array
+          | ReadableStream<Uint8Array>
+          | NodeJS.ReadableStream;
+      }
+
+      export interface UploadFileMediaTypesParam {
+        contentType: "multipart/form-data";
+      }
+      
+      export type UploadFileParameters = UploadFileMediaTypesParam &
+        UploadFileBodyParam &
+        RequestParameters;
+        `
+      );
+    });
+
+    it("contentTypes has array data defined in form body", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @route("/uploadFiles")
+        @post op uploadFiles(
+        @header contentType: "multipart/form-data",
+        @body body: {
+          files: bytes[];
+        }
+      ): void;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+      
+        export interface UploadFilesBodyParam {
+          body: UploadFilesFormBody;
+        }
+        
+        export interface UploadFilesFormBody {
+          files: Array<
+            string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream
+          >;
+        }
+        
+        export interface UploadFilesMediaTypesParam {
+          contentType: "multipart/form-data";
+        }
+        
+        export type UploadFilesParameters = UploadFilesMediaTypesParam &
+          UploadFilesBodyParam &
+          RequestParameters;
+        `
+      );
+    });
+  });
+
+  describe("Array generation", () => {
+    it("string array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: string[]): void;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body:string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("int32 array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: int32[]): void ;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body:number[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("int64 array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: int64[]): void ;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body:number[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("float32 array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: float32[]): void ;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body:number[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("boolean array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: boolean[]): void ;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body:boolean[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("bytes array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: bytes[]): void ;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body:string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("plainDate array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: plainDate[]): void;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body: Date[] | string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("datetime array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: zonedDateTime[]): void;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body: Date[] | string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+    
+    it("duration array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body:  duration[]): void;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body:string[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("SimpleModel array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      model SimpleModel {
+        prop1: string;
+        prop2: int32;
+      }
+      @post op read(@body body: SimpleModel[]): void;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { SimpleModel } from "./models";
+
+        export interface ReadBodyParam {
+          body:Array<SimpleModel>;
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+
+    it("InnerModel array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      model InnerModel {
+        property: string;
+        children?: InnerModel[];
+      }
+      @post op read(@body body: InnerModel[]): void;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { InnerModel } from "./models";
+
+        export interface ReadBodyParam {
+          body:Array<InnerModel>;
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
   });
 });
