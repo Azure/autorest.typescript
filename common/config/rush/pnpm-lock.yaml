@@ -176,6 +176,17 @@ packages:
       '@cadl-lang/rest': 0.18.0_@cadl-lang+compiler@0.36.0
     dev: false
 
+  /@azure-tools/cadl-dpg/0.2.0_dbc7c933933f9aad7e8fe898f45a319f:
+    resolution: {integrity: sha512-pkbEmR3aE1rb55L2qbbYLPPLlgVWHn+5SndtOjJkb83XHlDBjo8jC7DMDCRpZqng+ylr/w62tzzthng/7eX2qQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@cadl-lang/compiler': ~0.36.1
+      '@cadl-lang/rest': ~0.18.0
+    dependencies:
+      '@cadl-lang/compiler': 0.36.0
+      '@cadl-lang/rest': 0.18.0_@cadl-lang+compiler@0.36.0
+    dev: false
+
   /@azure-tools/cadl-ranch-api/0.1.9:
     resolution: {integrity: sha512-SpJh71Aaxw2ThdApvgbWPGi4OCMB8Hzh9y16QJhSHoZSrHcKpkvyP51ELJ4dTPE/9D+jyzQTSest7HkF+63Ekg==}
     engines: {node: '>=16.0.0'}
@@ -2925,7 +2936,7 @@ packages:
     dev: false
 
   /array-flatten/1.1.1:
-    resolution: {integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=}
+    resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
     dev: false
 
   /array-includes/3.1.5:
@@ -3290,7 +3301,7 @@ packages:
     dev: false
 
   /buffer-equal-constant-time/1.0.1:
-    resolution: {integrity: sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=}
+    resolution: {integrity: sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==}
     dev: false
 
   /buffer-from/1.1.2:
@@ -3442,7 +3453,7 @@ packages:
     dev: false
 
   /charenc/0.0.2:
-    resolution: {integrity: sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=}
+    resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
     dev: false
 
   /charset/1.0.1:
@@ -3688,7 +3699,7 @@ packages:
     dev: false
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: false
 
   /config-chain/1.1.13:
@@ -3749,7 +3760,7 @@ packages:
     dev: false
 
   /cookie-signature/1.0.6:
-    resolution: {integrity: sha1-4wOogrNCzD7oylE6eZmXNNqzriw=}
+    resolution: {integrity: sha512-QADzlaHc8icV8I7vbaJXJwod9HWYp8uCqf1xa4OfNu1T7JVxQIrUgOWtHdNDtPiywmFbiS12VjotIXLrKM3orQ==}
     dev: false
 
   /cookie/0.4.2:
@@ -3845,7 +3856,7 @@ packages:
     dev: false
 
   /crypt/0.0.2:
-    resolution: {integrity: sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=}
+    resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
     dev: false
 
   /crypto-browserify/3.12.0:
@@ -4197,7 +4208,7 @@ packages:
     dev: false
 
   /ee-first/1.1.1:
-    resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
+    resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: false
 
   /electron-to-chromium/1.4.279:
@@ -5010,7 +5021,7 @@ packages:
     dev: false
 
   /fresh/0.5.2:
-    resolution: {integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=}
+    resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -6661,7 +6672,7 @@ packages:
     dev: false
 
   /media-typer/0.3.0:
-    resolution: {integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=}
+    resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -6671,7 +6682,7 @@ packages:
     dev: false
 
   /merge-descriptors/1.0.1:
-    resolution: {integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=}
+    resolution: {integrity: sha512-cCi6g3/Zr1iqQi6ySbseM1Xvooa98N0w31jzUYrXPX2xqObmFGHJ0tQ5u74H3mVh7wLouTseZyYIq39g8cNp1w==}
     dev: false
 
   /merge-stream/2.0.0:
@@ -9195,7 +9206,7 @@ packages:
     dev: false
 
   /utils-merge/1.0.1:
-    resolution: {integrity: sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=}
+    resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
     dev: false
 
@@ -9239,7 +9250,7 @@ packages:
     dev: false
 
   /verror/1.10.0:
-    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
+    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -9870,12 +9881,13 @@ packages:
     dev: false
 
   file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-CQ8e1Ulchl5tKe0L7CS2JYk0hB4ezbKWmsiyx06cRXK7K3rVh2UfaCORBIBeaBnPn5cU9U/EaDj5JtzcuKXd1g==, tarball: file:projects/cadl-rest-test.tgz}
+    resolution: {integrity: sha512-cVYDcNvRkDIFxngHMu3x7Ci62cBe1EV573SNgT9Oc+1UEF6uKD63qWapBprKCyPAF3ZzHj3+8lVdgYrliSe99w==, tarball: file:projects/cadl-rest-test.tgz}
     name: '@rush-temp/cadl-rest-test'
     version: 0.0.0
     dependencies:
       '@azure-tools/cadl-autorest': 0.21.0_f44e8023eb90c259432bbaac160f8049
       '@azure-tools/cadl-azure-core': 0.8.0_dbc7c933933f9aad7e8fe898f45a319f
+      '@azure-tools/cadl-dpg': 0.2.0_dbc7c933933f9aad7e8fe898f45a319f
       '@cadl-lang/compiler': 0.36.0
       '@cadl-lang/openapi': 0.13.0_dbc7c933933f9aad7e8fe898f45a319f
       '@cadl-lang/rest': 0.18.0_@cadl-lang+compiler@0.36.0
