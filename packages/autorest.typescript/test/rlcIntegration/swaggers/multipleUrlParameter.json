@@ -308,6 +308,48 @@
           }
         }
       }
+    },
+    "/entity/guid/{guid}:export": {
+      "put": {
+        "tags": ["Entity"],
+        "description": "Update entity partially - create or update entity attribute identified by its GUID.\nSupports only primitive attribute type and entity references.\nIt does not support updating complex types like arrays, and maps.\nNull updates are not possible.",
+        "operationId": "Entity_ExportGuid",
+        "parameters": [
+          {
+            "$ref": "#/parameters/guid"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The name of the attribute.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The value of the attribute.",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Updated with EntityMutationResponse.",
+            "schema": {
+              "$ref": "#/definitions/EntityMutationResponse"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
