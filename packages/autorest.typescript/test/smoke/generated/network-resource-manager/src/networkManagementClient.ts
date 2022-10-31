@@ -8,7 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "./pagingHelper";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "./lroImpl";
 import {
@@ -247,20 +248,20 @@ import {
   BastionShareableLinkListRequest,
   PutBastionShareableLinkNextOptionalParams,
   PutBastionShareableLinkOptionalParams,
+  PutBastionShareableLinkResponse,
   GetBastionShareableLinkNextOptionalParams,
   GetBastionShareableLinkOptionalParams,
+  GetBastionShareableLinkResponse,
   BastionActiveSession,
   GetActiveSessionsNextOptionalParams,
   GetActiveSessionsOptionalParams,
+  GetActiveSessionsResponse,
   BastionSessionState,
   SessionIds,
   DisconnectActiveSessionsNextOptionalParams,
   DisconnectActiveSessionsOptionalParams,
-  PutBastionShareableLinkResponse,
-  DeleteBastionShareableLinkOptionalParams,
-  GetBastionShareableLinkResponse,
-  GetActiveSessionsResponse,
   DisconnectActiveSessionsResponse,
+  DeleteBastionShareableLinkOptionalParams,
   CheckDnsNameAvailabilityOptionalParams,
   CheckDnsNameAvailabilityResponse,
   SupportedSecurityProvidersOptionalParams,
@@ -533,12 +534,16 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.putBastionShareableLinkPagingPage(
           resourceGroupName,
           bastionHostName,
           bslRequest,
-          options
+          options,
+          settings
         );
       }
     };
@@ -548,17 +553,24 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: PutBastionShareableLinkOptionalParams
+    options?: PutBastionShareableLinkOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<BastionShareableLink[]> {
-    const poller = await this._putBastionShareableLink(
-      resourceGroupName,
-      bastionHostName,
-      bslRequest,
-      options
-    );
-    let result: any = await poller.pollUntilDone();
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PutBastionShareableLinkResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      const poller = await this._putBastionShareableLink(
+        resourceGroupName,
+        bastionHostName,
+        bslRequest,
+        options
+      );
+      result = await poller.pollUntilDone();
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._putBastionShareableLinkNext(
         resourceGroupName,
@@ -568,7 +580,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -614,12 +628,16 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getBastionShareableLinkPagingPage(
           resourceGroupName,
           bastionHostName,
           bslRequest,
-          options
+          options,
+          settings
         );
       }
     };
@@ -629,16 +647,23 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     resourceGroupName: string,
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
-    options?: GetBastionShareableLinkOptionalParams
+    options?: GetBastionShareableLinkOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<BastionShareableLink[]> {
-    let result = await this._getBastionShareableLink(
-      resourceGroupName,
-      bastionHostName,
-      bslRequest,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: GetBastionShareableLinkResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getBastionShareableLink(
+        resourceGroupName,
+        bastionHostName,
+        bslRequest,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getBastionShareableLinkNext(
         resourceGroupName,
@@ -648,7 +673,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -691,11 +718,15 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getActiveSessionsPagingPage(
           resourceGroupName,
           bastionHostName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -704,16 +735,23 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   private async *getActiveSessionsPagingPage(
     resourceGroupName: string,
     bastionHostName: string,
-    options?: GetActiveSessionsOptionalParams
+    options?: GetActiveSessionsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<BastionActiveSession[]> {
-    const poller = await this._getActiveSessions(
-      resourceGroupName,
-      bastionHostName,
-      options
-    );
-    let result: any = await poller.pollUntilDone();
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: GetActiveSessionsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      const poller = await this._getActiveSessions(
+        resourceGroupName,
+        bastionHostName,
+        options
+      );
+      result = await poller.pollUntilDone();
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getActiveSessionsNext(
         resourceGroupName,
@@ -722,7 +760,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -766,12 +806,16 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.disconnectActiveSessionsPagingPage(
           resourceGroupName,
           bastionHostName,
           sessionIds,
-          options
+          options,
+          settings
         );
       }
     };
@@ -781,16 +825,23 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     resourceGroupName: string,
     bastionHostName: string,
     sessionIds: SessionIds,
-    options?: DisconnectActiveSessionsOptionalParams
+    options?: DisconnectActiveSessionsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<BastionSessionState[]> {
-    let result = await this._disconnectActiveSessions(
-      resourceGroupName,
-      bastionHostName,
-      sessionIds,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DisconnectActiveSessionsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._disconnectActiveSessions(
+        resourceGroupName,
+        bastionHostName,
+        sessionIds,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._disconnectActiveSessionsNext(
         resourceGroupName,
@@ -800,7 +851,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

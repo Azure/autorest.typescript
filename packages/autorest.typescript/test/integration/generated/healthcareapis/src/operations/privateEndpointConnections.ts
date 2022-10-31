@@ -1,4 +1,4 @@
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { PrivateEndpointConnections } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -55,11 +55,15 @@ export class PrivateEndpointConnectionsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByServicePagingPage(
           resourceGroupName,
           resourceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -68,9 +72,11 @@ export class PrivateEndpointConnectionsImpl
   private async *listByServicePagingPage(
     resourceGroupName: string,
     resourceName: string,
-    options?: PrivateEndpointConnectionsListByServiceOptionalParams
+    options?: PrivateEndpointConnectionsListByServiceOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<PrivateEndpointConnectionDescription[]> {
-    let result = await this._listByService(
+    let result: PrivateEndpointConnectionsListByServiceResponse;
+    result = await this._listByService(
       resourceGroupName,
       resourceName,
       options

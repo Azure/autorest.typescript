@@ -2524,6 +2524,9 @@ export interface GalleryUpdate extends UpdateResourceDefinition {
 }
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export interface GrantAccessData {
     // (undocumented)
     access: AccessLevel;

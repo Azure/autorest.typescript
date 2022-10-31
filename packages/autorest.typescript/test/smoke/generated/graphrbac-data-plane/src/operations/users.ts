@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Users } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,19 +17,19 @@ import {
   User,
   UsersListNextOptionalParams,
   UsersListOptionalParams,
+  UsersListResponse,
   UserGetMemberGroupsParameters,
   UsersGetMemberGroupsOptionalParams,
+  UsersGetMemberGroupsResponse,
+  UsersListNextResponse,
   UserCreateParameters,
   UsersCreateOptionalParams,
   UsersCreateResponse,
-  UsersListResponse,
   UsersGetOptionalParams,
   UsersGetResponse,
   UserUpdateParameters,
   UsersUpdateOptionalParams,
-  UsersDeleteOptionalParams,
-  UsersGetMemberGroupsResponse,
-  UsersListNextResponse
+  UsersDeleteOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -59,22 +60,34 @@ export class UsersImpl implements Users {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: UsersListOptionalParams
+    options?: UsersListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<User[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: UsersListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -105,8 +118,16 @@ export class UsersImpl implements Users {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getMemberGroupsPagingPage(objectId, parameters, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getMemberGroupsPagingPage(
+          objectId,
+          parameters,
+          options,
+          settings
+        );
       }
     };
   }
@@ -114,9 +135,11 @@ export class UsersImpl implements Users {
   private async *getMemberGroupsPagingPage(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: UsersGetMemberGroupsOptionalParams
+    options?: UsersGetMemberGroupsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<string[]> {
-    let result = await this._getMemberGroups(objectId, parameters, options);
+    let result: UsersGetMemberGroupsResponse;
+    result = await this._getMemberGroups(objectId, parameters, options);
     yield result.value || [];
   }
 
@@ -151,23 +174,35 @@ export class UsersImpl implements Users {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listNextPagingPage(nextLink, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listNextPagingPage(nextLink, options, settings);
       }
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: UsersListNextOptionalParams
+    options?: UsersListNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<User[]> {
-    let result = await this._listNext(nextLink, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: UsersListNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listNext(nextLink, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
