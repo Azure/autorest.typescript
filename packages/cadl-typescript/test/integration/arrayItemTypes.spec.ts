@@ -1,4 +1,6 @@
-import ArrayItemTypesClientFactory, { ArrayItemTypesClient } from "./generated/array/itemTypes/src/index.js";
+import ArrayItemTypesClientFactory, {
+  ArrayItemTypesClient
+} from "./generated/array/itemTypes/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
 
@@ -11,19 +13,19 @@ interface TypeDetail {
 const testedTypes: TypeDetail[] = [
   {
     type: "int32",
-    defaultValue: [ 1, 2 ]
+    defaultValue: [1, 2]
   },
   {
     type: "int64",
-    defaultValue: [0x7FFFFFFFFFFFFFFF, -0x7FFFFFFFFFFFFFFF]
+    defaultValue: [Number.MAX_SAFE_INTEGER, Number.MIN_SAFE_INTEGER]
   },
   {
     type: "boolean",
-    defaultValue: [ true, false ]
+    defaultValue: [true, false]
   },
   {
     type: "string",
-    defaultValue: [ 'hello', '' ]
+    defaultValue: ["hello", ""]
   },
   {
     type: "float32",
@@ -39,12 +41,12 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "unknown",
-    defaultValue:  [ 1, 'hello', null ]
+    defaultValue: [1, "hello", null]
   },
   {
     type: "model",
-    defaultValue: [{'property': 'hello'}, {'property': 'world'}]
-  },
+    defaultValue: [{ property: "hello" }, { property: "world" }]
+  }
 ];
 describe("Array Item-Types Client", () => {
   let client: ArrayItemTypesClient;
@@ -62,6 +64,7 @@ describe("Array Item-Types Client", () => {
           .path(`/array/item-types/${params.type}` as any)
           .get();
         assert.strictEqual(result.status, "200");
+        console.log("debug", result.body, params.defaultValue);
         assert.deepEqual(result.body, params.defaultValue);
       } catch (err) {
         assert.fail(err as string);

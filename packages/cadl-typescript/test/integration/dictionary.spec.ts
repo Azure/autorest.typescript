@@ -1,7 +1,8 @@
-
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
-import DictClientFactory,{ DictClient } from "./generated/dictionary/src/index.js";
+import DictClientFactory, {
+  DictClient
+} from "./generated/dictionary/src/index.js";
 
 interface TypeDetail {
   type: string;
@@ -12,46 +13,52 @@ interface TypeDetail {
 const testedTypes: TypeDetail[] = [
   {
     type: "int32",
-    defaultValue: {'k1': 1, 'k2': 2}
+    defaultValue: { k1: 1, k2: 2 }
   },
   {
     type: "int64",
-    defaultValue: {'k1': 0x7FFFFFFFFFFFFFFF, 'k2': -0x7FFFFFFFFFFFFFFF}
+    defaultValue: { k1: Number.MAX_SAFE_INTEGER, k2: Number.MIN_SAFE_INTEGER }
   },
   {
     type: "boolean",
-    defaultValue: {'k1': true, 'k2': false}
+    defaultValue: { k1: true, k2: false }
   },
   {
     type: "string",
-    defaultValue: {'k1': 'hello', 'k2': ''}
+    defaultValue: { k1: "hello", k2: "" }
   },
   {
     type: "float32",
-    defaultValue: {'k1': 42.42}
+    defaultValue: { k1: 42.42 }
   },
   {
     type: "datetime",
-    defaultValue: {'k1': '2022-08-26T18:38:00Z'}
+    defaultValue: { k1: "2022-08-26T18:38:00Z" }
   },
   {
     type: "duration",
-    defaultValue: {'k1': 'P123DT22H14M12.011S'}
+    defaultValue: { k1: "P123DT22H14M12.011S" }
   },
   {
     type: "unknown",
-    defaultValue:  {'k1': 1, 'k2': 'hello', 'k3': null}
+    defaultValue: { k1: 1, k2: "hello", k3: null }
   },
   {
     type: "model",
-    defaultValue: {'k1': {'property': 'hello'}, 'k2': {'property': 'world'}}
+    defaultValue: { k1: { property: "hello" }, k2: { property: "world" } }
   },
   {
     type: "model/recursive",
-    defaultValue:{'k1': {'property': 'hello', children: {}}, 'k2': {'property': 'world', children: {'k2.1': {'property': 'inner world'}}}}
-  },
+    defaultValue: {
+      k1: { property: "hello", children: {} },
+      k2: {
+        property: "world",
+        children: { "k2.1": { property: "inner world" } }
+      }
+    }
+  }
 ];
-describe("Array Item-Types Client", () => {
+describe("Dictionary Client", () => {
   let client: DictClient;
 
   beforeEach(() => {

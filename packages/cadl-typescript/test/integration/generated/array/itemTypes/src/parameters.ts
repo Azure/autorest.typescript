@@ -60,7 +60,7 @@ export type DurationValuePutParameters = DurationValuePutBodyParam &
 export type UnknownValueGetParameters = RequestParameters;
 
 export interface UnknownValuePutBodyParam {
-  body: Array<undefined>;
+  body: unknown[];
 }
 
 export type UnknownValuePutParameters = UnknownValuePutBodyParam &

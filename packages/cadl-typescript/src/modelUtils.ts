@@ -27,6 +27,7 @@ import {
   isSecret,
   isStringType,
   isTemplateDeclaration,
+  isUnknownType,
   Model,
   ModelProperty,
   Program,
@@ -672,10 +673,7 @@ function mapCadlIntrinsicModelToTypeScript(
         };
         if (
           !isIntrinsic(program, indexer.value) &&
-          !(
-            indexer.value?.kind === "Intrinsic" &&
-            indexer.value.name === "unknown"
-          )
+          !isUnknownType(indexer.value!)
         ) {
           schema.typeName = `Record<string, ${valueType.name}>`;
           schema.valueTypeName = valueType.name;
@@ -692,7 +690,11 @@ function mapCadlIntrinsicModelToTypeScript(
           items: getSchemaForType(program, indexer.value!, usage, true),
           description: getDoc(program, cadlType)
         };
-        if (!isIntrinsic(program, indexer.value) && indexer.value?.kind) {
+        if (
+          !isIntrinsic(program, indexer.value) &&
+          !isUnknownType(indexer.value!) &&
+          indexer.value?.kind
+        ) {
           schema.typeName = `Array<${schema.items.name}>`;
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `Array<${schema.items.name}Output>`;

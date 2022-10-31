@@ -4,4 +4,3 @@ export interface InnerModelOutput {
   property: string;
   children?: Array<InnerModelOutput>;
 }
-
