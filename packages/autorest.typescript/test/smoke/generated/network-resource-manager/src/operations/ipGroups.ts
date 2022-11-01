@@ -479,9 +479,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.IpGroup
     },
-    204: {
-      bodyMapper: Mappers.IpGroup
-    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -530,7 +527,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

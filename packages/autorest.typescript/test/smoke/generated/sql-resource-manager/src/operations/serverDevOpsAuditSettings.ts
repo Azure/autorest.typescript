@@ -327,9 +327,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ServerDevOpsAuditingSettings
     },
-    204: {
-      bodyMapper: Mappers.ServerDevOpsAuditingSettings
-    },
     default: {}
   },
   requestBody: Parameters.parameters61,

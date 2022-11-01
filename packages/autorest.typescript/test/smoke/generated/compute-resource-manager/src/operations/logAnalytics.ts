@@ -228,9 +228,6 @@ const exportRequestRateByIntervalOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.LogAnalyticsOperationResult
-    },
-    204: {
-      bodyMapper: Mappers.LogAnalyticsOperationResult
     }
   },
   requestBody: Parameters.parameters29,
@@ -256,9 +253,6 @@ const exportThrottledRequestsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.LogAnalyticsOperationResult
     },
     202: {
-      bodyMapper: Mappers.LogAnalyticsOperationResult
-    },
-    204: {
       bodyMapper: Mappers.LogAnalyticsOperationResult
     }
   },

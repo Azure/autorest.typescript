@@ -708,9 +708,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Vault
     },
-    204: {
-      bodyMapper: Mappers.Vault
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -909,7 +906,6 @@ const purgeDeletedOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

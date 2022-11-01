@@ -473,7 +473,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -522,9 +521,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ExpressRoutePort
     },
     202: {
-      bodyMapper: Mappers.ExpressRoutePort
-    },
-    204: {
       bodyMapper: Mappers.ExpressRoutePort
     },
     default: {

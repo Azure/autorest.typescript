@@ -675,9 +675,6 @@ const createOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.JobExecution
     },
-    204: {
-      bodyMapper: Mappers.JobExecution
-    },
     default: {}
   },
   queryParameters: [Parameters.apiVersion2],
@@ -758,9 +755,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.JobExecution
     },
     202: {
-      bodyMapper: Mappers.JobExecution
-    },
-    204: {
       bodyMapper: Mappers.JobExecution
     },
     default: {}

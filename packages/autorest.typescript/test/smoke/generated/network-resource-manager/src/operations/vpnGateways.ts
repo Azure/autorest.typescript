@@ -823,9 +823,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VpnGateway
     },
-    204: {
-      bodyMapper: Mappers.VpnGateway
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -856,9 +853,6 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VpnGateway
     },
-    204: {
-      bodyMapper: Mappers.VpnGateway
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -883,7 +877,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -910,9 +903,6 @@ const resetOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VpnGateway
     },
     202: {
-      bodyMapper: Mappers.VpnGateway
-    },
-    204: {
       bodyMapper: Mappers.VpnGateway
     },
     default: {
@@ -943,9 +933,6 @@ const startPacketCaptureOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: { type: { name: "String" } }
     },
-    204: {
-      bodyMapper: { type: { name: "String" } }
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -974,9 +961,6 @@ const stopPacketCaptureOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     },
     202: {
-      bodyMapper: { type: { name: "String" } }
-    },
-    204: {
       bodyMapper: { type: { name: "String" } }
     },
     default: {

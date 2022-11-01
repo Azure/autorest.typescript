@@ -386,7 +386,6 @@ const resetConnectionOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -415,9 +414,6 @@ const getIkeSasOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     },
     202: {
-      bodyMapper: { type: { name: "String" } }
-    },
-    204: {
       bodyMapper: { type: { name: "String" } }
     },
     default: {

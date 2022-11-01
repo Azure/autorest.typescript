@@ -395,9 +395,6 @@ const recoverOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.DeletedServer
     },
-    204: {
-      bodyMapper: Mappers.DeletedServer
-    },
     default: {}
   },
   queryParameters: [Parameters.apiVersion2],

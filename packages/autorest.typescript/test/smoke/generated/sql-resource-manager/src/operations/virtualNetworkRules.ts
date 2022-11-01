@@ -412,9 +412,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VirtualNetworkRule
     },
-    204: {
-      bodyMapper: Mappers.VirtualNetworkRule
-    },
     default: {}
   },
   requestBody: Parameters.parameters72,
@@ -434,7 +431,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/virtualNetworkRules/{virtualNetworkRuleName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,

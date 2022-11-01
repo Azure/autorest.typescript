@@ -1023,9 +1023,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.P2SVpnGateway
     },
-    204: {
-      bodyMapper: Mappers.P2SVpnGateway
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1056,9 +1053,6 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.P2SVpnGateway
     },
-    204: {
-      bodyMapper: Mappers.P2SVpnGateway
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1083,7 +1077,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1150,9 +1143,6 @@ const resetOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.P2SVpnGateway
     },
-    204: {
-      bodyMapper: Mappers.P2SVpnGateway
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1179,9 +1169,6 @@ const generateVpnProfileOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VpnProfileResponse
     },
     202: {
-      bodyMapper: Mappers.VpnProfileResponse
-    },
-    204: {
       bodyMapper: Mappers.VpnProfileResponse
     },
     default: {
@@ -1214,9 +1201,6 @@ const getP2SVpnConnectionHealthOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.P2SVpnGateway
     },
-    204: {
-      bodyMapper: Mappers.P2SVpnGateway
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1245,9 +1229,6 @@ const getP2SVpnConnectionHealthDetailedOperationSpec: coreClient.OperationSpec =
     202: {
       bodyMapper: Mappers.P2SVpnConnectionHealth
     },
-    204: {
-      bodyMapper: Mappers.P2SVpnConnectionHealth
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1272,7 +1253,6 @@ const disconnectP2SVpnConnectionsOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

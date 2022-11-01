@@ -630,7 +630,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -679,9 +678,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.LoadBalancer
     },
     202: {
-      bodyMapper: Mappers.LoadBalancer
-    },
-    204: {
       bodyMapper: Mappers.LoadBalancer
     },
     default: {
@@ -770,7 +766,6 @@ const swapPublicIpAddressesOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -798,9 +793,6 @@ const listInboundNatRulePortMappingsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.BackendAddressInboundNatRulePortMappings
     },
     202: {
-      bodyMapper: Mappers.BackendAddressInboundNatRulePortMappings
-    },
-    204: {
       bodyMapper: Mappers.BackendAddressInboundNatRulePortMappings
     },
     default: {

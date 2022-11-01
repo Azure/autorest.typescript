@@ -350,9 +350,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.LongTermRetentionPolicy
     },
-    204: {
-      bodyMapper: Mappers.LongTermRetentionPolicy
-    },
     default: {}
   },
   requestBody: Parameters.parameters36,

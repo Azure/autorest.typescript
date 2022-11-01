@@ -1043,9 +1043,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.CloudService
     },
-    204: {
-      bodyMapper: Mappers.CloudService
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1076,9 +1073,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.CloudService
     },
-    204: {
-      bodyMapper: Mappers.CloudService
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1103,7 +1097,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1208,7 +1201,6 @@ const startOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1231,7 +1223,6 @@ const powerOffOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1254,7 +1245,6 @@ const restartOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1279,7 +1269,6 @@ const reimageOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1304,7 +1293,6 @@ const rebuildOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1329,7 +1317,6 @@ const deleteInstancesOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

@@ -320,7 +320,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri:
+      endpoint:
         options.endpoint ?? options.baseUri ?? "https://management.azure.com"
     };
     super(optionsWithDefaults);
@@ -1485,9 +1485,6 @@ const putBastionShareableLinkOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.BastionShareableLinkListResult
     },
-    204: {
-      bodyMapper: Mappers.BastionShareableLinkListResult
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1512,7 +1509,6 @@ const deleteBastionShareableLinkOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1565,9 +1561,6 @@ const getActiveSessionsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.BastionActiveSessionListResult
     },
     202: {
-      bodyMapper: Mappers.BastionActiveSessionListResult
-    },
-    204: {
       bodyMapper: Mappers.BastionActiveSessionListResult
     },
     default: {
@@ -1663,9 +1656,6 @@ const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreClien
       bodyMapper: Mappers.VpnProfileResponse
     },
     202: {
-      bodyMapper: Mappers.VpnProfileResponse
-    },
-    204: {
       bodyMapper: Mappers.VpnProfileResponse
     },
     default: {

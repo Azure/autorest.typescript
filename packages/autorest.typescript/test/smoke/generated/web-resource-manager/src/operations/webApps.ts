@@ -18584,9 +18584,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Site
     },
-    204: {
-      bodyMapper: Mappers.Site
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -18828,7 +18825,6 @@ const restoreOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -19472,9 +19468,6 @@ const listPublishingCredentialsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.User
     },
     202: {
-      bodyMapper: Mappers.User
-    },
-    204: {
       bodyMapper: Mappers.User
     },
     default: {
@@ -20171,9 +20164,6 @@ const createMSDeployOperationOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.MSDeployStatus
     },
-    204: {
-      bodyMapper: Mappers.MSDeployStatus
-    },
     409: {
       isError: true
     },
@@ -20303,9 +20293,6 @@ const createFunctionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.FunctionEnvelope
     },
     202: {
-      bodyMapper: Mappers.FunctionEnvelope
-    },
-    204: {
       bodyMapper: Mappers.FunctionEnvelope
     },
     default: {
@@ -20981,9 +20968,6 @@ const createInstanceMSDeployOperationOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.MSDeployStatus
     },
-    204: {
-      bodyMapper: Mappers.MSDeployStatus
-    },
     409: {
       isError: true
     },
@@ -21297,9 +21281,6 @@ const migrateStorageOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.StorageMigrationResponse
     },
-    204: {
-      bodyMapper: Mappers.StorageMigrationResponse
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -21328,9 +21309,6 @@ const migrateMySqlOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Operation
     },
     202: {
-      bodyMapper: Mappers.Operation
-    },
-    204: {
       bodyMapper: Mappers.Operation
     },
     default: {
@@ -21575,14 +21553,6 @@ const startWebSiteNetworkTraceOperationOperationSpec: coreClient.OperationSpec =
       }
     },
     202: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "NetworkTrace" } }
-        }
-      }
-    },
-    204: {
       bodyMapper: {
         type: {
           name: "Sequence",
@@ -22008,9 +21978,6 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.Operatio
     202: {
       bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
     },
-    204: {
-      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22044,11 +22011,6 @@ const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
       }
     },
     202: {
-      bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
-      }
-    },
-    204: {
       bodyMapper: {
         type: { name: "Dictionary", value: { type: { name: "any" } } }
       }
@@ -22438,7 +22400,6 @@ const restoreFromBackupBlobOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22463,7 +22424,6 @@ const restoreFromDeletedAppOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22488,7 +22448,6 @@ const restoreSnapshotOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -22568,9 +22527,6 @@ const installSiteExtensionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SiteExtensionInfo
     },
     202: {
-      bodyMapper: Mappers.SiteExtensionInfo
-    },
-    204: {
       bodyMapper: Mappers.SiteExtensionInfo
     },
     429: {
@@ -22675,9 +22631,6 @@ const createOrUpdateSlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Site
     },
     202: {
-      bodyMapper: Mappers.Site
-    },
-    204: {
       bodyMapper: Mappers.Site
     },
     default: {
@@ -22931,7 +22884,6 @@ const restoreSlotOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -23603,9 +23555,6 @@ const listPublishingCredentialsSlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.User
     },
     202: {
-      bodyMapper: Mappers.User
-    },
-    204: {
       bodyMapper: Mappers.User
     },
     default: {
@@ -24284,9 +24233,6 @@ const createMSDeployOperationSlotOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.MSDeployStatus
     },
-    204: {
-      bodyMapper: Mappers.MSDeployStatus
-    },
     409: {
       isError: true
     },
@@ -24421,9 +24367,6 @@ const createInstanceFunctionSlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.FunctionEnvelope
     },
     202: {
-      bodyMapper: Mappers.FunctionEnvelope
-    },
-    204: {
       bodyMapper: Mappers.FunctionEnvelope
     },
     default: {
@@ -25127,9 +25070,6 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreClient.OperationSpec
     202: {
       bodyMapper: Mappers.MSDeployStatus
     },
-    204: {
-      bodyMapper: Mappers.MSDeployStatus
-    },
     409: {
       isError: true
     },
@@ -25682,14 +25622,6 @@ const startWebSiteNetworkTraceOperationSlotOperationSpec: coreClient.OperationSp
         }
       }
     },
-    204: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "NetworkTrace" } }
-        }
-      }
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26125,9 +26057,6 @@ const approveOrRejectPrivateEndpointConnectionSlotOperationSpec: coreClient.Oper
     202: {
       bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
     },
-    204: {
-      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26162,11 +26091,6 @@ const deletePrivateEndpointConnectionSlotOperationSpec: coreClient.OperationSpec
       }
     },
     202: {
-      bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
-      }
-    },
-    204: {
       bodyMapper: {
         type: { name: "Dictionary", value: { type: { name: "any" } } }
       }
@@ -26572,7 +26496,6 @@ const restoreFromBackupBlobSlotOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26598,7 +26521,6 @@ const restoreFromDeletedAppSlotOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26624,7 +26546,6 @@ const restoreSnapshotSlotOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26709,9 +26630,6 @@ const installSiteExtensionSlotOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.SiteExtensionInfo
     },
-    204: {
-      bodyMapper: Mappers.SiteExtensionInfo
-    },
     429: {
       isError: true
     },
@@ -26789,7 +26707,6 @@ const swapSlotOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -26894,9 +26811,6 @@ const createOrUpdateSourceControlSlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SiteSourceControl
     },
     202: {
-      bodyMapper: Mappers.SiteSourceControl
-    },
-    204: {
       bodyMapper: Mappers.SiteSourceControl
     },
     default: {
@@ -27015,14 +26929,6 @@ const startNetworkTraceSlotOperationSpec: coreClient.OperationSpec = {
       }
     },
     202: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "NetworkTrace" } }
-        }
-      }
-    },
-    204: {
       bodyMapper: {
         type: {
           name: "Sequence",
@@ -27603,7 +27509,6 @@ const swapSlotWithProductionOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -27704,9 +27609,6 @@ const createOrUpdateSourceControlOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SiteSourceControl
     },
     202: {
-      bodyMapper: Mappers.SiteSourceControl
-    },
-    204: {
       bodyMapper: Mappers.SiteSourceControl
     },
     default: {
@@ -27821,14 +27723,6 @@ const startNetworkTraceOperationSpec: coreClient.OperationSpec = {
       }
     },
     202: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "NetworkTrace" } }
-        }
-      }
-    },
-    204: {
       bodyMapper: {
         type: {
           name: "Sequence",

@@ -1513,7 +1513,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1562,9 +1561,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.NetworkInterface
     },
     202: {
-      bodyMapper: Mappers.NetworkInterface
-    },
-    204: {
       bodyMapper: Mappers.NetworkInterface
     },
     default: {
@@ -1659,9 +1655,6 @@ const getEffectiveRouteTableOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.EffectiveRouteListResult
     },
-    204: {
-      bodyMapper: Mappers.EffectiveRouteListResult
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1688,9 +1681,6 @@ const listEffectiveNetworkSecurityGroupsOperationSpec: coreClient.OperationSpec 
       bodyMapper: Mappers.EffectiveNetworkSecurityGroupListResult
     },
     202: {
-      bodyMapper: Mappers.EffectiveNetworkSecurityGroupListResult
-    },
-    204: {
       bodyMapper: Mappers.EffectiveNetworkSecurityGroupListResult
     },
     default: {

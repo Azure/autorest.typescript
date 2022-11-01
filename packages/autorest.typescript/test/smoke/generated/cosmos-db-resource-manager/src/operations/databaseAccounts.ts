@@ -1204,9 +1204,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.DatabaseAccountGetResults
-    },
-    204: {
-      bodyMapper: Mappers.DatabaseAccountGetResults
     }
   },
   requestBody: Parameters.updateParameters,
@@ -1234,9 +1231,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.DatabaseAccountGetResults
-    },
-    204: {
-      bodyMapper: Mappers.DatabaseAccountGetResults
     }
   },
   requestBody: Parameters.createUpdateParameters,
@@ -1255,7 +1249,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1269,7 +1263,7 @@ const failoverPriorityChangeOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/failoverPriorityChange",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.failoverParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -1360,7 +1354,6 @@ const offlineRegionOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1385,7 +1378,6 @@ const onlineRegionOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1444,7 +1436,7 @@ const regenerateKeyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/regenerateKey",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.keyToRegenerate,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [

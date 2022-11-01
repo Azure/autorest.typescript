@@ -429,7 +429,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -478,9 +477,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualRouter
     },
     202: {
-      bodyMapper: Mappers.VirtualRouter
-    },
-    204: {
       bodyMapper: Mappers.VirtualRouter
     },
     default: {

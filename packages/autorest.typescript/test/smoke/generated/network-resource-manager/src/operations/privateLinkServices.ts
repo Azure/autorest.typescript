@@ -1125,7 +1125,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -1174,9 +1173,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.PrivateLinkService
     },
     202: {
-      bodyMapper: Mappers.PrivateLinkService
-    },
-    204: {
       bodyMapper: Mappers.PrivateLinkService
     },
     default: {
@@ -1289,7 +1285,6 @@ const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -1341,9 +1336,6 @@ const checkPrivateLinkServiceVisibilityOperationSpec: coreClient.OperationSpec =
     202: {
       bodyMapper: Mappers.PrivateLinkServiceVisibility
     },
-    204: {
-      bodyMapper: Mappers.PrivateLinkServiceVisibility
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1371,9 +1363,6 @@ const checkPrivateLinkServiceVisibilityByResourceGroupOperationSpec: coreClient.
       bodyMapper: Mappers.PrivateLinkServiceVisibility
     },
     202: {
-      bodyMapper: Mappers.PrivateLinkServiceVisibility
-    },
-    204: {
       bodyMapper: Mappers.PrivateLinkServiceVisibility
     },
     default: {

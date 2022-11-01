@@ -100,6 +100,17 @@
             "name": "OS",
             "modelAsString": true
           }
+        },
+        "sku": {
+          "description": "Device Update Sku",
+          "type": "string",
+          "enum": ["Free", "Standard"],
+          "default": "Standard",
+          "readOnly": false,
+          "x-ms-enum": {
+            "name": "SKU",
+            "modelAsString": true
+          }
         }
       }
     }

@@ -1376,9 +1376,6 @@ const createUpdateGremlinDatabaseOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.GremlinDatabaseGetResults
-    },
-    204: {
-      bodyMapper: Mappers.GremlinDatabaseGetResults
     }
   },
   requestBody: Parameters.createUpdateGremlinDatabaseParameters,
@@ -1398,7 +1395,7 @@ const deleteGremlinDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1442,9 +1439,6 @@ const updateGremlinDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -1474,9 +1468,6 @@ const migrateGremlinDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec =
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1504,9 +1495,6 @@ const migrateGremlinDatabaseToManualThroughputOperationSpec: coreClient.Operatio
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {
@@ -1578,9 +1566,6 @@ const createUpdateGremlinGraphOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.GremlinGraphGetResults
-    },
-    204: {
-      bodyMapper: Mappers.GremlinGraphGetResults
     }
   },
   requestBody: Parameters.createUpdateGremlinGraphParameters,
@@ -1601,7 +1586,7 @@ const deleteGremlinGraphOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1647,9 +1632,6 @@ const updateGremlinGraphThroughputOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -1680,9 +1662,6 @@ const migrateGremlinGraphToAutoscaleOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1711,9 +1690,6 @@ const migrateGremlinGraphToManualThroughputOperationSpec: coreClient.OperationSp
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {

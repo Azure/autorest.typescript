@@ -774,9 +774,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ManagedDatabase
     },
-    204: {
-      bodyMapper: Mappers.ManagedDatabase
-    },
     default: {}
   },
   requestBody: Parameters.parameters39,
@@ -796,7 +793,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -821,9 +818,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ManagedDatabase
     },
-    204: {
-      bodyMapper: Mappers.ManagedDatabase
-    },
     default: {}
   },
   requestBody: Parameters.parameters40,
@@ -843,7 +837,7 @@ const completeRestoreOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/completeRestore",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   requestBody: Parameters.parameters41,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [

@@ -585,7 +585,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -638,9 +637,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Subnet
     },
-    204: {
-      bodyMapper: Mappers.Subnet
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -666,7 +662,6 @@ const prepareNetworkPoliciesOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -692,7 +687,6 @@ const unprepareNetworkPoliciesOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

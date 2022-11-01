@@ -335,9 +335,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ManagedServerSecurityAlertPolicy
     },
-    204: {
-      bodyMapper: Mappers.ManagedServerSecurityAlertPolicy
-    },
     default: {}
   },
   requestBody: Parameters.parameters55,

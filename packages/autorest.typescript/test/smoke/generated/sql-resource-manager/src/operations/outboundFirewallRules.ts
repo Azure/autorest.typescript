@@ -406,9 +406,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.OutboundFirewallRule
     },
-    204: {
-      bodyMapper: Mappers.OutboundFirewallRule
-    },
     default: {}
   },
   requestBody: Parameters.parameters79,
@@ -428,7 +425,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/outboundFirewallRules/{outboundRuleFqdn}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,

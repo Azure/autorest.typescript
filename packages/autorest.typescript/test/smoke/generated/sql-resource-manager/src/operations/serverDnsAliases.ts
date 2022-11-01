@@ -503,9 +503,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ServerDnsAlias
     },
-    204: {
-      bodyMapper: Mappers.ServerDnsAlias
-    },
     default: {}
   },
   queryParameters: [Parameters.apiVersion2],
@@ -523,7 +520,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/dnsAliases/{dnsAliasName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -566,9 +563,6 @@ const acquireOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ServerDnsAlias
     },
     202: {
-      bodyMapper: Mappers.ServerDnsAlias
-    },
-    204: {
       bodyMapper: Mappers.ServerDnsAlias
     },
     default: {}

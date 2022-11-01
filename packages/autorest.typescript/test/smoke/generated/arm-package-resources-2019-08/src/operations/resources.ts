@@ -1195,7 +1195,6 @@ const moveResourcesOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1219,7 +1218,6 @@ const validateMoveResourcesOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1288,7 +1286,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1318,9 +1315,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GenericResource
     },
     202: {
-      bodyMapper: Mappers.GenericResource
-    },
-    204: {
       bodyMapper: Mappers.GenericResource
     },
     default: {
@@ -1354,9 +1348,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GenericResource
     },
     202: {
-      bodyMapper: Mappers.GenericResource
-    },
-    204: {
       bodyMapper: Mappers.GenericResource
     },
     default: {
@@ -1425,7 +1416,6 @@ const deleteByIdOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1446,9 +1436,6 @@ const createOrUpdateByIdOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GenericResource
     },
     202: {
-      bodyMapper: Mappers.GenericResource
-    },
-    204: {
       bodyMapper: Mappers.GenericResource
     },
     default: {
@@ -1473,9 +1460,6 @@ const updateByIdOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GenericResource
     },
     202: {
-      bodyMapper: Mappers.GenericResource
-    },
-    204: {
       bodyMapper: Mappers.GenericResource
     },
     default: {

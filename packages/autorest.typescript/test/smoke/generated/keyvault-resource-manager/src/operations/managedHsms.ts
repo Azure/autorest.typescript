@@ -713,9 +713,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ManagedHsm
     },
-    204: {
-      bodyMapper: Mappers.ManagedHsm
-    },
     default: {
       bodyMapper: Mappers.ManagedHsmError
     }
@@ -746,9 +743,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ManagedHsm
     },
-    204: {
-      bodyMapper: Mappers.ManagedHsm
-    },
     default: {
       bodyMapper: Mappers.ManagedHsmError
     }
@@ -773,7 +767,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ManagedHsmError
     }
@@ -897,7 +890,6 @@ const purgeDeletedOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ManagedHsmError
     }

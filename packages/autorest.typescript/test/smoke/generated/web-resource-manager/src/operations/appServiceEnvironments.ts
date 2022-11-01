@@ -3897,9 +3897,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.AppServiceEnvironmentResource
     },
-    204: {
-      bodyMapper: Mappers.AppServiceEnvironmentResource
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3924,7 +3921,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -4025,9 +4021,6 @@ const changeVnetOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.WebAppCollection
     },
     202: {
-      bodyMapper: Mappers.WebAppCollection
-    },
-    204: {
       bodyMapper: Mappers.WebAppCollection
     },
     default: {
@@ -4225,9 +4218,6 @@ const createOrUpdateMultiRolePoolOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.WorkerPoolResource
     },
     202: {
-      bodyMapper: Mappers.WorkerPoolResource
-    },
-    204: {
       bodyMapper: Mappers.WorkerPoolResource
     },
     default: {
@@ -4470,9 +4460,6 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.Operatio
     202: {
       bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
     },
-    204: {
-      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -4506,11 +4493,6 @@ const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
       }
     },
     202: {
-      bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "any" } } }
-      }
-    },
-    204: {
       bodyMapper: {
         type: { name: "Dictionary", value: { type: { name: "any" } } }
       }
@@ -4586,9 +4568,6 @@ const resumeOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.WebAppCollection
     },
-    204: {
-      bodyMapper: Mappers.WebAppCollection
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -4659,9 +4638,6 @@ const suspendOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.WebAppCollection
     },
     202: {
-      bodyMapper: Mappers.WebAppCollection
-    },
-    204: {
       bodyMapper: Mappers.WebAppCollection
     },
     default: {
@@ -4757,9 +4733,6 @@ const createOrUpdateWorkerPoolOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.WorkerPoolResource
     },
     202: {
-      bodyMapper: Mappers.WorkerPoolResource
-    },
-    204: {
       bodyMapper: Mappers.WorkerPoolResource
     },
     default: {

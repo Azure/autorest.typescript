@@ -1907,9 +1907,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.VirtualMachineScaleSet
-    },
-    204: {
-      bodyMapper: Mappers.VirtualMachineScaleSet
     }
   },
   requestBody: Parameters.parameters15,
@@ -1937,9 +1934,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.VirtualMachineScaleSet
-    },
-    204: {
-      bodyMapper: Mappers.VirtualMachineScaleSet
     }
   },
   requestBody: Parameters.parameters16,
@@ -1958,7 +1952,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   queryParameters: [Parameters.apiVersion, Parameters.forceDeletion],
   urlParameters: [
     Parameters.$host,
@@ -1991,7 +1985,7 @@ const deallocateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/deallocate",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2008,7 +2002,7 @@ const deleteInstancesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/delete",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs1,
   queryParameters: [Parameters.apiVersion, Parameters.forceDeletion],
   urlParameters: [
@@ -2114,7 +2108,7 @@ const powerOffOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/poweroff",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs,
   queryParameters: [Parameters.apiVersion, Parameters.skipShutdown],
   urlParameters: [
@@ -2131,7 +2125,7 @@ const restartOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/restart",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2148,7 +2142,7 @@ const startOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/start",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2165,7 +2159,7 @@ const redeployOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/redeploy",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2182,7 +2176,7 @@ const performMaintenanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/performMaintenance",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2199,7 +2193,7 @@ const updateInstancesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/manualupgrade",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2216,7 +2210,7 @@ const reimageOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/reimage",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmScaleSetReimageInput,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2233,7 +2227,7 @@ const reimageAllOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/reimageall",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.vmInstanceIDs,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2286,7 +2280,7 @@ const setOrchestrationServiceStateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/setOrchestrationServiceState",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   requestBody: Parameters.parameters18,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [

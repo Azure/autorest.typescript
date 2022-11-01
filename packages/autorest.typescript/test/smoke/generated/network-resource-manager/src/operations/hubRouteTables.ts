@@ -381,9 +381,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.HubRouteTable
     },
-    204: {
-      bodyMapper: Mappers.HubRouteTable
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -432,7 +429,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

@@ -399,7 +399,7 @@ const revalidateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector/{encryptionProtectorName}/revalidate",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -463,9 +463,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ManagedInstanceEncryptionProtector
     },
     202: {
-      bodyMapper: Mappers.ManagedInstanceEncryptionProtector
-    },
-    204: {
       bodyMapper: Mappers.ManagedInstanceEncryptionProtector
     },
     default: {}

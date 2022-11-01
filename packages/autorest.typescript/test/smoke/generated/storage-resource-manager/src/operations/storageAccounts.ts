@@ -968,9 +968,6 @@ const createOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.StorageAccount
-    },
-    204: {
-      bodyMapper: Mappers.StorageAccount
     }
   },
   requestBody: Parameters.parameters,
@@ -1157,7 +1154,7 @@ const failoverOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/failover",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1175,7 +1172,6 @@ const hierarchicalNamespaceMigrationOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1198,7 +1194,6 @@ const abortHierarchicalNamespaceMigrationOperationSpec: coreClient.OperationSpec
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1225,9 +1220,6 @@ const restoreBlobRangesOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.BlobRestoreStatus
     },
     202: {
-      bodyMapper: Mappers.BlobRestoreStatus
-    },
-    204: {
       bodyMapper: Mappers.BlobRestoreStatus
     }
   },

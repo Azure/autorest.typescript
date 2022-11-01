@@ -495,9 +495,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ManagedBackupShortTermRetentionPolicy
     },
-    204: {
-      bodyMapper: Mappers.ManagedBackupShortTermRetentionPolicy
-    },
     default: {}
   },
   requestBody: Parameters.parameters38,
@@ -526,9 +523,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ManagedBackupShortTermRetentionPolicy
     },
     202: {
-      bodyMapper: Mappers.ManagedBackupShortTermRetentionPolicy
-    },
-    204: {
       bodyMapper: Mappers.ManagedBackupShortTermRetentionPolicy
     },
     default: {}

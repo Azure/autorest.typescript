@@ -889,9 +889,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Domain
     },
-    204: {
-      bodyMapper: Mappers.Domain
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }

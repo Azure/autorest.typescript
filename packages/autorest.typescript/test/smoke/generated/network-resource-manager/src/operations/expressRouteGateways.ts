@@ -426,9 +426,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ExpressRouteGateway
     },
-    204: {
-      bodyMapper: Mappers.ExpressRouteGateway
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -457,9 +454,6 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ExpressRouteGateway
     },
     202: {
-      bodyMapper: Mappers.ExpressRouteGateway
-    },
-    204: {
       bodyMapper: Mappers.ExpressRouteGateway
     },
     default: {
@@ -508,7 +502,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

@@ -602,7 +602,7 @@ function getTrack2DefaultContent(
     userAgentOptions: {
       userAgentPrefix
     },
-    baseUri: ${getEndpoint(clientDetails.endpoint)}
+    endpoint: ${getEndpoint(clientDetails.endpoint)}
   };
   super(optionsWithDefaults);
   `;
@@ -627,7 +627,7 @@ function getTrack2DefaultContent(
         this.pipeline.addPolicy(
           coreRestPipeline.bearerTokenAuthenticationPolicy({
             credential: credentials,
-            scopes: optionsWithDefaults.credentialScopes??\`$\{optionsWithDefaults.baseUri}/.default\`,
+            scopes: optionsWithDefaults.credentialScopes??\`$\{optionsWithDefaults.endpoint}/.default\`,
             challengeCallbacks: {
               authorizeRequestOnChallenge:
                 coreClient.authorizeRequestOnClaimChallenge

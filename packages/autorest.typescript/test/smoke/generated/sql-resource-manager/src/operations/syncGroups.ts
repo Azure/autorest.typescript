@@ -1164,7 +1164,7 @@ const refreshHubSchemaOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}/refreshHubSchema",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -1294,9 +1294,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.SyncGroup
     },
-    204: {
-      bodyMapper: Mappers.SyncGroup
-    },
     default: {}
   },
   requestBody: Parameters.parameters69,
@@ -1317,7 +1314,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/syncGroups/{syncGroupName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -1341,9 +1338,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SyncGroup
     },
     202: {
-      bodyMapper: Mappers.SyncGroup
-    },
-    204: {
       bodyMapper: Mappers.SyncGroup
     },
     default: {}

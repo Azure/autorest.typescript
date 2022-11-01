@@ -952,9 +952,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ManagedInstance
     },
-    204: {
-      bodyMapper: Mappers.ManagedInstance
-    },
     default: {}
   },
   requestBody: Parameters.parameters86,
@@ -973,7 +970,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -995,9 +992,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ManagedInstance
     },
     202: {
-      bodyMapper: Mappers.ManagedInstance
-    },
-    204: {
       bodyMapper: Mappers.ManagedInstance
     },
     default: {}
@@ -1047,7 +1041,7 @@ const failoverOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/failover",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, default: {} },
   queryParameters: [Parameters.apiVersion1, Parameters.replicaType],
   urlParameters: [
     Parameters.$host,

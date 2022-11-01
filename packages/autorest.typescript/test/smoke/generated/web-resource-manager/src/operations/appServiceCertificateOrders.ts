@@ -975,9 +975,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.AppServiceCertificateOrder
     },
-    204: {
-      bodyMapper: Mappers.AppServiceCertificateOrder
-    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -1096,9 +1093,6 @@ const createOrUpdateCertificateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.AppServiceCertificateResource
     },
     202: {
-      bodyMapper: Mappers.AppServiceCertificateResource
-    },
-    204: {
       bodyMapper: Mappers.AppServiceCertificateResource
     },
     default: {

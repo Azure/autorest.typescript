@@ -677,9 +677,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.DiskEncryptionSet
     },
-    204: {
-      bodyMapper: Mappers.DiskEncryptionSet
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -708,9 +705,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DiskEncryptionSet
     },
     202: {
-      bodyMapper: Mappers.DiskEncryptionSet
-    },
-    204: {
       bodyMapper: Mappers.DiskEncryptionSet
     },
     default: {
@@ -759,7 +753,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

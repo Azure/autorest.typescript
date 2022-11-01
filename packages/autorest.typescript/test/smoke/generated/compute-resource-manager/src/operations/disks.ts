@@ -720,9 +720,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.Disk
-    },
-    204: {
-      bodyMapper: Mappers.Disk
     }
   },
   requestBody: Parameters.disk,
@@ -749,9 +746,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Disk
     },
     202: {
-      bodyMapper: Mappers.Disk
-    },
-    204: {
       bodyMapper: Mappers.Disk
     }
   },
@@ -790,7 +784,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -844,9 +838,6 @@ const grantAccessOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.AccessUri
-    },
-    204: {
-      bodyMapper: Mappers.AccessUri
     }
   },
   requestBody: Parameters.grantAccessData,
@@ -865,7 +856,7 @@ const revokeAccessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}/endGetAccess",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: { 200: {}, 201: {}, 202: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,

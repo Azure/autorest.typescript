@@ -428,9 +428,6 @@ const createOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.DeploymentScript
     },
-    204: {
-      bodyMapper: Mappers.DeploymentScript
-    },
     default: {
       bodyMapper: Mappers.DeploymentScriptsError
     }

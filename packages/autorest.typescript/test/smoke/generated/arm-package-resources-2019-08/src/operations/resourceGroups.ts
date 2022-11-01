@@ -413,7 +413,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -481,9 +480,6 @@ const exportTemplateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ResourceGroupExportResult
     },
     202: {
-      bodyMapper: Mappers.ResourceGroupExportResult
-    },
-    204: {
       bodyMapper: Mappers.ResourceGroupExportResult
     },
     default: {

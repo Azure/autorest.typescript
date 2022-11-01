@@ -933,9 +933,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.DiskAccess
     },
-    204: {
-      bodyMapper: Mappers.DiskAccess
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -964,9 +961,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DiskAccess
     },
     202: {
-      bodyMapper: Mappers.DiskAccess
-    },
-    204: {
       bodyMapper: Mappers.DiskAccess
     },
     default: {
@@ -1015,7 +1009,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1101,9 +1094,6 @@ const updateAPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = 
     202: {
       bodyMapper: Mappers.PrivateEndpointConnection
     },
-    204: {
-      bodyMapper: Mappers.PrivateEndpointConnection
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1152,7 +1142,6 @@ const deleteAPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = 
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

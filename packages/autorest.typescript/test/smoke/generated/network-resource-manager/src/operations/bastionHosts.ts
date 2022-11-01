@@ -525,7 +525,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -576,9 +575,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.BastionHost
     },
-    204: {
-      bodyMapper: Mappers.BastionHost
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -607,9 +603,6 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.BastionHost
     },
     202: {
-      bodyMapper: Mappers.BastionHost
-    },
-    204: {
       bodyMapper: Mappers.BastionHost
     },
     default: {

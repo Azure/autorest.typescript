@@ -138,9 +138,6 @@ const listOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VpnServerConfigurationsResponse
     },
-    204: {
-      bodyMapper: Mappers.VpnServerConfigurationsResponse
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }

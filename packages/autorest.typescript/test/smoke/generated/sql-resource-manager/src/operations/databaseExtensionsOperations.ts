@@ -343,9 +343,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ImportExportExtensionsOperationResult
     },
-    204: {
-      bodyMapper: Mappers.ImportExportExtensionsOperationResult
-    },
     default: {}
   },
   requestBody: Parameters.parameters77,

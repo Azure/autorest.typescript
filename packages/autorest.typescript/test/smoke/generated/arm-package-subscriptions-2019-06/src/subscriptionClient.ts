@@ -55,7 +55,7 @@ export class SubscriptionClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri:
+      endpoint:
         options.endpoint ?? options.baseUri ?? "https://management.azure.com"
     };
     super(optionsWithDefaults);

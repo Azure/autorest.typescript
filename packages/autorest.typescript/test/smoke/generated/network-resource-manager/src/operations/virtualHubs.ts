@@ -563,9 +563,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VirtualHub
     },
-    204: {
-      bodyMapper: Mappers.VirtualHub
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -614,7 +611,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -675,7 +671,6 @@ const getEffectiveVirtualHubRoutesOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

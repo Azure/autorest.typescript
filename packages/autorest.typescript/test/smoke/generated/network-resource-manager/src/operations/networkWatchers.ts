@@ -1448,7 +1448,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1563,9 +1562,6 @@ const verifyIPFlowOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VerificationIPFlowResult
     },
-    204: {
-      bodyMapper: Mappers.VerificationIPFlowResult
-    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1594,9 +1590,6 @@ const getNextHopOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.NextHopResult
     },
     202: {
-      bodyMapper: Mappers.NextHopResult
-    },
-    204: {
       bodyMapper: Mappers.NextHopResult
     },
     default: {
@@ -1629,9 +1622,6 @@ const getVMSecurityRulesOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.SecurityGroupViewResult
     },
-    204: {
-      bodyMapper: Mappers.SecurityGroupViewResult
-    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1660,9 +1650,6 @@ const getTroubleshootingOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.TroubleshootingResult
     },
     202: {
-      bodyMapper: Mappers.TroubleshootingResult
-    },
-    204: {
       bodyMapper: Mappers.TroubleshootingResult
     },
     default: {
@@ -1695,9 +1682,6 @@ const getTroubleshootingResultOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.TroubleshootingResult
     },
-    204: {
-      bodyMapper: Mappers.TroubleshootingResult
-    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1726,9 +1710,6 @@ const setFlowLogConfigurationOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.FlowLogInformation
     },
     202: {
-      bodyMapper: Mappers.FlowLogInformation
-    },
-    204: {
       bodyMapper: Mappers.FlowLogInformation
     },
     default: {
@@ -1761,9 +1742,6 @@ const getFlowLogStatusOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.FlowLogInformation
     },
-    204: {
-      bodyMapper: Mappers.FlowLogInformation
-    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1792,9 +1770,6 @@ const checkConnectivityOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ConnectivityInformation
     },
     202: {
-      bodyMapper: Mappers.ConnectivityInformation
-    },
-    204: {
       bodyMapper: Mappers.ConnectivityInformation
     },
     default: {
@@ -1827,9 +1802,6 @@ const getAzureReachabilityReportOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.AzureReachabilityReport
     },
-    204: {
-      bodyMapper: Mappers.AzureReachabilityReport
-    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1860,9 +1832,6 @@ const listAvailableProvidersOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.AvailableProvidersList
     },
-    204: {
-      bodyMapper: Mappers.AvailableProvidersList
-    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1891,9 +1860,6 @@ const getNetworkConfigurationDiagnosticOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.NetworkConfigurationDiagnosticResponse
     },
     202: {
-      bodyMapper: Mappers.NetworkConfigurationDiagnosticResponse
-    },
-    204: {
       bodyMapper: Mappers.NetworkConfigurationDiagnosticResponse
     },
     default: {

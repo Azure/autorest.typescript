@@ -415,9 +415,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.FlowLog
     },
-    204: {
-      bodyMapper: Mappers.FlowLog
-    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -491,7 +488,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
