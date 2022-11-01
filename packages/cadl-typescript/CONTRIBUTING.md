@@ -53,40 +53,40 @@ Whenever you work on adding a feature/fixing a bug, this would probably be your 
 
 1. Pick up a cadl as your test input in cadl-ranch. Below are some examples
 
-Let us say your test input is `authentication/api-key/main.cadl` in @azure-tools/cadl-ranch-specs.
+   Let us say your test input is `authentication/api-key/main.cadl` in @azure-tools/cadl-ranch-specs.
 
 1. Now add an entry to the CadlRanchConfig to the file [`cadl-ranch-list.ts`](./test/commands/cadl-ranch-list.ts). In the file, add the following to the array.
 
-```typescript
-  {
-    outputPath: "authentication/apiKey",
-    inputPath: "authentication/api-key"
-  },
-```
+    ```typescript
+      {
+        outputPath: "authentication/apiKey",
+        inputPath: "authentication/api-key"
+      },
+    ```
 
 1. Create a cadl-project.yaml in `./test/integration/generated/authentication/apiKey` folder and put the following content in it.
 
-```yaml
-emitters:
-  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
-    generateMetadata: true
-    generateTest: true
-    includeShortcuts: true
-    azureSdkForJs: false
-    addCredentials: false
-    isCadlTest: true
-    title: AuthApiKeyClient
-    packageDetails:
-      name: "@msinternal/auth-apikey"
-      description: "Auth api key Test Service"
-      version: "1.0.0"
-```
+    ```yaml
+    emitters:
+      "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+        generateMetadata: true
+        generateTest: true
+        includeShortcuts: true
+        azureSdkForJs: false
+        addCredentials: false
+        isCadlTest: true
+        title: AuthApiKeyClient
+        packageDetails:
+          name: "@msinternal/auth-apikey"
+          description: "Auth api key Test Service"
+          version: "1.0.0"
+    ```
 
 1. Now, You can generate the RLC for your test case with the following command: (Initially, during your development, you do not want to run all the cases during every step of your development, you can comment out other test cases. But, once your code changes are complete for your case, then you need to run the entire suite to ensure that your changes did not cause any unwanted changes.)
 
-```shell
-npm run generate-cadl-only
-```
+    ```shell
+    npm run generate-cadl-only
+    ```
 
 1. Once you are satisfied with the generated code, you can add a spec file such as `testUserCaseRest.spec.ts` file [here](./test/integration). You can find several examples in the same place.
 
