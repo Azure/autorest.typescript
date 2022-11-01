@@ -38,7 +38,7 @@ Running the command above will do the following things:
 - Run all the tests under test/integration
 - Stop TestServer
 
-**_Note_**: If your development environment is Windows, then run the command `npm run start-test-server:v2`(in a seperate window) before running `npm run test` and run the command `npm run stop-test-server` after. (In non windows machines, we could run the test-server in the background automatically. But, in Windows machines, it has to be done manually.)
+**_Note_**: If your development environment is Windows, then run the command `npm run start-test-server`(in a seperate window) before running `npm run test` and run the command `npm run stop-test-server` after. (In non windows machines, we could run the test-server in the background automatically. But, in Windows machines, it has to be done manually.)
 
 5. You can run the Smoke tests using the following command:
 
@@ -53,7 +53,7 @@ Whenever you work on adding a feature/fixing a bug, this would probably be your 
 
 1. Pick up a cadl as your test input in cadl-ranch. Below are some examples
 
-Let us say your test input will be called `testUserCase.json`.
+Let us say your test input is `authentication/api-key/main.cadl` in @azure-tools/cadl-ranch-specs.
 
 2. Now add an entry to the CadlRanchConfig to the file [`cadl-ranch-list.ts`](./test/commands/cadl-ranch-list.ts). In the file, add the following to the array.
 
