@@ -102,7 +102,27 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "Cadl Unit or Integration Test",
+      "name": "[CADL] - Unit Test",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-typescript",
+      "runtimeArgs": [
+        "mocha",
+        "-r",
+        "ts-node/register",
+        "--experimental-specifier-resolution=node",
+        "--experimental-modules=true",
+        "--timeout",
+        "999999",
+        "--colors",
+        "./test/unit/**/*.spec.ts"
+      ],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
+    },
+    {
+      "name": "[CADL] - Integration Test",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/cadl-typescript",
       "runtimeArgs": [

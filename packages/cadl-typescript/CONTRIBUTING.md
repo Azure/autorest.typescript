@@ -76,13 +76,7 @@ npm run generate-cadl-only
 
 ### `generate-cadl-only` step
 
-If you would like to debug the `generate-cadl-only` step for our test input, use the following command:
-
-```
-npm run generate-cadl-only -- -b -i testUserCase --debug
-```
-
-Now, the code will wait for the debugger to be attached. Open the repository in VS Code -> Select `Run and Debug` section -> Click `Attach`.
+If you would like to debug the `generate-cadl-only` step for our test input, Open the repository in VS Code -> Select `Generate code for CadlEmitter` section -> Click `Attach`.
 
 ### Spec file
 
@@ -93,7 +87,7 @@ If you would like to debug the `testUserCase.spec.ts` file (after the SDK is gen
 - In VS Code, We have created a Debugging profile for UnitTests to start debugging:
 
   1. Go to the debugger tab
-  2. Select the "Unit Test" Profile
+  2. Select the "[CADL] - Unit Test" Profile
   3. Click the "Play" button
 
 - Your breakpoints will start hitting, you can set breakpoints in either Test or Generator code
@@ -107,7 +101,7 @@ If you would like to debug the `testUserCase.spec.ts` file (after the SDK is gen
 - Once the Test Server is running
 
   1. In VSCode go to the debugger tab
-  2. Select the "IntegrationTests" profile from the drop down
+  2. Select the "[CADL] - Integration Test" profile from the drop down
   3. Click the "Play" button
 
 - **\*\***IMPORTANT**\*\***: Running Integration Tests for debugging, does not re-generate the test clients so make sure that after each change you do:
