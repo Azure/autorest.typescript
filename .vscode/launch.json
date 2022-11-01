@@ -28,6 +28,60 @@
       ]
     },
     {
+      "type": "node",
+      "request": "launch",
+      "name": "[autorest.typescript]-UnitTests",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "program": "./node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "./test/unit/**/*.spec.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "protocol": "inspector"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "[autorest.typescript]-IntegrationTests",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "program": "./node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "./test/integration/**/*.spec.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "protocol": "inspector"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "[autorest.typescript]-IntegrationTests - Current File",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "program": "./node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceFolder}/${relativeFile}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "protocol": "inspector"
+    },
+    {
       "name": "Generate code for CadlRlcTest",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/cadl-rlc-test",
@@ -48,7 +102,27 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "Cadl Unit or Integration Test",
+      "name": "[CADL] - Unit Test",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/cadl-typescript",
+      "runtimeArgs": [
+        "mocha",
+        "-r",
+        "ts-node/register",
+        "--experimental-specifier-resolution=node",
+        "--experimental-modules=true",
+        "--timeout",
+        "999999",
+        "--colors",
+        "./test/unit/**/*.spec.ts"
+      ],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
+    },
+    {
+      "name": "[CADL] - Integration Test",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/cadl-typescript",
       "runtimeArgs": [

@@ -40,8 +40,8 @@ const client: PetsClient = new PetsClient(new DefaultAzureCredential());
 
 <!-- LINKS -->
 [azure_identity_library]: https://www.npmjs.com/package/@azure/identity
-[flag_index]: https://github.com/Azure/autorest/tree/master/docs/generate/flags.md
+[flag_index]: https://github.com/Azure/autorest/tree/main/docs/generate/flags.md
 [aad_authentication]: https://docs.microsoft.com/en-us/azure/cognitive-services/authentication?tabs=powershell#authenticate-with-azure-active-directory
-[identity_credentials]: https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#credential-classes
+[identity_credentials]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credential-classes
 [default_azure_credential]: https://docs.microsoft.com/en-us/javascript/api/@azure/identity/defaultazurecredential?view=azure-node-latest
 [azure_key_credential]: https://docs.microsoft.com/en-us/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python

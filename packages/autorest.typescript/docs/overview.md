@@ -30,7 +30,7 @@
 
 - Autorest is an OpenAPI (Swagger) specification code generator.
 - The new version of autorest (v3) supports [OpenApi v3](https://github.com/OAI/OpenAPI-Specification).
-- Autorest v3 uses[ @azure/modelerfour](https://github.com/Azure/autorest.modelerfour) to parse the OpenAPI (Swagger) document and generates a language agnostic code model.
+- Autorest v3 uses[ @autorest/modelerfour](https://github.com/Azure/autorest/tree/main/packages/extensions/modelerfour) to parse the OpenAPI (Swagger) document and generates a language agnostic code model.
 - Autorest supports plugins, these plugins are responsible for Language specific code generation.
 - Autorest communicates with the plugins through stdin/stdout using JsonRPC.
 - Autorest core is written in Typescript, however the plugins can be written in any language.
@@ -77,7 +77,6 @@
         ├── rollup.config.js
         ├── src
         │ ├── bodyComplexClient.ts
-        │ ├── bodyComplexClientContext.ts
         │ ├── index.ts
         │ ├── models
         │ │ ├── index.ts
@@ -137,17 +136,11 @@ Project structure
       - tsconfig
       - api-extractor.json
 
-2.  clientContextFileGenerator.ts
-
-    - This generator is responsible for generating the clientContext file for a library
-    - In the generated class all the Client level parameters are set as properties on this class
-      - The generated class extends `coreHttp.Service` client
-
-3.  clientFileGenerator.cs
+2.  clientFileGenerator.cs
 
     - This generator is responsible for generating the ClientClass file for a library
     - The generated class is the main entry point of the library, whcih is instantiated by consumers to access the operations
-    - The generated class extends the generated ClientContext class
+    - The generated class extends the generated Client class
     - The generated class has each operation group as property, form which consumers can access each operation
 
       - There are also operations that don't belong to any operation group and belong to the clientFileGenerator
