@@ -841,7 +841,7 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
     case "array":
       return [(schema as any).items]
         .filter((i: Schema) => i.type === "object")
-        .map((i: Schema) => i.outputTypeName ?? "");
+        .map((i: Schema) => getPriorityName(i) ?? "");
     case "object":
       return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
     case "dictionary":

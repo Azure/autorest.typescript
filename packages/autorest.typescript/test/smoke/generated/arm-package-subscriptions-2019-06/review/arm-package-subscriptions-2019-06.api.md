@@ -9,6 +9,9 @@ import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 interface Location_2 {
     readonly displayName?: string;
     readonly id?: string;

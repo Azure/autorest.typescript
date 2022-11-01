@@ -77,7 +77,7 @@ exporter.shutdown();
 <!-- LINKS -->
 [open_census]: https://opencensus.io/
 [open_telemetry]: https://opentelemetry.io/
-[flag_index]: https://github.com/Azure/autorest/tree/master/docs/generate/flags.md
+[flag_index]: https://github.com/Azure/autorest/tree/main/docs/generate/flags.md
 [tracing_library]: https://www.npmjs.com/package/@azure/core-tracing
 [azure_monitor]: https://pypi.org/project/opentelemetry-azure-monitor/
 [zipkin]: https://zipkin.io/

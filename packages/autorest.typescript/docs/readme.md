@@ -28,15 +28,15 @@ These documents are Typescript-specific, see [our main docs][main_docs] for more
 
 <!-- LINKS -->
 
-[main_docs]: https://github.com/Azure/autorest/tree/main/docs
-[main_generate]: https://github.com/Azure/autorest/tree/main/docs/generate/readme.md
+[main_docs]: https://github.com/Azure/autorest/tree/main/packages/autorest.typescript/docs
+[main_generate]: https://github.com/Azure/autorest/tree/main/packages/autorest.typescript/docs/generate/readme.md
 [typescript_generate]: ./overview.md
 [typescript_client]: ./client/readme.md
-[main_client]: https://github.com/Azure/autorest/tree/main/docs/client/readme.md
-[main_migrate]: https://github.com/Azure/autorest/tree/main/docs/migrate/readme.md
+[main_client]: https://github.com/Azure/autorest/tree/main/packages/autorest.typescript/docs/client/readme.md
+[main_migrate]: https://github.com/Azure/autorest/tree/main/packages/autorest.typescript/docs/migrate/readme.md
 [typescript_migrate]: ./migrate/readme.md
 [typescript_dev]: https://github.com/Azure/autorest.typescript/blob/main/CONTRIBUTING.md
-[main_dev]: https://github.com/Azure/autorest/tree/main/docs/developer/readme.md
+[main_dev]: https://github.com/Azure/autorest/tree/main/packages/autorest.typescript/docs/developer/readme.md
 [sample]: ./samples/readme.md
 [faq]: ./faq.md
 [troubleshooting]: ./troubleshooting.md

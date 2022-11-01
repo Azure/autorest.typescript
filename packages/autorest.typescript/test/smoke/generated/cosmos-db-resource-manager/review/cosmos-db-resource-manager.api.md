@@ -1231,6 +1231,9 @@ export interface FailoverPolicy {
 }
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export interface GremlinDatabaseCreateUpdateParameters extends ARMResourceProperties {
     options?: CreateUpdateOptions;
     resource: GremlinDatabaseResource;

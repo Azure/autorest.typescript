@@ -22,6 +22,9 @@ export interface CloudErrorBody {
 }
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export interface Identity extends TrackedResource {
     readonly clientId?: string;
     readonly principalId?: string;

@@ -5,7 +5,7 @@ export function check(code: number) {
     assert.equal(
       response.status,
       code,
-      `Unexpected status code '${response}'.`
+      `Unexpected status code '${JSON.stringify(response, null, 2)}'.`
     );
 }
 

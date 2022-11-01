@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { FirewallPolicies } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,15 +19,15 @@ import {
   FirewallPolicy,
   FirewallPoliciesListNextOptionalParams,
   FirewallPoliciesListOptionalParams,
+  FirewallPoliciesListResponse,
   FirewallPoliciesListAllNextOptionalParams,
   FirewallPoliciesListAllOptionalParams,
+  FirewallPoliciesListAllResponse,
   FirewallPoliciesDeleteOptionalParams,
   FirewallPoliciesGetOptionalParams,
   FirewallPoliciesGetResponse,
   FirewallPoliciesCreateOrUpdateOptionalParams,
   FirewallPoliciesCreateOrUpdateResponse,
-  FirewallPoliciesListResponse,
-  FirewallPoliciesListAllResponse,
   FirewallPoliciesListNextResponse,
   FirewallPoliciesListAllNextResponse
 } from "../models";
@@ -61,19 +62,29 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
   }
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: FirewallPoliciesListOptionalParams
+    options?: FirewallPoliciesListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<FirewallPolicy[]> {
-    let result = await this._list(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: FirewallPoliciesListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         resourceGroupName,
@@ -81,7 +92,9 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -109,22 +122,34 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listAllPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listAllPagingPage(options, settings);
       }
     };
   }
 
   private async *listAllPagingPage(
-    options?: FirewallPoliciesListAllOptionalParams
+    options?: FirewallPoliciesListAllOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<FirewallPolicy[]> {
-    let result = await this._listAll(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: FirewallPoliciesListAllResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listAll(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listAllNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

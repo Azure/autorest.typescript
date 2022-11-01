@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { SignedInUser } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,10 +17,10 @@ import {
   DirectoryObjectUnion,
   SignedInUserListOwnedObjectsNextOptionalParams,
   SignedInUserListOwnedObjectsOptionalParams,
-  SignedInUserGetOptionalParams,
-  SignedInUserGetResponse,
   SignedInUserListOwnedObjectsResponse,
-  SignedInUserListOwnedObjectsNextResponse
+  SignedInUserListOwnedObjectsNextResponse,
+  SignedInUserGetOptionalParams,
+  SignedInUserGetResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -50,22 +51,34 @@ export class SignedInUserImpl implements SignedInUser {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listOwnedObjectsPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listOwnedObjectsPagingPage(options, settings);
       }
     };
   }
 
   private async *listOwnedObjectsPagingPage(
-    options?: SignedInUserListOwnedObjectsOptionalParams
+    options?: SignedInUserListOwnedObjectsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._listOwnedObjects(options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: SignedInUserListOwnedObjectsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listOwnedObjects(options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listOwnedObjectsNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -94,23 +107,35 @@ export class SignedInUserImpl implements SignedInUser {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listOwnedObjectsNextPagingPage(nextLink, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listOwnedObjectsNextPagingPage(nextLink, options, settings);
       }
     };
   }
 
   private async *listOwnedObjectsNextPagingPage(
     nextLink: string,
-    options?: SignedInUserListOwnedObjectsNextOptionalParams
+    options?: SignedInUserListOwnedObjectsNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._listOwnedObjectsNext(nextLink, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: SignedInUserListOwnedObjectsNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listOwnedObjectsNext(nextLink, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listOwnedObjectsNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 

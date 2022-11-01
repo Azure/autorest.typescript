@@ -107,6 +107,9 @@ export interface FeaturesUnregisterOptionalParams extends coreClient.OperationOp
 export type FeaturesUnregisterResponse = FeatureResult;
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export interface ListOperationsNextOptionalParams extends coreClient.OperationOptions {
 }
 

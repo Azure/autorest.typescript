@@ -13,4 +13,4 @@ azure-arm: true
 
 <!-- LINKS -->
 [mgmt]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane#control-plane
-[flag_index]: https://github.com/Azure/autorest/tree/master/docs/generate/flags.md
+[flag_index]: https://github.com/Azure/autorest/tree/main/packages/autorest.typescript/docs/generate/flags.md

@@ -13,4 +13,4 @@
 
 
 <!-- LINKS -->
-[autorest_npm]: https://www.npmjs.com/package/@autorest/python
+[autorest_npm]: https://www.npmjs.com/package/@autorest/typescript
