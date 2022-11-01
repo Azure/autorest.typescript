@@ -391,3 +391,34 @@ export function getPropertySignature(
     kind: StructureKind.PropertySignature
   };
 }
+
+export function buildBodyTypeAlias(schema: ObjectSchema, contentType: string) {
+  const readOnlyProperties = [];
+  if (schema.properties) {
+    for(const propertyName of Object.keys(schema.properties)) {
+      const prop = schema.properties[propertyName];
+      if (prop?.readOnly) {
+        readOnlyProperties.push(`"${propertyName}"`);
+      }
+    }
+  }
+
+  const description = `${schema.description}`;
+  const typeName = `${schema.name}ResourceMergeAndPatch`
+  if (contentType.endsWith("merge+patch")) {
+    let type = "";
+    if (readOnlyProperties.length > 0) {
+      type = `Partial<Omit<${schema.name}, ${readOnlyProperties.join(" | ")}>>`;
+    } else {
+      type = `Partial<${schema.name}>`;
+    }
+    return {
+      kind: StructureKind.TypeAlias,
+      ...(description && { docs: [{ description }] }),
+      name: `${typeName}`,
+      type,
+      isExported: true
+    };
+  } 
+
+}
