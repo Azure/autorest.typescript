@@ -3904,9 +3904,6 @@ const put200SucceededOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -3933,10 +3930,6 @@ const patch200SucceededIgnoreHeadersOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPatch200SucceededIgnoreHeadersHeaders
     },
-    204: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeadersHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -3958,9 +3951,6 @@ const patch201RetryWithAsyncHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -3986,9 +3976,6 @@ const patch202RetryWithAsyncAndLocationHeaderOperationSpec: coreClient.Operation
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4010,9 +3997,6 @@ const put201SucceededOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -4053,14 +4037,6 @@ const post202ListOperationSpec: coreClient.OperationSpec = {
         }
       }
     },
-    204: {
-      bodyMapper: {
-        type: {
-          name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        }
-      }
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4080,9 +4056,6 @@ const put200SucceededNoStateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -4108,9 +4081,6 @@ const put202Retry200OperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4132,9 +4102,6 @@ const put201CreatingSucceeded200OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -4160,9 +4127,6 @@ const put200UpdatingSucceeded204OperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4184,9 +4148,6 @@ const put201CreatingFailed200OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -4212,9 +4173,6 @@ const put200Acceptedcanceled200OperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4238,10 +4196,6 @@ const putNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     },
     202: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
-    },
-    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     },
@@ -4271,10 +4225,6 @@ const putAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
     },
-    204: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4298,10 +4248,6 @@ const putAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     },
     202: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
-    },
-    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     },
@@ -4331,10 +4277,6 @@ const putAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
     },
-    204: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4358,10 +4300,6 @@ const putAsyncNoRetrycanceledOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     },
     202: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
-    },
-    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     },
@@ -4391,10 +4329,6 @@ const putAsyncNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
     },
-    204: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4416,9 +4350,6 @@ const putNonResourceOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Sku
     },
     202: {
-      bodyMapper: Mappers.Sku
-    },
-    204: {
       bodyMapper: Mappers.Sku
     },
     default: {
@@ -4444,9 +4375,6 @@ const putAsyncNonResourceOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Sku
     },
-    204: {
-      bodyMapper: Mappers.Sku
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4468,9 +4396,6 @@ const putSubResourceOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.SubProduct
     },
     202: {
-      bodyMapper: Mappers.SubProduct
-    },
-    204: {
       bodyMapper: Mappers.SubProduct
     },
     default: {
@@ -4496,9 +4421,6 @@ const putAsyncSubResourceOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.SubProduct
     },
-    204: {
-      bodyMapper: Mappers.SubProduct
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4522,9 +4444,6 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreClient.Operati
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4546,9 +4465,6 @@ const deleteProvisioning202DeletingFailed200OperationSpec: coreClient.OperationS
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4568,9 +4484,6 @@ const deleteProvisioning202Deletingcanceled200OperationSpec: coreClient.Operatio
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -4610,9 +4523,6 @@ const delete202Retry200OperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4632,9 +4542,6 @@ const delete202NoRetry204OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -4658,9 +4565,6 @@ const deleteNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     },
-    204: {
-      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4680,9 +4584,6 @@ const deleteAsyncNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
     202: {
-      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
-    },
-    204: {
       headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
     default: {
@@ -4706,9 +4607,6 @@ const deleteAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
     },
-    204: {
-      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4728,9 +4626,6 @@ const deleteAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
-    },
-    204: {
       headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     },
     default: {
@@ -4754,9 +4649,6 @@ const deleteAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
     },
-    204: {
-      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4776,9 +4668,6 @@ const deleteAsyncRetrycanceledOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     },
     202: {
-      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
-    },
-    204: {
       headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     },
     default: {
@@ -4802,9 +4691,6 @@ const post200WithPayloadOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Sku
     },
-    204: {
-      bodyMapper: Mappers.Sku
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4824,9 +4710,6 @@ const post202Retry200OperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LROsPost202Retry200Headers
     },
     202: {
-      headersMapper: Mappers.LROsPost202Retry200Headers
-    },
-    204: {
       headersMapper: Mappers.LROsPost202Retry200Headers
     },
     default: {
@@ -4855,10 +4738,6 @@ const post202NoRetry204OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LROsPost202NoRetry204Headers
     },
-    204: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsPost202NoRetry204Headers
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4882,9 +4761,6 @@ const postDoubleHeadersFinalLocationGetOperationSpec: coreClient.OperationSpec =
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4904,9 +4780,6 @@ const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -4930,9 +4803,6 @@ const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreClient.Opera
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -4952,9 +4822,6 @@ const postAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product
     },
     202: {
-      bodyMapper: Mappers.Product
-    },
-    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -4980,9 +4847,6 @@ const postAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -5006,9 +4870,6 @@ const postAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
     },
-    204: {
-      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -5030,9 +4891,6 @@ const postAsyncRetrycanceledOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     },
     202: {
-      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
-    },
-    204: {
       headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     },
     default: {

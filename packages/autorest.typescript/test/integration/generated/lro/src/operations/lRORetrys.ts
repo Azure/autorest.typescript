@@ -666,9 +666,6 @@ const put201CreatingSucceeded200OperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -695,10 +692,6 @@ const putAsyncRelativeRetrySucceededOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
     },
-    204: {
-      bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -722,9 +715,6 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreClient.Operati
     202: {
       bodyMapper: Mappers.Product
     },
-    204: {
-      bodyMapper: Mappers.Product
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -744,9 +734,6 @@ const delete202Retry200OperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     },
     202: {
-      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
-    },
-    204: {
       headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     },
     default: {
@@ -770,9 +757,6 @@ const deleteAsyncRelativeRetrySucceededOperationSpec: coreClient.OperationSpec =
     202: {
       headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
     },
-    204: {
-      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -792,9 +776,6 @@ const post202Retry200OperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LRORetrysPost202Retry200Headers
     },
     202: {
-      headersMapper: Mappers.LRORetrysPost202Retry200Headers
-    },
-    204: {
       headersMapper: Mappers.LRORetrysPost202Retry200Headers
     },
     default: {
@@ -818,9 +799,6 @@ const postAsyncRelativeRetrySucceededOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
-    },
-    204: {
       headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     },
     default: {
