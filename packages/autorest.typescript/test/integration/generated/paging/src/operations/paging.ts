@@ -2855,9 +2855,6 @@ const getMultiplePagesLROOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ProductResult
     },
-    204: {
-      bodyMapper: Mappers.ProductResult
-    },
     default: {}
   },
   urlParameters: [Parameters.$host],

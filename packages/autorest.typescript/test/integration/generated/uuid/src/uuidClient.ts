@@ -44,7 +44,7 @@ export class UuidClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? "{$host}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{$host}"
     };
     super(optionsWithDefaults);
     // Parameter assignments

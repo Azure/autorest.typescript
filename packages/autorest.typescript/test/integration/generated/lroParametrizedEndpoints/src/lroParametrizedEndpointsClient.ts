@@ -47,7 +47,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri:
+      endpoint:
         options.endpoint ?? options.baseUri ?? "http://{accountName}{host}"
     };
     super(optionsWithDefaults);
@@ -237,9 +237,6 @@ const pollWithParameterizedEndpointsOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: { type: { name: "String" } }
     },
-    204: {
-      bodyMapper: { type: { name: "String" } }
-    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -259,9 +256,6 @@ const pollWithConstantParameterizedEndpointsOperationSpec: coreClient.OperationS
       bodyMapper: { type: { name: "String" } }
     },
     202: {
-      bodyMapper: { type: { name: "String" } }
-    },
-    204: {
       bodyMapper: { type: { name: "String" } }
     },
     default: {

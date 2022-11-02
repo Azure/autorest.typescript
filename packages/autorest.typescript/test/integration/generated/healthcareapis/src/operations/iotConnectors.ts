@@ -530,9 +530,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.IotConnector
     },
-    204: {
-      bodyMapper: Mappers.IotConnector
-    },
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -564,9 +561,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.IotConnector
     },
-    204: {
-      bodyMapper: Mappers.IotConnector
-    },
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -592,7 +586,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

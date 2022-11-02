@@ -52,12 +52,10 @@ function injectMissingResponses(
   responses: OperationResponseDetails[]
 ): OperationResponseDetails[] {
   // Enrich the missing responses by acceptedResponses without 204
-  const acceptedResponses = ["200", "201", "202"];
-  // Find the baseResponse by baseStatusCodes including 204
-  const baseStatusCodes = ["200", "201", "202", "204"];
+  const acceptedResponses = ["200", "201", "202", "204"];
 
   // Use an already defined base status codes as base;
-  const baseResponse = baseStatusCodes.reduce((acc, status) => {
+  const baseResponse = acceptedResponses.reduce((acc, status) => {
     if (!isEmpty(acc)) {
       return acc;
     }

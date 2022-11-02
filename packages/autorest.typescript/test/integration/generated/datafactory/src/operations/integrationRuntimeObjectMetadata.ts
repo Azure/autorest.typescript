@@ -154,9 +154,6 @@ const refreshOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.SsisObjectMetadataStatusResponse
     },
-    204: {
-      bodyMapper: Mappers.SsisObjectMetadataStatusResponse
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }

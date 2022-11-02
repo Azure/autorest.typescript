@@ -63,7 +63,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
     };
     super(optionsWithDefaults);
 

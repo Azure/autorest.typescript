@@ -561,9 +561,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ServicesDescription
     },
-    204: {
-      bodyMapper: Mappers.ServicesDescription
-    },
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -594,9 +591,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ServicesDescription
     },
-    204: {
-      bodyMapper: Mappers.ServicesDescription
-    },
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -621,7 +615,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorDetails
     }

@@ -188,7 +188,7 @@ describe("LROs", () => {
       check200(lastResponse);
     });
 
-    it("should handle post202NoRetry204", async () => {
+    it.only("should handle post202NoRetry204", async () => {
       await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
       check204(lastResponse);
     });

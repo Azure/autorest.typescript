@@ -401,9 +401,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.PrivateEndpointConnectionDescription
     },
-    204: {
-      bodyMapper: Mappers.PrivateEndpointConnectionDescription
-    },
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -429,7 +426,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorDetails
     }

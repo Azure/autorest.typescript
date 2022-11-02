@@ -98,7 +98,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? "{endpoint}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{endpoint}"
     };
     super(optionsWithDefaults);
     // Parameter assignments

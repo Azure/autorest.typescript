@@ -1182,9 +1182,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ProvisioningServiceDescription
     },
-    204: {
-      bodyMapper: Mappers.ProvisioningServiceDescription
-    },
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -1214,9 +1211,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.ProvisioningServiceDescription
-    },
-    204: {
-      bodyMapper: Mappers.ProvisioningServiceDescription
     }
   },
   requestBody: Parameters.provisioningServiceTags,
@@ -1239,7 +1233,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -1513,9 +1506,6 @@ const createOrUpdatePrivateEndpointConnectionOperationSpec: coreClient.Operation
     202: {
       bodyMapper: Mappers.PrivateEndpointConnection
     },
-    204: {
-      bodyMapper: Mappers.PrivateEndpointConnection
-    },
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -1545,9 +1535,6 @@ const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.PrivateEndpointConnection
     },
     202: {
-      bodyMapper: Mappers.PrivateEndpointConnection
-    },
-    204: {
       bodyMapper: Mappers.PrivateEndpointConnection
     },
     default: {

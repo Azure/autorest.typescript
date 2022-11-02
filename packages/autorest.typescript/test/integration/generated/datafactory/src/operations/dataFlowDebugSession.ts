@@ -398,9 +398,6 @@ const createOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.CreateDataFlowDebugSessionResponse
     },
-    204: {
-      bodyMapper: Mappers.CreateDataFlowDebugSessionResponse
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -497,9 +494,6 @@ const executeCommandOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DataFlowDebugCommandResponse
     },
     202: {
-      bodyMapper: Mappers.DataFlowDebugCommandResponse
-    },
-    204: {
       bodyMapper: Mappers.DataFlowDebugCommandResponse
     },
     default: {

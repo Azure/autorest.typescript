@@ -51,7 +51,7 @@ export enum KnownOS {
  * **Windows** \
  * **Linux**
  */
-export type OS = string;
+export type $DO_NOT_NORMALIZE$OS = string;
 
 /** Known values of {@link Sku} that the service accepts. */
 export enum KnownSku {
@@ -69,7 +69,7 @@ export enum KnownSku {
  * **Free** \
  * **Standard**
  */
-export type Sku = string;
+export type SKU = string;
 
 /** Optional parameters. */
 export interface PostValueOptionalParams extends coreClient.OperationOptions {

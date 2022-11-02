@@ -577,9 +577,6 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.DomainService
     },
-    204: {
-      bodyMapper: Mappers.DomainService
-    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -626,7 +623,6 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
-    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -653,9 +649,6 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DomainService
     },
     202: {
-      bodyMapper: Mappers.DomainService
-    },
-    204: {
       bodyMapper: Mappers.DomainService
     },
     default: {
