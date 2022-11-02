@@ -13,7 +13,7 @@ export interface Product {
   string?: string;
   /** The OS of agent machine */
   custom?: OS;
-  /** Device Update Sku */
+  /** Product Sku */
   sku?: SKU;
 }
 
