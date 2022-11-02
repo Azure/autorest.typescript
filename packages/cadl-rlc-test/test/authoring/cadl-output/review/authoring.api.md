@@ -23,13 +23,13 @@ export default createClient;
 
 // @public (undocumented)
 export interface DeploymentJobOutput {
-    createdDateTime: string;
+    readonly createdDateTime: string;
     errors: ErrorModelOutput;
-    expirationDateTime: string;
+    readonly expirationDateTime: string;
     // (undocumented)
     id: string;
     jobId: string;
-    lastUpdatedDateTime: string;
+    readonly lastUpdatedDateTime: string;
     status: string;
     warnings: Array<JobWarningOutput>;
 }
@@ -504,12 +504,12 @@ export interface ProjectListOutput {
 
 // @public (undocumented)
 export interface ProjectOutput {
-    createdDateTime: string;
+    readonly createdDateTime: string;
     description?: string;
     language: string;
-    lastDeployedDateTime: string;
-    lastModifiedDateTime: string;
-    lastTrainedDateTime: string;
+    readonly lastDeployedDateTime: string;
+    readonly lastModifiedDateTime: string;
+    readonly lastTrainedDateTime: string;
     multilingual?: boolean;
     projectKind: string;
     // (undocumented)
@@ -517,6 +517,9 @@ export interface ProjectOutput {
     settings?: Record<string, string>;
     storageInputContainerName: string;
 }
+
+// @public (undocumented)
+export type ProjectResourceMergeAndPatch = Partial<Omit<Project, "createdDateTime" | "lastModifiedDateTime" | "lastTrainedDateTime" | "lastDeployedDateTime">>;
 
 // @public (undocumented)
 export interface ProjectsCreateOrUpdate {
@@ -558,7 +561,7 @@ export interface ProjectsCreateOrUpdate201Response extends HttpResponse {
 // @public (undocumented)
 export interface ProjectsCreateOrUpdateBodyParam {
     // (undocumented)
-    body?: Project;
+    body?: ProjectResourceMergeAndPatch;
 }
 
 // @public (undocumented)
@@ -802,13 +805,13 @@ export interface SupportedLanguageOutput {
 
 // @public (undocumented)
 export interface SwapDeploymentsJobOutput {
-    createdDateTime: string;
+    readonly createdDateTime: string;
     errors: ErrorModelOutput;
-    expirationDateTime: string;
+    readonly expirationDateTime: string;
     // (undocumented)
     id: string;
     jobId: string;
-    lastUpdatedDateTime: string;
+    readonly lastUpdatedDateTime: string;
     status: string;
     warnings: Array<JobWarningOutput>;
 }
