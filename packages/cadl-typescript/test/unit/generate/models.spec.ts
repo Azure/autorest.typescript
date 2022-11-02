@@ -199,6 +199,18 @@ describe("Input/output model type", () => {
       const typeScriptType = "string";
       await verifyPropertyType(cadlType, typeScriptType);
     });
+
+    it("should handle never -> never", async () => {
+      const cadlType = "never";
+      const typeScriptType = "never";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle unknown -> unknown", async () => {
+      const cadlType = "unknown";
+      const typeScriptType = "unknown";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
   });
 
   describe("array basic generation", () => {
@@ -254,6 +266,12 @@ describe("Input/output model type", () => {
     it("should handle 'job'[] -> 'job'[]", async () => {
       const cadlType = `"job"[]`;
       const typeScriptType = `"job"[]`;
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle unknown[] -> unknown[]", async () => {
+      const cadlType = "unknown[]";
+      const typeScriptType = "unknown[]";
       await verifyPropertyType(cadlType, typeScriptType);
     });
   });

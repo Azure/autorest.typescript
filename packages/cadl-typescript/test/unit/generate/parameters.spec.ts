@@ -263,7 +263,7 @@ describe("Parameters.ts", () => {
     });
   });
 
-  describe("Array generation", () => {
+  describe("Array in body generation", () => {
     it("string array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
       @post op read(@body body: string[]): void;
@@ -415,7 +415,7 @@ describe("Parameters.ts", () => {
       `
       );
     });
-    
+
     it("duration array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
       @post op read(@body body:  duration[]): void;
@@ -476,6 +476,32 @@ describe("Parameters.ts", () => {
 
         export interface ReadBodyParam {
           body:Array<InnerModel>;
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+  });
+
+  describe("Dictionary in body generation", () => {
+    it("Simple model dictionary request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      model SimpleModel {
+        prop1: string;
+        prop2: int32;
+      }
+      @post op read(@body body: Record<SimpleModel>): void;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { SimpleModel } from "./models";
+
+        export interface ReadBodyParam {
+          body: Record<string, SimpleModel>;
         }  
 
         export type ReadParameters = ReadBodyParam & RequestParameters;
