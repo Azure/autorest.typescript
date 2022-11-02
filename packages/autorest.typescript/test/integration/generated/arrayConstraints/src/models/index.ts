@@ -51,7 +51,7 @@ export enum KnownOS {
  * **Windows** \
  * **Linux**
  */
-export type $DO_NOT_NORMALIZE$OS = string;
+export type OS = string;
 
 /** Known values of {@link Sku} that the service accepts. */
 export enum KnownSku {

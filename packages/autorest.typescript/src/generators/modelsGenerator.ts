@@ -510,7 +510,7 @@ const writeExtensibleChoice = (
   }
 
   modelsIndexFile.addTypeAlias({
-    name: choice.serializedName ?? choice.name,
+    name: getExtensibleEnumTypeName(choice),
     docs: [getExtensibleChoiceDescription(choice)],
     isExported: true,
     type: choice.itemType || SchemaType.String,
@@ -518,6 +518,13 @@ const writeExtensibleChoice = (
   });
 };
 
+function getExtensibleEnumTypeName(choice: UnionDetails) {
+  if (choice?.serializedName?.startsWith("$DO_NOT_NORMALIZE$")) {
+    return choice.serializedName.replace("$DO_NOT_NORMALIZE$", "");
+  }
+
+  return choice.serializedName ?? choice.name;
+}
 function getExtensibleEnumName(choice: UnionDetails) {
   return `Known${choice.name}`;
 }
