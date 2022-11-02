@@ -102,7 +102,7 @@
           }
         },
         "sku": {
-          "description": "Device Update Sku",
+          "description": "Product Sku",
           "type": "string",
           "enum": ["Free", "Standard"],
           "default": "Standard",
