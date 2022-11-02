@@ -98,7 +98,7 @@ export interface MetadataPolicyPropertiesOutput {
 /** The decision rule for a policy */
 export interface DecisionRuleOutput {
   /** The kind of rule */
-  kind?: "decisionrule" | "attributerule";
+  readonly kind?: "decisionrule" | "attributerule";
   /** The effect for rule */
   effect?: "Deny" | "Permit";
   /** The dnf Condition for a rule */
@@ -108,7 +108,7 @@ export interface DecisionRuleOutput {
 /** The attribute rule for a policy */
 export interface AttributeRuleOutput {
   /** The kind of rule */
-  kind?: "decisionrule" | "attributerule";
+  readonly kind?: "decisionrule" | "attributerule";
   /** The id for rule */
   id?: string;
   /** The name for rule */

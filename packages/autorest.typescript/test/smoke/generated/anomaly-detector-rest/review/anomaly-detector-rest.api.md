@@ -85,7 +85,7 @@ export interface ChangePointDetectRequest {
 export interface ChangePointDetectResponseOutput {
     confidenceScores?: Array<number>;
     isChangePoint?: Array<boolean>;
-    period?: number;
+    readonly period?: number;
 }
 
 // @public (undocumented)
