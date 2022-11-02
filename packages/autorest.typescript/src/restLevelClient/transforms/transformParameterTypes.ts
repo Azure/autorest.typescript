@@ -8,15 +8,18 @@ import {
   ParameterLocation,
   Property,
   SchemaContext,
+  ObjectSchema as M4ObjectSchema,
   Request as M4OperationRequest
 } from "@autorest/codemodel";
 import {
   ImportKind,
+  ObjectSchema,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
   Schema
 } from "@azure-tools/rlc-common";
+import { transformObject } from "./transformSchemas";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getDocs } from "../getPropertySignature";
@@ -61,7 +64,11 @@ export function transformParameterTypes(
       // transform content type param
       const contentTypeParam = transformContentTypeParameter(request);
       // transform body
-      const bodyParameter = transformBodyParameters(parameters, importedModels);
+      const bodyParameter = transformBodyParameters(
+        parameters,
+        importedModels,
+        contentTypeParam
+      );
       rlcParameter.parameters.push({
         parameters: [
           ...queryParams,
@@ -147,7 +154,8 @@ function transformContentTypeParameter(
 
 function transformBodyParameters(
   parameters: Parameter[],
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  contentTypeParam: ParameterMetadata[]
 ): ParameterBodyMetadata | undefined {
   const bodyParameters = parameters.filter(p => p.protocol.http?.in === "body");
   if (!bodyParameters.length) {
@@ -159,10 +167,12 @@ function transformBodyParameters(
   };
   if (isPartialBody) {
     rlcBodyParam.body = bodyParameters.map(bp =>
-      getParamterSchema(bp, importedModels)
+      getParameterSchema(bp, importedModels, false, contentTypeParam)
     );
   } else {
-    rlcBodyParam.body = [getParamterSchema(bodyParameters[0], importedModels)];
+    rlcBodyParam.body = [
+      getParameterSchema(bodyParameters[0], importedModels, false, contentTypeParam)
+    ];
   }
 
   return rlcBodyParam;
@@ -174,7 +184,7 @@ function getParameterMetadata(
   importedModels = new Set<string>(),
   isPrimitiveSchema = false
 ) {
-  const schema: Schema = getParamterSchema(
+  const schema: Schema = getParameterSchema(
     parameter,
     importedModels,
     isPrimitiveSchema
@@ -186,11 +196,12 @@ function getParameterMetadata(
   };
 }
 
-function getParamterSchema(
+function getParameterSchema(
   parameter: Property | Parameter,
   importedModels = new Set<string>(),
-  isPrimitiveSchema = false
-): Schema {
+  isPrimitiveSchema = false,
+  contentTypeParam: ParameterMetadata[] = []
+): ObjectSchema {
   const propertyLangMetadata = getLanguageMetadata(parameter.language);
   const propertyName = `"${propertyLangMetadata.serializedName ??
     (parameter as Property).serializedName}"`;
@@ -215,7 +226,21 @@ function getParamterSchema(
       importedModels
     );
   }
+  if (
+    contentTypeParam.length === 1 &&
+    contentTypeParam[0].type.includes("application/merge-patch+json")
+  ) {
+    const schema = transformObject(parameter.schema as M4ObjectSchema);
 
+    return {
+      name: propertyName,
+      type,
+      description,
+      required: parameter.required,
+      properties: schema.properties,
+      typeName: schema.name
+    };
+  }
   return {
     name: propertyName,
     type,
