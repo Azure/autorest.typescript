@@ -593,6 +593,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.NotebookWorkspace
     },
+    204: {
+      bodyMapper: Mappers.NotebookWorkspace
+    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -618,6 +621,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -664,6 +668,7 @@ const regenerateAuthTokenOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -687,6 +692,7 @@ const startOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }

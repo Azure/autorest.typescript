@@ -930,6 +930,9 @@ const startOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.IntegrationRuntimeStatusResponse
     },
+    204: {
+      bodyMapper: Mappers.IntegrationRuntimeStatusResponse
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -953,6 +956,7 @@ const stopOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

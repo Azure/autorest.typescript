@@ -526,6 +526,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.Image
+    },
+    204: {
+      bodyMapper: Mappers.Image
     }
   },
   requestBody: Parameters.parameters19,
@@ -553,6 +556,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.Image
+    },
+    204: {
+      bodyMapper: Mappers.Image
     }
   },
   requestBody: Parameters.parameters20,
@@ -571,7 +577,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

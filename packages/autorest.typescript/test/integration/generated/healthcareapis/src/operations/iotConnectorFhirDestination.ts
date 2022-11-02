@@ -304,6 +304,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.IotFhirDestination
     },
+    204: {
+      bodyMapper: Mappers.IotFhirDestination
+    },
     default: {
       bodyMapper: Mappers.ErrorDetails
     }
@@ -330,6 +333,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorModel
     }

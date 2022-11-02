@@ -1251,7 +1251,7 @@ const reimageOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/reimage",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   requestBody: Parameters.vmScaleSetVMReimageInput,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -1269,7 +1269,7 @@ const reimageAllOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/reimageall",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1284,7 +1284,7 @@ const deallocateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/deallocate",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1308,6 +1308,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.VirtualMachineScaleSetVM
+    },
+    204: {
+      bodyMapper: Mappers.VirtualMachineScaleSetVM
     }
   },
   requestBody: Parameters.parameters28,
@@ -1327,7 +1330,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion, Parameters.forceDeletion],
   urlParameters: [
     Parameters.$host,
@@ -1406,7 +1409,7 @@ const powerOffOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/poweroff",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion, Parameters.skipShutdown],
   urlParameters: [
     Parameters.$host,
@@ -1421,7 +1424,7 @@ const restartOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/restart",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1436,7 +1439,7 @@ const startOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/start",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1451,7 +1454,7 @@ const redeployOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/redeploy",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1492,7 +1495,7 @@ const performMaintenanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/performMaintenance",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1530,6 +1533,9 @@ const runCommandOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.RunCommandResult
     },
     202: {
+      bodyMapper: Mappers.RunCommandResult
+    },
+    204: {
       bodyMapper: Mappers.RunCommandResult
     }
   },

@@ -323,6 +323,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ServerConnectionPolicy
     },
+    204: {
+      bodyMapper: Mappers.ServerConnectionPolicy
+    },
     default: {}
   },
   requestBody: Parameters.parameters88,

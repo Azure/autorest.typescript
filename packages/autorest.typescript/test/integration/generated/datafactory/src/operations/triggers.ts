@@ -757,6 +757,9 @@ const subscribeToEventsOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.TriggerSubscriptionOperationStatus
     },
+    204: {
+      bodyMapper: Mappers.TriggerSubscriptionOperationStatus
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -809,6 +812,9 @@ const unsubscribeFromEventsOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.TriggerSubscriptionOperationStatus
     },
+    204: {
+      bodyMapper: Mappers.TriggerSubscriptionOperationStatus
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -832,6 +838,7 @@ const startOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -855,6 +862,7 @@ const stopOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

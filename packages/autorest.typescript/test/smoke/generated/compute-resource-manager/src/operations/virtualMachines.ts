@@ -1908,6 +1908,9 @@ const captureOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.VirtualMachineCaptureResult
+    },
+    204: {
+      bodyMapper: Mappers.VirtualMachineCaptureResult
     }
   },
   requestBody: Parameters.parameters10,
@@ -1934,6 +1937,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachine
     },
     202: {
+      bodyMapper: Mappers.VirtualMachine
+    },
+    204: {
       bodyMapper: Mappers.VirtualMachine
     }
   },
@@ -1962,6 +1968,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.VirtualMachine
+    },
+    204: {
+      bodyMapper: Mappers.VirtualMachine
     }
   },
   requestBody: Parameters.parameters12,
@@ -1980,7 +1989,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion, Parameters.forceDeletion],
   urlParameters: [
     Parameters.$host,
@@ -2032,7 +2041,7 @@ const convertToManagedDisksOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/convertToManagedDisks",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -2046,7 +2055,7 @@ const deallocateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/deallocate",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion, Parameters.hibernate],
   urlParameters: [
     Parameters.$host,
@@ -2125,7 +2134,7 @@ const powerOffOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/powerOff",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion, Parameters.skipShutdown],
   urlParameters: [
     Parameters.$host,
@@ -2143,6 +2152,7 @@ const reapplyOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2161,7 +2171,7 @@ const restartOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/restart",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -2175,7 +2185,7 @@ const startOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/start",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -2189,7 +2199,7 @@ const redeployOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/redeploy",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -2203,7 +2213,7 @@ const reimageOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/reimage",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   requestBody: Parameters.parameters13,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -2245,7 +2255,7 @@ const performMaintenanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/performMaintenance",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -2283,6 +2293,9 @@ const assessPatchesOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VirtualMachineAssessPatchesResult
     },
+    204: {
+      bodyMapper: Mappers.VirtualMachineAssessPatchesResult
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2309,6 +2322,9 @@ const installPatchesOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineInstallPatchesResult
     },
     202: {
+      bodyMapper: Mappers.VirtualMachineInstallPatchesResult
+    },
+    204: {
       bodyMapper: Mappers.VirtualMachineInstallPatchesResult
     },
     default: {
@@ -2339,6 +2355,9 @@ const runCommandOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.RunCommandResult
     },
     202: {
+      bodyMapper: Mappers.RunCommandResult
+    },
+    204: {
       bodyMapper: Mappers.RunCommandResult
     }
   },

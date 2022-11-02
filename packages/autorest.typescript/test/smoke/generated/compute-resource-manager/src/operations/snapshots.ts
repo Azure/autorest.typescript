@@ -729,6 +729,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.Snapshot
+    },
+    204: {
+      bodyMapper: Mappers.Snapshot
     }
   },
   requestBody: Parameters.snapshot,
@@ -755,6 +758,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Snapshot
     },
     202: {
+      bodyMapper: Mappers.Snapshot
+    },
+    204: {
       bodyMapper: Mappers.Snapshot
     }
   },
@@ -793,7 +799,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/snapshots/{snapshotName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -847,6 +853,9 @@ const grantAccessOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.AccessUri
+    },
+    204: {
+      bodyMapper: Mappers.AccessUri
     }
   },
   requestBody: Parameters.grantAccessData,
@@ -865,7 +874,7 @@ const revokeAccessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/snapshots/{snapshotName}/endGetAccess",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,

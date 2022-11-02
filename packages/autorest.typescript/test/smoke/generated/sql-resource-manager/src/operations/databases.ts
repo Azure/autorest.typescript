@@ -1642,6 +1642,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Database
     },
+    204: {
+      bodyMapper: Mappers.Database
+    },
     default: {}
   },
   requestBody: Parameters.parameters3,
@@ -1661,7 +1664,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -1684,6 +1687,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Database
     },
     202: {
+      bodyMapper: Mappers.Database
+    },
+    204: {
       bodyMapper: Mappers.Database
     },
     default: {}
@@ -1726,7 +1732,7 @@ const failoverOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/failover",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1, Parameters.replicaType],
   urlParameters: [
     Parameters.$host,
@@ -1771,6 +1777,9 @@ const pauseOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Database
     },
+    204: {
+      bodyMapper: Mappers.Database
+    },
     default: {}
   },
   queryParameters: [Parameters.apiVersion1],
@@ -1798,6 +1807,9 @@ const resumeOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Database
     },
+    204: {
+      bodyMapper: Mappers.Database
+    },
     default: {}
   },
   queryParameters: [Parameters.apiVersion1],
@@ -1815,7 +1827,7 @@ const upgradeDataWarehouseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/upgradeDataWarehouse",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -1858,6 +1870,9 @@ const importOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ImportExportOperationResult
     },
+    204: {
+      bodyMapper: Mappers.ImportExportOperationResult
+    },
     default: {}
   },
   requestBody: Parameters.parameters6,
@@ -1885,6 +1900,9 @@ const exportOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ImportExportOperationResult
     },
     202: {
+      bodyMapper: Mappers.ImportExportOperationResult
+    },
+    204: {
       bodyMapper: Mappers.ImportExportOperationResult
     },
     default: {}

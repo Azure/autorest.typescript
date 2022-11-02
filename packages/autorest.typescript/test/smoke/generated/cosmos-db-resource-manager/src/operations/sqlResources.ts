@@ -3176,6 +3176,9 @@ const createUpdateSqlDatabaseOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.SqlDatabaseGetResults
+    },
+    204: {
+      bodyMapper: Mappers.SqlDatabaseGetResults
     }
   },
   requestBody: Parameters.createUpdateSqlDatabaseParameters,
@@ -3195,7 +3198,7 @@ const deleteSqlDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -3239,6 +3242,9 @@ const updateSqlDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -3268,6 +3274,9 @@ const migrateSqlDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -3295,6 +3304,9 @@ const migrateSqlDatabaseToManualThroughputOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {
@@ -3366,6 +3378,9 @@ const createUpdateSqlContainerOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.SqlContainerGetResults
+    },
+    204: {
+      bodyMapper: Mappers.SqlContainerGetResults
     }
   },
   requestBody: Parameters.createUpdateSqlContainerParameters,
@@ -3386,7 +3401,7 @@ const deleteSqlContainerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -3432,6 +3447,9 @@ const updateSqlContainerThroughputOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -3462,6 +3480,9 @@ const migrateSqlContainerToAutoscaleOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -3490,6 +3511,9 @@ const migrateSqlContainerToManualThroughputOperationSpec: coreClient.OperationSp
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {
@@ -3567,6 +3591,9 @@ const createUpdateSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.SqlStoredProcedureGetResults
+    },
+    204: {
+      bodyMapper: Mappers.SqlStoredProcedureGetResults
     }
   },
   requestBody: Parameters.createUpdateSqlStoredProcedureParameters,
@@ -3588,7 +3615,7 @@ const deleteSqlStoredProcedureOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/storedProcedures/{storedProcedureName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -3657,6 +3684,9 @@ const createUpdateSqlUserDefinedFunctionOperationSpec: coreClient.OperationSpec 
     },
     202: {
       bodyMapper: Mappers.SqlUserDefinedFunctionGetResults
+    },
+    204: {
+      bodyMapper: Mappers.SqlUserDefinedFunctionGetResults
     }
   },
   requestBody: Parameters.createUpdateSqlUserDefinedFunctionParameters,
@@ -3678,7 +3708,7 @@ const deleteSqlUserDefinedFunctionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/userDefinedFunctions/{userDefinedFunctionName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -3747,6 +3777,9 @@ const createUpdateSqlTriggerOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.SqlTriggerGetResults
+    },
+    204: {
+      bodyMapper: Mappers.SqlTriggerGetResults
     }
   },
   requestBody: Parameters.createUpdateSqlTriggerParameters,
@@ -3768,7 +3801,7 @@ const deleteSqlTriggerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -3818,6 +3851,9 @@ const createUpdateSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.SqlRoleDefinitionGetResults
     },
+    204: {
+      bodyMapper: Mappers.SqlRoleDefinitionGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -3843,6 +3879,7 @@ const deleteSqlRoleDefinitionOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -3917,6 +3954,9 @@ const createUpdateSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.SqlRoleAssignmentGetResults
     },
+    204: {
+      bodyMapper: Mappers.SqlRoleAssignmentGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -3942,6 +3982,7 @@ const deleteSqlRoleAssignmentOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -3991,6 +4032,9 @@ const retrieveContinuousBackupInformationOperationSpec: coreClient.OperationSpec
       bodyMapper: Mappers.BackupInformation
     },
     202: {
+      bodyMapper: Mappers.BackupInformation
+    },
+    204: {
       bodyMapper: Mappers.BackupInformation
     },
     default: {

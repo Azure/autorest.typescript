@@ -1497,6 +1497,9 @@ const createUpdateMongoDBDatabaseOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.MongoDBDatabaseGetResults
+    },
+    204: {
+      bodyMapper: Mappers.MongoDBDatabaseGetResults
     }
   },
   requestBody: Parameters.createUpdateMongoDBDatabaseParameters,
@@ -1516,7 +1519,7 @@ const deleteMongoDBDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1561,6 +1564,9 @@ const updateMongoDBDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1592,6 +1598,9 @@ const migrateMongoDBDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec =
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1619,6 +1628,9 @@ const migrateMongoDBDatabaseToManualThroughputOperationSpec: coreClient.Operatio
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {
@@ -1690,6 +1702,9 @@ const createUpdateMongoDBCollectionOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.MongoDBCollectionGetResults
+    },
+    204: {
+      bodyMapper: Mappers.MongoDBCollectionGetResults
     }
   },
   requestBody: Parameters.createUpdateMongoDBCollectionParameters,
@@ -1710,7 +1725,7 @@ const deleteMongoDBCollectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1756,6 +1771,9 @@ const updateMongoDBCollectionThroughputOperationSpec: coreClient.OperationSpec =
     },
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -1784,6 +1802,9 @@ const migrateMongoDBCollectionToAutoscaleOperationSpec: coreClient.OperationSpec
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {
@@ -1816,6 +1837,9 @@ const migrateMongoDBCollectionToManualThroughputOperationSpec: coreClient.Operat
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1844,6 +1868,9 @@ const retrieveContinuousBackupInformationOperationSpec: coreClient.OperationSpec
       bodyMapper: Mappers.BackupInformation
     },
     202: {
+      bodyMapper: Mappers.BackupInformation
+    },
+    204: {
       bodyMapper: Mappers.BackupInformation
     },
     default: {

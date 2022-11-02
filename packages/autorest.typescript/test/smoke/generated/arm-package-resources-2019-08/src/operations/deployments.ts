@@ -2135,6 +2135,7 @@ const deleteAtScopeOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2178,6 +2179,9 @@ const createOrUpdateAtScopeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DeploymentExtended
     },
     202: {
+      bodyMapper: Mappers.DeploymentExtended
+    },
+    204: {
       bodyMapper: Mappers.DeploymentExtended
     },
     default: {
@@ -2304,6 +2308,7 @@ const deleteAtTenantScopeOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2339,6 +2344,9 @@ const createOrUpdateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DeploymentExtended
     },
     202: {
+      bodyMapper: Mappers.DeploymentExtended
+    },
+    204: {
       bodyMapper: Mappers.DeploymentExtended
     },
     default: {
@@ -2444,6 +2452,7 @@ const deleteAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2489,6 +2498,9 @@ const createOrUpdateAtManagementGroupScopeOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.DeploymentExtended
     },
     202: {
+      bodyMapper: Mappers.DeploymentExtended
+    },
+    204: {
       bodyMapper: Mappers.DeploymentExtended
     },
     default: {
@@ -2618,6 +2630,7 @@ const deleteAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2663,6 +2676,9 @@ const createOrUpdateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.DeploymentExtended
     },
     202: {
+      bodyMapper: Mappers.DeploymentExtended
+    },
+    204: {
       bodyMapper: Mappers.DeploymentExtended
     },
     default: {
@@ -2760,6 +2776,9 @@ const whatIfAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.WhatIfOperationResult
     },
+    204: {
+      bodyMapper: Mappers.WhatIfOperationResult
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2821,6 +2840,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2868,6 +2888,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DeploymentExtended
     },
     202: {
+      bodyMapper: Mappers.DeploymentExtended
+    },
+    204: {
       bodyMapper: Mappers.DeploymentExtended
     },
     default: {
@@ -2967,6 +2990,9 @@ const whatIfOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.WhatIfOperationResult
     },
     202: {
+      bodyMapper: Mappers.WhatIfOperationResult
+    },
+    204: {
       bodyMapper: Mappers.WhatIfOperationResult
     },
     default: {

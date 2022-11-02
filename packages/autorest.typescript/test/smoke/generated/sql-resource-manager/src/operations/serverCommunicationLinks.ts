@@ -315,6 +315,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.ServerCommunicationLink
+    },
+    204: {
+      bodyMapper: Mappers.ServerCommunicationLink
     }
   },
   requestBody: Parameters.parameters11,

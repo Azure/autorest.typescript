@@ -1386,6 +1386,9 @@ const createUpdateCassandraKeyspaceOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.CassandraKeyspaceGetResults
+    },
+    204: {
+      bodyMapper: Mappers.CassandraKeyspaceGetResults
     }
   },
   requestBody: Parameters.createUpdateCassandraKeyspaceParameters,
@@ -1405,7 +1408,7 @@ const deleteCassandraKeyspaceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1449,6 +1452,9 @@ const updateCassandraKeyspaceThroughputOperationSpec: coreClient.OperationSpec =
     },
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -1478,6 +1484,9 @@ const migrateCassandraKeyspaceToAutoscaleOperationSpec: coreClient.OperationSpec
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1505,6 +1514,9 @@ const migrateCassandraKeyspaceToManualThroughputOperationSpec: coreClient.Operat
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {
@@ -1576,6 +1588,9 @@ const createUpdateCassandraTableOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.CassandraTableGetResults
+    },
+    204: {
+      bodyMapper: Mappers.CassandraTableGetResults
     }
   },
   requestBody: Parameters.createUpdateCassandraTableParameters,
@@ -1596,7 +1611,7 @@ const deleteCassandraTableOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/tables/{tableName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1642,6 +1657,9 @@ const updateCassandraTableThroughputOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -1672,6 +1690,9 @@ const migrateCassandraTableToAutoscaleOperationSpec: coreClient.OperationSpec = 
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1700,6 +1721,9 @@ const migrateCassandraTableToManualThroughputOperationSpec: coreClient.Operation
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {

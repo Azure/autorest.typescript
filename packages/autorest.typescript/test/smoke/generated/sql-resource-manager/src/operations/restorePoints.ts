@@ -371,6 +371,9 @@ const createOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.RestorePoint
     },
+    204: {
+      bodyMapper: Mappers.RestorePoint
+    },
     default: {}
   },
   requestBody: Parameters.parameters57,

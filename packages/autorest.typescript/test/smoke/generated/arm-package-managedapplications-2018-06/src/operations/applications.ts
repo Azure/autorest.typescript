@@ -684,6 +684,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -710,6 +711,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Application
     },
     202: {
+      bodyMapper: Mappers.Application
+    },
+    204: {
       bodyMapper: Mappers.Application
     },
     default: {
@@ -814,6 +818,7 @@ const deleteByIdOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -834,6 +839,9 @@ const createOrUpdateByIdOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Application
     },
     202: {
+      bodyMapper: Mappers.Application
+    },
+    204: {
       bodyMapper: Mappers.Application
     },
     default: {

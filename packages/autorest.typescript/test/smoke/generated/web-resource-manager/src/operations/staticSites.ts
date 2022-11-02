@@ -3187,6 +3187,9 @@ const createOrUpdateStaticSiteOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.StaticSiteARMResource
     },
+    204: {
+      bodyMapper: Mappers.StaticSiteARMResource
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3211,6 +3214,7 @@ const deleteStaticSiteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3376,6 +3380,7 @@ const deleteStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3571,6 +3576,9 @@ const registerUserProvidedFunctionAppWithStaticSiteBuildOperationSpec: coreClien
     202: {
       bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
     },
+    204: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3620,6 +3628,7 @@ const createZipDeploymentForStaticSiteBuildOperationSpec: coreClient.OperationSp
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3768,6 +3777,9 @@ const createOrUpdateStaticSiteCustomDomainOperationSpec: coreClient.OperationSpe
     202: {
       bodyMapper: Mappers.StaticSiteCustomDomainOverviewARMResource
     },
+    204: {
+      bodyMapper: Mappers.StaticSiteCustomDomainOverviewARMResource
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3793,6 +3805,7 @@ const deleteStaticSiteCustomDomainOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3816,6 +3829,7 @@ const validateCustomDomainCanBeAddedToStaticSiteOperationSpec: coreClient.Operat
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -3841,6 +3855,7 @@ const detachStaticSiteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -4024,6 +4039,9 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.Operatio
     202: {
       bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
     },
+    204: {
+      bodyMapper: Mappers.RemotePrivateEndpointConnectionARMResource
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -4057,6 +4075,11 @@ const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
       }
     },
     202: {
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
+    },
+    204: {
       bodyMapper: {
         type: { name: "Dictionary", value: { type: { name: "any" } } }
       }
@@ -4179,6 +4202,9 @@ const registerUserProvidedFunctionAppWithStaticSiteOperationSpec: coreClient.Ope
     202: {
       bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
     },
+    204: {
+      bodyMapper: Mappers.StaticSiteUserProvidedFunctionAppARMResource
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -4226,6 +4252,7 @@ const createZipDeploymentForStaticSiteOperationSpec: coreClient.OperationSpec = 
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }

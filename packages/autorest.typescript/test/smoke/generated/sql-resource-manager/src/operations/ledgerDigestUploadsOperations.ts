@@ -465,6 +465,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.LedgerDigestUploads
     },
+    204: {
+      bodyMapper: Mappers.LedgerDigestUploads
+    },
     default: {}
   },
   requestBody: Parameters.parameters78,
@@ -514,6 +517,9 @@ const disableOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.LedgerDigestUploads
     },
     202: {
+      bodyMapper: Mappers.LedgerDigestUploads
+    },
+    204: {
       bodyMapper: Mappers.LedgerDigestUploads
     },
     default: {}

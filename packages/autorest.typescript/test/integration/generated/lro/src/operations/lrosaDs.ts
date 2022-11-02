@@ -2315,6 +2315,9 @@ const putNonRetry400OperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
+    204: {
+      bodyMapper: Mappers.Product
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2338,6 +2341,9 @@ const putNonRetry201Creating400OperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Product
     },
+    204: {
+      bodyMapper: Mappers.Product
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2359,6 +2365,9 @@ const putNonRetry201Creating400InvalidJsonOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.Product
     },
     202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -2387,6 +2396,10 @@ const putAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetry400Headers
     },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetry400Headers
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2410,6 +2423,9 @@ const deleteNonRetry400OperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LrosaDsDeleteNonRetry400Headers
     },
+    204: {
+      headersMapper: Mappers.LrosaDsDeleteNonRetry400Headers
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2429,6 +2445,9 @@ const delete202NonRetry400OperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LrosaDsDelete202NonRetry400Headers
     },
     202: {
+      headersMapper: Mappers.LrosaDsDelete202NonRetry400Headers
+    },
+    204: {
       headersMapper: Mappers.LrosaDsDelete202NonRetry400Headers
     },
     default: {
@@ -2452,6 +2471,9 @@ const deleteAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetry400Headers
     },
+    204: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetry400Headers
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2471,6 +2493,9 @@ const postNonRetry400OperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LrosaDsPostNonRetry400Headers
     },
     202: {
+      headersMapper: Mappers.LrosaDsPostNonRetry400Headers
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPostNonRetry400Headers
     },
     default: {
@@ -2496,6 +2521,9 @@ const post202NonRetry400OperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LrosaDsPost202NonRetry400Headers
     },
+    204: {
+      headersMapper: Mappers.LrosaDsPost202NonRetry400Headers
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2519,6 +2547,9 @@ const postAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LrosaDsPostAsyncRelativeRetry400Headers
     },
+    204: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetry400Headers
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2540,6 +2571,9 @@ const putError201NoProvisioningStatePayloadOperationSpec: coreClient.OperationSp
       bodyMapper: Mappers.Product
     },
     202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -2568,6 +2602,10 @@ const putAsyncRelativeRetryNoStatusOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusHeaders
     },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2591,6 +2629,10 @@ const putAsyncRelativeRetryNoStatusPayloadOperationSpec: coreClient.OperationSpe
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders
     },
     202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryNoStatusPayloadHeaders
     },
@@ -2633,6 +2675,9 @@ const deleteAsyncRelativeRetryNoStatusOperationSpec: coreClient.OperationSpec = 
     202: {
       headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders
     },
+    204: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryNoStatusHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2652,6 +2697,9 @@ const post202NoLocationOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LrosaDsPost202NoLocationHeaders
     },
     202: {
+      headersMapper: Mappers.LrosaDsPost202NoLocationHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPost202NoLocationHeaders
     },
     default: {
@@ -2677,6 +2725,9 @@ const postAsyncRelativeRetryNoPayloadOperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryNoPayloadHeaders
     },
+    204: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryNoPayloadHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2698,6 +2749,9 @@ const put200InvalidJsonOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Product
     },
     202: {
+      bodyMapper: Mappers.Product
+    },
+    204: {
       bodyMapper: Mappers.Product
     },
     default: {
@@ -2723,6 +2777,10 @@ const putAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec 
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders
     },
     202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    204: {
       bodyMapper: Mappers.Product,
       headersMapper: Mappers.LrosaDsPutAsyncRelativeRetryInvalidHeaderHeaders
     },
@@ -2755,6 +2813,11 @@ const putAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.Operation
       headersMapper:
         Mappers.LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders
     },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper:
+        Mappers.LrosaDsPutAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2778,6 +2841,9 @@ const delete202RetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
     202: {
       headersMapper: Mappers.LrosaDsDelete202RetryInvalidHeaderHeaders
     },
+    204: {
+      headersMapper: Mappers.LrosaDsDelete202RetryInvalidHeaderHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2797,6 +2863,9 @@ const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSp
       headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders
     },
     202: {
+      headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidHeaderHeaders
     },
     default: {
@@ -2823,6 +2892,10 @@ const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.Operat
       headersMapper:
         Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
     },
+    204: {
+      headersMapper:
+        Mappers.LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2842,6 +2915,9 @@ const post202RetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.LrosaDsPost202RetryInvalidHeaderHeaders
     },
     202: {
+      headersMapper: Mappers.LrosaDsPost202RetryInvalidHeaderHeaders
+    },
+    204: {
       headersMapper: Mappers.LrosaDsPost202RetryInvalidHeaderHeaders
     },
     default: {
@@ -2867,6 +2943,9 @@ const postAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec
     202: {
       headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders
     },
+    204: {
+      headersMapper: Mappers.LrosaDsPostAsyncRelativeRetryInvalidHeaderHeaders
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -2890,6 +2969,10 @@ const postAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.Operatio
         Mappers.LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders
     },
     202: {
+      headersMapper:
+        Mappers.LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders
+    },
+    204: {
       headersMapper:
         Mappers.LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders
     },

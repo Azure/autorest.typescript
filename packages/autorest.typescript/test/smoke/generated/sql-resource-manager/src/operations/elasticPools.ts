@@ -864,6 +864,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ElasticPool
     },
+    204: {
+      bodyMapper: Mappers.ElasticPool
+    },
     default: {}
   },
   requestBody: Parameters.parameters8,
@@ -883,7 +886,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -908,6 +911,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ElasticPool
     },
+    204: {
+      bodyMapper: Mappers.ElasticPool
+    },
     default: {}
   },
   requestBody: Parameters.parameters9,
@@ -927,7 +933,7 @@ const failoverOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/failover",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,

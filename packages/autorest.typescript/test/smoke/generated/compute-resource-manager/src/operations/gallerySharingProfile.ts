@@ -140,6 +140,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.SharingUpdate
     },
+    204: {
+      bodyMapper: Mappers.SharingUpdate
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }

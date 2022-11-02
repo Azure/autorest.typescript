@@ -413,6 +413,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.PrivateEndpointConnection
     },
+    204: {
+      bodyMapper: Mappers.PrivateEndpointConnection
+    },
     default: {}
   },
   requestBody: Parameters.parameters56,
@@ -432,7 +435,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,

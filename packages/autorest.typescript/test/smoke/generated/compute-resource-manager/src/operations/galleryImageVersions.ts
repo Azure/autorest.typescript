@@ -554,6 +554,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.GalleryImageVersion
     },
+    204: {
+      bodyMapper: Mappers.GalleryImageVersion
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -584,6 +587,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GalleryImageVersion
     },
     202: {
+      bodyMapper: Mappers.GalleryImageVersion
+    },
+    204: {
       bodyMapper: Mappers.GalleryImageVersion
     },
     default: {
@@ -636,6 +642,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

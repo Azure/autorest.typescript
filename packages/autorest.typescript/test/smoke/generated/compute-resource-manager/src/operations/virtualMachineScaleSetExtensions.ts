@@ -487,6 +487,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.VirtualMachineScaleSetExtension
+    },
+    204: {
+      bodyMapper: Mappers.VirtualMachineScaleSetExtension
     }
   },
   requestBody: Parameters.extensionParameters2,
@@ -515,6 +518,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.VirtualMachineScaleSetExtension
+    },
+    204: {
+      bodyMapper: Mappers.VirtualMachineScaleSetExtension
     }
   },
   requestBody: Parameters.extensionParameters3,
@@ -534,7 +540,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions/{vmssExtensionName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

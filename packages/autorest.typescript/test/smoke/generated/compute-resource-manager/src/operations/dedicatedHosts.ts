@@ -482,6 +482,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.DedicatedHost
+    },
+    204: {
+      bodyMapper: Mappers.DedicatedHost
     }
   },
   requestBody: Parameters.parameters6,
@@ -510,6 +513,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.DedicatedHost
+    },
+    204: {
+      bodyMapper: Mappers.DedicatedHost
     }
   },
   requestBody: Parameters.parameters7,
@@ -529,7 +535,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}/hosts/{hostName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

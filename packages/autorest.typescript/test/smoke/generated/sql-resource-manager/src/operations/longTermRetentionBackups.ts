@@ -1594,6 +1594,9 @@ const copyOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.LongTermRetentionBackupOperationResult
     },
+    204: {
+      bodyMapper: Mappers.LongTermRetentionBackupOperationResult
+    },
     default: {}
   },
   requestBody: Parameters.parameters84,
@@ -1622,6 +1625,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.LongTermRetentionBackupOperationResult
     },
     202: {
+      bodyMapper: Mappers.LongTermRetentionBackupOperationResult
+    },
+    204: {
       bodyMapper: Mappers.LongTermRetentionBackupOperationResult
     },
     default: {}
@@ -1666,7 +1672,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
@@ -1764,6 +1770,9 @@ const copyByResourceGroupOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.LongTermRetentionBackupOperationResult
     },
+    204: {
+      bodyMapper: Mappers.LongTermRetentionBackupOperationResult
+    },
     default: {}
   },
   requestBody: Parameters.parameters84,
@@ -1793,6 +1802,9 @@ const updateByResourceGroupOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.LongTermRetentionBackupOperationResult
     },
     202: {
+      bodyMapper: Mappers.LongTermRetentionBackupOperationResult
+    },
+    204: {
       bodyMapper: Mappers.LongTermRetentionBackupOperationResult
     },
     default: {}
@@ -1839,7 +1851,7 @@ const deleteByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,

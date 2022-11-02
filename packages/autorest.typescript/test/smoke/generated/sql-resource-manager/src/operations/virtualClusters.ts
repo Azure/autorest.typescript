@@ -526,7 +526,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
@@ -548,6 +548,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualCluster
     },
     202: {
+      bodyMapper: Mappers.VirtualCluster
+    },
+    204: {
       bodyMapper: Mappers.VirtualCluster
     },
     default: {}

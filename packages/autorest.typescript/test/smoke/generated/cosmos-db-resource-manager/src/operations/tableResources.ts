@@ -700,6 +700,9 @@ const createUpdateTableOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.TableGetResults
+    },
+    204: {
+      bodyMapper: Mappers.TableGetResults
     }
   },
   requestBody: Parameters.createUpdateTableParameters,
@@ -719,7 +722,7 @@ const deleteTableOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -763,6 +766,9 @@ const updateTableThroughputOperationSpec: coreClient.OperationSpec = {
     },
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
     }
   },
   requestBody: Parameters.updateThroughputParameters,
@@ -792,6 +798,9 @@ const migrateTableToAutoscaleOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -819,6 +828,9 @@ const migrateTableToManualThroughputOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults
+    },
+    204: {
       bodyMapper: Mappers.ThroughputSettingsGetResults
     },
     default: {

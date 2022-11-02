@@ -495,6 +495,9 @@ const grantAccessOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.AccessUri
     },
+    204: {
+      bodyMapper: Mappers.AccessUri
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -521,6 +524,7 @@ const revokeAccessOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

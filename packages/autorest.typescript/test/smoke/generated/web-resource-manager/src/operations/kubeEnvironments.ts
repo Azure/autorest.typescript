@@ -514,6 +514,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.KubeEnvironment
     },
+    204: {
+      bodyMapper: Mappers.KubeEnvironment
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }
@@ -538,6 +541,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }

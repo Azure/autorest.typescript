@@ -237,6 +237,9 @@ const pollWithParameterizedEndpointsOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: { type: { name: "String" } }
     },
+    204: {
+      bodyMapper: { type: { name: "String" } }
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -256,6 +259,9 @@ const pollWithConstantParameterizedEndpointsOperationSpec: coreClient.OperationS
       bodyMapper: { type: { name: "String" } }
     },
     202: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    204: {
       bodyMapper: { type: { name: "String" } }
     },
     default: {

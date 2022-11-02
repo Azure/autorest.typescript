@@ -310,6 +310,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ServerBlobAuditingPolicy
     },
+    204: {
+      bodyMapper: Mappers.ServerBlobAuditingPolicy
+    },
     default: {}
   },
   requestBody: Parameters.parameters14,

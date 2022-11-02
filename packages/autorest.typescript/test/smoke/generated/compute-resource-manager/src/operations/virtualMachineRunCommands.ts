@@ -633,6 +633,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VirtualMachineRunCommand
     },
+    204: {
+      bodyMapper: Mappers.VirtualMachineRunCommand
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -664,6 +667,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VirtualMachineRunCommand
     },
+    204: {
+      bodyMapper: Mappers.VirtualMachineRunCommand
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -689,6 +695,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

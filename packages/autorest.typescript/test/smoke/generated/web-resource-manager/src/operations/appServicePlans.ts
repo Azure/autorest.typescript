@@ -1338,6 +1338,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.AppServicePlan
     },
+    204: {
+      bodyMapper: Mappers.AppServicePlan
+    },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
     }

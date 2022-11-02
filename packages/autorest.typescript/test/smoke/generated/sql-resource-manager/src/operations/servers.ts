@@ -689,6 +689,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.Server
     },
+    204: {
+      bodyMapper: Mappers.Server
+    },
     default: {}
   },
   requestBody: Parameters.parameters80,
@@ -707,7 +710,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}",
   httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
@@ -729,6 +732,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Server
     },
     202: {
+      bodyMapper: Mappers.Server
+    },
+    204: {
       bodyMapper: Mappers.Server
     },
     default: {}
@@ -771,6 +777,9 @@ const importDatabaseOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ImportExportOperationResult
     },
     202: {
+      bodyMapper: Mappers.ImportExportOperationResult
+    },
+    204: {
       bodyMapper: Mappers.ImportExportOperationResult
     },
     default: {}

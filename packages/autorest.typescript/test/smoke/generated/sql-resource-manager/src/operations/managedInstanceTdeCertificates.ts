@@ -127,7 +127,7 @@ const createOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/tdeCertificates",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, default: {} },
+  responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   requestBody: Parameters.parameters53,
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [

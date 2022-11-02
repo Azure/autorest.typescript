@@ -807,6 +807,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -833,6 +834,9 @@ const createUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ClusterResource
     },
     202: {
+      bodyMapper: Mappers.ClusterResource
+    },
+    204: {
       bodyMapper: Mappers.ClusterResource
     },
     default: {
@@ -865,6 +869,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ClusterResource
     },
+    204: {
+      bodyMapper: Mappers.ClusterResource
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -895,6 +902,9 @@ const invokeCommandOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.CommandOutput
     },
+    204: {
+      bodyMapper: Mappers.CommandOutput
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -919,6 +929,7 @@ const deallocateOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -941,6 +952,7 @@ const startOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
