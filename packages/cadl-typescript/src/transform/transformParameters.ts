@@ -201,10 +201,13 @@ function transformNormalBody(
     importedModels,
     headers
   );
+  const schema = getSchemaForType(program, bodyType);
   return {
     isPartialBody: false,
     body: [
       {
+        properties: schema.properties,
+        typeName: schema.name,
         name: "body",
         type,
         required: parameters?.bodyParameter?.optional === false,

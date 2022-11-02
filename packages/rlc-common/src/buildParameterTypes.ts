@@ -11,6 +11,7 @@ import {
 import * as path from "path";
 import {
   ImportKind,
+  ObjectSchema,
   ParameterMetadata,
   ParameterMetadatas,
   RLCModel,
@@ -91,6 +92,11 @@ export function buildParameterTypes(model: RLCModel) {
         internalReferences,
         i
       );
+
+      const bodyTypeAlias = buildBodyTypeAlias(parameter);
+      if (bodyTypeAlias) {
+        parametersFile.addTypeAlias(bodyTypeAlias);
+      }
 
       // Add interfaces for body and query parameters
       parametersFile.addInterfaces([
@@ -437,4 +443,52 @@ function buildBodyParametersDefinition(
       }
     ];
   }
+}
+
+export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
+  const bodyParameters = parameters.body;
+  if (
+    !bodyParameters ||
+    !bodyParameters?.body ||
+    !bodyParameters?.body.length
+  ) {
+    return undefined;
+  }
+  const schema = bodyParameters.body[0] as ObjectSchema;
+  const headerParameters = (parameters.parameters || []).filter(
+    (p) => p.type === "header" && p.name === "contentType"
+  );
+  if (!headerParameters.length || headerParameters.length > 1) {
+    return undefined;
+  }
+
+  const contentType = headerParameters[0].param.type;
+  const readOnlyProperties = [];
+  if (schema.properties) {
+    for(const propertyName of Object.keys(schema.properties)) {
+      const prop = schema.properties[propertyName];
+      if (prop?.readOnly) {
+        readOnlyProperties.push(`"${propertyName}"`);
+      }
+    }
+  }
+
+  const description = `${schema.description}`;
+  const typeName = `${schema.typeName}ResourceMergeAndPatch`
+  if (contentType.includes("application/merge-patch+json")) {
+    let type = "";
+    if (readOnlyProperties.length > 0) {
+      type = `Partial<Omit<${schema.typeName}, ${readOnlyProperties.join(" | ")}>>`;
+    } else {
+      type = `Partial<${schema.typeName}>`;
+    }
+    return {
+      // kind: StructureKind.TypeAlias,
+      ...(description && { docs: [{ description }] }),
+      name: `${typeName}`,
+      type,
+      isExported: true
+    };
+  } 
+
 }

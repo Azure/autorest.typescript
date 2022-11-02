@@ -123,7 +123,7 @@ function getPolymorphicTypeAlias(
   }
 
   const description = objectSchema.description;
-  
+
   return {
     kind: StructureKind.TypeAlias,
     ...(description && { docs: [{ description }] }),
@@ -374,11 +374,7 @@ export function getPropertySignature(
 
   const description = property.description;
   const type =
-    ((schemaUsage.includes(SchemaContext.Output) &&
-      property.usage?.includes(SchemaContext.Output)) ||
-      (schemaUsage.includes(SchemaContext.Exception) &&
-        property.usage?.includes(SchemaContext.Exception))) &&
-    property.outputTypeName
+    generateForOutput(schemaUsage, property.usage) && property.outputTypeName
       ? property.outputTypeName
       : property.typeName
       ? property.typeName
@@ -387,38 +383,20 @@ export function getPropertySignature(
     name: propertyName,
     ...(description && { docs: [{ description }] }),
     hasQuestionToken: !property.required,
+    isReadonly: generateForOutput(schemaUsage, property.usage) && property.readOnly,
     type,
     kind: StructureKind.PropertySignature
   };
 }
 
-export function buildBodyTypeAlias(schema: ObjectSchema, contentType: string) {
-  const readOnlyProperties = [];
-  if (schema.properties) {
-    for(const propertyName of Object.keys(schema.properties)) {
-      const prop = schema.properties[propertyName];
-      if (prop?.readOnly) {
-        readOnlyProperties.push(`"${propertyName}"`);
-      }
-    }
-  }
-
-  const description = `${schema.description}`;
-  const typeName = `${schema.name}ResourceMergeAndPatch`
-  if (contentType.endsWith("merge+patch")) {
-    let type = "";
-    if (readOnlyProperties.length > 0) {
-      type = `Partial<Omit<${schema.name}, ${readOnlyProperties.join(" | ")}>>`;
-    } else {
-      type = `Partial<${schema.name}>`;
-    }
-    return {
-      kind: StructureKind.TypeAlias,
-      ...(description && { docs: [{ description }] }),
-      name: `${typeName}`,
-      type,
-      isExported: true
-    };
-  } 
-
+function generateForOutput(
+  schemaUsage: SchemaContext[],
+  propertyUsage?: SchemaContext[]
+) {
+  return (
+    (schemaUsage.includes(SchemaContext.Output) &&
+      propertyUsage?.includes(SchemaContext.Output)) ||
+    (schemaUsage.includes(SchemaContext.Exception) &&
+      propertyUsage?.includes(SchemaContext.Exception))
+  );
 }
