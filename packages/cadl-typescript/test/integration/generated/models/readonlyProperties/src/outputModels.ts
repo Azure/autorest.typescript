@@ -1,25 +1,25 @@
 /** Output model with readonly properties. */
 export interface OutputModelOutput {
   /** Required string, illustrating a readonly reference type property. */
-  requiredReadonlyString: string;
+  readonly requiredReadonlyString: string;
   /** Required int, illustrating a readonly value type property. */
-  requiredReadonlyInt: number;
+  readonly requiredReadonlyInt: number;
   /** Optional string, illustrating a readonly reference type property. */
-  optionalReadonlyString?: string;
+  readonly optionalReadonlyString?: string;
   /** Optional int, illustrating a readonly value type property. */
-  optionalReadonlyInt?: number;
+  readonly optionalReadonlyInt?: number;
   /** Required readonly model. */
-  requiredReadonlyModel: ReadonlyModelOutput;
+  readonly requiredReadonlyModel: ReadonlyModelOutput;
   /** Optional readonly model. */
-  optionalReadonlyModel?: ReadonlyModelOutput;
+  readonly optionalReadonlyModel?: ReadonlyModelOutput;
   /** Required readonly string collection. */
-  requiredReadonlyStringList: string[];
+  readonly requiredReadonlyStringList: string[];
   /** Required readonly int collection. */
-  requiredReadonlyIntList: number[];
+  readonly requiredReadonlyIntList: number[];
   /** Optional readonly string collection. */
-  optionalReadonlyStringList?: string[];
+  readonly optionalReadonlyStringList?: string[];
   /** Optional readonly int collection. */
-  optionalReadonlyIntList?: number[];
+  readonly optionalReadonlyIntList?: number[];
 }
 
 /** Readonly model */
@@ -31,23 +31,23 @@ export interface ReadonlyModelOutput {
 /** Round-trip model with readonly properties. */
 export interface RoundTripModelOutput {
   /** Required string, illustrating a readonly reference type property. */
-  requiredReadonlyString: string;
+  readonly requiredReadonlyString: string;
   /** Required int, illustrating a readonly value type property. */
-  requiredReadonlyInt: number;
+  readonly requiredReadonlyInt: number;
   /** Optional string, illustrating a readonly reference type property. */
-  optionalReadonlyString?: string;
+  readonly optionalReadonlyString?: string;
   /** Optional int, illustrating a readonly value type property. */
-  optionalReadonlyInt?: number;
+  readonly optionalReadonlyInt?: number;
   /** Required readonly model. */
-  requiredReadonlyModel: ReadonlyModelOutput;
+  readonly requiredReadonlyModel: ReadonlyModelOutput;
   /** Optional readonly model. */
-  optionalReadonlyModel?: ReadonlyModelOutput;
+  readonly optionalReadonlyModel?: ReadonlyModelOutput;
   /** Required readonly string collection. */
-  requiredReadonlyStringList: string[];
+  readonly requiredReadonlyStringList: string[];
   /** Required readonly int collection. */
-  requiredReadonlyIntList: number[];
+  readonly requiredReadonlyIntList: number[];
   /** Optional readonly string collection. */
-  optionalReadonlyStringList?: string[];
+  readonly optionalReadonlyStringList?: string[];
   /** Optional readonly int collection. */
-  optionalReadonlyIntList?: number[];
+  readonly optionalReadonlyIntList?: number[];
 }
