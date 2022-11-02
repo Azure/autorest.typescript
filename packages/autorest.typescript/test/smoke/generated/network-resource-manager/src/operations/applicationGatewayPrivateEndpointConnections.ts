@@ -388,6 +388,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -415,6 +416,9 @@ const updateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ApplicationGatewayPrivateEndpointConnection
     },
     202: {
+      bodyMapper: Mappers.ApplicationGatewayPrivateEndpointConnection
+    },
+    204: {
       bodyMapper: Mappers.ApplicationGatewayPrivateEndpointConnection
     },
     default: {

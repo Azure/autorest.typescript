@@ -1069,6 +1069,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
     },
+    204: {
+      bodyMapper: Mappers.VirtualNetworkGatewayConnection
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1115,6 +1118,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1141,6 +1145,9 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
     },
     202: {
+      bodyMapper: Mappers.VirtualNetworkGatewayConnection
+    },
+    204: {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
     },
     default: {
@@ -1171,6 +1178,9 @@ const setSharedKeyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ConnectionSharedKey
     },
     202: {
+      bodyMapper: Mappers.ConnectionSharedKey
+    },
+    204: {
       bodyMapper: Mappers.ConnectionSharedKey
     },
     default: {
@@ -1246,6 +1256,9 @@ const resetSharedKeyOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ConnectionResetSharedKey
     },
+    204: {
+      bodyMapper: Mappers.ConnectionResetSharedKey
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1274,6 +1287,9 @@ const startPacketCaptureOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     },
     202: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    204: {
       bodyMapper: { type: { name: "String" } }
     },
     default: {
@@ -1306,6 +1322,9 @@ const stopPacketCaptureOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: { type: { name: "String" } }
     },
+    204: {
+      bodyMapper: { type: { name: "String" } }
+    },
     default: {
       bodyMapper: Mappers.ErrorModel
     }
@@ -1336,6 +1355,9 @@ const getIkeSasOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: { type: { name: "String" } }
     },
+    204: {
+      bodyMapper: { type: { name: "String" } }
+    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -1358,6 +1380,7 @@ const resetConnectionOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }

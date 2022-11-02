@@ -387,6 +387,9 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.MhsmPrivateEndpointConnection
     },
+    204: {
+      bodyMapper: Mappers.MhsmPrivateEndpointConnection
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }

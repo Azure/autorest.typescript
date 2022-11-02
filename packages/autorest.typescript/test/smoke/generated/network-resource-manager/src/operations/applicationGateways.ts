@@ -990,6 +990,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1038,6 +1039,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ApplicationGateway
     },
     202: {
+      bodyMapper: Mappers.ApplicationGateway
+    },
+    204: {
       bodyMapper: Mappers.ApplicationGateway
     },
     default: {
@@ -1126,6 +1130,7 @@ const startOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1148,6 +1153,7 @@ const stopOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1176,6 +1182,9 @@ const backendHealthOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ApplicationGatewayBackendHealth
     },
+    204: {
+      bodyMapper: Mappers.ApplicationGatewayBackendHealth
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -1202,6 +1211,9 @@ const backendHealthOnDemandOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ApplicationGatewayBackendHealthOnDemand
     },
     202: {
+      bodyMapper: Mappers.ApplicationGatewayBackendHealthOnDemand
+    },
+    204: {
       bodyMapper: Mappers.ApplicationGatewayBackendHealthOnDemand
     },
     default: {

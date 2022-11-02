@@ -385,6 +385,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -435,6 +436,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualApplianceSite
     },
     202: {
+      bodyMapper: Mappers.VirtualApplianceSite
+    },
+    204: {
       bodyMapper: Mappers.VirtualApplianceSite
     },
     default: {

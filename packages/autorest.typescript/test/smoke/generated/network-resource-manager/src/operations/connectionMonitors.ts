@@ -649,6 +649,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ConnectionMonitorResult
     },
+    204: {
+      bodyMapper: Mappers.ConnectionMonitorResult
+    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -697,6 +700,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -745,6 +749,7 @@ const stopOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -768,6 +773,7 @@ const startOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -795,6 +801,9 @@ const queryOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ConnectionMonitorQueryResult
     },
     202: {
+      bodyMapper: Mappers.ConnectionMonitorQueryResult
+    },
+    204: {
       bodyMapper: Mappers.ConnectionMonitorQueryResult
     },
     default: {

@@ -530,6 +530,9 @@ const createOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.PacketCaptureResult
     },
+    204: {
+      bodyMapper: Mappers.PacketCaptureResult
+    },
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -578,6 +581,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -601,6 +605,7 @@ const stopOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.ErrorResponse
     }
@@ -628,6 +633,9 @@ const getStatusOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.PacketCaptureQueryStatusResult
     },
     202: {
+      bodyMapper: Mappers.PacketCaptureQueryStatusResult
+    },
+    204: {
       bodyMapper: Mappers.PacketCaptureQueryStatusResult
     },
     default: {

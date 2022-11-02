@@ -377,6 +377,9 @@ const listLearnedRoutesOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.PeerRouteList
     },
+    204: {
+      bodyMapper: Mappers.PeerRouteList
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -404,6 +407,9 @@ const listAdvertisedRoutesOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.PeerRouteList
     },
     202: {
+      bodyMapper: Mappers.PeerRouteList
+    },
+    204: {
       bodyMapper: Mappers.PeerRouteList
     },
     default: {

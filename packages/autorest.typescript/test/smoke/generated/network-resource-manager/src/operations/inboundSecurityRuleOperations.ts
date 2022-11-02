@@ -155,6 +155,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.InboundSecurityRule
     },
+    204: {
+      bodyMapper: Mappers.InboundSecurityRule
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }

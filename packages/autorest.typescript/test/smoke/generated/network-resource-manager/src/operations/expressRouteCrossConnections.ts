@@ -763,6 +763,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ExpressRouteCrossConnection
     },
+    204: {
+      bodyMapper: Mappers.ExpressRouteCrossConnection
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -817,6 +820,9 @@ const listArpTableOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.ExpressRouteCircuitsArpTableListResult
     },
+    204: {
+      bodyMapper: Mappers.ExpressRouteCircuitsArpTableListResult
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -850,6 +856,10 @@ const listRoutesTableSummaryOperationSpec: coreClient.OperationSpec = {
       bodyMapper:
         Mappers.ExpressRouteCrossConnectionsRoutesTableSummaryListResult
     },
+    204: {
+      bodyMapper:
+        Mappers.ExpressRouteCrossConnectionsRoutesTableSummaryListResult
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -878,6 +888,9 @@ const listRoutesTableOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ExpressRouteCircuitsRoutesTableListResult
     },
     202: {
+      bodyMapper: Mappers.ExpressRouteCircuitsRoutesTableListResult
+    },
+    204: {
       bodyMapper: Mappers.ExpressRouteCircuitsRoutesTableListResult
     },
     default: {

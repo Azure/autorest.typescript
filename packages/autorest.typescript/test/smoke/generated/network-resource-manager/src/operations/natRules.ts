@@ -414,6 +414,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.VpnGatewayNatRule
     },
+    204: {
+      bodyMapper: Mappers.VpnGatewayNatRule
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -439,6 +442,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }

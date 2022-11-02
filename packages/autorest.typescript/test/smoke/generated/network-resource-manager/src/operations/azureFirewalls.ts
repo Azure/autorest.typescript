@@ -518,6 +518,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -568,6 +569,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     202: {
       bodyMapper: Mappers.AzureFirewall
     },
+    204: {
+      bodyMapper: Mappers.AzureFirewall
+    },
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -596,6 +600,9 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.AzureFirewall
     },
     202: {
+      bodyMapper: Mappers.AzureFirewall
+    },
+    204: {
       bodyMapper: Mappers.AzureFirewall
     },
     default: {

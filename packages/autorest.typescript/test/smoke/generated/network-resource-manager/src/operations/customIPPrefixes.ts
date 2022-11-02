@@ -444,6 +444,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -492,6 +493,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CustomIpPrefix
     },
     202: {
+      bodyMapper: Mappers.CustomIpPrefix
+    },
+    204: {
       bodyMapper: Mappers.CustomIpPrefix
     },
     default: {

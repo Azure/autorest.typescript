@@ -398,6 +398,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     201: {},
     202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
@@ -448,6 +449,9 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ServiceEndpointPolicyDefinition
     },
     202: {
+      bodyMapper: Mappers.ServiceEndpointPolicyDefinition
+    },
+    204: {
       bodyMapper: Mappers.ServiceEndpointPolicyDefinition
     },
     default: {
