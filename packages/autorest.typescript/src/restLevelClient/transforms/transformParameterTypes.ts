@@ -228,9 +228,10 @@ function getParameterSchema(
   }
   if (
     contentTypeParam.length === 1 &&
-    contentTypeParam[0].type.includes("application/merge-patch+json")
+    contentTypeParam[0].param.type.includes("application/merge-patch+json")
   ) {
     const schema = transformObject(parameter.schema as M4ObjectSchema);
+    type = `${type}ResourceMergeAndPatch`;
 
     return {
       name: propertyName,

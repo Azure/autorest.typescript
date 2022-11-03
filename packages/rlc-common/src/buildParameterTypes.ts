@@ -468,7 +468,11 @@ export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
     for(const propertyName of Object.keys(schema.properties)) {
       const prop = schema.properties[propertyName];
       if (prop?.readOnly) {
-        readOnlyProperties.push(`"${propertyName}"`);
+        if (propertyName.startsWith('"') && propertyName.endsWith('"')) {
+          readOnlyProperties.push(`${propertyName}`)
+        } else {
+          readOnlyProperties.push(`"${propertyName}"`);
+        }
       }
     }
   }
