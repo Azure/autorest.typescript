@@ -27,7 +27,7 @@ export class MediaServicesClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? ""
+      endpoint: options.endpoint ?? options.baseUri ?? ""
     };
     super(optionsWithDefaults);
   }

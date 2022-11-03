@@ -51,7 +51,7 @@ export class SearchClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri:
+      endpoint:
         options.endpoint ??
         options.baseUri ??
         "{endpoint}/indexes('{indexName}')"

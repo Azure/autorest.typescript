@@ -13,6 +13,8 @@ export interface Product {
   string?: string;
   /** The OS of agent machine */
   custom?: OS;
+  /** Product Sku */
+  sku?: SKU;
 }
 
 /** Known values of {@link Enum0} that the service accepts. */
@@ -50,6 +52,24 @@ export enum KnownOS {
  * **Linux**
  */
 export type OS = string;
+
+/** Known values of {@link Sku} that the service accepts. */
+export enum KnownSku {
+  /** Free */
+  Free = "Free",
+  /** Standard */
+  Standard = "Standard"
+}
+
+/**
+ * Defines values for Sku. \
+ * {@link KnownSku} can be used interchangeably with Sku,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Free** \
+ * **Standard**
+ */
+export type SKU = string;
 
 /** Optional parameters. */
 export interface PostValueOptionalParams extends coreClient.OperationOptions {

@@ -35,7 +35,7 @@ export class NoOperationsClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? ""
+      endpoint: options.endpoint ?? options.baseUri ?? ""
     };
     super(optionsWithDefaults);
   }

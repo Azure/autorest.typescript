@@ -39,7 +39,7 @@ export class StorageFileShareClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? "{url}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{url}"
     };
     super(optionsWithDefaults);
     // Parameter assignments
