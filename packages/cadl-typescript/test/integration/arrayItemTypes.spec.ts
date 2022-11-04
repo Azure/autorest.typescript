@@ -61,7 +61,7 @@ describe("Array Item-Types Client", () => {
     it(`should get a ${params.type} value`, async () => {
       try {
         const result = await client
-          .path(`/array/item-types/${params.type}` as any)
+          .path(`/arrays/item-types/${params.type}` as any)
           .get();
         assert.strictEqual(result.status, "200");
         console.log("debug", result.body, params.defaultValue);
@@ -80,7 +80,7 @@ describe("Array Item-Types Client", () => {
           property = params.defaultValue;
         }
         const result = await client
-          .path(`/array/item-types/${params.type}` as any)
+          .path(`/arrays/item-types/${params.type}` as any)
           .put({
             body: property
           });
