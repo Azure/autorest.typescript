@@ -27,12 +27,12 @@ export interface InputAndOutput {
 }
 
 export interface Routes {
-  /** Resource for '/models/usages/input' has methods for the following verbs: post */
-  (path: "/models/usages/input"): Input;
-  /** Resource for '/models/usages/output' has methods for the following verbs: get */
-  (path: "/models/usages/output"): Output;
-  /** Resource for '/models/usages/input-output' has methods for the following verbs: post */
-  (path: "/models/usages/input-output"): InputAndOutput;
+  /** Resource for '/models/usage/input' has methods for the following verbs: post */
+  (path: "/models/usage/input"): Input;
+  /** Resource for '/models/usage/output' has methods for the following verbs: get */
+  (path: "/models/usage/output"): Output;
+  /** Resource for '/models/usage/input-output' has methods for the following verbs: post */
+  (path: "/models/usage/input-output"): InputAndOutput;
 }
 
 export type ModelsUsageClient = Client & {

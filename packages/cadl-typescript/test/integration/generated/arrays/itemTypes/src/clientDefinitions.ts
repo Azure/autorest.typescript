@@ -212,24 +212,24 @@ export interface ModelValueGet {
 }
 
 export interface Routes {
-  /** Resource for '/array/item-types/int32' has methods for the following verbs: get, put */
-  (path: "/array/item-types/int32"): Int32ValueGet;
-  /** Resource for '/array/item-types/int64' has methods for the following verbs: get, put */
-  (path: "/array/item-types/int64"): Int64ValueGet;
-  /** Resource for '/array/item-types/boolean' has methods for the following verbs: get, put */
-  (path: "/array/item-types/boolean"): BooleanValueGet;
-  /** Resource for '/array/item-types/string' has methods for the following verbs: get, put */
-  (path: "/array/item-types/string"): StringValueGet;
-  /** Resource for '/array/item-types/float32' has methods for the following verbs: get, put */
-  (path: "/array/item-types/float32"): Float32ValueGet;
-  /** Resource for '/array/item-types/datetime' has methods for the following verbs: get, put */
-  (path: "/array/item-types/datetime"): DatetimeValueGet;
-  /** Resource for '/array/item-types/duration' has methods for the following verbs: get, put */
-  (path: "/array/item-types/duration"): DurationValueGet;
-  /** Resource for '/array/item-types/unknown' has methods for the following verbs: get, put */
-  (path: "/array/item-types/unknown"): UnknownValueGet;
-  /** Resource for '/array/item-types/model' has methods for the following verbs: get, put */
-  (path: "/array/item-types/model"): ModelValueGet;
+  /** Resource for '/arrays/item-types/int32' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/int32"): Int32ValueGet;
+  /** Resource for '/arrays/item-types/int64' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/int64"): Int64ValueGet;
+  /** Resource for '/arrays/item-types/boolean' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/boolean"): BooleanValueGet;
+  /** Resource for '/arrays/item-types/string' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/string"): StringValueGet;
+  /** Resource for '/arrays/item-types/float32' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/float32"): Float32ValueGet;
+  /** Resource for '/arrays/item-types/datetime' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/datetime"): DatetimeValueGet;
+  /** Resource for '/arrays/item-types/duration' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/duration"): DurationValueGet;
+  /** Resource for '/arrays/item-types/unknown' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/unknown"): UnknownValueGet;
+  /** Resource for '/arrays/item-types/model' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/model"): ModelValueGet;
 }
 
 export type ArrayItemTypesClient = Client & {
