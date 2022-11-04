@@ -14,7 +14,7 @@ describe.skip("ModelsUsageClient Rest Client", () => {
 
   it("should post input model correctly", async () => {
     try {
-      const result = await client.path("/models/usages/input").post({
+      const result = await client.path("/models/usage/input").post({
         body
       });
       assert.strictEqual(result.status, "204");
@@ -25,7 +25,7 @@ describe.skip("ModelsUsageClient Rest Client", () => {
 
   it("should get output model correctly", async () => {
     try {
-      const result = await client.path("/models/usages/output").get();
+      const result = await client.path("/models/usage/output").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, body);
     } catch (err) {
@@ -36,7 +36,7 @@ describe.skip("ModelsUsageClient Rest Client", () => {
   it("should get output model correctly", async () => {
     try {
       const result = await client
-        .path("/models/usages/input-output")
+        .path("/models/usage/input-output")
         .post({ body });
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, body);
