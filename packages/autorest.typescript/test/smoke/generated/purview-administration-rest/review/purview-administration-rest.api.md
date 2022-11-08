@@ -231,7 +231,6 @@ interface AttributeMatcherOutput {
 interface AttributeRule {
     dnfCondition?: Array<Array<AttributeMatcher>>;
     id?: string;
-    kind?: "decisionrule" | "attributerule";
     name?: string;
 }
 
@@ -276,12 +275,9 @@ interface CloudConnectorsOutput {
 
 // @public
 interface Collection {
-    collectionProvisioningState?: "Unknown" | "Creating" | "Moving" | "Deleting" | "Failed" | "Succeeded";
     description?: string;
     friendlyName?: string;
-    name?: string;
     parentCollection?: CollectionReference_2;
-    systemData?: CollectionSystemData;
 }
 
 // @public
@@ -578,7 +574,6 @@ interface DataPlaneAccountUpdateParameters {
 interface DecisionRule {
     dnfCondition?: Array<Array<AttributeMatcher>>;
     effect?: "Deny" | "Permit";
-    kind?: "decisionrule" | "attributerule";
 }
 
 // @public
@@ -1353,7 +1348,6 @@ interface RegexReplacerOutput {
 // @public
 interface ResourceSetRuleConfig {
     advancedResourceSet?: AdvancedResourceSet;
-    name?: string;
     pathPatternConfig?: PathPatternExtractorConfig;
 }
 
@@ -1611,12 +1605,6 @@ interface ScopedRuleOutput {
 
 // @public
 interface SystemData {
-    createdAt?: Date | string;
-    createdBy?: string;
-    createdByType?: "User" | "Application" | "ManagedIdentity" | "Key";
-    lastModifiedAt?: Date | string;
-    lastModifiedBy?: string;
-    lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
 }
 
 // @public

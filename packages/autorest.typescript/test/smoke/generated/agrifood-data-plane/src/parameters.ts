@@ -158,17 +158,7 @@ export type ApplicationDataListParameters = ApplicationDataListQueryParam &
   RequestParameters;
 export type ApplicationDataGetParameters = RequestParameters;
 /** Application data resource payload to create or update. */
-export type ApplicationDataResourceMergeAndPatch = Partial<
-  Omit<
-    ApplicationData,
-    | "attachmentsLink"
-    | "farmerId"
-    | "id"
-    | "eTag"
-    | "createdDateTime"
-    | "modifiedDateTime"
-  >
->;
+export type ApplicationDataResourceMergeAndPatch = Partial<ApplicationData>;
 
 export interface ApplicationDataCreateOrUpdateBodyParam {
   /** Application data resource payload to create or update. */
@@ -415,18 +405,7 @@ export type BoundariesCreateCascadeDeleteJobParameters = BoundariesCreateCascade
   RequestParameters;
 export type BoundariesGetParameters = RequestParameters;
 /** Boundary resource payload to create or update. */
-export type BoundaryResourceMergeAndPatch = Partial<
-  Omit<
-    Boundary,
-    | "farmerId"
-    | "acreage"
-    | "parentType"
-    | "id"
-    | "eTag"
-    | "createdDateTime"
-    | "modifiedDateTime"
-  >
->;
+export type BoundaryResourceMergeAndPatch = Partial<Boundary>;
 
 export interface BoundariesCreateOrUpdateBodyParam {
   /** Boundary resource payload to create or update. */
@@ -495,9 +474,7 @@ export interface CropsListQueryParam {
 export type CropsListParameters = CropsListQueryParam & RequestParameters;
 export type CropsGetParameters = RequestParameters;
 /** Crop resource payload to create or update. */
-export type CropResourceMergeAndPatch = Partial<
-  Omit<Crop, "id" | "eTag" | "createdDateTime" | "modifiedDateTime">
->;
+export type CropResourceMergeAndPatch = Partial<Crop>;
 
 export interface CropsCreateOrUpdateBodyParam {
   /** Crop resource payload to create or update. */
@@ -599,12 +576,7 @@ export type CropVarietiesListParameters = CropVarietiesListQueryParam &
   RequestParameters;
 export type CropVarietiesGetParameters = RequestParameters;
 /** Crop variety resource payload to create or update. */
-export type CropVarietyResourceMergeAndPatch = Partial<
-  Omit<
-    CropVariety,
-    "cropId" | "id" | "eTag" | "createdDateTime" | "modifiedDateTime"
-  >
->;
+export type CropVarietyResourceMergeAndPatch = Partial<CropVariety>;
 
 export interface CropVarietiesCreateOrUpdateBodyParam {
   /** Crop variety resource payload to create or update. */
@@ -657,9 +629,7 @@ export interface FarmersListQueryParam {
 export type FarmersListParameters = FarmersListQueryParam & RequestParameters;
 export type FarmersGetParameters = RequestParameters;
 /** Farmer resource payload to create or update. */
-export type FarmerResourceMergeAndPatch = Partial<
-  Omit<Farmer, "id" | "eTag" | "createdDateTime" | "modifiedDateTime">
->;
+export type FarmerResourceMergeAndPatch = Partial<Farmer>;
 
 export interface FarmersCreateOrUpdateBodyParam {
   /** Farmer resource payload to create or update. */
@@ -776,12 +746,7 @@ export interface FarmsListQueryParam {
 export type FarmsListParameters = FarmsListQueryParam & RequestParameters;
 export type FarmsGetParameters = RequestParameters;
 /** Farm resource payload to create or update. */
-export type FarmResourceMergeAndPatch = Partial<
-  Omit<
-    Farm,
-    "farmerId" | "id" | "eTag" | "createdDateTime" | "modifiedDateTime"
-  >
->;
+export type FarmResourceMergeAndPatch = Partial<Farm>;
 
 export interface FarmsCreateOrUpdateBodyParam {
   /** Farm resource payload to create or update. */
@@ -889,18 +854,7 @@ export interface FieldsListQueryParam {
 export type FieldsListParameters = FieldsListQueryParam & RequestParameters;
 export type FieldsGetParameters = RequestParameters;
 /** Field resource payload to create or update. */
-export type FieldResourceMergeAndPatch = Partial<
-  Omit<
-    Field,
-    | "farmerId"
-    | "primaryBoundaryId"
-    | "boundaryIds"
-    | "id"
-    | "eTag"
-    | "createdDateTime"
-    | "modifiedDateTime"
-  >
->;
+export type FieldResourceMergeAndPatch = Partial<Field>;
 
 export interface FieldsCreateOrUpdateBodyParam {
   /** Field resource payload to create or update. */
@@ -1097,17 +1051,7 @@ export type HarvestDataListParameters = HarvestDataListQueryParam &
   RequestParameters;
 export type HarvestDataGetParameters = RequestParameters;
 /** Harvest data resource payload to create or update. */
-export type HarvestDataResourceMergeAndPatch = Partial<
-  Omit<
-    HarvestData,
-    | "attachmentsLink"
-    | "farmerId"
-    | "id"
-    | "eTag"
-    | "createdDateTime"
-    | "modifiedDateTime"
-  >
->;
+export type HarvestDataResourceMergeAndPatch = Partial<HarvestData>;
 
 export interface HarvestDataCreateOrUpdateBodyParam {
   /** Harvest data resource payload to create or update. */
@@ -1176,9 +1120,7 @@ export type OAuthProvidersListParameters = OAuthProvidersListQueryParam &
   RequestParameters;
 export type OAuthProvidersGetParameters = RequestParameters;
 /** OauthProvider resource payload to create or update. */
-export type OAuthProviderResourceMergeAndPatch = Partial<
-  Omit<OAuthProvider, "id" | "eTag" | "createdDateTime" | "modifiedDateTime">
->;
+export type OAuthProviderResourceMergeAndPatch = Partial<OAuthProvider>;
 
 export interface OAuthProvidersCreateOrUpdateBodyParam {
   /** OauthProvider resource payload to create or update. */
@@ -1396,17 +1338,7 @@ export type PlantingDataListParameters = PlantingDataListQueryParam &
   RequestParameters;
 export type PlantingDataGetParameters = RequestParameters;
 /** Planting data resource payload to create or update. */
-export type PlantingDataResourceMergeAndPatch = Partial<
-  Omit<
-    PlantingData,
-    | "attachmentsLink"
-    | "farmerId"
-    | "id"
-    | "eTag"
-    | "createdDateTime"
-    | "modifiedDateTime"
-  >
->;
+export type PlantingDataResourceMergeAndPatch = Partial<PlantingData>;
 
 export interface PlantingDataCreateOrUpdateBodyParam {
   /** Planting data resource payload to create or update. */
@@ -1613,18 +1545,7 @@ export type SeasonalFieldsListParameters = SeasonalFieldsListQueryParam &
   RequestParameters;
 export type SeasonalFieldsGetParameters = RequestParameters;
 /** Seasonal field resource payload to create or update. */
-export type SeasonalFieldResourceMergeAndPatch = Partial<
-  Omit<
-    SeasonalField,
-    | "farmerId"
-    | "primaryBoundaryId"
-    | "boundaryIds"
-    | "id"
-    | "eTag"
-    | "createdDateTime"
-    | "modifiedDateTime"
-  >
->;
+export type SeasonalFieldResourceMergeAndPatch = Partial<SeasonalField>;
 
 export interface SeasonalFieldsCreateOrUpdateBodyParam {
   /** Seasonal field resource payload to create or update. */
@@ -1702,9 +1623,7 @@ export interface SeasonsListQueryParam {
 export type SeasonsListParameters = SeasonsListQueryParam & RequestParameters;
 export type SeasonsGetParameters = RequestParameters;
 /** Season resource payload to create or update. */
-export type SeasonResourceMergeAndPatch = Partial<
-  Omit<Season, "id" | "eTag" | "createdDateTime" | "modifiedDateTime">
->;
+export type SeasonResourceMergeAndPatch = Partial<Season>;
 
 export interface SeasonsCreateOrUpdateBodyParam {
   /** Season resource payload to create or update. */
@@ -1854,17 +1773,7 @@ export type TillageDataListParameters = TillageDataListQueryParam &
   RequestParameters;
 export type TillageDataGetParameters = RequestParameters;
 /** Tillage data resource payload to create or update. */
-export type TillageDataResourceMergeAndPatch = Partial<
-  Omit<
-    TillageData,
-    | "attachmentsLink"
-    | "farmerId"
-    | "id"
-    | "eTag"
-    | "createdDateTime"
-    | "modifiedDateTime"
-  >
->;
+export type TillageDataResourceMergeAndPatch = Partial<TillageData>;
 
 export interface TillageDataCreateOrUpdateBodyParam {
   /** Tillage data resource payload to create or update. */

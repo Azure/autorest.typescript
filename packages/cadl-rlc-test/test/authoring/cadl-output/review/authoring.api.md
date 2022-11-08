@@ -482,12 +482,8 @@ export interface PagingOptions<TResponse> {
 
 // @public (undocumented)
 export interface Project {
-    createdDateTime: Date | string;
     description?: string;
     language: string;
-    lastDeployedDateTime: Date | string;
-    lastModifiedDateTime: Date | string;
-    lastTrainedDateTime: Date | string;
     multilingual?: boolean;
     projectKind: string;
     // (undocumented)
@@ -519,7 +515,7 @@ export interface ProjectOutput {
 }
 
 // @public (undocumented)
-export type ProjectResourceMergeAndPatch = Partial<Omit<Project, "createdDateTime" | "lastModifiedDateTime" | "lastTrainedDateTime" | "lastDeployedDateTime">>;
+export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 // @public (undocumented)
 export interface ProjectsCreateOrUpdate {

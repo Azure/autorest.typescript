@@ -480,12 +480,7 @@ export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
   const description = `${schema.description}`;
   const typeName = `${schema.typeName}ResourceMergeAndPatch`
   if (contentType.includes("application/merge-patch+json")) {
-    let type = "";
-    if (readOnlyProperties.length > 0) {
-      type = `Partial<Omit<${schema.typeName}, ${readOnlyProperties.join(" | ")}>>`;
-    } else {
-      type = `Partial<${schema.typeName}>`;
-    }
+    const type = `Partial<${schema.typeName}>`;
     return {
       // kind: StructureKind.TypeAlias,
       ...(description && { docs: [{ description }] }),

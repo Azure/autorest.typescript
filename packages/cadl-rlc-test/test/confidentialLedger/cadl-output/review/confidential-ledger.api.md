@@ -476,10 +476,7 @@ export function isUnexpected(response: ConfidentialLedgerCreateOrUpdateUser200Re
 
 // @public (undocumented)
 export interface LedgerEntry {
-    // (undocumented)
-    collectionId: string;
     contents: string;
-    transactionId: string;
 }
 
 // @public (undocumented)

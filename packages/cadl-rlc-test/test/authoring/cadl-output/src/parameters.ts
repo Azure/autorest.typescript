@@ -1,15 +1,7 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { Project, TrainingJobOptions, SwapDeploymentsOptions } from "./models";
 
-export type ProjectResourceMergeAndPatch = Partial<
-  Omit<
-    Project,
-    | "createdDateTime"
-    | "lastModifiedDateTime"
-    | "lastTrainedDateTime"
-    | "lastDeployedDateTime"
-  >
->;
+export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 export interface ProjectsCreateOrUpdateBodyParam {
   body?: ProjectResourceMergeAndPatch;

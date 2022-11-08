@@ -350,7 +350,11 @@ function getPropertySignatures(
   schemaUsage: SchemaContext[],
   importedModels: Set<string>
 ) {
-  return Object.keys(properties).map((p) =>
+  let validProperties = Object.keys(properties)
+  if (schemaUsage.includes(SchemaContext.Input)) {
+    validProperties = validProperties.filter((p) => { return !properties[p].readOnly})
+  }
+  return validProperties.map((p) =>
     getPropertySignature(
       { ...properties[p], name: p },
       schemaUsage,
