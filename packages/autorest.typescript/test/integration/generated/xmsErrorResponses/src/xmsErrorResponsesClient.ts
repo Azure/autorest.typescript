@@ -39,7 +39,7 @@ export class XmsErrorResponsesClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? "http://localhost"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost"
     };
     super(optionsWithDefaults);
 

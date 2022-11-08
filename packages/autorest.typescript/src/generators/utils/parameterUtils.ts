@@ -313,7 +313,13 @@ function sortOperationParameters(
   ]
     // Only parameters that are implemented on the method should be considered.
     .filter(param => param.implementation === ImplementationLocation.Method)
-    .map(param => getLanguageMetadata(param.language).name);
+    .map(param =>
+      normalizeName(
+        getLanguageMetadata(param.language).name,
+        NameType.Parameter,
+        true
+      )
+    );
 
   const orderedParameterDeclarations: typeof parameterDeclarations = [];
   for (const parameterName of expectedParameterOrdering) {

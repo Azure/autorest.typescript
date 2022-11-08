@@ -523,11 +523,15 @@ function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
   );
 }
 
-function getCredentialScopesValue(credentialScopes?: string | string[]) {
+function getCredentialScopesValue(
+  credentialScopes?: string | string[],
+  endpoint?: string
+) {
   if (Array.isArray(credentialScopes)) {
     if (
       credentialScopes.length === 1 &&
-      credentialScopes[0] === "user_impersonation"
+      (credentialScopes[0] === "user_impersonation" ||
+        credentialScopes[0] === `${endpoint}/.default`)
     ) {
       return undefined;
     }
@@ -598,7 +602,7 @@ function getTrack2DefaultContent(
     userAgentOptions: {
       userAgentPrefix
     },
-    baseUri: ${getEndpoint(clientDetails.endpoint)}
+    endpoint: ${getEndpoint(clientDetails.endpoint)}
   };
   super(optionsWithDefaults);
   `;
@@ -623,7 +627,7 @@ function getTrack2DefaultContent(
         this.pipeline.addPolicy(
           coreRestPipeline.bearerTokenAuthenticationPolicy({
             credential: credentials,
-            scopes: \`\${optionsWithDefaults.credentialScopes}\`,
+            scopes: optionsWithDefaults.credentialScopes??\`$\{optionsWithDefaults.endpoint}/.default\`,
             challengeCallbacks: {
               authorizeRequestOnChallenge:
                 coreClient.authorizeRequestOnClaimChallenge
@@ -646,7 +650,10 @@ function writeDefaultOptions(
   const { useCoreV2, packageDetails, addCredentials } = getAutorestOptions();
   const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
 
-  const credentialScopesValues = getCredentialScopesValue(credentialScopes);
+  const credentialScopesValues = getCredentialScopesValue(
+    credentialScopes,
+    clientDetails?.endpoint?.endpoint
+  );
   const addScopes = isAddScopes(
     addCredentials,
     credentialScopes,

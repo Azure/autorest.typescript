@@ -329,8 +329,8 @@ export class SyncGroupsImpl implements SyncGroups {
         syncGroupName,
         startTime,
         endTime,
-        continuationToken,
         typeParam,
+        continuationToken,
         options
       );
       continuationToken = result.nextLink;
@@ -1085,8 +1085,8 @@ export class SyncGroupsImpl implements SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param startTime Get logs generated after this time.
    * @param endTime Get logs generated before this time.
-   * @param nextLink The nextLink from the previous successful call to the ListLogs method.
    * @param typeParam The types of logs to retrieve.
+   * @param nextLink The nextLink from the previous successful call to the ListLogs method.
    * @param options The options parameters.
    */
   private _listLogsNext(
@@ -1096,8 +1096,8 @@ export class SyncGroupsImpl implements SyncGroups {
     syncGroupName: string,
     startTime: string,
     endTime: string,
-    nextLink: string,
     typeParam: SyncGroupsType,
+    nextLink: string,
     options?: SyncGroupsListLogsNextOptionalParams
   ): Promise<SyncGroupsListLogsNextResponse> {
     return this.client.sendOperationRequest(
@@ -1108,8 +1108,8 @@ export class SyncGroupsImpl implements SyncGroups {
         syncGroupName,
         startTime,
         endTime,
-        nextLink,
         typeParam,
+        nextLink,
         options
       },
       listLogsNextOperationSpec

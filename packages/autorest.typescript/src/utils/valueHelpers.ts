@@ -132,8 +132,14 @@ export function getParameterAssignment(
     case SchemaType.Duration:
       retValue = `"${rawValue
         ?.toString()
+        .replace(/\\/g, "\\\\")
         .replace(/"/g, '\\"')
-        .replace(/\n/g, "\\n")}"`;
+        .replace(/\n/g, "\\n")
+        .replace(/\r/g, "\\r")
+        .replace(/\t/g, "\\t")
+        .replace(/\f/g, "\\f")
+        .replace(/>/g, "\>")
+        .replace(/</g, "\<")}"`;
       break;
     case SchemaType.Boolean:
       (retValue = rawValue), toString();

@@ -59,7 +59,7 @@ export class DataSearchClient extends coreHttpCompat.ExtendedServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri:
+      endpoint:
         options.endpoint ??
         options.baseUri ??
         "{endpoint}/indexes('{indexName}')"
