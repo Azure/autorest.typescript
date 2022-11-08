@@ -465,7 +465,6 @@ function getSchemaForModel(
     if (description) {
       newPropSchema["description"] = description;
     }
-    modelSchema.properties[name] = newPropSchema;
 
     if (prop.default) {
       // modelSchema.properties[name]['default'] = getDefaultValue(program, prop.default);
@@ -479,7 +478,7 @@ function getSchemaForModel(
         if (vis.length > 1) {
           mutability.push(SchemaContext.Output);
         } else {
-          // modelSchema.properties[name]['readOnly'] = true;
+          newPropSchema['readOnly'] = true;
         }
       }
       if (vis.includes("write") || vis.includes("create")) {
@@ -490,6 +489,7 @@ function getSchemaForModel(
         // modelSchema.properties[name]["usage"] = mutability;
       }
     }
+    modelSchema.properties[name] = newPropSchema;
   }
 
   // Special case: if a model type extends a single *templated* base type and

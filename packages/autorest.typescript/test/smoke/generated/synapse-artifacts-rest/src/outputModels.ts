@@ -44,23 +44,23 @@ export interface ErrorContractOutput {
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.) */
 export interface ErrorResponseOutput {
   /** The error code. */
-  code?: string;
+  readonly code?: string;
   /** The error message. */
-  message?: string;
+  readonly message?: string;
   /** The error target. */
-  target?: string;
+  readonly target?: string;
   /** The error details. */
-  details?: Array<ErrorResponseOutput>;
+  readonly details?: Array<ErrorResponseOutput>;
   /** The error additional info. */
-  additionalInfo?: Array<ErrorAdditionalInfoOutput>;
+  readonly additionalInfo?: Array<ErrorAdditionalInfoOutput>;
 }
 
 /** The resource management error additional info. */
 export interface ErrorAdditionalInfoOutput {
   /** The additional info type. */
-  type?: string;
+  readonly type?: string;
   /** The additional info. */
-  info?: any;
+  readonly info?: any;
 }
 
 export interface MetastoreRegistrationResponseOutput {
@@ -116,17 +116,17 @@ export interface SubResourceOutput extends AzureEntityResourceOutput {}
 /** The resource model definition for an Azure Resource Manager resource with an etag. */
 export interface AzureEntityResourceOutput extends ResourceOutput {
   /** Resource Etag. */
-  etag?: string;
+  readonly etag?: string;
 }
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface ResourceOutput {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
+  readonly id?: string;
   /** The name of the resource */
-  name?: string;
+  readonly name?: string;
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
+  readonly type?: string;
 }
 
 /** The object that defines the structure of an Azure Synapse error response. */
@@ -205,7 +205,7 @@ export interface BigDataPoolResourcePropertiesOutput {
   /** The kind of nodes that the Big Data pool provides. */
   nodeSizeFamily?: "None" | "MemoryOptimized";
   /** The time when the Big Data pool was updated successfully. */
-  lastSucceededTimestamp?: string;
+  readonly lastSucceededTimestamp?: string;
 }
 
 /** Auto-scaling properties of a Big Data pool powered by Apache Spark */
@@ -235,7 +235,7 @@ export interface DynamicExecutorAllocationOutput {
 /** Library requirements for a Big Data pool powered by Apache Spark */
 export interface LibraryRequirementsOutput {
   /** The last update time of the library requirements file. */
-  time?: string;
+  readonly time?: string;
   /** The library requirements. */
   content?: string;
   /** The filename of the library requirements file. */
@@ -255,9 +255,9 @@ export interface LibraryInfoOutput {
   /** Type of the library. */
   type?: string;
   /** Provisioning status of the library/package. */
-  provisioningStatus?: string;
+  readonly provisioningStatus?: string;
   /** Creator Id of the library/package. */
-  creatorId?: string;
+  readonly creatorId?: string;
 }
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
@@ -703,47 +703,47 @@ export interface LibraryResourceOutput extends SubResourceOutput {
 /** Library/package properties */
 export interface LibraryResourcePropertiesOutput {
   /** Name of the library/package. */
-  name?: string;
+  readonly name?: string;
   /** Location of library/package in storage account. */
-  path?: string;
+  readonly path?: string;
   /** Container name of the library/package. */
-  containerName?: string;
+  readonly containerName?: string;
   /** The last update time of the library/package. */
-  uploadedTimestamp?: string;
+  readonly uploadedTimestamp?: string;
   /** Type of the library/package. */
-  type?: string;
+  readonly type?: string;
   /** Provisioning status of the library/package. */
-  provisioningStatus?: string;
+  readonly provisioningStatus?: string;
   /** Creator Id of the library/package. */
-  creatorId?: string;
+  readonly creatorId?: string;
 }
 
 /** Library resource info */
 export interface LibraryResourceInfoOutput {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
+  readonly id?: string;
   /** record Id of the library/package. */
-  recordId?: number;
+  readonly recordId?: number;
   /** Provisioning status of the library/package. */
-  state?: string;
+  readonly state?: string;
   /** The creation time of the library/package. */
-  created?: string;
+  readonly created?: string;
   /** The last updated time of the library/package. */
-  changed?: string;
+  readonly changed?: string;
   /** The type of the resource. E.g. LibraryArtifact */
-  type?: string;
+  readonly type?: string;
   /** Name of the library/package. */
-  name?: string;
+  readonly name?: string;
   /** Operation Id of the operation performed on library/package. */
-  operationId?: string;
+  readonly operationId?: string;
   /** artifact Id of the library/package. */
-  artifactId?: string;
+  readonly artifactId?: string;
 }
 
 /** Operation status for the operation */
 export interface OperationResultOutput {
   /** Operation status */
-  status?: string;
+  readonly status?: string;
   /** Error data */
   error?: CloudErrorBodyAutoGeneratedOutput;
 }
@@ -773,13 +773,13 @@ export interface NotebookListResponseOutput {
 /** Notebook resource type. */
 export interface NotebookResourceOutput {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
+  readonly id?: string;
   /** The name of the resource */
   name: string;
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
+  readonly type?: string;
   /** Resource Etag. */
-  etag?: string;
+  readonly etag?: string;
   /** Properties of Notebook. */
   properties: NotebookOutput;
 }
@@ -1022,39 +1022,39 @@ export interface PipelineRunsQueryResponseOutput {
 /** Information about a pipeline run. */
 export interface PipelineRunOutput extends Record<string, unknown> {
   /** Identifier of a run. */
-  runId?: string;
+  readonly runId?: string;
   /** Identifier that correlates all the recovery runs of a pipeline run. */
-  runGroupId?: string;
+  readonly runGroupId?: string;
   /** Indicates if the recovered pipeline run is the latest in its group. */
-  isLatest?: boolean;
+  readonly isLatest?: boolean;
   /** The pipeline name. */
-  pipelineName?: string;
+  readonly pipelineName?: string;
   /** The full or partial list of parameter name, value pair used in the pipeline run. */
-  parameters?: Record<string, string>;
+  readonly parameters?: Record<string, string>;
   /** Entity that started the pipeline run. */
-  invokedBy?: PipelineRunInvokedByOutput;
+  readonly invokedBy?: PipelineRunInvokedByOutput;
   /** The last updated timestamp for the pipeline run event in ISO8601 format. */
-  lastUpdated?: string;
+  readonly lastUpdated?: string;
   /** The start time of a pipeline run in ISO8601 format. */
-  runStart?: string;
+  readonly runStart?: string;
   /** The end time of a pipeline run in ISO8601 format. */
-  runEnd?: string;
+  readonly runEnd?: string;
   /** The duration of a pipeline run. */
-  durationInMs?: number;
+  readonly durationInMs?: number;
   /** The status of a pipeline run. */
-  status?: string;
+  readonly status?: string;
   /** The message from a pipeline run. */
-  message?: string;
+  readonly message?: string;
 }
 
 /** Provides entity name and id that started the pipeline run. */
 export interface PipelineRunInvokedByOutput {
   /** Name of the entity that started the pipeline run. */
-  name?: string;
+  readonly name?: string;
   /** The ID of the entity that started the run. */
-  id?: string;
+  readonly id?: string;
   /** The type of the entity that started the run. */
-  invokedByType?: string;
+  readonly invokedByType?: string;
 }
 
 /** A list activity runs. */
@@ -1068,31 +1068,31 @@ export interface ActivityRunsQueryResponseOutput {
 /** Information about an activity run in a pipeline. */
 export interface ActivityRunOutput extends Record<string, unknown> {
   /** The name of the pipeline. */
-  pipelineName?: string;
+  readonly pipelineName?: string;
   /** The id of the pipeline run. */
-  pipelineRunId?: string;
+  readonly pipelineRunId?: string;
   /** The name of the activity. */
-  activityName?: string;
+  readonly activityName?: string;
   /** The type of the activity. */
-  activityType?: string;
+  readonly activityType?: string;
   /** The id of the activity run. */
-  activityRunId?: string;
+  readonly activityRunId?: string;
   /** The name of the compute linked service. */
-  linkedServiceName?: string;
+  readonly linkedServiceName?: string;
   /** The status of the activity run. */
-  status?: string;
+  readonly status?: string;
   /** The start time of the activity run in 'ISO 8601' format. */
-  activityRunStart?: string;
+  readonly activityRunStart?: string;
   /** The end time of the activity run in 'ISO 8601' format. */
-  activityRunEnd?: string;
+  readonly activityRunEnd?: string;
   /** The duration of the activity run. */
-  durationInMs?: number;
+  readonly durationInMs?: number;
   /** The input for the activity. */
-  input?: any;
+  readonly input?: any;
   /** The output for the activity. */
-  output?: any;
+  readonly output?: any;
   /** The error if any from the activity run. */
-  error?: any;
+  readonly error?: any;
 }
 
 /** A list of spark job definitions resources. */
@@ -1347,13 +1347,13 @@ export interface SqlScriptsListResponseOutput {
 /** Sql Script resource type. */
 export interface SqlScriptResourceOutput {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
+  readonly id?: string;
   /** The name of the resource */
   name: string;
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
+  readonly type?: string;
   /** Resource Etag. */
-  etag?: string;
+  readonly etag?: string;
   /** Properties of sql script. */
   properties: SqlScriptOutput;
 }
@@ -1425,7 +1425,7 @@ export interface TriggerOutputParent extends Record<string, unknown> {
   /** Trigger description. */
   description?: string;
   /** Indicates if trigger is running or not. Updated when Start/Stop APIs are called on the Trigger. */
-  runtimeState?: "Started" | "Stopped" | "Disabled";
+  readonly runtimeState?: "Started" | "Stopped" | "Disabled";
   /** List of tags that can be used for describing the trigger. */
   annotations?: Array<any>;
   type:
@@ -1443,9 +1443,9 @@ export interface TriggerOutputParent extends Record<string, unknown> {
 /** Defines the response of a trigger subscription operation. */
 export interface TriggerSubscriptionOperationStatusOutput {
   /** Trigger name. */
-  triggerName?: string;
+  readonly triggerName?: string;
   /** Event Subscription Status. */
-  status?:
+  readonly status?:
     | "Enabled"
     | "Provisioning"
     | "Deprovisioning"
@@ -1464,21 +1464,21 @@ export interface TriggerRunsQueryResponseOutput {
 /** Trigger runs. */
 export interface TriggerRunOutput extends Record<string, unknown> {
   /** Trigger run id. */
-  triggerRunId?: string;
+  readonly triggerRunId?: string;
   /** Trigger name. */
-  triggerName?: string;
+  readonly triggerName?: string;
   /** Trigger type. */
-  triggerType?: string;
+  readonly triggerType?: string;
   /** Trigger run start time. */
-  triggerRunTimestamp?: string;
+  readonly triggerRunTimestamp?: string;
   /** Trigger run status. */
-  status?: "Succeeded" | "Failed" | "Inprogress";
+  readonly status?: "Succeeded" | "Failed" | "Inprogress";
   /** Trigger error message. */
-  message?: string;
+  readonly message?: string;
   /** List of property name and value related to trigger run. Name, value pair depends on type of trigger. */
-  properties?: Record<string, string>;
+  readonly properties?: Record<string, string>;
   /** List of pipeline name and run Id triggered by the trigger run. */
-  triggeredPipelines?: Record<string, string>;
+  readonly triggeredPipelines?: Record<string, string>;
 }
 
 /** A workspace */
@@ -1498,7 +1498,7 @@ export interface WorkspacePropertiesOutput {
   /** Workspace managed resource group. The resource group name uniquely identifies the resource group within the user subscriptionId. The resource group name must be no longer than 90 characters long, and must be alphanumeric characters (Char.IsLetterOrDigit()) and '-', '_', '(', ')' and'.'. Note that the name cannot end with '.' */
   managedResourceGroupName?: string;
   /** Resource provisioning state */
-  provisioningState?: string;
+  readonly provisioningState?: string;
   /** Login for workspace SQL active directory administrator */
   sqlAdministratorLogin?: string;
   /** Virtual Network profile */
@@ -1516,9 +1516,9 @@ export interface WorkspacePropertiesOutput {
    *
    * Value may contain a UUID
    */
-  workspaceUID?: string;
+  readonly workspaceUID?: string;
   /** Workspace level configs and feature flags */
-  extraProperties?: Record<string, any>;
+  readonly extraProperties?: Record<string, any>;
   /** Managed Virtual Network Settings */
   managedVirtualNetworkSettings?: ManagedVirtualNetworkSettingsOutput;
   /** Git integration settings */
@@ -1526,7 +1526,7 @@ export interface WorkspacePropertiesOutput {
   /** Purview Configuration */
   purviewConfiguration?: PurviewConfigurationOutput;
   /** The ADLA resource ID. */
-  adlaResourceId?: string;
+  readonly adlaResourceId?: string;
 }
 
 /** Details of the data lake storage account associated with the workspace */
@@ -1556,13 +1556,13 @@ export interface PrivateEndpointConnectionPropertiesOutput {
   /** Connection state of the private endpoint connection. */
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateOutput;
   /** Provisioning state of the private endpoint connection. */
-  provisioningState?: string;
+  readonly provisioningState?: string;
 }
 
 /** Private endpoint details */
 export interface PrivateEndpointOutput {
   /** Resource id of the private endpoint. */
-  id?: string;
+  readonly id?: string;
 }
 
 /** Connection state details of the private endpoint */
@@ -1572,7 +1572,7 @@ export interface PrivateLinkServiceConnectionStateOutput {
   /** The private link service connection description. */
   description?: string;
   /** The actions required for private link service connection. */
-  actionsRequired?: string;
+  readonly actionsRequired?: string;
 }
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
@@ -1581,7 +1581,7 @@ export interface ProxyResourceOutput extends ResourceOutput {}
 /** Details of the encryption associated with the workspace */
 export interface EncryptionDetailsOutput {
   /** Double Encryption enabled */
-  doubleEncryptionEnabled?: boolean;
+  readonly doubleEncryptionEnabled?: boolean;
   /** Customer Managed Key Details */
   cmk?: CustomerManagedKeyDetailsOutput;
 }
@@ -1589,7 +1589,7 @@ export interface EncryptionDetailsOutput {
 /** Details of the customer managed key associated with the workspace */
 export interface CustomerManagedKeyDetailsOutput {
   /** The customer managed key status on the workspace */
-  status?: string;
+  readonly status?: string;
   /** The key object of the workspace */
   key?: WorkspaceKeyDetailsOutput;
 }
@@ -1659,13 +1659,13 @@ export interface PurviewConfigurationOutput {
 /** The workspace managed identity */
 export interface ManagedIdentityOutput {
   /** The principal ID of the workspace managed identity */
-  principalId?: string;
+  readonly principalId?: string;
   /**
    * The tenant ID of the workspace managed identity
    *
    * Value may contain a UUID
    */
-  tenantId?: string;
+  readonly tenantId?: string;
   /** The type of managed identity for the workspace */
   type?: "None" | "SystemAssigned";
 }
@@ -9572,7 +9572,7 @@ export interface ChainingTriggerTypePropertiesOutput {
 export interface ManagedIntegrationRuntimeOutput
   extends IntegrationRuntimeOutputParent {
   /** Integration runtime state, only valid for managed dedicated integration runtime. */
-  state?:
+  readonly state?:
     | "Initial"
     | "Stopped"
     | "Started"

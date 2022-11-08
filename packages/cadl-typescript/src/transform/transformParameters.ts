@@ -3,6 +3,7 @@
 
 import {
   ImportKind,
+  ObjectSchema,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
@@ -161,7 +162,13 @@ function transformBodyParameters(
 
   if (!hasBinaryContent && !hasFormContent) {
     // Case 1: Handle the normal case without binary or form data
-    return transformNormalBody(program, bodyType, parameters, importedModels);
+    return transformNormalBody(
+      program,
+      bodyType,
+      parameters,
+      importedModels,
+      headers
+    );
   } else if (hasBinaryContent) {
     // Case 2: Handle the binary body
     return transformBinaryBody(program, parameters);
@@ -180,18 +187,27 @@ function transformNormalBody(
   program: Program,
   bodyType: Type,
   parameters: HttpOperationParameters,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  headers: ParameterMetadata[]
 ) {
   const description = extractDescriptionsFromBody(
     program,
     bodyType,
     parameters
   ).join("\n\n");
-  const type = extractNameFromCadlType(program, bodyType, importedModels);
+  const type = extractNameFromCadlType(
+    program,
+    bodyType,
+    importedModels,
+    headers
+  );
+  const schema = getSchemaForType(program, bodyType);
   return {
     isPartialBody: false,
     body: [
       {
+        properties: schema.properties,
+        typeName: schema.name,
         name: "body",
         type,
         required: parameters?.bodyParameter?.optional === false,
@@ -300,7 +316,8 @@ function getBodyDetail(bodyType: Type, headers: ParameterMetadata[]) {
 function extractNameFromCadlType(
   program: Program,
   cadlType: Type,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  headers?: ParameterMetadata[]
 ) {
   let bodySchema = getSchemaForType(program, cadlType, [
     SchemaContext.Input,
@@ -310,7 +327,18 @@ function extractNameFromCadlType(
   if (importedNames) {
     importedNames.forEach(importedModels.add, importedModels);
   }
-  return getTypeName(bodySchema);
+  let typeName = getTypeName(bodySchema);
+  const contentTypes = headers
+    ?.filter((h) => h.name === "contentType")
+    .map((h) => h.param.type);
+  const hasMergeAndPatchType =
+    contentTypes &&
+    contentTypes.length === 1 &&
+    contentTypes[0]?.includes("application/merge-patch+json");
+  if (hasMergeAndPatchType && (bodySchema as ObjectSchema).properties) {
+    typeName = `${typeName}ResourceMergeAndPatch`;
+  }
+  return typeName;
 }
 
 function extractDescriptionsFromBody(

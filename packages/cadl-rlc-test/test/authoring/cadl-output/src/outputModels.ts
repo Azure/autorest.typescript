@@ -17,13 +17,13 @@ export interface ProjectOutput {
   /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
   language: string;
   /** Represents the project creation datetime. */
-  createdDateTime: string;
+  readonly createdDateTime: string;
   /** Represents the project last modification datetime. */
-  lastModifiedDateTime: string;
+  readonly lastModifiedDateTime: string;
   /** Represents the project last training datetime. */
-  lastTrainedDateTime: string;
+  readonly lastTrainedDateTime: string;
   /** Represents the project last deployment datetime. */
-  lastDeployedDateTime: string;
+  readonly lastDeployedDateTime: string;
 }
 
 /** Provides status details for long running operations. */
@@ -94,11 +94,11 @@ export interface DeploymentJobOutput {
   /** The job ID. */
   jobId: string;
   /** The creation date time of the job. */
-  createdDateTime: string;
+  readonly createdDateTime: string;
   /** The the last date time the job was updated. */
-  lastUpdatedDateTime: string;
+  readonly lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
-  expirationDateTime: string;
+  readonly expirationDateTime: string;
   /**
    * The job status.
    *
@@ -124,11 +124,11 @@ export interface SwapDeploymentsJobOutput {
   /** The job ID. */
   jobId: string;
   /** The creation date time of the job. */
-  createdDateTime: string;
+  readonly createdDateTime: string;
   /** The the last date time the job was updated. */
-  lastUpdatedDateTime: string;
+  readonly lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
-  expirationDateTime: string;
+  readonly expirationDateTime: string;
   /**
    * The job status.
    *

@@ -4,31 +4,31 @@
 /** Account resource */
 export interface AccountOutput {
   /** Gets or sets the identifier. */
-  id?: string;
+  readonly id?: string;
   /** Identity Info on the tracked resource */
   identity?: IdentityOutput;
   /** Gets or sets the location. */
   location?: string;
   /** Gets or sets the name. */
-  name?: string;
+  readonly name?: string;
   /** Gets or sets the properties. */
   properties?: AccountPropertiesOutput;
   /** Gets or sets the Sku. */
   sku?: AccountSkuOutput;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AccountSystemDataOutput;
+  readonly systemData?: AccountSystemDataOutput;
   /** Tags on the azure resource. */
   tags?: Record<string, string>;
   /** Gets or sets the type. */
-  type?: string;
+  readonly type?: string;
 }
 
 /** The Managed Identity of the resource */
 export interface IdentityOutput {
   /** Service principal object Id */
-  principalId?: string;
+  readonly principalId?: string;
   /** Tenant Id */
-  tenantId?: string;
+  readonly tenantId?: string;
   /** Identity Type */
   type?: "SystemAssigned";
 }
@@ -41,23 +41,23 @@ export interface AccountPropertiesOutput {
    */
   cloudConnectors?: CloudConnectorsOutput;
   /** Gets the time at which the entity was created. */
-  createdAt?: string;
+  readonly createdAt?: string;
   /** Gets the creator of the entity. */
-  createdBy?: string;
+  readonly createdBy?: string;
   /** Gets the creators of the entity's object id. */
-  createdByObjectId?: string;
+  readonly createdByObjectId?: string;
   /** The URIs that are the public endpoints of the account. */
-  endpoints?: AccountPropertiesEndpointsOutput;
+  readonly endpoints?: AccountPropertiesEndpointsOutput;
   /** Gets or sets the friendly name. */
-  friendlyName?: string;
+  readonly friendlyName?: string;
   /** Gets or sets the managed resource group name */
   managedResourceGroupName?: string;
   /** Gets the resource identifiers of the managed resources. */
-  managedResources?: AccountPropertiesManagedResourcesOutput;
+  readonly managedResources?: AccountPropertiesManagedResourcesOutput;
   /** Gets the private endpoint connections information. */
-  privateEndpointConnections?: Array<PrivateEndpointConnectionOutput>;
+  readonly privateEndpointConnections?: Array<PrivateEndpointConnectionOutput>;
   /** Gets or sets the state of the provisioning. */
-  provisioningState?:
+  readonly provisioningState?:
     | "Unknown"
     | "Creating"
     | "Moving"
@@ -76,7 +76,7 @@ export interface CloudConnectorsOutput {
    * AWS external identifier.
    * Configured in AWS to allow use of the role arn used for scanning
    */
-  awsExternalId?: string;
+  readonly awsExternalId?: string;
 }
 
 /** The URIs that are the public endpoints of the account. */
@@ -86,11 +86,11 @@ export interface AccountPropertiesEndpointsOutput
 /** The account endpoints */
 export interface AccountEndpointsOutput {
   /** Gets the catalog endpoint. */
-  catalog?: string;
+  readonly catalog?: string;
   /** Gets the guardian endpoint. */
-  guardian?: string;
+  readonly guardian?: string;
   /** Gets the scan endpoint. */
-  scan?: string;
+  readonly scan?: string;
 }
 
 /** Gets the resource identifiers of the managed resources. */
@@ -100,23 +100,23 @@ export interface AccountPropertiesManagedResourcesOutput
 /** The managed resources in customer subscription. */
 export interface ManagedResourcesOutput {
   /** Gets the managed event hub namespace resource identifier. */
-  eventHubNamespace?: string;
+  readonly eventHubNamespace?: string;
   /** Gets the managed resource group resource identifier. This resource group will host resource dependencies for the account. */
-  resourceGroup?: string;
+  readonly resourceGroup?: string;
   /** Gets the managed storage account resource identifier. */
-  storageAccount?: string;
+  readonly storageAccount?: string;
 }
 
 /** A private endpoint connection class. */
 export interface PrivateEndpointConnectionOutput {
   /** Gets or sets the identifier. */
-  id?: string;
+  readonly id?: string;
   /** Gets or sets the name. */
-  name?: string;
+  readonly name?: string;
   /** The connection identifier. */
   properties?: PrivateEndpointConnectionPropertiesOutput;
   /** Gets or sets the type. */
-  type?: string;
+  readonly type?: string;
 }
 
 /** A private endpoint connection properties class. */
@@ -126,7 +126,7 @@ export interface PrivateEndpointConnectionPropertiesOutput {
   /** The private link service connection state. */
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateOutput;
   /** The provisioning state. */
-  provisioningState?: string;
+  readonly provisioningState?: string;
 }
 
 /** A private endpoint class. */
@@ -159,23 +159,27 @@ export interface AccountSystemDataOutput extends SystemDataOutput {}
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemDataOutput {
   /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
+  readonly createdAt?: string;
   /** The identity that created the resource. */
-  createdBy?: string;
+  readonly createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: "User" | "Application" | "ManagedIdentity" | "Key";
+  readonly createdByType?: "User" | "Application" | "ManagedIdentity" | "Key";
   /** The timestamp of the last modification the resource (UTC). */
-  lastModifiedAt?: string;
+  readonly lastModifiedAt?: string;
   /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
+  readonly lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
+  readonly lastModifiedByType?:
+    | "User"
+    | "Application"
+    | "ManagedIdentity"
+    | "Key";
 }
 
 /** Default error response model */
 export interface ErrorResponseModelOutput {
   /** Gets or sets the error. */
-  error?: ErrorResponseModelErrorOutput;
+  readonly error?: ErrorResponseModelErrorOutput;
 }
 
 /** Gets or sets the error. */
@@ -184,13 +188,13 @@ export interface ErrorResponseModelErrorOutput extends ErrorModelOutput {}
 /** Default error model */
 export interface ErrorModelOutput {
   /** Gets or sets the code. */
-  code?: string;
+  readonly code?: string;
   /** Gets or sets the details. */
-  details?: Array<ErrorModelOutput>;
+  readonly details?: Array<ErrorModelOutput>;
   /** Gets or sets the messages. */
-  message?: string;
+  readonly message?: string;
   /** Gets or sets the target. */
-  target?: string;
+  readonly target?: string;
 }
 
 /** The Account access keys. */
@@ -204,7 +208,7 @@ export interface AccessKeysOutput {
 /** Collection resource. */
 export interface CollectionOutput {
   /** Gets the state of the provisioning. */
-  collectionProvisioningState?:
+  readonly collectionProvisioningState?:
     | "Unknown"
     | "Creating"
     | "Moving"
@@ -216,11 +220,11 @@ export interface CollectionOutput {
   /** Gets or sets the friendly name of the collection. */
   friendlyName?: string;
   /** Gets the name. */
-  name?: string;
+  readonly name?: string;
   /** Gets or sets the parent collection reference. */
   parentCollection?: CollectionReferenceOutput;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: CollectionSystemDataOutput;
+  readonly systemData?: CollectionSystemDataOutput;
 }
 
 /** Reference to a Collection. */
@@ -257,17 +261,17 @@ export interface CollectionNameResponseListOutput {
 /** Collection resource. */
 export interface CollectionNameResponseOutput {
   /** Gets or sets the friendly name of the collection. */
-  friendlyName?: string;
+  readonly friendlyName?: string;
   /** Gets the name. */
-  name?: string;
+  readonly name?: string;
 }
 
 /** Collection resource. */
 export interface CollectionPathResponseOutput {
   /** The friendly names of ancestors starting from the default (root) collection and ending with the immediate parent. */
-  parentFriendlyNameChain?: Array<string>;
+  readonly parentFriendlyNameChain?: Array<string>;
   /** The names of ancestors starting from the default (root) collection and ending with the immediate parent. */
-  parentNameChain?: Array<string>;
+  readonly parentNameChain?: Array<string>;
 }
 
 /** ResourceSetRuleConfig implementation class. */
@@ -275,7 +279,7 @@ export interface ResourceSetRuleConfigOutput {
   /** Gets or sets the advanced resource set property of the account. */
   advancedResourceSet?: AdvancedResourceSetOutput;
   /** The name of the rule */
-  name?: string;
+  readonly name?: string;
   /** The configuration rules for path pattern extraction. */
   pathPatternConfig?: PathPatternExtractorConfigOutput;
 }

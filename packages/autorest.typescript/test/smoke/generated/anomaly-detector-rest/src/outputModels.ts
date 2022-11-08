@@ -65,7 +65,7 @@ export interface LastDetectResponseOutput {
 /** The response of change point detection. */
 export interface ChangePointDetectResponseOutput {
   /** Frequency extracted from the series, zero means no recurrent pattern has been found. */
-  period?: number;
+  readonly period?: number;
   /** isChangePoint contains change point properties for each input point. True means an anomaly either negative or positive has been detected. The index of the array is consistent with the input series. */
   isChangePoint?: Array<boolean>;
   /** the change point confidence of each point */

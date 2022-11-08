@@ -16,14 +16,6 @@ export interface Project {
   description?: string;
   /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
   language: string;
-  /** Represents the project creation datetime. */
-  createdDateTime: Date | string;
-  /** Represents the project last modification datetime. */
-  lastModifiedDateTime: Date | string;
-  /** Represents the project last training datetime. */
-  lastTrainedDateTime: Date | string;
-  /** Represents the project last deployment datetime. */
-  lastDeployedDateTime: Date | string;
 }
 
 /** Training job parameters. */

@@ -28,22 +28,22 @@ interface AccessKeysOutput {
 
 // @public
 interface AccountEndpointsOutput {
-    catalog?: string;
-    guardian?: string;
-    scan?: string;
+    readonly catalog?: string;
+    readonly guardian?: string;
+    readonly scan?: string;
 }
 
 // @public
 interface AccountOutput {
-    id?: string;
+    readonly id?: string;
     identity?: IdentityOutput;
     location?: string;
-    name?: string;
+    readonly name?: string;
     properties?: AccountPropertiesOutput;
     sku?: AccountSkuOutput;
-    systemData?: AccountSystemDataOutput;
+    readonly systemData?: AccountSystemDataOutput;
     tags?: Record<string, string>;
-    type?: string;
+    readonly type?: string;
 }
 
 // @public
@@ -57,15 +57,15 @@ interface AccountPropertiesManagedResourcesOutput extends ManagedResourcesOutput
 // @public
 interface AccountPropertiesOutput {
     cloudConnectors?: CloudConnectorsOutput;
-    createdAt?: string;
-    createdBy?: string;
-    createdByObjectId?: string;
-    endpoints?: AccountPropertiesEndpointsOutput;
-    friendlyName?: string;
+    readonly createdAt?: string;
+    readonly createdBy?: string;
+    readonly createdByObjectId?: string;
+    readonly endpoints?: AccountPropertiesEndpointsOutput;
+    readonly friendlyName?: string;
     managedResourceGroupName?: string;
-    managedResources?: AccountPropertiesManagedResourcesOutput;
-    privateEndpointConnections?: Array<PrivateEndpointConnectionOutput>;
-    provisioningState?: "Unknown" | "Creating" | "Moving" | "Deleting" | "SoftDeleting" | "SoftDeleted" | "Failed" | "Succeeded" | "Canceled";
+    readonly managedResources?: AccountPropertiesManagedResourcesOutput;
+    readonly privateEndpointConnections?: Array<PrivateEndpointConnectionOutput>;
+    readonly provisioningState?: "Unknown" | "Creating" | "Moving" | "Deleting" | "SoftDeleting" | "SoftDeleted" | "Failed" | "Succeeded" | "Canceled";
     publicNetworkAccess?: "NotSpecified" | "Enabled" | "Disabled";
 }
 
@@ -231,7 +231,6 @@ interface AttributeMatcherOutput {
 interface AttributeRule {
     dnfCondition?: Array<Array<AttributeMatcher>>;
     id?: string;
-    kind?: "decisionrule" | "attributerule";
     name?: string;
 }
 
@@ -239,7 +238,7 @@ interface AttributeRule {
 interface AttributeRuleOutput {
     dnfCondition?: Array<Array<AttributeMatcherOutput>>;
     id?: string;
-    kind?: "decisionrule" | "attributerule";
+    readonly kind?: "decisionrule" | "attributerule";
     name?: string;
 }
 
@@ -271,17 +270,14 @@ declare namespace Client_3 {
 
 // @public (undocumented)
 interface CloudConnectorsOutput {
-    awsExternalId?: string;
+    readonly awsExternalId?: string;
 }
 
 // @public
 interface Collection {
-    collectionProvisioningState?: "Unknown" | "Creating" | "Moving" | "Deleting" | "Failed" | "Succeeded";
     description?: string;
     friendlyName?: string;
-    name?: string;
     parentCollection?: CollectionReference_2;
-    systemData?: CollectionSystemData;
 }
 
 // @public
@@ -300,24 +296,24 @@ interface CollectionNameResponseListOutput {
 
 // @public
 interface CollectionNameResponseOutput {
-    friendlyName?: string;
-    name?: string;
+    readonly friendlyName?: string;
+    readonly name?: string;
 }
 
 // @public
 interface CollectionOutput {
-    collectionProvisioningState?: "Unknown" | "Creating" | "Moving" | "Deleting" | "Failed" | "Succeeded";
+    readonly collectionProvisioningState?: "Unknown" | "Creating" | "Moving" | "Deleting" | "Failed" | "Succeeded";
     description?: string;
     friendlyName?: string;
-    name?: string;
+    readonly name?: string;
     parentCollection?: CollectionReferenceOutput_2;
-    systemData?: CollectionSystemDataOutput;
+    readonly systemData?: CollectionSystemDataOutput;
 }
 
 // @public
 interface CollectionPathResponseOutput {
-    parentFriendlyNameChain?: Array<string>;
-    parentNameChain?: Array<string>;
+    readonly parentFriendlyNameChain?: Array<string>;
+    readonly parentNameChain?: Array<string>;
 }
 
 // @public
@@ -578,14 +574,13 @@ interface DataPlaneAccountUpdateParameters {
 interface DecisionRule {
     dnfCondition?: Array<Array<AttributeMatcher>>;
     effect?: "Deny" | "Permit";
-    kind?: "decisionrule" | "attributerule";
 }
 
 // @public
 interface DecisionRuleOutput {
     dnfCondition?: Array<Array<AttributeMatcherOutput>>;
     effect?: "Deny" | "Permit";
-    kind?: "decisionrule" | "attributerule";
+    readonly kind?: "decisionrule" | "attributerule";
 }
 
 // @public
@@ -598,10 +593,10 @@ interface ErrorModelOutput {
 
 // @public
 interface ErrorModelOutput_2 {
-    code?: string;
-    details?: Array<ErrorModelOutput_2>;
-    message?: string;
-    target?: string;
+    readonly code?: string;
+    readonly details?: Array<ErrorModelOutput_2>;
+    readonly message?: string;
+    readonly target?: string;
 }
 
 // @public
@@ -615,7 +610,7 @@ interface ErrorResponseModelOutput {
 
 // @public
 interface ErrorResponseModelOutput_2 {
-    error?: ErrorResponseModelErrorOutput;
+    readonly error?: ErrorResponseModelErrorOutput;
 }
 
 // @public (undocumented)
@@ -722,16 +717,16 @@ type GetPage_2<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
 
 // @public
 interface IdentityOutput {
-    principalId?: string;
-    tenantId?: string;
+    readonly principalId?: string;
+    readonly tenantId?: string;
     type?: "SystemAssigned";
 }
 
 // @public
 interface ManagedResourcesOutput {
-    eventHubNamespace?: string;
-    resourceGroup?: string;
-    storageAccount?: string;
+    readonly eventHubNamespace?: string;
+    readonly resourceGroup?: string;
+    readonly storageAccount?: string;
 }
 
 // @public (undocumented)
@@ -1237,17 +1232,17 @@ interface PathPatternExtractorConfigOutput {
 
 // @public
 interface PrivateEndpointConnectionOutput {
-    id?: string;
-    name?: string;
+    readonly id?: string;
+    readonly name?: string;
     properties?: PrivateEndpointConnectionPropertiesOutput;
-    type?: string;
+    readonly type?: string;
 }
 
 // @public
 interface PrivateEndpointConnectionPropertiesOutput {
     privateEndpoint?: PrivateEndpointOutput;
     privateLinkServiceConnectionState?: PrivateLinkServiceConnectionStateOutput;
-    provisioningState?: string;
+    readonly provisioningState?: string;
 }
 
 // @public
@@ -1353,7 +1348,6 @@ interface RegexReplacerOutput {
 // @public
 interface ResourceSetRuleConfig {
     advancedResourceSet?: AdvancedResourceSet;
-    name?: string;
     pathPatternConfig?: PathPatternExtractorConfig;
 }
 
@@ -1367,7 +1361,7 @@ interface ResourceSetRuleConfigListOutput {
 // @public
 interface ResourceSetRuleConfigOutput {
     advancedResourceSet?: AdvancedResourceSetOutput;
-    name?: string;
+    readonly name?: string;
     pathPatternConfig?: PathPatternExtractorConfigOutput;
 }
 
@@ -1611,22 +1605,16 @@ interface ScopedRuleOutput {
 
 // @public
 interface SystemData {
-    createdAt?: Date | string;
-    createdBy?: string;
-    createdByType?: "User" | "Application" | "ManagedIdentity" | "Key";
-    lastModifiedAt?: Date | string;
-    lastModifiedBy?: string;
-    lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
 }
 
 // @public
 interface SystemDataOutput {
-    createdAt?: string;
-    createdBy?: string;
-    createdByType?: "User" | "Application" | "ManagedIdentity" | "Key";
-    lastModifiedAt?: string;
-    lastModifiedBy?: string;
-    lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
+    readonly createdAt?: string;
+    readonly createdBy?: string;
+    readonly createdByType?: "User" | "Application" | "ManagedIdentity" | "Key";
+    readonly lastModifiedAt?: string;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
 }
 
 // (No @packageDocumentation comment for this package)

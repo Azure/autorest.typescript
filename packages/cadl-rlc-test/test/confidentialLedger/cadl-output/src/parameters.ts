@@ -54,9 +54,10 @@ export type ConfidentialLedgerGetCurrentLedgerEntryParameters =
   ConfidentialLedgerGetCurrentLedgerEntryQueryParam & RequestParameters;
 export type ConfidentialLedgerDeleteUserParameters = RequestParameters;
 export type ConfidentialLedgerGetUserParameters = RequestParameters;
+export type LedgerUserResourceMergeAndPatch = Partial<LedgerUser>;
 
 export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
-  body?: LedgerUser;
+  body?: LedgerUserResourceMergeAndPatch;
 }
 
 export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {

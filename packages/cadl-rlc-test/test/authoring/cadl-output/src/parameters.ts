@@ -1,8 +1,10 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { Project, TrainingJobOptions, SwapDeploymentsOptions } from "./models";
 
+export type ProjectResourceMergeAndPatch = Partial<Project>;
+
 export interface ProjectsCreateOrUpdateBodyParam {
-  body?: Project;
+  body?: ProjectResourceMergeAndPatch;
 }
 
 export interface ProjectsCreateOrUpdateMediaTypesParam {

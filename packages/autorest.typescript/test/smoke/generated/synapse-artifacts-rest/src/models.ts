@@ -74,20 +74,10 @@ export interface SparkConfiguration {
 export interface SubResource extends AzureEntityResource {}
 
 /** The resource model definition for an Azure Resource Manager resource with an etag. */
-export interface AzureEntityResource extends Resource {
-  /** Resource Etag. */
-  etag?: string;
-}
+export interface AzureEntityResource extends Resource {}
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
-export interface Resource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-}
+export interface Resource {}
 
 /** A Big Data pool */
 export interface BigDataPoolResourceInfo extends TrackedResource {
@@ -138,8 +128,6 @@ export interface BigDataPoolResourceProperties {
     | "XXXLarge";
   /** The kind of nodes that the Big Data pool provides. */
   nodeSizeFamily?: "None" | "MemoryOptimized";
-  /** The time when the Big Data pool was updated successfully. */
-  lastSucceededTimestamp?: Date | string;
 }
 
 /** Auto-scaling properties of a Big Data pool powered by Apache Spark */
@@ -168,8 +156,6 @@ export interface DynamicExecutorAllocation {
 
 /** Library requirements for a Big Data pool powered by Apache Spark */
 export interface LibraryRequirements {
-  /** The last update time of the library requirements file. */
-  time?: Date | string;
   /** The library requirements. */
   content?: string;
   /** The filename of the library requirements file. */
@@ -188,10 +174,6 @@ export interface LibraryInfo {
   uploadedTimestamp?: Date | string;
   /** Type of the library. */
   type?: string;
-  /** Provisioning status of the library/package. */
-  provisioningStatus?: string;
-  /** Creator Id of the library/package. */
-  creatorId?: string;
 }
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
@@ -650,22 +632,7 @@ export interface LibraryResource extends SubResource {
 }
 
 /** Library/package properties */
-export interface LibraryResourceProperties {
-  /** Name of the library/package. */
-  name?: string;
-  /** Location of library/package in storage account. */
-  path?: string;
-  /** Container name of the library/package. */
-  containerName?: string;
-  /** The last update time of the library/package. */
-  uploadedTimestamp?: string;
-  /** Type of the library/package. */
-  type?: string;
-  /** Provisioning status of the library/package. */
-  provisioningStatus?: string;
-  /** Creator Id of the library/package. */
-  creatorId?: string;
-}
+export interface LibraryResourceProperties {}
 
 /** Linked service resource type. */
 export interface LinkedServiceResource extends SubResource {
@@ -675,14 +642,8 @@ export interface LinkedServiceResource extends SubResource {
 
 /** Notebook resource type. */
 export interface NotebookResource {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
   /** The name of the resource */
   name: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Resource Etag. */
-  etag?: string;
   /** Properties of Notebook. */
   properties: Notebook;
 }
@@ -1061,14 +1022,8 @@ export interface SqlPoolResourceProperties {
 
 /** Sql Script resource type. */
 export interface SqlScriptResource {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
   /** The name of the resource */
   name: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Resource Etag. */
-  etag?: string;
   /** Properties of sql script. */
   properties: SqlScript;
 }
@@ -1131,8 +1086,6 @@ export interface TriggerResource extends SubResource {
 export interface TriggerParent extends Record<string, unknown> {
   /** Trigger description. */
   description?: string;
-  /** Indicates if trigger is running or not. Updated when Start/Stop APIs are called on the Trigger. */
-  runtimeState?: "Started" | "Stopped" | "Disabled";
   /** List of tags that can be used for describing the trigger. */
   annotations?: Array<any>;
   type:
@@ -1163,8 +1116,6 @@ export interface WorkspaceProperties {
   sqlAdministratorLoginPassword?: string;
   /** Workspace managed resource group. The resource group name uniquely identifies the resource group within the user subscriptionId. The resource group name must be no longer than 90 characters long, and must be alphanumeric characters (Char.IsLetterOrDigit()) and '-', '_', '(', ')' and'.'. Note that the name cannot end with '.' */
   managedResourceGroupName?: string;
-  /** Resource provisioning state */
-  provisioningState?: string;
   /** Login for workspace SQL active directory administrator */
   sqlAdministratorLogin?: string;
   /** Virtual Network profile */
@@ -1177,22 +1128,12 @@ export interface WorkspaceProperties {
   privateEndpointConnections?: Array<PrivateEndpointConnection>;
   /** The encryption details of the workspace */
   encryption?: EncryptionDetails;
-  /**
-   * The workspace unique identifier
-   *
-   * Value may contain a UUID
-   */
-  workspaceUID?: string;
-  /** Workspace level configs and feature flags */
-  extraProperties?: Record<string, any>;
   /** Managed Virtual Network Settings */
   managedVirtualNetworkSettings?: ManagedVirtualNetworkSettings;
   /** Git integration settings */
   workspaceRepositoryConfiguration?: WorkspaceRepositoryConfiguration;
   /** Purview Configuration */
   purviewConfiguration?: PurviewConfiguration;
-  /** The ADLA resource ID. */
-  adlaResourceId?: string;
 }
 
 /** Details of the data lake storage account associated with the workspace */
@@ -1221,15 +1162,10 @@ export interface PrivateEndpointConnectionProperties {
   privateEndpoint?: PrivateEndpoint;
   /** Connection state of the private endpoint connection. */
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-  /** Provisioning state of the private endpoint connection. */
-  provisioningState?: string;
 }
 
 /** Private endpoint details */
-export interface PrivateEndpoint {
-  /** Resource id of the private endpoint. */
-  id?: string;
-}
+export interface PrivateEndpoint {}
 
 /** Connection state details of the private endpoint */
 export interface PrivateLinkServiceConnectionState {
@@ -1237,8 +1173,6 @@ export interface PrivateLinkServiceConnectionState {
   status?: string;
   /** The private link service connection description. */
   description?: string;
-  /** The actions required for private link service connection. */
-  actionsRequired?: string;
 }
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
@@ -1246,16 +1180,12 @@ export interface ProxyResource extends Resource {}
 
 /** Details of the encryption associated with the workspace */
 export interface EncryptionDetails {
-  /** Double Encryption enabled */
-  doubleEncryptionEnabled?: boolean;
   /** Customer Managed Key Details */
   cmk?: CustomerManagedKeyDetails;
 }
 
 /** Details of the customer managed key associated with the workspace */
 export interface CustomerManagedKeyDetails {
-  /** The customer managed key status on the workspace */
-  status?: string;
   /** The key object of the workspace */
   key?: WorkspaceKeyDetails;
 }
@@ -1324,14 +1254,6 @@ export interface PurviewConfiguration {
 
 /** The workspace managed identity */
 export interface ManagedIdentity {
-  /** The principal ID of the workspace managed identity */
-  principalId?: string;
-  /**
-   * The tenant ID of the workspace managed identity
-   *
-   * Value may contain a UUID
-   */
-  tenantId?: string;
   /** The type of managed identity for the workspace */
   type?: "None" | "SystemAssigned";
 }
@@ -9104,18 +9026,6 @@ export interface ChainingTriggerTypeProperties {
 
 /** Managed integration runtime, including managed elastic and managed dedicated integration runtimes. */
 export interface ManagedIntegrationRuntime extends IntegrationRuntimeParent {
-  /** Integration runtime state, only valid for managed dedicated integration runtime. */
-  state?:
-    | "Initial"
-    | "Stopped"
-    | "Started"
-    | "Starting"
-    | "Stopping"
-    | "NeedRegistration"
-    | "Online"
-    | "Limited"
-    | "Offline"
-    | "AccessDenied";
   /** Managed integration runtime properties. */
   typeProperties: ManagedIntegrationRuntimeTypeProperties;
   /** Managed Virtual Network reference. */

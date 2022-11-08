@@ -5,20 +5,7 @@
 export interface AccountSystemData extends SystemData {}
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: Date | string;
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: "User" | "Application" | "ManagedIdentity" | "Key";
-  /** The timestamp of the last modification the resource (UTC). */
-  lastModifiedAt?: Date | string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
-}
+export interface SystemData {}
 
 /** The account properties that can be updated through data plane. */
 export interface DataPlaneAccountUpdateParameters {
@@ -34,24 +21,12 @@ export interface AccessKeyOptions {
 
 /** Collection resource. */
 export interface Collection {
-  /** Gets the state of the provisioning. */
-  collectionProvisioningState?:
-    | "Unknown"
-    | "Creating"
-    | "Moving"
-    | "Deleting"
-    | "Failed"
-    | "Succeeded";
   /** Gets or sets the description. */
   description?: string;
   /** Gets or sets the friendly name of the collection. */
   friendlyName?: string;
-  /** Gets the name. */
-  name?: string;
   /** Gets or sets the parent collection reference. */
   parentCollection?: CollectionReference;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: CollectionSystemData;
 }
 
 /** Reference to a Collection. */
@@ -69,8 +44,6 @@ export interface CollectionSystemData extends SystemData {}
 export interface ResourceSetRuleConfig {
   /** Gets or sets the advanced resource set property of the account. */
   advancedResourceSet?: AdvancedResourceSet;
-  /** The name of the rule */
-  name?: string;
   /** The configuration rules for path pattern extraction. */
   pathPatternConfig?: PathPatternExtractorConfig;
 }
