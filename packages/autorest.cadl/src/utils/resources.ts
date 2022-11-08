@@ -302,9 +302,7 @@ function handleGetOperation(
 
 function markResource(operation: Operation, elementType: Schema) {
   if (!isObjectSchema(elementType)) {
-    throw new Error(
-      `A Resource type has to be a model but got ${elementType.type}`
-    );
+    return false;
   }
 
   const hasKey = markWithKey(elementType);
@@ -328,9 +326,7 @@ function getPageableResource(
 
         const elementType = property.schema.elementType;
         if (!isObjectSchema(elementType)) {
-          throw new Error(
-            `A Resource type has to be a model but got ${elementType.type}`
-          );
+          continue;
         }
 
         if (!markResource(operation, elementType)) {

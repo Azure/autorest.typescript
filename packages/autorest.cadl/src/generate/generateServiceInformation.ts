@@ -17,18 +17,20 @@ export function generateServiceInformation(program: CadlProgram) {
         JSON.stringify(serviceInformation.doc) ?? ""
       }`
     );
-    if (
+    const hasParameters =
       serviceInformation.endpointParameters &&
-      serviceInformation.endpointParameters.length
-    ) {
+      serviceInformation.endpointParameters.length;
+
+    if (hasParameters) {
       definitions.push(", {");
-      for (const param of serviceInformation.endpointParameters) {
+      for (const param of serviceInformation.endpointParameters ?? []) {
         const doc = generateDocs(param);
         doc && definitions.push(doc);
         definitions.push(`${param.name}: string `);
       }
     }
-    definitions.push("})");
+    hasParameters && definitions.push("}");
+    definitions.push(")");
   }
   const serviceDoc = generateDocs(serviceInformation);
   serviceDoc && definitions.push(serviceDoc);
