@@ -76,13 +76,13 @@ export type ParametrizedHostClient = Client & {
 // @public (undocumented)
 export interface ParametrizedHostClientOptions extends ClientOptions {
     // (undocumented)
-    apiVersion?: "v1";
+    apiVersion?: string;
     // (undocumented)
-    host?: "one";
+    host?: number;
     // (undocumented)
-    subdomain?: "two";
+    subdomain?: string;
     // (undocumented)
-    sufix?: "three";
+    sufix?: string;
 }
 
 // @public (undocumented)

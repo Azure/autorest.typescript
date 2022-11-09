@@ -69,7 +69,7 @@ export type PathParameter = {
   name: string;
   type: string;
   description?: string;
-  value?: string;
+  value?: string | number | boolean;
 };
 
 export interface OperationAnnotations {

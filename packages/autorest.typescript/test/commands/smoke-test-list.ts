@@ -251,7 +251,7 @@ export const readmes: SpecDefinition[] = [
       "./smoke/swagger/anomaly-detector-mv-rest.md"
     ),
     params: [AutorestParams.RestClient, AutorestParams.AzureSdkForJs],
-    buildTag: "debug"
+    buildTag: "ci_rlc"
   }
   // {
   //   path:

@@ -19,50 +19,31 @@
       {
         "name": "host",
         "in": "path",
-        "required": true,
-        "type": "string",
-        "enum": [
-          "one"
-        ],
-        "x-ms-enum": {
-          "modelAsString": false
-        }
+        "required": false,
+        "default": 1,
+        "type": "integer",
+        "format": "int32"
       },
       {
         "name": "subdomain",
         "in": "path",
-        "required": true,
-        "type": "string",
-        "enum": [
-          "two"
-        ],
-        "x-ms-enum": {
-          "modelAsString": false
-        }
+        "required": false,
+        "default": "two",
+        "type": "string"
       },
       {
         "name": "sufix",
         "in": "path",
-        "required": true,
-        "type": "string",
-        "enum": [
-          "three"
-        ],
-        "x-ms-enum": {
-          "modelAsString": false
-        }
+        "required": false,
+        "default": "three",
+        "type": "string"
       },
       {
         "name": "apiVersion",
         "in": "path",
-        "required": true,
-        "type": "string",
-        "enum": [
-          "v1"
-        ],
-        "x-ms-enum": {
-          "modelAsString": false
-        }
+        "required": false,
+        "default": "v1",
+        "type": "string"
       }
     ]
   },

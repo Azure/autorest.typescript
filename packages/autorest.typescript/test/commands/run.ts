@@ -145,8 +145,7 @@ export async function runAutorest(
     `--output-folder=${outputPath}`,
     `--use=.`,
     `--package-name=${packageDetails.name}`,
-    `--memory=8g`,
-    "--use:https://tinyurl.com/23odwxl9"
+    `--memory=8g`
   );
   if (debugging) {
     commandArguments.push(`--typescript.debugger`);

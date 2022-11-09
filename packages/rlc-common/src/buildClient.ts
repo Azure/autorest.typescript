@@ -172,7 +172,6 @@ function getClientFactoryBody(
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
   }
-  const pathTemplateParameter = model.urlInfo?.pathTemplateApiVersion;
   const { includeShortcuts, packageDetails } = model.options;
   let clientPackageName = packageDetails.nameWithoutScope ?? "";
   const packageVersion = packageDetails.version;
@@ -182,17 +181,12 @@ function getClientFactoryBody(
 
   for (const param of urlParameters ?? []) {
     if (param.value) {
+      const value =
+        typeof param.value === "string" ? `"${param.value}"` : param.value;
       optionalUrlParameters.push(
-        `const ${param.name} = options.${param.name} ?? "${param.value}"`
+        `const ${param.name} = options.${param.name} ?? ${value}`
       );
     }
-  }
-
-  // Special handling for API Version as query param
-  const apiVersion = getApiVersion(model);
-  let apiVersionStatement: string = "";
-  if (apiVersion) {
-    apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${apiVersion}"`;
   }
 
   let baseUrl: string;
@@ -208,6 +202,12 @@ function getClientFactoryBody(
     baseUrl = `options.baseUrl ?? \`${parsedEndpoint}\``;
   } else {
     baseUrl = `options.baseUrl ?? "${endpoint}"`;
+  }
+
+  const apiVersion = getApiVersion(model);
+  let apiVersionStatement: string = "";
+  if (apiVersion) {
+    apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${apiVersion}"`;
   }
 
   if (!clientPackageName.endsWith("-rest")) {

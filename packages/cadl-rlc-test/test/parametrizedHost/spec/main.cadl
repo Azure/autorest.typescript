@@ -21,10 +21,14 @@ using OpenAPI;
   "{host}.{subdomain}.{sufix}.com/{apiVersion}",
   "Confidential Ledger Service",
   {
-    host: "one",
-    subdomain: "two",
-    sufix: "three",
-    apiVersion: "v1"
+    @path
+    host?: string = "one",
+    @path
+    subdomain?: string = "two",
+    @path
+    sufix?: string = "three",
+    @path
+    apiVersion?: string = "v1"
   }
 )
 namespace Azure.Test.ParametrizedHost;

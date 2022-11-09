@@ -20,7 +20,11 @@ import {
   getServiceNamespace,
   getServiceTitle,
   getServiceVersion,
-  Program
+  Program,
+  Type,
+  BooleanLiteral,
+  StringLiteral,
+  NumericLiteral
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -96,16 +100,36 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
       // Currently we only support one parameter in the servers definition
       for (const key of host?.[0]?.parameters.keys()) {
         const type = host?.[0]?.parameters.get(key)?.type;
+        const defaultValue = host?.[0]?.parameters.get(key)?.default;
+
         if (type) {
           urlParameters.push({
             name: key,
             type: getSchemaForType(program, type).type,
             description: getDoc(program, type),
-            value: type.kind === "String" ? type.value : undefined
+            value: isLiteralValue(defaultValue) ? defaultValue.value : undefined
           });
         }
       }
     }
   }
   return { endpoint, urlParameters };
+}
+
+function isLiteralValue(
+  type?: Type
+): type is StringLiteral | NumericLiteral | BooleanLiteral {
+  if (!type) {
+    return false;
+  }
+
+  if (
+    type.kind === "Boolean" ||
+    type.kind === "String" ||
+    type.kind === "Number"
+  ) {
+    return type.value !== undefined;
+  }
+
+  return false;
 }

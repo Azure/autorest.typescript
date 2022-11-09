@@ -32,8 +32,8 @@ async function main() {
   const __dirname = dirname(__filename);
   const root = join(__dirname, "..");
 
-  const folders = folder ? [folder] : await readdir(join(root, "test"));
-
+  // const folders = folder ? [folder] : await readdir(join(root, "test"));
+  const folders = ["parametrizedHost"];
   for (const folder of folders) {
     const path = join(root, "test", folder);
     console.log(`================Start ${folder}===============`);

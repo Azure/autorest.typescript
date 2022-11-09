@@ -55,7 +55,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ```yaml
 version: 3.6.6
 use-extension:
-  "@autorest/modelerfour": "4.23.5"
+  "@autorest/modelerfour": "4.25.0"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
@@ -87,7 +87,6 @@ pipeline:
   typescript/emitter:
     input: typescript
     scope: typescript-scope/emitter
-
 ```
 
 ```yaml $(generate-sample)
@@ -95,8 +94,8 @@ use-extension:
   "@autorest/testmodeler": "2.2.5"
 
 try-require:
-    - ./readme.test.md
-    - ./readme.tests.md
+  - ./readme.test.md
+  - ./readme.tests.md
 
 testmodeler:
   split-parents-value: false
@@ -118,7 +117,6 @@ pipeline:
   typescript/emitter:
     input: typescript
     scope: typescript-scope/emitter
-
 ```
 
 ### REST Client Generator overrides
