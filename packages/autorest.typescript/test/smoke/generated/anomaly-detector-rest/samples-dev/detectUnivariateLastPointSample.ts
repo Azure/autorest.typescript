@@ -21,6 +21,7 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const ApiVersion = "";
   const options: DetectUnivariateLastPointParameters = {
     body: {
       granularity: "monthly",
@@ -82,7 +83,7 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
     headers: { "Content-Type": "application/json" }
   };
   const result = await client
-    .path("/{ApiVersion}/timeseries/last/detect")
+    .path("/{ApiVersion}/timeseries/last/detect", ApiVersion)
     .post(options);
   console.log(result);
 }

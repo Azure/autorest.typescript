@@ -22,6 +22,7 @@ async function detectAnomalyWithMultivariateModel() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const ApiVersion = "";
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
   const options: DetectMultivariateBatchAnomalyParameters = {
     body: {
@@ -34,7 +35,11 @@ async function detectAnomalyWithMultivariateModel() {
     headers: { "Content-Type": "application/json" }
   };
   const initialResponse = await client
-    .path("/{ApiVersion}/multivariate/models/{modelId}:detect-batch", modelId)
+    .path(
+      "/{ApiVersion}/multivariate/models/{modelId}:detect-batch",
+      ApiVersion,
+      modelId
+    )
     .post(options);
   const poller = getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();

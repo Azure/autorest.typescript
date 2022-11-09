@@ -21,6 +21,7 @@ async function trainMultivariateModel() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const ApiVersion = "";
   const options: CreateAndTrainMultivariateModelParameters = {
     body: {
       alignPolicy: {
@@ -39,7 +40,7 @@ async function trainMultivariateModel() {
     headers: { "Content-Type": "application/json" }
   };
   const result = await client
-    .path("/{ApiVersion}/multivariate/models")
+    .path("/{ApiVersion}/multivariate/models", ApiVersion)
     .post(options);
   console.log(result);
 }

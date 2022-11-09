@@ -21,6 +21,7 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const ApiVersion = "";
   const options: DetectUnivariateEntireSeriesParameters = {
     body: {
       granularity: "monthly",
@@ -81,7 +82,7 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
     headers: { "Content-Type": "application/json" }
   };
   const result = await client
-    .path("/{ApiVersion}/timeseries/entire/detect")
+    .path("/{ApiVersion}/timeseries/entire/detect", ApiVersion)
     .post(options);
   console.log(result);
 }

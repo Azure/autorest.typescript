@@ -22,11 +22,12 @@ async function listMultivariateModel() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const ApiVersion = "";
   const options: ListMultivariateModelsParameters = {
     queryParameters: { skip: 0, top: 10 }
   };
   const initialResponse = await client
-    .path("/{ApiVersion}/multivariate/models")
+    .path("/{ApiVersion}/multivariate/models", ApiVersion)
     .get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];

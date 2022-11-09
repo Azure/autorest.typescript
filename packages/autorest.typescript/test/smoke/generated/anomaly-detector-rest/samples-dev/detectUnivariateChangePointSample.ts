@@ -21,6 +21,7 @@ async function detectChangePointExample() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const ApiVersion = "";
   const options: DetectUnivariateChangePointParameters = {
     body: {
       customInterval: 5,
@@ -291,7 +292,7 @@ async function detectChangePointExample() {
     headers: { "Content-Type": "application/json" }
   };
   const result = await client
-    .path("/{ApiVersion}/timeseries/changepoint/detect")
+    .path("/{ApiVersion}/timeseries/changepoint/detect", ApiVersion)
     .post(options);
   console.log(result);
 }

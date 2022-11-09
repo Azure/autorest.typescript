@@ -86,7 +86,7 @@ const generateFromLocal = async ({
         nameWithoutScope: ""
       }
     },
-    true /** Debug */,
+    false /** Debug */,
     params
   );
   return output;

@@ -2,9 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  DetectUnivariateEntireSeriesParameters,
-  DetectUnivariateLastPointParameters,
-  DetectUnivariateChangePointParameters,
   GetMultivariateBatchDetectionResultParameters,
   CreateAndTrainMultivariateModelParameters,
   ListMultivariateModelsParameters,
@@ -14,12 +11,6 @@ import {
   DetectMultivariateLastAnomalyParameters
 } from "./parameters";
 import {
-  DetectUnivariateEntireSeries200Response,
-  DetectUnivariateEntireSeriesDefaultResponse,
-  DetectUnivariateLastPoint200Response,
-  DetectUnivariateLastPointDefaultResponse,
-  DetectUnivariateChangePoint200Response,
-  DetectUnivariateChangePointDefaultResponse,
   GetMultivariateBatchDetectionResult200Response,
   GetMultivariateBatchDetectionResultDefaultResponse,
   CreateAndTrainMultivariateModel201Response,
@@ -36,36 +27,6 @@ import {
   DetectMultivariateLastAnomalyDefaultResponse
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
-
-export interface DetectUnivariateEntireSeries {
-  /** This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series. */
-  post(
-    options: DetectUnivariateEntireSeriesParameters
-  ): StreamableMethod<
-    | DetectUnivariateEntireSeries200Response
-    | DetectUnivariateEntireSeriesDefaultResponse
-  >;
-}
-
-export interface DetectUnivariateLastPoint {
-  /** This operation generates a model using the points that you sent into the API, and based on all data to determine whether the last point is anomalous. */
-  post(
-    options: DetectUnivariateLastPointParameters
-  ): StreamableMethod<
-    | DetectUnivariateLastPoint200Response
-    | DetectUnivariateLastPointDefaultResponse
-  >;
-}
-
-export interface DetectUnivariateChangePoint {
-  /** Evaluate change point score of every series point */
-  post(
-    options: DetectUnivariateChangePointParameters
-  ): StreamableMethod<
-    | DetectUnivariateChangePoint200Response
-    | DetectUnivariateChangePointDefaultResponse
-  >;
-}
 
 export interface GetMultivariateBatchDetectionResult {
   /** For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api. */
@@ -129,52 +90,30 @@ export interface DetectMultivariateLastAnomaly {
 }
 
 export interface Routes {
-  /** Resource for '/\{ApiVersion\}/timeseries/entire/detect' has methods for the following verbs: post */
+  /** Resource for '/multivariate/detect-batch/\{resultId\}' has methods for the following verbs: get */
   (
-    path: "/{ApiVersion}/timeseries/entire/detect",
-    ApiVersion: "v1.1"
-  ): DetectUnivariateEntireSeries;
-  /** Resource for '/\{ApiVersion\}/timeseries/last/detect' has methods for the following verbs: post */
-  (
-    path: "/{ApiVersion}/timeseries/last/detect",
-    ApiVersion: "v1.1"
-  ): DetectUnivariateLastPoint;
-  /** Resource for '/\{ApiVersion\}/timeseries/changepoint/detect' has methods for the following verbs: post */
-  (
-    path: "/{ApiVersion}/timeseries/changepoint/detect",
-    ApiVersion: "v1.1"
-  ): DetectUnivariateChangePoint;
-  /** Resource for '/\{ApiVersion\}/multivariate/detect-batch/\{resultId\}' has methods for the following verbs: get */
-  (
-    path: "/{ApiVersion}/multivariate/detect-batch/{resultId}",
-    ApiVersion: "v1.1",
+    path: "/multivariate/detect-batch/{resultId}",
     resultId: string
   ): GetMultivariateBatchDetectionResult;
-  /** Resource for '/\{ApiVersion\}/multivariate/models' has methods for the following verbs: post, get */
+  /** Resource for '/multivariate/models' has methods for the following verbs: post, get */
+  (path: "/multivariate/models"): CreateAndTrainMultivariateModel;
+  /** Resource for '/multivariate/models/\{modelId\}' has methods for the following verbs: delete, get */
   (
-    path: "/{ApiVersion}/multivariate/models",
-    ApiVersion: "v1.1"
-  ): CreateAndTrainMultivariateModel;
-  /** Resource for '/\{ApiVersion\}/multivariate/models/\{modelId\}' has methods for the following verbs: delete, get */
-  (
-    path: "/{ApiVersion}/multivariate/models/{modelId}",
-    ApiVersion: "v1.1",
+    path: "/multivariate/models/{modelId}",
     modelId: string
   ): DeleteMultivariateModel;
-  /** Resource for '/\{ApiVersion\}/multivariate/models/\{modelId\}:detect-batch' has methods for the following verbs: post */
+  /** Resource for '/multivariate/models/\{modelId\}:detect-batch' has methods for the following verbs: post */
   (
-    path: "/{ApiVersion}/multivariate/models/{modelId}:detect-batch",
-    ApiVersion: "v1.1",
+    path: "/multivariate/models/{modelId}:detect-batch",
     modelId: string
   ): DetectMultivariateBatchAnomaly;
-  /** Resource for '/\{ApiVersion\}/multivariate/models/\{modelId\}:detect-last' has methods for the following verbs: post */
+  /** Resource for '/multivariate/models/\{modelId\}:detect-last' has methods for the following verbs: post */
   (
-    path: "/{ApiVersion}/multivariate/models/{modelId}:detect-last",
-    ApiVersion: "v1.1",
+    path: "/multivariate/models/{modelId}:detect-last",
     modelId: string
   ): DetectMultivariateLastAnomaly;
 }
 
-export type AnomalyDetectorRestClient = Client & {
+export type AnomalyDetectorMVClient = Client & {
   path: Routes;
 };

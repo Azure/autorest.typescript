@@ -19,9 +19,14 @@ async function getDetectionResult() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const ApiVersion = "";
   const resultId = "663884e6-b117-11ea-b3de-0242ac130004";
   const result = await client
-    .path("/{ApiVersion}/multivariate/detect-batch/{resultId}", resultId)
+    .path(
+      "/{ApiVersion}/multivariate/detect-batch/{resultId}",
+      ApiVersion,
+      resultId
+    )
     .get();
   console.log(result);
 }

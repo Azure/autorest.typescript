@@ -19,9 +19,10 @@ async function getMultivariateModel() {
   const Endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(Endpoint, credential);
+  const ApiVersion = "";
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
   const result = await client
-    .path("/{ApiVersion}/multivariate/models/{modelId}", modelId)
+    .path("/{ApiVersion}/multivariate/models/{modelId}", ApiVersion, modelId)
     .get();
   console.log(result);
 }
