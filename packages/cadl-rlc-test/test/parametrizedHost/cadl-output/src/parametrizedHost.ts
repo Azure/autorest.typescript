@@ -3,7 +3,7 @@ import { TokenCredential } from "@azure/core-auth";
 import { ParametrizedHostClient } from "./clientDefinitions";
 
 export interface ParametrizedHostClientOptions extends ClientOptions {
-  host?: number;
+  host?: string;
   subdomain?: string;
   sufix?: string;
   apiVersion?: string;
@@ -17,7 +17,7 @@ export default function createClient(
   credentials: TokenCredential,
   options: ParametrizedHostClientOptions = {}
 ): ParametrizedHostClient {
-  const host = options.host ?? "1";
+  const host = options.host ?? "one";
   const subdomain = options.subdomain ?? "two";
   const sufix = options.sufix ?? "three";
   const apiVersion = options.apiVersion ?? "v1";

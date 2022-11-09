@@ -20,9 +20,8 @@
         "name": "host",
         "in": "path",
         "required": false,
-        "default": 1,
-        "type": "integer",
-        "format": "int32"
+        "default": "one",
+        "type": "string"
       },
       {
         "name": "subdomain",

@@ -78,7 +78,7 @@ export interface ParametrizedHostClientOptions extends ClientOptions {
     // (undocumented)
     apiVersion?: string;
     // (undocumented)
-    host?: number;
+    host?: string;
     // (undocumented)
     subdomain?: string;
     // (undocumented)
