@@ -140,7 +140,7 @@ export async function runAutorest(
 
   commandArguments.push(
     inputFileCommand,
-    "--version=3.6.6",
+    "--version=3.9.3",
     "--clear-output-folder=true",
     `--output-folder=${outputPath}`,
     `--use=.`,

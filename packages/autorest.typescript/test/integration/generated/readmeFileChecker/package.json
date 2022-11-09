@@ -1,5 +1,5 @@
 {
-  "name": "@msinternal/keyvault-secrets",
+  "name": "@azure/keyvault-secrets",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for KeyVaultClient.",
