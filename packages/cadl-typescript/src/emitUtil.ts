@@ -38,9 +38,9 @@ export async function emitContentByBuilder(
 async function emitFile(file: File, program: Program) {
   const host: CompilerHost = program.host;
   const filePath =
-    isAbsolute(file.path) || !program.compilerOptions.outputPath
+    isAbsolute(file.path) || !program.compilerOptions.outputDir
       ? file.path
-      : join(program.compilerOptions.outputPath, file.path);
+      : join(program.compilerOptions.outputDir, file.path);
   const isJson = /\.json$/gi.test(filePath);
   const isSourceCode = /\.(ts|js)$/gi.test(filePath);
   let prettierFileContent = file.content;

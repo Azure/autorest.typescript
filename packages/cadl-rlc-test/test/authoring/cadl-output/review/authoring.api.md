@@ -163,15 +163,6 @@ export interface DeploymentsListDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export type DeploymentsListParameters = RequestParameters;
 
-// @public
-export interface DeploymentsOperations {
-    deleteDeployment(projectName: string, deploymentName: string, options?: DeploymentsDeleteDeploymentParameters): StreamableMethod<DeploymentsDeleteDeployment202Response | DeploymentsDeleteDeploymentDefaultResponse>;
-    deployProject(projectName: string, deploymentName: string, options?: DeploymentsDeployProjectParameters): StreamableMethod<DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse>;
-    getDeployment(projectName: string, deploymentName: string, options?: DeploymentsGetDeploymentParameters): StreamableMethod<DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse>;
-    list(projectName: string, options?: DeploymentsListParameters): StreamableMethod<DeploymentsList200Response | DeploymentsListDefaultResponse>;
-    swapDeployments(projectName: string, options: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
-}
-
 // @public (undocumented)
 export interface DeploymentsSwapDeployments {
     post(options: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
@@ -315,14 +306,6 @@ export interface GlobalListTrainingConfigVersionsQueryParamProperties {
 }
 
 // @public
-export interface GlobalOperations {
-    // (undocumented)
-    getSupportedLanguages(options?: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
-    // (undocumented)
-    listTrainingConfigVersions(options?: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
-}
-
-// @public
 export interface InnerErrorOutput {
     code: string;
     innererror?: InnerErrorOutput;
@@ -425,12 +408,6 @@ export interface JobsGetSwapDeploymentsStatusDefaultResponse extends HttpRespons
 export type JobsGetSwapDeploymentsStatusParameters = RequestParameters;
 
 // @public
-export interface JobsOperations {
-    getDeploymentStatus(projectName: string, deploymentName: string, jobId: string, options?: JobsGetDeploymentStatusParameters): StreamableMethod<JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse>;
-    getSwapDeploymentsStatus(projectName: string, deploymentName: string, jobId: string, options?: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
-}
-
-// @public
 export interface JobWarningOutput {
     code: string;
     message: string;
@@ -439,10 +416,6 @@ export interface JobWarningOutput {
 // @public (undocumented)
 export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client & {
     path: Routes;
-    projects: ProjectsOperations;
-    deployments: DeploymentsOperations;
-    jobs: JobsOperations;
-    global: GlobalOperations;
 };
 
 // @public
@@ -729,17 +702,6 @@ export interface ProjectsListQueryParamProperties {
     skip?: number;
     // (undocumented)
     top?: number;
-}
-
-// @public
-export interface ProjectsOperations {
-    createOrUpdate(projectName: string, options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
-    delete(projectName: string, options?: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
-    export(projectName: string, options: ProjectsExportParameters): StreamableMethod<ProjectsExport202Response | ProjectsExportDefaultResponse>;
-    get(projectName: string, options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
-    importx(projectName: string, options?: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
-    list(options?: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
-    train(projectName: string, options: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
 }
 
 // @public (undocumented)

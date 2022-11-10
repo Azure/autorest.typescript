@@ -41,6 +41,13 @@ Modify `package.json`, add one line under `dependencies`:
 
 Run `npm install` again to install `@azure-tools/cadl-typescript`.
 
+Modify (or create) `cadl-project.yaml`, add one line under `emitters`:
+
+```diff
+emitters:
++  "@azure-tools/cadl-typescript": true
+```
+
 ## Set up configurations
 
 ### cadl-project.yaml
