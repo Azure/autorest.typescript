@@ -40,6 +40,7 @@ export async function runAutorest(
     /^win/.test(process.platform) ? ".cmd" : ""
   }`;
   let commandArguments: string[] = [`--typescript`];
+  let outputPrefix = "";
 
   if (tracingInfo) {
     commandArguments.push(
@@ -61,6 +62,9 @@ export async function runAutorest(
   let inputFileCommand: string = `${swaggerPath}`;
   if (!swaggerPath.endsWith(".md")) {
     inputFileCommand = `--input-file=${inputFileCommand}`;
+  }
+  if (swaggerPath.includes("readme.md")) {
+    outputPrefix = "typescript.";
   }
   if (useCoreV2 !== undefined) {
     commandArguments.push(`--use-core-v2=${useCoreV2}`);
@@ -142,9 +146,9 @@ export async function runAutorest(
     inputFileCommand,
     "--version=3.9.3",
     "--clear-output-folder=true",
-    `--typescript.output-folder=${outputPath}`,
+    `--${outputPrefix}output-folder=${outputPath}`,
     `--use=.`,
-    `--typescript.package-name=${packageDetails.name}`,
+    `--${outputPrefix}package-name=${packageDetails.name}`,
     `--memory=8g`
   );
   if (debugging) {
