@@ -188,71 +188,71 @@ export const readmes: SpecDefinition[] = [
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
   },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "..",
-      "./.tmp/specs/specification/agrifood/data-plane/readme.md"
-    ),
-    branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
-    params: [
-      AutorestParams.RestClient,
-      AutorestParams.GenerateTest,
-      AutorestParams.AzureSdkForJs,
-      AutorestParams.GenerateSamples
-    ],
-    buildTag: "ci_rlc"
-  },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "./smoke/swagger/purview-administration-rest.md"
-    ),
-    params: [
-      AutorestParams.RestClient,
-      AutorestParams.MultiClient,
-      AutorestParams.AzureSdkForJs,
-      AutorestParams.GenerateSamples
-    ],
-    buildTag: "ci_rlc"
-  },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "./smoke/swagger/synapse-artifacts-rest.md"
-    ),
-    params: [
-      AutorestParams.RestClient,
-      AutorestParams.AzureSdkForJs,
-      AutorestParams.GenerateSamples
-    ],
-    buildTag: "ci_rlc"
-  },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "./smoke/swagger/anomaly-detector-rest.md"
-    ),
-    params: [
-      AutorestParams.RestClient,
-      AutorestParams.AzureSdkForJs,
-      AutorestParams.GenerateSamples
-    ],
-    buildTag: "ci_rlc"
-  },
-  {
-    path: joinPath(
-      `${__dirname}`,
-      "..",
-      "./smoke/swagger/anomaly-detector-mv-rest.md"
-    ),
-    params: [AutorestParams.RestClient, AutorestParams.AzureSdkForJs],
-    buildTag: "ci_rlc"
-  }
+  // {
+  //   path: joinPath(
+  //     `${__dirname}`,
+  //     "..",
+  //     "..",
+  //     "./.tmp/specs/specification/agrifood/data-plane/readme.md"
+  //   ),
+  //   branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
+  //   params: [
+  //     AutorestParams.RestClient,
+  //     AutorestParams.GenerateTest,
+  //     AutorestParams.AzureSdkForJs,
+  //     AutorestParams.GenerateSamples
+  //   ],
+  //   buildTag: "ci_rlc"
+  // },
+  // {
+  //   path: joinPath(
+  //     `${__dirname}`,
+  //     "..",
+  //     "./smoke/swagger/purview-administration-rest.md"
+  //   ),
+  //   params: [
+  //     AutorestParams.RestClient,
+  //     AutorestParams.MultiClient,
+  //     AutorestParams.AzureSdkForJs,
+  //     AutorestParams.GenerateSamples
+  //   ],
+  //   buildTag: "ci_rlc"
+  // },
+  // {
+  //   path: joinPath(
+  //     `${__dirname}`,
+  //     "..",
+  //     "./smoke/swagger/synapse-artifacts-rest.md"
+  //   ),
+  //   params: [
+  //     AutorestParams.RestClient,
+  //     AutorestParams.AzureSdkForJs,
+  //     AutorestParams.GenerateSamples
+  //   ],
+  //   buildTag: "ci_rlc"
+  // },
+  // {
+  //   path: joinPath(
+  //     `${__dirname}`,
+  //     "..",
+  //     "./smoke/swagger/anomaly-detector-rest.md"
+  //   ),
+  //   params: [
+  //     AutorestParams.RestClient,
+  //     AutorestParams.AzureSdkForJs,
+  //     AutorestParams.GenerateSamples
+  //   ],
+  //   buildTag: "ci_rlc"
+  // },
+  // {
+  //   path: joinPath(
+  //     `${__dirname}`,
+  //     "..",
+  //     "./smoke/swagger/anomaly-detector-mv-rest.md"
+  //   ),
+  //   params: [AutorestParams.RestClient, AutorestParams.AzureSdkForJs],
+  //   buildTag: "ci_rlc"
+  // }
   // {
   //   path:
   //     "./.tmp/specs/specification/adhybridhealthservice/resource-manager/readme.md",

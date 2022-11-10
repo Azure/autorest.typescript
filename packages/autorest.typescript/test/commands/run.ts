@@ -142,9 +142,9 @@ export async function runAutorest(
     inputFileCommand,
     "--version=3.9.3",
     "--clear-output-folder=true",
-    `--output-folder=${outputPath}`,
+    `--typescript.output-folder=${outputPath}`,
     `--use=.`,
-    `--package-name=${packageDetails.name}`,
+    `--typescript.package-name=${packageDetails.name}`,
     `--memory=8g`
   );
   if (debugging) {
