@@ -30,6 +30,9 @@ export function transformSchemas(program: Program) {
         if (!respModel) {
           continue;
         }
+        if (respModel.type.kind === "Model" && respModel.type.name === 'ErrorResponse') {
+          continue;
+        }
         getGeneratedModels(respModel.type, SchemaContext.Output);
       }
     }

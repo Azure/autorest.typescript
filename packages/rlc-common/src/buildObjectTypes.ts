@@ -377,12 +377,16 @@ export function getPropertySignature(
   const propertyName = property.name;
 
   const description = property.description;
-  const type =
+  let type =
     generateForOutput(schemaUsage, property.usage) && property.outputTypeName
       ? property.outputTypeName
       : property.typeName
       ? property.typeName
       : property.type;
+  if (propertyName === 'error' && property.typeName === 'ErrorModel') {
+    importedModels.add(property.typeName);
+    type = property.typeName;
+  }
   return {
     name: propertyName,
     ...(description && { docs: [{ description }] }),
