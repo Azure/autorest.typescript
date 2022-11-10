@@ -17,12 +17,16 @@ dotenv.config();
  */
 async function deleteMultivariateModel() {
   const Endpoint = "{Endpoint}";
+  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(Endpoint, credential);
-  const ApiVersion = "";
+  const client = createAnomalyDetectorRestClient(
+    Endpoint,
+    ApiVersion,
+    credential
+  );
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
   const result = await client
-    .path("/{ApiVersion}/multivariate/models/{modelId}", ApiVersion, modelId)
+    .path("/multivariate/models/{modelId}", modelId)
     .delete();
   console.log(result);
 }

@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  DetectUnivariateEntireSeriesParameters
+  DetectLastPointParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -12,20 +12,25 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 /**
- * This sample demonstrates how to This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series.
+ * This sample demonstrates how to This operation generates a model using the points that you sent into the API, and based on all data to determine whether the last point is anomalous.
  *
- * @summary This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series.
- * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/EntireDetect.json
+ * @summary This operation generates a model using the points that you sent into the API, and based on all data to determine whether the last point is anomalous.
+ * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/LastDetect.json
  */
-async function findAnomaliesForTheEntireSeriesInBatchExample() {
+async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
   const Endpoint = "{Endpoint}";
+  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(Endpoint, credential);
-  const ApiVersion = "";
-  const options: DetectUnivariateEntireSeriesParameters = {
+  const client = createAnomalyDetectorRestClient(
+    Endpoint,
+    ApiVersion,
+    credential
+  );
+  const options: DetectLastPointParameters = {
     body: {
       granularity: "monthly",
-      imputeMode: "auto",
+      imputeFixedValue: 800,
+      imputeMode: "fixed",
       maxAnomalyRatio: 0.25,
       sensitivity: 95,
       series: [
@@ -81,10 +86,8 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
     },
     headers: { "Content-Type": "application/json" }
   };
-  const result = await client
-    .path("/{ApiVersion}/timeseries/entire/detect", ApiVersion)
-    .post(options);
+  const result = await client.path("/timeseries/last/detect").post(options);
   console.log(result);
 }
 
-findAnomaliesForTheEntireSeriesInBatchExample().catch(console.error);
+detectAnomalyStatusOfTheLatestPointInTimeSeriesExample().catch(console.error);

@@ -25,7 +25,6 @@ const responseMap: Record<string, string[]> = {
   "DELETE /multivariate/models/{modelId}": ["204"],
   "GET /multivariate/models/{modelId}": ["200"],
   "POST /multivariate/models/{modelId}:detect-batch": ["202"],
-  "GET /multivariate/models/{modelId}:detect-batch": ["202"],
   "POST /multivariate/models/{modelId}:detect-last": ["200"]
 };
 
