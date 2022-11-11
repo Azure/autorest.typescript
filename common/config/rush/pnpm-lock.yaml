@@ -7032,7 +7032,7 @@ packages:
     resolution: {integrity: sha512-4GUt3kSEYmk4ITxzB/b9vaIDfUVWN/Ml1Fwl11IlnIG2iaJ9O6WXZ9SrYM9NLI8OCBieN2Y8SWC2oJV0RQ7qYg==}
     hasBin: true
     dependencies:
-      abbrev: 1.0.9
+      abbrev: 1.1.1
     dev: false
 
   /nopt/6.0.0:
@@ -9875,7 +9875,7 @@ packages:
     dev: false
 
   file:projects/cadl-typescript.tgz:
-    resolution: {integrity: sha512-YMA65Ulb/9GGWQfo+bzE2TOf9ZnSkzbUGqEK4Q7wnlbBKc9MTSeqEaZjh/Hki9dZo+ia0+sFN7+MLU0IuN2cgA==, tarball: file:projects/cadl-typescript.tgz}
+    resolution: {integrity: sha512-wDedZW4bgXsMVx2q9cCxo8LN4I7nLxW+GtnxAigQpyM+xWdYnMfrmYAX5CTlFd2O8MA21eLA9U8EF3wjK+4tVw==, tarball: file:projects/cadl-typescript.tgz}
     name: '@rush-temp/cadl-typescript'
     version: 0.0.0
     dependencies:
@@ -9902,6 +9902,7 @@ packages:
       chalk: 4.1.2
       cross-env: 7.0.3
       eslint: 8.27.0
+      mkdirp: 1.0.4
       mocha: 9.2.2
       prettier: 2.7.1
       rimraf: 3.0.2
