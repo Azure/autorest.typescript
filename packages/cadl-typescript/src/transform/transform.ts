@@ -85,15 +85,15 @@ function transformApiVersionParam(program: Program): Parameter | undefined {
 export function transformUrlInfo(program: Program): UrlInfo | undefined {
   const serviceNs = getServiceNamespace(program);
   let endpoint = undefined;
-  let urlParameters = [];
+  const urlParameters = [];
   if (serviceNs) {
     const host = getServers(program, serviceNs);
     if (host?.[0]?.url) {
       endpoint = host[0].url;
     }
-    if (host?.[0]?.parameters) {
+    if (host && host?.[0] && host?.[0]?.parameters) {
       // Currently we only support one parameter in the servers definition
-      for (const key of host?.[0]?.parameters.keys()) {
+      for (const key of host[0].parameters.keys()) {
         const type = host?.[0]?.parameters.get(key)?.type;
         if (type) {
           urlParameters.push({

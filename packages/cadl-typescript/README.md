@@ -1,6 +1,6 @@
 # Introduction
 
-This library is the cadl typescript emitter for Rest Level Client. It take [cadl](https://github.com/microsoft/cadl) as input, transform it into RLCModel, then call rlc-common library to generate the RLC code.
+This library is the Cadl typescript emitter for Rest Level Client. It take [Cadl](https://github.com/microsoft/cadl) as input, transform it into RLCModel, then call rlc-common library to generate the RLC code.
 
 On a high level, the entire Rest Level Client generation process would be:
 

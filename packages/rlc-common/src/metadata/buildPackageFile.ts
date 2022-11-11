@@ -57,7 +57,6 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   if (packageDetails.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
-  const description = packageDetails.description;
   const hasPaging = hasPagingOperations(model);
   const hasLRO = hasPollingOperations(model);
   const packageInfo: Record<string, any> = {

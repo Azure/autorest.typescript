@@ -65,7 +65,9 @@ export function buildClient(model: RLCModel): File | undefined {
           `Initialize a new instance of the class ${clientInterfaceName} class. \n` +
           commonClientParams
             .map((param) => {
-              return `@param ${param.name} type: ${param.type} ${param.description ?? ""}`;
+              return `@param ${param.name} type: ${param.type} ${
+                param.description ?? ""
+              }`;
             })
             .join("\n")
       }

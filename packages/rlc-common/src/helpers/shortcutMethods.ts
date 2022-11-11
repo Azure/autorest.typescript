@@ -13,7 +13,7 @@ import { NameType, normalizeName } from "./nameUtils.js";
 export function generateMethodShortcuts(
   paths: Paths
 ): OptionalKind<InterfaceDeclarationStructure>[] {
-  let keys: Record<string, OptionalKind<MethodSignatureStructure>[]> = {};
+  const keys: Record<string, OptionalKind<MethodSignatureStructure>[]> = {};
   for (const path in paths) {
     const groupName = paths[path].operationGroupName;
     const definitions = buildOperationDefinitions(paths[path]);

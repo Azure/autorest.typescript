@@ -34,7 +34,7 @@ export function transformToParameterTypes(
   const [services, _diagnostics] = getAllHttpServices(program);
   const routes = services.flatMap((service) => service.operations);
   const rlcParameters: OperationParameter[] = [];
-  let outputImportedSet = new Set<string>();
+  const outputImportedSet = new Set<string>();
   for (const route of routes) {
     const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
@@ -90,7 +90,7 @@ function getParameterMetadata(
     param: {
       name,
       type,
-      required: !Boolean(parameter.param.optional),
+      required: !parameter.param.optional,
       description:
         getFormattedPropertyDoc(program, parameter.param, schema) ?? ""
     }
@@ -221,7 +221,7 @@ function transformBinaryBody(
   program: Program,
   parameters: HttpOperationParameters
 ) {
-  let descriptions: string[] = [];
+  const descriptions: string[] = [];
   const description =
     parameters.bodyParameter &&
     getFormattedPropertyDoc(program, parameters.bodyParameter, {});
@@ -276,9 +276,9 @@ function transformMultiFormBody(
     body: []
   };
 
-  for (let [paramName, paramType] of bodyType.properties) {
+  for (const [paramName, paramType] of bodyType.properties) {
     let type: string;
-    let bodySchema = getSchemaForType(program, paramType.type, [
+    const bodySchema = getSchemaForType(program, paramType.type, [
       SchemaContext.Input,
       SchemaContext.Exception
     ]) as any;
@@ -319,7 +319,7 @@ function extractNameFromCadlType(
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
-  let bodySchema = getSchemaForType(program, cadlType, [
+  const bodySchema = getSchemaForType(program, cadlType, [
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;

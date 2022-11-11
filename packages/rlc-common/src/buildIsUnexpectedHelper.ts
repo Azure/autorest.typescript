@@ -22,9 +22,9 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
   });
 
   let map: Record<string, string[]> = {};
-  let allResponseTypes: Set<string> = new Set();
-  let allErrorTypes: Set<string> = new Set();
-  let overloads: OptionalKind<FunctionDeclarationOverloadStructure>[] = [];
+  const allResponseTypes: Set<string> = new Set();
+  const allErrorTypes: Set<string> = new Set();
+  const overloads: OptionalKind<FunctionDeclarationOverloadStructure>[] = [];
   const pathDictionary = model.paths;
 
   for (const [path, details] of Object.entries(pathDictionary)) {

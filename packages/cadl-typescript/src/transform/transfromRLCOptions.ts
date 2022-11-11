@@ -72,7 +72,7 @@ function processAuth(program: Program) {
           securityInfo.addCredentials = true;
           securityInfo.credentialKeyHeaderName = auth.name;
           break;
-        case "oauth2":
+        case "oauth2": {
           const flow = auth.flows[0];
           if (flow === undefined || !flow.scopes) {
             return undefined;
@@ -87,6 +87,7 @@ function processAuth(program: Program) {
             })
           );
           break;
+        }
         default:
           break;
       }

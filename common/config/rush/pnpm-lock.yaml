@@ -9919,13 +9919,14 @@ packages:
     dev: false
 
   file:projects/rlc-common.tgz:
-    resolution: {integrity: sha512-5Xv9dSXYmW2Gs0L6WwwkoZYq7N4u2mi3Mt/X+2ApPk2xZaCL5Gjy5asZe4X3BfEKL74jBViB4/hUlY6qMEEFJg==, tarball: file:projects/rlc-common.tgz}
+    resolution: {integrity: sha512-UhvnPuW+Nzj4/PmAWdXtclcUz4oadaUDG713U3zrqZnAkBWBj2CPL+G9ZK+fhXHlaNk0z/3NctymXz6IS2Hb3A==, tarball: file:projects/rlc-common.tgz}
     name: '@rush-temp/rlc-common'
     version: 0.0.0
     dependencies:
       '@types/fs-extra': 8.1.2
       '@types/lodash': 4.14.188
       '@types/node': 18.11.9
+      eslint: 8.27.0
       fs-extra: 10.1.0
       handlebars: 4.7.7
       lodash: 4.17.21
@@ -9937,6 +9938,7 @@ packages:
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
+      - supports-color
     dev: false
 
   file:projects/typescript.tgz:
