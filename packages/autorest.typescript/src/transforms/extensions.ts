@@ -204,9 +204,22 @@ function addPageableMethods(codeModel: CodeModel) {
         }
       );
 
+      // Filter out query parameters from the original operation.
+      if (nextLinkMethod.parameters) {
+        nextLinkMethod.parameters = nextLinkMethod.parameters.filter(param => {
+          return param.protocol.http?.in !== ParameterLocation.Query;
+        });
+        if (nextLinkMethod.signatureParameters) {
+          nextLinkMethod.updateSignatureParameters();
+        }
+      }
+
       // Ensure all overloads support the nextLink parameter.
       for (const request of nextLinkMethod.requests ?? []) {
-        const parameters = request.parameters ?? [];
+        let parameters = request.parameters ?? [];
+        parameters = parameters.filter(param => {
+          return param.protocol.http?.in !== ParameterLocation.Query;
+        });
         parameters.push(nextLinkParameter);
         request.parameters = parameters;
       }
