@@ -865,7 +865,6 @@ const listOwnersNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,

@@ -7425,7 +7425,6 @@ export type NetworkInterfacesListResponse = NetworkInterfaceListResult;
 
 // @public
 export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -10498,8 +10497,6 @@ export interface ServiceTagInformation {
 
 // @public
 export interface ServiceTagInformationListNextOptionalParams extends coreClient.OperationOptions {
-    noAddressPrefixes?: boolean;
-    tagName?: string;
 }
 
 // @public

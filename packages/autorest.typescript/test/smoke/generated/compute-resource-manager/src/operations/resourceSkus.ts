@@ -141,11 +141,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ResourceSkusResult
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.filter,
-    Parameters.includeExtendedLocations
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

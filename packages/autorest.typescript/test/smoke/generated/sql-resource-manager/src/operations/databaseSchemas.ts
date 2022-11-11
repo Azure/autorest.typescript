@@ -249,7 +249,6 @@ const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

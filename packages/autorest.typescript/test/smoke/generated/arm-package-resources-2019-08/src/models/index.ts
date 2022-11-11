@@ -1205,60 +1205,35 @@ export type DeploymentsCalculateTemplateHashResponse = TemplateHashResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
-  filter?: string;
-  /** The number of results to get. If null is passed, returns all deployments. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtScopeNext operation. */
 export type DeploymentsListAtScopeNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtTenantScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
-  filter?: string;
-  /** The number of results to get. If null is passed, returns all deployments. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtTenantScopeNext operation. */
 export type DeploymentsListAtTenantScopeNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtManagementGroupScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
-  filter?: string;
-  /** The number of results to get. If null is passed, returns all deployments. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtManagementGroupScopeNext operation. */
 export type DeploymentsListAtManagementGroupScopeNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtSubscriptionScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
-  filter?: string;
-  /** The number of results to get. If null is passed, returns all deployments. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtSubscriptionScopeNext operation. */
 export type DeploymentsListAtSubscriptionScopeNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListByResourceGroupNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
-  filter?: string;
-  /** The number of results to get. If null is passed, returns all deployments. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type DeploymentsListByResourceGroupNextResponse = DeploymentListResult;
@@ -1323,24 +1298,14 @@ export type ProvidersGetAtTenantScopeResponse = Provider;
 
 /** Optional parameters. */
 export interface ProvidersListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of results to return. If null is passed returns all deployments. */
-  top?: number;
-  /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ProvidersListNextResponse = ProviderListResult;
 
 /** Optional parameters. */
 export interface ProvidersListAtTenantScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of results to return. If null is passed returns all providers. */
-  top?: number;
-  /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtTenantScopeNext operation. */
 export type ProvidersListAtTenantScopeNextResponse = ProviderListResult;
@@ -1481,28 +1446,14 @@ export type ResourcesGetByIdResponse = GenericResource;
 
 /** Optional parameters. */
 export interface ResourcesListByResourceGroupNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
-  filter?: string;
-  /** The number of results to return. If null is passed, returns all resources. */
-  top?: number;
-  /** Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ResourcesListByResourceGroupNextResponse = ResourceListResult;
 
 /** Optional parameters. */
 export interface ResourcesListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
-  filter?: string;
-  /** The number of results to return. If null is passed, returns all resource groups. */
-  top?: number;
-  /** Comma-separated list of additional properties to be included in the response. Valid values include `createdTime`, `changedTime` and `provisioningState`. For example, `$expand=createdTime,changedTime`. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ResourcesListNextResponse = ResourceListResult;
@@ -1567,12 +1518,7 @@ export type ResourceGroupsListResponse = ResourceGroupListResult;
 
 /** Optional parameters. */
 export interface ResourceGroupsListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1' */
-  filter?: string;
-  /** The number of results to return. If null is passed, returns all resource groups. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ResourceGroupsListNextResponse = ResourceGroupListResult;
@@ -1698,50 +1644,35 @@ export type DeploymentOperationsListResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtScopeNext operation. */
 export type DeploymentOperationsListAtScopeNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtTenantScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtTenantScopeNext operation. */
 export type DeploymentOperationsListAtTenantScopeNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtManagementGroupScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtManagementGroupScopeNext operation. */
 export type DeploymentOperationsListAtManagementGroupScopeNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtSubscriptionScopeNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtSubscriptionScopeNext operation. */
 export type DeploymentOperationsListAtSubscriptionScopeNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type DeploymentOperationsListNextResponse = DeploymentOperationsListResult;

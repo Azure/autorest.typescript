@@ -3825,14 +3825,7 @@ export interface BlobContainersObjectLevelWormOptionalParams
 
 /** Optional parameters. */
 export interface BlobContainersListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Optional. Specified maximum number of containers that can be included in the list. */
-  maxpagesize?: string;
-  /** Optional. When specified, only container names starting with the filter will be listed. */
-  filter?: string;
-  /** Optional, used to include the properties for soft deleted blob containers. */
-  include?: ListContainersInclude;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type BlobContainersListNextResponse = ListContainerItems;
@@ -3929,14 +3922,7 @@ export type FileSharesLeaseResponse = FileSharesLeaseHeaders &
 
 /** Optional parameters. */
 export interface FileSharesListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Optional. Specified maximum number of shares that can be included in the list. */
-  maxpagesize?: string;
-  /** Optional. When specified, only share names starting with the filter will be listed. */
-  filter?: string;
-  /** Optional, used to expand the properties within share's properties. Valid values are: deleted, snapshots. Should be passed as a string with delimiter ',' */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type FileSharesListNextResponse = FileShareItems;
@@ -3999,12 +3985,7 @@ export type QueueListResponse = ListQueueResource;
 
 /** Optional parameters. */
 export interface QueueListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Optional, a maximum number of queues that should be included in a list queue response */
-  maxpagesize?: string;
-  /** Optional, When specified, only the queues with a name starting with the given filter will be listed. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type QueueListNextResponse = ListQueueResource;

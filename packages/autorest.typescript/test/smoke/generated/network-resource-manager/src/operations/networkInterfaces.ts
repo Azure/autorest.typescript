@@ -1836,7 +1836,6 @@ const listCloudServiceRoleInstanceNetworkInterfacesNextOperationSpec: coreClient
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1859,7 +1858,6 @@ const listCloudServiceNetworkInterfacesNextOperationSpec: coreClient.OperationSp
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1881,7 +1879,6 @@ const listAllNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1901,7 +1898,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1922,7 +1918,6 @@ const listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec: coreClient
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1945,7 +1940,6 @@ const listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec: coreClient.O
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1967,7 +1961,6 @@ const listVirtualMachineScaleSetIpConfigurationsNextOperationSpec: coreClient.Op
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.expand, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
