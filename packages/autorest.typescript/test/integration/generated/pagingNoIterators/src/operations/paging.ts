@@ -1256,7 +1256,6 @@ const duplicateParamsNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -1270,7 +1269,6 @@ const pageWithMaxPageSizeNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.maxpagesize],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -1406,7 +1404,6 @@ const appendApiVersionNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -1420,7 +1417,6 @@ const replaceApiVersionNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
