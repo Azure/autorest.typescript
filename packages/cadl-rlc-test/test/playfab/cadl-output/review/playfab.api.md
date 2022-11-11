@@ -635,17 +635,6 @@ export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders
 // @public (undocumented)
 export type PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters = PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaderParam & PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesBodyParam & RequestParameters;
 
-// @public
-export interface PlayFabAuthenticationOperationsOperations {
-    authenticateWithAndroidDeviceId(options: PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdParameters): StreamableMethod<PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse>;
-    authenticateWithCustomId(options: PlayFabAuthenticationOperationsAuthenticateWithCustomIdParameters): StreamableMethod<PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response | PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse>;
-    authenticateWithIOSDeviceId(options: PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdParameters): StreamableMethod<PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse>;
-    authenticateWithNintendoSwitchDeviceID(options: PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDParameters): StreamableMethod<PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse>;
-    getEntityToken(options: PlayFabAuthenticationOperationsGetEntityTokenParameters): StreamableMethod<PlayFabAuthenticationOperationsGetEntityToken200Response | PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse>;
-    getLinkedPlayerIdentities(options: PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters): StreamableMethod<PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response | PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse>;
-    unlinkPlayerIdentity(options: PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters): StreamableMethod<PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response | PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse>;
-}
-
 // @public (undocumented)
 export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentity {
     post(options: PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters): StreamableMethod<PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response | PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse>;
@@ -691,16 +680,7 @@ export type PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters = Play
 // @public (undocumented)
 export type PlayFabClient = Client & {
     path: Routes;
-    playFabAuthenticationOperations: PlayFabAuthenticationOperationsOperations;
-    playFabFileOperations: PlayFabFileOperationsOperations;
-    playFabEventsOperations: PlayFabEventsOperationsOperations;
-    playFabProfilesOperations: PlayFabProfilesOperationsOperations;
 };
-
-// @public
-export interface PlayFabEventsOperationsOperations {
-    writeEvents(options: PlayFabEventsOperationsWriteEventsParameters): StreamableMethod<PlayFabEventsOperationsWriteEvents200Response | PlayFabEventsOperationsWriteEventsDefaultResponse>;
-}
 
 // @public (undocumented)
 export interface PlayFabEventsOperationsWriteEvents {
@@ -990,17 +970,6 @@ export interface PlayFabFileOperationsInitiateFileUploadsHeaders {
 // @public (undocumented)
 export type PlayFabFileOperationsInitiateFileUploadsParameters = PlayFabFileOperationsInitiateFileUploadsHeaderParam & PlayFabFileOperationsInitiateFileUploadsBodyParam & RequestParameters;
 
-// @public
-export interface PlayFabFileOperationsOperations {
-    abortFileUploads(options: PlayFabFileOperationsAbortFileUploadsParameters): StreamableMethod<PlayFabFileOperationsAbortFileUploads200Response | PlayFabFileOperationsAbortFileUploadsDefaultResponse>;
-    deleteFiles(options: PlayFabFileOperationsDeleteFilesParameters): StreamableMethod<PlayFabFileOperationsDeleteFiles200Response | PlayFabFileOperationsDeleteFilesDefaultResponse>;
-    finalizeFileUploads(options: PlayFabFileOperationsFinalizeFileUploadsParameters): StreamableMethod<PlayFabFileOperationsFinalizeFileUploads200Response | PlayFabFileOperationsFinalizeFileUploadsDefaultResponse>;
-    getFiles(options: PlayFabFileOperationsGetFilesParameters): StreamableMethod<PlayFabFileOperationsGetFiles200Response | PlayFabFileOperationsGetFilesDefaultResponse>;
-    getObjects(options: PlayFabFileOperationsGetObjectsParameters): StreamableMethod<PlayFabFileOperationsGetObjects200Response | PlayFabFileOperationsGetObjectsDefaultResponse>;
-    initiateFileUploads(options: PlayFabFileOperationsInitiateFileUploadsParameters): StreamableMethod<PlayFabFileOperationsInitiateFileUploads200Response | PlayFabFileOperationsInitiateFileUploadsDefaultResponse>;
-    setObjects(options: PlayFabFileOperationsSetObjectsParameters): StreamableMethod<PlayFabFileOperationsSetObjects200Response | PlayFabFileOperationsSetObjectsDefaultResponse>;
-}
-
 // @public (undocumented)
 export interface PlayFabFileOperationsSetObjects {
     post(options: PlayFabFileOperationsSetObjectsParameters): StreamableMethod<PlayFabFileOperationsSetObjects200Response | PlayFabFileOperationsSetObjectsDefaultResponse>;
@@ -1083,11 +1052,6 @@ export interface PlayFabProfilesOperationsLoginPlayerHeaders {
 
 // @public (undocumented)
 export type PlayFabProfilesOperationsLoginPlayerParameters = PlayFabProfilesOperationsLoginPlayerHeaderParam & PlayFabProfilesOperationsLoginPlayerBodyParam & RequestParameters;
-
-// @public
-export interface PlayFabProfilesOperationsOperations {
-    loginPlayer(options: PlayFabProfilesOperationsLoginPlayerParameters): StreamableMethod<PlayFabProfilesOperationsLoginPlayer200Response | PlayFabProfilesOperationsLoginPlayerDefaultResponse>;
-}
 
 // @public (undocumented)
 export interface Routes {
