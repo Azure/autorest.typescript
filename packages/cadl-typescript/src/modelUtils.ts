@@ -388,6 +388,9 @@ function getSchemaForModel(
     NameType.Interface,
     true /** shouldGuard */
   );
+  if (modelSchema.name === "AnomalyValue") {
+    modelSchema;
+  }
 
   modelSchema.properties = {};
   const derivedModels = model.derivedModels.filter(includeDerivedModel);
