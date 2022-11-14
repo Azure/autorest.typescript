@@ -212,6 +212,38 @@ export interface AnomalyStateOutput {
   errors?: Array<ErrorResponseOutput>;
 }
 
+export interface AnomalyValueOutput {
+  /** True if an anomaly is detected at the current timestamp. */
+  isAnomaly: boolean;
+  /**
+   * Indicates the significance of the anomaly. The higher the severity, the more
+   * significant the anomaly is.
+   */
+  severity: number;
+  /**
+   * Raw anomaly score of severity, will help indicate the degree of abnormality as
+   * well.
+   */
+  score: number;
+  interpretation?: Array<AnomalyInterpretationOutput>;
+}
+
+export interface AnomalyInterpretationOutput {
+  /** Variable. */
+  variable?: string;
+  /**
+   * This score shows the percentage contributing to the anomalous timestamp. A
+   * number between 0 and 1.
+   */
+  contributionScore?: number;
+  correlationChanges?: CorrelationChangesOutput;
+}
+
+export interface CorrelationChangesOutput {
+  /** The correlated variables that have correlation changes under an anomaly. */
+  changedVariables?: string[];
+}
+
 /**
  * Training result of a model including its status, errors and diagnostics
  * information.
