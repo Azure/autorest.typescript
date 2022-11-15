@@ -10,7 +10,6 @@ export default function createClient(
   options: ClientOptions = {}
 ): PlayFabClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "0000-00-00";
 
   const userAgentInfo = `azsdk-js-playfab-rest/1.0.0-beta.1`;
   const userAgentPrefix =

@@ -36,9 +36,11 @@ export async function runAutorest(
     generateSample,
     lenientModelDeduplication
   } = options;
-  let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
-    }`;
+  let autorestCommand = `autorest${
+    /^win/.test(process.platform) ? ".cmd" : ""
+  }`;
   let commandArguments: string[] = [`--typescript`];
+  let outputPrefix = "";
 
   if (tracingInfo) {
     commandArguments.push(
@@ -46,7 +48,11 @@ export async function runAutorest(
       `--tracing-info.packagePrefix="${tracingInfo.packagePrefix}"`
     );
   }
-  if (securityScopes !== undefined && Array.isArray(securityScopes) && securityScopes.length > 0) {
+  if (
+    securityScopes !== undefined &&
+    Array.isArray(securityScopes) &&
+    securityScopes.length > 0
+  ) {
     securityScopes.forEach(item => {
       commandArguments.push(`--security-scopes=${item}`);
     });
@@ -56,6 +62,9 @@ export async function runAutorest(
   let inputFileCommand: string = `${swaggerPath}`;
   if (!swaggerPath.endsWith(".md")) {
     inputFileCommand = `--input-file=${inputFileCommand}`;
+  }
+  if (swaggerPath.includes("readme.md")) {
+    outputPrefix = "typescript.";
   }
   if (useCoreV2 !== undefined) {
     commandArguments.push(`--use-core-v2=${useCoreV2}`);
@@ -117,7 +126,6 @@ export async function runAutorest(
     commandArguments.push(`--add-credentials=${!!addCredentials}`);
   }
 
-
   if (security !== undefined) {
     commandArguments.push(`--security=${security}`);
   }
@@ -136,11 +144,11 @@ export async function runAutorest(
 
   commandArguments.push(
     inputFileCommand,
-    "--version=3.6.6",
+    "--version=3.9.3",
     "--clear-output-folder=true",
-    `--output-folder=${outputPath}`,
+    `--${outputPrefix}output-folder=${outputPath}`,
     `--use=.`,
-    `--package-name=${packageDetails.name}`,
+    `--${outputPrefix}package-name=${packageDetails.name}`,
     `--memory=8g`
   );
   if (debugging) {

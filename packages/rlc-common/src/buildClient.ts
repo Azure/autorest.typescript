@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 
 import {
+  InterfaceDeclarationStructure,
+  OptionalKind,
   Project,
   StatementStructures,
   StructureKind,
@@ -13,7 +15,31 @@ import * as path from "path";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { isConstantSchema } from "./helpers/schemaHelpers.js";
 import { buildMethodShortcutImplementation } from "./buildMethodShortcuts.js";
-import { RLCModel, Schema, File } from "./interfaces.js";
+import { RLCModel, Schema, File, PathParameter } from "./interfaces.js";
+
+function getClientOptionsInterface(
+  clientName: string,
+  optionalUrlParameters?: PathParameter[]
+): OptionalKind<InterfaceDeclarationStructure> | undefined {
+  if (!optionalUrlParameters || optionalUrlParameters.length === 0) {
+    return undefined;
+  }
+
+  const properties = optionalUrlParameters.map((param) => {
+    return {
+      name: param.name,
+      type: param.type,
+      hasQuestionToken: true
+    };
+  });
+
+  return {
+    name: `${clientName}Options`,
+    extends: ["ClientOptions"],
+    isExported: true,
+    properties
+  };
+}
 
 export function buildClient(model: RLCModel): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
@@ -26,7 +52,28 @@ export function buildClient(model: RLCModel): File | undefined {
 
   // Get all paths
   const clientName = model.libraryName;
-  const urlParameters = model?.urlInfo?.urlParameters;
+  const clientInterfaceName = clientName.endsWith("Client")
+    ? `${clientName}`
+    : `${clientName}Client`;
+
+  const urlParameters = model?.urlInfo?.urlParameters?.filter(
+    // Do not include parameters with constant values in the signature, these should go in the options bag
+    (p) => p.value === undefined
+  );
+
+  const optionalUrlParameters = model?.urlInfo?.urlParameters?.filter(
+    // Do not include parameters with constant values in the signature, these should go in the options bag
+    (p) => Boolean(p.value)
+  );
+
+  const clientOptionsInterface = getClientOptionsInterface(
+    clientInterfaceName,
+    optionalUrlParameters
+  );
+
+  if (clientOptionsInterface) {
+    clientFile.addInterface(clientOptionsInterface);
+  }
 
   if (!model.options) {
     return undefined;
@@ -48,16 +95,16 @@ export function buildClient(model: RLCModel): File | undefined {
       ? []
       : [{ name: "credentials", type: credentialTypes.join(" | ") }])
   ];
-  const clientInterfaceName = clientName.endsWith("Client")
-    ? `${clientName}`
-    : `${clientName}Client`;
 
   const functionStatement = {
     isExported: true,
     name: `createClient`,
     parameters: [
       ...commonClientParams,
-      { name: "options", type: "ClientOptions = {}" }
+      {
+        name: "options",
+        type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`
+      }
     ],
     docs: [
       {
@@ -129,6 +176,19 @@ function getClientFactoryBody(
   let clientPackageName = packageDetails.nameWithoutScope ?? "";
   const packageVersion = packageDetails.version;
   const { endpoint, urlParameters } = model.urlInfo;
+
+  const optionalUrlParameters: string[] = [];
+
+  for (const param of urlParameters ?? []) {
+    if (param.value) {
+      const value =
+        typeof param.value === "string" ? `"${param.value}"` : param.value;
+      optionalUrlParameters.push(
+        `const ${param.name} = options.${param.name} ?? ${value}`
+      );
+    }
+  }
+
   let baseUrl: string;
   if (urlParameters && endpoint) {
     let parsedEndpoint = endpoint;
@@ -226,6 +286,7 @@ function getClientFactoryBody(
   }
 
   return [
+    ...optionalUrlParameters,
     baseUrlStatement,
     apiVersionStatement,
     credentials,
