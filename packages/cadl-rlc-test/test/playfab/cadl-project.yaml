@@ -1,11 +1,9 @@
 emitters:
   "@azure-tools/cadl-typescript":
-    generateMetadata: true
-    includeShortcuts: true
     azureArm: true
     azureSdkForJs: false
+    generateTest: false
     packageDetails:
       name: "@msinternal/playfab"
       description: "PlayFab Service"
-      version: "1.0.0-beta.1"
   "@azure-tools/cadl-autorest": true

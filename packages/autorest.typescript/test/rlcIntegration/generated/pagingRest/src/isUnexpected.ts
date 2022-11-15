@@ -4,6 +4,8 @@
 import {
   PagingGetNoItemNamePages200Response,
   PagingGetNoItemNamePagesDefaultResponse,
+  PagingGetEmptyNextLinkNamePages200Response,
+  PagingGetEmptyNextLinkNamePagesDefaultResponse,
   PagingGetNullNextLinkNamePages200Response,
   PagingGetNullNextLinkNamePagesDefaultResponse,
   PagingGetSinglePages200Response,
@@ -56,6 +58,7 @@ import {
 
 const responseMap: Record<string, string[]> = {
   "GET /paging/noitemname": ["200"],
+  "GET /paging/emptynextlink": ["200"],
   "GET /paging/nullnextlink": ["200"],
   "GET /paging/single": ["200"],
   "GET /paging/single/getWithBodyParams": ["200"],
@@ -88,6 +91,11 @@ export function isUnexpected(
     | PagingGetNoItemNamePages200Response
     | PagingGetNoItemNamePagesDefaultResponse
 ): response is PagingGetNoItemNamePagesDefaultResponse;
+export function isUnexpected(
+  response:
+    | PagingGetEmptyNextLinkNamePages200Response
+    | PagingGetEmptyNextLinkNamePagesDefaultResponse
+): response is PagingGetEmptyNextLinkNamePagesDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetNullNextLinkNamePages200Response
@@ -210,6 +218,8 @@ export function isUnexpected(
   response:
     | PagingGetNoItemNamePages200Response
     | PagingGetNoItemNamePagesDefaultResponse
+    | PagingGetEmptyNextLinkNamePages200Response
+    | PagingGetEmptyNextLinkNamePagesDefaultResponse
     | PagingGetNullNextLinkNamePages200Response
     | PagingGetNullNextLinkNamePagesDefaultResponse
     | PagingGetSinglePages200Response
@@ -260,6 +270,7 @@ export function isUnexpected(
     | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
 ): response is
   | PagingGetNoItemNamePagesDefaultResponse
+  | PagingGetEmptyNextLinkNamePagesDefaultResponse
   | PagingGetNullNextLinkNamePagesDefaultResponse
   | PagingGetSinglePagesDefaultResponse
   | PagingGetSinglePagesWithBodyParamsDefaultResponse

@@ -18,8 +18,12 @@ import {
 } from "./helpers/operationHelpers.js";
 import { PathMetadata, Paths, RLCModel } from "./interfaces.js";
 import { generateMethodShortcuts } from "./helpers/shortcutMethods.js";
-import { REST_CLIENT_RESERVED } from './buildMethodShortcuts.js'
-import { CasingConvention, NameType, normalizeName } from "./helpers/nameUtils.js";
+import { REST_CLIENT_RESERVED } from "./buildMethodShortcuts.js";
+import {
+  CasingConvention,
+  NameType,
+  normalizeName
+} from "./helpers/nameUtils.js";
 import { pascalCase } from "./helpers/nameUtils.js";
 
 export function buildClientDefinitions(model: RLCModel) {

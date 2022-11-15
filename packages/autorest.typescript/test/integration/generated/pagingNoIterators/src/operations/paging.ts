@@ -16,6 +16,8 @@ import { LroImpl } from "../lroImpl";
 import {
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
+  PagingGetEmptyNextLinkNamePagesOptionalParams,
+  PagingGetEmptyNextLinkNamePagesResponse,
   PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesOptionalParams,
@@ -69,6 +71,8 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesNextResponse,
+  PagingGetEmptyNextLinkNamePagesNextOptionalParams,
+  PagingGetEmptyNextLinkNamePagesNextResponse,
   PagingGetSinglePagesNextOptionalParams,
   PagingGetSinglePagesNextResponse,
   PagingGetSinglePagesWithBodyParamsNextOptionalParams,
@@ -127,6 +131,19 @@ export class PagingImpl implements Paging {
     return this.client.sendOperationRequest(
       { options },
       getNoItemNamePagesOperationSpec
+    );
+  }
+
+  /**
+   * A paging operation that gets an empty next link and should stop after page 1.
+   * @param options The options parameters.
+   */
+  getEmptyNextLinkNamePages(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      getEmptyNextLinkNamePagesOperationSpec
     );
   }
 
@@ -540,6 +557,22 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * GetEmptyNextLinkNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetEmptyNextLinkNamePages
+   *                 method.
+   * @param options The options parameters.
+   */
+  getEmptyNextLinkNamePagesNext(
+    nextLink: string,
+    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getEmptyNextLinkNamePagesNextOperationSpec
+    );
+  }
+
+  /**
    * GetSinglePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
    * @param options The options parameters.
@@ -810,6 +843,19 @@ const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getNoItemNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/noitemname",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getEmptyNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/emptynextlink",
   httpMethod: "GET",
   responses: {
     200: {
@@ -1177,6 +1223,19 @@ const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.Opera
   serializer
 };
 const getNoItemNamePagesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getEmptyNextLinkNamePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

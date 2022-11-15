@@ -6,6 +6,7 @@ import { RequestParameters } from "@azure-rest/core-client";
 import { BodyParam } from "./models";
 
 export type PagingGetNoItemNamePagesParameters = RequestParameters;
+export type PagingGetEmptyNextLinkNamePagesParameters = RequestParameters;
 export type PagingGetNullNextLinkNamePagesParameters = RequestParameters;
 export type PagingGetSinglePagesParameters = RequestParameters;
 

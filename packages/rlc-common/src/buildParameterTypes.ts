@@ -17,7 +17,6 @@ import {
   RLCModel,
   Schema
 } from "./interfaces.js";
-import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   getParameterBaseName,
   getParameterTypeName
@@ -221,7 +220,7 @@ function getPropertyFromSchema(schema: Schema): PropertySignatureStructure {
     name: schema.name,
     ...(description && { docs: [{ description }] }),
     type: schema.type,
-    hasQuestionToken: !Boolean(schema.required),
+    hasQuestionToken: !schema.required,
     kind: StructureKind.PropertySignature
   };
 }
@@ -465,11 +464,11 @@ export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
   const contentType = headerParameters[0].param.type;
   const readOnlyProperties = [];
   if (schema.properties) {
-    for(const propertyName of Object.keys(schema.properties)) {
+    for (const propertyName of Object.keys(schema.properties)) {
       const prop = schema.properties[propertyName];
       if (prop?.readOnly) {
         if (propertyName.startsWith('"') && propertyName.endsWith('"')) {
-          readOnlyProperties.push(`${propertyName}`)
+          readOnlyProperties.push(`${propertyName}`);
         } else {
           readOnlyProperties.push(`"${propertyName}"`);
         }
@@ -478,7 +477,7 @@ export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
   }
 
   const description = `${schema.description}`;
-  const typeName = `${schema.typeName}ResourceMergeAndPatch`
+  const typeName = `${schema.typeName}ResourceMergeAndPatch`;
   if (contentType.includes("application/merge-patch+json")) {
     const type = `Partial<${schema.typeName}>`;
     return {
@@ -488,6 +487,5 @@ export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
       type,
       isExported: true
     };
-  } 
-
+  }
 }

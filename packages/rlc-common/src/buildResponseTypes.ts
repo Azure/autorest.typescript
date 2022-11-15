@@ -125,7 +125,7 @@ function getResponseHeaderInterfaceDefinition(
         name: h.name,
         ...(description && { docs: [{ description }] }),
         type: h.type,
-        hasQuestionToken: !Boolean(h.required)
+        hasQuestionToken: !h.required
       };
     })
   };

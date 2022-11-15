@@ -3,6 +3,7 @@
 
 import {
   PagingGetNoItemNamePagesParameters,
+  PagingGetEmptyNextLinkNamePagesParameters,
   PagingGetNullNextLinkNamePagesParameters,
   PagingGetSinglePagesParameters,
   PagingGetSinglePagesWithBodyParamsParameters,
@@ -31,6 +32,8 @@ import {
 import {
   PagingGetNoItemNamePages200Response,
   PagingGetNoItemNamePagesDefaultResponse,
+  PagingGetEmptyNextLinkNamePages200Response,
+  PagingGetEmptyNextLinkNamePagesDefaultResponse,
   PagingGetNullNextLinkNamePages200Response,
   PagingGetNullNextLinkNamePagesDefaultResponse,
   PagingGetSinglePages200Response,
@@ -89,6 +92,16 @@ export interface GetNoItemNamePages {
   ): StreamableMethod<
     | PagingGetNoItemNamePages200Response
     | PagingGetNoItemNamePagesDefaultResponse
+  >;
+}
+
+export interface GetEmptyNextLinkNamePages {
+  /** A paging operation that gets an empty next link and should stop after page 1. */
+  get(
+    options?: PagingGetEmptyNextLinkNamePagesParameters
+  ): StreamableMethod<
+    | PagingGetEmptyNextLinkNamePages200Response
+    | PagingGetEmptyNextLinkNamePagesDefaultResponse
   >;
 }
 
@@ -329,6 +342,8 @@ export interface GetPagingModelWithItemNameWithXMSClientName {
 export interface Routes {
   /** Resource for '/paging/noitemname' has methods for the following verbs: get */
   (path: "/paging/noitemname"): GetNoItemNamePages;
+  /** Resource for '/paging/emptynextlink' has methods for the following verbs: get */
+  (path: "/paging/emptynextlink"): GetEmptyNextLinkNamePages;
   /** Resource for '/paging/nullnextlink' has methods for the following verbs: get */
   (path: "/paging/nullnextlink"): GetNullNextLinkNamePages;
   /** Resource for '/paging/single' has methods for the following verbs: get */
