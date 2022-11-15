@@ -354,7 +354,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle anonymous model -> effective type/interface", async () => {
+    it.skip("should handle anonymous model -> effective type/interface", async () => {
       const cadlDefinition = `
       model SimpleModel {
         prop1: string;
