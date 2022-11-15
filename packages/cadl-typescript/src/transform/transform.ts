@@ -90,7 +90,7 @@ function transformApiVersionParam(program: Program): Parameter | undefined {
 export function transformUrlInfo(program: Program): UrlInfo | undefined {
   const serviceNs = getServiceNamespace(program);
   let endpoint = undefined;
-  const urlParameters = [];
+  const urlParameters: PathParameter[] = [];
   if (serviceNs) {
     const host = getServers(program, serviceNs);
     if (host?.[0]?.url) {
