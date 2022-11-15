@@ -3,8 +3,7 @@
 > see https://aka.ms/autorest
 
 ```yaml
-typescript:
-  package-name: "@azure/keyvault-secrets"
+package-name: "@azure/keyvault-secrets"
 api-version-parameter: choice
 disable-async-iterators: true
 v3: true

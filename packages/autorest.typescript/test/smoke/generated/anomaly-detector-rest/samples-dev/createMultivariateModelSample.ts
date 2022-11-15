@@ -4,7 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createAnomalyDetectorRestClient, {
-  CreateAndTrainMultivariateModelParameters
+  CreateMultivariateModelParameters
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -19,9 +19,14 @@ dotenv.config();
  */
 async function trainMultivariateModel() {
   const Endpoint = "{Endpoint}";
+  const ApiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorRestClient(Endpoint, credential);
-  const options: CreateAndTrainMultivariateModelParameters = {
+  const client = createAnomalyDetectorRestClient(
+    Endpoint,
+    ApiVersion,
+    credential
+  );
+  const options: CreateMultivariateModelParameters = {
     body: {
       alignPolicy: {
         alignMode: "Outer",
@@ -38,9 +43,7 @@ async function trainMultivariateModel() {
     },
     headers: { "Content-Type": "application/json" }
   };
-  const result = await client
-    .path("/{ApiVersion}/multivariate/models")
-    .post(options);
+  const result = await client.path("/multivariate/models").post(options);
   console.log(result);
 }
 

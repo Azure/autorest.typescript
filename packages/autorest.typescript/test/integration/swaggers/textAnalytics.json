@@ -84,16 +84,49 @@
                         "x-ms-error-response": true
                     }
                 },
-                "x-ms-examples": {
-                    "Successful Detect Language request": {
-                        "$ref": ".//examples//SuccessfulLanguagesRequest.json"
-                    }
-                },
                 "deprecated": false
             }
         }
     },
     "definitions": {
+        "MultiLanguageBatchInput": {
+            "type": "object",
+            "required": [
+                "documents"
+            ],
+            "properties": {
+                "documents": {
+                    "type": "array",
+                    "description": "The set of documents to process as part of this batch.",
+                    "items": {
+                        "$ref": "#/definitions/MultiLanguageInput"
+                    }
+                }
+            },
+            "description": "Contains a set of input documents to be analyzed by the service."
+        },
+        "MultiLanguageInput": {
+            "type": "object",
+            "required": [
+                "id",
+                "text"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique, non-empty document identifier."
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The input text to process."
+                },
+                "language": {
+                    "type": "string",
+                    "description": "(Optional) This is the 2 letter ISO 639-1 representation of a language. For example, use \"en\" for English; \"es\" for Spanish etc. If not set, use \"en\" for English as default."
+                }
+            },
+            "description": "Contains an input document to be analyzed by the service."
+        },
         "DocumentError": {
             "type": "object",
             "required": [
