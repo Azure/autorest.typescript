@@ -42,12 +42,6 @@ export interface OperationStatusOutput {
   result?: never;
 }
 
-/** A response containing error details. */
-export interface ErrorResponseOutput {
-  /** The error object. */
-  error: ErrorModelOutput;
-}
-
 /** The error object. */
 export interface ErrorModelOutput {
   /** One of a server-defined set of error codes. */
@@ -68,6 +62,12 @@ export interface InnerErrorOutput {
   code: string;
   /** Inner error. */
   innererror?: InnerErrorOutput;
+}
+
+/** A response containing error details. */
+export interface ErrorResponseOutput {
+  /** The error object. */
+  error: ErrorModelOutput;
 }
 
 /** Paged collection of Project items */

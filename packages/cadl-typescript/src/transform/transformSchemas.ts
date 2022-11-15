@@ -75,9 +75,17 @@ export function transformSchemas(program: Program) {
     if (model.kind === "Model") {
       if (model.templateArguments && model.templateArguments.length > 0) {
         for (const temp of model.templateArguments) {
-          setModelMap(temp, context);
-          break;
+          if (
+            !program.stateMap(modelKey).get(temp) ||
+            !program.stateMap(modelKey).get(temp)?.includes(context)
+          ) {
+            getGeneratedModels(temp, context);
+            break;
+          }
         }
+      }
+      if (model.name === "") {
+        return;
       }
       setModelMap(model, context);
       const indexer = (model as Model).indexer;
