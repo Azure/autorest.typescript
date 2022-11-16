@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
   ProjectsCreateOrUpdate200Response,
   ProjectsCreateOrUpdate201Response,

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { ConfidentialLedgerListCollectionsParameters } from "./parameters";
 import {
   ConfidentialLedgerListCollections200Response,

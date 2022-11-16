@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ModelsPropertyOptionalClient } from "./clientDefinitions";
 

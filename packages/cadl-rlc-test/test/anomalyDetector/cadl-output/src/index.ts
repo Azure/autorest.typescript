@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import AnomalyDetector from "./anomalyDetector";
 
 export * from "./anomalyDetector";

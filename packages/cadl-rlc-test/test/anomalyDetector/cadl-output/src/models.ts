@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** The request of entire or last anomaly detection. */
 export interface DetectRequest {
   /**

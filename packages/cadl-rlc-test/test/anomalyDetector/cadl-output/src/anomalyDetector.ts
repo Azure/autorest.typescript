@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorClient } from "./clientDefinitions";

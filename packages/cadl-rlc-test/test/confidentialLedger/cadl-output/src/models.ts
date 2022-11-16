@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 export interface LedgerEntry {
   /** Contents of the ledger entry. */
   contents: string;
