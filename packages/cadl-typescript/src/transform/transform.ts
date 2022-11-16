@@ -23,8 +23,7 @@ import {
   Type,
   BooleanLiteral,
   StringLiteral,
-  NumericLiteral,
-  getDoc
+  NumericLiteral
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -108,8 +107,6 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
 
         if (type) {
           const schema = getSchemaForType(program, type);
-          let description = getDoc(program, type);
-          description = description;
           urlParameters.push({
             name: key,
             type: getTypeName(schema),
