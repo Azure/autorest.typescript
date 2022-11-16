@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** The third level model in the normal multiple levels inheritance. */
 export interface Siamese extends Cat {
   smart: boolean;

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import ModelsUsage from "./modelsUsage";
 
 export * from "./modelsUsage";

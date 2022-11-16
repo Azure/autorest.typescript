@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoring from "./microsoftCognitiveLanguageServiceAnalyzeTextAuthoring";
 
 export * from "./microsoftCognitiveLanguageServiceAnalyzeTextAuthoring";

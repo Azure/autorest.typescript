@@ -1,3 +1,7 @@
+## 1.0.0-beta.4 (2022-11-16)
+
+- [BugFix] Add the license header and please refer the [pr](https://github.com/Azure/autorest.typescript/pull/1663).
+
 ## 1.0.0-beta.3 (2022-11-15)
 
 - [BugFix] Fix browser testing issue. Please refer to pr [#1656](https://github.com/Azure/autorest.typescript/pull/1656) for details.

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import ParametrizedHost from "./parametrizedHost";
 
 export * from "./parametrizedHost";

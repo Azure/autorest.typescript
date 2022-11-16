@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** The response of entire anomaly detection. */
 export interface EntireDetectResponseOutput {
   /**
