@@ -78,6 +78,14 @@ Provide the metadata for `package.json`, `README.md` and user-agent information.
 | description | description used in package.json file                                                            |
 | version     | detailed version for your released package, the default vaule is `1.0.0-beta.1`                  |
 
+### title
+
+Generally the codegen will leverage the title defined in `@service` decorator in Cadl to name our client. But if you'd like to override it you could config the `title` info.
+
+```yaml
+title: AnomalyDetectorRest
+```
+
 ### generateMetadata
 
 To indicate if the codegen needs to generate metadata files which includes `package.json`, `README.md` and `tsconfig.json` etc.
