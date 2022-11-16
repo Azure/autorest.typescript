@@ -16,7 +16,6 @@ import {
   UrlInfo
 } from "@azure-tools/rlc-common";
 import {
-  getDoc,
   getServiceNamespace,
   getServiceTitle,
   getServiceVersion,
@@ -24,11 +23,16 @@ import {
   Type,
   BooleanLiteral,
   StringLiteral,
-  NumericLiteral
+  NumericLiteral,
+  getDoc
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
-import { getSchemaForType } from "../modelUtils.js";
+import {
+  getFormattedPropertyDoc,
+  getSchemaForType,
+  getTypeName
+} from "../modelUtils.js";
 import { transformAnnotationDetails } from "./transformAnnotationDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
@@ -103,10 +107,13 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
         const defaultValue = host?.[0]?.parameters.get(key)?.default;
 
         if (type) {
+          const schema = getSchemaForType(program, type);
+          let description = getDoc(program, type);
+          description = description;
           urlParameters.push({
             name: key,
-            type: getSchemaForType(program, type).type,
-            description: getDoc(program, type),
+            type: getTypeName(schema),
+            description: getFormattedPropertyDoc(program, type, schema, " "),
             value: isLiteralValue(defaultValue) ? defaultValue.value : undefined
           });
         }
