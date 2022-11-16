@@ -58,7 +58,7 @@
     "@cadl-lang/rest": "0.18.0",
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-common": "1.0.0-beta.3",
+    "@azure-tools/rlc-common": "1.0.0-beta.4",
     "ts-morph": "^15.1.0"
   },
   "mocha": {
