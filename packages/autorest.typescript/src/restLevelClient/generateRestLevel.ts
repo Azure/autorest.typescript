@@ -149,7 +149,7 @@ export async function generateRestLevelClient() {
     const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;
 
     if (isSourceCode) {
-      fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
+      fileContents = `${licenseHeader.trimStart()}\n${fileContents}`;
     }
 
     // Format the contents if necessary
