@@ -29,7 +29,7 @@ export function transformToResponseTypes(
   const [services, _diagnostics] = getAllHttpServices(program);
   const routes = services.flatMap((service) => service.operations);
   const rlcResponses: OperationResponse[] = [];
-  let inputImportedSet = new Set<string>();
+  const inputImportedSet = new Set<string>();
   for (const route of routes) {
     const rlcOperationUnit: OperationResponse = {
       operationGroup: route.container.name,
@@ -96,7 +96,7 @@ function transformHeaders(
       const header: ResponseHeaderSchema = {
         name: `"${key.toLowerCase()}"`,
         type,
-        required: !Boolean(value?.optional),
+        required: !value?.optional,
         description: getDoc(program, value!)
       };
       rlcHeaders.push(header);

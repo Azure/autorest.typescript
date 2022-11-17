@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { ApiKeyValidParameters, ApiKeyInvalidParameters } from "./parameters";
 import {
   ApiKeyValid204Response,

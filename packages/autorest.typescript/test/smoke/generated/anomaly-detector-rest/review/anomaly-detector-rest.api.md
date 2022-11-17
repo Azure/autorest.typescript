@@ -71,6 +71,55 @@ export interface AnomalyValueOutput {
     severity: number;
 }
 
+// @public (undocumented)
+export interface BatchDetectAnomaly {
+    post(options: BatchDetectAnomalyParameters): StreamableMethod<BatchDetectAnomaly202Response | BatchDetectAnomalyDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface BatchDetectAnomaly202Headers {
+    "operation-id"?: string;
+    "operation-location"?: string;
+}
+
+// @public
+export interface BatchDetectAnomaly202Response extends HttpResponse {
+    // (undocumented)
+    body: DetectionResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & BatchDetectAnomaly202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface BatchDetectAnomalyBodyParam {
+    body: DetectionRequest;
+}
+
+// @public (undocumented)
+export interface BatchDetectAnomalyDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public
+export interface BatchDetectAnomalyDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & BatchDetectAnomalyDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface BatchDetectAnomalyMediaTypesParam {
+    contentType?: "application/json";
+}
+
+// @public (undocumented)
+export type BatchDetectAnomalyParameters = BatchDetectAnomalyMediaTypesParam & BatchDetectAnomalyBodyParam & RequestParameters;
+
 // @public
 export interface ChangePointDetectRequest {
     customInterval?: number;
@@ -93,58 +142,58 @@ export interface CorrelationChangesOutput {
     changedVariables?: Array<string>;
 }
 
+// @public
+function createClient(Endpoint: string, ApiVersion: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorRestClient;
+export default createClient;
+
 // @public (undocumented)
-export interface CreateAndTrainMultivariateModel {
-    get(options?: ListMultivariateModelsParameters): StreamableMethod<ListMultivariateModels200Response | ListMultivariateModelsDefaultResponse>;
-    post(options: CreateAndTrainMultivariateModelParameters): StreamableMethod<CreateAndTrainMultivariateModel201Response | CreateAndTrainMultivariateModelDefaultResponse>;
+export interface CreateMultivariateModel {
+    get(options?: ListMultivariateModelParameters): StreamableMethod<ListMultivariateModel200Response | ListMultivariateModelDefaultResponse>;
+    post(options: CreateMultivariateModelParameters): StreamableMethod<CreateMultivariateModel201Response | CreateMultivariateModelDefaultResponse>;
 }
 
 // @public (undocumented)
-export interface CreateAndTrainMultivariateModel201Headers {
+export interface CreateMultivariateModel201Headers {
     location?: string;
 }
 
 // @public
-export interface CreateAndTrainMultivariateModel201Response extends HttpResponse {
+export interface CreateMultivariateModel201Response extends HttpResponse {
     // (undocumented)
     body: ModelOutput;
     // (undocumented)
-    headers: RawHttpHeaders & CreateAndTrainMultivariateModel201Headers;
+    headers: RawHttpHeaders & CreateMultivariateModel201Headers;
     // (undocumented)
     status: "201";
 }
 
 // @public (undocumented)
-export interface CreateAndTrainMultivariateModelBodyParam {
+export interface CreateMultivariateModelBodyParam {
     body: ModelInfo;
 }
 
 // @public (undocumented)
-export interface CreateAndTrainMultivariateModelDefaultHeaders {
+export interface CreateMultivariateModelDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public
-export interface CreateAndTrainMultivariateModelDefaultResponse extends HttpResponse {
+export interface CreateMultivariateModelDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    headers: RawHttpHeaders & CreateAndTrainMultivariateModelDefaultHeaders;
+    headers: RawHttpHeaders & CreateMultivariateModelDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
-export interface CreateAndTrainMultivariateModelMediaTypesParam {
+export interface CreateMultivariateModelMediaTypesParam {
     contentType?: "application/json";
 }
 
 // @public (undocumented)
-export type CreateAndTrainMultivariateModelParameters = CreateAndTrainMultivariateModelMediaTypesParam & CreateAndTrainMultivariateModelBodyParam & RequestParameters;
-
-// @public
-function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorRestClient;
-export default createClient;
+export type CreateMultivariateModelParameters = CreateMultivariateModelMediaTypesParam & CreateMultivariateModelBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface DeleteMultivariateModel {
@@ -177,6 +226,88 @@ export interface DeleteMultivariateModelDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export type DeleteMultivariateModelParameters = RequestParameters;
+
+// @public (undocumented)
+export interface DetectChangePoint {
+    post(options: DetectChangePointParameters): StreamableMethod<DetectChangePoint200Response | DetectChangePointDefaultResponse>;
+}
+
+// @public
+export interface DetectChangePoint200Response extends HttpResponse {
+    // (undocumented)
+    body: ChangePointDetectResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface DetectChangePointBodyParam {
+    body: ChangePointDetectRequest;
+}
+
+// @public (undocumented)
+export interface DetectChangePointDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public
+export interface DetectChangePointDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: AnomalyDetectorErrorOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & DetectChangePointDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface DetectChangePointMediaTypesParam {
+    contentType?: "application/json";
+}
+
+// @public (undocumented)
+export type DetectChangePointParameters = DetectChangePointMediaTypesParam & DetectChangePointBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface DetectEntireSeries {
+    post(options: DetectEntireSeriesParameters): StreamableMethod<DetectEntireSeries200Response | DetectEntireSeriesDefaultResponse>;
+}
+
+// @public
+export interface DetectEntireSeries200Response extends HttpResponse {
+    // (undocumented)
+    body: EntireDetectResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface DetectEntireSeriesBodyParam {
+    body: DetectRequest;
+}
+
+// @public (undocumented)
+export interface DetectEntireSeriesDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public
+export interface DetectEntireSeriesDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: AnomalyDetectorErrorOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & DetectEntireSeriesDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface DetectEntireSeriesMediaTypesParam {
+    contentType?: "application/json";
+}
+
+// @public (undocumented)
+export type DetectEntireSeriesParameters = DetectEntireSeriesMediaTypesParam & DetectEntireSeriesBodyParam & RequestParameters;
 
 // @public
 export interface DetectionRequest {
@@ -211,94 +342,45 @@ export interface DetectionResultSummaryOutput {
 }
 
 // @public (undocumented)
-export interface DetectMultivariateBatchAnomaly {
-    post(options: DetectMultivariateBatchAnomalyParameters): StreamableMethod<DetectMultivariateBatchAnomaly202Response | DetectMultivariateBatchAnomalyDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface DetectMultivariateBatchAnomaly202Headers {
-    "operation-id"?: string;
-    "operation-location"?: string;
+export interface DetectLastPoint {
+    post(options: DetectLastPointParameters): StreamableMethod<DetectLastPoint200Response | DetectLastPointDefaultResponse>;
 }
 
 // @public
-export interface DetectMultivariateBatchAnomaly202Response extends HttpResponse {
+export interface DetectLastPoint200Response extends HttpResponse {
     // (undocumented)
-    body: DetectionResultOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & DetectMultivariateBatchAnomaly202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface DetectMultivariateBatchAnomalyBodyParam {
-    body: DetectionRequest;
-}
-
-// @public (undocumented)
-export interface DetectMultivariateBatchAnomalyDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public
-export interface DetectMultivariateBatchAnomalyDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface DetectMultivariateBatchAnomalyMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type DetectMultivariateBatchAnomalyParameters = DetectMultivariateBatchAnomalyMediaTypesParam & DetectMultivariateBatchAnomalyBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface DetectMultivariateLastAnomaly {
-    post(options: DetectMultivariateLastAnomalyParameters): StreamableMethod<DetectMultivariateLastAnomaly200Response | DetectMultivariateLastAnomalyDefaultResponse>;
-}
-
-// @public
-export interface DetectMultivariateLastAnomaly200Response extends HttpResponse {
-    // (undocumented)
-    body: LastDetectionResultOutput;
+    body: LastDetectResponseOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface DetectMultivariateLastAnomalyBodyParam {
-    body: LastDetectionRequest;
+export interface DetectLastPointBodyParam {
+    body: DetectRequest;
 }
 
 // @public (undocumented)
-export interface DetectMultivariateLastAnomalyDefaultHeaders {
+export interface DetectLastPointDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public
-export interface DetectMultivariateLastAnomalyDefaultResponse extends HttpResponse {
+export interface DetectLastPointDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: AnomalyDetectorErrorOutput;
     // (undocumented)
-    headers: RawHttpHeaders & DetectMultivariateLastAnomalyDefaultHeaders;
+    headers: RawHttpHeaders & DetectLastPointDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
-export interface DetectMultivariateLastAnomalyMediaTypesParam {
+export interface DetectLastPointMediaTypesParam {
     contentType?: "application/json";
 }
 
 // @public (undocumented)
-export type DetectMultivariateLastAnomalyParameters = DetectMultivariateLastAnomalyMediaTypesParam & DetectMultivariateLastAnomalyBodyParam & RequestParameters;
+export type DetectLastPointParameters = DetectLastPointMediaTypesParam & DetectLastPointBodyParam & RequestParameters;
 
 // @public
 export interface DetectRequest {
@@ -311,129 +393,6 @@ export interface DetectRequest {
     sensitivity?: number;
     series: Array<TimeSeriesPoint>;
 }
-
-// @public (undocumented)
-export interface DetectUnivariateChangePoint {
-    post(options: DetectUnivariateChangePointParameters): StreamableMethod<DetectUnivariateChangePoint200Response | DetectUnivariateChangePointDefaultResponse>;
-}
-
-// @public
-export interface DetectUnivariateChangePoint200Response extends HttpResponse {
-    // (undocumented)
-    body: ChangePointDetectResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface DetectUnivariateChangePointBodyParam {
-    body: ChangePointDetectRequest;
-}
-
-// @public (undocumented)
-export interface DetectUnivariateChangePointDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public
-export interface DetectUnivariateChangePointDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: AnomalyDetectorErrorOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & DetectUnivariateChangePointDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface DetectUnivariateChangePointMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type DetectUnivariateChangePointParameters = DetectUnivariateChangePointMediaTypesParam & DetectUnivariateChangePointBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface DetectUnivariateEntireSeries {
-    post(options: DetectUnivariateEntireSeriesParameters): StreamableMethod<DetectUnivariateEntireSeries200Response | DetectUnivariateEntireSeriesDefaultResponse>;
-}
-
-// @public
-export interface DetectUnivariateEntireSeries200Response extends HttpResponse {
-    // (undocumented)
-    body: EntireDetectResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface DetectUnivariateEntireSeriesBodyParam {
-    body: DetectRequest;
-}
-
-// @public (undocumented)
-export interface DetectUnivariateEntireSeriesDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public
-export interface DetectUnivariateEntireSeriesDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: AnomalyDetectorErrorOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & DetectUnivariateEntireSeriesDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface DetectUnivariateEntireSeriesMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type DetectUnivariateEntireSeriesParameters = DetectUnivariateEntireSeriesMediaTypesParam & DetectUnivariateEntireSeriesBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface DetectUnivariateLastPoint {
-    post(options: DetectUnivariateLastPointParameters): StreamableMethod<DetectUnivariateLastPoint200Response | DetectUnivariateLastPointDefaultResponse>;
-}
-
-// @public
-export interface DetectUnivariateLastPoint200Response extends HttpResponse {
-    // (undocumented)
-    body: LastDetectResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface DetectUnivariateLastPointBodyParam {
-    body: DetectRequest;
-}
-
-// @public (undocumented)
-export interface DetectUnivariateLastPointDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public
-export interface DetectUnivariateLastPointDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: AnomalyDetectorErrorOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & DetectUnivariateLastPointDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface DetectUnivariateLastPointMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type DetectUnivariateLastPointParameters = DetectUnivariateLastPointMediaTypesParam & DetectUnivariateLastPointBodyParam & RequestParameters;
 
 // @public
 export interface DiagnosticsInfo {
@@ -478,16 +437,13 @@ export interface ErrorResponseOutput {
 // @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
-// @public
-export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: LroEngineOptions<TResult, PollOperationState<TResult>>): PollerLike<PollOperationState<TResult>, TResult>;
-
 // @public (undocumented)
-export interface GetMultivariateBatchDetectionResult {
-    get(options?: GetMultivariateBatchDetectionResultParameters): StreamableMethod<GetMultivariateBatchDetectionResult200Response | GetMultivariateBatchDetectionResultDefaultResponse>;
+export interface GetBatchDetectionResult {
+    get(options?: GetBatchDetectionResultParameters): StreamableMethod<GetBatchDetectionResult200Response | GetBatchDetectionResultDefaultResponse>;
 }
 
 // @public
-export interface GetMultivariateBatchDetectionResult200Response extends HttpResponse {
+export interface GetBatchDetectionResult200Response extends HttpResponse {
     // (undocumented)
     body: DetectionResultOutput;
     // (undocumented)
@@ -495,22 +451,25 @@ export interface GetMultivariateBatchDetectionResult200Response extends HttpResp
 }
 
 // @public (undocumented)
-export interface GetMultivariateBatchDetectionResultDefaultHeaders {
+export interface GetBatchDetectionResultDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public
-export interface GetMultivariateBatchDetectionResultDefaultResponse extends HttpResponse {
+export interface GetBatchDetectionResultDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
+    headers: RawHttpHeaders & GetBatchDetectionResultDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
-export type GetMultivariateBatchDetectionResultParameters = RequestParameters;
+export type GetBatchDetectionResultParameters = RequestParameters;
+
+// @public
+export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: LroEngineOptions<TResult, PollOperationState<TResult>>): PollerLike<PollOperationState<TResult>, TResult>;
 
 // @public
 export interface GetMultivariateModel200Response extends HttpResponse {
@@ -545,22 +504,22 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 }>;
 
 // @public (undocumented)
-export function isUnexpected(response: DetectUnivariateEntireSeries200Response | DetectUnivariateEntireSeriesDefaultResponse): response is DetectUnivariateEntireSeriesDefaultResponse;
+export function isUnexpected(response: DetectEntireSeries200Response | DetectEntireSeriesDefaultResponse): response is DetectEntireSeriesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DetectUnivariateLastPoint200Response | DetectUnivariateLastPointDefaultResponse): response is DetectUnivariateLastPointDefaultResponse;
+export function isUnexpected(response: DetectLastPoint200Response | DetectLastPointDefaultResponse): response is DetectLastPointDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DetectUnivariateChangePoint200Response | DetectUnivariateChangePointDefaultResponse): response is DetectUnivariateChangePointDefaultResponse;
+export function isUnexpected(response: DetectChangePoint200Response | DetectChangePointDefaultResponse): response is DetectChangePointDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: GetMultivariateBatchDetectionResult200Response | GetMultivariateBatchDetectionResultDefaultResponse): response is GetMultivariateBatchDetectionResultDefaultResponse;
+export function isUnexpected(response: GetBatchDetectionResult200Response | GetBatchDetectionResultDefaultResponse): response is GetBatchDetectionResultDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: CreateAndTrainMultivariateModel201Response | CreateAndTrainMultivariateModelDefaultResponse): response is CreateAndTrainMultivariateModelDefaultResponse;
+export function isUnexpected(response: CreateMultivariateModel201Response | CreateMultivariateModelDefaultResponse): response is CreateMultivariateModelDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ListMultivariateModels200Response | ListMultivariateModelsDefaultResponse): response is ListMultivariateModelsDefaultResponse;
+export function isUnexpected(response: ListMultivariateModel200Response | ListMultivariateModelDefaultResponse): response is ListMultivariateModelDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: DeleteMultivariateModel204Response | DeleteMultivariateModelDefaultResponse): response is DeleteMultivariateModelDefaultResponse;
@@ -569,10 +528,51 @@ export function isUnexpected(response: DeleteMultivariateModel204Response | Dele
 export function isUnexpected(response: GetMultivariateModel200Response | GetMultivariateModelDefaultResponse): response is GetMultivariateModelDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DetectMultivariateBatchAnomaly202Response | DetectMultivariateBatchAnomalyDefaultResponse): response is DetectMultivariateBatchAnomalyDefaultResponse;
+export function isUnexpected(response: BatchDetectAnomaly202Response | BatchDetectAnomalyDefaultResponse): response is BatchDetectAnomalyDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DetectMultivariateLastAnomaly200Response | DetectMultivariateLastAnomalyDefaultResponse): response is DetectMultivariateLastAnomalyDefaultResponse;
+export function isUnexpected(response: LastDetectAnomaly200Response | LastDetectAnomalyDefaultResponse): response is LastDetectAnomalyDefaultResponse;
+
+// @public (undocumented)
+export interface LastDetectAnomaly {
+    post(options: LastDetectAnomalyParameters): StreamableMethod<LastDetectAnomaly200Response | LastDetectAnomalyDefaultResponse>;
+}
+
+// @public
+export interface LastDetectAnomaly200Response extends HttpResponse {
+    // (undocumented)
+    body: LastDetectionResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface LastDetectAnomalyBodyParam {
+    body: LastDetectionRequest;
+}
+
+// @public (undocumented)
+export interface LastDetectAnomalyDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public
+export interface LastDetectAnomalyDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & LastDetectAnomalyDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface LastDetectAnomalyMediaTypesParam {
+    contentType?: "application/json";
+}
+
+// @public (undocumented)
+export type LastDetectAnomalyParameters = LastDetectAnomalyMediaTypesParam & LastDetectAnomalyBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface LastDetectionRequest {
@@ -602,7 +602,7 @@ export interface LastDetectResponseOutput {
 }
 
 // @public
-export interface ListMultivariateModels200Response extends HttpResponse {
+export interface ListMultivariateModel200Response extends HttpResponse {
     // (undocumented)
     body: ModelListOutput;
     // (undocumented)
@@ -610,31 +610,31 @@ export interface ListMultivariateModels200Response extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface ListMultivariateModelsDefaultHeaders {
+export interface ListMultivariateModelDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public
-export interface ListMultivariateModelsDefaultResponse extends HttpResponse {
+export interface ListMultivariateModelDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    headers: RawHttpHeaders & ListMultivariateModelsDefaultHeaders;
+    headers: RawHttpHeaders & ListMultivariateModelDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
-export type ListMultivariateModelsParameters = ListMultivariateModelsQueryParam & RequestParameters;
+export type ListMultivariateModelParameters = ListMultivariateModelQueryParam & RequestParameters;
 
 // @public (undocumented)
-export interface ListMultivariateModelsQueryParam {
+export interface ListMultivariateModelQueryParam {
     // (undocumented)
-    queryParameters?: ListMultivariateModelsQueryParamProperties;
+    queryParameters?: ListMultivariateModelQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface ListMultivariateModelsQueryParamProperties {
+export interface ListMultivariateModelQueryParamProperties {
     skip?: number;
     top?: number;
 }
@@ -720,14 +720,14 @@ export interface PagingOptions<TResponse> {
 
 // @public (undocumented)
 export interface Routes {
-    (path: "/{ApiVersion}/timeseries/entire/detect"): DetectUnivariateEntireSeries;
-    (path: "/{ApiVersion}/timeseries/last/detect"): DetectUnivariateLastPoint;
-    (path: "/{ApiVersion}/timeseries/changepoint/detect"): DetectUnivariateChangePoint;
-    (path: "/{ApiVersion}/multivariate/detect-batch/{resultId}", resultId: string): GetMultivariateBatchDetectionResult;
-    (path: "/{ApiVersion}/multivariate/models"): CreateAndTrainMultivariateModel;
-    (path: "/{ApiVersion}/multivariate/models/{modelId}", modelId: string): DeleteMultivariateModel;
-    (path: "/{ApiVersion}/multivariate/models/{modelId}:detect-batch", modelId: string): DetectMultivariateBatchAnomaly;
-    (path: "/{ApiVersion}/multivariate/models/{modelId}:detect-last", modelId: string): DetectMultivariateLastAnomaly;
+    (path: "/timeseries/entire/detect"): DetectEntireSeries;
+    (path: "/timeseries/last/detect"): DetectLastPoint;
+    (path: "/timeseries/changepoint/detect"): DetectChangePoint;
+    (path: "/multivariate/detect-batch/{resultId}", resultId: string): GetBatchDetectionResult;
+    (path: "/multivariate/models"): CreateMultivariateModel;
+    (path: "/multivariate/models/{modelId}", modelId: string): DeleteMultivariateModel;
+    (path: "/multivariate/models/{modelId}:detect-batch", modelId: string): BatchDetectAnomaly;
+    (path: "/multivariate/models/{modelId}:detect-last", modelId: string): LastDetectAnomaly;
 }
 
 // @public

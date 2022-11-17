@@ -156,7 +156,7 @@ function checkPagingRequest(response: PathUncheckedResponse): void {
   ];
   if (!Http2xxStatusCodes.includes(response.status)) {
     throw createRestError(
-      \`Pagination failed with unexpected statusCode \${response.status\}\`,
+      \`Pagination failed with unexpected statusCode \${response.status}\`,
       response
     );
   }

@@ -120,25 +120,24 @@ export function gerOperationSuccessStatus(operation: HttpOperation): string[] {
  * an operation can end up returning.
  */
 function getResponseTypes(operation: HttpOperation): ResponseTypes {
-  let returnTypes: ResponseTypes = {
+  const returnTypes: ResponseTypes = {
     error: [],
     success: []
   };
+  function getResponseType(responses: HttpOperationResponse[]) {
+    return responses
+      .filter((r) => r.statusCode && r.statusCode.length)
+      .map((r) => {
+        const statusCode = getOperationStatuscode(r);
+        const responseName = getResponseTypeName(
+          operation.container.name,
+          operation.operation.name,
+          statusCode
+        );
+        return responseName;
+      });
+  }
   if (operation.responses && operation.responses.length) {
-    function getResponseType(responses: HttpOperationResponse[]) {
-      return responses
-        .filter((r) => r.statusCode && r.statusCode.length)
-        .map((r) => {
-          const statusCode = getOperationStatuscode(r);
-          const responseName = getResponseTypeName(
-            operation.container.name,
-            operation.operation.name,
-            statusCode
-          );
-          return responseName;
-        });
-    }
-
     returnTypes.error = getResponseType(
       operation.responses.filter((r) => isDefaultStatusCode(r.statusCode))
     );

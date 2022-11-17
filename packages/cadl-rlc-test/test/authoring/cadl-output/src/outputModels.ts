@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 export interface ProjectOutput {
   projectName: string;
   /**
@@ -62,6 +65,12 @@ export interface InnerErrorOutput {
   code: string;
   /** Inner error. */
   innererror?: InnerErrorOutput;
+}
+
+/** A response containing error details. */
+export interface ErrorResponseOutput {
+  /** The error object. */
+  error: ErrorModelOutput;
 }
 
 /** Paged collection of Project items */

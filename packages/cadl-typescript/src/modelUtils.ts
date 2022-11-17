@@ -478,7 +478,7 @@ function getSchemaForModel(
         if (vis.length > 1) {
           mutability.push(SchemaContext.Output);
         } else {
-          newPropSchema['readOnly'] = true;
+          newPropSchema["readOnly"] = true;
         }
       }
       if (vis.includes("write") || vis.includes("create")) {
@@ -846,9 +846,10 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
         .map((i: Schema) => getPriorityName(i) ?? "");
     case "object":
       return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
-    case "dictionary":
+    case "dictionary": {
       const importName = getDictionaryValueName(schema as DictionarySchema);
       return importName ? [importName] : undefined;
+    }
     default:
       return;
   }

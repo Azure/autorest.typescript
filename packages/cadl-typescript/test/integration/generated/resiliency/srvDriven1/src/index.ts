@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import ResiliencyServiceDriven1 from "./resiliencyServiceDriven1";
 
 export * from "./resiliencyServiceDriven1";

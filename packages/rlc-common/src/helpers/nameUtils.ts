@@ -202,7 +202,7 @@ function toCasing(str: string, casing: CasingConvention): string {
 }
 
 function getNameParts(name: string) {
-  let parts = name.split(/[-._ ]+/);
+  const parts = name.split(/[-._ ]+/);
 
   return parts.length > 0 ? parts : [name];
 }

@@ -26,7 +26,7 @@ export function buildMethodDefinitions(
 
     for (const method of verbMethods) {
       const description = method.description;
-      let areAllOptional = method.hasOptionalOptions;
+      const areAllOptional = method.hasOptionalOptions;
 
       methodDefinitions.push({
         name: key,

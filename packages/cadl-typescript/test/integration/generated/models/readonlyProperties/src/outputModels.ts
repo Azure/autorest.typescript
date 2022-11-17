@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** Output model with readonly properties. */
 export interface OutputModelOutput {
   /** Required string, illustrating a readonly reference type property. */

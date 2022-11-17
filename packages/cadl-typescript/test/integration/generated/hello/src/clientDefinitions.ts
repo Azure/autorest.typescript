@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { HelloWorldParameters } from "./parameters";
 import { HelloWorld200Response } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";

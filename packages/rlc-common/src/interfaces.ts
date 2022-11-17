@@ -14,9 +14,15 @@ export interface RLCModel {
   urlInfo?: UrlInfo;
 }
 
+export interface PathTemplateApiVersion {
+  value: string;
+  templateName: string;
+}
+
 export interface UrlInfo {
   endpoint?: string;
   urlParameters?: PathParameter[];
+  pathTemplateApiVersion?: PathTemplateApiVersion;
 }
 export interface AnnotationDetails {
   hasPaging?: boolean;
@@ -63,6 +69,7 @@ export type PathParameter = {
   name: string;
   type: string;
   description?: string;
+  value?: string | number | boolean;
 };
 
 export interface OperationAnnotations {

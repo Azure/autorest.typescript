@@ -117,6 +117,22 @@ export interface ErrorResponse {
   error: TextAnalyticsError;
 }
 
+/** Contains a set of input documents to be analyzed by the service. */
+export interface MultiLanguageBatchInput {
+  /** The set of documents to process as part of this batch. */
+  documents: MultiLanguageInput[];
+}
+
+/** Contains an input document to be analyzed by the service. */
+export interface MultiLanguageInput {
+  /** A unique, non-empty document identifier. */
+  id: string;
+  /** The input text to process. */
+  text: string;
+  /** (Optional) This is the 2 letter ISO 639-1 representation of a language. For example, use "en" for English; "es" for Spanish etc. If not set, use "en" for English as default. */
+  language?: string;
+}
+
 /** Known values of {@link WarningCodeValue} that the service accepts. */
 export enum KnownWarningCodeValue {
   /** LongWordsInDocument */

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { OAuth2ValidParameters, OAuth2InvalidParameters } from "./parameters";
 import {
   OAuth2Valid204Response,

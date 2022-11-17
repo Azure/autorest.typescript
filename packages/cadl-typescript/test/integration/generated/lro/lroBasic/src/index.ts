@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import AzureLro from "./azureLro";
 
 export * from "./azureLro";

@@ -316,7 +316,7 @@ function getImmediateParentsNames(
     return [];
   }
 
-  let extendFrom: string[] = [];
+  const extendFrom: string[] = [];
 
   // If an immediate parent is a DictionarySchema, that means that the object has been marked
   // with additional properties. We need to add Record<string, unknown> to the extend list and
@@ -350,9 +350,11 @@ function getPropertySignatures(
   schemaUsage: SchemaContext[],
   importedModels: Set<string>
 ) {
-  let validProperties = Object.keys(properties)
+  let validProperties = Object.keys(properties);
   if (schemaUsage.includes(SchemaContext.Input)) {
-    validProperties = validProperties.filter((p) => { return !properties[p].readOnly})
+    validProperties = validProperties.filter((p) => {
+      return !properties[p].readOnly;
+    });
   }
   return validProperties.map((p) =>
     getPropertySignature(
@@ -391,7 +393,8 @@ export function getPropertySignature(
     name: propertyName,
     ...(description && { docs: [{ description }] }),
     hasQuestionToken: !property.required,
-    isReadonly: generateForOutput(schemaUsage, property.usage) && property.readOnly,
+    isReadonly:
+      generateForOutput(schemaUsage, property.usage) && property.readOnly,
     type,
     kind: StructureKind.PropertySignature
   };

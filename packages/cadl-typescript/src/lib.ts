@@ -15,9 +15,13 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
   properties: {
     includeShortcuts: { type: "boolean", nullable: true },
     multiClient: { type: "boolean", nullable: true },
-    batch: { type: "array", nullable: true, items: { 
-      type: "string",
-    } },
+    batch: {
+      type: "array",
+      nullable: true,
+      items: {
+        type: "string"
+      }
+    },
     packageDetails: {
       type: "object",
       additionalProperties: true,
@@ -32,7 +36,11 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
       nullable: true
     },
     addCredentials: { type: "boolean", nullable: true },
-    credentialScopes: { type: "array", nullable: true, items: { type: "string"}},
+    credentialScopes: {
+      type: "array",
+      nullable: true,
+      items: { type: "string" }
+    },
     credentialKeyHeaderName: { type: "string", nullable: true },
     generateMetadata: { type: "boolean", nullable: true },
     generateTest: { type: "boolean", nullable: true },

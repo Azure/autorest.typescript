@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** Readonly model */
 export interface ReadonlyModel {
   /** Required string */

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import AuthOauth2Client from "./authOauth2Client";
 
 export * from "./authOauth2Client";
