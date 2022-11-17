@@ -374,7 +374,7 @@ function getPropertySignatures(
 export function getPropertySignature(
   property: Property | Parameter,
   schemaUsage: SchemaContext[],
-  importedModels = new Set<string>()
+  importedModels: Set<string>
 ): PropertySignatureStructure {
   const propertyName = property.name;
 
@@ -385,7 +385,7 @@ export function getPropertySignature(
       : property.typeName
       ? property.typeName
       : property.type;
-  if (propertyName === 'error' && property.typeName === 'ErrorModel') {
+  if (property.typeName === 'ErrorModel') {
     importedModels.add(property.typeName);
     type = property.typeName;
   }

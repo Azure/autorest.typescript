@@ -50,6 +50,16 @@ export function generateModelFiles(
 
     modelsFile.addInterfaces(objectsDefinitions);
     modelsFile.addTypeAliases(objectTypeAliases);
+    if (importedModels.size > 0) {
+      modelsFile.addImportDeclarations([
+        {
+          namedImports: [
+            ...Array.from(importedModels || [])
+          ],
+          moduleSpecifier: "@azure-rest/core-client"
+        }
+      ]);
+    }
     return { path: filePath, content: modelsFile.getFullText() };
   }
   return undefined;

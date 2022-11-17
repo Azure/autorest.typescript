@@ -25,12 +25,12 @@ export function transformSchemas(program: Program) {
       }
     }
     for (const resp of route.responses) {
+      if (resp.type.kind === "Model" && resp.type.name === "ErrorResponse") {
+        continue;
+      }
       for (const resps of resp.responses) {
         const respModel = resps.body;
         if (!respModel) {
-          continue;
-        }
-        if (respModel.type.kind === "Model" && respModel.type.name === 'ErrorResponse') {
           continue;
         }
         getGeneratedModels(respModel.type, SchemaContext.Output);
@@ -101,6 +101,9 @@ export function transformSchemas(program: Program) {
           (!program.stateMap(modelKey).get(prop[1].type) ||
             !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
         ) {
+          if (prop[1].type.name === "Error") {
+            continue;
+          }
           getGeneratedModels(prop[1].type, context);
         }
       }
