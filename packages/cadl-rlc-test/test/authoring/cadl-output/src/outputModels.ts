@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ErrorModel } from "@azure-rest/core-client";
+import { ErrorModel, Paged } from "@azure-rest/core-client";
 
 export interface ProjectOutput {
   projectName: string;
@@ -47,24 +47,8 @@ export interface OperationStatusOutput {
   result?: never;
 }
 
-/** Paged collection of Project items */
-export interface ProjectListOutput {
-  /** The Project items on this page */
-  value: Array<ProjectOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
 export interface DeploymentOutput {
   name: string;
-}
-
-/** Paged collection of Deployment items */
-export interface DeploymentListOutput {
-  /** The Deployment items on this page */
-  value: Array<DeploymentOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
 }
 
 export interface DeploymentJobOutput {
@@ -119,28 +103,12 @@ export interface SwapDeploymentsJobOutput {
   id: string;
 }
 
-/** Paged collection of SupportedLanguage items */
-export interface PagedSupportedLanguageOutput {
-  /** The SupportedLanguage items on this page */
-  value: Array<SupportedLanguageOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
 /** Represents a supported language. */
 export interface SupportedLanguageOutput {
   /** The language name. */
   languageName: string;
   /** The language code. This is BCP-47 representation of a language. For example, "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
   languageCode: string;
-}
-
-/** Paged collection of TrainingConfigVersion items */
-export interface PagedTrainingConfigVersionOutput {
-  /** The TrainingConfigVersion items on this page */
-  value: Array<TrainingConfigVersionOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
 }
 
 /** Represents a training config version. */
@@ -150,3 +118,13 @@ export interface TrainingConfigVersionOutput {
   /** Represents the training config version expiration date. */
   modelExpirationDate: string;
 }
+
+/** Paged collection of Project items */
+export type ProjectListOutput = Paged<ProjectOutput>;
+/** Paged collection of Deployment items */
+export type DeploymentListOutput = Paged<DeploymentOutput>;
+/** Paged collection of SupportedLanguage items */
+export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
+/** Paged collection of TrainingConfigVersion items */
+export type PagedTrainingConfigVersionOutput =
+  Paged<TrainingConfigVersionOutput>;

@@ -49,7 +49,10 @@ import {
   getQueryParamName,
   isStatusCode
 } from "@cadl-lang/rest/http";
-import { getPagedResult } from "@azure-tools/cadl-azure-core";
+import {
+  getPagedResult,
+  PagedResultMetadata
+} from "@azure-tools/cadl-azure-core";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -74,7 +77,13 @@ export function getSchemaForType(
     return builtinType;
   }
   if (type.kind === "Model") {
+    if (type.name === "SupportedLanguages") {
+      type;
+    }
     const schema = getSchemaForModel(program, type, usage, needRef) as any;
+    if (schema.name.startsWith("Paged")) {
+      schema;
+    }
     if (usage && usage.includes(SchemaContext.Output)) {
       schema.outputTypeName = `${schema.name}Output`;
       schema.typeName = `${schema.name}`;
@@ -331,6 +340,35 @@ function isSchemaProperty(program: Program, property: ModelProperty) {
   return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
 }
 
+function extractPagedMetadataNested(
+  program: Program,
+  type: Model
+): PagedResultMetadata | undefined {
+  // This only works for `is Page<T>` not `extends Page<T>`.
+  let paged = getPagedResult(program, type);
+  if (paged) {
+    return paged;
+  }
+  if (type.baseModel) {
+    paged = getPagedResult(program, type.baseModel);
+  }
+  if (paged) {
+    return paged;
+  }
+  const templateArguments = type.templateArguments;
+  if (templateArguments) {
+    for (const argument of templateArguments) {
+      const modelArgument = argument as Model;
+      if (modelArgument) {
+        paged = extractPagedMetadataNested(program, modelArgument);
+        if (paged) {
+          return paged;
+        }
+      }
+    }
+  }
+  return paged;
+}
 // function getDefaultValue(program: Program, type: Type): any {
 //   switch (type.kind) {
 //     case "String":
@@ -389,6 +427,28 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
+  if (getPagedResult(program, model)) {
+    const paged = extractPagedMetadataNested(program, model);
+    if (paged && paged.itemsProperty) {
+      const items = paged.itemsProperty as unknown as Model;
+      if (items && items.templateArguments) {
+        const templateName = items.templateArguments
+          ?.map((it) => {
+            switch (it.kind) {
+              case "Model":
+                return it.name;
+              case "String":
+                return it.value;
+              default:
+                return "";
+            }
+          })
+          .join("");
+        modelSchema.alias = `Paged<${templateName}>`;
+        modelSchema.outputAlias = `Paged<${templateName}Output>`;
+      }
+    }
+  }
   modelSchema.properties = {};
   const derivedModels = model.derivedModels.filter(includeDerivedModel);
 

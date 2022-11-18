@@ -3,6 +3,7 @@
 
 import {
   InterfaceDeclarationStructure,
+  ModuleNamedNode,
   OptionalKind,
   Project,
   PropertySignatureStructure,
@@ -20,6 +21,9 @@ import {
   getResponseTypeName
 } from "./helpers/nameConstructors.js";
 
+let hasOperationLocationHeader = false;
+let hasLROHeader = false;
+let hasErrorResponse = false;
 export function buildResponseTypes(model: RLCModel) {
   const project = new Project();
   const srcPath = model.srcPath;
@@ -36,6 +40,7 @@ export function buildResponseTypes(model: RLCModel) {
   for (const operationResponse of model.responses) {
     for (const response of operationResponse.responses) {
       // Building the response type base name
+      hasLROHeader = false;
       const baseResponseName = getResponseBaseName(
         operationResponse.operationGroup,
         operationResponse.operationName,
@@ -48,6 +53,8 @@ export function buildResponseTypes(model: RLCModel) {
       if (headersInterface) {
         hasHeaders = true;
         responsesFile.addInterface(headersInterface);
+      } else if (hasLROHeader) {
+        hasHeaders = true;
       }
 
       // Get the information to build the Response Interface
@@ -86,19 +93,29 @@ export function buildResponseTypes(model: RLCModel) {
       }
     ]);
   }
+  const namedImports = ["HttpResponse"];
+  if (hasOperationLocationHeader) {
+    namedImports.push("LongRunningOperationLocationHeaders");
+  }
+  if (hasErrorResponse) {
+    namedImports.push("ErrorResponse");
+  }
   responsesFile.addImportDeclarations([
     {
-      namedImports: ["HttpResponse"],
+      namedImports,
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);
 
   if (model.importSet?.has(ImportKind.ResponseOutput)) {
+    const modelNamedImports = Array.from(
+      model.importSet.get(ImportKind.ResponseOutput) || []
+    ).filter((modelName) => {
+      return modelName !== "ErrorResponseOutput";
+    });
     responsesFile.addImportDeclarations([
       {
-        namedImports: [
-          ...Array.from(model.importSet.get(ImportKind.ResponseOutput) || [])
-        ],
+        namedImports: modelNamedImports,
         moduleSpecifier: "./outputModels"
       }
     ]);
@@ -111,7 +128,23 @@ function getResponseHeaderInterfaceDefinition(
   baseName: string
 ): undefined | InterfaceDeclarationStructure {
   // Check if there are any required headers
-  if (!response.headers) {
+  let headers = response.headers;
+  if (!headers) {
+    return;
+  }
+  if (
+    headers.length > 0 &&
+    headers.some((header) => {
+      return header.name === '"operation-location"';
+    })
+  ) {
+    hasLROHeader = true;
+    hasOperationLocationHeader = true;
+    headers = headers.filter((header) => {
+      return header.name !== '"operation-location"';
+    });
+  }
+  if (headers.length === 0) {
     return;
   }
   const headersInterfaceName = `${baseName}Headers`;
@@ -119,7 +152,7 @@ function getResponseHeaderInterfaceDefinition(
     kind: StructureKind.Interface,
     isExported: true,
     name: headersInterfaceName,
-    properties: response?.headers.map((h: ResponseHeaderSchema) => {
+    properties: headers.map((h: ResponseHeaderSchema) => {
       const description = h.description;
       return {
         name: h.name,
@@ -149,9 +182,14 @@ function getResponseInterfaceProperties(
 
   if (response.body) {
     const description = response.body.description;
+    let type = response.body.type;
+    if (response.body.type === "ErrorResponseOutput") {
+      type = "ErrorResponse";
+      hasErrorResponse = true;
+    }
     responseProperties.push({
       name: "body",
-      type: response.body.type,
+      type,
       kind: StructureKind.PropertySignature,
       ...(description && { docs: [{ description }] })
     });
@@ -160,7 +198,15 @@ function getResponseInterfaceProperties(
   if (headersInterfaceName) {
     responseProperties.push({
       name: "headers",
-      type: `RawHttpHeaders & ${headersInterfaceName}`,
+      type: `RawHttpHeaders & ${headersInterfaceName}${
+        hasLROHeader ? " & LongRunningOperationLocationHeaders" : ""
+      }`,
+      kind: StructureKind.PropertySignature
+    });
+  } else if (hasLROHeader) {
+    responseProperties.push({
+      name: "headers",
+      type: "RawHttpHeaders & LongRunningOperationLocationHeaders",
       kind: StructureKind.PropertySignature
     });
   }

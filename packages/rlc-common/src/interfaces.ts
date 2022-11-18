@@ -137,6 +137,8 @@ export interface Schema {
   default?: any;
   readOnly?: boolean;
   usage?: SchemaContext[];
+  alias?: string;
+  outputAlias?: string;
 }
 
 export interface ObjectSchema extends Schema {

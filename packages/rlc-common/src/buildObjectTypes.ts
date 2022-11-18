@@ -33,6 +33,9 @@ export function buildObjectInterfaces(
   const objectInterfaces: InterfaceDeclarationStructure[] = [];
 
   for (const objectSchema of objectSchemas) {
+    if (objectSchema.alias || objectSchema.outputAlias) {
+      continue;
+    }
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
     const interfaceDeclaration = getObjectInterfaceDeclaration(
       baseName,
@@ -44,6 +47,40 @@ export function buildObjectInterfaces(
     objectInterfaces.push(interfaceDeclaration);
   }
   return objectInterfaces;
+}
+
+export function buildObjectAliases(
+  model: RLCModel,
+  importedModels: Set<string>,
+  schemaUsage: SchemaContext[]
+) {
+  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter(
+    (o) =>
+      isObjectSchema(o) &&
+      (o as ObjectSchema).usage?.some((u) => schemaUsage.includes(u))
+  );
+  const objectAliases: TypeAliasDeclarationStructure[] = [];
+
+  for (const objectSchema of objectSchemas) {
+    if (objectSchema.alias || objectSchema.outputAlias) {
+      const description = objectSchema.description;
+      objectAliases.push({
+        kind: StructureKind.TypeAlias,
+        ...(description && { docs: [{ description }] }),
+        name: schemaUsage.includes(SchemaContext.Input)
+          ? `${objectSchema.typeName}`
+          : `${objectSchema.outputTypeName}`,
+        type: schemaUsage.includes(SchemaContext.Input)
+          ? `${objectSchema.alias}`
+          : `${objectSchema.outputAlias}`,
+        isExported: true
+      });
+      if (objectSchema.alias?.startsWith("Paged<")) {
+        importedModels.add("Paged");
+      }
+    }
+  }
+  return objectAliases;
 }
 
 export function buildPolymorphicAliases(
@@ -385,7 +422,7 @@ export function getPropertySignature(
       : property.typeName
       ? property.typeName
       : property.type;
-  if (property.typeName === 'ErrorModel') {
+  if (property.typeName === "ErrorModel") {
     importedModels.add(property.typeName);
     type = property.typeName;
   }
