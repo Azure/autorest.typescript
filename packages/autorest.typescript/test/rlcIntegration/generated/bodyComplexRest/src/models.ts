@@ -112,7 +112,6 @@ export interface SalmonParent extends FishParent {
 }
 
 export interface ReadonlyObj {
-  id?: string;
   size?: number;
 }
 

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** Product resource */
 export interface ProductOutput {
   /** key of product */

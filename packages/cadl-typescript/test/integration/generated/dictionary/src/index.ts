@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import DictClient from "./dictClient";
 
 export * from "./dictClient";

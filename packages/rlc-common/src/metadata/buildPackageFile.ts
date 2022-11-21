@@ -57,7 +57,6 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   if (packageDetails.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
-  const description = packageDetails.description;
   const hasPaging = hasPagingOperations(model);
   const hasLRO = hasPollingOperations(model);
   const packageInfo: Record<string, any> = {
@@ -146,7 +145,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       prettier: "2.2.1",
       rimraf: "^3.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~4.6.0"
+      typescript: "~4.8.0"
     }
   };
 

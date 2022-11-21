@@ -2524,6 +2524,9 @@ export interface GalleryUpdate extends UpdateResourceDefinition {
 }
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export interface GrantAccessData {
     // (undocumented)
     access: AccessLevel;
@@ -5293,7 +5296,7 @@ export interface VirtualMachineExtensionImage extends Resource {
 
 // @public
 export interface VirtualMachineExtensionImages {
-    get(location: string, publisherName: string, version: string, typeParam: string, options?: VirtualMachineExtensionImagesGetOptionalParams): Promise<VirtualMachineExtensionImagesGetResponse>;
+    get(location: string, publisherName: string, typeParam: string, version: string, options?: VirtualMachineExtensionImagesGetOptionalParams): Promise<VirtualMachineExtensionImagesGetResponse>;
     listTypes(location: string, publisherName: string, options?: VirtualMachineExtensionImagesListTypesOptionalParams): Promise<VirtualMachineExtensionImagesListTypesResponse>;
     listVersions(location: string, publisherName: string, typeParam: string, options?: VirtualMachineExtensionImagesListVersionsOptionalParams): Promise<VirtualMachineExtensionImagesListVersionsResponse>;
 }

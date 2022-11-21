@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** Model with a boolean property */
 export interface BooleanPropertyOutput {
   /** Property */

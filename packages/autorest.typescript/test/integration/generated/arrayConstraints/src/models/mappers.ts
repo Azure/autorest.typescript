@@ -30,6 +30,13 @@ export const Product: coreClient.CompositeMapper = {
         type: {
           name: "String"
         }
+      },
+      sku: {
+        defaultValue: "Standard",
+        serializedName: "sku",
+        type: {
+          name: "String"
+        }
       }
     }
   }

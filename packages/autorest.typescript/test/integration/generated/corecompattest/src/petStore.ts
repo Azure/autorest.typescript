@@ -66,7 +66,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri:
+      endpoint:
         options.endpoint ?? options.baseUri ?? "http://petstore.swagger.io/v2"
     };
     super(optionsWithDefaults);

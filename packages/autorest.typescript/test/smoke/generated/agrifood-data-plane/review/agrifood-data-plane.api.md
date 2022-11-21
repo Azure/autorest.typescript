@@ -23,14 +23,8 @@ export interface ApplicationData {
     applicationProductDetails?: Array<ApplicationProductDetail>;
     area?: Measure;
     associatedBoundaryId?: string;
-    attachmentsLink?: string;
     avgMaterial?: Measure;
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     operationBoundaryId?: string;
     operationEndDateTime?: Date | string;
@@ -60,7 +54,7 @@ export interface ApplicationDataCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface ApplicationDataCreateOrUpdateBodyParam {
-    body?: ApplicationData;
+    body?: ApplicationDataResourceMergeAndPatch;
 }
 
 // @public
@@ -254,14 +248,14 @@ export interface ApplicationDataOutput {
     applicationProductDetails?: Array<ApplicationProductDetailOutput>;
     area?: MeasureOutput;
     associatedBoundaryId?: string;
-    attachmentsLink?: string;
+    readonly attachmentsLink?: string;
     avgMaterial?: MeasureOutput;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     operationBoundaryId?: string;
     operationEndDateTime?: string;
@@ -272,6 +266,9 @@ export interface ApplicationDataOutput {
     status?: string;
     totalMaterial?: MeasureOutput;
 }
+
+// @public
+export type ApplicationDataResourceMergeAndPatch = Partial<ApplicationData>;
 
 // @public
 export interface ApplicationProductDetail {
@@ -298,14 +295,14 @@ export interface AttachmentListResponseOutput {
 
 // @public
 export interface AttachmentOutput {
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
-    originalFileName?: string;
+    readonly originalFileName?: string;
     resourceId?: string;
     resourceType?: string;
     status?: string;
@@ -533,7 +530,7 @@ export interface BoundariesCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface BoundariesCreateOrUpdateBodyParam {
-    body?: Boundary;
+    body?: BoundaryResourceMergeAndPatch;
 }
 
 // @public
@@ -818,18 +815,11 @@ export type BoundariesSearchParameters = BoundariesSearchMediaTypesParam & Bound
 
 // @public
 export interface Boundary {
-    acreage?: number;
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
     geometry?: GeoJsonObject;
-    id?: string;
     isPrimary?: boolean;
-    modifiedDateTime?: Date | string;
     name?: string;
     parentId?: string;
-    parentType?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
 }
@@ -843,18 +833,18 @@ export interface BoundaryListResponseOutput {
 
 // @public
 export interface BoundaryOutput {
-    acreage?: number;
-    createdDateTime?: string;
+    readonly acreage?: number;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
     geometry?: GeoJsonObjectOutput;
-    id?: string;
+    readonly id?: string;
     isPrimary?: boolean;
-    modifiedDateTime?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     parentId?: string;
-    parentType?: string;
+    readonly parentType?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
 }
@@ -867,21 +857,24 @@ export interface BoundaryOverlapResponseOutput {
 }
 
 // @public
+export type BoundaryResourceMergeAndPatch = Partial<Boundary>;
+
+// @public
 export interface CascadeDeleteJobOutput {
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    durationInSeconds?: number;
-    endTime?: string;
+    readonly durationInSeconds?: number;
+    readonly endTime?: string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: string;
-    message?: string;
+    readonly id?: string;
+    readonly lastActionDateTime?: string;
+    readonly message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     resourceId: string;
     resourceType: string;
-    startTime?: string;
-    status?: string;
+    readonly startTime?: string;
+    readonly status?: string;
 }
 
 // @public
@@ -890,11 +883,7 @@ export default createClient;
 
 // @public
 export interface Crop {
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     phenotype?: string;
     properties?: Record<string, Record<string, unknown>>;
@@ -910,16 +899,19 @@ export interface CropListResponseOutput {
 
 // @public
 export interface CropOutput {
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     phenotype?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
 }
+
+// @public
+export type CropResourceMergeAndPatch = Partial<Crop>;
 
 // @public
 export interface CropsCreateOrUpdate200Response extends HttpResponse {
@@ -939,7 +931,7 @@ export interface CropsCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CropsCreateOrUpdateBodyParam {
-    body?: Crop;
+    body?: CropResourceMergeAndPatch;
 }
 
 // @public
@@ -1066,7 +1058,7 @@ export interface CropVarietiesCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CropVarietiesCreateOrUpdateBodyParam {
-    body?: CropVariety;
+    body?: CropVarietyResourceMergeAndPatch;
 }
 
 // @public
@@ -1227,12 +1219,7 @@ export interface CropVarietiesListQueryParamProperties {
 // @public
 export interface CropVariety {
     brand?: string;
-    createdDateTime?: Date | string;
-    cropId?: string;
     description?: string;
-    eTag?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     product?: string;
     properties?: Record<string, Record<string, unknown>>;
@@ -1249,17 +1236,20 @@ export interface CropVarietyListResponseOutput {
 // @public
 export interface CropVarietyOutput {
     brand?: string;
-    createdDateTime?: string;
-    cropId?: string;
+    readonly createdDateTime?: string;
+    readonly cropId?: string;
     description?: string;
-    eTag?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     product?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
 }
+
+// @public
+export type CropVarietyResourceMergeAndPatch = Partial<CropVariety>;
 
 // @public
 export interface ErrorModelOutput {
@@ -1278,12 +1268,7 @@ export interface ErrorResponseOutput {
 
 // @public
 export interface Farm {
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
@@ -1291,11 +1276,7 @@ export interface Farm {
 
 // @public
 export interface Farmer {
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
@@ -1310,15 +1291,18 @@ export interface FarmerListResponseOutput {
 
 // @public
 export interface FarmerOutput {
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
 }
+
+// @public
+export type FarmerResourceMergeAndPatch = Partial<Farmer>;
 
 // @public
 export interface FarmersCreateCascadeDeleteJob202Response extends HttpResponse {
@@ -1368,7 +1352,7 @@ export interface FarmersCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FarmersCreateOrUpdateBodyParam {
-    body?: Farmer;
+    body?: FarmerResourceMergeAndPatch;
 }
 
 // @public
@@ -1511,39 +1495,31 @@ export interface FarmListResponseOutput {
 // @public
 export interface FarmOperationDataIngestionJob {
     authProviderId: string;
-    createdDateTime?: Date | string;
     description?: string;
-    durationInSeconds?: number;
-    endTime?: Date | string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: Date | string;
-    message?: string;
     name?: string;
     operations?: Array<string>;
     properties?: Record<string, Record<string, unknown>>;
-    startTime?: Date | string;
     startYear: number;
-    status?: string;
 }
 
 // @public
 export interface FarmOperationDataIngestionJobOutput {
     authProviderId: string;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    durationInSeconds?: number;
-    endTime?: string;
+    readonly durationInSeconds?: number;
+    readonly endTime?: string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: string;
-    message?: string;
+    readonly id?: string;
+    readonly lastActionDateTime?: string;
+    readonly message?: string;
     name?: string;
     operations?: Array<string>;
     properties?: Record<string, Record<string, unknown>>;
-    startTime?: string;
+    readonly startTime?: string;
     startYear: number;
-    status?: string;
+    readonly status?: string;
 }
 
 // @public (undocumented)
@@ -1602,16 +1578,19 @@ export type FarmOperationsGetDataIngestionJobDetailsParameters = RequestParamete
 
 // @public
 export interface FarmOutput {
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
 }
+
+// @public
+export type FarmResourceMergeAndPatch = Partial<Farm>;
 
 // @public
 export interface FarmsCreateCascadeDeleteJob202Response extends HttpResponse {
@@ -1662,7 +1641,7 @@ export interface FarmsCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FarmsCreateOrUpdateBodyParam {
-    body?: Farm;
+    body?: FarmResourceMergeAndPatch;
 }
 
 // @public
@@ -1841,16 +1820,9 @@ export interface FarmsListQueryParamProperties {
 
 // @public
 export interface Field {
-    boundaryIds?: Array<string>;
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
     farmId?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
-    primaryBoundaryId?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
 }
@@ -1864,19 +1836,22 @@ export interface FieldListResponseOutput {
 
 // @public
 export interface FieldOutput {
-    boundaryIds?: Array<string>;
-    createdDateTime?: string;
+    readonly boundaryIds?: Array<string>;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
     farmId?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
-    primaryBoundaryId?: string;
+    readonly primaryBoundaryId?: string;
     properties?: Record<string, Record<string, unknown>>;
     status?: string;
 }
+
+// @public
+export type FieldResourceMergeAndPatch = Partial<Field>;
 
 // @public
 export interface FieldsCreateCascadeDeleteJob202Response extends HttpResponse {
@@ -1927,7 +1902,7 @@ export interface FieldsCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface FieldsCreateOrUpdateBodyParam {
-    body?: Field;
+    body?: FieldResourceMergeAndPatch;
 }
 
 // @public
@@ -2140,18 +2115,12 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 export interface HarvestData {
     area?: Measure;
     associatedBoundaryId?: string;
-    attachmentsLink?: string;
     avgMoisture?: Measure;
     avgSpeed?: Measure;
     avgWetMass?: Measure;
     avgYield?: Measure;
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
     harvestProductDetails?: Array<HarvestProductDetail>;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     operationBoundaryId?: string;
     operationEndDateTime?: Date | string;
@@ -2182,7 +2151,7 @@ export interface HarvestDataCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface HarvestDataCreateOrUpdateBodyParam {
-    body?: HarvestData;
+    body?: HarvestDataResourceMergeAndPatch;
 }
 
 // @public
@@ -2391,18 +2360,18 @@ export interface HarvestDataListResponseOutput {
 export interface HarvestDataOutput {
     area?: MeasureOutput;
     associatedBoundaryId?: string;
-    attachmentsLink?: string;
+    readonly attachmentsLink?: string;
     avgMoisture?: MeasureOutput;
     avgSpeed?: MeasureOutput;
     avgWetMass?: MeasureOutput;
     avgYield?: MeasureOutput;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
     harvestProductDetails?: Array<HarvestProductDetailOutput>;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     operationBoundaryId?: string;
     operationEndDateTime?: string;
@@ -2414,6 +2383,9 @@ export interface HarvestDataOutput {
     totalWetMass?: MeasureOutput;
     totalYield?: MeasureOutput;
 }
+
+// @public
+export type HarvestDataResourceMergeAndPatch = Partial<HarvestData>;
 
 // @public
 export interface HarvestProductDetail {
@@ -2493,38 +2465,30 @@ export type ImageProcessingGetRasterizeJobParameters = RequestParameters;
 
 // @public
 export interface ImageProcessingRasterizeJob {
-    createdDateTime?: Date | string;
     description?: string;
-    durationInSeconds?: number;
-    endTime?: Date | string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: Date | string;
-    message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     shapefileAttachmentId: string;
     shapefileColumnNames: Array<string>;
-    startTime?: Date | string;
-    status?: string;
 }
 
 // @public
 export interface ImageProcessingRasterizeJobOutput {
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    durationInSeconds?: number;
-    endTime?: string;
+    readonly durationInSeconds?: number;
+    readonly endTime?: string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: string;
-    message?: string;
+    readonly id?: string;
+    readonly lastActionDateTime?: string;
+    readonly message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     shapefileAttachmentId: string;
     shapefileColumnNames: Array<string>;
-    startTime?: string;
-    status?: string;
+    readonly startTime?: string;
+    readonly status?: string;
 }
 
 // @public
@@ -2871,12 +2835,8 @@ export interface OAuthProvider {
     apiKey?: string;
     appId?: string;
     appSecret?: string;
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    id?: string;
     isProductionApp?: boolean;
-    modifiedDateTime?: Date | string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
 }
@@ -2893,15 +2853,18 @@ export interface OAuthProviderOutput {
     apiKey?: string;
     appId?: string;
     appSecret?: string;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    id?: string;
+    readonly eTag?: string;
+    readonly id?: string;
     isProductionApp?: boolean;
-    modifiedDateTime?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
 }
+
+// @public
+export type OAuthProviderResourceMergeAndPatch = Partial<OAuthProvider>;
 
 // @public
 export interface OAuthProvidersCreateOrUpdate200Response extends HttpResponse {
@@ -2921,7 +2884,7 @@ export interface OAuthProvidersCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface OAuthProvidersCreateOrUpdateBodyParam {
-    body?: OAuthProvider;
+    body?: OAuthProviderResourceMergeAndPatch;
 }
 
 // @public
@@ -3039,11 +3002,11 @@ export interface OAuthTokenListResponseOutput {
 // @public
 export interface OAuthTokenOutput {
     authProviderId: string;
-    createdDateTime?: string;
-    eTag?: string;
+    readonly createdDateTime?: string;
+    readonly eTag?: string;
     farmerId: string;
     isValid?: boolean;
-    modifiedDateTime?: string;
+    readonly modifiedDateTime?: string;
 }
 
 // @public
@@ -3198,15 +3161,9 @@ export interface PagingOptions<TResponse> {
 export interface PlantingData {
     area?: Measure;
     associatedBoundaryId?: string;
-    attachmentsLink?: string;
     avgMaterial?: Measure;
     avgPlantingRate?: Measure;
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     operationBoundaryId?: string;
     operationEndDateTime?: Date | string;
@@ -3237,7 +3194,7 @@ export interface PlantingDataCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface PlantingDataCreateOrUpdateBodyParam {
-    body?: PlantingData;
+    body?: PlantingDataResourceMergeAndPatch;
 }
 
 // @public
@@ -3434,15 +3391,15 @@ export interface PlantingDataListResponseOutput {
 export interface PlantingDataOutput {
     area?: MeasureOutput;
     associatedBoundaryId?: string;
-    attachmentsLink?: string;
+    readonly attachmentsLink?: string;
     avgMaterial?: MeasureOutput;
     avgPlantingRate?: MeasureOutput;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     operationBoundaryId?: string;
     operationEndDateTime?: string;
@@ -3454,6 +3411,9 @@ export interface PlantingDataOutput {
     status?: string;
     totalMaterial?: MeasureOutput;
 }
+
+// @public
+export type PlantingDataResourceMergeAndPatch = Partial<PlantingData>;
 
 // @public
 export interface PlantingProductDetail {
@@ -3584,45 +3544,37 @@ export interface SatelliteData {
 // @public
 export interface SatelliteDataIngestionJob {
     boundaryId: string;
-    createdDateTime?: Date | string;
     data?: SatelliteData;
     description?: string;
-    durationInSeconds?: number;
     endDateTime: Date | string;
-    endTime?: Date | string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: Date | string;
-    message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     provider?: "Microsoft";
     source?: "Sentinel_2_L2A";
     startDateTime: Date | string;
-    startTime?: Date | string;
-    status?: string;
 }
 
 // @public
 export interface SatelliteDataIngestionJobOutput {
     boundaryId: string;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     data?: SatelliteDataOutput;
     description?: string;
-    durationInSeconds?: number;
+    readonly durationInSeconds?: number;
     endDateTime: string;
-    endTime?: string;
+    readonly endTime?: string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: string;
-    message?: string;
+    readonly id?: string;
+    readonly lastActionDateTime?: string;
+    readonly message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     provider?: "Microsoft";
     source?: "Sentinel_2_L2A";
     startDateTime: string;
-    startTime?: string;
-    status?: string;
+    readonly startTime?: string;
+    readonly status?: string;
 }
 
 // @public
@@ -3644,7 +3596,7 @@ export interface SceneOutput {
     boundaryId?: string;
     cloudCoverPercentage?: number;
     darkPixelPercentage?: number;
-    eTag?: string;
+    readonly eTag?: string;
     farmerId?: string;
     id?: string;
     imageFiles?: Array<ImageFileOutput>;
@@ -3812,12 +3764,8 @@ export interface SearchBoundaryQuery {
 
 // @public
 export interface Season {
-    createdDateTime?: Date | string;
     description?: string;
     endDateTime?: Date | string;
-    eTag?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     startDateTime?: Date | string;
@@ -3831,20 +3779,13 @@ export interface SeasonalField {
     avgSeedPopulationValue?: number;
     avgYieldUnit?: string;
     avgYieldValue?: number;
-    boundaryIds?: Array<string>;
-    createdDateTime?: Date | string;
     cropId?: string;
     cropVarietyIds?: Array<string>;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
     farmId?: string;
     fieldId?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     plantingDateTime?: Date | string;
-    primaryBoundaryId?: string;
     properties?: Record<string, Record<string, unknown>>;
     seasonId?: string;
     status?: string;
@@ -3863,24 +3804,27 @@ export interface SeasonalFieldOutput {
     avgSeedPopulationValue?: number;
     avgYieldUnit?: string;
     avgYieldValue?: number;
-    boundaryIds?: Array<string>;
-    createdDateTime?: string;
+    readonly boundaryIds?: Array<string>;
+    readonly createdDateTime?: string;
     cropId?: string;
     cropVarietyIds?: Array<string>;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
     farmId?: string;
     fieldId?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     plantingDateTime?: string;
-    primaryBoundaryId?: string;
+    readonly primaryBoundaryId?: string;
     properties?: Record<string, Record<string, unknown>>;
     seasonId?: string;
     status?: string;
 }
+
+// @public
+export type SeasonalFieldResourceMergeAndPatch = Partial<SeasonalField>;
 
 // @public
 export interface SeasonalFieldsCreateCascadeDeleteJob202Response extends HttpResponse {
@@ -3931,7 +3875,7 @@ export interface SeasonalFieldsCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface SeasonalFieldsCreateOrUpdateBodyParam {
-    body?: SeasonalField;
+    body?: SeasonalFieldResourceMergeAndPatch;
 }
 
 // @public
@@ -4143,18 +4087,21 @@ export interface SeasonListResponseOutput {
 
 // @public
 export interface SeasonOutput {
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
     endDateTime?: string;
-    eTag?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     startDateTime?: string;
     status?: string;
     year?: number;
 }
+
+// @public
+export type SeasonResourceMergeAndPatch = Partial<Season>;
 
 // @public
 export interface SeasonsCreateOrUpdate200Response extends HttpResponse {
@@ -4174,7 +4121,7 @@ export interface SeasonsCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface SeasonsCreateOrUpdateBodyParam {
-    body?: Season;
+    body?: SeasonResourceMergeAndPatch;
 }
 
 // @public
@@ -4291,13 +4238,7 @@ export interface SeasonsListQueryParamProperties {
 export interface TillageData {
     area?: Measure;
     associatedBoundaryId?: string;
-    attachmentsLink?: string;
-    createdDateTime?: Date | string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: Date | string;
     name?: string;
     operationBoundaryId?: string;
     operationEndDateTime?: Date | string;
@@ -4328,7 +4269,7 @@ export interface TillageDataCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface TillageDataCreateOrUpdateBodyParam {
-    body?: TillageData;
+    body?: TillageDataResourceMergeAndPatch;
 }
 
 // @public
@@ -4521,13 +4462,13 @@ export interface TillageDataListResponseOutput {
 export interface TillageDataOutput {
     area?: MeasureOutput;
     associatedBoundaryId?: string;
-    attachmentsLink?: string;
-    createdDateTime?: string;
+    readonly attachmentsLink?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    eTag?: string;
-    farmerId?: string;
-    id?: string;
-    modifiedDateTime?: string;
+    readonly eTag?: string;
+    readonly farmerId?: string;
+    readonly id?: string;
+    readonly modifiedDateTime?: string;
     name?: string;
     operationBoundaryId?: string;
     operationEndDateTime?: string;
@@ -4539,6 +4480,9 @@ export interface TillageDataOutput {
     tillageDepth?: MeasureOutput;
     tillagePressure?: MeasureOutput;
 }
+
+// @public
+export type TillageDataResourceMergeAndPatch = Partial<TillageData>;
 
 // @public
 export interface WeatherCreateDataDeleteJob202Response extends HttpResponse {
@@ -4601,89 +4545,73 @@ export type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestion
 // @public
 export interface WeatherDataDeleteJob {
     boundaryId: string;
-    createdDateTime?: Date | string;
     description?: string;
-    durationInSeconds?: number;
     endDateTime?: Date | string;
-    endTime?: Date | string;
     extensionId: string;
     farmerId: string;
     granularity?: string;
-    id?: string;
-    lastActionDateTime?: Date | string;
-    message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     startDateTime?: Date | string;
-    startTime?: Date | string;
-    status?: string;
     weatherDataType?: string;
 }
 
 // @public
 export interface WeatherDataDeleteJobOutput {
     boundaryId: string;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    durationInSeconds?: number;
+    readonly durationInSeconds?: number;
     endDateTime?: string;
-    endTime?: string;
+    readonly endTime?: string;
     extensionId: string;
     farmerId: string;
     granularity?: string;
-    id?: string;
-    lastActionDateTime?: string;
-    message?: string;
+    readonly id?: string;
+    readonly lastActionDateTime?: string;
+    readonly message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
     startDateTime?: string;
-    startTime?: string;
-    status?: string;
+    readonly startTime?: string;
+    readonly status?: string;
     weatherDataType?: string;
 }
 
 // @public
 export interface WeatherDataIngestionJob {
     boundaryId: string;
-    createdDateTime?: Date | string;
     description?: string;
-    durationInSeconds?: number;
-    endTime?: Date | string;
     extensionApiInput: Record<string, Record<string, unknown>>;
     extensionApiName: string;
     extensionDataProviderApiKey?: string;
     extensionDataProviderAppId?: string;
     extensionId: string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: Date | string;
-    message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
-    startTime?: Date | string;
-    status?: string;
 }
 
 // @public
 export interface WeatherDataIngestionJobOutput {
     boundaryId: string;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     description?: string;
-    durationInSeconds?: number;
-    endTime?: string;
+    readonly durationInSeconds?: number;
+    readonly endTime?: string;
     extensionApiInput: Record<string, Record<string, unknown>>;
     extensionApiName: string;
     extensionDataProviderApiKey?: string;
     extensionDataProviderAppId?: string;
     extensionId: string;
     farmerId: string;
-    id?: string;
-    lastActionDateTime?: string;
-    message?: string;
+    readonly id?: string;
+    readonly lastActionDateTime?: string;
+    readonly message?: string;
     name?: string;
     properties?: Record<string, Record<string, unknown>>;
-    startTime?: string;
-    status?: string;
+    readonly startTime?: string;
+    readonly status?: string;
 }
 
 // @public
@@ -4697,10 +4625,10 @@ export interface WeatherDataListResponseOutput {
 export interface WeatherDataOutput {
     boundaryId: string;
     cloudCover?: MeasureOutput;
-    createdDateTime?: string;
+    readonly createdDateTime?: string;
     dateTime: string;
     dewPoint?: MeasureOutput;
-    eTag?: string;
+    readonly eTag?: string;
     extensionId: string;
     extensionVersion: string;
     farmerId: string;
@@ -4708,7 +4636,7 @@ export interface WeatherDataOutput {
     growingDegreeDay?: MeasureOutput;
     id?: string;
     location: LocationOutput;
-    modifiedDateTime?: string;
+    readonly modifiedDateTime?: string;
     precipitation?: MeasureOutput;
     pressure?: MeasureOutput;
     properties?: Record<string, Record<string, unknown>>;

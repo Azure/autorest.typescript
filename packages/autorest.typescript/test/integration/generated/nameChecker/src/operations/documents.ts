@@ -92,19 +92,19 @@ export class DocumentsImpl implements Documents {
 
   /**
    * Suggests documents in the index that match the given partial query text.
-   * @param suggesterName The name of the suggester as specified in the suggesters collection that's part
-   *                      of the index definition.
    * @param search$DONotNormalize$Text The search text to use to suggest documents. Must be at least 1
    *                                   character, and no more than 100 characters.
+   * @param suggesterName The name of the suggester as specified in the suggesters collection that's part
+   *                      of the index definition.
    * @param options The options parameters.
    */
   suggestGet(
-    suggesterName: string,
     search$DONotNormalize$Text: string,
+    suggesterName: string,
     options?: DocumentsSuggestGetOptionalParams
   ): Promise<DocumentsSuggestGetResponse> {
     return this.client.sendOperationRequest(
-      { suggesterName, search$DONotNormalize$Text, options },
+      { search$DONotNormalize$Text, suggesterName, options },
       suggestGetOperationSpec
     );
   }
@@ -141,18 +141,18 @@ export class DocumentsImpl implements Documents {
 
   /**
    * Autocompletes incomplete query terms based on input text and matching terms in the index.
+   * @param search$DONotNormalize$Text The incomplete term which should be auto-completed.
    * @param suggesterName The name of the suggester as specified in the suggesters collection that's part
    *                      of the index definition.
-   * @param search$DONotNormalize$Text The incomplete term which should be auto-completed.
    * @param options The options parameters.
    */
   autocompleteGet(
-    suggesterName: string,
     search$DONotNormalize$Text: string,
+    suggesterName: string,
     options?: DocumentsAutocompleteGetOptionalParams
   ): Promise<DocumentsAutocompleteGetResponse> {
     return this.client.sendOperationRequest(
-      { suggesterName, search$DONotNormalize$Text, options },
+      { search$DONotNormalize$Text, suggesterName, options },
       autocompleteGetOperationSpec
     );
   }
@@ -188,7 +188,7 @@ const countOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
-  headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const searchGetOperationSpec: coreClient.OperationSpec = {
@@ -225,7 +225,7 @@ const searchGetOperationSpec: coreClient.OperationSpec = {
     Parameters.top
   ],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
-  headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const searchPostOperationSpec: coreClient.OperationSpec = {
@@ -242,11 +242,7 @@ const searchPostOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.searchRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
-  headerParameters: [
-    Parameters.accept,
-    Parameters.xMsClientRequestId,
-    Parameters.contentType
-  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -265,7 +261,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.selectedFields],
   urlParameters: [Parameters.endpoint, Parameters.indexName, Parameters.key],
-  headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const suggestGetOperationSpec: coreClient.OperationSpec = {
@@ -294,7 +290,7 @@ const suggestGetOperationSpec: coreClient.OperationSpec = {
     Parameters.top1
   ],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
-  headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const suggestPostOperationSpec: coreClient.OperationSpec = {
@@ -311,11 +307,7 @@ const suggestPostOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.suggestRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
-  headerParameters: [
-    Parameters.accept,
-    Parameters.xMsClientRequestId,
-    Parameters.contentType
-  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -336,11 +328,7 @@ const indexOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.batch,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
-  headerParameters: [
-    Parameters.accept,
-    Parameters.xMsClientRequestId,
-    Parameters.contentType
-  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };
@@ -369,7 +357,7 @@ const autocompleteGetOperationSpec: coreClient.OperationSpec = {
     Parameters.top2
   ],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
-  headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const autocompletePostOperationSpec: coreClient.OperationSpec = {
@@ -386,11 +374,7 @@ const autocompletePostOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.autocompleteRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.indexName],
-  headerParameters: [
-    Parameters.accept,
-    Parameters.xMsClientRequestId,
-    Parameters.contentType
-  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
 };

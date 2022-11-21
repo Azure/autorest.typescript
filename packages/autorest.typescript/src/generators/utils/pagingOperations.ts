@@ -15,7 +15,10 @@ import {
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getOperationParameterSignatures } from "./parameterUtils";
 import { generateOperationJSDoc } from "./docsUtils";
-import { getPagingResponseBodyType } from "./responseTypeUtils";
+import {
+  getOperationResponseType,
+  getPagingResponseBodyType
+} from "./responseTypeUtils";
 import { getAutorestOptions } from "../../autorestSession";
 
 type MethodParameter = OptionalKind<
@@ -36,6 +39,7 @@ interface PagingMethodSettings {
   allMethod: MethodDetails;
   pageMethod: MethodDetails;
   bodyResponseType: string;
+  rawResponseType: string;
   nextLinkName?: string;
   itemName: string;
 }
@@ -47,14 +51,19 @@ interface PagingMethodSettings {
  */
 export function addPagingImports(
   operations: OperationDetails[],
-  sourceFile: SourceFile
+  sourceFile: SourceFile,
+  isClient = false
 ) {
   const { disablePagingAsyncIterators } = getAutorestOptions();
   if (!disablePagingAsyncIterators && hasAsyncIteratorOperations(operations)) {
     sourceFile.addImportDeclarations([
       {
-        namedImports: ["PagedAsyncIterableIterator"],
+        namedImports: ["PagedAsyncIterableIterator", "PageSettings"],
         moduleSpecifier: "@azure/core-paging"
+      },
+      {
+        namedImports: ["setContinuationToken"],
+        moduleSpecifier: isClient ? "./pagingHelper" : "../pagingHelper"
       }
     ]);
   }
@@ -101,6 +110,20 @@ export function preparePageableOperations(
     });
 }
 
+function getReturnType(
+  operation: OperationDetails,
+  importedModels: Set<string>,
+  modelNames: Set<string>
+): string {
+  const responseName = getOperationResponseType(
+    operation,
+    importedModels,
+    modelNames
+  );
+
+  return responseName;
+}
+
 /**
  * This function generates all the required methods for the pageable operation
  * using AsyncIterators. It generates 3 extra methods on top of the initial and next operations
@@ -111,7 +134,8 @@ export function writeAsyncIterators(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails,
   operationGroupClass: ClassDeclaration | InterfaceDeclaration,
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  modelNames: Set<string>
 ) {
   const { disablePagingAsyncIterators } = getAutorestOptions();
 
@@ -187,6 +211,12 @@ export function writeAsyncIterators(
         operationGroupClass
       );
 
+      const rawResponseType = getReturnType(
+        operation,
+        importedModels,
+        modelNames
+      );
+
       // Build an object with all the information about the paging methods
       // while generating each of the paging methods, this will help up access
       // information about the other methods.
@@ -211,9 +241,18 @@ export function writeAsyncIterators(
         },
         pageMethod: {
           name: `${initialOperationName}PagingPage`,
-          parameters: initialMethodParameters
+          parameters: [
+            ...initialMethodParameters,
+            {
+              name: "settings",
+              type: "PageSettings",
+              hasQuestionToken: true,
+              description: "Settings to control pagination behavior."
+            }
+          ]
         },
         bodyResponseType: bodyResponseTypeName,
+        rawResponseType,
         nextLinkName: operation.pagination?.nextLinkName || "nextLink",
         itemName: operation.pagination?.itemName || "value"
       };
@@ -287,7 +326,10 @@ function writePublicMethod(
         [Symbol.asyncIterator]() {
           return this;
         },
-        byPage: () => {
+        byPage: (settings?: PageSettings) => {
+          if (settings?.maxPageSize) {
+            throw new Error("maxPageSize is not supported by this operation.");
+          }
           return this.${pagingMethodSettings.pageMethod.name}(${pageMethodNameParams});
         }
       };`
@@ -306,6 +348,7 @@ function writeAllMethod(
 
   // Gets the page method parameters to use when calling it.
   const pageMethodParameters = pagingMethodSettings.pageMethod.parameters
+    .filter(p => p.type !== "PageSettings")
     .map(p => p.name)
     .join();
 
@@ -340,6 +383,20 @@ function writePageMethod(
     NameType.Property
   );
 
+  const hasNextMethod = Boolean(pagingMethodSettings.nextMethod);
+
+  const pageMethodParameters = pagingMethodSettings.pageMethod.parameters.map(
+    p => {
+      if (!hasNextMethod && p.type === "PageSettings") {
+        return {
+          ...p,
+          name: `_${p.name}`
+        };
+      }
+      return p;
+    }
+  );
+
   // Extract the names for the initial method parameters
   const initialMethodParameters = pagingMethodSettings.initialMethod.parameters
     .map(p => p.name)
@@ -347,28 +404,43 @@ function writePageMethod(
 
   const method = operationGroupClass.addMethod({
     name: `*${pagingMethodSettings.pageMethod.name}`,
-    parameters: pagingMethodSettings.pageMethod.parameters,
+    parameters: pageMethodParameters,
     scope: Scope.Private,
     returnType,
     isAsync: true
   });
 
   let firstRequestStatements = [
-    `let result = await this.${pagingMethodSettings.initialMethod.name}(${initialMethodParameters});`
+    `result = await this.${pagingMethodSettings.initialMethod.name}(${initialMethodParameters});`
   ];
 
   if (operation.isLro) {
     // Since this is also an Lro operation, we need to poll until done to get the result
     firstRequestStatements = [
       `const poller = await this.${pagingMethodSettings.initialMethod.name}(${initialMethodParameters});`,
-      `let result: any = await poller.pollUntilDone();`
+      `result = await poller.pollUntilDone();`
     ];
   }
 
-  method.addStatements([
-    ...firstRequestStatements,
-    `yield result.${itemName} || [];`
-  ]);
+  if (hasNextMethod) {
+    method.addStatements([
+      `let result: ${pagingMethodSettings.rawResponseType};`,
+      `let continuationToken = settings?.continuationToken;`,
+      `if (!continuationToken) {`,
+      ...firstRequestStatements,
+      `let page = result.${itemName} || [];`,
+      `continuationToken = result.${nextLinkProperty}`,
+      `setContinuationToken(page, continuationToken);`,
+      `yield page;`,
+      `}`
+    ]);
+  } else {
+    method.addStatements([
+      `let result: ${pagingMethodSettings.rawResponseType};`,
+      ...firstRequestStatements,
+      `yield result.${itemName} || [];`
+    ]);
+  }
 
   // There is a scenario where there is no nextMethod, just the initial one, in that case we don't need to loop
   // until we no longer have a continuationToken, we just stop there.
@@ -376,20 +448,18 @@ function writePageMethod(
   if (pagingMethodSettings.nextMethod) {
     // Extract the parameters to send to the nextMethod
     const nextParameters = pagingMethodSettings.nextMethod.parameters
-      // renaming nextLink to continuationToken sice it is the name we are using below and to avoid collisions with the
+      // renaming nextLink to continuationToken since it is the name we are using below and to avoid collisions with the
       // nextLink parameter that this (page method) takes.
       .map(p => (p.name === "nextLink" ? "continuationToken" : p.name))
       .join();
 
     method.addStatements([
-      `let continuationToken = result.${nextLinkProperty}`
-    ]);
-
-    method.addStatements([
       `while (continuationToken) {
         result = await this.${pagingMethodSettings.nextMethod.name}(${nextParameters});
-        continuationToken = result.${nextLinkProperty}
-        yield result.${itemName} || [];
+        continuationToken = result.${nextLinkProperty};
+        let page = result.${itemName} || [];
+        setContinuationToken(page, continuationToken);
+        yield page;
       }`
     ]);
   }

@@ -123,7 +123,7 @@ function getPolymorphicTypeAlias(
   }
 
   const description = objectSchema.description;
-  
+
   return {
     kind: StructureKind.TypeAlias,
     ...(description && { docs: [{ description }] }),
@@ -316,7 +316,7 @@ function getImmediateParentsNames(
     return [];
   }
 
-  let extendFrom: string[] = [];
+  const extendFrom: string[] = [];
 
   // If an immediate parent is a DictionarySchema, that means that the object has been marked
   // with additional properties. We need to add Record<string, unknown> to the extend list and
@@ -350,7 +350,13 @@ function getPropertySignatures(
   schemaUsage: SchemaContext[],
   importedModels: Set<string>
 ) {
-  return Object.keys(properties).map((p) =>
+  let validProperties = Object.keys(properties);
+  if (schemaUsage.includes(SchemaContext.Input)) {
+    validProperties = validProperties.filter((p) => {
+      return !properties[p].readOnly;
+    });
+  }
+  return validProperties.map((p) =>
     getPropertySignature(
       { ...properties[p], name: p },
       schemaUsage,
@@ -374,11 +380,7 @@ export function getPropertySignature(
 
   const description = property.description;
   const type =
-    ((schemaUsage.includes(SchemaContext.Output) &&
-      property.usage?.includes(SchemaContext.Output)) ||
-      (schemaUsage.includes(SchemaContext.Exception) &&
-        property.usage?.includes(SchemaContext.Exception))) &&
-    property.outputTypeName
+    generateForOutput(schemaUsage, property.usage) && property.outputTypeName
       ? property.outputTypeName
       : property.typeName
       ? property.typeName
@@ -387,7 +389,21 @@ export function getPropertySignature(
     name: propertyName,
     ...(description && { docs: [{ description }] }),
     hasQuestionToken: !property.required,
+    isReadonly:
+      generateForOutput(schemaUsage, property.usage) && property.readOnly,
     type,
     kind: StructureKind.PropertySignature
   };
+}
+
+function generateForOutput(
+  schemaUsage: SchemaContext[],
+  propertyUsage?: SchemaContext[]
+) {
+  return (
+    (schemaUsage.includes(SchemaContext.Output) &&
+      propertyUsage?.includes(SchemaContext.Output)) ||
+    (schemaUsage.includes(SchemaContext.Exception) &&
+      propertyUsage?.includes(SchemaContext.Exception))
+  );
 }

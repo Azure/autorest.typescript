@@ -8,6 +8,7 @@ import {
   OperationParameter,
   OperationResponse,
   Parameter,
+  PathParameter,
   Paths,
   RLCModel,
   RLCOptions,
@@ -19,7 +20,11 @@ import {
   getServiceNamespace,
   getServiceTitle,
   getServiceVersion,
-  Program
+  Program,
+  Type,
+  BooleanLiteral,
+  StringLiteral,
+  NumericLiteral
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -31,9 +36,12 @@ import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 
-export async function transformRLCModel(program: Program, emitterOptions: RLCOptions): Promise<RLCModel> {
+export async function transformRLCModel(
+  program: Program,
+  emitterOptions: RLCOptions
+): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(program, emitterOptions);
-  const srcPath = join(program.compilerOptions.outputPath ?? "", "src");
+  const srcPath = join(program.compilerOptions.outputDir ?? "", "src");
   const libraryName = normalizeName(
     options?.title ?? getServiceTitle(program),
     NameType.Class
@@ -69,7 +77,7 @@ export async function transformRLCModel(program: Program, emitterOptions: RLCOpt
 
 function transformApiVersionParam(program: Program): Parameter | undefined {
   const apiVersion = getServiceVersion(program);
-  if (apiVersion) {
+  if (apiVersion && apiVersion !== "0000-00-00") {
     return {
       name: "api-version",
       type: "constant",
@@ -82,25 +90,46 @@ function transformApiVersionParam(program: Program): Parameter | undefined {
 export function transformUrlInfo(program: Program): UrlInfo | undefined {
   const serviceNs = getServiceNamespace(program);
   let endpoint = undefined;
-  let urlParameters = [];
+  const urlParameters: PathParameter[] = [];
   if (serviceNs) {
     const host = getServers(program, serviceNs);
     if (host?.[0]?.url) {
       endpoint = host[0].url;
     }
-    if (host?.[0]?.parameters) {
+    if (host && host?.[0] && host?.[0]?.parameters) {
       // Currently we only support one parameter in the servers definition
-      for (const key of host?.[0]?.parameters.keys()) {
+      for (const key of host[0].parameters.keys()) {
         const type = host?.[0]?.parameters.get(key)?.type;
+        const defaultValue = host?.[0]?.parameters.get(key)?.default;
+
         if (type) {
           urlParameters.push({
             name: key,
             type: getSchemaForType(program, type).type,
-            description: getDoc(program, type)
+            description: getDoc(program, type),
+            value: isLiteralValue(defaultValue) ? defaultValue.value : undefined
           });
         }
       }
     }
   }
   return { endpoint, urlParameters };
+}
+
+function isLiteralValue(
+  type?: Type
+): type is StringLiteral | NumericLiteral | BooleanLiteral {
+  if (!type) {
+    return false;
+  }
+
+  if (
+    type.kind === "Boolean" ||
+    type.kind === "String" ||
+    type.kind === "Number"
+  ) {
+    return type.value !== undefined;
+  }
+
+  return false;
 }

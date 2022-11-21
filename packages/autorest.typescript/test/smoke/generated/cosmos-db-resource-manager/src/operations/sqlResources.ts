@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { SqlResources } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -17,19 +17,25 @@ import { LroImpl } from "../lroImpl";
 import {
   SqlDatabaseGetResults,
   SqlResourcesListSqlDatabasesOptionalParams,
+  SqlResourcesListSqlDatabasesResponse,
   SqlContainerGetResults,
   SqlResourcesListSqlContainersOptionalParams,
+  SqlResourcesListSqlContainersResponse,
   SqlStoredProcedureGetResults,
   SqlResourcesListSqlStoredProceduresOptionalParams,
+  SqlResourcesListSqlStoredProceduresResponse,
   SqlUserDefinedFunctionGetResults,
   SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
+  SqlResourcesListSqlUserDefinedFunctionsResponse,
   SqlTriggerGetResults,
   SqlResourcesListSqlTriggersOptionalParams,
+  SqlResourcesListSqlTriggersResponse,
   SqlRoleDefinitionGetResults,
   SqlResourcesListSqlRoleDefinitionsOptionalParams,
+  SqlResourcesListSqlRoleDefinitionsResponse,
   SqlRoleAssignmentGetResults,
   SqlResourcesListSqlRoleAssignmentsOptionalParams,
-  SqlResourcesListSqlDatabasesResponse,
+  SqlResourcesListSqlRoleAssignmentsResponse,
   SqlResourcesGetSqlDatabaseOptionalParams,
   SqlResourcesGetSqlDatabaseResponse,
   SqlDatabaseCreateUpdateParameters,
@@ -45,7 +51,6 @@ import {
   SqlResourcesMigrateSqlDatabaseToAutoscaleResponse,
   SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams,
   SqlResourcesMigrateSqlDatabaseToManualThroughputResponse,
-  SqlResourcesListSqlContainersResponse,
   SqlResourcesGetSqlContainerOptionalParams,
   SqlResourcesGetSqlContainerResponse,
   SqlContainerCreateUpdateParameters,
@@ -60,21 +65,18 @@ import {
   SqlResourcesMigrateSqlContainerToAutoscaleResponse,
   SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams,
   SqlResourcesMigrateSqlContainerToManualThroughputResponse,
-  SqlResourcesListSqlStoredProceduresResponse,
   SqlResourcesGetSqlStoredProcedureOptionalParams,
   SqlResourcesGetSqlStoredProcedureResponse,
   SqlStoredProcedureCreateUpdateParameters,
   SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams,
   SqlResourcesCreateUpdateSqlStoredProcedureResponse,
   SqlResourcesDeleteSqlStoredProcedureOptionalParams,
-  SqlResourcesListSqlUserDefinedFunctionsResponse,
   SqlResourcesGetSqlUserDefinedFunctionOptionalParams,
   SqlResourcesGetSqlUserDefinedFunctionResponse,
   SqlUserDefinedFunctionCreateUpdateParameters,
   SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams,
   SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse,
   SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams,
-  SqlResourcesListSqlTriggersResponse,
   SqlResourcesGetSqlTriggerOptionalParams,
   SqlResourcesGetSqlTriggerResponse,
   SqlTriggerCreateUpdateParameters,
@@ -87,14 +89,12 @@ import {
   SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams,
   SqlResourcesCreateUpdateSqlRoleDefinitionResponse,
   SqlResourcesDeleteSqlRoleDefinitionOptionalParams,
-  SqlResourcesListSqlRoleDefinitionsResponse,
   SqlResourcesGetSqlRoleAssignmentOptionalParams,
   SqlResourcesGetSqlRoleAssignmentResponse,
   SqlRoleAssignmentCreateUpdateParameters,
   SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams,
   SqlResourcesCreateUpdateSqlRoleAssignmentResponse,
   SqlResourcesDeleteSqlRoleAssignmentOptionalParams,
-  SqlResourcesListSqlRoleAssignmentsResponse,
   ContinuousBackupRestoreLocation,
   SqlResourcesRetrieveContinuousBackupInformationOptionalParams,
   SqlResourcesRetrieveContinuousBackupInformationResponse
@@ -136,11 +136,15 @@ export class SqlResourcesImpl implements SqlResources {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlDatabasesPagingPage(
           resourceGroupName,
           accountName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -149,9 +153,11 @@ export class SqlResourcesImpl implements SqlResources {
   private async *listSqlDatabasesPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlDatabasesOptionalParams
+    options?: SqlResourcesListSqlDatabasesOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<SqlDatabaseGetResults[]> {
-    let result = await this._listSqlDatabases(
+    let result: SqlResourcesListSqlDatabasesResponse;
+    result = await this._listSqlDatabases(
       resourceGroupName,
       accountName,
       options
@@ -199,12 +205,16 @@ export class SqlResourcesImpl implements SqlResources {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlContainersPagingPage(
           resourceGroupName,
           accountName,
           databaseName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -214,9 +224,11 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: SqlResourcesListSqlContainersOptionalParams
+    options?: SqlResourcesListSqlContainersOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<SqlContainerGetResults[]> {
-    let result = await this._listSqlContainers(
+    let result: SqlResourcesListSqlContainersResponse;
+    result = await this._listSqlContainers(
       resourceGroupName,
       accountName,
       databaseName,
@@ -270,13 +282,17 @@ export class SqlResourcesImpl implements SqlResources {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlStoredProceduresPagingPage(
           resourceGroupName,
           accountName,
           databaseName,
           containerName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -287,9 +303,11 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlStoredProceduresOptionalParams
+    options?: SqlResourcesListSqlStoredProceduresOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<SqlStoredProcedureGetResults[]> {
-    let result = await this._listSqlStoredProcedures(
+    let result: SqlResourcesListSqlStoredProceduresResponse;
+    result = await this._listSqlStoredProcedures(
       resourceGroupName,
       accountName,
       databaseName,
@@ -346,13 +364,17 @@ export class SqlResourcesImpl implements SqlResources {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlUserDefinedFunctionsPagingPage(
           resourceGroupName,
           accountName,
           databaseName,
           containerName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -363,9 +385,11 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams
+    options?: SqlResourcesListSqlUserDefinedFunctionsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<SqlUserDefinedFunctionGetResults[]> {
-    let result = await this._listSqlUserDefinedFunctions(
+    let result: SqlResourcesListSqlUserDefinedFunctionsResponse;
+    result = await this._listSqlUserDefinedFunctions(
       resourceGroupName,
       accountName,
       databaseName,
@@ -422,13 +446,17 @@ export class SqlResourcesImpl implements SqlResources {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlTriggersPagingPage(
           resourceGroupName,
           accountName,
           databaseName,
           containerName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -439,9 +467,11 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     containerName: string,
-    options?: SqlResourcesListSqlTriggersOptionalParams
+    options?: SqlResourcesListSqlTriggersOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<SqlTriggerGetResults[]> {
-    let result = await this._listSqlTriggers(
+    let result: SqlResourcesListSqlTriggersResponse;
+    result = await this._listSqlTriggers(
       resourceGroupName,
       accountName,
       databaseName,
@@ -492,11 +522,15 @@ export class SqlResourcesImpl implements SqlResources {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlRoleDefinitionsPagingPage(
           resourceGroupName,
           accountName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -505,9 +539,11 @@ export class SqlResourcesImpl implements SqlResources {
   private async *listSqlRoleDefinitionsPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams
+    options?: SqlResourcesListSqlRoleDefinitionsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<SqlRoleDefinitionGetResults[]> {
-    let result = await this._listSqlRoleDefinitions(
+    let result: SqlResourcesListSqlRoleDefinitionsResponse;
+    result = await this._listSqlRoleDefinitions(
       resourceGroupName,
       accountName,
       options
@@ -552,11 +588,15 @@ export class SqlResourcesImpl implements SqlResources {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listSqlRoleAssignmentsPagingPage(
           resourceGroupName,
           accountName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -565,9 +605,11 @@ export class SqlResourcesImpl implements SqlResources {
   private async *listSqlRoleAssignmentsPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams
+    options?: SqlResourcesListSqlRoleAssignmentsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<SqlRoleAssignmentGetResults[]> {
-    let result = await this._listSqlRoleAssignments(
+    let result: SqlResourcesListSqlRoleAssignmentsResponse;
+    result = await this._listSqlRoleAssignments(
       resourceGroupName,
       accountName,
       options

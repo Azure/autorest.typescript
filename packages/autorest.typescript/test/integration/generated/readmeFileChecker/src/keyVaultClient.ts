@@ -77,7 +77,7 @@ export class KeyVaultClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? "{vaultBaseUrl}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{vaultBaseUrl}"
     };
     super(optionsWithDefaults);
     // Parameter assignments

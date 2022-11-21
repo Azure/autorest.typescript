@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 // https://github.com/karma-runner/karma-chrome-launcher
 process.env.CHROME_BIN = require("puppeteer").executablePath();
 require("dotenv").config();
@@ -57,6 +60,7 @@ module.exports = function (config) {
       "AZURE_CLIENT_ID",
       "AZURE_TENANT_ID",
       "SUBSCRIPTION_ID",
+      "RECORDINGS_RELATIVE_PATH",
     ],
 
     // test results reporter to use

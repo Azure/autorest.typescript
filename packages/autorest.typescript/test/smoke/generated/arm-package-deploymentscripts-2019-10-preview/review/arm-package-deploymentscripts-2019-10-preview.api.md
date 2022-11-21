@@ -253,6 +253,9 @@ export interface ErrorResponse {
 }
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export enum KnownCleanupOptions {
     Always = "Always",
     OnExpiration = "OnExpiration",

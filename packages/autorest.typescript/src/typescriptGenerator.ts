@@ -8,7 +8,7 @@ import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { AutorestExtensionHost } from "@autorest/extension-base";
 import { transformCodeModel } from "./transforms/transforms";
-import { transformSamples } from './transforms/samplesTransforms';
+import { transformSamples } from "./transforms/samplesTransforms";
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
@@ -26,6 +26,7 @@ import { generateSampleEnv } from "./generators/samples/sampleEnvGenerator";
 import { generateHLCSamples } from "./generators/samples/hlcSampleGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
 import { generateLroFiles } from "./generators/LROGenerator";
+import { generatePagingFiles } from "./generators/pagingHelperGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { getAutorestOptions } from "./autorestSession";
 import { conflictResolver } from "./conflictResolver";
@@ -91,7 +92,10 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
-  const hasSamplesToBeGenerated = generateSample && clientDetails?.samples?.length && clientDetails?.samples?.length > 0;
+  const hasSamplesToBeGenerated =
+    generateSample &&
+    clientDetails?.samples?.length &&
+    clientDetails?.samples?.length > 0;
   if ((hasSamplesToBeGenerated || generateTest) && generateMetadata) {
     generateSampleEnv(project);
   }
@@ -101,6 +105,7 @@ export async function generateTypeScriptLibrary(
   generateParameters(clientDetails, project);
   generateIndexFile(project, clientDetails);
   await generateLroFiles(clientDetails, project);
+  await generatePagingFiles(clientDetails, project);
   generateTracingFile(project);
 
   const licenseHeader = `

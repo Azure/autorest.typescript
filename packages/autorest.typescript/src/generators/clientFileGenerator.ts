@@ -129,7 +129,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     }
   }
   addPagingEsNextRef(flattenedInlineOperations, clientFile);
-  addPagingImports(flattenedInlineOperations, clientFile);
+  addPagingImports(flattenedInlineOperations, clientFile, true);
 
   const hasLro = inlineOperations.some(og => og.operations.some(o => o.isLro));
 
@@ -191,8 +191,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     extends: !useCoreV2
       ? "coreHttp.ServiceClient"
       : coreHttpCompatMode
-        ? "coreHttpCompat.ExtendedServiceClient"
-        : "coreClient.ServiceClient",
+      ? "coreHttpCompat.ExtendedServiceClient"
+      : "coreClient.ServiceClient",
     isExported: true
   });
 
@@ -405,11 +405,12 @@ function writeConstructor(
   ]);
   if (useCoreV2 && apiVersionParam) {
     clientConstructor.addStatements(
-      `this.addCustomApiVersionPolicy(${!apiVersionParam.required ||
+      `this.addCustomApiVersionPolicy(${
+        !apiVersionParam.required ||
         !!apiVersionParam.defaultValue ||
         apiVersionParam.schemaType === SchemaType.Constant
-        ? "options."
-        : ""
+          ? "options."
+          : ""
       }apiVersion);`
     );
   }
@@ -522,11 +523,15 @@ function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
   );
 }
 
-function getCredentialScopesValue(credentialScopes?: string | string[]) {
+function getCredentialScopesValue(
+  credentialScopes?: string | string[],
+  endpoint?: string
+) {
   if (Array.isArray(credentialScopes)) {
     if (
       credentialScopes.length === 1 &&
-      credentialScopes[0] === "user_impersonation"
+      (credentialScopes[0] === "user_impersonation" ||
+        credentialScopes[0] === `${endpoint}/.default`)
     ) {
       return undefined;
     }
@@ -569,7 +574,11 @@ function getTrack2DefaultContent(
   packageDetails: PackageDetails,
   clientDetails: ClientDetails
 ) {
-  const { azureArm, allowInsecureConnection, addCredentials } = getAutorestOptions();
+  const {
+    azureArm,
+    allowInsecureConnection,
+    addCredentials
+  } = getAutorestOptions();
 
   const defaultContent = `// Initializing default values for options
   if (!options) {
@@ -593,7 +602,7 @@ function getTrack2DefaultContent(
     userAgentOptions: {
       userAgentPrefix
     },
-    baseUri: ${getEndpoint(clientDetails.endpoint)}
+    endpoint: ${getEndpoint(clientDetails.endpoint)}
   };
   super(optionsWithDefaults);
   `;
@@ -618,7 +627,7 @@ function getTrack2DefaultContent(
         this.pipeline.addPolicy(
           coreRestPipeline.bearerTokenAuthenticationPolicy({
             credential: credentials,
-            scopes: \`\${optionsWithDefaults.credentialScopes}\`,
+            scopes: optionsWithDefaults.credentialScopes??\`$\{optionsWithDefaults.endpoint}/.default\`,
             challengeCallbacks: {
               authorizeRequestOnChallenge:
                 coreClient.authorizeRequestOnClaimChallenge
@@ -641,7 +650,10 @@ function writeDefaultOptions(
   const { useCoreV2, packageDetails, addCredentials } = getAutorestOptions();
   const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
 
-  const credentialScopesValues = getCredentialScopesValue(credentialScopes);
+  const credentialScopesValues = getCredentialScopesValue(
+    credentialScopes,
+    clientDetails?.endpoint?.endpoint
+  );
   const addScopes = isAddScopes(
     addCredentials,
     credentialScopes,
@@ -664,11 +676,11 @@ function writeDefaultOptions(
   return !useCoreV2
     ? getTrack1DefaultContent(addScopes, hasCredentials)
     : getTrack2DefaultContent(
-      addScopes,
-      defaults,
-      packageDetails,
-      clientDetails
-    );
+        addScopes,
+        defaults,
+        packageDetails,
+        clientDetails
+      );
 }
 
 function isAddScopes(
@@ -685,13 +697,15 @@ function isAddScopes(
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
-  return `this.baseUri = options.endpoint ?? ${endpoint ? `"${endpoint}"` : `""`
-    };`;
+  return `this.baseUri = options.endpoint ?? ${
+    endpoint ? `"${endpoint}"` : `""`
+  };`;
 }
 
 function getEndpoint({ endpoint }: EndpointDetails) {
-  return `options.endpoint ?? options.baseUri ?? ${endpoint ? `"${endpoint}"` : `""`
-    }`;
+  return `options.endpoint ?? options.baseUri ?? ${
+    endpoint ? `"${endpoint}"` : `""`
+  }`;
 }
 
 function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {

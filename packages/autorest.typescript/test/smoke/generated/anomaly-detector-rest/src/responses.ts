@@ -16,123 +16,117 @@ import {
 } from "./outputModels";
 
 /** This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series. */
-export interface DetectUnivariateEntireSeries200Response extends HttpResponse {
+export interface DetectEntireSeries200Response extends HttpResponse {
   status: "200";
   body: EntireDetectResponseOutput;
 }
 
-export interface DetectUnivariateEntireSeriesDefaultHeaders {
+export interface DetectEntireSeriesDefaultHeaders {
   /** error code */
   "x-ms-error-code"?: string;
 }
 
 /** This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series. */
-export interface DetectUnivariateEntireSeriesDefaultResponse
-  extends HttpResponse {
+export interface DetectEntireSeriesDefaultResponse extends HttpResponse {
   status: string;
   body: AnomalyDetectorErrorOutput;
-  headers: RawHttpHeaders & DetectUnivariateEntireSeriesDefaultHeaders;
+  headers: RawHttpHeaders & DetectEntireSeriesDefaultHeaders;
 }
 
 /** This operation generates a model using the points that you sent into the API, and based on all data to determine whether the last point is anomalous. */
-export interface DetectUnivariateLastPoint200Response extends HttpResponse {
+export interface DetectLastPoint200Response extends HttpResponse {
   status: "200";
   body: LastDetectResponseOutput;
 }
 
-export interface DetectUnivariateLastPointDefaultHeaders {
+export interface DetectLastPointDefaultHeaders {
   /** error code */
   "x-ms-error-code"?: string;
 }
 
 /** This operation generates a model using the points that you sent into the API, and based on all data to determine whether the last point is anomalous. */
-export interface DetectUnivariateLastPointDefaultResponse extends HttpResponse {
+export interface DetectLastPointDefaultResponse extends HttpResponse {
   status: string;
   body: AnomalyDetectorErrorOutput;
-  headers: RawHttpHeaders & DetectUnivariateLastPointDefaultHeaders;
+  headers: RawHttpHeaders & DetectLastPointDefaultHeaders;
 }
 
 /** Evaluate change point score of every series point */
-export interface DetectUnivariateChangePoint200Response extends HttpResponse {
+export interface DetectChangePoint200Response extends HttpResponse {
   status: "200";
   body: ChangePointDetectResponseOutput;
 }
 
-export interface DetectUnivariateChangePointDefaultHeaders {
+export interface DetectChangePointDefaultHeaders {
   /** error code */
   "x-ms-error-code"?: string;
 }
 
 /** Evaluate change point score of every series point */
-export interface DetectUnivariateChangePointDefaultResponse
-  extends HttpResponse {
+export interface DetectChangePointDefaultResponse extends HttpResponse {
   status: string;
   body: AnomalyDetectorErrorOutput;
-  headers: RawHttpHeaders & DetectUnivariateChangePointDefaultHeaders;
+  headers: RawHttpHeaders & DetectChangePointDefaultHeaders;
 }
 
 /** For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api. */
-export interface GetMultivariateBatchDetectionResult200Response
-  extends HttpResponse {
+export interface GetBatchDetectionResult200Response extends HttpResponse {
   status: "200";
   body: DetectionResultOutput;
 }
 
-export interface GetMultivariateBatchDetectionResultDefaultHeaders {
+export interface GetBatchDetectionResultDefaultHeaders {
   /** Error code */
   "x-ms-error-code"?: string;
 }
 
 /** For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api. */
-export interface GetMultivariateBatchDetectionResultDefaultResponse
-  extends HttpResponse {
+export interface GetBatchDetectionResultDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
-  headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
+  headers: RawHttpHeaders & GetBatchDetectionResultDefaultHeaders;
 }
 
-export interface CreateAndTrainMultivariateModel201Headers {
+export interface CreateMultivariateModel201Headers {
   /** Location and ID of the model. */
   location?: string;
 }
 
 /** Create and train a multivariate anomaly detection model. The request must include a source parameter to indicate an externally accessible Azure blob storage URI.There are two types of data input: An URI pointed to an Azure blob storage folder which contains multiple CSV files, and each CSV file contains two columns, timestamp and variable. Another type of input is an URI pointed to a CSV file in Azure blob storage, which contains all the variables and a timestamp column. */
-export interface CreateAndTrainMultivariateModel201Response
-  extends HttpResponse {
+export interface CreateMultivariateModel201Response extends HttpResponse {
   status: "201";
   body: ModelOutput;
-  headers: RawHttpHeaders & CreateAndTrainMultivariateModel201Headers;
+  headers: RawHttpHeaders & CreateMultivariateModel201Headers;
 }
 
-export interface CreateAndTrainMultivariateModelDefaultHeaders {
+export interface CreateMultivariateModelDefaultHeaders {
   /** Error code */
   "x-ms-error-code"?: string;
 }
 
 /** Create and train a multivariate anomaly detection model. The request must include a source parameter to indicate an externally accessible Azure blob storage URI.There are two types of data input: An URI pointed to an Azure blob storage folder which contains multiple CSV files, and each CSV file contains two columns, timestamp and variable. Another type of input is an URI pointed to a CSV file in Azure blob storage, which contains all the variables and a timestamp column. */
-export interface CreateAndTrainMultivariateModelDefaultResponse
-  extends HttpResponse {
+export interface CreateMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
-  headers: RawHttpHeaders & CreateAndTrainMultivariateModelDefaultHeaders;
+  headers: RawHttpHeaders & CreateMultivariateModelDefaultHeaders;
 }
 
 /** List models of a resource. */
-export interface ListMultivariateModels200Response extends HttpResponse {
+export interface ListMultivariateModel200Response extends HttpResponse {
   status: "200";
   body: ModelListOutput;
 }
 
-export interface ListMultivariateModelsDefaultHeaders {
+export interface ListMultivariateModelDefaultHeaders {
   /** Error code */
   "x-ms-error-code"?: string;
 }
 
 /** List models of a resource. */
-export interface ListMultivariateModelsDefaultResponse extends HttpResponse {
+export interface ListMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
-  headers: RawHttpHeaders & ListMultivariateModelsDefaultHeaders;
+  headers: RawHttpHeaders & ListMultivariateModelDefaultHeaders;
 }
 
 /** Delete an existing multivariate model according to the modelId */
@@ -171,7 +165,7 @@ export interface GetMultivariateModelDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetMultivariateModelDefaultHeaders;
 }
 
-export interface DetectMultivariateBatchAnomaly202Headers {
+export interface BatchDetectAnomaly202Headers {
   /** Location of the detection result. */
   "operation-location"?: string;
   /** Id of the detection result. */
@@ -179,41 +173,38 @@ export interface DetectMultivariateBatchAnomaly202Headers {
 }
 
 /** Submit multivariate anomaly detection task with the modelId of trained model and inference data, the input schema should be the same with the training request. The request will complete asynchronously and return a resultId to query the detection result.The request should be a source link to indicate an externally accessible Azure storage Uri, either pointed to an Azure blob storage folder, or pointed to a CSV file in Azure blob storage. */
-export interface DetectMultivariateBatchAnomaly202Response
-  extends HttpResponse {
+export interface BatchDetectAnomaly202Response extends HttpResponse {
   status: "202";
   body: DetectionResultOutput;
-  headers: RawHttpHeaders & DetectMultivariateBatchAnomaly202Headers;
+  headers: RawHttpHeaders & BatchDetectAnomaly202Headers;
 }
 
-export interface DetectMultivariateBatchAnomalyDefaultHeaders {
+export interface BatchDetectAnomalyDefaultHeaders {
   /** Error code */
   "x-ms-error-code"?: string;
 }
 
 /** Submit multivariate anomaly detection task with the modelId of trained model and inference data, the input schema should be the same with the training request. The request will complete asynchronously and return a resultId to query the detection result.The request should be a source link to indicate an externally accessible Azure storage Uri, either pointed to an Azure blob storage folder, or pointed to a CSV file in Azure blob storage. */
-export interface DetectMultivariateBatchAnomalyDefaultResponse
-  extends HttpResponse {
+export interface BatchDetectAnomalyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
-  headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
+  headers: RawHttpHeaders & BatchDetectAnomalyDefaultHeaders;
 }
 
 /** Submit multivariate anomaly detection task with the modelId of trained model and inference data, and the inference data should be put into request body in a JSON format. The request will complete synchronously and return the detection immediately in the response body. */
-export interface DetectMultivariateLastAnomaly200Response extends HttpResponse {
+export interface LastDetectAnomaly200Response extends HttpResponse {
   status: "200";
   body: LastDetectionResultOutput;
 }
 
-export interface DetectMultivariateLastAnomalyDefaultHeaders {
+export interface LastDetectAnomalyDefaultHeaders {
   /** Error code */
   "x-ms-error-code"?: string;
 }
 
 /** Submit multivariate anomaly detection task with the modelId of trained model and inference data, and the inference data should be put into request body in a JSON format. The request will complete synchronously and return the detection immediately in the response body. */
-export interface DetectMultivariateLastAnomalyDefaultResponse
-  extends HttpResponse {
+export interface LastDetectAnomalyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
-  headers: RawHttpHeaders & DetectMultivariateLastAnomalyDefaultHeaders;
+  headers: RawHttpHeaders & LastDetectAnomalyDefaultHeaders;
 }

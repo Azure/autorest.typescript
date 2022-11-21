@@ -22,24 +22,12 @@ export interface ApplicationData {
   operationStartDateTime?: Date | string;
   /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   operationEndDateTime?: Date | string;
-  /** Link for attachments. */
-  attachmentsLink?: string;
   /** Optional boundary ID of the field for which operation was applied. */
   associatedBoundaryId?: string;
   /** Optional boundary ID of the actual area for which operation was applied inside the specified field. */
   operationBoundaryId?: string;
-  /** Farmer ID which belongs to the operation data. */
-  farmerId?: string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -75,28 +63,14 @@ export interface Measure {
 
 /** Schema of boundary resource. */
 export interface Boundary {
-  /** Farmer ID. */
-  farmerId?: string;
   /** ID of the parent(field or seasonalField) it belongs to. */
   parentId?: string;
   /** GeoJSON abstract class. */
   geometry?: GeoJsonObject;
   /** Is the boundary primary. */
   isPrimary?: boolean;
-  /** Boundary area in acres. */
-  acreage?: number;
-  /** Type of the parent it belongs to. */
-  parentType?: string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -161,16 +135,8 @@ export interface SearchBoundaryQuery {
 export interface Crop {
   /** Crop phenotype. */
   phenotype?: string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -186,22 +152,12 @@ export interface Crop {
 
 /** Schema of crop variety resource. */
 export interface CropVariety {
-  /** ID of the crop it belongs to. */
-  cropId?: string;
   /** CropVariety Brand. */
   brand?: string;
   /** CropVariety product. */
   product?: string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -217,16 +173,8 @@ export interface CropVariety {
 
 /** Schema of farmer resource. */
 export interface Farmer {
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -250,25 +198,6 @@ export interface FarmOperationDataIngestionJob {
   operations?: Array<string>;
   /** Start Year (Minimum = 2000, Maximum = CurrentYear). */
   startYear: number;
-  /** Unique job id. */
-  id?: string;
-  /**
-   * Status of the job.
-   * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
-   */
-  status?: string;
-  /** Duration of the job in seconds. */
-  durationInSeconds?: number;
-  /** Status message to capture more details of the job. */
-  message?: string;
-  /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  lastActionDateTime?: Date | string;
-  /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  startTime?: Date | string;
-  /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  endTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -284,18 +213,8 @@ export interface FarmOperationDataIngestionJob {
 
 /** Schema of farm resource. */
 export interface Farm {
-  /** Farmer ID. */
-  farmerId?: string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -313,22 +232,8 @@ export interface Farm {
 export interface Field {
   /** ID of the associated Farm. */
   farmId?: string;
-  /** Farmer ID. */
-  farmerId?: string;
-  /** Primary boundary id. */
-  primaryBoundaryId?: string;
-  /** Boundary Ids. */
-  boundaryIds?: Array<string>;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -371,24 +276,12 @@ export interface HarvestData {
   operationStartDateTime?: Date | string;
   /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   operationEndDateTime?: Date | string;
-  /** Link for attachments. */
-  attachmentsLink?: string;
   /** Optional boundary ID of the field for which operation was applied. */
   associatedBoundaryId?: string;
   /** Optional boundary ID of the actual area for which operation was applied inside the specified field. */
   operationBoundaryId?: string;
-  /** Farmer ID which belongs to the operation data. */
-  farmerId?: string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -428,25 +321,6 @@ export interface ImageProcessingRasterizeJob {
   shapefileAttachmentId: string;
   /** List of shapefile column names to create raster attachments. */
   shapefileColumnNames: Array<string>;
-  /** Unique job id. */
-  id?: string;
-  /**
-   * Status of the job.
-   * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
-   */
-  status?: string;
-  /** Duration of the job in seconds. */
-  durationInSeconds?: number;
-  /** Status message to capture more details of the job. */
-  message?: string;
-  /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  lastActionDateTime?: Date | string;
-  /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  startTime?: Date | string;
-  /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  endTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -479,14 +353,6 @@ export interface OAuthProvider {
    * Note: Currently applicable for JohnDeere.
    */
   isProductionApp?: boolean;
-  /** Unique OAuth provider ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -535,24 +401,12 @@ export interface PlantingData {
   operationStartDateTime?: Date | string;
   /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   operationEndDateTime?: Date | string;
-  /** Link for attachments. */
-  attachmentsLink?: string;
   /** Optional boundary ID of the field for which operation was applied. */
   associatedBoundaryId?: string;
   /** Optional boundary ID of the actual area for which operation was applied inside the specified field. */
   operationBoundaryId?: string;
-  /** Farmer ID which belongs to the operation data. */
-  farmerId?: string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -594,25 +448,6 @@ export interface SatelliteDataIngestionJob {
   source?: "Sentinel_2_L2A";
   /** Data Model for SatelliteIngestionJobRequest. */
   data?: SatelliteData;
-  /** Unique job id. */
-  id?: string;
-  /**
-   * Status of the job.
-   * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
-   */
-  status?: string;
-  /** Duration of the job in seconds. */
-  durationInSeconds?: number;
-  /** Status message to capture more details of the job. */
-  message?: string;
-  /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  lastActionDateTime?: Date | string;
-  /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  startTime?: Date | string;
-  /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  endTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -638,12 +473,6 @@ export interface SatelliteData {
 
 /** Schema of seasonal field resource. */
 export interface SeasonalField {
-  /** Farmer ID. */
-  farmerId?: string;
-  /** Primary boundary id. */
-  primaryBoundaryId?: string;
-  /** Boundary Ids. */
-  boundaryIds?: Array<string>;
   /** ID of the associated Farm. */
   farmId?: string;
   /** ID of the associated Field. */
@@ -664,16 +493,8 @@ export interface SeasonalField {
   avgSeedPopulationUnit?: string;
   /** Planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   plantingDateTime?: Date | string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -695,16 +516,8 @@ export interface Season {
   endDateTime?: Date | string;
   /** Season year. */
   year?: number;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -737,24 +550,12 @@ export interface TillageData {
   operationStartDateTime?: Date | string;
   /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   operationEndDateTime?: Date | string;
-  /** Link for attachments. */
-  attachmentsLink?: string;
   /** Optional boundary ID of the field for which operation was applied. */
   associatedBoundaryId?: string;
   /** Optional boundary ID of the actual area for which operation was applied inside the specified field. */
   operationBoundaryId?: string;
-  /** Farmer ID which belongs to the operation data. */
-  farmerId?: string;
-  /** Unique resource ID. */
-  id?: string;
-  /** The ETag value to implement optimistic concurrency. */
-  eTag?: string;
   /** Status of the resource. */
   status?: string;
-  /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  modifiedDateTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -784,25 +585,6 @@ export interface WeatherDataIngestionJob {
   extensionDataProviderAppId?: string;
   /** Api key of the weather data provider. */
   extensionDataProviderApiKey?: string;
-  /** Unique job id. */
-  id?: string;
-  /**
-   * Status of the job.
-   * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
-   */
-  status?: string;
-  /** Duration of the job in seconds. */
-  durationInSeconds?: number;
-  /** Status message to capture more details of the job. */
-  message?: string;
-  /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  lastActionDateTime?: Date | string;
-  /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  startTime?: Date | string;
-  /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  endTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */
@@ -832,25 +614,6 @@ export interface WeatherDataDeleteJob {
   startDateTime?: Date | string;
   /** Weather data end UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
   endDateTime?: Date | string;
-  /** Unique job id. */
-  id?: string;
-  /**
-   * Status of the job.
-   * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
-   */
-  status?: string;
-  /** Duration of the job in seconds. */
-  durationInSeconds?: number;
-  /** Status message to capture more details of the job. */
-  message?: string;
-  /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  createdDateTime?: Date | string;
-  /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  lastActionDateTime?: Date | string;
-  /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  startTime?: Date | string;
-  /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  endTime?: Date | string;
   /** Name to identify resource. */
   name?: string;
   /** Textual description of the resource. */

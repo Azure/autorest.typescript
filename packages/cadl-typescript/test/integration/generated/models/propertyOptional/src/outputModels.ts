@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** Template type for testing models with optional property. Pass in the type of the property you are looking for */
 export interface StringPropertyOutput {
   /** Property */

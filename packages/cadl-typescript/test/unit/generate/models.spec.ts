@@ -199,6 +199,18 @@ describe("Input/output model type", () => {
       const typeScriptType = "string";
       await verifyPropertyType(cadlType, typeScriptType);
     });
+
+    it("should handle never -> never", async () => {
+      const cadlType = "never";
+      const typeScriptType = "never";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle unknown -> unknown", async () => {
+      const cadlType = "unknown";
+      const typeScriptType = "unknown";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
   });
 
   describe("array basic generation", () => {
@@ -254,6 +266,12 @@ describe("Input/output model type", () => {
     it("should handle 'job'[] -> 'job'[]", async () => {
       const cadlType = `"job"[]`;
       const typeScriptType = `"job"[]`;
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle unknown[] -> unknown[]", async () => {
+      const cadlType = "unknown[]";
+      const typeScriptType = "unknown[]";
       await verifyPropertyType(cadlType, typeScriptType);
     });
   });
@@ -336,7 +354,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle anonymous model -> effective type/interface", async () => {
+    it.skip("should handle anonymous model -> effective type/interface", async () => {
       const cadlDefinition = `
       model SimpleModel {
         prop1: string;
@@ -478,13 +496,13 @@ describe("Input/output model type", () => {
   });
 
   describe("property definition correctness", () => {
-    // TODO: the behavior isn't finalized
-    // Issue track here https://github.com/Azure/autorest.typescript/issues/1524
-    xit("should handle @visibility(read) -> readonly ", async () => {
+
+    it("should handle @visibility(read) -> readonly ", async () => {
       const cadlDefinition = `
       model SimpleModel {
         @visibility("read")
         prop: int32;
+        prop1: int32;
       }
       `;
       const cadlType = `SimpleModel`;
@@ -494,11 +512,12 @@ describe("Input/output model type", () => {
         outputType: `${inputModelName}Output`,
         additionalInputContent: `
         export interface ${inputModelName} {
-          prop:number;
+          prop1:number;
         }`,
         additionalOutputContent: `
         export interface ${inputModelName}Output {
-          prop:number;
+          readonly prop:number;
+          prop1:number;
         }`
       });
     });

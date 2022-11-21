@@ -4,8 +4,11 @@ import {
   ParameterLocation,
   SchemaContext
 } from "@autorest/codemodel";
-import { PathParameter } from "@azure-tools/rlc-common";
-import { primitiveSchemaToType } from "../restLevelClient/schemaHelpers";
+import { PathParameter, PathTemplateApiVersion } from "@azure-tools/rlc-common";
+import {
+  isConstantSchema,
+  primitiveSchemaToType
+} from "../restLevelClient/schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export interface EndpointDetails {
@@ -61,11 +64,15 @@ function getEndpointParameter(codeModel: CodeModel) {
   }
 
   return urlParameters.map(urlParameter => {
+    let value: string | undefined;
+    if (isConstantSchema(urlParameter.schema)) {
+      value = urlParameter.schema.value.value;
+    }
     return {
       name: getLanguageMetadata(urlParameter.language).serializedName,
       type: primitiveSchemaToType(urlParameter.schema, [SchemaContext.Input]),
-      description: getLanguageMetadata(urlParameter.language).description
-    }
-  })
-
+      description: getLanguageMetadata(urlParameter.language).description,
+      value
+    };
+  });
 }

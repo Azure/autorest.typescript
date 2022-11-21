@@ -7,7 +7,8 @@
  */
 
 import { tracingClient } from "../tracing";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -19,76 +20,80 @@ import {
   Product,
   PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesOptionalParams,
+  PagingGetNoItemNamePagesResponse,
+  PagingGetEmptyNextLinkNamePagesNextOptionalParams,
+  PagingGetEmptyNextLinkNamePagesOptionalParams,
+  PagingGetEmptyNextLinkNamePagesResponse,
   PagingGetNullNextLinkNamePagesOptionalParams,
+  PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesNextOptionalParams,
   PagingGetSinglePagesOptionalParams,
+  PagingGetSinglePagesResponse,
   BodyParam,
   PagingGetSinglePagesWithBodyParamsNextOptionalParams,
   PagingGetSinglePagesWithBodyParamsOptionalParams,
+  PagingGetSinglePagesWithBodyParamsResponse,
   PagingFirstResponseEmptyNextOptionalParams,
   PagingFirstResponseEmptyOptionalParams,
+  PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesNextOptionalParams,
   PagingGetMultiplePagesOptionalParams,
+  PagingGetMultiplePagesResponse,
   PagingNextOperationWithQueryParamsOptionalParams,
   PagingGetWithQueryParamsOptionalParams,
+  PagingGetWithQueryParamsResponse,
   PagingDuplicateParamsNextOptionalParams,
   PagingDuplicateParamsOptionalParams,
+  PagingDuplicateParamsResponse,
   PagingPageWithMaxPageSizeNextOptionalParams,
   PagingPageWithMaxPageSizeOptionalParams,
+  PagingPageWithMaxPageSizeResponse,
   PagingGetOdataMultiplePagesNextOptionalParams,
   PagingGetOdataMultiplePagesOptionalParams,
+  PagingGetOdataMultiplePagesResponse,
   PagingGetMultiplePagesWithOffsetOptions,
   PagingGetMultiplePagesWithOffsetNextOptionalParams,
   PagingGetMultiplePagesWithOffsetOptionalParams,
+  PagingGetMultiplePagesWithOffsetResponse,
   PagingGetMultiplePagesRetryFirstNextOptionalParams,
   PagingGetMultiplePagesRetryFirstOptionalParams,
+  PagingGetMultiplePagesRetryFirstResponse,
   PagingGetMultiplePagesRetrySecondNextOptionalParams,
   PagingGetMultiplePagesRetrySecondOptionalParams,
+  PagingGetMultiplePagesRetrySecondResponse,
   PagingGetSinglePagesFailureNextOptionalParams,
   PagingGetSinglePagesFailureOptionalParams,
+  PagingGetSinglePagesFailureResponse,
   PagingGetMultiplePagesFailureNextOptionalParams,
   PagingGetMultiplePagesFailureOptionalParams,
+  PagingGetMultiplePagesFailureResponse,
   PagingGetMultiplePagesFailureUriNextOptionalParams,
   PagingGetMultiplePagesFailureUriOptionalParams,
+  PagingGetMultiplePagesFailureUriResponse,
   PagingNextFragmentOptionalParams,
   PagingGetMultiplePagesFragmentNextLinkOptionalParams,
+  PagingGetMultiplePagesFragmentNextLinkResponse,
   CustomParameterGroup,
   PagingNextFragmentWithGroupingOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
+  PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
   PagingGetMultiplePagesLRONextOptionalParams,
   PagingGetMultiplePagesLROOptionalParams,
+  PagingGetMultiplePagesLROResponse,
   PagingAppendApiVersionNextOptionalParams,
   PagingAppendApiVersionOptionalParams,
+  PagingAppendApiVersionResponse,
   PagingReplaceApiVersionNextOptionalParams,
   PagingReplaceApiVersionOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
-  PagingGetNoItemNamePagesResponse,
-  PagingGetNullNextLinkNamePagesResponse,
-  PagingGetSinglePagesResponse,
-  PagingGetSinglePagesWithBodyParamsResponse,
-  PagingFirstResponseEmptyResponse,
-  PagingGetMultiplePagesResponse,
-  PagingGetWithQueryParamsResponse,
-  PagingDuplicateParamsResponse,
-  PagingPageWithMaxPageSizeResponse,
-  PagingNextOperationWithQueryParamsResponse,
-  PagingGetOdataMultiplePagesResponse,
-  PagingGetMultiplePagesWithOffsetResponse,
-  PagingGetMultiplePagesRetryFirstResponse,
-  PagingGetMultiplePagesRetrySecondResponse,
-  PagingGetSinglePagesFailureResponse,
-  PagingGetMultiplePagesFailureResponse,
-  PagingGetMultiplePagesFailureUriResponse,
-  PagingGetMultiplePagesFragmentNextLinkResponse,
-  PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
-  PagingGetMultiplePagesLROResponse,
-  PagingAppendApiVersionResponse,
   PagingReplaceApiVersionResponse,
   PagingNextFragmentResponse,
   PagingNextFragmentWithGroupingResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
+  PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
+  PagingNextOperationWithQueryParamsResponse,
   PagingGetNoItemNamePagesNextResponse,
+  PagingGetEmptyNextLinkNamePagesNextResponse,
   PagingGetSinglePagesNextResponse,
   PagingGetSinglePagesWithBodyParamsNextResponse,
   PagingFirstResponseEmptyNextResponse,
@@ -136,22 +141,34 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getNoItemNamePagesPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getNoItemNamePagesPagingPage(options, settings);
       }
     };
   }
 
   private async *getNoItemNamePagesPagingPage(
-    options?: PagingGetNoItemNamePagesOptionalParams
+    options?: PagingGetNoItemNamePagesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getNoItemNamePages(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetNoItemNamePagesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getNoItemNamePages(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getNoItemNamePagesNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -159,6 +176,65 @@ export class PagingImpl implements Paging {
     options?: PagingGetNoItemNamePagesOptionalParams
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getNoItemNamePagesPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation that gets an empty next link and should stop after page 1.
+   * @param options The options parameters.
+   */
+  public listEmptyNextLinkNamePages(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): PagedAsyncIterableIterator<Product> {
+    const iter = this.getEmptyNextLinkNamePagesPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getEmptyNextLinkNamePagesPagingPage(options, settings);
+      }
+    };
+  }
+
+  private async *getEmptyNextLinkNamePagesPagingPage(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams,
+    settings?: PageSettings
+  ): AsyncIterableIterator<Product[]> {
+    let result: PagingGetEmptyNextLinkNamePagesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getEmptyNextLinkNamePages(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
+    while (continuationToken) {
+      result = await this._getEmptyNextLinkNamePagesNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
+  }
+
+  private async *getEmptyNextLinkNamePagesPagingAll(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getEmptyNextLinkNamePagesPagingPage(
+      options
+    )) {
       yield* page;
     }
   }
@@ -178,16 +254,21 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getNullNextLinkNamePagesPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getNullNextLinkNamePagesPagingPage(options, settings);
       }
     };
   }
 
   private async *getNullNextLinkNamePagesPagingPage(
-    options?: PagingGetNullNextLinkNamePagesOptionalParams
+    options?: PagingGetNullNextLinkNamePagesOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getNullNextLinkNamePages(options);
+    let result: PagingGetNullNextLinkNamePagesResponse;
+    result = await this._getNullNextLinkNamePages(options);
     yield result.values || [];
   }
 
@@ -214,22 +295,34 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getSinglePagesPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getSinglePagesPagingPage(options, settings);
       }
     };
   }
 
   private async *getSinglePagesPagingPage(
-    options?: PagingGetSinglePagesOptionalParams
+    options?: PagingGetSinglePagesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getSinglePages(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetSinglePagesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getSinglePages(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getSinglePagesNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -261,19 +354,33 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getSinglePagesWithBodyParamsPagingPage(parameters, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getSinglePagesWithBodyParamsPagingPage(
+          parameters,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *getSinglePagesWithBodyParamsPagingPage(
     parameters: BodyParam,
-    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getSinglePagesWithBodyParams(parameters, options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetSinglePagesWithBodyParamsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getSinglePagesWithBodyParams(parameters, options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getSinglePagesWithBodyParamsNext(
         parameters,
@@ -281,7 +388,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -313,22 +422,34 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.firstResponseEmptyPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.firstResponseEmptyPagingPage(options, settings);
       }
     };
   }
 
   private async *firstResponseEmptyPagingPage(
-    options?: PagingFirstResponseEmptyOptionalParams
+    options?: PagingFirstResponseEmptyOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._firstResponseEmpty(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PagingFirstResponseEmptyResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._firstResponseEmpty(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._firstResponseEmptyNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -355,22 +476,34 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getMultiplePagesPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getMultiplePagesPagingPage(options, settings);
       }
     };
   }
 
   private async *getMultiplePagesPagingPage(
-    options?: PagingGetMultiplePagesOptionalParams
+    options?: PagingGetMultiplePagesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getMultiplePages(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetMultiplePagesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getMultiplePages(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getMultiplePagesNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -403,10 +536,14 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getWithQueryParamsPagingPage(
           requiredQueryParameter,
-          options
+          options,
+          settings
         );
       }
     };
@@ -414,18 +551,24 @@ export class PagingImpl implements Paging {
 
   private async *getWithQueryParamsPagingPage(
     requiredQueryParameter: number,
-    options?: PagingGetWithQueryParamsOptionalParams
+    options?: PagingGetWithQueryParamsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getWithQueryParams(
-      requiredQueryParameter,
-      options
-    );
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetWithQueryParamsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getWithQueryParams(requiredQueryParameter, options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._nextOperationWithQueryParams(options);
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -458,22 +601,34 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.duplicateParamsPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.duplicateParamsPagingPage(options, settings);
       }
     };
   }
 
   private async *duplicateParamsPagingPage(
-    options?: PagingDuplicateParamsOptionalParams
+    options?: PagingDuplicateParamsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._duplicateParams(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingDuplicateParamsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._duplicateParams(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._duplicateParamsNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -500,22 +655,34 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.pageWithMaxPageSizePagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.pageWithMaxPageSizePagingPage(options, settings);
       }
     };
   }
 
   private async *pageWithMaxPageSizePagingPage(
-    options?: PagingPageWithMaxPageSizeOptionalParams
+    options?: PagingPageWithMaxPageSizeOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._pageWithMaxPageSize(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingPageWithMaxPageSizeResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._pageWithMaxPageSize(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._pageWithMaxPageSizeNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -542,25 +709,37 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getOdataMultiplePagesPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getOdataMultiplePagesPagingPage(options, settings);
       }
     };
   }
 
   private async *getOdataMultiplePagesPagingPage(
-    options?: PagingGetOdataMultiplePagesOptionalParams
+    options?: PagingGetOdataMultiplePagesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getOdataMultiplePages(options);
-    yield result.values || [];
-    let continuationToken = result.odataNextLink;
+    let result: PagingGetOdataMultiplePagesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getOdataMultiplePages(options);
+      let page = result.values || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getOdataMultiplePagesNext(
         continuationToken,
         options
       );
       continuationToken = result.odataNextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -592,10 +771,14 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesWithOffsetPagingPage(
           pagingGetMultiplePagesWithOffsetOptions,
-          options
+          options,
+          settings
         );
       }
     };
@@ -603,14 +786,21 @@ export class PagingImpl implements Paging {
 
   private async *getMultiplePagesWithOffsetPagingPage(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
-    options?: PagingGetMultiplePagesWithOffsetOptionalParams
+    options?: PagingGetMultiplePagesWithOffsetOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getMultiplePagesWithOffset(
-      pagingGetMultiplePagesWithOffsetOptions,
-      options
-    );
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetMultiplePagesWithOffsetResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getMultiplePagesWithOffset(
+        pagingGetMultiplePagesWithOffsetOptions,
+        options
+      );
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getMultiplePagesWithOffsetNext(
         pagingGetMultiplePagesWithOffsetOptions,
@@ -618,7 +808,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -650,25 +842,37 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getMultiplePagesRetryFirstPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getMultiplePagesRetryFirstPagingPage(options, settings);
       }
     };
   }
 
   private async *getMultiplePagesRetryFirstPagingPage(
-    options?: PagingGetMultiplePagesRetryFirstOptionalParams
+    options?: PagingGetMultiplePagesRetryFirstOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getMultiplePagesRetryFirst(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetMultiplePagesRetryFirstResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getMultiplePagesRetryFirst(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getMultiplePagesRetryFirstNext(
         continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -698,25 +902,37 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getMultiplePagesRetrySecondPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getMultiplePagesRetrySecondPagingPage(options, settings);
       }
     };
   }
 
   private async *getMultiplePagesRetrySecondPagingPage(
-    options?: PagingGetMultiplePagesRetrySecondOptionalParams
+    options?: PagingGetMultiplePagesRetrySecondOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getMultiplePagesRetrySecond(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetMultiplePagesRetrySecondResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getMultiplePagesRetrySecond(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getMultiplePagesRetrySecondNext(
         continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -745,25 +961,37 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getSinglePagesFailurePagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getSinglePagesFailurePagingPage(options, settings);
       }
     };
   }
 
   private async *getSinglePagesFailurePagingPage(
-    options?: PagingGetSinglePagesFailureOptionalParams
+    options?: PagingGetSinglePagesFailureOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getSinglePagesFailure(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetSinglePagesFailureResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getSinglePagesFailure(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getSinglePagesFailureNext(
         continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -790,25 +1018,37 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getMultiplePagesFailurePagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getMultiplePagesFailurePagingPage(options, settings);
       }
     };
   }
 
   private async *getMultiplePagesFailurePagingPage(
-    options?: PagingGetMultiplePagesFailureOptionalParams
+    options?: PagingGetMultiplePagesFailureOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getMultiplePagesFailure(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetMultiplePagesFailureResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getMultiplePagesFailure(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getMultiplePagesFailureNext(
         continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -835,25 +1075,37 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getMultiplePagesFailureUriPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getMultiplePagesFailureUriPagingPage(options, settings);
       }
     };
   }
 
   private async *getMultiplePagesFailureUriPagingPage(
-    options?: PagingGetMultiplePagesFailureUriOptionalParams
+    options?: PagingGetMultiplePagesFailureUriOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getMultiplePagesFailureUri(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetMultiplePagesFailureUriResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getMultiplePagesFailureUri(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getMultiplePagesFailureUriNext(
         continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -890,11 +1142,15 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesFragmentNextLinkPagingPage(
           apiVersion,
           tenant,
-          options
+          options,
+          settings
         );
       }
     };
@@ -903,15 +1159,22 @@ export class PagingImpl implements Paging {
   private async *getMultiplePagesFragmentNextLinkPagingPage(
     apiVersion: string,
     tenant: string,
-    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getMultiplePagesFragmentNextLink(
-      apiVersion,
-      tenant,
-      options
-    );
-    yield result.values || [];
-    let continuationToken = result.odataNextLink;
+    let result: PagingGetMultiplePagesFragmentNextLinkResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getMultiplePagesFragmentNextLink(
+        apiVersion,
+        tenant,
+        options
+      );
+      let page = result.values || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._nextFragment(
         apiVersion,
@@ -920,7 +1183,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.odataNextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -958,10 +1223,14 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getMultiplePagesFragmentWithGroupingNextLinkPagingPage(
           customParameterGroup,
-          options
+          options,
+          settings
         );
       }
     };
@@ -969,14 +1238,21 @@ export class PagingImpl implements Paging {
 
   private async *getMultiplePagesFragmentWithGroupingNextLinkPagingPage(
     customParameterGroup: CustomParameterGroup,
-    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getMultiplePagesFragmentWithGroupingNextLink(
-      customParameterGroup,
-      options
-    );
-    yield result.values || [];
-    let continuationToken = result.odataNextLink;
+    let result: PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getMultiplePagesFragmentWithGroupingNextLink(
+        customParameterGroup,
+        options
+      );
+      let page = result.values || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._nextFragmentWithGrouping(
         continuationToken,
@@ -984,7 +1260,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.odataNextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1015,23 +1293,35 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getMultiplePagesLROPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getMultiplePagesLROPagingPage(options, settings);
       }
     };
   }
 
   private async *getMultiplePagesLROPagingPage(
-    options?: PagingGetMultiplePagesLROOptionalParams
+    options?: PagingGetMultiplePagesLROOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    const poller = await this._getMultiplePagesLRO(options);
-    let result: any = await poller.pollUntilDone();
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetMultiplePagesLROResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      const poller = await this._getMultiplePagesLRO(options);
+      result = await poller.pollUntilDone();
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getMultiplePagesLRONext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1059,22 +1349,34 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.appendApiVersionPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.appendApiVersionPagingPage(options, settings);
       }
     };
   }
 
   private async *appendApiVersionPagingPage(
-    options?: PagingAppendApiVersionOptionalParams
+    options?: PagingAppendApiVersionOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._appendApiVersion(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingAppendApiVersionResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._appendApiVersion(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._appendApiVersionNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1102,22 +1404,34 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.replaceApiVersionPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.replaceApiVersionPagingPage(options, settings);
       }
     };
   }
 
   private async *replaceApiVersionPagingPage(
-    options?: PagingReplaceApiVersionOptionalParams
+    options?: PagingReplaceApiVersionOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._replaceApiVersion(options);
-    yield result.values || [];
-    let continuationToken = result.nextLink;
+    let result: PagingReplaceApiVersionResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._replaceApiVersion(options);
+      let page = result.values || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._replaceApiVersionNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1155,12 +1469,16 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.nextFragmentPagingPage(
           apiVersion,
           tenant,
           nextLink,
-          options
+          options,
+          settings
         );
       }
     };
@@ -1170,16 +1488,18 @@ export class PagingImpl implements Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: PagingNextFragmentOptionalParams
+    options?: PagingNextFragmentOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._nextFragment(
-      apiVersion,
-      tenant,
-      nextLink,
-      options
-    );
-    yield result.values || [];
-    let continuationToken = result.odataNextLink;
+    let result: PagingNextFragmentResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._nextFragment(apiVersion, tenant, nextLink, options);
+      let page = result.values || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._nextFragment(
         apiVersion,
@@ -1188,7 +1508,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.odataNextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1231,11 +1553,15 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.nextFragmentWithGroupingPagingPage(
           nextLink,
           customParameterGroup,
-          options
+          options,
+          settings
         );
       }
     };
@@ -1244,15 +1570,22 @@ export class PagingImpl implements Paging {
   private async *nextFragmentWithGroupingPagingPage(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
-    options?: PagingNextFragmentWithGroupingOptionalParams
+    options?: PagingNextFragmentWithGroupingOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._nextFragmentWithGrouping(
-      nextLink,
-      customParameterGroup,
-      options
-    );
-    yield result.values || [];
-    let continuationToken = result.odataNextLink;
+    let result: PagingNextFragmentWithGroupingResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._nextFragmentWithGrouping(
+        nextLink,
+        customParameterGroup,
+        options
+      );
+      let page = result.values || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._nextFragmentWithGrouping(
         continuationToken,
@@ -1260,7 +1593,9 @@ export class PagingImpl implements Paging {
         options
       );
       continuationToken = result.odataNextLink;
-      yield result.values || [];
+      let page = result.values || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1296,29 +1631,40 @@ export class PagingImpl implements Paging {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPagingModelWithItemNameWithXMSClientNamePagingPage(
-          options
+          options,
+          settings
         );
       }
     };
   }
 
   private async *getPagingModelWithItemNameWithXMSClientNamePagingPage(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getPagingModelWithItemNameWithXMSClientName(
-      options
-    );
-    yield result.indexes || [];
-    let continuationToken = result.nextLink;
+    let result: PagingGetPagingModelWithItemNameWithXMSClientNameResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getPagingModelWithItemNameWithXMSClientName(options);
+      let page = result.indexes || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getPagingModelWithItemNameWithXMSClientNameNext(
         continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.indexes || [];
+      let page = result.indexes || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1347,6 +1693,25 @@ export class PagingImpl implements Paging {
           { options },
           getNoItemNamePagesOperationSpec
         ) as Promise<PagingGetNoItemNamePagesResponse>;
+      }
+    );
+  }
+
+  /**
+   * A paging operation that gets an empty next link and should stop after page 1.
+   * @param options The options parameters.
+   */
+  private async _getEmptyNextLinkNamePages(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesResponse> {
+    return tracingClient.withSpan(
+      "PagingClient._getEmptyNextLinkNamePages",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getEmptyNextLinkNamePagesOperationSpec
+        ) as Promise<PagingGetEmptyNextLinkNamePagesResponse>;
       }
     );
   }
@@ -1915,6 +2280,28 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * GetEmptyNextLinkNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetEmptyNextLinkNamePages
+   *                 method.
+   * @param options The options parameters.
+   */
+  private async _getEmptyNextLinkNamePagesNext(
+    nextLink: string,
+    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesNextResponse> {
+    return tracingClient.withSpan(
+      "PagingClient._getEmptyNextLinkNamePagesNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getEmptyNextLinkNamePagesNextOperationSpec
+        ) as Promise<PagingGetEmptyNextLinkNamePagesNextResponse>;
+      }
+    );
+  }
+
+  /**
    * GetSinglePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
    * @param options The options parameters.
@@ -2300,6 +2687,19 @@ const getNoItemNamePagesOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const getEmptyNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/emptynextlink",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const getNullNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/nullnextlink",
   httpMethod: "GET",
@@ -2656,6 +3056,19 @@ const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.Opera
   serializer
 };
 const getNoItemNamePagesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getEmptyNextLinkNamePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

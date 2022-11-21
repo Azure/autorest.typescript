@@ -27,6 +27,7 @@ import {
   isSecret,
   isStringType,
   isTemplateDeclaration,
+  isUnknownType,
   Model,
   ModelProperty,
   Program,
@@ -464,7 +465,6 @@ function getSchemaForModel(
     if (description) {
       newPropSchema["description"] = description;
     }
-    modelSchema.properties[name] = newPropSchema;
 
     if (prop.default) {
       // modelSchema.properties[name]['default'] = getDefaultValue(program, prop.default);
@@ -478,7 +478,7 @@ function getSchemaForModel(
         if (vis.length > 1) {
           mutability.push(SchemaContext.Output);
         } else {
-          // modelSchema.properties[name]['readOnly'] = true;
+          newPropSchema["readOnly"] = true;
         }
       }
       if (vis.includes("write") || vis.includes("create")) {
@@ -489,6 +489,7 @@ function getSchemaForModel(
         // modelSchema.properties[name]["usage"] = mutability;
       }
     }
+    modelSchema.properties[name] = newPropSchema;
   }
 
   // Special case: if a model type extends a single *templated* base type and
@@ -672,10 +673,7 @@ function mapCadlIntrinsicModelToTypeScript(
         };
         if (
           !isIntrinsic(program, indexer.value) &&
-          !(
-            indexer.value?.kind === "Intrinsic" &&
-            indexer.value.name === "unknown"
-          )
+          !isUnknownType(indexer.value!)
         ) {
           schema.typeName = `Record<string, ${valueType.name}>`;
           schema.valueTypeName = valueType.name;
@@ -692,7 +690,11 @@ function mapCadlIntrinsicModelToTypeScript(
           items: getSchemaForType(program, indexer.value!, usage, true),
           description: getDoc(program, cadlType)
         };
-        if (!isIntrinsic(program, indexer.value) && indexer.value?.kind) {
+        if (
+          !isIntrinsic(program, indexer.value) &&
+          !isUnknownType(indexer.value!) &&
+          indexer.value?.kind
+        ) {
           schema.typeName = `Array<${schema.items.name}>`;
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `Array<${schema.items.name}Output>`;
@@ -844,9 +846,10 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
         .map((i: Schema) => getPriorityName(i) ?? "");
     case "object":
       return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
-    case "dictionary":
+    case "dictionary": {
       const importName = getDictionaryValueName(schema as DictionarySchema);
       return importName ? [importName] : undefined;
+    }
     default:
       return;
   }

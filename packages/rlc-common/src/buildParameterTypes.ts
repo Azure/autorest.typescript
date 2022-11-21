@@ -11,12 +11,12 @@ import {
 import * as path from "path";
 import {
   ImportKind,
+  ObjectSchema,
   ParameterMetadata,
   ParameterMetadatas,
   RLCModel,
   Schema
 } from "./interfaces.js";
-import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   getParameterBaseName,
   getParameterTypeName
@@ -91,6 +91,11 @@ export function buildParameterTypes(model: RLCModel) {
         internalReferences,
         i
       );
+
+      const bodyTypeAlias = buildBodyTypeAlias(parameter);
+      if (bodyTypeAlias) {
+        parametersFile.addTypeAlias(bodyTypeAlias);
+      }
 
       // Add interfaces for body and query parameters
       parametersFile.addInterfaces([
@@ -215,7 +220,7 @@ function getPropertyFromSchema(schema: Schema): PropertySignatureStructure {
     name: schema.name,
     ...(description && { docs: [{ description }] }),
     type: schema.type,
-    hasQuestionToken: !Boolean(schema.required),
+    hasQuestionToken: !schema.required,
     kind: StructureKind.PropertySignature
   };
 }
@@ -436,5 +441,51 @@ function buildBodyParametersDefinition(
         ]
       }
     ];
+  }
+}
+
+export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
+  const bodyParameters = parameters.body;
+  if (
+    !bodyParameters ||
+    !bodyParameters?.body ||
+    !bodyParameters?.body.length
+  ) {
+    return undefined;
+  }
+  const schema = bodyParameters.body[0] as ObjectSchema;
+  const headerParameters = (parameters.parameters || []).filter(
+    (p) => p.type === "header" && p.name === "contentType"
+  );
+  if (!headerParameters.length || headerParameters.length > 1) {
+    return undefined;
+  }
+
+  const contentType = headerParameters[0].param.type;
+  const readOnlyProperties = [];
+  if (schema.properties) {
+    for (const propertyName of Object.keys(schema.properties)) {
+      const prop = schema.properties[propertyName];
+      if (prop?.readOnly) {
+        if (propertyName.startsWith('"') && propertyName.endsWith('"')) {
+          readOnlyProperties.push(`${propertyName}`);
+        } else {
+          readOnlyProperties.push(`"${propertyName}"`);
+        }
+      }
+    }
+  }
+
+  const description = `${schema.description}`;
+  const typeName = `${schema.typeName}ResourceMergeAndPatch`;
+  if (contentType.includes("application/merge-patch+json")) {
+    const type = `Partial<${schema.typeName}>`;
+    return {
+      // kind: StructureKind.TypeAlias,
+      ...(description && { docs: [{ description }] }),
+      name: `${typeName}`,
+      type,
+      isExported: true
+    };
   }
 }

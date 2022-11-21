@@ -81,7 +81,7 @@ export interface ConfidentialLedgerCreateOrUpdateUser201Response extends HttpRes
 // @public (undocumented)
 export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
     // (undocumented)
-    body?: LedgerUser;
+    body?: LedgerUserResourceMergeAndPatch;
 }
 
 // @public (undocumented)
@@ -476,18 +476,15 @@ export function isUnexpected(response: ConfidentialLedgerCreateOrUpdateUser200Re
 
 // @public (undocumented)
 export interface LedgerEntry {
-    // (undocumented)
-    collectionId: string;
     contents: string;
-    transactionId: string;
 }
 
 // @public (undocumented)
 export interface LedgerEntryOutput {
     // (undocumented)
-    collectionId: string;
+    readonly collectionId: string;
     contents: string;
-    transactionId: string;
+    readonly transactionId: string;
 }
 
 // @public
@@ -501,6 +498,9 @@ export interface LedgerUserOutput {
     assignedRole: string;
     userId: string;
 }
+
+// @public (undocumented)
+export type LedgerUserResourceMergeAndPatch = Partial<LedgerUser>;
 
 // @public (undocumented)
 export interface ListCollections {

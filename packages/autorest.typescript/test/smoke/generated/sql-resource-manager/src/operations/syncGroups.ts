@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { SyncGroups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -18,20 +19,21 @@ import {
   SyncDatabaseIdProperties,
   SyncGroupsListSyncDatabaseIdsNextOptionalParams,
   SyncGroupsListSyncDatabaseIdsOptionalParams,
+  SyncGroupsListSyncDatabaseIdsResponse,
   SyncFullSchemaProperties,
   SyncGroupsListHubSchemasNextOptionalParams,
   SyncGroupsListHubSchemasOptionalParams,
+  SyncGroupsListHubSchemasResponse,
   SyncGroupLogProperties,
   SyncGroupsType,
   SyncGroupsListLogsNextOptionalParams,
   SyncGroupsListLogsOptionalParams,
+  SyncGroupsListLogsResponse,
   SyncGroup,
   SyncGroupsListByDatabaseNextOptionalParams,
   SyncGroupsListByDatabaseOptionalParams,
-  SyncGroupsListSyncDatabaseIdsResponse,
+  SyncGroupsListByDatabaseResponse,
   SyncGroupsRefreshHubSchemaOptionalParams,
-  SyncGroupsListHubSchemasResponse,
-  SyncGroupsListLogsResponse,
   SyncGroupsCancelSyncOptionalParams,
   SyncGroupsTriggerSyncOptionalParams,
   SyncGroupsGetOptionalParams,
@@ -41,7 +43,6 @@ import {
   SyncGroupsDeleteOptionalParams,
   SyncGroupsUpdateOptionalParams,
   SyncGroupsUpdateResponse,
-  SyncGroupsListByDatabaseResponse,
   SyncGroupsListSyncDatabaseIdsNextResponse,
   SyncGroupsListHubSchemasNextResponse,
   SyncGroupsListLogsNextResponse,
@@ -78,19 +79,33 @@ export class SyncGroupsImpl implements SyncGroups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listSyncDatabaseIdsPagingPage(locationName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listSyncDatabaseIdsPagingPage(
+          locationName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listSyncDatabaseIdsPagingPage(
     locationName: string,
-    options?: SyncGroupsListSyncDatabaseIdsOptionalParams
+    options?: SyncGroupsListSyncDatabaseIdsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<SyncDatabaseIdProperties[]> {
-    let result = await this._listSyncDatabaseIds(locationName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: SyncGroupsListSyncDatabaseIdsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listSyncDatabaseIds(locationName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listSyncDatabaseIdsNext(
         locationName,
@@ -98,7 +113,9 @@ export class SyncGroupsImpl implements SyncGroups {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -144,13 +161,17 @@ export class SyncGroupsImpl implements SyncGroups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listHubSchemasPagingPage(
           resourceGroupName,
           serverName,
           databaseName,
           syncGroupName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -161,17 +182,24 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    options?: SyncGroupsListHubSchemasOptionalParams
+    options?: SyncGroupsListHubSchemasOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<SyncFullSchemaProperties[]> {
-    let result = await this._listHubSchemas(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: SyncGroupsListHubSchemasResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listHubSchemas(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        syncGroupName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listHubSchemasNext(
         resourceGroupName,
@@ -182,7 +210,9 @@ export class SyncGroupsImpl implements SyncGroups {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -243,7 +273,10 @@ export class SyncGroupsImpl implements SyncGroups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listLogsPagingPage(
           resourceGroupName,
           serverName,
@@ -252,7 +285,8 @@ export class SyncGroupsImpl implements SyncGroups {
           startTime,
           endTime,
           typeParam,
-          options
+          options,
+          settings
         );
       }
     };
@@ -266,20 +300,27 @@ export class SyncGroupsImpl implements SyncGroups {
     startTime: string,
     endTime: string,
     typeParam: SyncGroupsType,
-    options?: SyncGroupsListLogsOptionalParams
+    options?: SyncGroupsListLogsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<SyncGroupLogProperties[]> {
-    let result = await this._listLogs(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      syncGroupName,
-      startTime,
-      endTime,
-      typeParam,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: SyncGroupsListLogsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listLogs(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        syncGroupName,
+        startTime,
+        endTime,
+        typeParam,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listLogsNext(
         resourceGroupName,
@@ -288,12 +329,14 @@ export class SyncGroupsImpl implements SyncGroups {
         syncGroupName,
         startTime,
         endTime,
-        continuationToken,
         typeParam,
+        continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -348,12 +391,16 @@ export class SyncGroupsImpl implements SyncGroups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByDatabasePagingPage(
           resourceGroupName,
           serverName,
           databaseName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -363,16 +410,23 @@ export class SyncGroupsImpl implements SyncGroups {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: SyncGroupsListByDatabaseOptionalParams
+    options?: SyncGroupsListByDatabaseOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<SyncGroup[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: SyncGroupsListByDatabaseResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByDatabase(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByDatabaseNext(
         resourceGroupName,
@@ -382,7 +436,9 @@ export class SyncGroupsImpl implements SyncGroups {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1029,8 +1085,8 @@ export class SyncGroupsImpl implements SyncGroups {
    * @param syncGroupName The name of the sync group.
    * @param startTime Get logs generated after this time.
    * @param endTime Get logs generated before this time.
-   * @param nextLink The nextLink from the previous successful call to the ListLogs method.
    * @param typeParam The types of logs to retrieve.
+   * @param nextLink The nextLink from the previous successful call to the ListLogs method.
    * @param options The options parameters.
    */
   private _listLogsNext(
@@ -1040,8 +1096,8 @@ export class SyncGroupsImpl implements SyncGroups {
     syncGroupName: string,
     startTime: string,
     endTime: string,
-    nextLink: string,
     typeParam: SyncGroupsType,
+    nextLink: string,
     options?: SyncGroupsListLogsNextOptionalParams
   ): Promise<SyncGroupsListLogsNextResponse> {
     return this.client.sendOperationRequest(
@@ -1052,8 +1108,8 @@ export class SyncGroupsImpl implements SyncGroups {
         syncGroupName,
         startTime,
         endTime,
-        nextLink,
         typeParam,
+        nextLink,
         options
       },
       listLogsNextOperationSpec
