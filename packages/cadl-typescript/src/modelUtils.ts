@@ -413,7 +413,12 @@ function getSchemaForModel(
     modelSchema.children?.immediate?.push(childSchema);
   }
 
-  if (discriminator) {
+  // Enable option `isPolyParent` and discriminator only when it has valid children
+  if (
+    discriminator &&
+    modelSchema?.children?.all?.length &&
+    modelSchema?.children?.all?.length > 0
+  ) {
     if (!validateDiscriminator(program, discriminator, derivedModels)) {
       // appropriate diagnostic is generated in the validate function
       return {};
@@ -428,13 +433,7 @@ function getSchemaForModel(
       description: `Discriminator property for ${model.name}.`
     };
 
-    // Enable option `isPolyParent` only when it has valid children
-    if (
-      modelSchema?.children?.all?.length &&
-      modelSchema?.children?.all?.length > 0
-    ) {
-      modelSchema.isPolyParent = true;
-    }
+    modelSchema.isPolyParent = true;
   }
 
   // applyExternalDocs(model, modelSchema);
