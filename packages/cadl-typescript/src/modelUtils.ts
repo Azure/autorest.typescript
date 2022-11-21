@@ -427,13 +427,14 @@ function getSchemaForModel(
       required: true,
       description: `Discriminator property for ${model.name}.`
     };
-  }
 
-  if (
-    modelSchema?.children?.all?.length &&
-    modelSchema?.children?.all?.length > 0
-  ) {
-    modelSchema.isPolyParent = true;
+    // Enable option `isPolyParent` only when it has valid children
+    if (
+      modelSchema?.children?.all?.length &&
+      modelSchema?.children?.all?.length > 0
+    ) {
+      modelSchema.isPolyParent = true;
+    }
   }
 
   // applyExternalDocs(model, modelSchema);

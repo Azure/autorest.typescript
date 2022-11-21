@@ -65,7 +65,7 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "resiliency/srv-driven-2"
   },
   {
-    outputPath: "special-words",
-    inputPath: "specialWords"
+    outputPath: "specialWords",
+    inputPath: "special-words"
   }
 ];

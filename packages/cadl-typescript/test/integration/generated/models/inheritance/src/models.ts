@@ -43,7 +43,6 @@ export interface Salmon extends FishParent {
   kind: "salmon";
   friends?: Array<Fish>;
   hate?: Record<string, Fish>;
-  /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
   partner?: Fish;
 }
 
