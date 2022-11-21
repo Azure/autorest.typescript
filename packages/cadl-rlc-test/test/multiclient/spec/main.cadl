@@ -8,6 +8,8 @@ using Cadl.Rest;
 using Cadl.Versioning;
 using Azure.Core;
 
+enum Clients { WidgetClient, PartsClient};
+
 @service({
   title: "Contoso Widget Manager",
 })
@@ -15,13 +17,12 @@ using Azure.Core;
 @versionedDependency(
   [[Contoso.WidgetManager.Versions.v2022_08_31, Azure.Core.Versions.v1_0_Preview_1]]
 )
-namespace Contoso.WidgetManager;
 
+@client(Clients.WidgetClient)
+namespace Contoso.WidgetManager {
 enum Versions {
   v2022_08_31: "2022-08-31",
 }
-
-enum Clients { WidgetClient, PartsClient };
 
 // Models ////////////////////
 
@@ -90,22 +91,7 @@ model WidgetRepairStatusParams {
   widgetId: string;
 }
 
-@doc("A widget's part.")
-@resource("parts")
-@parentResource(Widget)
-model WidgetPart {
-  @key("widgetPartName")
-  @doc("The name of the part.")
-  @visibility("read")
-  name: string;
 
-  @doc("The ID to use for reordering the part.")
-  partId: string;
-
-  @doc("The ID of the part's manufacturer.")
-  manufacturerId: string;
-  ...EtagProperty;
-}
 
 @doc("The details of a reorder request for a WidgetPart.")
 model WidgetPartReorderRequest {
@@ -129,23 +115,9 @@ model WidgetAnalytics {
   repairCount: int64;
 }
 
-@doc("A manufacturer of widgets.")
-@resource("manufacturers")
-model Manufacturer {
-  @key("manufacturerId")
-  @doc("The manufacturer's unique ID.")
-  id: string;
-
-  @doc("The manufacturer's name.")
-  name: string;
-
-  @doc("The manufacturer's full address.")
-  address: string;
-  ...EtagProperty;
-}
 
 // Operations ////////////////////
-@client(Clients.WidgetClient)
+
 interface Widgets {
   // Operation Status
   @doc("Gets status of a Widget operation.")
@@ -210,8 +182,42 @@ interface Widgets {
     WidgetRepairRequest & RepeatabilityResponseHeaders
   >;
 }
+}
+
 
 @client(Clients.PartsClient)
+namespace Contoso.WidgetParts {
+@doc("A widget's part.")
+@resource("parts")
+@parentResource(Contoso.WidgetManager.Widget)
+model WidgetPart {
+  @key("widgetPartName")
+  @doc("The name of the part.")
+  @visibility("read")
+  name: string;
+
+  @doc("The ID to use for reordering the part.")
+  partId: string;
+
+  @doc("The ID of the part's manufacturer.")
+  manufacturerId: string;
+  ...EtagProperty;
+}
+
+@doc("A manufacturer of widgets.")
+@resource("manufacturers")
+model Manufacturer {
+  @key("manufacturerId")
+  @doc("The manufacturer's unique ID.")
+  id: string;
+
+  @doc("The manufacturer's name.")
+  name: string;
+
+  @doc("The manufacturer's full address.")
+  address: string;
+  ...EtagProperty;
+}
 interface WidgetParts {
   @doc("Gets status of a WidgetPart operation.")
   getWidgetPartOperationStatus is GetResourceOperationStatus<WidgetPart>;
@@ -250,7 +256,7 @@ interface WidgetParts {
   @pollingOperation(WidgetParts.getWidgetPartOperationStatus)
   reorderParts is LongRunningResourceCollectionAction<
     WidgetPart,
-    WidgetPartReorderRequest,
+    Contoso.WidgetManager.WidgetPartReorderRequest,
     Cadl.Http.AcceptedResponse
   >;
 }
@@ -290,3 +296,6 @@ interface Manufacturers {
   @doc("List Manufacturer resources")
   listManufacturers is ResourceList<Manufacturer>;
 }
+
+}
+
