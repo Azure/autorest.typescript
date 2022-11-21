@@ -184,6 +184,11 @@ function addDiscriminatorProperty(
   objectSchema: ObjectSchema,
   properties: PropertySignatureStructure[]
 ): PropertySignatureStructure[] {
+  // If this is not parent type we'll ignore to add specific discriminator property
+  // We assume the child type would handle discriminator property by themselves
+  if (!objectSchema.isPolyParent) {
+    return properties;
+  }
   const polymorphicProperty = getDiscriminatorProperty(objectSchema);
 
   if (polymorphicProperty) {
