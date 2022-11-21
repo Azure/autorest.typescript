@@ -1,6 +1,7 @@
 import "@cadl-lang/rest";
 import "@cadl-lang/versioning";
 import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-dpg";
 
 using Cadl.Http;
 using Cadl.Rest;
