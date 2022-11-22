@@ -47,6 +47,108 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for ConfidentialLedger operations */
+export interface ConfidentialLedgerOperations {
+  /** Collection ids are user-created collections of ledger entries */
+  listCollections(
+    options?: ConfidentialLedgerListCollectionsParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerListCollections200Response
+    | ConfidentialLedgerListCollectionsDefaultResponse
+  >;
+  /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
+  getEnclaveQuotes(
+    options?: ConfidentialLedgerGetEnclaveQuotesParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetEnclaveQuotes200Response
+    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
+  >;
+  /** The constitution is a script that assesses and applies proposals from consortium members. */
+  getConstitution(
+    options?: ConfidentialLedgerGetConstitutionParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetConstitution200Response
+    | ConfidentialLedgerGetConstitutionDefaultResponse
+  >;
+  /** Consortium members can manage the Confidential Ledger. */
+  getConsortiumMembers(
+    options?: ConfidentialLedgerGetConsortiumMembersParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetConsortiumMembers200Response
+    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
+  >;
+  /** A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned. */
+  listLedgerEntries(
+    options?: ConfidentialLedgerListLedgerEntriesParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerListLedgerEntries200Response
+    | ConfidentialLedgerListLedgerEntriesDefaultResponse
+  >;
+  /** A collection id may optionally be specified. */
+  createLedgerEntry(
+    options?: ConfidentialLedgerCreateLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerCreateLedgerEntry201Response
+    | ConfidentialLedgerCreateLedgerEntryDefaultResponse
+  >;
+  /** Get a LedgerEntry */
+  getLedgerEntry(
+    transactionId: string,
+    options?: ConfidentialLedgerGetLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetLedgerEntry200Response
+    | ConfidentialLedgerGetLedgerEntryDefaultResponse
+  >;
+  /** Runs a custom action on LedgerEntry */
+  getReceipt(
+    transactionId: string,
+    options?: ConfidentialLedgerGetReceiptParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetReceipt200Response
+    | ConfidentialLedgerGetReceiptDefaultResponse
+  >;
+  /** Runs a custom action on LedgerEntry */
+  getTransactionStatus(
+    transactionId: string,
+    options?: ConfidentialLedgerGetTransactionStatusParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetTransactionStatus200Response
+    | ConfidentialLedgerGetTransactionStatusDefaultResponse
+  >;
+  /** Runs a custom action on LedgerEntry */
+  getCurrentLedgerEntry(
+    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetCurrentLedgerEntry200Response
+    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
+  >;
+  /** Delete a LedgerUser */
+  deleteUser(
+    userId: string,
+    options?: ConfidentialLedgerDeleteUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerDeleteUser204Response
+    | ConfidentialLedgerDeleteUserDefaultResponse
+  >;
+  /** Get a LedgerUser */
+  getUser(
+    userId: string,
+    options?: ConfidentialLedgerGetUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetUser200Response
+    | ConfidentialLedgerGetUserDefaultResponse
+  >;
+  /** Creates or updates a LedgerUser */
+  createOrUpdateUser(
+    userId: string,
+    options: ConfidentialLedgerCreateOrUpdateUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUser201Response
+    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
+  >;
+}
+
 export interface ListCollections {
   /** Collection ids are user-created collections of ledger entries */
   get(
@@ -203,4 +305,5 @@ export interface Routes {
 
 export type ConfidentialLedgerServiceClient = Client & {
   path: Routes;
+  confidentialLedger: ConfidentialLedgerOperations;
 };
