@@ -4,7 +4,8 @@ import {
   buildParameterTypes,
   buildResponseTypes,
   buildSchemaTypes,
-  ImportKind
+  ImportKind,
+  Schema
 } from "@azure-tools/rlc-common";
 import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
 import { transformSchemas } from "../../src/transform/transformSchemas.js";
@@ -12,10 +13,15 @@ import { transformPaths } from "../../src/transform/transformPaths.js";
 import { transformUrlInfo } from "../../src/transform/transform.js"
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { rlcEmitterFor } from "./testUtil.js";
+import { listClients } from "@azure-tools/cadl-dpg";
 
 export async function emitModelsFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
-  const rlcSchemas = transformSchemas(program);
+  const clients = listClients(program);
+  let rlcSchemas: Schema[] = [];
+  if (clients && clients[0]) {
+    rlcSchemas = transformSchemas(program, clients[0]);
+  }
   return buildSchemaTypes({
     schemas: rlcSchemas,
     srcPath: "",
@@ -26,8 +32,12 @@ export async function emitModelsFromCadl(cadlContent: string) {
 
 export async function emitParameterFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
+  const clients = listClients(program);
   const importSet = new Map<ImportKind, Set<string>>();
-  const parameters = transformToParameterTypes(program, importSet);
+  let parameters
+  if (clients && clients[0]) {
+    parameters = transformToParameterTypes(program, importSet, clients[0]);
+  }
   return buildParameterTypes({
     srcPath: "",
     paths: {},
@@ -40,7 +50,11 @@ export async function emitParameterFromCadl(cadlContent: string) {
 
 export async function emitClientDefinitionFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
-  const paths = transformPaths(program);
+  const clients = listClients(program);
+  let paths = {};
+  if (clients && clients[0]) {
+    paths = transformPaths(program, clients[0]);
+  }
   return buildClientDefinitions({
     srcPath: "",
     libraryName: "test",
@@ -70,7 +84,11 @@ export async function emitClientFactoryFromCadl(cadlContent: string) {
 export async function emitResponsesFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
   const importSet = new Map<ImportKind, Set<string>>();
-  const responses = transformToResponseTypes(program, importSet);
+  const clients = listClients(program);
+  let responses;
+  if (clients && clients[0]) {
+    responses = transformToResponseTypes(program, importSet, clients[0]);
+  }
   return buildResponseTypes({
     srcPath: "",
     libraryName: "test",
