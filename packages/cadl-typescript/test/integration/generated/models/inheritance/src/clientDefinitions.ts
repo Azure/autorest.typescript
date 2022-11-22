@@ -2,127 +2,78 @@
 // Licensed under the MIT license.
 
 import {
-  InheritancePostValidParameters,
-  InheritanceGetValidParameters,
-  InheritancePutValidParameters,
-  DiscriminatedGetModelParameters,
-  DiscriminatedPutModelParameters,
-  DiscriminatedGetRecursiveModelParameters,
-  DiscriminatedPutRecursiveModelParameters,
-  DiscriminatedGetMissingDiscriminatorParameters,
-  DiscriminatedGetWrongDiscriminatorParameters,
+  PostValidParameters,
+  GetValidParameters,
+  PutValidParameters,
+  GetModelParameters,
+  PutModelParameters,
+  GetRecursiveModelParameters,
+  PutRecursiveModelParameters,
+  GetMissingDiscriminatorParameters,
+  GetWrongDiscriminatorParameters,
 } from "./parameters";
 import {
-  InheritancePostValid200Response,
-  InheritanceGetValid200Response,
-  InheritancePutValid200Response,
-  DiscriminatedGetModel200Response,
-  DiscriminatedPutModel200Response,
-  DiscriminatedGetRecursiveModel200Response,
-  DiscriminatedPutRecursiveModel200Response,
-  DiscriminatedGetMissingDiscriminator200Response,
-  DiscriminatedGetWrongDiscriminator200Response,
+  PostValid200Response,
+  GetValid200Response,
+  PutValid200Response,
+  GetModel200Response,
+  PutModel200Response,
+  GetRecursiveModel200Response,
+  PutRecursiveModel200Response,
+  GetMissingDiscriminator200Response,
+  GetWrongDiscriminator200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Inheritance operations */
-export interface InheritanceOperations {
-  postValid(
-    options: InheritancePostValidParameters
-  ): StreamableMethod<InheritancePostValid200Response>;
-  getValid(
-    options?: InheritanceGetValidParameters
-  ): StreamableMethod<InheritanceGetValid200Response>;
-  putValid(
-    options: InheritancePutValidParameters
-  ): StreamableMethod<InheritancePutValid200Response>;
+export interface PostValid {
+  post(options: PostValidParameters): StreamableMethod<PostValid200Response>;
+  get(options?: GetValidParameters): StreamableMethod<GetValid200Response>;
+  put(options: PutValidParameters): StreamableMethod<PutValid200Response>;
 }
 
-/** Contains operations for Discriminated operations */
-export interface DiscriminatedOperations {
-  getModel(
-    options?: DiscriminatedGetModelParameters
-  ): StreamableMethod<DiscriminatedGetModel200Response>;
-  putModel(
-    options: DiscriminatedPutModelParameters
-  ): StreamableMethod<DiscriminatedPutModel200Response>;
-  getRecursiveModel(
-    options?: DiscriminatedGetRecursiveModelParameters
-  ): StreamableMethod<DiscriminatedGetRecursiveModel200Response>;
-  putRecursiveModel(
-    options: DiscriminatedPutRecursiveModelParameters
-  ): StreamableMethod<DiscriminatedPutRecursiveModel200Response>;
-  getMissingDiscriminator(
-    options?: DiscriminatedGetMissingDiscriminatorParameters
-  ): StreamableMethod<DiscriminatedGetMissingDiscriminator200Response>;
-  getWrongDiscriminator(
-    options?: DiscriminatedGetWrongDiscriminatorParameters
-  ): StreamableMethod<DiscriminatedGetWrongDiscriminator200Response>;
+export interface GetModel {
+  get(options?: GetModelParameters): StreamableMethod<GetModel200Response>;
+  put(options: PutModelParameters): StreamableMethod<PutModel200Response>;
 }
 
-export interface InheritancePostValid {
-  post(
-    options: InheritancePostValidParameters
-  ): StreamableMethod<InheritancePostValid200Response>;
+export interface GetRecursiveModel {
   get(
-    options?: InheritanceGetValidParameters
-  ): StreamableMethod<InheritanceGetValid200Response>;
+    options?: GetRecursiveModelParameters
+  ): StreamableMethod<GetRecursiveModel200Response>;
   put(
-    options: InheritancePutValidParameters
-  ): StreamableMethod<InheritancePutValid200Response>;
+    options: PutRecursiveModelParameters
+  ): StreamableMethod<PutRecursiveModel200Response>;
 }
 
-export interface DiscriminatedGetModel {
+export interface GetMissingDiscriminator {
   get(
-    options?: DiscriminatedGetModelParameters
-  ): StreamableMethod<DiscriminatedGetModel200Response>;
-  put(
-    options: DiscriminatedPutModelParameters
-  ): StreamableMethod<DiscriminatedPutModel200Response>;
+    options?: GetMissingDiscriminatorParameters
+  ): StreamableMethod<GetMissingDiscriminator200Response>;
 }
 
-export interface DiscriminatedGetRecursiveModel {
+export interface GetWrongDiscriminator {
   get(
-    options?: DiscriminatedGetRecursiveModelParameters
-  ): StreamableMethod<DiscriminatedGetRecursiveModel200Response>;
-  put(
-    options: DiscriminatedPutRecursiveModelParameters
-  ): StreamableMethod<DiscriminatedPutRecursiveModel200Response>;
-}
-
-export interface DiscriminatedGetMissingDiscriminator {
-  get(
-    options?: DiscriminatedGetMissingDiscriminatorParameters
-  ): StreamableMethod<DiscriminatedGetMissingDiscriminator200Response>;
-}
-
-export interface DiscriminatedGetWrongDiscriminator {
-  get(
-    options?: DiscriminatedGetWrongDiscriminatorParameters
-  ): StreamableMethod<DiscriminatedGetWrongDiscriminator200Response>;
+    options?: GetWrongDiscriminatorParameters
+  ): StreamableMethod<GetWrongDiscriminator200Response>;
 }
 
 export interface Routes {
   /** Resource for '/models/inheritance/valid' has methods for the following verbs: post, get, put */
-  (path: "/models/inheritance/valid"): InheritancePostValid;
+  (path: "/models/inheritance/valid"): PostValid;
   /** Resource for '/models/inheritance/discriminated/model' has methods for the following verbs: get, put */
-  (path: "/models/inheritance/discriminated/model"): DiscriminatedGetModel;
+  (path: "/models/inheritance/discriminated/model"): GetModel;
   /** Resource for '/models/inheritance/discriminated/recursivemodel' has methods for the following verbs: get, put */
-  (
-    path: "/models/inheritance/discriminated/recursivemodel"
-  ): DiscriminatedGetRecursiveModel;
+  (path: "/models/inheritance/discriminated/recursivemodel"): GetRecursiveModel;
   /** Resource for '/models/inheritance/discriminated/missingdiscriminator' has methods for the following verbs: get */
   (
     path: "/models/inheritance/discriminated/missingdiscriminator"
-  ): DiscriminatedGetMissingDiscriminator;
+  ): GetMissingDiscriminator;
   /** Resource for '/models/inheritance/discriminated/wrongdiscriminator' has methods for the following verbs: get */
   (
     path: "/models/inheritance/discriminated/wrongdiscriminator"
-  ): DiscriminatedGetWrongDiscriminator;
+  ): GetWrongDiscriminator;
 }
 
 export type ModelsInheritanceClient = Client & {
   path: Routes;
-  inheritance: InheritanceOperations;
-  discriminated: DiscriminatedOperations;
 };

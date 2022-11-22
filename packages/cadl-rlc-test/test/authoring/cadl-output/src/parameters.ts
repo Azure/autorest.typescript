@@ -22,8 +22,11 @@ export type GetParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
 
 export interface ListProjectsQueryParamProperties {
+  /** The number of result items to return. */
   top?: number;
+  /** The number of result items to skip. */
   skip?: number;
+  /** The maximum number of result items per page. */
   maxpagesize?: number;
 }
 
@@ -34,6 +37,7 @@ export interface ListProjectsQueryParam {
 export type ListProjectsParameters = ListProjectsQueryParam & RequestParameters;
 
 export interface ExportQueryParamProperties {
+  /** The project file version. */
   projectFileVersion: string;
 }
 
@@ -45,6 +49,7 @@ export type ExportParameters = ExportQueryParam & RequestParameters;
 export type ImportxParameters = RequestParameters;
 
 export interface TrainBodyParam {
+  /** The body of the request. */
   body: TrainingJobOptions;
 }
 
@@ -65,8 +70,11 @@ export type GetDeploymentStatusParameters = RequestParameters;
 export type GetSwapDeploymentsStatusParameters = RequestParameters;
 
 export interface GetSupportedLanguagesQueryParamProperties {
+  /** The number of result items to return. */
   top?: number;
+  /** The number of result items to skip. */
   skip?: number;
+  /** The maximum number of result items per page. */
   maxpagesize?: number;
 }
 
@@ -78,8 +86,11 @@ export type GetSupportedLanguagesParameters = GetSupportedLanguagesQueryParam &
   RequestParameters;
 
 export interface ListTrainingConfigVersionsQueryParamProperties {
+  /** The number of result items to return. */
   top?: number;
+  /** The number of result items to skip. */
   skip?: number;
+  /** The maximum number of result items per page. */
   maxpagesize?: number;
 }
 

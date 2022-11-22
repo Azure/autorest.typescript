@@ -2,45 +2,41 @@
 // Licensed under the MIT license.
 
 import {
-  OperationForParameters,
-  ParameterGetWithIfParameters,
-  ParameterGetWithFilterParameters,
-  ModelGetParameters,
-  ModelPutParameters,
+  ForParameters,
+  GetWithIfParameters,
+  GetWithFilterParameters,
+  GetParameters,
+  PutParameters,
 } from "./parameters";
 import {
-  OperationFor204Response,
-  ParameterGetWithIf204Response,
-  ParameterGetWithFilter204Response,
-  ModelGet200Response,
-  ModelPut204Response,
+  For204Response,
+  GetWithIf204Response,
+  GetWithFilter204Response,
+  Get200Response,
+  Put204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface For {
-  get(
-    options?: OperationForParameters
-  ): StreamableMethod<OperationFor204Response>;
+  get(options?: ForParameters): StreamableMethod<For204Response>;
 }
 
 export interface GetWithIf {
-  get(
-    options: ParameterGetWithIfParameters
-  ): StreamableMethod<ParameterGetWithIf204Response>;
+  get(options: GetWithIfParameters): StreamableMethod<GetWithIf204Response>;
 }
 
 export interface GetWithFilter {
   get(
-    options: ParameterGetWithFilterParameters
-  ): StreamableMethod<ParameterGetWithFilter204Response>;
+    options: GetWithFilterParameters
+  ): StreamableMethod<GetWithFilter204Response>;
 }
 
 export interface Get {
-  get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
+  get(options?: GetParameters): StreamableMethod<Get200Response>;
 }
 
 export interface Put {
-  put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
+  put(options: PutParameters): StreamableMethod<Put204Response>;
 }
 
 export interface Routes {

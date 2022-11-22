@@ -20,113 +20,108 @@ import {
   NeverProperty,
 } from "./models";
 
-export type BooleanGetParameters = RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface BooleanPutBodyParam {
+export interface PutBodyParam {
   body: BooleanProperty;
 }
 
-export type BooleanPutParameters = BooleanPutBodyParam & RequestParameters;
-export type StringGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface StringPutBodyParam {
+export interface PutBodyParam {
   body: StringProperty;
 }
 
-export type StringPutParameters = StringPutBodyParam & RequestParameters;
-export type BytesGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface BytesPutBodyParam {
+export interface PutBodyParam {
   body: BytesProperty;
 }
 
-export type BytesPutParameters = BytesPutBodyParam & RequestParameters;
-export type IntGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface IntPutBodyParam {
+export interface PutBodyParam {
   body: IntProperty;
 }
 
-export type IntPutParameters = IntPutBodyParam & RequestParameters;
-export type FloatGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface FloatPutBodyParam {
+export interface PutBodyParam {
   body: FloatProperty;
 }
 
-export type FloatPutParameters = FloatPutBodyParam & RequestParameters;
-export type DatetimeGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface DatetimePutBodyParam {
+export interface PutBodyParam {
   body: DatetimeProperty;
 }
 
-export type DatetimePutParameters = DatetimePutBodyParam & RequestParameters;
-export type DurationGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface DurationPutBodyParam {
+export interface PutBodyParam {
   body: DurationProperty;
 }
 
-export type DurationPutParameters = DurationPutBodyParam & RequestParameters;
-export type EnumGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface EnumPutBodyParam {
+export interface PutBodyParam {
   body: EnumProperty;
 }
 
-export type EnumPutParameters = EnumPutBodyParam & RequestParameters;
-export type ExtensibleEnumGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface ExtensibleEnumPutBodyParam {
+export interface PutBodyParam {
   body: ExtensibleEnumProperty;
 }
 
-export type ExtensibleEnumPutParameters = ExtensibleEnumPutBodyParam &
-  RequestParameters;
-export type ModelGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface ModelPutBodyParam {
+export interface PutBodyParam {
   body: ModelProperty;
 }
 
-export type ModelPutParameters = ModelPutBodyParam & RequestParameters;
-export type CollectionsStringGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface CollectionsStringPutBodyParam {
+export interface PutBodyParam {
   body: CollectionsStringProperty;
 }
 
-export type CollectionsStringPutParameters = CollectionsStringPutBodyParam &
-  RequestParameters;
-export type CollectionsIntGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface CollectionsIntPutBodyParam {
+export interface PutBodyParam {
   body: CollectionsIntProperty;
 }
 
-export type CollectionsIntPutParameters = CollectionsIntPutBodyParam &
-  RequestParameters;
-export type CollectionsModelGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface CollectionsModelPutBodyParam {
+export interface PutBodyParam {
   body: CollectionsModelProperty;
 }
 
-export type CollectionsModelPutParameters = CollectionsModelPutBodyParam &
-  RequestParameters;
-export type DictionaryStringGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface DictionaryStringPutBodyParam {
+export interface PutBodyParam {
   body: DictionaryStringProperty;
 }
 
-export type DictionaryStringPutParameters = DictionaryStringPutBodyParam &
-  RequestParameters;
-export type NeverGetParameters = RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface NeverPutBodyParam {
+export interface PutBodyParam {
   body: NeverProperty;
 }
 
-export type NeverPutParameters = NeverPutBodyParam & RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;

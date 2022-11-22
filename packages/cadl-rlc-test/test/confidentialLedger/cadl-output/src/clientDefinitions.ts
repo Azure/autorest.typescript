@@ -99,6 +99,7 @@ export interface ListLedgerEntries {
 }
 
 export interface GetLedgerEntry {
+  /** Get a LedgerEntry */
   get(
     options?: GetLedgerEntryParameters
   ): StreamableMethod<
@@ -107,12 +108,14 @@ export interface GetLedgerEntry {
 }
 
 export interface GetReceipt {
+  /** Runs a custom action on LedgerEntry */
   get(
     options?: GetReceiptParameters
   ): StreamableMethod<GetReceipt200Response | GetReceiptDefaultResponse>;
 }
 
 export interface GetTransactionStatus {
+  /** Runs a custom action on LedgerEntry */
   get(
     options?: GetTransactionStatusParameters
   ): StreamableMethod<
@@ -121,6 +124,7 @@ export interface GetTransactionStatus {
 }
 
 export interface GetCurrentLedgerEntry {
+  /** Runs a custom action on LedgerEntry */
   get(
     options?: GetCurrentLedgerEntryParameters
   ): StreamableMethod<
@@ -129,12 +133,15 @@ export interface GetCurrentLedgerEntry {
 }
 
 export interface DeleteUser {
+  /** Delete a LedgerUser */
   delete(
     options?: DeleteUserParameters
   ): StreamableMethod<DeleteUser204Response | DeleteUserDefaultResponse>;
+  /** Get a LedgerUser */
   get(
     options?: GetUserParameters
   ): StreamableMethod<GetUser200Response | GetUserDefaultResponse>;
+  /** Creates or updates a LedgerUser */
   patch(
     options: CreateOrUpdateUserParameters
   ): StreamableMethod<

@@ -19,6 +19,7 @@ import {
 import { getSchemaForType } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 import {
+  getOperationGroupName,
   getOperationStatuscode,
   isDefaultStatusCode,
   isDefinedStatusCode,
@@ -34,8 +35,7 @@ export function transformPaths(program: Program): Paths {
     const respNames = [];
     for (const resp of route.responses) {
       const respName = getResponseTypeName(
-        // route.container.name,
-        "",
+        getOperationGroupName(),
         route.operation.name,
         getOperationStatuscode(resp)
       );
@@ -45,8 +45,7 @@ export function transformPaths(program: Program): Paths {
       description: getDoc(program, route.operation) ?? "",
       hasOptionalOptions: !hasRequiredOptions(route.parameters),
       optionsName: getParameterTypeName(
-        // route.container.name,
-        "",
+        getOperationGroupName(),
         route.operation.name
       ),
       responseTypes: getResponseTypes(route),
@@ -80,8 +79,7 @@ export function transformPaths(program: Program): Paths {
               description: getDoc(program, p.param)
             };
           }),
-        // operationGroupName: route.container.name,
-        operationGroupName: "",
+        operationGroupName: getOperationGroupName(),
         methods: {
           [route.verb]: [method]
         }
@@ -133,8 +131,7 @@ function getResponseTypes(operation: HttpOperation): ResponseTypes {
       .map((r) => {
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
-          // operation.container.name,
-          "",
+          getOperationGroupName(),
           operation.operation.name,
           statusCode
         );

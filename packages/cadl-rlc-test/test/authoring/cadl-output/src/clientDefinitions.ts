@@ -163,6 +163,7 @@ export interface GetSwapDeploymentsStatus {
 }
 
 export interface GetSupportedLanguages {
+  /** Gets the supported languages. */
   get(
     options?: GetSupportedLanguagesParameters
   ): StreamableMethod<
@@ -171,6 +172,7 @@ export interface GetSupportedLanguages {
 }
 
 export interface ListTrainingConfigVersions {
+  /** Lists training configuration versions. */
   get(
     options?: ListTrainingConfigVersionsParameters
   ): StreamableMethod<

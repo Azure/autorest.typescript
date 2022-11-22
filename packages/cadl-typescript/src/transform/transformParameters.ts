@@ -24,7 +24,7 @@ import {
   getFormattedPropertyDoc
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
-import { isBinaryPayload } from "../operationUtil.js";
+import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
 import { getResourceOperation } from "@cadl-lang/rest";
 
 export function transformToParameterTypes(
@@ -39,8 +39,7 @@ export function transformToParameterTypes(
     const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      // operationGroup: route.container.name,
-      operationGroup: "",
+      operationGroup: getOperationGroupName(),
       operationName: route.operation.name,
       parameters: []
     };

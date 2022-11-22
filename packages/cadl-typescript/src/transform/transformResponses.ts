@@ -20,7 +20,11 @@ import {
   getSchemaForType,
   getBinaryType
 } from "../modelUtils.js";
-import { getOperationStatuscode, isBinaryPayload } from "../operationUtil.js";
+import {
+  getOperationGroupName,
+  getOperationStatuscode,
+  isBinaryPayload
+} from "../operationUtil.js";
 
 export function transformToResponseTypes(
   program: Program,
@@ -32,8 +36,7 @@ export function transformToResponseTypes(
   const inputImportedSet = new Set<string>();
   for (const route of routes) {
     const rlcOperationUnit: OperationResponse = {
-      // operationGroup: route.container.name,
-      operationGroup: "",
+      operationGroup: getOperationGroupName(),
       operationName: route.operation.name,
       responses: []
     };

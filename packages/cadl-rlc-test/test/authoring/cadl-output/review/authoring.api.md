@@ -132,16 +132,15 @@ export type DeleteDeploymentParameters = RequestParameters;
 // @public (undocumented)
 export type DeleteParameters = RequestParameters;
 
-// @public (undocumented)
+// @public
 export interface DeploymentJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
     readonly expirationDateTime: string;
-    // (undocumented)
     id: string;
     jobId: string;
     readonly lastUpdatedDateTime: string;
-    status: string;
+    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
     warnings: Array<JobWarningOutput>;
 }
 
@@ -151,9 +150,8 @@ export interface DeploymentListOutput {
     value: Array<DeploymentOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface DeploymentOutput {
-    // (undocumented)
     name: string;
 }
 
@@ -249,7 +247,6 @@ export interface ExportQueryParam {
 
 // @public (undocumented)
 export interface ExportQueryParamProperties {
-    // (undocumented)
     projectFileVersion: string;
 }
 
@@ -336,7 +333,6 @@ export type GetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetSupportedLanguages {
-    // (undocumented)
     get(options?: GetSupportedLanguagesParameters): StreamableMethod<GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse>;
 }
 
@@ -367,11 +363,8 @@ export interface GetSupportedLanguagesQueryParam {
 
 // @public (undocumented)
 export interface GetSupportedLanguagesQueryParamProperties {
-    // (undocumented)
     maxpagesize?: number;
-    // (undocumented)
     skip?: number;
-    // (undocumented)
     top?: number;
 }
 
@@ -544,17 +537,13 @@ export interface ListProjectsQueryParam {
 
 // @public (undocumented)
 export interface ListProjectsQueryParamProperties {
-    // (undocumented)
     maxpagesize?: number;
-    // (undocumented)
     skip?: number;
-    // (undocumented)
     top?: number;
 }
 
 // @public (undocumented)
 export interface ListTrainingConfigVersions {
-    // (undocumented)
     get(options?: ListTrainingConfigVersionsParameters): StreamableMethod<ListTrainingConfigVersions200Response | ListTrainingConfigVersionsDefaultResponse>;
 }
 
@@ -585,11 +574,8 @@ export interface ListTrainingConfigVersionsQueryParam {
 
 // @public (undocumented)
 export interface ListTrainingConfigVersionsQueryParamProperties {
-    // (undocumented)
     maxpagesize?: number;
-    // (undocumented)
     skip?: number;
-    // (undocumented)
     top?: number;
 }
 
@@ -633,13 +619,12 @@ export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
-// @public (undocumented)
+// @public
 export interface Project {
     description?: string;
     language: string;
     multilingual?: boolean;
-    projectKind: string;
-    // (undocumented)
+    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
     projectName: string;
     settings?: Record<string, string>;
     storageInputContainerName: string;
@@ -651,7 +636,7 @@ export interface ProjectListOutput {
     value: Array<ProjectOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface ProjectOutput {
     readonly createdDateTime: string;
     description?: string;
@@ -660,8 +645,7 @@ export interface ProjectOutput {
     readonly lastModifiedDateTime: string;
     readonly lastTrainedDateTime: string;
     multilingual?: boolean;
-    projectKind: string;
-    // (undocumented)
+    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
     projectName: string;
     settings?: Record<string, string>;
     storageInputContainerName: string;
@@ -723,20 +707,19 @@ export interface SwapDeploymentsDefaultResponse extends HttpResponse {
     status: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SwapDeploymentsJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
     readonly expirationDateTime: string;
-    // (undocumented)
     id: string;
     jobId: string;
     readonly lastUpdatedDateTime: string;
-    status: string;
+    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
     warnings: Array<JobWarningOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface SwapDeploymentsOptions {
     firstDeploymentName: string;
     secondDeploymentName: string;
@@ -765,7 +748,6 @@ export interface Train202Response extends HttpResponse {
 
 // @public (undocumented)
 export interface TrainBodyParam {
-    // (undocumented)
     body: TrainingJobOptions;
 }
 
@@ -785,7 +767,6 @@ export interface TrainingConfigVersionOutput {
 
 // @public
 export interface TrainingJobOptions {
-    // (undocumented)
     modelLabel: string;
 }
 

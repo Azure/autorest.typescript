@@ -16,7 +16,6 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface CollectionOutput {
-    // (undocumented)
     collectionId: string;
 }
 
@@ -111,11 +110,8 @@ export type CreateOrUpdateUserParameters = CreateOrUpdateUserMediaTypesParam & C
 
 // @public (undocumented)
 export interface DeleteUser {
-    // (undocumented)
     delete(options?: DeleteUserParameters): StreamableMethod<DeleteUser204Response | DeleteUserDefaultResponse>;
-    // (undocumented)
     get(options?: GetUserParameters): StreamableMethod<GetUser200Response | GetUserDefaultResponse>;
-    // (undocumented)
     patch(options: CreateOrUpdateUserParameters): StreamableMethod<CreateOrUpdateUser200Response | CreateOrUpdateUser201Response | CreateOrUpdateUserDefaultResponse>;
 }
 
@@ -199,7 +195,6 @@ export type GetConstitutionParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetCurrentLedgerEntry {
-    // (undocumented)
     get(options?: GetCurrentLedgerEntryParameters): StreamableMethod<GetCurrentLedgerEntry200Response | GetCurrentLedgerEntryDefaultResponse>;
 }
 
@@ -257,7 +252,6 @@ export type GetEnclaveQuotesParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetLedgerEntry {
-    // (undocumented)
     get(options?: GetLedgerEntryParameters): StreamableMethod<GetLedgerEntry200Response | GetLedgerEntryDefaultResponse>;
 }
 
@@ -299,7 +293,6 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 
 // @public (undocumented)
 export interface GetReceipt {
-    // (undocumented)
     get(options?: GetReceiptParameters): StreamableMethod<GetReceipt200Response | GetReceiptDefaultResponse>;
 }
 
@@ -324,7 +317,6 @@ export type GetReceiptParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetTransactionStatus {
-    // (undocumented)
     get(options?: GetTransactionStatusParameters): StreamableMethod<GetTransactionStatus200Response | GetTransactionStatusDefaultResponse>;
 }
 
@@ -411,29 +403,27 @@ export function isUnexpected(response: GetUser200Response | GetUserDefaultRespon
 // @public (undocumented)
 export function isUnexpected(response: CreateOrUpdateUser200Response | CreateOrUpdateUser201Response | CreateOrUpdateUserDefaultResponse): response is CreateOrUpdateUserDefaultResponse;
 
-// @public (undocumented)
+// @public
 export interface LedgerEntry {
     contents: string;
 }
 
-// @public (undocumented)
+// @public
 export interface LedgerEntryOutput {
-    // (undocumented)
     readonly collectionId: string;
     contents: string;
-    // (undocumented)
     readonly transactionId: string;
 }
 
 // @public
 export interface LedgerUser {
-    assignedRole: string;
+    assignedRole: "Administrator" | "Contributor" | "Reader";
     userId: string;
 }
 
 // @public
 export interface LedgerUserOutput {
-    assignedRole: string;
+    assignedRole: "Administrator" | "Contributor" | "Reader";
     userId: string;
 }
 
@@ -493,7 +483,7 @@ export type ListLedgerEntriesParameters = RequestParameters;
 export interface PagedLedgerEntriesOutput {
     entries: Array<LedgerEntryOutput>;
     nextLink?: string;
-    state: string;
+    state: "Loading" | "Ready";
 }
 
 // @public
@@ -515,7 +505,7 @@ export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
-// @public (undocumented)
+// @public
 export interface ReceiptContentsOutput {
 }
 
@@ -535,17 +525,14 @@ export interface Routes {
 
 // @public
 export interface TransactionReceiptOutput {
-    // (undocumented)
     receipt: ReceiptContentsOutput;
-    state: string;
-    // (undocumented)
+    state: "Loading" | "Ready";
     transactionId: string;
 }
 
 // @public
 export interface TransactionStatusOutput {
-    state: string;
-    // (undocumented)
+    state: "Committed" | "Pending";
     transactionId: string;
 }
 

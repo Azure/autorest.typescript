@@ -12,113 +12,102 @@ import {
   RequiredAndOptionalProperty,
 } from "./models";
 
-export type StringGetAllParameters = RequestParameters;
-export type StringGetDefaultParameters = RequestParameters;
+export type GetAllParameters = RequestParameters;
+export type GetDefaultParameters = RequestParameters;
 
-export interface StringPutAllBodyParam {
+export interface PutAllBodyParam {
   body: StringProperty;
 }
 
-export type StringPutAllParameters = StringPutAllBodyParam & RequestParameters;
+export type PutAllParameters = PutAllBodyParam & RequestParameters;
 
-export interface StringPutDefaultBodyParam {
+export interface PutDefaultBodyParam {
   body: StringProperty;
 }
 
-export type StringPutDefaultParameters = StringPutDefaultBodyParam &
-  RequestParameters;
-export type BytesGetAllParameters = RequestParameters;
-export type BytesGetDefaultParameters = RequestParameters;
+export type PutDefaultParameters = PutDefaultBodyParam & RequestParameters;
+export type GetAllParameters = RequestParameters;
+export type GetDefaultParameters = RequestParameters;
 
-export interface BytesPutAllBodyParam {
+export interface PutAllBodyParam {
   body: BytesProperty;
 }
 
-export type BytesPutAllParameters = BytesPutAllBodyParam & RequestParameters;
+export type PutAllParameters = PutAllBodyParam & RequestParameters;
 
-export interface BytesPutDefaultBodyParam {
+export interface PutDefaultBodyParam {
   body: BytesProperty;
 }
 
-export type BytesPutDefaultParameters = BytesPutDefaultBodyParam &
-  RequestParameters;
-export type DatetimeGetAllParameters = RequestParameters;
-export type DatetimeGetDefaultParameters = RequestParameters;
+export type PutDefaultParameters = PutDefaultBodyParam & RequestParameters;
+export type GetAllParameters = RequestParameters;
+export type GetDefaultParameters = RequestParameters;
 
-export interface DatetimePutAllBodyParam {
+export interface PutAllBodyParam {
   body: DatetimeProperty;
 }
 
-export type DatetimePutAllParameters = DatetimePutAllBodyParam &
-  RequestParameters;
+export type PutAllParameters = PutAllBodyParam & RequestParameters;
 
-export interface DatetimePutDefaultBodyParam {
+export interface PutDefaultBodyParam {
   body: DatetimeProperty;
 }
 
-export type DatetimePutDefaultParameters = DatetimePutDefaultBodyParam &
-  RequestParameters;
-export type DurationGetAllParameters = RequestParameters;
-export type DurationGetDefaultParameters = RequestParameters;
+export type PutDefaultParameters = PutDefaultBodyParam & RequestParameters;
+export type GetAllParameters = RequestParameters;
+export type GetDefaultParameters = RequestParameters;
 
-export interface DurationPutAllBodyParam {
+export interface PutAllBodyParam {
   body: DurationProperty;
 }
 
-export type DurationPutAllParameters = DurationPutAllBodyParam &
-  RequestParameters;
+export type PutAllParameters = PutAllBodyParam & RequestParameters;
 
-export interface DurationPutDefaultBodyParam {
+export interface PutDefaultBodyParam {
   body: DurationProperty;
 }
 
-export type DurationPutDefaultParameters = DurationPutDefaultBodyParam &
-  RequestParameters;
-export type CollectionsByteGetAllParameters = RequestParameters;
-export type CollectionsByteGetDefaultParameters = RequestParameters;
+export type PutDefaultParameters = PutDefaultBodyParam & RequestParameters;
+export type GetAllParameters = RequestParameters;
+export type GetDefaultParameters = RequestParameters;
 
-export interface CollectionsBytePutAllBodyParam {
+export interface PutAllBodyParam {
   body: CollectionsByteProperty;
 }
 
-export type CollectionsBytePutAllParameters = CollectionsBytePutAllBodyParam &
-  RequestParameters;
+export type PutAllParameters = PutAllBodyParam & RequestParameters;
 
-export interface CollectionsBytePutDefaultBodyParam {
+export interface PutDefaultBodyParam {
   body: CollectionsByteProperty;
 }
 
-export type CollectionsBytePutDefaultParameters =
-  CollectionsBytePutDefaultBodyParam & RequestParameters;
-export type CollectionsModelGetAllParameters = RequestParameters;
-export type CollectionsModelGetDefaultParameters = RequestParameters;
+export type PutDefaultParameters = PutDefaultBodyParam & RequestParameters;
+export type GetAllParameters = RequestParameters;
+export type GetDefaultParameters = RequestParameters;
 
-export interface CollectionsModelPutAllBodyParam {
+export interface PutAllBodyParam {
   body: CollectionsModelProperty;
 }
 
-export type CollectionsModelPutAllParameters = CollectionsModelPutAllBodyParam &
+export type PutAllParameters = PutAllBodyParam & RequestParameters;
+
+export interface PutDefaultBodyParam {
+  body: CollectionsModelProperty;
+}
+
+export type PutDefaultParameters = PutDefaultBodyParam & RequestParameters;
+export type GetAllParameters = RequestParameters;
+export type GetRequiredOnlyParameters = RequestParameters;
+
+export interface PutAllBodyParam {
+  body: RequiredAndOptionalProperty;
+}
+
+export type PutAllParameters = PutAllBodyParam & RequestParameters;
+
+export interface PutRequiredOnlyBodyParam {
+  body: RequiredAndOptionalProperty;
+}
+
+export type PutRequiredOnlyParameters = PutRequiredOnlyBodyParam &
   RequestParameters;
-
-export interface CollectionsModelPutDefaultBodyParam {
-  body: CollectionsModelProperty;
-}
-
-export type CollectionsModelPutDefaultParameters =
-  CollectionsModelPutDefaultBodyParam & RequestParameters;
-export type RequiredAndOptionalGetAllParameters = RequestParameters;
-export type RequiredAndOptionalGetRequiredOnlyParameters = RequestParameters;
-
-export interface RequiredAndOptionalPutAllBodyParam {
-  body: RequiredAndOptionalProperty;
-}
-
-export type RequiredAndOptionalPutAllParameters =
-  RequiredAndOptionalPutAllBodyParam & RequestParameters;
-
-export interface RequiredAndOptionalPutRequiredOnlyBodyParam {
-  body: RequiredAndOptionalProperty;
-}
-
-export type RequiredAndOptionalPutRequiredOnlyParameters =
-  RequiredAndOptionalPutRequiredOnlyBodyParam & RequestParameters;

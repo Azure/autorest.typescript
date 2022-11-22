@@ -27,15 +27,5 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as ReadonlyPropertiesClient;
 
-  return {
-    ...client,
-    readonlyProperties: {
-      getOptionalPropertyModel: (options) => {
-        return client.path("/readonly-properties/models").get(options);
-      },
-      setOptionalPropertyModel: (options) => {
-        return client.path("/readonly-properties/models").put(options);
-      },
-    },
-  };
+  return client;
 }
