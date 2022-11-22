@@ -4,16 +4,16 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { InputRecord, InputOutputRecord } from "./models";
 
-export interface InputBodyParam {
+export interface UsageInputBodyParam {
   body: InputRecord;
 }
 
-export type InputParameters = InputBodyParam & RequestParameters;
-export type OutputParameters = RequestParameters;
+export type UsageInputParameters = UsageInputBodyParam & RequestParameters;
+export type UsageOutputParameters = RequestParameters;
 
-export interface InputAndOutputBodyParam {
+export interface UsageInputAndOutputBodyParam {
   body: InputOutputRecord;
 }
 
-export type InputAndOutputParameters = InputAndOutputBodyParam &
+export type UsageInputAndOutputParameters = UsageInputAndOutputBodyParam &
   RequestParameters;

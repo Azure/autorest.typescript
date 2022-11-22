@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { WorldParameters } from "./parameters";
-import { World200Response } from "./responses";
+import { HelloWorldParameters } from "./parameters";
+import { HelloWorld200Response } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface World {
-  get(options?: WorldParameters): StreamableMethod<World200Response>;
+  get(options?: HelloWorldParameters): StreamableMethod<HelloWorld200Response>;
 }
 
 export interface Routes {

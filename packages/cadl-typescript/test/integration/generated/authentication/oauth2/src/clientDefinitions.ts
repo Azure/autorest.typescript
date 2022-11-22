@@ -1,24 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValidParameters, InvalidParameters } from "./parameters";
+import { OAuth2ValidParameters, OAuth2InvalidParameters } from "./parameters";
 import {
-  Valid204Response,
-  Invalid204Response,
-  Invalid403Response,
+  OAuth2Valid204Response,
+  OAuth2Invalid204Response,
+  OAuth2Invalid403Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Valid {
   /** Check whether client is authenticated */
-  get(options?: ValidParameters): StreamableMethod<Valid204Response>;
+  get(
+    options?: OAuth2ValidParameters
+  ): StreamableMethod<OAuth2Valid204Response>;
 }
 
 export interface Invalid {
   /** Check whether client is authenticated. Will return an invalid bearer error. */
   get(
-    options?: InvalidParameters
-  ): StreamableMethod<Invalid204Response | Invalid403Response>;
+    options?: OAuth2InvalidParameters
+  ): StreamableMethod<OAuth2Invalid204Response | OAuth2Invalid403Response>;
 }
 
 export interface Routes {

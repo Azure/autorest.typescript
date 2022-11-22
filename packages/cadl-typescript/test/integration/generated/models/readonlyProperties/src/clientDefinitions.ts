@@ -2,22 +2,22 @@
 // Licensed under the MIT license.
 
 import {
-  GetOptionalPropertyModelParameters,
-  SetOptionalPropertyModelParameters,
+  ReadonlyPropertiesGetOptionalPropertyModelParameters,
+  ReadonlyPropertiesSetOptionalPropertyModelParameters,
 } from "./parameters";
 import {
-  GetOptionalPropertyModel200Response,
-  SetOptionalPropertyModel200Response,
+  ReadonlyPropertiesGetOptionalPropertyModel200Response,
+  ReadonlyPropertiesSetOptionalPropertyModel200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetOptionalPropertyModel {
   get(
-    options?: GetOptionalPropertyModelParameters
-  ): StreamableMethod<GetOptionalPropertyModel200Response>;
+    options?: ReadonlyPropertiesGetOptionalPropertyModelParameters
+  ): StreamableMethod<ReadonlyPropertiesGetOptionalPropertyModel200Response>;
   put(
-    options: SetOptionalPropertyModelParameters
-  ): StreamableMethod<SetOptionalPropertyModel200Response>;
+    options: ReadonlyPropertiesSetOptionalPropertyModelParameters
+  ): StreamableMethod<ReadonlyPropertiesSetOptionalPropertyModel200Response>;
 }
 
 export interface Routes {

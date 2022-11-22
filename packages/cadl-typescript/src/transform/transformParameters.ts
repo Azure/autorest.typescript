@@ -7,6 +7,7 @@ import {
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
+  RLCOptions,
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
@@ -29,7 +30,8 @@ import { getResourceOperation } from "@cadl-lang/rest";
 
 export function transformToParameterTypes(
   program: Program,
-  importDetails: Map<ImportKind, Set<string>>
+  importDetails: Map<ImportKind, Set<string>>,
+  options: RLCOptions
 ): OperationParameter[] {
   const [services, _diagnostics] = getAllHttpServices(program);
   const routes = services.flatMap((service) => service.operations);
@@ -39,7 +41,7 @@ export function transformToParameterTypes(
     const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: getOperationGroupName(),
+      operationGroup: getOperationGroupName(route, options),
       operationName: route.operation.name,
       parameters: []
     };

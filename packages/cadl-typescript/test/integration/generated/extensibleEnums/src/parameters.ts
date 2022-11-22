@@ -3,21 +3,21 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type GetKnownValueParameters = RequestParameters;
-export type GetUnknownValueParameters = RequestParameters;
+export type StringGetKnownValueParameters = RequestParameters;
+export type StringGetUnknownValueParameters = RequestParameters;
 
-export interface PutKnownValueBodyParam {
+export interface StringPutKnownValueBodyParam {
   /** Possible values: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday */
   body: string;
 }
 
-export type PutKnownValueParameters = PutKnownValueBodyParam &
+export type StringPutKnownValueParameters = StringPutKnownValueBodyParam &
   RequestParameters;
 
-export interface PutUnknownValueBodyParam {
+export interface StringPutUnknownValueBodyParam {
   /** Possible values: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday */
   body: string;
 }
 
-export type PutUnknownValueParameters = PutUnknownValueBodyParam &
+export type StringPutUnknownValueParameters = StringPutUnknownValueBodyParam &
   RequestParameters;

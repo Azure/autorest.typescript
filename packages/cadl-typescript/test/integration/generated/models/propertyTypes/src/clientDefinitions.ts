@@ -1,116 +1,202 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetParameters, PutParameters } from "./parameters";
-import { Get200Response, Put204Response } from "./responses";
+import {
+  BooleanGetParameters,
+  BooleanPutParameters,
+  StringGetParameters,
+  StringPutParameters,
+  BytesGetParameters,
+  BytesPutParameters,
+  IntGetParameters,
+  IntPutParameters,
+  FloatGetParameters,
+  FloatPutParameters,
+  DatetimeGetParameters,
+  DatetimePutParameters,
+  DurationGetParameters,
+  DurationPutParameters,
+  EnumGetParameters,
+  EnumPutParameters,
+  ExtensibleEnumGetParameters,
+  ExtensibleEnumPutParameters,
+  ModelGetParameters,
+  ModelPutParameters,
+  CollectionsStringGetParameters,
+  CollectionsStringPutParameters,
+  CollectionsIntGetParameters,
+  CollectionsIntPutParameters,
+  CollectionsModelGetParameters,
+  CollectionsModelPutParameters,
+  DictionaryStringGetParameters,
+  DictionaryStringPutParameters,
+  NeverGetParameters,
+  NeverPutParameters,
+} from "./parameters";
+import {
+  BooleanGet200Response,
+  BooleanPut204Response,
+  StringGet200Response,
+  StringPut204Response,
+  BytesGet200Response,
+  BytesPut204Response,
+  IntGet200Response,
+  IntPut204Response,
+  FloatGet200Response,
+  FloatPut204Response,
+  DatetimeGet200Response,
+  DatetimePut204Response,
+  DurationGet200Response,
+  DurationPut204Response,
+  EnumGet200Response,
+  EnumPut204Response,
+  ExtensibleEnumGet200Response,
+  ExtensibleEnumPut204Response,
+  ModelGet200Response,
+  ModelPut204Response,
+  CollectionsStringGet200Response,
+  CollectionsStringPut204Response,
+  CollectionsIntGet200Response,
+  CollectionsIntPut204Response,
+  CollectionsModelGet200Response,
+  CollectionsModelPut204Response,
+  DictionaryStringGet200Response,
+  DictionaryStringPut204Response,
+  NeverGet200Response,
+  NeverPut204Response,
+} from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface BooleanGet {
+  get(options?: BooleanGetParameters): StreamableMethod<BooleanGet200Response>;
+  put(options: BooleanPutParameters): StreamableMethod<BooleanPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface StringGet {
+  get(options?: StringGetParameters): StreamableMethod<StringGet200Response>;
+  put(options: StringPutParameters): StreamableMethod<StringPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface BytesGet {
+  get(options?: BytesGetParameters): StreamableMethod<BytesGet200Response>;
+  put(options: BytesPutParameters): StreamableMethod<BytesPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface IntGet {
+  get(options?: IntGetParameters): StreamableMethod<IntGet200Response>;
+  put(options: IntPutParameters): StreamableMethod<IntPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface FloatGet {
+  get(options?: FloatGetParameters): StreamableMethod<FloatGet200Response>;
+  put(options: FloatPutParameters): StreamableMethod<FloatPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface DatetimeGet {
+  get(
+    options?: DatetimeGetParameters
+  ): StreamableMethod<DatetimeGet200Response>;
+  put(options: DatetimePutParameters): StreamableMethod<DatetimePut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface DurationGet {
+  get(
+    options?: DurationGetParameters
+  ): StreamableMethod<DurationGet200Response>;
+  put(options: DurationPutParameters): StreamableMethod<DurationPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface EnumGet {
+  get(options?: EnumGetParameters): StreamableMethod<EnumGet200Response>;
+  put(options: EnumPutParameters): StreamableMethod<EnumPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface ExtensibleEnumGet {
+  get(
+    options?: ExtensibleEnumGetParameters
+  ): StreamableMethod<ExtensibleEnumGet200Response>;
+  put(
+    options: ExtensibleEnumPutParameters
+  ): StreamableMethod<ExtensibleEnumPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface ModelGet {
+  get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
+  put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface CollectionsStringGet {
+  get(
+    options?: CollectionsStringGetParameters
+  ): StreamableMethod<CollectionsStringGet200Response>;
+  put(
+    options: CollectionsStringPutParameters
+  ): StreamableMethod<CollectionsStringPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface CollectionsIntGet {
+  get(
+    options?: CollectionsIntGetParameters
+  ): StreamableMethod<CollectionsIntGet200Response>;
+  put(
+    options: CollectionsIntPutParameters
+  ): StreamableMethod<CollectionsIntPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface CollectionsModelGet {
+  get(
+    options?: CollectionsModelGetParameters
+  ): StreamableMethod<CollectionsModelGet200Response>;
+  put(
+    options: CollectionsModelPutParameters
+  ): StreamableMethod<CollectionsModelPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface DictionaryStringGet {
+  get(
+    options?: DictionaryStringGetParameters
+  ): StreamableMethod<DictionaryStringGet200Response>;
+  put(
+    options: DictionaryStringPutParameters
+  ): StreamableMethod<DictionaryStringPut204Response>;
 }
 
-export interface Get {
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
-  put(options: PutParameters): StreamableMethod<Put204Response>;
+export interface NeverGet {
+  get(options?: NeverGetParameters): StreamableMethod<NeverGet200Response>;
+  put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
 }
 
 export interface Routes {
   /** Resource for '/models/properties/types/boolean' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/boolean"): Get;
+  (path: "/models/properties/types/boolean"): BooleanGet;
   /** Resource for '/models/properties/types/string' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/string"): Get;
+  (path: "/models/properties/types/string"): StringGet;
   /** Resource for '/models/properties/types/bytes' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/bytes"): Get;
+  (path: "/models/properties/types/bytes"): BytesGet;
   /** Resource for '/models/properties/types/int' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/int"): Get;
+  (path: "/models/properties/types/int"): IntGet;
   /** Resource for '/models/properties/types/float' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/float"): Get;
+  (path: "/models/properties/types/float"): FloatGet;
   /** Resource for '/models/properties/types/datetime' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/datetime"): Get;
+  (path: "/models/properties/types/datetime"): DatetimeGet;
   /** Resource for '/models/properties/types/duration' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/duration"): Get;
+  (path: "/models/properties/types/duration"): DurationGet;
   /** Resource for '/models/properties/types/enum' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/enum"): Get;
+  (path: "/models/properties/types/enum"): EnumGet;
   /** Resource for '/models/properties/types/extensible-enum' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/extensible-enum"): Get;
+  (path: "/models/properties/types/extensible-enum"): ExtensibleEnumGet;
   /** Resource for '/models/properties/types/model' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/model"): Get;
+  (path: "/models/properties/types/model"): ModelGet;
   /** Resource for '/models/properties/types/collections/string' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/collections/string"): Get;
+  (path: "/models/properties/types/collections/string"): CollectionsStringGet;
   /** Resource for '/models/properties/types/collections/int' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/collections/int"): Get;
+  (path: "/models/properties/types/collections/int"): CollectionsIntGet;
   /** Resource for '/models/properties/types/collections/model' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/collections/model"): Get;
+  (path: "/models/properties/types/collections/model"): CollectionsModelGet;
   /** Resource for '/models/properties/types/dictionary/string' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/dictionary/string"): Get;
+  (path: "/models/properties/types/dictionary/string"): DictionaryStringGet;
   /** Resource for '/models/properties/types/never' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/never"): Get;
+  (path: "/models/properties/types/never"): NeverGet;
 }
 
 export type ModelsPropertyTypesClient = Client & {

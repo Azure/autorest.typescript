@@ -3,4 +3,4 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type WorldParameters = RequestParameters;
+export type HelloWorldParameters = RequestParameters;

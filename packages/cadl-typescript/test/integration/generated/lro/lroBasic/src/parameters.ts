@@ -3,6 +3,6 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type CreateParameters = RequestParameters;
-export type PollingParameters = RequestParameters;
-export type GetParameters = RequestParameters;
+export type PollingSuccessCreateParameters = RequestParameters;
+export type PollingSuccessPollingParameters = RequestParameters;
+export type PollingSuccessGetParameters = RequestParameters;

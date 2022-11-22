@@ -7,7 +7,8 @@ import {
   OperationResponse,
   ResponseMetadata,
   Schema,
-  SchemaContext
+  SchemaContext,
+  RLCOptions
 } from "@azure-tools/rlc-common";
 import { Program, getDoc } from "@cadl-lang/compiler";
 import {
@@ -28,7 +29,8 @@ import {
 
 export function transformToResponseTypes(
   program: Program,
-  importDetails: Map<ImportKind, Set<string>>
+  importDetails: Map<ImportKind, Set<string>>,
+  options: RLCOptions
 ): OperationResponse[] {
   const [services, _diagnostics] = getAllHttpServices(program);
   const routes = services.flatMap((service) => service.operations);
@@ -36,7 +38,7 @@ export function transformToResponseTypes(
   const inputImportedSet = new Set<string>();
   for (const route of routes) {
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: getOperationGroupName(),
+      operationGroup: getOperationGroupName(route, options),
       operationName: route.operation.name,
       responses: []
     };

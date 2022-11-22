@@ -4,11 +4,12 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { RoundTripModel } from "./models";
 
-export type GetOptionalPropertyModelParameters = RequestParameters;
+export type ReadonlyPropertiesGetOptionalPropertyModelParameters =
+  RequestParameters;
 
-export interface SetOptionalPropertyModelBodyParam {
+export interface ReadonlyPropertiesSetOptionalPropertyModelBodyParam {
   body: RoundTripModel;
 }
 
-export type SetOptionalPropertyModelParameters =
-  SetOptionalPropertyModelBodyParam & RequestParameters;
+export type ReadonlyPropertiesSetOptionalPropertyModelParameters =
+  ReadonlyPropertiesSetOptionalPropertyModelBodyParam & RequestParameters;

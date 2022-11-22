@@ -2,156 +2,260 @@
 // Licensed under the MIT license.
 
 import {
-  GetAllParameters,
-  PutAllParameters,
-  GetDefaultParameters,
-  PutDefaultParameters,
-  GetRequiredOnlyParameters,
-  PutRequiredOnlyParameters,
+  StringGetAllParameters,
+  StringPutAllParameters,
+  StringGetDefaultParameters,
+  StringPutDefaultParameters,
+  BytesGetAllParameters,
+  BytesPutAllParameters,
+  BytesGetDefaultParameters,
+  BytesPutDefaultParameters,
+  DatetimeGetAllParameters,
+  DatetimePutAllParameters,
+  DatetimeGetDefaultParameters,
+  DatetimePutDefaultParameters,
+  DurationGetAllParameters,
+  DurationPutAllParameters,
+  DurationGetDefaultParameters,
+  DurationPutDefaultParameters,
+  CollectionsByteGetAllParameters,
+  CollectionsBytePutAllParameters,
+  CollectionsByteGetDefaultParameters,
+  CollectionsBytePutDefaultParameters,
+  CollectionsModelGetAllParameters,
+  CollectionsModelPutAllParameters,
+  CollectionsModelGetDefaultParameters,
+  CollectionsModelPutDefaultParameters,
+  RequiredAndOptionalGetAllParameters,
+  RequiredAndOptionalPutAllParameters,
+  RequiredAndOptionalGetRequiredOnlyParameters,
+  RequiredAndOptionalPutRequiredOnlyParameters,
 } from "./parameters";
 import {
-  GetAll200Response,
-  PutAll204Response,
-  GetDefault200Response,
-  PutDefault204Response,
-  GetRequiredOnly200Response,
-  PutRequiredOnly204Response,
+  StringGetAll200Response,
+  StringPutAll204Response,
+  StringGetDefault200Response,
+  StringPutDefault204Response,
+  BytesGetAll200Response,
+  BytesPutAll204Response,
+  BytesGetDefault200Response,
+  BytesPutDefault204Response,
+  DatetimeGetAll200Response,
+  DatetimePutAll204Response,
+  DatetimeGetDefault200Response,
+  DatetimePutDefault204Response,
+  DurationGetAll200Response,
+  DurationPutAll204Response,
+  DurationGetDefault200Response,
+  DurationPutDefault204Response,
+  CollectionsByteGetAll200Response,
+  CollectionsBytePutAll204Response,
+  CollectionsByteGetDefault200Response,
+  CollectionsBytePutDefault204Response,
+  CollectionsModelGetAll200Response,
+  CollectionsModelPutAll204Response,
+  CollectionsModelGetDefault200Response,
+  CollectionsModelPutDefault204Response,
+  RequiredAndOptionalGetAll200Response,
+  RequiredAndOptionalPutAll204Response,
+  RequiredAndOptionalGetRequiredOnly200Response,
+  RequiredAndOptionalPutRequiredOnly204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetAll {
+export interface StringGetAll {
   /** Get models that will return all properties in the model */
-  get(options?: GetAllParameters): StreamableMethod<GetAll200Response>;
+  get(
+    options?: StringGetAllParameters
+  ): StreamableMethod<StringGetAll200Response>;
   /** Put a body with all properties present. */
-  put(options: PutAllParameters): StreamableMethod<PutAll204Response>;
+  put(
+    options: StringPutAllParameters
+  ): StreamableMethod<StringPutAll204Response>;
 }
 
-export interface GetDefault {
+export interface StringGetDefault {
   /** Get models that will return the default object */
-  get(options?: GetDefaultParameters): StreamableMethod<GetDefault200Response>;
+  get(
+    options?: StringGetDefaultParameters
+  ): StreamableMethod<StringGetDefault200Response>;
   /** Put a body with default properties. */
-  put(options: PutDefaultParameters): StreamableMethod<PutDefault204Response>;
+  put(
+    options: StringPutDefaultParameters
+  ): StreamableMethod<StringPutDefault204Response>;
 }
 
-export interface GetAll {
+export interface BytesGetAll {
   /** Get models that will return all properties in the model */
-  get(options?: GetAllParameters): StreamableMethod<GetAll200Response>;
+  get(
+    options?: BytesGetAllParameters
+  ): StreamableMethod<BytesGetAll200Response>;
   /** Put a body with all properties present. */
-  put(options: PutAllParameters): StreamableMethod<PutAll204Response>;
+  put(options: BytesPutAllParameters): StreamableMethod<BytesPutAll204Response>;
 }
 
-export interface GetDefault {
+export interface BytesGetDefault {
   /** Get models that will return the default object */
-  get(options?: GetDefaultParameters): StreamableMethod<GetDefault200Response>;
+  get(
+    options?: BytesGetDefaultParameters
+  ): StreamableMethod<BytesGetDefault200Response>;
   /** Put a body with default properties. */
-  put(options: PutDefaultParameters): StreamableMethod<PutDefault204Response>;
+  put(
+    options: BytesPutDefaultParameters
+  ): StreamableMethod<BytesPutDefault204Response>;
 }
 
-export interface GetAll {
+export interface DatetimeGetAll {
   /** Get models that will return all properties in the model */
-  get(options?: GetAllParameters): StreamableMethod<GetAll200Response>;
+  get(
+    options?: DatetimeGetAllParameters
+  ): StreamableMethod<DatetimeGetAll200Response>;
   /** Put a body with all properties present. */
-  put(options: PutAllParameters): StreamableMethod<PutAll204Response>;
+  put(
+    options: DatetimePutAllParameters
+  ): StreamableMethod<DatetimePutAll204Response>;
 }
 
-export interface GetDefault {
+export interface DatetimeGetDefault {
   /** Get models that will return the default object */
-  get(options?: GetDefaultParameters): StreamableMethod<GetDefault200Response>;
+  get(
+    options?: DatetimeGetDefaultParameters
+  ): StreamableMethod<DatetimeGetDefault200Response>;
   /** Put a body with default properties. */
-  put(options: PutDefaultParameters): StreamableMethod<PutDefault204Response>;
+  put(
+    options: DatetimePutDefaultParameters
+  ): StreamableMethod<DatetimePutDefault204Response>;
 }
 
-export interface GetAll {
+export interface DurationGetAll {
   /** Get models that will return all properties in the model */
-  get(options?: GetAllParameters): StreamableMethod<GetAll200Response>;
+  get(
+    options?: DurationGetAllParameters
+  ): StreamableMethod<DurationGetAll200Response>;
   /** Put a body with all properties present. */
-  put(options: PutAllParameters): StreamableMethod<PutAll204Response>;
+  put(
+    options: DurationPutAllParameters
+  ): StreamableMethod<DurationPutAll204Response>;
 }
 
-export interface GetDefault {
+export interface DurationGetDefault {
   /** Get models that will return the default object */
-  get(options?: GetDefaultParameters): StreamableMethod<GetDefault200Response>;
+  get(
+    options?: DurationGetDefaultParameters
+  ): StreamableMethod<DurationGetDefault200Response>;
   /** Put a body with default properties. */
-  put(options: PutDefaultParameters): StreamableMethod<PutDefault204Response>;
+  put(
+    options: DurationPutDefaultParameters
+  ): StreamableMethod<DurationPutDefault204Response>;
 }
 
-export interface GetAll {
+export interface CollectionsByteGetAll {
   /** Get models that will return all properties in the model */
-  get(options?: GetAllParameters): StreamableMethod<GetAll200Response>;
+  get(
+    options?: CollectionsByteGetAllParameters
+  ): StreamableMethod<CollectionsByteGetAll200Response>;
   /** Put a body with all properties present. */
-  put(options: PutAllParameters): StreamableMethod<PutAll204Response>;
+  put(
+    options: CollectionsBytePutAllParameters
+  ): StreamableMethod<CollectionsBytePutAll204Response>;
 }
 
-export interface GetDefault {
+export interface CollectionsByteGetDefault {
   /** Get models that will return the default object */
-  get(options?: GetDefaultParameters): StreamableMethod<GetDefault200Response>;
+  get(
+    options?: CollectionsByteGetDefaultParameters
+  ): StreamableMethod<CollectionsByteGetDefault200Response>;
   /** Put a body with default properties. */
-  put(options: PutDefaultParameters): StreamableMethod<PutDefault204Response>;
+  put(
+    options: CollectionsBytePutDefaultParameters
+  ): StreamableMethod<CollectionsBytePutDefault204Response>;
 }
 
-export interface GetAll {
+export interface CollectionsModelGetAll {
   /** Get models that will return all properties in the model */
-  get(options?: GetAllParameters): StreamableMethod<GetAll200Response>;
+  get(
+    options?: CollectionsModelGetAllParameters
+  ): StreamableMethod<CollectionsModelGetAll200Response>;
   /** Put a body with all properties present. */
-  put(options: PutAllParameters): StreamableMethod<PutAll204Response>;
+  put(
+    options: CollectionsModelPutAllParameters
+  ): StreamableMethod<CollectionsModelPutAll204Response>;
 }
 
-export interface GetDefault {
+export interface CollectionsModelGetDefault {
   /** Get models that will return the default object */
-  get(options?: GetDefaultParameters): StreamableMethod<GetDefault200Response>;
+  get(
+    options?: CollectionsModelGetDefaultParameters
+  ): StreamableMethod<CollectionsModelGetDefault200Response>;
   /** Put a body with default properties. */
-  put(options: PutDefaultParameters): StreamableMethod<PutDefault204Response>;
+  put(
+    options: CollectionsModelPutDefaultParameters
+  ): StreamableMethod<CollectionsModelPutDefault204Response>;
 }
 
-export interface GetAll {
+export interface RequiredAndOptionalGetAll {
   /** Get models that will return all properties in the model */
-  get(options?: GetAllParameters): StreamableMethod<GetAll200Response>;
+  get(
+    options?: RequiredAndOptionalGetAllParameters
+  ): StreamableMethod<RequiredAndOptionalGetAll200Response>;
   /** Put a body with all properties present. */
-  put(options: PutAllParameters): StreamableMethod<PutAll204Response>;
+  put(
+    options: RequiredAndOptionalPutAllParameters
+  ): StreamableMethod<RequiredAndOptionalPutAll204Response>;
 }
 
-export interface GetRequiredOnly {
+export interface RequiredAndOptionalGetRequiredOnly {
   /** Get models that will return only the required properties */
   get(
-    options?: GetRequiredOnlyParameters
-  ): StreamableMethod<GetRequiredOnly200Response>;
+    options?: RequiredAndOptionalGetRequiredOnlyParameters
+  ): StreamableMethod<RequiredAndOptionalGetRequiredOnly200Response>;
   /** Put a body with only required properties. */
   put(
-    options: PutRequiredOnlyParameters
-  ): StreamableMethod<PutRequiredOnly204Response>;
+    options: RequiredAndOptionalPutRequiredOnlyParameters
+  ): StreamableMethod<RequiredAndOptionalPutRequiredOnly204Response>;
 }
 
 export interface Routes {
   /** Resource for '/models/properties/optional/string/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/string/all"): GetAll;
+  (path: "/models/properties/optional/string/all"): StringGetAll;
   /** Resource for '/models/properties/optional/string/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/string/default"): GetDefault;
+  (path: "/models/properties/optional/string/default"): StringGetDefault;
   /** Resource for '/models/properties/optional/bytes/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/bytes/all"): GetAll;
+  (path: "/models/properties/optional/bytes/all"): BytesGetAll;
   /** Resource for '/models/properties/optional/bytes/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/bytes/default"): GetDefault;
+  (path: "/models/properties/optional/bytes/default"): BytesGetDefault;
   /** Resource for '/models/properties/optional/datetime/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/datetime/all"): GetAll;
+  (path: "/models/properties/optional/datetime/all"): DatetimeGetAll;
   /** Resource for '/models/properties/optional/datetime/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/datetime/default"): GetDefault;
+  (path: "/models/properties/optional/datetime/default"): DatetimeGetDefault;
   /** Resource for '/models/properties/optional/duration/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/duration/all"): GetAll;
+  (path: "/models/properties/optional/duration/all"): DurationGetAll;
   /** Resource for '/models/properties/optional/duration/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/duration/default"): GetDefault;
+  (path: "/models/properties/optional/duration/default"): DurationGetDefault;
   /** Resource for '/models/properties/optional/collections/bytes/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/collections/bytes/all"): GetAll;
+  (
+    path: "/models/properties/optional/collections/bytes/all"
+  ): CollectionsByteGetAll;
   /** Resource for '/models/properties/optional/collections/bytes/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/collections/bytes/default"): GetDefault;
+  (
+    path: "/models/properties/optional/collections/bytes/default"
+  ): CollectionsByteGetDefault;
   /** Resource for '/models/properties/optional/collections/model/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/collections/model/all"): GetAll;
+  (
+    path: "/models/properties/optional/collections/model/all"
+  ): CollectionsModelGetAll;
   /** Resource for '/models/properties/optional/collections/model/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/collections/model/default"): GetDefault;
+  (
+    path: "/models/properties/optional/collections/model/default"
+  ): CollectionsModelGetDefault;
   /** Resource for '/models/properties/optional/requiredAndOptional/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/requiredAndOptional/all"): GetAll;
+  (
+    path: "/models/properties/optional/requiredAndOptional/all"
+  ): RequiredAndOptionalGetAll;
   /** Resource for '/models/properties/optional/requiredAndOptional/requiredOnly' has methods for the following verbs: get, put */
   (
     path: "/models/properties/optional/requiredAndOptional/requiredOnly"
-  ): GetRequiredOnly;
+  ): RequiredAndOptionalGetRequiredOnly;
 }
 
 export type ModelsPropertyOptionalClient = Client & {

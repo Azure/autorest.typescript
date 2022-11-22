@@ -2,35 +2,35 @@
 // Licensed under the MIT license.
 
 import {
-  GetKnownValueParameters,
-  PutKnownValueParameters,
-  GetUnknownValueParameters,
-  PutUnknownValueParameters,
+  StringGetKnownValueParameters,
+  StringPutKnownValueParameters,
+  StringGetUnknownValueParameters,
+  StringPutUnknownValueParameters,
 } from "./parameters";
 import {
-  GetKnownValue200Response,
-  PutKnownValue204Response,
-  GetUnknownValue200Response,
-  PutUnknownValue204Response,
+  StringGetKnownValue200Response,
+  StringPutKnownValue204Response,
+  StringGetUnknownValue200Response,
+  StringPutUnknownValue204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetKnownValue {
   get(
-    options?: GetKnownValueParameters
-  ): StreamableMethod<GetKnownValue200Response>;
+    options?: StringGetKnownValueParameters
+  ): StreamableMethod<StringGetKnownValue200Response>;
   put(
-    options: PutKnownValueParameters
-  ): StreamableMethod<PutKnownValue204Response>;
+    options: StringPutKnownValueParameters
+  ): StreamableMethod<StringPutKnownValue204Response>;
 }
 
 export interface GetUnknownValue {
   get(
-    options?: GetUnknownValueParameters
-  ): StreamableMethod<GetUnknownValue200Response>;
+    options?: StringGetUnknownValueParameters
+  ): StreamableMethod<StringGetUnknownValue200Response>;
   put(
-    options: PutUnknownValueParameters
-  ): StreamableMethod<PutUnknownValue204Response>;
+    options: StringPutUnknownValueParameters
+  ): StreamableMethod<StringPutUnknownValue204Response>;
 }
 
 export interface Routes {

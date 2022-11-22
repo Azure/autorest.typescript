@@ -2,27 +2,33 @@
 // Licensed under the MIT license.
 
 import {
-  CreateParameters,
-  GetParameters,
-  PollingParameters,
+  PollingSuccessCreateParameters,
+  PollingSuccessGetParameters,
+  PollingSuccessPollingParameters,
 } from "./parameters";
 import {
-  Create200Response,
-  Get200Response,
-  Polling200Response,
+  PollingSuccessCreate200Response,
+  PollingSuccessGet200Response,
+  PollingSuccessPolling200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Create {
   /** Test for basic lro of put */
-  put(options?: CreateParameters): StreamableMethod<Create200Response>;
+  put(
+    options?: PollingSuccessCreateParameters
+  ): StreamableMethod<PollingSuccessCreate200Response>;
   /** The final url */
-  get(options?: GetParameters): StreamableMethod<Get200Response>;
+  get(
+    options?: PollingSuccessGetParameters
+  ): StreamableMethod<PollingSuccessGet200Response>;
 }
 
 export interface Polling {
   /** The polling url */
-  get(options?: PollingParameters): StreamableMethod<Polling200Response>;
+  get(
+    options?: PollingSuccessPollingParameters
+  ): StreamableMethod<PollingSuccessPolling200Response>;
 }
 
 export interface Routes {

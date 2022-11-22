@@ -97,6 +97,7 @@ export interface RLCOptions {
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
   "sdk-folder"?: string;
+  enableOperationGroup?: boolean;
 }
 
 export interface ServiceInfo {

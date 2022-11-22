@@ -3,5 +3,5 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type ValidParameters = RequestParameters;
-export type InvalidParameters = RequestParameters;
+export type ApiKeyValidParameters = RequestParameters;
+export type ApiKeyInvalidParameters = RequestParameters;

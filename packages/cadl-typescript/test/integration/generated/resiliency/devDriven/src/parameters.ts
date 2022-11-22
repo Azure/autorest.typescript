@@ -4,13 +4,14 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { Input } from "./models";
 
-export type GetModelParameters = RequestParameters;
+export type DevDrivenGetModelParameters = RequestParameters;
 
-export interface PostModelBodyParam {
+export interface DevDrivenPostModelBodyParam {
   /** Please put {'hello': 'world!'} */
   body: Input;
 }
 
-export type PostModelParameters = PostModelBodyParam & RequestParameters;
-export type GetPagesParameters = RequestParameters;
-export type LroParameters = RequestParameters;
+export type DevDrivenPostModelParameters = DevDrivenPostModelBodyParam &
+  RequestParameters;
+export type DevDrivenGetPagesParameters = RequestParameters;
+export type DevDrivenLroParameters = RequestParameters;

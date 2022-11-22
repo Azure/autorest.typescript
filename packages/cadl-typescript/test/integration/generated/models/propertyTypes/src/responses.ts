@@ -21,166 +21,166 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface BooleanGet200Response extends HttpResponse {
   status: "200";
   body: BooleanPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface BooleanPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface StringGet200Response extends HttpResponse {
   status: "200";
   body: StringPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface StringPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface BytesGet200Response extends HttpResponse {
   status: "200";
   body: BytesPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface BytesPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface IntGet200Response extends HttpResponse {
   status: "200";
   body: IntPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface IntPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface FloatGet200Response extends HttpResponse {
   status: "200";
   body: FloatPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface FloatPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface DatetimeGet200Response extends HttpResponse {
   status: "200";
   body: DatetimePropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface DatetimePut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface DurationGet200Response extends HttpResponse {
   status: "200";
   body: DurationPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface DurationPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface EnumGet200Response extends HttpResponse {
   status: "200";
   body: EnumPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface EnumPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface ExtensibleEnumGet200Response extends HttpResponse {
   status: "200";
   body: ExtensibleEnumPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface ExtensibleEnumPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface ModelGet200Response extends HttpResponse {
   status: "200";
   body: ModelPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface ModelPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface CollectionsStringGet200Response extends HttpResponse {
   status: "200";
   body: CollectionsStringPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface CollectionsStringPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface CollectionsIntGet200Response extends HttpResponse {
   status: "200";
   body: CollectionsIntPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface CollectionsIntPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface CollectionsModelGet200Response extends HttpResponse {
   status: "200";
   body: CollectionsModelPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface CollectionsModelPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface DictionaryStringGet200Response extends HttpResponse {
   status: "200";
   body: DictionaryStringPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface DictionaryStringPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface Get200Response extends HttpResponse {
+export interface NeverGet200Response extends HttpResponse {
   status: "200";
   body: NeverPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Put204Response extends HttpResponse {
+export interface NeverPut204Response extends HttpResponse {
   status: "204";
 }

@@ -4,73 +4,83 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { InnerModel } from "./models";
 
-export type GetParameters = RequestParameters;
+export type Int32ValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface Int32ValuePutBodyParam {
   body: Record<string, number>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type Int32ValuePutParameters = Int32ValuePutBodyParam &
+  RequestParameters;
+export type Int64ValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface Int64ValuePutBodyParam {
   body: Record<string, number>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type Int64ValuePutParameters = Int64ValuePutBodyParam &
+  RequestParameters;
+export type BooleanValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface BooleanValuePutBodyParam {
   body: Record<string, boolean>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type BooleanValuePutParameters = BooleanValuePutBodyParam &
+  RequestParameters;
+export type StringValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface StringValuePutBodyParam {
   body: Record<string, string>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type StringValuePutParameters = StringValuePutBodyParam &
+  RequestParameters;
+export type Float32ValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface Float32ValuePutBodyParam {
   body: Record<string, number>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type Float32ValuePutParameters = Float32ValuePutBodyParam &
+  RequestParameters;
+export type DatetimeValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface DatetimeValuePutBodyParam {
   body: Record<string, string>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type DatetimeValuePutParameters = DatetimeValuePutBodyParam &
+  RequestParameters;
+export type DurationValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface DurationValuePutBodyParam {
   body: Record<string, string>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type DurationValuePutParameters = DurationValuePutBodyParam &
+  RequestParameters;
+export type UnknownValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface UnknownValuePutBodyParam {
   body: Record<string, unknown>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type UnknownValuePutParameters = UnknownValuePutBodyParam &
+  RequestParameters;
+export type ModelValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface ModelValuePutBodyParam {
   body: Record<string, InnerModel>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
-export type GetParameters = RequestParameters;
+export type ModelValuePutParameters = ModelValuePutBodyParam &
+  RequestParameters;
+export type RecursiveModelValueGetParameters = RequestParameters;
 
-export interface PutBodyParam {
+export interface RecursiveModelValuePutBodyParam {
   body: Record<string, InnerModel>;
 }
 
-export type PutParameters = PutBodyParam & RequestParameters;
+export type RecursiveModelValuePutParameters = RecursiveModelValuePutBodyParam &
+  RequestParameters;
