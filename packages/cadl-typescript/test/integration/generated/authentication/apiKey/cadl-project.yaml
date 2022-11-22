@@ -1,6 +1,6 @@
 emitters:
   "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
-    includeShortcuts: false
+    includeShortcuts: true
     azureSdkForJs: false
     addCredentials: false
     isCadlTest: true
