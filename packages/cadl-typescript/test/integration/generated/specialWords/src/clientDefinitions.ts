@@ -17,71 +17,45 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Operation operations */
-export interface OperationOperations {
-  for(
-    options?: OperationForParameters
-  ): StreamableMethod<OperationFor204Response>;
-}
-
-/** Contains operations for Parameter operations */
-export interface ParameterOperations {
-  getWithIf(
-    options: ParameterGetWithIfParameters
-  ): StreamableMethod<ParameterGetWithIf204Response>;
-  getWithFilter(
-    options: ParameterGetWithFilterParameters
-  ): StreamableMethod<ParameterGetWithFilter204Response>;
-}
-
-/** Contains operations for Model operations */
-export interface ModelOperations {
-  get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
-  put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
-}
-
-export interface OperationFor {
+export interface For {
   get(
     options?: OperationForParameters
   ): StreamableMethod<OperationFor204Response>;
 }
 
-export interface ParameterGetWithIf {
+export interface GetWithIf {
   get(
     options: ParameterGetWithIfParameters
   ): StreamableMethod<ParameterGetWithIf204Response>;
 }
 
-export interface ParameterGetWithFilter {
+export interface GetWithFilter {
   get(
     options: ParameterGetWithFilterParameters
   ): StreamableMethod<ParameterGetWithFilter204Response>;
 }
 
-export interface ModelGet {
+export interface Get {
   get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
 }
 
-export interface ModelPut {
+export interface Put {
   put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
 }
 
 export interface Routes {
   /** Resource for '/special-words/operation/for' has methods for the following verbs: get */
-  (path: "/special-words/operation/for"): OperationFor;
+  (path: "/special-words/operation/for"): For;
   /** Resource for '/special-words/parameter/if' has methods for the following verbs: get */
-  (path: "/special-words/parameter/if"): ParameterGetWithIf;
+  (path: "/special-words/parameter/if"): GetWithIf;
   /** Resource for '/special-words/parameter/filter' has methods for the following verbs: get */
-  (path: "/special-words/parameter/filter"): ParameterGetWithFilter;
+  (path: "/special-words/parameter/filter"): GetWithFilter;
   /** Resource for '/special-words/model/get' has methods for the following verbs: get */
-  (path: "/special-words/model/get"): ModelGet;
+  (path: "/special-words/model/get"): Get;
   /** Resource for '/special-words/model/put' has methods for the following verbs: put */
-  (path: "/special-words/model/put"): ModelPut;
+  (path: "/special-words/model/put"): Put;
 }
 
 export type SpecialWordsClient = Client & {
   path: Routes;
-  operation: OperationOperations;
-  parameter: ParameterOperations;
-  model: ModelOperations;
 };

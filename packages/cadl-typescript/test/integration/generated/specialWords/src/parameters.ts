@@ -5,33 +5,32 @@ import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import { BaseModel } from "./models";
 
-export type OperationForParameters = RequestParameters;
+export type ForParameters = RequestParameters;
 
-export interface ParameterGetWithIfHeaders {
+export interface GetWithIfHeaders {
   if: string;
 }
 
-export interface ParameterGetWithIfHeaderParam {
-  headers: RawHttpHeadersInput & ParameterGetWithIfHeaders;
+export interface GetWithIfHeaderParam {
+  headers: RawHttpHeadersInput & GetWithIfHeaders;
 }
 
-export type ParameterGetWithIfParameters = ParameterGetWithIfHeaderParam &
-  RequestParameters;
+export type GetWithIfParameters = GetWithIfHeaderParam & RequestParameters;
 
-export interface ParameterGetWithFilterQueryParamProperties {
+export interface GetWithFilterQueryParamProperties {
   filter: string;
 }
 
-export interface ParameterGetWithFilterQueryParam {
-  queryParameters: ParameterGetWithFilterQueryParamProperties;
+export interface GetWithFilterQueryParam {
+  queryParameters: GetWithFilterQueryParamProperties;
 }
 
-export type ParameterGetWithFilterParameters =
-  ParameterGetWithFilterQueryParam & RequestParameters;
-export type ModelGetParameters = RequestParameters;
+export type GetWithFilterParameters = GetWithFilterQueryParam &
+  RequestParameters;
+export type GetParameters = RequestParameters;
 
-export interface ModelPutBodyParam {
+export interface PutBodyParam {
   body: BaseModel;
 }
 
-export type ModelPutParameters = ModelPutBodyParam & RequestParameters;
+export type PutParameters = PutBodyParam & RequestParameters;

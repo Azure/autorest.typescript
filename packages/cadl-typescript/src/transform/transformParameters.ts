@@ -39,7 +39,8 @@ export function transformToParameterTypes(
     const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: route.container.name,
+      // operationGroup: route.container.name,
+      operationGroup: "",
       operationName: route.operation.name,
       parameters: []
     };

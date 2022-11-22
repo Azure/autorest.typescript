@@ -2,38 +2,38 @@
 // Licensed under the MIT license.
 
 import {
-  PlayFabAuthenticationOperationsGetEntityToken200Response,
-  PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse,
-  PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response,
-  PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse,
-  PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response,
-  PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse,
-  PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response,
-  PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse,
-  PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response,
-  PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse,
-  PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response,
-  PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse,
-  PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response,
-  PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse,
-  PlayFabFileOperationsAbortFileUploads200Response,
-  PlayFabFileOperationsAbortFileUploadsDefaultResponse,
-  PlayFabFileOperationsDeleteFiles200Response,
-  PlayFabFileOperationsDeleteFilesDefaultResponse,
-  PlayFabFileOperationsFinalizeFileUploads200Response,
-  PlayFabFileOperationsFinalizeFileUploadsDefaultResponse,
-  PlayFabFileOperationsGetFiles200Response,
-  PlayFabFileOperationsGetFilesDefaultResponse,
-  PlayFabFileOperationsInitiateFileUploads200Response,
-  PlayFabFileOperationsInitiateFileUploadsDefaultResponse,
-  PlayFabFileOperationsGetObjects200Response,
-  PlayFabFileOperationsGetObjectsDefaultResponse,
-  PlayFabFileOperationsSetObjects200Response,
-  PlayFabFileOperationsSetObjectsDefaultResponse,
-  PlayFabEventsOperationsWriteEvents200Response,
-  PlayFabEventsOperationsWriteEventsDefaultResponse,
-  PlayFabProfilesOperationsLoginPlayer200Response,
-  PlayFabProfilesOperationsLoginPlayerDefaultResponse,
+  GetEntityToken200Response,
+  GetEntityTokenDefaultResponse,
+  AuthenticateWithAndroidDeviceId200Response,
+  AuthenticateWithAndroidDeviceIdDefaultResponse,
+  AuthenticateWithCustomId200Response,
+  AuthenticateWithCustomIdDefaultResponse,
+  AuthenticateWithIOSDeviceId200Response,
+  AuthenticateWithIOSDeviceIdDefaultResponse,
+  AuthenticateWithNintendoSwitchDeviceID200Response,
+  AuthenticateWithNintendoSwitchDeviceIDDefaultResponse,
+  GetLinkedPlayerIdentities200Response,
+  GetLinkedPlayerIdentitiesDefaultResponse,
+  UnlinkPlayerIdentity200Response,
+  UnlinkPlayerIdentityDefaultResponse,
+  AbortFileUploads200Response,
+  AbortFileUploadsDefaultResponse,
+  DeleteFiles200Response,
+  DeleteFilesDefaultResponse,
+  FinalizeFileUploads200Response,
+  FinalizeFileUploadsDefaultResponse,
+  GetFiles200Response,
+  GetFilesDefaultResponse,
+  InitiateFileUploads200Response,
+  InitiateFileUploadsDefaultResponse,
+  GetObjects200Response,
+  GetObjectsDefaultResponse,
+  SetObjects200Response,
+  SetObjectsDefaultResponse,
+  WriteEvents200Response,
+  WriteEventsDefaultResponse,
+  LoginPlayer200Response,
+  LoginPlayerDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -56,136 +56,116 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response:
-    | PlayFabAuthenticationOperationsGetEntityToken200Response
-    | PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse
-): response is PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse;
+  response: GetEntityToken200Response | GetEntityTokenDefaultResponse
+): response is GetEntityTokenDefaultResponse;
 export function isUnexpected(
   response:
-    | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse
-): response is PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse;
+    | AuthenticateWithAndroidDeviceId200Response
+    | AuthenticateWithAndroidDeviceIdDefaultResponse
+): response is AuthenticateWithAndroidDeviceIdDefaultResponse;
 export function isUnexpected(
   response:
-    | PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse
-): response is PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse;
+    | AuthenticateWithCustomId200Response
+    | AuthenticateWithCustomIdDefaultResponse
+): response is AuthenticateWithCustomIdDefaultResponse;
 export function isUnexpected(
   response:
-    | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse
-): response is PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse;
+    | AuthenticateWithIOSDeviceId200Response
+    | AuthenticateWithIOSDeviceIdDefaultResponse
+): response is AuthenticateWithIOSDeviceIdDefaultResponse;
 export function isUnexpected(
   response:
-    | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse
-): response is PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse;
+    | AuthenticateWithNintendoSwitchDeviceID200Response
+    | AuthenticateWithNintendoSwitchDeviceIDDefaultResponse
+): response is AuthenticateWithNintendoSwitchDeviceIDDefaultResponse;
 export function isUnexpected(
   response:
-    | PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response
-    | PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse
-): response is PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse;
+    | GetLinkedPlayerIdentities200Response
+    | GetLinkedPlayerIdentitiesDefaultResponse
+): response is GetLinkedPlayerIdentitiesDefaultResponse;
 export function isUnexpected(
   response:
-    | PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response
-    | PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse
-): response is PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse;
+    | UnlinkPlayerIdentity200Response
+    | UnlinkPlayerIdentityDefaultResponse
+): response is UnlinkPlayerIdentityDefaultResponse;
+export function isUnexpected(
+  response: AbortFileUploads200Response | AbortFileUploadsDefaultResponse
+): response is AbortFileUploadsDefaultResponse;
+export function isUnexpected(
+  response: DeleteFiles200Response | DeleteFilesDefaultResponse
+): response is DeleteFilesDefaultResponse;
+export function isUnexpected(
+  response: FinalizeFileUploads200Response | FinalizeFileUploadsDefaultResponse
+): response is FinalizeFileUploadsDefaultResponse;
+export function isUnexpected(
+  response: GetFiles200Response | GetFilesDefaultResponse
+): response is GetFilesDefaultResponse;
+export function isUnexpected(
+  response: InitiateFileUploads200Response | InitiateFileUploadsDefaultResponse
+): response is InitiateFileUploadsDefaultResponse;
+export function isUnexpected(
+  response: GetObjects200Response | GetObjectsDefaultResponse
+): response is GetObjectsDefaultResponse;
+export function isUnexpected(
+  response: SetObjects200Response | SetObjectsDefaultResponse
+): response is SetObjectsDefaultResponse;
+export function isUnexpected(
+  response: WriteEvents200Response | WriteEventsDefaultResponse
+): response is WriteEventsDefaultResponse;
+export function isUnexpected(
+  response: LoginPlayer200Response | LoginPlayerDefaultResponse
+): response is LoginPlayerDefaultResponse;
 export function isUnexpected(
   response:
-    | PlayFabFileOperationsAbortFileUploads200Response
-    | PlayFabFileOperationsAbortFileUploadsDefaultResponse
-): response is PlayFabFileOperationsAbortFileUploadsDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabFileOperationsDeleteFiles200Response
-    | PlayFabFileOperationsDeleteFilesDefaultResponse
-): response is PlayFabFileOperationsDeleteFilesDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabFileOperationsFinalizeFileUploads200Response
-    | PlayFabFileOperationsFinalizeFileUploadsDefaultResponse
-): response is PlayFabFileOperationsFinalizeFileUploadsDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabFileOperationsGetFiles200Response
-    | PlayFabFileOperationsGetFilesDefaultResponse
-): response is PlayFabFileOperationsGetFilesDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabFileOperationsInitiateFileUploads200Response
-    | PlayFabFileOperationsInitiateFileUploadsDefaultResponse
-): response is PlayFabFileOperationsInitiateFileUploadsDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabFileOperationsGetObjects200Response
-    | PlayFabFileOperationsGetObjectsDefaultResponse
-): response is PlayFabFileOperationsGetObjectsDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabFileOperationsSetObjects200Response
-    | PlayFabFileOperationsSetObjectsDefaultResponse
-): response is PlayFabFileOperationsSetObjectsDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabEventsOperationsWriteEvents200Response
-    | PlayFabEventsOperationsWriteEventsDefaultResponse
-): response is PlayFabEventsOperationsWriteEventsDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabProfilesOperationsLoginPlayer200Response
-    | PlayFabProfilesOperationsLoginPlayerDefaultResponse
-): response is PlayFabProfilesOperationsLoginPlayerDefaultResponse;
-export function isUnexpected(
-  response:
-    | PlayFabAuthenticationOperationsGetEntityToken200Response
-    | PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse
-    | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse
-    | PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse
-    | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse
-    | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse
-    | PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response
-    | PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse
-    | PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response
-    | PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse
-    | PlayFabFileOperationsAbortFileUploads200Response
-    | PlayFabFileOperationsAbortFileUploadsDefaultResponse
-    | PlayFabFileOperationsDeleteFiles200Response
-    | PlayFabFileOperationsDeleteFilesDefaultResponse
-    | PlayFabFileOperationsFinalizeFileUploads200Response
-    | PlayFabFileOperationsFinalizeFileUploadsDefaultResponse
-    | PlayFabFileOperationsGetFiles200Response
-    | PlayFabFileOperationsGetFilesDefaultResponse
-    | PlayFabFileOperationsInitiateFileUploads200Response
-    | PlayFabFileOperationsInitiateFileUploadsDefaultResponse
-    | PlayFabFileOperationsGetObjects200Response
-    | PlayFabFileOperationsGetObjectsDefaultResponse
-    | PlayFabFileOperationsSetObjects200Response
-    | PlayFabFileOperationsSetObjectsDefaultResponse
-    | PlayFabEventsOperationsWriteEvents200Response
-    | PlayFabEventsOperationsWriteEventsDefaultResponse
-    | PlayFabProfilesOperationsLoginPlayer200Response
-    | PlayFabProfilesOperationsLoginPlayerDefaultResponse
+    | GetEntityToken200Response
+    | GetEntityTokenDefaultResponse
+    | AuthenticateWithAndroidDeviceId200Response
+    | AuthenticateWithAndroidDeviceIdDefaultResponse
+    | AuthenticateWithCustomId200Response
+    | AuthenticateWithCustomIdDefaultResponse
+    | AuthenticateWithIOSDeviceId200Response
+    | AuthenticateWithIOSDeviceIdDefaultResponse
+    | AuthenticateWithNintendoSwitchDeviceID200Response
+    | AuthenticateWithNintendoSwitchDeviceIDDefaultResponse
+    | GetLinkedPlayerIdentities200Response
+    | GetLinkedPlayerIdentitiesDefaultResponse
+    | UnlinkPlayerIdentity200Response
+    | UnlinkPlayerIdentityDefaultResponse
+    | AbortFileUploads200Response
+    | AbortFileUploadsDefaultResponse
+    | DeleteFiles200Response
+    | DeleteFilesDefaultResponse
+    | FinalizeFileUploads200Response
+    | FinalizeFileUploadsDefaultResponse
+    | GetFiles200Response
+    | GetFilesDefaultResponse
+    | InitiateFileUploads200Response
+    | InitiateFileUploadsDefaultResponse
+    | GetObjects200Response
+    | GetObjectsDefaultResponse
+    | SetObjects200Response
+    | SetObjectsDefaultResponse
+    | WriteEvents200Response
+    | WriteEventsDefaultResponse
+    | LoginPlayer200Response
+    | LoginPlayerDefaultResponse
 ): response is
-  | PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse
-  | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse
-  | PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse
-  | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse
-  | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse
-  | PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse
-  | PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse
-  | PlayFabFileOperationsAbortFileUploadsDefaultResponse
-  | PlayFabFileOperationsDeleteFilesDefaultResponse
-  | PlayFabFileOperationsFinalizeFileUploadsDefaultResponse
-  | PlayFabFileOperationsGetFilesDefaultResponse
-  | PlayFabFileOperationsInitiateFileUploadsDefaultResponse
-  | PlayFabFileOperationsGetObjectsDefaultResponse
-  | PlayFabFileOperationsSetObjectsDefaultResponse
-  | PlayFabEventsOperationsWriteEventsDefaultResponse
-  | PlayFabProfilesOperationsLoginPlayerDefaultResponse {
+  | GetEntityTokenDefaultResponse
+  | AuthenticateWithAndroidDeviceIdDefaultResponse
+  | AuthenticateWithCustomIdDefaultResponse
+  | AuthenticateWithIOSDeviceIdDefaultResponse
+  | AuthenticateWithNintendoSwitchDeviceIDDefaultResponse
+  | GetLinkedPlayerIdentitiesDefaultResponse
+  | UnlinkPlayerIdentityDefaultResponse
+  | AbortFileUploadsDefaultResponse
+  | DeleteFilesDefaultResponse
+  | FinalizeFileUploadsDefaultResponse
+  | GetFilesDefaultResponse
+  | InitiateFileUploadsDefaultResponse
+  | GetObjectsDefaultResponse
+  | SetObjectsDefaultResponse
+  | WriteEventsDefaultResponse
+  | LoginPlayerDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

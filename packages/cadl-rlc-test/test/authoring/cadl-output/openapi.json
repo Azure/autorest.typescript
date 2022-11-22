@@ -47,7 +47,7 @@
   "paths": {
     "/authoring/analyze-text/projects": {
       "get": {
-        "operationId": "Projects_List",
+        "operationId": "Projects_ListProjects",
         "description": "Lists the existing projects.",
         "parameters": [
           {
@@ -524,7 +524,7 @@
     },
     "/authoring/analyze-text/projects/{projectName}/deployments": {
       "get": {
-        "operationId": "Deployments_List",
+        "operationId": "Deployments_ListDeployments",
         "description": "Lists the existing deployments.",
         "parameters": [
           {

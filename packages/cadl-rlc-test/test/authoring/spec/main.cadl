@@ -232,7 +232,7 @@ interface Projects {
   delete is LongRunningResourceDelete<Project>;
 
   @doc("Lists the existing projects.")
-  list is ResourceList<
+  listProjects is ResourceList<
     Project,
     {
       parameters: ListQueryParams;
@@ -275,7 +275,7 @@ interface Deployments {
   deleteDeployment is LongRunningResourceDelete<Deployment>;
 
   @doc("Lists the existing deployments.")
-  list is ResourceList<Deployment>;
+  listDeployments is ResourceList<Deployment>;
 
   @doc("Swaps two existing deployments with each other.")
   @collectionAction(Deployment, "swap")

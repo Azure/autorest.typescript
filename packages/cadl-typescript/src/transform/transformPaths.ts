@@ -34,7 +34,8 @@ export function transformPaths(program: Program): Paths {
     const respNames = [];
     for (const resp of route.responses) {
       const respName = getResponseTypeName(
-        route.container.name,
+        // route.container.name,
+        "",
         route.operation.name,
         getOperationStatuscode(resp)
       );
@@ -44,7 +45,8 @@ export function transformPaths(program: Program): Paths {
       description: getDoc(program, route.operation) ?? "",
       hasOptionalOptions: !hasRequiredOptions(route.parameters),
       optionsName: getParameterTypeName(
-        route.container.name,
+        // route.container.name,
+        "",
         route.operation.name
       ),
       responseTypes: getResponseTypes(route),
@@ -78,7 +80,8 @@ export function transformPaths(program: Program): Paths {
               description: getDoc(program, p.param)
             };
           }),
-        operationGroupName: route.container.name,
+        // operationGroupName: route.container.name,
+        operationGroupName: "",
         methods: {
           [route.verb]: [method]
         }
@@ -130,7 +133,8 @@ function getResponseTypes(operation: HttpOperation): ResponseTypes {
       .map((r) => {
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
-          operation.container.name,
+          // operation.container.name,
+          "",
           operation.operation.name,
           statusCode
         );

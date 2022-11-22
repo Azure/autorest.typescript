@@ -27,28 +27,5 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as SpecialWordsClient;
 
-  return {
-    ...client,
-    operation: {
-      for: (options) => {
-        return client.path("/special-words/operation/for").get(options);
-      },
-    },
-    parameter: {
-      getWithIf: (options) => {
-        return client.path("/special-words/parameter/if").get(options);
-      },
-      getWithFilter: (options) => {
-        return client.path("/special-words/parameter/filter").get(options);
-      },
-    },
-    model: {
-      get: (options) => {
-        return client.path("/special-words/model/get").get(options);
-      },
-      put: (options) => {
-        return client.path("/special-words/model/put").put(options);
-      },
-    },
-  };
+  return client;
 }
