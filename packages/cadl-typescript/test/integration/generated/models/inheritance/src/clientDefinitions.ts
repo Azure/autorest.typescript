@@ -25,6 +25,41 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for Inheritance operations */
+export interface InheritanceOperations {
+  postValid(
+    options: InheritancePostValidParameters
+  ): StreamableMethod<InheritancePostValid200Response>;
+  getValid(
+    options?: InheritanceGetValidParameters
+  ): StreamableMethod<InheritanceGetValid200Response>;
+  putValid(
+    options: InheritancePutValidParameters
+  ): StreamableMethod<InheritancePutValid200Response>;
+}
+
+/** Contains operations for Discriminated operations */
+export interface DiscriminatedOperations {
+  getModel(
+    options?: DiscriminatedGetModelParameters
+  ): StreamableMethod<DiscriminatedGetModel200Response>;
+  putModel(
+    options: DiscriminatedPutModelParameters
+  ): StreamableMethod<DiscriminatedPutModel200Response>;
+  getRecursiveModel(
+    options?: DiscriminatedGetRecursiveModelParameters
+  ): StreamableMethod<DiscriminatedGetRecursiveModel200Response>;
+  putRecursiveModel(
+    options: DiscriminatedPutRecursiveModelParameters
+  ): StreamableMethod<DiscriminatedPutRecursiveModel200Response>;
+  getMissingDiscriminator(
+    options?: DiscriminatedGetMissingDiscriminatorParameters
+  ): StreamableMethod<DiscriminatedGetMissingDiscriminator200Response>;
+  getWrongDiscriminator(
+    options?: DiscriminatedGetWrongDiscriminatorParameters
+  ): StreamableMethod<DiscriminatedGetWrongDiscriminator200Response>;
+}
+
 export interface InheritancePostValid {
   post(
     options: InheritancePostValidParameters
@@ -88,4 +123,6 @@ export interface Routes {
 
 export type ModelsInheritanceClient = Client & {
   path: Routes;
+  inheritance: InheritanceOperations;
+  discriminated: DiscriminatedOperations;
 };

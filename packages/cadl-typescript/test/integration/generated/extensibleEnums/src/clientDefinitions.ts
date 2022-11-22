@@ -15,6 +15,22 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for String operations */
+export interface StringOperations {
+  getKnownValue(
+    options?: StringGetKnownValueParameters
+  ): StreamableMethod<StringGetKnownValue200Response>;
+  putKnownValue(
+    options: StringPutKnownValueParameters
+  ): StreamableMethod<StringPutKnownValue204Response>;
+  getUnknownValue(
+    options?: StringGetUnknownValueParameters
+  ): StreamableMethod<StringGetUnknownValue200Response>;
+  putUnknownValue(
+    options: StringPutUnknownValueParameters
+  ): StreamableMethod<StringPutUnknownValue204Response>;
+}
+
 export interface GetKnownValue {
   get(
     options?: StringGetKnownValueParameters
@@ -42,4 +58,5 @@ export interface Routes {
 
 export type ExtensibleEnumsClient = Client & {
   path: Routes;
+  stringOperations: StringOperations;
 };

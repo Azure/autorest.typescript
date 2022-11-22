@@ -11,6 +11,16 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for ReadonlyProperties operations */
+export interface ReadonlyPropertiesOperations {
+  getOptionalPropertyModel(
+    options?: ReadonlyPropertiesGetOptionalPropertyModelParameters
+  ): StreamableMethod<ReadonlyPropertiesGetOptionalPropertyModel200Response>;
+  setOptionalPropertyModel(
+    options: ReadonlyPropertiesSetOptionalPropertyModelParameters
+  ): StreamableMethod<ReadonlyPropertiesSetOptionalPropertyModel200Response>;
+}
+
 export interface GetOptionalPropertyModel {
   get(
     options?: ReadonlyPropertiesGetOptionalPropertyModelParameters
@@ -27,4 +37,5 @@ export interface Routes {
 
 export type ReadonlyPropertiesClient = Client & {
   path: Routes;
+  readonlyProperties: ReadonlyPropertiesOperations;
 };

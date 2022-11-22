@@ -27,5 +27,147 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as ModelsPropertyTypesClient;
 
-  return client;
+  return {
+    ...client,
+    booleanOperations: {
+      get: (options) => {
+        return client.path("/models/properties/types/boolean").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/boolean").put(options);
+      },
+    },
+    stringOperations: {
+      get: (options) => {
+        return client.path("/models/properties/types/string").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/string").put(options);
+      },
+    },
+    bytes: {
+      get: (options) => {
+        return client.path("/models/properties/types/bytes").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/bytes").put(options);
+      },
+    },
+    int: {
+      get: (options) => {
+        return client.path("/models/properties/types/int").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/int").put(options);
+      },
+    },
+    float: {
+      get: (options) => {
+        return client.path("/models/properties/types/float").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/float").put(options);
+      },
+    },
+    datetime: {
+      get: (options) => {
+        return client.path("/models/properties/types/datetime").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/datetime").put(options);
+      },
+    },
+    duration: {
+      get: (options) => {
+        return client.path("/models/properties/types/duration").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/duration").put(options);
+      },
+    },
+    enum: {
+      get: (options) => {
+        return client.path("/models/properties/types/enum").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/enum").put(options);
+      },
+    },
+    extensibleEnum: {
+      get: (options) => {
+        return client
+          .path("/models/properties/types/extensible-enum")
+          .get(options);
+      },
+      put: (options) => {
+        return client
+          .path("/models/properties/types/extensible-enum")
+          .put(options);
+      },
+    },
+    model: {
+      get: (options) => {
+        return client.path("/models/properties/types/model").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/model").put(options);
+      },
+    },
+    collectionsString: {
+      get: (options) => {
+        return client
+          .path("/models/properties/types/collections/string")
+          .get(options);
+      },
+      put: (options) => {
+        return client
+          .path("/models/properties/types/collections/string")
+          .put(options);
+      },
+    },
+    collectionsInt: {
+      get: (options) => {
+        return client
+          .path("/models/properties/types/collections/int")
+          .get(options);
+      },
+      put: (options) => {
+        return client
+          .path("/models/properties/types/collections/int")
+          .put(options);
+      },
+    },
+    collectionsModel: {
+      get: (options) => {
+        return client
+          .path("/models/properties/types/collections/model")
+          .get(options);
+      },
+      put: (options) => {
+        return client
+          .path("/models/properties/types/collections/model")
+          .put(options);
+      },
+    },
+    dictionaryString: {
+      get: (options) => {
+        return client
+          .path("/models/properties/types/dictionary/string")
+          .get(options);
+      },
+      put: (options) => {
+        return client
+          .path("/models/properties/types/dictionary/string")
+          .put(options);
+      },
+    },
+    never: {
+      get: (options) => {
+        return client.path("/models/properties/types/never").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/never").put(options);
+      },
+    },
+  };
 }

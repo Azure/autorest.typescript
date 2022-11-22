@@ -13,6 +13,22 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for PollingSuccess operations */
+export interface PollingSuccessOperations {
+  /** Test for basic lro of put */
+  create(
+    options?: PollingSuccessCreateParameters
+  ): StreamableMethod<PollingSuccessCreate200Response>;
+  /** The final url */
+  get(
+    options?: PollingSuccessGetParameters
+  ): StreamableMethod<PollingSuccessGet200Response>;
+  /** The polling url */
+  polling(
+    options?: PollingSuccessPollingParameters
+  ): StreamableMethod<PollingSuccessPolling200Response>;
+}
+
 export interface Create {
   /** Test for basic lro of put */
   put(
@@ -40,4 +56,5 @@ export interface Routes {
 
 export type AzureLroClient = Client & {
   path: Routes;
+  pollingSuccess: PollingSuccessOperations;
 };

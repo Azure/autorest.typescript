@@ -27,5 +27,25 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as ExtensibleEnumsClient;
 
-  return client;
+  return {
+    ...client,
+    stringOperations: {
+      getKnownValue: (options) => {
+        return client.path("/extensible-enums/string/known-value").get(options);
+      },
+      putKnownValue: (options) => {
+        return client.path("/extensible-enums/string/known-value").put(options);
+      },
+      getUnknownValue: (options) => {
+        return client
+          .path("/extensible-enums/string/unknown-value")
+          .get(options);
+      },
+      putUnknownValue: (options) => {
+        return client
+          .path("/extensible-enums/string/unknown-value")
+          .put(options);
+      },
+    },
+  };
 }

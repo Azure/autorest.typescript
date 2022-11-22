@@ -27,5 +27,79 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as ArrayItemTypesClient;
 
-  return client;
+  return {
+    ...client,
+    int32Value: {
+      get: (options) => {
+        return client.path("/arrays/item-types/int32").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/int32").put(options);
+      },
+    },
+    int64Value: {
+      get: (options) => {
+        return client.path("/arrays/item-types/int64").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/int64").put(options);
+      },
+    },
+    booleanValue: {
+      get: (options) => {
+        return client.path("/arrays/item-types/boolean").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/boolean").put(options);
+      },
+    },
+    stringValue: {
+      get: (options) => {
+        return client.path("/arrays/item-types/string").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/string").put(options);
+      },
+    },
+    float32Value: {
+      get: (options) => {
+        return client.path("/arrays/item-types/float32").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/float32").put(options);
+      },
+    },
+    datetimeValue: {
+      get: (options) => {
+        return client.path("/arrays/item-types/datetime").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/datetime").put(options);
+      },
+    },
+    durationValue: {
+      get: (options) => {
+        return client.path("/arrays/item-types/duration").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/duration").put(options);
+      },
+    },
+    unknownValue: {
+      get: (options) => {
+        return client.path("/arrays/item-types/unknown").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/unknown").put(options);
+      },
+    },
+    modelValue: {
+      get: (options) => {
+        return client.path("/arrays/item-types/model").get(options);
+      },
+      put: (options) => {
+        return client.path("/arrays/item-types/model").put(options);
+      },
+    },
+  };
 }

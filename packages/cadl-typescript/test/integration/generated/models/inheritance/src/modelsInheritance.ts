@@ -27,5 +27,50 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as ModelsInheritanceClient;
 
-  return client;
+  return {
+    ...client,
+    inheritance: {
+      postValid: (options) => {
+        return client.path("/models/inheritance/valid").post(options);
+      },
+      getValid: (options) => {
+        return client.path("/models/inheritance/valid").get(options);
+      },
+      putValid: (options) => {
+        return client.path("/models/inheritance/valid").put(options);
+      },
+    },
+    discriminated: {
+      getModel: (options) => {
+        return client
+          .path("/models/inheritance/discriminated/model")
+          .get(options);
+      },
+      putModel: (options) => {
+        return client
+          .path("/models/inheritance/discriminated/model")
+          .put(options);
+      },
+      getRecursiveModel: (options) => {
+        return client
+          .path("/models/inheritance/discriminated/recursivemodel")
+          .get(options);
+      },
+      putRecursiveModel: (options) => {
+        return client
+          .path("/models/inheritance/discriminated/recursivemodel")
+          .put(options);
+      },
+      getMissingDiscriminator: (options) => {
+        return client
+          .path("/models/inheritance/discriminated/missingdiscriminator")
+          .get(options);
+      },
+      getWrongDiscriminator: (options) => {
+        return client
+          .path("/models/inheritance/discriminated/wrongdiscriminator")
+          .get(options);
+      },
+    },
+  };
 }

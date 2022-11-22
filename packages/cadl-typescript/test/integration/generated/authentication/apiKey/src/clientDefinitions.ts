@@ -9,6 +9,18 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for ApiKey operations */
+export interface ApiKeyOperations {
+  /** Check whether client is authenticated */
+  valid(
+    options?: ApiKeyValidParameters
+  ): StreamableMethod<ApiKeyValid204Response>;
+  /** Check whether client is authenticated. */
+  invalid(
+    options?: ApiKeyInvalidParameters
+  ): StreamableMethod<ApiKeyInvalid204Response | ApiKeyInvalid403Response>;
+}
+
 export interface Valid {
   /** Check whether client is authenticated */
   get(
@@ -32,4 +44,5 @@ export interface Routes {
 
 export type AuthApiKeyClient = Client & {
   path: Routes;
+  apiKey: ApiKeyOperations;
 };

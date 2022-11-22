@@ -63,6 +63,146 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
+/** Contains operations for String operations */
+export interface StringOperations {
+  /** Get models that will return all properties in the model */
+  getAll(
+    options?: StringGetAllParameters
+  ): StreamableMethod<StringGetAll200Response>;
+  /** Put a body with all properties present. */
+  putAll(
+    options: StringPutAllParameters
+  ): StreamableMethod<StringPutAll204Response>;
+  /** Get models that will return the default object */
+  getDefault(
+    options?: StringGetDefaultParameters
+  ): StreamableMethod<StringGetDefault200Response>;
+  /** Put a body with default properties. */
+  putDefault(
+    options: StringPutDefaultParameters
+  ): StreamableMethod<StringPutDefault204Response>;
+}
+
+/** Contains operations for Bytes operations */
+export interface BytesOperations {
+  /** Get models that will return all properties in the model */
+  getAll(
+    options?: BytesGetAllParameters
+  ): StreamableMethod<BytesGetAll200Response>;
+  /** Put a body with all properties present. */
+  putAll(
+    options: BytesPutAllParameters
+  ): StreamableMethod<BytesPutAll204Response>;
+  /** Get models that will return the default object */
+  getDefault(
+    options?: BytesGetDefaultParameters
+  ): StreamableMethod<BytesGetDefault200Response>;
+  /** Put a body with default properties. */
+  putDefault(
+    options: BytesPutDefaultParameters
+  ): StreamableMethod<BytesPutDefault204Response>;
+}
+
+/** Contains operations for Datetime operations */
+export interface DatetimeOperations {
+  /** Get models that will return all properties in the model */
+  getAll(
+    options?: DatetimeGetAllParameters
+  ): StreamableMethod<DatetimeGetAll200Response>;
+  /** Put a body with all properties present. */
+  putAll(
+    options: DatetimePutAllParameters
+  ): StreamableMethod<DatetimePutAll204Response>;
+  /** Get models that will return the default object */
+  getDefault(
+    options?: DatetimeGetDefaultParameters
+  ): StreamableMethod<DatetimeGetDefault200Response>;
+  /** Put a body with default properties. */
+  putDefault(
+    options: DatetimePutDefaultParameters
+  ): StreamableMethod<DatetimePutDefault204Response>;
+}
+
+/** Contains operations for Duration operations */
+export interface DurationOperations {
+  /** Get models that will return all properties in the model */
+  getAll(
+    options?: DurationGetAllParameters
+  ): StreamableMethod<DurationGetAll200Response>;
+  /** Put a body with all properties present. */
+  putAll(
+    options: DurationPutAllParameters
+  ): StreamableMethod<DurationPutAll204Response>;
+  /** Get models that will return the default object */
+  getDefault(
+    options?: DurationGetDefaultParameters
+  ): StreamableMethod<DurationGetDefault200Response>;
+  /** Put a body with default properties. */
+  putDefault(
+    options: DurationPutDefaultParameters
+  ): StreamableMethod<DurationPutDefault204Response>;
+}
+
+/** Contains operations for CollectionsByte operations */
+export interface CollectionsByteOperations {
+  /** Get models that will return all properties in the model */
+  getAll(
+    options?: CollectionsByteGetAllParameters
+  ): StreamableMethod<CollectionsByteGetAll200Response>;
+  /** Put a body with all properties present. */
+  putAll(
+    options: CollectionsBytePutAllParameters
+  ): StreamableMethod<CollectionsBytePutAll204Response>;
+  /** Get models that will return the default object */
+  getDefault(
+    options?: CollectionsByteGetDefaultParameters
+  ): StreamableMethod<CollectionsByteGetDefault200Response>;
+  /** Put a body with default properties. */
+  putDefault(
+    options: CollectionsBytePutDefaultParameters
+  ): StreamableMethod<CollectionsBytePutDefault204Response>;
+}
+
+/** Contains operations for CollectionsModel operations */
+export interface CollectionsModelOperations {
+  /** Get models that will return all properties in the model */
+  getAll(
+    options?: CollectionsModelGetAllParameters
+  ): StreamableMethod<CollectionsModelGetAll200Response>;
+  /** Put a body with all properties present. */
+  putAll(
+    options: CollectionsModelPutAllParameters
+  ): StreamableMethod<CollectionsModelPutAll204Response>;
+  /** Get models that will return the default object */
+  getDefault(
+    options?: CollectionsModelGetDefaultParameters
+  ): StreamableMethod<CollectionsModelGetDefault200Response>;
+  /** Put a body with default properties. */
+  putDefault(
+    options: CollectionsModelPutDefaultParameters
+  ): StreamableMethod<CollectionsModelPutDefault204Response>;
+}
+
+/** Contains operations for RequiredAndOptional operations */
+export interface RequiredAndOptionalOperations {
+  /** Get models that will return all properties in the model */
+  getAll(
+    options?: RequiredAndOptionalGetAllParameters
+  ): StreamableMethod<RequiredAndOptionalGetAll200Response>;
+  /** Put a body with all properties present. */
+  putAll(
+    options: RequiredAndOptionalPutAllParameters
+  ): StreamableMethod<RequiredAndOptionalPutAll204Response>;
+  /** Get models that will return only the required properties */
+  getRequiredOnly(
+    options?: RequiredAndOptionalGetRequiredOnlyParameters
+  ): StreamableMethod<RequiredAndOptionalGetRequiredOnly200Response>;
+  /** Put a body with only required properties. */
+  putRequiredOnly(
+    options: RequiredAndOptionalPutRequiredOnlyParameters
+  ): StreamableMethod<RequiredAndOptionalPutRequiredOnly204Response>;
+}
+
 export interface StringGetAll {
   /** Get models that will return all properties in the model */
   get(
@@ -260,4 +400,11 @@ export interface Routes {
 
 export type ModelsPropertyOptionalClient = Client & {
   path: Routes;
+  stringOperations: StringOperations;
+  bytes: BytesOperations;
+  datetime: DatetimeOperations;
+  duration: DurationOperations;
+  collectionsByte: CollectionsByteOperations;
+  collectionsModel: CollectionsModelOperations;
+  requiredAndOptional: RequiredAndOptionalOperations;
 };
