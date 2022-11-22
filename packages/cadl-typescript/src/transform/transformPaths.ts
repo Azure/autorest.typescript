@@ -16,7 +16,11 @@ import {
   HttpOperationParameters,
   HttpOperationResponse
 } from "@cadl-lang/rest/http";
-import { Client, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
+import {
+  Client,
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/cadl-dpg";
 import { getSchemaForType } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 import {
@@ -30,22 +34,26 @@ import {
 export function transformPaths(program: Program, client: Client): Paths {
   const operationGroups = listOperationGroups(program, client);
   const paths: Paths = {};
-  for(const operationGroup of operationGroups) {
+  for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(program, operationGroup);
-    for(const op of operations) {
+    for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformOperation(program, route, paths);
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
-  for(const clientOp of clientOperations) {
+  for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     transformOperation(program, route, paths);
   }
   return paths;
 }
 
-function transformOperation(program: Program, route: HttpOperation, paths: Paths) {
+function transformOperation(
+  program: Program,
+  route: HttpOperation,
+  paths: Paths
+) {
   const respNames = [];
   for (const resp of route.responses) {
     const respName = getResponseTypeName(

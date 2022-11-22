@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Client, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
+import {
+  Client,
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/cadl-dpg";
 import {
   ResponseHeaderSchema,
   ImportKind,
@@ -32,15 +36,15 @@ export function transformToResponseTypes(
   const operationGroups = listOperationGroups(program, client);
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
-  for(const operationGroup of operationGroups) {
+  for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(program, operationGroup);
-    for(const op of operations) {
+    for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformToResponseTypesForRoute(route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
-  for(const clientOp of clientOperations) {
+  for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     transformToResponseTypesForRoute(route);
   }

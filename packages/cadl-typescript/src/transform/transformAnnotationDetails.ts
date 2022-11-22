@@ -1,5 +1,9 @@
 import { PagedResultMetadata } from "@azure-tools/cadl-azure-core";
-import { Client, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
+import {
+  Client,
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/cadl-dpg";
 import { AnnotationDetails } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
@@ -27,12 +31,13 @@ export function transformAnnotationDetails(
   // TODO: Remove this when @pageable is finally removed.
   const nextLinks = new Set<string>();
   const operationGroups = listOperationGroups(program, client);
-  for(const operationGroup of operationGroups) {
+  for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(program, operationGroup);
-    for(const op of operations) {
+    for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (getPageable(program, route.operation)) {
-        const nextLinkName = getPageable(program, route.operation) || "nextLink";
+        const nextLinkName =
+          getPageable(program, route.operation) || "nextLink";
         if (nextLinkName) {
           nextLinks.add(nextLinkName);
         }
@@ -40,7 +45,7 @@ export function transformAnnotationDetails(
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
-  for(const clientOp of clientOperations) {
+  for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (getPageable(program, route.operation)) {
       const nextLinkName = getPageable(program, route.operation) || "nextLink";
@@ -80,15 +85,15 @@ function extractPageDetailFromCore(program: Program, client: Client) {
   nextLinks.add("nextLink");
   itemNames.add("value");
   const operationGroups = listOperationGroups(program, client);
-  for(const operationGroup of operationGroups) {
+  for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(program, operationGroup);
-    for(const op of operations) {
+    for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       extractPageDetailFromCoreForRoute(route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
-  for(const clientOp of clientOperations) {
+  for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     extractPageDetailFromCoreForRoute(route);
   }
