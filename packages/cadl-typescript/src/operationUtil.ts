@@ -40,9 +40,9 @@ export function getOperationStatuscode(
 // FIXME: this is the placeholder function to extract the operationGroupName
 export function getOperationGroupName(
   route: HttpOperation,
-  options: RLCOptions
+  options?: RLCOptions
 ) {
-  if (options.enableOperationGroup) {
+  if (options && options.enableOperationGroup) {
     return route.container.name;
   }
   return "";

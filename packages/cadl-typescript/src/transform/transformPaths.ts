@@ -28,7 +28,7 @@ import {
   isPagingOperation
 } from "../operationUtil.js";
 
-export function transformPaths(program: Program, options: RLCOptions): Paths {
+export function transformPaths(program: Program, options?: RLCOptions): Paths {
   const [services, _diagnostics] = getAllHttpServices(program);
   const routes = services.flatMap((service) => service.operations);
   const paths: Paths = {};

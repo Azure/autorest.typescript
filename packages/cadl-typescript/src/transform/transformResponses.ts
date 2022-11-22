@@ -30,7 +30,7 @@ import {
 export function transformToResponseTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  options: RLCOptions
+  options?: RLCOptions
 ): OperationResponse[] {
   const [services, _diagnostics] = getAllHttpServices(program);
   const routes = services.flatMap((service) => service.operations);

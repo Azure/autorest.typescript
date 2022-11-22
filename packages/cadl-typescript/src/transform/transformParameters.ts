@@ -31,7 +31,7 @@ import { getResourceOperation } from "@cadl-lang/rest";
 export function transformToParameterTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  options: RLCOptions
+  options?: RLCOptions
 ): OperationParameter[] {
   const [services, _diagnostics] = getAllHttpServices(program);
   const routes = services.flatMap((service) => service.operations);
