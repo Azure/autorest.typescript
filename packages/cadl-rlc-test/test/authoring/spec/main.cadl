@@ -17,7 +17,10 @@ using Azure.Core;
     Endpoint: Endpoint,
   }
 )
-@service({title: "Microsoft Cognitive Language Service - Analyze Text Authoring", version: "2022-05-15-preview"})
+@service({
+  title: "Microsoft Cognitive Language Service - Analyze Text Authoring",
+  version: "2022-05-15-preview",
+})
 @useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
 @versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
 @route("/authoring/analyze-text/")
@@ -31,9 +34,11 @@ model Endpoint is string;
 
 // Models
 
+@doc("The details of a project.")
 model Project {
   @key
   @segment("projects")
+  @doc("The project name.")
   projectName: string;
 
   @doc("The project kind.")
@@ -71,11 +76,8 @@ model Project {
   lastDeployedDateTime: zonedDateTime;
 }
 
-@knownValues(ProjectKindValues)
-model ProjectKind is string;
-
 @doc("Represents the project kind.")
-enum ProjectKindValues {
+enum ProjectKind {
   @doc("For building a classification model to classify text using your own data. Each file will have only one label. For example, file 1 is classified as A and file 2 is classified as B.")
   CustomSingleLabelClassification,
 
@@ -89,13 +91,16 @@ enum ProjectKindValues {
 @doc("Represents the settings used to define the project behavior.")
 model ProjectSettings is Record<string>;
 
+@doc("The details of a project deployment.")
 @parentResource(Project)
 model Deployment {
+  @doc("The name of the deployment.")
   @key("deploymentName")
   @segment("deployments")
   name: string;
 }
 
+@doc("The details about a job.")
 model Job {
   @doc("The job ID.")
   jobId: string;
@@ -123,11 +128,7 @@ model Job {
 }
 
 @doc("Represents the job status.")
-@knownValues(JobStatusValues)
-model JobStatus is string;
-
-@doc("Represents the job status values.")
-enum JobStatusValues {
+enum JobStatus {
   // These values are all camel-cased in the original spec
   notStarted,
   running,
@@ -147,24 +148,29 @@ model JobWarning {
   message: string;
 }
 
+@doc("The details of a deployment job.")
 @parentResource(Deployment)
 model DeploymentJob {
   ...Job;
 
+  @doc("The job ID.")
   @key("jobId")
   @segment("jobs")
   id: string;
 }
 
+@doc("The details of a swap deployments job.")
 @parentResource(Deployment)
 model SwapDeploymentsJob {
   ...Job;
 
+  @doc("The job ID.")
   @key("jobId")
   @segment("swap/jobs")
   id: string;
 }
 
+@doc("The details of an exported project.")
 model ExportedProject {}
 
 @doc("Represents a supported language.")
@@ -176,6 +182,7 @@ model SupportedLanguage {
   languageCode: string;
 }
 
+@doc("A collection of SupportedLanguage resources.")
 model SupportedLanguages is Azure.Core.Page<SupportedLanguage>;
 
 @doc("Represents a training config version.")
@@ -187,26 +194,25 @@ model TrainingConfigVersion {
   modelExpirationDate: plainDate;
 }
 
+@doc("A collection of TrainingConfigVersion resources.")
 model TrainingConfigVersions is Azure.Core.Page<TrainingConfigVersion>;
 
 // Operations
 
-model ListQueryParams {
-  @query top?: int32;
-  @query skip?: int32;
-  @query maxpagesize?: int32;
-}
-
+@doc("Export parameters.")
 model ExportParams {
   @query
+  @doc("The project file version.")
   projectFileVersion: string;
 }
 
 @doc("Training job parameters.")
 model TrainingJobOptions {
+  @doc("The model label.")
   modelLabel: string;
 }
 
+@doc("Swap deployment options.")
 model SwapDeploymentsOptions {
   @doc("Represents the first deployment name.")
   firstDeploymentName: string;
@@ -215,6 +221,7 @@ model SwapDeploymentsOptions {
   secondDeploymentName: string;
 }
 
+@doc("Swap deployment parameters.")
 model SwapDeploymentsParams {
   @doc("The body schema of the operation.")
   @body
@@ -222,23 +229,26 @@ model SwapDeploymentsParams {
 }
 
 interface Projects {
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new project or updates an existing one.")
   createOrUpdate is LongRunningResourceCreateOrUpdate<Project>;
 
   @doc("Gets the details of a project.")
   get is ResourceRead<Project>;
 
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Deletes a project.")
   delete is LongRunningResourceDelete<Project>;
 
   @doc("Lists the existing projects.")
-  list is ResourceList<
+  listProjects is ResourceList<
     Project,
     {
-      parameters: ListQueryParams;
+      parameters: StandardListQueryParameters;
     }
   >;
 
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Triggers a job to export a project's data.")
   export is ResourceAction<
     Project,
@@ -246,6 +256,7 @@ interface Projects {
     Cadl.Http.AcceptedResponse & Foundations.LongRunningStatusLocation
   >;
 
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   // NOTE: `import` is a reserved keyword
   @doc("Triggers a job to export a project's data.")
   importx is ResourceAction<
@@ -254,11 +265,14 @@ interface Projects {
     Cadl.Http.AcceptedResponse & Foundations.LongRunningStatusLocation
   >;
 
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Triggers a training job for a project.")
   train is ResourceAction<
     Project,
     {
-      @body body: TrainingJobOptions;
+      @doc("The body of the request.")
+      @body
+      body: TrainingJobOptions;
     },
     Cadl.Http.AcceptedResponse & Foundations.LongRunningStatusLocation
   >;
@@ -268,15 +282,18 @@ interface Deployments {
   @doc("Gets the details of a deployment.")
   getDeployment is ResourceRead<Deployment>;
 
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new deployment or replaces an existing one.")
   deployProject is LongRunningResourceCreateOrReplace<Deployment>;
 
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Deletes a project deployment.")
   deleteDeployment is LongRunningResourceDelete<Deployment>;
 
   @doc("Lists the existing deployments.")
-  list is ResourceList<Deployment>;
+  listDeployments is ResourceList<Deployment>;
 
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Swaps two existing deployments with each other.")
   @collectionAction(Deployment, "swap")
   swapDeployments is ResourceCollectionAction<
@@ -299,12 +316,17 @@ interface Global {
   #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
   @get
   @route("languages")
-  getSupportedLanguages is Foundations.Operation<ListQueryParams, SupportedLanguages>;
+  @doc("Gets the supported languages.")
+  getSupportedLanguages is Foundations.Operation<StandardListQueryParameters, SupportedLanguages>;
 
   #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
   @get
+  @doc("Lists training configuration versions.")
   @route("training-config-versions")
-  listTrainingConfigVersions is Foundations.Operation<ListQueryParams, TrainingConfigVersions>;
+  listTrainingConfigVersions is Foundations.Operation<
+    StandardListQueryParameters,
+    TrainingConfigVersions
+  >;
 }
 
 // Missing operations

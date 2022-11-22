@@ -70,7 +70,8 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
       nullable: true
     },
     azureArm: { type: "boolean", nullable: true },
-    "sdk-folder": { type: "string", nullable: true }
+    "sdk-folder": { type: "string", nullable: true },
+    enableOperationGroup: { type: "boolean", nullable: true }
   },
   required: []
 };

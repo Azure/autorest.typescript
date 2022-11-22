@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** The details of a project. */
 export interface ProjectOutput {
+  /** The project name. */
   projectName: string;
-  /**
-   * The project kind.
-   *
-   * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
-   */
-  projectKind: string;
+  /** The project kind. */
+  projectKind:
+    | "CustomSingleLabelClassification"
+    | "CustomMultiLabelClassification"
+    | "CustomEntityRecognition";
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
@@ -81,7 +82,9 @@ export interface ProjectListOutput {
   nextLink?: string;
 }
 
+/** The details of a project deployment. */
 export interface DeploymentOutput {
+  /** The name of the deployment. */
   name: string;
 }
 
@@ -93,6 +96,7 @@ export interface DeploymentListOutput {
   nextLink?: string;
 }
 
+/** The details of a deployment job. */
 export interface DeploymentJobOutput {
   /** The job ID. */
   jobId: string;
@@ -102,16 +106,20 @@ export interface DeploymentJobOutput {
   readonly lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
   readonly expirationDateTime: string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
+  /** The job status. */
+  status:
+    | "notStarted"
+    | "running"
+    | "succeeded"
+    | "failed"
+    | "cancelled"
+    | "cancelling"
+    | "partiallyCompleted";
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
   errors: ErrorModelOutput;
+  /** The job ID. */
   id: string;
 }
 
@@ -123,6 +131,7 @@ export interface JobWarningOutput {
   message: string;
 }
 
+/** The details of a swap deployments job. */
 export interface SwapDeploymentsJobOutput {
   /** The job ID. */
   jobId: string;
@@ -132,20 +141,24 @@ export interface SwapDeploymentsJobOutput {
   readonly lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
   readonly expirationDateTime: string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
+  /** The job status. */
+  status:
+    | "notStarted"
+    | "running"
+    | "succeeded"
+    | "failed"
+    | "cancelled"
+    | "cancelling"
+    | "partiallyCompleted";
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
   errors: ErrorModelOutput;
+  /** The job ID. */
   id: string;
 }
 
-/** Paged collection of SupportedLanguage items */
+/** A collection of SupportedLanguage resources. */
 export interface PagedSupportedLanguageOutput {
   /** The SupportedLanguage items on this page */
   value: Array<SupportedLanguageOutput>;
@@ -161,7 +174,7 @@ export interface SupportedLanguageOutput {
   languageCode: string;
 }
 
-/** Paged collection of TrainingConfigVersion items */
+/** A collection of TrainingConfigVersion resources. */
 export interface PagedTrainingConfigVersionOutput {
   /** The TrainingConfigVersion items on this page */
   value: Array<TrainingConfigVersionOutput>;

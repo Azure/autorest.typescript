@@ -1,6 +1,7 @@
 emitters:
   "@azure-tools/cadl-typescript":
-    includeShortcuts: true
+    enableOperationGroup: false
+    includeShortcuts: false
     azureSdkForJs: false
     packageDetails:
       name: "@msinternal/authoring"

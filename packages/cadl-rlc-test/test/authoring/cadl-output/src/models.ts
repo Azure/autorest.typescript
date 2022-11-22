@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** The details of a project. */
 export interface Project {
+  /** The project name. */
   projectName: string;
-  /**
-   * The project kind.
-   *
-   * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
-   */
-  projectKind: string;
+  /** The project kind. */
+  projectKind:
+    | "CustomSingleLabelClassification"
+    | "CustomMultiLabelClassification"
+    | "CustomEntityRecognition";
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
@@ -23,9 +24,11 @@ export interface Project {
 
 /** Training job parameters. */
 export interface TrainingJobOptions {
+  /** The model label. */
   modelLabel: string;
 }
 
+/** Swap deployment options. */
 export interface SwapDeploymentsOptions {
   /** Represents the first deployment name. */
   firstDeploymentName: string;

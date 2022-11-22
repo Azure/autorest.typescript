@@ -7,7 +7,8 @@ import {
   OperationResponse,
   ResponseMetadata,
   Schema,
-  SchemaContext
+  SchemaContext,
+  RLCOptions
 } from "@azure-tools/rlc-common";
 import { Program, getDoc } from "@cadl-lang/compiler";
 import {
@@ -20,11 +21,16 @@ import {
   getSchemaForType,
   getBinaryType
 } from "../modelUtils.js";
-import { getOperationStatuscode, isBinaryPayload } from "../operationUtil.js";
+import {
+  getOperationGroupName,
+  getOperationStatuscode,
+  isBinaryPayload
+} from "../operationUtil.js";
 
 export function transformToResponseTypes(
   program: Program,
-  importDetails: Map<ImportKind, Set<string>>
+  importDetails: Map<ImportKind, Set<string>>,
+  options?: RLCOptions
 ): OperationResponse[] {
   const [services, _diagnostics] = getAllHttpServices(program);
   const routes = services.flatMap((service) => service.operations);
@@ -32,7 +38,7 @@ export function transformToResponseTypes(
   const inputImportedSet = new Set<string>();
   for (const route of routes) {
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: route.container.name,
+      operationGroup: getOperationGroupName(route, options),
       operationName: route.operation.name,
       responses: []
     };
