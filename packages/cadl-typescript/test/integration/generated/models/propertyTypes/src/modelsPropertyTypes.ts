@@ -161,5 +161,13 @@ export default function createClient(
           .put(options);
       },
     },
+    never: {
+      get: (options) => {
+        return client.path("/models/properties/types/never").get(options);
+      },
+      put: (options) => {
+        return client.path("/models/properties/types/never").put(options);
+      },
+    },
   };
 }

@@ -484,6 +484,7 @@ export interface LedgerEntryOutput {
     // (undocumented)
     readonly collectionId: string;
     contents: string;
+    // (undocumented)
     readonly transactionId: string;
 }
 
@@ -562,12 +563,14 @@ export interface TransactionReceiptOutput {
     // (undocumented)
     receipt: ReceiptContentsOutput;
     state: string;
+    // (undocumented)
     transactionId: string;
 }
 
 // @public
 export interface TransactionStatusOutput {
     state: string;
+    // (undocumented)
     transactionId: string;
 }
 
