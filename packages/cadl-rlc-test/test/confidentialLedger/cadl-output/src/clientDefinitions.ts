@@ -2,152 +2,170 @@
 // Licensed under the MIT license.
 
 import {
-  ListCollectionsParameters,
-  GetEnclaveQuotesParameters,
-  GetConstitutionParameters,
-  GetConsortiumMembersParameters,
-  ListLedgerEntriesParameters,
-  CreateLedgerEntryParameters,
-  GetLedgerEntryParameters,
-  GetReceiptParameters,
-  GetTransactionStatusParameters,
-  GetCurrentLedgerEntryParameters,
-  DeleteUserParameters,
-  GetUserParameters,
-  CreateOrUpdateUserParameters,
+  ConfidentialLedgerListCollectionsParameters,
+  ConfidentialLedgerGetEnclaveQuotesParameters,
+  ConfidentialLedgerGetConstitutionParameters,
+  ConfidentialLedgerGetConsortiumMembersParameters,
+  ConfidentialLedgerListLedgerEntriesParameters,
+  ConfidentialLedgerCreateLedgerEntryParameters,
+  ConfidentialLedgerGetLedgerEntryParameters,
+  ConfidentialLedgerGetReceiptParameters,
+  ConfidentialLedgerGetTransactionStatusParameters,
+  ConfidentialLedgerGetCurrentLedgerEntryParameters,
+  ConfidentialLedgerDeleteUserParameters,
+  ConfidentialLedgerGetUserParameters,
+  ConfidentialLedgerCreateOrUpdateUserParameters,
 } from "./parameters";
 import {
-  ListCollections200Response,
-  ListCollectionsDefaultResponse,
-  GetEnclaveQuotes200Response,
-  GetEnclaveQuotesDefaultResponse,
-  GetConstitution200Response,
-  GetConstitutionDefaultResponse,
-  GetConsortiumMembers200Response,
-  GetConsortiumMembersDefaultResponse,
-  ListLedgerEntries200Response,
-  ListLedgerEntriesDefaultResponse,
-  CreateLedgerEntry201Response,
-  CreateLedgerEntryDefaultResponse,
-  GetLedgerEntry200Response,
-  GetLedgerEntryDefaultResponse,
-  GetReceipt200Response,
-  GetReceiptDefaultResponse,
-  GetTransactionStatus200Response,
-  GetTransactionStatusDefaultResponse,
-  GetCurrentLedgerEntry200Response,
-  GetCurrentLedgerEntryDefaultResponse,
-  DeleteUser204Response,
-  DeleteUserDefaultResponse,
-  GetUser200Response,
-  GetUserDefaultResponse,
-  CreateOrUpdateUser200Response,
-  CreateOrUpdateUser201Response,
-  CreateOrUpdateUserDefaultResponse,
+  ConfidentialLedgerListCollections200Response,
+  ConfidentialLedgerListCollectionsDefaultResponse,
+  ConfidentialLedgerGetEnclaveQuotes200Response,
+  ConfidentialLedgerGetEnclaveQuotesDefaultResponse,
+  ConfidentialLedgerGetConstitution200Response,
+  ConfidentialLedgerGetConstitutionDefaultResponse,
+  ConfidentialLedgerGetConsortiumMembers200Response,
+  ConfidentialLedgerGetConsortiumMembersDefaultResponse,
+  ConfidentialLedgerListLedgerEntries200Response,
+  ConfidentialLedgerListLedgerEntriesDefaultResponse,
+  ConfidentialLedgerCreateLedgerEntry201Response,
+  ConfidentialLedgerCreateLedgerEntryDefaultResponse,
+  ConfidentialLedgerGetLedgerEntry200Response,
+  ConfidentialLedgerGetLedgerEntryDefaultResponse,
+  ConfidentialLedgerGetReceipt200Response,
+  ConfidentialLedgerGetReceiptDefaultResponse,
+  ConfidentialLedgerGetTransactionStatus200Response,
+  ConfidentialLedgerGetTransactionStatusDefaultResponse,
+  ConfidentialLedgerGetCurrentLedgerEntry200Response,
+  ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse,
+  ConfidentialLedgerDeleteUser204Response,
+  ConfidentialLedgerDeleteUserDefaultResponse,
+  ConfidentialLedgerGetUser200Response,
+  ConfidentialLedgerGetUserDefaultResponse,
+  ConfidentialLedgerCreateOrUpdateUser200Response,
+  ConfidentialLedgerCreateOrUpdateUser201Response,
+  ConfidentialLedgerCreateOrUpdateUserDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ListCollections {
   /** Collection ids are user-created collections of ledger entries */
   get(
-    options?: ListCollectionsParameters
+    options?: ConfidentialLedgerListCollectionsParameters
   ): StreamableMethod<
-    ListCollections200Response | ListCollectionsDefaultResponse
+    | ConfidentialLedgerListCollections200Response
+    | ConfidentialLedgerListCollectionsDefaultResponse
   >;
 }
 
 export interface GetEnclaveQuotes {
   /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
   get(
-    options?: GetEnclaveQuotesParameters
+    options?: ConfidentialLedgerGetEnclaveQuotesParameters
   ): StreamableMethod<
-    GetEnclaveQuotes200Response | GetEnclaveQuotesDefaultResponse
+    | ConfidentialLedgerGetEnclaveQuotes200Response
+    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
   >;
 }
 
 export interface GetConstitution {
   /** The constitution is a script that assesses and applies proposals from consortium members. */
   get(
-    options?: GetConstitutionParameters
+    options?: ConfidentialLedgerGetConstitutionParameters
   ): StreamableMethod<
-    GetConstitution200Response | GetConstitutionDefaultResponse
+    | ConfidentialLedgerGetConstitution200Response
+    | ConfidentialLedgerGetConstitutionDefaultResponse
   >;
 }
 
 export interface GetConsortiumMembers {
   /** Consortium members can manage the Confidential Ledger. */
   get(
-    options?: GetConsortiumMembersParameters
+    options?: ConfidentialLedgerGetConsortiumMembersParameters
   ): StreamableMethod<
-    GetConsortiumMembers200Response | GetConsortiumMembersDefaultResponse
+    | ConfidentialLedgerGetConsortiumMembers200Response
+    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
   >;
 }
 
 export interface ListLedgerEntries {
   /** A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned. */
   get(
-    options?: ListLedgerEntriesParameters
+    options?: ConfidentialLedgerListLedgerEntriesParameters
   ): StreamableMethod<
-    ListLedgerEntries200Response | ListLedgerEntriesDefaultResponse
+    | ConfidentialLedgerListLedgerEntries200Response
+    | ConfidentialLedgerListLedgerEntriesDefaultResponse
   >;
   /** A collection id may optionally be specified. */
   post(
-    options?: CreateLedgerEntryParameters
+    options?: ConfidentialLedgerCreateLedgerEntryParameters
   ): StreamableMethod<
-    CreateLedgerEntry201Response | CreateLedgerEntryDefaultResponse
+    | ConfidentialLedgerCreateLedgerEntry201Response
+    | ConfidentialLedgerCreateLedgerEntryDefaultResponse
   >;
 }
 
 export interface GetLedgerEntry {
   /** Get a LedgerEntry */
   get(
-    options?: GetLedgerEntryParameters
+    options?: ConfidentialLedgerGetLedgerEntryParameters
   ): StreamableMethod<
-    GetLedgerEntry200Response | GetLedgerEntryDefaultResponse
+    | ConfidentialLedgerGetLedgerEntry200Response
+    | ConfidentialLedgerGetLedgerEntryDefaultResponse
   >;
 }
 
 export interface GetReceipt {
   /** Runs a custom action on LedgerEntry */
   get(
-    options?: GetReceiptParameters
-  ): StreamableMethod<GetReceipt200Response | GetReceiptDefaultResponse>;
+    options?: ConfidentialLedgerGetReceiptParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetReceipt200Response
+    | ConfidentialLedgerGetReceiptDefaultResponse
+  >;
 }
 
 export interface GetTransactionStatus {
   /** Runs a custom action on LedgerEntry */
   get(
-    options?: GetTransactionStatusParameters
+    options?: ConfidentialLedgerGetTransactionStatusParameters
   ): StreamableMethod<
-    GetTransactionStatus200Response | GetTransactionStatusDefaultResponse
+    | ConfidentialLedgerGetTransactionStatus200Response
+    | ConfidentialLedgerGetTransactionStatusDefaultResponse
   >;
 }
 
 export interface GetCurrentLedgerEntry {
   /** Runs a custom action on LedgerEntry */
   get(
-    options?: GetCurrentLedgerEntryParameters
+    options?: ConfidentialLedgerGetCurrentLedgerEntryParameters
   ): StreamableMethod<
-    GetCurrentLedgerEntry200Response | GetCurrentLedgerEntryDefaultResponse
+    | ConfidentialLedgerGetCurrentLedgerEntry200Response
+    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
   >;
 }
 
 export interface DeleteUser {
   /** Delete a LedgerUser */
   delete(
-    options?: DeleteUserParameters
-  ): StreamableMethod<DeleteUser204Response | DeleteUserDefaultResponse>;
+    options?: ConfidentialLedgerDeleteUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerDeleteUser204Response
+    | ConfidentialLedgerDeleteUserDefaultResponse
+  >;
   /** Get a LedgerUser */
   get(
-    options?: GetUserParameters
-  ): StreamableMethod<GetUser200Response | GetUserDefaultResponse>;
+    options?: ConfidentialLedgerGetUserParameters
+  ): StreamableMethod<
+    | ConfidentialLedgerGetUser200Response
+    | ConfidentialLedgerGetUserDefaultResponse
+  >;
   /** Creates or updates a LedgerUser */
   patch(
-    options: CreateOrUpdateUserParameters
+    options: ConfidentialLedgerCreateOrUpdateUserParameters
   ): StreamableMethod<
-    | CreateOrUpdateUser200Response
-    | CreateOrUpdateUser201Response
-    | CreateOrUpdateUserDefaultResponse
+    | ConfidentialLedgerCreateOrUpdateUser200Response
+    | ConfidentialLedgerCreateOrUpdateUser201Response
+    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
   >;
 }
 

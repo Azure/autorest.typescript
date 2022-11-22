@@ -3,4 +3,4 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export type ListCollectionsParameters = RequestParameters;
+export type ConfidentialLedgerListCollectionsParameters = RequestParameters;

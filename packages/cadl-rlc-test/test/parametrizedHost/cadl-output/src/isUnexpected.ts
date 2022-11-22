@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  ListCollections200Response,
-  ListCollectionsDefaultResponse,
+  ConfidentialLedgerListCollections200Response,
+  ConfidentialLedgerListCollectionsDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -11,11 +11,15 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: ListCollections200Response | ListCollectionsDefaultResponse
-): response is ListCollectionsDefaultResponse;
+  response:
+    | ConfidentialLedgerListCollections200Response
+    | ConfidentialLedgerListCollectionsDefaultResponse
+): response is ConfidentialLedgerListCollectionsDefaultResponse;
 export function isUnexpected(
-  response: ListCollections200Response | ListCollectionsDefaultResponse
-): response is ListCollectionsDefaultResponse {
+  response:
+    | ConfidentialLedgerListCollections200Response
+    | ConfidentialLedgerListCollectionsDefaultResponse
+): response is ConfidentialLedgerListCollectionsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
