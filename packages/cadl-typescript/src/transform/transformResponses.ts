@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { Client, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
 import {
   ResponseHeaderSchema,
   ImportKind,
@@ -9,9 +10,10 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { Program, getDoc } from "@cadl-lang/compiler";
+import { Program, getDoc, ignoreDiagnostics } from "@cadl-lang/compiler";
 import {
-  getAllHttpServices,
+  getHttpOperation,
+  HttpOperation,
   HttpOperationResponse
 } from "@cadl-lang/rest/http";
 import {
@@ -24,13 +26,28 @@ import { getOperationStatuscode, isBinaryPayload } from "../operationUtil.js";
 
 export function transformToResponseTypes(
   program: Program,
-  importDetails: Map<ImportKind, Set<string>>
+  importDetails: Map<ImportKind, Set<string>>,
+  client: Client
 ): OperationResponse[] {
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
+  const operationGroups = listOperationGroups(program, client);
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
-  for (const route of routes) {
+  for(const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for(const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      transformToResponseTypesForRoute(route);
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for(const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    transformToResponseTypesForRoute(route);
+  }
+  if (inputImportedSet.size > 0) {
+    importDetails.set(ImportKind.ResponseOutput, inputImportedSet);
+  }
+  function transformToResponseTypesForRoute(route: HttpOperation) {
     const rlcOperationUnit: OperationResponse = {
       operationGroup: route.container.name,
       operationName: route.operation.name,
@@ -53,9 +70,6 @@ export function transformToResponseTypes(
       });
     }
     rlcResponses.push(rlcOperationUnit);
-  }
-  if (inputImportedSet.size > 0) {
-    importDetails.set(ImportKind.ResponseOutput, inputImportedSet);
   }
   return rlcResponses;
 }

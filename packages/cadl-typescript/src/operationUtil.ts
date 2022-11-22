@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { DecoratedType, Model, Program, Type } from "@cadl-lang/compiler";
+import { DecoratedType, ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import {
-  getAllHttpServices,
+  getHttpOperation,
   HttpOperation,
   HttpOperationResponse,
   StatusCode
@@ -13,6 +13,7 @@ import {
   getPagedResult,
   PagedResultMetadata
 } from "@azure-tools/cadl-azure-core";
+import { Client, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -87,10 +88,20 @@ function hasDecorator(type: DecoratedType, name: string): boolean {
   return type.decorators.find((it) => it.decorator.name === name) !== undefined;
 }
 
-export function hasPollingOperations(program: Program) {
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
-  for (const route of routes) {
+export function hasPollingOperations(program: Program, client: Client) {
+  const operationGroups = listOperationGroups(program, client);
+  for(const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for(const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      if (isLongRunningOperation(program, route)) {
+        return true;
+      }
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for(const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (isLongRunningOperation(program, route)) {
       return true;
     }
@@ -109,15 +120,24 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
   return false;
 }
 
-export function hasPagingOperations(program: Program) {
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
-  for (const route of routes) {
+export function hasPagingOperations(program: Program, client: Client) {
+  const operationGroups = listOperationGroups(program, client);
+  for(const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for(const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      if (isPagingOperation(program, route)) {
+        return true;
+      }
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for(const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (isPagingOperation(program, route)) {
       return true;
     }
   }
-
   return false;
 }
 

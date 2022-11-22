@@ -1,3 +1,4 @@
+import { listClients } from "@azure-tools/cadl-dpg";
 import {
   NameType,
   normalizeName,
@@ -19,6 +20,8 @@ export function transformRLCOptions(
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(program, emitterOptions);
+  const batch = listClients(program);
+  options.batch = batch;
 
   // Fulfill the output dir if enabling sdk-folder in config
   if (options["sdk-folder"] && isAbsolute(options["sdk-folder"])) {

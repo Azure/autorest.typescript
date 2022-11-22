@@ -1,7 +1,8 @@
 import { PagedResultMetadata } from "@azure-tools/cadl-azure-core";
+import { Client, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
 import { AnnotationDetails } from "@azure-tools/rlc-common";
-import { Model, Program, Type } from "@cadl-lang/compiler";
-import { getAllHttpServices } from "@cadl-lang/rest/http";
+import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
+import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
 import {
   hasPagingOperations,
   extractPagedMetadataNested,
@@ -9,13 +10,14 @@ import {
 } from "../operationUtil.js";
 
 export function transformAnnotationDetails(
-  program: Program
+  program: Program,
+  client: Client
 ): AnnotationDetails | undefined {
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
-    hasLongRunning: hasPollingOperations(program)
+    hasLongRunning: hasPollingOperations(program, client)
   };
-  const details = extractPageDetailFromCore(program);
+  const details = extractPageDetailFromCore(program, client);
   if (details) {
     return {
       ...details,
@@ -24,9 +26,22 @@ export function transformAnnotationDetails(
   }
   // TODO: Remove this when @pageable is finally removed.
   const nextLinks = new Set<string>();
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
-  for (const route of routes) {
+  const operationGroups = listOperationGroups(program, client);
+  for(const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for(const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      if (getPageable(program, route.operation)) {
+        const nextLinkName = getPageable(program, route.operation) || "nextLink";
+        if (nextLinkName) {
+          nextLinks.add(nextLinkName);
+        }
+      }
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for(const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (getPageable(program, route.operation)) {
       const nextLinkName = getPageable(program, route.operation) || "nextLink";
       if (nextLinkName) {
@@ -55,18 +70,30 @@ export function getPageable(
   return program.stateMap(pageableOperationsKey).get(entity);
 }
 
-function extractPageDetailFromCore(program: Program) {
-  if (!hasPagingOperations(program)) {
+function extractPageDetailFromCore(program: Program, client: Client) {
+  if (!hasPagingOperations(program, client)) {
     return;
   }
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
   const nextLinks = new Set<string>();
   const itemNames = new Set<string>();
   // Add default values
   nextLinks.add("nextLink");
   itemNames.add("value");
-  for (const route of routes) {
+  const operationGroups = listOperationGroups(program, client);
+  for(const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for(const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      extractPageDetailFromCoreForRoute(route);
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for(const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    extractPageDetailFromCoreForRoute(route);
+  }
+
+  function extractPageDetailFromCoreForRoute(route: HttpOperation) {
     for (const response of route.responses) {
       const paged = extractPagedMetadataNested(program, response.type as Model);
       if (paged) {

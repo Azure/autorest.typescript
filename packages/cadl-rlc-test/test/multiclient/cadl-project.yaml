@@ -2,7 +2,8 @@ emitters:
   "@azure-tools/cadl-typescript":
     generateMetadata: true
     generateTest: true
-    includeShortcuts: true
+    multiClient: true
+    azureSdkForJs: false
     packageDetails:
       name: "@msinternal/multiclient"
       description: "Multi Client Service"

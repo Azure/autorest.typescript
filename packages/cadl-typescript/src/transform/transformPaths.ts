@@ -9,14 +9,14 @@ import {
   ResponseTypes,
   OperationMethod
 } from "@azure-tools/rlc-common";
-import { getDoc, Program } from "@cadl-lang/compiler";
+import { getDoc, ignoreDiagnostics, Program } from "@cadl-lang/compiler";
 import {
-  getAllHttpServices,
+  getHttpOperation,
   HttpOperation,
   HttpOperationParameters,
   HttpOperationResponse
 } from "@cadl-lang/rest/http";
-import { listClients, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
+import { Client, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
 import { getSchemaForType } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 import {
@@ -27,77 +27,78 @@ import {
   isPagingOperation
 } from "../operationUtil.js";
 
-export function transformPaths(program: Program): Paths {
-  const clients = listClients(program);
-  for(const client of clients) {
-    const operationGroups = listOperationGroups(program, client);
-    for(const operationGroup of operationGroups) {
-      const operations = listOperationsInOperationGroup(program, operationGroup);
-      console.log(operations);
-    }
-    const clientOperations = listOperationsInOperationGroup(program, client);
-    console.log(clientOperations);
-  }
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
+export function transformPaths(program: Program, client: Client): Paths {
+  const operationGroups = listOperationGroups(program, client);
   const paths: Paths = {};
-  for (const route of routes) {
-    const respNames = [];
-    for (const resp of route.responses) {
-      const respName = getResponseTypeName(
-        route.container.name,
-        route.operation.name,
-        getOperationStatuscode(resp)
-      );
-      respNames.push(respName);
+  for(const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for(const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      transformOperation(program, route, paths);
     }
-    const method: OperationMethod = {
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for(const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    transformOperation(program, route, paths);
+  }
+  return paths;
+}
+
+function transformOperation(program: Program, route: HttpOperation, paths: Paths) {
+  const respNames = [];
+  for (const resp of route.responses) {
+    const respName = getResponseTypeName(
+      route.container.name,
+      route.operation.name,
+      getOperationStatuscode(resp)
+    );
+    respNames.push(respName);
+  }
+  const method: OperationMethod = {
+    description: getDoc(program, route.operation) ?? "",
+    hasOptionalOptions: !hasRequiredOptions(route.parameters),
+    optionsName: getParameterTypeName(
+      route.container.name,
+      route.operation.name
+    ),
+    responseTypes: getResponseTypes(route),
+    returnType: respNames.join(" | "),
+    successStatus: gerOperationSuccessStatus(route),
+    operationName: route.operation.name,
+    annotations: {
+      isLongRunning: isLongRunningOperation(program, route),
+      isPageable: isPagingOperation(program, route)
+    }
+  };
+  if (
+    paths[route.path] !== undefined &&
+    !paths[route.path]?.methods[route.verb]
+  ) {
+    (paths[route.path] as PathMetadata).methods[route.verb] = [method];
+  } else if (paths[route.path]?.methods[route.verb]) {
+    paths[route.path]?.methods[route.verb]?.push(method);
+  } else {
+    paths[route.path] = {
       description: getDoc(program, route.operation) ?? "",
-      hasOptionalOptions: !hasRequiredOptions(route.parameters),
-      optionsName: getParameterTypeName(
-        route.container.name,
-        route.operation.name
-      ),
-      responseTypes: getResponseTypes(route),
-      returnType: respNames.join(" | "),
-      successStatus: gerOperationSuccessStatus(route),
-      operationName: route.operation.name,
-      annotations: {
-        isLongRunning: isLongRunningOperation(program, route),
-        isPageable: isPagingOperation(program, route)
+      name: route.operation.name || "Client",
+      pathParameters: route.parameters.parameters
+        .filter((p) => p.type === "path")
+        .map((p) => {
+          return {
+            name: p.name,
+            type: p.param.sourceProperty
+              ? getSchemaForType(program, p.param.sourceProperty?.type).type
+              : getSchemaForType(program, p.param.type).type,
+            description: getDoc(program, p.param)
+          };
+        }),
+      operationGroupName: route.container.name,
+      methods: {
+        [route.verb]: [method]
       }
     };
-    if (
-      paths[route.path] !== undefined &&
-      !paths[route.path]?.methods[route.verb]
-    ) {
-      (paths[route.path] as PathMetadata).methods[route.verb] = [method];
-    } else if (paths[route.path]?.methods[route.verb]) {
-      paths[route.path]?.methods[route.verb]?.push(method);
-    } else {
-      paths[route.path] = {
-        description: getDoc(program, route.operation) ?? "",
-        name: route.operation.name || "Client",
-        pathParameters: route.parameters.parameters
-          .filter((p) => p.type === "path")
-          .map((p) => {
-            return {
-              name: p.name,
-              type: p.param.sourceProperty
-                ? getSchemaForType(program, p.param.sourceProperty?.type).type
-                : getSchemaForType(program, p.param.type).type,
-              description: getDoc(program, p.param)
-            };
-          }),
-        operationGroupName: route.container.name,
-        methods: {
-          [route.verb]: [method]
-        }
-      };
-    }
   }
-
-  return paths;
 }
 
 function hasRequiredOptions(routeParameters: HttpOperationParameters) {
