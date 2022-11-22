@@ -30,6 +30,8 @@ import {
   CollectionsModelPutParameters,
   DictionaryStringGetParameters,
   DictionaryStringPutParameters,
+  NeverGetParameters,
+  NeverPutParameters,
 } from "./parameters";
 import {
   BooleanGet200Response,
@@ -60,6 +62,8 @@ import {
   CollectionsModelPut204Response,
   DictionaryStringGet200Response,
   DictionaryStringPut204Response,
+  NeverGet200Response,
+  NeverPut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -171,6 +175,12 @@ export interface DictionaryStringOperations {
   ): StreamableMethod<DictionaryStringPut204Response>;
 }
 
+/** Contains operations for Never operations */
+export interface NeverOperations {
+  get(options?: NeverGetParameters): StreamableMethod<NeverGet200Response>;
+  put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
+}
+
 export interface BooleanGet {
   get(options?: BooleanGetParameters): StreamableMethod<BooleanGet200Response>;
   put(options: BooleanPutParameters): StreamableMethod<BooleanPut204Response>;
@@ -265,6 +275,11 @@ export interface DictionaryStringGet {
   ): StreamableMethod<DictionaryStringPut204Response>;
 }
 
+export interface NeverGet {
+  get(options?: NeverGetParameters): StreamableMethod<NeverGet200Response>;
+  put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/models/properties/types/boolean' has methods for the following verbs: get, put */
   (path: "/models/properties/types/boolean"): BooleanGet;
@@ -294,6 +309,8 @@ export interface Routes {
   (path: "/models/properties/types/collections/model"): CollectionsModelGet;
   /** Resource for '/models/properties/types/dictionary/string' has methods for the following verbs: get, put */
   (path: "/models/properties/types/dictionary/string"): DictionaryStringGet;
+  /** Resource for '/models/properties/types/never' has methods for the following verbs: get, put */
+  (path: "/models/properties/types/never"): NeverGet;
 }
 
 export type ModelsPropertyTypesClient = Client & {
@@ -312,4 +329,5 @@ export type ModelsPropertyTypesClient = Client & {
   collectionsInt: CollectionsIntOperations;
   collectionsModel: CollectionsModelOperations;
   dictionaryString: DictionaryStringOperations;
+  never: NeverOperations;
 };

@@ -16,7 +16,7 @@ Cadl Program + User Options -> Transform RLCModel Paths -> Transform RLCModel Op
 
 Install [Node.js](https://nodejs.org/en/download/) 16 or above. (Verify by `node --version`)
 
-Install [Cadl](https://github.com/microsoft/cadl/) 0.36.
+Install [Cadl](https://github.com/microsoft/cadl/) 0.37.
 
 ## Initialize Cadl Project
 
@@ -32,10 +32,10 @@ Modify `package.json`, add one line under `dependencies`:
 
 ```diff
     "dependencies": {
-      "@cadl-lang/compiler": "^0.36.0",
-      "@cadl-lang/rest": "^0.18.0",
-      "@azure-tools/cadl-azure-core": "^0.8.0",
-+      "@azure-tools/cadl-typescript": "1.0.0-beta.3"
+      "@cadl-lang/compiler": "^0.37.0",
+      "@cadl-lang/rest": "^0.19.0",
+      "@azure-tools/cadl-azure-core": "^0.9.0",
++      "@azure-tools/cadl-typescript": "1.0.0-beta.4"
     },
 ```
 

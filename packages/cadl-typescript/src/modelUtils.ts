@@ -413,7 +413,12 @@ function getSchemaForModel(
     modelSchema.children?.immediate?.push(childSchema);
   }
 
-  if (discriminator) {
+  // Enable option `isPolyParent` and discriminator only when it has valid children
+  if (
+    discriminator &&
+    modelSchema?.children?.all?.length &&
+    modelSchema?.children?.all?.length > 0
+  ) {
     if (!validateDiscriminator(program, discriminator, derivedModels)) {
       // appropriate diagnostic is generated in the validate function
       return {};
@@ -427,6 +432,7 @@ function getSchemaForModel(
       required: true,
       description: `Discriminator property for ${model.name}.`
     };
+
     modelSchema.isPolyParent = true;
   }
 
@@ -434,7 +440,8 @@ function getSchemaForModel(
   if (needRef) {
     return modelSchema;
   }
-  for (const [name, prop] of model.properties) {
+  for (const [propName, prop] of model.properties) {
+    const name = `"${propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
@@ -446,13 +453,19 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
-    const description = getFormattedPropertyDoc(program, prop, propSchema);
+    const propertyDescription = getFormattedPropertyDoc(
+      program,
+      prop,
+      propSchema
+    );
     propSchema.usage = usage;
+    // Use the description from ModelProperty not devired from Model Type
+    propSchema.description = propertyDescription;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
     if (model.baseModel) {
       const { propertyName } = getDiscriminator(program, model.baseModel) || {};
-      if (name === propertyName) {
+      if (propertyName && name === `"${propertyName}"`) {
         continue;
       }
     }
@@ -462,9 +475,8 @@ function getSchemaForModel(
     if (newPropSchema === undefined) {
       continue;
     }
-    if (description) {
-      newPropSchema["description"] = description;
-    }
+    // Use the description from ModelProperty not devired from Model Type
+    newPropSchema.description = propertyDescription;
 
     if (prop.default) {
       // modelSchema.properties[name]['default'] = getDefaultValue(program, prop.default);

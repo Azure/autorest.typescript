@@ -6,11 +6,12 @@ describe("Responses.ts", () => {
   describe("property name generation", () => {
     it("should generate property name with custome name", async () => {
       const responses = await emitResponsesFromCadl(`
+        model SimpleModel {}
         @doc("Metadata for long running operation status monitor locations")
         model LongRunningStatusLocation {
             @doc("The location for monitoring the operation state.")
             @header("Operation-Location")
-            operationLocation: ResourceLocation<string>;
+            operationLocation: ResourceLocation<SimpleModel>;
         }
         op read(): LongRunningStatusLocation;
     `);
@@ -36,11 +37,12 @@ describe("Responses.ts", () => {
 
     it("should generate property name without custome name", async () => {
       const responses = await emitResponsesFromCadl(`
+        model SimpleModel {}
         @doc("Metadata for long running operation status monitor locations")
         model LongRunningStatusLocation {
             @doc("The location for monitoring the operation state.")
             @header
-            operationLocation: ResourceLocation<string>;
+            operationLocation: ResourceLocation<SimpleModel>;
         }
         op read(): LongRunningStatusLocation;
     `);

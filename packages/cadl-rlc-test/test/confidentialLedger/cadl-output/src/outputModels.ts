@@ -52,7 +52,6 @@ export interface LedgerEntryOutput {
   /** Contents of the ledger entry. */
   contents: string;
   readonly collectionId: string;
-  /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
   readonly transactionId: string;
 }
 
@@ -61,7 +60,6 @@ export interface TransactionReceiptOutput {
   receipt: ReceiptContentsOutput;
   /** Possible values: Loading, Ready */
   state: string;
-  /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
   transactionId: string;
 }
 
@@ -71,7 +69,6 @@ export interface ReceiptContentsOutput {}
 export interface TransactionStatusOutput {
   /** Possible values: Committed, Pending */
   state: string;
-  /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
   transactionId: string;
 }
 

@@ -114,7 +114,7 @@ function getParameterMetadata(
 }
 
 function getParameterName(name: string) {
-  if (name === "content-type") {
+  if (name && name.toLowerCase() === "content-type") {
     return "contentType";
   }
   return `"${name}"`;

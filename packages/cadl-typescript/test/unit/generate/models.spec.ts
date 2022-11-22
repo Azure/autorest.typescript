@@ -379,48 +379,206 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle inheritance model -> multiple types/interfaces", async () => {
-      const schemaOutput = await emitModelsFromCadl(`
-      @discriminator("kind")
-      model Pet {
-        name: string;
-        weight?: float32;
-      }
-      model Cat extends Pet {
-        kind: "cat";
-        meow: int32;
-      }
-      model Dog extends Pet {
-        kind: "dog";
-        bark: string;
-      }
-      op read(): { @body body: Pet };
-      `);
-      assert.ok(schemaOutput);
-      const { inputModelFile, outputModelFile } = schemaOutput!;
-      assert.ok(!inputModelFile?.content);
-      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
-        outputModelFile?.content!,
-        `
-        export interface PetOutputParent {
+    describe("inheritance & polymorphism", () => {
+      it("should handle inheritance model -> multiple types/interfaces", async () => {
+        const schemaOutput = await emitModelsFromCadl(`
+        @discriminator("kind")
+        model Pet {
           name: string;
-          weight?: number;
-          "kind": "Pet" | "cat" | "dog";
+          weight?: float32;
         }
-
-        export interface CatOutput extends PetOutputParent {
+        model Cat extends Pet {
           kind: "cat";
-          meow: number;
+          meow: int32;
         }
-
-        export interface DogOutput extends PetOutputParent {
+        model Dog extends Pet {
           kind: "dog";
           bark: string;
         }
+        op read(): { @body body: Pet };
+        `);
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assert.ok(!inputModelFile?.content);
+        assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+          export interface PetOutputParent {
+            name: string;
+            weight?: number;
+            "kind": "Pet" | "cat" | "dog";
+          }
+  
+          export interface CatOutput extends PetOutputParent {
+            kind: "cat";
+            meow: number;
+          }
+  
+          export interface DogOutput extends PetOutputParent {
+            kind: "dog";
+            bark: string;
+          }
+  
+          export type PetOutput = CatOutput | DogOutput;`
+        );
+      });
 
-        export type PetOutput = CatOutput | DogOutput;`
-      );
+      it("should handle multiple inheritance model -> multiple types/interfaces", async () => {
+        const schemaOutput = await emitModelsFromCadl(`
+        @doc("This is base model for polymorphic multiple levels inheritance with a discriminator.")
+        @discriminator("kind")
+        model Fish {
+          age: int32;
+        }
+  
+        @doc("The second level model in polymorphic multiple levels inheritance and it defines a new discriminator.")
+        @discriminator("sharktype")
+        model Shark extends Fish {
+          kind: "shark";
+        }
+  
+        @doc("The second level model in polymorphic multiple levels inheritance which contains references to other polymorphic instances.")
+        model Salmon extends Fish {
+          kind: "salmon";
+          friends?: Fish[];
+          hate?: Record<Fish>;
+          partner?: Fish;
+        }
+  
+        @doc("The third level model SawShark in polymorphic multiple levels inheritance.")
+        @discriminator("sharktype")
+        model SawShark extends Shark {
+          sharktype: "saw";
+        }
+  
+        @doc("The third level model GoblinShark in polymorphic multiple levels inheritance.")
+        model GoblinShark extends Shark {
+          sharktype: "goblin";
+        }
+        op read(): { @body body: Fish };
+        `);
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assert.ok(!inputModelFile?.content);
+        assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
+        export interface FishOutputParent {
+          age: number;
+          kind: "Fish" | "shark" | "salmon";
+        }
+        
+        /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
+        export interface SharkOutputParent extends FishOutputParent {
+          kind: "shark";
+          sharktype: "Shark" | "saw" | "goblin";
+        }
+        
+        /** The third level model SawShark in polymorphic multiple levels inheritance. */
+        export interface SawSharkOutput extends SharkOutputParent {
+          sharktype: "saw";
+        }
+        
+        /** The third level model GoblinShark in polymorphic multiple levels inheritance. */
+        export interface GoblinSharkOutput extends SharkOutputParent {
+          sharktype: "goblin";
+        }
+        
+        /** The second level model in polymorphic multiple levels inheritance which contains references to other polymorphic instances. */
+        export interface SalmonOutput extends FishOutputParent {
+          kind: "salmon";
+          friends?: Array<FishOutput>;
+          hate?: Record<string, FishOutput>;
+          partner?: FishOutput;
+        }
+        
+        /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
+        export type FishOutput = SharkOutput | SalmonOutput;
+        /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
+        export type SharkOutput = SawSharkOutput | GoblinSharkOutput;
+        `
+        );
+      });
+
+      it("should handle basic model with special words -> type/interface", async () => {
+        const cadlDefinition = `
+        model SimpleModel {
+          "model.kind": "derived";
+          "derived.name": string;
+        }`;
+        const cadlType = "SimpleModel";
+        const inputModelName = "SimpleModel";
+        await verifyPropertyType(cadlType, inputModelName, {
+          additionalCadlDefinition: cadlDefinition,
+          outputType: `${inputModelName}Output`,
+          additionalInputContent: `
+          export interface ${inputModelName} {
+            "model.kind": "derived";
+            "derived.name": string;
+          }`,
+          additionalOutputContent: `
+          export interface ${inputModelName}Output {
+            "model.kind": "derived";
+            "derived.name": string;
+          }`
+        });
+      });
+
+      it("should handle inheritance model with special words -> type/interface", async () => {
+        const cadlDefinition = `
+        @doc("This is a base model has discriminator name containing dot.")
+        @discriminator("model.kind")
+        model BaseModel {}
+  
+        @doc("This is a model has property names of special words or characters.")
+        @discriminator("model.kind")
+        model DerivedModel extends BaseModel {
+          "model.kind": "derived";
+          "derived.name": string;
+          for: string;
+        }`;
+        const cadlType = "DerivedModel";
+        const inputModelName = "DerivedModel";
+        await verifyPropertyType(cadlType, inputModelName, {
+          additionalCadlDefinition: cadlDefinition,
+          outputType: `${inputModelName}Output`,
+          additionalInputContent: `
+          /** This is a model has property names of special words or characters. */
+          export interface ${inputModelName} extends BaseModelParent {
+            "model.kind": "derived";
+            "derived.name": string;
+            for: string; 
+          }
+          
+          /** This is a base model has discriminator name containing dot. */
+          export interface BaseModelParent {
+            "model.kind": "BaseModel" | "derived";
+          }
+  
+          /** This is a base model has discriminator name containing dot. */
+          export type BaseModel = ${inputModelName};
+          `,
+          additionalOutputContent: `
+          /** This is a model has property names of special words or characters. */
+          export interface ${inputModelName}Output extends BaseModelOutputParent {
+            "model.kind": "derived";
+            "derived.name": string;
+            for: string; 
+          }
+          
+          /** This is a base model has discriminator name containing dot. */
+          export interface BaseModelOutputParent {
+            "model.kind": "BaseModel" | "derived";
+          }
+  
+          /** This is a base model has discriminator name containing dot. */
+          export type BaseModelOutput = ${inputModelName}Output;
+          `
+        });
+      });
     });
   });
   describe("bytes generation as property", () => {
@@ -496,7 +654,6 @@ describe("Input/output model type", () => {
   });
 
   describe("property definition correctness", () => {
-
     it("should handle @visibility(read) -> readonly ", async () => {
       const cadlDefinition = `
       model SimpleModel {
