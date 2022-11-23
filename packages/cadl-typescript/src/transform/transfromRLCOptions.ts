@@ -41,6 +41,7 @@ function extractRLCOptions(
   const generateMetadata = getGenerateMetadata(emitterOptions);
   const generateTest = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
+  const enableOperationGroup = getEnableOperationGroup(emitterOptions);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -49,7 +50,8 @@ function extractRLCOptions(
     generateMetadata,
     generateTest,
     azureSdkForJs,
-    serviceInfo
+    serviceInfo,
+    enableOperationGroup
   };
 }
 
@@ -152,6 +154,13 @@ function getGenerateTest(emitterOptions: RLCOptions) {
     emitterOptions.generateTest === null
     ? true
     : Boolean(emitterOptions.generateTest);
+}
+
+function getEnableOperationGroup(emitterOptions: RLCOptions) {
+  return emitterOptions.enableOperationGroup === undefined ||
+    emitterOptions.enableOperationGroup === null
+    ? true
+    : Boolean(emitterOptions.enableOperationGroup);
 }
 
 function getCredentialInfo(program: Program, emitterOptions: RLCOptions) {

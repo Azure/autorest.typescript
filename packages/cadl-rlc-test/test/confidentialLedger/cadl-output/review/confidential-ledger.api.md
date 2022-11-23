@@ -16,7 +16,6 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface CollectionOutput {
-    // (undocumented)
     collectionId: string;
 }
 
@@ -326,22 +325,15 @@ export type ConfidentialLedgerListLedgerEntriesParameters = RequestParameters;
 // @public
 export interface ConfidentialLedgerOperations {
     createLedgerEntry(options?: ConfidentialLedgerCreateLedgerEntryParameters): StreamableMethod<ConfidentialLedgerCreateLedgerEntry201Response | ConfidentialLedgerCreateLedgerEntryDefaultResponse>;
-    // (undocumented)
     createOrUpdateUser(userId: string, options: ConfidentialLedgerCreateOrUpdateUserParameters): StreamableMethod<ConfidentialLedgerCreateOrUpdateUser200Response | ConfidentialLedgerCreateOrUpdateUser201Response | ConfidentialLedgerCreateOrUpdateUserDefaultResponse>;
-    // (undocumented)
     deleteUser(userId: string, options?: ConfidentialLedgerDeleteUserParameters): StreamableMethod<ConfidentialLedgerDeleteUser204Response | ConfidentialLedgerDeleteUserDefaultResponse>;
     getConsortiumMembers(options?: ConfidentialLedgerGetConsortiumMembersParameters): StreamableMethod<ConfidentialLedgerGetConsortiumMembers200Response | ConfidentialLedgerGetConsortiumMembersDefaultResponse>;
     getConstitution(options?: ConfidentialLedgerGetConstitutionParameters): StreamableMethod<ConfidentialLedgerGetConstitution200Response | ConfidentialLedgerGetConstitutionDefaultResponse>;
-    // (undocumented)
     getCurrentLedgerEntry(options?: ConfidentialLedgerGetCurrentLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetCurrentLedgerEntry200Response | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse>;
     getEnclaveQuotes(options?: ConfidentialLedgerGetEnclaveQuotesParameters): StreamableMethod<ConfidentialLedgerGetEnclaveQuotes200Response | ConfidentialLedgerGetEnclaveQuotesDefaultResponse>;
-    // (undocumented)
     getLedgerEntry(transactionId: string, options?: ConfidentialLedgerGetLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetLedgerEntry200Response | ConfidentialLedgerGetLedgerEntryDefaultResponse>;
-    // (undocumented)
     getReceipt(transactionId: string, options?: ConfidentialLedgerGetReceiptParameters): StreamableMethod<ConfidentialLedgerGetReceipt200Response | ConfidentialLedgerGetReceiptDefaultResponse>;
-    // (undocumented)
     getTransactionStatus(transactionId: string, options?: ConfidentialLedgerGetTransactionStatusParameters): StreamableMethod<ConfidentialLedgerGetTransactionStatus200Response | ConfidentialLedgerGetTransactionStatusDefaultResponse>;
-    // (undocumented)
     getUser(userId: string, options?: ConfidentialLedgerGetUserParameters): StreamableMethod<ConfidentialLedgerGetUser200Response | ConfidentialLedgerGetUserDefaultResponse>;
     listCollections(options?: ConfidentialLedgerListCollectionsParameters): StreamableMethod<ConfidentialLedgerListCollections200Response | ConfidentialLedgerListCollectionsDefaultResponse>;
     listLedgerEntries(options?: ConfidentialLedgerListLedgerEntriesParameters): StreamableMethod<ConfidentialLedgerListLedgerEntries200Response | ConfidentialLedgerListLedgerEntriesDefaultResponse>;
@@ -359,11 +351,8 @@ export default createClient;
 
 // @public (undocumented)
 export interface DeleteUser {
-    // (undocumented)
     delete(options?: ConfidentialLedgerDeleteUserParameters): StreamableMethod<ConfidentialLedgerDeleteUser204Response | ConfidentialLedgerDeleteUserDefaultResponse>;
-    // (undocumented)
     get(options?: ConfidentialLedgerGetUserParameters): StreamableMethod<ConfidentialLedgerGetUser200Response | ConfidentialLedgerGetUserDefaultResponse>;
-    // (undocumented)
     patch(options: ConfidentialLedgerCreateOrUpdateUserParameters): StreamableMethod<ConfidentialLedgerCreateOrUpdateUser200Response | ConfidentialLedgerCreateOrUpdateUser201Response | ConfidentialLedgerCreateOrUpdateUserDefaultResponse>;
 }
 
@@ -396,7 +385,6 @@ export interface GetConstitution {
 
 // @public (undocumented)
 export interface GetCurrentLedgerEntry {
-    // (undocumented)
     get(options?: ConfidentialLedgerGetCurrentLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetCurrentLedgerEntry200Response | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse>;
 }
 
@@ -407,7 +395,6 @@ export interface GetEnclaveQuotes {
 
 // @public (undocumented)
 export interface GetLedgerEntry {
-    // (undocumented)
     get(options?: ConfidentialLedgerGetLedgerEntryParameters): StreamableMethod<ConfidentialLedgerGetLedgerEntry200Response | ConfidentialLedgerGetLedgerEntryDefaultResponse>;
 }
 
@@ -419,13 +406,11 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 
 // @public (undocumented)
 export interface GetReceipt {
-    // (undocumented)
     get(options?: ConfidentialLedgerGetReceiptParameters): StreamableMethod<ConfidentialLedgerGetReceipt200Response | ConfidentialLedgerGetReceiptDefaultResponse>;
 }
 
 // @public (undocumented)
 export interface GetTransactionStatus {
-    // (undocumented)
     get(options?: ConfidentialLedgerGetTransactionStatusParameters): StreamableMethod<ConfidentialLedgerGetTransactionStatus200Response | ConfidentialLedgerGetTransactionStatusDefaultResponse>;
 }
 
@@ -474,29 +459,27 @@ export function isUnexpected(response: ConfidentialLedgerGetUser200Response | Co
 // @public (undocumented)
 export function isUnexpected(response: ConfidentialLedgerCreateOrUpdateUser200Response | ConfidentialLedgerCreateOrUpdateUser201Response | ConfidentialLedgerCreateOrUpdateUserDefaultResponse): response is ConfidentialLedgerCreateOrUpdateUserDefaultResponse;
 
-// @public (undocumented)
+// @public
 export interface LedgerEntry {
     contents: string;
 }
 
-// @public (undocumented)
+// @public
 export interface LedgerEntryOutput {
-    // (undocumented)
     readonly collectionId: string;
     contents: string;
-    // (undocumented)
     readonly transactionId: string;
 }
 
 // @public
 export interface LedgerUser {
-    assignedRole: string;
+    assignedRole: "Administrator" | "Contributor" | "Reader";
     userId: string;
 }
 
 // @public
 export interface LedgerUserOutput {
-    assignedRole: string;
+    assignedRole: "Administrator" | "Contributor" | "Reader";
     userId: string;
 }
 
@@ -518,7 +501,7 @@ export interface ListLedgerEntries {
 export interface PagedLedgerEntriesOutput {
     entries: Array<LedgerEntryOutput>;
     nextLink?: string;
-    state: string;
+    state: "Loading" | "Ready";
 }
 
 // @public
@@ -540,7 +523,7 @@ export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
-// @public (undocumented)
+// @public
 export interface ReceiptContentsOutput {
 }
 
@@ -560,17 +543,14 @@ export interface Routes {
 
 // @public
 export interface TransactionReceiptOutput {
-    // (undocumented)
     receipt: ReceiptContentsOutput;
-    state: string;
-    // (undocumented)
+    state: "Loading" | "Ready";
     transactionId: string;
 }
 
 // @public
 export interface TransactionStatusOutput {
-    state: string;
-    // (undocumented)
+    state: "Committed" | "Pending";
     transactionId: string;
 }
 

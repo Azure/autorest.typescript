@@ -20,7 +20,9 @@
         "name": "ledgerUri",
         "in": "path",
         "required": true,
-        "type": "string"
+        "type": "string",
+        "format": "uri",
+        "x-ms-skip-url-encoding": true
       }
     ]
   },
@@ -232,6 +234,7 @@
       "get": {
         "operationId": "ConfidentialLedger_GetLedgerEntry",
         "summary": "Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate the collection from which to fetch the value.",
+        "description": "Get a LedgerEntry",
         "parameters": [
           {
             "name": "transactionId",
@@ -267,6 +270,7 @@
       "get": {
         "operationId": "ConfidentialLedger_GetReceipt",
         "summary": "Gets a receipt certifying ledger contents at a particular transaction id.",
+        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
             "name": "transactionId",
@@ -299,6 +303,7 @@
       "get": {
         "operationId": "ConfidentialLedger_GetTransactionStatus",
         "summary": "Gets a receipt certifying ledger contents at a particular transaction id.",
+        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
             "name": "transactionId",
@@ -331,6 +336,7 @@
       "get": {
         "operationId": "ConfidentialLedger_GetCurrentLedgerEntry",
         "summary": "Gets the current value available in the ledger.",
+        "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
             "$ref": "#/parameters/CollectionIdParameter"
@@ -359,6 +365,7 @@
       "delete": {
         "operationId": "ConfidentialLedger_DeleteUser",
         "summary": "Deletes a user from the Confidential Ledger.",
+        "description": "Delete a LedgerUser",
         "parameters": [
           {
             "name": "userId",
@@ -387,6 +394,7 @@
       "get": {
         "operationId": "ConfidentialLedger_GetUser",
         "summary": "Gets a user.",
+        "description": "Get a LedgerUser",
         "parameters": [
           {
             "name": "userId",
@@ -418,6 +426,7 @@
       "patch": {
         "operationId": "ConfidentialLedger_CreateOrUpdateUser",
         "summary": "Adds a user or updates a user's fields.",
+        "description": "Creates or updates a LedgerUser",
         "parameters": [
           {
             "name": "userId",
@@ -576,7 +585,8 @@
       "type": "object",
       "properties": {
         "collectionId": {
-          "type": "string"
+          "type": "string",
+          "description": "The collection id."
         }
       },
       "description": "Identifier for collections.",
@@ -586,7 +596,8 @@
     },
     "CollectionIdParameter": {
       "type": "object",
-      "properties": {}
+      "properties": {},
+      "description": "The collectionId parameter definition."
     },
     "LedgerEntry": {
       "type": "object",
@@ -597,13 +608,16 @@
         },
         "collectionId": {
           "type": "string",
+          "description": "The collection id.",
           "readOnly": true
         },
         "transactionId": {
           "$ref": "#/definitions/TransactionId",
+          "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
           "readOnly": true
         }
       },
+      "description": "Details about a ledger entry.",
       "required": [
         "contents",
         "collectionId",
@@ -619,17 +633,6 @@
       ],
       "x-ms-enum": {
         "name": "LedgerQueryState",
-        "modelAsString": true
-      }
-    },
-    "LedgerQueryStateKV": {
-      "type": "string",
-      "enum": [
-        "Loading",
-        "Ready"
-      ],
-      "x-ms-enum": {
-        "name": "LedgerQueryStateKV",
         "modelAsString": false
       }
     },
@@ -662,18 +665,6 @@
       ],
       "x-ms-enum": {
         "name": "LedgerUserRole",
-        "modelAsString": true
-      }
-    },
-    "LedgerUserRoleKV": {
-      "type": "string",
-      "enum": [
-        "Administrator",
-        "Contributor",
-        "Reader"
-      ],
-      "x-ms-enum": {
-        "name": "LedgerUserRoleKV",
         "modelAsString": false
       }
     },
@@ -684,7 +675,8 @@
           "type": "string",
           "enum": [
             "implicit"
-          ]
+          ],
+          "description": "type of auth flow"
         },
         "authorizationUrl": {
           "type": "string",
@@ -693,7 +685,8 @@
           ],
           "x-ms-enum": {
             "modelAsString": false
-          }
+          },
+          "description": "authorizationUrl of auth flow"
         },
         "tokenUrl": {
           "type": "string",
@@ -702,14 +695,17 @@
           ],
           "x-ms-enum": {
             "modelAsString": false
-          }
+          },
+          "description": "tokenUrl of auth flow"
         },
         "scopes": {
           "type": "array",
           "items": {},
-          "x-cadl-name": "[https://confidential-ledger.azure.com/.default]"
+          "x-cadl-name": "[https://confidential-ledger.azure.com/.default]",
+          "description": "scopes of auth flow"
         }
       },
+      "description": "Define the auth flow",
       "required": [
         "type",
         "authorizationUrl",
@@ -748,7 +744,8 @@
     },
     "ReceiptContents": {
       "type": "object",
-      "properties": {}
+      "properties": {},
+      "description": "The contents of a receipt."
     },
     "TransactionId": {
       "type": "string",
@@ -758,13 +755,16 @@
       "type": "object",
       "properties": {
         "receipt": {
-          "$ref": "#/definitions/ReceiptContents"
+          "$ref": "#/definitions/ReceiptContents",
+          "description": "The receipt contents."
         },
         "state": {
-          "$ref": "#/definitions/LedgerQueryState"
+          "$ref": "#/definitions/LedgerQueryState",
+          "description": "The state of the ledger query."
         },
         "transactionId": {
-          "$ref": "#/definitions/TransactionId"
+          "$ref": "#/definitions/TransactionId",
+          "description": "The transaction ID."
         }
       },
       "description": "A receipt certifying the transaction at the specified id.",
@@ -783,17 +783,6 @@
       ],
       "x-ms-enum": {
         "name": "TransactionState",
-        "modelAsString": true
-      }
-    },
-    "TransactionStateKV": {
-      "type": "string",
-      "enum": [
-        "Committed",
-        "Pending"
-      ],
-      "x-ms-enum": {
-        "name": "TransactionStateKV",
         "modelAsString": false
       }
     },
@@ -801,10 +790,12 @@
       "type": "object",
       "properties": {
         "state": {
-          "$ref": "#/definitions/TransactionState"
+          "$ref": "#/definitions/TransactionState",
+          "description": "The transaction state."
         },
         "transactionId": {
-          "$ref": "#/definitions/TransactionId"
+          "$ref": "#/definitions/TransactionId",
+          "description": "The transaction ID."
         }
       },
       "description": "Response returned to a query for the transaction status.",

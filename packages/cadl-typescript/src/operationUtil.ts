@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName, RLCOptions } from "@azure-tools/rlc-common";
 import { DecoratedType, ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import {
   getHttpOperation,
@@ -36,6 +36,17 @@ export function getOperationStatuscode(
     default:
       return `${response.statusCode}`;
   }
+}
+
+// FIXME: this is the placeholder function to extract the operationGroupName
+export function getOperationGroupName(
+  route: HttpOperation,
+  options?: RLCOptions
+) {
+  if (options && options.enableOperationGroup) {
+    return route.container.name;
+  }
+  return "";
 }
 
 export function isDefaultStatusCode(statusCode: StatusCode) {

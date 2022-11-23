@@ -7,7 +7,8 @@ import {
   PathMetadata,
   Paths,
   ResponseTypes,
-  OperationMethod
+  OperationMethod,
+  RLCOptions
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics, Program } from "@cadl-lang/compiler";
 import {
@@ -24,6 +25,7 @@ import {
 import { getSchemaForType } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 import {
+  getOperationGroupName,
   getOperationStatuscode,
   isDefaultStatusCode,
   isDefinedStatusCode,
@@ -31,14 +33,18 @@ import {
   isPagingOperation
 } from "../operationUtil.js";
 
-export function transformPaths(program: Program, client: Client): Paths {
+export function transformPaths(
+  program: Program,
+  client: Client,
+  options?: RLCOptions
+): Paths {
   const operationGroups = listOperationGroups(program, client);
   const paths: Paths = {};
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(program, operationGroup);
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      transformOperation(program, route, paths);
+      transformOperation(program, route, paths, options);
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
@@ -49,15 +55,52 @@ export function transformPaths(program: Program, client: Client): Paths {
   return paths;
 }
 
+/**
+ * This function computes all the response types error and success
+ * an operation can end up returning.
+ */
+function getResponseTypes(
+  operation: HttpOperation,
+  options?: RLCOptions
+): ResponseTypes {
+  const returnTypes: ResponseTypes = {
+    error: [],
+    success: []
+  };
+  function getResponseType(responses: HttpOperationResponse[]) {
+    return responses
+      .filter((r) => r.statusCode && r.statusCode.length)
+      .map((r) => {
+        const statusCode = getOperationStatuscode(r);
+        const responseName = getResponseTypeName(
+          getOperationGroupName(operation, options),
+          operation.operation.name,
+          statusCode
+        );
+        return responseName;
+      });
+  }
+  if (operation.responses && operation.responses.length) {
+    returnTypes.error = getResponseType(
+      operation.responses.filter((r) => isDefaultStatusCode(r.statusCode))
+    );
+    returnTypes.success = getResponseType(
+      operation.responses.filter((r) => isDefinedStatusCode(r.statusCode))
+    );
+  }
+  return returnTypes;
+}
+
 function transformOperation(
   program: Program,
   route: HttpOperation,
-  paths: Paths
+  paths: Paths,
+  options?: RLCOptions
 ) {
   const respNames = [];
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
-      route.container.name,
+      getOperationGroupName(route, options),
       route.operation.name,
       getOperationStatuscode(resp)
     );
@@ -133,37 +176,4 @@ export function gerOperationSuccessStatus(operation: HttpOperation): string[] {
   }
 
   return status;
-}
-
-/**
- * This function computes all the response types error and success
- * an operation can end up returning.
- */
-function getResponseTypes(operation: HttpOperation): ResponseTypes {
-  const returnTypes: ResponseTypes = {
-    error: [],
-    success: []
-  };
-  function getResponseType(responses: HttpOperationResponse[]) {
-    return responses
-      .filter((r) => r.statusCode && r.statusCode.length)
-      .map((r) => {
-        const statusCode = getOperationStatuscode(r);
-        const responseName = getResponseTypeName(
-          operation.container.name,
-          operation.operation.name,
-          statusCode
-        );
-        return responseName;
-      });
-  }
-  if (operation.responses && operation.responses.length) {
-    returnTypes.error = getResponseType(
-      operation.responses.filter((r) => isDefaultStatusCode(r.statusCode))
-    );
-    returnTypes.success = getResponseType(
-      operation.responses.filter((r) => isDefinedStatusCode(r.statusCode))
-    );
-  }
-  return returnTypes;
 }

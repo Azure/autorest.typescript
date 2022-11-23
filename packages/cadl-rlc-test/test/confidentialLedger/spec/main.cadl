@@ -14,33 +14,41 @@ using OpenAPI;
 // ** Service description **
 //
 
-// TODO: Use `Uri` type when available: https://github.com/microsoft/cadl/issues/654
-@service({title: "Confidential Ledger Service", version: "2022-05-13"})
+@service({
+  title: "Confidential Ledger Service",
+  version: "2022-05-13",
+})
 @useAuth(OAuth2Auth<[MyFlow]>)
 @versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
 @server(
   "{ledgerUri}",
   "Confidential Ledger Service",
   {
-    ledgerUri: string,
+    ledgerUri: uri,
   }
 )
 namespace Azure.Security.ConfidentialLedger;
+
+@doc("Define the auth flow")
+model MyFlow {
+  @doc("type of auth flow")
+  type: OAuth2FlowType.implicit;
+  @doc("authorizationUrl of auth flow")
+  authorizationUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/authorize";
+  @doc("tokenUrl of auth flow")
+  tokenUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/token";
+  @doc("scopes of auth flow")
+  scopes: ["https://confidential-ledger.azure.com/.default"];
+}
 
 //
 // ** Parameter descriptions **
 //
 
-model MyFlow {
-  type: OAuth2FlowType.implicit;
-  authorizationUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/authorize";
-  tokenUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/token";
-  scopes: ["https://confidential-ledger.azure.com/.default"];
-}
-
 @doc("A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.")
 model TransactionId is string;
 
+@doc("The collectionId parameter definition.")
 model CollectionIdParameter {
   @query
   @doc("The collection id.")
@@ -55,29 +63,29 @@ model CollectionIdParameter {
 @doc("Identifier for collections.")
 model Collection {
   @key
+  @doc("The collection id.")
   collectionId: string;
 }
 
+@doc("Details about a ledger entry.")
 @resource("transactions")
 model LedgerEntry {
   @doc("Contents of the ledger entry.")
   contents: string;
 
   @visibility("read")
+  @doc("The collection id.")
   collectionId: string;
 
   @key
   @visibility("read")
-  // @doc("A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.")
+  @doc("A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.")
   transactionId: TransactionId;
 }
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("Represents an assignable role.")
-@knownValues(LedgerUserRoleKV)
-model LedgerUserRole is string;
-
-enum LedgerUserRoleKV {
+enum LedgerUserRole {
   Administrator,
   Contributor,
   Reader,
@@ -95,40 +103,43 @@ model LedgerUser {
   assignedRole: LedgerUserRole;
 }
 
+@doc("The contents of a receipt.")
 model ReceiptContents {
   // Elided for now
 }
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("State of a ledger query.")
-@knownValues(LedgerQueryStateKV)
-model LedgerQueryState is string;
-
-enum LedgerQueryStateKV {
+enum LedgerQueryState {
   Loading,
   Ready,
 }
 
 @doc("A receipt certifying the transaction at the specified id.")
 model TransactionReceipt {
+  @doc("The receipt contents.")
   receipt: ReceiptContents;
+
+  @doc("The state of the ledger query.")
   state: LedgerQueryState;
+
+  @doc("The transaction ID.")
   transactionId: TransactionId;
 }
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("Represents the state of the transaction.")
-@knownValues(TransactionStateKV)
-model TransactionState is string;
-
-enum TransactionStateKV {
+enum TransactionState {
   Committed,
   Pending,
 }
 
 @doc("Response returned to a query for the transaction status.")
 model TransactionStatus {
+  @doc("The transaction state.")
   state: TransactionState;
+
+  @doc("The transaction ID.")
   transactionId: TransactionId;
 }
 
@@ -153,6 +164,7 @@ model PagedLedgerEntries {
 
 @route("/app")
 namespace ConfidentialLedger {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
   @summary("Retrieves a list of collection ids present in the Confidential Ledger")
   @doc("Collection ids are user-created collections of ledger entries")
   op listCollections is Azure.Core.Foundations.NonPagedResourceList<Collection>;
@@ -197,6 +209,7 @@ namespace ConfidentialLedger {
     }
   >;
 
+  @doc("Get a LedgerEntry")
   @summary("Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate the collection from which to fetch the value.")
   op getLedgerEntry is Azure.Core.ResourceRead<
     LedgerEntry,
@@ -207,18 +220,21 @@ namespace ConfidentialLedger {
 
   @get
   @action("receipt")
+  @doc("Runs a custom action on LedgerEntry")
   @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
   @segmentSeparator("/")
   op getReceipt is Azure.Core.ResourceAction<LedgerEntry, {}, TransactionReceipt>;
 
   @get
   @action("status")
+  @doc("Runs a custom action on LedgerEntry")
   @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
   @segmentSeparator("/")
   op getTransactionStatus is Azure.Core.ResourceAction<LedgerEntry, {}, TransactionStatus>;
 
   // TODO: There isn't a way to customize the action name at the moment
   @get
+  @doc("Runs a custom action on LedgerEntry")
   @summary("Gets the current value available in the ledger.")
   @segmentSeparator("/")
   op getCurrentLedgerEntry is Azure.Core.ResourceCollectionAction<
@@ -227,12 +243,15 @@ namespace ConfidentialLedger {
     LedgerEntry
   >;
 
+  @doc("Delete a LedgerUser")
   @summary("Deletes a user from the Confidential Ledger.")
   op deleteUser is Azure.Core.ResourceDelete<LedgerUser>;
 
+  @doc("Get a LedgerUser")
   @summary("Gets a user.")
   op getUser is Azure.Core.ResourceRead<LedgerUser>;
 
+  @doc("Creates or updates a LedgerUser")
   @summary("Adds a user or updates a user's fields.")
   op createOrUpdateUser is Azure.Core.ResourceCreateOrUpdate<LedgerUser>;
 }

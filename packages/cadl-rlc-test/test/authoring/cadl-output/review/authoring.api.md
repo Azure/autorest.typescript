@@ -22,15 +22,125 @@ function createClient(Endpoint: string, credentials: KeyCredential, options?: Cl
 export default createClient;
 
 // @public (undocumented)
+export interface CreateOrUpdate {
+    delete(options?: DeleteParameters): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
+    get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
+    patch(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface CreateOrUpdate200Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface CreateOrUpdate200Response extends HttpResponse {
+    // (undocumented)
+    body: ProjectOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdate200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface CreateOrUpdate201Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface CreateOrUpdate201Response extends HttpResponse {
+    // (undocumented)
+    body: ProjectOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdate201Headers;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateBodyParam {
+    // (undocumented)
+    body?: ProjectResourceMergeAndPatch;
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateMediaTypesParam {
+    contentType: "application/merge-patch+json";
+}
+
+// @public (undocumented)
+export type CreateOrUpdateParameters = CreateOrUpdateMediaTypesParam & CreateOrUpdateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface Delete202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface Delete202Response extends HttpResponse {
+    // (undocumented)
+    body: OperationStatusOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & Delete202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface DeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface DeleteDeployment202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface DeleteDeployment202Response extends HttpResponse {
+    // (undocumented)
+    body: OperationStatusOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteDeployment202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface DeleteDeploymentDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type DeleteDeploymentParameters = RequestParameters;
+
+// @public (undocumented)
+export type DeleteParameters = RequestParameters;
+
+// @public
 export interface DeploymentJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
     readonly expirationDateTime: string;
-    // (undocumented)
     id: string;
     jobId: string;
     readonly lastUpdatedDateTime: string;
-    status: string;
+    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
     warnings: Array<JobWarningOutput>;
 }
 
@@ -40,70 +150,43 @@ export interface DeploymentListOutput {
     value: Array<DeploymentOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface DeploymentOutput {
-    // (undocumented)
     name: string;
 }
 
 // @public (undocumented)
-export interface DeploymentsDeleteDeployment202Headers {
+export interface DeployProject200Headers {
     "operation-location": string;
 }
 
 // @public
-export interface DeploymentsDeleteDeployment202Response extends HttpResponse {
-    // (undocumented)
-    body: OperationStatusOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & DeploymentsDeleteDeployment202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface DeploymentsDeleteDeploymentDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type DeploymentsDeleteDeploymentParameters = RequestParameters;
-
-// @public (undocumented)
-export interface DeploymentsDeployProject200Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface DeploymentsDeployProject200Response extends HttpResponse {
+export interface DeployProject200Response extends HttpResponse {
     // (undocumented)
     body: DeploymentOutput;
     // (undocumented)
-    headers: RawHttpHeaders & DeploymentsDeployProject200Headers;
+    headers: RawHttpHeaders & DeployProject200Headers;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface DeploymentsDeployProject201Headers {
+export interface DeployProject201Headers {
     "operation-location": string;
 }
 
 // @public
-export interface DeploymentsDeployProject201Response extends HttpResponse {
+export interface DeployProject201Response extends HttpResponse {
     // (undocumented)
     body: DeploymentOutput;
     // (undocumented)
-    headers: RawHttpHeaders & DeploymentsDeployProject201Headers;
+    headers: RawHttpHeaders & DeployProject201Headers;
     // (undocumented)
     status: "201";
 }
 
 // @public (undocumented)
-export interface DeploymentsDeployProjectDefaultResponse extends HttpResponse {
+export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
@@ -111,100 +194,7 @@ export interface DeploymentsDeployProjectDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeploymentsDeployProjectParameters = RequestParameters;
-
-// @public (undocumented)
-export interface DeploymentsGetDeployment {
-    delete(options?: DeploymentsDeleteDeploymentParameters): StreamableMethod<DeploymentsDeleteDeployment202Response | DeploymentsDeleteDeploymentDefaultResponse>;
-    get(options?: DeploymentsGetDeploymentParameters): StreamableMethod<DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse>;
-    put(options?: DeploymentsDeployProjectParameters): StreamableMethod<DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse>;
-}
-
-// @public
-export interface DeploymentsGetDeployment200Response extends HttpResponse {
-    // (undocumented)
-    body: DeploymentOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface DeploymentsGetDeploymentDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type DeploymentsGetDeploymentParameters = RequestParameters;
-
-// @public (undocumented)
-export interface DeploymentsList {
-    get(options?: DeploymentsListParameters): StreamableMethod<DeploymentsList200Response | DeploymentsListDefaultResponse>;
-}
-
-// @public
-export interface DeploymentsList200Response extends HttpResponse {
-    // (undocumented)
-    body: DeploymentListOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface DeploymentsListDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type DeploymentsListParameters = RequestParameters;
-
-// @public
-export interface DeploymentsOperations {
-    deleteDeployment(projectName: string, deploymentName: string, options?: DeploymentsDeleteDeploymentParameters): StreamableMethod<DeploymentsDeleteDeployment202Response | DeploymentsDeleteDeploymentDefaultResponse>;
-    deployProject(projectName: string, deploymentName: string, options?: DeploymentsDeployProjectParameters): StreamableMethod<DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse>;
-    getDeployment(projectName: string, deploymentName: string, options?: DeploymentsGetDeploymentParameters): StreamableMethod<DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse>;
-    list(projectName: string, options?: DeploymentsListParameters): StreamableMethod<DeploymentsList200Response | DeploymentsListDefaultResponse>;
-    swapDeployments(projectName: string, options: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface DeploymentsSwapDeployments {
-    post(options: DeploymentsSwapDeploymentsParameters): StreamableMethod<DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface DeploymentsSwapDeployments202Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface DeploymentsSwapDeployments202Response extends HttpResponse {
-    // (undocumented)
-    headers: RawHttpHeaders & DeploymentsSwapDeployments202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface DeploymentsSwapDeploymentsBodyParam {
-    body: SwapDeploymentsOptions;
-}
-
-// @public (undocumented)
-export interface DeploymentsSwapDeploymentsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type DeploymentsSwapDeploymentsParameters = DeploymentsSwapDeploymentsBodyParam & RequestParameters;
+export type DeployProjectParameters = RequestParameters;
 
 // @public
 export interface ErrorModelOutput {
@@ -220,8 +210,114 @@ export interface ErrorResponseOutput {
     error: ErrorModelOutput;
 }
 
+// @public (undocumented)
+export interface Export {
+    post(options: ExportParameters): StreamableMethod<Export202Response | ExportDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface Export202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface Export202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & Export202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface ExportDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ExportParameters = ExportQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface ExportQueryParam {
+    // (undocumented)
+    queryParameters: ExportQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface ExportQueryParamProperties {
+    projectFileVersion: string;
+}
+
+// @public
+export interface Get200Response extends HttpResponse {
+    // (undocumented)
+    body: ProjectOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
+
+// @public (undocumented)
+export interface GetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface GetDeployment {
+    delete(options?: DeleteDeploymentParameters): StreamableMethod<DeleteDeployment202Response | DeleteDeploymentDefaultResponse>;
+    get(options?: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
+    put(options?: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
+}
+
+// @public
+export interface GetDeployment200Response extends HttpResponse {
+    // (undocumented)
+    body: DeploymentOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetDeploymentDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetDeploymentParameters = RequestParameters;
+
+// @public (undocumented)
+export interface GetDeploymentStatus {
+    get(options?: GetDeploymentStatusParameters): StreamableMethod<GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse>;
+}
+
+// @public
+export interface GetDeploymentStatus200Response extends HttpResponse {
+    // (undocumented)
+    body: DeploymentJobOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetDeploymentStatusParameters = RequestParameters;
 
 // @public
 export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: LroEngineOptions<TResult, PollOperationState<TResult>>): PollerLike<PollOperationState<TResult>, TResult>;
@@ -233,13 +329,15 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 }>;
 
 // @public (undocumented)
-export interface GlobalGetSupportedLanguages {
-    // (undocumented)
-    get(options?: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
+export type GetParameters = RequestParameters;
+
+// @public (undocumented)
+export interface GetSupportedLanguages {
+    get(options?: GetSupportedLanguagesParameters): StreamableMethod<GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse>;
 }
 
 // @public
-export interface GlobalGetSupportedLanguages200Response extends HttpResponse {
+export interface GetSupportedLanguages200Response extends HttpResponse {
     // (undocumented)
     body: PagedSupportedLanguageOutput;
     // (undocumented)
@@ -247,7 +345,7 @@ export interface GlobalGetSupportedLanguages200Response extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface GlobalGetSupportedLanguagesDefaultResponse extends HttpResponse {
+export interface GetSupportedLanguagesDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
@@ -255,40 +353,36 @@ export interface GlobalGetSupportedLanguagesDefaultResponse extends HttpResponse
 }
 
 // @public (undocumented)
-export type GlobalGetSupportedLanguagesParameters = GlobalGetSupportedLanguagesQueryParam & RequestParameters;
+export type GetSupportedLanguagesParameters = GetSupportedLanguagesQueryParam & RequestParameters;
 
 // @public (undocumented)
-export interface GlobalGetSupportedLanguagesQueryParam {
+export interface GetSupportedLanguagesQueryParam {
     // (undocumented)
-    queryParameters?: GlobalGetSupportedLanguagesQueryParamProperties;
+    queryParameters?: GetSupportedLanguagesQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface GlobalGetSupportedLanguagesQueryParamProperties {
-    // (undocumented)
+export interface GetSupportedLanguagesQueryParamProperties {
     maxpagesize?: number;
-    // (undocumented)
     skip?: number;
-    // (undocumented)
     top?: number;
 }
 
 // @public (undocumented)
-export interface GlobalListTrainingConfigVersions {
-    // (undocumented)
-    get(options?: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
+export interface GetSwapDeploymentsStatus {
+    get(options?: GetSwapDeploymentsStatusParameters): StreamableMethod<GetSwapDeploymentsStatus200Response | GetSwapDeploymentsStatusDefaultResponse>;
 }
 
 // @public
-export interface GlobalListTrainingConfigVersions200Response extends HttpResponse {
+export interface GetSwapDeploymentsStatus200Response extends HttpResponse {
     // (undocumented)
-    body: PagedTrainingConfigVersionOutput;
+    body: SwapDeploymentsJobOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface GlobalListTrainingConfigVersionsDefaultResponse extends HttpResponse {
+export interface GetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
@@ -296,31 +390,36 @@ export interface GlobalListTrainingConfigVersionsDefaultResponse extends HttpRes
 }
 
 // @public (undocumented)
-export type GlobalListTrainingConfigVersionsParameters = GlobalListTrainingConfigVersionsQueryParam & RequestParameters;
+export type GetSwapDeploymentsStatusParameters = RequestParameters;
 
 // @public (undocumented)
-export interface GlobalListTrainingConfigVersionsQueryParam {
-    // (undocumented)
-    queryParameters?: GlobalListTrainingConfigVersionsQueryParamProperties;
+export interface Importx {
+    post(options?: ImportxParameters): StreamableMethod<Importx202Response | ImportxDefaultResponse>;
 }
 
 // @public (undocumented)
-export interface GlobalListTrainingConfigVersionsQueryParamProperties {
-    // (undocumented)
-    maxpagesize?: number;
-    // (undocumented)
-    skip?: number;
-    // (undocumented)
-    top?: number;
+export interface Importx202Headers {
+    "operation-location": string;
 }
 
 // @public
-export interface GlobalOperations {
+export interface Importx202Response extends HttpResponse {
     // (undocumented)
-    getSupportedLanguages(options?: GlobalGetSupportedLanguagesParameters): StreamableMethod<GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse>;
+    headers: RawHttpHeaders & Importx202Headers;
     // (undocumented)
-    listTrainingConfigVersions(options?: GlobalListTrainingConfigVersionsParameters): StreamableMethod<GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse>;
+    status: "202";
 }
+
+// @public (undocumented)
+export interface ImportxDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ImportxParameters = RequestParameters;
 
 // @public
 export interface InnerErrorOutput {
@@ -329,106 +428,52 @@ export interface InnerErrorOutput {
 }
 
 // @public (undocumented)
-export function isUnexpected(response: ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse): response is ProjectsCreateOrUpdateDefaultResponse;
+export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ProjectsGet200Response | ProjectsGetDefaultResponse): response is ProjectsGetDefaultResponse;
+export function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ProjectsDelete202Response | ProjectsDeleteDefaultResponse): response is ProjectsDeleteDefaultResponse;
+export function isUnexpected(response: Delete202Response | DeleteDefaultResponse): response is DeleteDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ProjectsList200Response | ProjectsListDefaultResponse): response is ProjectsListDefaultResponse;
+export function isUnexpected(response: ListProjects200Response | ListProjectsDefaultResponse): response is ListProjectsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ProjectsExport202Response | ProjectsExportDefaultResponse): response is ProjectsExportDefaultResponse;
+export function isUnexpected(response: Export202Response | ExportDefaultResponse): response is ExportDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ProjectsImportx202Response | ProjectsImportxDefaultResponse): response is ProjectsImportxDefaultResponse;
+export function isUnexpected(response: Importx202Response | ImportxDefaultResponse): response is ImportxDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ProjectsTrain202Response | ProjectsTrainDefaultResponse): response is ProjectsTrainDefaultResponse;
+export function isUnexpected(response: Train202Response | TrainDefaultResponse): response is TrainDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeploymentsGetDeployment200Response | DeploymentsGetDeploymentDefaultResponse): response is DeploymentsGetDeploymentDefaultResponse;
+export function isUnexpected(response: GetDeployment200Response | GetDeploymentDefaultResponse): response is GetDeploymentDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeploymentsDeployProject200Response | DeploymentsDeployProject201Response | DeploymentsDeployProjectDefaultResponse): response is DeploymentsDeployProjectDefaultResponse;
+export function isUnexpected(response: DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeploymentsDeleteDeployment202Response | DeploymentsDeleteDeploymentDefaultResponse): response is DeploymentsDeleteDeploymentDefaultResponse;
+export function isUnexpected(response: DeleteDeployment202Response | DeleteDeploymentDefaultResponse): response is DeleteDeploymentDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeploymentsList200Response | DeploymentsListDefaultResponse): response is DeploymentsListDefaultResponse;
+export function isUnexpected(response: ListDeployments200Response | ListDeploymentsDefaultResponse): response is ListDeploymentsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeploymentsSwapDeployments202Response | DeploymentsSwapDeploymentsDefaultResponse): response is DeploymentsSwapDeploymentsDefaultResponse;
+export function isUnexpected(response: SwapDeployments202Response | SwapDeploymentsDefaultResponse): response is SwapDeploymentsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse): response is JobsGetDeploymentStatusDefaultResponse;
+export function isUnexpected(response: GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse): response is GetDeploymentStatusDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse): response is JobsGetSwapDeploymentsStatusDefaultResponse;
+export function isUnexpected(response: GetSwapDeploymentsStatus200Response | GetSwapDeploymentsStatusDefaultResponse): response is GetSwapDeploymentsStatusDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: GlobalGetSupportedLanguages200Response | GlobalGetSupportedLanguagesDefaultResponse): response is GlobalGetSupportedLanguagesDefaultResponse;
+export function isUnexpected(response: GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse): response is GetSupportedLanguagesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: GlobalListTrainingConfigVersions200Response | GlobalListTrainingConfigVersionsDefaultResponse): response is GlobalListTrainingConfigVersionsDefaultResponse;
-
-// @public (undocumented)
-export interface JobsGetDeploymentStatus {
-    get(options?: JobsGetDeploymentStatusParameters): StreamableMethod<JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse>;
-}
-
-// @public
-export interface JobsGetDeploymentStatus200Response extends HttpResponse {
-    // (undocumented)
-    body: DeploymentJobOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface JobsGetDeploymentStatusDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type JobsGetDeploymentStatusParameters = RequestParameters;
-
-// @public (undocumented)
-export interface JobsGetSwapDeploymentsStatus {
-    get(options?: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
-}
-
-// @public
-export interface JobsGetSwapDeploymentsStatus200Response extends HttpResponse {
-    // (undocumented)
-    body: SwapDeploymentsJobOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface JobsGetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type JobsGetSwapDeploymentsStatusParameters = RequestParameters;
-
-// @public
-export interface JobsOperations {
-    getDeploymentStatus(projectName: string, deploymentName: string, jobId: string, options?: JobsGetDeploymentStatusParameters): StreamableMethod<JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse>;
-    getSwapDeploymentsStatus(projectName: string, deploymentName: string, jobId: string, options?: JobsGetSwapDeploymentsStatusParameters): StreamableMethod<JobsGetSwapDeploymentsStatus200Response | JobsGetSwapDeploymentsStatusDefaultResponse>;
-}
+export function isUnexpected(response: ListTrainingConfigVersions200Response | ListTrainingConfigVersionsDefaultResponse): response is ListTrainingConfigVersionsDefaultResponse;
 
 // @public
 export interface JobWarningOutput {
@@ -437,12 +482,106 @@ export interface JobWarningOutput {
 }
 
 // @public (undocumented)
+export interface ListDeployments {
+    get(options?: ListDeploymentsParameters): StreamableMethod<ListDeployments200Response | ListDeploymentsDefaultResponse>;
+}
+
+// @public
+export interface ListDeployments200Response extends HttpResponse {
+    // (undocumented)
+    body: DeploymentListOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface ListDeploymentsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ListDeploymentsParameters = RequestParameters;
+
+// @public (undocumented)
+export interface ListProjects {
+    get(options?: ListProjectsParameters): StreamableMethod<ListProjects200Response | ListProjectsDefaultResponse>;
+}
+
+// @public
+export interface ListProjects200Response extends HttpResponse {
+    // (undocumented)
+    body: ProjectListOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface ListProjectsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ListProjectsParameters = ListProjectsQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface ListProjectsQueryParam {
+    // (undocumented)
+    queryParameters?: ListProjectsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface ListProjectsQueryParamProperties {
+    maxpagesize?: number;
+    skip?: number;
+    top?: number;
+}
+
+// @public (undocumented)
+export interface ListTrainingConfigVersions {
+    get(options?: ListTrainingConfigVersionsParameters): StreamableMethod<ListTrainingConfigVersions200Response | ListTrainingConfigVersionsDefaultResponse>;
+}
+
+// @public
+export interface ListTrainingConfigVersions200Response extends HttpResponse {
+    // (undocumented)
+    body: PagedTrainingConfigVersionOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface ListTrainingConfigVersionsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ListTrainingConfigVersionsParameters = ListTrainingConfigVersionsQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface ListTrainingConfigVersionsQueryParam {
+    // (undocumented)
+    queryParameters?: ListTrainingConfigVersionsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface ListTrainingConfigVersionsQueryParamProperties {
+    maxpagesize?: number;
+    skip?: number;
+    top?: number;
+}
+
+// @public (undocumented)
 export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client & {
     path: Routes;
-    projects: ProjectsOperations;
-    deployments: DeploymentsOperations;
-    jobs: JobsOperations;
-    global: GlobalOperations;
 };
 
 // @public
@@ -480,13 +619,12 @@ export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
-// @public (undocumented)
+// @public
 export interface Project {
     description?: string;
     language: string;
     multilingual?: boolean;
-    projectKind: string;
-    // (undocumented)
+    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
     projectName: string;
     settings?: Record<string, string>;
     storageInputContainerName: string;
@@ -498,7 +636,7 @@ export interface ProjectListOutput {
     value: Array<ProjectOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface ProjectOutput {
     readonly createdDateTime: string;
     description?: string;
@@ -507,8 +645,7 @@ export interface ProjectOutput {
     readonly lastModifiedDateTime: string;
     readonly lastTrainedDateTime: string;
     multilingual?: boolean;
-    projectKind: string;
-    // (undocumented)
+    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
     projectName: string;
     settings?: Record<string, string>;
     storageInputContainerName: string;
@@ -518,279 +655,19 @@ export interface ProjectOutput {
 export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 // @public (undocumented)
-export interface ProjectsCreateOrUpdate {
-    delete(options?: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
-    get(options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
-    patch(options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface ProjectsCreateOrUpdate200Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface ProjectsCreateOrUpdate200Response extends HttpResponse {
-    // (undocumented)
-    body: ProjectOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & ProjectsCreateOrUpdate200Headers;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface ProjectsCreateOrUpdate201Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface ProjectsCreateOrUpdate201Response extends HttpResponse {
-    // (undocumented)
-    body: ProjectOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & ProjectsCreateOrUpdate201Headers;
-    // (undocumented)
-    status: "201";
-}
-
-// @public (undocumented)
-export interface ProjectsCreateOrUpdateBodyParam {
-    // (undocumented)
-    body?: ProjectResourceMergeAndPatch;
-}
-
-// @public (undocumented)
-export interface ProjectsCreateOrUpdateDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface ProjectsCreateOrUpdateMediaTypesParam {
-    contentType: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type ProjectsCreateOrUpdateParameters = ProjectsCreateOrUpdateMediaTypesParam & ProjectsCreateOrUpdateBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsDelete202Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface ProjectsDelete202Response extends HttpResponse {
-    // (undocumented)
-    body: OperationStatusOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & ProjectsDelete202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface ProjectsDeleteDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ProjectsDeleteParameters = RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsExport {
-    post(options: ProjectsExportParameters): StreamableMethod<ProjectsExport202Response | ProjectsExportDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface ProjectsExport202Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface ProjectsExport202Response extends HttpResponse {
-    // (undocumented)
-    headers: RawHttpHeaders & ProjectsExport202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface ProjectsExportDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ProjectsExportParameters = ProjectsExportQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsExportQueryParam {
-    // (undocumented)
-    queryParameters: ProjectsExportQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ProjectsExportQueryParamProperties {
-    // (undocumented)
-    projectFileVersion: string;
-}
-
-// @public
-export interface ProjectsGet200Response extends HttpResponse {
-    // (undocumented)
-    body: ProjectOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface ProjectsGetDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ProjectsGetParameters = RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsImportx {
-    post(options?: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface ProjectsImportx202Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface ProjectsImportx202Response extends HttpResponse {
-    // (undocumented)
-    headers: RawHttpHeaders & ProjectsImportx202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface ProjectsImportxDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ProjectsImportxParameters = RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsList {
-    get(options?: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
-}
-
-// @public
-export interface ProjectsList200Response extends HttpResponse {
-    // (undocumented)
-    body: ProjectListOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface ProjectsListDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ProjectsListParameters = ProjectsListQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ProjectsListQueryParam {
-    // (undocumented)
-    queryParameters?: ProjectsListQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ProjectsListQueryParamProperties {
-    // (undocumented)
-    maxpagesize?: number;
-    // (undocumented)
-    skip?: number;
-    // (undocumented)
-    top?: number;
-}
-
-// @public
-export interface ProjectsOperations {
-    createOrUpdate(projectName: string, options: ProjectsCreateOrUpdateParameters): StreamableMethod<ProjectsCreateOrUpdate200Response | ProjectsCreateOrUpdate201Response | ProjectsCreateOrUpdateDefaultResponse>;
-    delete(projectName: string, options?: ProjectsDeleteParameters): StreamableMethod<ProjectsDelete202Response | ProjectsDeleteDefaultResponse>;
-    export(projectName: string, options: ProjectsExportParameters): StreamableMethod<ProjectsExport202Response | ProjectsExportDefaultResponse>;
-    get(projectName: string, options?: ProjectsGetParameters): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
-    importx(projectName: string, options?: ProjectsImportxParameters): StreamableMethod<ProjectsImportx202Response | ProjectsImportxDefaultResponse>;
-    list(options?: ProjectsListParameters): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
-    train(projectName: string, options: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface ProjectsTrain {
-    post(options: ProjectsTrainParameters): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface ProjectsTrain202Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface ProjectsTrain202Response extends HttpResponse {
-    // (undocumented)
-    headers: RawHttpHeaders & ProjectsTrain202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface ProjectsTrainBodyParam {
-    // (undocumented)
-    body: TrainingJobOptions;
-}
-
-// @public (undocumented)
-export interface ProjectsTrainDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ProjectsTrainParameters = ProjectsTrainBodyParam & RequestParameters;
-
-// @public (undocumented)
 export interface Routes {
-    (path: "/authoring/analyze-text/projects/{projectName}", projectName: string): ProjectsCreateOrUpdate;
-    (path: "/authoring/analyze-text/projects"): ProjectsList;
-    (path: "/authoring/analyze-text/projects/{projectName}:export", projectName: string): ProjectsExport;
-    (path: "/authoring/analyze-text/projects/{projectName}:importx", projectName: string): ProjectsImportx;
-    (path: "/authoring/analyze-text/projects/{projectName}:train", projectName: string): ProjectsTrain;
-    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}", projectName: string, deploymentName: string): DeploymentsGetDeployment;
-    (path: "/authoring/analyze-text/projects/{projectName}/deployments", projectName: string): DeploymentsList;
-    (path: "/authoring/analyze-text/projects/{projectName}/deployments/swap", projectName: string): DeploymentsSwapDeployments;
-    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): JobsGetDeploymentStatus;
-    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): JobsGetSwapDeploymentsStatus;
-    (path: "/authoring/analyze-text/projects/global/languages"): GlobalGetSupportedLanguages;
-    (path: "/authoring/analyze-text/projects/global/training-config-versions"): GlobalListTrainingConfigVersions;
+    (path: "/authoring/analyze-text/projects/{projectName}", projectName: string): CreateOrUpdate;
+    (path: "/authoring/analyze-text/projects"): ListProjects;
+    (path: "/authoring/analyze-text/projects/{projectName}:export", projectName: string): Export;
+    (path: "/authoring/analyze-text/projects/{projectName}:importx", projectName: string): Importx;
+    (path: "/authoring/analyze-text/projects/{projectName}:train", projectName: string): Train;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}", projectName: string, deploymentName: string): GetDeployment;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments", projectName: string): ListDeployments;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments/swap", projectName: string): SwapDeployments;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): GetDeploymentStatus;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): GetSwapDeploymentsStatus;
+    (path: "/authoring/analyze-text/projects/global/languages"): GetSupportedLanguages;
+    (path: "/authoring/analyze-text/projects/global/training-config-versions"): ListTrainingConfigVersions;
 }
 
 // @public
@@ -800,22 +677,86 @@ export interface SupportedLanguageOutput {
 }
 
 // @public (undocumented)
+export interface SwapDeployments {
+    post(options: SwapDeploymentsParameters): StreamableMethod<SwapDeployments202Response | SwapDeploymentsDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface SwapDeployments202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface SwapDeployments202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & SwapDeployments202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface SwapDeploymentsBodyParam {
+    body: SwapDeploymentsOptions;
+}
+
+// @public (undocumented)
+export interface SwapDeploymentsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public
 export interface SwapDeploymentsJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
     readonly expirationDateTime: string;
-    // (undocumented)
     id: string;
     jobId: string;
     readonly lastUpdatedDateTime: string;
-    status: string;
+    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
     warnings: Array<JobWarningOutput>;
 }
 
-// @public (undocumented)
+// @public
 export interface SwapDeploymentsOptions {
     firstDeploymentName: string;
     secondDeploymentName: string;
+}
+
+// @public (undocumented)
+export type SwapDeploymentsParameters = SwapDeploymentsBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface Train {
+    post(options: TrainParameters): StreamableMethod<Train202Response | TrainDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface Train202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface Train202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & Train202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface TrainBodyParam {
+    body: TrainingJobOptions;
+}
+
+// @public (undocumented)
+export interface TrainDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
 }
 
 // @public
@@ -826,9 +767,11 @@ export interface TrainingConfigVersionOutput {
 
 // @public
 export interface TrainingJobOptions {
-    // (undocumented)
     modelLabel: string;
 }
+
+// @public (undocumented)
+export type TrainParameters = TrainBodyParam & RequestParameters;
 
 // (No @packageDocumentation comment for this package)
 

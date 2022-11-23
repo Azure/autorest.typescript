@@ -7,6 +7,7 @@ import {
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
+  RLCOptions,
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
@@ -25,7 +26,7 @@ import {
   getFormattedPropertyDoc
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
-import { isBinaryPayload } from "../operationUtil.js";
+import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
 import { getResourceOperation } from "@cadl-lang/rest";
 import {
   Client,
@@ -36,7 +37,8 @@ import {
 export function transformToParameterTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  client: Client
+  client: Client,
+  options?: RLCOptions
 ): OperationParameter[] {
   const operationGroups = listOperationGroups(program, client);
   const rlcParameters: OperationParameter[] = [];
@@ -63,7 +65,7 @@ export function transformToParameterTypes(
     const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: route.container.name,
+      operationGroup: getOperationGroupName(route, options),
       operationName: route.operation.name,
       parameters: []
     };
