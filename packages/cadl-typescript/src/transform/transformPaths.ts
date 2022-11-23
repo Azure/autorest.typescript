@@ -50,7 +50,7 @@ export function transformPaths(
   const clientOperations = listOperationsInOperationGroup(program, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    transformOperation(program, route, paths);
+    transformOperation(program, route, paths, options);
   }
   return paths;
 }
@@ -110,10 +110,10 @@ function transformOperation(
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(route.parameters),
     optionsName: getParameterTypeName(
-      route.container.name,
+      getOperationGroupName(route, options),
       route.operation.name
     ),
-    responseTypes: getResponseTypes(route),
+    responseTypes: getResponseTypes(route, options),
     returnType: respNames.join(" | "),
     successStatus: gerOperationSuccessStatus(route),
     operationName: route.operation.name,
@@ -144,7 +144,7 @@ function transformOperation(
             description: getDoc(program, p.param)
           };
         }),
-      operationGroupName: route.container.name,
+      operationGroupName: getOperationGroupName(route, options),
       methods: {
         [route.verb]: [method]
       }

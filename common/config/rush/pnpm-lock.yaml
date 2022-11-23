@@ -216,8 +216,8 @@ packages:
       '@cadl-lang/rest': 0.19.0_@cadl-lang+compiler@0.37.0
     dev: false
 
-  /@azure-tools/cadl-ranch-specs/0.5.0_07c6b89d76576e9331a800b7facccafe:
-    resolution: {integrity: sha512-Na9SOuA5C/toHQQjYGUW1PtuJEXRqzNfWasfo9qCmbKYMs2960UZ/T0L9DEssOs56PukVWNkv4kAlB+A/sAa2w==}
+  /@azure-tools/cadl-ranch-specs/0.5.1_07c6b89d76576e9331a800b7facccafe:
+    resolution: {integrity: sha512-ujEvDJwiezDlLwIaBhBonbhuleFURPpZH7zQ8obPH0YNEYo3JxX9pIRZFipxs351eeyEv6rb5jBnEOjai9/4aw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-azure-core': ~0.9.0
@@ -4259,8 +4259,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /enhanced-resolve/5.10.0:
-    resolution: {integrity: sha512-T0yTFjdpldGY8PmuXXR0PyQ1ufZpEGiHVrp7zHKB7jdR4qlmZHhONVM5AQOAWXuF/w3dnHbEQVrNptJgt7F+cQ==}
+  /enhanced-resolve/5.11.0:
+    resolution: {integrity: sha512-0Gcraf7gAJSQoPg+bTSXNhuzAYtXqLc4C011vb8S3B8XUSEkGYNBk20c68X9291VF4vvsCD8SPkr6Mza+DwU+g==}
     engines: {node: '>=10.13.0'}
     dependencies:
       graceful-fs: 4.2.10
@@ -6408,7 +6408,7 @@ packages:
       qjobs: 1.2.0
       range-parser: 1.2.1
       rimraf: 3.0.2
-      socket.io: 4.5.3
+      socket.io: 4.5.4
       source-map: 0.6.1
       tmp: 0.2.1
       ua-parser-js: 0.7.32
@@ -8403,8 +8403,8 @@ packages:
       - supports-color
     dev: false
 
-  /socket.io/4.5.3:
-    resolution: {integrity: sha512-zdpnnKU+H6mOp7nYRXH4GNv1ux6HL6+lHL8g7Ds7Lj8CkdK1jJK/dlwsKDculbyOHifcJ0Pr/yeXnZQ5GeFrcg==}
+  /socket.io/4.5.4:
+    resolution: {integrity: sha512-m3GC94iK9MfIEeIBfbhJs5BqFibMtkRk8ZpKwG2QwxV0m/eEhPIV4ara6XCF1LWNAus7z58RodiZlAH71U3EhQ==}
     engines: {node: '>=10.0.0'}
     dependencies:
       accepts: 1.3.8
@@ -9432,7 +9432,7 @@ packages:
       acorn-import-assertions: 1.8.0_acorn@8.8.1
       browserslist: 4.21.4
       chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.10.0
+      enhanced-resolve: 5.11.0
       es-module-lexer: 0.9.3
       eslint-scope: 5.1.1
       events: 3.3.0
@@ -9909,7 +9909,7 @@ packages:
       '@azure-tools/cadl-dpg': 0.3.0_d21a2f9719b9a9b97180252366891ee1
       '@azure-tools/cadl-ranch': 0.2.9
       '@azure-tools/cadl-ranch-expect': 0.1.12_d21a2f9719b9a9b97180252366891ee1
-      '@azure-tools/cadl-ranch-specs': 0.5.0_07c6b89d76576e9331a800b7facccafe
+      '@azure-tools/cadl-ranch-specs': 0.5.1_07c6b89d76576e9331a800b7facccafe
       '@azure/core-auth': 1.4.0
       '@azure/core-lro': 2.4.0
       '@azure/core-paging': 1.4.0
