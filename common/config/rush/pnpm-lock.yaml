@@ -216,8 +216,8 @@ packages:
       '@cadl-lang/rest': 0.19.0_@cadl-lang+compiler@0.37.0
     dev: false
 
-  /@azure-tools/cadl-ranch-specs/0.5.1_07c6b89d76576e9331a800b7facccafe:
-    resolution: {integrity: sha512-ujEvDJwiezDlLwIaBhBonbhuleFURPpZH7zQ8obPH0YNEYo3JxX9pIRZFipxs351eeyEv6rb5jBnEOjai9/4aw==}
+  /@azure-tools/cadl-ranch-specs/0.5.0_07c6b89d76576e9331a800b7facccafe:
+    resolution: {integrity: sha512-Na9SOuA5C/toHQQjYGUW1PtuJEXRqzNfWasfo9qCmbKYMs2960UZ/T0L9DEssOs56PukVWNkv4kAlB+A/sAa2w==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-azure-core': ~0.9.0
@@ -7053,7 +7053,7 @@ packages:
     resolution: {integrity: sha512-4GUt3kSEYmk4ITxzB/b9vaIDfUVWN/Ml1Fwl11IlnIG2iaJ9O6WXZ9SrYM9NLI8OCBieN2Y8SWC2oJV0RQ7qYg==}
     hasBin: true
     dependencies:
-      abbrev: 1.0.9
+      abbrev: 1.1.1
     dev: false
 
   /nopt/6.0.0:
@@ -9900,7 +9900,7 @@ packages:
     dev: false
 
   file:projects/cadl-typescript.tgz:
-    resolution: {integrity: sha512-tNwWAU7EYlYKlXWDxj1BtLAScDaBzcVfQvcB6hAc2gutZt5yT5TmHG6RaLq9a56+BBlK27K25eFiqoZJ1BARWg==, tarball: file:projects/cadl-typescript.tgz}
+    resolution: {integrity: sha512-//sEb/dd1ErczzOjbxn1ihG2Sbn4uxqMdLbQtMi3JtrnJGGyd/QzQhwSfWBk34NzTZtxBzRyDWgYfjUMyHj68A==, tarball: file:projects/cadl-typescript.tgz}
     name: '@rush-temp/cadl-typescript'
     version: 0.0.0
     dependencies:
@@ -9909,7 +9909,7 @@ packages:
       '@azure-tools/cadl-dpg': 0.3.0_d21a2f9719b9a9b97180252366891ee1
       '@azure-tools/cadl-ranch': 0.2.9
       '@azure-tools/cadl-ranch-expect': 0.1.12_d21a2f9719b9a9b97180252366891ee1
-      '@azure-tools/cadl-ranch-specs': 0.5.1_07c6b89d76576e9331a800b7facccafe
+      '@azure-tools/cadl-ranch-specs': 0.5.0_07c6b89d76576e9331a800b7facccafe
       '@azure/core-auth': 1.4.0
       '@azure/core-lro': 2.4.0
       '@azure/core-paging': 1.4.0
