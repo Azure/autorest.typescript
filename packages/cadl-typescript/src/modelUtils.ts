@@ -882,13 +882,14 @@ function getEnumStringDescription(type: any) {
 
 export function getFormattedPropertyDoc(
   program: Program,
-  cadlType: ModelProperty,
-  schemaType: any
+  cadlType: ModelProperty | Type,
+  schemaType: any,
+  sperator: string = "\n\n"
 ) {
   const propertyDoc = getDoc(program, cadlType);
   const enhancedDocFromType = getEnumStringDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
-    return `${propertyDoc}\n\n${enhancedDocFromType}`;
+    return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
   return propertyDoc ?? enhancedDocFromType;
 }
