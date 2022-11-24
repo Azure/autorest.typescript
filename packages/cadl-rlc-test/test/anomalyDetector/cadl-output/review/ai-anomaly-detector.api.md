@@ -132,7 +132,7 @@ export interface CreateAndTrainMultivariateModelDefaultResponse extends HttpResp
 export type CreateAndTrainMultivariateModelParameters = CreateAndTrainMultivariateModelBodyParam & RequestParameters;
 
 // @public
-function createClient(Endpoint: string, ApiVersion: "v1.1", credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorClient;
+function createClient(Endpoint: string, ApiVersion: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorClient;
 export default createClient;
 
 // @public (undocumented)
