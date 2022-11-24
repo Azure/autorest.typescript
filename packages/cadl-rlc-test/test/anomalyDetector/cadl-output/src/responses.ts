@@ -66,20 +66,22 @@ export interface DetectUnivariateChangePointDefaultResponse
 }
 
 /** The request has succeeded. */
-export interface GetBatchDetectionResult200Response extends HttpResponse {
+export interface GetMultivariateBatchDetectionResult200Response
+  extends HttpResponse {
   status: "200";
   body: DetectionResultOutput;
 }
 
-export interface GetBatchDetectionResultDefaultHeaders {
+export interface GetMultivariateBatchDetectionResultDefaultHeaders {
   /** Error code. */
   "x-ms-error-code"?: string;
 }
 
-export interface GetBatchDetectionResultDefaultResponse extends HttpResponse {
+export interface GetMultivariateBatchDetectionResultDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
-  headers: RawHttpHeaders & GetBatchDetectionResultDefaultHeaders;
+  headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
 }
 
 export interface CreateAndTrainMultivariateModel201Headers {
