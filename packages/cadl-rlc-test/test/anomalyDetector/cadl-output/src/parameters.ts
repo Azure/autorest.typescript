@@ -30,7 +30,7 @@ export interface DetectUnivariateChangePointBodyParam {
 
 export type DetectUnivariateChangePointParameters =
   DetectUnivariateChangePointBodyParam & RequestParameters;
-export type GetBatchDetectionResultParameters = RequestParameters;
+export type GetMultivariateBatchDetectionResultParameters = RequestParameters;
 
 export interface CreateAndTrainMultivariateModelBodyParam {
   body: ModelInfo;

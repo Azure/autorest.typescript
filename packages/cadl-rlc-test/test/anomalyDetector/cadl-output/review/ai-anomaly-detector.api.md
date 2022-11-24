@@ -449,12 +449,12 @@ export interface ErrorResponseOutput {
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public (undocumented)
-export interface GetBatchDetectionResult {
-    get(options?: GetBatchDetectionResultParameters): StreamableMethod<GetBatchDetectionResult200Response | GetBatchDetectionResultDefaultResponse>;
+export interface GetMultivariateBatchDetectionResult {
+    get(options?: GetMultivariateBatchDetectionResultParameters): StreamableMethod<GetMultivariateBatchDetectionResult200Response | GetMultivariateBatchDetectionResultDefaultResponse>;
 }
 
 // @public
-export interface GetBatchDetectionResult200Response extends HttpResponse {
+export interface GetMultivariateBatchDetectionResult200Response extends HttpResponse {
     // (undocumented)
     body: DetectionResultOutput;
     // (undocumented)
@@ -462,22 +462,22 @@ export interface GetBatchDetectionResult200Response extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface GetBatchDetectionResultDefaultHeaders {
+export interface GetMultivariateBatchDetectionResultDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public (undocumented)
-export interface GetBatchDetectionResultDefaultResponse extends HttpResponse {
+export interface GetMultivariateBatchDetectionResultDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
     // (undocumented)
-    headers: RawHttpHeaders & GetBatchDetectionResultDefaultHeaders;
+    headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
-export type GetBatchDetectionResultParameters = RequestParameters;
+export type GetMultivariateBatchDetectionResultParameters = RequestParameters;
 
 // @public
 export interface GetMultivariateModel200Response extends HttpResponse {
@@ -521,7 +521,7 @@ export function isUnexpected(response: DetectUnivariateLastPoint200Response | De
 export function isUnexpected(response: DetectUnivariateChangePoint200Response | DetectUnivariateChangePointDefaultResponse): response is DetectUnivariateChangePointDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: GetBatchDetectionResult200Response | GetBatchDetectionResultDefaultResponse): response is GetBatchDetectionResultDefaultResponse;
+export function isUnexpected(response: GetMultivariateBatchDetectionResult200Response | GetMultivariateBatchDetectionResultDefaultResponse): response is GetMultivariateBatchDetectionResultDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: CreateAndTrainMultivariateModel201Response | CreateAndTrainMultivariateModelDefaultResponse): response is CreateAndTrainMultivariateModelDefaultResponse;
@@ -690,7 +690,7 @@ export interface Routes {
     (path: "/timeseries/entire/detect"): DetectUnivariateEntireSeries;
     (path: "/timeseries/last/detect"): DetectUnivariateLastPoint;
     (path: "/timeseries/changepoint/detect"): DetectUnivariateChangePoint;
-    (path: "/multivariate/detect-batch/{resultId}", resultId: string): GetBatchDetectionResult;
+    (path: "/multivariate/detect-batch/{resultId}", resultId: string): GetMultivariateBatchDetectionResult;
     (path: "/multivariate/models"): CreateAndTrainMultivariateModel;
     (path: "/multivariate/models/{modelId}", modelId: string): DeleteMultivariateModel;
     (path: "/multivariate/models/{modelId}:detect-batch", modelId: string): DetectMultivariateBatchAnomaly;

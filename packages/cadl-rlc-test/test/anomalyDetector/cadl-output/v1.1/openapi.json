@@ -67,7 +67,7 @@
   "paths": {
     "/multivariate/detect-batch/{resultId}": {
       "get": {
-        "operationId": "Multivariate_GetBatchDetectionResult",
+        "operationId": "Multivariate_GetMultivariateBatchDetectionResult",
         "summary": "Get Multivariate Anomaly Detection Result",
         "description": "For asynchronous inference, get multivariate anomaly detection result based on\nresultId returned by the BatchDetectAnomaly api.",
         "parameters": [
@@ -95,7 +95,7 @@
               }
             },
             "schema": {
-              "$ref": "#/definitions/Multivariate.ErrorResponse"
+              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
@@ -138,7 +138,7 @@
               }
             },
             "schema": {
-              "$ref": "#/definitions/Multivariate.ErrorResponse"
+              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
@@ -182,7 +182,7 @@
               }
             },
             "schema": {
-              "$ref": "#/definitions/Multivariate.ErrorResponse"
+              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         },
@@ -218,7 +218,7 @@
               }
             },
             "schema": {
-              "$ref": "#/definitions/Multivariate.ErrorResponse"
+              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
@@ -252,7 +252,7 @@
               }
             },
             "schema": {
-              "$ref": "#/definitions/Multivariate.ErrorResponse"
+              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
@@ -306,7 +306,7 @@
               }
             },
             "schema": {
-              "$ref": "#/definitions/Multivariate.ErrorResponse"
+              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
@@ -350,7 +350,7 @@
               }
             },
             "schema": {
-              "$ref": "#/definitions/Multivariate.ErrorResponse"
+              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
@@ -605,13 +605,26 @@
     },
     "Multivariate.DataSchema": {
       "type": "string",
+      "description": "Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable.",
       "enum": [
         "OneTable",
         "MultiTable"
       ],
       "x-ms-enum": {
         "name": "DataSchema",
-        "modelAsString": false
+        "modelAsString": false,
+        "values": [
+          {
+            "name": "OneTable",
+            "value": "OneTable",
+            "description": "OneTable means that your input data are all in one CSV file, which contains one 'timestamp' column and several variable columns. The default DataSchema is OneTable."
+          },
+          {
+            "name": "MultiTable",
+            "value": "MultiTable",
+            "description": "MultiTable means that your input data are separated in multiple CSV files, in each file containing one 'timestamp' column and one 'variable' column, and the CSV file name should indicate the name of the variable. The default DataSchema is OneTable."
+          }
+        ]
       }
     },
     "Multivariate.DetectionRequest": {
@@ -776,6 +789,7 @@
     },
     "Multivariate.FillNAMethod": {
       "type": "string",
+      "description": "An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed.",
       "enum": [
         "Previous",
         "Subsequent",
@@ -1041,6 +1055,24 @@
           }
         ]
       }
+    },
+    "Multivariate.ResponseError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "The error code."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message explaining the error reported by the service."
+        }
+      },
+      "description": "Error response",
+      "required": [
+        "code",
+        "message"
+      ]
     },
     "Multivariate.VariableState": {
       "type": "object",
