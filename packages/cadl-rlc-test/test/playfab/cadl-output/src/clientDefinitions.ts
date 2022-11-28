@@ -2,74 +2,73 @@
 // Licensed under the MIT license.
 
 import {
-  PlayFabAuthenticationOperationsGetEntityTokenParameters,
-  PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdParameters,
-  PlayFabAuthenticationOperationsAuthenticateWithCustomIdParameters,
-  PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdParameters,
-  PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDParameters,
-  PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters,
-  PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters,
-  PlayFabFileOperationsAbortFileUploadsParameters,
-  PlayFabFileOperationsDeleteFilesParameters,
-  PlayFabFileOperationsFinalizeFileUploadsParameters,
-  PlayFabFileOperationsGetFilesParameters,
-  PlayFabFileOperationsInitiateFileUploadsParameters,
-  PlayFabFileOperationsGetObjectsParameters,
-  PlayFabFileOperationsSetObjectsParameters,
-  PlayFabEventsOperationsWriteEventsParameters,
-  PlayFabProfilesOperationsLoginPlayerParameters,
+  GetEntityTokenParameters,
+  AuthenticateWithAndroidDeviceIdParameters,
+  AuthenticateWithCustomIdParameters,
+  AuthenticateWithIOSDeviceIdParameters,
+  AuthenticateWithNintendoSwitchDeviceIDParameters,
+  GetLinkedPlayerIdentitiesParameters,
+  UnlinkPlayerIdentityParameters,
+  AbortFileUploadsParameters,
+  DeleteFilesParameters,
+  FinalizeFileUploadsParameters,
+  GetFilesParameters,
+  InitiateFileUploadsParameters,
+  GetObjectsParameters,
+  SetObjectsParameters,
+  WriteEventsParameters,
+  LoginPlayerParameters,
 } from "./parameters";
 import {
-  PlayFabAuthenticationOperationsGetEntityToken200Response,
-  PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse,
-  PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response,
-  PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse,
-  PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response,
-  PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse,
-  PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response,
-  PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse,
-  PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response,
-  PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse,
-  PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response,
-  PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse,
-  PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response,
-  PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse,
-  PlayFabFileOperationsAbortFileUploads200Response,
-  PlayFabFileOperationsAbortFileUploadsDefaultResponse,
-  PlayFabFileOperationsDeleteFiles200Response,
-  PlayFabFileOperationsDeleteFilesDefaultResponse,
-  PlayFabFileOperationsFinalizeFileUploads200Response,
-  PlayFabFileOperationsFinalizeFileUploadsDefaultResponse,
-  PlayFabFileOperationsGetFiles200Response,
-  PlayFabFileOperationsGetFilesDefaultResponse,
-  PlayFabFileOperationsInitiateFileUploads200Response,
-  PlayFabFileOperationsInitiateFileUploadsDefaultResponse,
-  PlayFabFileOperationsGetObjects200Response,
-  PlayFabFileOperationsGetObjectsDefaultResponse,
-  PlayFabFileOperationsSetObjects200Response,
-  PlayFabFileOperationsSetObjectsDefaultResponse,
-  PlayFabEventsOperationsWriteEvents200Response,
-  PlayFabEventsOperationsWriteEventsDefaultResponse,
-  PlayFabProfilesOperationsLoginPlayer200Response,
-  PlayFabProfilesOperationsLoginPlayerDefaultResponse,
+  GetEntityToken200Response,
+  GetEntityTokenDefaultResponse,
+  AuthenticateWithAndroidDeviceId200Response,
+  AuthenticateWithAndroidDeviceIdDefaultResponse,
+  AuthenticateWithCustomId200Response,
+  AuthenticateWithCustomIdDefaultResponse,
+  AuthenticateWithIOSDeviceId200Response,
+  AuthenticateWithIOSDeviceIdDefaultResponse,
+  AuthenticateWithNintendoSwitchDeviceID200Response,
+  AuthenticateWithNintendoSwitchDeviceIDDefaultResponse,
+  GetLinkedPlayerIdentities200Response,
+  GetLinkedPlayerIdentitiesDefaultResponse,
+  UnlinkPlayerIdentity200Response,
+  UnlinkPlayerIdentityDefaultResponse,
+  AbortFileUploads200Response,
+  AbortFileUploadsDefaultResponse,
+  DeleteFiles200Response,
+  DeleteFilesDefaultResponse,
+  FinalizeFileUploads200Response,
+  FinalizeFileUploadsDefaultResponse,
+  GetFiles200Response,
+  GetFilesDefaultResponse,
+  InitiateFileUploads200Response,
+  InitiateFileUploadsDefaultResponse,
+  GetObjects200Response,
+  GetObjectsDefaultResponse,
+  SetObjects200Response,
+  SetObjectsDefaultResponse,
+  WriteEvents200Response,
+  WriteEventsDefaultResponse,
+  LoginPlayer200Response,
+  LoginPlayerDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface PlayFabAuthenticationOperationsGetEntityToken {
+export interface GetEntityToken {
   /**
    * This feature is in private preview with a set of managed partners. Method to
    * exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token
    * or to refresh a still valid Entity Token.
    */
   post(
-    options: PlayFabAuthenticationOperationsGetEntityTokenParameters
+    options: GetEntityTokenParameters
   ): StreamableMethod<
-    | PlayFabAuthenticationOperationsGetEntityToken200Response
-    | PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse
+    GetEntityToken200Response | GetEntityTokenDefaultResponse
   >;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId {
+export interface AuthenticateWithAndroidDeviceId {
   /**
    * This feature is in private preview with a set of managed partners.
    * Authenticates a player from the specified player account pool using the
@@ -80,14 +79,14 @@ export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId 
    * title_player_account.
    */
   post(
-    options: PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdParameters
+    options: AuthenticateWithAndroidDeviceIdParameters
   ): StreamableMethod<
-    | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse
+    | AuthenticateWithAndroidDeviceId200Response
+    | AuthenticateWithAndroidDeviceIdDefaultResponse
   >;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomId {
+export interface AuthenticateWithCustomId {
   /**
    * This feature is in private preview with a set of managed partners.
    * Authenticates a player from the specified player account pool using the
@@ -98,14 +97,14 @@ export interface PlayFabAuthenticationOperationsAuthenticateWithCustomId {
    * title_player_account.
    */
   post(
-    options: PlayFabAuthenticationOperationsAuthenticateWithCustomIdParameters
+    options: AuthenticateWithCustomIdParameters
   ): StreamableMethod<
-    | PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse
+    | AuthenticateWithCustomId200Response
+    | AuthenticateWithCustomIdDefaultResponse
   >;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId {
+export interface AuthenticateWithIOSDeviceId {
   /**
    * This feature is in private preview with a set of managed partners.
    * Authenticates a player from the specified player account pool using the "IOS
@@ -116,14 +115,14 @@ export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId {
    * title_player_account.
    */
   post(
-    options: PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdParameters
+    options: AuthenticateWithIOSDeviceIdParameters
   ): StreamableMethod<
-    | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse
+    | AuthenticateWithIOSDeviceId200Response
+    | AuthenticateWithIOSDeviceIdDefaultResponse
   >;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID {
+export interface AuthenticateWithNintendoSwitchDeviceID {
   /**
    * This feature is in private preview with a set of managed partners.
    * Authenticates a player from the specified player account pool using the
@@ -134,205 +133,177 @@ export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDe
    * title_player_account.
    */
   post(
-    options: PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDParameters
+    options: AuthenticateWithNintendoSwitchDeviceIDParameters
   ): StreamableMethod<
-    | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response
-    | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse
+    | AuthenticateWithNintendoSwitchDeviceID200Response
+    | AuthenticateWithNintendoSwitchDeviceIDDefaultResponse
   >;
 }
 
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentities {
+export interface GetLinkedPlayerIdentities {
   /**
    * This feature is in private preview with a set of managed partners. Lists the
    * player identities currently linked to a master_player_account.
    */
   post(
-    options: PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters
+    options: GetLinkedPlayerIdentitiesParameters
   ): StreamableMethod<
-    | PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response
-    | PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse
+    | GetLinkedPlayerIdentities200Response
+    | GetLinkedPlayerIdentitiesDefaultResponse
   >;
 }
 
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentity {
+export interface UnlinkPlayerIdentity {
   /**
    * This feature is in private preview with a set of managed partners. Removes the
    * link from a player identity to a master_player_account.
    */
   post(
-    options: PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters
+    options: UnlinkPlayerIdentityParameters
   ): StreamableMethod<
-    | PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response
-    | PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse
+    UnlinkPlayerIdentity200Response | UnlinkPlayerIdentityDefaultResponse
   >;
 }
 
-export interface PlayFabFileOperationsAbortFileUploads {
+export interface AbortFileUploads {
   /**
    * This feature is in private preview with a set of managed partners. Abort
    * pending file uploads to an entity's profile.
    */
   post(
-    options: PlayFabFileOperationsAbortFileUploadsParameters
+    options: AbortFileUploadsParameters
   ): StreamableMethod<
-    | PlayFabFileOperationsAbortFileUploads200Response
-    | PlayFabFileOperationsAbortFileUploadsDefaultResponse
+    AbortFileUploads200Response | AbortFileUploadsDefaultResponse
   >;
 }
 
-export interface PlayFabFileOperationsDeleteFiles {
+export interface DeleteFiles {
   /**
    * This feature is in private preview with a set of managed partners. Delete files
    * on an entity's profile.
    */
   post(
-    options: PlayFabFileOperationsDeleteFilesParameters
-  ): StreamableMethod<
-    | PlayFabFileOperationsDeleteFiles200Response
-    | PlayFabFileOperationsDeleteFilesDefaultResponse
-  >;
+    options: DeleteFilesParameters
+  ): StreamableMethod<DeleteFiles200Response | DeleteFilesDefaultResponse>;
 }
 
-export interface PlayFabFileOperationsFinalizeFileUploads {
+export interface FinalizeFileUploads {
   /**
    * This feature is in private preview with a set of managed partners. Finalize
    * file uploads to an entity's profile.
    */
   post(
-    options: PlayFabFileOperationsFinalizeFileUploadsParameters
+    options: FinalizeFileUploadsParameters
   ): StreamableMethod<
-    | PlayFabFileOperationsFinalizeFileUploads200Response
-    | PlayFabFileOperationsFinalizeFileUploadsDefaultResponse
+    FinalizeFileUploads200Response | FinalizeFileUploadsDefaultResponse
   >;
 }
 
-export interface PlayFabFileOperationsGetFiles {
+export interface GetFiles {
   /**
    * This feature is in private preview with a set of managed partners. Retrieves
    * file metadata from an entity's profile.
    */
   post(
-    options: PlayFabFileOperationsGetFilesParameters
-  ): StreamableMethod<
-    | PlayFabFileOperationsGetFiles200Response
-    | PlayFabFileOperationsGetFilesDefaultResponse
-  >;
+    options: GetFilesParameters
+  ): StreamableMethod<GetFiles200Response | GetFilesDefaultResponse>;
 }
 
-export interface PlayFabFileOperationsInitiateFileUploads {
+export interface InitiateFileUploads {
   /**
    * This feature is in private preview with a set of managed partners. Initiates
    * file uploads to an entity's profile.
    */
   post(
-    options: PlayFabFileOperationsInitiateFileUploadsParameters
+    options: InitiateFileUploadsParameters
   ): StreamableMethod<
-    | PlayFabFileOperationsInitiateFileUploads200Response
-    | PlayFabFileOperationsInitiateFileUploadsDefaultResponse
+    InitiateFileUploads200Response | InitiateFileUploadsDefaultResponse
   >;
 }
 
-export interface PlayFabFileOperationsGetObjects {
+export interface GetObjects {
   /**
    * This feature is in private preview with a set of managed partners. Retrieves
    * objects from an entity's profile.
    */
   post(
-    options: PlayFabFileOperationsGetObjectsParameters
-  ): StreamableMethod<
-    | PlayFabFileOperationsGetObjects200Response
-    | PlayFabFileOperationsGetObjectsDefaultResponse
-  >;
+    options: GetObjectsParameters
+  ): StreamableMethod<GetObjects200Response | GetObjectsDefaultResponse>;
 }
 
-export interface PlayFabFileOperationsSetObjects {
+export interface SetObjects {
   /**
    * This feature is in private preview with a set of managed partners. Sets objects
    * on an entity's profile.
    */
   post(
-    options: PlayFabFileOperationsSetObjectsParameters
-  ): StreamableMethod<
-    | PlayFabFileOperationsSetObjects200Response
-    | PlayFabFileOperationsSetObjectsDefaultResponse
-  >;
+    options: SetObjectsParameters
+  ): StreamableMethod<SetObjects200Response | SetObjectsDefaultResponse>;
 }
 
-export interface PlayFabEventsOperationsWriteEvents {
+export interface WriteEvents {
   /**
    * This feature is in private preview with a set of managed partners. Write
    * batches of entity based events to PlayStream. The namespace of the Event must
    * be 'custom' or start with 'custom.'.
    */
   post(
-    options: PlayFabEventsOperationsWriteEventsParameters
-  ): StreamableMethod<
-    | PlayFabEventsOperationsWriteEvents200Response
-    | PlayFabEventsOperationsWriteEventsDefaultResponse
-  >;
+    options: WriteEventsParameters
+  ): StreamableMethod<WriteEvents200Response | WriteEventsDefaultResponse>;
 }
 
-export interface PlayFabProfilesOperationsLoginPlayer {
+export interface LoginPlayer {
   /**
    * This feature is in private preview with a set of managed partners. Begins a
    * title session for a master_player_account, returning an entity token for the
    * associated title_player_account, creating a profile for it if necessary.
    */
   post(
-    options: PlayFabProfilesOperationsLoginPlayerParameters
-  ): StreamableMethod<
-    | PlayFabProfilesOperationsLoginPlayer200Response
-    | PlayFabProfilesOperationsLoginPlayerDefaultResponse
-  >;
+    options: LoginPlayerParameters
+  ): StreamableMethod<LoginPlayer200Response | LoginPlayerDefaultResponse>;
 }
 
 export interface Routes {
   /** Resource for '/Authentication/GetEntityToken' has methods for the following verbs: post */
-  (
-    path: "/Authentication/GetEntityToken"
-  ): PlayFabAuthenticationOperationsGetEntityToken;
+  (path: "/Authentication/GetEntityToken"): GetEntityToken;
   /** Resource for '/PlayerIdentity/AuthenticateWithAndroidDeviceId' has methods for the following verbs: post */
   (
     path: "/PlayerIdentity/AuthenticateWithAndroidDeviceId"
-  ): PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId;
+  ): AuthenticateWithAndroidDeviceId;
   /** Resource for '/PlayerIdentity/AuthenticateWithCustomId' has methods for the following verbs: post */
-  (
-    path: "/PlayerIdentity/AuthenticateWithCustomId"
-  ): PlayFabAuthenticationOperationsAuthenticateWithCustomId;
+  (path: "/PlayerIdentity/AuthenticateWithCustomId"): AuthenticateWithCustomId;
   /** Resource for '/PlayerIdentity/AuthenticateWithIOSDeviceId' has methods for the following verbs: post */
   (
     path: "/PlayerIdentity/AuthenticateWithIOSDeviceId"
-  ): PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId;
+  ): AuthenticateWithIOSDeviceId;
   /** Resource for '/PlayerIdentity/AuthenticateWithNintendoSwitchDeviceID' has methods for the following verbs: post */
   (
     path: "/PlayerIdentity/AuthenticateWithNintendoSwitchDeviceID"
-  ): PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID;
+  ): AuthenticateWithNintendoSwitchDeviceID;
   /** Resource for '/PlayerIdentity/GetLinkedPlayerIdentities' has methods for the following verbs: post */
   (
     path: "/PlayerIdentity/GetLinkedPlayerIdentities"
-  ): PlayFabAuthenticationOperationsGetLinkedPlayerIdentities;
+  ): GetLinkedPlayerIdentities;
   /** Resource for '/PlayerIdentity/UnlinkPlayerIdentity' has methods for the following verbs: post */
-  (
-    path: "/PlayerIdentity/UnlinkPlayerIdentity"
-  ): PlayFabAuthenticationOperationsUnlinkPlayerIdentity;
+  (path: "/PlayerIdentity/UnlinkPlayerIdentity"): UnlinkPlayerIdentity;
   /** Resource for '/File/AbortFileUploads' has methods for the following verbs: post */
-  (path: "/File/AbortFileUploads"): PlayFabFileOperationsAbortFileUploads;
+  (path: "/File/AbortFileUploads"): AbortFileUploads;
   /** Resource for '/File/DeleteFiles' has methods for the following verbs: post */
-  (path: "/File/DeleteFiles"): PlayFabFileOperationsDeleteFiles;
+  (path: "/File/DeleteFiles"): DeleteFiles;
   /** Resource for '/File/FinalizeFileUploads' has methods for the following verbs: post */
-  (path: "/File/FinalizeFileUploads"): PlayFabFileOperationsFinalizeFileUploads;
+  (path: "/File/FinalizeFileUploads"): FinalizeFileUploads;
   /** Resource for '/File/GetFiles' has methods for the following verbs: post */
-  (path: "/File/GetFiles"): PlayFabFileOperationsGetFiles;
+  (path: "/File/GetFiles"): GetFiles;
   /** Resource for '/File/InitiateFileUploads' has methods for the following verbs: post */
-  (path: "/File/InitiateFileUploads"): PlayFabFileOperationsInitiateFileUploads;
+  (path: "/File/InitiateFileUploads"): InitiateFileUploads;
   /** Resource for '/Object/GetObjects' has methods for the following verbs: post */
-  (path: "/Object/GetObjects"): PlayFabFileOperationsGetObjects;
+  (path: "/Object/GetObjects"): GetObjects;
   /** Resource for '/Object/SetObjects' has methods for the following verbs: post */
-  (path: "/Object/SetObjects"): PlayFabFileOperationsSetObjects;
+  (path: "/Object/SetObjects"): SetObjects;
   /** Resource for '/Event/WriteEvents' has methods for the following verbs: post */
-  (path: "/Event/WriteEvents"): PlayFabEventsOperationsWriteEvents;
+  (path: "/Event/WriteEvents"): WriteEvents;
   /** Resource for '/TitlePlayer/LoginPlayer' has methods for the following verbs: post */
-  (path: "/TitlePlayer/LoginPlayer"): PlayFabProfilesOperationsLoginPlayer;
+  (path: "/TitlePlayer/LoginPlayer"): LoginPlayer;
 }
 
 export type PlayFabClient = Client & {

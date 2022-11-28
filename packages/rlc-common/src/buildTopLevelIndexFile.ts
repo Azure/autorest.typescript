@@ -4,6 +4,7 @@
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { RLCModel } from "./interfaces.js";
 import { Project } from "ts-morph";
+import * as path from "path";
 
 const batchOutputFolder: [string, string, string][] = [];
 
@@ -17,7 +18,7 @@ export function buildTopLevelIndex(model: RLCModel) {
   if (srcPath) {
     const clientName = model.libraryName;
     const moduleName = normalizeName(clientName, NameType.File);
-    const relativePath = srcPath.replace("/src", "");
+    const relativePath = "." + srcPath.substring(srcPath.indexOf("/src/") + 4);
     batchOutputFolder.push([relativePath, clientName, moduleName]);
   }
   if (
@@ -40,7 +41,8 @@ export function buildTopLevelIndex(model: RLCModel) {
     indexFile.addExportDeclaration({
       namedExports: [...allModules]
     });
-    // TODO handle multi-client path issue in cald
-    return { path: "", content: indexFile.getFullText() };
+    const content = indexFile.getFullText();
+    const filePath = path.join(srcPath.substring(0, srcPath.indexOf("/src/") + 5), `index.ts`);
+    return { path: filePath, content };
   }
 }

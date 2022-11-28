@@ -18,25 +18,6 @@ export interface CollectionOutput {
 }
 
 // @public
-export interface ConfidentialLedgerListCollections200Response extends HttpResponse {
-    // (undocumented)
-    body: Array<CollectionOutput>;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface ConfidentialLedgerListCollectionsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type ConfidentialLedgerListCollectionsParameters = RequestParameters;
-
-// @public
 function createClient(credentials: TokenCredential, options?: ParametrizedHostClientOptions): ParametrizedHostClient;
 export default createClient;
 
@@ -61,12 +42,31 @@ export interface InnerErrorOutput {
 }
 
 // @public (undocumented)
-export function isUnexpected(response: ConfidentialLedgerListCollections200Response | ConfidentialLedgerListCollectionsDefaultResponse): response is ConfidentialLedgerListCollectionsDefaultResponse;
+export function isUnexpected(response: ListCollections200Response | ListCollectionsDefaultResponse): response is ListCollectionsDefaultResponse;
 
 // @public (undocumented)
 export interface ListCollections {
-    get(options?: ConfidentialLedgerListCollectionsParameters): StreamableMethod<ConfidentialLedgerListCollections200Response | ConfidentialLedgerListCollectionsDefaultResponse>;
+    get(options?: ListCollectionsParameters): StreamableMethod<ListCollections200Response | ListCollectionsDefaultResponse>;
 }
+
+// @public
+export interface ListCollections200Response extends HttpResponse {
+    // (undocumented)
+    body: Array<CollectionOutput>;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface ListCollectionsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type ListCollectionsParameters = RequestParameters;
 
 // @public (undocumented)
 export type ParametrizedHostClient = Client & {
