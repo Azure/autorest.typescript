@@ -5,18 +5,21 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorClient } from "./clientDefinitions";
 
+export interface AnomalyDetectorClientOptions extends ClientOptions {
+  ApiVersion?: string;
+}
+
 /**
  * Initialize a new instance of the class AnomalyDetectorClient class.
  * @param Endpoint type: string
- * @param ApiVersion type: string Possible values: v1.1
  * @param credentials type: KeyCredential
  */
 export default function createClient(
   Endpoint: string,
-  ApiVersion: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: AnomalyDetectorClientOptions = {}
 ): AnomalyDetectorClient {
+  const ApiVersion = options.ApiVersion ?? "v1.1";
   const baseUrl =
     options.baseUrl ?? `${Endpoint}/anomalydetector/${ApiVersion}`;
 

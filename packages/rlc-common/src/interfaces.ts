@@ -6,7 +6,7 @@ export interface RLCModel {
   paths: Paths;
   options?: RLCOptions;
   schemas: Schema[];
-  apiVersionParam?: Parameter;
+  apiVersionInQueryParam?: Parameter;
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
@@ -96,7 +96,7 @@ export interface RLCOptions {
   productDocLink?: string;
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
-  "sdk-folder"?: string
+  "sdk-folder"?: string;
 }
 
 export interface ServiceInfo {

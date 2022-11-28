@@ -299,15 +299,15 @@ function getClientFactoryBody(
 }
 
 function getApiVersion(model: RLCModel): string | undefined {
-  if (!model.apiVersionParam) {
+  if (!model.apiVersionInQueryParam) {
     return undefined;
   }
 
   if (
-    model.apiVersionParam &&
-    isConstantSchema(model.apiVersionParam as Schema)
+    model.apiVersionInQueryParam &&
+    isConstantSchema(model.apiVersionInQueryParam as Schema)
   ) {
-    return model.apiVersionParam.default;
+    return model.apiVersionInQueryParam.default;
   }
 
   return undefined;

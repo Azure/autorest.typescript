@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Client } from "@azure-tools/cadl-dpg";
+import { Client, getDefaultApiVersion } from "@azure-tools/cadl-dpg";
 import {
   ImportKind,
   NameType,
@@ -24,7 +24,8 @@ import {
   Type,
   BooleanLiteral,
   StringLiteral,
-  NumericLiteral
+  NumericLiteral,
+  ModelProperty
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -39,6 +40,7 @@ import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
+import { isApiVersion } from "../paramUtil.js";
 
 export async function transformRLCModel(
   program: Program,
@@ -62,7 +64,7 @@ export async function transformRLCModel(
   const importSet = new Map<ImportKind, Set<string>>();
   const paths: Paths = transformPaths(program, client);
   const schemas: Schema[] = transformSchemas(program, client);
-  const apiVersionParam = transformApiVersionParam(program);
+  const apiVersionInQueryParam = transformApiVersionParam(program);
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet,
@@ -83,14 +85,16 @@ export async function transformRLCModel(
     schemas,
     responses,
     importSet,
-    apiVersionParam,
+    apiVersionInQueryParam,
     parameters,
     annotations,
     urlInfo
   };
 }
 
-function transformApiVersionParam(program: Program): Parameter | undefined {
+export function transformApiVersionParam(
+  program: Program
+): Parameter | undefined {
   const apiVersion = getServiceVersion(program);
   if (apiVersion && apiVersion !== "0000-00-00") {
     return {
@@ -115,7 +119,6 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
       // Currently we only support one parameter in the servers definition
       for (const key of host[0].parameters.keys()) {
         const type = host?.[0]?.parameters.get(key)?.type;
-        const defaultValue = host?.[0]?.parameters.get(key)?.default;
 
         if (type) {
           const schema = getSchemaForType(program, type);
@@ -123,13 +126,27 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
             name: key,
             type: getTypeName(schema),
             description: getFormattedPropertyDoc(program, type, schema, " "),
-            value: isLiteralValue(defaultValue) ? defaultValue.value : undefined
+            value: getDefaultValue(program, host?.[0]?.parameters.get(key))
           });
         }
       }
     }
   }
   return { endpoint, urlParameters };
+}
+
+function getDefaultValue(program: Program, param?: ModelProperty) {
+  const otherDefaultValue = param?.default;
+  const defaultApiVersion = getDefaultApiVersion(
+    program,
+    getServiceNamespace(program)
+  );
+  if (isApiVersion(param) && defaultApiVersion) {
+    return defaultApiVersion.value;
+  } else if (isLiteralValue(otherDefaultValue)) {
+    return otherDefaultValue.value;
+  }
+  return undefined;
 }
 
 function isLiteralValue(
