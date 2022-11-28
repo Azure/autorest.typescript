@@ -20,200 +20,195 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface ProjectsCreateOrUpdate200Response extends HttpResponse {
+export interface CreateOrUpdate200Response extends HttpResponse {
   status: "200";
   body: ProjectOutput;
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface ProjectsCreateOrUpdate201Response extends HttpResponse {
+export interface CreateOrUpdate201Response extends HttpResponse {
   status: "201";
   body: ProjectOutput;
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
-export interface ProjectsCreateOrUpdateDefaultResponse extends HttpResponse {
+export interface CreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface ProjectsGet200Response extends HttpResponse {
+export interface Get200Response extends HttpResponse {
   status: "200";
   body: ProjectOutput;
 }
 
-export interface ProjectsGetDefaultResponse extends HttpResponse {
+export interface GetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface ProjectsDelete202Response extends HttpResponse {
+export interface Delete202Response extends HttpResponse {
   status: "202";
   body: OperationStatusOutput;
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
-export interface ProjectsDeleteDefaultResponse extends HttpResponse {
+export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface ProjectsList200Response extends HttpResponse {
+export interface ListProjects200Response extends HttpResponse {
   status: "200";
   body: ProjectListOutput;
 }
 
-export interface ProjectsListDefaultResponse extends HttpResponse {
+export interface ListProjectsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface ProjectsExport202Response extends HttpResponse {
+export interface Export202Response extends HttpResponse {
   status: "202";
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
-export interface ProjectsExportDefaultResponse extends HttpResponse {
+export interface ExportDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface ProjectsImportx202Response extends HttpResponse {
+export interface Importx202Response extends HttpResponse {
   status: "202";
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
-export interface ProjectsImportxDefaultResponse extends HttpResponse {
+export interface ImportxDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface ProjectsTrain202Response extends HttpResponse {
+export interface Train202Response extends HttpResponse {
   status: "202";
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
-export interface ProjectsTrainDefaultResponse extends HttpResponse {
+export interface TrainDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface DeploymentsGetDeployment200Response extends HttpResponse {
+export interface GetDeployment200Response extends HttpResponse {
   status: "200";
   body: DeploymentOutput;
 }
 
-export interface DeploymentsGetDeploymentDefaultResponse extends HttpResponse {
+export interface GetDeploymentDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface DeploymentsDeployProject200Response extends HttpResponse {
+export interface DeployProject200Response extends HttpResponse {
   status: "200";
   body: DeploymentOutput;
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface DeploymentsDeployProject201Response extends HttpResponse {
+export interface DeployProject201Response extends HttpResponse {
   status: "201";
   body: DeploymentOutput;
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
-export interface DeploymentsDeployProjectDefaultResponse extends HttpResponse {
+export interface DeployProjectDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface DeploymentsDeleteDeployment202Response extends HttpResponse {
+export interface DeleteDeployment202Response extends HttpResponse {
   status: "202";
   body: OperationStatusOutput;
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
-export interface DeploymentsDeleteDeploymentDefaultResponse
-  extends HttpResponse {
+export interface DeleteDeploymentDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface DeploymentsList200Response extends HttpResponse {
+export interface ListDeployments200Response extends HttpResponse {
   status: "200";
   body: DeploymentListOutput;
 }
 
-export interface DeploymentsListDefaultResponse extends HttpResponse {
+export interface ListDeploymentsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface DeploymentsSwapDeployments202Response extends HttpResponse {
+export interface SwapDeployments202Response extends HttpResponse {
   status: "202";
   headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
 }
 
-export interface DeploymentsSwapDeploymentsDefaultResponse
-  extends HttpResponse {
+export interface SwapDeploymentsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface JobsGetDeploymentStatus200Response extends HttpResponse {
+export interface GetDeploymentStatus200Response extends HttpResponse {
   status: "200";
   body: DeploymentJobOutput;
 }
 
-export interface JobsGetDeploymentStatusDefaultResponse extends HttpResponse {
+export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface JobsGetSwapDeploymentsStatus200Response extends HttpResponse {
+export interface GetSwapDeploymentsStatus200Response extends HttpResponse {
   status: "200";
   body: SwapDeploymentsJobOutput;
 }
 
-export interface JobsGetSwapDeploymentsStatusDefaultResponse
-  extends HttpResponse {
+export interface GetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface GlobalGetSupportedLanguages200Response extends HttpResponse {
+export interface GetSupportedLanguages200Response extends HttpResponse {
   status: "200";
   body: PagedSupportedLanguageOutput;
 }
 
-export interface GlobalGetSupportedLanguagesDefaultResponse
-  extends HttpResponse {
+export interface GetSupportedLanguagesDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
 /** The request has succeeded. */
-export interface GlobalListTrainingConfigVersions200Response
-  extends HttpResponse {
+export interface ListTrainingConfigVersions200Response extends HttpResponse {
   status: "200";
   body: PagedTrainingConfigVersionOutput;
 }
 
-export interface GlobalListTrainingConfigVersionsDefaultResponse
+export interface ListTrainingConfigVersionsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;

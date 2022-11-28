@@ -2,26 +2,26 @@
 // Licensed under the MIT license.
 
 import {
-  UnivariateDetectUnivariateEntireSeries200Response,
-  UnivariateDetectUnivariateEntireSeriesDefaultResponse,
-  UnivariateDetectUnivariateLastPoint200Response,
-  UnivariateDetectUnivariateLastPointDefaultResponse,
-  UnivariateDetectUnivariateChangePoint200Response,
-  UnivariateDetectUnivariateChangePointDefaultResponse,
-  MultivariateGetBatchDetectionResult200Response,
-  MultivariateGetBatchDetectionResultDefaultResponse,
-  MultivariateCreateAndTrainMultivariateModel201Response,
-  MultivariateCreateAndTrainMultivariateModelDefaultResponse,
-  MultivariateListMultivariateModels200Response,
-  MultivariateListMultivariateModelsDefaultResponse,
-  MultivariateDeleteMultivariateModel204Response,
-  MultivariateDeleteMultivariateModelDefaultResponse,
-  MultivariateGetMultivariateModel200Response,
-  MultivariateGetMultivariateModelDefaultResponse,
-  MultivariateDetectMultivariateBatchAnomaly202Response,
-  MultivariateDetectMultivariateBatchAnomalyDefaultResponse,
-  MultivariateDetectMultivariateLastAnomaly200Response,
-  MultivariateDetectMultivariateLastAnomalyDefaultResponse,
+  DetectUnivariateEntireSeries200Response,
+  DetectUnivariateEntireSeriesDefaultResponse,
+  DetectUnivariateLastPoint200Response,
+  DetectUnivariateLastPointDefaultResponse,
+  DetectUnivariateChangePoint200Response,
+  DetectUnivariateChangePointDefaultResponse,
+  GetMultivariateBatchDetectionResult200Response,
+  GetMultivariateBatchDetectionResultDefaultResponse,
+  CreateAndTrainMultivariateModel201Response,
+  CreateAndTrainMultivariateModelDefaultResponse,
+  ListMultivariateModels200Response,
+  ListMultivariateModelsDefaultResponse,
+  DeleteMultivariateModel204Response,
+  DeleteMultivariateModelDefaultResponse,
+  GetMultivariateModel200Response,
+  GetMultivariateModelDefaultResponse,
+  DetectMultivariateBatchAnomaly202Response,
+  DetectMultivariateBatchAnomalyDefaultResponse,
+  DetectMultivariateLastAnomaly200Response,
+  DetectMultivariateLastAnomalyDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -39,87 +39,87 @@ const responseMap: Record<string, string[]> = {
 
 export function isUnexpected(
   response:
-    | UnivariateDetectUnivariateEntireSeries200Response
-    | UnivariateDetectUnivariateEntireSeriesDefaultResponse
-): response is UnivariateDetectUnivariateEntireSeriesDefaultResponse;
+    | DetectUnivariateEntireSeries200Response
+    | DetectUnivariateEntireSeriesDefaultResponse
+): response is DetectUnivariateEntireSeriesDefaultResponse;
 export function isUnexpected(
   response:
-    | UnivariateDetectUnivariateLastPoint200Response
-    | UnivariateDetectUnivariateLastPointDefaultResponse
-): response is UnivariateDetectUnivariateLastPointDefaultResponse;
+    | DetectUnivariateLastPoint200Response
+    | DetectUnivariateLastPointDefaultResponse
+): response is DetectUnivariateLastPointDefaultResponse;
 export function isUnexpected(
   response:
-    | UnivariateDetectUnivariateChangePoint200Response
-    | UnivariateDetectUnivariateChangePointDefaultResponse
-): response is UnivariateDetectUnivariateChangePointDefaultResponse;
+    | DetectUnivariateChangePoint200Response
+    | DetectUnivariateChangePointDefaultResponse
+): response is DetectUnivariateChangePointDefaultResponse;
 export function isUnexpected(
   response:
-    | MultivariateGetBatchDetectionResult200Response
-    | MultivariateGetBatchDetectionResultDefaultResponse
-): response is MultivariateGetBatchDetectionResultDefaultResponse;
+    | GetMultivariateBatchDetectionResult200Response
+    | GetMultivariateBatchDetectionResultDefaultResponse
+): response is GetMultivariateBatchDetectionResultDefaultResponse;
 export function isUnexpected(
   response:
-    | MultivariateCreateAndTrainMultivariateModel201Response
-    | MultivariateCreateAndTrainMultivariateModelDefaultResponse
-): response is MultivariateCreateAndTrainMultivariateModelDefaultResponse;
+    | CreateAndTrainMultivariateModel201Response
+    | CreateAndTrainMultivariateModelDefaultResponse
+): response is CreateAndTrainMultivariateModelDefaultResponse;
 export function isUnexpected(
   response:
-    | MultivariateListMultivariateModels200Response
-    | MultivariateListMultivariateModelsDefaultResponse
-): response is MultivariateListMultivariateModelsDefaultResponse;
+    | ListMultivariateModels200Response
+    | ListMultivariateModelsDefaultResponse
+): response is ListMultivariateModelsDefaultResponse;
 export function isUnexpected(
   response:
-    | MultivariateDeleteMultivariateModel204Response
-    | MultivariateDeleteMultivariateModelDefaultResponse
-): response is MultivariateDeleteMultivariateModelDefaultResponse;
+    | DeleteMultivariateModel204Response
+    | DeleteMultivariateModelDefaultResponse
+): response is DeleteMultivariateModelDefaultResponse;
 export function isUnexpected(
   response:
-    | MultivariateGetMultivariateModel200Response
-    | MultivariateGetMultivariateModelDefaultResponse
-): response is MultivariateGetMultivariateModelDefaultResponse;
+    | GetMultivariateModel200Response
+    | GetMultivariateModelDefaultResponse
+): response is GetMultivariateModelDefaultResponse;
 export function isUnexpected(
   response:
-    | MultivariateDetectMultivariateBatchAnomaly202Response
-    | MultivariateDetectMultivariateBatchAnomalyDefaultResponse
-): response is MultivariateDetectMultivariateBatchAnomalyDefaultResponse;
+    | DetectMultivariateBatchAnomaly202Response
+    | DetectMultivariateBatchAnomalyDefaultResponse
+): response is DetectMultivariateBatchAnomalyDefaultResponse;
 export function isUnexpected(
   response:
-    | MultivariateDetectMultivariateLastAnomaly200Response
-    | MultivariateDetectMultivariateLastAnomalyDefaultResponse
-): response is MultivariateDetectMultivariateLastAnomalyDefaultResponse;
+    | DetectMultivariateLastAnomaly200Response
+    | DetectMultivariateLastAnomalyDefaultResponse
+): response is DetectMultivariateLastAnomalyDefaultResponse;
 export function isUnexpected(
   response:
-    | UnivariateDetectUnivariateEntireSeries200Response
-    | UnivariateDetectUnivariateEntireSeriesDefaultResponse
-    | UnivariateDetectUnivariateLastPoint200Response
-    | UnivariateDetectUnivariateLastPointDefaultResponse
-    | UnivariateDetectUnivariateChangePoint200Response
-    | UnivariateDetectUnivariateChangePointDefaultResponse
-    | MultivariateGetBatchDetectionResult200Response
-    | MultivariateGetBatchDetectionResultDefaultResponse
-    | MultivariateCreateAndTrainMultivariateModel201Response
-    | MultivariateCreateAndTrainMultivariateModelDefaultResponse
-    | MultivariateListMultivariateModels200Response
-    | MultivariateListMultivariateModelsDefaultResponse
-    | MultivariateDeleteMultivariateModel204Response
-    | MultivariateDeleteMultivariateModelDefaultResponse
-    | MultivariateGetMultivariateModel200Response
-    | MultivariateGetMultivariateModelDefaultResponse
-    | MultivariateDetectMultivariateBatchAnomaly202Response
-    | MultivariateDetectMultivariateBatchAnomalyDefaultResponse
-    | MultivariateDetectMultivariateLastAnomaly200Response
-    | MultivariateDetectMultivariateLastAnomalyDefaultResponse
+    | DetectUnivariateEntireSeries200Response
+    | DetectUnivariateEntireSeriesDefaultResponse
+    | DetectUnivariateLastPoint200Response
+    | DetectUnivariateLastPointDefaultResponse
+    | DetectUnivariateChangePoint200Response
+    | DetectUnivariateChangePointDefaultResponse
+    | GetMultivariateBatchDetectionResult200Response
+    | GetMultivariateBatchDetectionResultDefaultResponse
+    | CreateAndTrainMultivariateModel201Response
+    | CreateAndTrainMultivariateModelDefaultResponse
+    | ListMultivariateModels200Response
+    | ListMultivariateModelsDefaultResponse
+    | DeleteMultivariateModel204Response
+    | DeleteMultivariateModelDefaultResponse
+    | GetMultivariateModel200Response
+    | GetMultivariateModelDefaultResponse
+    | DetectMultivariateBatchAnomaly202Response
+    | DetectMultivariateBatchAnomalyDefaultResponse
+    | DetectMultivariateLastAnomaly200Response
+    | DetectMultivariateLastAnomalyDefaultResponse
 ): response is
-  | UnivariateDetectUnivariateEntireSeriesDefaultResponse
-  | UnivariateDetectUnivariateLastPointDefaultResponse
-  | UnivariateDetectUnivariateChangePointDefaultResponse
-  | MultivariateGetBatchDetectionResultDefaultResponse
-  | MultivariateCreateAndTrainMultivariateModelDefaultResponse
-  | MultivariateListMultivariateModelsDefaultResponse
-  | MultivariateDeleteMultivariateModelDefaultResponse
-  | MultivariateGetMultivariateModelDefaultResponse
-  | MultivariateDetectMultivariateBatchAnomalyDefaultResponse
-  | MultivariateDetectMultivariateLastAnomalyDefaultResponse {
+  | DetectUnivariateEntireSeriesDefaultResponse
+  | DetectUnivariateLastPointDefaultResponse
+  | DetectUnivariateChangePointDefaultResponse
+  | GetMultivariateBatchDetectionResultDefaultResponse
+  | CreateAndTrainMultivariateModelDefaultResponse
+  | ListMultivariateModelsDefaultResponse
+  | DeleteMultivariateModelDefaultResponse
+  | GetMultivariateModelDefaultResponse
+  | DetectMultivariateBatchAnomalyDefaultResponse
+  | DetectMultivariateLastAnomalyDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

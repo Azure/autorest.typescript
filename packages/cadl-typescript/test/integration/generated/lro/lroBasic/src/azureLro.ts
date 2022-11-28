@@ -27,18 +27,5 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as AzureLroClient;
 
-  return {
-    ...client,
-    pollingSuccess: {
-      create: (options) => {
-        return client.path("/lro/basic/put").put(options);
-      },
-      get: (options) => {
-        return client.path("/lro/basic/put").get(options);
-      },
-      polling: (options) => {
-        return client.path("/lro/basic/put/polling").get(options);
-      },
-    },
-  };
+  return client;
 }

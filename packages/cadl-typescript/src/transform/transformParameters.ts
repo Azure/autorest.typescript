@@ -10,9 +10,10 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { Model, Program, Type } from "@cadl-lang/compiler";
+import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import {
-  getAllHttpServices,
+  getHttpOperation,
+  HttpOperation,
   HttpOperationParameter,
   HttpOperationParameters
 } from "@cadl-lang/rest/http";
@@ -24,22 +25,47 @@ import {
   getFormattedPropertyDoc
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
-import { isBinaryPayload } from "../operationUtil.js";
+import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
 import { getResourceOperation } from "@cadl-lang/rest";
+import {
+  Client,
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  OperationGroup
+} from "@azure-tools/cadl-dpg";
 
 export function transformToParameterTypes(
   program: Program,
-  importDetails: Map<ImportKind, Set<string>>
+  importDetails: Map<ImportKind, Set<string>>,
+  client: Client
 ): OperationParameter[] {
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
+  const operationGroups = listOperationGroups(program, client);
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
-  for (const route of routes) {
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for (const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      transformToParameterTypesForRoute(program, route, operationGroup);
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    transformToParameterTypesForRoute(program, route);
+  }
+  if (outputImportedSet.size > 0) {
+    importDetails.set(ImportKind.ParameterInput, outputImportedSet);
+  }
+  function transformToParameterTypesForRoute(
+    program: Program,
+    route: HttpOperation,
+    operationGroup?: OperationGroup
+  ) {
     const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: route.container.name,
+      operationGroup: getOperationGroupName(operationGroup),
       operationName: route.operation.name,
       parameters: []
     };
@@ -66,9 +92,6 @@ export function transformToParameterTypes(
       body: bodyParameter
     });
     rlcParameters.push(rlcParameter);
-  }
-  if (outputImportedSet.size > 0) {
-    importDetails.set(ImportKind.ParameterInput, outputImportedSet);
   }
   return rlcParameters;
 }
@@ -98,7 +121,7 @@ function getParameterMetadata(
 }
 
 function getParameterName(name: string) {
-  if (name === "content-type") {
+  if (name && name.toLowerCase() === "content-type") {
     return "contentType";
   }
   return `"${name}"`;

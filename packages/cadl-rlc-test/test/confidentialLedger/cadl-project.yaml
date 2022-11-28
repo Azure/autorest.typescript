@@ -1,6 +1,5 @@
 emitters:
   "@azure-tools/cadl-typescript":
-    includeShortcuts: true
     azureSdkForJs: false
     packageDetails:
       name: "@msinternal/confidential-ledger"

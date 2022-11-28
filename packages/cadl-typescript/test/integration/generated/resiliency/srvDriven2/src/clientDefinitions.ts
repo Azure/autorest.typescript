@@ -2,22 +2,22 @@
 // Licensed under the MIT license.
 
 import {
-  ParamsHeadNoParamsParameters,
-  ParamsGetRequiredParameters,
-  ParamsPutRequiredOptionalParameters,
-  ParamsDeleteParametersParameters,
-  ParamsPostParametersParameters,
-  ParamsGetOptionalParameters,
-  ParamsGetNewOperationParameters,
+  HeadNoParamsParameters,
+  GetRequiredParameters,
+  PutRequiredOptionalParameters,
+  DeleteParametersParameters,
+  PostParametersParameters,
+  GetOptionalParameters,
+  GetNewOperationParameters,
 } from "./parameters";
 import {
-  ParamsHeadNoParams200Response,
-  ParamsGetRequired200Response,
-  ParamsPutRequiredOptional200Response,
-  ParamsDeleteParameters204Response,
-  ParamsPostParameters200Response,
-  ParamsGetOptional200Response,
-  ParamsGetNewOperation200Response,
+  HeadNoParams200Response,
+  GetRequired200Response,
+  PutRequiredOptional200Response,
+  DeleteParameters204Response,
+  PostParameters200Response,
+  GetOptional200Response,
+  GetNewOperation200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -27,33 +27,31 @@ export interface HeadNoParams {
    *  Initially has no query parameters. After evolution, a new optional query parameter is added
    */
   head(
-    options?: ParamsHeadNoParamsParameters
-  ): StreamableMethod<ParamsHeadNoParams200Response>;
+    options?: HeadNoParamsParameters
+  ): StreamableMethod<HeadNoParams200Response>;
   /**
    * Get true Boolean value on path.
    *  Initially only has one required Query Parameter. After evolution, a new optional query parameter is added
    */
-  get(
-    options: ParamsGetRequiredParameters
-  ): StreamableMethod<ParamsGetRequired200Response>;
+  get(options: GetRequiredParameters): StreamableMethod<GetRequired200Response>;
   /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
   put(
-    options: ParamsPutRequiredOptionalParameters
-  ): StreamableMethod<ParamsPutRequiredOptional200Response>;
+    options: PutRequiredOptionalParameters
+  ): StreamableMethod<PutRequiredOptional200Response>;
   /**
    * Delete something.
    *  Initially the path exists but there is no delete method. After evolution this is a new method in a known path
    */
   delete(
-    options?: ParamsDeleteParametersParameters
-  ): StreamableMethod<ParamsDeleteParameters204Response>;
+    options?: DeleteParametersParameters
+  ): StreamableMethod<DeleteParameters204Response>;
 }
 
 export interface PostParameters {
   /** POST a JSON or a JPEG */
   post(
-    options: ParamsPostParametersParameters
-  ): StreamableMethod<ParamsPostParameters200Response>;
+    options: PostParametersParameters
+  ): StreamableMethod<PostParameters200Response>;
 }
 
 export interface GetOptional {
@@ -62,8 +60,8 @@ export interface GetOptional {
    *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
    */
   get(
-    options?: ParamsGetOptionalParameters
-  ): StreamableMethod<ParamsGetOptional200Response>;
+    options?: GetOptionalParameters
+  ): StreamableMethod<GetOptional200Response>;
 }
 
 export interface GetNewOperation {
@@ -72,8 +70,8 @@ export interface GetNewOperation {
    *  Initially neither path or method exist for this operation. After evolution, this is a new method in a new path
    */
   get(
-    options?: ParamsGetNewOperationParameters
-  ): StreamableMethod<ParamsGetNewOperation200Response>;
+    options?: GetNewOperationParameters
+  ): StreamableMethod<GetNewOperation200Response>;
 }
 
 export interface Routes {

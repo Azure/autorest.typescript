@@ -25,12 +25,5 @@ export default function createClient(options: ClientOptions = {}): HelloClient {
 
   const client = getClient(baseUrl, options) as HelloClient;
 
-  return {
-    ...client,
-    hello: {
-      world: (options) => {
-        return client.path("/hello/world").get(options);
-      },
-    },
-  };
+  return client;
 }

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { Client } from "@azure-tools/cadl-dpg";
 import {
   ImportKind,
   NameType,
@@ -16,7 +17,6 @@ import {
   UrlInfo
 } from "@azure-tools/rlc-common";
 import {
-  getDoc,
   getServiceNamespace,
   getServiceTitle,
   getServiceVersion,
@@ -28,7 +28,11 @@ import {
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
-import { getSchemaForType } from "../modelUtils.js";
+import {
+  getFormattedPropertyDoc,
+  getSchemaForType,
+  getTypeName
+} from "../modelUtils.js";
 import { transformAnnotationDetails } from "./transformAnnotationDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
@@ -38,27 +42,38 @@ import { transformRLCOptions } from "./transfromRLCOptions.js";
 
 export async function transformRLCModel(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: RLCOptions,
+  client: Client
 ): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(program, emitterOptions);
-  const srcPath = join(program.compilerOptions.outputDir ?? "", "src");
+  const srcPath = join(
+    program.compilerOptions.outputDir ?? "",
+    "src",
+    options.batch && options.batch.length > 1
+      ? normalizeName(client.name.replace("Client", ""), NameType.File)
+      : ""
+  );
   const libraryName = normalizeName(
-    options?.title ?? getServiceTitle(program),
+    options.batch && options.batch.length > 1
+      ? client.name
+      : options?.title ?? getServiceTitle(program),
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();
-  const paths: Paths = transformPaths(program);
-  const schemas: Schema[] = transformSchemas(program);
+  const paths: Paths = transformPaths(program, client);
+  const schemas: Schema[] = transformSchemas(program, client);
   const apiVersionParam = transformApiVersionParam(program);
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
-    importSet
+    importSet,
+    client
   );
   const parameters: OperationParameter[] = transformToParameterTypes(
     program,
-    importSet
+    importSet,
+    client
   );
-  const annotations = transformAnnotationDetails(program);
+  const annotations = transformAnnotationDetails(program, client);
   const urlInfo = transformUrlInfo(program);
   return {
     srcPath,
@@ -103,10 +118,11 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
         const defaultValue = host?.[0]?.parameters.get(key)?.default;
 
         if (type) {
+          const schema = getSchemaForType(program, type);
           urlParameters.push({
             name: key,
-            type: getSchemaForType(program, type).type,
-            description: getDoc(program, type),
+            type: getTypeName(schema),
+            description: getFormattedPropertyDoc(program, type, schema, " "),
             value: isLiteralValue(defaultValue) ? defaultValue.value : undefined
           });
         }

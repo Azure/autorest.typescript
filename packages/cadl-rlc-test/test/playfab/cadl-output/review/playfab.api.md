@@ -11,6 +11,47 @@ import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
+// @public (undocumented)
+export interface AbortFileUploads {
+    post(options: AbortFileUploadsParameters): StreamableMethod<AbortFileUploads200Response | AbortFileUploadsDefaultResponse>;
+}
+
+// @public
+export interface AbortFileUploads200Response extends HttpResponse {
+    // (undocumented)
+    body: AbortFileUploadsResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface AbortFileUploadsBodyParam {
+    body: AbortFileUploadsRequest;
+}
+
+// @public (undocumented)
+export interface AbortFileUploadsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface AbortFileUploadsHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & AbortFileUploadsHeaders;
+}
+
+// @public (undocumented)
+export interface AbortFileUploadsHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type AbortFileUploadsParameters = AbortFileUploadsHeaderParam & AbortFileUploadsBodyParam & RequestParameters;
+
 // @public
 export interface AbortFileUploadsRequest {
     CustomTags?: object;
@@ -98,9 +139,214 @@ export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
     TitleId?: string;
 }
 
+// @public (undocumented)
+export interface AuthenticateWithAndroidDeviceId {
+    post(options: AuthenticateWithAndroidDeviceIdParameters): StreamableMethod<AuthenticateWithAndroidDeviceId200Response | AuthenticateWithAndroidDeviceIdDefaultResponse>;
+}
+
+// @public
+export interface AuthenticateWithAndroidDeviceId200Response extends HttpResponse {
+    // (undocumented)
+    body: AuthenticateIdentityResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface AuthenticateWithAndroidDeviceIdBodyParam {
+    // (undocumented)
+    body: AuthenticateAndroidDeviceIdIdentityRequest;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithAndroidDeviceIdDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithAndroidDeviceIdHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & AuthenticateWithAndroidDeviceIdHeaders;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithAndroidDeviceIdHeaders {
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type AuthenticateWithAndroidDeviceIdParameters = AuthenticateWithAndroidDeviceIdHeaderParam & AuthenticateWithAndroidDeviceIdBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface AuthenticateWithCustomId {
+    post(options: AuthenticateWithCustomIdParameters): StreamableMethod<AuthenticateWithCustomId200Response | AuthenticateWithCustomIdDefaultResponse>;
+}
+
+// @public
+export interface AuthenticateWithCustomId200Response extends HttpResponse {
+    // (undocumented)
+    body: AuthenticateIdentityResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface AuthenticateWithCustomIdBodyParam {
+    // (undocumented)
+    body: AuthenticateCustomIdIdentityRequest;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithCustomIdDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithCustomIdHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & AuthenticateWithCustomIdHeaders;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithCustomIdHeaders {
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type AuthenticateWithCustomIdParameters = AuthenticateWithCustomIdHeaderParam & AuthenticateWithCustomIdBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface AuthenticateWithIOSDeviceId {
+    post(options: AuthenticateWithIOSDeviceIdParameters): StreamableMethod<AuthenticateWithIOSDeviceId200Response | AuthenticateWithIOSDeviceIdDefaultResponse>;
+}
+
+// @public
+export interface AuthenticateWithIOSDeviceId200Response extends HttpResponse {
+    // (undocumented)
+    body: AuthenticateIdentityResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface AuthenticateWithIOSDeviceIdBodyParam {
+    // (undocumented)
+    body: AuthenticateIOSDeviceIdIdentityRequest;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithIOSDeviceIdDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithIOSDeviceIdHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & AuthenticateWithIOSDeviceIdHeaders;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithIOSDeviceIdHeaders {
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type AuthenticateWithIOSDeviceIdParameters = AuthenticateWithIOSDeviceIdHeaderParam & AuthenticateWithIOSDeviceIdBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface AuthenticateWithNintendoSwitchDeviceID {
+    post(options: AuthenticateWithNintendoSwitchDeviceIDParameters): StreamableMethod<AuthenticateWithNintendoSwitchDeviceID200Response | AuthenticateWithNintendoSwitchDeviceIDDefaultResponse>;
+}
+
+// @public
+export interface AuthenticateWithNintendoSwitchDeviceID200Response extends HttpResponse {
+    // (undocumented)
+    body: AuthenticateIdentityResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface AuthenticateWithNintendoSwitchDeviceIDBodyParam {
+    // (undocumented)
+    body: AuthenticateNintendoSwitchDeviceIDIdentityRequest;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithNintendoSwitchDeviceIDDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithNintendoSwitchDeviceIDHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & AuthenticateWithNintendoSwitchDeviceIDHeaders;
+}
+
+// @public (undocumented)
+export interface AuthenticateWithNintendoSwitchDeviceIDHeaders {
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type AuthenticateWithNintendoSwitchDeviceIDParameters = AuthenticateWithNintendoSwitchDeviceIDHeaderParam & AuthenticateWithNintendoSwitchDeviceIDBodyParam & RequestParameters;
+
 // @public
 function createClient(endpoint: string, options?: ClientOptions): PlayFabClient;
 export default createClient;
+
+// @public (undocumented)
+export interface DeleteFiles {
+    post(options: DeleteFilesParameters): StreamableMethod<DeleteFiles200Response | DeleteFilesDefaultResponse>;
+}
+
+// @public
+export interface DeleteFiles200Response extends HttpResponse {
+    // (undocumented)
+    body: DeleteFilesResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface DeleteFilesBodyParam {
+    body: DeleteFilesRequest;
+}
+
+// @public (undocumented)
+export interface DeleteFilesDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface DeleteFilesHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & DeleteFilesHeaders;
+}
+
+// @public (undocumented)
+export interface DeleteFilesHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type DeleteFilesParameters = DeleteFilesHeaderParam & DeleteFilesBodyParam & RequestParameters;
 
 // @public
 export interface DeleteFilesRequest {
@@ -155,6 +401,47 @@ export interface EventContents {
     PayloadJSON?: string;
 }
 
+// @public (undocumented)
+export interface FinalizeFileUploads {
+    post(options: FinalizeFileUploadsParameters): StreamableMethod<FinalizeFileUploads200Response | FinalizeFileUploadsDefaultResponse>;
+}
+
+// @public
+export interface FinalizeFileUploads200Response extends HttpResponse {
+    // (undocumented)
+    body: FinalizeFileUploadsResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FinalizeFileUploadsBodyParam {
+    body: FinalizeFileUploadsRequest;
+}
+
+// @public (undocumented)
+export interface FinalizeFileUploadsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface FinalizeFileUploadsHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & FinalizeFileUploadsHeaders;
+}
+
+// @public (undocumented)
+export interface FinalizeFileUploadsHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type FinalizeFileUploadsParameters = FinalizeFileUploadsHeaderParam & FinalizeFileUploadsBodyParam & RequestParameters;
+
 // @public
 export interface FinalizeFileUploadsRequest {
     CustomTags?: object;
@@ -177,6 +464,46 @@ export interface FinalizeFileUploadsResponseOutput {
     data?: FinalizeFileUploadsResponseDataOutput;
     status?: string;
 }
+
+// @public (undocumented)
+export interface GetEntityToken {
+    post(options: GetEntityTokenParameters): StreamableMethod<GetEntityToken200Response | GetEntityTokenDefaultResponse>;
+}
+
+// @public
+export interface GetEntityToken200Response extends HttpResponse {
+    // (undocumented)
+    body: GetEntityTokenResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetEntityTokenBodyParam {
+    body: GetEntityTokenRequest;
+}
+
+// @public (undocumented)
+export interface GetEntityTokenDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface GetEntityTokenHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & GetEntityTokenHeaders;
+}
+
+// @public (undocumented)
+export interface GetEntityTokenHeaders {
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type GetEntityTokenParameters = GetEntityTokenHeaderParam & GetEntityTokenBodyParam & RequestParameters;
 
 // @public
 export interface GetEntityTokenRequest {
@@ -208,6 +535,47 @@ export interface GetFileMetadataOutput {
     Size: number;
 }
 
+// @public (undocumented)
+export interface GetFiles {
+    post(options: GetFilesParameters): StreamableMethod<GetFiles200Response | GetFilesDefaultResponse>;
+}
+
+// @public
+export interface GetFiles200Response extends HttpResponse {
+    // (undocumented)
+    body: GetFilesResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetFilesBodyParam {
+    body: GetFilesRequest;
+}
+
+// @public (undocumented)
+export interface GetFilesDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface GetFilesHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & GetFilesHeaders;
+}
+
+// @public (undocumented)
+export interface GetFilesHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type GetFilesParameters = GetFilesHeaderParam & GetFilesBodyParam & RequestParameters;
+
 // @public
 export interface GetFilesRequest {
     CustomTags?: object;
@@ -230,6 +598,48 @@ export interface GetFilesResponseOutput {
 }
 
 // @public (undocumented)
+export interface GetLinkedPlayerIdentities {
+    post(options: GetLinkedPlayerIdentitiesParameters): StreamableMethod<GetLinkedPlayerIdentities200Response | GetLinkedPlayerIdentitiesDefaultResponse>;
+}
+
+// @public
+export interface GetLinkedPlayerIdentities200Response extends HttpResponse {
+    // (undocumented)
+    body: GetLinkedPlayerIdentitiesResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetLinkedPlayerIdentitiesBodyParam {
+    // (undocumented)
+    body: GetLinkedPlayerIdentitiesRequest;
+}
+
+// @public (undocumented)
+export interface GetLinkedPlayerIdentitiesDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface GetLinkedPlayerIdentitiesHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & GetLinkedPlayerIdentitiesHeaders;
+}
+
+// @public (undocumented)
+export interface GetLinkedPlayerIdentitiesHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type GetLinkedPlayerIdentitiesParameters = GetLinkedPlayerIdentitiesHeaderParam & GetLinkedPlayerIdentitiesBodyParam & RequestParameters;
+
+// @public (undocumented)
 export interface GetLinkedPlayerIdentitiesRequest {
     CustomTags?: object;
     MasterPlayerAccountId?: string;
@@ -247,6 +657,47 @@ export interface GetLinkedPlayerIdentitiesResultOutput {
     data?: GetLinkedPlayerIdentitiesResultDataOutput;
     status?: string;
 }
+
+// @public (undocumented)
+export interface GetObjects {
+    post(options: GetObjectsParameters): StreamableMethod<GetObjects200Response | GetObjectsDefaultResponse>;
+}
+
+// @public
+export interface GetObjects200Response extends HttpResponse {
+    // (undocumented)
+    body: GetObjectsResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetObjectsBodyParam {
+    body: GetObjectsRequest;
+}
+
+// @public (undocumented)
+export interface GetObjectsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface GetObjectsHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & GetObjectsHeaders;
+}
+
+// @public (undocumented)
+export interface GetObjectsHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type GetObjectsParameters = GetObjectsHeaderParam & GetObjectsBodyParam & RequestParameters;
 
 // @public
 export interface GetObjectsRequest {
@@ -276,6 +727,47 @@ export interface InitiateFileUploadMetadataOutput {
     UploadUrl?: string;
 }
 
+// @public (undocumented)
+export interface InitiateFileUploads {
+    post(options: InitiateFileUploadsParameters): StreamableMethod<InitiateFileUploads200Response | InitiateFileUploadsDefaultResponse>;
+}
+
+// @public
+export interface InitiateFileUploads200Response extends HttpResponse {
+    // (undocumented)
+    body: InitiateFileUploadsResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface InitiateFileUploadsBodyParam {
+    body: InitiateFileUploadsRequest;
+}
+
+// @public (undocumented)
+export interface InitiateFileUploadsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface InitiateFileUploadsHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & InitiateFileUploadsHeaders;
+}
+
+// @public (undocumented)
+export interface InitiateFileUploadsHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type InitiateFileUploadsParameters = InitiateFileUploadsHeaderParam & InitiateFileUploadsBodyParam & RequestParameters;
+
 // @public
 export interface InitiateFileUploadsRequest {
     CustomTags?: object;
@@ -300,52 +792,52 @@ export interface InitiateFileUploadsResponseOutput {
 }
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabAuthenticationOperationsGetEntityToken200Response | PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse): response is PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse;
+export function isUnexpected(response: GetEntityToken200Response | GetEntityTokenDefaultResponse): response is GetEntityTokenDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse): response is PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse;
+export function isUnexpected(response: AuthenticateWithAndroidDeviceId200Response | AuthenticateWithAndroidDeviceIdDefaultResponse): response is AuthenticateWithAndroidDeviceIdDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response | PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse): response is PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse;
+export function isUnexpected(response: AuthenticateWithCustomId200Response | AuthenticateWithCustomIdDefaultResponse): response is AuthenticateWithCustomIdDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse): response is PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse;
+export function isUnexpected(response: AuthenticateWithIOSDeviceId200Response | AuthenticateWithIOSDeviceIdDefaultResponse): response is AuthenticateWithIOSDeviceIdDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse): response is PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse;
+export function isUnexpected(response: AuthenticateWithNintendoSwitchDeviceID200Response | AuthenticateWithNintendoSwitchDeviceIDDefaultResponse): response is AuthenticateWithNintendoSwitchDeviceIDDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response | PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse): response is PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse;
+export function isUnexpected(response: GetLinkedPlayerIdentities200Response | GetLinkedPlayerIdentitiesDefaultResponse): response is GetLinkedPlayerIdentitiesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response | PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse): response is PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse;
+export function isUnexpected(response: UnlinkPlayerIdentity200Response | UnlinkPlayerIdentityDefaultResponse): response is UnlinkPlayerIdentityDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabFileOperationsAbortFileUploads200Response | PlayFabFileOperationsAbortFileUploadsDefaultResponse): response is PlayFabFileOperationsAbortFileUploadsDefaultResponse;
+export function isUnexpected(response: AbortFileUploads200Response | AbortFileUploadsDefaultResponse): response is AbortFileUploadsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabFileOperationsDeleteFiles200Response | PlayFabFileOperationsDeleteFilesDefaultResponse): response is PlayFabFileOperationsDeleteFilesDefaultResponse;
+export function isUnexpected(response: DeleteFiles200Response | DeleteFilesDefaultResponse): response is DeleteFilesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabFileOperationsFinalizeFileUploads200Response | PlayFabFileOperationsFinalizeFileUploadsDefaultResponse): response is PlayFabFileOperationsFinalizeFileUploadsDefaultResponse;
+export function isUnexpected(response: FinalizeFileUploads200Response | FinalizeFileUploadsDefaultResponse): response is FinalizeFileUploadsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabFileOperationsGetFiles200Response | PlayFabFileOperationsGetFilesDefaultResponse): response is PlayFabFileOperationsGetFilesDefaultResponse;
+export function isUnexpected(response: GetFiles200Response | GetFilesDefaultResponse): response is GetFilesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabFileOperationsInitiateFileUploads200Response | PlayFabFileOperationsInitiateFileUploadsDefaultResponse): response is PlayFabFileOperationsInitiateFileUploadsDefaultResponse;
+export function isUnexpected(response: InitiateFileUploads200Response | InitiateFileUploadsDefaultResponse): response is InitiateFileUploadsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabFileOperationsGetObjects200Response | PlayFabFileOperationsGetObjectsDefaultResponse): response is PlayFabFileOperationsGetObjectsDefaultResponse;
+export function isUnexpected(response: GetObjects200Response | GetObjectsDefaultResponse): response is GetObjectsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabFileOperationsSetObjects200Response | PlayFabFileOperationsSetObjectsDefaultResponse): response is PlayFabFileOperationsSetObjectsDefaultResponse;
+export function isUnexpected(response: SetObjects200Response | SetObjectsDefaultResponse): response is SetObjectsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabEventsOperationsWriteEvents200Response | PlayFabEventsOperationsWriteEventsDefaultResponse): response is PlayFabEventsOperationsWriteEventsDefaultResponse;
+export function isUnexpected(response: WriteEvents200Response | WriteEventsDefaultResponse): response is WriteEventsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PlayFabProfilesOperationsLoginPlayer200Response | PlayFabProfilesOperationsLoginPlayerDefaultResponse): response is PlayFabProfilesOperationsLoginPlayerDefaultResponse;
+export function isUnexpected(response: LoginPlayer200Response | LoginPlayerDefaultResponse): response is LoginPlayerDefaultResponse;
 
 // @public (undocumented)
 export interface LinkedPlayerIdentityOutput {
@@ -353,6 +845,48 @@ export interface LinkedPlayerIdentityOutput {
     IdentityProvider: string;
     IdentityProviderIssuedId?: string;
 }
+
+// @public (undocumented)
+export interface LoginPlayer {
+    post(options: LoginPlayerParameters): StreamableMethod<LoginPlayer200Response | LoginPlayerDefaultResponse>;
+}
+
+// @public
+export interface LoginPlayer200Response extends HttpResponse {
+    // (undocumented)
+    body: LoginPlayerResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface LoginPlayerBodyParam {
+    // (undocumented)
+    body: LoginPlayerRequest;
+}
+
+// @public (undocumented)
+export interface LoginPlayerDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface LoginPlayerHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & LoginPlayerHeaders;
+}
+
+// @public (undocumented)
+export interface LoginPlayerHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type LoginPlayerParameters = LoginPlayerHeaderParam & LoginPlayerBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface LoginPlayerRequest {
@@ -390,687 +924,28 @@ export interface ObjectResultOutput {
 }
 
 // @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId {
-    post(options: PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdParameters): StreamableMethod<PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response | PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse>;
-}
-
-// @public
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response extends HttpResponse {
-    // (undocumented)
-    body: AuthenticateIdentityResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdBodyParam {
-    // (undocumented)
-    body: AuthenticateAndroidDeviceIdIdentityRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaders {
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdParameters = PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaderParam & PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomId {
-    post(options: PlayFabAuthenticationOperationsAuthenticateWithCustomIdParameters): StreamableMethod<PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response | PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse>;
-}
-
-// @public
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response extends HttpResponse {
-    // (undocumented)
-    body: AuthenticateIdentityResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdBodyParam {
-    // (undocumented)
-    body: AuthenticateCustomIdIdentityRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaders {
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabAuthenticationOperationsAuthenticateWithCustomIdParameters = PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaderParam & PlayFabAuthenticationOperationsAuthenticateWithCustomIdBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId {
-    post(options: PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdParameters): StreamableMethod<PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response | PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse>;
-}
-
-// @public
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response extends HttpResponse {
-    // (undocumented)
-    body: AuthenticateIdentityResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdBodyParam {
-    // (undocumented)
-    body: AuthenticateIOSDeviceIdIdentityRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaders {
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdParameters = PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaderParam & PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID {
-    post(options: PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDParameters): StreamableMethod<PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response | PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse>;
-}
-
-// @public
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response extends HttpResponse {
-    // (undocumented)
-    body: AuthenticateIdentityResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDBodyParam {
-    // (undocumented)
-    body: AuthenticateNintendoSwitchDeviceIDIdentityRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaders {
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDParameters = PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaderParam & PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetEntityToken {
-    post(options: PlayFabAuthenticationOperationsGetEntityTokenParameters): StreamableMethod<PlayFabAuthenticationOperationsGetEntityToken200Response | PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse>;
-}
-
-// @public
-export interface PlayFabAuthenticationOperationsGetEntityToken200Response extends HttpResponse {
-    // (undocumented)
-    body: GetEntityTokenResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetEntityTokenBodyParam {
-    body: GetEntityTokenRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetEntityTokenHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabAuthenticationOperationsGetEntityTokenHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetEntityTokenHeaders {
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabAuthenticationOperationsGetEntityTokenParameters = PlayFabAuthenticationOperationsGetEntityTokenHeaderParam & PlayFabAuthenticationOperationsGetEntityTokenBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentities {
-    post(options: PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters): StreamableMethod<PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response | PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse>;
-}
-
-// @public
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response extends HttpResponse {
-    // (undocumented)
-    body: GetLinkedPlayerIdentitiesResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesBodyParam {
-    // (undocumented)
-    body: GetLinkedPlayerIdentitiesRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters = PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaderParam & PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentity {
-    post(options: PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters): StreamableMethod<PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response | PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse>;
-}
-
-// @public
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response extends HttpResponse {
-    // (undocumented)
-    body: UnlinkPlayerIdentityResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityBodyParam {
-    // (undocumented)
-    body: UnlinkPlayerIdentityRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters = PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaderParam & PlayFabAuthenticationOperationsUnlinkPlayerIdentityBodyParam & RequestParameters;
-
-// @public (undocumented)
 export type PlayFabClient = Client & {
     path: Routes;
 };
 
 // @public (undocumented)
-export interface PlayFabEventsOperationsWriteEvents {
-    post(options: PlayFabEventsOperationsWriteEventsParameters): StreamableMethod<PlayFabEventsOperationsWriteEvents200Response | PlayFabEventsOperationsWriteEventsDefaultResponse>;
-}
-
-// @public
-export interface PlayFabEventsOperationsWriteEvents200Response extends HttpResponse {
-    // (undocumented)
-    body: WriteEventsResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabEventsOperationsWriteEventsBodyParam {
-    // (undocumented)
-    body: WriteEventsRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabEventsOperationsWriteEventsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabEventsOperationsWriteEventsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabEventsOperationsWriteEventsHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabEventsOperationsWriteEventsHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabEventsOperationsWriteEventsParameters = PlayFabEventsOperationsWriteEventsHeaderParam & PlayFabEventsOperationsWriteEventsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabFileOperationsAbortFileUploads {
-    post(options: PlayFabFileOperationsAbortFileUploadsParameters): StreamableMethod<PlayFabFileOperationsAbortFileUploads200Response | PlayFabFileOperationsAbortFileUploadsDefaultResponse>;
-}
-
-// @public
-export interface PlayFabFileOperationsAbortFileUploads200Response extends HttpResponse {
-    // (undocumented)
-    body: AbortFileUploadsResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsAbortFileUploadsBodyParam {
-    body: AbortFileUploadsRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsAbortFileUploadsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsAbortFileUploadsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabFileOperationsAbortFileUploadsHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsAbortFileUploadsHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabFileOperationsAbortFileUploadsParameters = PlayFabFileOperationsAbortFileUploadsHeaderParam & PlayFabFileOperationsAbortFileUploadsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabFileOperationsDeleteFiles {
-    post(options: PlayFabFileOperationsDeleteFilesParameters): StreamableMethod<PlayFabFileOperationsDeleteFiles200Response | PlayFabFileOperationsDeleteFilesDefaultResponse>;
-}
-
-// @public
-export interface PlayFabFileOperationsDeleteFiles200Response extends HttpResponse {
-    // (undocumented)
-    body: DeleteFilesResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsDeleteFilesBodyParam {
-    body: DeleteFilesRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsDeleteFilesDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsDeleteFilesHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabFileOperationsDeleteFilesHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsDeleteFilesHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabFileOperationsDeleteFilesParameters = PlayFabFileOperationsDeleteFilesHeaderParam & PlayFabFileOperationsDeleteFilesBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabFileOperationsFinalizeFileUploads {
-    post(options: PlayFabFileOperationsFinalizeFileUploadsParameters): StreamableMethod<PlayFabFileOperationsFinalizeFileUploads200Response | PlayFabFileOperationsFinalizeFileUploadsDefaultResponse>;
-}
-
-// @public
-export interface PlayFabFileOperationsFinalizeFileUploads200Response extends HttpResponse {
-    // (undocumented)
-    body: FinalizeFileUploadsResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsFinalizeFileUploadsBodyParam {
-    body: FinalizeFileUploadsRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsFinalizeFileUploadsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsFinalizeFileUploadsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabFileOperationsFinalizeFileUploadsHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsFinalizeFileUploadsHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabFileOperationsFinalizeFileUploadsParameters = PlayFabFileOperationsFinalizeFileUploadsHeaderParam & PlayFabFileOperationsFinalizeFileUploadsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetFiles {
-    post(options: PlayFabFileOperationsGetFilesParameters): StreamableMethod<PlayFabFileOperationsGetFiles200Response | PlayFabFileOperationsGetFilesDefaultResponse>;
-}
-
-// @public
-export interface PlayFabFileOperationsGetFiles200Response extends HttpResponse {
-    // (undocumented)
-    body: GetFilesResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetFilesBodyParam {
-    body: GetFilesRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetFilesDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetFilesHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabFileOperationsGetFilesHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetFilesHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabFileOperationsGetFilesParameters = PlayFabFileOperationsGetFilesHeaderParam & PlayFabFileOperationsGetFilesBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetObjects {
-    post(options: PlayFabFileOperationsGetObjectsParameters): StreamableMethod<PlayFabFileOperationsGetObjects200Response | PlayFabFileOperationsGetObjectsDefaultResponse>;
-}
-
-// @public
-export interface PlayFabFileOperationsGetObjects200Response extends HttpResponse {
-    // (undocumented)
-    body: GetObjectsResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetObjectsBodyParam {
-    body: GetObjectsRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetObjectsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetObjectsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabFileOperationsGetObjectsHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsGetObjectsHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabFileOperationsGetObjectsParameters = PlayFabFileOperationsGetObjectsHeaderParam & PlayFabFileOperationsGetObjectsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabFileOperationsInitiateFileUploads {
-    post(options: PlayFabFileOperationsInitiateFileUploadsParameters): StreamableMethod<PlayFabFileOperationsInitiateFileUploads200Response | PlayFabFileOperationsInitiateFileUploadsDefaultResponse>;
-}
-
-// @public
-export interface PlayFabFileOperationsInitiateFileUploads200Response extends HttpResponse {
-    // (undocumented)
-    body: InitiateFileUploadsResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsInitiateFileUploadsBodyParam {
-    body: InitiateFileUploadsRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsInitiateFileUploadsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsInitiateFileUploadsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabFileOperationsInitiateFileUploadsHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsInitiateFileUploadsHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabFileOperationsInitiateFileUploadsParameters = PlayFabFileOperationsInitiateFileUploadsHeaderParam & PlayFabFileOperationsInitiateFileUploadsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabFileOperationsSetObjects {
-    post(options: PlayFabFileOperationsSetObjectsParameters): StreamableMethod<PlayFabFileOperationsSetObjects200Response | PlayFabFileOperationsSetObjectsDefaultResponse>;
-}
-
-// @public
-export interface PlayFabFileOperationsSetObjects200Response extends HttpResponse {
-    // (undocumented)
-    body: SetObjectsResponseOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsSetObjectsBodyParam {
-    body: SetObjectsRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsSetObjectsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsSetObjectsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabFileOperationsSetObjectsHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabFileOperationsSetObjectsHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabFileOperationsSetObjectsParameters = PlayFabFileOperationsSetObjectsHeaderParam & PlayFabFileOperationsSetObjectsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PlayFabProfilesOperationsLoginPlayer {
-    post(options: PlayFabProfilesOperationsLoginPlayerParameters): StreamableMethod<PlayFabProfilesOperationsLoginPlayer200Response | PlayFabProfilesOperationsLoginPlayerDefaultResponse>;
-}
-
-// @public
-export interface PlayFabProfilesOperationsLoginPlayer200Response extends HttpResponse {
-    // (undocumented)
-    body: LoginPlayerResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PlayFabProfilesOperationsLoginPlayerBodyParam {
-    // (undocumented)
-    body: LoginPlayerRequest;
-}
-
-// @public (undocumented)
-export interface PlayFabProfilesOperationsLoginPlayerDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ApiErrorWrapperOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PlayFabProfilesOperationsLoginPlayerHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PlayFabProfilesOperationsLoginPlayerHeaders;
-}
-
-// @public (undocumented)
-export interface PlayFabProfilesOperationsLoginPlayerHeaders {
-    "x-entity-token": string;
-    accept: "application/json";
-}
-
-// @public (undocumented)
-export type PlayFabProfilesOperationsLoginPlayerParameters = PlayFabProfilesOperationsLoginPlayerHeaderParam & PlayFabProfilesOperationsLoginPlayerBodyParam & RequestParameters;
-
-// @public (undocumented)
 export interface Routes {
-    (path: "/Authentication/GetEntityToken"): PlayFabAuthenticationOperationsGetEntityToken;
-    (path: "/PlayerIdentity/AuthenticateWithAndroidDeviceId"): PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId;
-    (path: "/PlayerIdentity/AuthenticateWithCustomId"): PlayFabAuthenticationOperationsAuthenticateWithCustomId;
-    (path: "/PlayerIdentity/AuthenticateWithIOSDeviceId"): PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId;
-    (path: "/PlayerIdentity/AuthenticateWithNintendoSwitchDeviceID"): PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID;
-    (path: "/PlayerIdentity/GetLinkedPlayerIdentities"): PlayFabAuthenticationOperationsGetLinkedPlayerIdentities;
-    (path: "/PlayerIdentity/UnlinkPlayerIdentity"): PlayFabAuthenticationOperationsUnlinkPlayerIdentity;
-    (path: "/File/AbortFileUploads"): PlayFabFileOperationsAbortFileUploads;
-    (path: "/File/DeleteFiles"): PlayFabFileOperationsDeleteFiles;
-    (path: "/File/FinalizeFileUploads"): PlayFabFileOperationsFinalizeFileUploads;
-    (path: "/File/GetFiles"): PlayFabFileOperationsGetFiles;
-    (path: "/File/InitiateFileUploads"): PlayFabFileOperationsInitiateFileUploads;
-    (path: "/Object/GetObjects"): PlayFabFileOperationsGetObjects;
-    (path: "/Object/SetObjects"): PlayFabFileOperationsSetObjects;
-    (path: "/Event/WriteEvents"): PlayFabEventsOperationsWriteEvents;
-    (path: "/TitlePlayer/LoginPlayer"): PlayFabProfilesOperationsLoginPlayer;
+    (path: "/Authentication/GetEntityToken"): GetEntityToken;
+    (path: "/PlayerIdentity/AuthenticateWithAndroidDeviceId"): AuthenticateWithAndroidDeviceId;
+    (path: "/PlayerIdentity/AuthenticateWithCustomId"): AuthenticateWithCustomId;
+    (path: "/PlayerIdentity/AuthenticateWithIOSDeviceId"): AuthenticateWithIOSDeviceId;
+    (path: "/PlayerIdentity/AuthenticateWithNintendoSwitchDeviceID"): AuthenticateWithNintendoSwitchDeviceID;
+    (path: "/PlayerIdentity/GetLinkedPlayerIdentities"): GetLinkedPlayerIdentities;
+    (path: "/PlayerIdentity/UnlinkPlayerIdentity"): UnlinkPlayerIdentity;
+    (path: "/File/AbortFileUploads"): AbortFileUploads;
+    (path: "/File/DeleteFiles"): DeleteFiles;
+    (path: "/File/FinalizeFileUploads"): FinalizeFileUploads;
+    (path: "/File/GetFiles"): GetFiles;
+    (path: "/File/InitiateFileUploads"): InitiateFileUploads;
+    (path: "/Object/GetObjects"): GetObjects;
+    (path: "/Object/SetObjects"): SetObjects;
+    (path: "/Event/WriteEvents"): WriteEvents;
+    (path: "/TitlePlayer/LoginPlayer"): LoginPlayer;
 }
 
 // @public (undocumented)
@@ -1087,6 +962,47 @@ export interface SetObjectInfoOutput {
     OperationReason?: string;
     SetResult?: string;
 }
+
+// @public (undocumented)
+export interface SetObjects {
+    post(options: SetObjectsParameters): StreamableMethod<SetObjects200Response | SetObjectsDefaultResponse>;
+}
+
+// @public
+export interface SetObjects200Response extends HttpResponse {
+    // (undocumented)
+    body: SetObjectsResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface SetObjectsBodyParam {
+    body: SetObjectsRequest;
+}
+
+// @public (undocumented)
+export interface SetObjectsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface SetObjectsHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & SetObjectsHeaders;
+}
+
+// @public (undocumented)
+export interface SetObjectsHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type SetObjectsParameters = SetObjectsHeaderParam & SetObjectsBodyParam & RequestParameters;
 
 // @public
 export interface SetObjectsRequest {
@@ -1111,6 +1027,48 @@ export interface SetObjectsResponseOutput {
 }
 
 // @public (undocumented)
+export interface UnlinkPlayerIdentity {
+    post(options: UnlinkPlayerIdentityParameters): StreamableMethod<UnlinkPlayerIdentity200Response | UnlinkPlayerIdentityDefaultResponse>;
+}
+
+// @public
+export interface UnlinkPlayerIdentity200Response extends HttpResponse {
+    // (undocumented)
+    body: UnlinkPlayerIdentityResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface UnlinkPlayerIdentityBodyParam {
+    // (undocumented)
+    body: UnlinkPlayerIdentityRequest;
+}
+
+// @public (undocumented)
+export interface UnlinkPlayerIdentityDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface UnlinkPlayerIdentityHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & UnlinkPlayerIdentityHeaders;
+}
+
+// @public (undocumented)
+export interface UnlinkPlayerIdentityHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type UnlinkPlayerIdentityParameters = UnlinkPlayerIdentityHeaderParam & UnlinkPlayerIdentityBodyParam & RequestParameters;
+
+// @public (undocumented)
 export interface UnlinkPlayerIdentityRequest {
     CustomTags?: object;
     IdentityLinkId: string;
@@ -1123,6 +1081,48 @@ export interface UnlinkPlayerIdentityResultOutput {
     data?: ObjectOutput;
     status?: string;
 }
+
+// @public (undocumented)
+export interface WriteEvents {
+    post(options: WriteEventsParameters): StreamableMethod<WriteEvents200Response | WriteEventsDefaultResponse>;
+}
+
+// @public
+export interface WriteEvents200Response extends HttpResponse {
+    // (undocumented)
+    body: WriteEventsResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface WriteEventsBodyParam {
+    // (undocumented)
+    body: WriteEventsRequest;
+}
+
+// @public (undocumented)
+export interface WriteEventsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ApiErrorWrapperOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface WriteEventsHeaderParam {
+    // (undocumented)
+    headers: RawHttpHeadersInput & WriteEventsHeaders;
+}
+
+// @public (undocumented)
+export interface WriteEventsHeaders {
+    "x-entity-token": string;
+    accept: "application/json";
+}
+
+// @public (undocumented)
+export type WriteEventsParameters = WriteEventsHeaderParam & WriteEventsBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface WriteEventsRequest {

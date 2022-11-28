@@ -36,15 +36,5 @@ export default function createClient(
 
   const client = getClient(baseUrl, credentials, options) as AuthOauth2Client;
 
-  return {
-    ...client,
-    oAuth2: {
-      valid: (options) => {
-        return client.path("/authentication/oauth2/valid").get(options);
-      },
-      invalid: (options) => {
-        return client.path("/authentication/oauth2/invalid").get(options);
-      },
-    },
-  };
+  return client;
 }

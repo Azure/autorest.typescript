@@ -96,7 +96,7 @@ export interface RLCOptions {
   productDocLink?: string;
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
-  "sdk-folder"?: string;
+  "sdk-folder"?: string
 }
 
 export interface ServiceInfo {

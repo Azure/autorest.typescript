@@ -2,7 +2,7 @@ import ModelsUsageClientFactory, {
   ModelsUsageClient
 } from "./generated/models/usage/src/index.js";
 import { assert } from "chai";
-describe.skip("ModelsUsageClient Rest Client", () => {
+describe("ModelsUsageClient Rest Client", () => {
   let client: ModelsUsageClient;
   const body = {
     requiredProp: "example-value"
@@ -27,7 +27,7 @@ describe.skip("ModelsUsageClient Rest Client", () => {
     try {
       const result = await client.path("/models/usage/output").get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body, body);
+      assert.deepEqual(result.body, body);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -39,7 +39,7 @@ describe.skip("ModelsUsageClient Rest Client", () => {
         .path("/models/usage/input-output")
         .post({ body });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body, body);
+      assert.deepEqual(result.body, body);
     } catch (err) {
       assert.fail(err as string);
     }

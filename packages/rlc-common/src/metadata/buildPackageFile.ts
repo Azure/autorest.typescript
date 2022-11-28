@@ -8,6 +8,8 @@ import {
 } from "../helpers/operationHelpers.js";
 import { RLCModel } from "../interfaces.js";
 
+let hasPaging = false;
+let hasLRO = false;
 export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
   const generateMetadata = Boolean(model.options?.generateMetadata);
   if (!generateMetadata) {
@@ -57,8 +59,8 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   if (packageDetails.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
-  const hasPaging = hasPagingOperations(model);
-  const hasLRO = hasPollingOperations(model);
+  hasPaging = hasPaging || hasPagingOperations(model);
+  hasLRO = hasLRO || hasPollingOperations(model);
   const packageInfo: Record<string, any> = {
     name: `${packageDetails.name}`,
     "sdk-type": "client",

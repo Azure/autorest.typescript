@@ -2,7 +2,6 @@ emitters:
   "@azure-tools/cadl-typescript":
     generateMetadata: true
     generateTest: false
-    includeShortcuts: false
     azureSdkForJs: false
     packageDetails:
       name: "@msinternal/parametrized-host"

@@ -1,20 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ConfidentialLedgerListCollectionsParameters } from "./parameters";
+import { ListCollectionsParameters } from "./parameters";
 import {
-  ConfidentialLedgerListCollections200Response,
-  ConfidentialLedgerListCollectionsDefaultResponse,
+  ListCollections200Response,
+  ListCollectionsDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ListCollections {
   /** Collection ids are user-created collections of ledger entries */
   get(
-    options?: ConfidentialLedgerListCollectionsParameters
+    options?: ListCollectionsParameters
   ): StreamableMethod<
-    | ConfidentialLedgerListCollections200Response
-    | ConfidentialLedgerListCollectionsDefaultResponse
+    ListCollections200Response | ListCollectionsDefaultResponse
   >;
 }
 

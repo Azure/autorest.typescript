@@ -17,6 +17,7 @@ import {
   CollectionsIntProperty,
   CollectionsModelProperty,
   DictionaryStringProperty,
+  NeverProperty,
 } from "./models";
 
 export type BooleanGetParameters = RequestParameters;
@@ -122,3 +123,10 @@ export interface DictionaryStringPutBodyParam {
 
 export type DictionaryStringPutParameters = DictionaryStringPutBodyParam &
   RequestParameters;
+export type NeverGetParameters = RequestParameters;
+
+export interface NeverPutBodyParam {
+  body: NeverProperty;
+}
+
+export type NeverPutParameters = NeverPutBodyParam & RequestParameters;

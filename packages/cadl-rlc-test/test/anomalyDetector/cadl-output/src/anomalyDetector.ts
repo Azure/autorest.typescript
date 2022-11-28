@@ -8,12 +8,12 @@ import { AnomalyDetectorClient } from "./clientDefinitions";
 /**
  * Initialize a new instance of the class AnomalyDetectorClient class.
  * @param Endpoint type: string
- * @param ApiVersion type: "v1.1"
+ * @param ApiVersion type: string Possible values: v1.1
  * @param credentials type: KeyCredential
  */
 export default function createClient(
   Endpoint: string,
-  ApiVersion: "v1.1",
+  ApiVersion: string,
   credentials: KeyCredential,
   options: ClientOptions = {}
 ): AnomalyDetectorClient {

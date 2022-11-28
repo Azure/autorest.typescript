@@ -3,14 +3,15 @@
 
 import { ErrorModel, Paged } from "@azure-rest/core-client";
 
+/** The details of a project. */
 export interface ProjectOutput {
+  /** The project name. */
   projectName: string;
-  /**
-   * The project kind.
-   *
-   * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
-   */
-  projectKind: string;
+  /** The project kind. */
+  projectKind:
+    | "CustomSingleLabelClassification"
+    | "CustomMultiLabelClassification"
+    | "CustomEntityRecognition";
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
@@ -47,10 +48,13 @@ export interface OperationStatusOutput {
   result?: never;
 }
 
+/** The details of a project deployment. */
 export interface DeploymentOutput {
+  /** The name of the deployment. */
   name: string;
 }
 
+/** The details of a deployment job. */
 export interface DeploymentJobOutput {
   /** The job ID. */
   jobId: string;
@@ -60,16 +64,20 @@ export interface DeploymentJobOutput {
   readonly lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
   readonly expirationDateTime: string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
+  /** The job status. */
+  status:
+    | "notStarted"
+    | "running"
+    | "succeeded"
+    | "failed"
+    | "cancelled"
+    | "cancelling"
+    | "partiallyCompleted";
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
   errors: ErrorModel;
+  /** The job ID. */
   id: string;
 }
 
@@ -81,6 +89,7 @@ export interface JobWarningOutput {
   message: string;
 }
 
+/** The details of a swap deployments job. */
 export interface SwapDeploymentsJobOutput {
   /** The job ID. */
   jobId: string;
@@ -90,16 +99,20 @@ export interface SwapDeploymentsJobOutput {
   readonly lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
   readonly expirationDateTime: string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
+  /** The job status. */
+  status:
+    | "notStarted"
+    | "running"
+    | "succeeded"
+    | "failed"
+    | "cancelled"
+    | "cancelling"
+    | "partiallyCompleted";
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
   errors: ErrorModel;
+  /** The job ID. */
   id: string;
 }
 
@@ -123,8 +136,8 @@ export interface TrainingConfigVersionOutput {
 export type ProjectListOutput = Paged<ProjectOutput>;
 /** Paged collection of Deployment items */
 export type DeploymentListOutput = Paged<DeploymentOutput>;
-/** Paged collection of SupportedLanguage items */
+/** A collection of SupportedLanguage resources. */
 export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
-/** Paged collection of TrainingConfigVersion items */
+/** A collection of TrainingConfigVersion resources. */
 export type PagedTrainingConfigVersionOutput =
   Paged<TrainingConfigVersionOutput>;
