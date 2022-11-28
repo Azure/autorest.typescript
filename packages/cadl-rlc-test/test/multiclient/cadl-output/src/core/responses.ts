@@ -9,50 +9,50 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface CadlCoreOpCreateOrUpdate200Response extends HttpResponse {
+export interface CreateOrUpdate200Response extends HttpResponse {
   status: "200";
   body: ResourceOutput;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface CadlCoreOpCreateOrUpdate201Response extends HttpResponse {
+export interface CreateOrUpdate201Response extends HttpResponse {
   status: "201";
   body: ResourceOutput;
 }
 
-export interface CadlCoreOpCreateOrUpdateDefaultResponse extends HttpResponse {
+export interface CreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CadlCoreOpGet200Response extends HttpResponse {
+export interface Get200Response extends HttpResponse {
   status: "200";
   body: ResourceOutput;
 }
 
-export interface CadlCoreOpGetDefaultResponse extends HttpResponse {
+export interface GetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface CadlCoreOpDelete204Response extends HttpResponse {
+export interface Delete204Response extends HttpResponse {
   status: "204";
 }
 
-export interface CadlCoreOpDeleteDefaultResponse extends HttpResponse {
+export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CadlCoreOpList200Response extends HttpResponse {
+export interface List200Response extends HttpResponse {
   status: "200";
   body: ResourceListOutput;
 }
 
-export interface CadlCoreOpListDefaultResponse extends HttpResponse {
+export interface ListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }

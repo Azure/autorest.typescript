@@ -17,29 +17,6 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Operation operations */
-export interface OperationOperations {
-  for(
-    options?: OperationForParameters
-  ): StreamableMethod<OperationFor204Response>;
-}
-
-/** Contains operations for Parameter operations */
-export interface ParameterOperations {
-  getWithIf(
-    options: ParameterGetWithIfParameters
-  ): StreamableMethod<ParameterGetWithIf204Response>;
-  getWithFilter(
-    options: ParameterGetWithFilterParameters
-  ): StreamableMethod<ParameterGetWithFilter204Response>;
-}
-
-/** Contains operations for Model operations */
-export interface ModelOperations {
-  get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
-  put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
-}
-
 export interface OperationFor {
   get(
     options?: OperationForParameters
@@ -81,7 +58,4 @@ export interface Routes {
 
 export type SpecialWordsClient = Client & {
   path: Routes;
-  operation: OperationOperations;
-  parameter: ParameterOperations;
-  model: ModelOperations;
 };

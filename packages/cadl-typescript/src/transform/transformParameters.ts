@@ -7,7 +7,6 @@ import {
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
-  RLCOptions,
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
@@ -31,14 +30,14 @@ import { getResourceOperation } from "@cadl-lang/rest";
 import {
   Client,
   listOperationGroups,
-  listOperationsInOperationGroup
+  listOperationsInOperationGroup,
+  OperationGroup
 } from "@azure-tools/cadl-dpg";
 
 export function transformToParameterTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  client: Client,
-  options?: RLCOptions
+  client: Client
 ): OperationParameter[] {
   const operationGroups = listOperationGroups(program, client);
   const rlcParameters: OperationParameter[] = [];
@@ -47,7 +46,7 @@ export function transformToParameterTypes(
     const operations = listOperationsInOperationGroup(program, operationGroup);
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      transformToParameterTypesForRoute(program, route);
+      transformToParameterTypesForRoute(program, route, operationGroup);
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
@@ -60,12 +59,13 @@ export function transformToParameterTypes(
   }
   function transformToParameterTypesForRoute(
     program: Program,
-    route: HttpOperation
+    route: HttpOperation,
+    operationGroup?: OperationGroup
   ) {
     const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: getOperationGroupName(route, options),
+      operationGroup: getOperationGroupName(operationGroup),
       operationName: route.operation.name,
       parameters: []
     };

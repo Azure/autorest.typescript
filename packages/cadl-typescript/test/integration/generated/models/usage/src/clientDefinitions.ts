@@ -2,31 +2,29 @@
 // Licensed under the MIT license.
 
 import {
-  UsageInputParameters,
-  UsageOutputParameters,
-  UsageInputAndOutputParameters,
+  InputParameters,
+  OutputParameters,
+  InputAndOutputParameters,
 } from "./parameters";
 import {
-  UsageInput204Response,
-  UsageOutput200Response,
-  UsageInputAndOutput200Response,
+  Input204Response,
+  Output200Response,
+  InputAndOutput200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Input {
-  post(options: UsageInputParameters): StreamableMethod<UsageInput204Response>;
+  post(options: InputParameters): StreamableMethod<Input204Response>;
 }
 
 export interface Output {
-  get(
-    options?: UsageOutputParameters
-  ): StreamableMethod<UsageOutput200Response>;
+  get(options?: OutputParameters): StreamableMethod<Output200Response>;
 }
 
 export interface InputAndOutput {
   post(
-    options: UsageInputAndOutputParameters
-  ): StreamableMethod<UsageInputAndOutput200Response>;
+    options: InputAndOutputParameters
+  ): StreamableMethod<InputAndOutput200Response>;
 }
 
 export interface Routes {

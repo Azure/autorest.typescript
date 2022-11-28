@@ -4,12 +4,12 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { Resource } from "./models";
 
-export interface CadlCoreOpCreateOrUpdateBodyParam {
+export interface CreateOrUpdateBodyParam {
   body?: Resource;
 }
 
-export type CadlCoreOpCreateOrUpdateParameters =
-  CadlCoreOpCreateOrUpdateBodyParam & RequestParameters;
-export type CadlCoreOpGetParameters = RequestParameters;
-export type CadlCoreOpDeleteParameters = RequestParameters;
-export type CadlCoreOpListParameters = RequestParameters;
+export type CreateOrUpdateParameters = CreateOrUpdateBodyParam &
+  RequestParameters;
+export type GetParameters = RequestParameters;
+export type DeleteParameters = RequestParameters;
+export type ListParameters = RequestParameters;

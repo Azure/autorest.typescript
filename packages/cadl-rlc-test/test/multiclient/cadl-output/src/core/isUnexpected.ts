@@ -2,15 +2,15 @@
 // Licensed under the MIT license.
 
 import {
-  CadlCoreOpCreateOrUpdate200Response,
-  CadlCoreOpCreateOrUpdate201Response,
-  CadlCoreOpCreateOrUpdateDefaultResponse,
-  CadlCoreOpGet200Response,
-  CadlCoreOpGetDefaultResponse,
-  CadlCoreOpDelete204Response,
-  CadlCoreOpDeleteDefaultResponse,
-  CadlCoreOpList200Response,
-  CadlCoreOpListDefaultResponse,
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  Get200Response,
+  GetDefaultResponse,
+  Delete204Response,
+  DeleteDefaultResponse,
+  List200Response,
+  ListDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -22,35 +22,35 @@ const responseMap: Record<string, string[]> = {
 
 export function isUnexpected(
   response:
-    | CadlCoreOpCreateOrUpdate200Response
-    | CadlCoreOpCreateOrUpdate201Response
-    | CadlCoreOpCreateOrUpdateDefaultResponse
-): response is CadlCoreOpCreateOrUpdateDefaultResponse;
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
+): response is CreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: CadlCoreOpGet200Response | CadlCoreOpGetDefaultResponse
-): response is CadlCoreOpGetDefaultResponse;
+  response: Get200Response | GetDefaultResponse
+): response is GetDefaultResponse;
 export function isUnexpected(
-  response: CadlCoreOpDelete204Response | CadlCoreOpDeleteDefaultResponse
-): response is CadlCoreOpDeleteDefaultResponse;
+  response: Delete204Response | DeleteDefaultResponse
+): response is DeleteDefaultResponse;
 export function isUnexpected(
-  response: CadlCoreOpList200Response | CadlCoreOpListDefaultResponse
-): response is CadlCoreOpListDefaultResponse;
+  response: List200Response | ListDefaultResponse
+): response is ListDefaultResponse;
 export function isUnexpected(
   response:
-    | CadlCoreOpCreateOrUpdate200Response
-    | CadlCoreOpCreateOrUpdate201Response
-    | CadlCoreOpCreateOrUpdateDefaultResponse
-    | CadlCoreOpGet200Response
-    | CadlCoreOpGetDefaultResponse
-    | CadlCoreOpDelete204Response
-    | CadlCoreOpDeleteDefaultResponse
-    | CadlCoreOpList200Response
-    | CadlCoreOpListDefaultResponse
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
+    | Get200Response
+    | GetDefaultResponse
+    | Delete204Response
+    | DeleteDefaultResponse
+    | List200Response
+    | ListDefaultResponse
 ): response is
-  | CadlCoreOpCreateOrUpdateDefaultResponse
-  | CadlCoreOpGetDefaultResponse
-  | CadlCoreOpDeleteDefaultResponse
-  | CadlCoreOpListDefaultResponse {
+  | CreateOrUpdateDefaultResponse
+  | GetDefaultResponse
+  | DeleteDefaultResponse
+  | ListDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

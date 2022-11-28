@@ -7,8 +7,7 @@ import {
   PathMetadata,
   Paths,
   ResponseTypes,
-  OperationMethod,
-  RLCOptions
+  OperationMethod
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics, Program } from "@cadl-lang/compiler";
 import {
@@ -20,7 +19,8 @@ import {
 import {
   Client,
   listOperationGroups,
-  listOperationsInOperationGroup
+  listOperationsInOperationGroup,
+  OperationGroup
 } from "@azure-tools/cadl-dpg";
 import { getSchemaForType } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
@@ -35,8 +35,7 @@ import {
 
 export function transformPaths(
   program: Program,
-  client: Client,
-  options?: RLCOptions
+  client: Client
 ): Paths {
   const operationGroups = listOperationGroups(program, client);
   const paths: Paths = {};
@@ -44,13 +43,13 @@ export function transformPaths(
     const operations = listOperationsInOperationGroup(program, operationGroup);
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      transformOperation(program, route, paths, options);
+      transformOperation(program, route, paths, operationGroup);
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    transformOperation(program, route, paths, options);
+    transformOperation(program, route, paths);
   }
   return paths;
 }
@@ -61,7 +60,7 @@ export function transformPaths(
  */
 function getResponseTypes(
   operation: HttpOperation,
-  options?: RLCOptions
+  operationGroup?: OperationGroup
 ): ResponseTypes {
   const returnTypes: ResponseTypes = {
     error: [],
@@ -73,7 +72,7 @@ function getResponseTypes(
       .map((r) => {
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
-          getOperationGroupName(operation, options),
+          getOperationGroupName(operationGroup),
           operation.operation.name,
           statusCode
         );
@@ -95,12 +94,12 @@ function transformOperation(
   program: Program,
   route: HttpOperation,
   paths: Paths,
-  options?: RLCOptions
+  operationGroup?: OperationGroup
 ) {
   const respNames = [];
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
-      getOperationGroupName(route, options),
+      getOperationGroupName(operationGroup),
       route.operation.name,
       getOperationStatuscode(resp)
     );
@@ -110,10 +109,10 @@ function transformOperation(
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(route.parameters),
     optionsName: getParameterTypeName(
-      getOperationGroupName(route, options),
+      getOperationGroupName(operationGroup),
       route.operation.name
     ),
-    responseTypes: getResponseTypes(route, options),
+    responseTypes: getResponseTypes(route, operationGroup),
     returnType: respNames.join(" | "),
     successStatus: gerOperationSuccessStatus(route),
     operationName: route.operation.name,
@@ -144,7 +143,7 @@ function transformOperation(
             description: getDoc(program, p.param)
           };
         }),
-      operationGroupName: getOperationGroupName(route, options),
+      operationGroupName: getOperationGroupName(operationGroup),
       methods: {
         [route.verb]: [method]
       }

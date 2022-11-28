@@ -22,12 +22,12 @@ import {
   LoginPlayerRequest,
 } from "./models";
 
-export interface PlayFabAuthenticationOperationsGetEntityTokenHeaders {
+export interface GetEntityTokenHeaders {
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabAuthenticationOperationsGetEntityTokenBodyParam {
+export interface GetEntityTokenBodyParam {
   /**
    * This API must be called with X-SecretKey, X-Authentication or X-EntityToken
    * headers. An optional EntityKey may be included to attempt to set the resulting
@@ -40,184 +40,173 @@ export interface PlayFabAuthenticationOperationsGetEntityTokenBodyParam {
   body: GetEntityTokenRequest;
 }
 
-export interface PlayFabAuthenticationOperationsGetEntityTokenHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabAuthenticationOperationsGetEntityTokenHeaders;
+export interface GetEntityTokenHeaderParam {
+  headers: RawHttpHeadersInput & GetEntityTokenHeaders;
 }
 
-export type PlayFabAuthenticationOperationsGetEntityTokenParameters =
-  PlayFabAuthenticationOperationsGetEntityTokenHeaderParam &
-    PlayFabAuthenticationOperationsGetEntityTokenBodyParam &
-    RequestParameters;
+export type GetEntityTokenParameters = GetEntityTokenHeaderParam &
+  GetEntityTokenBodyParam &
+  RequestParameters;
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaders {
+export interface AuthenticateWithAndroidDeviceIdHeaders {
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdBodyParam {
+export interface AuthenticateWithAndroidDeviceIdBodyParam {
   body: AuthenticateAndroidDeviceIdIdentityRequest;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaders;
+export interface AuthenticateWithAndroidDeviceIdHeaderParam {
+  headers: RawHttpHeadersInput & AuthenticateWithAndroidDeviceIdHeaders;
 }
 
-export type PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdParameters =
-  PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdHeaderParam &
-    PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdBodyParam &
+export type AuthenticateWithAndroidDeviceIdParameters =
+  AuthenticateWithAndroidDeviceIdHeaderParam &
+    AuthenticateWithAndroidDeviceIdBodyParam &
     RequestParameters;
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaders {
+export interface AuthenticateWithCustomIdHeaders {
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdBodyParam {
+export interface AuthenticateWithCustomIdBodyParam {
   body: AuthenticateCustomIdIdentityRequest;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaders;
+export interface AuthenticateWithCustomIdHeaderParam {
+  headers: RawHttpHeadersInput & AuthenticateWithCustomIdHeaders;
 }
 
-export type PlayFabAuthenticationOperationsAuthenticateWithCustomIdParameters =
-  PlayFabAuthenticationOperationsAuthenticateWithCustomIdHeaderParam &
-    PlayFabAuthenticationOperationsAuthenticateWithCustomIdBodyParam &
+export type AuthenticateWithCustomIdParameters =
+  AuthenticateWithCustomIdHeaderParam &
+    AuthenticateWithCustomIdBodyParam &
     RequestParameters;
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaders {
+export interface AuthenticateWithIOSDeviceIdHeaders {
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdBodyParam {
+export interface AuthenticateWithIOSDeviceIdBodyParam {
   body: AuthenticateIOSDeviceIdIdentityRequest;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaders;
+export interface AuthenticateWithIOSDeviceIdHeaderParam {
+  headers: RawHttpHeadersInput & AuthenticateWithIOSDeviceIdHeaders;
 }
 
-export type PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdParameters =
-  PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdHeaderParam &
-    PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdBodyParam &
+export type AuthenticateWithIOSDeviceIdParameters =
+  AuthenticateWithIOSDeviceIdHeaderParam &
+    AuthenticateWithIOSDeviceIdBodyParam &
     RequestParameters;
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaders {
+export interface AuthenticateWithNintendoSwitchDeviceIDHeaders {
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDBodyParam {
+export interface AuthenticateWithNintendoSwitchDeviceIDBodyParam {
   body: AuthenticateNintendoSwitchDeviceIDIdentityRequest;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaders;
+export interface AuthenticateWithNintendoSwitchDeviceIDHeaderParam {
+  headers: RawHttpHeadersInput & AuthenticateWithNintendoSwitchDeviceIDHeaders;
 }
 
-export type PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDParameters =
-  PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDHeaderParam &
-    PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDBodyParam &
+export type AuthenticateWithNintendoSwitchDeviceIDParameters =
+  AuthenticateWithNintendoSwitchDeviceIDHeaderParam &
+    AuthenticateWithNintendoSwitchDeviceIDBodyParam &
     RequestParameters;
 
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders {
+export interface GetLinkedPlayerIdentitiesHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesBodyParam {
+export interface GetLinkedPlayerIdentitiesBodyParam {
   body: GetLinkedPlayerIdentitiesRequest;
 }
 
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaders;
+export interface GetLinkedPlayerIdentitiesHeaderParam {
+  headers: RawHttpHeadersInput & GetLinkedPlayerIdentitiesHeaders;
 }
 
-export type PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesParameters =
-  PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesHeaderParam &
-    PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesBodyParam &
+export type GetLinkedPlayerIdentitiesParameters =
+  GetLinkedPlayerIdentitiesHeaderParam &
+    GetLinkedPlayerIdentitiesBodyParam &
     RequestParameters;
 
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaders {
+export interface UnlinkPlayerIdentityHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityBodyParam {
+export interface UnlinkPlayerIdentityBodyParam {
   body: UnlinkPlayerIdentityRequest;
 }
 
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaders;
+export interface UnlinkPlayerIdentityHeaderParam {
+  headers: RawHttpHeadersInput & UnlinkPlayerIdentityHeaders;
 }
 
-export type PlayFabAuthenticationOperationsUnlinkPlayerIdentityParameters =
-  PlayFabAuthenticationOperationsUnlinkPlayerIdentityHeaderParam &
-    PlayFabAuthenticationOperationsUnlinkPlayerIdentityBodyParam &
-    RequestParameters;
+export type UnlinkPlayerIdentityParameters = UnlinkPlayerIdentityHeaderParam &
+  UnlinkPlayerIdentityBodyParam &
+  RequestParameters;
 
-export interface PlayFabFileOperationsAbortFileUploadsHeaders {
+export interface AbortFileUploadsHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabFileOperationsAbortFileUploadsBodyParam {
+export interface AbortFileUploadsBodyParam {
   /** Aborts the pending upload of the requested files. */
   body: AbortFileUploadsRequest;
 }
 
-export interface PlayFabFileOperationsAbortFileUploadsHeaderParam {
-  headers: RawHttpHeadersInput & PlayFabFileOperationsAbortFileUploadsHeaders;
+export interface AbortFileUploadsHeaderParam {
+  headers: RawHttpHeadersInput & AbortFileUploadsHeaders;
 }
 
-export type PlayFabFileOperationsAbortFileUploadsParameters =
-  PlayFabFileOperationsAbortFileUploadsHeaderParam &
-    PlayFabFileOperationsAbortFileUploadsBodyParam &
-    RequestParameters;
+export type AbortFileUploadsParameters = AbortFileUploadsHeaderParam &
+  AbortFileUploadsBodyParam &
+  RequestParameters;
 
-export interface PlayFabFileOperationsDeleteFilesHeaders {
+export interface DeleteFilesHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabFileOperationsDeleteFilesBodyParam {
+export interface DeleteFilesBodyParam {
   /** Deletes the requested files from the entity's profile. */
   body: DeleteFilesRequest;
 }
 
-export interface PlayFabFileOperationsDeleteFilesHeaderParam {
-  headers: RawHttpHeadersInput & PlayFabFileOperationsDeleteFilesHeaders;
+export interface DeleteFilesHeaderParam {
+  headers: RawHttpHeadersInput & DeleteFilesHeaders;
 }
 
-export type PlayFabFileOperationsDeleteFilesParameters =
-  PlayFabFileOperationsDeleteFilesHeaderParam &
-    PlayFabFileOperationsDeleteFilesBodyParam &
-    RequestParameters;
+export type DeleteFilesParameters = DeleteFilesHeaderParam &
+  DeleteFilesBodyParam &
+  RequestParameters;
 
-export interface PlayFabFileOperationsFinalizeFileUploadsHeaders {
+export interface FinalizeFileUploadsHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabFileOperationsFinalizeFileUploadsBodyParam {
+export interface FinalizeFileUploadsBodyParam {
   /**
    * Finalizes the upload of the requested files. Verifies that the files have been
    * successfully uploaded and moves the file pointers from pending to live.
@@ -225,24 +214,22 @@ export interface PlayFabFileOperationsFinalizeFileUploadsBodyParam {
   body: FinalizeFileUploadsRequest;
 }
 
-export interface PlayFabFileOperationsFinalizeFileUploadsHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabFileOperationsFinalizeFileUploadsHeaders;
+export interface FinalizeFileUploadsHeaderParam {
+  headers: RawHttpHeadersInput & FinalizeFileUploadsHeaders;
 }
 
-export type PlayFabFileOperationsFinalizeFileUploadsParameters =
-  PlayFabFileOperationsFinalizeFileUploadsHeaderParam &
-    PlayFabFileOperationsFinalizeFileUploadsBodyParam &
-    RequestParameters;
+export type FinalizeFileUploadsParameters = FinalizeFileUploadsHeaderParam &
+  FinalizeFileUploadsBodyParam &
+  RequestParameters;
 
-export interface PlayFabFileOperationsGetFilesHeaders {
+export interface GetFilesHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabFileOperationsGetFilesBodyParam {
+export interface GetFilesBodyParam {
   /**
    * Returns URLs that may be used to download the files for a profile for a limited
    * length of time. Only returns files that have been successfully uploaded, files
@@ -252,23 +239,22 @@ export interface PlayFabFileOperationsGetFilesBodyParam {
   body: GetFilesRequest;
 }
 
-export interface PlayFabFileOperationsGetFilesHeaderParam {
-  headers: RawHttpHeadersInput & PlayFabFileOperationsGetFilesHeaders;
+export interface GetFilesHeaderParam {
+  headers: RawHttpHeadersInput & GetFilesHeaders;
 }
 
-export type PlayFabFileOperationsGetFilesParameters =
-  PlayFabFileOperationsGetFilesHeaderParam &
-    PlayFabFileOperationsGetFilesBodyParam &
-    RequestParameters;
+export type GetFilesParameters = GetFilesHeaderParam &
+  GetFilesBodyParam &
+  RequestParameters;
 
-export interface PlayFabFileOperationsInitiateFileUploadsHeaders {
+export interface InitiateFileUploadsHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabFileOperationsInitiateFileUploadsBodyParam {
+export interface InitiateFileUploadsBodyParam {
   /**
    * Returns URLs that may be used to upload the files for a profile 5 minutes.
    * After using the upload calls FinalizeFileUploads must be called to move the
@@ -277,45 +263,42 @@ export interface PlayFabFileOperationsInitiateFileUploadsBodyParam {
   body: InitiateFileUploadsRequest;
 }
 
-export interface PlayFabFileOperationsInitiateFileUploadsHeaderParam {
-  headers: RawHttpHeadersInput &
-    PlayFabFileOperationsInitiateFileUploadsHeaders;
+export interface InitiateFileUploadsHeaderParam {
+  headers: RawHttpHeadersInput & InitiateFileUploadsHeaders;
 }
 
-export type PlayFabFileOperationsInitiateFileUploadsParameters =
-  PlayFabFileOperationsInitiateFileUploadsHeaderParam &
-    PlayFabFileOperationsInitiateFileUploadsBodyParam &
-    RequestParameters;
+export type InitiateFileUploadsParameters = InitiateFileUploadsHeaderParam &
+  InitiateFileUploadsBodyParam &
+  RequestParameters;
 
-export interface PlayFabFileOperationsGetObjectsHeaders {
+export interface GetObjectsHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabFileOperationsGetObjectsBodyParam {
+export interface GetObjectsBodyParam {
   /** Gets JSON objects from an entity profile and returns it. */
   body: GetObjectsRequest;
 }
 
-export interface PlayFabFileOperationsGetObjectsHeaderParam {
-  headers: RawHttpHeadersInput & PlayFabFileOperationsGetObjectsHeaders;
+export interface GetObjectsHeaderParam {
+  headers: RawHttpHeadersInput & GetObjectsHeaders;
 }
 
-export type PlayFabFileOperationsGetObjectsParameters =
-  PlayFabFileOperationsGetObjectsHeaderParam &
-    PlayFabFileOperationsGetObjectsBodyParam &
-    RequestParameters;
+export type GetObjectsParameters = GetObjectsHeaderParam &
+  GetObjectsBodyParam &
+  RequestParameters;
 
-export interface PlayFabFileOperationsSetObjectsHeaders {
+export interface SetObjectsHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabFileOperationsSetObjectsBodyParam {
+export interface SetObjectsBodyParam {
   /**
    * Sets JSON objects on the requested entity profile. May include a version number
    * to be used to perform optimistic concurrency operations during update. If the
@@ -328,51 +311,48 @@ export interface PlayFabFileOperationsSetObjectsBodyParam {
   body: SetObjectsRequest;
 }
 
-export interface PlayFabFileOperationsSetObjectsHeaderParam {
-  headers: RawHttpHeadersInput & PlayFabFileOperationsSetObjectsHeaders;
+export interface SetObjectsHeaderParam {
+  headers: RawHttpHeadersInput & SetObjectsHeaders;
 }
 
-export type PlayFabFileOperationsSetObjectsParameters =
-  PlayFabFileOperationsSetObjectsHeaderParam &
-    PlayFabFileOperationsSetObjectsBodyParam &
-    RequestParameters;
+export type SetObjectsParameters = SetObjectsHeaderParam &
+  SetObjectsBodyParam &
+  RequestParameters;
 
-export interface PlayFabEventsOperationsWriteEventsHeaders {
+export interface WriteEventsHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabEventsOperationsWriteEventsBodyParam {
+export interface WriteEventsBodyParam {
   body: WriteEventsRequest;
 }
 
-export interface PlayFabEventsOperationsWriteEventsHeaderParam {
-  headers: RawHttpHeadersInput & PlayFabEventsOperationsWriteEventsHeaders;
+export interface WriteEventsHeaderParam {
+  headers: RawHttpHeadersInput & WriteEventsHeaders;
 }
 
-export type PlayFabEventsOperationsWriteEventsParameters =
-  PlayFabEventsOperationsWriteEventsHeaderParam &
-    PlayFabEventsOperationsWriteEventsBodyParam &
-    RequestParameters;
+export type WriteEventsParameters = WriteEventsHeaderParam &
+  WriteEventsBodyParam &
+  RequestParameters;
 
-export interface PlayFabProfilesOperationsLoginPlayerHeaders {
+export interface LoginPlayerHeaders {
   /** Token */
   "x-entity-token": string;
   /** Accept header */
   accept: "application/json";
 }
 
-export interface PlayFabProfilesOperationsLoginPlayerBodyParam {
+export interface LoginPlayerBodyParam {
   body: LoginPlayerRequest;
 }
 
-export interface PlayFabProfilesOperationsLoginPlayerHeaderParam {
-  headers: RawHttpHeadersInput & PlayFabProfilesOperationsLoginPlayerHeaders;
+export interface LoginPlayerHeaderParam {
+  headers: RawHttpHeadersInput & LoginPlayerHeaders;
 }
 
-export type PlayFabProfilesOperationsLoginPlayerParameters =
-  PlayFabProfilesOperationsLoginPlayerHeaderParam &
-    PlayFabProfilesOperationsLoginPlayerBodyParam &
-    RequestParameters;
+export type LoginPlayerParameters = LoginPlayerHeaderParam &
+  LoginPlayerBodyParam &
+  RequestParameters;

@@ -2,52 +2,48 @@
 // Licensed under the MIT license.
 
 import {
-  CadlCoreOpCreateOrUpdateParameters,
-  CadlCoreOpGetParameters,
-  CadlCoreOpDeleteParameters,
-  CadlCoreOpListParameters,
+  CreateOrUpdateParameters,
+  GetParameters,
+  DeleteParameters,
+  ListParameters,
 } from "./parameters";
 import {
-  CadlCoreOpCreateOrUpdate200Response,
-  CadlCoreOpCreateOrUpdate201Response,
-  CadlCoreOpCreateOrUpdateDefaultResponse,
-  CadlCoreOpGet200Response,
-  CadlCoreOpGetDefaultResponse,
-  CadlCoreOpDelete204Response,
-  CadlCoreOpDeleteDefaultResponse,
-  CadlCoreOpList200Response,
-  CadlCoreOpListDefaultResponse,
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  Get200Response,
+  GetDefaultResponse,
+  Delete204Response,
+  DeleteDefaultResponse,
+  List200Response,
+  ListDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrUpdate {
   /** Creates a new resource or updates an existing one. */
   put(
-    options?: CadlCoreOpCreateOrUpdateParameters
+    options?: CreateOrUpdateParameters
   ): StreamableMethod<
-    | CadlCoreOpCreateOrUpdate200Response
-    | CadlCoreOpCreateOrUpdate201Response
-    | CadlCoreOpCreateOrUpdateDefaultResponse
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
   >;
   /** Gets the details of a resource. */
   get(
-    options?: CadlCoreOpGetParameters
-  ): StreamableMethod<CadlCoreOpGet200Response | CadlCoreOpGetDefaultResponse>;
+    options?: GetParameters
+  ): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Deletes a resource. */
   delete(
-    options?: CadlCoreOpDeleteParameters
-  ): StreamableMethod<
-    CadlCoreOpDelete204Response | CadlCoreOpDeleteDefaultResponse
-  >;
+    options?: DeleteParameters
+  ): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
 }
 
 export interface List {
   /** Lists the existing resources. */
   get(
-    options?: CadlCoreOpListParameters
-  ): StreamableMethod<
-    CadlCoreOpList200Response | CadlCoreOpListDefaultResponse
-  >;
+    options?: ListParameters
+  ): StreamableMethod<List200Response | ListDefaultResponse>;
 }
 
 export interface Routes {

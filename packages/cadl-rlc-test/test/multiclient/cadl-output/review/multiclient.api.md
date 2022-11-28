@@ -13,94 +13,6 @@ import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-// @public
-interface CadlCoreOpCreateOrUpdate200Response extends HttpResponse {
-    // (undocumented)
-    body: ResourceOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public
-interface CadlCoreOpCreateOrUpdate201Response extends HttpResponse {
-    // (undocumented)
-    body: ResourceOutput;
-    // (undocumented)
-    status: "201";
-}
-
-// @public (undocumented)
-interface CadlCoreOpCreateOrUpdateBodyParam {
-    // (undocumented)
-    body?: Resource;
-}
-
-// @public (undocumented)
-interface CadlCoreOpCreateOrUpdateDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-type CadlCoreOpCreateOrUpdateParameters = CadlCoreOpCreateOrUpdateBodyParam & RequestParameters;
-
-// @public
-interface CadlCoreOpDelete204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-interface CadlCoreOpDeleteDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-type CadlCoreOpDeleteParameters = RequestParameters;
-
-// @public
-interface CadlCoreOpGet200Response extends HttpResponse {
-    // (undocumented)
-    body: ResourceOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-interface CadlCoreOpGetDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-type CadlCoreOpGetParameters = RequestParameters;
-
-// @public
-interface CadlCoreOpList200Response extends HttpResponse {
-    // (undocumented)
-    body: ResourceListOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-interface CadlCoreOpListDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-type CadlCoreOpListParameters = RequestParameters;
-
 declare namespace Client_2 {
     export {
         CreateOrUpdate,
@@ -147,22 +59,108 @@ function createClient_2(options?: ClientOptions): ResponseClient_2;
 
 // @public (undocumented)
 interface CreateOrUpdate {
-    delete(options?: CadlCoreOpDeleteParameters): StreamableMethod<CadlCoreOpDelete204Response | CadlCoreOpDeleteDefaultResponse>;
-    get(options?: CadlCoreOpGetParameters): StreamableMethod<CadlCoreOpGet200Response | CadlCoreOpGetDefaultResponse>;
-    put(options?: CadlCoreOpCreateOrUpdateParameters): StreamableMethod<CadlCoreOpCreateOrUpdate200Response | CadlCoreOpCreateOrUpdate201Response | CadlCoreOpCreateOrUpdateDefaultResponse>;
+    delete(options?: DeleteParameters): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
+    get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
+    put(options?: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
+
+// @public
+interface CreateOrUpdate200Response extends HttpResponse {
+    // (undocumented)
+    body: ResourceOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public
+interface CreateOrUpdate201Response extends HttpResponse {
+    // (undocumented)
+    body: ResourceOutput;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+interface CreateOrUpdateBodyParam {
+    // (undocumented)
+    body?: Resource;
+}
+
+// @public (undocumented)
+interface CreateOrUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+type CreateOrUpdateParameters = CreateOrUpdateBodyParam & RequestParameters;
 
 // @public (undocumented)
 interface CreateWithHeaders {
     // (undocumented)
-    put(options?: ResponseOpCreateWithHeadersParameters): StreamableMethod<ResponseOpCreateWithHeaders201Response>;
+    put(options?: CreateWithHeadersParameters): StreamableMethod<CreateWithHeaders201Response>;
 }
+
+// @public (undocumented)
+interface CreateWithHeaders201Headers {
+    // (undocumented)
+    "operation-location": string;
+}
+
+// @public
+interface CreateWithHeaders201Response extends HttpResponse {
+    // (undocumented)
+    body: ResourceOutput_2;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateWithHeaders201Headers;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+type CreateWithHeadersParameters = RequestParameters;
+
+// @public
+interface Delete204Response extends HttpResponse {
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+interface DeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+type DeleteParameters = RequestParameters;
 
 // @public (undocumented)
 interface DeleteWithHeaders {
     // (undocumented)
-    delete(options?: ResponseOpDeleteWithHeadersParameters): StreamableMethod<ResponseOpDeleteWithHeaders204Response>;
+    delete(options?: DeleteWithHeadersParameters): StreamableMethod<DeleteWithHeaders204Response>;
 }
+
+// @public (undocumented)
+interface DeleteWithHeaders204Headers {
+    // (undocumented)
+    "operation-location": string;
+}
+
+// @public
+interface DeleteWithHeaders204Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteWithHeaders204Headers;
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+type DeleteWithHeadersParameters = RequestParameters;
 
 // @public
 interface ErrorModelOutput {
@@ -178,11 +176,30 @@ interface ErrorResponseOutput {
     error: ErrorModelOutput;
 }
 
+// @public
+interface Get200Response extends HttpResponse {
+    // (undocumented)
+    body: ResourceOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 interface GetArray {
     // (undocumented)
-    get(options?: ResponseOpGetArrayParameters): StreamableMethod<ResponseOpGetArray200Response>;
+    get(options?: GetArrayParameters): StreamableMethod<GetArray200Response>;
 }
+
+// @public
+interface GetArray200Response extends HttpResponse {
+    // (undocumented)
+    body: Array<ResourceOutput_2>;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+type GetArrayParameters = RequestParameters;
 
 // @public
 type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
@@ -190,7 +207,25 @@ type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 // @public (undocumented)
 interface GetBinary {
     // (undocumented)
-    get(options?: ResponseOpGetBinaryParameters): StreamableMethod<ResponseOpGetBinary200Response>;
+    get(options?: GetBinaryParameters): StreamableMethod<GetBinary200Response>;
+}
+
+// @public
+interface GetBinary200Response extends HttpResponse {
+    body: Uint8Array;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+type GetBinaryParameters = RequestParameters;
+
+// @public (undocumented)
+interface GetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
 }
 
 // @public
@@ -198,6 +233,9 @@ type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+// @public (undocumented)
+type GetParameters = RequestParameters;
 
 // @public
 interface InnerErrorOutput {
@@ -207,8 +245,27 @@ interface InnerErrorOutput {
 
 // @public (undocumented)
 interface List {
-    get(options?: CadlCoreOpListParameters): StreamableMethod<CadlCoreOpList200Response | CadlCoreOpListDefaultResponse>;
+    get(options?: ListParameters): StreamableMethod<List200Response | ListDefaultResponse>;
 }
+
+// @public
+interface List200Response extends HttpResponse {
+    // (undocumented)
+    body: ResourceListOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+interface ListDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+type ListParameters = RequestParameters;
 
 declare namespace Models {
     export {
@@ -259,20 +316,20 @@ interface PagingOptions<TResponse> {
 
 declare namespace Parameters_2 {
     export {
-        CadlCoreOpCreateOrUpdateBodyParam,
-        CadlCoreOpCreateOrUpdateParameters,
-        CadlCoreOpGetParameters,
-        CadlCoreOpDeleteParameters,
-        CadlCoreOpListParameters
+        CreateOrUpdateBodyParam,
+        CreateOrUpdateParameters,
+        GetParameters,
+        DeleteParameters,
+        ListParameters
     }
 }
 
 declare namespace Parameters_3 {
     export {
-        ResponseOpGetBinaryParameters,
-        ResponseOpGetArrayParameters,
-        ResponseOpCreateWithHeadersParameters,
-        ResponseOpDeleteWithHeadersParameters
+        GetBinaryParameters,
+        GetArrayParameters,
+        CreateWithHeadersParameters,
+        DeleteWithHeadersParameters
     }
 }
 
@@ -332,85 +389,28 @@ type ResponseClient_2 = Client & {
     path: Routes_2;
 };
 
-// @public (undocumented)
-interface ResponseOpCreateWithHeaders201Headers {
-    // (undocumented)
-    "operation-location": string;
-}
-
-// @public
-interface ResponseOpCreateWithHeaders201Response extends HttpResponse {
-    // (undocumented)
-    body: ResourceOutput_2;
-    // (undocumented)
-    headers: RawHttpHeaders & ResponseOpCreateWithHeaders201Headers;
-    // (undocumented)
-    status: "201";
-}
-
-// @public (undocumented)
-type ResponseOpCreateWithHeadersParameters = RequestParameters;
-
-// @public (undocumented)
-interface ResponseOpDeleteWithHeaders204Headers {
-    // (undocumented)
-    "operation-location": string;
-}
-
-// @public
-interface ResponseOpDeleteWithHeaders204Response extends HttpResponse {
-    // (undocumented)
-    headers: RawHttpHeaders & ResponseOpDeleteWithHeaders204Headers;
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-type ResponseOpDeleteWithHeadersParameters = RequestParameters;
-
-// @public
-interface ResponseOpGetArray200Response extends HttpResponse {
-    // (undocumented)
-    body: Array<ResourceOutput_2>;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-type ResponseOpGetArrayParameters = RequestParameters;
-
-// @public
-interface ResponseOpGetBinary200Response extends HttpResponse {
-    body: Uint8Array;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-type ResponseOpGetBinaryParameters = RequestParameters;
-
 declare namespace Responses {
     export {
-        CadlCoreOpCreateOrUpdate200Response,
-        CadlCoreOpCreateOrUpdate201Response,
-        CadlCoreOpCreateOrUpdateDefaultResponse,
-        CadlCoreOpGet200Response,
-        CadlCoreOpGetDefaultResponse,
-        CadlCoreOpDelete204Response,
-        CadlCoreOpDeleteDefaultResponse,
-        CadlCoreOpList200Response,
-        CadlCoreOpListDefaultResponse
+        CreateOrUpdate200Response,
+        CreateOrUpdate201Response,
+        CreateOrUpdateDefaultResponse,
+        Get200Response,
+        GetDefaultResponse,
+        Delete204Response,
+        DeleteDefaultResponse,
+        List200Response,
+        ListDefaultResponse
     }
 }
 
 declare namespace Responses_2 {
     export {
-        ResponseOpGetBinary200Response,
-        ResponseOpGetArray200Response,
-        ResponseOpCreateWithHeaders201Headers,
-        ResponseOpCreateWithHeaders201Response,
-        ResponseOpDeleteWithHeaders204Headers,
-        ResponseOpDeleteWithHeaders204Response
+        GetBinary200Response,
+        GetArray200Response,
+        CreateWithHeaders201Headers,
+        CreateWithHeaders201Response,
+        DeleteWithHeaders204Headers,
+        DeleteWithHeaders204Response
     }
 }
 

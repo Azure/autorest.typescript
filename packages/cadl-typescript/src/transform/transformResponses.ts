@@ -4,7 +4,8 @@
 import {
   Client,
   listOperationGroups,
-  listOperationsInOperationGroup
+  listOperationsInOperationGroup,
+  OperationGroup
 } from "@azure-tools/cadl-dpg";
 import {
   ResponseHeaderSchema,
@@ -12,8 +13,7 @@ import {
   OperationResponse,
   ResponseMetadata,
   Schema,
-  SchemaContext,
-  RLCOptions
+  SchemaContext
 } from "@azure-tools/rlc-common";
 import { Program, getDoc, ignoreDiagnostics } from "@cadl-lang/compiler";
 import {
@@ -37,7 +37,6 @@ export function transformToResponseTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
   client: Client,
-  options?: RLCOptions
 ): OperationResponse[] {
   const operationGroups = listOperationGroups(program, client);
   const rlcResponses: OperationResponse[] = [];
@@ -46,7 +45,7 @@ export function transformToResponseTypes(
     const operations = listOperationsInOperationGroup(program, operationGroup);
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      transformToResponseTypesForRoute(route);
+      transformToResponseTypesForRoute(route, operationGroup);
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
@@ -57,9 +56,12 @@ export function transformToResponseTypes(
   if (inputImportedSet.size > 0) {
     importDetails.set(ImportKind.ResponseOutput, inputImportedSet);
   }
-  function transformToResponseTypesForRoute(route: HttpOperation) {
+  function transformToResponseTypesForRoute(
+    route: HttpOperation,
+    operationGroup?: OperationGroup
+  ) {
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: getOperationGroupName(route, options),
+      operationGroup: getOperationGroupName(operationGroup),
       operationName: route.operation.name,
       responses: []
     };

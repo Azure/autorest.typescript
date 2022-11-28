@@ -2,41 +2,37 @@
 // Licensed under the MIT license.
 
 import {
-  ResponseOpGetBinaryParameters,
-  ResponseOpGetArrayParameters,
-  ResponseOpCreateWithHeadersParameters,
-  ResponseOpDeleteWithHeadersParameters,
+  GetBinaryParameters,
+  GetArrayParameters,
+  CreateWithHeadersParameters,
+  DeleteWithHeadersParameters,
 } from "./parameters";
 import {
-  ResponseOpGetBinary200Response,
-  ResponseOpGetArray200Response,
-  ResponseOpCreateWithHeaders201Response,
-  ResponseOpDeleteWithHeaders204Response,
+  GetBinary200Response,
+  GetArray200Response,
+  CreateWithHeaders201Response,
+  DeleteWithHeaders204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetBinary {
-  get(
-    options?: ResponseOpGetBinaryParameters
-  ): StreamableMethod<ResponseOpGetBinary200Response>;
+  get(options?: GetBinaryParameters): StreamableMethod<GetBinary200Response>;
 }
 
 export interface GetArray {
-  get(
-    options?: ResponseOpGetArrayParameters
-  ): StreamableMethod<ResponseOpGetArray200Response>;
+  get(options?: GetArrayParameters): StreamableMethod<GetArray200Response>;
 }
 
 export interface CreateWithHeaders {
   put(
-    options?: ResponseOpCreateWithHeadersParameters
-  ): StreamableMethod<ResponseOpCreateWithHeaders201Response>;
+    options?: CreateWithHeadersParameters
+  ): StreamableMethod<CreateWithHeaders201Response>;
 }
 
 export interface DeleteWithHeaders {
   delete(
-    options?: ResponseOpDeleteWithHeadersParameters
-  ): StreamableMethod<ResponseOpDeleteWithHeaders204Response>;
+    options?: DeleteWithHeadersParameters
+  ): StreamableMethod<DeleteWithHeaders204Response>;
 }
 
 export interface Routes {

@@ -57,20 +57,18 @@ export async function transformRLCModel(
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();
-  const paths: Paths = transformPaths(program, client, options);
+  const paths: Paths = transformPaths(program, client);
   const schemas: Schema[] = transformSchemas(program, client);
   const apiVersionParam = transformApiVersionParam(program);
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet,
-    client,
-    options
+    client
   );
   const parameters: OperationParameter[] = transformToParameterTypes(
     program,
     importSet,
-    client,
-    options
+    client
   );
   const annotations = transformAnnotationDetails(program, client);
   const urlInfo = transformUrlInfo(program);

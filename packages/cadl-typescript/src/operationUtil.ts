@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NameType, normalizeName, RLCOptions } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { DecoratedType, ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import {
   getHttpOperation,
@@ -13,7 +13,7 @@ import {
   getPagedResult,
   PagedResultMetadata
 } from "@azure-tools/cadl-azure-core";
-import { Client, listOperationGroups, listOperationsInOperationGroup } from "@azure-tools/cadl-dpg";
+import { Client, listOperationGroups, listOperationsInOperationGroup, OperationGroup } from "@azure-tools/cadl-dpg";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -40,13 +40,9 @@ export function getOperationStatuscode(
 
 // FIXME: this is the placeholder function to extract the operationGroupName
 export function getOperationGroupName(
-  route: HttpOperation,
-  options?: RLCOptions
+  operationGroup?: OperationGroup,
 ) {
-  if (options && options.enableOperationGroup) {
-    return route.container.name;
-  }
-  return "";
+  return operationGroup?.type.name ?? "";
 }
 
 export function isDefaultStatusCode(statusCode: StatusCode) {
