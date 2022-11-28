@@ -36,7 +36,7 @@ import {
 export function transformToResponseTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  client: Client,
+  client: Client
 ): OperationResponse[] {
   const operationGroups = listOperationGroups(program, client);
   const rlcResponses: OperationResponse[] = [];

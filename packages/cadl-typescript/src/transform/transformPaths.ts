@@ -33,10 +33,7 @@ import {
   isPagingOperation
 } from "../operationUtil.js";
 
-export function transformPaths(
-  program: Program,
-  client: Client
-): Paths {
+export function transformPaths(program: Program, client: Client): Paths {
   const operationGroups = listOperationGroups(program, client);
   const paths: Paths = {};
   for (const operationGroup of operationGroups) {
