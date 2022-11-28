@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { Client } from "@azure-tools/cadl-dpg";
 import {
   ImportKind,
   NameType,
@@ -41,29 +42,38 @@ import { transformRLCOptions } from "./transfromRLCOptions.js";
 
 export async function transformRLCModel(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: RLCOptions,
+  client: Client
 ): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(program, emitterOptions);
-  const srcPath = join(program.compilerOptions.outputDir ?? "", "src");
+  const srcPath = join(
+    program.compilerOptions.outputDir ?? "",
+    "src",
+    options.batch && options.batch.length > 1
+      ? normalizeName(client.name.replace("Client", ""), NameType.File)
+      : ""
+  );
   const libraryName = normalizeName(
-    options?.title ?? getServiceTitle(program),
+    options.batch && options.batch.length > 1
+      ? client.name
+      : options?.title ?? getServiceTitle(program),
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();
-  const paths: Paths = transformPaths(program, options);
-  const schemas: Schema[] = transformSchemas(program);
+  const paths: Paths = transformPaths(program, client);
+  const schemas: Schema[] = transformSchemas(program, client);
   const apiVersionParam = transformApiVersionParam(program);
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet,
-    options
+    client
   );
   const parameters: OperationParameter[] = transformToParameterTypes(
     program,
     importSet,
-    options
+    client
   );
-  const annotations = transformAnnotationDetails(program);
+  const annotations = transformAnnotationDetails(program, client);
   const urlInfo = transformUrlInfo(program);
   return {
     srcPath,

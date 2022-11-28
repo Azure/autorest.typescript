@@ -2,17 +2,23 @@
 // Licensed under the MIT License.
 
 import {
+  Client,
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  OperationGroup
+} from "@azure-tools/cadl-dpg";
+import {
   ResponseHeaderSchema,
   ImportKind,
   OperationResponse,
   ResponseMetadata,
   Schema,
-  SchemaContext,
-  RLCOptions
+  SchemaContext
 } from "@azure-tools/rlc-common";
-import { Program, getDoc } from "@cadl-lang/compiler";
+import { Program, getDoc, ignoreDiagnostics } from "@cadl-lang/compiler";
 import {
-  getAllHttpServices,
+  getHttpOperation,
+  HttpOperation,
   HttpOperationResponse
 } from "@cadl-lang/rest/http";
 import {
@@ -30,15 +36,32 @@ import {
 export function transformToResponseTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  options?: RLCOptions
+  client: Client
 ): OperationResponse[] {
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
+  const operationGroups = listOperationGroups(program, client);
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
-  for (const route of routes) {
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for (const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      transformToResponseTypesForRoute(route, operationGroup);
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    transformToResponseTypesForRoute(route);
+  }
+  if (inputImportedSet.size > 0) {
+    importDetails.set(ImportKind.ResponseOutput, inputImportedSet);
+  }
+  function transformToResponseTypesForRoute(
+    route: HttpOperation,
+    operationGroup?: OperationGroup
+  ) {
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: getOperationGroupName(route, options),
+      operationGroup: getOperationGroupName(operationGroup),
       operationName: route.operation.name,
       responses: []
     };
@@ -59,9 +82,6 @@ export function transformToResponseTypes(
       });
     }
     rlcResponses.push(rlcOperationUnit);
-  }
-  if (inputImportedSet.size > 0) {
-    importDetails.set(ImportKind.ResponseOutput, inputImportedSet);
   }
   return rlcResponses;
 }

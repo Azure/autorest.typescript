@@ -1,19 +1,35 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  Client,
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/cadl-dpg";
 import { Schema, SchemaContext } from "@azure-tools/rlc-common";
-import { Model, Program, Type } from "@cadl-lang/compiler";
+import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import { getResourceOperation } from "@cadl-lang/rest";
-import { getAllHttpServices } from "@cadl-lang/rest/http";
+import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
 import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
-const modelKey = Symbol("typescript-models");
 
-export function transformSchemas(program: Program) {
+export function transformSchemas(program: Program, client: Client) {
   const schemas: Schema[] = [];
   const schemaSet: Set<string> = new Set<string>();
-  const [services, _diagnostics] = getAllHttpServices(program);
-  const routes = services.flatMap((service) => service.operations);
-  for (const route of routes) {
+  const operationGroups = listOperationGroups(program, client);
+  const modelKey = Symbol("typescript-models-" + client.name);
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for (const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      transformSchemaForRoute(route);
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    transformSchemaForRoute(route);
+  }
+  function transformSchemaForRoute(route: HttpOperation) {
     if (route.parameters.bodyType) {
       let bodyModel = route.parameters.bodyType;
       const operation = getResourceOperation(program, route.operation);

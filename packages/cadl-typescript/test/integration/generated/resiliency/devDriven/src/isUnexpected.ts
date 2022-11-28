@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  DevDrivenGetPages200Response,
-  DevDrivenGetPagesDefaultResponse,
-} from "./responses";
+import { GetPages200Response, GetPagesDefaultResponse } from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /resiliency/devdriven/customization/model/{mode}": ["200"],
@@ -14,11 +11,11 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: DevDrivenGetPages200Response | DevDrivenGetPagesDefaultResponse
-): response is DevDrivenGetPagesDefaultResponse;
+  response: GetPages200Response | GetPagesDefaultResponse
+): response is GetPagesDefaultResponse;
 export function isUnexpected(
-  response: DevDrivenGetPages200Response | DevDrivenGetPagesDefaultResponse
-): response is DevDrivenGetPagesDefaultResponse {
+  response: GetPages200Response | GetPagesDefaultResponse
+): response is GetPagesDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

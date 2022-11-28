@@ -1,6 +1,5 @@
 emitters:
   "@azure-tools/cadl-typescript":
-    enableOperationGroup: false
     generateMetadata: true
     generateTest: true
     azureSdkForJs: false
