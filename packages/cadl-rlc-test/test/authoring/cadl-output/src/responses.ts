@@ -2,11 +2,8 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import {
-  HttpResponse,
-  LongRunningOperationLocationHeaders,
-  ErrorResponse,
-} from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import { LongRunningOperationLocationHeaders } from "@azure/core-lro";
 import {
   ProjectOutput,
   OperationStatusOutput,

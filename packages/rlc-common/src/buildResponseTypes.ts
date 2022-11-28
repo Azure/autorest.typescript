@@ -94,9 +94,6 @@ export function buildResponseTypes(model: RLCModel) {
     ]);
   }
   const namedImports = ["HttpResponse"];
-  if (hasOperationLocationHeader) {
-    namedImports.push("LongRunningOperationLocationHeaders");
-  }
   if (hasErrorResponse) {
     namedImports.push("ErrorResponse");
   }
@@ -106,6 +103,14 @@ export function buildResponseTypes(model: RLCModel) {
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);
+  if (hasOperationLocationHeader) {
+    responsesFile.addImportDeclarations([
+      {
+        namedImports: ["LongRunningOperationLocationHeaders"],
+        moduleSpecifier: "@azure/core-lro"
+      }
+    ]);
+  }
 
   if (model.importSet?.has(ImportKind.ResponseOutput)) {
     const modelNamedImports = Array.from(
