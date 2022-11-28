@@ -206,9 +206,9 @@ function addPageableMethods(codeModel: CodeModel) {
 
       // Filter out query parameters from the original operation.
       if (nextLinkMethod.parameters) {
-        nextLinkMethod.parameters = nextLinkMethod.parameters.filter(param => {
-          return param.protocol.http?.in !== ParameterLocation.Query;
-        });
+        nextLinkMethod.parameters = nextLinkMethod.parameters.filter(
+          param => param.protocol.http?.in !== ParameterLocation.Query
+        );
         if (nextLinkMethod.signatureParameters) {
           nextLinkMethod.updateSignatureParameters();
         }
