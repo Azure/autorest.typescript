@@ -5,7 +5,7 @@ import {
   DetectUnivariateEntireSeriesParameters,
   DetectUnivariateLastPointParameters,
   DetectUnivariateChangePointParameters,
-  GetBatchDetectionResultParameters,
+  GetMultivariateBatchDetectionResultParameters,
   CreateAndTrainMultivariateModelParameters,
   ListMultivariateModelsParameters,
   DeleteMultivariateModelParameters,
@@ -20,8 +20,8 @@ import {
   DetectUnivariateLastPointDefaultResponse,
   DetectUnivariateChangePoint200Response,
   DetectUnivariateChangePointDefaultResponse,
-  GetBatchDetectionResult200Response,
-  GetBatchDetectionResultDefaultResponse,
+  GetMultivariateBatchDetectionResult200Response,
+  GetMultivariateBatchDetectionResultDefaultResponse,
   CreateAndTrainMultivariateModel201Response,
   CreateAndTrainMultivariateModelDefaultResponse,
   ListMultivariateModels200Response,
@@ -75,15 +75,16 @@ export interface DetectUnivariateChangePoint {
   >;
 }
 
-export interface GetBatchDetectionResult {
+export interface GetMultivariateBatchDetectionResult {
   /**
    * For asynchronous inference, get multivariate anomaly detection result based on
    * resultId returned by the BatchDetectAnomaly api.
    */
   get(
-    options?: GetBatchDetectionResultParameters
+    options?: GetMultivariateBatchDetectionResultParameters
   ): StreamableMethod<
-    GetBatchDetectionResult200Response | GetBatchDetectionResultDefaultResponse
+    | GetMultivariateBatchDetectionResult200Response
+    | GetMultivariateBatchDetectionResultDefaultResponse
   >;
 }
 
@@ -172,7 +173,7 @@ export interface Routes {
   (
     path: "/multivariate/detect-batch/{resultId}",
     resultId: string
-  ): GetBatchDetectionResult;
+  ): GetMultivariateBatchDetectionResult;
   /** Resource for '/multivariate/models' has methods for the following verbs: post, get */
   (path: "/multivariate/models"): CreateAndTrainMultivariateModel;
   /** Resource for '/multivariate/models/\{modelId\}' has methods for the following verbs: delete, get */
