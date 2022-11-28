@@ -1,47 +1,28 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
-  PollingSuccessCreateParameters,
-  PollingSuccessGetParameters,
-  PollingSuccessPollingParameters,
+  CreateParameters,
+  GetParameters,
+  PollingParameters,
 } from "./parameters";
 import {
-  PollingSuccessCreate200Response,
-  PollingSuccessGet200Response,
-  PollingSuccessPolling200Response,
+  Create200Response,
+  Get200Response,
+  Polling200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for PollingSuccess operations */
-export interface PollingSuccessOperations {
-  /** Test for basic lro of put */
-  create(
-    options?: PollingSuccessCreateParameters
-  ): StreamableMethod<PollingSuccessCreate200Response>;
-  /** The final url */
-  get(
-    options?: PollingSuccessGetParameters
-  ): StreamableMethod<PollingSuccessGet200Response>;
-  /** The polling url */
-  polling(
-    options?: PollingSuccessPollingParameters
-  ): StreamableMethod<PollingSuccessPolling200Response>;
-}
-
 export interface Create {
   /** Test for basic lro of put */
-  put(
-    options?: PollingSuccessCreateParameters
-  ): StreamableMethod<PollingSuccessCreate200Response>;
+  put(options?: CreateParameters): StreamableMethod<Create200Response>;
   /** The final url */
-  get(
-    options?: PollingSuccessGetParameters
-  ): StreamableMethod<PollingSuccessGet200Response>;
+  get(options?: GetParameters): StreamableMethod<Get200Response>;
 }
 
 export interface Polling {
   /** The polling url */
-  get(
-    options?: PollingSuccessPollingParameters
-  ): StreamableMethod<PollingSuccessPolling200Response>;
+  get(options?: PollingParameters): StreamableMethod<Polling200Response>;
 }
 
 export interface Routes {
@@ -53,5 +34,4 @@ export interface Routes {
 
 export type AzureLroClient = Client & {
   path: Routes;
-  pollingSuccess: PollingSuccessOperations;
 };

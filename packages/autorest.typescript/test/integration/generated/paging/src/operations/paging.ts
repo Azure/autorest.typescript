@@ -21,6 +21,9 @@ import {
   PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
+  PagingGetEmptyNextLinkNamePagesNextOptionalParams,
+  PagingGetEmptyNextLinkNamePagesOptionalParams,
+  PagingGetEmptyNextLinkNamePagesResponse,
   PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesNextOptionalParams,
@@ -90,6 +93,7 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingNextOperationWithQueryParamsResponse,
   PagingGetNoItemNamePagesNextResponse,
+  PagingGetEmptyNextLinkNamePagesNextResponse,
   PagingGetSinglePagesNextResponse,
   PagingGetSinglePagesWithBodyParamsNextResponse,
   PagingFirstResponseEmptyNextResponse,
@@ -172,6 +176,65 @@ export class PagingImpl implements Paging {
     options?: PagingGetNoItemNamePagesOptionalParams
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getNoItemNamePagesPagingPage(options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * A paging operation that gets an empty next link and should stop after page 1.
+   * @param options The options parameters.
+   */
+  public listEmptyNextLinkNamePages(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): PagedAsyncIterableIterator<Product> {
+    const iter = this.getEmptyNextLinkNamePagesPagingAll(options);
+    return {
+      next() {
+        return iter.next();
+      },
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getEmptyNextLinkNamePagesPagingPage(options, settings);
+      }
+    };
+  }
+
+  private async *getEmptyNextLinkNamePagesPagingPage(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams,
+    settings?: PageSettings
+  ): AsyncIterableIterator<Product[]> {
+    let result: PagingGetEmptyNextLinkNamePagesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getEmptyNextLinkNamePages(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
+    while (continuationToken) {
+      result = await this._getEmptyNextLinkNamePagesNext(
+        continuationToken,
+        options
+      );
+      continuationToken = result.nextLink;
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
+  }
+
+  private async *getEmptyNextLinkNamePagesPagingAll(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): AsyncIterableIterator<Product> {
+    for await (const page of this.getEmptyNextLinkNamePagesPagingPage(
+      options
+    )) {
       yield* page;
     }
   }
@@ -1635,6 +1698,25 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * A paging operation that gets an empty next link and should stop after page 1.
+   * @param options The options parameters.
+   */
+  private async _getEmptyNextLinkNamePages(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesResponse> {
+    return tracingClient.withSpan(
+      "PagingClient._getEmptyNextLinkNamePages",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { options },
+          getEmptyNextLinkNamePagesOperationSpec
+        ) as Promise<PagingGetEmptyNextLinkNamePagesResponse>;
+      }
+    );
+  }
+
+  /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
@@ -2198,6 +2280,28 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * GetEmptyNextLinkNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetEmptyNextLinkNamePages
+   *                 method.
+   * @param options The options parameters.
+   */
+  private async _getEmptyNextLinkNamePagesNext(
+    nextLink: string,
+    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesNextResponse> {
+    return tracingClient.withSpan(
+      "PagingClient._getEmptyNextLinkNamePagesNext",
+      options ?? {},
+      async (options) => {
+        return this.client.sendOperationRequest(
+          { nextLink, options },
+          getEmptyNextLinkNamePagesNextOperationSpec
+        ) as Promise<PagingGetEmptyNextLinkNamePagesNextResponse>;
+      }
+    );
+  }
+
+  /**
    * GetSinglePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
    * @param options The options parameters.
@@ -2583,6 +2687,19 @@ const getNoItemNamePagesOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const getEmptyNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/emptynextlink",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const getNullNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/nullnextlink",
   httpMethod: "GET",
@@ -2939,6 +3056,19 @@ const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.Opera
   serializer
 };
 const getNoItemNamePagesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const getEmptyNextLinkNamePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

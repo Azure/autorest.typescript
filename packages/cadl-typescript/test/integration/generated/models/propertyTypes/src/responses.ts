@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   BooleanPropertyOutput,
@@ -14,6 +17,7 @@ import {
   CollectionsIntPropertyOutput,
   CollectionsModelPropertyOutput,
   DictionaryStringPropertyOutput,
+  NeverPropertyOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
@@ -167,5 +171,16 @@ export interface DictionaryStringGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface DictionaryStringPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface NeverGet200Response extends HttpResponse {
+  status: "200";
+  body: NeverPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface NeverPut204Response extends HttpResponse {
   status: "204";
 }

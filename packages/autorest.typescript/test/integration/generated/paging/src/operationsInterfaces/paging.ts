@@ -10,6 +10,7 @@ import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   Product,
   PagingGetNoItemNamePagesOptionalParams,
+  PagingGetEmptyNextLinkNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetSinglePagesOptionalParams,
   BodyParam,
@@ -47,6 +48,13 @@ export interface Paging {
    */
   listNoItemNamePages(
     options?: PagingGetNoItemNamePagesOptionalParams
+  ): PagedAsyncIterableIterator<Product>;
+  /**
+   * A paging operation that gets an empty next link and should stop after page 1.
+   * @param options The options parameters.
+   */
+  listEmptyNextLinkNamePages(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.

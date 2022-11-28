@@ -1,5 +1,9 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** Identifier for collections. */
 export interface CollectionOutput {
+  /** The collection id. */
   collectionId: string;
 }
 
@@ -35,19 +39,17 @@ export interface InnerErrorOutput {
 export interface PagedLedgerEntriesOutput {
   /** Array of ledger entries. */
   entries: Array<LedgerEntryOutput>;
-  /**
-   * State of the ledger query.
-   *
-   * Possible values: Loading, Ready
-   */
-  state: string;
+  /** State of the ledger query. */
+  state: "Loading" | "Ready";
   /** Path from which to retrieve the next page of results. */
   nextLink?: string;
 }
 
+/** Details about a ledger entry. */
 export interface LedgerEntryOutput {
   /** Contents of the ledger entry. */
   contents: string;
+  /** The collection id. */
   readonly collectionId: string;
   /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
   readonly transactionId: string;
@@ -55,20 +57,22 @@ export interface LedgerEntryOutput {
 
 /** A receipt certifying the transaction at the specified id. */
 export interface TransactionReceiptOutput {
+  /** The receipt contents. */
   receipt: ReceiptContentsOutput;
-  /** Possible values: Loading, Ready */
-  state: string;
-  /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
+  /** The state of the ledger query. */
+  state: "Loading" | "Ready";
+  /** The transaction ID. */
   transactionId: string;
 }
 
+/** The contents of a receipt. */
 export interface ReceiptContentsOutput {}
 
 /** Response returned to a query for the transaction status. */
 export interface TransactionStatusOutput {
-  /** Possible values: Committed, Pending */
-  state: string;
-  /** A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read. */
+  /** The transaction state. */
+  state: "Committed" | "Pending";
+  /** The transaction ID. */
   transactionId: string;
 }
 
@@ -76,10 +80,6 @@ export interface TransactionStatusOutput {
 export interface LedgerUserOutput {
   /** The user id, either an AAD object ID or certificate fingerprint. */
   userId: string;
-  /**
-   * The user's assigned role.
-   *
-   * Possible values: Administrator, Contributor, Reader
-   */
-  assignedRole: string;
+  /** The user's assigned role. */
+  assignedRole: "Administrator" | "Contributor" | "Reader";
 }

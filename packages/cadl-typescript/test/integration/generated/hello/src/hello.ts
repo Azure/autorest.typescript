@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { HelloClient } from "./clientDefinitions";
 
@@ -22,12 +25,5 @@ export default function createClient(options: ClientOptions = {}): HelloClient {
 
   const client = getClient(baseUrl, options) as HelloClient;
 
-  return {
-    ...client,
-    hello: {
-      world: (options) => {
-        return client.path("/hello/world").get(options);
-      },
-    },
-  };
+  return client;
 }

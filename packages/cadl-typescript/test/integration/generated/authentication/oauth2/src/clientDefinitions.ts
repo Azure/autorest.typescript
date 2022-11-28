@@ -1,35 +1,24 @@
-import { OAuth2ValidParameters, OAuth2InvalidParameters } from "./parameters";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import { ValidParameters, InvalidParameters } from "./parameters";
 import {
-  OAuth2Valid204Response,
-  OAuth2Invalid204Response,
-  OAuth2Invalid403Response,
+  Valid204Response,
+  Invalid204Response,
+  Invalid403Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for OAuth2 operations */
-export interface OAuth2Operations {
-  /** Check whether client is authenticated */
-  valid(
-    options?: OAuth2ValidParameters
-  ): StreamableMethod<OAuth2Valid204Response>;
-  /** Check whether client is authenticated. Will return an invalid bearer error. */
-  invalid(
-    options?: OAuth2InvalidParameters
-  ): StreamableMethod<OAuth2Invalid204Response | OAuth2Invalid403Response>;
-}
-
 export interface Valid {
   /** Check whether client is authenticated */
-  get(
-    options?: OAuth2ValidParameters
-  ): StreamableMethod<OAuth2Valid204Response>;
+  get(options?: ValidParameters): StreamableMethod<Valid204Response>;
 }
 
 export interface Invalid {
   /** Check whether client is authenticated. Will return an invalid bearer error. */
   get(
-    options?: OAuth2InvalidParameters
-  ): StreamableMethod<OAuth2Invalid204Response | OAuth2Invalid403Response>;
+    options?: InvalidParameters
+  ): StreamableMethod<Invalid204Response | Invalid403Response>;
 }
 
 export interface Routes {
@@ -41,5 +30,4 @@ export interface Routes {
 
 export type AuthOauth2Client = Client & {
   path: Routes;
-  oAuth2: OAuth2Operations;
 };

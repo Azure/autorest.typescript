@@ -1,324 +1,183 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
-  ProjectsCreateOrUpdateParameters,
-  ProjectsGetParameters,
-  ProjectsDeleteParameters,
-  ProjectsListParameters,
-  ProjectsExportParameters,
-  ProjectsImportxParameters,
-  ProjectsTrainParameters,
-  DeploymentsGetDeploymentParameters,
-  DeploymentsDeployProjectParameters,
-  DeploymentsDeleteDeploymentParameters,
-  DeploymentsListParameters,
-  DeploymentsSwapDeploymentsParameters,
-  JobsGetDeploymentStatusParameters,
-  JobsGetSwapDeploymentsStatusParameters,
-  GlobalGetSupportedLanguagesParameters,
-  GlobalListTrainingConfigVersionsParameters,
+  CreateOrUpdateParameters,
+  GetParameters,
+  DeleteParameters,
+  ListProjectsParameters,
+  ExportParameters,
+  ImportxParameters,
+  TrainParameters,
+  GetDeploymentParameters,
+  DeployProjectParameters,
+  DeleteDeploymentParameters,
+  ListDeploymentsParameters,
+  SwapDeploymentsParameters,
+  GetDeploymentStatusParameters,
+  GetSwapDeploymentsStatusParameters,
+  GetSupportedLanguagesParameters,
+  ListTrainingConfigVersionsParameters,
 } from "./parameters";
 import {
-  ProjectsCreateOrUpdate200Response,
-  ProjectsCreateOrUpdate201Response,
-  ProjectsCreateOrUpdateDefaultResponse,
-  ProjectsGet200Response,
-  ProjectsGetDefaultResponse,
-  ProjectsDelete202Response,
-  ProjectsDeleteDefaultResponse,
-  ProjectsList200Response,
-  ProjectsListDefaultResponse,
-  ProjectsExport202Response,
-  ProjectsExportDefaultResponse,
-  ProjectsImportx202Response,
-  ProjectsImportxDefaultResponse,
-  ProjectsTrain202Response,
-  ProjectsTrainDefaultResponse,
-  DeploymentsGetDeployment200Response,
-  DeploymentsGetDeploymentDefaultResponse,
-  DeploymentsDeployProject200Response,
-  DeploymentsDeployProject201Response,
-  DeploymentsDeployProjectDefaultResponse,
-  DeploymentsDeleteDeployment202Response,
-  DeploymentsDeleteDeploymentDefaultResponse,
-  DeploymentsList200Response,
-  DeploymentsListDefaultResponse,
-  DeploymentsSwapDeployments202Response,
-  DeploymentsSwapDeploymentsDefaultResponse,
-  JobsGetDeploymentStatus200Response,
-  JobsGetDeploymentStatusDefaultResponse,
-  JobsGetSwapDeploymentsStatus200Response,
-  JobsGetSwapDeploymentsStatusDefaultResponse,
-  GlobalGetSupportedLanguages200Response,
-  GlobalGetSupportedLanguagesDefaultResponse,
-  GlobalListTrainingConfigVersions200Response,
-  GlobalListTrainingConfigVersionsDefaultResponse,
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  Get200Response,
+  GetDefaultResponse,
+  Delete202Response,
+  DeleteDefaultResponse,
+  ListProjects200Response,
+  ListProjectsDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
+  Importx202Response,
+  ImportxDefaultResponse,
+  Train202Response,
+  TrainDefaultResponse,
+  GetDeployment200Response,
+  GetDeploymentDefaultResponse,
+  DeployProject200Response,
+  DeployProject201Response,
+  DeployProjectDefaultResponse,
+  DeleteDeployment202Response,
+  DeleteDeploymentDefaultResponse,
+  ListDeployments200Response,
+  ListDeploymentsDefaultResponse,
+  SwapDeployments202Response,
+  SwapDeploymentsDefaultResponse,
+  GetDeploymentStatus200Response,
+  GetDeploymentStatusDefaultResponse,
+  GetSwapDeploymentsStatus200Response,
+  GetSwapDeploymentsStatusDefaultResponse,
+  GetSupportedLanguages200Response,
+  GetSupportedLanguagesDefaultResponse,
+  ListTrainingConfigVersions200Response,
+  ListTrainingConfigVersionsDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Projects operations */
-export interface ProjectsOperations {
-  /** Creates a new project or updates an existing one. */
-  createOrUpdate(
-    projectName: string,
-    options: ProjectsCreateOrUpdateParameters
-  ): StreamableMethod<
-    | ProjectsCreateOrUpdate200Response
-    | ProjectsCreateOrUpdate201Response
-    | ProjectsCreateOrUpdateDefaultResponse
-  >;
-  /** Gets the details of a project. */
-  get(
-    projectName: string,
-    options?: ProjectsGetParameters
-  ): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
-  /** Deletes a project. */
-  delete(
-    projectName: string,
-    options?: ProjectsDeleteParameters
-  ): StreamableMethod<
-    ProjectsDelete202Response | ProjectsDeleteDefaultResponse
-  >;
-  /** Lists the existing projects. */
-  list(
-    options?: ProjectsListParameters
-  ): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
-  /** Triggers a job to export a project's data. */
-  export(
-    projectName: string,
-    options: ProjectsExportParameters
-  ): StreamableMethod<
-    ProjectsExport202Response | ProjectsExportDefaultResponse
-  >;
-  /** Triggers a job to export a project's data. */
-  importx(
-    projectName: string,
-    options?: ProjectsImportxParameters
-  ): StreamableMethod<
-    ProjectsImportx202Response | ProjectsImportxDefaultResponse
-  >;
-  /** Triggers a training job for a project. */
-  train(
-    projectName: string,
-    options: ProjectsTrainParameters
-  ): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
-}
-
-/** Contains operations for Deployments operations */
-export interface DeploymentsOperations {
-  /** Gets the details of a deployment. */
-  getDeployment(
-    projectName: string,
-    deploymentName: string,
-    options?: DeploymentsGetDeploymentParameters
-  ): StreamableMethod<
-    | DeploymentsGetDeployment200Response
-    | DeploymentsGetDeploymentDefaultResponse
-  >;
-  /** Creates a new deployment or replaces an existing one. */
-  deployProject(
-    projectName: string,
-    deploymentName: string,
-    options?: DeploymentsDeployProjectParameters
-  ): StreamableMethod<
-    | DeploymentsDeployProject200Response
-    | DeploymentsDeployProject201Response
-    | DeploymentsDeployProjectDefaultResponse
-  >;
-  /** Deletes a project deployment. */
-  deleteDeployment(
-    projectName: string,
-    deploymentName: string,
-    options?: DeploymentsDeleteDeploymentParameters
-  ): StreamableMethod<
-    | DeploymentsDeleteDeployment202Response
-    | DeploymentsDeleteDeploymentDefaultResponse
-  >;
-  /** Lists the existing deployments. */
-  list(
-    projectName: string,
-    options?: DeploymentsListParameters
-  ): StreamableMethod<
-    DeploymentsList200Response | DeploymentsListDefaultResponse
-  >;
-  /** Swaps two existing deployments with each other. */
-  swapDeployments(
-    projectName: string,
-    options: DeploymentsSwapDeploymentsParameters
-  ): StreamableMethod<
-    | DeploymentsSwapDeployments202Response
-    | DeploymentsSwapDeploymentsDefaultResponse
-  >;
-}
-
-/** Contains operations for Jobs operations */
-export interface JobsOperations {
-  /** Gets the status of an existing deployment job. */
-  getDeploymentStatus(
-    projectName: string,
-    deploymentName: string,
-    jobId: string,
-    options?: JobsGetDeploymentStatusParameters
-  ): StreamableMethod<
-    JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse
-  >;
-  /** Gets the status of an existing swap deployment job. */
-  getSwapDeploymentsStatus(
-    projectName: string,
-    deploymentName: string,
-    jobId: string,
-    options?: JobsGetSwapDeploymentsStatusParameters
-  ): StreamableMethod<
-    | JobsGetSwapDeploymentsStatus200Response
-    | JobsGetSwapDeploymentsStatusDefaultResponse
-  >;
-}
-
-/** Contains operations for Global operations */
-export interface GlobalOperations {
-  getSupportedLanguages(
-    options?: GlobalGetSupportedLanguagesParameters
-  ): StreamableMethod<
-    | GlobalGetSupportedLanguages200Response
-    | GlobalGetSupportedLanguagesDefaultResponse
-  >;
-  listTrainingConfigVersions(
-    options?: GlobalListTrainingConfigVersionsParameters
-  ): StreamableMethod<
-    | GlobalListTrainingConfigVersions200Response
-    | GlobalListTrainingConfigVersionsDefaultResponse
-  >;
-}
-
-export interface ProjectsCreateOrUpdate {
+export interface CreateOrUpdate {
   /** Creates a new project or updates an existing one. */
   patch(
-    options: ProjectsCreateOrUpdateParameters
+    options: CreateOrUpdateParameters
   ): StreamableMethod<
-    | ProjectsCreateOrUpdate200Response
-    | ProjectsCreateOrUpdate201Response
-    | ProjectsCreateOrUpdateDefaultResponse
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
   >;
   /** Gets the details of a project. */
   get(
-    options?: ProjectsGetParameters
-  ): StreamableMethod<ProjectsGet200Response | ProjectsGetDefaultResponse>;
+    options?: GetParameters
+  ): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Deletes a project. */
   delete(
-    options?: ProjectsDeleteParameters
-  ): StreamableMethod<
-    ProjectsDelete202Response | ProjectsDeleteDefaultResponse
-  >;
+    options?: DeleteParameters
+  ): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
 }
 
-export interface ProjectsList {
+export interface ListProjects {
   /** Lists the existing projects. */
   get(
-    options?: ProjectsListParameters
-  ): StreamableMethod<ProjectsList200Response | ProjectsListDefaultResponse>;
+    options?: ListProjectsParameters
+  ): StreamableMethod<ListProjects200Response | ListProjectsDefaultResponse>;
 }
 
-export interface ProjectsExport {
+export interface Export {
   /** Triggers a job to export a project's data. */
   post(
-    options: ProjectsExportParameters
-  ): StreamableMethod<
-    ProjectsExport202Response | ProjectsExportDefaultResponse
-  >;
+    options: ExportParameters
+  ): StreamableMethod<Export202Response | ExportDefaultResponse>;
 }
 
-export interface ProjectsImportx {
+export interface Importx {
   /** Triggers a job to export a project's data. */
   post(
-    options?: ProjectsImportxParameters
-  ): StreamableMethod<
-    ProjectsImportx202Response | ProjectsImportxDefaultResponse
-  >;
+    options?: ImportxParameters
+  ): StreamableMethod<Importx202Response | ImportxDefaultResponse>;
 }
 
-export interface ProjectsTrain {
+export interface Train {
   /** Triggers a training job for a project. */
   post(
-    options: ProjectsTrainParameters
-  ): StreamableMethod<ProjectsTrain202Response | ProjectsTrainDefaultResponse>;
+    options: TrainParameters
+  ): StreamableMethod<Train202Response | TrainDefaultResponse>;
 }
 
-export interface DeploymentsGetDeployment {
+export interface GetDeployment {
   /** Gets the details of a deployment. */
   get(
-    options?: DeploymentsGetDeploymentParameters
-  ): StreamableMethod<
-    | DeploymentsGetDeployment200Response
-    | DeploymentsGetDeploymentDefaultResponse
-  >;
+    options?: GetDeploymentParameters
+  ): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
   /** Creates a new deployment or replaces an existing one. */
   put(
-    options?: DeploymentsDeployProjectParameters
+    options?: DeployProjectParameters
   ): StreamableMethod<
-    | DeploymentsDeployProject200Response
-    | DeploymentsDeployProject201Response
-    | DeploymentsDeployProjectDefaultResponse
+    | DeployProject200Response
+    | DeployProject201Response
+    | DeployProjectDefaultResponse
   >;
   /** Deletes a project deployment. */
   delete(
-    options?: DeploymentsDeleteDeploymentParameters
+    options?: DeleteDeploymentParameters
   ): StreamableMethod<
-    | DeploymentsDeleteDeployment202Response
-    | DeploymentsDeleteDeploymentDefaultResponse
+    DeleteDeployment202Response | DeleteDeploymentDefaultResponse
   >;
 }
 
-export interface DeploymentsList {
+export interface ListDeployments {
   /** Lists the existing deployments. */
   get(
-    options?: DeploymentsListParameters
+    options?: ListDeploymentsParameters
   ): StreamableMethod<
-    DeploymentsList200Response | DeploymentsListDefaultResponse
+    ListDeployments200Response | ListDeploymentsDefaultResponse
   >;
 }
 
-export interface DeploymentsSwapDeployments {
+export interface SwapDeployments {
   /** Swaps two existing deployments with each other. */
   post(
-    options: DeploymentsSwapDeploymentsParameters
+    options: SwapDeploymentsParameters
   ): StreamableMethod<
-    | DeploymentsSwapDeployments202Response
-    | DeploymentsSwapDeploymentsDefaultResponse
+    SwapDeployments202Response | SwapDeploymentsDefaultResponse
   >;
 }
 
-export interface JobsGetDeploymentStatus {
+export interface GetDeploymentStatus {
   /** Gets the status of an existing deployment job. */
   get(
-    options?: JobsGetDeploymentStatusParameters
+    options?: GetDeploymentStatusParameters
   ): StreamableMethod<
-    JobsGetDeploymentStatus200Response | JobsGetDeploymentStatusDefaultResponse
+    GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse
   >;
 }
 
-export interface JobsGetSwapDeploymentsStatus {
+export interface GetSwapDeploymentsStatus {
   /** Gets the status of an existing swap deployment job. */
   get(
-    options?: JobsGetSwapDeploymentsStatusParameters
+    options?: GetSwapDeploymentsStatusParameters
   ): StreamableMethod<
-    | JobsGetSwapDeploymentsStatus200Response
-    | JobsGetSwapDeploymentsStatusDefaultResponse
+    | GetSwapDeploymentsStatus200Response
+    | GetSwapDeploymentsStatusDefaultResponse
   >;
 }
 
-export interface GlobalGetSupportedLanguages {
+export interface GetSupportedLanguages {
+  /** Gets the supported languages. */
   get(
-    options?: GlobalGetSupportedLanguagesParameters
+    options?: GetSupportedLanguagesParameters
   ): StreamableMethod<
-    | GlobalGetSupportedLanguages200Response
-    | GlobalGetSupportedLanguagesDefaultResponse
+    GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse
   >;
 }
 
-export interface GlobalListTrainingConfigVersions {
+export interface ListTrainingConfigVersions {
+  /** Lists training configuration versions. */
   get(
-    options?: GlobalListTrainingConfigVersionsParameters
+    options?: ListTrainingConfigVersionsParameters
   ): StreamableMethod<
-    | GlobalListTrainingConfigVersions200Response
-    | GlobalListTrainingConfigVersionsDefaultResponse
+    | ListTrainingConfigVersions200Response
+    | ListTrainingConfigVersionsDefaultResponse
   >;
 }
 
@@ -327,69 +186,65 @@ export interface Routes {
   (
     path: "/authoring/analyze-text/projects/{projectName}",
     projectName: string
-  ): ProjectsCreateOrUpdate;
+  ): CreateOrUpdate;
   /** Resource for '/authoring/analyze-text/projects' has methods for the following verbs: get */
-  (path: "/authoring/analyze-text/projects"): ProjectsList;
+  (path: "/authoring/analyze-text/projects"): ListProjects;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}:export' has methods for the following verbs: post */
   (
     path: "/authoring/analyze-text/projects/{projectName}:export",
     projectName: string
-  ): ProjectsExport;
+  ): Export;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}:importx' has methods for the following verbs: post */
   (
     path: "/authoring/analyze-text/projects/{projectName}:importx",
     projectName: string
-  ): ProjectsImportx;
+  ): Importx;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}:train' has methods for the following verbs: post */
   (
     path: "/authoring/analyze-text/projects/{projectName}:train",
     projectName: string
-  ): ProjectsTrain;
+  ): Train;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}' has methods for the following verbs: get, put, delete */
   (
     path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
     projectName: string,
     deploymentName: string
-  ): DeploymentsGetDeployment;
+  ): GetDeployment;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments' has methods for the following verbs: get */
   (
     path: "/authoring/analyze-text/projects/{projectName}/deployments",
     projectName: string
-  ): DeploymentsList;
+  ): ListDeployments;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/swap' has methods for the following verbs: post */
   (
     path: "/authoring/analyze-text/projects/{projectName}/deployments/swap",
     projectName: string
-  ): DeploymentsSwapDeployments;
+  ): SwapDeployments;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}/jobs/\{jobId\}' has methods for the following verbs: get */
   (
     path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}",
     projectName: string,
     deploymentName: string,
     jobId: string
-  ): JobsGetDeploymentStatus;
+  ): GetDeploymentStatus;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}/swap/jobs/\{jobId\}' has methods for the following verbs: get */
   (
     path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}",
     projectName: string,
     deploymentName: string,
     jobId: string
-  ): JobsGetSwapDeploymentsStatus;
+  ): GetSwapDeploymentsStatus;
   /** Resource for '/authoring/analyze-text/projects/global/languages' has methods for the following verbs: get */
   (
     path: "/authoring/analyze-text/projects/global/languages"
-  ): GlobalGetSupportedLanguages;
+  ): GetSupportedLanguages;
   /** Resource for '/authoring/analyze-text/projects/global/training-config-versions' has methods for the following verbs: get */
   (
     path: "/authoring/analyze-text/projects/global/training-config-versions"
-  ): GlobalListTrainingConfigVersions;
+  ): ListTrainingConfigVersions;
 }
 
 export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient =
   Client & {
     path: Routes;
-    projects: ProjectsOperations;
-    deployments: DeploymentsOperations;
-    jobs: JobsOperations;
-    global: GlobalOperations;
   };

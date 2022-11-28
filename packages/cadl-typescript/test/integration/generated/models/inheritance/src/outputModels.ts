@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** The third level model in the normal multiple levels inheritance. */
 export interface SiameseOutput extends CatOutput {
   smart: boolean;
@@ -40,7 +43,6 @@ export interface SalmonOutput extends FishOutputParent {
   kind: "salmon";
   friends?: Array<FishOutput>;
   hate?: Record<string, FishOutput>;
-  /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
   partner?: FishOutput;
 }
 

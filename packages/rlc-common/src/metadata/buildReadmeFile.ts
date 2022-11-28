@@ -168,7 +168,7 @@ function createMetadata(model: RLCModel): Metadata | undefined {
   const clientPackageName = packageDetails?.name;
   const clientClassName = getClientName(model);
   const serviceName = getServiceName(model);
-  var apiRefUrlQueryParameter: string = "";
+  let apiRefUrlQueryParameter: string = "";
   if (packageDetails?.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }

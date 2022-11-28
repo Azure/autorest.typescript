@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
   Int32ValueGetParameters,
   Int32ValuePutParameters,
@@ -43,106 +46,6 @@ import {
   RecursiveModelValuePut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
-
-/** Contains operations for Int32Value operations */
-export interface Int32ValueOperations {
-  get(
-    options?: Int32ValueGetParameters
-  ): StreamableMethod<Int32ValueGet200Response>;
-  put(
-    options: Int32ValuePutParameters
-  ): StreamableMethod<Int32ValuePut204Response>;
-}
-
-/** Contains operations for Int64Value operations */
-export interface Int64ValueOperations {
-  get(
-    options?: Int64ValueGetParameters
-  ): StreamableMethod<Int64ValueGet200Response>;
-  put(
-    options: Int64ValuePutParameters
-  ): StreamableMethod<Int64ValuePut204Response>;
-}
-
-/** Contains operations for BooleanValue operations */
-export interface BooleanValueOperations {
-  get(
-    options?: BooleanValueGetParameters
-  ): StreamableMethod<BooleanValueGet200Response>;
-  put(
-    options: BooleanValuePutParameters
-  ): StreamableMethod<BooleanValuePut204Response>;
-}
-
-/** Contains operations for StringValue operations */
-export interface StringValueOperations {
-  get(
-    options?: StringValueGetParameters
-  ): StreamableMethod<StringValueGet200Response>;
-  put(
-    options: StringValuePutParameters
-  ): StreamableMethod<StringValuePut204Response>;
-}
-
-/** Contains operations for Float32Value operations */
-export interface Float32ValueOperations {
-  get(
-    options?: Float32ValueGetParameters
-  ): StreamableMethod<Float32ValueGet200Response>;
-  put(
-    options: Float32ValuePutParameters
-  ): StreamableMethod<Float32ValuePut204Response>;
-}
-
-/** Contains operations for DatetimeValue operations */
-export interface DatetimeValueOperations {
-  get(
-    options?: DatetimeValueGetParameters
-  ): StreamableMethod<DatetimeValueGet200Response>;
-  put(
-    options: DatetimeValuePutParameters
-  ): StreamableMethod<DatetimeValuePut204Response>;
-}
-
-/** Contains operations for DurationValue operations */
-export interface DurationValueOperations {
-  get(
-    options?: DurationValueGetParameters
-  ): StreamableMethod<DurationValueGet200Response>;
-  put(
-    options: DurationValuePutParameters
-  ): StreamableMethod<DurationValuePut204Response>;
-}
-
-/** Contains operations for UnknownValue operations */
-export interface UnknownValueOperations {
-  get(
-    options?: UnknownValueGetParameters
-  ): StreamableMethod<UnknownValueGet200Response>;
-  put(
-    options: UnknownValuePutParameters
-  ): StreamableMethod<UnknownValuePut204Response>;
-}
-
-/** Contains operations for ModelValue operations */
-export interface ModelValueOperations {
-  get(
-    options?: ModelValueGetParameters
-  ): StreamableMethod<ModelValueGet200Response>;
-  put(
-    options: ModelValuePutParameters
-  ): StreamableMethod<ModelValuePut204Response>;
-}
-
-/** Contains operations for RecursiveModelValue operations */
-export interface RecursiveModelValueOperations {
-  get(
-    options?: RecursiveModelValueGetParameters
-  ): StreamableMethod<RecursiveModelValueGet200Response>;
-  put(
-    options: RecursiveModelValuePutParameters
-  ): StreamableMethod<RecursiveModelValuePut204Response>;
-}
 
 export interface Int32ValueGet {
   get(
@@ -259,14 +162,4 @@ export interface Routes {
 
 export type DictClient = Client & {
   path: Routes;
-  int32Value: Int32ValueOperations;
-  int64Value: Int64ValueOperations;
-  booleanValue: BooleanValueOperations;
-  stringValue: StringValueOperations;
-  float32Value: Float32ValueOperations;
-  datetimeValue: DatetimeValueOperations;
-  durationValue: DurationValueOperations;
-  unknownValue: UnknownValueOperations;
-  modelValue: ModelValueOperations;
-  recursiveModelValue: RecursiveModelValueOperations;
 };

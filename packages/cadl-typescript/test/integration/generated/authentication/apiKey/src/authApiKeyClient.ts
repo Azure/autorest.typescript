@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 import { AuthApiKeyClient } from "./clientDefinitions";
@@ -33,15 +36,5 @@ export default function createClient(
 
   const client = getClient(baseUrl, credentials, options) as AuthApiKeyClient;
 
-  return {
-    ...client,
-    apiKey: {
-      valid: (options) => {
-        return client.path("/authentication/api-key/valid").get(options);
-      },
-      invalid: (options) => {
-        return client.path("/authentication/api-key/invalid").get(options);
-      },
-    },
-  };
+  return client;
 }

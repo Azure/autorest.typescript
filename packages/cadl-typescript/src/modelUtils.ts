@@ -413,7 +413,12 @@ function getSchemaForModel(
     modelSchema.children?.immediate?.push(childSchema);
   }
 
-  if (discriminator) {
+  // Enable option `isPolyParent` and discriminator only when it has valid children
+  if (
+    discriminator &&
+    modelSchema?.children?.all?.length &&
+    modelSchema?.children?.all?.length > 0
+  ) {
     if (!validateDiscriminator(program, discriminator, derivedModels)) {
       // appropriate diagnostic is generated in the validate function
       return {};
@@ -427,6 +432,7 @@ function getSchemaForModel(
       required: true,
       description: `Discriminator property for ${model.name}.`
     };
+
     modelSchema.isPolyParent = true;
   }
 
@@ -434,7 +440,8 @@ function getSchemaForModel(
   if (needRef) {
     return modelSchema;
   }
-  for (const [name, prop] of model.properties) {
+  for (const [propName, prop] of model.properties) {
+    const name = `"${propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
@@ -446,13 +453,19 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
-    const description = getFormattedPropertyDoc(program, prop, propSchema);
+    const propertyDescription = getFormattedPropertyDoc(
+      program,
+      prop,
+      propSchema
+    );
     propSchema.usage = usage;
+    // Use the description from ModelProperty not devired from Model Type
+    propSchema.description = propertyDescription;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
     if (model.baseModel) {
       const { propertyName } = getDiscriminator(program, model.baseModel) || {};
-      if (name === propertyName) {
+      if (propertyName && name === `"${propertyName}"`) {
         continue;
       }
     }
@@ -462,9 +475,8 @@ function getSchemaForModel(
     if (newPropSchema === undefined) {
       continue;
     }
-    if (description) {
-      newPropSchema["description"] = description;
-    }
+    // Use the description from ModelProperty not devired from Model Type
+    newPropSchema.description = propertyDescription;
 
     if (prop.default) {
       // modelSchema.properties[name]['default'] = getDefaultValue(program, prop.default);
@@ -478,7 +490,7 @@ function getSchemaForModel(
         if (vis.length > 1) {
           mutability.push(SchemaContext.Output);
         } else {
-          newPropSchema['readOnly'] = true;
+          newPropSchema["readOnly"] = true;
         }
       }
       if (vis.includes("write") || vis.includes("create")) {
@@ -846,9 +858,10 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
         .map((i: Schema) => getPriorityName(i) ?? "");
     case "object":
       return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
-    case "dictionary":
+    case "dictionary": {
       const importName = getDictionaryValueName(schema as DictionarySchema);
       return importName ? [importName] : undefined;
+    }
     default:
       return;
   }
@@ -869,13 +882,14 @@ function getEnumStringDescription(type: any) {
 
 export function getFormattedPropertyDoc(
   program: Program,
-  cadlType: ModelProperty,
-  schemaType: any
+  cadlType: ModelProperty | Type,
+  schemaType: any,
+  sperator: string = "\n\n"
 ) {
   const propertyDoc = getDoc(program, cadlType);
   const enhancedDocFromType = getEnumStringDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
-    return `${propertyDoc}\n\n${enhancedDocFromType}`;
+    return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
   return propertyDoc ?? enhancedDocFromType;
 }

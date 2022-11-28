@@ -18,7 +18,7 @@ export function getResponseTypeName(
   operationName?: string,
   statusCode?: string
 ): string {
-  if (Boolean(operationName)) {
+  if (operationName) {
     baseNameOrOperationGroup = getResponseBaseName(
       baseNameOrOperationGroup,
       operationName!,
@@ -79,7 +79,7 @@ export function getParameterTypeName(
   baseNameOrOperationGroup: string,
   operationName?: string
 ) {
-  if (Boolean(operationName)) {
+  if (operationName) {
     baseNameOrOperationGroup = getParameterBaseName(
       baseNameOrOperationGroup,
       operationName!

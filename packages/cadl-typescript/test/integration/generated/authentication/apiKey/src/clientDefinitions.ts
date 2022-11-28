@@ -1,35 +1,24 @@
-import { ApiKeyValidParameters, ApiKeyInvalidParameters } from "./parameters";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import { ValidParameters, InvalidParameters } from "./parameters";
 import {
-  ApiKeyValid204Response,
-  ApiKeyInvalid204Response,
-  ApiKeyInvalid403Response,
+  Valid204Response,
+  Invalid204Response,
+  Invalid403Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for ApiKey operations */
-export interface ApiKeyOperations {
-  /** Check whether client is authenticated */
-  valid(
-    options?: ApiKeyValidParameters
-  ): StreamableMethod<ApiKeyValid204Response>;
-  /** Check whether client is authenticated. */
-  invalid(
-    options?: ApiKeyInvalidParameters
-  ): StreamableMethod<ApiKeyInvalid204Response | ApiKeyInvalid403Response>;
-}
-
 export interface Valid {
   /** Check whether client is authenticated */
-  get(
-    options?: ApiKeyValidParameters
-  ): StreamableMethod<ApiKeyValid204Response>;
+  get(options?: ValidParameters): StreamableMethod<Valid204Response>;
 }
 
 export interface Invalid {
   /** Check whether client is authenticated. */
   get(
-    options?: ApiKeyInvalidParameters
-  ): StreamableMethod<ApiKeyInvalid204Response | ApiKeyInvalid403Response>;
+    options?: InvalidParameters
+  ): StreamableMethod<Invalid204Response | Invalid403Response>;
 }
 
 export interface Routes {
@@ -41,5 +30,4 @@ export interface Routes {
 
 export type AuthApiKeyClient = Client & {
   path: Routes;
-  apiKey: ApiKeyOperations;
 };

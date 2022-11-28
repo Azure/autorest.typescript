@@ -141,6 +141,13 @@ export interface PagingGetNoItemNamePagesOptionalParams
 export type PagingGetNoItemNamePagesResponse = ProductResultValue;
 
 /** Optional parameters. */
+export interface PagingGetEmptyNextLinkNamePagesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the getEmptyNextLinkNamePages operation. */
+export type PagingGetEmptyNextLinkNamePagesResponse = ProductResultValue;
+
+/** Optional parameters. */
 export interface PagingGetNullNextLinkNamePagesOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -339,6 +346,13 @@ export interface PagingGetNoItemNamePagesNextOptionalParams
 
 /** Contains response data for the getNoItemNamePagesNext operation. */
 export type PagingGetNoItemNamePagesNextResponse = ProductResultValue;
+
+/** Optional parameters. */
+export interface PagingGetEmptyNextLinkNamePagesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the getEmptyNextLinkNamePagesNext operation. */
+export type PagingGetEmptyNextLinkNamePagesNextResponse = ProductResultValue;
 
 /** Optional parameters. */
 export interface PagingGetSinglePagesNextOptionalParams

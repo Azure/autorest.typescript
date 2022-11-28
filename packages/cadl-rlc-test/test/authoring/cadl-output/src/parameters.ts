@@ -1,91 +1,102 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { RequestParameters } from "@azure-rest/core-client";
 import { Project, TrainingJobOptions, SwapDeploymentsOptions } from "./models";
 
 export type ProjectResourceMergeAndPatch = Partial<Project>;
 
-export interface ProjectsCreateOrUpdateBodyParam {
+export interface CreateOrUpdateBodyParam {
   body?: ProjectResourceMergeAndPatch;
 }
 
-export interface ProjectsCreateOrUpdateMediaTypesParam {
+export interface CreateOrUpdateMediaTypesParam {
   /** This request has a JSON Merge Patch body. */
   contentType: "application/merge-patch+json";
 }
 
-export type ProjectsCreateOrUpdateParameters =
-  ProjectsCreateOrUpdateMediaTypesParam &
-    ProjectsCreateOrUpdateBodyParam &
-    RequestParameters;
-export type ProjectsGetParameters = RequestParameters;
-export type ProjectsDeleteParameters = RequestParameters;
+export type CreateOrUpdateParameters = CreateOrUpdateMediaTypesParam &
+  CreateOrUpdateBodyParam &
+  RequestParameters;
+export type GetParameters = RequestParameters;
+export type DeleteParameters = RequestParameters;
 
-export interface ProjectsListQueryParamProperties {
+export interface ListProjectsQueryParamProperties {
+  /** The number of result items to return. */
   top?: number;
+  /** The number of result items to skip. */
   skip?: number;
+  /** The maximum number of result items per page. */
   maxpagesize?: number;
 }
 
-export interface ProjectsListQueryParam {
-  queryParameters?: ProjectsListQueryParamProperties;
+export interface ListProjectsQueryParam {
+  queryParameters?: ListProjectsQueryParamProperties;
 }
 
-export type ProjectsListParameters = ProjectsListQueryParam & RequestParameters;
+export type ListProjectsParameters = ListProjectsQueryParam & RequestParameters;
 
-export interface ProjectsExportQueryParamProperties {
+export interface ExportQueryParamProperties {
+  /** The project file version. */
   projectFileVersion: string;
 }
 
-export interface ProjectsExportQueryParam {
-  queryParameters: ProjectsExportQueryParamProperties;
+export interface ExportQueryParam {
+  queryParameters: ExportQueryParamProperties;
 }
 
-export type ProjectsExportParameters = ProjectsExportQueryParam &
-  RequestParameters;
-export type ProjectsImportxParameters = RequestParameters;
+export type ExportParameters = ExportQueryParam & RequestParameters;
+export type ImportxParameters = RequestParameters;
 
-export interface ProjectsTrainBodyParam {
+export interface TrainBodyParam {
+  /** The body of the request. */
   body: TrainingJobOptions;
 }
 
-export type ProjectsTrainParameters = ProjectsTrainBodyParam &
-  RequestParameters;
-export type DeploymentsGetDeploymentParameters = RequestParameters;
-export type DeploymentsDeployProjectParameters = RequestParameters;
-export type DeploymentsDeleteDeploymentParameters = RequestParameters;
-export type DeploymentsListParameters = RequestParameters;
+export type TrainParameters = TrainBodyParam & RequestParameters;
+export type GetDeploymentParameters = RequestParameters;
+export type DeployProjectParameters = RequestParameters;
+export type DeleteDeploymentParameters = RequestParameters;
+export type ListDeploymentsParameters = RequestParameters;
 
-export interface DeploymentsSwapDeploymentsBodyParam {
+export interface SwapDeploymentsBodyParam {
   /** The body schema of the operation. */
   body: SwapDeploymentsOptions;
 }
 
-export type DeploymentsSwapDeploymentsParameters =
-  DeploymentsSwapDeploymentsBodyParam & RequestParameters;
-export type JobsGetDeploymentStatusParameters = RequestParameters;
-export type JobsGetSwapDeploymentsStatusParameters = RequestParameters;
+export type SwapDeploymentsParameters = SwapDeploymentsBodyParam &
+  RequestParameters;
+export type GetDeploymentStatusParameters = RequestParameters;
+export type GetSwapDeploymentsStatusParameters = RequestParameters;
 
-export interface GlobalGetSupportedLanguagesQueryParamProperties {
+export interface GetSupportedLanguagesQueryParamProperties {
+  /** The number of result items to return. */
   top?: number;
+  /** The number of result items to skip. */
   skip?: number;
+  /** The maximum number of result items per page. */
   maxpagesize?: number;
 }
 
-export interface GlobalGetSupportedLanguagesQueryParam {
-  queryParameters?: GlobalGetSupportedLanguagesQueryParamProperties;
+export interface GetSupportedLanguagesQueryParam {
+  queryParameters?: GetSupportedLanguagesQueryParamProperties;
 }
 
-export type GlobalGetSupportedLanguagesParameters =
-  GlobalGetSupportedLanguagesQueryParam & RequestParameters;
+export type GetSupportedLanguagesParameters = GetSupportedLanguagesQueryParam &
+  RequestParameters;
 
-export interface GlobalListTrainingConfigVersionsQueryParamProperties {
+export interface ListTrainingConfigVersionsQueryParamProperties {
+  /** The number of result items to return. */
   top?: number;
+  /** The number of result items to skip. */
   skip?: number;
+  /** The maximum number of result items per page. */
   maxpagesize?: number;
 }
 
-export interface GlobalListTrainingConfigVersionsQueryParam {
-  queryParameters?: GlobalListTrainingConfigVersionsQueryParamProperties;
+export interface ListTrainingConfigVersionsQueryParam {
+  queryParameters?: ListTrainingConfigVersionsQueryParamProperties;
 }
 
-export type GlobalListTrainingConfigVersionsParameters =
-  GlobalListTrainingConfigVersionsQueryParam & RequestParameters;
+export type ListTrainingConfigVersionsParameters =
+  ListTrainingConfigVersionsQueryParam & RequestParameters;

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { RequestParameters } from "@azure-rest/core-client";
 import {
   BooleanProperty,
@@ -14,6 +17,7 @@ import {
   CollectionsIntProperty,
   CollectionsModelProperty,
   DictionaryStringProperty,
+  NeverProperty,
 } from "./models";
 
 export type BooleanGetParameters = RequestParameters;
@@ -119,3 +123,10 @@ export interface DictionaryStringPutBodyParam {
 
 export type DictionaryStringPutParameters = DictionaryStringPutBodyParam &
   RequestParameters;
+export type NeverGetParameters = RequestParameters;
+
+export interface NeverPutBodyParam {
+  body: NeverProperty;
+}
+
+export type NeverPutParameters = NeverPutBodyParam & RequestParameters;

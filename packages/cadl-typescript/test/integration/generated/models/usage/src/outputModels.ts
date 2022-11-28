@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /** Record used in operation return type */
 export interface OutputRecordOutput {
   requiredProp: string;

@@ -1,16 +1,12 @@
-import { HelloWorldParameters } from "./parameters";
-import { HelloWorld200Response } from "./responses";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import { WorldParameters } from "./parameters";
+import { World200Response } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-/** Contains operations for Hello operations */
-export interface HelloOperations {
-  world(
-    options?: HelloWorldParameters
-  ): StreamableMethod<HelloWorld200Response>;
-}
-
 export interface World {
-  get(options?: HelloWorldParameters): StreamableMethod<HelloWorld200Response>;
+  get(options?: WorldParameters): StreamableMethod<World200Response>;
 }
 
 export interface Routes {
@@ -20,5 +16,4 @@ export interface Routes {
 
 export type HelloClient = Client & {
   path: Routes;
-  hello: HelloOperations;
 };

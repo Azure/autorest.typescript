@@ -1,43 +1,38 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
-  DevDrivenGetModelParameters,
-  DevDrivenPostModelParameters,
-  DevDrivenGetPagesParameters,
-  DevDrivenLroParameters,
+  GetModelParameters,
+  PostModelParameters,
+  GetPagesParameters,
+  LroParameters,
 } from "./parameters";
 import {
-  DevDrivenGetModel200Response,
-  DevDrivenPostModel200Response,
-  DevDrivenGetPages200Response,
-  DevDrivenGetPagesDefaultResponse,
-  DevDrivenLro200Response,
+  GetModel200Response,
+  PostModel200Response,
+  GetPages200Response,
+  GetPagesDefaultResponse,
+  Lro200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetModel {
   /** Get models that you will either return to end users as a raw body, or with a model added during grow up. */
-  get(
-    options?: DevDrivenGetModelParameters
-  ): StreamableMethod<DevDrivenGetModel200Response>;
+  get(options?: GetModelParameters): StreamableMethod<GetModel200Response>;
   /** Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to take a model instead, and put in 'model' as mode. */
-  post(
-    options: DevDrivenPostModelParameters
-  ): StreamableMethod<DevDrivenPostModel200Response>;
+  post(options: PostModelParameters): StreamableMethod<PostModel200Response>;
 }
 
 export interface GetPages {
   /** Get pages that you will either return to users in pages of raw bodies, or pages of models following group. */
   get(
-    options?: DevDrivenGetPagesParameters
-  ): StreamableMethod<
-    DevDrivenGetPages200Response | DevDrivenGetPagesDefaultResponse
-  >;
+    options?: GetPagesParameters
+  ): StreamableMethod<GetPages200Response | GetPagesDefaultResponse>;
 }
 
 export interface Lro {
   /** Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up. */
-  put(
-    options?: DevDrivenLroParameters
-  ): StreamableMethod<DevDrivenLro200Response>;
+  put(options?: LroParameters): StreamableMethod<Lro200Response>;
 }
 
 export interface Routes {

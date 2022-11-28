@@ -1,35 +1,35 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { RequestParameters } from "@azure-rest/core-client";
 import { Siamese, Fish } from "./models";
 
-export interface InheritancePostValidBodyParam {
+export interface PostValidBodyParam {
   body: Siamese;
 }
 
-export type InheritancePostValidParameters = InheritancePostValidBodyParam &
-  RequestParameters;
-export type InheritanceGetValidParameters = RequestParameters;
+export type PostValidParameters = PostValidBodyParam & RequestParameters;
+export type GetValidParameters = RequestParameters;
 
-export interface InheritancePutValidBodyParam {
+export interface PutValidBodyParam {
   body: Siamese;
 }
 
-export type InheritancePutValidParameters = InheritancePutValidBodyParam &
-  RequestParameters;
-export type DiscriminatedGetModelParameters = RequestParameters;
+export type PutValidParameters = PutValidBodyParam & RequestParameters;
+export type GetModelParameters = RequestParameters;
 
-export interface DiscriminatedPutModelBodyParam {
+export interface PutModelBodyParam {
   body: Fish;
 }
 
-export type DiscriminatedPutModelParameters = DiscriminatedPutModelBodyParam &
-  RequestParameters;
-export type DiscriminatedGetRecursiveModelParameters = RequestParameters;
+export type PutModelParameters = PutModelBodyParam & RequestParameters;
+export type GetRecursiveModelParameters = RequestParameters;
 
-export interface DiscriminatedPutRecursiveModelBodyParam {
+export interface PutRecursiveModelBodyParam {
   body: Fish;
 }
 
-export type DiscriminatedPutRecursiveModelParameters =
-  DiscriminatedPutRecursiveModelBodyParam & RequestParameters;
-export type DiscriminatedGetMissingDiscriminatorParameters = RequestParameters;
-export type DiscriminatedGetWrongDiscriminatorParameters = RequestParameters;
+export type PutRecursiveModelParameters = PutRecursiveModelBodyParam &
+  RequestParameters;
+export type GetMissingDiscriminatorParameters = RequestParameters;
+export type GetWrongDiscriminatorParameters = RequestParameters;

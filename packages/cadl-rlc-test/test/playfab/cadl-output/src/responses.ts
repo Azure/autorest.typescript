@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   GetEntityTokenResponseOutput,
@@ -17,208 +20,182 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface PlayFabAuthenticationOperationsGetEntityToken200Response
-  extends HttpResponse {
+export interface GetEntityToken200Response extends HttpResponse {
   status: "200";
   body: GetEntityTokenResponseOutput;
 }
 
-export interface PlayFabAuthenticationOperationsGetEntityTokenDefaultResponse
-  extends HttpResponse {
+export interface GetEntityTokenDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceId200Response
+export interface AuthenticateWithAndroidDeviceId200Response
   extends HttpResponse {
   status: "200";
   body: AuthenticateIdentityResultOutput;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithAndroidDeviceIdDefaultResponse
+export interface AuthenticateWithAndroidDeviceIdDefaultResponse
   extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomId200Response
+export interface AuthenticateWithCustomId200Response extends HttpResponse {
+  status: "200";
+  body: AuthenticateIdentityResultOutput;
+}
+
+export interface AuthenticateWithCustomIdDefaultResponse extends HttpResponse {
+  status: string;
+  body: ApiErrorWrapperOutput;
+}
+
+/** The request has succeeded. */
+export interface AuthenticateWithIOSDeviceId200Response extends HttpResponse {
+  status: "200";
+  body: AuthenticateIdentityResultOutput;
+}
+
+export interface AuthenticateWithIOSDeviceIdDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ApiErrorWrapperOutput;
+}
+
+/** The request has succeeded. */
+export interface AuthenticateWithNintendoSwitchDeviceID200Response
   extends HttpResponse {
   status: "200";
   body: AuthenticateIdentityResultOutput;
 }
 
-export interface PlayFabAuthenticationOperationsAuthenticateWithCustomIdDefaultResponse
+export interface AuthenticateWithNintendoSwitchDeviceIDDefaultResponse
   extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceId200Response
-  extends HttpResponse {
-  status: "200";
-  body: AuthenticateIdentityResultOutput;
-}
-
-export interface PlayFabAuthenticationOperationsAuthenticateWithIOSDeviceIdDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ApiErrorWrapperOutput;
-}
-
-/** The request has succeeded. */
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceID200Response
-  extends HttpResponse {
-  status: "200";
-  body: AuthenticateIdentityResultOutput;
-}
-
-export interface PlayFabAuthenticationOperationsAuthenticateWithNintendoSwitchDeviceIDDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ApiErrorWrapperOutput;
-}
-
-/** The request has succeeded. */
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentities200Response
-  extends HttpResponse {
+export interface GetLinkedPlayerIdentities200Response extends HttpResponse {
   status: "200";
   body: GetLinkedPlayerIdentitiesResultOutput;
 }
 
-export interface PlayFabAuthenticationOperationsGetLinkedPlayerIdentitiesDefaultResponse
-  extends HttpResponse {
+export interface GetLinkedPlayerIdentitiesDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentity200Response
-  extends HttpResponse {
+export interface UnlinkPlayerIdentity200Response extends HttpResponse {
   status: "200";
   body: UnlinkPlayerIdentityResultOutput;
 }
 
-export interface PlayFabAuthenticationOperationsUnlinkPlayerIdentityDefaultResponse
-  extends HttpResponse {
+export interface UnlinkPlayerIdentityDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabFileOperationsAbortFileUploads200Response
-  extends HttpResponse {
+export interface AbortFileUploads200Response extends HttpResponse {
   status: "200";
   body: AbortFileUploadsResponseOutput;
 }
 
-export interface PlayFabFileOperationsAbortFileUploadsDefaultResponse
-  extends HttpResponse {
+export interface AbortFileUploadsDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabFileOperationsDeleteFiles200Response
-  extends HttpResponse {
+export interface DeleteFiles200Response extends HttpResponse {
   status: "200";
   body: DeleteFilesResponseOutput;
 }
 
-export interface PlayFabFileOperationsDeleteFilesDefaultResponse
-  extends HttpResponse {
+export interface DeleteFilesDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabFileOperationsFinalizeFileUploads200Response
-  extends HttpResponse {
+export interface FinalizeFileUploads200Response extends HttpResponse {
   status: "200";
   body: FinalizeFileUploadsResponseOutput;
 }
 
-export interface PlayFabFileOperationsFinalizeFileUploadsDefaultResponse
-  extends HttpResponse {
+export interface FinalizeFileUploadsDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabFileOperationsGetFiles200Response extends HttpResponse {
+export interface GetFiles200Response extends HttpResponse {
   status: "200";
   body: GetFilesResponseOutput;
 }
 
-export interface PlayFabFileOperationsGetFilesDefaultResponse
-  extends HttpResponse {
+export interface GetFilesDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabFileOperationsInitiateFileUploads200Response
-  extends HttpResponse {
+export interface InitiateFileUploads200Response extends HttpResponse {
   status: "200";
   body: InitiateFileUploadsResponseOutput;
 }
 
-export interface PlayFabFileOperationsInitiateFileUploadsDefaultResponse
-  extends HttpResponse {
+export interface InitiateFileUploadsDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabFileOperationsGetObjects200Response
-  extends HttpResponse {
+export interface GetObjects200Response extends HttpResponse {
   status: "200";
   body: GetObjectsResponseOutput;
 }
 
-export interface PlayFabFileOperationsGetObjectsDefaultResponse
-  extends HttpResponse {
+export interface GetObjectsDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabFileOperationsSetObjects200Response
-  extends HttpResponse {
+export interface SetObjects200Response extends HttpResponse {
   status: "200";
   body: SetObjectsResponseOutput;
 }
 
-export interface PlayFabFileOperationsSetObjectsDefaultResponse
-  extends HttpResponse {
+export interface SetObjectsDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabEventsOperationsWriteEvents200Response
-  extends HttpResponse {
+export interface WriteEvents200Response extends HttpResponse {
   status: "200";
   body: WriteEventsResponseOutput;
 }
 
-export interface PlayFabEventsOperationsWriteEventsDefaultResponse
-  extends HttpResponse {
+export interface WriteEventsDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }
 
 /** The request has succeeded. */
-export interface PlayFabProfilesOperationsLoginPlayer200Response
-  extends HttpResponse {
+export interface LoginPlayer200Response extends HttpResponse {
   status: "200";
   body: LoginPlayerResultOutput;
 }
 
-export interface PlayFabProfilesOperationsLoginPlayerDefaultResponse
-  extends HttpResponse {
+export interface LoginPlayerDefaultResponse extends HttpResponse {
   status: string;
   body: ApiErrorWrapperOutput;
 }

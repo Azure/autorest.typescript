@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import ModelsPropertyTypes from "./modelsPropertyTypes";
 
 export * from "./modelsPropertyTypes";

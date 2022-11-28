@@ -1,14 +1,16 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { RequestParameters } from "@azure-rest/core-client";
 import { Input } from "./models";
 
-export type DevDrivenGetModelParameters = RequestParameters;
+export type GetModelParameters = RequestParameters;
 
-export interface DevDrivenPostModelBodyParam {
+export interface PostModelBodyParam {
   /** Please put {'hello': 'world!'} */
   body: Input;
 }
 
-export type DevDrivenPostModelParameters = DevDrivenPostModelBodyParam &
-  RequestParameters;
-export type DevDrivenGetPagesParameters = RequestParameters;
-export type DevDrivenLroParameters = RequestParameters;
+export type PostModelParameters = PostModelBodyParam & RequestParameters;
+export type GetPagesParameters = RequestParameters;
+export type LroParameters = RequestParameters;
