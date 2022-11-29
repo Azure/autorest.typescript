@@ -1560,12 +1560,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineScaleSetVMListResult
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.expand,
-    Parameters.filter,
-    Parameters.select
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

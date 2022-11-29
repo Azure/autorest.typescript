@@ -141,7 +141,6 @@ export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult;
 
 // @public
 export interface ResourceLinksListAtSubscriptionNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public

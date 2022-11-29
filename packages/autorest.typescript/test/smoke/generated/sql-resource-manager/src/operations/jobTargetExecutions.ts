@@ -548,16 +548,6 @@ const listByJobExecutionNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.skip,
-    Parameters.apiVersion2,
-    Parameters.createTimeMin,
-    Parameters.createTimeMax,
-    Parameters.endTimeMin,
-    Parameters.endTimeMax,
-    Parameters.isActive,
-    Parameters.top
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -580,16 +570,6 @@ const listByStepNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.skip,
-    Parameters.apiVersion2,
-    Parameters.createTimeMin,
-    Parameters.createTimeMax,
-    Parameters.endTimeMin,
-    Parameters.endTimeMax,
-    Parameters.isActive,
-    Parameters.top
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

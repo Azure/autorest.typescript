@@ -2381,7 +2381,6 @@ const listByLocationNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineListResult
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -2399,7 +2398,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineListResult
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -2417,7 +2415,6 @@ const listAllNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.VirtualMachineListResult
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.statusOnly],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

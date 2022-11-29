@@ -593,7 +593,6 @@ const listByHostGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DedicatedHostListResult
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

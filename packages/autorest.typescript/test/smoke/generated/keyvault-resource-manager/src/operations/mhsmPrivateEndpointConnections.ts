@@ -416,7 +416,6 @@ const listByResourceNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ManagedHsmError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

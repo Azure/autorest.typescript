@@ -25,8 +25,8 @@ import {
   SyncGroupsListHubSchemasOptionalParams,
   SyncGroupsListHubSchemasResponse,
   SyncGroupLogProperties,
-  SyncGroupsType,
   SyncGroupsListLogsNextOptionalParams,
+  SyncGroupsType,
   SyncGroupsListLogsOptionalParams,
   SyncGroupsListLogsResponse,
   SyncGroup,
@@ -327,9 +327,6 @@ export class SyncGroupsImpl implements SyncGroups {
         serverName,
         databaseName,
         syncGroupName,
-        startTime,
-        endTime,
-        typeParam,
         continuationToken,
         options
       );
@@ -1083,9 +1080,6 @@ export class SyncGroupsImpl implements SyncGroups {
    * @param serverName The name of the server.
    * @param databaseName The name of the database on which the sync group is hosted.
    * @param syncGroupName The name of the sync group.
-   * @param startTime Get logs generated after this time.
-   * @param endTime Get logs generated before this time.
-   * @param typeParam The types of logs to retrieve.
    * @param nextLink The nextLink from the previous successful call to the ListLogs method.
    * @param options The options parameters.
    */
@@ -1094,9 +1088,6 @@ export class SyncGroupsImpl implements SyncGroups {
     serverName: string,
     databaseName: string,
     syncGroupName: string,
-    startTime: string,
-    endTime: string,
-    typeParam: SyncGroupsType,
     nextLink: string,
     options?: SyncGroupsListLogsNextOptionalParams
   ): Promise<SyncGroupsListLogsNextResponse> {
@@ -1106,9 +1097,6 @@ export class SyncGroupsImpl implements SyncGroups {
         serverName,
         databaseName,
         syncGroupName,
-        startTime,
-        endTime,
-        typeParam,
         nextLink,
         options
       },
@@ -1392,7 +1380,6 @@ const listSyncDatabaseIdsNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1411,7 +1398,6 @@ const listHubSchemasNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1433,13 +1419,6 @@ const listLogsNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.apiVersion2,
-    Parameters.startTime1,
-    Parameters.endTime1,
-    Parameters.typeParam,
-    Parameters.continuationToken
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1461,7 +1440,6 @@ const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
