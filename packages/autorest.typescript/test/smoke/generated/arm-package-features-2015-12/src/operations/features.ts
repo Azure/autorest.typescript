@@ -376,7 +376,6 @@ const listAllNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.FeatureOperationsListResult
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
@@ -393,7 +392,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.FeatureOperationsListResult
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,

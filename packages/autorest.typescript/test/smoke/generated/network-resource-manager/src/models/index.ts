@@ -14467,10 +14467,7 @@ export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResp
 
 /** Optional parameters. */
 export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Expands referenced resources. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetIpConfigurationsNext operation. */
 export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse = NetworkInterfaceIPConfigurationListResult;
@@ -17531,12 +17528,7 @@ export type ServiceTagInformationListResponse = ServiceTagInformationListResult;
 
 /** Optional parameters. */
 export interface ServiceTagInformationListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Do not return address prefixes for the tag(s). */
-  noAddressPrefixes?: boolean;
-  /** Return tag information for a particular tag. */
-  tagName?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ServiceTagInformationListNextResponse = ServiceTagInformationListResult;

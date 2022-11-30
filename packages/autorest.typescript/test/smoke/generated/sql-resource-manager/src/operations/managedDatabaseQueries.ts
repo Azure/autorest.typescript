@@ -287,12 +287,6 @@ const listByQueryNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.apiVersion2,
-    Parameters.startTime,
-    Parameters.endTime,
-    Parameters.interval
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

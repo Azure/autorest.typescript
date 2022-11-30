@@ -138,10 +138,7 @@ export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult;
 
 /** Optional parameters. */
 export interface ResourceLinksListAtSubscriptionNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtSubscriptionNext operation. */
 export type ResourceLinksListAtSubscriptionNextResponse = ResourceLinkResult;

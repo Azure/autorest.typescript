@@ -355,7 +355,6 @@ const listAtSubscriptionNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ResourceLinkResult
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
@@ -372,7 +371,6 @@ const listAtSourceScopeNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ResourceLinkResult
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
   headerParameters: [Parameters.accept],
   serializer

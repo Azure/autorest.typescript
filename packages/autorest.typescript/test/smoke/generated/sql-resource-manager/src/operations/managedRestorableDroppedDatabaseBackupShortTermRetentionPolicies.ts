@@ -577,7 +577,6 @@ const listByRestorableDroppedDatabaseNextOperationSpec: coreClient.OperationSpec
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

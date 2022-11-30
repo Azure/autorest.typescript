@@ -764,7 +764,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.RunCommandListResult
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -785,7 +784,6 @@ const listByVirtualMachineNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.expand],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
