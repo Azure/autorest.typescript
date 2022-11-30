@@ -10,7 +10,10 @@ import {
 import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
 import { transformSchemas } from "../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
-import { transformUrlInfo } from "../../src/transform/transform.js";
+import {
+  transformApiVersionParam,
+  transformUrlInfo
+} from "../../src/transform/transform.js";
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { rlcEmitterFor } from "./testUtil.js";
 import { listClients } from "@azure-tools/cadl-dpg";
@@ -34,7 +37,7 @@ export async function emitParameterFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
   const clients = listClients(program);
   const importSet = new Map<ImportKind, Set<string>>();
-  let parameters
+  let parameters;
   if (clients && clients[0]) {
     parameters = transformToParameterTypes(program, importSet, clients[0]);
   }
@@ -66,12 +69,14 @@ export async function emitClientDefinitionFromCadl(cadlContent: string) {
 export async function emitClientFactoryFromCadl(cadlContent: string) {
   const program = await rlcEmitterFor(cadlContent);
   const urlInfo = transformUrlInfo(program);
+  const apiVersionInQueryParam = transformApiVersionParam(program);
   return buildClient({
     srcPath: "",
     libraryName: "test",
     schemas: [],
     paths: {},
     urlInfo,
+    apiVersionInQueryParam,
     options: {
       packageDetails: {
         name: "test",

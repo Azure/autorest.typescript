@@ -42,7 +42,7 @@ export function transform(model: CodeModel): RLCModel {
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
     importSet: importDetails,
-    apiVersionParam: transformApiVersionParam(model),
+    apiVersionInQueryParam: transformApiVersionParam(model),
     parameters: transformParameterTypes(model, importDetails),
     annotations: transformAnnotationDetails(model),
     urlInfo: transformUrlInfo(model)

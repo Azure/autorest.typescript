@@ -3,7 +3,7 @@ import { emitClientFactoryFromCadl } from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
 describe("Client Factory generation testing", () => {
-  describe("handling url parameters", () => {
+  describe("should handle url parameters", () => {
     it("should handle zero parameter", async () => {
       const models = await emitClientFactoryFromCadl(`
       @server(
@@ -215,5 +215,134 @@ describe("Client Factory generation testing", () => {
           `
       );
     });
+  });
+
+  describe("should handle apiVersion correctly", () => {
+    describe("apiVersion as query parameter", () => {
+      it("should set the default value in options", async () => {
+        const models = await emitClientFactoryFromCadl(`
+            @server(
+              "{Endpoint}/language",
+              "Language Service",
+              {
+                Endpoint: Endpoint
+              }
+            )
+            @service({
+              title: "PetStoreClient",
+              version: "2022-05-15-preview",
+            })
+            namespace PetStore;
+            @doc("The endpoint to use.")
+            model Endpoint is string;
+            `);
+        assert.ok(models);
+        assertEqualContent(
+          models!.content,
+          `
+            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import { testClient } from "./clientDefinitions";
+            
+            /**
+             * Initialize a new instance of the class testClient class.
+             * @param Endpoint type: string The endpoint to use.
+             */
+            export default function createClient(
+              Endpoint: string,
+              options: ClientOptions = {}
+            ): testClient {
+              const baseUrl = options.baseUrl ?? \`\${Endpoint}/language\`;
+              options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
+            
+              const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+              const userAgentPrefix =
+                options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+                  ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+                  : \`\${userAgentInfo}\`;
+              options = {
+                ...options,
+                userAgentOptions: {
+                  userAgentPrefix,
+                },
+              };
+            
+              const client = getClient(baseUrl, options) as testClient;
+            
+              return client;
+          }
+          `
+        );
+      });
+    });
+    describe("apiVersion as path parameter", () => {
+      it("should set the default value in customized options", async () => {
+        const models = await emitClientFactoryFromCadl(`
+            @versioned(Versions)
+            @server(
+              "{Endpoint}/anomalydetector/{ApiVersion}",
+              "Language Service",
+              {
+                Endpoint: Endpoint,
+                @doc("Api Version")
+                @path
+                ApiVersion: APIVersion,
+              }
+            )
+            @service({
+              title: "PetStoreClient"
+            })
+            namespace PetStore;
+            @doc("The endpoint to use.")
+            model Endpoint is string;
+
+            enum Versions {
+              v1_1: "v1.1",
+            }
+            @knownValues(Versions)
+            model APIVersion is string;
+            `);
+        assert.ok(models);
+        assertEqualContent(
+          models!.content,
+          `
+            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import { testClient } from "./clientDefinitions";
+            
+            export interface testClientOptions extends ClientOptions {
+              ApiVersion?: string;
+            }
+
+            /**
+             * Initialize a new instance of the class testClient class.
+             * @param Endpoint type: string The endpoint to use.
+             */
+            export default function createClient(
+              Endpoint: string,
+              options: testClientOptions = {}
+            ): testClient {
+              const ApiVersion = options.ApiVersion ?? "v1.1";
+              const baseUrl = options.baseUrl ?? \`\${Endpoint}/anomalydetector/\${ApiVersion}\`;
+            
+              const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+              const userAgentPrefix =
+                options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+                  ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+                  : \`\${userAgentInfo}\`;
+              options = {
+                ...options,
+                userAgentOptions: {
+                  userAgentPrefix,
+                },
+              };
+            
+              const client = getClient(baseUrl, options) as testClient;
+            
+              return client;
+          }
+          `
+        );
+      });
+    });
+    describe("mixed apiVersion in path & query parameter", () => {});
   });
 });

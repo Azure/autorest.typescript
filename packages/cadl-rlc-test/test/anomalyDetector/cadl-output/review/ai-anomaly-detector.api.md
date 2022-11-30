@@ -33,6 +33,12 @@ export type AnomalyDetectorClient = Client & {
     path: Routes;
 };
 
+// @public (undocumented)
+export interface AnomalyDetectorClientOptions extends ClientOptions {
+    // (undocumented)
+    ApiVersion?: string;
+}
+
 // @public
 export interface AnomalyDetectorErrorOutput {
     code?: string;
@@ -132,7 +138,7 @@ export interface CreateAndTrainMultivariateModelDefaultResponse extends HttpResp
 export type CreateAndTrainMultivariateModelParameters = CreateAndTrainMultivariateModelBodyParam & RequestParameters;
 
 // @public
-function createClient(Endpoint: string, ApiVersion: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorClient;
+function createClient(Endpoint: string, credentials: KeyCredential, options?: AnomalyDetectorClientOptions): AnomalyDetectorClient;
 export default createClient;
 
 // @public (undocumented)
