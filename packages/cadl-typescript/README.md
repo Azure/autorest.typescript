@@ -35,7 +35,7 @@ Modify `package.json`, add one line under `dependencies`:
       "@cadl-lang/compiler": "^0.37.0",
       "@cadl-lang/rest": "^0.19.0",
       "@azure-tools/cadl-azure-core": "^0.9.0",
-+      "@azure-tools/cadl-typescript": "1.0.0-beta.4"
++      "@azure-tools/cadl-typescript": "latest"
     },
 ```
 

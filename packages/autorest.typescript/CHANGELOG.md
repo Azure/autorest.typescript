@@ -1,3 +1,7 @@
+## 6.0.0-rc.4 (2022-11-30)
+
+- [Feature] Support optional parameter for parametrized host. Please refer to issue [#1635](https://github.com/Azure/autorest.typescript/issues/1635) and issue [#1667](https://github.com/Azure/autorest.typescript/issues/1667).
+
 ## 6.0.0-rc.3 (2022-10-19)
 
 - [BugFix] Fix missing peer dependencies. Please refer to [#1612](https://github.com/Azure/autorest.typescript/pull/1612) and [#1610](https://github.com/Azure/autorest.typescript/pull/1610) for further details.
@@ -5,7 +9,7 @@
 
 ## 6.0.0-rc.2 (2022-10-13)
 
-- First release after rlc cadl support refactor  
+- First release after rlc cadl support refactor
 
 ## 6.0.0-rc.1 (2022-06-24)
 
