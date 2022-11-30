@@ -1,6 +1,8 @@
 ## 6.0.0-rc.4 (2022-11-30)
 
-- [Feature] Support optional parameter for parametrized host. Please refer to issue [#1635](https://github.com/Azure/autorest.typescript/issues/1635) and issue [#1667](https://github.com/Azure/autorest.typescript/issues/1667).
+- [Feature] Support optional parameter for parametrized host in RLC. Please refer to issue [#1635](https://github.com/Azure/autorest.typescript/issues/1635) and issue [#1667](https://github.com/Azure/autorest.typescript/issues/1667).
+- [Feature] Paging enhancements for allowing consumers to participate in continuation in HLC. Please refer to pr [#1639](https://github.com/Azure/autorest.typescript/pull/1639).
+- [BugFix] Improve generated paging methods when next operation is not specified in HLC. Please refer to pr [#1661](https://github.com/Azure/autorest.typescript/pull/1661).
 
 ## 6.0.0-rc.3 (2022-10-19)
 
