@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Vaults } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,14 +23,18 @@ import {
   Vault,
   VaultsListByResourceGroupNextOptionalParams,
   VaultsListByResourceGroupOptionalParams,
+  VaultsListByResourceGroupResponse,
   VaultsListBySubscriptionNextOptionalParams,
   VaultsListBySubscriptionOptionalParams,
+  VaultsListBySubscriptionResponse,
   DeletedVault,
   VaultsListDeletedNextOptionalParams,
   VaultsListDeletedOptionalParams,
+  VaultsListDeletedResponse,
   Resource,
   VaultsListNextOptionalParams,
   VaultsListOptionalParams,
+  VaultsListResponse,
   VaultCreateOrUpdateParameters,
   VaultsCreateOrUpdateOptionalParams,
   VaultsCreateOrUpdateResponse,
@@ -43,13 +48,9 @@ import {
   AccessPolicyUpdateKind,
   VaultsUpdateAccessPolicyOptionalParams,
   VaultsUpdateAccessPolicyResponse,
-  VaultsListByResourceGroupResponse,
-  VaultsListBySubscriptionResponse,
-  VaultsListDeletedResponse,
   VaultsGetDeletedOptionalParams,
   VaultsGetDeletedResponse,
   VaultsPurgeDeletedOptionalParams,
-  VaultsListResponse,
   VaultCheckNameAvailabilityParameters,
   VaultsCheckNameAvailabilityOptionalParams,
   VaultsCheckNameAvailabilityResponse,
@@ -90,19 +91,33 @@ export class VaultsImpl implements Vaults {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: VaultsListByResourceGroupOptionalParams
+    options?: VaultsListByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Vault[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: VaultsListByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByResourceGroup(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
@@ -110,7 +125,9 @@ export class VaultsImpl implements Vaults {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -141,22 +158,34 @@ export class VaultsImpl implements Vaults {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listBySubscriptionPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listBySubscriptionPagingPage(options, settings);
       }
     };
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: VaultsListBySubscriptionOptionalParams
+    options?: VaultsListBySubscriptionOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Vault[]> {
-    let result = await this._listBySubscription(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: VaultsListBySubscriptionResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listBySubscription(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listBySubscriptionNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -183,22 +212,34 @@ export class VaultsImpl implements Vaults {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listDeletedPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listDeletedPagingPage(options, settings);
       }
     };
   }
 
   private async *listDeletedPagingPage(
-    options?: VaultsListDeletedOptionalParams
+    options?: VaultsListDeletedOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DeletedVault[]> {
-    let result = await this._listDeleted(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: VaultsListDeletedResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listDeleted(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listDeletedNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -225,22 +266,34 @@ export class VaultsImpl implements Vaults {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: VaultsListOptionalParams
+    options?: VaultsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Resource[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: VaultsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -924,7 +977,6 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -945,7 +997,6 @@ const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -965,7 +1016,6 @@ const listDeletedNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -985,7 +1035,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.top, Parameters.filter, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

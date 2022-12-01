@@ -1,9 +1,0 @@
-{
-  "generateMetadata": true,
-  "includeShortcuts": true,
-  "packageDetails": {
-    "name": "@msinternal/playfab",
-    "description": "PlayFab Service",
-    "version": "1.0.0-beta.1"
-  }
-}

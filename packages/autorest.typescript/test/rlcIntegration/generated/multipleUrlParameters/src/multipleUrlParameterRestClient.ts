@@ -72,6 +72,9 @@ export default function createClient(
       },
       deleteByGuid: (guid, options) => {
         return client.path("/entity/guid/{guid}", guid).delete(options);
+      },
+      exportGuid: (guid, options) => {
+        return client.path("/entity/guid/{guid}:export", guid).put(options);
       }
     }
   };

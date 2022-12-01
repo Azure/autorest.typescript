@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { P2SVpnGateways } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,8 +23,10 @@ import {
   P2SVpnGateway,
   P2SVpnGatewaysListByResourceGroupNextOptionalParams,
   P2SVpnGatewaysListByResourceGroupOptionalParams,
+  P2SVpnGatewaysListByResourceGroupResponse,
   P2SVpnGatewaysListNextOptionalParams,
   P2SVpnGatewaysListOptionalParams,
+  P2SVpnGatewaysListResponse,
   P2SVpnGatewaysGetOptionalParams,
   P2SVpnGatewaysGetResponse,
   P2SVpnGatewaysCreateOrUpdateOptionalParams,
@@ -32,8 +35,6 @@ import {
   P2SVpnGatewaysUpdateTagsOptionalParams,
   P2SVpnGatewaysUpdateTagsResponse,
   P2SVpnGatewaysDeleteOptionalParams,
-  P2SVpnGatewaysListByResourceGroupResponse,
-  P2SVpnGatewaysListResponse,
   P2SVpnGatewaysResetOptionalParams,
   P2SVpnGatewaysResetResponse,
   P2SVpnProfileParameters,
@@ -80,19 +81,33 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: P2SVpnGatewaysListByResourceGroupOptionalParams
+    options?: P2SVpnGatewaysListByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<P2SVpnGateway[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: P2SVpnGatewaysListByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByResourceGroup(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
@@ -100,7 +115,9 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -131,22 +148,34 @@ export class P2SVpnGatewaysImpl implements P2SVpnGateways {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: P2SVpnGatewaysListOptionalParams
+    options?: P2SVpnGatewaysListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<P2SVpnGateway[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: P2SVpnGatewaysListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1301,7 +1330,6 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1322,7 +1350,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

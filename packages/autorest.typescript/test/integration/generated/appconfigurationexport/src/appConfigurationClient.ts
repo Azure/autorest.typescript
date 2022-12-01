@@ -12,7 +12,8 @@ import {
   PipelineResponse,
   SendRequest
 } from "@azure/core-rest-pipeline";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "./pagingHelper";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
@@ -20,18 +21,20 @@ import {
   Key,
   GetKeysNextOptionalParams,
   GetKeysOptionalParams,
+  GetKeysResponse,
   KeyValue,
   GetKeyValuesNextOptionalParams,
   GetKeyValuesOptionalParams,
+  GetKeyValuesResponse,
   Label,
   GetLabelsNextOptionalParams,
   GetLabelsOptionalParams,
+  GetLabelsResponse,
   GetRevisionsNextOptionalParams,
   GetRevisionsOptionalParams,
-  GetKeysResponse,
+  GetRevisionsResponse,
   CheckKeysOptionalParams,
   CheckKeysResponse,
-  GetKeyValuesResponse,
   CheckKeyValuesOptionalParams,
   CheckKeyValuesResponse,
   GetKeyValueOptionalParams,
@@ -42,14 +45,12 @@ import {
   DeleteKeyValueResponse,
   CheckKeyValueOptionalParams,
   CheckKeyValueResponse,
-  GetLabelsResponse,
   CheckLabelsOptionalParams,
   CheckLabelsResponse,
   PutLockOptionalParams,
   PutLockResponse,
   DeleteLockOptionalParams,
   DeleteLockResponse,
-  GetRevisionsResponse,
   CheckRevisionsOptionalParams,
   CheckRevisionsResponse,
   GetKeysNextResponse,
@@ -98,7 +99,7 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? "{endpoint}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{endpoint}"
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -152,22 +153,34 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getKeysPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getKeysPagingPage(options, settings);
       }
     };
   }
 
   private async *getKeysPagingPage(
-    options?: GetKeysOptionalParams
+    options?: GetKeysOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Key[]> {
-    let result = await this._getKeys(options);
-    yield result.items || [];
-    let continuationToken = result.nextLink;
+    let result: GetKeysResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getKeys(options);
+      let page = result.items || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getKeysNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.items || [];
+      let page = result.items || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -194,22 +207,34 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getKeyValuesPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getKeyValuesPagingPage(options, settings);
       }
     };
   }
 
   private async *getKeyValuesPagingPage(
-    options?: GetKeyValuesOptionalParams
+    options?: GetKeyValuesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<KeyValue[]> {
-    let result = await this._getKeyValues(options);
-    yield result.items || [];
-    let continuationToken = result.nextLink;
+    let result: GetKeyValuesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getKeyValues(options);
+      let page = result.items || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getKeyValuesNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.items || [];
+      let page = result.items || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -236,22 +261,34 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getLabelsPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getLabelsPagingPage(options, settings);
       }
     };
   }
 
   private async *getLabelsPagingPage(
-    options?: GetLabelsOptionalParams
+    options?: GetLabelsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Label[]> {
-    let result = await this._getLabels(options);
-    yield result.items || [];
-    let continuationToken = result.nextLink;
+    let result: GetLabelsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getLabels(options);
+      let page = result.items || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getLabelsNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.items || [];
+      let page = result.items || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -278,22 +315,34 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getRevisionsPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getRevisionsPagingPage(options, settings);
       }
     };
   }
 
   private async *getRevisionsPagingPage(
-    options?: GetRevisionsOptionalParams
+    options?: GetRevisionsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<KeyValue[]> {
-    let result = await this._getRevisions(options);
-    yield result.items || [];
-    let continuationToken = result.nextLink;
+    let result: GetRevisionsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getRevisions(options);
+      let page = result.items || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getRevisionsNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.items || [];
+      let page = result.items || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -857,7 +906,6 @@ const getKeysNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.name, Parameters.apiVersion, Parameters.after],
   urlParameters: [Parameters.endpoint, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
@@ -878,13 +926,6 @@ const getKeyValuesNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.after,
-    Parameters.key,
-    Parameters.label,
-    Parameters.select
-  ],
   urlParameters: [Parameters.endpoint, Parameters.nextLink],
   headerParameters: [
     Parameters.syncToken,
@@ -905,12 +946,6 @@ const getLabelsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [
-    Parameters.name,
-    Parameters.apiVersion,
-    Parameters.after,
-    Parameters.select4
-  ],
   urlParameters: [Parameters.endpoint, Parameters.nextLink],
   headerParameters: [
     Parameters.syncToken,
@@ -931,13 +966,6 @@ const getRevisionsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.after,
-    Parameters.key,
-    Parameters.label,
-    Parameters.select5
-  ],
   urlParameters: [Parameters.endpoint, Parameters.nextLink],
   headerParameters: [
     Parameters.syncToken,

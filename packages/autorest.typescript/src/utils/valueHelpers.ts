@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SchemaType, AllSchemaTypes, ChoiceSchema, ConstantSchema } from "@autorest/codemodel";
+import {
+  SchemaType,
+  AllSchemaTypes,
+  ChoiceSchema,
+  ConstantSchema
+} from "@autorest/codemodel";
 import { isNil, isEmpty } from "lodash";
 import { MapperType, SequenceMapperType } from "@azure/core-http";
 import { NameType, normalizeName } from "./nameUtils";
@@ -80,10 +85,13 @@ export function getStringForValue(
 
 /**
  * Get the returned value from ExampleValue model mainly used when sample generation
- * @param exampleValue 
- * @returns 
+ * @param exampleValue
+ * @returns
  */
-export function getParameterAssignment(exampleValue: ExampleValue, isRLCSample: boolean = false) {
+export function getParameterAssignment(
+  exampleValue: ExampleValue,
+  isRLCSample: boolean = false
+) {
   let schemaType = exampleValue.schema.type;
   const rawValue = exampleValue.rawValue;
   let retValue = rawValue;
@@ -124,8 +132,14 @@ export function getParameterAssignment(exampleValue: ExampleValue, isRLCSample: 
     case SchemaType.Duration:
       retValue = `"${rawValue
         ?.toString()
+        .replace(/\\/g, "\\\\")
         .replace(/"/g, '\\"')
-        .replace(/\n/g, "\\n")}"`;
+        .replace(/\n/g, "\\n")
+        .replace(/\r/g, "\\r")
+        .replace(/\t/g, "\\t")
+        .replace(/\f/g, "\\f")
+        .replace(/>/g, "\>")
+        .replace(/</g, "\<")}"`;
       break;
     case SchemaType.Boolean:
       (retValue = rawValue), toString();
@@ -149,9 +163,11 @@ export function getParameterAssignment(exampleValue: ExampleValue, isRLCSample: 
         }
         let propRetValue: string;
         if (propName.indexOf("/") > -1 || propName.match(/^\d/)) {
-          propRetValue = `"${propName}": ` + getParameterAssignment(property);
+          propRetValue =
+            `"${propName}": ` + getParameterAssignment(property, isRLCSample);
         } else {
-          propRetValue = `${propName}: ` + getParameterAssignment(property);
+          propRetValue =
+            `${propName}: ` + getParameterAssignment(property, isRLCSample);
         }
         values.push(propRetValue);
       }
@@ -164,7 +180,7 @@ export function getParameterAssignment(exampleValue: ExampleValue, isRLCSample: 
     case SchemaType.Array:
       const valuesArr = [];
       for (const element of <ExampleValue[]>exampleValue.elements) {
-        let propRetValueArr = getParameterAssignment(element);
+        let propRetValueArr = getParameterAssignment(element, isRLCSample);
         valuesArr.push(propRetValueArr);
       }
       if (valuesArr.length > 0) {

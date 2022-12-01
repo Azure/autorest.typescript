@@ -32,6 +32,9 @@ export interface ErrorResponse {
 }
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export interface Identity {
     readonly principalId?: string;
     readonly tenantId?: string;
@@ -184,7 +187,6 @@ export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentLi
 
 // @public
 export interface PolicyAssignmentsListForResourceGroupNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -200,7 +202,6 @@ export type PolicyAssignmentsListForResourceGroupResponse = PolicyAssignmentList
 
 // @public
 export interface PolicyAssignmentsListForResourceNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -216,7 +217,6 @@ export type PolicyAssignmentsListForResourceResponse = PolicyAssignmentListResul
 
 // @public
 export interface PolicyAssignmentsListNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public

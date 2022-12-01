@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { PrivateLinkServices } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,36 +23,36 @@ import {
   PrivateLinkService,
   PrivateLinkServicesListNextOptionalParams,
   PrivateLinkServicesListOptionalParams,
+  PrivateLinkServicesListResponse,
   PrivateLinkServicesListBySubscriptionNextOptionalParams,
   PrivateLinkServicesListBySubscriptionOptionalParams,
+  PrivateLinkServicesListBySubscriptionResponse,
   PrivateEndpointConnection,
   PrivateLinkServicesListPrivateEndpointConnectionsNextOptionalParams,
   PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams,
+  PrivateLinkServicesListPrivateEndpointConnectionsResponse,
   AutoApprovedPrivateLinkService,
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextOptionalParams,
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse,
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextOptionalParams,
   PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams,
+  PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse,
   PrivateLinkServicesDeleteOptionalParams,
   PrivateLinkServicesGetOptionalParams,
   PrivateLinkServicesGetResponse,
   PrivateLinkServicesCreateOrUpdateOptionalParams,
   PrivateLinkServicesCreateOrUpdateResponse,
-  PrivateLinkServicesListResponse,
-  PrivateLinkServicesListBySubscriptionResponse,
   PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams,
   PrivateLinkServicesGetPrivateEndpointConnectionResponse,
   PrivateLinkServicesUpdatePrivateEndpointConnectionOptionalParams,
   PrivateLinkServicesUpdatePrivateEndpointConnectionResponse,
   PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams,
-  PrivateLinkServicesListPrivateEndpointConnectionsResponse,
   CheckPrivateLinkServiceVisibilityRequest,
   PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams,
   PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse,
   PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams,
   PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse,
-  PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse,
-  PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse,
   PrivateLinkServicesListNextResponse,
   PrivateLinkServicesListBySubscriptionNextResponse,
   PrivateLinkServicesListPrivateEndpointConnectionsNextResponse,
@@ -89,19 +90,29 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
   }
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: PrivateLinkServicesListOptionalParams
+    options?: PrivateLinkServicesListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<PrivateLinkService[]> {
-    let result = await this._list(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PrivateLinkServicesListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         resourceGroupName,
@@ -109,7 +120,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -137,22 +150,34 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listBySubscriptionPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listBySubscriptionPagingPage(options, settings);
       }
     };
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: PrivateLinkServicesListBySubscriptionOptionalParams
+    options?: PrivateLinkServicesListBySubscriptionOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<PrivateLinkService[]> {
-    let result = await this._listBySubscription(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PrivateLinkServicesListBySubscriptionResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listBySubscription(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listBySubscriptionNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -187,11 +212,15 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPrivateEndpointConnectionsPagingPage(
           resourceGroupName,
           serviceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -200,15 +229,22 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private async *listPrivateEndpointConnectionsPagingPage(
     resourceGroupName: string,
     serviceName: string,
-    options?: PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams
+    options?: PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<PrivateEndpointConnection[]> {
-    let result = await this._listPrivateEndpointConnections(
-      resourceGroupName,
-      serviceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PrivateLinkServicesListPrivateEndpointConnectionsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listPrivateEndpointConnections(
+        resourceGroupName,
+        serviceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listPrivateEndpointConnectionsNext(
         resourceGroupName,
@@ -217,7 +253,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -256,10 +294,14 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAutoApprovedPrivateLinkServicesPagingPage(
           location,
-          options
+          options,
+          settings
         );
       }
     };
@@ -267,14 +309,21 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
 
   private async *listAutoApprovedPrivateLinkServicesPagingPage(
     location: string,
-    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<AutoApprovedPrivateLinkService[]> {
-    let result = await this._listAutoApprovedPrivateLinkServices(
-      location,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listAutoApprovedPrivateLinkServices(
+        location,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listAutoApprovedPrivateLinkServicesNext(
         location,
@@ -282,7 +331,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -322,11 +373,15 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAutoApprovedPrivateLinkServicesByResourceGroupPagingPage(
           location,
           resourceGroupName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -335,15 +390,22 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private async *listAutoApprovedPrivateLinkServicesByResourceGroupPagingPage(
     location: string,
     resourceGroupName: string,
-    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams
+    options?: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<AutoApprovedPrivateLinkService[]> {
-    let result = await this._listAutoApprovedPrivateLinkServicesByResourceGroup(
-      location,
-      resourceGroupName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listAutoApprovedPrivateLinkServicesByResourceGroup(
+        location,
+        resourceGroupName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listAutoApprovedPrivateLinkServicesByResourceGroupNext(
         location,
@@ -352,7 +414,9 @@ export class PrivateLinkServicesImpl implements PrivateLinkServices {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1399,7 +1463,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1420,7 +1483,6 @@ const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1440,7 +1502,6 @@ const listPrivateEndpointConnectionsNextOperationSpec: coreClient.OperationSpec 
       bodyMapper: Mappers.ErrorModel
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1462,7 +1523,6 @@ const listAutoApprovedPrivateLinkServicesNextOperationSpec: coreClient.Operation
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1483,7 +1543,6 @@ const listAutoApprovedPrivateLinkServicesByResourceGroupNextOperationSpec: coreC
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

@@ -40,8 +40,6 @@ export interface MetadataPolicyProperties {
 
 /** The decision rule for a policy */
 export interface DecisionRule {
-  /** The kind of rule */
-  kind?: "decisionrule" | "attributerule";
   /** The effect for rule */
   effect?: "Deny" | "Permit";
   /** The dnf Condition for a rule */
@@ -50,8 +48,6 @@ export interface DecisionRule {
 
 /** The attribute rule for a policy */
 export interface AttributeRule {
-  /** The kind of rule */
-  kind?: "decisionrule" | "attributerule";
   /** The id for rule */
   id?: string;
   /** The name for rule */

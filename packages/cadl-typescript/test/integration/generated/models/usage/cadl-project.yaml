@@ -1,0 +1,11 @@
+emitters:
+  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    isCadlTest: true
+    azureSdkForJs: false
+    packageDetails:
+      name: "@msinternal/usage"
+      description: "Usage Test Service"
+      version: "1.0.0"

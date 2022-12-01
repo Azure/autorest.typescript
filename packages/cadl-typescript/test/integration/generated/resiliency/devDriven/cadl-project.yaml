@@ -1,0 +1,11 @@
+emitters:
+  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    azureSdkForJs: false
+    isCadlTest: true
+    packageDetails:
+      name: "@msinternal/dev-driven"
+      description: "Dev Driven Test Service"
+      version: "1.0.0"

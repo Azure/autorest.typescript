@@ -7,7 +7,7 @@ export interface ProductOutput extends ResourceOutput {
 
 export interface ProductPropertiesOutput {
   provisioningState?: string;
-  provisioningStateValues?:
+  readonly provisioningStateValues?:
     | "Succeeded"
     | "Failed"
     | "canceled"
@@ -23,15 +23,15 @@ export interface ProductPropertiesOutput {
 
 export interface ResourceOutput {
   /** Resource Id */
-  id?: string;
+  readonly id?: string;
   /** Resource Type */
-  type?: string;
+  readonly type?: string;
   /** Dictionary of <string> */
   tags?: Record<string, string>;
   /** Resource Location */
   location?: string;
   /** Resource Name */
-  name?: string;
+  readonly name?: string;
 }
 
 export interface CloudErrorOutput {
@@ -50,7 +50,7 @@ export interface SubProductOutput extends SubResourceOutput {
 
 export interface SubProductPropertiesOutput {
   provisioningState?: string;
-  provisioningStateValues?:
+  readonly provisioningStateValues?:
     | "Succeeded"
     | "Failed"
     | "canceled"
@@ -66,5 +66,5 @@ export interface SubProductPropertiesOutput {
 
 export interface SubResourceOutput {
   /** Sub Resource Id */
-  id?: string;
+  readonly id?: string;
 }

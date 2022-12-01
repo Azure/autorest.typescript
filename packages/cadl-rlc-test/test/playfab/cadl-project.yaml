@@ -1,0 +1,9 @@
+emitters:
+  "@azure-tools/cadl-typescript":
+    azureArm: true
+    azureSdkForJs: false
+    generateTest: false
+    packageDetails:
+      name: "@msinternal/playfab"
+      description: "PlayFab Service"
+  "@azure-tools/cadl-autorest": true

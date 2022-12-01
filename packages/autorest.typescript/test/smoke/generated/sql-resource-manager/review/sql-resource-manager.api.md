@@ -429,11 +429,6 @@ export type DatabaseColumnsGetResponse = DatabaseColumn;
 
 // @public
 export interface DatabaseColumnsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    column?: string[];
-    orderBy?: string[];
-    schema?: string[];
-    skiptoken?: string;
-    table?: string[];
 }
 
 // @public
@@ -453,7 +448,6 @@ export type DatabaseColumnsListByDatabaseResponse = DatabaseColumnListResult;
 
 // @public
 export interface DatabaseColumnsListByTableNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -667,7 +661,6 @@ export type DatabaseSchemasGetResponse = DatabaseSchema;
 
 // @public
 export interface DatabaseSchemasListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -798,8 +791,6 @@ export type DatabasesListByElasticPoolResponse = DatabaseListResult;
 
 // @public
 export interface DatabasesListByServerNextOptionalParams extends coreClient.OperationOptions {
-    // (undocumented)
-    skipToken?: string;
 }
 
 // @public
@@ -912,7 +903,6 @@ export type DatabaseTablesGetResponse = DatabaseTable;
 
 // @public
 export interface DatabaseTablesListBySchemaNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -1609,7 +1599,6 @@ export type ElasticPoolsGetResponse = ElasticPool;
 
 // @public
 export interface ElasticPoolsListByServerNextOptionalParams extends coreClient.OperationOptions {
-    skip?: number;
 }
 
 // @public
@@ -2089,6 +2078,9 @@ export type GeoBackupPolicyName = string;
 
 // @public
 export type GeoBackupPolicyState = "Disabled" | "Enabled";
+
+// @public
+export function getContinuationToken(page: unknown): string | undefined;
 
 // @public
 export type IdentityType = string;
@@ -2584,13 +2576,6 @@ export type JobExecutionsGetResponse = JobExecution;
 
 // @public
 export interface JobExecutionsListByAgentNextOptionalParams extends coreClient.OperationOptions {
-    createTimeMax?: Date;
-    createTimeMin?: Date;
-    endTimeMax?: Date;
-    endTimeMin?: Date;
-    isActive?: boolean;
-    skip?: number;
-    top?: number;
 }
 
 // @public
@@ -2612,13 +2597,6 @@ export type JobExecutionsListByAgentResponse = JobExecutionListResult;
 
 // @public
 export interface JobExecutionsListByJobNextOptionalParams extends coreClient.OperationOptions {
-    createTimeMax?: Date;
-    createTimeMin?: Date;
-    endTimeMax?: Date;
-    endTimeMin?: Date;
-    isActive?: boolean;
-    skip?: number;
-    top?: number;
 }
 
 // @public
@@ -2750,13 +2728,6 @@ export type JobStepExecutionsGetResponse = JobExecution;
 
 // @public
 export interface JobStepExecutionsListByJobExecutionNextOptionalParams extends coreClient.OperationOptions {
-    createTimeMax?: Date;
-    createTimeMin?: Date;
-    endTimeMax?: Date;
-    endTimeMin?: Date;
-    isActive?: boolean;
-    skip?: number;
-    top?: number;
 }
 
 // @public
@@ -2887,13 +2858,6 @@ export type JobTargetExecutionsGetResponse = JobExecution;
 
 // @public
 export interface JobTargetExecutionsListByJobExecutionNextOptionalParams extends coreClient.OperationOptions {
-    createTimeMax?: Date;
-    createTimeMin?: Date;
-    endTimeMax?: Date;
-    endTimeMin?: Date;
-    isActive?: boolean;
-    skip?: number;
-    top?: number;
 }
 
 // @public
@@ -2915,13 +2879,6 @@ export type JobTargetExecutionsListByJobExecutionResponse = JobExecutionListResu
 
 // @public
 export interface JobTargetExecutionsListByStepNextOptionalParams extends coreClient.OperationOptions {
-    createTimeMax?: Date;
-    createTimeMin?: Date;
-    endTimeMax?: Date;
-    endTimeMin?: Date;
-    isActive?: boolean;
-    skip?: number;
-    top?: number;
 }
 
 // @public
@@ -4082,8 +4039,6 @@ export type LongTermRetentionBackupsGetResponse = LongTermRetentionBackup;
 
 // @public
 export interface LongTermRetentionBackupsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4100,8 +4055,6 @@ export type LongTermRetentionBackupsListByDatabaseResponse = LongTermRetentionBa
 
 // @public
 export interface LongTermRetentionBackupsListByLocationNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4118,8 +4071,6 @@ export type LongTermRetentionBackupsListByLocationResponse = LongTermRetentionBa
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4136,8 +4087,6 @@ export type LongTermRetentionBackupsListByResourceGroupDatabaseResponse = LongTe
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4154,8 +4103,6 @@ export type LongTermRetentionBackupsListByResourceGroupLocationResponse = LongTe
 
 // @public
 export interface LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4172,8 +4119,6 @@ export type LongTermRetentionBackupsListByResourceGroupServerResponse = LongTerm
 
 // @public
 export interface LongTermRetentionBackupsListByServerNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4250,8 +4195,6 @@ export type LongTermRetentionManagedInstanceBackupsGetResponse = ManagedInstance
 
 // @public
 export interface LongTermRetentionManagedInstanceBackupsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4268,8 +4211,6 @@ export type LongTermRetentionManagedInstanceBackupsListByDatabaseResponse = Mana
 
 // @public
 export interface LongTermRetentionManagedInstanceBackupsListByInstanceNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4286,8 +4227,6 @@ export type LongTermRetentionManagedInstanceBackupsListByInstanceResponse = Mana
 
 // @public
 export interface LongTermRetentionManagedInstanceBackupsListByLocationNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4304,8 +4243,6 @@ export type LongTermRetentionManagedInstanceBackupsListByLocationResponse = Mana
 
 // @public
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4322,8 +4259,6 @@ export type LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseRe
 
 // @public
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4340,8 +4275,6 @@ export type LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceRe
 
 // @public
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextOptionalParams extends coreClient.OperationOptions {
-    databaseState?: DatabaseState;
-    onlyLatestPerDatabase?: boolean;
 }
 
 // @public
@@ -4569,11 +4502,6 @@ export type ManagedDatabaseColumnsGetResponse = DatabaseColumn;
 
 // @public
 export interface ManagedDatabaseColumnsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    column?: string[];
-    orderBy?: string[];
-    schema?: string[];
-    skiptoken?: string;
-    table?: string[];
 }
 
 // @public
@@ -4593,7 +4521,6 @@ export type ManagedDatabaseColumnsListByDatabaseResponse = DatabaseColumnListRes
 
 // @public
 export interface ManagedDatabaseColumnsListByTableNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -4631,9 +4558,6 @@ export type ManagedDatabaseQueriesGetResponse = ManagedInstanceQuery;
 
 // @public
 export interface ManagedDatabaseQueriesListByQueryNextOptionalParams extends coreClient.OperationOptions {
-    endTime?: string;
-    interval?: QueryTimeGrainType;
-    startTime?: string;
 }
 
 // @public
@@ -4714,7 +4638,6 @@ export type ManagedDatabaseSchemasGetResponse = DatabaseSchema;
 
 // @public
 export interface ManagedDatabaseSchemasListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -4809,10 +4732,6 @@ export interface ManagedDatabaseSecurityEvents {
 
 // @public
 export interface ManagedDatabaseSecurityEventsListByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
-    skip?: number;
-    skiptoken?: string;
-    top?: number;
 }
 
 // @public
@@ -4869,11 +4788,6 @@ export type ManagedDatabaseSensitivityLabelsGetResponse = SensitivityLabel;
 
 // @public
 export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    // (undocumented)
-    count?: boolean;
-    filter?: string;
-    // (undocumented)
-    skipToken?: string;
 }
 
 // @public
@@ -4893,10 +4807,6 @@ export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse = Sens
 
 // @public
 export interface ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
-    includeDisabledRecommendations?: boolean;
-    // (undocumented)
-    skipToken?: string;
 }
 
 // @public
@@ -4979,7 +4889,6 @@ export type ManagedDatabaseTablesGetResponse = DatabaseTable;
 
 // @public
 export interface ManagedDatabaseTablesListBySchemaNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -5457,7 +5366,6 @@ export type ManagedInstanceKeysGetResponse = ManagedInstanceKey;
 
 // @public
 export interface ManagedInstanceKeysListByInstanceNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -5829,7 +5737,6 @@ export type ManagedInstancesGetResponse = ManagedInstance;
 
 // @public
 export interface ManagedInstancesListByInstancePoolNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -5845,13 +5752,6 @@ export type ManagedInstancesListByInstancePoolResponse = ManagedInstanceListResu
 
 // @public
 export interface ManagedInstancesListByManagedInstanceNextOptionalParams extends coreClient.OperationOptions {
-    aggregationFunction?: AggregationFunctionType;
-    databases?: string;
-    endTime?: string;
-    interval?: QueryTimeGrainType;
-    numberOfQueries?: number;
-    observationMetric?: MetricType;
-    startTime?: string;
 }
 
 // @public
@@ -5873,7 +5773,6 @@ export type ManagedInstancesListByManagedInstanceResponse = TopQueriesListResult
 
 // @public
 export interface ManagedInstancesListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -5889,7 +5788,6 @@ export type ManagedInstancesListByResourceGroupResponse = ManagedInstanceListRes
 
 // @public
 export interface ManagedInstancesListNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -7185,11 +7083,6 @@ export type SensitivityLabelsGetResponse = SensitivityLabel;
 
 // @public
 export interface SensitivityLabelsListCurrentByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    // (undocumented)
-    count?: boolean;
-    filter?: string;
-    // (undocumented)
-    skipToken?: string;
 }
 
 // @public
@@ -7209,10 +7102,6 @@ export type SensitivityLabelsListCurrentByDatabaseResponse = SensitivityLabelLis
 
 // @public
 export interface SensitivityLabelsListRecommendedByDatabaseNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
-    includeDisabledRecommendations?: boolean;
-    // (undocumented)
-    skipToken?: string;
 }
 
 // @public
@@ -7974,7 +7863,6 @@ export type ServersImportDatabaseResponse = ImportExportOperationResult;
 
 // @public
 export interface ServersListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -7990,7 +7878,6 @@ export type ServersListByResourceGroupResponse = ServerListResult;
 
 // @public
 export interface ServersListNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -8918,7 +8805,6 @@ export type SyncGroupsListHubSchemasResponse = SyncFullSchemaPropertiesListResul
 
 // @public
 export interface SyncGroupsListLogsNextOptionalParams extends coreClient.OperationOptions {
-    continuationToken?: string;
 }
 
 // @public
@@ -9285,7 +9171,6 @@ export interface Usages {
 
 // @public
 export interface UsagesListByInstancePoolNextOptionalParams extends coreClient.OperationOptions {
-    expandChildren?: boolean;
 }
 
 // @public

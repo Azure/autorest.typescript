@@ -29,7 +29,7 @@ async function createPacketCapture() {
     bytesToCapturePerPacket: 10000,
     filters: [{ localIPAddress: "10.0.0.4", localPort: "80", protocol: "TCP" }],
     storageLocation: {
-      filePath: "D:capturepc1.cap",
+      filePath: "D:\\capture\\pc1.cap",
       storageId:
         "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Storage/storageAccounts/pcstore",
       storagePath:

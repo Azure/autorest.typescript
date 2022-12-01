@@ -27,6 +27,10 @@ export interface ProductResult {
   nextLink?: string;
 }
 
+export interface BodyParam {
+  name?: string;
+}
+
 export interface OdataProductResult {
   values?: Product[];
   odataNextLink?: string;
@@ -137,6 +141,13 @@ export interface PagingGetNoItemNamePagesOptionalParams
 export type PagingGetNoItemNamePagesResponse = ProductResultValue;
 
 /** Optional parameters. */
+export interface PagingGetEmptyNextLinkNamePagesOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the getEmptyNextLinkNamePages operation. */
+export type PagingGetEmptyNextLinkNamePagesResponse = ProductResultValue;
+
+/** Optional parameters. */
 export interface PagingGetNullNextLinkNamePagesOptionalParams
   extends coreClient.OperationOptions {}
 
@@ -149,6 +160,13 @@ export interface PagingGetSinglePagesOptionalParams
 
 /** Contains response data for the getSinglePages operation. */
 export type PagingGetSinglePagesResponse = ProductResult;
+
+/** Optional parameters. */
+export interface PagingGetSinglePagesWithBodyParamsOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the getSinglePagesWithBodyParams operation. */
+export type PagingGetSinglePagesWithBodyParamsResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingFirstResponseEmptyOptionalParams
@@ -330,11 +348,25 @@ export interface PagingGetNoItemNamePagesNextOptionalParams
 export type PagingGetNoItemNamePagesNextResponse = ProductResultValue;
 
 /** Optional parameters. */
+export interface PagingGetEmptyNextLinkNamePagesNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the getEmptyNextLinkNamePagesNext operation. */
+export type PagingGetEmptyNextLinkNamePagesNextResponse = ProductResultValue;
+
+/** Optional parameters. */
 export interface PagingGetSinglePagesNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSinglePagesNext operation. */
 export type PagingGetSinglePagesNextResponse = ProductResult;
+
+/** Optional parameters. */
+export interface PagingGetSinglePagesWithBodyParamsNextOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the getSinglePagesWithBodyParamsNext operation. */
+export type PagingGetSinglePagesWithBodyParamsNextResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingFirstResponseEmptyNextOptionalParams
@@ -356,10 +388,7 @@ export type PagingGetMultiplePagesNextResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingDuplicateParamsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** OData filter options. Pass in 'foo' */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the duplicateParamsNext operation. */
 export type PagingDuplicateParamsNextResponse = ProductResult;

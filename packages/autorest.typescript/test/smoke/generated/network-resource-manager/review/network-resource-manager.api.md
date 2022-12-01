@@ -4428,6 +4428,9 @@ export interface GetBastionShareableLinkOptionalParams extends coreClient.Operat
 export type GetBastionShareableLinkResponse = BastionShareableLinkListResult;
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export interface GetVpnSitesConfigurationRequest {
     outputBlobSasUrl: string;
     vpnSites?: string[];
@@ -7422,7 +7425,6 @@ export type NetworkInterfacesListResponse = NetworkInterfaceListResult;
 
 // @public
 export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -10495,8 +10497,6 @@ export interface ServiceTagInformation {
 
 // @public
 export interface ServiceTagInformationListNextOptionalParams extends coreClient.OperationOptions {
-    noAddressPrefixes?: boolean;
-    tagName?: string;
 }
 
 // @public

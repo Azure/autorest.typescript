@@ -1,11 +1,15 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+/** The details of a project. */
 export interface Project {
+  /** The project name. */
   projectName: string;
-  /**
-   * The project kind.
-   *
-   * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
-   */
-  projectKind: string;
+  /** The project kind. */
+  projectKind:
+    | "CustomSingleLabelClassification"
+    | "CustomMultiLabelClassification"
+    | "CustomEntityRecognition";
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
@@ -16,21 +20,15 @@ export interface Project {
   description?: string;
   /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
   language: string;
-  /** Represents the project creation datetime. */
-  createdDateTime: Date | string;
-  /** Represents the project last modification datetime. */
-  lastModifiedDateTime: Date | string;
-  /** Represents the project last training datetime. */
-  lastTrainedDateTime: Date | string;
-  /** Represents the project last deployment datetime. */
-  lastDeployedDateTime: Date | string;
 }
 
 /** Training job parameters. */
 export interface TrainingJobOptions {
+  /** The model label. */
   modelLabel: string;
 }
 
+/** Swap deployment options. */
 export interface SwapDeploymentsOptions {
   /** Represents the first deployment name. */
   firstDeploymentName: string;

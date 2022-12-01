@@ -184,7 +184,8 @@ export function writeOperations(
     operationGroupDetails,
     clientDetails,
     operationGroupInterface,
-    importedModels
+    importedModels,
+    modelNames
   );
   operationGroupDetails.operations.forEach(operation => {
     if (operation.scope !== Scope.Private) {

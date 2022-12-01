@@ -3,10 +3,26 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
+import { BodyParam } from "./models";
 
 export type PagingGetNoItemNamePagesParameters = RequestParameters;
+export type PagingGetEmptyNextLinkNamePagesParameters = RequestParameters;
 export type PagingGetNullNextLinkNamePagesParameters = RequestParameters;
 export type PagingGetSinglePagesParameters = RequestParameters;
+
+export interface PagingGetSinglePagesWithBodyParamsBodyParam {
+  /** put {'name': 'body'} to pass the test */
+  body: BodyParam;
+}
+
+export interface PagingGetSinglePagesWithBodyParamsMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type PagingGetSinglePagesWithBodyParamsParameters = PagingGetSinglePagesWithBodyParamsMediaTypesParam &
+  PagingGetSinglePagesWithBodyParamsBodyParam &
+  RequestParameters;
 export type PagingFirstResponseEmptyParameters = RequestParameters;
 
 export interface PagingGetMultiplePagesHeaders {
@@ -18,7 +34,7 @@ export interface PagingGetMultiplePagesHeaders {
 }
 
 export interface PagingGetMultiplePagesHeaderParam {
-  headers: RawHttpHeadersInput & PagingGetMultiplePagesHeaders;
+  headers?: RawHttpHeadersInput & PagingGetMultiplePagesHeaders;
 }
 
 export type PagingGetMultiplePagesParameters = PagingGetMultiplePagesHeaderParam &
@@ -83,7 +99,7 @@ export interface PagingGetOdataMultiplePagesHeaders {
 }
 
 export interface PagingGetOdataMultiplePagesHeaderParam {
-  headers: RawHttpHeadersInput & PagingGetOdataMultiplePagesHeaders;
+  headers?: RawHttpHeadersInput & PagingGetOdataMultiplePagesHeaders;
 }
 
 export type PagingGetOdataMultiplePagesParameters = PagingGetOdataMultiplePagesHeaderParam &
@@ -98,7 +114,7 @@ export interface PagingGetMultiplePagesWithOffsetHeaders {
 }
 
 export interface PagingGetMultiplePagesWithOffsetHeaderParam {
-  headers: RawHttpHeadersInput & PagingGetMultiplePagesWithOffsetHeaders;
+  headers?: RawHttpHeadersInput & PagingGetMultiplePagesWithOffsetHeaders;
 }
 
 export type PagingGetMultiplePagesWithOffsetParameters = PagingGetMultiplePagesWithOffsetHeaderParam &
@@ -142,7 +158,7 @@ export interface PagingGetMultiplePagesLROHeaders {
 }
 
 export interface PagingGetMultiplePagesLROHeaderParam {
-  headers: RawHttpHeadersInput & PagingGetMultiplePagesLROHeaders;
+  headers?: RawHttpHeadersInput & PagingGetMultiplePagesLROHeaders;
 }
 
 export type PagingGetMultiplePagesLROParameters = PagingGetMultiplePagesLROHeaderParam &

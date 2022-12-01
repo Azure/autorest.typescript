@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { PacketCaptures } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -21,6 +21,7 @@ import { createLroSpec } from "../lroImpl";
 import {
   PacketCaptureResult,
   PacketCapturesListOptionalParams,
+  PacketCapturesListResponse,
   PacketCapture,
   PacketCapturesCreateOptionalParams,
   PacketCapturesCreateResponse,
@@ -29,8 +30,7 @@ import {
   PacketCapturesDeleteOptionalParams,
   PacketCapturesStopOptionalParams,
   PacketCapturesGetStatusOptionalParams,
-  PacketCapturesGetStatusResponse,
-  PacketCapturesListResponse
+  PacketCapturesGetStatusResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -69,11 +69,15 @@ export class PacketCapturesImpl implements PacketCaptures {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(
           resourceGroupName,
           networkWatcherName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -82,13 +86,11 @@ export class PacketCapturesImpl implements PacketCaptures {
   private async *listPagingPage(
     resourceGroupName: string,
     networkWatcherName: string,
-    options?: PacketCapturesListOptionalParams
+    options?: PacketCapturesListOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<PacketCaptureResult[]> {
-    let result = await this._list(
-      resourceGroupName,
-      networkWatcherName,
-      options
-    );
+    let result: PacketCapturesListResponse;
+    result = await this._list(resourceGroupName, networkWatcherName, options);
     yield result.value || [];
   }
 

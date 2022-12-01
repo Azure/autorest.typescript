@@ -20,10 +20,15 @@ import { createLroSpec } from "../lroImpl";
 import {
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
+  PagingGetEmptyNextLinkNamePagesOptionalParams,
+  PagingGetEmptyNextLinkNamePagesResponse,
   PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesOptionalParams,
   PagingGetSinglePagesResponse,
+  BodyParam,
+  PagingGetSinglePagesWithBodyParamsOptionalParams,
+  PagingGetSinglePagesWithBodyParamsResponse,
   PagingFirstResponseEmptyOptionalParams,
   PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesOptionalParams,
@@ -70,8 +75,12 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesNextResponse,
+  PagingGetEmptyNextLinkNamePagesNextOptionalParams,
+  PagingGetEmptyNextLinkNamePagesNextResponse,
   PagingGetSinglePagesNextOptionalParams,
   PagingGetSinglePagesNextResponse,
+  PagingGetSinglePagesWithBodyParamsNextOptionalParams,
+  PagingGetSinglePagesWithBodyParamsNextResponse,
   PagingFirstResponseEmptyNextOptionalParams,
   PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextOptionalParams,
@@ -130,6 +139,19 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * A paging operation that gets an empty next link and should stop after page 1.
+   * @param options The options parameters.
+   */
+  getEmptyNextLinkNamePages(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesResponse> {
+    return this.client.sendOperationRequest(
+      { options },
+      getEmptyNextLinkNamePagesOperationSpec
+    );
+  }
+
+  /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
@@ -152,6 +174,21 @@ export class PagingImpl implements Paging {
     return this.client.sendOperationRequest(
       { options },
       getSinglePagesOperationSpec
+    );
+  }
+
+  /**
+   * A paging operation that finishes on the first call with body params without a nextlink
+   * @param parameters put {'name': 'body'} to pass the test
+   * @param options The options parameters.
+   */
+  getSinglePagesWithBodyParams(
+    parameters: BodyParam,
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+  ): Promise<PagingGetSinglePagesWithBodyParamsResponse> {
+    return this.client.sendOperationRequest(
+      { parameters, options },
+      getSinglePagesWithBodyParamsOperationSpec
     );
   }
 
@@ -527,6 +564,22 @@ export class PagingImpl implements Paging {
   }
 
   /**
+   * GetEmptyNextLinkNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetEmptyNextLinkNamePages
+   *                 method.
+   * @param options The options parameters.
+   */
+  getEmptyNextLinkNamePagesNext(
+    nextLink: string,
+    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesNextResponse> {
+    return this.client.sendOperationRequest(
+      { nextLink, options },
+      getEmptyNextLinkNamePagesNextOperationSpec
+    );
+  }
+
+  /**
    * GetSinglePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
    * @param options The options parameters.
@@ -538,6 +591,24 @@ export class PagingImpl implements Paging {
     return this.client.sendOperationRequest(
       { nextLink, options },
       getSinglePagesNextOperationSpec
+    );
+  }
+
+  /**
+   * GetSinglePagesWithBodyParamsNext
+   * @param parameters put {'name': 'body'} to pass the test
+   * @param nextLink The nextLink from the previous successful call to the GetSinglePagesWithBodyParams
+   *                 method.
+   * @param options The options parameters.
+   */
+  getSinglePagesWithBodyParamsNext(
+    parameters: BodyParam,
+    nextLink: string,
+    options?: PagingGetSinglePagesWithBodyParamsNextOptionalParams
+  ): Promise<PagingGetSinglePagesWithBodyParamsNextResponse> {
+    return this.client.sendOperationRequest(
+      { parameters, nextLink, options },
+      getSinglePagesWithBodyParamsNextOperationSpec
     );
   }
 
@@ -790,6 +861,19 @@ const getNoItemNamePagesOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const getEmptyNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/emptynextlink",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const getNullNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/nullnextlink",
   httpMethod: "GET",
@@ -814,6 +898,20 @@ const getSinglePagesOperationSpec: coreClient.OperationSpec = {
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const getSinglePagesWithBodyParamsOperationSpec: coreClient.OperationSpec = {
+  path: "/paging/single/getWithBodyParams",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const firstResponseEmptyOperationSpec: coreClient.OperationSpec = {
@@ -1144,6 +1242,19 @@ const getNoItemNamePagesNextOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const getEmptyNextLinkNamePagesNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResultValue
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept],
+  serializer
+};
 const getSinglePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
@@ -1155,6 +1266,20 @@ const getSinglePagesNextOperationSpec: coreClient.OperationSpec = {
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
+  serializer
+};
+const getSinglePagesWithBodyParamsNextOperationSpec: coreClient.OperationSpec = {
+  path: "{nextLink}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ProductResult
+    },
+    default: {}
+  },
+  urlParameters: [Parameters.$host, Parameters.nextLink],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
   serializer
 };
 const firstResponseEmptyNextOperationSpec: coreClient.OperationSpec = {
@@ -1197,7 +1322,6 @@ const duplicateParamsNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -1211,7 +1335,6 @@ const pageWithMaxPageSizeNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.maxpagesize],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -1347,7 +1470,6 @@ const appendApiVersionNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -1361,7 +1483,6 @@ const replaceApiVersionNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer

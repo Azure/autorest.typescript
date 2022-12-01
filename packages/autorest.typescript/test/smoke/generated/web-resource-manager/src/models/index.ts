@@ -9286,10 +9286,7 @@ export type AppServiceEnvironmentsListAppServicePlansNextResponse = AppServicePl
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWebAppsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Comma separated list of app properties to include. */
-  propertiesToInclude?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebAppsNext operation. */
 export type AppServiceEnvironmentsListWebAppsNextResponse = WebAppCollection;
@@ -9303,10 +9300,7 @@ export type AppServiceEnvironmentsSuspendNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListUsagesNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listUsagesNext operation. */
 export type AppServiceEnvironmentsListUsagesNextResponse = CsmUsageQuotaCollection;
@@ -9546,13 +9540,7 @@ export interface AppServicePlansRebootWorkerOptionalParams
 
 /** Optional parameters. */
 export interface AppServicePlansListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /**
-   * Specify <code>true</code> to return all App Service plan properties. The default is <code>false</code>, which returns a subset of the properties.
-   *  Retrieval of all properties may increase the API latency.
-   */
-  detailed?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type AppServicePlansListNextResponse = AppServicePlanCollection;
@@ -9580,24 +9568,14 @@ export type AppServicePlansListHybridConnectionsNextResponse = HybridConnectionC
 
 /** Optional parameters. */
 export interface AppServicePlansListWebAppsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Supported filter: $filter=state eq running. Returns only web apps that are currently running */
-  filter?: string;
-  /** Skip to a web app in the list of webapps associated with app service plan. If specified, the resulting list will contain web apps starting from (including) the skipToken. Otherwise, the resulting list contains web apps from the start of the list */
-  skipToken?: string;
-  /** List page size. If specified, results are paged. */
-  top?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebAppsNext operation. */
 export type AppServicePlansListWebAppsNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListUsagesNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2'). */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listUsagesNext operation. */
 export type AppServicePlansListUsagesNextResponse = CsmUsageQuotaCollection;
@@ -9646,10 +9624,7 @@ export type CertificatesUpdateResponse = Certificate;
 
 /** Optional parameters. */
 export interface CertificatesListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only information specified in the filter (using OData syntax). For example: $filter=KeyVaultId eq 'KeyVaultId' */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type CertificatesListNextResponse = CertificateCollection;
@@ -10110,39 +10085,28 @@ export type ProviderGetAvailableStacksOnPremResponse = ApplicationStackCollectio
 
 /** Optional parameters. */
 export interface ProviderGetAvailableStacksNextOptionalParams
-  extends coreClient.OperationOptions {
-  osTypeSelected?: Enum10;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAvailableStacksNext operation. */
 export type ProviderGetAvailableStacksNextResponse = ApplicationStackCollection;
 
 /** Optional parameters. */
 export interface ProviderGetFunctionAppStacksNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Stack OS Type */
-  stackOsType?: Enum11;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFunctionAppStacksNext operation. */
 export type ProviderGetFunctionAppStacksNextResponse = FunctionAppStackCollection;
 
 /** Optional parameters. */
 export interface ProviderGetFunctionAppStacksForLocationNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Stack OS Type */
-  stackOsType?: Enum12;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFunctionAppStacksForLocationNext operation. */
 export type ProviderGetFunctionAppStacksForLocationNextResponse = FunctionAppStackCollection;
 
 /** Optional parameters. */
 export interface ProviderGetWebAppStacksForLocationNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Stack OS Type */
-  stackOsType?: Enum13;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWebAppStacksForLocationNext operation. */
 export type ProviderGetWebAppStacksForLocationNextResponse = WebAppStackCollection;
@@ -10156,19 +10120,14 @@ export type ProviderListOperationsNextResponse = CsmOperationCollection;
 
 /** Optional parameters. */
 export interface ProviderGetWebAppStacksNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Stack OS Type */
-  stackOsType?: Enum14;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWebAppStacksNext operation. */
 export type ProviderGetWebAppStacksNextResponse = WebAppStackCollection;
 
 /** Optional parameters. */
 export interface ProviderGetAvailableStacksOnPremNextOptionalParams
-  extends coreClient.OperationOptions {
-  osTypeSelected?: Enum15;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAvailableStacksOnPremNext operation. */
 export type ProviderGetAvailableStacksOnPremNextResponse = ApplicationStackCollection;
@@ -10291,60 +10250,35 @@ export interface RecommendationsDisableRecommendationForSiteOptionalParams
 
 /** Optional parameters. */
 export interface RecommendationsListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
-  filter?: string;
-  /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-  featured?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type RecommendationsListNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListHistoryForHostingEnvironmentNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
-  filter?: string;
-  /** Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations. */
-  expiredOnly?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHistoryForHostingEnvironmentNext operation. */
 export type RecommendationsListHistoryForHostingEnvironmentNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListRecommendedRulesForHostingEnvironmentNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
-  filter?: string;
-  /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-  featured?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRecommendedRulesForHostingEnvironmentNext operation. */
 export type RecommendationsListRecommendedRulesForHostingEnvironmentNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListHistoryForWebAppNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
-  filter?: string;
-  /** Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations. */
-  expiredOnly?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHistoryForWebAppNext operation. */
 export type RecommendationsListHistoryForWebAppNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListRecommendedRulesForWebAppNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
-  filter?: string;
-  /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
-  featured?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRecommendedRulesForWebAppNext operation. */
 export type RecommendationsListRecommendedRulesForWebAppNextResponse = RecommendationCollection;
@@ -10548,28 +10482,14 @@ export type ListSourceControlsNextResponse = SourceControlCollection;
 
 /** Optional parameters. */
 export interface ListBillingMetersNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Azure Location of billable resource */
-  billingLocation?: string;
-  /** App Service OS type meters used for */
-  osType?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBillingMetersNext operation. */
 export type ListBillingMetersNextResponse = BillingMeterCollection;
 
 /** Optional parameters. */
 export interface ListGeoRegionsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Name of SKU used to filter the regions. */
-  sku?: SkuName;
-  /** Specify <code>true</code> if you want to filter to only regions that support Linux workers. */
-  linuxWorkersEnabled?: boolean;
-  /** Specify <code>true</code> if you want to filter to only regions that support Xenon workers. */
-  xenonWorkersEnabled?: boolean;
-  /** Specify <code>true</code> if you want to filter to only regions that support Linux Consumption Workers. */
-  linuxDynamicWorkersEnabled?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listGeoRegionsNext operation. */
 export type ListGeoRegionsNextResponse = GeoRegionCollection;
@@ -13947,10 +13867,7 @@ export type WebAppsListNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface WebAppsListByResourceGroupNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Specify <strong>true</strong> to include deployment slots in results. The default is false, which only gives you the production slot of all apps. */
-  includeSlots?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type WebAppsListByResourceGroupNextResponse = WebAppCollection;
@@ -14069,10 +13986,7 @@ export type WebAppsListSiteBackupsNextResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsListPerfMonCountersNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPerfMonCountersNext operation. */
 export type WebAppsListPerfMonCountersNextResponse = PerfMonCounterCollection;
@@ -14240,10 +14154,7 @@ export type WebAppsListSiteBackupsSlotNextResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsListPerfMonCountersSlotNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPerfMonCountersSlotNext operation. */
 export type WebAppsListPerfMonCountersSlotNextResponse = PerfMonCounterCollection;
@@ -14327,10 +14238,7 @@ export type WebAppsListTriggeredWebJobHistorySlotNextResponse = TriggeredJobHist
 
 /** Optional parameters. */
 export interface WebAppsListUsagesSlotNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only information specified in the filter (using OData syntax). For example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listUsagesSlotNext operation. */
 export type WebAppsListUsagesSlotNextResponse = CsmUsageQuotaCollection;
@@ -14379,10 +14287,7 @@ export type WebAppsListTriggeredWebJobHistoryNextResponse = TriggeredJobHistoryC
 
 /** Optional parameters. */
 export interface WebAppsListUsagesNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Return only information specified in the filter (using OData syntax). For example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listUsagesNext operation. */
 export type WebAppsListUsagesNextResponse = CsmUsageQuotaCollection;

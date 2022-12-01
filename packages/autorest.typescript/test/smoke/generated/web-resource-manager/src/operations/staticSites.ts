@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { StaticSites } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,35 +23,43 @@ import {
   StaticSiteARMResource,
   StaticSitesListNextOptionalParams,
   StaticSitesListOptionalParams,
+  StaticSitesListResponse,
   StaticSitesGetStaticSitesByResourceGroupNextOptionalParams,
   StaticSitesGetStaticSitesByResourceGroupOptionalParams,
+  StaticSitesGetStaticSitesByResourceGroupResponse,
   StaticSiteUserARMResource,
   StaticSitesListStaticSiteUsersNextOptionalParams,
   StaticSitesListStaticSiteUsersOptionalParams,
+  StaticSitesListStaticSiteUsersResponse,
   StaticSiteBuildARMResource,
   StaticSitesGetStaticSiteBuildsNextOptionalParams,
   StaticSitesGetStaticSiteBuildsOptionalParams,
+  StaticSitesGetStaticSiteBuildsResponse,
   StaticSiteFunctionOverviewARMResource,
   StaticSitesListStaticSiteBuildFunctionsNextOptionalParams,
   StaticSitesListStaticSiteBuildFunctionsOptionalParams,
+  StaticSitesListStaticSiteBuildFunctionsResponse,
   StaticSiteUserProvidedFunctionAppARMResource,
   StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildNextOptionalParams,
   StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildResponse,
   StaticSiteCustomDomainOverviewARMResource,
   StaticSitesListStaticSiteCustomDomainsNextOptionalParams,
   StaticSitesListStaticSiteCustomDomainsOptionalParams,
+  StaticSitesListStaticSiteCustomDomainsResponse,
   StaticSitesListStaticSiteFunctionsNextOptionalParams,
   StaticSitesListStaticSiteFunctionsOptionalParams,
+  StaticSitesListStaticSiteFunctionsResponse,
   RemotePrivateEndpointConnectionARMResource,
   StaticSitesGetPrivateEndpointConnectionListNextOptionalParams,
   StaticSitesGetPrivateEndpointConnectionListOptionalParams,
+  StaticSitesGetPrivateEndpointConnectionListResponse,
   StaticSitesGetUserProvidedFunctionAppsForStaticSiteNextOptionalParams,
   StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams,
+  StaticSitesGetUserProvidedFunctionAppsForStaticSiteResponse,
   StaticSitesWorkflowPreviewRequest,
   StaticSitesPreviewWorkflowOptionalParams,
   StaticSitesPreviewWorkflowResponse,
-  StaticSitesListResponse,
-  StaticSitesGetStaticSitesByResourceGroupResponse,
   StaticSitesGetStaticSiteOptionalParams,
   StaticSitesGetStaticSiteResponse,
   StaticSitesCreateOrUpdateStaticSiteOptionalParams,
@@ -59,11 +68,9 @@ import {
   StaticSitePatchResource,
   StaticSitesUpdateStaticSiteOptionalParams,
   StaticSitesUpdateStaticSiteResponse,
-  StaticSitesListStaticSiteUsersResponse,
   StaticSitesDeleteStaticSiteUserOptionalParams,
   StaticSitesUpdateStaticSiteUserOptionalParams,
   StaticSitesUpdateStaticSiteUserResponse,
-  StaticSitesGetStaticSiteBuildsResponse,
   StaticSitesGetStaticSiteBuildOptionalParams,
   StaticSitesGetStaticSiteBuildResponse,
   StaticSitesDeleteStaticSiteBuildOptionalParams,
@@ -72,12 +79,10 @@ import {
   StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsResponse,
   StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams,
   StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse,
-  StaticSitesListStaticSiteBuildFunctionsResponse,
   StaticSitesListStaticSiteBuildAppSettingsOptionalParams,
   StaticSitesListStaticSiteBuildAppSettingsResponse,
   StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams,
   StaticSitesListStaticSiteBuildFunctionAppSettingsResponse,
-  StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildResponse,
   StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams,
   StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildResponse,
   StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams,
@@ -92,7 +97,6 @@ import {
   StaticSiteUserInvitationRequestResource,
   StaticSitesCreateUserRolesInvitationLinkOptionalParams,
   StaticSitesCreateUserRolesInvitationLinkResponse,
-  StaticSitesListStaticSiteCustomDomainsResponse,
   StaticSitesGetStaticSiteCustomDomainOptionalParams,
   StaticSitesGetStaticSiteCustomDomainResponse,
   StaticSiteCustomDomainRequestPropertiesARMResource,
@@ -101,7 +105,6 @@ import {
   StaticSitesDeleteStaticSiteCustomDomainOptionalParams,
   StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams,
   StaticSitesDetachStaticSiteOptionalParams,
-  StaticSitesListStaticSiteFunctionsResponse,
   StaticSitesListStaticSiteAppSettingsOptionalParams,
   StaticSitesListStaticSiteAppSettingsResponse,
   StaticSitesListStaticSiteConfiguredRolesOptionalParams,
@@ -110,7 +113,6 @@ import {
   StaticSitesListStaticSiteFunctionAppSettingsResponse,
   StaticSitesListStaticSiteSecretsOptionalParams,
   StaticSitesListStaticSiteSecretsResponse,
-  StaticSitesGetPrivateEndpointConnectionListResponse,
   StaticSitesGetPrivateEndpointConnectionOptionalParams,
   StaticSitesGetPrivateEndpointConnectionResponse,
   PrivateLinkConnectionApprovalRequestResource,
@@ -122,7 +124,6 @@ import {
   StaticSitesGetPrivateLinkResourcesResponse,
   StaticSiteResetPropertiesARMResource,
   StaticSitesResetStaticSiteApiKeyOptionalParams,
-  StaticSitesGetUserProvidedFunctionAppsForStaticSiteResponse,
   StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams,
   StaticSitesGetUserProvidedFunctionAppForStaticSiteResponse,
   StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams,
@@ -169,22 +170,34 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: StaticSitesListOptionalParams
+    options?: StaticSitesListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteARMResource[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -216,10 +229,14 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getStaticSitesByResourceGroupPagingPage(
           resourceGroupName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -227,14 +244,21 @@ export class StaticSitesImpl implements StaticSites {
 
   private async *getStaticSitesByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams
+    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteARMResource[]> {
-    let result = await this._getStaticSitesByResourceGroup(
-      resourceGroupName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesGetStaticSitesByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getStaticSitesByResourceGroup(
+        resourceGroupName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getStaticSitesByResourceGroupNext(
         resourceGroupName,
@@ -242,7 +266,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -284,12 +310,16 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listStaticSiteUsersPagingPage(
           resourceGroupName,
           name,
           authprovider,
-          options
+          options,
+          settings
         );
       }
     };
@@ -299,16 +329,23 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     authprovider: string,
-    options?: StaticSitesListStaticSiteUsersOptionalParams
+    options?: StaticSitesListStaticSiteUsersOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteUserARMResource[]> {
-    let result = await this._listStaticSiteUsers(
-      resourceGroupName,
-      name,
-      authprovider,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesListStaticSiteUsersResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listStaticSiteUsers(
+        resourceGroupName,
+        name,
+        authprovider,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listStaticSiteUsersNext(
         resourceGroupName,
@@ -318,7 +355,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -361,11 +400,15 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getStaticSiteBuildsPagingPage(
           resourceGroupName,
           name,
-          options
+          options,
+          settings
         );
       }
     };
@@ -374,15 +417,22 @@ export class StaticSitesImpl implements StaticSites {
   private async *getStaticSiteBuildsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesGetStaticSiteBuildsOptionalParams
+    options?: StaticSitesGetStaticSiteBuildsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteBuildARMResource[]> {
-    let result = await this._getStaticSiteBuilds(
-      resourceGroupName,
-      name,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesGetStaticSiteBuildsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getStaticSiteBuilds(
+        resourceGroupName,
+        name,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getStaticSiteBuildsNext(
         resourceGroupName,
@@ -391,7 +441,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -435,12 +487,16 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listStaticSiteBuildFunctionsPagingPage(
           resourceGroupName,
           name,
           environmentName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -450,16 +506,23 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
+    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource[]> {
-    let result = await this._listStaticSiteBuildFunctions(
-      resourceGroupName,
-      name,
-      environmentName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesListStaticSiteBuildFunctionsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listStaticSiteBuildFunctions(
+        resourceGroupName,
+        name,
+        environmentName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listStaticSiteBuildFunctionsNext(
         resourceGroupName,
@@ -469,7 +532,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -516,12 +581,16 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getUserProvidedFunctionAppsForStaticSiteBuildPagingPage(
           resourceGroupName,
           name,
           environmentName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -531,16 +600,23 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource[]> {
-    let result = await this._getUserProvidedFunctionAppsForStaticSiteBuild(
-      resourceGroupName,
-      name,
-      environmentName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getUserProvidedFunctionAppsForStaticSiteBuild(
+        resourceGroupName,
+        name,
+        environmentName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getUserProvidedFunctionAppsForStaticSiteBuildNext(
         resourceGroupName,
@@ -550,7 +626,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -593,11 +671,15 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listStaticSiteCustomDomainsPagingPage(
           resourceGroupName,
           name,
-          options
+          options,
+          settings
         );
       }
     };
@@ -606,15 +688,22 @@ export class StaticSitesImpl implements StaticSites {
   private async *listStaticSiteCustomDomainsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams
+    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource[]> {
-    let result = await this._listStaticSiteCustomDomains(
-      resourceGroupName,
-      name,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesListStaticSiteCustomDomainsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listStaticSiteCustomDomains(
+        resourceGroupName,
+        name,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listStaticSiteCustomDomainsNext(
         resourceGroupName,
@@ -623,7 +712,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -664,11 +755,15 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listStaticSiteFunctionsPagingPage(
           resourceGroupName,
           name,
-          options
+          options,
+          settings
         );
       }
     };
@@ -677,15 +772,22 @@ export class StaticSitesImpl implements StaticSites {
   private async *listStaticSiteFunctionsPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesListStaticSiteFunctionsOptionalParams
+    options?: StaticSitesListStaticSiteFunctionsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteFunctionOverviewARMResource[]> {
-    let result = await this._listStaticSiteFunctions(
-      resourceGroupName,
-      name,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesListStaticSiteFunctionsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listStaticSiteFunctions(
+        resourceGroupName,
+        name,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listStaticSiteFunctionsNext(
         resourceGroupName,
@@ -694,7 +796,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -735,11 +839,15 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getPrivateEndpointConnectionListPagingPage(
           resourceGroupName,
           name,
-          options
+          options,
+          settings
         );
       }
     };
@@ -748,15 +856,22 @@ export class StaticSitesImpl implements StaticSites {
   private async *getPrivateEndpointConnectionListPagingPage(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams
+    options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<RemotePrivateEndpointConnectionARMResource[]> {
-    let result = await this._getPrivateEndpointConnectionList(
-      resourceGroupName,
-      name,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesGetPrivateEndpointConnectionListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getPrivateEndpointConnectionList(
+        resourceGroupName,
+        name,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getPrivateEndpointConnectionListNext(
         resourceGroupName,
@@ -765,7 +880,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -806,11 +923,15 @@ export class StaticSitesImpl implements StaticSites {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.getUserProvidedFunctionAppsForStaticSitePagingPage(
           resourceGroupName,
           name,
-          options
+          options,
+          settings
         );
       }
     };
@@ -819,15 +940,22 @@ export class StaticSitesImpl implements StaticSites {
   private async *getUserProvidedFunctionAppsForStaticSitePagingPage(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource[]> {
-    let result = await this._getUserProvidedFunctionAppsForStaticSite(
-      resourceGroupName,
-      name,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: StaticSitesGetUserProvidedFunctionAppsForStaticSiteResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getUserProvidedFunctionAppsForStaticSite(
+        resourceGroupName,
+        name,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getUserProvidedFunctionAppsForStaticSiteNext(
         resourceGroupName,
@@ -836,7 +964,9 @@ export class StaticSitesImpl implements StaticSites {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -4181,7 +4311,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4201,7 +4330,6 @@ const getStaticSitesByResourceGroupNextOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4222,7 +4350,6 @@ const listStaticSiteUsersNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4245,7 +4372,6 @@ const getStaticSiteBuildsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4267,7 +4393,6 @@ const listStaticSiteBuildFunctionsNextOperationSpec: coreClient.OperationSpec = 
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4290,7 +4415,6 @@ const getUserProvidedFunctionAppsForStaticSiteBuildNextOperationSpec: coreClient
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4313,7 +4437,6 @@ const listStaticSiteCustomDomainsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4335,7 +4458,6 @@ const listStaticSiteFunctionsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4357,7 +4479,6 @@ const getPrivateEndpointConnectionListNextOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -4379,7 +4500,6 @@ const getUserProvidedFunctionAppsForStaticSiteNextOperationSpec: coreClient.Oper
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

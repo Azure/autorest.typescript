@@ -159,10 +159,7 @@ describe("LROs", () => {
         await client.lROs.beginPut200Acceptedcanceled200AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long running operation has failed. The provisioning state: canceled."
-        );
+        assert.equal(e.message, "Operation was canceled");
       }
     });
 
@@ -180,10 +177,7 @@ describe("LROs", () => {
         await client.lROs.beginPut201CreatingFailed200AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long running operation has failed. The provisioning state: failed."
-        );
+        assert.equal(e.message, "The long-running operation has failed");
       }
     });
   });
@@ -195,27 +189,13 @@ describe("LROs", () => {
     });
 
     it("should handle post202NoRetry204", async () => {
-      try {
-        await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
-        throw new Error("should have thrown instead");
-      } catch (e) {
-        assert.equal(
-          e.message,
-          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
-        );
-      }
+      await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
+      check204(lastResponse);
     });
 
     it("should handle deleteNoHeaderInRetry", async () => {
-      try {
-        await client.lROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
-        throw new Error("should have thrown instead");
-      } catch (e) {
-        assert.equal(
-          e.message,
-          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
-        );
-      }
+      await client.lROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
+      check204(lastResponse);
     });
 
     it("should handle put202Retry200", async () => {
@@ -250,15 +230,8 @@ describe("LROs", () => {
     });
 
     it("should handle delete202NoRetry204", async () => {
-      try {
-        await client.lROs.beginDelete202NoRetry204AndWait(LROOptions);
-        throw new Error("should have thrown instead");
-      } catch (e) {
-        assert.equal(
-          e.message,
-          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
-        );
-      }
+      await client.lROs.beginDelete202NoRetry204AndWait(LROOptions);
+      check204(lastResponse);
     });
 
     it("should handle deleteProvisioning202Accepted200Succeeded", async () => {
@@ -346,10 +319,7 @@ describe("LROs", () => {
         await client.lROs.beginDeleteAsyncRetrycanceledAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long running operation has failed. The provisioning state: canceled."
-        );
+        assert.equal(e.message, "Operation was canceled");
       }
     });
 
@@ -358,10 +328,7 @@ describe("LROs", () => {
         await client.lROs.beginDeleteAsyncRetryFailedAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long running operation has failed. The provisioning state: failed."
-        );
+        assert.equal(e.message, "The long-running operation has failed");
       }
     });
 
@@ -395,10 +362,7 @@ describe("LROs", () => {
         await client.lROs.beginPutAsyncRetryFailedAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long running operation has failed. The provisioning state: failed."
-        );
+        assert.equal(e.message, "The long-running operation has failed");
       }
     });
 
@@ -433,10 +397,7 @@ describe("LROs", () => {
         await client.lROs.beginPutAsyncNoRetrycanceledAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long running operation has failed. The provisioning state: canceled."
-        );
+        assert.equal(e.message, "Operation was canceled");
       }
     });
 
@@ -469,10 +430,7 @@ describe("LROs", () => {
         });
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long running operation has failed. The provisioning state: failed."
-        );
+        assert.equal(e.message, "The long-running operation has failed");
       }
     });
 
@@ -492,10 +450,7 @@ describe("LROs", () => {
         });
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(
-          e.message,
-          "The long running operation has failed. The provisioning state: canceled."
-        );
+        assert.equal(e.message, "Operation was canceled");
       }
     });
   });

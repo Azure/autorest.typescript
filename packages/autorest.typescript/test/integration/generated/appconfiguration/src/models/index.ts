@@ -634,10 +634,6 @@ export type CheckRevisionsResponse = AppConfigurationClientCheckRevisionsHeaders
 
 /** Optional parameters. */
 export interface GetKeysNextOptionalParams extends coreClient.OperationOptions {
-  /** A filter for the name of the returned keys. */
-  name?: string;
-  /** Instructs the server to return elements that appear after the element referred to by the specified token. */
-  after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
   acceptDatetime?: string;
 }
@@ -649,16 +645,8 @@ export type GetKeysNextResponse = AppConfigurationClientGetKeysNextHeaders &
 /** Optional parameters. */
 export interface GetKeyValuesNextOptionalParams
   extends coreClient.OperationOptions {
-  /** Instructs the server to return elements that appear after the element referred to by the specified token. */
-  after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
   acceptDatetime?: string;
-  /** A filter used to match keys. */
-  key?: string;
-  /** A filter used to match labels */
-  label?: string;
-  /** Used to select what fields are present in the returned resource(s). */
-  select?: Get6ItemsItem[];
 }
 
 /** Contains response data for the getKeyValuesNext operation. */
@@ -668,14 +656,8 @@ export type GetKeyValuesNextResponse = AppConfigurationClientGetKeyValuesNextHea
 /** Optional parameters. */
 export interface GetLabelsNextOptionalParams
   extends coreClient.OperationOptions {
-  /** A filter for the name of the returned labels. */
-  name?: string;
-  /** Instructs the server to return elements that appear after the element referred to by the specified token. */
-  after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
   acceptDatetime?: string;
-  /** Used to select what fields are present in the returned resource(s). */
-  select?: string[];
 }
 
 /** Contains response data for the getLabelsNext operation. */
@@ -685,16 +667,8 @@ export type GetLabelsNextResponse = AppConfigurationClientGetLabelsNextHeaders &
 /** Optional parameters. */
 export interface GetRevisionsNextOptionalParams
   extends coreClient.OperationOptions {
-  /** Instructs the server to return elements that appear after the element referred to by the specified token. */
-  after?: string;
   /** Requests the server to respond with the state of the resource at the specified time. */
   acceptDatetime?: string;
-  /** A filter used to match keys. */
-  key?: string;
-  /** A filter used to match labels */
-  label?: string;
-  /** Used to select what fields are present in the returned resource(s). */
-  select?: Enum4[];
 }
 
 /** Contains response data for the getRevisionsNext operation. */

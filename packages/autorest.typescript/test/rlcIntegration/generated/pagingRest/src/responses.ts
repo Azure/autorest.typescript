@@ -21,6 +21,20 @@ export interface PagingGetNoItemNamePagesDefaultResponse extends HttpResponse {
   body: Record<string, unknown>;
 }
 
+/** A paging operation that gets an empty next link and should stop after page 1. */
+export interface PagingGetEmptyNextLinkNamePages200Response
+  extends HttpResponse {
+  status: "200";
+  body: ProductResultValueOutput;
+}
+
+/** A paging operation that gets an empty next link and should stop after page 1. */
+export interface PagingGetEmptyNextLinkNamePagesDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: Record<string, unknown>;
+}
+
 /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
 export interface PagingGetNullNextLinkNamePages200Response
   extends HttpResponse {
@@ -43,6 +57,20 @@ export interface PagingGetSinglePages200Response extends HttpResponse {
 
 /** A paging operation that finishes on the first call without a nextlink */
 export interface PagingGetSinglePagesDefaultResponse extends HttpResponse {
+  status: string;
+  body: Record<string, unknown>;
+}
+
+/** A paging operation that finishes on the first call with body params without a nextlink */
+export interface PagingGetSinglePagesWithBodyParams200Response
+  extends HttpResponse {
+  status: "200";
+  body: ProductResultOutput;
+}
+
+/** A paging operation that finishes on the first call with body params without a nextlink */
+export interface PagingGetSinglePagesWithBodyParamsDefaultResponse
+  extends HttpResponse {
   status: string;
   body: Record<string, unknown>;
 }

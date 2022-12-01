@@ -8,6 +8,9 @@ import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
+// @public
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public (undocumented)
 export class ManagementLinkClient extends coreClient.ServiceClient {
     // (undocumented)
@@ -138,7 +141,6 @@ export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult;
 
 // @public
 export interface ResourceLinksListAtSubscriptionNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public

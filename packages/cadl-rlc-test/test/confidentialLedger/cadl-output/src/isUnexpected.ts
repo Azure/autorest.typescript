@@ -1,31 +1,34 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
-  ConfidentialLedgerListCollections200Response,
-  ConfidentialLedgerListCollectionsDefaultResponse,
-  ConfidentialLedgerGetEnclaveQuotes200Response,
-  ConfidentialLedgerGetEnclaveQuotesDefaultResponse,
-  ConfidentialLedgerGetConstitution200Response,
-  ConfidentialLedgerGetConstitutionDefaultResponse,
-  ConfidentialLedgerGetConsortiumMembers200Response,
-  ConfidentialLedgerGetConsortiumMembersDefaultResponse,
-  ConfidentialLedgerListLedgerEntries200Response,
-  ConfidentialLedgerListLedgerEntriesDefaultResponse,
-  ConfidentialLedgerCreateLedgerEntry201Response,
-  ConfidentialLedgerCreateLedgerEntryDefaultResponse,
-  ConfidentialLedgerGetLedgerEntry200Response,
-  ConfidentialLedgerGetLedgerEntryDefaultResponse,
-  ConfidentialLedgerGetReceipt200Response,
-  ConfidentialLedgerGetReceiptDefaultResponse,
-  ConfidentialLedgerGetTransactionStatus200Response,
-  ConfidentialLedgerGetTransactionStatusDefaultResponse,
-  ConfidentialLedgerGetCurrentLedgerEntry200Response,
-  ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse,
-  ConfidentialLedgerDeleteUser204Response,
-  ConfidentialLedgerDeleteUserDefaultResponse,
-  ConfidentialLedgerGetUser200Response,
-  ConfidentialLedgerGetUserDefaultResponse,
-  ConfidentialLedgerCreateOrUpdateUser200Response,
-  ConfidentialLedgerCreateOrUpdateUser201Response,
-  ConfidentialLedgerCreateOrUpdateUserDefaultResponse,
+  ListCollections200Response,
+  ListCollectionsDefaultResponse,
+  GetEnclaveQuotes200Response,
+  GetEnclaveQuotesDefaultResponse,
+  GetConstitution200Response,
+  GetConstitutionDefaultResponse,
+  GetConsortiumMembers200Response,
+  GetConsortiumMembersDefaultResponse,
+  ListLedgerEntries200Response,
+  ListLedgerEntriesDefaultResponse,
+  CreateLedgerEntry201Response,
+  CreateLedgerEntryDefaultResponse,
+  GetLedgerEntry200Response,
+  GetLedgerEntryDefaultResponse,
+  GetReceipt200Response,
+  GetReceiptDefaultResponse,
+  GetTransactionStatus200Response,
+  GetTransactionStatusDefaultResponse,
+  GetCurrentLedgerEntry200Response,
+  GetCurrentLedgerEntryDefaultResponse,
+  DeleteUser204Response,
+  DeleteUserDefaultResponse,
+  GetUser200Response,
+  GetUserDefaultResponse,
+  CreateOrUpdateUser200Response,
+  CreateOrUpdateUser201Response,
+  CreateOrUpdateUserDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -45,126 +48,114 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response:
-    | ConfidentialLedgerListCollections200Response
-    | ConfidentialLedgerListCollectionsDefaultResponse
-): response is ConfidentialLedgerListCollectionsDefaultResponse;
+  response: ListCollections200Response | ListCollectionsDefaultResponse
+): response is ListCollectionsDefaultResponse;
+export function isUnexpected(
+  response: GetEnclaveQuotes200Response | GetEnclaveQuotesDefaultResponse
+): response is GetEnclaveQuotesDefaultResponse;
+export function isUnexpected(
+  response: GetConstitution200Response | GetConstitutionDefaultResponse
+): response is GetConstitutionDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetEnclaveQuotes200Response
-    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
-): response is ConfidentialLedgerGetEnclaveQuotesDefaultResponse;
+    | GetConsortiumMembers200Response
+    | GetConsortiumMembersDefaultResponse
+): response is GetConsortiumMembersDefaultResponse;
+export function isUnexpected(
+  response: ListLedgerEntries200Response | ListLedgerEntriesDefaultResponse
+): response is ListLedgerEntriesDefaultResponse;
+export function isUnexpected(
+  response: CreateLedgerEntry201Response | CreateLedgerEntryDefaultResponse
+): response is CreateLedgerEntryDefaultResponse;
+export function isUnexpected(
+  response: GetLedgerEntry200Response | GetLedgerEntryDefaultResponse
+): response is GetLedgerEntryDefaultResponse;
+export function isUnexpected(
+  response: GetReceipt200Response | GetReceiptDefaultResponse
+): response is GetReceiptDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetConstitution200Response
-    | ConfidentialLedgerGetConstitutionDefaultResponse
-): response is ConfidentialLedgerGetConstitutionDefaultResponse;
+    | GetTransactionStatus200Response
+    | GetTransactionStatusDefaultResponse
+): response is GetTransactionStatusDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerGetConsortiumMembers200Response
-    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-): response is ConfidentialLedgerGetConsortiumMembersDefaultResponse;
+    | GetCurrentLedgerEntry200Response
+    | GetCurrentLedgerEntryDefaultResponse
+): response is GetCurrentLedgerEntryDefaultResponse;
+export function isUnexpected(
+  response: DeleteUser204Response | DeleteUserDefaultResponse
+): response is DeleteUserDefaultResponse;
+export function isUnexpected(
+  response: GetUser200Response | GetUserDefaultResponse
+): response is GetUserDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerListLedgerEntries200Response
-    | ConfidentialLedgerListLedgerEntriesDefaultResponse
-): response is ConfidentialLedgerListLedgerEntriesDefaultResponse;
+    | CreateOrUpdateUser200Response
+    | CreateOrUpdateUser201Response
+    | CreateOrUpdateUserDefaultResponse
+): response is CreateOrUpdateUserDefaultResponse;
 export function isUnexpected(
   response:
-    | ConfidentialLedgerCreateLedgerEntry201Response
-    | ConfidentialLedgerCreateLedgerEntryDefaultResponse
-): response is ConfidentialLedgerCreateLedgerEntryDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerGetLedgerEntry200Response
-    | ConfidentialLedgerGetLedgerEntryDefaultResponse
-): response is ConfidentialLedgerGetLedgerEntryDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerGetReceipt200Response
-    | ConfidentialLedgerGetReceiptDefaultResponse
-): response is ConfidentialLedgerGetReceiptDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerGetTransactionStatus200Response
-    | ConfidentialLedgerGetTransactionStatusDefaultResponse
-): response is ConfidentialLedgerGetTransactionStatusDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerGetCurrentLedgerEntry200Response
-    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
-): response is ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerDeleteUser204Response
-    | ConfidentialLedgerDeleteUserDefaultResponse
-): response is ConfidentialLedgerDeleteUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerGetUser200Response
-    | ConfidentialLedgerGetUserDefaultResponse
-): response is ConfidentialLedgerGetUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerCreateOrUpdateUser200Response
-    | ConfidentialLedgerCreateOrUpdateUser201Response
-    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
-): response is ConfidentialLedgerCreateOrUpdateUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ConfidentialLedgerListCollections200Response
-    | ConfidentialLedgerListCollectionsDefaultResponse
-    | ConfidentialLedgerGetEnclaveQuotes200Response
-    | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
-    | ConfidentialLedgerGetConstitution200Response
-    | ConfidentialLedgerGetConstitutionDefaultResponse
-    | ConfidentialLedgerGetConsortiumMembers200Response
-    | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-    | ConfidentialLedgerListLedgerEntries200Response
-    | ConfidentialLedgerListLedgerEntriesDefaultResponse
-    | ConfidentialLedgerCreateLedgerEntry201Response
-    | ConfidentialLedgerCreateLedgerEntryDefaultResponse
-    | ConfidentialLedgerGetLedgerEntry200Response
-    | ConfidentialLedgerGetLedgerEntryDefaultResponse
-    | ConfidentialLedgerGetReceipt200Response
-    | ConfidentialLedgerGetReceiptDefaultResponse
-    | ConfidentialLedgerGetTransactionStatus200Response
-    | ConfidentialLedgerGetTransactionStatusDefaultResponse
-    | ConfidentialLedgerGetCurrentLedgerEntry200Response
-    | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
-    | ConfidentialLedgerDeleteUser204Response
-    | ConfidentialLedgerDeleteUserDefaultResponse
-    | ConfidentialLedgerGetUser200Response
-    | ConfidentialLedgerGetUserDefaultResponse
-    | ConfidentialLedgerCreateOrUpdateUser200Response
-    | ConfidentialLedgerCreateOrUpdateUser201Response
-    | ConfidentialLedgerCreateOrUpdateUserDefaultResponse
+    | ListCollections200Response
+    | ListCollectionsDefaultResponse
+    | GetEnclaveQuotes200Response
+    | GetEnclaveQuotesDefaultResponse
+    | GetConstitution200Response
+    | GetConstitutionDefaultResponse
+    | GetConsortiumMembers200Response
+    | GetConsortiumMembersDefaultResponse
+    | ListLedgerEntries200Response
+    | ListLedgerEntriesDefaultResponse
+    | CreateLedgerEntry201Response
+    | CreateLedgerEntryDefaultResponse
+    | GetLedgerEntry200Response
+    | GetLedgerEntryDefaultResponse
+    | GetReceipt200Response
+    | GetReceiptDefaultResponse
+    | GetTransactionStatus200Response
+    | GetTransactionStatusDefaultResponse
+    | GetCurrentLedgerEntry200Response
+    | GetCurrentLedgerEntryDefaultResponse
+    | DeleteUser204Response
+    | DeleteUserDefaultResponse
+    | GetUser200Response
+    | GetUserDefaultResponse
+    | CreateOrUpdateUser200Response
+    | CreateOrUpdateUser201Response
+    | CreateOrUpdateUserDefaultResponse
 ): response is
-  | ConfidentialLedgerListCollectionsDefaultResponse
-  | ConfidentialLedgerGetEnclaveQuotesDefaultResponse
-  | ConfidentialLedgerGetConstitutionDefaultResponse
-  | ConfidentialLedgerGetConsortiumMembersDefaultResponse
-  | ConfidentialLedgerListLedgerEntriesDefaultResponse
-  | ConfidentialLedgerCreateLedgerEntryDefaultResponse
-  | ConfidentialLedgerGetLedgerEntryDefaultResponse
-  | ConfidentialLedgerGetReceiptDefaultResponse
-  | ConfidentialLedgerGetTransactionStatusDefaultResponse
-  | ConfidentialLedgerGetCurrentLedgerEntryDefaultResponse
-  | ConfidentialLedgerDeleteUserDefaultResponse
-  | ConfidentialLedgerGetUserDefaultResponse
-  | ConfidentialLedgerCreateOrUpdateUserDefaultResponse {
+  | ListCollectionsDefaultResponse
+  | GetEnclaveQuotesDefaultResponse
+  | GetConstitutionDefaultResponse
+  | GetConsortiumMembersDefaultResponse
+  | ListLedgerEntriesDefaultResponse
+  | CreateLedgerEntryDefaultResponse
+  | GetLedgerEntryDefaultResponse
+  | GetReceiptDefaultResponse
+  | GetTransactionStatusDefaultResponse
+  | GetCurrentLedgerEntryDefaultResponse
+  | DeleteUserDefaultResponse
+  | GetUserDefaultResponse
+  | CreateOrUpdateUserDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
   let pathDetails = responseMap[`${method} ${url.pathname}`];
   if (!pathDetails) {
-    pathDetails = geParametrizedPathSuccess(method, url.pathname);
+    pathDetails = getParametrizedPathSuccess(method, url.pathname);
   }
   return !pathDetails.includes(response.status);
 }
 
-function geParametrizedPathSuccess(method: string, path: string): string[] {
+function getParametrizedPathSuccess(method: string, path: string): string[] {
   const pathParts = path.split("/");
+
+  // Traverse list to match the longest candidate
+  // matchedLen: the length of candidate path
+  // matchedValue: the matched status code array
+  let matchedLen = -1,
+    matchedValue: string[] = [];
 
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(responseMap)) {
@@ -177,49 +168,52 @@ function geParametrizedPathSuccess(method: string, path: string): string[] {
     // Get each part of the url path
     const candidateParts = candidatePath.split("/");
 
-    // If the candidate and actual paths don't match in size
-    // we move on to the next candidate path
-    if (
-      candidateParts.length === pathParts.length &&
-      hasParametrizedPath(key)
+    // track if we have found a match to return the values found.
+    let found = true;
+    for (
+      let i = candidateParts.length - 1, j = pathParts.length - 1;
+      i >= 1 && j >= 1;
+      i--, j--
     ) {
-      // track if we have found a match to return the values found.
-      let found = true;
-      for (let i = 0; i < candidateParts.length; i++) {
-        if (
-          candidateParts[i]?.startsWith("{") &&
-          candidateParts[i]?.endsWith("}")
-        ) {
-          // If the current part of the candidate is a "template" part
-          // it is a match with the actual path part on hand
-          // skip as the parameterized part can match anything
-          continue;
-        }
+      if (
+        candidateParts[i]?.startsWith("{") &&
+        candidateParts[i]?.indexOf("}") !== -1
+      ) {
+        const start = candidateParts[i]!.indexOf("}") + 1,
+          end = candidateParts[i]?.length;
+        // If the current part of the candidate is a "template" part
+        // Try to use the suffix of pattern to match the path
+        // {guid} ==> $
+        // {guid}:export ==> :export$
+        const isMatched = new RegExp(
+          `${candidateParts[i]?.slice(start, end)}`
+        ).test(pathParts[j] || "");
 
-        // If the candidate part is not a template and
-        // the parts don't match mark the candidate as not found
-        // to move on with the next candidate path.
-        if (candidateParts[i] !== pathParts[i]) {
+        if (!isMatched) {
           found = false;
           break;
         }
+        continue;
       }
 
-      // We finished evaluating the current candidate parts
-      // if all parts matched we return the success values form
-      // the path mapping.
-      if (found) {
-        return value;
+      // If the candidate part is not a template and
+      // the parts don't match mark the candidate as not found
+      // to move on with the next candidate path.
+      if (candidateParts[i] !== pathParts[j]) {
+        found = false;
+        break;
       }
+    }
+
+    // We finished evaluating the current candidate parts
+    // Update the matched value if and only if we found the longer pattern
+    if (found && candidatePath.length > matchedLen) {
+      matchedLen = candidatePath.length;
+      matchedValue = value;
     }
   }
 
-  // No match was found, return an empty array.
-  return [];
-}
-
-function hasParametrizedPath(path: string): boolean {
-  return path.includes("/{");
+  return matchedValue;
 }
 
 function getPathFromMapKey(mapKey: string): string {

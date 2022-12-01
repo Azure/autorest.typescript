@@ -1,19 +1,18 @@
-# SecurityAADRest client library for JavaScript
+# SecurityAADRest REST client library for JavaScript
 
 Autorest Security Aad REST APIs
 
-**Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/security-aad-rest)
-- [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
 ### Currently supported environments
 
-- Node.js version 14.x.x or higher
+- LTS versions of Node.js
 
 ### Prerequisites
 
@@ -21,7 +20,7 @@ Key links:
 
 ### Install the `@msinternal/security-aad-rest` package
 
-Install the SecurityAADRest client REST client library for JavaScript with `npm`:
+Install the SecurityAADRest REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/security-aad-rest
@@ -49,7 +48,7 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the `AZURE_LOG_LEVEL` environment variable to `info`. Alternatively, logging can be enabled at runtime by calling `setLogLevel` in the `@azure/logger`:
 
 ```javascript
-import { setLogLevel } from "@azure/logger";
+const { setLogLevel } = require("@azure/logger");
 
 setLogLevel("info");
 ```

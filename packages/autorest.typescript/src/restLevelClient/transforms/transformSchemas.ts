@@ -7,7 +7,7 @@ import {
   Property,
   SchemaContext
 } from "@autorest/codemodel";
-import { Schema, ObjectSchema } from "@azure-tools/rlc-codegen";
+import { Schema, ObjectSchema } from "@azure-tools/rlc-common";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { getDocs } from "../getPropertySignature";
 import {

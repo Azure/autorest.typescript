@@ -3,17 +3,9 @@
 
 import { getAutorestOptions, getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
-import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { performCodeModelMutations } from "./mutateCodeModel";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-import { generateKarmaConfigFile } from "../generators/static/karmaConfigFileGenerator";
-import { generateEnvFile } from "../generators/test/envFileGenerator";
-import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
-import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
-import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
-import { generateEsLintConfig } from "../generators/static/esLintConfigGenerator";
-import { generateReadmeFile } from "../generators/static/readmeFileGenerator";
 import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
@@ -34,8 +26,16 @@ import {
   buildTsConfig,
   buildClient,
   buildPaginateHelper,
-  buildPollingHelper
-} from "@azure-tools/rlc-codegen";
+  buildPollingHelper,
+  buildEsLintConfig,
+  buildKarmaConfigFile,
+  buildEnvFile,
+  buildEnvBrowserFile,
+  buildRecordedClientFile,
+  buildSampleTest,
+  buildLicenseFile,
+  buildReadmeFile
+} from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
   generateSchemaTypes,
@@ -69,18 +69,26 @@ export async function generateRestLevelClient() {
   // then transform CodeModel to RLCModel
   const rlcModels = transform(model);
 
-  generateReadmeFile(model, project);
-  generateLicenseFile(project);
+  // buildReadmeFile
+  generateFileByBuilder(project, buildReadmeFile, rlcModels);
+  // buildLicenseFile
+  generateFileByBuilder(project, buildLicenseFile, rlcModels);
   // buildApiExtractorConfig
   generateFileByBuilder(project, buildApiExtractorConfig, rlcModels);
   // buildRollupConfig
   generateFileByBuilder(project, buildRollupConfig, rlcModels);
-  generateEsLintConfig(project);
-  generateKarmaConfigFile(project);
-  generateEnvFile(project);
-  generateEnvBrowserFile(project);
-  generateRecordedClientFile(project);
-  generateSampleTestFile(project);
+  // buildEsLintConfig
+  generateFileByBuilder(project, buildEsLintConfig, rlcModels);
+  // buildKarmaConfigFile
+  generateFileByBuilder(project, buildKarmaConfigFile, rlcModels);
+  // buildEnvFile
+  generateFileByBuilder(project, buildEnvFile, rlcModels);
+  // buildEnvBrowserFile
+  generateFileByBuilder(project, buildEnvBrowserFile, rlcModels);
+  // buildRecordedClientFile
+  generateFileByBuilder(project, buildRecordedClientFile, rlcModels);
+  // buildSampleTest
+  generateFileByBuilder(project, buildSampleTest, rlcModels);
 
   // buildResponseTypes
   generateFileByBuilder(project, buildResponseTypes, rlcModels);
@@ -141,7 +149,7 @@ export async function generateRestLevelClient() {
     const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;
 
     if (isSourceCode) {
-      fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
+      fileContents = `${licenseHeader.trimStart()}\n${fileContents}`;
     }
 
     // Format the contents if necessary

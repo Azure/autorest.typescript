@@ -31,8 +31,8 @@ async function updateASimpleGalleryApplicationVersion() {
       endOfLifeDate: new Date("2019-07-01T07:00:00Z"),
       manageActions: {
         install:
-          'powershell -command "Expand-Archive -Path package.zip -DestinationPath C:package"',
-        remove: "del C:package "
+          'powershell -command "Expand-Archive -Path package.zip -DestinationPath C:\\package"',
+        remove: "del C:\\package "
       },
       replicaCount: 1,
       source: {

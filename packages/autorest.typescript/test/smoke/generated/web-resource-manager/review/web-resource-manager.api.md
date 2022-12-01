@@ -851,7 +851,6 @@ export type AppServiceEnvironmentsListResponse = AppServiceEnvironmentCollection
 
 // @public
 export interface AppServiceEnvironmentsListUsagesNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -867,7 +866,6 @@ export type AppServiceEnvironmentsListUsagesResponse = CsmUsageQuotaCollection;
 
 // @public
 export interface AppServiceEnvironmentsListWebAppsNextOptionalParams extends coreClient.OperationOptions {
-    propertiesToInclude?: string;
 }
 
 // @public
@@ -1246,7 +1244,6 @@ export type AppServicePlansListHybridConnectionsResponse = HybridConnectionColle
 
 // @public
 export interface AppServicePlansListNextOptionalParams extends coreClient.OperationOptions {
-    detailed?: boolean;
 }
 
 // @public
@@ -1269,7 +1266,6 @@ export type AppServicePlansListRoutesForVnetResponse = VnetRoute[];
 
 // @public
 export interface AppServicePlansListUsagesNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -1306,9 +1302,6 @@ export type AppServicePlansListWebAppsByHybridConnectionResponse = ResourceColle
 
 // @public
 export interface AppServicePlansListWebAppsNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
-    skipToken?: string;
-    top?: string;
 }
 
 // @public
@@ -1802,7 +1795,6 @@ export type CertificatesListByResourceGroupResponse = CertificateCollection;
 
 // @public
 export interface CertificatesListNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -3186,6 +3178,9 @@ export interface GeoRegionCollection {
 }
 
 // @public
+export function getContinuationToken(page: unknown): string | undefined;
+
+// @public
 export interface GetPublishingUserOptionalParams extends coreClient.OperationOptions {
 }
 
@@ -3242,11 +3237,12 @@ export interface GitHubActionWebAppStackSettings {
 }
 
 // @public
-export interface Global {
+interface Global_2 {
     getDeletedWebApp(deletedSiteId: string, options?: GlobalGetDeletedWebAppOptionalParams): Promise<GlobalGetDeletedWebAppResponse>;
     getDeletedWebAppSnapshots(deletedSiteId: string, options?: GlobalGetDeletedWebAppSnapshotsOptionalParams): Promise<GlobalGetDeletedWebAppSnapshotsResponse>;
     getSubscriptionOperationWithAsyncResponse(location: string, operationId: string, options?: GlobalGetSubscriptionOperationWithAsyncResponseOptionalParams): Promise<void>;
 }
+export { Global_2 as Global }
 
 // @public
 export interface GlobalCsmSkuDescription {
@@ -3868,8 +3864,6 @@ export interface LinuxJavaContainerSettings {
 
 // @public
 export interface ListBillingMetersNextOptionalParams extends coreClient.OperationOptions {
-    billingLocation?: string;
-    osType?: string;
 }
 
 // @public
@@ -3886,10 +3880,6 @@ export type ListBillingMetersResponse = BillingMeterCollection;
 
 // @public
 export interface ListGeoRegionsNextOptionalParams extends coreClient.OperationOptions {
-    linuxDynamicWorkersEnabled?: boolean;
-    linuxWorkersEnabled?: boolean;
-    sku?: SkuName;
-    xenonWorkersEnabled?: boolean;
 }
 
 // @public
@@ -4457,8 +4447,6 @@ export interface Provider {
 
 // @public
 export interface ProviderGetAvailableStacksNextOptionalParams extends coreClient.OperationOptions {
-    // (undocumented)
-    osTypeSelected?: Enum10;
 }
 
 // @public
@@ -4466,8 +4454,6 @@ export type ProviderGetAvailableStacksNextResponse = ApplicationStackCollection;
 
 // @public
 export interface ProviderGetAvailableStacksOnPremNextOptionalParams extends coreClient.OperationOptions {
-    // (undocumented)
-    osTypeSelected?: Enum15;
 }
 
 // @public
@@ -4493,7 +4479,6 @@ export type ProviderGetAvailableStacksResponse = ApplicationStackCollection;
 
 // @public
 export interface ProviderGetFunctionAppStacksForLocationNextOptionalParams extends coreClient.OperationOptions {
-    stackOsType?: Enum12;
 }
 
 // @public
@@ -4509,7 +4494,6 @@ export type ProviderGetFunctionAppStacksForLocationResponse = FunctionAppStackCo
 
 // @public
 export interface ProviderGetFunctionAppStacksNextOptionalParams extends coreClient.OperationOptions {
-    stackOsType?: Enum11;
 }
 
 // @public
@@ -4525,7 +4509,6 @@ export type ProviderGetFunctionAppStacksResponse = FunctionAppStackCollection;
 
 // @public
 export interface ProviderGetWebAppStacksForLocationNextOptionalParams extends coreClient.OperationOptions {
-    stackOsType?: Enum13;
 }
 
 // @public
@@ -4541,7 +4524,6 @@ export type ProviderGetWebAppStacksForLocationResponse = WebAppStackCollection;
 
 // @public
 export interface ProviderGetWebAppStacksNextOptionalParams extends coreClient.OperationOptions {
-    stackOsType?: Enum14;
 }
 
 // @public
@@ -4746,8 +4728,6 @@ export type RecommendationsGetRuleDetailsByWebAppResponse = RecommendationRule;
 
 // @public
 export interface RecommendationsListHistoryForHostingEnvironmentNextOptionalParams extends coreClient.OperationOptions {
-    expiredOnly?: boolean;
-    filter?: string;
 }
 
 // @public
@@ -4764,8 +4744,6 @@ export type RecommendationsListHistoryForHostingEnvironmentResponse = Recommenda
 
 // @public
 export interface RecommendationsListHistoryForWebAppNextOptionalParams extends coreClient.OperationOptions {
-    expiredOnly?: boolean;
-    filter?: string;
 }
 
 // @public
@@ -4782,8 +4760,6 @@ export type RecommendationsListHistoryForWebAppResponse = RecommendationCollecti
 
 // @public
 export interface RecommendationsListNextOptionalParams extends coreClient.OperationOptions {
-    featured?: boolean;
-    filter?: string;
 }
 
 // @public
@@ -4797,8 +4773,6 @@ export interface RecommendationsListOptionalParams extends coreClient.OperationO
 
 // @public
 export interface RecommendationsListRecommendedRulesForHostingEnvironmentNextOptionalParams extends coreClient.OperationOptions {
-    featured?: boolean;
-    filter?: string;
 }
 
 // @public
@@ -4815,8 +4789,6 @@ export type RecommendationsListRecommendedRulesForHostingEnvironmentResponse = R
 
 // @public
 export interface RecommendationsListRecommendedRulesForWebAppNextOptionalParams extends coreClient.OperationOptions {
-    featured?: boolean;
-    filter?: string;
 }
 
 // @public
@@ -8812,7 +8784,6 @@ export type WebAppsListBasicPublishingCredentialsPoliciesSlotResponse = Publishi
 
 // @public
 export interface WebAppsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
-    includeSlots?: boolean;
 }
 
 // @public
@@ -9259,7 +9230,6 @@ export interface WebAppsListOptionalParams extends coreClient.OperationOptions {
 
 // @public
 export interface WebAppsListPerfMonCountersNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -9275,7 +9245,6 @@ export type WebAppsListPerfMonCountersResponse = PerfMonCounterCollection;
 
 // @public
 export interface WebAppsListPerfMonCountersSlotNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -9725,7 +9694,6 @@ export type WebAppsListTriggeredWebJobsSlotResponse = TriggeredWebJobCollection;
 
 // @public
 export interface WebAppsListUsagesNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -9741,7 +9709,6 @@ export type WebAppsListUsagesResponse = CsmUsageQuotaCollection;
 
 // @public
 export interface WebAppsListUsagesSlotNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
 }
 
 // @public
@@ -10452,7 +10419,7 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
     getSourceControl(sourceControlType: string, options?: GetSourceControlOptionalParams): Promise<GetSourceControlResponse>;
     getSubscriptionDeploymentLocations(options?: GetSubscriptionDeploymentLocationsOptionalParams): Promise<GetSubscriptionDeploymentLocationsResponse>;
     // (undocumented)
-    global: Global;
+    global: Global_2;
     // (undocumented)
     kubeEnvironments: KubeEnvironments;
     listBillingMeters(options?: ListBillingMetersOptionalParams): PagedAsyncIterableIterator<BillingMeter>;

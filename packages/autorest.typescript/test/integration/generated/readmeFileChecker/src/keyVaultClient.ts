@@ -77,7 +77,7 @@ export class KeyVaultClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri: options.endpoint ?? options.baseUri ?? "{vaultBaseUrl}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{vaultBaseUrl}"
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -624,7 +624,6 @@ const getSecretsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.KeyVaultError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.maxresults],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -640,7 +639,6 @@ const getSecretVersionsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.KeyVaultError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.maxresults],
   urlParameters: [
     Parameters.vaultBaseUrl,
     Parameters.secretName1,
@@ -660,7 +658,6 @@ const getDeletedSecretsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.KeyVaultError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.maxresults],
   urlParameters: [Parameters.vaultBaseUrl, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer

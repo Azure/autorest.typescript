@@ -83,14 +83,14 @@ function regularAutorestPackage(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     engines: {
-      node: ">=12.0.0"
+      node: ">=14.0.0"
     },
     dependencies: {
-      ...(hasLro && { "@azure/core-lro": "^2.3.0" }),
+      ...(hasLro && { "@azure/core-lro": "^2.4.0" }),
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
       ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
-      ...(useCoreV2 && { "@azure/core-client": "^1.5.0" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.6.1" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 &&
         coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
@@ -108,7 +108,7 @@ function regularAutorestPackage(
     module: `./dist-esm/index.js`,
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@microsoft/api-extractor": "7.18.11",
+      "@microsoft/api-extractor": "^7.31.1",
       "@rollup/plugin-commonjs": "^21.0.1",
       "@rollup/plugin-json": "^4.1.0",
       "@rollup/plugin-multi-entry": "^4.1.0",
@@ -116,7 +116,7 @@ function regularAutorestPackage(
       mkdirp: "^1.0.4",
       rollup: "^2.66.1",
       "rollup-plugin-sourcemaps": "^0.6.3",
-      typescript: "~4.6.0",
+      typescript: "~4.8.0",
       "uglify-js": "^3.4.9",
       rimraf: "^3.0.0"
     },
@@ -195,6 +195,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
+    packageInfo.devDependencies["@types/node"] = "^14.0.0";
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import PlayFab from "./playFab";
 
 export * from "./playFab";

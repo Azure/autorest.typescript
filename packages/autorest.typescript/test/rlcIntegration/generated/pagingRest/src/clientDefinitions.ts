@@ -3,8 +3,10 @@
 
 import {
   PagingGetNoItemNamePagesParameters,
+  PagingGetEmptyNextLinkNamePagesParameters,
   PagingGetNullNextLinkNamePagesParameters,
   PagingGetSinglePagesParameters,
+  PagingGetSinglePagesWithBodyParamsParameters,
   PagingFirstResponseEmptyParameters,
   PagingGetMultiplePagesParameters,
   PagingGetWithQueryParamsParameters,
@@ -30,10 +32,14 @@ import {
 import {
   PagingGetNoItemNamePages200Response,
   PagingGetNoItemNamePagesDefaultResponse,
+  PagingGetEmptyNextLinkNamePages200Response,
+  PagingGetEmptyNextLinkNamePagesDefaultResponse,
   PagingGetNullNextLinkNamePages200Response,
   PagingGetNullNextLinkNamePagesDefaultResponse,
   PagingGetSinglePages200Response,
   PagingGetSinglePagesDefaultResponse,
+  PagingGetSinglePagesWithBodyParams200Response,
+  PagingGetSinglePagesWithBodyParamsDefaultResponse,
   PagingFirstResponseEmpty200Response,
   PagingFirstResponseEmptyDefaultResponse,
   PagingGetMultiplePages200Response,
@@ -89,6 +95,16 @@ export interface GetNoItemNamePages {
   >;
 }
 
+export interface GetEmptyNextLinkNamePages {
+  /** A paging operation that gets an empty next link and should stop after page 1. */
+  get(
+    options?: PagingGetEmptyNextLinkNamePagesParameters
+  ): StreamableMethod<
+    | PagingGetEmptyNextLinkNamePages200Response
+    | PagingGetEmptyNextLinkNamePagesDefaultResponse
+  >;
+}
+
 export interface GetNullNextLinkNamePages {
   /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
   get(
@@ -105,6 +121,16 @@ export interface GetSinglePages {
     options?: PagingGetSinglePagesParameters
   ): StreamableMethod<
     PagingGetSinglePages200Response | PagingGetSinglePagesDefaultResponse
+  >;
+}
+
+export interface GetSinglePagesWithBodyParams {
+  /** A paging operation that finishes on the first call with body params without a nextlink */
+  get(
+    options: PagingGetSinglePagesWithBodyParamsParameters
+  ): StreamableMethod<
+    | PagingGetSinglePagesWithBodyParams200Response
+    | PagingGetSinglePagesWithBodyParamsDefaultResponse
   >;
 }
 
@@ -316,10 +342,14 @@ export interface GetPagingModelWithItemNameWithXMSClientName {
 export interface Routes {
   /** Resource for '/paging/noitemname' has methods for the following verbs: get */
   (path: "/paging/noitemname"): GetNoItemNamePages;
+  /** Resource for '/paging/emptynextlink' has methods for the following verbs: get */
+  (path: "/paging/emptynextlink"): GetEmptyNextLinkNamePages;
   /** Resource for '/paging/nullnextlink' has methods for the following verbs: get */
   (path: "/paging/nullnextlink"): GetNullNextLinkNamePages;
   /** Resource for '/paging/single' has methods for the following verbs: get */
   (path: "/paging/single"): GetSinglePages;
+  /** Resource for '/paging/single/getWithBodyParams' has methods for the following verbs: get */
+  (path: "/paging/single/getWithBodyParams"): GetSinglePagesWithBodyParams;
   /** Resource for '/paging/firstResponseEmpty/1' has methods for the following verbs: get */
   (path: "/paging/firstResponseEmpty/1"): FirstResponseEmpty;
   /** Resource for '/paging/multiple' has methods for the following verbs: get */

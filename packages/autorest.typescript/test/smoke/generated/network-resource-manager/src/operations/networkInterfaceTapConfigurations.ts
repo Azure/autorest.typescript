@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { NetworkInterfaceTapConfigurations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,12 +23,12 @@ import {
   NetworkInterfaceTapConfiguration,
   NetworkInterfaceTapConfigurationsListNextOptionalParams,
   NetworkInterfaceTapConfigurationsListOptionalParams,
+  NetworkInterfaceTapConfigurationsListResponse,
   NetworkInterfaceTapConfigurationsDeleteOptionalParams,
   NetworkInterfaceTapConfigurationsGetOptionalParams,
   NetworkInterfaceTapConfigurationsGetResponse,
   NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams,
   NetworkInterfaceTapConfigurationsCreateOrUpdateResponse,
-  NetworkInterfaceTapConfigurationsListResponse,
   NetworkInterfaceTapConfigurationsListNextResponse
 } from "../models";
 
@@ -68,11 +69,15 @@ export class NetworkInterfaceTapConfigurationsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPagingPage(
           resourceGroupName,
           networkInterfaceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -81,15 +86,22 @@ export class NetworkInterfaceTapConfigurationsImpl
   private async *listPagingPage(
     resourceGroupName: string,
     networkInterfaceName: string,
-    options?: NetworkInterfaceTapConfigurationsListOptionalParams
+    options?: NetworkInterfaceTapConfigurationsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<NetworkInterfaceTapConfiguration[]> {
-    let result = await this._list(
-      resourceGroupName,
-      networkInterfaceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: NetworkInterfaceTapConfigurationsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(
+        resourceGroupName,
+        networkInterfaceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         resourceGroupName,
@@ -98,7 +110,9 @@ export class NetworkInterfaceTapConfigurationsImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -495,7 +509,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

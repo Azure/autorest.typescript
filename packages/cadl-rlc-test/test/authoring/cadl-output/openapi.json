@@ -47,17 +47,17 @@
   "paths": {
     "/authoring/analyze-text/projects": {
       "get": {
-        "operationId": "Projects_List",
+        "operationId": "Projects_ListProjects",
         "description": "Lists the existing projects.",
         "parameters": [
           {
-            "$ref": "#/parameters/ListQueryParams.top"
+            "$ref": "#/parameters/Azure.Core.TopQueryParameter"
           },
           {
-            "$ref": "#/parameters/ListQueryParams.skip"
+            "$ref": "#/parameters/Azure.Core.SkipQueryParameter"
           },
           {
-            "$ref": "#/parameters/ListQueryParams.maxpagesize"
+            "$ref": "#/parameters/Azure.Core.MaxPageSizeQueryParameter"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -81,6 +81,7 @@
                 "nextLink": {
                   "type": "string",
                   "description": "The link to the next page of items",
+                  "format": "uri",
                   "x-cadl-name": "Rest.ResourceLocation<Project>"
                 }
               },
@@ -109,7 +110,11 @@
         "description": "Creates a new project or updates an existing one.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -146,7 +151,7 @@
                 }
               },
               "description": "The template for adding optional properties.",
-              "x-cadl-name": "OptionalProperties<UpdateableProperties<DefaultKeyVisibility<Project, read>>>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrUpdateModel<Project>"
             }
           }
         ],
@@ -156,14 +161,16 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             },
             "schema": {
               "type": "object",
               "properties": {
                 "projectName": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "The project name."
                 },
                 "projectKind": {
                   "$ref": "#/definitions/ProjectKind",
@@ -224,7 +231,7 @@
                 "lastTrainedDateTime",
                 "lastDeployedDateTime"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
             }
           },
           "201": {
@@ -232,14 +239,16 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             },
             "schema": {
               "type": "object",
               "properties": {
                 "projectName": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "The project name."
                 },
                 "projectKind": {
                   "$ref": "#/definitions/ProjectKind",
@@ -301,7 +310,7 @@
                 "lastTrainedDateTime",
                 "lastDeployedDateTime"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -320,7 +329,11 @@
         "description": "Gets the details of a project.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -346,7 +359,11 @@
         "description": "Deletes a project.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -358,7 +375,8 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             },
             "schema": {
@@ -377,7 +395,11 @@
                   "description": "Error object that describes the error when status is \"Failed\"."
                 }
               },
-              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<(anonymous model)>"
+              "required": [
+                "id",
+                "status"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -395,7 +417,11 @@
         "description": "Triggers a job to export a project's data.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/ExportParams"
@@ -410,7 +436,8 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             }
           },
@@ -429,7 +456,11 @@
         "description": "Triggers a job to export a project's data.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -441,7 +472,8 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             }
           },
@@ -460,7 +492,11 @@
         "description": "Triggers a training job for a project.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -469,6 +505,7 @@
             "name": "body",
             "in": "body",
             "required": true,
+            "description": "The body of the request.",
             "schema": {
               "$ref": "#/definitions/TrainingJobOptions"
             }
@@ -480,7 +517,8 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             }
           },
@@ -495,11 +533,15 @@
     },
     "/authoring/analyze-text/projects/{projectName}/deployments": {
       "get": {
-        "operationId": "Deployments_List",
+        "operationId": "Deployments_ListDeployments",
         "description": "Lists the existing deployments.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -523,6 +565,7 @@
                 "nextLink": {
                   "type": "string",
                   "description": "The link to the next page of items",
+                  "format": "uri",
                   "x-cadl-name": "Rest.ResourceLocation<Deployment>"
                 }
               },
@@ -551,10 +594,18 @@
         "description": "Gets the details of a deployment.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
-            "$ref": "#/parameters/Deployment"
+            "name": "deploymentName",
+            "in": "path",
+            "required": true,
+            "description": "The name of the deployment.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -580,10 +631,18 @@
         "description": "Creates a new deployment or replaces an existing one.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
-            "$ref": "#/parameters/Deployment"
+            "name": "deploymentName",
+            "in": "path",
+            "required": true,
+            "description": "The name of the deployment.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -595,20 +654,22 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             },
             "schema": {
               "type": "object",
               "properties": {
                 "name": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "The name of the deployment."
                 }
               },
               "required": [
                 "name"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
             }
           },
           "201": {
@@ -616,21 +677,23 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             },
             "schema": {
               "type": "object",
               "properties": {
                 "name": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "The name of the deployment."
                 }
               },
               "description": "A  resource was successfully created.",
               "required": [
                 "name"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -646,10 +709,18 @@
         "description": "Deletes a project deployment.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
-            "$ref": "#/parameters/Deployment"
+            "name": "deploymentName",
+            "in": "path",
+            "required": true,
+            "description": "The name of the deployment.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -661,7 +732,8 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             },
             "schema": {
@@ -680,7 +752,11 @@
                   "description": "Error object that describes the error when status is \"Failed\"."
                 }
               },
-              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<(anonymous model)>"
+              "required": [
+                "id",
+                "status"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -698,13 +774,25 @@
         "description": "Gets the status of an existing deployment job.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
-            "$ref": "#/parameters/Deployment"
+            "name": "deploymentName",
+            "in": "path",
+            "required": true,
+            "description": "The name of the deployment.",
+            "type": "string"
           },
           {
-            "$ref": "#/parameters/DeploymentJob.jobId"
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "description": "The job ID.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -732,13 +820,25 @@
         "description": "Gets the status of an existing swap deployment job.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
-            "$ref": "#/parameters/Deployment"
+            "name": "deploymentName",
+            "in": "path",
+            "required": true,
+            "description": "The name of the deployment.",
+            "type": "string"
           },
           {
-            "$ref": "#/parameters/SwapDeploymentsJob.jobId"
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "description": "The job ID.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -766,7 +866,11 @@
         "description": "Swaps two existing deployments with each other.",
         "parameters": [
           {
-            "$ref": "#/parameters/Project.projectName"
+            "name": "projectName",
+            "in": "path",
+            "required": true,
+            "description": "The project name.",
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -781,7 +885,8 @@
             "headers": {
               "Operation-Location": {
                 "description": "The location of an instance of OperationStatus",
-                "type": "string"
+                "type": "string",
+                "format": "uri"
               }
             }
           },
@@ -797,15 +902,16 @@
     "/authoring/analyze-text/projects/global/languages": {
       "get": {
         "operationId": "Global_GetSupportedLanguages",
+        "description": "Gets the supported languages.",
         "parameters": [
           {
-            "$ref": "#/parameters/ListQueryParams.top"
+            "$ref": "#/parameters/Azure.Core.TopQueryParameter"
           },
           {
-            "$ref": "#/parameters/ListQueryParams.skip"
+            "$ref": "#/parameters/Azure.Core.SkipQueryParameter"
           },
           {
-            "$ref": "#/parameters/ListQueryParams.maxpagesize"
+            "$ref": "#/parameters/Azure.Core.MaxPageSizeQueryParameter"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -833,15 +939,16 @@
     "/authoring/analyze-text/projects/global/training-config-versions": {
       "get": {
         "operationId": "Global_ListTrainingConfigVersions",
+        "description": "Lists training configuration versions.",
         "parameters": [
           {
-            "$ref": "#/parameters/ListQueryParams.top"
+            "$ref": "#/parameters/Azure.Core.TopQueryParameter"
           },
           {
-            "$ref": "#/parameters/ListQueryParams.skip"
+            "$ref": "#/parameters/Azure.Core.SkipQueryParameter"
           },
           {
-            "$ref": "#/parameters/ListQueryParams.maxpagesize"
+            "$ref": "#/parameters/Azure.Core.MaxPageSizeQueryParameter"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -951,9 +1058,11 @@
       "type": "object",
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the deployment."
         }
       },
+      "description": "The details of a project deployment.",
       "required": [
         "name"
       ]
@@ -1001,9 +1110,11 @@
           "description": "The errors encountered while executing the job."
         },
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "The job ID."
         }
       },
+      "description": "The details of a deployment job.",
       "required": [
         "jobId",
         "createdDateTime",
@@ -1013,6 +1124,74 @@
         "warnings",
         "errors",
         "id"
+      ]
+    },
+    "Endpoint": {
+      "type": "string",
+      "description": "The endpoint to use."
+    },
+    "ExportParams": {
+      "type": "object",
+      "properties": {},
+      "description": "Export parameters."
+    },
+    "ExportedProject": {
+      "type": "object",
+      "properties": {},
+      "description": "The details of an exported project."
+    },
+    "Job": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string",
+          "description": "The job ID."
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation date time of the job.",
+          "readOnly": true
+        },
+        "lastUpdatedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The the last date time the job was updated.",
+          "readOnly": true
+        },
+        "expirationDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The expiration date time of the job.",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/JobStatus",
+          "description": "The job status."
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/JobWarning"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "JobWarning[]",
+          "description": "The warnings that were encountered while executing the job."
+        },
+        "errors": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The errors encountered while executing the job."
+        }
+      },
+      "description": "The details about a job.",
+      "required": [
+        "jobId",
+        "createdDateTime",
+        "lastUpdatedDateTime",
+        "expirationDateTime",
+        "status",
+        "warnings",
+        "errors"
       ]
     },
     "JobStatus": {
@@ -1029,7 +1208,7 @@
       ],
       "x-ms-enum": {
         "name": "JobStatus",
-        "modelAsString": true
+        "modelAsString": false
       }
     },
     "JobWarning": {
@@ -1065,10 +1244,11 @@
         "nextLink": {
           "type": "string",
           "description": "The link to the next page of items",
+          "format": "uri",
           "x-cadl-name": "Rest.ResourceLocation<SupportedLanguage>"
         }
       },
-      "description": "Paged collection of SupportedLanguage items",
+      "description": "A collection of SupportedLanguage resources.",
       "required": [
         "value"
       ]
@@ -1088,10 +1268,11 @@
         "nextLink": {
           "type": "string",
           "description": "The link to the next page of items",
+          "format": "uri",
           "x-cadl-name": "Rest.ResourceLocation<TrainingConfigVersion>"
         }
       },
-      "description": "Paged collection of TrainingConfigVersion items",
+      "description": "A collection of TrainingConfigVersion resources.",
       "required": [
         "value"
       ]
@@ -1100,7 +1281,8 @@
       "type": "object",
       "properties": {
         "projectName": {
-          "type": "string"
+          "type": "string",
+          "description": "The project name."
         },
         "projectKind": {
           "$ref": "#/definitions/ProjectKind",
@@ -1151,6 +1333,7 @@
           "readOnly": true
         }
       },
+      "description": "The details of a project.",
       "required": [
         "projectName",
         "projectKind",
@@ -1172,7 +1355,7 @@
       ],
       "x-ms-enum": {
         "name": "ProjectKind",
-        "modelAsString": true,
+        "modelAsString": false,
         "values": [
           {
             "name": "CustomSingleLabelClassification",
@@ -1260,9 +1443,11 @@
           "description": "The errors encountered while executing the job."
         },
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "The job ID."
         }
       },
+      "description": "The details of a swap deployments job.",
       "required": [
         "jobId",
         "createdDateTime",
@@ -1286,9 +1471,23 @@
           "description": "Represents the second deployment name."
         }
       },
+      "description": "Swap deployment options.",
       "required": [
         "firstDeploymentName",
         "secondDeploymentName"
+      ]
+    },
+    "SwapDeploymentsParams": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/SwapDeploymentsOptions",
+          "description": "The body schema of the operation."
+        }
+      },
+      "description": "Swap deployment parameters.",
+      "required": [
+        "body"
       ]
     },
     "TrainingConfigVersion": {
@@ -1314,7 +1513,8 @@
       "type": "object",
       "properties": {
         "modelLabel": {
-          "type": "string"
+          "type": "string",
+          "description": "The model label."
         }
       },
       "description": "Training job parameters.",
@@ -1333,62 +1533,38 @@
       "type": "string",
       "x-ms-parameter-location": "method"
     },
-    "Deployment": {
-      "name": "deploymentName",
-      "in": "path",
-      "required": true,
-      "type": "string",
+    "Azure.Core.MaxPageSizeQueryParameter": {
+      "name": "maxpagesize",
+      "in": "query",
+      "required": false,
+      "description": "The maximum number of result items per page.",
+      "type": "integer",
+      "format": "int32",
       "x-ms-parameter-location": "method"
     },
-    "DeploymentJob.jobId": {
-      "name": "jobId",
-      "in": "path",
-      "required": true,
-      "type": "string",
+    "Azure.Core.SkipQueryParameter": {
+      "name": "skip",
+      "in": "query",
+      "required": false,
+      "description": "The number of result items to skip.",
+      "type": "integer",
+      "format": "int32",
+      "x-ms-parameter-location": "method"
+    },
+    "Azure.Core.TopQueryParameter": {
+      "name": "top",
+      "in": "query",
+      "required": false,
+      "description": "The number of result items to return.",
+      "type": "integer",
+      "format": "int32",
       "x-ms-parameter-location": "method"
     },
     "ExportParams": {
       "name": "projectFileVersion",
       "in": "query",
       "required": true,
-      "type": "string",
-      "x-ms-parameter-location": "method"
-    },
-    "ListQueryParams.maxpagesize": {
-      "name": "maxpagesize",
-      "in": "query",
-      "required": false,
-      "type": "integer",
-      "format": "int32",
-      "x-ms-parameter-location": "method"
-    },
-    "ListQueryParams.skip": {
-      "name": "skip",
-      "in": "query",
-      "required": false,
-      "type": "integer",
-      "format": "int32",
-      "x-ms-parameter-location": "method"
-    },
-    "ListQueryParams.top": {
-      "name": "top",
-      "in": "query",
-      "required": false,
-      "type": "integer",
-      "format": "int32",
-      "x-ms-parameter-location": "method"
-    },
-    "Project.projectName": {
-      "name": "projectName",
-      "in": "path",
-      "required": true,
-      "type": "string",
-      "x-ms-parameter-location": "method"
-    },
-    "SwapDeploymentsJob.jobId": {
-      "name": "jobId",
-      "in": "path",
-      "required": true,
+      "description": "The project file version.",
       "type": "string",
       "x-ms-parameter-location": "method"
     },

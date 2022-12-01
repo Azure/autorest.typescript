@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { ReplicationLinks } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,17 +23,17 @@ import {
   ReplicationLink,
   ReplicationLinksListByDatabaseNextOptionalParams,
   ReplicationLinksListByDatabaseOptionalParams,
+  ReplicationLinksListByDatabaseResponse,
   ReplicationLinksListByServerNextOptionalParams,
   ReplicationLinksListByServerOptionalParams,
+  ReplicationLinksListByServerResponse,
   ReplicationLinksDeleteOptionalParams,
   ReplicationLinksFailoverOptionalParams,
   ReplicationLinksFailoverAllowDataLossOptionalParams,
   UnlinkParameters,
   ReplicationLinksUnlinkOptionalParams,
-  ReplicationLinksListByDatabaseResponse,
   ReplicationLinksGetOptionalParams,
   ReplicationLinksGetResponse,
-  ReplicationLinksListByServerResponse,
   ReplicationLinksListByDatabaseNextResponse,
   ReplicationLinksListByServerNextResponse
 } from "../models";
@@ -77,12 +78,16 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByDatabasePagingPage(
           resourceGroupName,
           serverName,
           databaseName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -92,16 +97,23 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: ReplicationLinksListByDatabaseOptionalParams
+    options?: ReplicationLinksListByDatabaseOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ReplicationLink[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ReplicationLinksListByDatabaseResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByDatabase(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByDatabaseNext(
         resourceGroupName,
@@ -111,7 +123,9 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -155,11 +169,15 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByServerPagingPage(
           resourceGroupName,
           serverName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -168,15 +186,18 @@ export class ReplicationLinksImpl implements ReplicationLinks {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: ReplicationLinksListByServerOptionalParams
+    options?: ReplicationLinksListByServerOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ReplicationLink[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ReplicationLinksListByServerResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByServer(resourceGroupName, serverName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByServerNext(
         resourceGroupName,
@@ -185,7 +206,9 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -765,7 +788,6 @@ const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -786,7 +808,6 @@ const listByServerNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

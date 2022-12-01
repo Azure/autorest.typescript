@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { ApplicationGateways } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,11 +23,14 @@ import {
   ApplicationGateway,
   ApplicationGatewaysListNextOptionalParams,
   ApplicationGatewaysListOptionalParams,
+  ApplicationGatewaysListResponse,
   ApplicationGatewaysListAllNextOptionalParams,
   ApplicationGatewaysListAllOptionalParams,
+  ApplicationGatewaysListAllResponse,
   ApplicationGatewaySslPredefinedPolicy,
   ApplicationGatewaysListAvailableSslPredefinedPoliciesNextOptionalParams,
   ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams,
+  ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse,
   ApplicationGatewaysDeleteOptionalParams,
   ApplicationGatewaysGetOptionalParams,
   ApplicationGatewaysGetResponse,
@@ -35,8 +39,6 @@ import {
   TagsObject,
   ApplicationGatewaysUpdateTagsOptionalParams,
   ApplicationGatewaysUpdateTagsResponse,
-  ApplicationGatewaysListResponse,
-  ApplicationGatewaysListAllResponse,
   ApplicationGatewaysStartOptionalParams,
   ApplicationGatewaysStopOptionalParams,
   ApplicationGatewaysBackendHealthOptionalParams,
@@ -54,7 +56,6 @@ import {
   ApplicationGatewaysListAvailableWafRuleSetsResponse,
   ApplicationGatewaysListAvailableSslOptionsOptionalParams,
   ApplicationGatewaysListAvailableSslOptionsResponse,
-  ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse,
   ApplicationGatewaysGetSslPredefinedPolicyOptionalParams,
   ApplicationGatewaysGetSslPredefinedPolicyResponse,
   ApplicationGatewaysListNextResponse,
@@ -92,19 +93,29 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
   }
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: ApplicationGatewaysListOptionalParams
+    options?: ApplicationGatewaysListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ApplicationGateway[]> {
-    let result = await this._list(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ApplicationGatewaysListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         resourceGroupName,
@@ -112,7 +123,9 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -140,22 +153,34 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listAllPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listAllPagingPage(options, settings);
       }
     };
   }
 
   private async *listAllPagingPage(
-    options?: ApplicationGatewaysListAllOptionalParams
+    options?: ApplicationGatewaysListAllOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ApplicationGateway[]> {
-    let result = await this._listAll(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ApplicationGatewaysListAllResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listAll(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listAllNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -182,25 +207,40 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listAvailableSslPredefinedPoliciesPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listAvailableSslPredefinedPoliciesPagingPage(
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listAvailableSslPredefinedPoliciesPagingPage(
-    options?: ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams
+    options?: ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ApplicationGatewaySslPredefinedPolicy[]> {
-    let result = await this._listAvailableSslPredefinedPolicies(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listAvailableSslPredefinedPolicies(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listAvailableSslPredefinedPoliciesNext(
         continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1350,7 +1390,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1371,7 +1410,6 @@ const listAllNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1391,7 +1429,6 @@ const listAvailableSslPredefinedPoliciesNextOperationSpec: coreClient.OperationS
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

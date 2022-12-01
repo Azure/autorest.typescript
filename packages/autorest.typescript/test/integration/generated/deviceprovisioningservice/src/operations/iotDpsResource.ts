@@ -1,4 +1,5 @@
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { IotDpsResource } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -14,14 +15,18 @@ import {
   ProvisioningServiceDescription,
   IotDpsResourceListBySubscriptionNextOptionalParams,
   IotDpsResourceListBySubscriptionOptionalParams,
+  IotDpsResourceListBySubscriptionResponse,
   IotDpsResourceListByResourceGroupNextOptionalParams,
   IotDpsResourceListByResourceGroupOptionalParams,
+  IotDpsResourceListByResourceGroupResponse,
   IotDpsSkuDefinition,
   IotDpsResourceListValidSkusNextOptionalParams,
   IotDpsResourceListValidSkusOptionalParams,
+  IotDpsResourceListValidSkusResponse,
   SharedAccessSignatureAuthorizationRuleAccessRightsDescription,
   IotDpsResourceListKeysNextOptionalParams,
   IotDpsResourceListKeysOptionalParams,
+  IotDpsResourceListKeysResponse,
   IotDpsResourceGetOptionalParams,
   IotDpsResourceGetResponse,
   IotDpsResourceCreateOrUpdateOptionalParams,
@@ -30,15 +35,11 @@ import {
   IotDpsResourceUpdateOptionalParams,
   IotDpsResourceUpdateResponse,
   IotDpsResourceDeleteOptionalParams,
-  IotDpsResourceListBySubscriptionResponse,
-  IotDpsResourceListByResourceGroupResponse,
   IotDpsResourceGetOperationResultOptionalParams,
   IotDpsResourceGetOperationResultResponse,
-  IotDpsResourceListValidSkusResponse,
   OperationInputs,
   IotDpsResourceCheckProvisioningServiceNameAvailabilityOptionalParams,
   IotDpsResourceCheckProvisioningServiceNameAvailabilityResponse,
-  IotDpsResourceListKeysResponse,
   IotDpsResourceListKeysForKeyNameOptionalParams,
   IotDpsResourceListKeysForKeyNameResponse,
   IotDpsResourceListPrivateLinkResourcesOptionalParams,
@@ -88,22 +89,34 @@ export class IotDpsResourceImpl implements IotDpsResource {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listBySubscriptionPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listBySubscriptionPagingPage(options, settings);
       }
     };
   }
 
   private async *listBySubscriptionPagingPage(
-    options?: IotDpsResourceListBySubscriptionOptionalParams
+    options?: IotDpsResourceListBySubscriptionOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ProvisioningServiceDescription[]> {
-    let result = await this._listBySubscription(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: IotDpsResourceListBySubscriptionResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listBySubscription(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listBySubscriptionNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -132,19 +145,33 @@ export class IotDpsResourceImpl implements IotDpsResource {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: IotDpsResourceListByResourceGroupOptionalParams
+    options?: IotDpsResourceListByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ProvisioningServiceDescription[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: IotDpsResourceListByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByResourceGroup(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
@@ -152,7 +179,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -191,11 +220,15 @@ export class IotDpsResourceImpl implements IotDpsResource {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listValidSkusPagingPage(
           provisioningServiceName,
           resourceGroupName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -204,15 +237,22 @@ export class IotDpsResourceImpl implements IotDpsResource {
   private async *listValidSkusPagingPage(
     provisioningServiceName: string,
     resourceGroupName: string,
-    options?: IotDpsResourceListValidSkusOptionalParams
+    options?: IotDpsResourceListValidSkusOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<IotDpsSkuDefinition[]> {
-    let result = await this._listValidSkus(
-      provisioningServiceName,
-      resourceGroupName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: IotDpsResourceListValidSkusResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listValidSkus(
+        provisioningServiceName,
+        resourceGroupName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listValidSkusNext(
         provisioningServiceName,
@@ -221,7 +261,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -264,11 +306,15 @@ export class IotDpsResourceImpl implements IotDpsResource {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listKeysPagingPage(
           provisioningServiceName,
           resourceGroupName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -277,17 +323,24 @@ export class IotDpsResourceImpl implements IotDpsResource {
   private async *listKeysPagingPage(
     provisioningServiceName: string,
     resourceGroupName: string,
-    options?: IotDpsResourceListKeysOptionalParams
+    options?: IotDpsResourceListKeysOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<
     SharedAccessSignatureAuthorizationRuleAccessRightsDescription[]
   > {
-    let result = await this._listKeys(
-      provisioningServiceName,
-      resourceGroupName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: IotDpsResourceListKeysResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listKeys(
+        provisioningServiceName,
+        resourceGroupName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listKeysNext(
         provisioningServiceName,
@@ -296,7 +349,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1539,7 +1594,6 @@ const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorDetails
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
@@ -1559,7 +1613,6 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorDetails
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
@@ -1580,7 +1633,6 @@ const listValidSkusNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorDetails
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
@@ -1602,7 +1654,6 @@ const listKeysNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorDetails
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,

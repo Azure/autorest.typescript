@@ -24,6 +24,10 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
   const { disablePagingAsyncIterators } = getAutorestOptions();
   if (clientDetails.options.hasPaging && !disablePagingAsyncIterators) {
     file.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
+    file.addExportDeclaration({
+      moduleSpecifier: "./pagingHelper",
+      namedExports: ["getContinuationToken"]
+    });
   }
 
   file.addExportDeclarations([

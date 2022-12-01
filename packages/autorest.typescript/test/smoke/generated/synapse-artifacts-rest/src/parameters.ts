@@ -99,7 +99,7 @@ export interface SparkConfigurationCreateOrUpdateSparkConfigurationBodyParam {
 }
 
 export interface SparkConfigurationCreateOrUpdateSparkConfigurationHeaderParam {
-  headers: RawHttpHeadersInput &
+  headers?: RawHttpHeadersInput &
     SparkConfigurationCreateOrUpdateSparkConfigurationHeaders;
 }
 
@@ -119,7 +119,8 @@ export interface SparkConfigurationGetSparkConfigurationHeaders {
 }
 
 export interface SparkConfigurationGetSparkConfigurationHeaderParam {
-  headers: RawHttpHeadersInput & SparkConfigurationGetSparkConfigurationHeaders;
+  headers?: RawHttpHeadersInput &
+    SparkConfigurationGetSparkConfigurationHeaders;
 }
 
 export type SparkConfigurationGetSparkConfigurationParameters = SparkConfigurationGetSparkConfigurationHeaderParam &
@@ -153,7 +154,7 @@ export interface DataFlowCreateOrUpdateDataFlowBodyParam {
 }
 
 export interface DataFlowCreateOrUpdateDataFlowHeaderParam {
-  headers: RawHttpHeadersInput & DataFlowCreateOrUpdateDataFlowHeaders;
+  headers?: RawHttpHeadersInput & DataFlowCreateOrUpdateDataFlowHeaders;
 }
 
 export interface DataFlowCreateOrUpdateDataFlowMediaTypesParam {
@@ -172,7 +173,7 @@ export interface DataFlowGetDataFlowHeaders {
 }
 
 export interface DataFlowGetDataFlowHeaderParam {
-  headers: RawHttpHeadersInput & DataFlowGetDataFlowHeaders;
+  headers?: RawHttpHeadersInput & DataFlowGetDataFlowHeaders;
 }
 
 export type DataFlowGetDataFlowParameters = DataFlowGetDataFlowHeaderParam &
@@ -263,7 +264,7 @@ export interface DatasetCreateOrUpdateDatasetBodyParam {
 }
 
 export interface DatasetCreateOrUpdateDatasetHeaderParam {
-  headers: RawHttpHeadersInput & DatasetCreateOrUpdateDatasetHeaders;
+  headers?: RawHttpHeadersInput & DatasetCreateOrUpdateDatasetHeaders;
 }
 
 export interface DatasetCreateOrUpdateDatasetMediaTypesParam {
@@ -282,7 +283,7 @@ export interface DatasetGetDatasetHeaders {
 }
 
 export interface DatasetGetDatasetHeaderParam {
-  headers: RawHttpHeadersInput & DatasetGetDatasetHeaders;
+  headers?: RawHttpHeadersInput & DatasetGetDatasetHeaders;
 }
 
 export type DatasetGetDatasetParameters = DatasetGetDatasetHeaderParam &
@@ -313,7 +314,7 @@ export interface WorkspaceGitRepoManagementGetGitHubAccessTokenBodyParam {
 }
 
 export interface WorkspaceGitRepoManagementGetGitHubAccessTokenHeaderParam {
-  headers: RawHttpHeadersInput &
+  headers?: RawHttpHeadersInput &
     WorkspaceGitRepoManagementGetGitHubAccessTokenHeaders;
 }
 
@@ -362,7 +363,7 @@ export interface LibraryAppendQueryParam {
 }
 
 export interface LibraryAppendHeaderParam {
-  headers: RawHttpHeadersInput & LibraryAppendHeaders;
+  headers?: RawHttpHeadersInput & LibraryAppendHeaders;
 }
 
 export interface LibraryAppendMediaTypesParam {
@@ -388,7 +389,7 @@ export interface LinkedServiceCreateOrUpdateLinkedServiceBodyParam {
 }
 
 export interface LinkedServiceCreateOrUpdateLinkedServiceHeaderParam {
-  headers: RawHttpHeadersInput &
+  headers?: RawHttpHeadersInput &
     LinkedServiceCreateOrUpdateLinkedServiceHeaders;
 }
 
@@ -408,7 +409,7 @@ export interface LinkedServiceGetLinkedServiceHeaders {
 }
 
 export interface LinkedServiceGetLinkedServiceHeaderParam {
-  headers: RawHttpHeadersInput & LinkedServiceGetLinkedServiceHeaders;
+  headers?: RawHttpHeadersInput & LinkedServiceGetLinkedServiceHeaders;
 }
 
 export type LinkedServiceGetLinkedServiceParameters = LinkedServiceGetLinkedServiceHeaderParam &
@@ -442,7 +443,7 @@ export interface NotebookCreateOrUpdateNotebookBodyParam {
 }
 
 export interface NotebookCreateOrUpdateNotebookHeaderParam {
-  headers: RawHttpHeadersInput & NotebookCreateOrUpdateNotebookHeaders;
+  headers?: RawHttpHeadersInput & NotebookCreateOrUpdateNotebookHeaders;
 }
 
 export interface NotebookCreateOrUpdateNotebookMediaTypesParam {
@@ -461,7 +462,7 @@ export interface NotebookGetNotebookHeaders {
 }
 
 export interface NotebookGetNotebookHeaderParam {
-  headers: RawHttpHeadersInput & NotebookGetNotebookHeaders;
+  headers?: RawHttpHeadersInput & NotebookGetNotebookHeaders;
 }
 
 export type NotebookGetNotebookParameters = NotebookGetNotebookHeaderParam &
@@ -495,7 +496,7 @@ export interface PipelineCreateOrUpdatePipelineBodyParam {
 }
 
 export interface PipelineCreateOrUpdatePipelineHeaderParam {
-  headers: RawHttpHeadersInput & PipelineCreateOrUpdatePipelineHeaders;
+  headers?: RawHttpHeadersInput & PipelineCreateOrUpdatePipelineHeaders;
 }
 
 export interface PipelineCreateOrUpdatePipelineMediaTypesParam {
@@ -514,7 +515,7 @@ export interface PipelineGetPipelineHeaders {
 }
 
 export interface PipelineGetPipelineHeaderParam {
-  headers: RawHttpHeadersInput & PipelineGetPipelineHeaders;
+  headers?: RawHttpHeadersInput & PipelineGetPipelineHeaders;
 }
 
 export type PipelineGetPipelineParameters = PipelineGetPipelineHeaderParam &
@@ -616,7 +617,7 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinitionBodyParam {
 }
 
 export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinitionHeaderParam {
-  headers: RawHttpHeadersInput &
+  headers?: RawHttpHeadersInput &
     SparkJobDefinitionCreateOrUpdateSparkJobDefinitionHeaders;
 }
 
@@ -636,7 +637,8 @@ export interface SparkJobDefinitionGetSparkJobDefinitionHeaders {
 }
 
 export interface SparkJobDefinitionGetSparkJobDefinitionHeaderParam {
-  headers: RawHttpHeadersInput & SparkJobDefinitionGetSparkJobDefinitionHeaders;
+  headers?: RawHttpHeadersInput &
+    SparkJobDefinitionGetSparkJobDefinitionHeaders;
 }
 
 export type SparkJobDefinitionGetSparkJobDefinitionParameters = SparkJobDefinitionGetSparkJobDefinitionHeaderParam &
@@ -686,7 +688,7 @@ export interface SqlScriptCreateOrUpdateSqlScriptBodyParam {
 }
 
 export interface SqlScriptCreateOrUpdateSqlScriptHeaderParam {
-  headers: RawHttpHeadersInput & SqlScriptCreateOrUpdateSqlScriptHeaders;
+  headers?: RawHttpHeadersInput & SqlScriptCreateOrUpdateSqlScriptHeaders;
 }
 
 export interface SqlScriptCreateOrUpdateSqlScriptMediaTypesParam {
@@ -705,7 +707,7 @@ export interface SqlScriptGetSqlScriptHeaders {
 }
 
 export interface SqlScriptGetSqlScriptHeaderParam {
-  headers: RawHttpHeadersInput & SqlScriptGetSqlScriptHeaders;
+  headers?: RawHttpHeadersInput & SqlScriptGetSqlScriptHeaders;
 }
 
 export type SqlScriptGetSqlScriptParameters = SqlScriptGetSqlScriptHeaderParam &
@@ -738,7 +740,7 @@ export interface TriggerCreateOrUpdateTriggerBodyParam {
 }
 
 export interface TriggerCreateOrUpdateTriggerHeaderParam {
-  headers: RawHttpHeadersInput & TriggerCreateOrUpdateTriggerHeaders;
+  headers?: RawHttpHeadersInput & TriggerCreateOrUpdateTriggerHeaders;
 }
 
 export interface TriggerCreateOrUpdateTriggerMediaTypesParam {
@@ -757,7 +759,7 @@ export interface TriggerGetTriggerHeaders {
 }
 
 export interface TriggerGetTriggerHeaderParam {
-  headers: RawHttpHeadersInput & TriggerGetTriggerHeaders;
+  headers?: RawHttpHeadersInput & TriggerGetTriggerHeaders;
 }
 
 export type TriggerGetTriggerParameters = TriggerGetTriggerHeaderParam &

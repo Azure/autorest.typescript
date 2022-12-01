@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { ServerCommunicationLinks } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -21,12 +21,12 @@ import { createLroSpec } from "../lroImpl";
 import {
   ServerCommunicationLink,
   ServerCommunicationLinksListByServerOptionalParams,
+  ServerCommunicationLinksListByServerResponse,
   ServerCommunicationLinksDeleteOptionalParams,
   ServerCommunicationLinksGetOptionalParams,
   ServerCommunicationLinksGetResponse,
   ServerCommunicationLinksCreateOrUpdateOptionalParams,
-  ServerCommunicationLinksCreateOrUpdateResponse,
-  ServerCommunicationLinksListByServerResponse
+  ServerCommunicationLinksCreateOrUpdateResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -66,11 +66,15 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByServerPagingPage(
           resourceGroupName,
           serverName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -79,13 +83,11 @@ export class ServerCommunicationLinksImpl implements ServerCommunicationLinks {
   private async *listByServerPagingPage(
     resourceGroupName: string,
     serverName: string,
-    options?: ServerCommunicationLinksListByServerOptionalParams
+    options?: ServerCommunicationLinksListByServerOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<ServerCommunicationLink[]> {
-    let result = await this._listByServer(
-      resourceGroupName,
-      serverName,
-      options
-    );
+    let result: ServerCommunicationLinksListByServerResponse;
+    result = await this._listByServer(resourceGroupName, serverName, options);
     yield result.value || [];
   }
 

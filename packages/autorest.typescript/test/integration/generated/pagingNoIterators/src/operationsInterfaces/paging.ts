@@ -10,10 +10,15 @@ import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
+  PagingGetEmptyNextLinkNamePagesOptionalParams,
+  PagingGetEmptyNextLinkNamePagesResponse,
   PagingGetNullNextLinkNamePagesOptionalParams,
   PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesOptionalParams,
   PagingGetSinglePagesResponse,
+  BodyParam,
+  PagingGetSinglePagesWithBodyParamsOptionalParams,
+  PagingGetSinglePagesWithBodyParamsResponse,
   PagingFirstResponseEmptyOptionalParams,
   PagingFirstResponseEmptyResponse,
   PagingGetMultiplePagesOptionalParams,
@@ -60,8 +65,12 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesNextResponse,
+  PagingGetEmptyNextLinkNamePagesNextOptionalParams,
+  PagingGetEmptyNextLinkNamePagesNextResponse,
   PagingGetSinglePagesNextOptionalParams,
   PagingGetSinglePagesNextResponse,
+  PagingGetSinglePagesWithBodyParamsNextOptionalParams,
+  PagingGetSinglePagesWithBodyParamsNextResponse,
   PagingFirstResponseEmptyNextOptionalParams,
   PagingFirstResponseEmptyNextResponse,
   PagingGetMultiplePagesNextOptionalParams,
@@ -104,6 +113,13 @@ export interface Paging {
     options?: PagingGetNoItemNamePagesOptionalParams
   ): Promise<PagingGetNoItemNamePagesResponse>;
   /**
+   * A paging operation that gets an empty next link and should stop after page 1.
+   * @param options The options parameters.
+   */
+  getEmptyNextLinkNamePages(
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesResponse>;
+  /**
    * A paging operation that must ignore any kind of nextLink, and stop after page 1.
    * @param options The options parameters.
    */
@@ -117,6 +133,15 @@ export interface Paging {
   getSinglePages(
     options?: PagingGetSinglePagesOptionalParams
   ): Promise<PagingGetSinglePagesResponse>;
+  /**
+   * A paging operation that finishes on the first call with body params without a nextlink
+   * @param parameters put {'name': 'body'} to pass the test
+   * @param options The options parameters.
+   */
+  getSinglePagesWithBodyParams(
+    parameters: BodyParam,
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+  ): Promise<PagingGetSinglePagesWithBodyParamsResponse>;
   /**
    * A paging operation whose first response's items list is empty, but still returns a next link. Second
    * (and final) call, will give you an items list of 1.
@@ -308,6 +333,16 @@ export interface Paging {
     options?: PagingGetNoItemNamePagesNextOptionalParams
   ): Promise<PagingGetNoItemNamePagesNextResponse>;
   /**
+   * GetEmptyNextLinkNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetEmptyNextLinkNamePages
+   *                 method.
+   * @param options The options parameters.
+   */
+  getEmptyNextLinkNamePagesNext(
+    nextLink: string,
+    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams
+  ): Promise<PagingGetEmptyNextLinkNamePagesNextResponse>;
+  /**
    * GetSinglePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
    * @param options The options parameters.
@@ -316,6 +351,18 @@ export interface Paging {
     nextLink: string,
     options?: PagingGetSinglePagesNextOptionalParams
   ): Promise<PagingGetSinglePagesNextResponse>;
+  /**
+   * GetSinglePagesWithBodyParamsNext
+   * @param parameters put {'name': 'body'} to pass the test
+   * @param nextLink The nextLink from the previous successful call to the GetSinglePagesWithBodyParams
+   *                 method.
+   * @param options The options parameters.
+   */
+  getSinglePagesWithBodyParamsNext(
+    parameters: BodyParam,
+    nextLink: string,
+    options?: PagingGetSinglePagesWithBodyParamsNextOptionalParams
+  ): Promise<PagingGetSinglePagesWithBodyParamsNextResponse>;
   /**
    * FirstResponseEmptyNext
    * @param nextLink The nextLink from the previous successful call to the FirstResponseEmpty method.

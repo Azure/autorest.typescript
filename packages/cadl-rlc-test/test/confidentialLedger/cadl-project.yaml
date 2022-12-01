@@ -1,0 +1,7 @@
+emitters:
+  "@azure-tools/cadl-typescript":
+    azureSdkForJs: false
+    packageDetails:
+      name: "@msinternal/confidential-ledger"
+      description: "Confidential Ledger Service"
+  "@azure-tools/cadl-autorest": true

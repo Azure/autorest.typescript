@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { WorkloadClassifiers } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,12 +23,12 @@ import {
   WorkloadClassifier,
   WorkloadClassifiersListByWorkloadGroupNextOptionalParams,
   WorkloadClassifiersListByWorkloadGroupOptionalParams,
+  WorkloadClassifiersListByWorkloadGroupResponse,
   WorkloadClassifiersGetOptionalParams,
   WorkloadClassifiersGetResponse,
   WorkloadClassifiersCreateOrUpdateOptionalParams,
   WorkloadClassifiersCreateOrUpdateResponse,
   WorkloadClassifiersDeleteOptionalParams,
-  WorkloadClassifiersListByWorkloadGroupResponse,
   WorkloadClassifiersListByWorkloadGroupNextResponse
 } from "../models";
 
@@ -74,13 +75,17 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByWorkloadGroupPagingPage(
           resourceGroupName,
           serverName,
           databaseName,
           workloadGroupName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -91,17 +96,24 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
     serverName: string,
     databaseName: string,
     workloadGroupName: string,
-    options?: WorkloadClassifiersListByWorkloadGroupOptionalParams
+    options?: WorkloadClassifiersListByWorkloadGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<WorkloadClassifier[]> {
-    let result = await this._listByWorkloadGroup(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      workloadGroupName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: WorkloadClassifiersListByWorkloadGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByWorkloadGroup(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        workloadGroupName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByWorkloadGroupNext(
         resourceGroupName,
@@ -112,7 +124,9 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -558,7 +572,6 @@ const listByWorkloadGroupNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

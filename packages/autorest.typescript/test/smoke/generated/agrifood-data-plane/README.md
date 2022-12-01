@@ -1,4 +1,4 @@
-# Azure AgriFoodPlatform Data Plane client library for JavaScript
+# Azure AgriFoodPlatform Data Plane REST client library for JavaScript
 
 APIs documentation for Azure AgPlatform DataPlane Service.
 
@@ -12,7 +12,7 @@ Key links:
 
 ### Currently supported environments
 
-- Node.js version 14.x.x or higher
+- LTS versions of Node.js
 
 ### Prerequisites
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/agrifood-data-plane` package
 
-Install the Azure AgriFoodPlatform Data Plane client REST client library for JavaScript with `npm`:
+Install the Azure AgriFoodPlatform Data Plane REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/agrifood-data-plane
 ```
 
-### Create and authenticate a `AzureAgriFoodPlatformDataPlaneService`
+### Create and authenticate a `AzureAgriFoodPlatformDataPlaneServiceClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the
@@ -48,7 +48,7 @@ AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the `AZURE_LOG_LEVEL` environment variable to `info`. Alternatively, logging can be enabled at runtime by calling `setLogLevel` in the `@azure/logger`:
 
 ```javascript
-import { setLogLevel } from "@azure/logger";
+const { setLogLevel } = require("@azure/logger");
 
 setLogLevel("info");
 ```

@@ -52,7 +52,7 @@ export class MonitorClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri:
+      endpoint:
         options.endpoint ?? options.baseUri ?? "https://monitoring.azure.com"
     };
     super(optionsWithDefaults);

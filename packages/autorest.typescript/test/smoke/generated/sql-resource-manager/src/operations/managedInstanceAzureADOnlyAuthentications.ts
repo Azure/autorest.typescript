@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { ManagedInstanceAzureADOnlyAuthentications } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,13 +23,13 @@ import {
   ManagedInstanceAzureADOnlyAuthentication,
   ManagedInstanceAzureADOnlyAuthenticationsListByInstanceNextOptionalParams,
   ManagedInstanceAzureADOnlyAuthenticationsListByInstanceOptionalParams,
+  ManagedInstanceAzureADOnlyAuthenticationsListByInstanceResponse,
   AuthenticationName,
   ManagedInstanceAzureADOnlyAuthenticationsGetOptionalParams,
   ManagedInstanceAzureADOnlyAuthenticationsGetResponse,
   ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams,
   ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse,
   ManagedInstanceAzureADOnlyAuthenticationsDeleteOptionalParams,
-  ManagedInstanceAzureADOnlyAuthenticationsListByInstanceResponse,
   ManagedInstanceAzureADOnlyAuthenticationsListByInstanceNextResponse
 } from "../models";
 
@@ -70,11 +71,15 @@ export class ManagedInstanceAzureADOnlyAuthenticationsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByInstancePagingPage(
           resourceGroupName,
           managedInstanceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -83,15 +88,22 @@ export class ManagedInstanceAzureADOnlyAuthenticationsImpl
   private async *listByInstancePagingPage(
     resourceGroupName: string,
     managedInstanceName: string,
-    options?: ManagedInstanceAzureADOnlyAuthenticationsListByInstanceOptionalParams
+    options?: ManagedInstanceAzureADOnlyAuthenticationsListByInstanceOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ManagedInstanceAzureADOnlyAuthentication[]> {
-    let result = await this._listByInstance(
-      resourceGroupName,
-      managedInstanceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: ManagedInstanceAzureADOnlyAuthenticationsListByInstanceResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByInstance(
+        resourceGroupName,
+        managedInstanceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByInstanceNext(
         resourceGroupName,
@@ -100,7 +112,9 @@ export class ManagedInstanceAzureADOnlyAuthenticationsImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -488,7 +502,6 @@ const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

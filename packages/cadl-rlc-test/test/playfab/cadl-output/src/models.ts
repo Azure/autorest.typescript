@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 /**
  * This API must be called with X-SecretKey, X-Authentication or X-EntityToken
  * headers. An optional EntityKey may be included to attempt to set the resulting

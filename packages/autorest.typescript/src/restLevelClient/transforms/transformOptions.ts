@@ -1,7 +1,6 @@
 import { CodeModel } from "@autorest/codemodel";
-import { RLCOptions } from "@azure-tools/rlc-codegen";
+import { RLCOptions } from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
-import { transformBaseUrl } from "../../transforms/urlTransforms";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 
 export function transformOptions(model: CodeModel): RLCOptions {
@@ -14,7 +13,10 @@ export function transformOptions(model: CodeModel): RLCOptions {
     generateSample,
     generateTest,
     azureOutputDirectory,
-    azureSdkForJs
+    azureSdkForJs,
+    dependencyInfo,
+    productDocLink,
+    azureArm
   } = getAutorestOptions();
   const options: RLCOptions = {};
   options.includeShortcuts = rlcShortcut;
@@ -26,6 +28,13 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.generateTest = generateTest;
   options.azureOutputDirectory = azureOutputDirectory;
   options.azureSdkForJs = azureSdkForJs;
+  options.dependencyInfo = dependencyInfo;
+  options.productDocLink = productDocLink;
+  options.azureArm = azureArm;
+  options.serviceInfo = {
+    title: model.info.title ?? model.language.default.name,
+    description: model.info.description
+  };
   const {
     addCredentials,
     credentialScopes,

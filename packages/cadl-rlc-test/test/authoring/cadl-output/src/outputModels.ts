@@ -1,11 +1,15 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+/** The details of a project. */
 export interface ProjectOutput {
+  /** The project name. */
   projectName: string;
-  /**
-   * The project kind.
-   *
-   * Possible values: CustomSingleLabelClassification, CustomMultiLabelClassification, CustomEntityRecognition
-   */
-  projectKind: string;
+  /** The project kind. */
+  projectKind:
+    | "CustomSingleLabelClassification"
+    | "CustomMultiLabelClassification"
+    | "CustomEntityRecognition";
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
@@ -17,16 +21,16 @@ export interface ProjectOutput {
   /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
   language: string;
   /** Represents the project creation datetime. */
-  createdDateTime: string;
+  readonly createdDateTime: string;
   /** Represents the project last modification datetime. */
-  lastModifiedDateTime: string;
+  readonly lastModifiedDateTime: string;
   /** Represents the project last training datetime. */
-  lastTrainedDateTime: string;
+  readonly lastTrainedDateTime: string;
   /** Represents the project last deployment datetime. */
-  lastDeployedDateTime: string;
+  readonly lastDeployedDateTime: string;
 }
 
-/** Status monitor resource for long running operations */
+/** Provides status details for long running operations. */
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
@@ -38,12 +42,8 @@ export interface OperationStatusOutput {
   status: string;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModelOutput;
-}
-
-/** A response containing error details. */
-export interface ErrorResponseOutput {
-  /** The error object. */
-  error: ErrorModelOutput;
+  /** The result of the operation. */
+  result?: never;
 }
 
 /** The error object. */
@@ -68,6 +68,12 @@ export interface InnerErrorOutput {
   innererror?: InnerErrorOutput;
 }
 
+/** A response containing error details. */
+export interface ErrorResponseOutput {
+  /** The error object. */
+  error: ErrorModelOutput;
+}
+
 /** Paged collection of Project items */
 export interface ProjectListOutput {
   /** The Project items on this page */
@@ -76,7 +82,9 @@ export interface ProjectListOutput {
   nextLink?: string;
 }
 
+/** The details of a project deployment. */
 export interface DeploymentOutput {
+  /** The name of the deployment. */
   name: string;
 }
 
@@ -88,25 +96,30 @@ export interface DeploymentListOutput {
   nextLink?: string;
 }
 
+/** The details of a deployment job. */
 export interface DeploymentJobOutput {
   /** The job ID. */
   jobId: string;
   /** The creation date time of the job. */
-  createdDateTime: string;
+  readonly createdDateTime: string;
   /** The the last date time the job was updated. */
-  lastUpdatedDateTime: string;
+  readonly lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
-  expirationDateTime: string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
+  readonly expirationDateTime: string;
+  /** The job status. */
+  status:
+    | "notStarted"
+    | "running"
+    | "succeeded"
+    | "failed"
+    | "cancelled"
+    | "cancelling"
+    | "partiallyCompleted";
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
   errors: ErrorModelOutput;
+  /** The job ID. */
   id: string;
 }
 
@@ -118,29 +131,34 @@ export interface JobWarningOutput {
   message: string;
 }
 
+/** The details of a swap deployments job. */
 export interface SwapDeploymentsJobOutput {
   /** The job ID. */
   jobId: string;
   /** The creation date time of the job. */
-  createdDateTime: string;
+  readonly createdDateTime: string;
   /** The the last date time the job was updated. */
-  lastUpdatedDateTime: string;
+  readonly lastUpdatedDateTime: string;
   /** The expiration date time of the job. */
-  expirationDateTime: string;
-  /**
-   * The job status.
-   *
-   * Possible values: notStarted, running, succeeded, failed, cancelled, cancelling, partiallyCompleted
-   */
-  status: string;
+  readonly expirationDateTime: string;
+  /** The job status. */
+  status:
+    | "notStarted"
+    | "running"
+    | "succeeded"
+    | "failed"
+    | "cancelled"
+    | "cancelling"
+    | "partiallyCompleted";
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
   errors: ErrorModelOutput;
+  /** The job ID. */
   id: string;
 }
 
-/** Paged collection of SupportedLanguage items */
+/** A collection of SupportedLanguage resources. */
 export interface PagedSupportedLanguageOutput {
   /** The SupportedLanguage items on this page */
   value: Array<SupportedLanguageOutput>;
@@ -156,7 +174,7 @@ export interface SupportedLanguageOutput {
   languageCode: string;
 }
 
-/** Paged collection of TrainingConfigVersion items */
+/** A collection of TrainingConfigVersion resources. */
 export interface PagedTrainingConfigVersionOutput {
   /** The TrainingConfigVersion items on this page */
   value: Array<TrainingConfigVersionOutput>;

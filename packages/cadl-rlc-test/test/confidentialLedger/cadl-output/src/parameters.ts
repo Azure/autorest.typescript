@@ -1,69 +1,70 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { RequestParameters } from "@azure-rest/core-client";
 import { LedgerEntry, LedgerUser } from "./models";
 
-export type ConfidentialLedgerListCollectionsParameters = RequestParameters;
-export type ConfidentialLedgerGetEnclaveQuotesParameters = RequestParameters;
-export type ConfidentialLedgerGetConstitutionParameters = RequestParameters;
-export type ConfidentialLedgerGetConsortiumMembersParameters =
-  RequestParameters;
-export type ConfidentialLedgerListLedgerEntriesParameters = RequestParameters;
+export type ListCollectionsParameters = RequestParameters;
+export type GetEnclaveQuotesParameters = RequestParameters;
+export type GetConstitutionParameters = RequestParameters;
+export type GetConsortiumMembersParameters = RequestParameters;
+export type ListLedgerEntriesParameters = RequestParameters;
 
-export interface ConfidentialLedgerCreateLedgerEntryBodyParam {
+export interface CreateLedgerEntryBodyParam {
   body?: LedgerEntry;
 }
 
-export interface ConfidentialLedgerCreateLedgerEntryQueryParamProperties {
+export interface CreateLedgerEntryQueryParamProperties {
   /** The collection id. */
   collectionId?: string;
 }
 
-export interface ConfidentialLedgerCreateLedgerEntryQueryParam {
-  queryParameters?: ConfidentialLedgerCreateLedgerEntryQueryParamProperties;
+export interface CreateLedgerEntryQueryParam {
+  queryParameters?: CreateLedgerEntryQueryParamProperties;
 }
 
-export type ConfidentialLedgerCreateLedgerEntryParameters =
-  ConfidentialLedgerCreateLedgerEntryQueryParam &
-    ConfidentialLedgerCreateLedgerEntryBodyParam &
-    RequestParameters;
-
-export interface ConfidentialLedgerGetLedgerEntryQueryParamProperties {
-  /** The collection id. */
-  collectionId?: string;
-}
-
-export interface ConfidentialLedgerGetLedgerEntryQueryParam {
-  queryParameters?: ConfidentialLedgerGetLedgerEntryQueryParamProperties;
-}
-
-export type ConfidentialLedgerGetLedgerEntryParameters =
-  ConfidentialLedgerGetLedgerEntryQueryParam & RequestParameters;
-export type ConfidentialLedgerGetReceiptParameters = RequestParameters;
-export type ConfidentialLedgerGetTransactionStatusParameters =
+export type CreateLedgerEntryParameters = CreateLedgerEntryQueryParam &
+  CreateLedgerEntryBodyParam &
   RequestParameters;
 
-export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties {
+export interface GetLedgerEntryQueryParamProperties {
   /** The collection id. */
   collectionId?: string;
 }
 
-export interface ConfidentialLedgerGetCurrentLedgerEntryQueryParam {
-  queryParameters?: ConfidentialLedgerGetCurrentLedgerEntryQueryParamProperties;
+export interface GetLedgerEntryQueryParam {
+  queryParameters?: GetLedgerEntryQueryParamProperties;
 }
 
-export type ConfidentialLedgerGetCurrentLedgerEntryParameters =
-  ConfidentialLedgerGetCurrentLedgerEntryQueryParam & RequestParameters;
-export type ConfidentialLedgerDeleteUserParameters = RequestParameters;
-export type ConfidentialLedgerGetUserParameters = RequestParameters;
+export type GetLedgerEntryParameters = GetLedgerEntryQueryParam &
+  RequestParameters;
+export type GetReceiptParameters = RequestParameters;
+export type GetTransactionStatusParameters = RequestParameters;
 
-export interface ConfidentialLedgerCreateOrUpdateUserBodyParam {
-  body?: LedgerUser;
+export interface GetCurrentLedgerEntryQueryParamProperties {
+  /** The collection id. */
+  collectionId?: string;
 }
 
-export interface ConfidentialLedgerCreateOrUpdateUserMediaTypesParam {
+export interface GetCurrentLedgerEntryQueryParam {
+  queryParameters?: GetCurrentLedgerEntryQueryParamProperties;
+}
+
+export type GetCurrentLedgerEntryParameters = GetCurrentLedgerEntryQueryParam &
+  RequestParameters;
+export type DeleteUserParameters = RequestParameters;
+export type GetUserParameters = RequestParameters;
+export type LedgerUserResourceMergeAndPatch = Partial<LedgerUser>;
+
+export interface CreateOrUpdateUserBodyParam {
+  body?: LedgerUserResourceMergeAndPatch;
+}
+
+export interface CreateOrUpdateUserMediaTypesParam {
+  /** This request has a JSON Merge Patch body. */
   contentType: "application/merge-patch+json";
 }
 
-export type ConfidentialLedgerCreateOrUpdateUserParameters =
-  ConfidentialLedgerCreateOrUpdateUserMediaTypesParam &
-    ConfidentialLedgerCreateOrUpdateUserBodyParam &
-    RequestParameters;
+export type CreateOrUpdateUserParameters = CreateOrUpdateUserMediaTypesParam &
+  CreateOrUpdateUserBodyParam &
+  RequestParameters;

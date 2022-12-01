@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { PolicyAssignments } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,22 +17,22 @@ import {
   PolicyAssignment,
   PolicyAssignmentsListForResourceGroupNextOptionalParams,
   PolicyAssignmentsListForResourceGroupOptionalParams,
+  PolicyAssignmentsListForResourceGroupResponse,
   PolicyAssignmentsListForResourceNextOptionalParams,
   PolicyAssignmentsListForResourceOptionalParams,
+  PolicyAssignmentsListForResourceResponse,
   PolicyAssignmentsListForManagementGroupNextOptionalParams,
   PolicyAssignmentsListForManagementGroupOptionalParams,
+  PolicyAssignmentsListForManagementGroupResponse,
   PolicyAssignmentsListNextOptionalParams,
   PolicyAssignmentsListOptionalParams,
+  PolicyAssignmentsListResponse,
   PolicyAssignmentsDeleteOptionalParams,
   PolicyAssignmentsDeleteResponse,
   PolicyAssignmentsCreateOptionalParams,
   PolicyAssignmentsCreateResponse,
   PolicyAssignmentsGetOptionalParams,
   PolicyAssignmentsGetResponse,
-  PolicyAssignmentsListForResourceGroupResponse,
-  PolicyAssignmentsListForResourceResponse,
-  PolicyAssignmentsListForManagementGroupResponse,
-  PolicyAssignmentsListResponse,
   PolicyAssignmentsDeleteByIdOptionalParams,
   PolicyAssignmentsDeleteByIdResponse,
   PolicyAssignmentsCreateByIdOptionalParams,
@@ -83,19 +84,33 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listForResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listForResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listForResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: PolicyAssignmentsListForResourceGroupOptionalParams
+    options?: PolicyAssignmentsListForResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<PolicyAssignment[]> {
-    let result = await this._listForResourceGroup(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PolicyAssignmentsListForResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listForResourceGroup(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listForResourceGroupNext(
         resourceGroupName,
@@ -103,7 +118,9 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -172,14 +189,18 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listForResourcePagingPage(
           resourceGroupName,
           resourceProviderNamespace,
           parentResourcePath,
           resourceType,
           resourceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -191,18 +212,25 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     parentResourcePath: string,
     resourceType: string,
     resourceName: string,
-    options?: PolicyAssignmentsListForResourceOptionalParams
+    options?: PolicyAssignmentsListForResourceOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<PolicyAssignment[]> {
-    let result = await this._listForResource(
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PolicyAssignmentsListForResourceResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listForResource(
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listForResourceNext(
         resourceGroupName,
@@ -214,7 +242,9 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -268,11 +298,15 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listForManagementGroupPagingPage(
           managementGroupId,
           filter,
-          options
+          options,
+          settings
         );
       }
     };
@@ -281,24 +315,32 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   private async *listForManagementGroupPagingPage(
     managementGroupId: string,
     filter: string,
-    options?: PolicyAssignmentsListForManagementGroupOptionalParams
+    options?: PolicyAssignmentsListForManagementGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<PolicyAssignment[]> {
-    let result = await this._listForManagementGroup(
-      managementGroupId,
-      filter,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PolicyAssignmentsListForManagementGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listForManagementGroup(
+        managementGroupId,
+        filter,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listForManagementGroupNext(
         managementGroupId,
-        filter,
         continuationToken,
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -340,22 +382,34 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: PolicyAssignmentsListOptionalParams
+    options?: PolicyAssignmentsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<PolicyAssignment[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: PolicyAssignmentsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -679,20 +733,16 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   /**
    * ListForManagementGroupNext
    * @param managementGroupId The ID of the management group.
-   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
-   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
-   *               management group scope.
    * @param nextLink The nextLink from the previous successful call to the ListForManagementGroup method.
    * @param options The options parameters.
    */
   private _listForManagementGroupNext(
     managementGroupId: string,
-    filter: string,
     nextLink: string,
     options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
   ): Promise<PolicyAssignmentsListForManagementGroupNextResponse> {
     return this.client.sendOperationRequest(
-      { managementGroupId, filter, nextLink, options },
+      { managementGroupId, nextLink, options },
       listForManagementGroupNextOperationSpec
     );
   }
@@ -923,7 +973,6 @@ const listForResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -944,7 +993,6 @@ const listForResourceNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -969,7 +1017,6 @@ const listForManagementGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
@@ -989,7 +1036,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

@@ -1,0 +1,7 @@
+emitters:
+  "@azure-tools/cadl-typescript":
+    azureSdkForJs: false
+    packageDetails:
+      name: "@msinternal/authoring"
+      description: "Authoring Ledger Service"
+  "@azure-tools/cadl-autorest": true

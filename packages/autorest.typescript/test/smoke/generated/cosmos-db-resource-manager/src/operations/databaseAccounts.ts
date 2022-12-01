@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { DatabaseAccounts } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -21,13 +21,18 @@ import { createLroSpec } from "../lroImpl";
 import {
   DatabaseAccountGetResults,
   DatabaseAccountsListOptionalParams,
+  DatabaseAccountsListResponse,
   DatabaseAccountsListByResourceGroupOptionalParams,
+  DatabaseAccountsListByResourceGroupResponse,
   Metric,
   DatabaseAccountsListMetricsOptionalParams,
+  DatabaseAccountsListMetricsResponse,
   Usage,
   DatabaseAccountsListUsagesOptionalParams,
+  DatabaseAccountsListUsagesResponse,
   MetricDefinition,
   DatabaseAccountsListMetricDefinitionsOptionalParams,
+  DatabaseAccountsListMetricDefinitionsResponse,
   DatabaseAccountsGetOptionalParams,
   DatabaseAccountsGetResponse,
   DatabaseAccountUpdateParameters,
@@ -39,8 +44,6 @@ import {
   DatabaseAccountsDeleteOptionalParams,
   FailoverPolicies,
   DatabaseAccountsFailoverPriorityChangeOptionalParams,
-  DatabaseAccountsListResponse,
-  DatabaseAccountsListByResourceGroupResponse,
   DatabaseAccountsListKeysOptionalParams,
   DatabaseAccountsListKeysResponse,
   DatabaseAccountsListConnectionStringsOptionalParams,
@@ -54,10 +57,7 @@ import {
   DatabaseAccountsListReadOnlyKeysResponse,
   DatabaseAccountRegenerateKeyParameters,
   DatabaseAccountsRegenerateKeyOptionalParams,
-  DatabaseAccountsCheckNameExistsOptionalParams,
-  DatabaseAccountsListMetricsResponse,
-  DatabaseAccountsListUsagesResponse,
-  DatabaseAccountsListMetricDefinitionsResponse
+  DatabaseAccountsCheckNameExistsOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -88,16 +88,21 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: DatabaseAccountsListOptionalParams
+    options?: DatabaseAccountsListOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<DatabaseAccountGetResults[]> {
-    let result = await this._list(options);
+    let result: DatabaseAccountsListResponse;
+    result = await this._list(options);
     yield result.value || [];
   }
 
@@ -126,17 +131,26 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: DatabaseAccountsListByResourceGroupOptionalParams
+    options?: DatabaseAccountsListByResourceGroupOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<DatabaseAccountGetResults[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
+    let result: DatabaseAccountsListByResourceGroupResponse;
+    result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
   }
 
@@ -180,12 +194,16 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMetricsPagingPage(
           resourceGroupName,
           accountName,
           filter,
-          options
+          options,
+          settings
         );
       }
     };
@@ -195,9 +213,11 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: DatabaseAccountsListMetricsOptionalParams
+    options?: DatabaseAccountsListMetricsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<Metric[]> {
-    let result = await this._listMetrics(
+    let result: DatabaseAccountsListMetricsResponse;
+    result = await this._listMetrics(
       resourceGroupName,
       accountName,
       filter,
@@ -245,11 +265,15 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listUsagesPagingPage(
           resourceGroupName,
           accountName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -258,13 +282,11 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   private async *listUsagesPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsListUsagesOptionalParams
+    options?: DatabaseAccountsListUsagesOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<Usage[]> {
-    let result = await this._listUsages(
-      resourceGroupName,
-      accountName,
-      options
-    );
+    let result: DatabaseAccountsListUsagesResponse;
+    result = await this._listUsages(resourceGroupName, accountName, options);
     yield result.value || [];
   }
 
@@ -305,11 +327,15 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listMetricDefinitionsPagingPage(
           resourceGroupName,
           accountName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -318,9 +344,11 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   private async *listMetricDefinitionsPagingPage(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsListMetricDefinitionsOptionalParams
+    options?: DatabaseAccountsListMetricDefinitionsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<MetricDefinition[]> {
-    let result = await this._listMetricDefinitions(
+    let result: DatabaseAccountsListMetricDefinitionsResponse;
+    result = await this._listMetricDefinitions(
       resourceGroupName,
       accountName,
       options

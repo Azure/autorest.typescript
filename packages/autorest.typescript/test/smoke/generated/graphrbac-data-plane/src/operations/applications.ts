@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Applications } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,35 +17,35 @@ import {
   Application,
   ApplicationsListNextOptionalParams,
   ApplicationsListOptionalParams,
+  ApplicationsListResponse,
   DirectoryObjectUnion,
   ApplicationsListOwnersNextOptionalParams,
   ApplicationsListOwnersOptionalParams,
+  ApplicationsListOwnersResponse,
   KeyCredential,
   ApplicationsListKeyCredentialsOptionalParams,
+  ApplicationsListKeyCredentialsResponse,
   PasswordCredential,
   ApplicationsListPasswordCredentialsOptionalParams,
+  ApplicationsListPasswordCredentialsResponse,
+  ApplicationsListNextResponse,
   ApplicationCreateParameters,
   ApplicationsCreateOptionalParams,
   ApplicationsCreateResponse,
-  ApplicationsListResponse,
   ApplicationsDeleteOptionalParams,
   ApplicationsGetOptionalParams,
   ApplicationsGetResponse,
   ApplicationUpdateParameters,
   ApplicationsPatchOptionalParams,
-  ApplicationsListOwnersResponse,
   AddOwnerParameters,
   ApplicationsAddOwnerOptionalParams,
   ApplicationsRemoveOwnerOptionalParams,
-  ApplicationsListKeyCredentialsResponse,
   KeyCredentialsUpdateParameters,
   ApplicationsUpdateKeyCredentialsOptionalParams,
-  ApplicationsListPasswordCredentialsResponse,
   PasswordCredentialsUpdateParameters,
   ApplicationsUpdatePasswordCredentialsOptionalParams,
   ApplicationsGetServicePrincipalsIdByAppIdOptionalParams,
   ApplicationsGetServicePrincipalsIdByAppIdResponse,
-  ApplicationsListNextResponse,
   ApplicationsListOwnersNextResponse
 } from "../models";
 
@@ -76,22 +77,34 @@ export class ApplicationsImpl implements Applications {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: ApplicationsListOptionalParams
+    options?: ApplicationsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Application[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: ApplicationsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -120,19 +133,33 @@ export class ApplicationsImpl implements Applications {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listOwnersPagingPage(applicationObjectId, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listOwnersPagingPage(
+          applicationObjectId,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listOwnersPagingPage(
     applicationObjectId: string,
-    options?: ApplicationsListOwnersOptionalParams
+    options?: ApplicationsListOwnersOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._listOwners(applicationObjectId, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: ApplicationsListOwnersResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listOwners(applicationObjectId, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listOwnersNext(
         applicationObjectId,
@@ -140,7 +167,9 @@ export class ApplicationsImpl implements Applications {
         options
       );
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -173,17 +202,26 @@ export class ApplicationsImpl implements Applications {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listKeyCredentialsPagingPage(applicationObjectId, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listKeyCredentialsPagingPage(
+          applicationObjectId,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listKeyCredentialsPagingPage(
     applicationObjectId: string,
-    options?: ApplicationsListKeyCredentialsOptionalParams
+    options?: ApplicationsListKeyCredentialsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<KeyCredential[]> {
-    let result = await this._listKeyCredentials(applicationObjectId, options);
+    let result: ApplicationsListKeyCredentialsResponse;
+    result = await this._listKeyCredentials(applicationObjectId, options);
     yield result.value || [];
   }
 
@@ -219,10 +257,14 @@ export class ApplicationsImpl implements Applications {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listPasswordCredentialsPagingPage(
           applicationObjectId,
-          options
+          options,
+          settings
         );
       }
     };
@@ -230,12 +272,11 @@ export class ApplicationsImpl implements Applications {
 
   private async *listPasswordCredentialsPagingPage(
     applicationObjectId: string,
-    options?: ApplicationsListPasswordCredentialsOptionalParams
+    options?: ApplicationsListPasswordCredentialsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<PasswordCredential[]> {
-    let result = await this._listPasswordCredentials(
-      applicationObjectId,
-      options
-    );
+    let result: ApplicationsListPasswordCredentialsResponse;
+    result = await this._listPasswordCredentials(applicationObjectId, options);
     yield result.value || [];
   }
 
@@ -268,23 +309,35 @@ export class ApplicationsImpl implements Applications {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listNextPagingPage(nextLink, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listNextPagingPage(nextLink, options, settings);
       }
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: ApplicationsListNextOptionalParams
+    options?: ApplicationsListNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<Application[]> {
-    let result = await this._listNext(nextLink, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: ApplicationsListNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listNext(nextLink, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -812,7 +865,6 @@ const listOwnersNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,

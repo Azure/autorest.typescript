@@ -1,22 +1,27 @@
-import { ContentBuilder } from "@azure-tools/rlc-codegen";
-import { buildTopLevelIndex } from "@azure-tools/rlc-codegen";
-import { RLCModel, File as RLCFile } from "@azure-tools/rlc-codegen";
+import { ContentBuilder } from "@azure-tools/rlc-common";
+import { buildTopLevelIndex } from "@azure-tools/rlc-common";
+import { RLCModel, File as RLCFile } from "@azure-tools/rlc-common";
 import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 import * as path from "path";
-import { buildSchemaTypes } from "@azure-tools/rlc-codegen";
+import { buildSchemaTypes } from "@azure-tools/rlc-common";
 
 export function generateFileByBuilder(
   project: Project,
-  buildFn: ContentBuilder,
+  buildFnOrList: ContentBuilder | ContentBuilder[],
   rlcModels: RLCModel,
   hasSampleGenerated?: boolean
 ) {
-  const preparedFile: RLCFile | undefined = buildFn(
-    rlcModels,
-    hasSampleGenerated
-  );
-  generateFile(preparedFile, project);
+  if (!Array.isArray(buildFnOrList)) {
+    buildFnOrList = [buildFnOrList];
+  }
+  for (const buildFn of buildFnOrList) {
+    const preparedFile: RLCFile | undefined = buildFn(
+      rlcModels,
+      hasSampleGenerated
+    );
+    generateFile(preparedFile, project);
+  }
 }
 
 export function generateSchemaTypes(project: Project, rlcModels: RLCModel) {

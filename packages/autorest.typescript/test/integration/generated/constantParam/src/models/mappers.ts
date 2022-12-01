@@ -406,3 +406,54 @@ export const ErrorResponse: coreClient.CompositeMapper = {
     }
   }
 };
+
+export const MultiLanguageBatchInput: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MultiLanguageBatchInput",
+    modelProperties: {
+      documents: {
+        serializedName: "documents",
+        required: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "MultiLanguageInput"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const MultiLanguageInput: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MultiLanguageInput",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      text: {
+        serializedName: "text",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      language: {
+        serializedName: "language",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};

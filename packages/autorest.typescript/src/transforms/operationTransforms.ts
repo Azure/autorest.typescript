@@ -51,9 +51,10 @@ import { getAutorestOptions } from "../autorestSession";
 function injectMissingResponses(
   responses: OperationResponseDetails[]
 ): OperationResponseDetails[] {
+  // Enrich the missing responses by acceptedResponses without 204
   const acceptedResponses = ["200", "201", "202", "204"];
 
-  // Use an already defined accepted response as base;
+  // Use an already defined base status codes as base;
   const baseResponse = acceptedResponses.reduce((acc, status) => {
     if (!isEmpty(acc)) {
       return acc;
@@ -191,9 +192,9 @@ export function getSpecType(responseSchema: Schema, expand = false): SpecType {
       typeName = getSpecType(constantSchema.valueType).name;
       constantProps = expand
         ? {
-          isConstant: true,
-          defaultValue: constantSchema.value.value
-        }
+            isConstant: true,
+            defaultValue: constantSchema.value.value
+          }
         : undefined;
       break;
     case SchemaType.String:
@@ -314,7 +315,9 @@ export function transformOperationResponse(
     bodyType: isSchemaResponse(response)
       ? getTypeForSchema(response.schema, false, useCoreV2)
       : undefined,
-    headersType: headersSchema ? getTypeForSchema(headersSchema, false, useCoreV2) : undefined,
+    headersType: headersSchema
+      ? getTypeForSchema(headersSchema, false, useCoreV2)
+      : undefined,
     pagingValueType: isError
       ? undefined
       : getPagingItemType(response, paginationItemName)
@@ -567,13 +570,13 @@ function getGroupedParameters(
   return {
     ...(hasFormDataParameters
       ? {
-        formDataParameters: operationParams.filter(
-          p => p.location === ParameterLocation.Body
-        )
-      }
+          formDataParameters: operationParams.filter(
+            p => p.location === ParameterLocation.Body
+          )
+        }
       : {
-        requestBody
-      }),
+          requestBody
+        }),
     queryParameters: operationParams.filter(
       p => p.location === ParameterLocation.Query
     ),

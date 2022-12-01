@@ -48,7 +48,7 @@ export class CustomUrlMoreOptionsClient extends coreClient.ServiceClient {
       userAgentOptions: {
         userAgentPrefix
       },
-      baseUri:
+      endpoint:
         options.endpoint ?? options.baseUri ?? "{vault}{secret}{dnsSuffix}"
     };
     super(optionsWithDefaults);

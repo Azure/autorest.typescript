@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { DiskEncryptionSets } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,10 +23,13 @@ import {
   DiskEncryptionSet,
   DiskEncryptionSetsListByResourceGroupNextOptionalParams,
   DiskEncryptionSetsListByResourceGroupOptionalParams,
+  DiskEncryptionSetsListByResourceGroupResponse,
   DiskEncryptionSetsListNextOptionalParams,
   DiskEncryptionSetsListOptionalParams,
+  DiskEncryptionSetsListResponse,
   DiskEncryptionSetsListAssociatedResourcesNextOptionalParams,
   DiskEncryptionSetsListAssociatedResourcesOptionalParams,
+  DiskEncryptionSetsListAssociatedResourcesResponse,
   DiskEncryptionSetsCreateOrUpdateOptionalParams,
   DiskEncryptionSetsCreateOrUpdateResponse,
   DiskEncryptionSetUpdate,
@@ -34,9 +38,6 @@ import {
   DiskEncryptionSetsGetOptionalParams,
   DiskEncryptionSetsGetResponse,
   DiskEncryptionSetsDeleteOptionalParams,
-  DiskEncryptionSetsListByResourceGroupResponse,
-  DiskEncryptionSetsListResponse,
-  DiskEncryptionSetsListAssociatedResourcesResponse,
   DiskEncryptionSetsListByResourceGroupNextResponse,
   DiskEncryptionSetsListNextResponse,
   DiskEncryptionSetsListAssociatedResourcesNextResponse
@@ -72,19 +73,33 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourceGroupPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listByResourceGroupPagingPage(
+          resourceGroupName,
+          options,
+          settings
+        );
       }
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
-    options?: DiskEncryptionSetsListByResourceGroupOptionalParams
+    options?: DiskEncryptionSetsListByResourceGroupOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DiskEncryptionSet[]> {
-    let result = await this._listByResourceGroup(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiskEncryptionSetsListByResourceGroupResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByResourceGroup(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
@@ -92,7 +107,9 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -123,22 +140,34 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: DiskEncryptionSetsListOptionalParams
+    options?: DiskEncryptionSetsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DiskEncryptionSet[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiskEncryptionSetsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -175,11 +204,15 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listAssociatedResourcesPagingPage(
           resourceGroupName,
           diskEncryptionSetName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -188,15 +221,22 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
   private async *listAssociatedResourcesPagingPage(
     resourceGroupName: string,
     diskEncryptionSetName: string,
-    options?: DiskEncryptionSetsListAssociatedResourcesOptionalParams
+    options?: DiskEncryptionSetsListAssociatedResourcesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<string[]> {
-    let result = await this._listAssociatedResources(
-      resourceGroupName,
-      diskEncryptionSetName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DiskEncryptionSetsListAssociatedResourcesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listAssociatedResources(
+        resourceGroupName,
+        diskEncryptionSetName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listAssociatedResourcesNext(
         resourceGroupName,
@@ -205,7 +245,9 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -823,7 +865,6 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -844,7 +885,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -864,7 +904,6 @@ const listAssociatedResourcesNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

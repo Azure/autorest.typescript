@@ -1,9 +1,0 @@
-{
-  "generateMetadata": true,
-  "includeShortcuts": true,
-  "packageDetails": {
-    "name": "@msinternal/confidential-ledger",
-    "description": "Confidential Ledger Service",
-    "version": "1.0.0-beta.1"
-  }
-}

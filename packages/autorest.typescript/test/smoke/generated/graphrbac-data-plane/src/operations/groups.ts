@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { Groups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -16,13 +17,19 @@ import {
   ADGroup,
   GroupsListNextOptionalParams,
   GroupsListOptionalParams,
+  GroupsListResponse,
   DirectoryObjectUnion,
   GroupsGetGroupMembersNextOptionalParams,
   GroupsGetGroupMembersOptionalParams,
+  GroupsGetGroupMembersResponse,
   GroupGetMemberGroupsParameters,
   GroupsGetMemberGroupsOptionalParams,
+  GroupsGetMemberGroupsResponse,
   GroupsListOwnersNextOptionalParams,
   GroupsListOwnersOptionalParams,
+  GroupsListOwnersResponse,
+  GroupsListNextResponse,
+  GroupsGetGroupMembersNextResponse,
   CheckGroupMembershipParameters,
   GroupsIsMemberOfOptionalParams,
   GroupsIsMemberOfResponse,
@@ -32,18 +39,12 @@ import {
   GroupCreateParameters,
   GroupsCreateOptionalParams,
   GroupsCreateResponse,
-  GroupsListResponse,
-  GroupsGetGroupMembersResponse,
   GroupsGetOptionalParams,
   GroupsGetResponse,
   GroupsDeleteOptionalParams,
-  GroupsGetMemberGroupsResponse,
-  GroupsListOwnersResponse,
   AddOwnerParameters,
   GroupsAddOwnerOptionalParams,
   GroupsRemoveOwnerOptionalParams,
-  GroupsListNextResponse,
-  GroupsGetGroupMembersNextResponse,
   GroupsListOwnersNextResponse
 } from "../models";
 
@@ -75,22 +76,34 @@ export class GroupsImpl implements Groups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(options, settings);
       }
     };
   }
 
   private async *listPagingPage(
-    options?: GroupsListOptionalParams
+    options?: GroupsListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ADGroup[]> {
-    let result = await this._list(options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: GroupsListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -119,23 +132,35 @@ export class GroupsImpl implements Groups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getGroupMembersPagingPage(objectId, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getGroupMembersPagingPage(objectId, options, settings);
       }
     };
   }
 
   private async *getGroupMembersPagingPage(
     objectId: string,
-    options?: GroupsGetGroupMembersOptionalParams
+    options?: GroupsGetGroupMembersOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._getGroupMembers(objectId, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: GroupsGetGroupMembersResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getGroupMembers(objectId, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getGroupMembersNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -170,8 +195,16 @@ export class GroupsImpl implements Groups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getMemberGroupsPagingPage(objectId, parameters, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getMemberGroupsPagingPage(
+          objectId,
+          parameters,
+          options,
+          settings
+        );
       }
     };
   }
@@ -179,9 +212,11 @@ export class GroupsImpl implements Groups {
   private async *getMemberGroupsPagingPage(
     objectId: string,
     parameters: GroupGetMemberGroupsParameters,
-    options?: GroupsGetMemberGroupsOptionalParams
+    options?: GroupsGetMemberGroupsOptionalParams,
+    _settings?: PageSettings
   ): AsyncIterableIterator<string[]> {
-    let result = await this._getMemberGroups(objectId, parameters, options);
+    let result: GroupsGetMemberGroupsResponse;
+    result = await this._getMemberGroups(objectId, parameters, options);
     yield result.value || [];
   }
 
@@ -216,23 +251,35 @@ export class GroupsImpl implements Groups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listOwnersPagingPage(objectId, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listOwnersPagingPage(objectId, options, settings);
       }
     };
   }
 
   private async *listOwnersPagingPage(
     objectId: string,
-    options?: GroupsListOwnersOptionalParams
+    options?: GroupsListOwnersOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._listOwners(objectId, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: GroupsListOwnersResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listOwners(objectId, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listOwnersNext(objectId, continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -262,23 +309,35 @@ export class GroupsImpl implements Groups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listNextPagingPage(nextLink, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listNextPagingPage(nextLink, options, settings);
       }
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
-    options?: GroupsListNextOptionalParams
+    options?: GroupsListNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ADGroup[]> {
-    let result = await this._listNext(nextLink, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: GroupsListNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listNext(nextLink, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -308,23 +367,35 @@ export class GroupsImpl implements Groups {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.getGroupMembersNextPagingPage(nextLink, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.getGroupMembersNextPagingPage(nextLink, options, settings);
       }
     };
   }
 
   private async *getGroupMembersNextPagingPage(
     nextLink: string,
-    options?: GroupsGetGroupMembersNextOptionalParams
+    options?: GroupsGetGroupMembersNextOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<DirectoryObjectUnion[]> {
-    let result = await this._getGroupMembersNext(nextLink, options);
-    yield result.value || [];
-    let continuationToken = result.odataNextLink;
+    let result: GroupsGetGroupMembersNextResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._getGroupMembersNext(nextLink, options);
+      let page = result.value || [];
+      continuationToken = result.odataNextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._getGroupMembersNext(continuationToken, options);
       continuationToken = result.odataNextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -827,7 +898,6 @@ const listOwnersNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,

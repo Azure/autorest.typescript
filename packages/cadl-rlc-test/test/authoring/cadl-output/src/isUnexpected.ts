@@ -1,38 +1,41 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
-  ProjectsCreateOrUpdate200Response,
-  ProjectsCreateOrUpdate201Response,
-  ProjectsCreateOrUpdateDefaultResponse,
-  ProjectsGet200Response,
-  ProjectsGetDefaultResponse,
-  ProjectsDelete202Response,
-  ProjectsDeleteDefaultResponse,
-  ProjectsList200Response,
-  ProjectsListDefaultResponse,
-  ProjectsExport202Response,
-  ProjectsExportDefaultResponse,
-  ProjectsImportx202Response,
-  ProjectsImportxDefaultResponse,
-  ProjectsTrain202Response,
-  ProjectsTrainDefaultResponse,
-  DeploymentsGetDeployment200Response,
-  DeploymentsGetDeploymentDefaultResponse,
-  DeploymentsDeployProject200Response,
-  DeploymentsDeployProject201Response,
-  DeploymentsDeployProjectDefaultResponse,
-  DeploymentsDeleteDeployment202Response,
-  DeploymentsDeleteDeploymentDefaultResponse,
-  DeploymentsList200Response,
-  DeploymentsListDefaultResponse,
-  DeploymentsSwapDeployments202Response,
-  DeploymentsSwapDeploymentsDefaultResponse,
-  JobsGetDeploymentStatus200Response,
-  JobsGetDeploymentStatusDefaultResponse,
-  JobsGetSwapDeploymentsStatus200Response,
-  JobsGetSwapDeploymentsStatusDefaultResponse,
-  GlobalGetSupportedLanguages200Response,
-  GlobalGetSupportedLanguagesDefaultResponse,
-  GlobalListTrainingConfigVersions200Response,
-  GlobalListTrainingConfigVersionsDefaultResponse,
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  Get200Response,
+  GetDefaultResponse,
+  Delete202Response,
+  DeleteDefaultResponse,
+  ListProjects200Response,
+  ListProjectsDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
+  Importx202Response,
+  ImportxDefaultResponse,
+  Train202Response,
+  TrainDefaultResponse,
+  GetDeployment200Response,
+  GetDeploymentDefaultResponse,
+  DeployProject200Response,
+  DeployProject201Response,
+  DeployProjectDefaultResponse,
+  DeleteDeployment202Response,
+  DeleteDeploymentDefaultResponse,
+  ListDeployments200Response,
+  ListDeploymentsDefaultResponse,
+  SwapDeployments202Response,
+  SwapDeploymentsDefaultResponse,
+  GetDeploymentStatus200Response,
+  GetDeploymentStatusDefaultResponse,
+  GetSwapDeploymentsStatus200Response,
+  GetSwapDeploymentsStatusDefaultResponse,
+  GetSupportedLanguages200Response,
+  GetSupportedLanguagesDefaultResponse,
+  ListTrainingConfigVersions200Response,
+  ListTrainingConfigVersionsDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -71,137 +74,135 @@ const responseMap: Record<string, string[]> = {
 
 export function isUnexpected(
   response:
-    | ProjectsCreateOrUpdate200Response
-    | ProjectsCreateOrUpdate201Response
-    | ProjectsCreateOrUpdateDefaultResponse
-): response is ProjectsCreateOrUpdateDefaultResponse;
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
+): response is CreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: ProjectsGet200Response | ProjectsGetDefaultResponse
-): response is ProjectsGetDefaultResponse;
+  response: Get200Response | GetDefaultResponse
+): response is GetDefaultResponse;
 export function isUnexpected(
-  response: ProjectsDelete202Response | ProjectsDeleteDefaultResponse
-): response is ProjectsDeleteDefaultResponse;
+  response: Delete202Response | DeleteDefaultResponse
+): response is DeleteDefaultResponse;
 export function isUnexpected(
-  response: ProjectsList200Response | ProjectsListDefaultResponse
-): response is ProjectsListDefaultResponse;
+  response: ListProjects200Response | ListProjectsDefaultResponse
+): response is ListProjectsDefaultResponse;
 export function isUnexpected(
-  response: ProjectsExport202Response | ProjectsExportDefaultResponse
-): response is ProjectsExportDefaultResponse;
+  response: Export202Response | ExportDefaultResponse
+): response is ExportDefaultResponse;
 export function isUnexpected(
-  response: ProjectsImportx202Response | ProjectsImportxDefaultResponse
-): response is ProjectsImportxDefaultResponse;
+  response: Importx202Response | ImportxDefaultResponse
+): response is ImportxDefaultResponse;
 export function isUnexpected(
-  response: ProjectsTrain202Response | ProjectsTrainDefaultResponse
-): response is ProjectsTrainDefaultResponse;
+  response: Train202Response | TrainDefaultResponse
+): response is TrainDefaultResponse;
 export function isUnexpected(
-  response:
-    | DeploymentsGetDeployment200Response
-    | DeploymentsGetDeploymentDefaultResponse
-): response is DeploymentsGetDeploymentDefaultResponse;
+  response: GetDeployment200Response | GetDeploymentDefaultResponse
+): response is GetDeploymentDefaultResponse;
 export function isUnexpected(
   response:
-    | DeploymentsDeployProject200Response
-    | DeploymentsDeployProject201Response
-    | DeploymentsDeployProjectDefaultResponse
-): response is DeploymentsDeployProjectDefaultResponse;
+    | DeployProject200Response
+    | DeployProject201Response
+    | DeployProjectDefaultResponse
+): response is DeployProjectDefaultResponse;
+export function isUnexpected(
+  response: DeleteDeployment202Response | DeleteDeploymentDefaultResponse
+): response is DeleteDeploymentDefaultResponse;
+export function isUnexpected(
+  response: ListDeployments200Response | ListDeploymentsDefaultResponse
+): response is ListDeploymentsDefaultResponse;
+export function isUnexpected(
+  response: SwapDeployments202Response | SwapDeploymentsDefaultResponse
+): response is SwapDeploymentsDefaultResponse;
+export function isUnexpected(
+  response: GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse
+): response is GetDeploymentStatusDefaultResponse;
 export function isUnexpected(
   response:
-    | DeploymentsDeleteDeployment202Response
-    | DeploymentsDeleteDeploymentDefaultResponse
-): response is DeploymentsDeleteDeploymentDefaultResponse;
-export function isUnexpected(
-  response: DeploymentsList200Response | DeploymentsListDefaultResponse
-): response is DeploymentsListDefaultResponse;
+    | GetSwapDeploymentsStatus200Response
+    | GetSwapDeploymentsStatusDefaultResponse
+): response is GetSwapDeploymentsStatusDefaultResponse;
 export function isUnexpected(
   response:
-    | DeploymentsSwapDeployments202Response
-    | DeploymentsSwapDeploymentsDefaultResponse
-): response is DeploymentsSwapDeploymentsDefaultResponse;
+    | GetSupportedLanguages200Response
+    | GetSupportedLanguagesDefaultResponse
+): response is GetSupportedLanguagesDefaultResponse;
 export function isUnexpected(
   response:
-    | JobsGetDeploymentStatus200Response
-    | JobsGetDeploymentStatusDefaultResponse
-): response is JobsGetDeploymentStatusDefaultResponse;
+    | ListTrainingConfigVersions200Response
+    | ListTrainingConfigVersionsDefaultResponse
+): response is ListTrainingConfigVersionsDefaultResponse;
 export function isUnexpected(
   response:
-    | JobsGetSwapDeploymentsStatus200Response
-    | JobsGetSwapDeploymentsStatusDefaultResponse
-): response is JobsGetSwapDeploymentsStatusDefaultResponse;
-export function isUnexpected(
-  response:
-    | GlobalGetSupportedLanguages200Response
-    | GlobalGetSupportedLanguagesDefaultResponse
-): response is GlobalGetSupportedLanguagesDefaultResponse;
-export function isUnexpected(
-  response:
-    | GlobalListTrainingConfigVersions200Response
-    | GlobalListTrainingConfigVersionsDefaultResponse
-): response is GlobalListTrainingConfigVersionsDefaultResponse;
-export function isUnexpected(
-  response:
-    | ProjectsCreateOrUpdate200Response
-    | ProjectsCreateOrUpdate201Response
-    | ProjectsCreateOrUpdateDefaultResponse
-    | ProjectsGet200Response
-    | ProjectsGetDefaultResponse
-    | ProjectsDelete202Response
-    | ProjectsDeleteDefaultResponse
-    | ProjectsList200Response
-    | ProjectsListDefaultResponse
-    | ProjectsExport202Response
-    | ProjectsExportDefaultResponse
-    | ProjectsImportx202Response
-    | ProjectsImportxDefaultResponse
-    | ProjectsTrain202Response
-    | ProjectsTrainDefaultResponse
-    | DeploymentsGetDeployment200Response
-    | DeploymentsGetDeploymentDefaultResponse
-    | DeploymentsDeployProject200Response
-    | DeploymentsDeployProject201Response
-    | DeploymentsDeployProjectDefaultResponse
-    | DeploymentsDeleteDeployment202Response
-    | DeploymentsDeleteDeploymentDefaultResponse
-    | DeploymentsList200Response
-    | DeploymentsListDefaultResponse
-    | DeploymentsSwapDeployments202Response
-    | DeploymentsSwapDeploymentsDefaultResponse
-    | JobsGetDeploymentStatus200Response
-    | JobsGetDeploymentStatusDefaultResponse
-    | JobsGetSwapDeploymentsStatus200Response
-    | JobsGetSwapDeploymentsStatusDefaultResponse
-    | GlobalGetSupportedLanguages200Response
-    | GlobalGetSupportedLanguagesDefaultResponse
-    | GlobalListTrainingConfigVersions200Response
-    | GlobalListTrainingConfigVersionsDefaultResponse
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
+    | Get200Response
+    | GetDefaultResponse
+    | Delete202Response
+    | DeleteDefaultResponse
+    | ListProjects200Response
+    | ListProjectsDefaultResponse
+    | Export202Response
+    | ExportDefaultResponse
+    | Importx202Response
+    | ImportxDefaultResponse
+    | Train202Response
+    | TrainDefaultResponse
+    | GetDeployment200Response
+    | GetDeploymentDefaultResponse
+    | DeployProject200Response
+    | DeployProject201Response
+    | DeployProjectDefaultResponse
+    | DeleteDeployment202Response
+    | DeleteDeploymentDefaultResponse
+    | ListDeployments200Response
+    | ListDeploymentsDefaultResponse
+    | SwapDeployments202Response
+    | SwapDeploymentsDefaultResponse
+    | GetDeploymentStatus200Response
+    | GetDeploymentStatusDefaultResponse
+    | GetSwapDeploymentsStatus200Response
+    | GetSwapDeploymentsStatusDefaultResponse
+    | GetSupportedLanguages200Response
+    | GetSupportedLanguagesDefaultResponse
+    | ListTrainingConfigVersions200Response
+    | ListTrainingConfigVersionsDefaultResponse
 ): response is
-  | ProjectsCreateOrUpdateDefaultResponse
-  | ProjectsGetDefaultResponse
-  | ProjectsDeleteDefaultResponse
-  | ProjectsListDefaultResponse
-  | ProjectsExportDefaultResponse
-  | ProjectsImportxDefaultResponse
-  | ProjectsTrainDefaultResponse
-  | DeploymentsGetDeploymentDefaultResponse
-  | DeploymentsDeployProjectDefaultResponse
-  | DeploymentsDeleteDeploymentDefaultResponse
-  | DeploymentsListDefaultResponse
-  | DeploymentsSwapDeploymentsDefaultResponse
-  | JobsGetDeploymentStatusDefaultResponse
-  | JobsGetSwapDeploymentsStatusDefaultResponse
-  | GlobalGetSupportedLanguagesDefaultResponse
-  | GlobalListTrainingConfigVersionsDefaultResponse {
+  | CreateOrUpdateDefaultResponse
+  | GetDefaultResponse
+  | DeleteDefaultResponse
+  | ListProjectsDefaultResponse
+  | ExportDefaultResponse
+  | ImportxDefaultResponse
+  | TrainDefaultResponse
+  | GetDeploymentDefaultResponse
+  | DeployProjectDefaultResponse
+  | DeleteDeploymentDefaultResponse
+  | ListDeploymentsDefaultResponse
+  | SwapDeploymentsDefaultResponse
+  | GetDeploymentStatusDefaultResponse
+  | GetSwapDeploymentsStatusDefaultResponse
+  | GetSupportedLanguagesDefaultResponse
+  | ListTrainingConfigVersionsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
   let pathDetails = responseMap[`${method} ${url.pathname}`];
   if (!pathDetails) {
-    pathDetails = geParametrizedPathSuccess(method, url.pathname);
+    pathDetails = getParametrizedPathSuccess(method, url.pathname);
   }
   return !pathDetails.includes(response.status);
 }
 
-function geParametrizedPathSuccess(method: string, path: string): string[] {
+function getParametrizedPathSuccess(method: string, path: string): string[] {
   const pathParts = path.split("/");
+
+  // Traverse list to match the longest candidate
+  // matchedLen: the length of candidate path
+  // matchedValue: the matched status code array
+  let matchedLen = -1,
+    matchedValue: string[] = [];
 
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(responseMap)) {
@@ -214,49 +215,52 @@ function geParametrizedPathSuccess(method: string, path: string): string[] {
     // Get each part of the url path
     const candidateParts = candidatePath.split("/");
 
-    // If the candidate and actual paths don't match in size
-    // we move on to the next candidate path
-    if (
-      candidateParts.length === pathParts.length &&
-      hasParametrizedPath(key)
+    // track if we have found a match to return the values found.
+    let found = true;
+    for (
+      let i = candidateParts.length - 1, j = pathParts.length - 1;
+      i >= 1 && j >= 1;
+      i--, j--
     ) {
-      // track if we have found a match to return the values found.
-      let found = true;
-      for (let i = 0; i < candidateParts.length; i++) {
-        if (
-          candidateParts[i]?.startsWith("{") &&
-          candidateParts[i]?.endsWith("}")
-        ) {
-          // If the current part of the candidate is a "template" part
-          // it is a match with the actual path part on hand
-          // skip as the parameterized part can match anything
-          continue;
-        }
+      if (
+        candidateParts[i]?.startsWith("{") &&
+        candidateParts[i]?.indexOf("}") !== -1
+      ) {
+        const start = candidateParts[i]!.indexOf("}") + 1,
+          end = candidateParts[i]?.length;
+        // If the current part of the candidate is a "template" part
+        // Try to use the suffix of pattern to match the path
+        // {guid} ==> $
+        // {guid}:export ==> :export$
+        const isMatched = new RegExp(
+          `${candidateParts[i]?.slice(start, end)}`
+        ).test(pathParts[j] || "");
 
-        // If the candidate part is not a template and
-        // the parts don't match mark the candidate as not found
-        // to move on with the next candidate path.
-        if (candidateParts[i] !== pathParts[i]) {
+        if (!isMatched) {
           found = false;
           break;
         }
+        continue;
       }
 
-      // We finished evaluating the current candidate parts
-      // if all parts matched we return the success values form
-      // the path mapping.
-      if (found) {
-        return value;
+      // If the candidate part is not a template and
+      // the parts don't match mark the candidate as not found
+      // to move on with the next candidate path.
+      if (candidateParts[i] !== pathParts[j]) {
+        found = false;
+        break;
       }
+    }
+
+    // We finished evaluating the current candidate parts
+    // Update the matched value if and only if we found the longer pattern
+    if (found && candidatePath.length > matchedLen) {
+      matchedLen = candidatePath.length;
+      matchedValue = value;
     }
   }
 
-  // No match was found, return an empty array.
-  return [];
-}
-
-function hasParametrizedPath(path: string): boolean {
-  return path.includes("/{");
+  return matchedValue;
 }
 
 function getPathFromMapKey(mapKey: string): string {

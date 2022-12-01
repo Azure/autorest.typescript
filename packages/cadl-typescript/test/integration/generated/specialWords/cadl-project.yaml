@@ -1,0 +1,11 @@
+emitters:
+  "../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: false
+    generateTest: false
+    addCredentials: false
+    azureSdkForJs: false
+    isCadlTest: true
+    title: SpecialWordsClient
+    packageDetails:
+      name: "@msinternal/special-words"
+      description: "Special Words Test Service"

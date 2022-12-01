@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { NetworkInterfaces } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,21 +23,26 @@ import {
   NetworkInterface,
   NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextOptionalParams,
   NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams,
+  NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesResponse,
   NetworkInterfacesListCloudServiceNetworkInterfacesNextOptionalParams,
   NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams,
+  NetworkInterfacesListCloudServiceNetworkInterfacesResponse,
   NetworkInterfacesListAllNextOptionalParams,
   NetworkInterfacesListAllOptionalParams,
+  NetworkInterfacesListAllResponse,
   NetworkInterfacesListNextOptionalParams,
   NetworkInterfacesListOptionalParams,
+  NetworkInterfacesListResponse,
   NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse,
   NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams,
+  NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse,
   NetworkInterfaceIPConfiguration,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams,
   NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
-  NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesResponse,
-  NetworkInterfacesListCloudServiceNetworkInterfacesResponse,
+  NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse,
   NetworkInterfacesGetCloudServiceNetworkInterfaceOptionalParams,
   NetworkInterfacesGetCloudServiceNetworkInterfaceResponse,
   NetworkInterfacesDeleteOptionalParams,
@@ -47,17 +53,12 @@ import {
   TagsObject,
   NetworkInterfacesUpdateTagsOptionalParams,
   NetworkInterfacesUpdateTagsResponse,
-  NetworkInterfacesListAllResponse,
-  NetworkInterfacesListResponse,
   NetworkInterfacesGetEffectiveRouteTableOptionalParams,
   NetworkInterfacesGetEffectiveRouteTableResponse,
   NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams,
   NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse,
-  NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse,
-  NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse,
   NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams,
   NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse,
-  NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse,
   NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams,
   NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse,
   NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesNextResponse,
@@ -108,12 +109,16 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCloudServiceRoleInstanceNetworkInterfacesPagingPage(
           resourceGroupName,
           cloudServiceName,
           roleInstanceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -123,16 +128,23 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     cloudServiceName: string,
     roleInstanceName: string,
-    options?: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams
+    options?: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<NetworkInterface[]> {
-    let result = await this._listCloudServiceRoleInstanceNetworkInterfaces(
-      resourceGroupName,
-      cloudServiceName,
-      roleInstanceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: NetworkInterfacesListCloudServiceRoleInstanceNetworkInterfacesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listCloudServiceRoleInstanceNetworkInterfaces(
+        resourceGroupName,
+        cloudServiceName,
+        roleInstanceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listCloudServiceRoleInstanceNetworkInterfacesNext(
         resourceGroupName,
@@ -142,7 +154,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -185,11 +199,15 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listCloudServiceNetworkInterfacesPagingPage(
           resourceGroupName,
           cloudServiceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -198,15 +216,22 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   private async *listCloudServiceNetworkInterfacesPagingPage(
     resourceGroupName: string,
     cloudServiceName: string,
-    options?: NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams
+    options?: NetworkInterfacesListCloudServiceNetworkInterfacesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<NetworkInterface[]> {
-    let result = await this._listCloudServiceNetworkInterfaces(
-      resourceGroupName,
-      cloudServiceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: NetworkInterfacesListCloudServiceNetworkInterfacesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listCloudServiceNetworkInterfaces(
+        resourceGroupName,
+        cloudServiceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listCloudServiceNetworkInterfacesNext(
         resourceGroupName,
@@ -215,7 +240,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -248,22 +275,34 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listAllPagingPage(options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listAllPagingPage(options, settings);
       }
     };
   }
 
   private async *listAllPagingPage(
-    options?: NetworkInterfacesListAllOptionalParams
+    options?: NetworkInterfacesListAllOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<NetworkInterface[]> {
-    let result = await this._listAll(options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: NetworkInterfacesListAllResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listAll(options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listAllNext(continuationToken, options);
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -292,19 +331,29 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listPagingPage(resourceGroupName, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listPagingPage(resourceGroupName, options, settings);
       }
     };
   }
 
   private async *listPagingPage(
     resourceGroupName: string,
-    options?: NetworkInterfacesListOptionalParams
+    options?: NetworkInterfacesListOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<NetworkInterface[]> {
-    let result = await this._list(resourceGroupName, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: NetworkInterfacesListResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._list(resourceGroupName, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listNext(
         resourceGroupName,
@@ -312,7 +361,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -351,12 +402,16 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listVirtualMachineScaleSetVMNetworkInterfacesPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,
           virtualmachineIndex,
-          options
+          options,
+          settings
         );
       }
     };
@@ -366,16 +421,23 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
-    options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
+    options?: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<NetworkInterface[]> {
-    let result = await this._listVirtualMachineScaleSetVMNetworkInterfaces(
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      virtualmachineIndex,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listVirtualMachineScaleSetVMNetworkInterfaces(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        virtualmachineIndex,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listVirtualMachineScaleSetVMNetworkInterfacesNext(
         resourceGroupName,
@@ -385,7 +447,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -428,11 +492,15 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listVirtualMachineScaleSetNetworkInterfacesPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -441,15 +509,22 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
   private async *listVirtualMachineScaleSetNetworkInterfacesPagingPage(
     resourceGroupName: string,
     virtualMachineScaleSetName: string,
-    options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
+    options?: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<NetworkInterface[]> {
-    let result = await this._listVirtualMachineScaleSetNetworkInterfaces(
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listVirtualMachineScaleSetNetworkInterfaces(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listVirtualMachineScaleSetNetworkInterfacesNext(
         resourceGroupName,
@@ -458,7 +533,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -505,13 +582,17 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listVirtualMachineScaleSetIpConfigurationsPagingPage(
           resourceGroupName,
           virtualMachineScaleSetName,
           virtualmachineIndex,
           networkInterfaceName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -522,17 +603,24 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
     virtualMachineScaleSetName: string,
     virtualmachineIndex: string,
     networkInterfaceName: string,
-    options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
+    options?: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<NetworkInterfaceIPConfiguration[]> {
-    let result = await this._listVirtualMachineScaleSetIpConfigurations(
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      virtualmachineIndex,
-      networkInterfaceName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listVirtualMachineScaleSetIpConfigurations(
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        virtualmachineIndex,
+        networkInterfaceName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listVirtualMachineScaleSetIpConfigurationsNext(
         resourceGroupName,
@@ -543,7 +631,9 @@ export class NetworkInterfacesImpl implements NetworkInterfaces {
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -1761,7 +1851,6 @@ const listCloudServiceRoleInstanceNetworkInterfacesNextOperationSpec: coreClient
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1784,7 +1873,6 @@ const listCloudServiceNetworkInterfacesNextOperationSpec: coreClient.OperationSp
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1806,7 +1894,6 @@ const listAllNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1826,7 +1913,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1847,7 +1933,6 @@ const listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec: coreClient
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1870,7 +1955,6 @@ const listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec: coreClient.O
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1892,7 +1976,6 @@ const listVirtualMachineScaleSetIpConfigurationsNextOperationSpec: coreClient.Op
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.expand, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

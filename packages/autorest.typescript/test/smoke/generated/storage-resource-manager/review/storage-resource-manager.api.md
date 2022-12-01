@@ -198,9 +198,6 @@ export type BlobContainersLeaseResponse = LeaseContainerResponse;
 
 // @public
 export interface BlobContainersListNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
-    include?: ListContainersInclude;
-    maxpagesize?: string;
 }
 
 // @public
@@ -825,9 +822,6 @@ export type FileSharesLeaseResponse = FileSharesLeaseHeaders & LeaseShareRespons
 
 // @public
 export interface FileSharesListNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
-    filter?: string;
-    maxpagesize?: string;
 }
 
 // @public
@@ -866,6 +860,9 @@ export interface GeoReplicationStats {
 
 // @public
 export type GeoReplicationStatus = string;
+
+// @public
+export function getContinuationToken(page: unknown): string | undefined;
 
 // @public
 export type HttpProtocol = "https,http" | "https";
@@ -1840,8 +1837,6 @@ export type QueueGetResponse = StorageQueue;
 
 // @public
 export interface QueueListNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
-    maxpagesize?: string;
 }
 
 // @public

@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { DatabaseExtensionsOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -22,11 +23,11 @@ import {
   ImportExportExtensionsOperationResult,
   DatabaseExtensionsListByDatabaseNextOptionalParams,
   DatabaseExtensionsListByDatabaseOptionalParams,
+  DatabaseExtensionsListByDatabaseResponse,
   DatabaseExtensionsGetOptionalParams,
   DatabaseExtensions,
   DatabaseExtensionsCreateOrUpdateOptionalParams,
   DatabaseExtensionsCreateOrUpdateResponse,
-  DatabaseExtensionsListByDatabaseResponse,
   DatabaseExtensionsListByDatabaseNextResponse
 } from "../models";
 
@@ -71,12 +72,16 @@ export class DatabaseExtensionsOperationsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
         return this.listByDatabasePagingPage(
           resourceGroupName,
           serverName,
           databaseName,
-          options
+          options,
+          settings
         );
       }
     };
@@ -86,16 +91,23 @@ export class DatabaseExtensionsOperationsImpl
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabaseExtensionsListByDatabaseOptionalParams
+    options?: DatabaseExtensionsListByDatabaseOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<ImportExportExtensionsOperationResult[]> {
-    let result = await this._listByDatabase(
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options
-    );
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: DatabaseExtensionsListByDatabaseResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByDatabase(
+        resourceGroupName,
+        serverName,
+        databaseName,
+        options
+      );
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByDatabaseNext(
         resourceGroupName,
@@ -105,7 +117,9 @@ export class DatabaseExtensionsOperationsImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -385,7 +399,6 @@ const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

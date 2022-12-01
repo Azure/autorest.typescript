@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 export interface ObjectOutput {}
 
 /** Combined entity type and ID structure which uniquely identifies a single entity. */

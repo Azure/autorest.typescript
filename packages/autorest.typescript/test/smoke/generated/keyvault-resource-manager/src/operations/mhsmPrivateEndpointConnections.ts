@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
 import { MhsmPrivateEndpointConnections } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
@@ -66,8 +67,16 @@ export class MhsmPrivateEndpointConnectionsImpl
       [Symbol.asyncIterator]() {
         return this;
       },
-      byPage: () => {
-        return this.listByResourcePagingPage(resourceGroupName, name, options);
+      byPage: (settings?: PageSettings) => {
+        if (settings?.maxPageSize) {
+          throw new Error("maxPageSize is not supported by this operation.");
+        }
+        return this.listByResourcePagingPage(
+          resourceGroupName,
+          name,
+          options,
+          settings
+        );
       }
     };
   }
@@ -75,11 +84,18 @@ export class MhsmPrivateEndpointConnectionsImpl
   private async *listByResourcePagingPage(
     resourceGroupName: string,
     name: string,
-    options?: MhsmPrivateEndpointConnectionsListByResourceOptionalParams
+    options?: MhsmPrivateEndpointConnectionsListByResourceOptionalParams,
+    settings?: PageSettings
   ): AsyncIterableIterator<MhsmPrivateEndpointConnection[]> {
-    let result = await this._listByResource(resourceGroupName, name, options);
-    yield result.value || [];
-    let continuationToken = result.nextLink;
+    let result: MhsmPrivateEndpointConnectionsListByResourceResponse;
+    let continuationToken = settings?.continuationToken;
+    if (!continuationToken) {
+      result = await this._listByResource(resourceGroupName, name, options);
+      let page = result.value || [];
+      continuationToken = result.nextLink;
+      setContinuationToken(page, continuationToken);
+      yield page;
+    }
     while (continuationToken) {
       result = await this._listByResourceNext(
         resourceGroupName,
@@ -88,7 +104,9 @@ export class MhsmPrivateEndpointConnectionsImpl
         options
       );
       continuationToken = result.nextLink;
-      yield result.value || [];
+      let page = result.value || [];
+      setContinuationToken(page, continuationToken);
+      yield page;
     }
   }
 
@@ -405,7 +423,6 @@ const listByResourceNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ManagedHsmError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
