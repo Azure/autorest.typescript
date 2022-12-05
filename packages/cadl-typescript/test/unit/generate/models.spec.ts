@@ -300,6 +300,22 @@ describe("Input/output model type", () => {
         }`
       });
     });
+
+    it("should handle enum array", async () => {
+      const cadlDefinition = `
+      enum DiskEncryptionTarget {
+        OsDisk: "osdisk",
+        TemporaryDisk: "temporarydisk",
+      }
+      `;
+      const cadlType = "DiskEncryptionTarget[]";
+      const typeScriptType = `("osdisk" | "temporarydisk")[]`;
+      const inputModelName = typeScriptType;
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: typeScriptType,
+      });
+    });
   });
   describe("object generation", () => {
     it("should handle basic model -> type/interface", async () => {
