@@ -103,7 +103,7 @@ export function getSchemaForType(
     return type;
   }
   if (type.kind === "Intrinsic" && type.name === "unknown") {
-    let returnType: any = { type: "unknown" };
+    const returnType: any = { type: "unknown" };
     if (usage && usage.includes(SchemaContext.Output)) {
       returnType.outputTypeName = "any";
       returnType.typeName = "unknown";

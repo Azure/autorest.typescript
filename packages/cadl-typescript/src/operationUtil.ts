@@ -2,7 +2,13 @@
 // Licensed under the MIT License.
 
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { DecoratedType, ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
+import {
+  DecoratedType,
+  ignoreDiagnostics,
+  Model,
+  Program,
+  Type
+} from "@cadl-lang/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -13,7 +19,12 @@ import {
   getPagedResult,
   PagedResultMetadata
 } from "@azure-tools/cadl-azure-core";
-import { Client, listOperationGroups, listOperationsInOperationGroup, OperationGroup } from "@azure-tools/cadl-dpg";
+import {
+  Client,
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  OperationGroup
+} from "@azure-tools/cadl-dpg";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -39,9 +50,7 @@ export function getOperationStatuscode(
 }
 
 // FIXME: this is the placeholder function to extract the operationGroupName
-export function getOperationGroupName(
-  operationGroup?: OperationGroup,
-) {
+export function getOperationGroupName(operationGroup?: OperationGroup) {
   return operationGroup?.type.name ?? "";
 }
 
@@ -97,9 +106,9 @@ function hasDecorator(type: DecoratedType, name: string): boolean {
 
 export function hasPollingOperations(program: Program, client: Client) {
   const operationGroups = listOperationGroups(program, client);
-  for(const operationGroup of operationGroups) {
+  for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(program, operationGroup);
-    for(const op of operations) {
+    for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (isLongRunningOperation(program, route)) {
         return true;
@@ -107,7 +116,7 @@ export function hasPollingOperations(program: Program, client: Client) {
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
-  for(const clientOp of clientOperations) {
+  for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (isLongRunningOperation(program, route)) {
       return true;
@@ -129,9 +138,9 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
 
 export function hasPagingOperations(program: Program, client: Client) {
   const operationGroups = listOperationGroups(program, client);
-  for(const operationGroup of operationGroups) {
+  for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(program, operationGroup);
-    for(const op of operations) {
+    for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (isPagingOperation(program, route)) {
         return true;
@@ -139,7 +148,7 @@ export function hasPagingOperations(program: Program, client: Client) {
     }
   }
   const clientOperations = listOperationsInOperationGroup(program, client);
-  for(const clientOp of clientOperations) {
+  for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (isPagingOperation(program, route)) {
       return true;

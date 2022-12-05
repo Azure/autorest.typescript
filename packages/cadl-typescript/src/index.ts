@@ -31,7 +31,7 @@ import { listClients } from "@azure-tools/cadl-dpg";
 
 export async function $onEmit(program: Program, options: RLCOptions) {
   const clients = listClients(program);
-  for(const client of clients) {
+  for (const client of clients) {
     const rlcModels = await transformRLCModel(program, options, client);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
@@ -69,5 +69,4 @@ export async function $onEmit(program: Program, options: RLCOptions) {
       rlcModels
     );
   }
- 
 }
