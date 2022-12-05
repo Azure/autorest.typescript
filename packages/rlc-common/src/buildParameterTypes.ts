@@ -462,20 +462,6 @@ export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
   }
 
   const contentType = headerParameters[0].param.type;
-  const readOnlyProperties = [];
-  if (schema.properties) {
-    for (const propertyName of Object.keys(schema.properties)) {
-      const prop = schema.properties[propertyName];
-      if (prop?.readOnly) {
-        if (propertyName.startsWith('"') && propertyName.endsWith('"')) {
-          readOnlyProperties.push(`${propertyName}`);
-        } else {
-          readOnlyProperties.push(`"${propertyName}"`);
-        }
-      }
-    }
-  }
-
   const description = `${schema.description}`;
   const typeName = `${schema.typeName}ResourceMergeAndPatch`;
   if (contentType.includes("application/merge-patch+json")) {
