@@ -103,7 +103,12 @@ export function getSchemaForType(
     return type;
   }
   if (type.kind === "Intrinsic" && type.name === "unknown") {
-    return { type: "unknown" };
+    let returnType: any = { type: "unknown" };
+    if (usage && usage.includes(SchemaContext.Output)) {
+      returnType.outputTypeName = "any";
+      returnType.typeName = "unknown";
+    }
+    return returnType;
   }
   if (type.kind === "Intrinsic" && type.name === "never") {
     return { type: "never" };
@@ -692,6 +697,13 @@ function mapCadlIntrinsicModelToTypeScript(
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
             schema.outputValueTypeName = `${valueType.name}Output`;
+          }
+        } else if (isUnknownType(indexer.value!)) {
+          schema.typeName = `Record<string, ${valueType.type}>`;
+          schema.valueTypeName = valueType.name;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+            schema.outputValueTypeName = `${valueType.outputTypeName}`;
           }
         } else {
           schema.typeName = `Record<string, ${valueType.type}>`;
