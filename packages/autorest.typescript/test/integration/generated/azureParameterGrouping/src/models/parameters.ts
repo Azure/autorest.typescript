@@ -120,7 +120,7 @@ export const query1: OperationQueryParameter = {
   }
 };
 
-export const fromParam: OperationQueryParameter = {
+export const from: OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostReservedWordsParameters",
