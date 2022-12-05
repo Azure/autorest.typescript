@@ -104,6 +104,24 @@ describe("Responses.ts", () => {
   });
 
   describe("body generation", () => {
+    it("should generate Record<unknown> as body property", async () => {
+      const responses = await emitResponsesFromCadl(`
+        op read(): Record<unknown>;
+    `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+    import { HttpResponse } from "@azure-rest/core-client";
+    
+    /** The request has succeeded. */
+    export interface Read200Response extends HttpResponse {
+      status: "200";
+      body: Record<string, any>;
+    }
+    `
+      );
+    });
     it("@header contentType not json or text should set format to binary(finally unit8array)", async () => {
       const responses = await emitResponsesFromCadl(`
       @get op read(): {@header contentType: "image/png", @body body: bytes};

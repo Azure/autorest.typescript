@@ -886,6 +886,12 @@ function getPriorityName(schema: Schema): string {
   return schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
 function getDictionaryValueName(schema: DictionarySchema): string | undefined {
+  if (
+    schema.outputValueTypeName === "any" ||
+    schema.outputValueTypeName === "unknown"
+  ) {
+    return undefined;
+  }
   return schema.outputValueTypeName ?? schema.valueTypeName ?? undefined;
 }
 function getEnumStringDescription(type: any) {

@@ -96,7 +96,4 @@ export interface DictionaryStringPropertyOutput {
 }
 
 /** Model with a property never. (This property should not be included). */
-export interface NeverPropertyOutput {
-  /** Property */
-  property: never;
-}
+export interface NeverPropertyOutput {}
