@@ -362,5 +362,123 @@ describe("parameterTransforms", () => {
       assert.equal(p1.parameter, param1);
       assert.equal(p2.parameter, param2);
     });
+
+    it("should guard required query parameters name", () => {
+      const codeModel = new CodeModel("testCodeModel");
+      const param1 = new Parameter(
+        "type",
+        "",
+        new StringSchema("mockStringSchema", ""),
+        {
+          language: {
+            default: { name: "type", serializedName: "type" }
+          },
+          protocol: {
+            http: {
+              in: ParameterLocation.Query
+            }
+          },
+          required: true
+        }
+      );
+
+      const operationParameters = [param1];
+      const request = {
+        parameters: operationParameters,
+        protocol: {}
+      } as Request;
+
+      codeModel.operationGroups = [
+        new OperationGroup("OperationGroup1", {
+          operations: [
+            {
+              requests: [request],
+              language: {
+                default: {
+                  name: "operation1",
+                  serializedName: "Mock_Operation2"
+                }
+              }
+            }
+          ]
+        })
+      ];
+      const parameters = transformParameters(codeModel, clientOptions);
+
+      assert.equal(parameters.length, 2);
+      assert.deepEqual(
+        parameters.map(p => p.nameRef),
+        ["typeParam", "endpoint"]
+      );
+
+      const p1: ParameterDetails = parameters.find(
+        p => p.nameRef === "typeParam"
+      )!;
+
+      assert.deepEqual(p1.operationsIn, {
+        OperationGroup1_operation1: { description: "" }
+      });
+
+      assert.equal(p1.parameter, param1);
+    });
+
+    it("should not guard non-required query parameters name", () => {
+      const codeModel = new CodeModel("testCodeModel");
+      const param1 = new Parameter(
+        "type",
+        "",
+        new StringSchema("mockStringSchema", ""),
+        {
+          language: {
+            default: { name: "type", serializedName: "type" }
+          },
+          protocol: {
+            http: {
+              in: ParameterLocation.Query
+            }
+          },
+          required: false
+        }
+      );
+
+      const operationParameters = [param1];
+      const request = {
+        parameters: operationParameters,
+        protocol: {}
+      } as Request;
+
+      codeModel.operationGroups = [
+        new OperationGroup("OperationGroup1", {
+          operations: [
+            {
+              requests: [request],
+              language: {
+                default: {
+                  name: "operation1",
+                  serializedName: "Mock_Operation2"
+                }
+              }
+            }
+          ]
+        })
+      ];
+      const parameters = transformParameters(codeModel, clientOptions);
+
+      assert.equal(parameters.length, 2);
+      assert.deepEqual(
+        parameters.map(p => p.nameRef),
+        ["type", "endpoint"]
+      );
+
+      const p1: ParameterDetails = parameters.find(
+        p => p.nameRef === "type"
+      )!;
+
+      assert.deepEqual(p1.operationsIn, {
+        OperationGroup1_operation1: { description: "" }
+      });
+
+      assert.equal(p1.parameter, param1);
+    });
   });
 });
