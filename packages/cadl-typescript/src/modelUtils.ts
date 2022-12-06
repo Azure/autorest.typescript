@@ -102,7 +102,7 @@ export function getSchemaForType(
     }
     return type;
   }
-  if (type.kind === "Intrinsic" && type.name === "unknown") {
+  if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
     if (usage && usage.includes(SchemaContext.Output)) {
       returnType.outputTypeName = "any";
@@ -110,7 +110,7 @@ export function getSchemaForType(
     }
     return returnType;
   }
-  if (type.kind === "Intrinsic" && type.name === "never") {
+  if (isNeverType(type)) {
     return { type: "never" };
   }
   reportDiagnostic(program, {
@@ -700,10 +700,8 @@ function mapCadlIntrinsicModelToTypeScript(
           }
         } else if (isUnknownType(indexer.value!)) {
           schema.typeName = `Record<string, ${valueType.type}>`;
-          schema.valueTypeName = valueType.name;
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
-            schema.outputValueTypeName = `${valueType.outputTypeName}`;
           }
         } else {
           schema.typeName = `Record<string, ${valueType.type}>`;
@@ -865,7 +863,6 @@ export function getTypeName(schema: Schema): string {
 }
 
 export function getImportedModelName(schema: Schema): string[] | undefined {
-  // TODO: Handle more type cases
   switch (schema.type) {
     case "array":
       return [(schema as any).items]
@@ -886,12 +883,6 @@ function getPriorityName(schema: Schema): string {
   return schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
 function getDictionaryValueName(schema: DictionarySchema): string | undefined {
-  if (
-    schema.outputValueTypeName === "any" ||
-    schema.outputValueTypeName === "unknown"
-  ) {
-    return undefined;
-  }
   return schema.outputValueTypeName ?? schema.valueTypeName ?? undefined;
 }
 function getEnumStringDescription(type: any) {
