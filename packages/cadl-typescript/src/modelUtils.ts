@@ -705,7 +705,8 @@ function mapCadlIntrinsicModelToTypeScript(
         if (
           !isIntrinsic(program, indexer.value) &&
           !isUnknownType(indexer.value!) &&
-          indexer.value?.kind
+          indexer.value?.kind &&
+          schema.items.name
         ) {
           schema.typeName = `Array<${schema.items.name}>`;
           if (usage && usage.includes(SchemaContext.Output)) {
@@ -731,6 +732,8 @@ function mapCadlIntrinsicModelToTypeScript(
                 })
                 .join(" | ");
             }
+          } else if (schema.items.type.includes("|")) {
+            schema.typeName = `(${schema.items.type})[]`;
           } else {
             schema.typeName = `${schema.items.type}[]`;
           }

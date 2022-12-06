@@ -1,0 +1,10 @@
+emitters:
+  "@azure-tools/cadl-typescript":
+    title: Batch Service
+    generateMetadata: true
+    generateTest: true
+    azureSdkForJs: false
+    packageDetails:
+      name: "@azure-rest/batch"
+      description: "Batch Service"
+      version: "1.0.0-beta.1"
