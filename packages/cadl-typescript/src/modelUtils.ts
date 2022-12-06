@@ -102,10 +102,15 @@ export function getSchemaForType(
     }
     return type;
   }
-  if (type.kind === "Intrinsic" && type.name === "unknown") {
-    return { type: "unknown" };
+  if (isUnknownType(type)) {
+    const returnType: any = { type: "unknown" };
+    if (usage && usage.includes(SchemaContext.Output)) {
+      returnType.outputTypeName = "any";
+      returnType.typeName = "unknown";
+    }
+    return returnType;
   }
-  if (type.kind === "Intrinsic" && type.name === "never") {
+  if (isNeverType(type)) {
     return { type: "never" };
   }
   reportDiagnostic(program, {
@@ -693,6 +698,11 @@ function mapCadlIntrinsicModelToTypeScript(
             schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
             schema.outputValueTypeName = `${valueType.name}Output`;
           }
+        } else if (isUnknownType(indexer.value!)) {
+          schema.typeName = `Record<string, ${valueType.type}>`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+          }
         } else {
           schema.typeName = `Record<string, ${valueType.type}>`;
         }
@@ -853,7 +863,6 @@ export function getTypeName(schema: Schema): string {
 }
 
 export function getImportedModelName(schema: Schema): string[] | undefined {
-  // TODO: Handle more type cases
   switch (schema.type) {
     case "array":
       return [(schema as any).items]

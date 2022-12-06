@@ -264,6 +264,24 @@ describe("Parameters.ts", () => {
   });
 
   describe("Array in body generation", () => {
+    it("unknown array request generation", async () => {
+      const parameters = await emitParameterFromCadl(`
+      @post op read(@body body: unknown[]): void;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+
+        export interface ReadBodyParam {
+          body:unknown[];
+        }  
+
+        export type ReadParameters = ReadBodyParam & RequestParameters;
+      `
+      );
+    });
     it("string array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
       @post op read(@body body: string[]): void;
@@ -491,7 +509,7 @@ describe("Parameters.ts", () => {
         prop1: string;
         prop2: int32;
       }
-      @post op read(@body body: Record<SimpleModel>): void;
+      @post op read(@body body: Record<SimpleModel>): SimpleModel;
       `);
       assert.ok(parameters);
       assertEqualContent(

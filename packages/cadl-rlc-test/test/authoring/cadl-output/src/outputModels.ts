@@ -42,8 +42,6 @@ export interface OperationStatusOutput {
   status: string;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModelOutput;
-  /** The result of the operation. */
-  result?: never;
 }
 
 /** The error object. */
