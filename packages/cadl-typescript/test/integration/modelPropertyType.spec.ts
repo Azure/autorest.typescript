@@ -67,6 +67,10 @@ const testedTypes: TypeDetail[] = [
   {
     type: "dictionary/string",
     defaultValue: { k1: "hello", k2: "world" }
+  },
+  {
+    type: "never",
+    defaultValue: undefined
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {

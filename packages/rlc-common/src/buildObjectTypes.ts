@@ -351,11 +351,10 @@ function getPropertySignatures(
   importedModels: Set<string>
 ) {
   let validProperties = Object.keys(properties);
-  if (schemaUsage.includes(SchemaContext.Input)) {
-    validProperties = validProperties.filter((p) => {
-      return !properties[p].readOnly;
-    });
-  }
+  const readOnlyFilter = (name: string) =>
+    !(schemaUsage.includes(SchemaContext.Input) && properties[name].readOnly);
+  const neverFilter = (name: string) => properties[name].type !== "never";
+  validProperties = validProperties.filter(readOnlyFilter).filter(neverFilter);
   return validProperties.map((p) =>
     getPropertySignature(
       { ...properties[p], name: p },

@@ -104,6 +104,67 @@ describe("Responses.ts", () => {
   });
 
   describe("body generation", () => {
+    it("unknown array response generation", async () => {
+      const parameters = await emitResponsesFromCadl(`
+      @post op read():  unknown[];
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+    
+        /** The request has succeeded. */
+        export interface Read200Response extends HttpResponse {
+          status: "200";
+          body: any[];
+        }
+      `
+      );
+    });
+
+    it("Record<SimpleModel> response generation", async () => {
+      const parameters = await emitResponsesFromCadl(`
+      model SimpleModel {
+        prop1: string;
+        prop2: int32;
+      }
+      @post op read(@body body: SimpleModel[]): Record<SimpleModel>;
+      `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+        import { SimpleModelOutput } from "./outputModels";
+    
+        /** The request has succeeded. */
+        export interface Read200Response extends HttpResponse {
+          status: "200";
+          body: Record<string, SimpleModelOutput>;
+        }
+      `
+      );
+    });
+
+    it("should generate Record<unknown> as body property", async () => {
+      const responses = await emitResponsesFromCadl(`
+        op read(): Record<unknown>;
+    `);
+      assert.ok(responses);
+      assertEqualContent(
+        responses!.content,
+        `
+    import { HttpResponse } from "@azure-rest/core-client";
+    
+    /** The request has succeeded. */
+    export interface Read200Response extends HttpResponse {
+      status: "200";
+      body: Record<string, any>;
+    }
+    `
+      );
+    });
     it("@header contentType not json or text should set format to binary(finally unit8array)", async () => {
       const responses = await emitResponsesFromCadl(`
       @get op read(): {@header contentType: "image/png", @body body: bytes};

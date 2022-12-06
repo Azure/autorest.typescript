@@ -200,16 +200,22 @@ describe("Input/output model type", () => {
       await verifyPropertyType(cadlType, typeScriptType);
     });
 
-    it("should handle never -> never", async () => {
-      const cadlType = "never";
-      const typeScriptType = "never";
-      await verifyPropertyType(cadlType, typeScriptType);
-    });
-
-    it("should handle unknown -> unknown", async () => {
-      const cadlType = "unknown";
-      const typeScriptType = "unknown";
-      await verifyPropertyType(cadlType, typeScriptType);
+    it("should handle never, its property will be ignored both in Input and Ouput model", async () => {
+      const cadlDefinition = `
+      model SimpleModel {
+        prop1: never;
+        prop2: never;
+      }`;
+      const cadlType = "SimpleModel";
+      const inputModelName = "SimpleModel";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `${inputModelName}Output`,
+        additionalInputContent: `
+        export interface ${inputModelName} {}`,
+        additionalOutputContent: `
+        export interface ${inputModelName}Output {}`
+      });
     });
   });
 
@@ -269,10 +275,18 @@ describe("Input/output model type", () => {
       await verifyPropertyType(cadlType, typeScriptType);
     });
 
-    it("should handle unknown[] -> unknown[]", async () => {
+    it("should handle unknown[] -> input 'unknown[]' output type 'any[]'", async () => {
       const cadlType = "unknown[]";
-      const typeScriptType = "unknown[]";
-      await verifyPropertyType(cadlType, typeScriptType);
+      const inputType = "unknown[]";
+      const outputType = "any[]";
+      await verifyPropertyType(cadlType, inputType, { outputType });
+    });
+
+    it("should handle unknown -> input 'unknown' output type 'any'", async () => {
+      const cadlType = "unknown";
+      const inputType = "unknown";
+      const outputType = "any";
+      await verifyPropertyType(cadlType, inputType, { outputType });
     });
   });
   describe("array models generation", () => {
@@ -313,7 +327,7 @@ describe("Input/output model type", () => {
       const inputModelName = typeScriptType;
       await verifyPropertyType(cadlType, inputModelName, {
         additionalCadlDefinition: cadlDefinition,
-        outputType: typeScriptType,
+        outputType: typeScriptType
       });
     });
   });
@@ -639,6 +653,12 @@ describe("Input/output model type", () => {
     });
     it("should handle Record<string> -> Record<string, string>", async () => {
       await verifyPropertyType("Record<string>", "Record<string, string>");
+    });
+    it("should handle Record<unknown> -> input 'Record<unknown>' output type 'Record<any>'", async () => {
+      const cadlType = "Record<unknown>";
+      const inputType = "Record<string, unknown>";
+      const outputType = "Record<string, any>";
+      await verifyPropertyType(cadlType, inputType, { outputType });
     });
   });
 

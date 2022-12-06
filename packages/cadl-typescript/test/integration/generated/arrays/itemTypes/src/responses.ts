@@ -84,7 +84,7 @@ export interface DurationValuePut204Response extends HttpResponse {
 /** The request has succeeded. */
 export interface UnknownValueGet200Response extends HttpResponse {
   status: "200";
-  body: unknown[];
+  body: any[];
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
