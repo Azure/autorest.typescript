@@ -325,7 +325,7 @@ export class SyncAgentsImpl implements SyncAgents {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -417,7 +417,7 @@ export class SyncAgentsImpl implements SyncAgents {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

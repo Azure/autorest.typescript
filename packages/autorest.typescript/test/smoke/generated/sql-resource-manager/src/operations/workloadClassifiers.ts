@@ -263,7 +263,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -372,7 +372,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

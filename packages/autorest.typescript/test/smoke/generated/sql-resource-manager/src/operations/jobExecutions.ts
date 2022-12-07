@@ -371,7 +371,7 @@ export class JobExecutionsImpl implements JobExecutions {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -535,7 +535,7 @@ export class JobExecutionsImpl implements JobExecutions {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -231,7 +231,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -323,7 +323,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -428,7 +428,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -546,7 +546,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -643,7 +643,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

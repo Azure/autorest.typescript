@@ -298,7 +298,7 @@ export class VirtualClustersImpl implements VirtualClusters {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -392,7 +392,7 @@ export class VirtualClustersImpl implements VirtualClusters {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

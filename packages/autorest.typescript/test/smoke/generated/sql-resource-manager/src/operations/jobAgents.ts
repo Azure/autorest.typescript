@@ -245,7 +245,7 @@ export class JobAgentsImpl implements JobAgents {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -337,7 +337,7 @@ export class JobAgentsImpl implements JobAgents {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -442,7 +442,7 @@ export class JobAgentsImpl implements JobAgents {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

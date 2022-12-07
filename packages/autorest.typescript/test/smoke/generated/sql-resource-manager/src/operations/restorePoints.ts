@@ -238,7 +238,7 @@ export class RestorePointsImpl implements RestorePoints {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

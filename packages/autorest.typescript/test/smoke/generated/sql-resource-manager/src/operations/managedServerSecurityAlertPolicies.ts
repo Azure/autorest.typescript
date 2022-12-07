@@ -234,7 +234,7 @@ export class ManagedServerSecurityAlertPoliciesImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

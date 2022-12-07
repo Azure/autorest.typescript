@@ -243,7 +243,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -335,7 +335,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

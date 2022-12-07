@@ -317,7 +317,7 @@ export class ServerTrustGroupsImpl implements ServerTrustGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -409,7 +409,7 @@ export class ServerTrustGroupsImpl implements ServerTrustGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

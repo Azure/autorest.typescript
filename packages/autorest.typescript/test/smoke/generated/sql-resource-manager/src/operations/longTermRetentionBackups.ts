@@ -680,7 +680,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -792,7 +792,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -920,7 +920,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1089,7 +1089,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1209,7 +1209,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1349,7 +1349,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -544,7 +544,7 @@ export class SyncGroupsImpl implements SyncGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -780,7 +780,7 @@ export class SyncGroupsImpl implements SyncGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -883,7 +883,7 @@ export class SyncGroupsImpl implements SyncGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -994,7 +994,7 @@ export class SyncGroupsImpl implements SyncGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

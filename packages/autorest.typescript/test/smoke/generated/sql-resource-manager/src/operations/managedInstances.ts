@@ -488,7 +488,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -575,7 +575,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -669,7 +669,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -774,7 +774,7 @@ export class ManagedInstancesImpl implements ManagedInstances {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

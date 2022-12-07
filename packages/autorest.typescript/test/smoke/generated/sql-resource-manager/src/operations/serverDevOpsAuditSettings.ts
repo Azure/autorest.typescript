@@ -227,7 +227,7 @@ export class ServerDevOpsAuditSettingsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 

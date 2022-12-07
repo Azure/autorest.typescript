@@ -257,7 +257,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -377,7 +377,7 @@ export class ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImp
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

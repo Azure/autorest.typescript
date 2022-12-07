@@ -248,7 +248,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -351,7 +351,7 @@ export class WorkloadGroupsImpl implements WorkloadGroups {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
