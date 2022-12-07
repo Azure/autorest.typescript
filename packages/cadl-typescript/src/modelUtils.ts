@@ -63,7 +63,7 @@ export function getSchemaForType(
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
-  const type = getEffectiveModelFromType(typeInput);
+  const type = getEffectiveModelFromType(program, typeInput);
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -86,22 +86,6 @@ export function getSchemaForType(
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   }
-  function getEffectiveModelFromType(type: Type) {
-    if (type.kind === "Model") {
-      const effective = getEffectiveModelType(program, type, isSchemaProperty);
-      if (effective.name) {
-        return effective;
-      }
-    }
-    function isSchemaProperty(property: ModelProperty) {
-      const headerInfo = getHeaderFieldName(program, property);
-      const queryInfo = getQueryParamName(program, property);
-      const pathInfo = getPathParamName(program, property);
-      const statusCodeInfo = isStatusCode(program, property);
-      return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
-    }
-    return type;
-  }
   if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
     if (usage && usage.includes(SchemaContext.Output)) {
@@ -119,6 +103,22 @@ export function getSchemaForType(
     target: type
   });
   return undefined;
+}
+export function getEffectiveModelFromType(program: Program, type: Type) {
+  if (type.kind === "Model") {
+    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+    if (effective.name) {
+      return effective;
+    }
+  }
+  function isSchemaProperty(property: ModelProperty) {
+    const headerInfo = getHeaderFieldName(program, property);
+    const queryInfo = getQueryParamName(program, property);
+    const pathInfo = getPathParamName(program, property);
+    const statusCodeInfo = isStatusCode(program, property);
+    return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+  }
+  return type;
 }
 export function includeDerivedModel(model: Model): boolean {
   return (

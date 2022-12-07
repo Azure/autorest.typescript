@@ -16,28 +16,16 @@ import {
   PagedTrainingConfigVersionOutput,
 } from "./outputModels";
 
-export interface CreateOrUpdate200Headers {
-  /** The location for monitoring the operation state. */
-  "operation-location": string;
-}
-
 /** The request has succeeded. */
 export interface CreateOrUpdate200Response extends HttpResponse {
   status: "200";
   body: ProjectOutput;
-  headers: RawHttpHeaders & CreateOrUpdate200Headers;
 }
 
-export interface CreateOrUpdate201Headers {
-  /** The location for monitoring the operation state. */
-  "operation-location": string;
-}
-
-/** The request has succeeded and a new resource has been created as a result. */
+/** A Project resource was successfully created. */
 export interface CreateOrUpdate201Response extends HttpResponse {
   status: "201";
   body: ProjectOutput;
-  headers: RawHttpHeaders & CreateOrUpdate201Headers;
 }
 
 export interface CreateOrUpdateDefaultResponse extends HttpResponse {

@@ -39,7 +39,7 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],
+  "PUT /authoring/analyze-text/projects/{projectName}": ["200", "201"],
   "GET /authoring/analyze-text/projects/{projectName}": ["200"],
   "DELETE /authoring/analyze-text/projects/{projectName}": ["202"],
   "GET /authoring/analyze-text/projects": ["200"],

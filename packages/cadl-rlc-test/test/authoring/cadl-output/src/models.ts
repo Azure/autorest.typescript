@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** The details of a project. */
-export interface Project {
+/** Project resource creation parameters. */
+export interface ProjectCreationParameters {
   /** The project name. */
   projectName: string;
   /** The project kind. */

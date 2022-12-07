@@ -10,7 +10,11 @@ import { Schema, SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import { getResourceOperation } from "@cadl-lang/rest";
 import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
-import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
+import {
+  getSchemaForType,
+  includeDerivedModel,
+  getEffectiveModelFromType
+} from "../modelUtils.js";
 
 export function transformSchemas(program: Program, client: Client) {
   const schemas: Schema[] = [];
@@ -32,10 +36,37 @@ export function transformSchemas(program: Program, client: Client) {
   function transformSchemaForRoute(route: HttpOperation) {
     if (route.parameters.bodyType) {
       let bodyModel = route.parameters.bodyType;
-      const operation = getResourceOperation(program, route.operation);
-      if (operation) {
-        bodyModel = operation.resourceType;
+      if (bodyModel.kind === "Model" && route.operation) {
+        const resourceType = getResourceOperation(
+          program,
+          route.operation
+        )?.resourceType;
+        if (resourceType && route.responses && route.responses.length > 0) {
+          const resp = route.responses[0];
+          if (resp && resp.responses && resp.responses.length > 0) {
+            const responseBody = resp.responses[0]?.body;
+            if (responseBody) {
+              const bodyTypeInResponse = getEffectiveModelFromType(
+                program,
+                responseBody.type
+              );
+              // response body type is reosurce type, and request body type (if templated) contains resource type
+              if (
+                bodyTypeInResponse === resourceType &&
+                bodyModel.templateArguments &&
+                bodyModel.templateArguments.some((it) => {
+                  return it.kind === "Model" || it.kind === "Union"
+                    ? it === bodyTypeInResponse
+                    : false;
+                })
+              ) {
+                bodyModel = resourceType;
+              }
+            }
+          }
+        }
       }
+
       if (bodyModel && bodyModel.kind === "Model") {
         getGeneratedModels(bodyModel, SchemaContext.Input);
       }

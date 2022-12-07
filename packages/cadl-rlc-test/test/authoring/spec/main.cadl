@@ -1,11 +1,13 @@
 import "@cadl-lang/rest";
 import "@cadl-lang/versioning";
 import "@azure-tools/cadl-azure-core";
+import "./azure-core-foundations-extensions.cadl";
 
 using Cadl.Http;
 using Cadl.Rest;
 using Cadl.Versioning;
 using Azure.Core;
+using Azure.Core.Foundations.Extensions;
 
 // NOTE: These features are missing:
 // - Security definition for apiKey
@@ -74,6 +76,12 @@ model Project {
   @doc("Represents the project last deployment datetime.")
   @visibility("read")
   lastDeployedDateTime: zonedDateTime;
+}
+
+@doc("Project resource creation parameters.")
+@withVisibility("create")
+model ProjectCreationParameters {
+  ...Project;
 }
 
 @doc("Represents the project kind.")
@@ -231,7 +239,10 @@ model SwapDeploymentsParams {
 interface Projects {
   #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new project or updates an existing one.")
-  createOrUpdate is LongRunningResourceCreateOrUpdate<Project>;
+  createOrUpdate is CustomResourceCreateOrReplace<
+    Project,
+    CustomBodyWrapper<ProjectCreationParameters>
+  >;
 
   @doc("Gets the details of a project.")
   get is ResourceRead<Project>;
