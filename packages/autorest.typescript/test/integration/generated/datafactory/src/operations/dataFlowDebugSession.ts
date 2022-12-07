@@ -196,7 +196,7 @@ export class DataFlowDebugSessionImpl implements DataFlowDebugSession {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -346,7 +346,7 @@ export class DataFlowDebugSessionImpl implements DataFlowDebugSession {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

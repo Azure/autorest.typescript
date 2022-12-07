@@ -264,7 +264,7 @@ export class ResourcesImpl implements Resources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -354,7 +354,7 @@ export class ResourcesImpl implements Resources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -502,7 +502,7 @@ export class ResourcesImpl implements Resources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -625,7 +625,7 @@ export class ResourcesImpl implements Resources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -751,7 +751,7 @@ export class ResourcesImpl implements Resources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -904,7 +904,7 @@ export class ResourcesImpl implements Resources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -996,7 +996,7 @@ export class ResourcesImpl implements Resources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1095,7 +1095,7 @@ export class ResourcesImpl implements Resources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -466,7 +466,7 @@ export class PagingImpl implements Paging {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

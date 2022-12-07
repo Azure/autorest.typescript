@@ -972,7 +972,7 @@ function writeLroOperationBody(
         ? `new LroEngine(lro, { resumeFrom: options?.resumeFrom, ${commonOptions} })`
         : `await createHttpPoller<${responseName}, OperationState<${responseName}>>(lro, { restoreFrom: options?.resumeFrom, ${commonOptions} })`
     };`,
-    "await poller.poll();",
+    useLegacyLro ? "await poller.poll();" : "",
     "return poller;"
   ]);
 

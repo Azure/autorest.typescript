@@ -115,7 +115,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -207,7 +207,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -298,7 +298,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -389,7 +389,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

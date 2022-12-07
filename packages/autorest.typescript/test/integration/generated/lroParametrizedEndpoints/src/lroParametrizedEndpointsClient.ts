@@ -126,7 +126,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -211,7 +211,7 @@ export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

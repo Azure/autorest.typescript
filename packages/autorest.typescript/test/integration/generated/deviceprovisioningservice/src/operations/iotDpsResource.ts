@@ -464,7 +464,7 @@ export class IotDpsResourceImpl implements IotDpsResource {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -567,7 +567,7 @@ export class IotDpsResourceImpl implements IotDpsResource {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -653,7 +653,7 @@ export class IotDpsResourceImpl implements IotDpsResource {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -962,7 +962,7 @@ export class IotDpsResourceImpl implements IotDpsResource {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1065,7 +1065,7 @@ export class IotDpsResourceImpl implements IotDpsResource {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

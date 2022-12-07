@@ -190,10 +190,9 @@ export class LROsImpl implements LROs {
       OperationState<LROsPut200SucceededResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-      resolveOnUnsuccessful: false
+      intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -281,7 +280,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -369,7 +368,7 @@ export class LROsImpl implements LROs {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -456,7 +455,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -546,7 +545,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -634,7 +633,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -722,7 +721,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -810,7 +809,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -899,7 +898,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -989,7 +988,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1079,7 +1078,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1169,7 +1168,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1258,7 +1257,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1347,7 +1346,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1437,7 +1436,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1527,7 +1526,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1617,7 +1616,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1706,7 +1705,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1793,7 +1792,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1879,7 +1878,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1965,7 +1964,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2051,7 +2050,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2139,7 +2138,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2231,7 +2230,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2323,7 +2322,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2403,7 +2402,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2490,7 +2489,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2578,7 +2577,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2666,7 +2665,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2754,7 +2753,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2842,7 +2841,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2930,7 +2929,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3018,7 +3017,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3106,7 +3105,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3194,7 +3193,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3282,7 +3281,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3370,7 +3369,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3459,7 +3458,7 @@ export class LROsImpl implements LROs {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3549,7 +3548,7 @@ export class LROsImpl implements LROs {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3641,7 +3640,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3733,7 +3732,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3823,7 +3822,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -3913,7 +3912,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -4003,7 +4002,7 @@ export class LROsImpl implements LROs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

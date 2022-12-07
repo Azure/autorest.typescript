@@ -29,7 +29,7 @@ const LROOptions = {
   onResponse: onResponse
 };
 
-describe.only("LROs", () => {
+describe("LROs", () => {
   let client: LROClient;
 
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe.only("LROs", () => {
   });
 
   describe("Pipeline validation", () => {
-    it.only("should execute custom pipeline when passed in a factory array", async () => {
+    it("should execute custom pipeline when passed in a factory array", async () => {
       let calledCustomPolicy = false;
       const customPolicy: PipelinePolicy = {
         name: "customPolicy",
@@ -235,7 +235,7 @@ describe.only("LROs", () => {
     });
 
     it("should handle deleteProvisioning202Accepted200Succeeded", async () => {
-      await client.lROs.beginDeleteProvisioning202Accepted200Succeeded(
+      await client.lROs.beginDeleteProvisioning202Accepted200SucceededAndWait(
         LROOptions
       );
       check200(lastResponse);

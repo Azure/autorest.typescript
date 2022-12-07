@@ -237,7 +237,7 @@ export class FhirServicesImpl implements FhirServices {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -343,7 +343,7 @@ export class FhirServicesImpl implements FhirServices {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -433,7 +433,7 @@ export class FhirServicesImpl implements FhirServices {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

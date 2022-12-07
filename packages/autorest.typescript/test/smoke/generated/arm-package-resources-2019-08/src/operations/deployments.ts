@@ -493,7 +493,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -608,7 +608,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -785,7 +785,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -890,7 +890,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1056,7 +1056,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1171,7 +1171,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1348,7 +1348,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1456,7 +1456,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1597,7 +1597,7 @@ export class DeploymentsImpl implements Deployments {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1715,7 +1715,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1834,7 +1834,7 @@ export class DeploymentsImpl implements Deployments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1989,7 +1989,7 @@ export class DeploymentsImpl implements Deployments {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -238,7 +238,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -331,7 +331,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -436,7 +436,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

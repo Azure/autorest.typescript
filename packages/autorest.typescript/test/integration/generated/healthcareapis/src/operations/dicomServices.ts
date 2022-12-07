@@ -237,7 +237,7 @@ export class DicomServicesImpl implements DicomServices {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -343,7 +343,7 @@ export class DicomServicesImpl implements DicomServices {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -433,7 +433,7 @@ export class DicomServicesImpl implements DicomServices {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

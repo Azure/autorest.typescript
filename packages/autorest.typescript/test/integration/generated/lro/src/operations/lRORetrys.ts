@@ -120,7 +120,7 @@ export class LRORetrysImpl implements LRORetrys {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -210,7 +210,7 @@ export class LRORetrysImpl implements LRORetrys {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -302,7 +302,7 @@ export class LRORetrysImpl implements LRORetrys {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -393,7 +393,7 @@ export class LRORetrysImpl implements LRORetrys {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -481,7 +481,7 @@ export class LRORetrysImpl implements LRORetrys {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -569,7 +569,7 @@ export class LRORetrysImpl implements LRORetrys {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -658,7 +658,7 @@ export class LRORetrysImpl implements LRORetrys {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

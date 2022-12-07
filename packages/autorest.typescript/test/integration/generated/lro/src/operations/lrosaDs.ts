@@ -155,7 +155,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -242,7 +242,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -330,7 +330,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -420,7 +420,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -507,7 +507,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -593,7 +593,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -680,7 +680,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -767,7 +767,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -853,7 +853,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -940,7 +940,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1027,7 +1027,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1117,7 +1117,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1207,7 +1207,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1287,7 +1287,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1374,7 +1374,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1461,7 +1461,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1549,7 +1549,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1638,7 +1638,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1726,7 +1726,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1815,7 +1815,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1906,7 +1906,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1994,7 +1994,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2084,7 +2084,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2174,7 +2174,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2263,7 +2263,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -2353,7 +2353,7 @@ export class LrosaDsImpl implements LrosaDs {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
