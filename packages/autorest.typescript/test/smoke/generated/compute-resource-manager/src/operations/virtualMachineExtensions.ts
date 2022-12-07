@@ -120,7 +120,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -226,7 +226,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -316,7 +316,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

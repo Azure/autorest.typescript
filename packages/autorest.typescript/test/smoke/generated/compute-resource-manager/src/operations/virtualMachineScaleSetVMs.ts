@@ -207,7 +207,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -295,7 +295,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -385,7 +385,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -490,7 +490,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -580,7 +580,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -724,7 +724,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -813,7 +813,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -900,7 +900,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -988,7 +988,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1095,7 +1095,7 @@ export class VirtualMachineScaleSetVMsImpl
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1218,7 +1218,7 @@ export class VirtualMachineScaleSetVMsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

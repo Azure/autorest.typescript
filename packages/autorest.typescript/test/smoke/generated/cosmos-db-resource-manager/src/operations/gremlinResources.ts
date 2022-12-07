@@ -324,7 +324,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -415,7 +415,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -539,7 +539,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -638,7 +638,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -737,7 +737,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -883,7 +883,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -984,7 +984,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1116,7 +1116,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1226,7 +1226,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1336,7 +1336,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

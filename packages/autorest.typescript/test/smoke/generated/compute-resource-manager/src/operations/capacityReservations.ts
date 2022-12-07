@@ -212,7 +212,7 @@ export class CapacityReservationsImpl implements CapacityReservations {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -320,7 +320,7 @@ export class CapacityReservationsImpl implements CapacityReservations {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -417,7 +417,7 @@ export class CapacityReservationsImpl implements CapacityReservations {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -213,7 +213,7 @@ export class GalleryApplicationsImpl implements GalleryApplications {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -325,7 +325,7 @@ export class GalleryApplicationsImpl implements GalleryApplications {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -439,7 +439,7 @@ export class GalleryApplicationsImpl implements GalleryApplications {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

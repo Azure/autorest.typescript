@@ -107,7 +107,7 @@ export class LogAnalyticsImpl implements LogAnalytics {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -199,7 +199,7 @@ export class LogAnalyticsImpl implements LogAnalytics {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 

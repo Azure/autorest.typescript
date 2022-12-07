@@ -344,7 +344,7 @@ export class DiskAccessesImpl implements DiskAccesses {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -443,7 +443,7 @@ export class DiskAccessesImpl implements DiskAccesses {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -551,7 +551,7 @@ export class DiskAccessesImpl implements DiskAccesses {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -701,7 +701,7 @@ export class DiskAccessesImpl implements DiskAccesses {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -828,7 +828,7 @@ export class DiskAccessesImpl implements DiskAccesses {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

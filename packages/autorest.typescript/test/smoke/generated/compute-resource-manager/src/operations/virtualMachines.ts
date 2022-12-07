@@ -413,7 +413,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -510,7 +510,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -606,7 +606,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -691,7 +691,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -804,7 +804,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -888,7 +888,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1038,7 +1038,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1117,7 +1117,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1195,7 +1195,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1273,7 +1273,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1351,7 +1351,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1429,7 +1429,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1524,7 +1524,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1632,7 +1632,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1725,7 +1725,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1821,7 +1821,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
