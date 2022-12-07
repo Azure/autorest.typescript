@@ -29,7 +29,7 @@ const LROOptions = {
   onResponse: onResponse
 };
 
-describe("LROs", () => {
+describe.only("LROs", () => {
   let client: LROClient;
 
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe("LROs", () => {
   });
 
   describe("Pipeline validation", () => {
-    it("should execute custom pipeline when passed in a factory array", async () => {
+    it.only("should execute custom pipeline when passed in a factory array", async () => {
       let calledCustomPolicy = false;
       const customPolicy: PipelinePolicy = {
         name: "customPolicy",

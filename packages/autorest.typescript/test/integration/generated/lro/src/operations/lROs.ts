@@ -190,7 +190,8 @@ export class LROsImpl implements LROs {
       OperationState<LROsPut200SucceededResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
+      resolveOnUnsuccessful: false
     });
     await poller.poll();
     return poller;

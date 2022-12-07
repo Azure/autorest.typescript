@@ -7,6 +7,25 @@ using Cadl.Http;
 
 namespace AnomalyDetector.Univariate;
 
+interface Widgets {
+  @doc("Gets status of a Widget operation.")
+  getWidgetOperationStatus is GetResourceOperationStatus<Widget>;
+
+  @doc("Fetch a Widget by name.")
+  getWidget is ResourceRead<Widget>;
+
+  @doc("Creates or updates a Widget asynchronously.")
+  @pollingOperation(Widgets.getWidgetOperationStatus)
+  createOrUpdateWidget is LongRunningResourceCreateOrUpdate<Widget>;
+
+  @doc("Delete a Widget asynchronously.")
+  @pollingOperation(Widgets.getWidgetOperationStatus)
+  deleteWidget is LongRunningResourceDelete<Widget>;
+
+  @doc("List Widget resources.")
+  listWidgets is ResourceList<Widget>;
+}
+
 @post
 @route("timeseries/entire/detect")
 @summary("Detect anomalies for the entire series in batch.")
