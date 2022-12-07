@@ -206,7 +206,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -313,7 +313,7 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

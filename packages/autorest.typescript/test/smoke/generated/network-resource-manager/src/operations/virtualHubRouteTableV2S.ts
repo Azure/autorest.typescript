@@ -220,7 +220,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -313,7 +313,7 @@ export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -235,7 +235,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -341,7 +341,7 @@ export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 

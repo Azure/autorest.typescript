@@ -197,7 +197,7 @@ export class ApplicationGatewayPrivateEndpointConnectionsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -304,7 +304,7 @@ export class ApplicationGatewayPrivateEndpointConnectionsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 

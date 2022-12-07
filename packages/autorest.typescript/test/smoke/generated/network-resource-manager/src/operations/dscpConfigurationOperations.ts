@@ -236,7 +236,7 @@ export class DscpConfigurationOperationsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -322,7 +322,7 @@ export class DscpConfigurationOperationsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

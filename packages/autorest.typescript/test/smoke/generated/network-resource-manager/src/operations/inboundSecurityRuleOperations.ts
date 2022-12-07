@@ -115,7 +115,7 @@ export class InboundSecurityRuleOperationsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 

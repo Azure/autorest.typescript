@@ -262,7 +262,7 @@ export class VpnSitesImpl implements VpnSites {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -367,7 +367,7 @@ export class VpnSitesImpl implements VpnSites {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -571,7 +571,7 @@ export class BlobContainersImpl implements BlobContainers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -228,7 +228,7 @@ export class NetworkProfilesImpl implements NetworkProfiles {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -231,7 +231,7 @@ export class VpnConnectionsImpl implements VpnConnections {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -323,7 +323,7 @@ export class VpnConnectionsImpl implements VpnConnections {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -419,7 +419,7 @@ export class VpnConnectionsImpl implements VpnConnections {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -515,7 +515,7 @@ export class VpnConnectionsImpl implements VpnConnections {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

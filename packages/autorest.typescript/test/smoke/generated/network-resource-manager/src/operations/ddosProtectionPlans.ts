@@ -235,7 +235,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -345,7 +345,7 @@ export class DdosProtectionPlansImpl implements DdosProtectionPlans {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 

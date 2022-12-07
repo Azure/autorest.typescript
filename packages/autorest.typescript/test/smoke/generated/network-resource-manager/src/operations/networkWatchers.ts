@@ -265,7 +265,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -421,7 +421,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -517,7 +517,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -613,7 +613,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -709,7 +709,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -805,7 +805,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -901,7 +901,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -998,7 +998,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1096,7 +1096,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1194,7 +1194,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1292,7 +1292,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1393,7 +1393,7 @@ export class NetworkWatchersImpl implements NetworkWatchers {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

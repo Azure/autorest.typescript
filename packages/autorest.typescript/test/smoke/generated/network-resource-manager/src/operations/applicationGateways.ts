@@ -314,7 +314,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -424,7 +424,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -554,7 +554,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -637,7 +637,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -728,7 +728,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -827,7 +827,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

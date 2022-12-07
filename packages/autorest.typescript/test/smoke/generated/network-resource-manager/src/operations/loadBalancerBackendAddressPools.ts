@@ -241,7 +241,7 @@ export class LoadBalancerBackendAddressPoolsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "azure-async-operation"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -338,7 +338,7 @@ export class LoadBalancerBackendAddressPoolsImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

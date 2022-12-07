@@ -228,7 +228,7 @@ export class CustomIPPrefixesImpl implements CustomIPPrefixes {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -338,7 +338,7 @@ export class CustomIPPrefixesImpl implements CustomIPPrefixes {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

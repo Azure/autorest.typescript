@@ -96,7 +96,7 @@ export class VpnSitesConfigurationImpl implements VpnSitesConfiguration {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

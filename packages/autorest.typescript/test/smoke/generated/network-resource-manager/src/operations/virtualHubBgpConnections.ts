@@ -207,7 +207,7 @@ export class VirtualHubBgpConnectionsImpl implements VirtualHubBgpConnections {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -303,7 +303,7 @@ export class VirtualHubBgpConnectionsImpl implements VirtualHubBgpConnections {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

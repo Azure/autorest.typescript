@@ -107,7 +107,7 @@ export class VpnServerConfigurationsAssociatedWithVirtualWanImpl
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 

@@ -944,7 +944,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1010,7 +1010,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1123,7 +1123,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -1255,7 +1255,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: "location"
     });
-    await poller.poll();
+
     return poller;
   }
 
