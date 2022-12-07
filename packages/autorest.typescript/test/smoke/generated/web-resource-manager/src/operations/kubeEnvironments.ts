@@ -289,7 +289,7 @@ export class KubeEnvironmentsImpl implements KubeEnvironments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
@@ -374,7 +374,7 @@ export class KubeEnvironmentsImpl implements KubeEnvironments {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 

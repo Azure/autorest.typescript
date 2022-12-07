@@ -675,7 +675,7 @@ export class AppServicePlansImpl implements AppServicePlans {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
-    await poller.poll();
+
     return poller;
   }
 
