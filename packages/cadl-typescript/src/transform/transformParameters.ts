@@ -22,11 +22,11 @@ import {
   getTypeName,
   getSchemaForType,
   getBinaryType,
-  getFormattedPropertyDoc
+  getFormattedPropertyDoc,
+  getBodyType
 } from "../modelUtils.js";
 import { isApiVersion } from "../paramUtil.js";
 import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
-import { getResourceOperation } from "@cadl-lang/rest";
 import {
   Client,
   listOperationGroups,
@@ -62,7 +62,6 @@ export function transformToParameterTypes(
     route: HttpOperation,
     operationGroup?: OperationGroup
   ) {
-    const operation = getResourceOperation(program, route.operation);
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationGroup: getOperationGroupName(operationGroup),
@@ -76,17 +75,17 @@ export function transformToParameterTypes(
     // transform header param includeing content-type
     const headerParams = transformHeaderParameters(program, parameters);
     // transform body
-    let bodyType = undefined;
-    if (operation) {
-      bodyType = operation.resourceType;
+    const bodyType = getBodyType(program, route);
+    let bodyParameter = undefined;
+    if (bodyType && bodyType.kind === "Model") {
+      bodyParameter = transformBodyParameters(
+        program,
+        parameters,
+        headerParams,
+        outputImportedSet,
+        bodyType
+      );
     }
-    const bodyParameter = transformBodyParameters(
-      program,
-      parameters,
-      headerParams,
-      outputImportedSet,
-      bodyType
-    );
     rlcParameter.parameters.push({
       parameters: [...queryParams, ...pathParams, ...headerParams],
       body: bodyParameter

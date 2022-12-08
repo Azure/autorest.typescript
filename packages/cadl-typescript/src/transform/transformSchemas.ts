@@ -8,12 +8,11 @@ import {
 } from "@azure-tools/cadl-dpg";
 import { Schema, SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
-import { getResourceOperation } from "@cadl-lang/rest";
 import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
 import {
   getSchemaForType,
   includeDerivedModel,
-  getEffectiveModelFromType
+  getBodyType
 } from "../modelUtils.js";
 
 export function transformSchemas(program: Program, client: Client) {
@@ -34,40 +33,18 @@ export function transformSchemas(program: Program, client: Client) {
     transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
+    if (route.operation.name === "UploadBatchServiceLogs") {
+      route;
+    }
     if (route.parameters.bodyType) {
-      let bodyModel = route.parameters.bodyType;
-      if (bodyModel.kind === "Model" && route.operation) {
-        const resourceType = getResourceOperation(
-          program,
-          route.operation
-        )?.resourceType;
-        if (resourceType && route.responses && route.responses.length > 0) {
-          const resp = route.responses[0];
-          if (resp && resp.responses && resp.responses.length > 0) {
-            const responseBody = resp.responses[0]?.body;
-            if (responseBody) {
-              const bodyTypeInResponse = getEffectiveModelFromType(
-                program,
-                responseBody.type
-              );
-              // response body type is reosurce type, and request body type (if templated) contains resource type
-              if (
-                bodyTypeInResponse === resourceType &&
-                bodyModel.templateArguments &&
-                bodyModel.templateArguments.some((it) => {
-                  return it.kind === "Model" || it.kind === "Union"
-                    ? it === bodyTypeInResponse
-                    : false;
-                })
-              ) {
-                bodyModel = resourceType;
-              }
-            }
-          }
-        }
+      if (route.parameters.bodyType.kind === "Model" && route.parameters.bodyType.name === "UploadBatchServiceLogsResult") {
+        route;
       }
-
+      const bodyModel = getBodyType(program, route);
       if (bodyModel && bodyModel.kind === "Model") {
+        if (bodyModel.name === "ResourceCreateOrReplaceModel") {
+          bodyModel;
+        }
         getGeneratedModels(bodyModel, SchemaContext.Input);
       }
     }

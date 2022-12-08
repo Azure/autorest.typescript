@@ -25,12 +25,7 @@ export default createClient;
 export interface CreateOrUpdate {
     delete(options?: DeleteParameters): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
     get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
-    patch(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface CreateOrUpdate200Headers {
-    "operation-location": string;
+    put(options?: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
 
 // @public
@@ -38,14 +33,7 @@ export interface CreateOrUpdate200Response extends HttpResponse {
     // (undocumented)
     body: ProjectOutput;
     // (undocumented)
-    headers: RawHttpHeaders & CreateOrUpdate200Headers;
-    // (undocumented)
     status: "200";
-}
-
-// @public (undocumented)
-export interface CreateOrUpdate201Headers {
-    "operation-location": string;
 }
 
 // @public
@@ -53,15 +41,12 @@ export interface CreateOrUpdate201Response extends HttpResponse {
     // (undocumented)
     body: ProjectOutput;
     // (undocumented)
-    headers: RawHttpHeaders & CreateOrUpdate201Headers;
-    // (undocumented)
     status: "201";
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateBodyParam {
-    // (undocumented)
-    body?: ProjectResourceMergeAndPatch;
+    body?: ProjectCreationParameters;
 }
 
 // @public (undocumented)
@@ -73,12 +58,7 @@ export interface CreateOrUpdateDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface CreateOrUpdateMediaTypesParam {
-    contentType: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type CreateOrUpdateParameters = CreateOrUpdateMediaTypesParam & CreateOrUpdateBodyParam & RequestParameters;
+export type CreateOrUpdateParameters = CreateOrUpdateBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface Delete202Headers {
@@ -619,7 +599,7 @@ export interface PagingOptions<TResponse> {
 }
 
 // @public
-export interface Project {
+export interface ProjectCreationParameters {
     description?: string;
     language: string;
     multilingual?: boolean;
@@ -649,9 +629,6 @@ export interface ProjectOutput {
     settings?: Record<string, string>;
     storageInputContainerName: string;
 }
-
-// @public (undocumented)
-export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 // @public (undocumented)
 export interface Routes {

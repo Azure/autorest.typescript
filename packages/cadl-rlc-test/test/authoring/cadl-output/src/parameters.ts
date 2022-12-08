@@ -2,11 +2,15 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Project, TrainingJobOptions, SwapDeploymentsOptions } from "./models";
+import {
+  ProjectCreationParameters,
+  TrainingJobOptions,
+  SwapDeploymentsOptions,
+} from "./models";
 
 export interface CreateOrUpdateBodyParam {
   /** Parameter of type 'ProjectCreationParameters' in the body. */
-  body?: Project;
+  body?: ProjectCreationParameters;
 }
 
 export type CreateOrUpdateParameters = CreateOrUpdateBodyParam &
