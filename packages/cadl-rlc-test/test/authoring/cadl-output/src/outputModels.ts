@@ -30,10 +30,18 @@ export interface ProjectOutput {
   readonly lastDeployedDateTime: string;
 }
 
-/** A response containing error details. */
-export interface ErrorResponseOutput {
-  /** The error object. */
-  error: ErrorModelOutput;
+/** Provides status details for long running operations. */
+export interface OperationStatusOutput {
+  /** The unique ID of the operation. */
+  id: string;
+  /**
+   * The status of the operation
+   *
+   * Possible values: InProgress, Succeeded, Failed, Canceled
+   */
+  status: string;
+  /** Error object that describes the error when status is "Failed". */
+  error?: ErrorModelOutput;
 }
 
 /** The error object. */
@@ -58,18 +66,10 @@ export interface InnerErrorOutput {
   innererror?: InnerErrorOutput;
 }
 
-/** Provides status details for long running operations. */
-export interface OperationStatusOutput {
-  /** The unique ID of the operation. */
-  id: string;
-  /**
-   * The status of the operation
-   *
-   * Possible values: InProgress, Succeeded, Failed, Canceled
-   */
-  status: string;
-  /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModelOutput;
+/** A response containing error details. */
+export interface ErrorResponseOutput {
+  /** The error object. */
+  error: ErrorModelOutput;
 }
 
 /** Paged collection of Project items */

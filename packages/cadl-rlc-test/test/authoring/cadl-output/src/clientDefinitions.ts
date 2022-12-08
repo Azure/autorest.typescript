@@ -59,8 +59,8 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrUpdate {
   /** Creates a new project or updates an existing one. */
-  put(
-    options?: CreateOrUpdateParameters
+  patch(
+    options: CreateOrUpdateParameters
   ): StreamableMethod<
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
@@ -182,7 +182,7 @@ export interface ListTrainingConfigVersions {
 }
 
 export interface Routes {
-  /** Resource for '/authoring/analyze-text/projects/\{projectName\}' has methods for the following verbs: put, get, delete */
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}' has methods for the following verbs: patch, get, delete */
   (
     path: "/authoring/analyze-text/projects/{projectName}",
     projectName: string

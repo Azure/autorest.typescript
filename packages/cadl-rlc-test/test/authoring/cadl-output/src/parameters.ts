@@ -3,17 +3,25 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  ProjectCreationParameters,
+  Project,
   TrainingJobOptions,
+  DeploymentCreationParameters,
   SwapDeploymentsOptions,
 } from "./models";
 
+export type ProjectResourceMergeAndPatch = Partial<Project>;
+
 export interface CreateOrUpdateBodyParam {
-  /** Parameter of type 'ProjectCreationParameters' in the body. */
-  body?: ProjectCreationParameters;
+  body?: ProjectResourceMergeAndPatch;
 }
 
-export type CreateOrUpdateParameters = CreateOrUpdateBodyParam &
+export interface CreateOrUpdateMediaTypesParam {
+  /** This request has a JSON Merge Patch body. */
+  contentType: "application/merge-patch+json";
+}
+
+export type CreateOrUpdateParameters = CreateOrUpdateMediaTypesParam &
+  CreateOrUpdateBodyParam &
   RequestParameters;
 export type GetParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
@@ -52,7 +60,14 @@ export interface TrainBodyParam {
 
 export type TrainParameters = TrainBodyParam & RequestParameters;
 export type GetDeploymentParameters = RequestParameters;
-export type DeployProjectParameters = RequestParameters;
+
+export interface DeployProjectBodyParam {
+  /** Parameter of type 'DeploymentCreationParameters' in the body. */
+  body?: DeploymentCreationParameters;
+}
+
+export type DeployProjectParameters = DeployProjectBodyParam &
+  RequestParameters;
 export type DeleteDeploymentParameters = RequestParameters;
 export type ListDeploymentsParameters = RequestParameters;
 

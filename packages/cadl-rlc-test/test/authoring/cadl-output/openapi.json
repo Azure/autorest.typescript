@@ -105,7 +105,7 @@
       }
     },
     "/authoring/analyze-text/projects/{projectName}": {
-      "put": {
+      "patch": {
         "operationId": "Projects_CreateOrUpdate",
         "description": "Creates a new project or updates an existing one.",
         "parameters": [
@@ -122,24 +122,195 @@
           {
             "name": "body",
             "in": "body",
-            "required": false,
-            "description": "Parameter of type 'ProjectCreationParameters' in the body.",
             "schema": {
-              "$ref": "#/definitions/ProjectCreationParameters"
+              "type": "object",
+              "properties": {
+                "projectKind": {
+                  "$ref": "#/definitions/ProjectKind",
+                  "description": "The project kind."
+                },
+                "storageInputContainerName": {
+                  "type": "string",
+                  "description": "The storage container name."
+                },
+                "settings": {
+                  "$ref": "#/definitions/ProjectSettings",
+                  "description": "The project settings."
+                },
+                "multilingual": {
+                  "type": "boolean",
+                  "description": "Whether the project would be used for multiple languages or not."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The project description."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+                }
+              },
+              "description": "The template for adding optional properties.",
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrUpdateModel<Project>"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "The request has succeeded.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
             "schema": {
-              "$ref": "#/definitions/Project"
+              "type": "object",
+              "properties": {
+                "projectName": {
+                  "type": "string",
+                  "description": "The project name."
+                },
+                "projectKind": {
+                  "$ref": "#/definitions/ProjectKind",
+                  "description": "The project kind."
+                },
+                "storageInputContainerName": {
+                  "type": "string",
+                  "description": "The storage container name."
+                },
+                "settings": {
+                  "$ref": "#/definitions/ProjectSettings",
+                  "description": "The project settings."
+                },
+                "multilingual": {
+                  "type": "boolean",
+                  "description": "Whether the project would be used for multiple languages or not."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The project description."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+                },
+                "createdDateTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Represents the project creation datetime.",
+                  "readOnly": true
+                },
+                "lastModifiedDateTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Represents the project last modification datetime.",
+                  "readOnly": true
+                },
+                "lastTrainedDateTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Represents the project last training datetime.",
+                  "readOnly": true
+                },
+                "lastDeployedDateTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Represents the project last deployment datetime.",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "projectName",
+                "projectKind",
+                "storageInputContainerName",
+                "language",
+                "createdDateTime",
+                "lastModifiedDateTime",
+                "lastTrainedDateTime",
+                "lastDeployedDateTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
             }
           },
           "201": {
-            "description": "A Project resource was successfully created.",
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
             "schema": {
-              "$ref": "#/definitions/Project"
+              "type": "object",
+              "properties": {
+                "projectName": {
+                  "type": "string",
+                  "description": "The project name."
+                },
+                "projectKind": {
+                  "$ref": "#/definitions/ProjectKind",
+                  "description": "The project kind."
+                },
+                "storageInputContainerName": {
+                  "type": "string",
+                  "description": "The storage container name."
+                },
+                "settings": {
+                  "$ref": "#/definitions/ProjectSettings",
+                  "description": "The project settings."
+                },
+                "multilingual": {
+                  "type": "boolean",
+                  "description": "Whether the project would be used for multiple languages or not."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The project description."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+                },
+                "createdDateTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Represents the project creation datetime.",
+                  "readOnly": true
+                },
+                "lastModifiedDateTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Represents the project last modification datetime.",
+                  "readOnly": true
+                },
+                "lastTrainedDateTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Represents the project last training datetime.",
+                  "readOnly": true
+                },
+                "lastDeployedDateTime": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Represents the project last deployment datetime.",
+                  "readOnly": true
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "projectName",
+                "projectKind",
+                "storageInputContainerName",
+                "language",
+                "createdDateTime",
+                "lastModifiedDateTime",
+                "lastTrainedDateTime",
+                "lastDeployedDateTime"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -148,7 +319,10 @@
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
-        }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
       },
       "get": {
         "operationId": "Projects_Get",
@@ -472,54 +646,28 @@
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'DeploymentCreationParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/DeploymentCreationParameters"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "The request has succeeded.",
-            "headers": {
-              "Operation-Location": {
-                "description": "The location of an instance of OperationStatus",
-                "type": "string",
-                "format": "uri"
-              }
-            },
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "The name of the deployment."
-                }
-              },
-              "required": [
-                "name"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Deployment"
             }
           },
           "201": {
-            "description": "The request has succeeded and a new resource has been created as a result.",
-            "headers": {
-              "Operation-Location": {
-                "description": "The location of an instance of OperationStatus",
-                "type": "string",
-                "format": "uri"
-              }
-            },
+            "description": "A Deployment resource was successfully created.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "The name of the deployment."
-                }
-              },
-              "description": "A  resource was successfully created.",
-              "required": [
-                "name"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Deployment"
             }
           },
           "default": {
@@ -893,6 +1041,19 @@
         "name"
       ]
     },
+    "DeploymentCreationParameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the deployment."
+        }
+      },
+      "description": "Deployment resource creation parameters.",
+      "required": [
+        "name"
+      ]
+    },
     "DeploymentJob": {
       "type": "object",
       "properties": {
@@ -1169,46 +1330,6 @@
         "lastModifiedDateTime",
         "lastTrainedDateTime",
         "lastDeployedDateTime"
-      ]
-    },
-    "ProjectCreationParameters": {
-      "type": "object",
-      "properties": {
-        "projectName": {
-          "type": "string",
-          "description": "The project name."
-        },
-        "projectKind": {
-          "$ref": "#/definitions/ProjectKind",
-          "description": "The project kind."
-        },
-        "storageInputContainerName": {
-          "type": "string",
-          "description": "The storage container name."
-        },
-        "settings": {
-          "$ref": "#/definitions/ProjectSettings",
-          "description": "The project settings."
-        },
-        "multilingual": {
-          "type": "boolean",
-          "description": "Whether the project would be used for multiple languages or not."
-        },
-        "description": {
-          "type": "string",
-          "description": "The project description."
-        },
-        "language": {
-          "type": "string",
-          "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
-        }
-      },
-      "description": "Project resource creation parameters.",
-      "required": [
-        "projectName",
-        "projectKind",
-        "storageInputContainerName",
-        "language"
       ]
     },
     "ProjectKind": {

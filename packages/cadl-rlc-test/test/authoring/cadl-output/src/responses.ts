@@ -16,16 +16,28 @@ import {
   PagedTrainingConfigVersionOutput,
 } from "./outputModels";
 
+export interface CreateOrUpdate200Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has succeeded. */
 export interface CreateOrUpdate200Response extends HttpResponse {
   status: "200";
   body: ProjectOutput;
+  headers: RawHttpHeaders & CreateOrUpdate200Headers;
 }
 
-/** A Project resource was successfully created. */
+export interface CreateOrUpdate201Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
 export interface CreateOrUpdate201Response extends HttpResponse {
   status: "201";
   body: ProjectOutput;
+  headers: RawHttpHeaders & CreateOrUpdate201Headers;
 }
 
 export interface CreateOrUpdateDefaultResponse extends HttpResponse {
@@ -131,28 +143,16 @@ export interface GetDeploymentDefaultResponse extends HttpResponse {
   body: ErrorResponseOutput;
 }
 
-export interface DeployProject200Headers {
-  /** The location for monitoring the operation state. */
-  "operation-location": string;
-}
-
 /** The request has succeeded. */
 export interface DeployProject200Response extends HttpResponse {
   status: "200";
   body: DeploymentOutput;
-  headers: RawHttpHeaders & DeployProject200Headers;
 }
 
-export interface DeployProject201Headers {
-  /** The location for monitoring the operation state. */
-  "operation-location": string;
-}
-
-/** The request has succeeded and a new resource has been created as a result. */
+/** A Deployment resource was successfully created. */
 export interface DeployProject201Response extends HttpResponse {
   status: "201";
   body: DeploymentOutput;
-  headers: RawHttpHeaders & DeployProject201Headers;
 }
 
 export interface DeployProjectDefaultResponse extends HttpResponse {

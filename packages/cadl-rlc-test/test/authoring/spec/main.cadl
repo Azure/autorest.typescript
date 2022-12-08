@@ -78,12 +78,6 @@ model Project {
   lastDeployedDateTime: zonedDateTime;
 }
 
-@doc("Project resource creation parameters.")
-@withVisibility("create")
-model ProjectCreationParameters {
-  ...Project;
-}
-
 @doc("Represents the project kind.")
 enum ProjectKind {
   @doc("For building a classification model to classify text using your own data. Each file will have only one label. For example, file 1 is classified as A and file 2 is classified as B.")
@@ -106,6 +100,12 @@ model Deployment {
   @key("deploymentName")
   @segment("deployments")
   name: string;
+}
+
+@doc("Deployment resource creation parameters.")
+@withVisibility("create")
+model DeploymentCreationParameters {
+  ...Deployment;
 }
 
 @doc("The details about a job.")
@@ -239,10 +239,7 @@ model SwapDeploymentsParams {
 interface Projects {
   #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new project or updates an existing one.")
-  createOrUpdate is CustomResourceCreateOrReplace<
-    Project,
-    CustomBodyWrapper<ProjectCreationParameters>
-  >;
+  createOrUpdate is LongRunningResourceCreateOrUpdate<Project>;
 
   @doc("Gets the details of a project.")
   get is ResourceRead<Project>;
@@ -295,7 +292,10 @@ interface Deployments {
 
   #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new deployment or replaces an existing one.")
-  deployProject is LongRunningResourceCreateOrReplace<Deployment>;
+  deployProject is CustomResourceCreateOrReplace<
+    Deployment,
+    CustomBodyWrapper<DeploymentCreationParameters>
+  >;
 
   #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Deletes a project deployment.")
