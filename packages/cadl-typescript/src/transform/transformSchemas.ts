@@ -33,18 +33,9 @@ export function transformSchemas(program: Program, client: Client) {
     transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
-    if (route.operation.name === "UploadBatchServiceLogs") {
-      route;
-    }
     if (route.parameters.bodyType) {
-      if (route.parameters.bodyType.kind === "Model" && route.parameters.bodyType.name === "UploadBatchServiceLogsResult") {
-        route;
-      }
       const bodyModel = getBodyType(program, route);
       if (bodyModel && bodyModel.kind === "Model") {
-        if (bodyModel.name === "ResourceCreateOrReplaceModel") {
-          bodyModel;
-        }
         getGeneratedModels(bodyModel, SchemaContext.Input);
       }
     }
