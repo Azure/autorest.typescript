@@ -6,7 +6,7 @@ import {
   DetectUnivariateLastPointParameters,
   DetectUnivariateChangePointParameters,
   GetMultivariateBatchDetectionResultParameters,
-  CreateAndTrainMultivariateModelParameters,
+  TrainMultivariateModelParameters,
   ListMultivariateModelsParameters,
   DeleteMultivariateModelParameters,
   GetMultivariateModelParameters,
@@ -22,8 +22,8 @@ import {
   DetectUnivariateChangePointDefaultResponse,
   GetMultivariateBatchDetectionResult200Response,
   GetMultivariateBatchDetectionResultDefaultResponse,
-  CreateAndTrainMultivariateModel201Response,
-  CreateAndTrainMultivariateModelDefaultResponse,
+  TrainMultivariateModel201Response,
+  TrainMultivariateModelDefaultResponse,
   ListMultivariateModels200Response,
   ListMultivariateModelsDefaultResponse,
   DeleteMultivariateModel204Response,
@@ -88,7 +88,7 @@ export interface GetMultivariateBatchDetectionResult {
   >;
 }
 
-export interface CreateAndTrainMultivariateModel {
+export interface TrainMultivariateModel {
   /**
    * Create and train a multivariate anomaly detection model. The request must
    * include a source parameter to indicate an externally accessible Azure blob
@@ -99,10 +99,9 @@ export interface CreateAndTrainMultivariateModel {
    * timestamp column.
    */
   post(
-    options: CreateAndTrainMultivariateModelParameters
+    options: TrainMultivariateModelParameters
   ): StreamableMethod<
-    | CreateAndTrainMultivariateModel201Response
-    | CreateAndTrainMultivariateModelDefaultResponse
+    TrainMultivariateModel201Response | TrainMultivariateModelDefaultResponse
   >;
   /** List models of a resource. */
   get(
@@ -175,7 +174,7 @@ export interface Routes {
     resultId: string
   ): GetMultivariateBatchDetectionResult;
   /** Resource for '/multivariate/models' has methods for the following verbs: post, get */
-  (path: "/multivariate/models"): CreateAndTrainMultivariateModel;
+  (path: "/multivariate/models"): TrainMultivariateModel;
   /** Resource for '/multivariate/models/\{modelId\}' has methods for the following verbs: delete, get */
   (
     path: "/multivariate/models/{modelId}",

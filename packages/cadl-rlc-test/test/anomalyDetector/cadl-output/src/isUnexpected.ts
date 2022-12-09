@@ -10,8 +10,8 @@ import {
   DetectUnivariateChangePointDefaultResponse,
   GetMultivariateBatchDetectionResult200Response,
   GetMultivariateBatchDetectionResultDefaultResponse,
-  CreateAndTrainMultivariateModel201Response,
-  CreateAndTrainMultivariateModelDefaultResponse,
+  TrainMultivariateModel201Response,
+  TrainMultivariateModelDefaultResponse,
   ListMultivariateModels200Response,
   ListMultivariateModelsDefaultResponse,
   DeleteMultivariateModel204Response,
@@ -59,9 +59,9 @@ export function isUnexpected(
 ): response is GetMultivariateBatchDetectionResultDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateAndTrainMultivariateModel201Response
-    | CreateAndTrainMultivariateModelDefaultResponse
-): response is CreateAndTrainMultivariateModelDefaultResponse;
+    | TrainMultivariateModel201Response
+    | TrainMultivariateModelDefaultResponse
+): response is TrainMultivariateModelDefaultResponse;
 export function isUnexpected(
   response:
     | ListMultivariateModels200Response
@@ -97,8 +97,8 @@ export function isUnexpected(
     | DetectUnivariateChangePointDefaultResponse
     | GetMultivariateBatchDetectionResult200Response
     | GetMultivariateBatchDetectionResultDefaultResponse
-    | CreateAndTrainMultivariateModel201Response
-    | CreateAndTrainMultivariateModelDefaultResponse
+    | TrainMultivariateModel201Response
+    | TrainMultivariateModelDefaultResponse
     | ListMultivariateModels200Response
     | ListMultivariateModelsDefaultResponse
     | DeleteMultivariateModel204Response
@@ -114,7 +114,7 @@ export function isUnexpected(
   | DetectUnivariateLastPointDefaultResponse
   | DetectUnivariateChangePointDefaultResponse
   | GetMultivariateBatchDetectionResultDefaultResponse
-  | CreateAndTrainMultivariateModelDefaultResponse
+  | TrainMultivariateModelDefaultResponse
   | ListMultivariateModelsDefaultResponse
   | DeleteMultivariateModelDefaultResponse
   | GetMultivariateModelDefaultResponse
