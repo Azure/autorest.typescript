@@ -43,11 +43,13 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
+import { getResourceOperation } from "@cadl-lang/rest";
 import {
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
-  isStatusCode
+  isStatusCode,
+  HttpOperation
 } from "@cadl-lang/rest/http";
 import { getPagedResult } from "@azure-tools/cadl-azure-core";
 
@@ -63,7 +65,7 @@ export function getSchemaForType(
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
-  const type = getEffectiveModelFromType(typeInput);
+  const type = getEffectiveModelFromType(program, typeInput);
   const builtinType = mapCadlTypeToTypeScript(program, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -86,22 +88,6 @@ export function getSchemaForType(
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   }
-  function getEffectiveModelFromType(type: Type) {
-    if (type.kind === "Model") {
-      const effective = getEffectiveModelType(program, type, isSchemaProperty);
-      if (effective.name) {
-        return effective;
-      }
-    }
-    function isSchemaProperty(property: ModelProperty) {
-      const headerInfo = getHeaderFieldName(program, property);
-      const queryInfo = getQueryParamName(program, property);
-      const pathInfo = getPathParamName(program, property);
-      const statusCodeInfo = isStatusCode(program, property);
-      return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
-    }
-    return type;
-  }
   if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
     if (usage && usage.includes(SchemaContext.Output)) {
@@ -119,6 +105,22 @@ export function getSchemaForType(
     target: type
   });
   return undefined;
+}
+export function getEffectiveModelFromType(program: Program, type: Type): Type {
+  if (type.kind === "Model") {
+    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+    if (effective.name) {
+      return effective;
+    }
+  }
+  function isSchemaProperty(property: ModelProperty) {
+    const headerInfo = getHeaderFieldName(program, property);
+    const queryInfo = getQueryParamName(program, property);
+    const pathInfo = getPathParamName(program, property);
+    const statusCodeInfo = isStatusCode(program, property);
+    return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+  }
+  return type;
 }
 export function includeDerivedModel(model: Model): boolean {
   return (
@@ -904,4 +906,45 @@ export function getFormattedPropertyDoc(
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
   return propertyDoc ?? enhancedDocFromType;
+}
+
+export function getBodyType(
+  program: Program,
+  route: HttpOperation
+): Type | undefined {
+  let bodyModel = route.parameters.bodyType;
+  if (bodyModel && bodyModel.kind === "Model" && route.operation) {
+    const resourceType = getResourceOperation(
+      program,
+      route.operation
+    )?.resourceType;
+    if (resourceType && route.responses && route.responses.length > 0) {
+      const resp = route.responses[0];
+      if (resp && resp.responses && resp.responses.length > 0) {
+        const responseBody = resp.responses[0]?.body;
+        if (responseBody) {
+          const bodyTypeInResponse = getEffectiveModelFromType(
+            program,
+            responseBody.type
+          );
+          // response body type is reosurce type, and request body type (if templated) contains resource type
+          if (
+            bodyTypeInResponse === resourceType &&
+            bodyModel.templateArguments &&
+            bodyModel.templateArguments.some((it) => {
+              return it.kind === "Model" || it.kind === "Union"
+                ? it === bodyTypeInResponse
+                : false;
+            })
+          ) {
+            bodyModel = resourceType;
+          }
+        }
+      }
+    }
+    if (resourceType && bodyModel.name === "") {
+      bodyModel = resourceType;
+    }
+  }
+  return bodyModel;
 }
