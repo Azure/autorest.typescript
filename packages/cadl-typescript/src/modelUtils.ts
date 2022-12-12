@@ -106,7 +106,7 @@ export function getSchemaForType(
   });
   return undefined;
 }
-export function getEffectiveModelFromType(program: Program, type: Type) {
+export function getEffectiveModelFromType(program: Program, type: Type): Type {
   if (type.kind === "Model") {
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
     if (effective.name) {
@@ -908,7 +908,10 @@ export function getFormattedPropertyDoc(
   return propertyDoc ?? enhancedDocFromType;
 }
 
-export function getBodyType(program: Program, route: HttpOperation) {
+export function getBodyType(
+  program: Program,
+  route: HttpOperation
+): Type | undefined {
   let bodyModel = route.parameters.bodyType;
   if (bodyModel && bodyModel.kind === "Model" && route.operation) {
     const resourceType = getResourceOperation(

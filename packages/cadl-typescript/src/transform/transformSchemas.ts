@@ -33,11 +33,9 @@ export function transformSchemas(program: Program, client: Client) {
     transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
-    if (route.parameters.bodyType) {
-      const bodyModel = getBodyType(program, route);
-      if (bodyModel && bodyModel.kind === "Model") {
-        getGeneratedModels(bodyModel, SchemaContext.Input);
-      }
+    const bodyModel = getBodyType(program, route);
+    if (bodyModel && bodyModel.kind === "Model") {
+      getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
       for (const resps of resp.responses) {
