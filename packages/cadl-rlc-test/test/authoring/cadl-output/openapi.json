@@ -1067,19 +1067,6 @@
         "name"
       ]
     },
-    "DeploymentCreationParameters": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "The name of the deployment."
-        }
-      },
-      "description": "Deployment resource creation parameters.",
-      "required": [
-        "name"
-      ]
-    },
     "DeploymentJob": {
       "type": "object",
       "properties": {

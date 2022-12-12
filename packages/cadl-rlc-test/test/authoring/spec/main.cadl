@@ -100,12 +100,6 @@ model Deployment {
   name: string;
 }
 
-@doc("Deployment resource creation parameters.")
-@withVisibility("create")
-model DeploymentCreationParameters {
-  ...Deployment;
-}
-
 @doc("The details about a job.")
 model Job {
   @doc("The job ID.")
