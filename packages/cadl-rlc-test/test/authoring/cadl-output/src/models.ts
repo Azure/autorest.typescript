@@ -28,12 +28,6 @@ export interface TrainingJobOptions {
   modelLabel: string;
 }
 
-/** Deployment resource creation parameters. */
-export interface DeploymentCreationParameters {
-  /** The name of the deployment. */
-  name: string;
-}
-
 /** Swap deployment options. */
 export interface SwapDeploymentsOptions {
   /** Represents the first deployment name. */

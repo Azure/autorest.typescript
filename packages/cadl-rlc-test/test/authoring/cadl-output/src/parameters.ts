@@ -2,12 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import {
-  Project,
-  TrainingJobOptions,
-  DeploymentCreationParameters,
-  SwapDeploymentsOptions,
-} from "./models";
+import { Project, TrainingJobOptions, SwapDeploymentsOptions } from "./models";
 
 export type ProjectResourceMergeAndPatch = Partial<Project>;
 
@@ -60,14 +55,7 @@ export interface TrainBodyParam {
 
 export type TrainParameters = TrainBodyParam & RequestParameters;
 export type GetDeploymentParameters = RequestParameters;
-
-export interface DeployProjectBodyParam {
-  /** Parameter of type 'DeploymentCreationParameters' in the body. */
-  body?: DeploymentCreationParameters;
-}
-
-export type DeployProjectParameters = DeployProjectBodyParam &
-  RequestParameters;
+export type DeployProjectParameters = RequestParameters;
 export type DeleteDeploymentParameters = RequestParameters;
 export type ListDeploymentsParameters = RequestParameters;
 

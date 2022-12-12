@@ -133,11 +133,6 @@ export type DeleteDeploymentParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
 
 // @public
-export interface DeploymentCreationParameters {
-    name: string;
-}
-
-// @public
 export interface DeploymentJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
@@ -160,12 +155,24 @@ export interface DeploymentOutput {
     name: string;
 }
 
+// @public (undocumented)
+export interface DeployProject200Headers {
+    "operation-location": string;
+}
+
 // @public
 export interface DeployProject200Response extends HttpResponse {
     // (undocumented)
     body: DeploymentOutput;
     // (undocumented)
+    headers: RawHttpHeaders & DeployProject200Headers;
+    // (undocumented)
     status: "200";
+}
+
+// @public (undocumented)
+export interface DeployProject201Headers {
+    "operation-location": string;
 }
 
 // @public
@@ -173,12 +180,9 @@ export interface DeployProject201Response extends HttpResponse {
     // (undocumented)
     body: DeploymentOutput;
     // (undocumented)
+    headers: RawHttpHeaders & DeployProject201Headers;
+    // (undocumented)
     status: "201";
-}
-
-// @public (undocumented)
-export interface DeployProjectBodyParam {
-    body?: DeploymentCreationParameters;
 }
 
 // @public (undocumented)
@@ -190,7 +194,7 @@ export interface DeployProjectDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
+export type DeployProjectParameters = RequestParameters;
 
 // @public
 export interface ErrorModelOutput {

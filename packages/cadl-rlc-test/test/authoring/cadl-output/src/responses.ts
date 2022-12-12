@@ -143,16 +143,28 @@ export interface GetDeploymentDefaultResponse extends HttpResponse {
   body: ErrorResponseOutput;
 }
 
+export interface DeployProject200Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has succeeded. */
 export interface DeployProject200Response extends HttpResponse {
   status: "200";
   body: DeploymentOutput;
+  headers: RawHttpHeaders & DeployProject200Headers;
 }
 
-/** A Deployment resource was successfully created. */
+export interface DeployProject201Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
 export interface DeployProject201Response extends HttpResponse {
   status: "201";
   body: DeploymentOutput;
+  headers: RawHttpHeaders & DeployProject201Headers;
 }
 
 export interface DeployProjectDefaultResponse extends HttpResponse {

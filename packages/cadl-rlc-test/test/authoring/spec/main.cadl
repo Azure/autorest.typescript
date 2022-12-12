@@ -1,13 +1,11 @@
 import "@cadl-lang/rest";
 import "@cadl-lang/versioning";
 import "@azure-tools/cadl-azure-core";
-import "./azure-core-foundations-extensions.cadl";
 
 using Cadl.Http;
 using Cadl.Rest;
 using Cadl.Versioning;
 using Azure.Core;
-using Azure.Core.Foundations.Extensions;
 
 // NOTE: These features are missing:
 // - Security definition for apiKey
@@ -292,10 +290,7 @@ interface Deployments {
 
   #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new deployment or replaces an existing one.")
-  deployProject is CustomResourceCreateOrReplace<
-    Deployment,
-    CustomBodyWrapper<DeploymentCreationParameters>
-  >;
+  deployProject is LongRunningResourceCreateOrReplace<Deployment>;
 
   #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Deletes a project deployment.")

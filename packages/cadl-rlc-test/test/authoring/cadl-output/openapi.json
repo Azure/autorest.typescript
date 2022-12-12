@@ -646,28 +646,54 @@
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": false,
-            "description": "Parameter of type 'DeploymentCreationParameters' in the body.",
-            "schema": {
-              "$ref": "#/definitions/DeploymentCreationParameters"
-            }
           }
         ],
         "responses": {
           "200": {
             "description": "The request has succeeded.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
             "schema": {
-              "$ref": "#/definitions/Deployment"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the deployment."
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
             }
           },
           "201": {
-            "description": "A Deployment resource was successfully created.",
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of OperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
             "schema": {
-              "$ref": "#/definitions/Deployment"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the deployment."
+                }
+              },
+              "description": "A  resource was successfully created.",
+              "required": [
+                "name"
+              ],
+              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
             }
           },
           "default": {
