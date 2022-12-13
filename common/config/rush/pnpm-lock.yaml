@@ -58,21 +58,12 @@ packages:
       z-schema: 5.0.4
     dev: false
 
-  /@autorest/codemodel/4.18.2:
-    resolution: {integrity: sha512-xnGbxU2xvqtyIQYYwsEZsK+w2MmavbUrQdk1/sLPhjT+cQ5R6VUc5PX1ZTmPzBZWc/utiaAurxFC65J5J/uSgA==}
+  /@autorest/codemodel/4.19.2:
+    resolution: {integrity: sha512-MENLWZxm4bcoJJw20egNeD4nmuhVUOftoIAMgCx+Qicb32sJxJiPBD6L7rjPjmSWlDQe8hP6vWc4Ig1ncZ3J4g==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@azure-tools/codegen': 2.9.1
       js-yaml: 4.0.0
-    dev: false
-
-  /@autorest/extension-base/3.4.4:
-    resolution: {integrity: sha512-u7+3GGzeYwFcafjt8gmpt0JM56UCdgP3Okhb23i5jhoc+5v7AWPEi00n5YmMb27OcR8wNDkb1jqtDjjeTnUHeQ==}
-    engines: {node: '>=12.0.0'}
-    dependencies:
-      '@azure-tools/codegen': 2.9.1
-      js-yaml: 4.0.0
-      vscode-jsonrpc: 3.6.2
     dev: false
 
   /@autorest/extension-base/3.5.0:
@@ -88,11 +79,11 @@ packages:
     resolution: {integrity: sha512-6KWlY9rvFZt2qBA0/9N1efB81tZ57rpnzO6L/nkqV882JKEJA4RPJmf5H0cY5TrA4OEVDuMoZoHlT7bu8SvtIQ==}
     dev: false
 
-  /@autorest/testmodeler/2.3.2_9a912d3879322c82099236d5112c1dcc:
-    resolution: {integrity: sha512-Nh1bWdnU5+2b7lUtBdEdec/HjyV9Hpj+CGsJnRc8zBguNP+LqSo9Ad4/faUypvV4iM6BV4B/k8QBrglJwTpfxw==}
+  /@autorest/testmodeler/2.4.0_9a912d3879322c82099236d5112c1dcc:
+    resolution: {integrity: sha512-gUCMtAJO2WPEr+5rImr6xu/sdz/Utm5aPa2AFx8pfNoJvUhVGujxM8SWt6bl5lvzNgeH9YVWkpQrF/GyA4aLzg==}
     dependencies:
-      '@autorest/codemodel': 4.18.2
-      '@autorest/extension-base': 3.4.4
+      '@autorest/codemodel': 4.19.2
+      '@autorest/extension-base': 3.5.0
       '@azure-tools/codegen': 2.9.1
       '@types/lodash': 4.14.189
       autorest: 3.6.2
@@ -6142,6 +6133,7 @@ packages:
 
   /json-schema-ref-parser/6.1.0:
     resolution: {integrity: sha512-pXe9H1m6IgIpXmE5JSb8epilNTGsmTb2iPohAXpOdhqGFbQjNeHHsZxU+C8w6T81GZxSPFLeUoqDJmzxx5IGuw==}
+    deprecated: Please switch to @apidevtools/json-schema-ref-parser
     dependencies:
       call-me-maybe: 1.0.2
       js-yaml: 3.14.1
@@ -7820,7 +7812,7 @@ packages:
   /puppeteer/3.3.0:
     resolution: {integrity: sha512-23zNqRltZ1PPoK28uRefWJ/zKb5Jhnzbbwbpcna2o5+QMn17F0khq5s1bdH3vPlyj+J36pubccR8wiNA/VE0Vw==}
     engines: {node: '>=10.18.1'}
-    deprecated: Version no longer supported. Upgrade to @latest
+    deprecated: < 18.1.0 is no longer supported
     requiresBuild: true
     dependencies:
       debug: 4.3.4
@@ -8467,6 +8459,7 @@ packages:
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+    deprecated: Please use @jridgewell/sourcemap-codec instead
     dev: false
 
   /spawn-wrap/2.0.0:
@@ -8727,6 +8720,7 @@ packages:
 
   /swagger-methods/1.0.8:
     resolution: {integrity: sha512-G6baCwuHA+C5jf4FNOrosE4XlmGsdjbOjdBK4yuiDDj/ro9uR4Srj3OR84oQMT8F3qKp00tYNv0YN730oTHPZA==}
+    deprecated: This package is no longer being maintained.
     dev: false
 
   /swagger-parser/10.0.3_openapi-types@7.2.3:
@@ -9879,7 +9873,7 @@ packages:
     dev: false
 
   file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-HxhyzkfVi0mSuHhoLXTGHThihwwpL4ZVyJLjQYuBY7/9jvCcT7Ja+4RDykPN2GzEwX73Z1B9WmEfjypjLy9X5w==, tarball: file:projects/cadl-rest-test.tgz}
+    resolution: {integrity: sha512-w5+RksV9h5GLyXfqux+t2/j5FiXLYj7nqlof0/cDnEJWpSIan3aPiKTVzEiPs5HE8OFF6328nKAW68tX2E9KZg==, tarball: file:projects/cadl-rest-test.tgz}
     name: '@rush-temp/cadl-rest-test'
     version: 0.0.0
     dependencies:
@@ -9900,7 +9894,7 @@ packages:
     dev: false
 
   file:projects/cadl-typescript.tgz:
-    resolution: {integrity: sha512-//sEb/dd1ErczzOjbxn1ihG2Sbn4uxqMdLbQtMi3JtrnJGGyd/QzQhwSfWBk34NzTZtxBzRyDWgYfjUMyHj68A==, tarball: file:projects/cadl-typescript.tgz}
+    resolution: {integrity: sha512-HGkqfJ+6zXInxMHte8h5x8vXRTIeM4EEFR8w4O6u6RF3nUnlEhpkHbdzv2Hkb40LeVfBs1ZBzM1M5e7RnCGPCQ==, tarball: file:projects/cadl-typescript.tgz}
     name: '@rush-temp/cadl-typescript'
     version: 0.0.0
     dependencies:
@@ -9967,13 +9961,13 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-ooXJEiJOGxktDezLwVpfZIxxUduBGrA0NZcaWWvySrEIn5s+qV9xiIZ9Fua0Vv1gGT7vHGtzWA4ckN+esdP8Eg==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-a0Ypf9z/txc/x+k7gfL3ou1z9jpdQceDgDQBuYxf3ngwvOp4X4SKrzvYKSdEFUKVrGXSvMamf13kl9Q60YyvMQ==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
-      '@autorest/codemodel': 4.18.2
+      '@autorest/codemodel': 4.19.2
       '@autorest/extension-base': 3.5.0
-      '@autorest/testmodeler': 2.3.2_9a912d3879322c82099236d5112c1dcc
+      '@autorest/testmodeler': 2.4.0_9a912d3879322c82099236d5112c1dcc
       '@azure-rest/core-client': 1.0.0
       '@azure-tools/codegen': 2.9.1
       '@azure-tools/test-recorder': 1.0.2
