@@ -760,4 +760,47 @@ describe("Input/output model type", () => {
       });
     });
   });
+  describe("Union basic generation", () => {
+    it("should handle string | integer -> string | number", async () => {
+      const cadlType = "string | integer";
+      const typeScriptType = "string | number";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle int32 | string -> number | string", async () => {
+      const cadlType = "int32 | string";
+      const typeScriptType = "number | string";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle float32[] | string[] -> number[] | string[]", async () => {
+      const cadlType = "float32[] | string[]";
+      const typeScriptType = "number[] | string[]";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle boolean[] | string[] -> boolean[] | string[]", async () => {
+      const cadlType = "boolean[] | string[]";
+      const typeScriptType = "boolean[] | string[]";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle true[] | string[] -> true[] | string[]", async () => {
+      const cadlType = "true[] | string[]";
+      const typeScriptType = "true[] | string[]";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle 32[] | string[] -> 32[] | string[]", async () => {
+      const cadlType = "32[] | string[]";
+      const typeScriptType = "32[] | string[]";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should handle 'job'[] | string[] -> 'job'[] | string[]", async () => {
+      const cadlType = `"job"[] | string[]`;
+      const typeScriptType = `"job"[] | string[]`;
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+  });
 });

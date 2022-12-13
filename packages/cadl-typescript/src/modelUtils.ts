@@ -181,13 +181,6 @@ function getSchemaForUnion(
       }
 
       return schema;
-    } else {
-      reportDiagnostic(program, {
-        code: "union-unsupported",
-        messageId: "null",
-        target: union
-      });
-      return {};
     }
   }
 
@@ -197,16 +190,15 @@ function getSchemaForUnion(
     }
 
     // We already know it's not a model type
-    values.push((option as any).value);
+    values.push(getSchemaForType(program, option));
   }
 
   const schema: any = { type };
   if (values.length > 0) {
     schema.enum = values;
-    schema.type =
-      type === "string"
-        ? values.map((item) => `"${item}"`).join(" | ")
-        : values.join(" | ");
+    schema.type = values
+      .map((item) => `${getTypeName(item) ?? item}`)
+      .join(" | ");
   }
   if (nullable) {
     schema["x-nullable"] = true;
@@ -654,7 +646,7 @@ function getSchemaForEnum(program: Program, e: Enum) {
     schema.type =
       type === "string"
         ? values.map((item) => `"${item}"`).join("|")
-        : values.join("|");
+        : values.map((item) => `${item}`).join("|");
   }
 
   return schema;
@@ -771,6 +763,10 @@ function getSchemaForIntrinsic(
   switch (name) {
     case "bytes":
       return { type: "string", format: "byte", description };
+    case "integer":
+      return applyIntrinsicDecorators(program, cadlType, {
+        type: "number"
+      });
     case "int8":
       return applyIntrinsicDecorators(program, cadlType, {
         type: "number",
