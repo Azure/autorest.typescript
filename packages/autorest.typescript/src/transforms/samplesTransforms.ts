@@ -8,6 +8,7 @@ import {
 import { ClientDetails } from "../models/clientDetails";
 import { SampleGroup, SampleDetails } from "../models/sampleDetails";
 import {
+  ExampleValue,
   TestCodeModel
 } from "@autorest/testmodeler/dist/src/core/model";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -23,6 +24,7 @@ import { OperationGroupDetails } from "../models/operationDetails";
 import { getPublicMethodName } from "../generators/utils/pagingOperations";
 import { getTypeForSchema } from "../utils/schemaHelpers";
 import { getParameterAssignment } from "../utils/valueHelpers";
+import { ParameterDetails } from "../models/parameterDetails";
 
 export async function transformSamples(
   codeModel: CodeModel,
@@ -135,6 +137,7 @@ export async function getAllExamples(
               !param.defaultValue &&
               param.schemaType !== SchemaType.Constant
           );
+          let subscriptionIdValue = undefined;
           for (const clientParameter of example.clientParameters) {
             if (
               clientParameter.exampleValue.schema.type === SchemaType.Constant
@@ -146,20 +149,25 @@ export async function getAllExamples(
               NameType.Parameter,
               true
             );
+            if (parameterName === "subscriptionId") {
+              subscriptionIdValue = getParameterAssignment(
+                clientParameter.exampleValue
+              );
+              continue;
+            }
             const paramAssignment =
               `const ${parameterName} = ` +
               getParameterAssignment(clientParameter.exampleValue);
             sample.clientParamAssignments.push(paramAssignment);
             clientParameterNames.push(parameterName);
           }
-          if (
-            clientParameterNames.indexOf("subscriptionId") < 0 &&
-            requiredParams.find(param => param.name === "subscriptionId")
-          ) {
-            const subscriptionIdAssignment = `const subscriptionId = "00000000-0000-0000-0000-000000000000"`;
-            sample.clientParamAssignments.push(subscriptionIdAssignment);
-            clientParameterNames.push("subscriptionId");
-          }
+
+          handleSubscriptionIdParameter(
+            subscriptionIdValue,
+            clientParameterNames,
+            sample.clientParamAssignments,
+            requiredParams
+          );
           if (clientParameterNames.length > 0) {
             sample.clientParameterNames = clientParameterNames.join(", ");
           }
@@ -171,6 +179,7 @@ export async function getAllExamples(
             ) {
               continue;
             }
+
             const parameterName = normalizeName(
               getLanguageMetadata(methodParameter.exampleValue.language).name,
               NameType.Parameter,
@@ -185,7 +194,7 @@ export async function getAllExamples(
               let bodySchemaName = parameterTypeName;
               if (
                 methodParameter.exampleValue.schema.type ===
-                SchemaType.AnyObject ||
+                  SchemaType.AnyObject ||
                 methodParameter.exampleValue.schema.type === SchemaType.Any
               ) {
                 bodySchemaName = "Record<string, unknown>";
@@ -204,6 +213,10 @@ export async function getAllExamples(
               paramAssignment =
                 `const ${parameterName}: ${bodySchemaName} = ` +
                 getParameterAssignment(methodParameter.exampleValue);
+            } else if (parameterName === "resourceGroupName") {
+              paramAssignment =
+                `const ${parameterName} = ` +
+                getAssigmentForResourceGroup(methodParameter.exampleValue);
             } else {
               paramAssignment =
                 `const ${parameterName} = ` +
@@ -257,4 +270,50 @@ function _transformSpecialLetterToSpace(str: string) {
     .replace(/\//g, " Or ")
     .replace(/,|\.|\(|\)/g, " ")
     .replace("'s ", " ");
+}
+
+function getEnvironmentVariablePrefix() {
+  const { azureOutputDirectory } = getAutorestOptions();
+  if (
+    azureOutputDirectory &&
+    azureOutputDirectory.replace(/\/$/, "").split("/").length === 3
+  ) {
+    return `${azureOutputDirectory
+      .replace(/\/$/, "")
+      .split("/")[1]
+      .toUpperCase()}_`;
+  }
+  return "";
+}
+
+/*
+ * Read the subscription id from env first if no then use the one in example
+ */
+function handleSubscriptionIdParameter(
+  subscpritionIDValue: any,
+  clientParameterNames: string[],
+  clientParamAssignments: string[],
+  requiredParams: ParameterDetails[]
+) {
+  // If there is no subscpritionID value provided AND it is not a required parameter
+  // We'll do nothing
+  if (
+    !subscpritionIDValue &&
+    !requiredParams.find(param => param.name === "subscriptionId")
+  ) {
+    return;
+  }
+  const SUBSCRIPTION_ID_NAME = `${getEnvironmentVariablePrefix()}SUBSCRIPTION_ID`;
+  subscpritionIDValue =
+    subscpritionIDValue || `"00000000-0000-0000-0000-000000000000"`;
+  const subscriptionIdAssignment = `const subscriptionId = process.env["${SUBSCRIPTION_ID_NAME}"] || ${subscpritionIDValue}`;
+  clientParamAssignments.push(subscriptionIdAssignment);
+  clientParameterNames.push("subscriptionId");
+}
+
+function getAssigmentForResourceGroup(exampleValue: ExampleValue) {
+  const SUBSCRIPTION_ID_NAME = `${getEnvironmentVariablePrefix()}RESOURCE_GROUP`;
+  return `process.env["${SUBSCRIPTION_ID_NAME}"] || ${getParameterAssignment(
+    exampleValue
+  )}`;
 }
