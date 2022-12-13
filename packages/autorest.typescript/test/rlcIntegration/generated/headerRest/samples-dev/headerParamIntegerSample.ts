@@ -25,4 +25,8 @@ async function headerParamInteger() {
   console.log(result);
 }
 
-headerParamInteger().catch(console.error);
+async function main() {
+  headerParamInteger();
+}
+
+main().catch(console.error);

@@ -33,4 +33,8 @@ async function cropsList() {
   console.log(result);
 }
 
-cropsList().catch(console.error);
+async function main() {
+  cropsList();
+}
+
+main().catch(console.error);

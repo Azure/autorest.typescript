@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets load balancer backend address pool.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LBBackendAddressPoolWithBackendAddressesGet.json
  */
 async function loadBalancerWithBackendAddressPoolWithBackendAddresses() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "testrg";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
   const backendAddressPoolName = "backend";
   const credential = new DefaultAzureCredential();
@@ -31,8 +34,6 @@ async function loadBalancerWithBackendAddressPoolWithBackendAddresses() {
   );
   console.log(result);
 }
-
-loadBalancerWithBackendAddressPoolWithBackendAddresses().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets load balancer backend address pool.
@@ -41,8 +42,8 @@ loadBalancerWithBackendAddressPoolWithBackendAddresses().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerBackendAddressPoolGet.json
  */
 async function loadBalancerBackendAddressPoolGet() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "testrg";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
   const backendAddressPoolName = "backend";
   const credential = new DefaultAzureCredential();
@@ -55,4 +56,9 @@ async function loadBalancerBackendAddressPoolGet() {
   console.log(result);
 }
 
-loadBalancerBackendAddressPoolGet().catch(console.error);
+async function main() {
+  loadBalancerWithBackendAddressPoolWithBackendAddresses();
+  loadBalancerBackendAddressPoolGet();
+}
+
+main().catch(console.error);

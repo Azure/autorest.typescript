@@ -26,4 +26,8 @@ async function stringPutWhitespace() {
   console.log(result);
 }
 
-stringPutWhitespace().catch(console.error);
+async function main() {
+  stringPutWhitespace();
+}
+
+main().catch(console.error);

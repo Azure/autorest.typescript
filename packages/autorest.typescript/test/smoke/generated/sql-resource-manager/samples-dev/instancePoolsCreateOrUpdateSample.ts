@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates an instance pool.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateInstancePoolMax.json
  */
 async function createAnInstancePoolWithAllProperties() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "group1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
   const instancePoolName = "testIP";
   const parameters: InstancePool = {
     licenseType: "LicenseIncluded",
@@ -43,8 +47,6 @@ async function createAnInstancePoolWithAllProperties() {
   console.log(result);
 }
 
-createAnInstancePoolWithAllProperties().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates an instance pool.
  *
@@ -52,8 +54,9 @@ createAnInstancePoolWithAllProperties().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateInstancePoolMin.json
  */
 async function createAnInstancePoolWithMinProperties() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "group1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
   const instancePoolName = "testIP";
   const parameters: InstancePool = {
     licenseType: "LicenseIncluded",
@@ -73,4 +76,9 @@ async function createAnInstancePoolWithMinProperties() {
   console.log(result);
 }
 
-createAnInstancePoolWithMinProperties().catch(console.error);
+async function main() {
+  createAnInstancePoolWithAllProperties();
+  createAnInstancePoolWithMinProperties();
+}
+
+main().catch(console.error);

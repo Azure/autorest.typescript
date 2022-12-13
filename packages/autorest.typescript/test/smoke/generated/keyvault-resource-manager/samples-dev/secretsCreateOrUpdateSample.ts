@@ -13,6 +13,9 @@ import {
   KeyVaultManagementClient
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update a secret in a key vault in the specified subscription.  NOTE: This API is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/createSecret.json
  */
 async function createASecret() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "sample-group";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sample-group";
   const vaultName = "sample-vault";
   const secretName = "secret-name";
   const parameters: SecretCreateOrUpdateParameters = {
@@ -39,4 +43,8 @@ async function createASecret() {
   console.log(result);
 }
 
-createASecret().catch(console.error);
+async function main() {
+  createASecret();
+}
+
+main().catch(console.error);

@@ -36,4 +36,8 @@ async function tillageDataListByFarmerId() {
   console.log(result);
 }
 
-tillageDataListByFarmerId().catch(console.error);
+async function main() {
+  tillageDataListByFarmerId();
+}
+
+main().catch(console.error);

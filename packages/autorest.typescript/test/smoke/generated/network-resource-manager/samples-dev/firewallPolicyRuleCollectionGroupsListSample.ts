@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists all FirewallPolicyRuleCollectionGroups in a FirewallPolicy resource.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicyRuleCollectionGroupWithWebCategoriesList.json
  */
 async function listAllFirewallPolicyRuleCollectionGroupWithWebCategories() {
-  const subscriptionId = "e747cc13-97d4-4a79-b463-42d7f4e558f2";
-  const resourceGroupName = "rg1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "e747cc13-97d4-4a79-b463-42d7f4e558f2";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -32,10 +36,6 @@ async function listAllFirewallPolicyRuleCollectionGroupWithWebCategories() {
   }
   console.log(resArray);
 }
-
-listAllFirewallPolicyRuleCollectionGroupWithWebCategories().catch(
-  console.error
-);
 
 /**
  * This sample demonstrates how to Lists all FirewallPolicyRuleCollectionGroups in a FirewallPolicy resource.
@@ -44,8 +44,8 @@ listAllFirewallPolicyRuleCollectionGroupWithWebCategories().catch(
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicyRuleCollectionGroupList.json
  */
 async function listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -58,10 +58,6 @@ async function listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy(
   }
   console.log(resArray);
 }
-
-listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy().catch(
-  console.error
-);
 
 /**
  * This sample demonstrates how to Lists all FirewallPolicyRuleCollectionGroups in a FirewallPolicy resource.
@@ -70,8 +66,8 @@ listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy().catch(
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicyRuleCollectionGroupWithIpGroupsList.json
  */
 async function listAllFirewallPolicyRuleCollectionGroupsWithIPGroupsForAGivenFirewallPolicy() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -85,6 +81,10 @@ async function listAllFirewallPolicyRuleCollectionGroupsWithIPGroupsForAGivenFir
   console.log(resArray);
 }
 
-listAllFirewallPolicyRuleCollectionGroupsWithIPGroupsForAGivenFirewallPolicy().catch(
-  console.error
-);
+async function main() {
+  listAllFirewallPolicyRuleCollectionGroupWithWebCategories();
+  listAllFirewallPolicyRuleCollectionGroupsForAGivenFirewallPolicy();
+  listAllFirewallPolicyRuleCollectionGroupsWithIPGroupsForAGivenFirewallPolicy();
+}
+
+main().catch(console.error);

@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreate.json
  */
 async function createLoadBalancer() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [{ name: "be-lb" }],
@@ -97,8 +100,6 @@ async function createLoadBalancer() {
   console.log(result);
 }
 
-createLoadBalancer().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -106,8 +107,8 @@ createLoadBalancer().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateWithZones.json
  */
 async function createLoadBalancerWithFrontendIPInZone1() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [{ name: "be-lb" }],
@@ -183,8 +184,6 @@ async function createLoadBalancerWithFrontendIPInZone1() {
   console.log(result);
 }
 
-createLoadBalancerWithFrontendIPInZone1().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -192,8 +191,8 @@ createLoadBalancerWithFrontendIPInZone1().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateGatewayLoadBalancerConsumer.json
  */
 async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [{ name: "be-lb" }],
@@ -272,10 +271,6 @@ async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured() {
   console.log(result);
 }
 
-createLoadBalancerWithGatewayLoadBalancerConsumerConfigured().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -283,8 +278,8 @@ createLoadBalancerWithGatewayLoadBalancerConsumerConfigured().catch(
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateGatewayLoadBalancerProviderWithOneBackendPool.json
  */
 async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [
@@ -355,10 +350,6 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOn
   console.log(result);
 }
 
-createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -366,8 +357,8 @@ createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool().
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateGatewayLoadBalancerProviderWithTwoBackendPool.json
  */
 async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [{ name: "be-lb1" }, { name: "be-lb2" }],
@@ -435,10 +426,6 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTw
   console.log(result);
 }
 
-createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -446,8 +433,8 @@ createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool().
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateGlobalTier.json
  */
 async function createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [
@@ -519,10 +506,6 @@ async function createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBa
   console.log(result);
 }
 
-createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -530,8 +513,8 @@ createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool().cat
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateStandardSku.json
  */
 async function createLoadBalancerWithStandardSku() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [{ name: "be-lb" }],
@@ -606,8 +589,6 @@ async function createLoadBalancerWithStandardSku() {
   console.log(result);
 }
 
-createLoadBalancerWithStandardSku().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -615,8 +596,8 @@ createLoadBalancerWithStandardSku().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateWithInboundNatPool.json
  */
 async function createLoadBalancerWithInboundNatPool() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [],
@@ -668,8 +649,6 @@ async function createLoadBalancerWithInboundNatPool() {
   console.log(result);
 }
 
-createLoadBalancerWithInboundNatPool().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
  *
@@ -677,8 +656,8 @@ createLoadBalancerWithInboundNatPool().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/LoadBalancerCreateWithOutboundRules.json
  */
 async function createLoadBalancerWithOutboundRules() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
   const parameters: LoadBalancer = {
     backendAddressPools: [{ name: "be-lb" }],
@@ -769,4 +748,16 @@ async function createLoadBalancerWithOutboundRules() {
   console.log(result);
 }
 
-createLoadBalancerWithOutboundRules().catch(console.error);
+async function main() {
+  createLoadBalancer();
+  createLoadBalancerWithFrontendIPInZone1();
+  createLoadBalancerWithGatewayLoadBalancerConsumerConfigured();
+  createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool();
+  createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool();
+  createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool();
+  createLoadBalancerWithStandardSku();
+  createLoadBalancerWithInboundNatPool();
+  createLoadBalancerWithOutboundRules();
+}
+
+main().catch(console.error);

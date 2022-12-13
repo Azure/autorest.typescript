@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets all of the available subnet delegations for this resource group in this region.
@@ -18,9 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/AvailableDelegationsResourceGroupGet.json
  */
 async function getAvailableDelegationsInTheResourceGroup() {
-  const subscriptionId = "subId";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "westcentralus";
-  const resourceGroupName = "rg1";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -33,4 +36,8 @@ async function getAvailableDelegationsInTheResourceGroup() {
   console.log(resArray);
 }
 
-getAvailableDelegationsInTheResourceGroup().catch(console.error);
+async function main() {
+  getAvailableDelegationsInTheResourceGroup();
+}
+
+main().catch(console.error);

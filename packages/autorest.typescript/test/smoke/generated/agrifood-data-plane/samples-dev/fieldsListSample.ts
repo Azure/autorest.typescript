@@ -33,4 +33,8 @@ async function fieldsList() {
   console.log(result);
 }
 
-fieldsList().catch(console.error);
+async function main() {
+  fieldsList();
+}
+
+main().catch(console.error);

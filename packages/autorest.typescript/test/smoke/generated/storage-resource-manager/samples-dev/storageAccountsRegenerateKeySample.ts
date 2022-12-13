@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Regenerates one of the access keys or Kerberos keys for the specified storage account.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountRegenerateKerbKey.json
  */
 async function storageAccountRegenerateKerbKey() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4167";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4167";
   const accountName = "sto3539";
   const regenerateKey: StorageAccountRegenerateKeyParameters = {
     keyName: "kerb1"
@@ -37,8 +40,6 @@ async function storageAccountRegenerateKerbKey() {
   console.log(result);
 }
 
-storageAccountRegenerateKerbKey().catch(console.error);
-
 /**
  * This sample demonstrates how to Regenerates one of the access keys or Kerberos keys for the specified storage account.
  *
@@ -46,8 +47,8 @@ storageAccountRegenerateKerbKey().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountRegenerateKey.json
  */
 async function storageAccountRegenerateKey() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4167";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4167";
   const accountName = "sto3539";
   const regenerateKey: StorageAccountRegenerateKeyParameters = {
     keyName: "key2"
@@ -62,4 +63,9 @@ async function storageAccountRegenerateKey() {
   console.log(result);
 }
 
-storageAccountRegenerateKey().catch(console.error);
+async function main() {
+  storageAccountRegenerateKerbKey();
+  storageAccountRegenerateKey();
+}
+
+main().catch(console.error);

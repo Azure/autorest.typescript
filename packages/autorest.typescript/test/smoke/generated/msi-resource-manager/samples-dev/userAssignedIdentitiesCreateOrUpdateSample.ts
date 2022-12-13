@@ -13,6 +13,9 @@ import {
   ManagedServiceIdentityClient
 } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update an identity in the specified subscription and resource group.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityCreate.json
  */
 async function identityCreate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rgName";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rgName";
   const resourceName = "resourceName";
   const parameters: Identity = {
     location: "eastus",
@@ -38,4 +41,8 @@ async function identityCreate() {
   console.log(result);
 }
 
-identityCreate().catch(console.error);
+async function main() {
+  identityCreate();
+}
+
+main().catch(console.error);

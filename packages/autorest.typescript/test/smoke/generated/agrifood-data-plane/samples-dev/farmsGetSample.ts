@@ -30,4 +30,8 @@ async function farmsGet() {
   console.log(result);
 }
 
-farmsGet().catch(console.error);
+async function main() {
+  farmsGet();
+}
+
+main().catch(console.error);

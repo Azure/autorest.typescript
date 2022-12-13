@@ -41,4 +41,8 @@ async function scenesList() {
   console.log(result);
 }
 
-scenesList().catch(console.error);
+async function main() {
+  scenesList();
+}
+
+main().catch(console.error);

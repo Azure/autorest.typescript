@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Grants access to a diskRestorePoint.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/BeginGetAccessDiskRestorePoint.json
  */
 async function grantsAccessToADiskRestorePoint() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const restorePointCollectionName = "rpc";
   const vmRestorePointName = "vmrp";
   const diskRestorePointName =
@@ -43,4 +46,8 @@ async function grantsAccessToADiskRestorePoint() {
   console.log(result);
 }
 
-grantsAccessToADiskRestorePoint().catch(console.error);
+async function main() {
+  grantsAccessToADiskRestorePoint();
+}
+
+main().catch(console.error);

@@ -30,4 +30,8 @@ async function dpgNextLink() {
   console.log(result);
 }
 
-dpgNextLink().catch(console.error);
+async function main() {
+  dpgNextLink();
+}
+
+main().catch(console.error);

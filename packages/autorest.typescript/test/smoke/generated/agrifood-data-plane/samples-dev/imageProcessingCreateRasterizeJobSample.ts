@@ -33,4 +33,8 @@ async function imageProcessingCreateRasterizeJob() {
   console.log(result);
 }
 
-imageProcessingCreateRasterizeJob().catch(console.error);
+async function main() {
+  imageProcessingCreateRasterizeJob();
+}
+
+main().catch(console.error);

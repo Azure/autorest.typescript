@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets all private end point connections for a specific private link service.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateLinkServiceListPrivateEndpointConnection.json
  */
 async function listPrivateLinkServiceInResourceGroup() {
-  const subscriptionId = "subId";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceName = "testPls";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -33,4 +36,8 @@ async function listPrivateLinkServiceInResourceGroup() {
   console.log(resArray);
 }
 
-listPrivateLinkServiceInResourceGroup().catch(console.error);
+async function main() {
+  listPrivateLinkServiceInResourceGroup();
+}
+
+main().catch(console.error);

@@ -20,4 +20,8 @@ async function stringGetNotProvided() {
   console.log(result);
 }
 
-stringGetNotProvided().catch(console.error);
+async function main() {
+  stringGetNotProvided();
+}
+
+main().catch(console.error);

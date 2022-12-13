@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Get the specified public IP address in a virtual machine scale set.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VmssPublicIpGet.json
  */
 async function getVmssPublicIP() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "vmss-tester";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "vmss-tester";
   const virtualMachineScaleSetName = "vmss1";
   const virtualmachineIndex = "1";
   const networkInterfaceName = "nic1";
@@ -38,4 +41,8 @@ async function getVmssPublicIP() {
   console.log(result);
 }
 
-getVmssPublicIP().catch(console.error);
+async function main() {
+  getVmssPublicIP();
+}
+
+main().catch(console.error);

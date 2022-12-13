@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Checks that the storage account name is valid and is not already in use.
@@ -21,7 +24,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCheckNameAvailability.json
  */
 async function storageAccountCheckNameAvailability() {
-  const subscriptionId = "{subscription-id}";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const accountName: StorageAccountCheckNameAvailabilityParameters = {
     name: "sto3363",
     type: "Microsoft.Storage/storageAccounts"
@@ -34,4 +37,8 @@ async function storageAccountCheckNameAvailability() {
   console.log(result);
 }
 
-storageAccountCheckNameAvailability().catch(console.error);
+async function main() {
+  storageAccountCheckNameAvailability();
+}
+
+main().catch(console.error);

@@ -27,4 +27,8 @@ async function seasonsDelete() {
   console.log(result);
 }
 
-seasonsDelete().catch(console.error);
+async function main() {
+  seasonsDelete();
+}
+
+main().catch(console.error);

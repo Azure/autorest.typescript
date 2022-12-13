@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Retrieves the details of a vpn site link connection.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnSiteLinkConnectionGet.json
  */
 async function vpnSiteLinkConnectionGet() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
   const linkConnectionName = "Connection-Link1";
@@ -34,4 +37,8 @@ async function vpnSiteLinkConnectionGet() {
   console.log(result);
 }
 
-vpnSiteLinkConnectionGet().catch(console.error);
+async function main() {
+  vpnSiteLinkConnectionGet();
+}
+
+main().catch(console.error);

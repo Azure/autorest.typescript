@@ -33,4 +33,8 @@ async function oAuthProvidersList() {
   console.log(result);
 }
 
-oAuthProvidersList().catch(console.error);
+async function main() {
+  oAuthProvidersList();
+}
+
+main().catch(console.error);

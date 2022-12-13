@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates a managed instance.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceRemoveMaintenanceConfiguration.json
  */
 async function removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenancePolicy() {
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstanceUpdate = {
     maintenanceConfigurationId:
@@ -38,10 +42,6 @@ async function removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenanc
   console.log(result);
 }
 
-removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenancePolicy().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Updates a managed instance.
  *
@@ -49,8 +49,9 @@ removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenancePolicy().catch
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceUpdateMax.json
  */
 async function updateManagedInstanceWithAllProperties() {
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstanceUpdate = {
     administratorLogin: "dummylogin",
@@ -78,8 +79,6 @@ async function updateManagedInstanceWithAllProperties() {
   console.log(result);
 }
 
-updateManagedInstanceWithAllProperties().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates a managed instance.
  *
@@ -87,8 +86,9 @@ updateManagedInstanceWithAllProperties().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceUpdateMin.json
  */
 async function updateManagedInstanceWithMinimalProperties() {
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstanceUpdate = { tags: { tagKey1: "TagValue1" } };
   const credential = new DefaultAzureCredential();
@@ -101,4 +101,10 @@ async function updateManagedInstanceWithMinimalProperties() {
   console.log(result);
 }
 
-updateManagedInstanceWithMinimalProperties().catch(console.error);
+async function main() {
+  removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenancePolicy();
+  updateManagedInstanceWithAllProperties();
+  updateManagedInstanceWithMinimalProperties();
+}
+
+main().catch(console.error);

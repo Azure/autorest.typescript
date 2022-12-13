@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update tags of the specified flow log.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherFlowLogUpdateTags.json
  */
 async function updateFlowLogTags() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw";
   const flowLogName = "fl";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
@@ -37,4 +40,8 @@ async function updateFlowLogTags() {
   console.log(result);
 }
 
-updateFlowLogTags().catch(console.error);
+async function main() {
+  updateFlowLogTags();
+}
+
+main().catch(console.error);

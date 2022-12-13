@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the specified private endpoint by resource group.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointGet.json
  */
 async function getPrivateEndpoint() {
-  const subscriptionId = "subId";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const privateEndpointName = "testPe";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,8 +32,6 @@ async function getPrivateEndpoint() {
   );
   console.log(result);
 }
-
-getPrivateEndpoint().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets the specified private endpoint by resource group.
@@ -39,8 +40,8 @@ getPrivateEndpoint().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointGetWithASG.json
  */
 async function getPrivateEndpointWithApplicationSecurityGroups() {
-  const subscriptionId = "subId";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const privateEndpointName = "testPe";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -50,8 +51,6 @@ async function getPrivateEndpointWithApplicationSecurityGroups() {
   );
   console.log(result);
 }
-
-getPrivateEndpointWithApplicationSecurityGroups().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets the specified private endpoint by resource group.
@@ -60,8 +59,8 @@ getPrivateEndpointWithApplicationSecurityGroups().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateEndpointGetForManualApproval.json
  */
 async function getPrivateEndpointWithManualApprovalConnection() {
-  const subscriptionId = "subId";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const privateEndpointName = "testPe";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -72,4 +71,10 @@ async function getPrivateEndpointWithManualApprovalConnection() {
   console.log(result);
 }
 
-getPrivateEndpointWithManualApprovalConnection().catch(console.error);
+async function main() {
+  getPrivateEndpoint();
+  getPrivateEndpointWithApplicationSecurityGroups();
+  getPrivateEndpointWithManualApprovalConnection();
+}
+
+main().catch(console.error);

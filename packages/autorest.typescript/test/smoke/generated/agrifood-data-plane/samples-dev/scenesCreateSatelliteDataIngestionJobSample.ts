@@ -33,4 +33,8 @@ async function scenesCreateSatelliteDataIngestionJob() {
   console.log(result);
 }
 
-scenesCreateSatelliteDataIngestionJob().catch(console.error);
+async function main() {
+  scenesCreateSatelliteDataIngestionJob();
+}
+
+main().catch(console.error);

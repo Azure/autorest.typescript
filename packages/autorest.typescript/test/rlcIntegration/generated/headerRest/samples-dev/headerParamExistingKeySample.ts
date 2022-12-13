@@ -25,4 +25,8 @@ async function headerParamExistingKey() {
   console.log(result);
 }
 
-headerParamExistingKey().catch(console.error);
+async function main() {
+  headerParamExistingKey();
+}
+
+main().catch(console.error);

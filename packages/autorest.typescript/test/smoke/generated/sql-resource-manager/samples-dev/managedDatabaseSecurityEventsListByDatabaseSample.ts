@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a list of security events.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseSecurityEventsGetMax.json
  */
 async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testcl";
   const databaseName = "database1";
   const filter = "ShowServerRecords eq true";
@@ -50,8 +54,6 @@ async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
   console.log(resArray);
 }
 
-getTheManagedDatabaseSecurityEventsWithMaximalParameters().catch(console.error);
-
 /**
  * This sample demonstrates how to Gets a list of security events.
  *
@@ -59,8 +61,9 @@ getTheManagedDatabaseSecurityEventsWithMaximalParameters().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseSecurityEventsGetMin.json
  */
 async function getTheManagedDatabaseSecurityEventsWithMinimalParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testcl";
   const databaseName = "database1";
   const credential = new DefaultAzureCredential();
@@ -76,4 +79,9 @@ async function getTheManagedDatabaseSecurityEventsWithMinimalParameters() {
   console.log(resArray);
 }
 
-getTheManagedDatabaseSecurityEventsWithMinimalParameters().catch(console.error);
+async function main() {
+  getTheManagedDatabaseSecurityEventsWithMaximalParameters();
+  getTheManagedDatabaseSecurityEventsWithMinimalParameters();
+}
+
+main().catch(console.error);

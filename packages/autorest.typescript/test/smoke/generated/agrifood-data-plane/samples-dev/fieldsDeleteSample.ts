@@ -30,4 +30,8 @@ async function fieldsDelete() {
   console.log(result);
 }
 
-fieldsDelete().catch(console.error);
+async function main() {
+  fieldsDelete();
+}
+
+main().catch(console.error);

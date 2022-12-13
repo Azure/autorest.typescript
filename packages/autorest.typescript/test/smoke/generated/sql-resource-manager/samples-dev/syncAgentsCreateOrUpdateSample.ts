@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a sync agent.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SyncAgentCreate.json
  */
 async function createANewSyncAgent() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "syncagentcrud-65440";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "syncagentcrud-65440";
   const serverName = "syncagentcrud-8475";
   const syncAgentName = "syncagentcrud-3187";
   const parameters: SyncAgent = {
@@ -39,8 +44,6 @@ async function createANewSyncAgent() {
   );
   console.log(result);
 }
-
-createANewSyncAgent().catch(console.error);
 
 /**
  * This sample demonstrates how to Creates or updates a sync agent.
@@ -49,8 +52,10 @@ createANewSyncAgent().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SyncAgentUpdate.json
  */
 async function updateASyncAgent() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "syncagentcrud-65440";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "syncagentcrud-65440";
   const serverName = "syncagentcrud-8475";
   const syncAgentName = "syncagentcrud-3187";
   const parameters: SyncAgent = {
@@ -68,4 +73,9 @@ async function updateASyncAgent() {
   console.log(result);
 }
 
-updateASyncAgent().catch(console.error);
+async function main() {
+  createANewSyncAgent();
+  updateASyncAgent();
+}
+
+main().catch(console.error);

@@ -34,4 +34,8 @@ async function plantingDataGet() {
   console.log(result);
 }
 
-plantingDataGet().catch(console.error);
+async function main() {
+  plantingDataGet();
+}
+
+main().catch(console.error);

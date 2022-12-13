@@ -14,6 +14,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Stops packet capture on vpn gateway in the specified resource group.
@@ -22,8 +25,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnGatewayStopPacketCapture.json
  */
 async function stopPacketCaptureOnVpnGateway() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "vpngw";
   const parameters: VpnGatewayPacketCaptureStopParameters = {
     sasUrl:
@@ -40,4 +43,8 @@ async function stopPacketCaptureOnVpnGateway() {
   console.log(result);
 }
 
-stopPacketCaptureOnVpnGateway().catch(console.error);
+async function main() {
+  stopPacketCaptureOnVpnGateway();
+}
+
+main().catch(console.error);

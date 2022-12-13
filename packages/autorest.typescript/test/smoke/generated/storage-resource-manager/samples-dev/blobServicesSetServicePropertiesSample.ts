@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Sets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobServicesPutLastAccessTimeBasedTracking.json
  */
 async function blobServicesPutLastAccessTimeBasedTracking() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4410";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4410";
   const accountName = "sto8607";
   const parameters: BlobServiceProperties = {
     lastAccessTimeTrackingPolicy: {
@@ -42,8 +45,6 @@ async function blobServicesPutLastAccessTimeBasedTracking() {
   console.log(result);
 }
 
-blobServicesPutLastAccessTimeBasedTracking().catch(console.error);
-
 /**
  * This sample demonstrates how to Sets the properties of a storage account’s Blob service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
  *
@@ -51,8 +52,8 @@ blobServicesPutLastAccessTimeBasedTracking().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobServicesPut.json
  */
 async function putBlobServices() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4410";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4410";
   const accountName = "sto8607";
   const parameters: BlobServiceProperties = {
     changeFeed: { enabled: true, retentionInDays: 7 },
@@ -106,4 +107,9 @@ async function putBlobServices() {
   console.log(result);
 }
 
-putBlobServices().catch(console.error);
+async function main() {
+  blobServicesPutLastAccessTimeBasedTracking();
+  putBlobServices();
+}
+
+main().catch(console.error);

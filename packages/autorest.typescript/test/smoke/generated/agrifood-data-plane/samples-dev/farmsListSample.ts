@@ -33,4 +33,8 @@ async function farmsList() {
   console.log(result);
 }
 
-farmsList().catch(console.error);
+async function main() {
+  farmsList();
+}
+
+main().catch(console.error);

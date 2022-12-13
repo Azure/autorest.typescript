@@ -20,4 +20,8 @@ async function stringGetEmpty() {
   console.log(result);
 }
 
-stringGetEmpty().catch(console.error);
+async function main() {
+  stringGetEmpty();
+}
+
+main().catch(console.error);

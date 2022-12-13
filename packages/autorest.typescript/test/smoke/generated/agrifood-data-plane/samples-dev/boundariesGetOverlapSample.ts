@@ -42,4 +42,8 @@ async function boundariesGetOverlap() {
   console.log(result);
 }
 
-boundariesGetOverlap().catch(console.error);
+async function main() {
+  boundariesGetOverlap();
+}
+
+main().catch(console.error);

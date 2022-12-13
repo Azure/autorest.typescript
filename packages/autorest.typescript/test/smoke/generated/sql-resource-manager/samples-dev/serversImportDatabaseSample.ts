@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Imports a bacpac into a new database.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ImportNewDatabaseWithNetworkIsolation.json
  */
 async function importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAccount() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const parameters: ImportNewDatabaseDefinition = {
     administratorLogin: "login",
@@ -50,10 +55,6 @@ async function importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAcc
   console.log(result);
 }
 
-importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAccount().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Imports a bacpac into a new database.
  *
@@ -61,8 +62,10 @@ importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAccount().catch(
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ImportNewDatabase.json
  */
 async function importsToANewDatabase() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const parameters: ImportNewDatabaseDefinition = {
     administratorLogin: "login",
@@ -84,4 +87,9 @@ async function importsToANewDatabase() {
   console.log(result);
 }
 
-importsToANewDatabase().catch(console.error);
+async function main() {
+  importsToANewDatabaseUsingPrivateLinkForTheSqlServerAndStorageAccount();
+  importsToANewDatabase();
+}
+
+main().catch(console.error);

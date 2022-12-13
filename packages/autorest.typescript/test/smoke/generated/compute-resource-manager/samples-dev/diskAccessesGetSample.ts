@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets information about a disk access resource.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/GetInformationAboutADiskAccessWithPrivateEndpoints.json
  */
 async function getInformationAboutADiskAccessResourceWithPrivateEndpoints() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -29,10 +32,6 @@ async function getInformationAboutADiskAccessResourceWithPrivateEndpoints() {
   );
   console.log(result);
 }
-
-getInformationAboutADiskAccessResourceWithPrivateEndpoints().catch(
-  console.error
-);
 
 /**
  * This sample demonstrates how to Gets information about a disk access resource.
@@ -41,8 +40,8 @@ getInformationAboutADiskAccessResourceWithPrivateEndpoints().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/GetInformationAboutADiskAccess.json
  */
 async function getInformationAboutADiskAccessResource() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -53,4 +52,9 @@ async function getInformationAboutADiskAccessResource() {
   console.log(result);
 }
 
-getInformationAboutADiskAccessResource().catch(console.error);
+async function main() {
+  getInformationAboutADiskAccessResourceWithPrivateEndpoints();
+  getInformationAboutADiskAccessResource();
+}
+
+main().catch(console.error);

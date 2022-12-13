@@ -27,4 +27,8 @@ async function enumPutReferencedConstant() {
   console.log(result);
 }
 
-enumPutReferencedConstant().catch(console.error);
+async function main() {
+  enumPutReferencedConstant();
+}
+
+main().catch(console.error);

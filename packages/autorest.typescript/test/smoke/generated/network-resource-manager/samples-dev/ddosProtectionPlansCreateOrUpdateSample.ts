@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a DDoS protection plan.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DdosProtectionPlanCreate.json
  */
 async function createDDoSProtectionPlan() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const ddosProtectionPlanName = "test-plan";
   const parameters: DdosProtectionPlan = { location: "westus" };
   const credential = new DefaultAzureCredential();
@@ -35,4 +38,8 @@ async function createDDoSProtectionPlan() {
   console.log(result);
 }
 
-createDDoSProtectionPlan().catch(console.error);
+async function main() {
+  createDDoSProtectionPlan();
+}
+
+main().catch(console.error);

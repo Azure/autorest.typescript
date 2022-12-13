@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a subscription usage metric.
@@ -18,7 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SubscriptionUsageGet.json
  */
 async function getSpecificSubscriptionUsageInTheGivenLocation() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const locationName = "WestUS";
   const usageName = "ServerQuota";
   const credential = new DefaultAzureCredential();
@@ -27,4 +31,8 @@ async function getSpecificSubscriptionUsageInTheGivenLocation() {
   console.log(result);
 }
 
-getSpecificSubscriptionUsageInTheGivenLocation().catch(console.error);
+async function main() {
+  getSpecificSubscriptionUsageInTheGivenLocation();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the user activities of a data warehouse which includes running and suspended queries
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/GetDataWarehouseUserActivities.json
  */
 async function getTheListOfTheUserActivitiesOfADataWarehouse() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const dataWarehouseUserActivityName = "current";
@@ -34,4 +39,8 @@ async function getTheListOfTheUserActivitiesOfADataWarehouse() {
   console.log(result);
 }
 
-getTheListOfTheUserActivitiesOfADataWarehouse().catch(console.error);
+async function main() {
+  getTheListOfTheUserActivitiesOfADataWarehouse();
+}
+
+main().catch(console.error);

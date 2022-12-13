@@ -34,4 +34,8 @@ async function cropVarietiesGet() {
   console.log(result);
 }
 
-cropVarietiesGet().catch(console.error);
+async function main() {
+  cropVarietiesGet();
+}
+
+main().catch(console.error);

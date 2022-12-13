@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the sensitivity label of a given column
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseColumnSensitivityLabelGet.json
  */
 async function getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "myRG";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
   const managedInstanceName = "myManagedInstanceName";
   const databaseName = "myDatabase";
   const schemaName = "dbo";
@@ -40,4 +44,8 @@ async function getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase() {
   console.log(result);
 }
 
-getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase().catch(console.error);
+async function main() {
+  getsTheSensitivityLabelOfAGivenColumnInAManagedDatabase();
+}
+
+main().catch(console.error);

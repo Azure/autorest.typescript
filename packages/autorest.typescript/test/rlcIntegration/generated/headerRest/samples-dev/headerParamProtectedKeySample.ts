@@ -25,4 +25,8 @@ async function headerParamProtectedKey() {
   console.log(result);
 }
 
-headerParamProtectedKey().catch(console.error);
+async function main() {
+  headerParamProtectedKey();
+}
+
+main().catch(console.error);

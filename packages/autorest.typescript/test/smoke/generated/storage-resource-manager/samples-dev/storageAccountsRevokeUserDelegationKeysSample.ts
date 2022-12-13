@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Revoke user delegation keys.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountRevokeUserDelegationKeys.json
  */
 async function storageAccountRevokeUserDelegationKeys() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4167";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4167";
   const accountName = "sto3539";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -30,4 +33,8 @@ async function storageAccountRevokeUserDelegationKeys() {
   console.log(result);
 }
 
-storageAccountRevokeUserDelegationKeys().catch(console.error);
+async function main() {
+  storageAccountRevokeUserDelegationKeys();
+}
+
+main().catch(console.error);

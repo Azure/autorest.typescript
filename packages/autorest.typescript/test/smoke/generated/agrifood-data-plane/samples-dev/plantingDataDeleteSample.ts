@@ -34,4 +34,8 @@ async function plantingDataDelete() {
   console.log(result);
 }
 
-plantingDataDelete().catch(console.error);
+async function main() {
+  plantingDataDelete();
+}
+
+main().catch(console.error);

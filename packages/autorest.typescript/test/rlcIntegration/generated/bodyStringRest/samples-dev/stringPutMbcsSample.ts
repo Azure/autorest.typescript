@@ -26,4 +26,8 @@ async function stringPutMbcs() {
   console.log(result);
 }
 
-stringPutMbcs().catch(console.error);
+async function main() {
+  stringPutMbcs();
+}
+
+main().catch(console.error);

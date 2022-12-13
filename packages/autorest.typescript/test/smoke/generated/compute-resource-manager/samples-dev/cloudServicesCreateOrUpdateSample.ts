@@ -14,6 +14,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
@@ -22,8 +25,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithMultiRole.json
  */
 async function createNewCloudServiceWithMultipleRoles() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "ConstosoRG";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: CloudService = {
     location: "westus",
@@ -76,8 +79,6 @@ async function createNewCloudServiceWithMultipleRoles() {
   console.log(result);
 }
 
-createNewCloudServiceWithMultipleRoles().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  *
@@ -85,8 +86,8 @@ createNewCloudServiceWithMultipleRoles().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithSingleRole.json
  */
 async function createNewCloudServiceWithSingleRole() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "ConstosoRG";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: CloudService = {
     location: "westus",
@@ -135,8 +136,6 @@ async function createNewCloudServiceWithSingleRole() {
   console.log(result);
 }
 
-createNewCloudServiceWithSingleRole().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  *
@@ -144,8 +143,8 @@ createNewCloudServiceWithSingleRole().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithSingleRoleAndCertificate.json
  */
 async function createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "ConstosoRG";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: CloudService = {
     location: "westus",
@@ -210,10 +209,6 @@ async function createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault() {
   console.log(result);
 }
 
-createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  *
@@ -221,8 +216,8 @@ createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithSingleRoleAndRDP.json
  */
 async function createNewCloudServiceWithSingleRoleAndRdpExtension() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "ConstosoRG";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const parameters: CloudService = {
     location: "westus",
@@ -288,4 +283,11 @@ async function createNewCloudServiceWithSingleRoleAndRdpExtension() {
   console.log(result);
 }
 
-createNewCloudServiceWithSingleRoleAndRdpExtension().catch(console.error);
+async function main() {
+  createNewCloudServiceWithMultipleRoles();
+  createNewCloudServiceWithSingleRole();
+  createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault();
+  createNewCloudServiceWithSingleRoleAndRdpExtension();
+}
+
+main().catch(console.error);

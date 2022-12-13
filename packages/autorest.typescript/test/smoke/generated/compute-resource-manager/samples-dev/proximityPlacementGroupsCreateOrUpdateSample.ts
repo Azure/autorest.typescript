@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update a proximity placement group.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateAProximityPlacementGroup.json
  */
 async function createOrUpdateAProximityPlacementGroup() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const proximityPlacementGroupName = "myProximityPlacementGroup";
   const parameters: ProximityPlacementGroup = {
     location: "westus",
@@ -38,4 +41,8 @@ async function createOrUpdateAProximityPlacementGroup() {
   console.log(result);
 }
 
-createOrUpdateAProximityPlacementGroup().catch(console.error);
+async function main() {
+  createOrUpdateAProximityPlacementGroup();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets all virtual network peerings in a virtual network.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkPeeringList.json
  */
 async function listPeerings() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "peerTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -32,8 +35,6 @@ async function listPeerings() {
   }
   console.log(resArray);
 }
-
-listPeerings().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets all virtual network peerings in a virtual network.
@@ -42,8 +43,8 @@ listPeerings().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkPeeringListWithRemoteVirtualNetworkEncryption.json
  */
 async function listPeeringsWithRemoteVirtualNetworkEncryption() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "peerTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -57,4 +58,9 @@ async function listPeeringsWithRemoteVirtualNetworkEncryption() {
   console.log(resArray);
 }
 
-listPeeringsWithRemoteVirtualNetworkEncryption().catch(console.error);
+async function main() {
+  listPeerings();
+  listPeeringsWithRemoteVirtualNetworkEncryption();
+}
+
+main().catch(console.error);

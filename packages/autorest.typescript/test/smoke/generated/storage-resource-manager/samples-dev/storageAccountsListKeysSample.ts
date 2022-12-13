@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists the access keys or Kerberos keys (if active directory enabled) for the specified storage account.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListKeys.json
  */
 async function storageAccountListKeys() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res418";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res418";
   const accountName = "sto2220";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -30,4 +33,8 @@ async function storageAccountListKeys() {
   console.log(result);
 }
 
-storageAccountListKeys().catch(console.error);
+async function main() {
+  storageAccountListKeys();
+}
+
+main().catch(console.error);

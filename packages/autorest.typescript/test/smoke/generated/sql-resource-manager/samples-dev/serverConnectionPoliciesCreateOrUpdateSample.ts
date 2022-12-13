@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates a server connection policy
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ServerConnectionPoliciesUpdate.json
  */
 async function updatesAServerConnectionPolicy() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const serverName = "testserver";
   const connectionPolicyName = "default";
   const parameters: ServerConnectionPolicy = { connectionType: "Redirect" };
@@ -37,4 +41,8 @@ async function updatesAServerConnectionPolicy() {
   console.log(result);
 }
 
-updatesAServerConnectionPolicy().catch(console.error);
+async function main() {
+  updatesAServerConnectionPolicy();
+}
+
+main().catch(console.error);

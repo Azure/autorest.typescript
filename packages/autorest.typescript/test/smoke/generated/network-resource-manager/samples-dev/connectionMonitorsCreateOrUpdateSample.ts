@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update a connection monitor.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherConnectionMonitorCreate.json
  */
 async function createConnectionMonitorV1() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
   const parameters: ConnectionMonitor = {
@@ -63,8 +66,6 @@ async function createConnectionMonitorV1() {
   console.log(result);
 }
 
-createConnectionMonitorV1().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a connection monitor.
  *
@@ -72,8 +73,8 @@ createConnectionMonitorV1().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherConnectionMonitorV2Create.json
  */
 async function createConnectionMonitorV2() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
   const connectionMonitorName = "cm1";
   const parameters: ConnectionMonitor = {
@@ -125,4 +126,9 @@ async function createConnectionMonitorV2() {
   console.log(result);
 }
 
-createConnectionMonitorV2().catch(console.error);
+async function main() {
+  createConnectionMonitorV1();
+  createConnectionMonitorV2();
+}
+
+main().catch(console.error);

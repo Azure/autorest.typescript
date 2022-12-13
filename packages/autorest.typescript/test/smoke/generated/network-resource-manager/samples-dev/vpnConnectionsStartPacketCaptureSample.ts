@@ -14,6 +14,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Starts packet capture on Vpn connection in the specified resource group.
@@ -22,8 +25,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionStartPacketCaptureFilterData.json
  */
 async function startPacketCaptureOnVpnConnectionWithFilter() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
   const vpnConnectionName = "vpnConnection1";
   const parameters: VpnConnectionPacketCaptureStartParameters = {
@@ -45,8 +48,6 @@ async function startPacketCaptureOnVpnConnectionWithFilter() {
   console.log(result);
 }
 
-startPacketCaptureOnVpnConnectionWithFilter().catch(console.error);
-
 /**
  * This sample demonstrates how to Starts packet capture on Vpn connection in the specified resource group.
  *
@@ -54,8 +55,8 @@ startPacketCaptureOnVpnConnectionWithFilter().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionStartPacketCapture.json
  */
 async function startPacketCaptureOnVpnConnectionWithoutFilter() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
   const vpnConnectionName = "vpnConnection1";
   const parameters: VpnConnectionPacketCaptureStartParameters = {
@@ -75,4 +76,9 @@ async function startPacketCaptureOnVpnConnectionWithoutFilter() {
   console.log(result);
 }
 
-startPacketCaptureOnVpnConnectionWithoutFilter().catch(console.error);
+async function main() {
+  startPacketCaptureOnVpnConnectionWithFilter();
+  startPacketCaptureOnVpnConnectionWithoutFilter();
+}
+
+main().catch(console.error);

@@ -33,4 +33,8 @@ async function applicationDataList() {
   console.log(result);
 }
 
-applicationDataList().catch(console.error);
+async function main() {
+  applicationDataList();
+}
+
+main().catch(console.error);

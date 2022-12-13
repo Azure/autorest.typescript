@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the specified virtual network peering.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkPeeringGet.json
  */
 async function getPeering() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "peerTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
   const credential = new DefaultAzureCredential();
@@ -31,8 +34,6 @@ async function getPeering() {
   );
   console.log(result);
 }
-
-getPeering().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets the specified virtual network peering.
@@ -41,8 +42,8 @@ getPeering().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkPeeringGetWithRemoteVirtualNetworkEncryption.json
  */
 async function getPeeringWithRemoteVirtualNetworkEncryption() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "peerTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
   const credential = new DefaultAzureCredential();
@@ -55,4 +56,9 @@ async function getPeeringWithRemoteVirtualNetworkEncryption() {
   console.log(result);
 }
 
-getPeeringWithRemoteVirtualNetworkEncryption().catch(console.error);
+async function main() {
+  getPeering();
+  getPeeringWithRemoteVirtualNetworkEncryption();
+}
+
+main().catch(console.error);
