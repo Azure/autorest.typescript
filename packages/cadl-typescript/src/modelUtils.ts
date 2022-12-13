@@ -196,12 +196,9 @@ function getSchemaForUnion(
   const schema: any = { type };
   if (values.length > 0) {
     schema.enum = values;
-    schema.type =
-      type === "string"
-        ? values.map((item) => `"${item}"`).join(" | ")
-        : values
-            .map((item) => `${getTypeName(item) ?? item}`)
-            .join(" | ");
+    schema.type = values
+      .map((item) => `${getTypeName(item) ?? item}`)
+      .join(" | ");
   }
   if (nullable) {
     schema["x-nullable"] = true;
@@ -649,7 +646,7 @@ function getSchemaForEnum(program: Program, e: Enum) {
     schema.type =
       type === "string"
         ? values.map((item) => `"${item}"`).join("|")
-        : values.join("|");
+        : values.map((item) => `${item}`).join("|");
   }
 
   return schema;
