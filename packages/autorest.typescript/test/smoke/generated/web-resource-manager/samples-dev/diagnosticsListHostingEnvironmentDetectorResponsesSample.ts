@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for List Hosting Environment Detector Responses
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListHostingEnvironmentDetectorResponses.json
  */
 async function getAppServiceEnvironmentDetectorResponses() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const name = "SampleAppServiceEnvironment";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
@@ -33,4 +38,8 @@ async function getAppServiceEnvironmentDetectorResponses() {
   console.log(resArray);
 }
 
-getAppServiceEnvironmentDetectorResponses().catch(console.error);
+async function main() {
+  getAppServiceEnvironmentDetectorResponses();
+}
+
+main().catch(console.error);

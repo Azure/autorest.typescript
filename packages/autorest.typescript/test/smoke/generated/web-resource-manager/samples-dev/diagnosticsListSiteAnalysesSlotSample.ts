@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Get Site Analyses
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteAnalyses.json
  */
 async function listAppAnalyses() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const siteName = "SampleApp";
   const diagnosticCategory = "availability";
   const slot = "Production";
@@ -37,8 +42,6 @@ async function listAppAnalyses() {
   console.log(resArray);
 }
 
-listAppAnalyses().catch(console.error);
-
 /**
  * This sample demonstrates how to Description for Get Site Analyses
  *
@@ -46,8 +49,10 @@ listAppAnalyses().catch(console.error);
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteAnalysesSlot.json
  */
 async function listAppSlotAnalyses() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const siteName = "SampleApp";
   const diagnosticCategory = "availability";
   const slot = "staging";
@@ -65,4 +70,9 @@ async function listAppSlotAnalyses() {
   console.log(resArray);
 }
 
-listAppSlotAnalyses().catch(console.error);
+async function main() {
+  listAppAnalyses();
+  listAppSlotAnalyses();
+}
+
+main().catch(console.error);

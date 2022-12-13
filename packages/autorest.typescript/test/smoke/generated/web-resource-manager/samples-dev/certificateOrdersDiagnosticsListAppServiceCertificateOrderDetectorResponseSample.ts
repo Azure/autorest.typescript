@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Microsoft.CertificateRegistration to get the list of detectors for this RP.
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.CertificateRegistration/stable/2021-02-01/examples/Diagnostics_ListAppServiceCertificateOrderDetectorResponse.json
  */
 async function listAppServiceCertificateDetectorResponse() {
-  const subscriptionId = "5700fc96-77b4-4f8d-afce-c353d8c443bd";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "5700fc96-77b4-4f8d-afce-c353d8c443bd";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const certificateOrderName = "SampleCertificateOrderName";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
@@ -33,4 +38,8 @@ async function listAppServiceCertificateDetectorResponse() {
   console.log(resArray);
 }
 
-listAppServiceCertificateDetectorResponse().catch(console.error);
+async function main() {
+  listAppServiceCertificateDetectorResponse();
+}
+
+main().catch(console.error);

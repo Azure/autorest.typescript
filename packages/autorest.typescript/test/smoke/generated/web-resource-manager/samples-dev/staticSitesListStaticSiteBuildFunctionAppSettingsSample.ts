@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Gets the application settings of a static site build.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListStaticSiteBuildFunctionAppSettings.json
  */
 async function getFunctionAppSettingsOfAStaticSiteBuild() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "rg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
   const name = "testStaticSite0";
   const environmentName = "12";
   const credential = new DefaultAzureCredential();
@@ -32,4 +36,8 @@ async function getFunctionAppSettingsOfAStaticSiteBuild() {
   console.log(result);
 }
 
-getFunctionAppSettingsOfAStaticSiteBuild().catch(console.error);
+async function main() {
+  getFunctionAppSettingsOfAStaticSiteBuild();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Get all the Kubernetes Environments in a resource group.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/KubeEnvironments_ListByResourceGroup.json
  */
 async function listKubeEnvironmentsByResourceGroup() {
-  const subscriptionId = "8efdecc5-919e-44eb-b179-915dca89ebf9";
-  const resourceGroupName = "examplerg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "8efdecc5-919e-44eb-b179-915dca89ebf9";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "examplerg";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -31,4 +35,8 @@ async function listKubeEnvironmentsByResourceGroup() {
   console.log(resArray);
 }
 
-listKubeEnvironmentsByResourceGroup().catch(console.error);
+async function main() {
+  listKubeEnvironmentsByResourceGroup();
+}
+
+main().catch(console.error);
