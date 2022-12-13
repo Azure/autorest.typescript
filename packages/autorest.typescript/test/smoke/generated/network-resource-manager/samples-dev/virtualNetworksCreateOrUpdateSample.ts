@@ -18,7 +18,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreate.json
  */
 async function createVirtualNetwork() {
   const subscriptionId = "subid";
@@ -45,7 +45,7 @@ createVirtualNetwork().catch(console.error);
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateWithBgpCommunities.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateWithBgpCommunities.json
  */
 async function createVirtualNetworkWithBgpCommunities() {
   const subscriptionId = "subid";
@@ -73,7 +73,7 @@ createVirtualNetworkWithBgpCommunities().catch(console.error);
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateSubnetWithDelegation.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateSubnetWithDelegation.json
  */
 async function createVirtualNetworkWithDelegatedSubnets() {
   const subscriptionId = "subId";
@@ -111,7 +111,7 @@ createVirtualNetworkWithDelegatedSubnets().catch(console.error);
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateWithEncryption.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateWithEncryption.json
  */
 async function createVirtualNetworkWithEncryption() {
   const subscriptionId = "subid";
@@ -139,7 +139,7 @@ createVirtualNetworkWithEncryption().catch(console.error);
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateServiceEndpoints.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateServiceEndpoints.json
  */
 async function createVirtualNetworkWithServiceEndpoints() {
   const subscriptionId = "subid";
@@ -172,7 +172,7 @@ createVirtualNetworkWithServiceEndpoints().catch(console.error);
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateServiceEndpointPolicy.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateServiceEndpointPolicy.json
  */
 async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy() {
   const subscriptionId = "subid";
@@ -213,7 +213,7 @@ createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy().catch(
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateSubnet.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateSubnet.json
  */
 async function createVirtualNetworkWithSubnet() {
   const subscriptionId = "subid";
@@ -240,7 +240,7 @@ createVirtualNetworkWithSubnet().catch(console.error);
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
  * @summary Creates or updates a virtual network in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateSubnetWithAddressPrefixes.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkCreateSubnetWithAddressPrefixes.json
  */
 async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
   const subscriptionId = "subid";

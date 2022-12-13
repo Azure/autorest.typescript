@@ -18,7 +18,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * This sample demonstrates how to Creates or updates a virtual network gateway in the specified resource group.
  *
  * @summary Creates or updates a virtual network gateway in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayUpdate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayUpdate.json
  */
 async function updateVirtualNetworkGateway() {
   const subscriptionId = "subid";
@@ -26,6 +26,8 @@ async function updateVirtualNetworkGateway() {
   const virtualNetworkGatewayName = "vpngw";
   const parameters: VirtualNetworkGateway = {
     active: false,
+    allowRemoteVnetTraffic: false,
+    allowVirtualWanTraffic: false,
     bgpSettings: { asn: 65515, bgpPeeringAddress: "10.0.1.30", peerWeight: 0 },
     customRoutes: { addressPrefixes: ["101.168.0.6/32"] },
     disableIPSecReplayProtection: false,

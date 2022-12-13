@@ -18,7 +18,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * This sample demonstrates how to Updates a network watcher tags.
  *
  * @summary Updates a network watcher tags.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherUpdateTags.json
  */
 async function updateNetworkWatcherTags() {
   const subscriptionId = "subid";

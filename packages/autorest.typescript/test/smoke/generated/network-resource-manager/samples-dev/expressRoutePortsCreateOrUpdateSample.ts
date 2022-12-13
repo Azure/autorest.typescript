@@ -18,7 +18,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * This sample demonstrates how to Creates or updates the specified ExpressRoutePort resource.
  *
  * @summary Creates or updates the specified ExpressRoutePort resource.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRoutePortCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortCreate.json
  */
 async function expressRoutePortCreate() {
   const subscriptionId = "subid";
@@ -26,6 +26,7 @@ async function expressRoutePortCreate() {
   const expressRoutePortName = "portName";
   const parameters: ExpressRoutePort = {
     bandwidthInGbps: 100,
+    billingType: "UnlimitedData",
     encapsulation: "QinQ",
     location: "westus",
     peeringLocation: "peeringLocationName"
@@ -46,7 +47,7 @@ expressRoutePortCreate().catch(console.error);
  * This sample demonstrates how to Creates or updates the specified ExpressRoutePort resource.
  *
  * @summary Creates or updates the specified ExpressRoutePort resource.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRoutePortUpdateLink.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortUpdateLink.json
  */
 async function expressRoutePortUpdateLink() {
   const subscriptionId = "subid";
@@ -54,6 +55,7 @@ async function expressRoutePortUpdateLink() {
   const expressRoutePortName = "portName";
   const parameters: ExpressRoutePort = {
     bandwidthInGbps: 100,
+    billingType: "UnlimitedData",
     encapsulation: "QinQ",
     links: [{ name: "link1", adminState: "Enabled" }],
     location: "westus",

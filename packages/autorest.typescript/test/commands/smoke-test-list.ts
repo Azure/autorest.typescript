@@ -138,7 +138,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.AzureSdkForJs,
       AutorestParams.AzureArm
     ],
-    branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
+    branch: "25bea13c86145a7620e363826a9ae476c18adb5f",
     buildTag: "ci_3"
   },
   {
