@@ -4,4 +4,3 @@ emitters:
     packageDetails:
       name: "@msinternal/customWrapper"
       description: "Custom Wrapper Service"
-  "@azure-tools/cadl-autorest": true
