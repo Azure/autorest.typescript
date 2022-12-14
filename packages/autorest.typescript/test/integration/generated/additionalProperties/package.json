@@ -37,7 +37,6 @@
     "cross-env": "^7.0.2",
     "@types/node": "^14.0.0"
   },
-  "homepage": "https://github.com/Azure/azure-sdk-for-js/tree/main/undefined",
   "repository": {
     "type": "git",
     "url": "https://github.com/Azure/azure-sdk-for-js.git"
