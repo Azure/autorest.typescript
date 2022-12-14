@@ -345,4 +345,45 @@ describe("Client Factory generation testing", () => {
     });
     describe("mixed apiVersion in path & query parameter", () => {});
   });
+
+  describe("should handle no @server definition", () => {
+    it("should set default endpoint parameter when no @server", async () => {
+      const models = await emitClientFactoryFromCadl(`
+      @service( {title: "PetStoreClient"})
+      namespace PetStore;
+      `);
+      assert.ok(models);
+      assertEqualContent(
+        models!.content,
+        `
+        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { testClient } from "./clientDefinitions";
+        
+        /**
+         * Initialize a new instance of the class testClient class.
+         * @param endpoint type: string
+         */
+        export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
+        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+        
+        const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+        const userAgentPrefix =
+            options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+            ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+            : \`\${userAgentInfo}\`;
+        options = {
+            ...options,
+            userAgentOptions: {
+            userAgentPrefix,
+            },
+        };
+        
+        const client = getClient(baseUrl, options) as testClient;
+        
+        return client;
+    }
+    `
+      );
+    });
+  });
 });

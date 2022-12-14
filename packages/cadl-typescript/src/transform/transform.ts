@@ -132,6 +132,14 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
       }
     }
   }
+  // Set the default value if missing endpoint parameter
+  if (endpoint == undefined && urlParameters.length === 0) {
+    endpoint = "{endpoint}";
+    urlParameters.push({
+      name: "endpoint",
+      type: "string"
+    });
+  }
   return { endpoint, urlParameters };
 }
 
