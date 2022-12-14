@@ -18,7 +18,7 @@ dotenv.config();
  * This sample demonstrates how to Get the specified network interface in a virtual machine scale set.
  *
  * @summary Get the specified network interface in a virtual machine scale set.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VmssNetworkInterfaceGet.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VmssNetworkInterfaceGet.json
  */
 async function getVirtualMachineScaleSetNetworkInterface() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

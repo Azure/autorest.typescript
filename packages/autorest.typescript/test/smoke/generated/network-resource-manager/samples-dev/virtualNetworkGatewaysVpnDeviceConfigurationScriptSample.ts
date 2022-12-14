@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Gets a xml format representation for vpn device configuration script.
  *
  * @summary Gets a xml format representation for vpn device configuration script.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayVpnDeviceConfigurationScript.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayVpnDeviceConfigurationScript.json
  */
 async function getVpnDeviceConfigurationScript() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

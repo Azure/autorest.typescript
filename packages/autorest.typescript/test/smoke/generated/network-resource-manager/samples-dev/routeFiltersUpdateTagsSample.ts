@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Updates tags of a route filter.
  *
  * @summary Updates tags of a route filter.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteFilterUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteFilterUpdateTags.json
  */
 async function updateRouteFilterTags() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

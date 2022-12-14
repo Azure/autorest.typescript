@@ -18,7 +18,7 @@ dotenv.config();
  * This sample demonstrates how to Deletes the specified ServiceEndpoint policy definitions.
  *
  * @summary Deletes the specified ServiceEndpoint policy definitions.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ServiceEndpointPolicyDefinitionDelete.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceEndpointPolicyDefinitionDelete.json
  */
 async function deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

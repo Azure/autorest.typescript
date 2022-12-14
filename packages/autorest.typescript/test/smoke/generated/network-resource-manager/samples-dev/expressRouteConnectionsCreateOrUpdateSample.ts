@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Creates a connection between an ExpressRoute gateway and an ExpressRoute circuit.
  *
  * @summary Creates a connection between an ExpressRoute gateway and an ExpressRoute circuit.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteConnectionCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteConnectionCreate.json
  */
 async function expressRouteConnectionCreate() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
@@ -38,6 +38,37 @@ async function expressRouteConnectionCreate() {
     },
     id:
       "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.Network/expressRouteGateways/gateway-2/expressRouteConnections/connectionName",
+    routingConfiguration: {
+      associatedRouteTable: {
+        id:
+          "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable1"
+      },
+      inboundRouteMap: {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/routeMaps/routeMap1"
+      },
+      outboundRouteMap: {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/routeMaps/routeMap2"
+      },
+      propagatedRouteTables: {
+        ids: [
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable1"
+          },
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable2"
+          },
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/resourceGroupName/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable3"
+          }
+        ],
+        labels: ["label1", "label2"]
+      }
+    },
     routingWeight: 2
   };
   const credential = new DefaultAzureCredential();

@@ -18,7 +18,7 @@ dotenv.config();
  * This sample demonstrates how to Gets details about the specified ExpressRouteCrossConnection.
  *
  * @summary Gets details about the specified ExpressRouteCrossConnection.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionGet.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionGet.json
  */
 async function getExpressRouteCrossConnection() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

@@ -18,7 +18,7 @@ dotenv.config();
  * This sample demonstrates how to Deletes the specified ipGroups.
  *
  * @summary Deletes the specified ipGroups.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpGroupsDelete.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpGroupsDelete.json
  */
 async function deleteIPGroups() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";

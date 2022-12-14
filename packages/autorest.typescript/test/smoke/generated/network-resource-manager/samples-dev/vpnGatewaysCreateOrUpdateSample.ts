@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Creates a virtual wan vpn gateway if it doesn't exist else updates the existing gateway.
  *
  * @summary Creates a virtual wan vpn gateway if it doesn't exist else updates the existing gateway.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnGatewayPut.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnGatewayPut.json
  */
 async function vpnGatewayPut() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

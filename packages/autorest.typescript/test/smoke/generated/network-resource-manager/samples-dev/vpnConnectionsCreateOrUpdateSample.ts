@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
  *
  * @summary Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionPut.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnConnectionPut.json
  */
 async function vpnConnectionPut() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
@@ -32,6 +32,37 @@ async function vpnConnectionPut() {
     remoteVpnSite: {
       id:
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnSites/vpnSite1"
+    },
+    routingConfiguration: {
+      associatedRouteTable: {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable1"
+      },
+      inboundRouteMap: {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/routeMaps/routeMap1"
+      },
+      outboundRouteMap: {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/routeMaps/routeMap2"
+      },
+      propagatedRouteTables: {
+        ids: [
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable1"
+          },
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable2"
+          },
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable3"
+          }
+        ],
+        labels: ["label1", "label2"]
+      }
     },
     trafficSelectorPolicies: [],
     vpnLinkConnections: [

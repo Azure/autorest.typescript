@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Creates or updates the specified Firewall Policy.
  *
  * @summary Creates or updates the specified Firewall Policy.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/FirewallPolicyPut.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyPut.json
  */
 async function createFirewallPolicy() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
@@ -33,8 +33,9 @@ async function createFirewallPolicy() {
       requireProxyForNetworkRules: false,
       servers: ["30.3.4.5"]
     },
-    explicitProxySettings: {
+    explicitProxy: {
       enableExplicitProxy: true,
+      enablePacFile: true,
       httpPort: 8087,
       httpsPort: 8087,
       pacFile:

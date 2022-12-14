@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Create or update a flow log for the specified network security group.
  *
  * @summary Create or update a flow log for the specified network security group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherFlowLogCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherFlowLogCreate.json
  */
 async function createOrUpdateFlowLog() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

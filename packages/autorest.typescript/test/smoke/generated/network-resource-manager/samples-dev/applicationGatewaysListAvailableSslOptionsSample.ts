@@ -18,7 +18,7 @@ dotenv.config();
  * This sample demonstrates how to Lists available Ssl options for configuring Ssl policy.
  *
  * @summary Lists available Ssl options for configuring Ssl policy.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayAvailableSslOptionsGet.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayAvailableSslOptionsGet.json
  */
 async function getAvailableSslOptions() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

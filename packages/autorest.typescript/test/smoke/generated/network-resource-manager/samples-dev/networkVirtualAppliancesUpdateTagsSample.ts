@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Updates a Network Virtual Appliance.
  *
  * @summary Updates a Network Virtual Appliance.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualApplianceUpdateTags.json
  */
 async function updateNetworkVirtualAppliance() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

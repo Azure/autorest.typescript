@@ -21,7 +21,7 @@ dotenv.config();
  * This sample demonstrates how to Creates or updates a DSCP Configuration.
  *
  * @summary Creates or updates a DSCP Configuration.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DscpConfigurationCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/DscpConfigurationCreate.json
  */
 async function createDscpConfiguration() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

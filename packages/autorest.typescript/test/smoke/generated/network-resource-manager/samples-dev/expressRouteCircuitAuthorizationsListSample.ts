@@ -18,7 +18,7 @@ dotenv.config();
  * This sample demonstrates how to Gets all authorizations in an express route circuit.
  *
  * @summary Gets all authorizations in an express route circuit.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitAuthorizationList.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitAuthorizationList.json
  */
 async function listExpressRouteCircuitAuthorization() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

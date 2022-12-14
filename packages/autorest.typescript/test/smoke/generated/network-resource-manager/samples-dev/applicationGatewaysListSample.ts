@@ -18,7 +18,7 @@ dotenv.config();
  * This sample demonstrates how to Lists all application gateways in a resource group.
  *
  * @summary Lists all application gateways in a resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayList.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayList.json
  */
 async function listsAllApplicationGatewaysInAResourceGroup() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";

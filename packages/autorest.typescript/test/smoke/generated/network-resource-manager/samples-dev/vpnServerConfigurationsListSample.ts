@@ -18,7 +18,7 @@ dotenv.config();
  * This sample demonstrates how to Lists all the VpnServerConfigurations in a subscription.
  *
  * @summary Lists all the VpnServerConfigurations in a subscription.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnServerConfigurationList.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnServerConfigurationList.json
  */
 async function vpnServerConfigurationList() {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
