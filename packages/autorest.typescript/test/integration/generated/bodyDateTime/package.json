@@ -29,7 +29,6 @@
     "rimraf": "^3.0.0",
     "dotenv": "^8.2.0"
   },
-  "homepage": "https://github.com/Azure/azure-sdk-for-js/tree/main/undefined",
   "repository": {
     "type": "git",
     "url": "https://github.com/Azure/azure-sdk-for-js.git"
