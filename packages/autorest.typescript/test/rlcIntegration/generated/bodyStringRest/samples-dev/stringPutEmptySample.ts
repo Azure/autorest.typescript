@@ -23,4 +23,8 @@ async function stringPutEmpty() {
   console.log(result);
 }
 
-stringPutEmpty().catch(console.error);
+async function main() {
+  stringPutEmpty();
+}
+
+main().catch(console.error);

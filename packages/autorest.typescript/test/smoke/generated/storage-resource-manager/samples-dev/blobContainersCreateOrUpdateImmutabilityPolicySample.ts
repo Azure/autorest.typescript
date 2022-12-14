@@ -14,6 +14,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates an unlocked immutability policy. ETag in If-Match is honored if given but not required for this operation.
@@ -22,8 +25,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersPutImmutabilityPolicy.json
  */
 async function createOrUpdateImmutabilityPolicy() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res1782";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res1782";
   const accountName = "sto7069";
   const containerName = "container6397";
   const parameters: ImmutabilityPolicy = {
@@ -44,8 +47,6 @@ async function createOrUpdateImmutabilityPolicy() {
   console.log(result);
 }
 
-createOrUpdateImmutabilityPolicy().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates an unlocked immutability policy. ETag in If-Match is honored if given but not required for this operation.
  *
@@ -53,8 +54,8 @@ createOrUpdateImmutabilityPolicy().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersPutImmutabilityPolicyAllowProtectedAppendWritesAll.json
  */
 async function createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res1782";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res1782";
   const accountName = "sto7069";
   const containerName = "container6397";
   const parameters: ImmutabilityPolicy = {
@@ -75,6 +76,9 @@ async function createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll
   console.log(result);
 }
 
-createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll().catch(
-  console.error
-);
+async function main() {
+  createOrUpdateImmutabilityPolicy();
+  createOrUpdateImmutabilityPolicyWithAllowProtectedAppendWritesAll();
+}
+
+main().catch(console.error);

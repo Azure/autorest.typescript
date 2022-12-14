@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists all the network manager security admin configurations in a network manager, in a paginated format.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerSecurityAdminConfigurationList.json
  */
 async function listSecurityAdminConfigurationsInANetworkManager() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "rg1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkManagerName = "testNetworkManager";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -33,4 +37,8 @@ async function listSecurityAdminConfigurationsInANetworkManager() {
   console.log(resArray);
 }
 
-listSecurityAdminConfigurationsInANetworkManager().catch(console.error);
+async function main() {
+  listSecurityAdminConfigurationsInANetworkManager();
+}
+
+main().catch(console.error);

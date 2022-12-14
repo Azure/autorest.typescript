@@ -21,4 +21,8 @@ async function dpgGetModel() {
   console.log(result);
 }
 
-dpgGetModel().catch(console.error);
+async function main() {
+  dpgGetModel();
+}
+
+main().catch(console.error);

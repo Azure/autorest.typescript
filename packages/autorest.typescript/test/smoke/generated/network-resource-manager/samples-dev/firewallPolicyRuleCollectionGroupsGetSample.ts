@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the specified FirewallPolicyRuleCollectionGroup.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyNatRuleCollectionGroupGet.json
  */
 async function getFirewallPolicyNatRuleCollectionGroup() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
   const ruleCollectionGroupName = "ruleCollectionGroup1";
   const credential = new DefaultAzureCredential();
@@ -31,8 +34,6 @@ async function getFirewallPolicyNatRuleCollectionGroup() {
   );
   console.log(result);
 }
-
-getFirewallPolicyNatRuleCollectionGroup().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets the specified FirewallPolicyRuleCollectionGroup.
@@ -41,8 +42,8 @@ getFirewallPolicyNatRuleCollectionGroup().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyRuleCollectionGroupGet.json
  */
 async function getFirewallPolicyRuleCollectionGroup() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
   const ruleCollectionGroupName = "ruleCollectionGroup1";
   const credential = new DefaultAzureCredential();
@@ -55,8 +56,6 @@ async function getFirewallPolicyRuleCollectionGroup() {
   console.log(result);
 }
 
-getFirewallPolicyRuleCollectionGroup().catch(console.error);
-
 /**
  * This sample demonstrates how to Gets the specified FirewallPolicyRuleCollectionGroup.
  *
@@ -64,8 +63,8 @@ getFirewallPolicyRuleCollectionGroup().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyRuleCollectionGroupWithIpGroupsGet.json
  */
 async function getFirewallPolicyRuleCollectionGroupWithIPGroups() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
   const ruleCollectionGroupName = "ruleGroup1";
   const credential = new DefaultAzureCredential();
@@ -78,8 +77,6 @@ async function getFirewallPolicyRuleCollectionGroupWithIPGroups() {
   console.log(result);
 }
 
-getFirewallPolicyRuleCollectionGroupWithIPGroups().catch(console.error);
-
 /**
  * This sample demonstrates how to Gets the specified FirewallPolicyRuleCollectionGroup.
  *
@@ -87,8 +84,9 @@ getFirewallPolicyRuleCollectionGroupWithIPGroups().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyRuleCollectionGroupWithWebCategoriesGet.json
  */
 async function getFirewallPolicyRuleCollectionGroupWithWebCategories() {
-  const subscriptionId = "e747cc13-97d4-4a79-b463-42d7f4e558f2";
-  const resourceGroupName = "rg1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "e747cc13-97d4-4a79-b463-42d7f4e558f2";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
   const ruleCollectionGroupName = "ruleCollectionGroup1";
   const credential = new DefaultAzureCredential();
@@ -101,4 +99,11 @@ async function getFirewallPolicyRuleCollectionGroupWithWebCategories() {
   console.log(result);
 }
 
-getFirewallPolicyRuleCollectionGroupWithWebCategories().catch(console.error);
+async function main() {
+  getFirewallPolicyNatRuleCollectionGroup();
+  getFirewallPolicyRuleCollectionGroup();
+  getFirewallPolicyRuleCollectionGroupWithIPGroups();
+  getFirewallPolicyRuleCollectionGroupWithWebCategories();
+}
+
+main().catch(console.error);

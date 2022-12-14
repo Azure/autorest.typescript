@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Determines whether a resource can be created with the specified name.
@@ -21,7 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CheckNameAvailabilityServerAlreadyExists.json
  */
 async function checkForAServerNameThatAlreadyExists() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const parameters: CheckNameAvailabilityRequest = {
     name: "server1",
     type: "Microsoft.Sql/servers"
@@ -31,8 +35,6 @@ async function checkForAServerNameThatAlreadyExists() {
   const result = await client.servers.checkNameAvailability(parameters);
   console.log(result);
 }
-
-checkForAServerNameThatAlreadyExists().catch(console.error);
 
 /**
  * This sample demonstrates how to Determines whether a resource can be created with the specified name.
@@ -41,7 +43,8 @@ checkForAServerNameThatAlreadyExists().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CheckNameAvailabilityServerAvailable.json
  */
 async function checkForAServerNameThatIsAvailable() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const parameters: CheckNameAvailabilityRequest = {
     name: "server1",
     type: "Microsoft.Sql/servers"
@@ -52,8 +55,6 @@ async function checkForAServerNameThatIsAvailable() {
   console.log(result);
 }
 
-checkForAServerNameThatIsAvailable().catch(console.error);
-
 /**
  * This sample demonstrates how to Determines whether a resource can be created with the specified name.
  *
@@ -61,7 +62,8 @@ checkForAServerNameThatIsAvailable().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CheckNameAvailabilityServerInvalid.json
  */
 async function checkForAServerNameThatIsInvalid() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const parameters: CheckNameAvailabilityRequest = {
     name: "SERVER1",
     type: "Microsoft.Sql/servers"
@@ -72,4 +74,10 @@ async function checkForAServerNameThatIsInvalid() {
   console.log(result);
 }
 
-checkForAServerNameThatIsInvalid().catch(console.error);
+async function main() {
+  checkForAServerNameThatAlreadyExists();
+  checkForAServerNameThatIsAvailable();
+  checkForAServerNameThatIsInvalid();
+}
+
+main().catch(console.error);

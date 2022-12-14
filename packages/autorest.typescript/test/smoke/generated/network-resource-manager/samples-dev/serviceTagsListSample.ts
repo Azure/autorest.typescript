@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a list of service tag information resources.
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceTagsList.json
  */
 async function getListOfServiceTags() {
-  const subscriptionId = "subId";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "westcentralus";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -26,4 +29,8 @@ async function getListOfServiceTags() {
   console.log(result);
 }
 
-getListOfServiceTags().catch(console.error);
+async function main() {
+  getListOfServiceTags();
+}
+
+main().catch(console.error);

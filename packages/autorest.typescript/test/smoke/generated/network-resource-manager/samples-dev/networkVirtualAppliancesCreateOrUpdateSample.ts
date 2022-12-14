@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates the specified Network Virtual Appliance.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualAppliancePut.json
  */
 async function createNetworkVirtualAppliance() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkVirtualApplianceName = "nva";
   const parameters: NetworkVirtualAppliance = {
     bootStrapConfigurationBlobs: [
@@ -60,8 +63,6 @@ async function createNetworkVirtualAppliance() {
   console.log(result);
 }
 
-createNetworkVirtualAppliance().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates the specified Network Virtual Appliance.
  *
@@ -69,8 +70,8 @@ createNetworkVirtualAppliance().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualApplianceSaaSPut.json
  */
 async function createSaaSNetworkVirtualAppliance() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkVirtualApplianceName = "nva";
   const parameters: NetworkVirtualAppliance = {
     delegation: { serviceName: "PaloAltoNetworks.Cloudngfw/firewalls" },
@@ -91,4 +92,9 @@ async function createSaaSNetworkVirtualAppliance() {
   console.log(result);
 }
 
-createSaaSNetworkVirtualAppliance().catch(console.error);
+async function main() {
+  createNetworkVirtualAppliance();
+  createSaaSNetworkVirtualAppliance();
+}
+
+main().catch(console.error);

@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a network profile.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkProfileCreateConfigOnly.json
  */
 async function createNetworkProfileDefaults() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkProfileName = "networkProfile1";
   const parameters: NetworkProfile = {
     containerNetworkInterfaceConfigurations: [
@@ -51,4 +54,8 @@ async function createNetworkProfileDefaults() {
   console.log(result);
 }
 
-createNetworkProfileDefaults().catch(console.error);
+async function main() {
+  createNetworkProfileDefaults();
+}
+
+main().catch(console.error);

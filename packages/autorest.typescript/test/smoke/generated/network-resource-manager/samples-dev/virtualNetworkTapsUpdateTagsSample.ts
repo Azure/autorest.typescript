@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates an VirtualNetworkTap tags.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkTapUpdateTags.json
  */
 async function updateVirtualNetworkTapTags() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const tapName = "test-vtap";
   const tapParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
@@ -37,4 +40,8 @@ async function updateVirtualNetworkTapTags() {
   console.log(result);
 }
 
-updateVirtualNetworkTapTags().catch(console.error);
+async function main() {
+  updateVirtualNetworkTapTags();
+}
+
+main().catch(console.error);

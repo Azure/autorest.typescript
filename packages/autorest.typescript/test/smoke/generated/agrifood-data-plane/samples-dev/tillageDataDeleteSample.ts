@@ -34,4 +34,8 @@ async function tillageDataDelete() {
   console.log(result);
 }
 
-tillageDataDelete().catch(console.error);
+async function main() {
+  tillageDataDelete();
+}
+
+main().catch(console.error);

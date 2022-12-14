@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the regional application gateway waf manifest.
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/GetApplicationGatewayWafDynamicManifestsDefault.json
  */
 async function getsWafDefaultManifest() {
-  const subscriptionId = "subid";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const location = "westus";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -28,4 +31,8 @@ async function getsWafDefaultManifest() {
   console.log(result);
 }
 
-getsWafDefaultManifest().catch(console.error);
+async function main() {
+  getsWafDefaultManifest();
+}
+
+main().catch(console.error);

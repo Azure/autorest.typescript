@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update automatic tuning properties for target database.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseAutomaticTuningUpdateMax.json
  */
 async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  const resourceGroupName = "default-sql-onebox";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "c3aa9078-0000-0000-0000-e36f151182d7";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "default-sql-onebox";
   const serverName = "testsvr11";
   const databaseName = "db1";
   const parameters: DatabaseAutomaticTuning = {
@@ -44,8 +49,6 @@ async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
   console.log(result);
 }
 
-updatesDatabaseAutomaticTuningSettingsWithAllProperties().catch(console.error);
-
 /**
  * This sample demonstrates how to Update automatic tuning properties for target database.
  *
@@ -53,8 +56,10 @@ updatesDatabaseAutomaticTuningSettingsWithAllProperties().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseAutomaticTuningUpdateMin.json
  */
 async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties() {
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  const resourceGroupName = "default-sql-onebox";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "c3aa9078-0000-0000-0000-e36f151182d7";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "default-sql-onebox";
   const serverName = "testsvr11";
   const databaseName = "db1";
   const parameters: DatabaseAutomaticTuning = { desiredState: "Auto" };
@@ -69,6 +74,9 @@ async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties() {
   console.log(result);
 }
 
-updatesDatabaseAutomaticTuningSettingsWithMinimalProperties().catch(
-  console.error
-);
+async function main() {
+  updatesDatabaseAutomaticTuningSettingsWithAllProperties();
+  updatesDatabaseAutomaticTuningSettingsWithMinimalProperties();
+}
+
+main().catch(console.error);

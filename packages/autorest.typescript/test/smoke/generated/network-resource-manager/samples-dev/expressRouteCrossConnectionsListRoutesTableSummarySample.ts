@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the route table summary associated with the express route cross connection in a resource group.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionsRouteTableSummary.json
  */
 async function getExpressRouteCrossConnectionsRouteTableSummary() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "CrossConnection-SiliconValley";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
   const devicePath = "primary";
@@ -34,4 +38,8 @@ async function getExpressRouteCrossConnectionsRouteTableSummary() {
   console.log(result);
 }
 
-getExpressRouteCrossConnectionsRouteTableSummary().catch(console.error);
+async function main() {
+  getExpressRouteCrossConnectionsRouteTableSummary();
+}
+
+main().catch(console.error);

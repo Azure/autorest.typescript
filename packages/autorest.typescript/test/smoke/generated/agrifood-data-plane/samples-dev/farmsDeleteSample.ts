@@ -30,4 +30,8 @@ async function farmsDelete() {
   console.log(result);
 }
 
-farmsDelete().catch(console.error);
+async function main() {
+  farmsDelete();
+}
+
+main().catch(console.error);

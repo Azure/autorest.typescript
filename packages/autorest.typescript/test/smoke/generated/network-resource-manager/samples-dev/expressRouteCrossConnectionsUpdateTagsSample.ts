@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates an express route cross connection tags.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionUpdateTags.json
  */
 async function updateExpressRouteCrossConnectionTags() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "CrossConnection-SiliconValley";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const crossConnectionParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
@@ -37,4 +41,8 @@ async function updateExpressRouteCrossConnectionTags() {
   console.log(result);
 }
 
-updateExpressRouteCrossConnectionTags().catch(console.error);
+async function main() {
+  updateExpressRouteCrossConnectionTags();
+}
+
+main().catch(console.error);

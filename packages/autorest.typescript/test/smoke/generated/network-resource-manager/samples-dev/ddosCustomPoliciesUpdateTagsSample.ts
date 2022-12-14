@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update a DDoS custom policy tags.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/DdosCustomPolicyUpdateTags.json
  */
 async function dDoSCustomPolicyUpdateTags() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const ddosCustomPolicyName = "test-ddos-custom-policy";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
   const credential = new DefaultAzureCredential();
@@ -35,4 +38,8 @@ async function dDoSCustomPolicyUpdateTags() {
   console.log(result);
 }
 
-dDoSCustomPolicyUpdateTags().catch(console.error);
+async function main() {
+  dDoSCustomPolicyUpdateTags();
+}
+
+main().catch(console.error);

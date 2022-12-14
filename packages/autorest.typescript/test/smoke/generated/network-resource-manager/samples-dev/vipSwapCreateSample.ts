@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Performs vip swap operation on swappable cloud services.
@@ -21,7 +24,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/CloudServiceSwapPut.json
  */
 async function putVipSwapOperation() {
-  const subscriptionId = "subid";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const groupName = "rg1";
   const resourceName = "testCloudService";
   const parameters: SwapResource = { properties: { slotType: "Production" } };
@@ -35,4 +38,8 @@ async function putVipSwapOperation() {
   console.log(result);
 }
 
-putVipSwapOperation().catch(console.error);
+async function main() {
+  putVipSwapOperation();
+}
+
+main().catch(console.error);

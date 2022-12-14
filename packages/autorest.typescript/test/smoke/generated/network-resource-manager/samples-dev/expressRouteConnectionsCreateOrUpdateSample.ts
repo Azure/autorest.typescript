@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a connection between an ExpressRoute gateway and an ExpressRoute circuit.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteConnectionCreate.json
  */
 async function expressRouteConnectionCreate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "resourceGroupName";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "resourceGroupName";
   const expressRouteGatewayName = "gateway-2";
   const connectionName = "connectionName";
   const putExpressRouteConnectionParameters: ExpressRouteConnection = {
@@ -78,4 +82,8 @@ async function expressRouteConnectionCreate() {
   console.log(result);
 }
 
-expressRouteConnectionCreate().catch(console.error);
+async function main() {
+  expressRouteConnectionCreate();
+}
+
+main().catch(console.error);

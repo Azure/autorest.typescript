@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Returns all of the resource types that can be linked to a Private Endpoint in this subscription in this region.
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AvailablePrivateEndpointTypesGet.json
  */
 async function getAvailablePrivateEndpointTypes() {
-  const subscriptionId = "subId";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "regionName";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -29,4 +32,8 @@ async function getAvailablePrivateEndpointTypes() {
   console.log(resArray);
 }
 
-getAvailablePrivateEndpointTypes().catch(console.error);
+async function main() {
+  getAvailablePrivateEndpointTypes();
+}
+
+main().catch(console.error);

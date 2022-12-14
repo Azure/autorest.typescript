@@ -29,4 +29,8 @@ async function farmOperationsGetDataIngestionJobDetails() {
   console.log(result);
 }
 
-farmOperationsGetDataIngestionJobDetails().catch(console.error);
+async function main() {
+  farmOperationsGetDataIngestionJobDetails();
+}
+
+main().catch(console.error);

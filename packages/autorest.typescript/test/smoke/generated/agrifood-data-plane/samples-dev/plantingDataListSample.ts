@@ -33,4 +33,8 @@ async function plantingDataList() {
   console.log(result);
 }
 
-plantingDataList().catch(console.error);
+async function main() {
+  plantingDataList();
+}
+
+main().catch(console.error);

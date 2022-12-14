@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Get the managed server's threat detection policies.
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedServerSecurityAlertListByInstance.json
  */
 async function getTheManagedServerThreatDetectionPolicies() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "securityalert-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "securityalert-4799";
   const managedInstanceName = "securityalert-6440";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -33,4 +38,8 @@ async function getTheManagedServerThreatDetectionPolicies() {
   console.log(resArray);
 }
 
-getTheManagedServerThreatDetectionPolicies().catch(console.error);
+async function main() {
+  getTheManagedServerThreatDetectionPolicies();
+}
+
+main().catch(console.error);

@@ -43,4 +43,8 @@ async function weatherList() {
   console.log(result);
 }
 
-weatherList().catch(console.error);
+async function main() {
+  weatherList();
+}
+
+main().catch(console.error);

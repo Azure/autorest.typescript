@@ -23,4 +23,8 @@ async function enumPutReferenced() {
   console.log(result);
 }
 
-enumPutReferenced().catch(console.error);
+async function main() {
+  enumPutReferenced();
+}
+
+main().catch(console.error);

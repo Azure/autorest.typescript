@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a route in the specified route filter.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteFilterRuleCreate.json
  */
 async function routeFilterRuleCreate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeFilterName = "filterName";
   const ruleName = "ruleName";
   const routeFilterRuleParameters: RouteFilterRule = {
@@ -41,4 +44,8 @@ async function routeFilterRuleCreate() {
   console.log(result);
 }
 
-routeFilterRuleCreate().catch(console.error);
+async function main() {
+  routeFilterRuleCreate();
+}
+
+main().catch(console.error);

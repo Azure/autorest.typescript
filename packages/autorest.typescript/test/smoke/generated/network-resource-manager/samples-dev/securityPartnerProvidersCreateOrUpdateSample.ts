@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates the specified Security Partner Provider.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SecurityPartnerProviderPut.json
  */
 async function createSecurityPartnerProvider() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const securityPartnerProviderName = "securityPartnerProvider";
   const parameters: SecurityPartnerProvider = {
     location: "West US",
@@ -43,4 +46,8 @@ async function createSecurityPartnerProvider() {
   console.log(result);
 }
 
-createSecurityPartnerProvider().catch(console.error);
+async function main() {
+  createSecurityPartnerProvider();
+}
+
+main().catch(console.error);

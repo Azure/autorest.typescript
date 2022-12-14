@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the list of SwapResource which identifies the slot type for the specified cloud service. The slot type on a cloud service can either be Staging or Production
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/CloudServiceSwapList.json
  */
 async function getSwapResourceList() {
-  const subscriptionId = "subid";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const groupName = "rg1";
   const resourceName = "testCloudService";
   const credential = new DefaultAzureCredential();
@@ -27,4 +30,8 @@ async function getSwapResourceList() {
   console.log(result);
 }
 
-getSwapResourceList().catch(console.error);
+async function main() {
+  getSwapResourceList();
+}
+
+main().catch(console.error);

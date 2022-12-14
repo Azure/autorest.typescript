@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the Ddos Protection Status of all IP Addresses under the Virtual Network
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGetDdosProtectionStatus.json
  */
 async function getDdosProtectionStatusOfAVirtualNetwork() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
   const top = 75;
   const options: VirtualNetworksListDdosProtectionStatusOptionalParams = {
@@ -41,4 +44,8 @@ async function getDdosProtectionStatusOfAVirtualNetwork() {
   console.log(resArray);
 }
 
-getDdosProtectionStatusOfAVirtualNetwork().catch(console.error);
+async function main() {
+  getDdosProtectionStatusOfAVirtualNetwork();
+}
+
+main().catch(console.error);

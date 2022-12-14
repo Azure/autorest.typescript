@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets load balancer frontend IP configuration.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerFrontendIPConfigurationGet.json
  */
 async function loadBalancerFrontendIPConfigurationGet() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "testrg";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
   const frontendIPConfigurationName = "frontend";
   const credential = new DefaultAzureCredential();
@@ -32,4 +35,8 @@ async function loadBalancerFrontendIPConfigurationGet() {
   console.log(result);
 }
 
-loadBalancerFrontendIPConfigurationGet().catch(console.error);
+async function main() {
+  loadBalancerFrontendIPConfigurationGet();
+}
+
+main().catch(console.error);

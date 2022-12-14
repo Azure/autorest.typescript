@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates the specified Network Virtual Appliance Site.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualApplianceSitePut.json
  */
 async function createNetworkVirtualApplianceSite() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkVirtualApplianceName = "nva";
   const siteName = "site1";
   const parameters: VirtualApplianceSite = {
@@ -42,4 +45,8 @@ async function createNetworkVirtualApplianceSite() {
   console.log(result);
 }
 
-createNetworkVirtualApplianceSite().catch(console.error);
+async function main() {
+  createNetworkVirtualApplianceSite();
+}
+
+main().catch(console.error);

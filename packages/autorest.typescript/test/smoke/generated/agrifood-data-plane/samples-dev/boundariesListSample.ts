@@ -33,4 +33,8 @@ async function boundariesList() {
   console.log(result);
 }
 
-boundariesList().catch(console.error);
+async function main() {
+  boundariesList();
+}
+
+main().catch(console.error);

@@ -36,4 +36,8 @@ async function applicationDataListByFarmerId() {
   console.log(result);
 }
 
-applicationDataListByFarmerId().catch(console.error);
+async function main() {
+  applicationDataListByFarmerId();
+}
+
+main().catch(console.error);

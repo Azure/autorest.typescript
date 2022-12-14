@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Retrieves all the ExpressRouteProviderPorts in a subscription.
@@ -18,11 +21,15 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/expressRouteProviderPortList.json
  */
 async function expressRouteProviderPortList() {
-  const subscriptionId = "subid";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteProviderPortsLocation.list();
   console.log(result);
 }
 
-expressRouteProviderPortList().catch(console.error);
+async function main() {
+  expressRouteProviderPortList();
+}
+
+main().catch(console.error);

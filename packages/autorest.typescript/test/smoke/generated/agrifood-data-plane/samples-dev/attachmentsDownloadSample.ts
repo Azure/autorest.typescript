@@ -34,4 +34,8 @@ async function attachmentsDownload() {
   console.log(result);
 }
 
-attachmentsDownload().catch(console.error);
+async function main() {
+  attachmentsDownload();
+}
+
+main().catch(console.error);

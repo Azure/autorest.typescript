@@ -31,4 +31,8 @@ async function deleteMultivariateModel() {
   console.log(result);
 }
 
-deleteMultivariateModel().catch(console.error);
+async function main() {
+  deleteMultivariateModel();
+}
+
+main().catch(console.error);

@@ -36,4 +36,8 @@ async function plantingDataListByFarmerId() {
   console.log(result);
 }
 
-plantingDataListByFarmerId().catch(console.error);
+async function main() {
+  plantingDataListByFarmerId();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the specified ExpressRouteConnection.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteConnectionGet.json
  */
 async function expressRouteConnectionGet() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "resourceGroupName";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "resourceGroupName";
   const expressRouteGatewayName = "expressRouteGatewayName";
   const connectionName = "connectionName";
   const credential = new DefaultAzureCredential();
@@ -32,4 +36,8 @@ async function expressRouteConnectionGet() {
   console.log(result);
 }
 
-expressRouteConnectionGet().catch(console.error);
+async function main() {
+  expressRouteConnectionGet();
+}
+
+main().catch(console.error);

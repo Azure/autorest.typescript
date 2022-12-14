@@ -33,4 +33,8 @@ async function boundariesSearch() {
   console.log(result);
 }
 
-boundariesSearch().catch(console.error);
+async function main() {
+  boundariesSearch();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists the specified static member.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerStaticMemberList.json
  */
 async function staticMembersList() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "rg1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkManagerName = "testNetworkManager";
   const networkGroupName = "testNetworkGroup";
   const credential = new DefaultAzureCredential();
@@ -35,4 +39,8 @@ async function staticMembersList() {
   console.log(resArray);
 }
 
-staticMembersList().catch(console.error);
+async function main() {
+  staticMembersList();
+}
+
+main().catch(console.error);

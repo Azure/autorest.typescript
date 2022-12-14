@@ -20,4 +20,8 @@ async function enumGetReferencedConstant() {
   console.log(result);
 }
 
-enumGetReferencedConstant().catch(console.error);
+async function main() {
+  enumGetReferencedConstant();
+}
+
+main().catch(console.error);

@@ -31,4 +31,8 @@ async function getDetectionResult() {
   console.log(result);
 }
 
-getDetectionResult().catch(console.error);
+async function main() {
+  getDetectionResult();
+}
+
+main().catch(console.error);

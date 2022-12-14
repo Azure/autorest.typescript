@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Deletes a database replication link in forced or friendly way.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/ReplicationLinkUnlink.json
  */
 async function deleteReplicationLink() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-8931";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-8931";
   const serverName = "sqlcrudtest-2137";
   const databaseName = "testdb";
   const linkId = "f0550bf5-07ce-4270-8e4b-71737975973a";
@@ -39,4 +43,8 @@ async function deleteReplicationLink() {
   console.log(result);
 }
 
-deleteReplicationLink().catch(console.error);
+async function main() {
+  deleteReplicationLink();
+}
+
+main().catch(console.error);

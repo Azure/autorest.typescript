@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a peering in the specified ExpressRouteCrossConnection.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionBgpPeeringCreate.json
  */
 async function expressRouteCrossConnectionBgpPeeringCreate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "CrossConnection-SiliconValley";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
   const peeringParameters: ExpressRouteCrossConnectionPeering = {
@@ -46,4 +50,8 @@ async function expressRouteCrossConnectionBgpPeeringCreate() {
   console.log(result);
 }
 
-expressRouteCrossConnectionBgpPeeringCreate().catch(console.error);
+async function main() {
+  expressRouteCrossConnectionBgpPeeringCreate();
+}
+
+main().catch(console.error);

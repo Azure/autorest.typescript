@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a static or dynamic public IP address.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PublicIpAddressCreateDns.json
  */
 async function createPublicIPAddressDns() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const publicIpAddressName = "test-ip";
   const parameters: PublicIPAddress = {
     dnsSettings: { domainNameLabel: "dnslbl" },
@@ -38,8 +41,6 @@ async function createPublicIPAddressDns() {
   console.log(result);
 }
 
-createPublicIPAddressDns().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a static or dynamic public IP address.
  *
@@ -47,8 +48,8 @@ createPublicIPAddressDns().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PublicIpAddressCreateCustomizedValues.json
  */
 async function createPublicIPAddressAllocationMethod() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const publicIpAddressName = "test-ip";
   const parameters: PublicIPAddress = {
     idleTimeoutInMinutes: 10,
@@ -67,8 +68,6 @@ async function createPublicIPAddressAllocationMethod() {
   console.log(result);
 }
 
-createPublicIPAddressAllocationMethod().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a static or dynamic public IP address.
  *
@@ -76,8 +75,8 @@ createPublicIPAddressAllocationMethod().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PublicIpAddressCreateDefaults.json
  */
 async function createPublicIPAddressDefaults() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const publicIpAddressName = "test-ip";
   const parameters: PublicIPAddress = { location: "eastus" };
   const credential = new DefaultAzureCredential();
@@ -90,4 +89,10 @@ async function createPublicIPAddressDefaults() {
   console.log(result);
 }
 
-createPublicIPAddressDefaults().catch(console.error);
+async function main() {
+  createPublicIPAddressDns();
+  createPublicIPAddressAllocationMethod();
+  createPublicIPAddressDefaults();
+}
+
+main().catch(console.error);

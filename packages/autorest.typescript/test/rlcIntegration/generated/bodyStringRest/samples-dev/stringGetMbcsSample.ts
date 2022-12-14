@@ -20,4 +20,8 @@ async function stringGetMbcs() {
   console.log(result);
 }
 
-stringGetMbcs().catch(console.error);
+async function main() {
+  stringGetMbcs();
+}
+
+main().catch(console.error);

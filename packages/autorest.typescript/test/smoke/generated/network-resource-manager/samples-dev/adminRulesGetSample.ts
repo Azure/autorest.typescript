@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a network manager security configuration admin rule.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerAdminRuleGet.json
  */
 async function getsSecurityAdminRule() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "rg1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkManagerName = "testNetworkManager";
   const configurationName = "myTestSecurityConfig";
   const ruleCollectionName = "testRuleCollection";
@@ -36,8 +40,6 @@ async function getsSecurityAdminRule() {
   console.log(result);
 }
 
-getsSecurityAdminRule().catch(console.error);
-
 /**
  * This sample demonstrates how to Gets a network manager security configuration admin rule.
  *
@@ -45,8 +47,9 @@ getsSecurityAdminRule().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerDefaultAdminRuleGet.json
  */
 async function getsSecurityDefaultAdminRule() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "rg1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkManagerName = "testNetworkManager";
   const configurationName = "myTestSecurityConfig";
   const ruleCollectionName = "testRuleCollection";
@@ -63,4 +66,9 @@ async function getsSecurityDefaultAdminRule() {
   console.log(result);
 }
 
-getsSecurityDefaultAdminRule().catch(console.error);
+async function main() {
+  getsSecurityAdminRule();
+  getsSecurityDefaultAdminRule();
+}
+
+main().catch(console.error);

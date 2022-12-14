@@ -33,4 +33,8 @@ async function tillageDataList() {
   console.log(result);
 }
 
-tillageDataList().catch(console.error);
+async function main() {
+  tillageDataList();
+}
+
+main().catch(console.error);

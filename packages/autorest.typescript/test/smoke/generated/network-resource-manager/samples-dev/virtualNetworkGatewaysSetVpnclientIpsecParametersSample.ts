@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of virtual network gateway in the specified resource group through Network resource provider.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewaySetVpnClientIpsecParameters.json
  */
 async function setVirtualNetworkGatewayVpnClientIpsecParameters() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayName = "vpngw";
   const vpnclientIpsecParams: VpnClientIPsecParameters = {
     dhGroup: "DHGroup2",
@@ -44,4 +47,8 @@ async function setVirtualNetworkGatewayVpnClientIpsecParameters() {
   console.log(result);
 }
 
-setVirtualNetworkGatewayVpnClientIpsecParameters().catch(console.error);
+async function main() {
+  setVirtualNetworkGatewayVpnClientIpsecParameters();
+}
+
+main().catch(console.error);

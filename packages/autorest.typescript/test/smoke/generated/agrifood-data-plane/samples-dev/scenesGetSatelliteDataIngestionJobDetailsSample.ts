@@ -29,4 +29,8 @@ async function scenesGetSatelliteDataIngestionJobDetails() {
   console.log(result);
 }
 
-scenesGetSatelliteDataIngestionJobDetails().catch(console.error);
+async function main() {
+  scenesGetSatelliteDataIngestionJobDetails();
+}
+
+main().catch(console.error);

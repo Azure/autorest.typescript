@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to The operation to create or update the restore point collection. Please refer to https://aka.ms/RestorePoints for more details. When updating a restore point collection, only tags may be modified.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateARestorePointCollection.json
  */
 async function createOrUpdateARestorePointCollection() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const restorePointCollectionName = "myRpc";
   const parameters: RestorePointCollection = {
     location: "norwayeast",
@@ -42,4 +45,8 @@ async function createOrUpdateARestorePointCollection() {
   console.log(result);
 }
 
-createOrUpdateARestorePointCollection().catch(console.error);
+async function main() {
+  createOrUpdateARestorePointCollection();
+}
+
+main().catch(console.error);

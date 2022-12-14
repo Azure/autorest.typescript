@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Returns the list of currently active sessions on the Bastion.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/BastionSessionDelete.json
  */
 async function deletesTheSpecifiedActiveSession() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const bastionHostName = "bastionhosttenant";
   const sessionIds: SessionIds = {};
   const credential = new DefaultAzureCredential();
@@ -38,4 +41,8 @@ async function deletesTheSpecifiedActiveSession() {
   console.log(resArray);
 }
 
-deletesTheSpecifiedActiveSession().catch(console.error);
+async function main() {
+  deletesTheSpecifiedActiveSession();
+}
+
+main().catch(console.error);

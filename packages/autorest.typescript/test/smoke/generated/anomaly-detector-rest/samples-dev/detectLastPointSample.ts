@@ -90,4 +90,8 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
   console.log(result);
 }
 
-detectAnomalyStatusOfTheLatestPointInTimeSeriesExample().catch(console.error);
+async function main() {
+  detectAnomalyStatusOfTheLatestPointInTimeSeriesExample();
+}
+
+main().catch(console.error);

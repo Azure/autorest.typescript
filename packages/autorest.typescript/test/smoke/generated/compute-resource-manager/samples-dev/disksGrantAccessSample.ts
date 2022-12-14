@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Grants access to a disk.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/BeginGetAccessManagedDisk.json
  */
 async function getASasOnAManagedDisk() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const grantAccessData: GrantAccessData = {
     access: "Read",
@@ -38,4 +41,8 @@ async function getASasOnAManagedDisk() {
   console.log(result);
 }
 
-getASasOnAManagedDisk().catch(console.error);
+async function main() {
+  getASasOnAManagedDisk();
+}
+
+main().catch(console.error);

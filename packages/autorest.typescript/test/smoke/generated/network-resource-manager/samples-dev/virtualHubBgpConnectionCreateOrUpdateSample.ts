@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a VirtualHubBgpConnection resource if it doesn't exist else updates the existing VirtualHubBgpConnection.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualHubBgpConnectionPut.json
  */
 async function virtualHubRouteTableV2Put() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "hub1";
   const connectionName = "conn1";
   const parameters: BgpConnection = {
@@ -44,4 +47,8 @@ async function virtualHubRouteTableV2Put() {
   console.log(result);
 }
 
-virtualHubRouteTableV2Put().catch(console.error);
+async function main() {
+  virtualHubRouteTableV2Put();
+}
+
+main().catch(console.error);

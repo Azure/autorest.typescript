@@ -40,4 +40,8 @@ async function seasonalFieldsCreateCascadeDeleteJob() {
   console.log(result);
 }
 
-seasonalFieldsCreateCascadeDeleteJob().catch(console.error);
+async function main() {
+  seasonalFieldsCreateCascadeDeleteJob();
+}
+
+main().catch(console.error);

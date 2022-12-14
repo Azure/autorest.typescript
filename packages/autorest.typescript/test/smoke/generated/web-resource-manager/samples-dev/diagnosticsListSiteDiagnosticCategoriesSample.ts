@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Get Diagnostics Categories
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDiagnosticCategories.json
  */
 async function listAppDiagnosticCategories() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const siteName = "SampleApp";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
@@ -32,8 +37,6 @@ async function listAppDiagnosticCategories() {
   }
   console.log(resArray);
 }
-
-listAppDiagnosticCategories().catch(console.error);
 
 /**
  * This sample demonstrates how to Description for Get Diagnostics Categories
@@ -42,8 +45,10 @@ listAppDiagnosticCategories().catch(console.error);
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDiagnosticCategoriesSlot.json
  */
 async function listAppSlotDiagnosticCategories() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const siteName = "SampleApp";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
@@ -57,4 +62,9 @@ async function listAppSlotDiagnosticCategories() {
   console.log(resArray);
 }
 
-listAppSlotDiagnosticCategories().catch(console.error);
+async function main() {
+  listAppDiagnosticCategories();
+  listAppSlotDiagnosticCategories();
+}
+
+main().catch(console.error);

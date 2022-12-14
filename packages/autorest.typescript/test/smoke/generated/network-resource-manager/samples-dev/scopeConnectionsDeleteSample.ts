@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Delete the pending scope connection created by this network manager.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerScopeConnectionDelete.json
  */
 async function deleteNetworkManagerScopeConnection() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "rg1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkManagerName = "testNetworkManager";
   const scopeConnectionName = "TestScopeConnection";
   const credential = new DefaultAzureCredential();
@@ -32,4 +36,8 @@ async function deleteNetworkManagerScopeConnection() {
   console.log(result);
 }
 
-deleteNetworkManagerScopeConnection().catch(console.error);
+async function main() {
+  deleteNetworkManagerScopeConnection();
+}
+
+main().catch(console.error);

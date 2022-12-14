@@ -14,6 +14,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a peering in the specified virtual network.
@@ -22,8 +25,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringCreate.json
  */
 async function createPeering() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "peerTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
   const virtualNetworkPeeringParameters: VirtualNetworkPeering = {
@@ -46,8 +49,6 @@ async function createPeering() {
   );
   console.log(result);
 }
-
-createPeering().catch(console.error);
 
 /**
  * This sample demonstrates how to Creates or updates a peering in the specified virtual network.
@@ -56,8 +57,8 @@ createPeering().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringCreateWithRemoteVirtualNetworkEncryption.json
  */
 async function createPeeringWithRemoteVirtualNetworkEncryption() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "peerTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
   const virtualNetworkPeeringParameters: VirtualNetworkPeering = {
@@ -81,8 +82,6 @@ async function createPeeringWithRemoteVirtualNetworkEncryption() {
   console.log(result);
 }
 
-createPeeringWithRemoteVirtualNetworkEncryption().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a peering in the specified virtual network.
  *
@@ -90,8 +89,8 @@ createPeeringWithRemoteVirtualNetworkEncryption().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkPeeringSync.json
  */
 async function syncPeering() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "peerTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "peerTest";
   const virtualNetworkName = "vnet1";
   const virtualNetworkPeeringName = "peer";
   const syncRemoteAddressSpace = "true";
@@ -120,4 +119,10 @@ async function syncPeering() {
   console.log(result);
 }
 
-syncPeering().catch(console.error);
+async function main() {
+  createPeering();
+  createPeeringWithRemoteVirtualNetworkEncryption();
+  syncPeering();
+}
+
+main().catch(console.error);

@@ -37,4 +37,8 @@ async function boundariesCreateCascadeDeleteJob() {
   console.log(result);
 }
 
-boundariesCreateCascadeDeleteJob().catch(console.error);
+async function main() {
+  boundariesCreateCascadeDeleteJob();
+}
+
+main().catch(console.error);
