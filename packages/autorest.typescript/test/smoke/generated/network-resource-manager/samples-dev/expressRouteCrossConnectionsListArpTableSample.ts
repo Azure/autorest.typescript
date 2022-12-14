@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the currently advertised ARP table associated with the express route cross connection in a resource group.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCrossConnectionsArpTable.json
  */
 async function getExpressRouteCrossConnectionsArpTable() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "CrossConnection-SiliconValley";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const peeringName = "AzurePrivatePeering";
   const devicePath = "primary";
@@ -34,4 +38,8 @@ async function getExpressRouteCrossConnectionsArpTable() {
   console.log(result);
 }
 
-getExpressRouteCrossConnectionsArpTable().catch(console.error);
+async function main() {
+  getExpressRouteCrossConnectionsArpTable();
+}
+
+main().catch(console.error);

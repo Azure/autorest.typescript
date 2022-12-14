@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the list of restore point collections in a resource group.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetRestorePointCollectionsInAResourceGroup.json
  */
 async function getsTheListOfRestorePointCollectionsInAResourceGroup() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -31,4 +34,8 @@ async function getsTheListOfRestorePointCollectionsInAResourceGroup() {
   console.log(resArray);
 }
 
-getsTheListOfRestorePointCollectionsInAResourceGroup().catch(console.error);
+async function main() {
+  getsTheListOfRestorePointCollectionsInAResourceGroup();
+}
+
+main().catch(console.error);

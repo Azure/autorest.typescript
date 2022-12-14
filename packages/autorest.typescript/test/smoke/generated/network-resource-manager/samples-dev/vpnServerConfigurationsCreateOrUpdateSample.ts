@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a VpnServerConfiguration resource if it doesn't exist else updates the existing VpnServerConfiguration.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnServerConfigurationPut.json
  */
 async function vpnServerConfigurationCreate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
   const vpnServerConfigurationParameters: VpnServerConfiguration = {
     location: "West US",
@@ -84,4 +87,8 @@ async function vpnServerConfigurationCreate() {
   console.log(result);
 }
 
-vpnServerConfigurationCreate().catch(console.error);
+async function main() {
+  vpnServerConfigurationCreate();
+}
+
+main().catch(console.error);

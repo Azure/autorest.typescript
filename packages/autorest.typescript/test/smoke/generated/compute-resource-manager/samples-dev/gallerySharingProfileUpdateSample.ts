@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update sharing profile of a gallery.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/AddToSharingProfileInAGallery.json
  */
 async function addSharingIdToTheSharingProfileOfAGallery() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
   const sharingUpdate: SharingUpdate = {
     groups: [
@@ -47,8 +50,6 @@ async function addSharingIdToTheSharingProfileOfAGallery() {
   console.log(result);
 }
 
-addSharingIdToTheSharingProfileOfAGallery().catch(console.error);
-
 /**
  * This sample demonstrates how to Update sharing profile of a gallery.
  *
@@ -56,8 +57,8 @@ addSharingIdToTheSharingProfileOfAGallery().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/ResetSharingProfileInAGallery.json
  */
 async function resetSharingProfileOfAGallery() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
   const sharingUpdate: SharingUpdate = { operationType: "Reset" };
   const credential = new DefaultAzureCredential();
@@ -70,4 +71,9 @@ async function resetSharingProfileOfAGallery() {
   console.log(result);
 }
 
-resetSharingProfileOfAGallery().catch(console.error);
+async function main() {
+  addSharingIdToTheSharingProfileOfAGallery();
+  resetSharingProfileOfAGallery();
+}
+
+main().catch(console.error);

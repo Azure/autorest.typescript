@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a flow log resource by name.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherFlowLogGet.json
  */
 async function getFlowLog() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
   const flowLogName = "flowLog1";
   const credential = new DefaultAzureCredential();
@@ -32,4 +35,8 @@ async function getFlowLog() {
   console.log(result);
 }
 
-getFlowLog().catch(console.error);
+async function main() {
+  getFlowLog();
+}
+
+main().catch(console.error);

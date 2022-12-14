@@ -27,4 +27,8 @@ async function cropsGet() {
   console.log(result);
 }
 
-cropsGet().catch(console.error);
+async function main() {
+  cropsGet();
+}
+
+main().catch(console.error);

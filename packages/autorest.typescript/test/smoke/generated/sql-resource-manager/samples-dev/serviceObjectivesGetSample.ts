@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a database service objective.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/ServiceObjectiveGet.json
  */
 async function getAServiceObjective() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "group1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
   const serverName = "sqlcrudtest";
   const serviceObjectiveName = "29dd7459-4a7c-4e56-be22-f0adda49440d";
   const credential = new DefaultAzureCredential();
@@ -32,4 +36,8 @@ async function getAServiceObjective() {
   console.log(result);
 }
 
-getAServiceObjective().catch(console.error);
+async function main() {
+  getAServiceObjective();
+}
+
+main().catch(console.error);

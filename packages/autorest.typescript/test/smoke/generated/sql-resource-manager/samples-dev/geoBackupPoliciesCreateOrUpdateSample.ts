@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates a database geo backup policy.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/GeoBackupPoliciesCreateOrUpdate.json
  */
 async function updateGeoBackupPolicy() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-4799";
   const serverName = "sqlcrudtest-5961";
   const databaseName = "testdw";
   const geoBackupPolicyName = "Default";
@@ -39,4 +43,8 @@ async function updateGeoBackupPolicy() {
   console.log(result);
 }
 
-updateGeoBackupPolicy().catch(console.error);
+async function main() {
+  updateGeoBackupPolicy();
+}
+
+main().catch(console.error);

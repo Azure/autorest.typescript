@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates a database's short term retention policy.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/UpdateShortTermRetentionPolicy.json
  */
 async function updateTheShortTermRetentionPolicyForTheDatabase() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "resourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "resourceGroup";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const policyName = "default";
@@ -42,4 +46,8 @@ async function updateTheShortTermRetentionPolicyForTheDatabase() {
   console.log(result);
 }
 
-updateTheShortTermRetentionPolicyForTheDatabase().catch(console.error);
+async function main() {
+  updateTheShortTermRetentionPolicyForTheDatabase();
+}
+
+main().catch(console.error);

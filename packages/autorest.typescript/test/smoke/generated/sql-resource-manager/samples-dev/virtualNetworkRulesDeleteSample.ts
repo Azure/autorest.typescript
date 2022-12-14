@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Deletes the virtual network rule with the given name.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/VirtualNetworkRulesDelete.json
  */
 async function deleteAVirtualNetworkRule() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "Default";
   const serverName = "vnet-test-svr";
   const virtualNetworkRuleName = "vnet-firewall-rule";
   const credential = new DefaultAzureCredential();
@@ -32,4 +36,8 @@ async function deleteAVirtualNetworkRule() {
   console.log(result);
 }
 
-deleteAVirtualNetworkRule().catch(console.error);
+async function main() {
+  deleteAVirtualNetworkRule();
+}
+
+main().catch(console.error);

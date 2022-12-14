@@ -33,4 +33,8 @@ async function seasonsList() {
   console.log(result);
 }
 
-seasonsList().catch(console.error);
+async function main() {
+  seasonsList();
+}
+
+main().catch(console.error);

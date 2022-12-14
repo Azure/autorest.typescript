@@ -37,4 +37,8 @@ async function farmsCreateCascadeDeleteJob() {
   console.log(result);
 }
 
-farmsCreateCascadeDeleteJob().catch(console.error);
+async function main() {
+  farmsCreateCascadeDeleteJob();
+}
+
+main().catch(console.error);

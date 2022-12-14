@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a virtual wan vpn gateway if it doesn't exist else updates the existing gateway.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnGatewayPut.json
  */
 async function vpnGatewayPut() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
   const vpnGatewayParameters: VpnGateway = {
     bgpSettings: {
@@ -95,4 +98,8 @@ async function vpnGatewayPut() {
   console.log(result);
 }
 
-vpnGatewayPut().catch(console.error);
+async function main() {
+  vpnGatewayPut();
+}
+
+main().catch(console.error);

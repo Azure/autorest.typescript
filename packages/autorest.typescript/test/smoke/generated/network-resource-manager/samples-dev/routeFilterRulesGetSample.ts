@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the specified rule from a route filter.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteFilterRuleGet.json
  */
 async function routeFilterRuleGet() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeFilterName = "filterName";
   const ruleName = "filterName";
   const credential = new DefaultAzureCredential();
@@ -32,4 +35,8 @@ async function routeFilterRuleGet() {
   console.log(result);
 }
 
-routeFilterRuleGet().catch(console.error);
+async function main() {
+  routeFilterRuleGet();
+}
+
+main().catch(console.error);

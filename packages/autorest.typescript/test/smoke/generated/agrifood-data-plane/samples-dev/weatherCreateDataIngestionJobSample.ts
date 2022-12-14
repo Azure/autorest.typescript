@@ -33,4 +33,8 @@ async function weatherCreateDataIngestionJob() {
   console.log(result);
 }
 
-weatherCreateDataIngestionJob().catch(console.error);
+async function main() {
+  weatherCreateDataIngestionJob();
+}
+
+main().catch(console.error);

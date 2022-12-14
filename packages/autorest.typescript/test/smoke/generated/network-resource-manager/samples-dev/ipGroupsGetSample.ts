@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the specified ipGroups.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpGroupsGet.json
  */
 async function getIPGroups() {
-  const subscriptionId = "subId";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const ipGroupsName = "ipGroups1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -27,4 +30,8 @@ async function getIPGroups() {
   console.log(result);
 }
 
-getIPGroups().catch(console.error);
+async function main() {
+  getIPGroups();
+}
+
+main().catch(console.error);

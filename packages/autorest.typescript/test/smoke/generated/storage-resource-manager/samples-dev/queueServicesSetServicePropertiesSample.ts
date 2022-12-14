@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Sets the properties of a storage account’s Queue service, including properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueServicesPut.json
  */
 async function queueServicesPut() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4410";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4410";
   const accountName = "sto8607";
   const parameters: QueueServiceProperties = {
     cors: {
@@ -72,4 +75,8 @@ async function queueServicesPut() {
   console.log(result);
 }
 
-queueServicesPut().catch(console.error);
+async function main() {
+  queueServicesPut();
+}
+
+main().catch(console.error);

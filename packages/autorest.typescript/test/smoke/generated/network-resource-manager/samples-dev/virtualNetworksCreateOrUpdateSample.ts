@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreate.json
  */
 async function createVirtualNetwork() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
@@ -39,8 +42,6 @@ async function createVirtualNetwork() {
   console.log(result);
 }
 
-createVirtualNetwork().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -48,8 +49,8 @@ createVirtualNetwork().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateWithBgpCommunities.json
  */
 async function createVirtualNetworkWithBgpCommunities() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
@@ -67,8 +68,6 @@ async function createVirtualNetworkWithBgpCommunities() {
   console.log(result);
 }
 
-createVirtualNetworkWithBgpCommunities().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -76,8 +75,8 @@ createVirtualNetworkWithBgpCommunities().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateSubnetWithDelegation.json
  */
 async function createVirtualNetworkWithDelegatedSubnets() {
-  const subscriptionId = "subId";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
@@ -105,8 +104,6 @@ async function createVirtualNetworkWithDelegatedSubnets() {
   console.log(result);
 }
 
-createVirtualNetworkWithDelegatedSubnets().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -114,8 +111,8 @@ createVirtualNetworkWithDelegatedSubnets().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateWithEncryption.json
  */
 async function createVirtualNetworkWithEncryption() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
@@ -133,8 +130,6 @@ async function createVirtualNetworkWithEncryption() {
   console.log(result);
 }
 
-createVirtualNetworkWithEncryption().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -142,8 +137,8 @@ createVirtualNetworkWithEncryption().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateServiceEndpoints.json
  */
 async function createVirtualNetworkWithServiceEndpoints() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "vnetTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "vnetTest";
   const virtualNetworkName = "vnet1";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
@@ -166,8 +161,6 @@ async function createVirtualNetworkWithServiceEndpoints() {
   console.log(result);
 }
 
-createVirtualNetworkWithServiceEndpoints().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -175,8 +168,8 @@ createVirtualNetworkWithServiceEndpoints().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateServiceEndpointPolicy.json
  */
 async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "vnetTest";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "vnetTest";
   const virtualNetworkName = "vnet1";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
@@ -205,10 +198,6 @@ async function createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy(
   console.log(result);
 }
 
-createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -216,8 +205,8 @@ createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy().catch(
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateSubnet.json
  */
 async function createVirtualNetworkWithSubnet() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
@@ -234,8 +223,6 @@ async function createVirtualNetworkWithSubnet() {
   console.log(result);
 }
 
-createVirtualNetworkWithSubnet().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a virtual network in the specified resource group.
  *
@@ -243,8 +230,8 @@ createVirtualNetworkWithSubnet().catch(console.error);
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkCreateSubnetWithAddressPrefixes.json
  */
 async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
   const parameters: VirtualNetwork = {
     addressSpace: { addressPrefixes: ["10.0.0.0/16"] },
@@ -263,4 +250,15 @@ async function createVirtualNetworkWithSubnetContainingAddressPrefixes() {
   console.log(result);
 }
 
-createVirtualNetworkWithSubnetContainingAddressPrefixes().catch(console.error);
+async function main() {
+  createVirtualNetwork();
+  createVirtualNetworkWithBgpCommunities();
+  createVirtualNetworkWithDelegatedSubnets();
+  createVirtualNetworkWithEncryption();
+  createVirtualNetworkWithServiceEndpoints();
+  createVirtualNetworkWithServiceEndpointsAndServiceEndpointPolicy();
+  createVirtualNetworkWithSubnet();
+  createVirtualNetworkWithSubnetContainingAddressPrefixes();
+}
+
+main().catch(console.error);

@@ -46,4 +46,8 @@ async function detectAnomalyWithMultivariateModel() {
   console.log(result);
 }
 
-detectAnomalyWithMultivariateModel().catch(console.error);
+async function main() {
+  detectAnomalyWithMultivariateModel();
+}
+
+main().catch(console.error);

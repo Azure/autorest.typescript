@@ -29,4 +29,8 @@ async function oAuthProvidersGet() {
   console.log(result);
 }
 
-oAuthProvidersGet().catch(console.error);
+async function main() {
+  oAuthProvidersGet();
+}
+
+main().catch(console.error);

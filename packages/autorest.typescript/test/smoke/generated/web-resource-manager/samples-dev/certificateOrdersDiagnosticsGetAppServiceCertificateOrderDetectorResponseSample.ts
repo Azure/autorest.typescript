@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Microsoft.CertificateRegistration call to get a detector response from App Lens.
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.CertificateRegistration/stable/2021-02-01/examples/Diagnostics_GetAppServiceCertificateOrderDetectorResponse.json
  */
 async function getAppServiceCertificateOrderDetectorResponse() {
-  const subscriptionId = "5700fc96-77b4-4f8d-afce-c353d8c443bd";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "5700fc96-77b4-4f8d-afce-c353d8c443bd";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const certificateOrderName = "SampleCertificateOrderName";
   const detectorName = "AutoRenewStatus";
   const credential = new DefaultAzureCredential();
@@ -32,4 +37,8 @@ async function getAppServiceCertificateOrderDetectorResponse() {
   console.log(result);
 }
 
-getAppServiceCertificateOrderDetectorResponse().catch(console.error);
+async function main() {
+  getAppServiceCertificateOrderDetectorResponse();
+}
+
+main().catch(console.error);

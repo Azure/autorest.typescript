@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists all available response headers.
@@ -18,11 +21,16 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationGatewayAvailableResponseHeadersGet.json
  */
 async function getAvailableResponseHeaders() {
-  const subscriptionId = "72f988bf-86f1-41af-91ab-2d7cd0dddd4";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "72f988bf-86f1-41af-91ab-2d7cd0dddd4";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.listAvailableResponseHeaders();
   console.log(result);
 }
 
-getAvailableResponseHeaders().catch(console.error);
+async function main() {
+  getAvailableResponseHeaders();
+}
+
+main().catch(console.error);

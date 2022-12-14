@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Cancels the asynchronous operation on the database.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CancelDatabaseOperation.json
  */
 async function cancelTheDatabaseManagementOperation() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-7398";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-6661";
   const databaseName = "testdb";
   const operationId = "f779414b-e748-4925-8cfe-c8598f7660ae";
@@ -34,4 +38,8 @@ async function cancelTheDatabaseManagementOperation() {
   console.log(result);
 }
 
-cancelTheDatabaseManagementOperation().catch(console.error);
+async function main() {
+  cancelTheDatabaseManagementOperation();
+}
+
+main().catch(console.error);

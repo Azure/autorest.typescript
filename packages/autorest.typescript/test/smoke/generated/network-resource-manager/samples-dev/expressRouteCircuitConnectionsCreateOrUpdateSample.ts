@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a Express Route Circuit Connection in the specified express route circuits.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitConnectionCreate.json
  */
 async function expressRouteCircuitConnectionCreate() {
-  const subscriptionId = "subid1";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid1";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "ExpressRouteARMCircuitA";
   const peeringName = "AzurePrivatePeering";
   const connectionName = "circuitConnectionUSAUS";
@@ -51,4 +54,8 @@ async function expressRouteCircuitConnectionCreate() {
   console.log(result);
 }
 
-expressRouteCircuitConnectionCreate().catch(console.error);
+async function main() {
+  expressRouteCircuitConnectionCreate();
+}
+
+main().catch(console.error);

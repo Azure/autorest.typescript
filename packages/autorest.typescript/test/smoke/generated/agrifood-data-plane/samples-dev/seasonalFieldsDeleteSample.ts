@@ -34,4 +34,8 @@ async function seasonalFieldsDelete() {
   console.log(result);
 }
 
-seasonalFieldsDelete().catch(console.error);
+async function main() {
+  seasonalFieldsDelete();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the private link resources supported for the key vault.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/listPrivateLinkResources.json
  */
 async function keyVaultListPrivateLinkResources() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "sample-group";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sample-group";
   const vaultName = "sample-vault";
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
@@ -30,4 +34,8 @@ async function keyVaultListPrivateLinkResources() {
   console.log(result);
 }
 
-keyVaultListPrivateLinkResources().catch(console.error);
+async function main() {
+  keyVaultListPrivateLinkResources();
+}
+
+main().catch(console.error);

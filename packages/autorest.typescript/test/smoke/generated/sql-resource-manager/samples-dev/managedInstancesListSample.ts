@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a list of all managed instances in the subscription.
@@ -18,7 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceList.json
  */
 async function listManagedInstances() {
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -27,8 +31,6 @@ async function listManagedInstances() {
   }
   console.log(resArray);
 }
-
-listManagedInstances().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets a list of all managed instances in the subscription.
@@ -37,7 +39,8 @@ listManagedInstances().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceListWithExpandEqualsAdministrators.json
  */
 async function listManagedInstancesWithExpandAdministratorsOrActivedirectory() {
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -47,6 +50,9 @@ async function listManagedInstancesWithExpandAdministratorsOrActivedirectory() {
   console.log(resArray);
 }
 
-listManagedInstancesWithExpandAdministratorsOrActivedirectory().catch(
-  console.error
-);
+async function main() {
+  listManagedInstances();
+  listManagedInstancesWithExpandAdministratorsOrActivedirectory();
+}
+
+main().catch(console.error);

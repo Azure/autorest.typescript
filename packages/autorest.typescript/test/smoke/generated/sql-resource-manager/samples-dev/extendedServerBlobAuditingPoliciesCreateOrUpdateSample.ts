@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates an extended server's blob auditing policy.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedServerBlobAuditingCreateMax.json
  */
 async function updateAServerExtendedBlobAuditingPolicyWithAllParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "blobauditingtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const parameters: ExtendedServerBlobAuditingPolicy = {
     auditActionsAndGroups: [
@@ -51,8 +56,6 @@ async function updateAServerExtendedBlobAuditingPolicyWithAllParameters() {
   console.log(result);
 }
 
-updateAServerExtendedBlobAuditingPolicyWithAllParameters().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates an extended server's blob auditing policy.
  *
@@ -60,8 +63,10 @@ updateAServerExtendedBlobAuditingPolicyWithAllParameters().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedServerBlobAuditingCreateMin.json
  */
 async function updateAServerExtendedBlobAuditingPolicyWithMinimalParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "blobauditingtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const parameters: ExtendedServerBlobAuditingPolicy = {
     state: "Enabled",
@@ -79,6 +84,9 @@ async function updateAServerExtendedBlobAuditingPolicyWithMinimalParameters() {
   console.log(result);
 }
 
-updateAServerExtendedBlobAuditingPolicyWithMinimalParameters().catch(
-  console.error
-);
+async function main() {
+  updateAServerExtendedBlobAuditingPolicyWithAllParameters();
+  updateAServerExtendedBlobAuditingPolicyWithMinimalParameters();
+}
+
+main().catch(console.error);

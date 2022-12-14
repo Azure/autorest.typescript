@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to List blob services of storage account. It returns a collection of one object named default.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobServicesList.json
  */
 async function listBlobServices() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4410";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4410";
   const accountName = "sto8607";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -33,4 +36,8 @@ async function listBlobServices() {
   console.log(resArray);
 }
 
-listBlobServices().catch(console.error);
+async function main() {
+  listBlobServices();
+}
+
+main().catch(console.error);

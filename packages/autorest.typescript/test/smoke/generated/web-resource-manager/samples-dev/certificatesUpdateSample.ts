@@ -13,6 +13,9 @@ import {
   WebSiteManagementClient
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Create or update a certificate.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/PatchCertificate.json
  */
 async function patchCertificate() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "testrg123";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg123";
   const name = "testc6282";
   const certificateEnvelope: CertificatePatchResource = {
     password: "<password>"
@@ -37,4 +41,8 @@ async function patchCertificate() {
   console.log(result);
 }
 
-patchCertificate().catch(console.error);
+async function main() {
+  patchCertificate();
+}
+
+main().catch(console.error);

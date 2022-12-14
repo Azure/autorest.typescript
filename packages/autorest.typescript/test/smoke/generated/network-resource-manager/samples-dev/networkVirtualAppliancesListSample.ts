@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets all Network Virtual Appliances in a subscription.
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceListBySubscription.json
  */
 async function listAllNetworkVirtualAppliancesForAGivenSubscription() {
-  const subscriptionId = "subid";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -28,4 +31,8 @@ async function listAllNetworkVirtualAppliancesForAGivenSubscription() {
   console.log(resArray);
 }
 
-listAllNetworkVirtualAppliancesForAGivenSubscription().catch(console.error);
+async function main() {
+  listAllNetworkVirtualAppliancesForAGivenSubscription();
+}
+
+main().catch(console.error);

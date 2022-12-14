@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Deletes the specified Express Route Circuit Connection from the specified express route circuit.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteCircuitConnectionDelete.json
  */
 async function deleteExpressRouteCircuit() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "ExpressRouteARMCircuitA";
   const peeringName = "AzurePrivatePeering";
   const connectionName = "circuitConnectionUSAUS";
@@ -34,4 +37,8 @@ async function deleteExpressRouteCircuit() {
   console.log(result);
 }
 
-deleteExpressRouteCircuit().catch(console.error);
+async function main() {
+  deleteExpressRouteCircuit();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Get all Kubernetes Environments for a subscription.
@@ -18,7 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/KubeEnvironments_ListBySubscription.json
  */
 async function listKubeEnvironmentsBySubscription() {
-  const subscriptionId = "8efdecc5-919e-44eb-b179-915dca89ebf9";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "8efdecc5-919e-44eb-b179-915dca89ebf9";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -28,4 +32,8 @@ async function listKubeEnvironmentsBySubscription() {
   console.log(resArray);
 }
 
-listKubeEnvironmentsBySubscription().catch(console.error);
+async function main() {
+  listKubeEnvironmentsBySubscription();
+}
+
+main().catch(console.error);

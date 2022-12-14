@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to The List operation gets information about the secrets in a vault.  NOTE: This API is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/listSecrets.json
  */
 async function listSecretsInTheVault() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "sample-group";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sample-group";
   const vaultName = "sample-vault";
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
@@ -30,4 +34,8 @@ async function listSecretsInTheVault() {
   console.log(resArray);
 }
 
-listSecretsInTheVault().catch(console.error);
+async function main() {
+  listSecretsInTheVault();
+}
+
+main().catch(console.error);

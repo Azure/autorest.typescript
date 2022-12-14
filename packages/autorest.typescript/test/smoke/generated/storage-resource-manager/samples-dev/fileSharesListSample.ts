@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists all shares.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/DeletedFileSharesList.json
  */
 async function listDeletedShares() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res9290";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto1590";
   const expand = "deleted";
   const options: FileSharesListOptionalParams = { expand };
@@ -39,8 +42,6 @@ async function listDeletedShares() {
   console.log(resArray);
 }
 
-listDeletedShares().catch(console.error);
-
 /**
  * This sample demonstrates how to Lists all shares.
  *
@@ -48,8 +49,8 @@ listDeletedShares().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileShareSnapshotsList.json
  */
 async function listShareSnapshots() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res9290";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto1590";
   const expand = "snapshots";
   const options: FileSharesListOptionalParams = { expand };
@@ -66,8 +67,6 @@ async function listShareSnapshots() {
   console.log(resArray);
 }
 
-listShareSnapshots().catch(console.error);
-
 /**
  * This sample demonstrates how to Lists all shares.
  *
@@ -75,8 +74,8 @@ listShareSnapshots().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileSharesList.json
  */
 async function listShares() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res9290";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto1590";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -90,4 +89,10 @@ async function listShares() {
   console.log(resArray);
 }
 
-listShares().catch(console.error);
+async function main() {
+  listDeletedShares();
+  listShareSnapshots();
+  listShares();
+}
+
+main().catch(console.error);

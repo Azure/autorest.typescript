@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates the specified Virtual Router.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualRouterPut.json
  */
 async function createVirtualRouter() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualRouterName = "virtualRouter";
   const parameters: VirtualRouter = {
     hostedGateway: {
@@ -42,4 +45,8 @@ async function createVirtualRouter() {
   console.log(result);
 }
 
-createVirtualRouter().catch(console.error);
+async function main() {
+  createVirtualRouter();
+}
+
+main().catch(console.error);

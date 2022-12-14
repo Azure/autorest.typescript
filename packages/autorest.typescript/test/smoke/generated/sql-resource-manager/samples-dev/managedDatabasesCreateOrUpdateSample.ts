@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseCreateRestoreExternalBackup.json
  */
 async function createsANewManagedDatabaseByRestoringFromAnExternalBackup() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const databaseName = "managedDatabase";
   const parameters: ManagedDatabase = {
@@ -45,10 +50,6 @@ async function createsANewManagedDatabaseByRestoringFromAnExternalBackup() {
   console.log(result);
 }
 
-createsANewManagedDatabaseByRestoringFromAnExternalBackup().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -56,8 +57,10 @@ createsANewManagedDatabaseByRestoringFromAnExternalBackup().catch(
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseCreateRecovery.json
  */
 async function createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const managedInstanceName = "server1";
   const databaseName = "testdb_recovered";
   const parameters: ManagedDatabase = {
@@ -77,10 +80,6 @@ async function createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup() {
   console.log(result);
 }
 
-createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -88,8 +87,10 @@ createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup().catch(
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseCreateRestoreLtrBackup.json
  */
 async function createsANewManagedDatabaseFromRestoringALongTermRetentionBackup() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const databaseName = "managedDatabase";
   const parameters: ManagedDatabase = {
@@ -110,10 +111,6 @@ async function createsANewManagedDatabaseFromRestoringALongTermRetentionBackup()
   console.log(result);
 }
 
-createsANewManagedDatabaseFromRestoringALongTermRetentionBackup().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -121,8 +118,10 @@ createsANewManagedDatabaseFromRestoringALongTermRetentionBackup().catch(
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseCreatePointInTimeRestore.json
  */
 async function createsANewManagedDatabaseUsingPointInTimeRestore() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const databaseName = "managedDatabase";
   const parameters: ManagedDatabase = {
@@ -143,8 +142,6 @@ async function createsANewManagedDatabaseUsingPointInTimeRestore() {
   console.log(result);
 }
 
-createsANewManagedDatabaseUsingPointInTimeRestore().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -152,8 +149,10 @@ createsANewManagedDatabaseUsingPointInTimeRestore().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseCreateMax.json
  */
 async function createsANewManagedDatabaseWithMaximalProperties() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const databaseName = "managedDatabase";
   const parameters: ManagedDatabase = {
@@ -171,8 +170,6 @@ async function createsANewManagedDatabaseWithMaximalProperties() {
   console.log(result);
 }
 
-createsANewManagedDatabaseWithMaximalProperties().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -180,8 +177,10 @@ createsANewManagedDatabaseWithMaximalProperties().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedDatabaseCreateMin.json
  */
 async function createsANewManagedDatabaseWithMinimalProperties() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const managedInstanceName = "managedInstance";
   const databaseName = "managedDatabase";
   const parameters: ManagedDatabase = { location: "southeastasia" };
@@ -196,4 +195,13 @@ async function createsANewManagedDatabaseWithMinimalProperties() {
   console.log(result);
 }
 
-createsANewManagedDatabaseWithMinimalProperties().catch(console.error);
+async function main() {
+  createsANewManagedDatabaseByRestoringFromAnExternalBackup();
+  createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup();
+  createsANewManagedDatabaseFromRestoringALongTermRetentionBackup();
+  createsANewManagedDatabaseUsingPointInTimeRestore();
+  createsANewManagedDatabaseWithMaximalProperties();
+  createsANewManagedDatabaseWithMinimalProperties();
+}
+
+main().catch(console.error);

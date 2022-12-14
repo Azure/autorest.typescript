@@ -34,4 +34,8 @@ async function applicationDataDelete() {
   console.log(result);
 }
 
-applicationDataDelete().catch(console.error);
+async function main() {
+  applicationDataDelete();
+}
+
+main().catch(console.error);

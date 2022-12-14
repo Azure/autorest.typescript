@@ -47,4 +47,8 @@ async function trainMultivariateModel() {
   console.log(result);
 }
 
-trainMultivariateModel().catch(console.error);
+async function main() {
+  trainMultivariateModel();
+}
+
+main().catch(console.error);

@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Configures flow log and traffic analytics (optional) on a specified resource.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkWatcherFlowLogConfigure.json
  */
 async function configureFlowLog() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
   const parameters: FlowLogInformation = {
     enabled: true,
@@ -41,4 +44,8 @@ async function configureFlowLog() {
   console.log(result);
 }
 
-configureFlowLog().catch(console.error);
+async function main() {
+  configureFlowLog();
+}
+
+main().catch(console.error);

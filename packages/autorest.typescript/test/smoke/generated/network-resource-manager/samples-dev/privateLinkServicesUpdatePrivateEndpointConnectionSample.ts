@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Approve or reject private end point connection for a private link service in a subscription.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/PrivateLinkServiceUpdatePrivateEndpointConnection.json
  */
 async function approveOrRejectPrivateEndPointConnectionForAPrivateLinkService() {
-  const subscriptionId = "subId";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceName = "testPls";
   const peConnectionName = "testPlePeConnection";
   const parameters: PrivateEndpointConnection = {
@@ -47,6 +50,8 @@ async function approveOrRejectPrivateEndPointConnectionForAPrivateLinkService() 
   console.log(result);
 }
 
-approveOrRejectPrivateEndPointConnectionForAPrivateLinkService().catch(
-  console.error
-);
+async function main() {
+  approveOrRejectPrivateEndPointConnectionForAPrivateLinkService();
+}
+
+main().catch(console.error);

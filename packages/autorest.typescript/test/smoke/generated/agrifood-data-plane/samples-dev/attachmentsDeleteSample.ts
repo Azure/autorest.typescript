@@ -34,4 +34,8 @@ async function attachmentsDelete() {
   console.log(result);
 }
 
-attachmentsDelete().catch(console.error);
+async function main() {
+  attachmentsDelete();
+}
+
+main().catch(console.error);

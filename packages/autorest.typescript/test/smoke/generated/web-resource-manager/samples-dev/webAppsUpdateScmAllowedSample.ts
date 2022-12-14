@@ -13,6 +13,9 @@ import {
   WebSiteManagementClient
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Updates whether user publishing credentials are allowed on the site or not.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/UpdatePublishingCredentialsPolicy.json
  */
 async function updateScmAllowed() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "rg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
   const name = "testSite";
   const csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity = {
     allow: true
@@ -37,4 +41,8 @@ async function updateScmAllowed() {
   console.log(result);
 }
 
-updateScmAllowed().catch(console.error);
+async function main() {
+  updateScmAllowed();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a managed instance.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceGet.json
  */
 async function getManagedInstance() {
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20d7082a-0fc7-4468-82bd-542694d5042b";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testinstance";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -29,8 +33,6 @@ async function getManagedInstance() {
   );
   console.log(result);
 }
-
-getManagedInstance().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets a managed instance.
@@ -39,8 +41,9 @@ getManagedInstance().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceGetWithExpandEqualsAdministrators.json
  */
 async function getManagedInstanceWithExpandAdministratorsOrActivedirectory() {
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20d7082a-0fc7-4468-82bd-542694d5042b";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testinstance";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -51,6 +54,9 @@ async function getManagedInstanceWithExpandAdministratorsOrActivedirectory() {
   console.log(result);
 }
 
-getManagedInstanceWithExpandAdministratorsOrActivedirectory().catch(
-  console.error
-);
+async function main() {
+  getManagedInstance();
+  getManagedInstanceWithExpandAdministratorsOrActivedirectory();
+}
+
+main().catch(console.error);

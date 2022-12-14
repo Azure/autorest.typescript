@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a disk.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskWithDiskAccess.json
  */
 async function createAManagedDiskAndAssociateWithDiskAccessResource() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: { createOption: "Empty" },
@@ -42,8 +45,6 @@ async function createAManagedDiskAndAssociateWithDiskAccessResource() {
   console.log(result);
 }
 
-createAManagedDiskAndAssociateWithDiskAccessResource().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -51,8 +52,8 @@ createAManagedDiskAndAssociateWithDiskAccessResource().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskWithDiskEncryptionSet.json
  */
 async function createAManagedDiskAndAssociateWithDiskEncryptionSet() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: { createOption: "Empty" },
@@ -73,8 +74,6 @@ async function createAManagedDiskAndAssociateWithDiskEncryptionSet() {
   console.log(result);
 }
 
-createAManagedDiskAndAssociateWithDiskEncryptionSet().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -82,8 +81,8 @@ createAManagedDiskAndAssociateWithDiskEncryptionSet().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskByCopyingASnapshot.json
  */
 async function createAManagedDiskByCopyingASnapshot() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: {
@@ -103,8 +102,6 @@ async function createAManagedDiskByCopyingASnapshot() {
   console.log(result);
 }
 
-createAManagedDiskByCopyingASnapshot().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -112,8 +109,8 @@ createAManagedDiskByCopyingASnapshot().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscription.json
  */
 async function createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscription() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: {
@@ -135,10 +132,6 @@ async function createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscri
   console.log(result);
 }
 
-createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscription().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -146,8 +139,8 @@ createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscription().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscription.json
  */
 async function createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscription() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: {
@@ -167,10 +160,6 @@ async function createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscripti
   console.log(result);
 }
 
-createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscription().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -178,8 +167,8 @@ createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscription().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskFromAPlatformImage.json
  */
 async function createAManagedDiskFromAPlatformImage() {
-  const subscriptionId = "{subscriptionId}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscriptionId}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: {
@@ -202,8 +191,6 @@ async function createAManagedDiskFromAPlatformImage() {
   console.log(result);
 }
 
-createAManagedDiskFromAPlatformImage().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -211,8 +198,8 @@ createAManagedDiskFromAPlatformImage().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskFromAnExistingManagedDisk.json
  */
 async function createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk2";
   const disk: Disk = {
     creationData: {
@@ -232,10 +219,6 @@ async function createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSu
   console.log(result);
 }
 
-createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -243,8 +226,8 @@ createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription().ca
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskWithSecurityProfile.json
  */
 async function createAManagedDiskWithSecurityProfile() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: {
@@ -268,8 +251,6 @@ async function createAManagedDiskWithSecurityProfile() {
   console.log(result);
 }
 
-createAManagedDiskWithSecurityProfile().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -277,8 +258,8 @@ createAManagedDiskWithSecurityProfile().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskWithSSDZRSAccountType.json
  */
 async function createAManagedDiskWithSsdZrsAccountType() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: { createOption: "Empty" },
@@ -296,8 +277,6 @@ async function createAManagedDiskWithSsdZrsAccountType() {
   console.log(result);
 }
 
-createAManagedDiskWithSsdZrsAccountType().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -305,8 +284,8 @@ createAManagedDiskWithSsdZrsAccountType().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedUploadDisk.json
  */
 async function createAManagedUploadDisk() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: { createOption: "Upload", uploadSizeBytes: 10737418752 },
@@ -322,8 +301,6 @@ async function createAManagedUploadDisk() {
   console.log(result);
 }
 
-createAManagedUploadDisk().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -331,8 +308,8 @@ createAManagedUploadDisk().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAnEmptyManagedDiskInExtendedLocation.json
  */
 async function createAnEmptyManagedDiskInExtendedLocation() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: { createOption: "Empty" },
@@ -350,8 +327,6 @@ async function createAnEmptyManagedDiskInExtendedLocation() {
   console.log(result);
 }
 
-createAnEmptyManagedDiskInExtendedLocation().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -359,8 +334,8 @@ createAnEmptyManagedDiskInExtendedLocation().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAnEmptyManagedDisk.json
  */
 async function createAnEmptyManagedDisk() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: { createOption: "Empty" },
@@ -377,8 +352,6 @@ async function createAnEmptyManagedDisk() {
   console.log(result);
 }
 
-createAnEmptyManagedDisk().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a disk.
  *
@@ -386,8 +359,8 @@ createAnEmptyManagedDisk().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateAManagedDiskWithLogicalSectorSize.json
  */
 async function createAnUltraManagedDiskWithLogicalSectorSize512E() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: { createOption: "Empty", logicalSectorSize: 512 },
@@ -405,4 +378,20 @@ async function createAnUltraManagedDiskWithLogicalSectorSize512E() {
   console.log(result);
 }
 
-createAnUltraManagedDiskWithLogicalSectorSize512E().catch(console.error);
+async function main() {
+  createAManagedDiskAndAssociateWithDiskAccessResource();
+  createAManagedDiskAndAssociateWithDiskEncryptionSet();
+  createAManagedDiskByCopyingASnapshot();
+  createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscription();
+  createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscription();
+  createAManagedDiskFromAPlatformImage();
+  createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSubscription();
+  createAManagedDiskWithSecurityProfile();
+  createAManagedDiskWithSsdZrsAccountType();
+  createAManagedUploadDisk();
+  createAnEmptyManagedDiskInExtendedLocation();
+  createAnEmptyManagedDisk();
+  createAnUltraManagedDiskWithLogicalSectorSize512E();
+}
+
+main().catch(console.error);

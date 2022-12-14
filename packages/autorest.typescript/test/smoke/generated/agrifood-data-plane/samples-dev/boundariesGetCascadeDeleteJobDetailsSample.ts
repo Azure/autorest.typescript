@@ -29,4 +29,8 @@ async function boundariesGetCascadeDeleteJobDetails() {
   console.log(result);
 }
 
-boundariesGetCascadeDeleteJobDetails().catch(console.error);
+async function main() {
+  boundariesGetCascadeDeleteJobDetails();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists all the encryption scopes available under the specified storage account.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountEncryptionScopeList.json
  */
 async function storageAccountEncryptionScopeList() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "resource-group-name";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "resource-group-name";
   const accountName = "{storage-account-name}";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -33,4 +37,8 @@ async function storageAccountEncryptionScopeList() {
   console.log(resArray);
 }
 
-storageAccountEncryptionScopeList().catch(console.error);
+async function main() {
+  storageAccountEncryptionScopeList();
+}
+
+main().catch(console.error);

@@ -34,4 +34,8 @@ async function seasonalFieldsGet() {
   console.log(result);
 }
 
-seasonalFieldsGet().catch(console.error);
+async function main() {
+  seasonalFieldsGet();
+}
+
+main().catch(console.error);

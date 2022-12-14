@@ -31,4 +31,8 @@ async function getMultivariateModel() {
   console.log(result);
 }
 
-getMultivariateModel().catch(console.error);
+async function main() {
+  getMultivariateModel();
+}
+
+main().catch(console.error);

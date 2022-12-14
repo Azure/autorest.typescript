@@ -36,4 +36,8 @@ async function boundariesListByFarmerId() {
   console.log(result);
 }
 
-boundariesListByFarmerId().catch(console.error);
+async function main() {
+  boundariesListByFarmerId();
+}
+
+main().catch(console.error);

@@ -13,6 +13,9 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a load balancer inbound NAT rule.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/InboundNatRuleCreate.json
  */
 async function inboundNatRuleCreate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "testrg";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb1";
   const inboundNatRuleName = "natRule1.1";
   const inboundNatRuleParameters: InboundNatRule = {
@@ -48,4 +51,8 @@ async function inboundNatRuleCreate() {
   console.log(result);
 }
 
-inboundNatRuleCreate().catch(console.error);
+async function main() {
+  inboundNatRuleCreate();
+}
+
+main().catch(console.error);

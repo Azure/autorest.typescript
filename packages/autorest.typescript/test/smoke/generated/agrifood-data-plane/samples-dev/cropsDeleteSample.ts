@@ -27,4 +27,8 @@ async function cropsDelete() {
   console.log(result);
 }
 
-cropsDelete().catch(console.error);
+async function main() {
+  cropsDelete();
+}
+
+main().catch(console.error);

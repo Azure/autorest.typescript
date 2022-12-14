@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the specified update domain of a cloud service. Use nextLink property in the response to get the next page of update domains. Do this till nextLink is null to fetch all the update domains.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/GetCloudServiceUpdateDomain.json
  */
 async function getCloudServiceUpdateDomain() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "ConstosoRG";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const updateDomain = 1;
   const credential = new DefaultAzureCredential();
@@ -32,4 +35,8 @@ async function getCloudServiceUpdateDomain() {
   console.log(result);
 }
 
-getCloudServiceUpdateDomain().catch(console.error);
+async function main() {
+  getCloudServiceUpdateDomain();
+}
+
+main().catch(console.error);

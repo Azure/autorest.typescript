@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update the object replication policy of the storage account.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateObjectReplicationPolicyOnDestination.json
  */
 async function storageAccountCreateObjectReplicationPolicyOnDestination() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res7687";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "dst112";
   const objectReplicationPolicyId = "default";
   const properties: ObjectReplicationPolicy = {
@@ -47,8 +50,6 @@ async function storageAccountCreateObjectReplicationPolicyOnDestination() {
   console.log(result);
 }
 
-storageAccountCreateObjectReplicationPolicyOnDestination().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update the object replication policy of the storage account.
  *
@@ -56,8 +57,8 @@ storageAccountCreateObjectReplicationPolicyOnDestination().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateObjectReplicationPolicyOnSource.json
  */
 async function storageAccountCreateObjectReplicationPolicyOnSource() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res7687";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "src1122";
   const objectReplicationPolicyId = "2a20bb73-5717-4635-985a-5d4cf777438f";
   const properties: ObjectReplicationPolicy = {
@@ -86,8 +87,6 @@ async function storageAccountCreateObjectReplicationPolicyOnSource() {
   console.log(result);
 }
 
-storageAccountCreateObjectReplicationPolicyOnSource().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update the object replication policy of the storage account.
  *
@@ -95,8 +94,8 @@ storageAccountCreateObjectReplicationPolicyOnSource().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountUpdateObjectReplicationPolicyOnDestination.json
  */
 async function storageAccountUpdateObjectReplicationPolicyOnDestination() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res7687";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "dst112";
   const objectReplicationPolicyId = "2a20bb73-5717-4635-985a-5d4cf777438f";
   const properties: ObjectReplicationPolicy = {
@@ -123,8 +122,6 @@ async function storageAccountUpdateObjectReplicationPolicyOnDestination() {
   console.log(result);
 }
 
-storageAccountUpdateObjectReplicationPolicyOnDestination().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update the object replication policy of the storage account.
  *
@@ -132,8 +129,8 @@ storageAccountUpdateObjectReplicationPolicyOnDestination().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountUpdateObjectReplicationPolicyOnSource.json
  */
 async function storageAccountUpdateObjectReplicationPolicyOnSource() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res7687";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "src1122";
   const objectReplicationPolicyId = "2a20bb73-5717-4635-985a-5d4cf777438f";
   const properties: ObjectReplicationPolicy = {
@@ -164,4 +161,11 @@ async function storageAccountUpdateObjectReplicationPolicyOnSource() {
   console.log(result);
 }
 
-storageAccountUpdateObjectReplicationPolicyOnSource().catch(console.error);
+async function main() {
+  storageAccountCreateObjectReplicationPolicyOnDestination();
+  storageAccountCreateObjectReplicationPolicyOnSource();
+  storageAccountUpdateObjectReplicationPolicyOnDestination();
+  storageAccountUpdateObjectReplicationPolicyOnSource();
+}
+
+main().catch(console.error);

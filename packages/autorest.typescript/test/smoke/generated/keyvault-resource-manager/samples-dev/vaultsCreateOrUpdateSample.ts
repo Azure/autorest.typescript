@@ -13,6 +13,9 @@ import {
   KeyVaultManagementClient
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update a key vault in the specified subscription.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/createVault.json
  */
 async function createANewVaultOrUpdateAnExistingVault() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "sample-resource-group";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "sample-resource-group";
   const vaultName = "sample-vault";
   const parameters: VaultCreateOrUpdateParameters = {
     location: "westus",
@@ -97,8 +102,6 @@ async function createANewVaultOrUpdateAnExistingVault() {
   console.log(result);
 }
 
-createANewVaultOrUpdateAnExistingVault().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a key vault in the specified subscription.
  *
@@ -106,8 +109,10 @@ createANewVaultOrUpdateAnExistingVault().catch(console.error);
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/createVaultWithNetworkAcls.json
  */
 async function createOrUpdateAVaultWithNetworkAcls() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "sample-resource-group";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "sample-resource-group";
   const vaultName = "sample-vault";
   const parameters: VaultCreateOrUpdateParameters = {
     location: "westus",
@@ -140,4 +145,9 @@ async function createOrUpdateAVaultWithNetworkAcls() {
   console.log(result);
 }
 
-createOrUpdateAVaultWithNetworkAcls().catch(console.error);
+async function main() {
+  createANewVaultOrUpdateAnExistingVault();
+  createOrUpdateAVaultWithNetworkAcls();
+}
+
+main().catch(console.error);

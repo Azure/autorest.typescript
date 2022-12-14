@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for List Site Detector Responses
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDetectorResponses.json
  */
 async function getAppDetectorResponses() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const siteName = "SampleApp";
   const slot = "staging";
   const credential = new DefaultAzureCredential();
@@ -34,8 +39,6 @@ async function getAppDetectorResponses() {
   }
   console.log(resArray);
 }
-
-getAppDetectorResponses().catch(console.error);
 
 /**
  * This sample demonstrates how to Description for List Site Detector Responses
@@ -44,8 +47,10 @@ getAppDetectorResponses().catch(console.error);
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDetectorResponsesSlot.json
  */
 async function getAppSlotDetectorResponses() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "Sample-WestUSResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Sample-WestUSResourceGroup";
   const siteName = "SampleApp";
   const slot = "staging";
   const credential = new DefaultAzureCredential();
@@ -61,4 +66,9 @@ async function getAppSlotDetectorResponses() {
   console.log(resArray);
 }
 
-getAppSlotDetectorResponses().catch(console.error);
+async function main() {
+  getAppDetectorResponses();
+  getAppSlotDetectorResponses();
+}
+
+main().catch(console.error);

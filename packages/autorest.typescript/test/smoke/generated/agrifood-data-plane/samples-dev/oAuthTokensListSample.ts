@@ -33,4 +33,8 @@ async function oAuthTokensList() {
   console.log(result);
 }
 
-oAuthTokensList().catch(console.error);
+async function main() {
+  oAuthTokensList();
+}
+
+main().catch(console.error);
