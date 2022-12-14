@@ -26,4 +26,8 @@ async function dpgPostModel() {
   console.log(result);
 }
 
-dpgPostModel().catch(console.error);
+async function main() {
+  dpgPostModel();
+}
+
+main().catch(console.error);

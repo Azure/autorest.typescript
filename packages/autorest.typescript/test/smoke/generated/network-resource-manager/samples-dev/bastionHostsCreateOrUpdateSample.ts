@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates the specified Bastion Host.
  *
  * @summary Creates or updates the specified Bastion Host.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/BastionHostPut.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/BastionHostPut.json
  */
 async function createBastionHost() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const bastionHostName = "bastionhosttenant";
   const parameters: BastionHost = {
     ipConfigurations: [
@@ -49,4 +52,8 @@ async function createBastionHost() {
   console.log(result);
 }
 
-createBastionHost().catch(console.error);
+async function main() {
+  createBastionHost();
+}
+
+main().catch(console.error);

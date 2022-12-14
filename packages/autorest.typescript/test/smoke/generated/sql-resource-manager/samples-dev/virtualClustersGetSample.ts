@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a virtual cluster.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/VirtualClusterGet.json
  */
 async function getVirtualCluster() {
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20d7082a-0fc7-4468-82bd-542694d5042b";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const virtualClusterName = "vc-subnet1-f769ed71-b3ad-491a-a9d5-26eeceaa6be2";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -30,4 +34,8 @@ async function getVirtualCluster() {
   console.log(result);
 }
 
-getVirtualCluster().catch(console.error);
+async function main() {
+  getVirtualCluster();
+}
+
+main().catch(console.error);

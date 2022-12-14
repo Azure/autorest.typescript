@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows an append pattern and does not clear out the existing tags that are not specified in the request.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersSetLegalHold.json
  */
 async function setLegalHoldContainers() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4303";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4303";
   const accountName = "sto7280";
   const containerName = "container8723";
   const legalHold: LegalHold = { tags: ["tag1", "tag2", "tag3"] };
@@ -37,8 +40,6 @@ async function setLegalHoldContainers() {
   console.log(result);
 }
 
-setLegalHoldContainers().catch(console.error);
-
 /**
  * This sample demonstrates how to Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows an append pattern and does not clear out the existing tags that are not specified in the request.
  *
@@ -46,8 +47,8 @@ setLegalHoldContainers().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersSetLegalHoldAllowProtectedAppendWritesAll.json
  */
 async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4303";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4303";
   const accountName = "sto7280";
   const containerName = "container8723";
   const legalHold: LegalHold = {
@@ -65,4 +66,9 @@ async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
   console.log(result);
 }
 
-setLegalHoldContainersWithAllowProtectedAppendWritesAll().catch(console.error);
+async function main() {
+  setLegalHoldContainers();
+  setLegalHoldContainersWithAllowProtectedAppendWritesAll();
+}
+
+main().catch(console.error);

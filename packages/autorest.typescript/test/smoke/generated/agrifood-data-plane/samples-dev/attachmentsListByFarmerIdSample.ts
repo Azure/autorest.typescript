@@ -36,4 +36,8 @@ async function attachmentsListByFarmerId() {
   console.log(result);
 }
 
-attachmentsListByFarmerId().catch(console.error);
+async function main() {
+  attachmentsListByFarmerId();
+}
+
+main().catch(console.error);

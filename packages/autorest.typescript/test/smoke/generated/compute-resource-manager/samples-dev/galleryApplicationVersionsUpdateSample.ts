@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update a gallery Application Version.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/UpdateASimpleGalleryApplicationVersion.json
  */
 async function updateASimpleGalleryApplicationVersion() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
   const galleryApplicationName = "myGalleryApplicationName";
   const galleryApplicationVersionName = "1.0.0";
@@ -61,4 +64,8 @@ async function updateASimpleGalleryApplicationVersion() {
   console.log(result);
 }
 
-updateASimpleGalleryApplicationVersion().catch(console.error);
+async function main() {
+  updateASimpleGalleryApplicationVersion();
+}
+
+main().catch(console.error);

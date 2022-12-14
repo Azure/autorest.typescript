@@ -187,6 +187,7 @@ export function getTypeForSchema(
     case SchemaType.Uuid:
     case SchemaType.Uri:
     case SchemaType.Credential:
+    case SchemaType.ArmId:
       typeName = "string";
       break;
     default:

@@ -30,4 +30,8 @@ async function fieldsGet() {
   console.log(result);
 }
 
-fieldsGet().catch(console.error);
+async function main() {
+  fieldsGet();
+}
+
+main().catch(console.error);

@@ -20,4 +20,8 @@ async function enumGetNotExpandable() {
   console.log(result);
 }
 
-enumGetNotExpandable().catch(console.error);
+async function main() {
+  enumGetNotExpandable();
+}
+
+main().catch(console.error);

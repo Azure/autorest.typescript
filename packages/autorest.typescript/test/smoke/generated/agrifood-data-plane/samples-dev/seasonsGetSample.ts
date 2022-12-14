@@ -27,4 +27,8 @@ async function seasonsGet() {
   console.log(result);
 }
 
-seasonsGet().catch(console.error);
+async function main() {
+  seasonsGet();
+}
+
+main().catch(console.error);

@@ -29,4 +29,8 @@ async function oAuthProvidersDelete() {
   console.log(result);
 }
 
-oAuthProvidersDelete().catch(console.error);
+async function main() {
+  oAuthProvidersDelete();
+}
+
+main().catch(console.error);

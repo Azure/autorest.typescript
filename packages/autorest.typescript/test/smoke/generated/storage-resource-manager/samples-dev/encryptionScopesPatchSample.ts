@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update encryption scope properties as specified in the request body. Update fails if the specified encryption scope does not already exist.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountPatchEncryptionScope.json
  */
 async function storageAccountPatchEncryptionScope() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "resource-group-name";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "resource-group-name";
   const accountName = "{storage-account-name}";
   const encryptionScopeName = "{encryption-scope-name}";
   const encryptionScope: EncryptionScope = {
@@ -43,4 +47,8 @@ async function storageAccountPatchEncryptionScope() {
   console.log(result);
 }
 
-storageAccountPatchEncryptionScope().catch(console.error);
+async function main() {
+  storageAccountPatchEncryptionScope();
+}
+
+main().catch(console.error);

@@ -34,4 +34,8 @@ async function harvestDataGet() {
   console.log(result);
 }
 
-harvestDataGet().catch(console.error);
+async function main() {
+  harvestDataGet();
+}
+
+main().catch(console.error);

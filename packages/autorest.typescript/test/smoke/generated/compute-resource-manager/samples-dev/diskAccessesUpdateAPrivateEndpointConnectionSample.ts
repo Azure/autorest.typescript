@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Approve or reject a private endpoint connection under disk access resource, this can't be used to create a new private endpoint connection.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ApprovePrivateEndpointConnection.json
  */
 async function approveAPrivateEndpointConnectionUnderADiskAccessResource() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const privateEndpointConnectionName = "myPrivateEndpointConnection";
   const privateEndpointConnection: PrivateEndpointConnection = {
@@ -42,6 +45,8 @@ async function approveAPrivateEndpointConnectionUnderADiskAccessResource() {
   console.log(result);
 }
 
-approveAPrivateEndpointConnectionUnderADiskAccessResource().catch(
-  console.error
-);
+async function main() {
+  approveAPrivateEndpointConnectionUnderADiskAccessResource();
+}
+
+main().catch(console.error);

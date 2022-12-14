@@ -34,4 +34,8 @@ async function applicationDataGet() {
   console.log(result);
 }
 
-applicationDataGet().catch(console.error);
+async function main() {
+  applicationDataGet();
+}
+
+main().catch(console.error);

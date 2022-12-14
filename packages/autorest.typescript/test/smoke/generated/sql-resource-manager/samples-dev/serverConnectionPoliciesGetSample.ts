@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a server connection policy
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ServerConnectionPoliciesGet.json
  */
 async function getsAServerConnectionPolicy() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "rgtest-12";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rgtest-12";
   const serverName = "servertest-6285";
   const connectionPolicyName = "default";
   const credential = new DefaultAzureCredential();
@@ -32,4 +36,8 @@ async function getsAServerConnectionPolicy() {
   console.log(result);
 }
 
-getsAServerConnectionPolicy().catch(console.error);
+async function main() {
+  getsAServerConnectionPolicy();
+}
+
+main().catch(console.error);

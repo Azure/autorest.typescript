@@ -34,4 +34,8 @@ async function cropVarietiesDelete() {
   console.log(result);
 }
 
-cropVarietiesDelete().catch(console.error);
+async function main() {
+  cropVarietiesDelete();
+}
+
+main().catch(console.error);

@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates an existing database.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/PatchVCoreDatabaseAssignMaintenanceConfiguration.json
  */
 async function assignsMaintenanceWindowToADatabase() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: DatabaseUpdate = {
@@ -41,8 +46,6 @@ async function assignsMaintenanceWindowToADatabase() {
   console.log(result);
 }
 
-assignsMaintenanceWindowToADatabase().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates an existing database.
  *
@@ -50,8 +53,10 @@ assignsMaintenanceWindowToADatabase().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/PatchVCoreDatabaseResetMaintenanceConfiguration.json
  */
 async function resetsMaintenanceWindowOfADatabaseToDefault() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: DatabaseUpdate = {
@@ -70,8 +75,6 @@ async function resetsMaintenanceWindowOfADatabaseToDefault() {
   console.log(result);
 }
 
-resetsMaintenanceWindowOfADatabaseToDefault().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates an existing database.
  *
@@ -79,8 +82,10 @@ resetsMaintenanceWindowOfADatabaseToDefault().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/PatchVCoreDatabase.json
  */
 async function updatesADatabase() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: DatabaseUpdate = {
@@ -99,4 +104,10 @@ async function updatesADatabase() {
   console.log(result);
 }
 
-updatesADatabase().catch(console.error);
+async function main() {
+  assignsMaintenanceWindowToADatabase();
+  resetsMaintenanceWindowOfADatabaseToDefault();
+  updatesADatabase();
+}
+
+main().catch(console.error);

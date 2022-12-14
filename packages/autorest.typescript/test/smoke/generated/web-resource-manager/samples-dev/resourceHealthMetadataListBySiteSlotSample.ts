@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Gets the category of ResourceHealthMetadata to use for the given site as a collection
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListResourceHealthMetadataBySite.json
  */
 async function listResourceHealthMetadataForASite() {
-  const subscriptionId = "4adb32ad-8327-4cbb-b775-b84b4465bb38";
-  const resourceGroupName = "Default-Web-NorthCentralUS";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "4adb32ad-8327-4cbb-b775-b84b4465bb38";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-Web-NorthCentralUS";
   const name = "newsiteinnewASE-NCUS";
   const slot = "Production";
   const credential = new DefaultAzureCredential();
@@ -35,4 +40,8 @@ async function listResourceHealthMetadataForASite() {
   console.log(resArray);
 }
 
-listResourceHealthMetadataForASite().catch(console.error);
+async function main() {
+  listResourceHealthMetadataForASite();
+}
+
+main().catch(console.error);

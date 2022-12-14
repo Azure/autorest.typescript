@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates a Network Virtual Appliance.
  *
  * @summary Updates a Network Virtual Appliance.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkVirtualApplianceUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkVirtualApplianceUpdateTags.json
  */
 async function updateNetworkVirtualAppliance() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkVirtualApplianceName = "nva";
   const parameters: TagsObject = { tags: { key1: "value1", key2: "value2" } };
   const credential = new DefaultAzureCredential();
@@ -35,4 +38,8 @@ async function updateNetworkVirtualAppliance() {
   console.log(result);
 }
 
-updateNetworkVirtualAppliance().catch(console.error);
+async function main() {
+  updateNetworkVirtualAppliance();
+}
+
+main().catch(console.error);

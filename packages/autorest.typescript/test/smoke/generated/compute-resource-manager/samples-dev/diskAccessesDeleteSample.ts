@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Deletes a disk access resource.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/DeleteADiskAccess.json
  */
 async function deleteADiskAccessResource() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -30,4 +33,8 @@ async function deleteADiskAccessResource() {
   console.log(result);
 }
 
-deleteADiskAccessResource().catch(console.error);
+async function main() {
+  deleteADiskAccessResource();
+}
+
+main().catch(console.error);

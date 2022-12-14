@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates a failover group.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/FailoverGroupUpdate.json
  */
 async function updateFailoverGroup() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "Default";
   const serverName = "failover-group-primary-server";
   const failoverGroupName = "failover-group-test-1";
   const parameters: FailoverGroupUpdate = {
@@ -45,4 +49,8 @@ async function updateFailoverGroup() {
   console.log(result);
 }
 
-updateFailoverGroup().catch(console.error);
+async function main() {
+  updateFailoverGroup();
+}
+
+main().catch(console.error);

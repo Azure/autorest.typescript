@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to The operation to delete a virtual machine.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ForceDeleteVirtualMachine.json
  */
 async function forceDeleteAVM() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmName = "myVM";
   const forceDeletion = true;
   const options: VirtualMachinesDeleteOptionalParams = { forceDeletion };
@@ -36,4 +39,8 @@ async function forceDeleteAVM() {
   console.log(result);
 }
 
-forceDeleteAVM().catch(console.error);
+async function main() {
+  forceDeleteAVM();
+}
+
+main().catch(console.error);

@@ -301,4 +301,8 @@ async function detectChangePointExample() {
   console.log(result);
 }
 
-detectChangePointExample().catch(console.error);
+async function main() {
+  detectChangePointExample();
+}
+
+main().catch(console.error);

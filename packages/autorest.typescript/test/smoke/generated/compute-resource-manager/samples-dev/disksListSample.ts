@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists all the disks under a subscription.
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListManagedDisksInASubscription.json
  */
 async function listAllManagedDisksInASubscription() {
-  const subscriptionId = "{subscription-id}";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -28,4 +31,8 @@ async function listAllManagedDisksInASubscription() {
   console.log(resArray);
 }
 
-listAllManagedDisksInASubscription().catch(console.error);
+async function main() {
+  listAllManagedDisksInASubscription();
+}
+
+main().catch(console.error);

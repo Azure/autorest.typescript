@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates an extended database's blob auditing policy.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedDatabaseAzureMonitorAuditingCreateMin.json
  */
 async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "blobauditingtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const databaseName = "testdb";
   const parameters: ExtendedDatabaseBlobAuditingPolicy = {
@@ -40,10 +45,6 @@ async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMin
   console.log(result);
 }
 
-createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates an extended database's blob auditing policy.
  *
@@ -51,8 +52,10 @@ createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters(
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedDatabaseBlobAuditingCreateMax.json
  */
 async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "blobauditingtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const databaseName = "testdb";
   const parameters: ExtendedDatabaseBlobAuditingPolicy = {
@@ -83,10 +86,6 @@ async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParamete
   console.log(result);
 }
 
-createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParameters().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates an extended database's blob auditing policy.
  *
@@ -94,8 +93,10 @@ createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParameters().catch(
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedDatabaseBlobAuditingCreateMin.json
  */
 async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "blobauditingtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const databaseName = "testdb";
   const parameters: ExtendedDatabaseBlobAuditingPolicy = {
@@ -115,6 +116,10 @@ async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalPara
   console.log(result);
 }
 
-createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalParameters().catch(
-  console.error
-);
+async function main() {
+  createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMinimalParameters();
+  createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParameters();
+  createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalParameters();
+}
+
+main().catch(console.error);

@@ -33,4 +33,8 @@ async function farmOperationsCreateDataIngestionJob() {
   console.log(result);
 }
 
-farmOperationsCreateDataIngestionJob().catch(console.error);
+async function main() {
+  farmOperationsCreateDataIngestionJob();
+}
+
+main().catch(console.error);

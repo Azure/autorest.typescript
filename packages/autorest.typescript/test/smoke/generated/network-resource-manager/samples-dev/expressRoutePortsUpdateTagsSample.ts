@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update ExpressRoutePort tags.
  *
  * @summary Update ExpressRoutePort tags.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRoutePortUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortUpdateTags.json
  */
 async function expressRoutePortUpdateTags() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const expressRoutePortName = "portName";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
   const credential = new DefaultAzureCredential();
@@ -35,4 +38,8 @@ async function expressRoutePortUpdateTags() {
   console.log(result);
 }
 
-expressRoutePortUpdateTags().catch(console.error);
+async function main() {
+  expressRoutePortUpdateTags();
+}
+
+main().catch(console.error);

@@ -30,4 +30,8 @@ async function boundariesGet() {
   console.log(result);
 }
 
-boundariesGet().catch(console.error);
+async function main() {
+  boundariesGet();
+}
+
+main().catch(console.error);

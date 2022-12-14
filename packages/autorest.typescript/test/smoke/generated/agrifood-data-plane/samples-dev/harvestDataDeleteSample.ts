@@ -34,4 +34,8 @@ async function harvestDataDelete() {
   console.log(result);
 }
 
-harvestDataDelete().catch(console.error);
+async function main() {
+  harvestDataDelete();
+}
+
+main().catch(console.error);

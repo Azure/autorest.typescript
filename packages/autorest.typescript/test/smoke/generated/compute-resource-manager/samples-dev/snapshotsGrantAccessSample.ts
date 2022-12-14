@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Grants access to a snapshot.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/BeginGetAccessSnapshot.json
  */
 async function getASasOnASnapshot() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const snapshotName = "mySnapshot";
   const grantAccessData: GrantAccessData = {
     access: "Read",
@@ -38,4 +41,8 @@ async function getASasOnASnapshot() {
   console.log(result);
 }
 
-getASasOnASnapshot().catch(console.error);
+async function main() {
+  getASasOnASnapshot();
+}
+
+main().catch(console.error);

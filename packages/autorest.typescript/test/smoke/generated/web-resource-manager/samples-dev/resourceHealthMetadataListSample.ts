@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for List all ResourceHealthMetadata for all sites in the subscription.
@@ -18,7 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListResourceHealthMetadataBySubscription.json
  */
 async function listResourceHealthMetadataForASubscription() {
-  const subscriptionId = "4adb32ad-8327-4cbb-b775-b84b4465bb38";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "4adb32ad-8327-4cbb-b775-b84b4465bb38";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -28,4 +32,8 @@ async function listResourceHealthMetadataForASubscription() {
   console.log(resArray);
 }
 
-listResourceHealthMetadataForASubscription().catch(console.error);
+async function main() {
+  listResourceHealthMetadataForASubscription();
+}
+
+main().catch(console.error);

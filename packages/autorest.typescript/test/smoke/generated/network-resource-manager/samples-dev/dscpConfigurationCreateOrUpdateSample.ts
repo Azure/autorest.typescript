@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a DSCP Configuration.
  *
  * @summary Creates or updates a DSCP Configuration.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/DscpConfigurationCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/DscpConfigurationCreate.json
  */
 async function createDscpConfiguration() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const dscpConfigurationName = "mydscpconfig";
   const parameters: DscpConfiguration = {
     location: "eastus",
@@ -58,4 +61,8 @@ async function createDscpConfiguration() {
   console.log(result);
 }
 
-createDscpConfiguration().catch(console.error);
+async function main() {
+  createDscpConfiguration();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { Job, SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a job.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateJobMax.json
  */
 async function createAJobWithAllPropertiesSpecified() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "group1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
   const jobName = "job1";
@@ -45,8 +49,6 @@ async function createAJobWithAllPropertiesSpecified() {
   console.log(result);
 }
 
-createAJobWithAllPropertiesSpecified().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a job.
  *
@@ -54,8 +56,9 @@ createAJobWithAllPropertiesSpecified().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateJobMin.json
  */
 async function createAJobWithDefaultProperties() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "group1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
   const jobName = "job1";
@@ -72,4 +75,9 @@ async function createAJobWithDefaultProperties() {
   console.log(result);
 }
 
-createAJobWithDefaultProperties().catch(console.error);
+async function main() {
+  createAJobWithAllPropertiesSpecified();
+  createAJobWithDefaultProperties();
+}
+
+main().catch(console.error);

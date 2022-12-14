@@ -33,4 +33,8 @@ async function farmersList() {
   console.log(result);
 }
 
-farmersList().catch(console.error);
+async function main() {
+  farmersList();
+}
+
+main().catch(console.error);

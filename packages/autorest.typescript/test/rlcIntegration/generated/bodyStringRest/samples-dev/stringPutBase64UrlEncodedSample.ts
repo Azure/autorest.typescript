@@ -25,4 +25,8 @@ async function stringPutNull() {
   console.log(result);
 }
 
-stringPutNull().catch(console.error);
+async function main() {
+  stringPutNull();
+}
+
+main().catch(console.error);

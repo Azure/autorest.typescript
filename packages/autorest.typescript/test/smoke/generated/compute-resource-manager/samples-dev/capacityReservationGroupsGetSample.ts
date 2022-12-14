@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to The operation that retrieves information about a capacity reservation group.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetACapacityReservationGroup.json
  */
 async function getACapacityReservationGroup() {
-  const subscriptionId = "{subscriptionId}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscriptionId}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const capacityReservationGroupName = "myCapacityReservationGroup";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -30,4 +33,8 @@ async function getACapacityReservationGroup() {
   console.log(result);
 }
 
-getACapacityReservationGroup().catch(console.error);
+async function main() {
+  getACapacityReservationGroup();
+}
+
+main().catch(console.error);

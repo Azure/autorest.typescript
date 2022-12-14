@@ -13,22 +13,56 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
  *
  * @summary Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VpnConnectionPut.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnConnectionPut.json
  */
 async function vpnConnectionPut() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
   const connectionName = "vpnConnection1";
   const vpnConnectionParameters: VpnConnection = {
     remoteVpnSite: {
       id:
         "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnSites/vpnSite1"
+    },
+    routingConfiguration: {
+      associatedRouteTable: {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable1"
+      },
+      inboundRouteMap: {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/routeMaps/routeMap1"
+      },
+      outboundRouteMap: {
+        id:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/virtualHub1/routeMaps/routeMap2"
+      },
+      propagatedRouteTables: {
+        ids: [
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable1"
+          },
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable2"
+          },
+          {
+            id:
+              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubRouteTables/hubRouteTable3"
+          }
+        ],
+        labels: ["label1", "label2"]
+      }
     },
     trafficSelectorPolicies: [],
     vpnLinkConnections: [
@@ -57,4 +91,8 @@ async function vpnConnectionPut() {
   console.log(result);
 }
 
-vpnConnectionPut().catch(console.error);
+async function main() {
+  vpnConnectionPut();
+}
+
+main().catch(console.error);

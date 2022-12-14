@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update an image.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/UpdateImage.json
  */
 async function updatesTagsOfAnImage() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const imageName = "myImage";
   const parameters: ImageUpdate = {
     hyperVGeneration: "V1",
@@ -42,4 +45,8 @@ async function updatesTagsOfAnImage() {
   console.log(result);
 }
 
-updatesTagsOfAnImage().catch(console.error);
+async function main() {
+  updatesTagsOfAnImage();
+}
+
+main().catch(console.error);

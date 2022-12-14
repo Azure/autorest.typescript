@@ -36,4 +36,8 @@ async function harvestDataListByFarmerId() {
   console.log(result);
 }
 
-harvestDataListByFarmerId().catch(console.error);
+async function main() {
+  harvestDataListByFarmerId();
+}
+
+main().catch(console.error);

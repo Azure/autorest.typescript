@@ -13,6 +13,9 @@ import {
   KeyVaultManagementClient
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update a key vault in the specified subscription.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/updateVault.json
  */
 async function updateAnExistingVault() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "sample-resource-group";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "sample-resource-group";
   const vaultName = "sample-vault";
   const parameters: VaultPatchParameters = {
     properties: {
@@ -96,4 +101,8 @@ async function updateAnExistingVault() {
   console.log(result);
 }
 
-updateAnExistingVault().catch(console.error);
+async function main() {
+  updateAnExistingVault();
+}
+
+main().catch(console.error);

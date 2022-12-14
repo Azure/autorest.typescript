@@ -36,4 +36,8 @@ async function cropVarietiesListByCropId() {
   console.log(result);
 }
 
-cropVarietiesListByCropId().catch(console.error);
+async function main() {
+  cropVarietiesListByCropId();
+}
+
+main().catch(console.error);

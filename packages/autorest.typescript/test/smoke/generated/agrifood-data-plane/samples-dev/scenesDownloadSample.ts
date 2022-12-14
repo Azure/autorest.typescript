@@ -31,4 +31,8 @@ async function scenesDownload() {
   console.log(result);
 }
 
-scenesDownload().catch(console.error);
+async function main() {
+  scenesDownload();
+}
+
+main().catch(console.error);

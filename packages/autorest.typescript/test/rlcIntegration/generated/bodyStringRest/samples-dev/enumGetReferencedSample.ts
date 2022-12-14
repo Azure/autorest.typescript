@@ -20,4 +20,8 @@ async function enumGetReferenced() {
   console.log(result);
 }
 
-enumGetReferenced().catch(console.error);
+async function main() {
+  enumGetReferenced();
+}
+
+main().catch(console.error);

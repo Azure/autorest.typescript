@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Aborts an unlocked immutability policy. The response of delete has immutabilityPeriodSinceCreationInDays set to 0. ETag in If-Match is required for this operation. Deleting a locked immutability policy is not allowed, the only way is to delete the container after deleting all expired blobs inside the policy locked container.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersDeleteImmutabilityPolicy.json
  */
 async function deleteImmutabilityPolicy() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res1581";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res1581";
   const accountName = "sto9621";
   const containerName = "container4910";
   const ifMatch = '"8d59f81a7fa7be0"';
@@ -34,4 +37,8 @@ async function deleteImmutabilityPolicy() {
   console.log(result);
 }
 
-deleteImmutabilityPolicy().catch(console.error);
+async function main() {
+  deleteImmutabilityPolicy();
+}
+
+main().catch(console.error);

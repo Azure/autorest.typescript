@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a database's security alert policy.
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseSecurityAlertGet.json
  */
 async function getADatabaseThreatDetectionPolicy() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "securityalert-6852";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "securityalert-6852";
   const serverName = "securityalert-2080";
   const databaseName = "testdb";
   const securityAlertPolicyName = "Default";
@@ -34,4 +39,8 @@ async function getADatabaseThreatDetectionPolicy() {
   console.log(result);
 }
 
-getADatabaseThreatDetectionPolicy().catch(console.error);
+async function main() {
+  getADatabaseThreatDetectionPolicy();
+}
+
+main().catch(console.error);

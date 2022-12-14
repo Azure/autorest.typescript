@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates (patches) a snapshot.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateASnapshot.json
  */
 async function updateASnapshot() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const snapshotName = "mySnapshot";
   const snapshot: SnapshotUpdate = {
     diskSizeGB: 20,
@@ -38,4 +41,8 @@ async function updateASnapshot() {
   console.log(result);
 }
 
-updateASnapshot().catch(console.error);
+async function main() {
+  updateASnapshot();
+}
+
+main().catch(console.error);

@@ -27,4 +27,8 @@ async function weatherGetDataDeleteJobDetails() {
   console.log(result);
 }
 
-weatherGetDataDeleteJobDetails().catch(console.error);
+async function main() {
+  weatherGetDataDeleteJobDetails();
+}
+
+main().catch(console.error);

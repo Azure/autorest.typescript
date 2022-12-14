@@ -89,4 +89,8 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
   console.log(result);
 }
 
-findAnomaliesForTheEntireSeriesInBatchExample().catch(console.error);
+async function main() {
+  findAnomaliesForTheEntireSeriesInBatchExample();
+}
+
+main().catch(console.error);

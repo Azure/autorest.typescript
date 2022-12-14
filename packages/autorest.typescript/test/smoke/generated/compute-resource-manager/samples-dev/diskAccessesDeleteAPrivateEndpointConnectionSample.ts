@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Deletes a private endpoint connection under a disk access resource.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/DeleteAPrivateEndpointConnection.json
  */
 async function deleteAPrivateEndpointConnectionUnderADiskAccessResource() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
   const privateEndpointConnectionName = "myPrivateEndpointConnection";
   const credential = new DefaultAzureCredential();
@@ -32,4 +35,8 @@ async function deleteAPrivateEndpointConnectionUnderADiskAccessResource() {
   console.log(result);
 }
 
-deleteAPrivateEndpointConnectionUnderADiskAccessResource().catch(console.error);
+async function main() {
+  deleteAPrivateEndpointConnectionUnderADiskAccessResource();
+}
+
+main().catch(console.error);

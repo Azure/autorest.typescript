@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a server trust group.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerTrustGroupCreate.json
  */
 async function createServerTrustGroup() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "Default";
   const locationName = "Japan East";
   const serverTrustGroupName = "server-trust-group-test";
   const parameters: ServerTrustGroup = {
@@ -49,4 +53,8 @@ async function createServerTrustGroup() {
   console.log(result);
 }
 
-createServerTrustGroup().catch(console.error);
+async function main() {
+  createServerTrustGroup();
+}
+
+main().catch(console.error);

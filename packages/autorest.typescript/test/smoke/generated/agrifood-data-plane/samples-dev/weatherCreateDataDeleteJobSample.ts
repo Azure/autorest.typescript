@@ -33,4 +33,8 @@ async function weatherCreateDataDeleteJob() {
   console.log(result);
 }
 
-weatherCreateDataDeleteJob().catch(console.error);
+async function main() {
+  weatherCreateDataDeleteJob();
+}
+
+main().catch(console.error);

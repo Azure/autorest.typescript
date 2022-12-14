@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Display information about a virtual machine scale set.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetVirtualMachineScaleSetAutoPlacedOnDedicatedHostGroup.json
  */
 async function getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -29,10 +32,6 @@ async function getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutom
   );
   console.log(result);
 }
-
-getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement().catch(
-  console.error
-);
 
 /**
  * This sample demonstrates how to Display information about a virtual machine scale set.
@@ -41,8 +40,8 @@ getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement()
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetVirtualMachineScaleSetWithUserData.json
  */
 async function getAVirtualMachineScaleSetWithUserData() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -53,4 +52,9 @@ async function getAVirtualMachineScaleSetWithUserData() {
   console.log(result);
 }
 
-getAVirtualMachineScaleSetWithUserData().catch(console.error);
+async function main() {
+  getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement();
+  getAVirtualMachineScaleSetWithUserData();
+}
+
+main().catch(console.error);

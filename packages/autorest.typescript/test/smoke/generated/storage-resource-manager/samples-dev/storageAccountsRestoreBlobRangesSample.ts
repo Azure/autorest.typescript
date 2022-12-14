@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Restore blobs in the specified blob ranges
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobRangesRestore.json
  */
 async function blobRangesRestore() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res9101";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9101";
   const accountName = "sto4445";
   const parameters: BlobRestoreParameters = {
     blobRanges: [
@@ -41,4 +44,8 @@ async function blobRangesRestore() {
   console.log(result);
 }
 
-blobRangesRestore().catch(console.error);
+async function main() {
+  blobRangesRestore();
+}
+
+main().catch(console.error);

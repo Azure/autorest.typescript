@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a list of database restore points.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseRestorePointsListByDatabase.json
  */
 async function listDatabaseRestorePoints() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-6730";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-6730";
   const serverName = "sqlcrudtest-9007";
   const databaseName = "3481";
   const credential = new DefaultAzureCredential();
@@ -35,8 +39,6 @@ async function listDatabaseRestorePoints() {
   console.log(resArray);
 }
 
-listDatabaseRestorePoints().catch(console.error);
-
 /**
  * This sample demonstrates how to Gets a list of database restore points.
  *
@@ -44,8 +46,10 @@ listDatabaseRestorePoints().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DataWarehouseRestorePointsListByDatabase.json
  */
 async function listDatawarehouseDatabaseRestorePoints() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testserver";
   const databaseName = "testDatabase";
   const credential = new DefaultAzureCredential();
@@ -61,4 +65,9 @@ async function listDatawarehouseDatabaseRestorePoints() {
   console.log(resArray);
 }
 
-listDatawarehouseDatabaseRestorePoints().catch(console.error);
+async function main() {
+  listDatabaseRestorePoints();
+  listDatawarehouseDatabaseRestorePoints();
+}
+
+main().catch(console.error);

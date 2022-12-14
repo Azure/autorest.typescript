@@ -30,4 +30,8 @@ async function boundariesDelete() {
   console.log(result);
 }
 
-boundariesDelete().catch(console.error);
+async function main() {
+  boundariesDelete();
+}
+
+main().catch(console.error);

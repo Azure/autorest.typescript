@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a server's blob auditing policy.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerBlobAuditingCreateMax.json
  */
 async function updateAServerBlobAuditingPolicyWithAllParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "blobauditingtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const parameters: ServerBlobAuditingPolicy = {
     auditActionsAndGroups: [
@@ -50,8 +55,6 @@ async function updateAServerBlobAuditingPolicyWithAllParameters() {
   console.log(result);
 }
 
-updateAServerBlobAuditingPolicyWithAllParameters().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a server's blob auditing policy.
  *
@@ -59,8 +62,10 @@ updateAServerBlobAuditingPolicyWithAllParameters().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerBlobAuditingCreateMin.json
  */
 async function updateAServerBlobAuditingPolicyWithMinimalParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "blobauditingtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "blobauditingtest-4799";
   const serverName = "blobauditingtest-6440";
   const parameters: ServerBlobAuditingPolicy = {
     state: "Enabled",
@@ -78,4 +83,9 @@ async function updateAServerBlobAuditingPolicyWithMinimalParameters() {
   console.log(result);
 }
 
-updateAServerBlobAuditingPolicyWithMinimalParameters().catch(console.error);
+async function main() {
+  updateAServerBlobAuditingPolicyWithAllParameters();
+  updateAServerBlobAuditingPolicyWithMinimalParameters();
+}
+
+main().catch(console.error);
