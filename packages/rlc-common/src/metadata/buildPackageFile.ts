@@ -222,7 +222,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
     packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.3.8";
     packageInfo.devDependencies["karma"] = "^6.2.0";
-    packageInfo.devDependencies["nyc"] = "^14.0.0";
+    packageInfo.devDependencies["nyc"] = "^15.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
     packageInfo.scripts["test"] =
       "npm run clean && npm run build:test && npm run unit-test";
