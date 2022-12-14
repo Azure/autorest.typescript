@@ -6,10 +6,13 @@ import { ResponseClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of the class ResponseClient class.
- *
+ * @param endpoint type: string
  */
-export function createClient(options: ClientOptions = {}): ResponseClient {
-  const baseUrl = options.baseUrl ?? "undefined";
+export function createClient(
+  endpoint: string,
+  options: ClientOptions = {}
+): ResponseClient {
+  const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
 
   const userAgentInfo = `azsdk-js-multiclient-rest/1.0.0-beta.1`;

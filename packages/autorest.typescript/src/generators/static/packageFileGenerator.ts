@@ -118,10 +118,9 @@ function regularAutorestPackage(
       "rollup-plugin-sourcemaps": "^0.6.3",
       typescript: "~4.8.0",
       "uglify-js": "^3.4.9",
-      rimraf: "^3.0.0"
+      rimraf: "^3.0.0",
+      dotenv: "^8.2.0"
     },
-    // TODO: Calculate the SDK path for the package
-    homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`,
     repository: {
       type: "git",
       url: "https://github.com/Azure/azure-sdk-for-js.git"
@@ -186,6 +185,10 @@ function regularAutorestPackage(
     },
     autoPublish: true
   };
+  if (azureOutputDirectory) {
+    packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
+  }
+
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";

@@ -41,6 +41,7 @@ function extractRLCOptions(
   const generateMetadata = getGenerateMetadata(emitterOptions);
   const generateTest = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
+  const azureOutputDirectory = getAzureOutputDirectory(emitterOptions);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -49,7 +50,8 @@ function extractRLCOptions(
     generateMetadata,
     generateTest,
     azureSdkForJs,
-    serviceInfo
+    serviceInfo,
+    azureOutputDirectory
   };
 }
 
@@ -175,4 +177,18 @@ function getCredentialInfo(program: Program, emitterOptions: RLCOptions) {
     credentialScopes,
     credentialKeyHeaderName
   };
+}
+
+function getAzureOutputDirectory(
+  emitterOptions: RLCOptions
+): string | undefined {
+  const skdFolder = emitterOptions["sdk-folder"];
+  const sdkReletivePath = skdFolder
+    ?.replace(/\/$/, "")
+    .split("/")
+    .slice(-3)
+    .join("/");
+  return sdkReletivePath?.substring(0, 3) === "sdk"
+    ? sdkReletivePath
+    : undefined;
 }

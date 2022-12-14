@@ -97,23 +97,30 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "build:samples": "echo skipped.",
       "build:test": "echo skipped.",
       "build:debug": "echo skipped.",
-      "check-format":
-        'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "test/**/*.ts" "samples-dev/**/*.ts" "*.{js,json}"',
+      "check-format": `prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ${appendPathWhenFormat(
+        generateTest,
+        generateSample
+      )}`,
       clean:
         "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "execute:samples": "echo skipped",
       "extract-api":
         "rimraf review && mkdirp ./review && api-extractor run --local",
-      format:
-        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "test/**/*.ts" "samples-dev/**/*.ts" "*.{js,json}"',
+      format: `prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ${appendPathWhenFormat(
+        generateTest,
+        generateSample
+      )}`,
       "generate:client":
         "autorest --typescript swagger/README.md && npm run format",
       "integration-test:browser": "echo skipped",
       "integration-test:node": "echo skipped",
       "integration-test": "echo skipped",
-      "lint:fix":
-        "eslint package.json api-extractor.json src test --ext .ts --fix --fix-type [problem,suggestion]",
-      lint: "eslint package.json api-extractor.json src test --ext .ts",
+      "lint:fix": `eslint package.json api-extractor.json src ${appednPathWhenLint(
+        generateTest
+      )} --ext .ts --fix --fix-type [problem,suggestion]`,
+      lint: `eslint package.json api-extractor.json src ${appednPathWhenLint(
+        generateTest
+      )} --ext .ts`,
       pack: "npm pack 2>&1",
       "test:browser": "echo skipped",
       "test:node": "echo skipped",
@@ -270,4 +277,22 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   }
 
   return packageInfo;
+}
+
+function appendPathWhenFormat(
+  generateTest?: boolean,
+  generateSample?: boolean
+) {
+  let path = "";
+  if (generateTest) {
+    path = path + ` "test/**/*.ts"`;
+  }
+  if (generateSample) {
+    path = path + ` "samples-dev/**/*.ts"`;
+  }
+  return path;
+}
+
+function appednPathWhenLint(generateTest?: boolean) {
+  return generateTest ? "test" : "";
 }
