@@ -803,4 +803,79 @@ describe("Input/output model type", () => {
       await verifyPropertyType(cadlType, typeScriptType);
     });
   });
+
+  describe("'is' keyword generation", () => {
+    it("should handle A is B, only A is referenced", async () => {
+      const cadlDefinition = `
+      model B {
+        "prop": string;
+      }
+      model A is B{
+        "prop1": string;
+      }`;
+      const cadlType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `${inputModelName}Output`,
+        additionalInputContent: `
+        export interface ${inputModelName} {
+          "prop": string;
+          "prop1": string;
+        }`,
+        additionalOutputContent: `
+        export interface ${inputModelName}Output {
+          "prop": string;
+          "prop1": string;
+        }`
+      });
+    });
+
+    it("should handle A is B, both A and B are referenced", async () => {
+      const schemaOutput = await emitModelsFromCadl(`
+      model B {
+        "prop": string;
+      }
+      model A is B{
+        "prop1": string;
+      }
+
+      @route("/models")
+      @get
+      op getModel(@body input: A): B;`);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile?.content);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface A {
+        "prop": string;
+        "prop1": string;
+    }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface BOutput {
+        "prop": string;
+    }
+      `
+      );
+    });
+
+    // Remember to fix this case to scalar when upgrading compiler
+    it("should handle A is B, B is string", async () => {
+      const cadlDefinition = `
+      model MyStr is string;`;
+      const cadlType = "MyStr";
+      const inputModelName = "string";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `${inputModelName}`
+      });
+    });
+  });
 });
