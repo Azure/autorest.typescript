@@ -1,20 +1,20 @@
 {
-  "name": "@msinternal/lro-basic",
+  "name": "@msinternal/extensible-fixed",
   "sdk-type": "client",
   "author": "Microsoft Corporation",
   "version": "1.0.0",
-  "description": "LRO Basic Test Service",
+  "description": "Fixed Enums Test Service",
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
-  "types": "./types/lro-basic.d.ts",
+  "types": "./types/extensible-fixed.d.ts",
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
     "dist/",
     "dist-esm/",
-    "types/lro-basic.d.ts",
+    "types/extensible-fixed.d.ts",
     "README.md",
     "LICENSE",
     "review/*"
@@ -55,8 +55,7 @@
     "@azure-rest/core-client": "1.0.0-beta.10",
     "@azure/core-rest-pipeline": "^1.8.0",
     "@azure/logger": "^1.0.0",
-    "tslib": "^2.2.0",
-    "@azure/core-lro": "^2.2.0"
+    "tslib": "^2.2.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",

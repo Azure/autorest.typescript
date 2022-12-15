@@ -10,7 +10,7 @@ export interface ProductOutput {
 }
 
 /** Final response from LRO call */
-export interface LROProductOutput extends ProductOutput {
+export interface LroProductOutput extends ProductOutput {
   /** Provisioning state returned by the service */
   provisioningState: string;
 }

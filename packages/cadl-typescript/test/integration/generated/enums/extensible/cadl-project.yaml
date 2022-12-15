@@ -6,6 +6,6 @@ emitters:
     azureSdkForJs: false
     isCadlTest: true
     packageDetails:
-      name: "@msinternal/readonly-property"
-      description: "Readonly Property Test Service"
+      name: "@msinternal/extensible-enums"
+      description: "Extensible Enums Test Service"
       version: "1.0.0"

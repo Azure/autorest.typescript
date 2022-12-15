@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import ExtensibleEnums from "./extensibleEnums";
+import EnumsExtensible from "./enumsExtensible";
 
-export * from "./extensibleEnums";
+export * from "./enumsExtensible";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 
-export default ExtensibleEnums;
+export default EnumsExtensible;

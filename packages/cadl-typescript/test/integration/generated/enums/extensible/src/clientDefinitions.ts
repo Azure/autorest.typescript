@@ -34,12 +34,12 @@ export interface GetUnknownValue {
 }
 
 export interface Routes {
-  /** Resource for '/extensible-enums/string/known-value' has methods for the following verbs: get, put */
-  (path: "/extensible-enums/string/known-value"): GetKnownValue;
-  /** Resource for '/extensible-enums/string/unknown-value' has methods for the following verbs: get, put */
-  (path: "/extensible-enums/string/unknown-value"): GetUnknownValue;
+  /** Resource for '/enums/extensible/string/known-value' has methods for the following verbs: get, put */
+  (path: "/enums/extensible/string/known-value"): GetKnownValue;
+  /** Resource for '/enums/extensible/string/unknown-value' has methods for the following verbs: get, put */
+  (path: "/enums/extensible/string/unknown-value"): GetUnknownValue;
 }
 
-export type ExtensibleEnumsClient = Client & {
+export type EnumsExtensibleClient = Client & {
   path: Routes;
 };

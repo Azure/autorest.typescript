@@ -1,12 +1,12 @@
-# ReadonlyProperties REST client library for JavaScript
+# EnumsFixed REST client library for JavaScript
 
-Readonly Property Test Service
+Fixed Enums Test Service
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/readonly-property)
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/extensible-fixed)
 
 ## Getting started
 
@@ -18,15 +18,15 @@ Key links:
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@msinternal/readonly-property` package
+### Install the `@msinternal/extensible-fixed` package
 
-Install the ReadonlyProperties REST client REST client library for JavaScript with `npm`:
+Install the EnumsFixed REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @msinternal/readonly-property
+npm install @msinternal/extensible-fixed
 ```
 
-### Create and authenticate a `ReadonlyPropertiesClient`
+### Create and authenticate a `EnumsFixedClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the
