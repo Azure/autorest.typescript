@@ -11,7 +11,7 @@ describe("Spread(...) and alias", () => {
           }
           model SimpleModel {
             @query
-            id: string;
+            skip: string;
             @body 
             body:User;
           }
@@ -29,7 +29,7 @@ describe("Spread(...) and alias", () => {
             }
 
             export interface ReadQueryParamProperties {
-              id: string;
+              skip: string;
             }
     
             export interface ReadQueryParam {
@@ -87,11 +87,11 @@ describe("Spread(...) and alias", () => {
             import { User } from "./models";
 
             export interface ReadBodyParam {
-            body: User;
+                body: User;
             }
 
             export interface ReadQueryParamProperties {
-            id: string;
+               id: string;
             }
 
             export interface ReadQueryParam {

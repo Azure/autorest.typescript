@@ -88,7 +88,7 @@ have logprobs returned. Minimum of 0 and maximum of 100 allowed.
     echo?: boolean;
 
     @doc("A sequence which indicates the end of the current document.")
-    stop?: CompletionsStop;
+    stop?: string | string[];
 
     @doc("Completion configuration")
     completion_config?: string;
