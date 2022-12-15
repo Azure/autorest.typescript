@@ -41,7 +41,7 @@ const responseMap: Record<string, string[]> = {
   "GET /app/transactions/{transactionId}": ["200"],
   "GET /app/transactions/{transactionId}/receipt": ["200"],
   "GET /app/transactions/{transactionId}/status": ["200"],
-  "GET /app/transactions:getCurrentLedgerEntry": ["200"],
+  "GET /app/transactions/getCurrentLedgerEntry": ["200"],
   "DELETE /app/users/{userId}": ["204"],
   "GET /app/users/{userId}": ["200"],
   "PATCH /app/users/{userId}": ["200", "201"],
