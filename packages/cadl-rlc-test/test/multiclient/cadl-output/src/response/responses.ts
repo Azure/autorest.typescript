@@ -8,8 +8,7 @@ import { ResourceOutput } from "./outputModels";
 /** The request has succeeded. */
 export interface GetBinary200Response extends HttpResponse {
   status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
+  body: string;
 }
 
 /** The request has succeeded. */

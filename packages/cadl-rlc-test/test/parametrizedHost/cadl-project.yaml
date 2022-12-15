@@ -1,4 +1,6 @@
-emitters:
+emit:
+  - "@azure-tools/cadl-typescript"
+options:
   "@azure-tools/cadl-typescript":
     "sdk-folder": sdk/test/parameterized-host-rest
     generateMetadata: true
@@ -8,4 +10,3 @@ emitters:
       name: "@msinternal/parametrized-host"
       description: "Parametrized host test"
       version: "1.0.0-beta.1"
-  "@azure-tools/cadl-autorest": true

@@ -15,5 +15,5 @@ export interface DeploymentCreationParameters {
    * An input to embed, encoded as a string, a list of strings, or a list of token
    * lists
    */
-  input: string | string[] | number[] | number[][];
+  input;
 }

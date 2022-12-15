@@ -15,7 +15,7 @@ export interface DeploymentOutput {
    * An input to embed, encoded as a string, a list of strings, or a list of token
    * lists
    */
-  input: string | string[] | number[] | number[][];
+  input;
 }
 
 /** A response containing error details. */

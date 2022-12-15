@@ -1,4 +1,6 @@
-emitters:
+emit:
+  - "@azure-tools/cadl-typescript"
+options:
   "@azure-tools/cadl-typescript":
     azureArm: true
     azureSdkForJs: false
@@ -6,4 +8,3 @@ emitters:
     packageDetails:
       name: "@msinternal/playfab"
       description: "PlayFab Service"
-  "@azure-tools/cadl-autorest": true

@@ -12,7 +12,7 @@ enum AccountLinkActionKnownValues {
 }
 
 @knownValues(AccountLinkActionKnownValues)
-model AccountLinkAction is string;
+scalar AccountLinkAction extends string;
 
 // FIXME: (missing-docs) Add documentation
 enum PlayerIdentityProviderKnownValues {
@@ -38,7 +38,7 @@ enum PlayerIdentityProviderKnownValues {
 }
 
 @knownValues(PlayerIdentityProviderKnownValues)
-model PlayerIdentityProvider is string;
+scalar PlayerIdentityProvider extends string;
 
 // FIXME: (missing-docs) Add documentation
 enum OperationTypesKnownValues {
@@ -49,7 +49,7 @@ enum OperationTypesKnownValues {
 }
 
 @knownValues(OperationTypesKnownValues)
-model OperationTypes is string;
+scalar OperationTypes extends string;
 
 @doc("""
 This API must be called with X-SecretKey, X-Authentication or X-EntityToken

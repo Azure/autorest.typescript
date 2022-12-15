@@ -1,4 +1,6 @@
-emitters:
+emit:
+  - "@azure-tools/cadl-typescript"
+options:
   "@azure-tools/cadl-typescript":
     generateMetadata: true
     generateTest: true
@@ -8,4 +10,3 @@ emitters:
       name: "@msinternal/multiclient"
       description: "Multi Client Service"
       version: "1.0.0-beta.1"
-  "@azure-tools/cadl-autorest": true

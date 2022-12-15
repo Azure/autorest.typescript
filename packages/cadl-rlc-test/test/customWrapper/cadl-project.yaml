@@ -1,4 +1,6 @@
-emitters:
+emit:
+  - "@azure-tools/cadl-typescript"
+options:
   "@azure-tools/cadl-typescript":
     azureSdkForJs: false
     packageDetails:
