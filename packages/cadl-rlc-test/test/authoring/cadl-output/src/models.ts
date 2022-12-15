@@ -3,8 +3,6 @@
 
 /** The details of a project. */
 export interface Project {
-  /** The project name. */
-  projectName: string;
   /** The project kind. */
   projectKind:
     | "CustomSingleLabelClassification"

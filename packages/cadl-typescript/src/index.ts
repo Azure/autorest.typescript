@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Program } from "@cadl-lang/compiler";
+import { Program, EmitContext } from "@cadl-lang/compiler";
 import {
   buildClientDefinitions,
   buildResponseTypes,
@@ -29,7 +29,9 @@ import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
 import { listClients } from "@azure-tools/cadl-dpg";
 
-export async function $onEmit(program: Program, options: RLCOptions) {
+export async function $onEmit(context: EmitContext) {
+  const program: Program = context.program;
+  const options: RLCOptions = context.options;
   const clients = listClients(program);
   for (const client of clients) {
     const rlcModels = await transformRLCModel(program, options, client);

@@ -19,9 +19,8 @@ using Azure.Core;
 )
 @service({
   title: "Microsoft Cognitive Language Service - Analyze Text Authoring",
-  version: "2022-05-15-preview",
+  version: "202ß2-05-15-preview",
 })
-@useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
 @versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
 @route("/authoring/analyze-text/")
 namespace Azure.Language.Authoring;
@@ -30,7 +29,7 @@ namespace Azure.Language.Authoring;
 
 // TODO: Use the common parameter for this
 @doc("The endpoint to use.")
-model Endpoint is string;
+scalar Endpoint extends string;
 
 // Models
 
@@ -39,6 +38,7 @@ model Project {
   @key
   @segment("projects")
   @doc("The project name.")
+  @visibility("read")
   projectName: string;
 
   @doc("The project kind.")
@@ -97,6 +97,7 @@ model Deployment {
   @doc("The name of the deployment.")
   @key("deploymentName")
   @segment("deployments")
+  @visibility("read")
   name: string;
 }
 
@@ -156,6 +157,7 @@ model DeploymentJob {
   @doc("The job ID.")
   @key("jobId")
   @segment("jobs")
+  @visibility("read")
   id: string;
 }
 
@@ -166,6 +168,7 @@ model SwapDeploymentsJob {
 
   @doc("The job ID.")
   @key("jobId")
+  @visibility("read")
   @segment("swap/jobs")
   id: string;
 }
