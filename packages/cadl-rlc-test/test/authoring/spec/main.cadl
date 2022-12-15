@@ -21,6 +21,7 @@ using Azure.Core;
   title: "Microsoft Cognitive Language Service - Analyze Text Authoring",
   version: "202ß2-05-15-preview",
 })
+@useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
 @versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
 @route("/authoring/analyze-text/")
 namespace Azure.Language.Authoring;
