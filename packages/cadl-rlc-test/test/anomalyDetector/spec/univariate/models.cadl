@@ -17,7 +17,7 @@ enum ImputeModeKnownValues {
 }
 
 @knownValues(ImputeModeKnownValues)
-model ImputeMode is string;
+scalar ImputeMode extends string;
 
 enum AnomalyDetectorErrorCodesKnownValues {
   "InvalidCustomInterval",
@@ -34,7 +34,7 @@ enum AnomalyDetectorErrorCodesKnownValues {
 }
 
 @knownValues(AnomalyDetectorErrorCodesKnownValues)
-model AnomalyDetectorErrorCodes is string;
+scalar AnomalyDetectorErrorCodes extends string;
 
 enum TimeGranularity {
   Yearly: "yearly",

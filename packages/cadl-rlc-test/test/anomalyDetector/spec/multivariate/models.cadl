@@ -17,7 +17,7 @@ enum FillNAMethodKnownValues {
 
 @doc("An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed.")
 @knownValues(FillNAMethodKnownValues)
-model FillNAMethod is string;
+scalar FillNAMethod extends string;
 
 enum MultivariateBatchDetectionStatus {
   Created: "CREATED",
@@ -35,7 +35,7 @@ enum DataSchemaValues {
 
 @doc("Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable.")
 @knownValues(DataSchemaValues)
-model DataSchema is string;
+scalar DataSchema extends string;
 
 enum AlignMode {
   "Inner",

@@ -1,4 +1,6 @@
-emitters:
+emit:
+  - "@azure-tools/cadl-typescript"
+options:
   "@azure-tools/cadl-typescript":
     generateMetadata: true
     generateTest: true
@@ -7,4 +9,3 @@ emitters:
       name: "@msinternal/ai-anomaly-detector"
       description: "A generated SDK for AnomalyDetectorRest."
       version: "1.0.0-beta.1"
-  "@azure-tools/cadl-autorest": true
