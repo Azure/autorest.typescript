@@ -146,7 +146,6 @@ function getSchemaForUnion(
   union: Union,
   usage?: SchemaContext[]
 ) {
-  let type: string;
   const nonNullOptions = union.options.filter((t) => !isNullType(t));
   const nullable = union.options.length != nonNullOptions.length;
   if (nonNullOptions.length === 0 || nonNullOptions[0] === undefined) {
@@ -154,49 +153,14 @@ function getSchemaForUnion(
     return {};
   }
 
-  const kind = nonNullOptions[0].kind;
-  switch (kind) {
-    case "String":
-      type = "string";
-      break;
-    case "Number":
-      type = "number";
-      break;
-    case "Boolean":
-      type = "boolean";
-      break;
-    case "Model":
-      type = "model";
-      break;
-    default:
-      reportInvalidUnionForTypescript();
-      return {};
-  }
-
   const values = [];
-  if (type === "model" || type === "array") {
-    // Model unions can only ever be a model type with 'null'
-    if (nonNullOptions.length === 1) {
-      // Get the schema for the model type
-      const schema: any = getSchemaForType(program, nonNullOptions[0], usage);
-      if (schema) {
-        schema["x-nullable"] = nullable;
-      }
-
-      return schema;
-    }
-  }
 
   for (const option of nonNullOptions) {
-    if (option.kind != kind) {
-      reportInvalidUnionForTypescript();
-    }
-
     // We already know it's not a model type
-    values.push(getSchemaForType(program, option));
+    values.push(getSchemaForType(program, option, usage));
   }
 
-  const schema: any = { type };
+  const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
     schema.type = values
@@ -204,17 +168,10 @@ function getSchemaForUnion(
       .join(" | ");
   }
   if (nullable) {
-    schema["x-nullable"] = true;
+    schema["required"] = false;
   }
 
   return schema;
-
-  function reportInvalidUnionForTypescript() {
-    reportDiagnostic(program, {
-      code: "union-unsupported",
-      target: union
-    });
-  }
 }
 
 // An openapi "string" can be defined in several different ways in Cadl

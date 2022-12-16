@@ -52,10 +52,10 @@ type CoreClient_2 = Client & {
 };
 
 // @public
-function createClient(options?: ClientOptions): CoreClient_2;
+function createClient(endpoint: string, options?: ClientOptions): CoreClient_2;
 
 // @public
-function createClient_2(options?: ClientOptions): ResponseClient_2;
+function createClient_2(endpoint: string, options?: ClientOptions): ResponseClient_2;
 
 // @public (undocumented)
 interface CreateOrUpdate {
