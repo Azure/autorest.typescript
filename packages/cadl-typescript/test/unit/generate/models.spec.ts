@@ -75,7 +75,7 @@ describe("Input/output model type", () => {
   }
 
   describe("number generation", () => {
-    it("should handle int32 -> number", async () => {
+    it.only("should handle int32 -> number", async () => {
       await verifyPropertyType("int32", "number");
     });
     it("should handle int64 -> number", async () => {
@@ -869,7 +869,7 @@ describe("Input/output model type", () => {
     // Remember to fix this case to scalar when upgrading compiler
     it("should handle A is B, B is string", async () => {
       const cadlDefinition = `
-      model MyStr is string;`;
+      scalar MyStr extends string;`;
       const cadlType = "MyStr";
       const inputModelName = "string";
       await verifyPropertyType(cadlType, inputModelName, {

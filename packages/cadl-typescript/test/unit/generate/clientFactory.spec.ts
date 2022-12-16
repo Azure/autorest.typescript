@@ -58,7 +58,7 @@ describe("Client Factory generation testing", () => {
           @service( {title: "PetStoreClient"})
           namespace PetStore;
           @doc("The endpoint to use.")
-          model Endpoint is string;
+          scalar Endpoint extends string;
           `);
       assert.ok(models);
       assertEqualContent(
@@ -110,7 +110,7 @@ describe("Client Factory generation testing", () => {
             @service( {title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
-            model Endpoint is string;
+            scalar Endpoint extends string;
             @doc("The version to use")
             enum Version {
               V1,
@@ -168,14 +168,14 @@ describe("Client Factory generation testing", () => {
             @service( {title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
-            model Endpoint is string;
+            scalar Endpoint extends string;
             enum Versions {
               v1_1: "v1.1",
             }
             
             @knownValues(Versions)
             @doc("The version to use.")
-            model APIVersion is string;
+            scalar APIVersion extends string;
             `);
       assert.ok(models);
       assertEqualContent(
@@ -234,7 +234,7 @@ describe("Client Factory generation testing", () => {
             })
             namespace PetStore;
             @doc("The endpoint to use.")
-            model Endpoint is string;
+            scalar Endpoint extends string;
             `);
         assert.ok(models);
         assertEqualContent(
@@ -293,13 +293,13 @@ describe("Client Factory generation testing", () => {
             })
             namespace PetStore;
             @doc("The endpoint to use.")
-            model Endpoint is string;
+            scalar Endpoint extends string;
 
             enum Versions {
               v1_1: "v1.1",
             }
             @knownValues(Versions)
-            model APIVersion is string;
+            scalar APIVersion extends string;
             `);
         assert.ok(models);
         assertEqualContent(
