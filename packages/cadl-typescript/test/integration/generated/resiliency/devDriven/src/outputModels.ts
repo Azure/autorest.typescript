@@ -5,8 +5,12 @@
 export interface ProductOutput {
   /** key of product */
   key: string;
-  /** received mode */
-  received: "raw" | "model";
+  /**
+   * received mode
+   *
+   * Possible values: raw, model
+   */
+  received: string;
 }
 
 /** Final response from LRO call */
