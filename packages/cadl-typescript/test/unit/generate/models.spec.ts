@@ -26,7 +26,8 @@ describe("Input/output model type", () => {
   async function verifyPropertyType(
     cadlType: string,
     inputType: string,
-    options?: VerifyPropertyConfig
+    options?: VerifyPropertyConfig,
+    needAzureCore: boolean = false
   ) {
     const defaultOption: VerifyPropertyConfig = {
       additionalCadlDefinition: "",
@@ -43,14 +44,21 @@ describe("Input/output model type", () => {
       ...defaultOption,
       ...options
     };
-    const schemaOutput = await emitModelsFromCadl(`
+    const schemaOutput = await emitModelsFromCadl(
+      `
     ${additionalCadlDefinition}
+    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
     model InputOutputModel {
       prop: ${cadlType};
     }
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "for test"
+    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
     @route("/models")
     @get
-    op getModel(@body input: InputOutputModel): InputOutputModel;`);
+    op getModel(@body input: InputOutputModel): InputOutputModel;`,
+      needAzureCore
+    );
     assert.ok(schemaOutput);
     const { inputModelFile, outputModelFile } = schemaOutput!;
     assert.strictEqual(inputModelFile?.path, "models.ts");
@@ -75,7 +83,7 @@ describe("Input/output model type", () => {
   }
 
   describe("number generation", () => {
-    it.only("should handle int32 -> number", async () => {
+    it("should handle int32 -> number", async () => {
       await verifyPropertyType("int32", "number");
     });
     it("should handle int64 -> number", async () => {
@@ -95,16 +103,14 @@ describe("Input/output model type", () => {
     it("should handle extensible_enum as property -> string", async () => {
       // When extensible_enum is comsumed as body property it should be string only
       const schemaOutput = await emitModelsFromCadl(`
-      @knownValues(TranslationLanguageValues)
       @doc("Extensible enum model description")
-      model TranslationLanguage is string;
       enum TranslationLanguageValues {
         English,
         Chinese,
       }
       model InputOutputModel {
         @doc("Property description")
-        prop: TranslationLanguage;
+        prop: TranslationLanguageValues;
       }
       @route("/models")
       @get
@@ -140,9 +146,7 @@ describe("Input/output model type", () => {
     it("should handle extensible_enum as body -> string", async () => {
       // When extensible_enum is comsumed as body property it should be string only
       const schemaOutput = await emitParameterFromCadl(`
-      @knownValues(TranslationLanguageValues)
-      model TranslationLanguage is string;
-      enum TranslationLanguageValues {
+      enum TranslationLanguage {
         English,
         Chinese,
       }
@@ -171,15 +175,22 @@ describe("Input/output model type", () => {
     // TODO: Is enum convered to string literals only? Do we need to generate enum instaed?
     it("should handle enum -> string_literals", async () => {
       const cadlTypeDefinition = `
+      #suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "for test"
+      @fixed
       enum TranslationLanguageValues {
         English,
         Chinese,
       }`;
       const cadlType = "TranslationLanguageValues";
       const typeScriptType = `"English" | "Chinese"`;
-      await verifyPropertyType(cadlType, typeScriptType, {
-        additionalCadlDefinition: cadlTypeDefinition
-      });
+      await verifyPropertyType(
+        cadlType,
+        typeScriptType,
+        {
+          additionalCadlDefinition: cadlTypeDefinition
+        },
+        true
+      );
     });
 
     it("should handle type_literals:string -> string_literals", async () => {
@@ -315,8 +326,11 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle enum array", async () => {
+    it("should handle fixed enum array", async () => {
       const cadlDefinition = `
+      #suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "for test"
+      #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+      @fixed
       enum DiskEncryptionTarget {
         OsDisk: "osdisk",
         TemporaryDisk: "temporarydisk",
@@ -325,10 +339,15 @@ describe("Input/output model type", () => {
       const cadlType = "DiskEncryptionTarget[]";
       const typeScriptType = `("osdisk" | "temporarydisk")[]`;
       const inputModelName = typeScriptType;
-      await verifyPropertyType(cadlType, inputModelName, {
-        additionalCadlDefinition: cadlDefinition,
-        outputType: typeScriptType
-      });
+      await verifyPropertyType(
+        cadlType,
+        inputModelName,
+        {
+          additionalCadlDefinition: cadlDefinition,
+          outputType: typeScriptType
+        },
+        true
+      );
     });
   });
   describe("object generation", () => {

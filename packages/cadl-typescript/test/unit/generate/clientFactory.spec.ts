@@ -111,12 +111,16 @@ describe("Client Factory generation testing", () => {
             namespace PetStore;
             @doc("The endpoint to use.")
             scalar Endpoint extends string;
+
+            #suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "for test"
             @doc("The version to use")
+            @fixed
             enum Version {
               V1,
               V2
             }
-            `);
+            `,
+            true);
       assert.ok(models);
       assertEqualContent(
         models!.content,
@@ -162,21 +166,20 @@ describe("Client Factory generation testing", () => {
               "Language Service",
               {
                 Endpoint: Endpoint,
-                Version: APIVersion
+                Version: Versions
               }
             )
             @service( {title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
             scalar Endpoint extends string;
+
+            @doc("The version to use.")
             enum Versions {
               v1_1: "v1.1",
             }
-            
-            @knownValues(Versions)
-            @doc("The version to use.")
-            scalar APIVersion extends string;
-            `);
+            `,
+            true);
       assert.ok(models);
       assertEqualContent(
         models!.content,

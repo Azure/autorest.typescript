@@ -10,7 +10,7 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
+import { ignoreDiagnostics, Program, Type } from "@cadl-lang/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -77,7 +77,7 @@ export function transformToParameterTypes(
     // transform body
     const bodyType = getBodyType(program, route);
     let bodyParameter = undefined;
-    if (bodyType && bodyType.kind === "Model") {
+    if (bodyType) {
       bodyParameter = transformBodyParameters(
         program,
         parameters,
@@ -171,7 +171,7 @@ function transformBodyParameters(
   parameters: HttpOperationParameters,
   headers: ParameterMetadata[],
   importedModels: Set<string>,
-  inputBodyType?: Model
+  inputBodyType?: Type
 ): ParameterBodyMetadata | undefined {
   const bodyType =
     (parameters.bodyType ?? parameters.bodyParameter?.type) && inputBodyType

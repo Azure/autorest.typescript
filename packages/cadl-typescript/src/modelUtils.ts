@@ -10,7 +10,6 @@ import {
   getEffectiveModelType,
   getFormat,
   getFriendlyName,
-  getKnownValues,
   getMaxLength,
   getMaxValue,
   getMinLength,
@@ -51,7 +50,7 @@ import {
   isStatusCode,
   HttpOperation
 } from "@cadl-lang/rest/http";
-import { getPagedResult } from "@azure-tools/cadl-azure-core";
+import { getPagedResult, isFixed } from "@azure-tools/cadl-azure-core";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -574,17 +573,6 @@ function applyIntrinsicDecorators(
     newTarget["x-ms-secret"] = true;
   }
 
-  if (isString) {
-    const values = getKnownValues(program, cadlType);
-    if (values) {
-      const enumSchema = { ...newTarget, ...getSchemaForEnum(program, values) };
-      enumSchema.name = "string";
-      enumSchema.typeName = "string";
-
-      return enumSchema;
-    }
-  }
-
   return newTarget;
 }
 function getSchemaForEnum(program: Program, e: Enum) {
@@ -606,8 +594,11 @@ function getSchemaForEnum(program: Program, e: Enum) {
       type === "string"
         ? values.map((item) => `"${item}"`).join("|")
         : values.map((item) => `${item}`).join("|");
+    if (!isFixed(program, e)) {
+      schema.name = "string";
+      schema.typeName = "string";
+    }
   }
-
   return schema;
   function enumMemberType(member: EnumMember) {
     if (typeof member.value === "number") {

@@ -18,8 +18,8 @@ import { transformToResponseTypes } from "../../src/transform/transformResponses
 import { rlcEmitterFor } from "./testUtil.js";
 import { listClients } from "@azure-tools/cadl-dpg";
 
-export async function emitModelsFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitModelsFromCadl(cadlContent: string, needAzureCore: boolean = false) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const clients = listClients(program);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
@@ -66,8 +66,8 @@ export async function emitClientDefinitionFromCadl(cadlContent: string) {
   });
 }
 
-export async function emitClientFactoryFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitClientFactoryFromCadl(cadlContent: string, needAzureCore: boolean = false) {
+  const program = await rlcEmitterFor(cadlContent, false, needAzureCore);
   const urlInfo = transformUrlInfo(program);
   const apiVersionInQueryParam = transformApiVersionParam(program);
   return buildClient({
