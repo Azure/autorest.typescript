@@ -62,8 +62,12 @@ export interface InnerErrorOutput {
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /** The status of the operation */
-  status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
+  /**
+   * The status of the operation
+   *
+   * Possible values: InProgress, Succeeded, Failed, Canceled
+   */
+  status: string;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModelOutput;
 }

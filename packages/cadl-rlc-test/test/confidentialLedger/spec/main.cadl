@@ -85,6 +85,7 @@ model LedgerEntry {
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("Represents an assignable role.")
+@fixed
 enum LedgerUserRole {
   Administrator,
   Contributor,
@@ -111,6 +112,7 @@ model ReceiptContents {
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("State of a ledger query.")
+@fixed
 enum LedgerQueryState {
   Loading,
   Ready,
@@ -130,6 +132,7 @@ model TransactionReceipt {
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("Represents the state of the transaction.")
+@fixed
 enum TransactionState {
   Committed,
   Pending,

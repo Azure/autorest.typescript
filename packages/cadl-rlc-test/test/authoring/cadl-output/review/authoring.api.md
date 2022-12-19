@@ -588,7 +588,7 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
 export interface OperationStatusOutput {
     error?: ErrorModelOutput;
     id: string;
-    status: "InProgress" | "Succeeded" | "Failed" | "Canceled";
+    status: string;
 }
 
 // @public

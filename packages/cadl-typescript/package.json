@@ -53,7 +53,7 @@
     "@azure/core-rest-pipeline": "^1.9.2"
   },
   "dependencies": {
-    "@cadl-lang/compiler": "0.38.3",
+    "@cadl-lang/compiler": "~0.38.5",
     "@azure-tools/cadl-azure-core": "~0.24.0",
     "@cadl-lang/rest": "0.38.0",
     "prettier": "^2.6.1",

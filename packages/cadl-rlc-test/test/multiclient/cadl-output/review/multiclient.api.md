@@ -212,8 +212,7 @@ interface GetBinary {
 
 // @public
 interface GetBinary200Response extends HttpResponse {
-    // (undocumented)
-    body: string;
+    body: Uint8Array;
     // (undocumented)
     status: "200";
 }
