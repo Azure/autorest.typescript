@@ -12,7 +12,6 @@ import {
   Program
 } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
-import { isAbsolute } from "path";
 
 export function transformRLCOptions(
   program: Program,
@@ -22,11 +21,6 @@ export function transformRLCOptions(
   const options = extractRLCOptions(program, emitterOptions);
   const batch = listClients(program);
   options.batch = batch;
-
-  // Fulfill the output dir if enabling sdk-folder in config
-  if (options["sdk-folder"] && isAbsolute(options["sdk-folder"])) {
-    program.compilerOptions.outputDir = options["sdk-folder"];
-  }
   return options;
 }
 

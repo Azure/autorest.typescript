@@ -36,8 +36,13 @@ export async function $onEmit(context: EmitContext) {
   const options: RLCOptions = context.options;
   const clients = listClients(program);
   for (const client of clients) {
-    const rlcModels = await transformRLCModel(program, options, client);
-    clearSrcFolder(rlcModels)
+    const rlcModels = await transformRLCModel(
+      program,
+      options,
+      client,
+      context.emitterOutputDir
+    );
+    clearSrcFolder(rlcModels);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
     await emitContentByBuilder(program, buildResponseTypes, rlcModels);
@@ -59,7 +64,8 @@ export async function $onEmit(context: EmitContext) {
         buildPackageFile,
         buildReadmeFile
       ],
-      rlcModels
+      rlcModels,
+      context.emitterOutputDir
     );
     // build test relevant files
     await emitContentByBuilder(
@@ -71,7 +77,8 @@ export async function $onEmit(context: EmitContext) {
         buildRecordedClientFile,
         buildSampleTest
       ],
-      rlcModels
+      rlcModels,
+      context.emitterOutputDir
     );
   }
 }

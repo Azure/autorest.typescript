@@ -45,11 +45,12 @@ import { isApiVersion } from "../paramUtil.js";
 export async function transformRLCModel(
   program: Program,
   emitterOptions: RLCOptions,
-  client: Client
+  client: Client,
+  emitterOutputDir: string
 ): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(program, emitterOptions);
   const srcPath = join(
-    program.compilerOptions.outputDir ?? "",
+    emitterOutputDir ?? "",
     "src",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)

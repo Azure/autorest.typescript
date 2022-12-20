@@ -6,6 +6,7 @@ options:
     generateTest: true
     multiClient: true
     azureSdkForJs: false
+    "emitter-output-dir": "{output-dir}"
     packageDetails:
       name: "@msinternal/multiclient"
       description: "Multi Client Service"
