@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { Program, EmitContext } from "@cadl-lang/compiler";
+import * as fsextra from "fs-extra";
 import {
   buildClientDefinitions,
   buildResponseTypes,
@@ -23,7 +24,8 @@ import {
   buildRecordedClientFile,
   buildSampleTest,
   buildReadmeFile,
-  RLCOptions
+  RLCOptions,
+  RLCModel
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
@@ -35,6 +37,7 @@ export async function $onEmit(context: EmitContext) {
   const clients = listClients(program);
   for (const client of clients) {
     const rlcModels = await transformRLCModel(program, options, client);
+    clearSrcFolder(rlcModels)
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
     await emitContentByBuilder(program, buildResponseTypes, rlcModels);
@@ -71,4 +74,9 @@ export async function $onEmit(context: EmitContext) {
       rlcModels
     );
   }
+}
+
+function clearSrcFolder(model: RLCModel) {
+  const srcPath = model.srcPath;
+  fsextra.emptyDirSync(srcPath);
 }

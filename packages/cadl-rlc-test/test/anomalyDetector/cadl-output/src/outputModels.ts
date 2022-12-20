@@ -145,12 +145,8 @@ export interface MultivariateDetectionResultOutput {
 
 /** Multivariate anomaly detection status. */
 export interface MultivariateBatchDetectionResultSummaryOutput {
-  /**
-   * Status of detection results. One of CREATED, RUNNING, READY, and FAILED.
-   *
-   * Possible values: CREATED, RUNNING, READY, FAILED
-   */
-  status: string;
+  /** Status of detection results. One of CREATED, RUNNING, READY, and FAILED. */
+  status: "CREATED" | "RUNNING" | "READY" | "FAILED";
   /** Error message when detection is failed. */
   errors?: Array<ErrorResponseOutput>;
   /** Variable Status. */
@@ -275,6 +271,8 @@ export interface ModelInfoOutput {
   /**
    * Data schema of input data source: OneTable or MultiTable. The default
    * DataSchema is OneTable.
+   *
+   * Possible values: OneTable, MultiTable
    */
   dataSchema?: string;
   /**
@@ -299,12 +297,8 @@ export interface ModelInfoOutput {
   slidingWindow?: number;
   /** An optional field, indicating the manner to align multiple variables. */
   alignPolicy?: AlignPolicyOutput;
-  /**
-   * Model status. One of CREATED, RUNNING, READY, and FAILED.
-   *
-   * Possible values: CREATED, RUNNING, READY, FAILED
-   */
-  status?: string;
+  /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
+  status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
   /** Error messages when failed to create a model. */
   readonly errors?: Array<ErrorResponseOutput>;
   /** Diagnostics information to help inspect the states of model or variable. */
@@ -316,13 +310,13 @@ export interface AlignPolicyOutput {
   /**
    * An optional field, indicating how to align different variables to the same
    * time-range. Either Inner or Outer.
-   *
-   * Possible values: Inner, Outer
    */
-  alignMode?: string;
+  alignMode?: "Inner" | "Outer";
   /**
    * An optional field, indicating how missing values will be filled. One of
    * Previous, Subsequent, Linear, Zero, Fixed.
+   *
+   * Possible values: Previous, Subsequent, Linear, Zero, Fixed
    */
   fillNAMethod?: string;
   /** An optional field. Required when fillNAMethod is Fixed. */

@@ -16,14 +16,14 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
 export interface AlignPolicy {
-    alignMode?: string;
+    alignMode?: "Inner" | "Outer";
     fillNAMethod?: string;
     paddingValue?: number;
 }
 
 // @public
 export interface AlignPolicyOutput {
-    alignMode?: string;
+    alignMode?: "Inner" | "Outer";
     fillNAMethod?: string;
     paddingValue?: number;
 }
@@ -470,7 +470,7 @@ export interface ModelInfo {
     endTime: Date | string;
     slidingWindow?: number;
     startTime: Date | string;
-    status?: string;
+    status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
 }
 
 // @public
@@ -484,7 +484,7 @@ export interface ModelInfoOutput {
     readonly errors?: Array<ErrorResponseOutput>;
     slidingWindow?: number;
     startTime: string;
-    status?: string;
+    status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
 }
 
 // @public
@@ -531,7 +531,7 @@ export interface MultivariateBatchDetectionOptionsOutput {
 export interface MultivariateBatchDetectionResultSummaryOutput {
     errors?: Array<ErrorResponseOutput>;
     setupInfo: MultivariateBatchDetectionOptionsOutput;
-    status: string;
+    status: "CREATED" | "RUNNING" | "READY" | "FAILED";
     variableStates?: Array<VariableStateOutput>;
 }
 

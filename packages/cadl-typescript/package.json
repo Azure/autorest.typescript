@@ -29,6 +29,7 @@
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.0",
     "@types/prettier": "^2.6.0",
+    "@types/fs-extra": "^9.0.13",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "chai": "^4.3.6",
@@ -60,7 +61,8 @@
     "tslib": "^2.3.1",
     "@azure-tools/rlc-common": "1.0.0-beta.6",
     "ts-morph": "^15.1.0",
-    "@azure-tools/cadl-dpg": "0.24.0"
+    "@azure-tools/cadl-dpg": "0.24.0",
+    "fs-extra": "^11.1.0"
   },
   "mocha": {
     "extension": [

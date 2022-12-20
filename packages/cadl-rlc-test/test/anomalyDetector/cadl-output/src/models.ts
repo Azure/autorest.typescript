@@ -178,6 +178,8 @@ export interface ModelInfo {
   /**
    * Data schema of input data source: OneTable or MultiTable. The default
    * DataSchema is OneTable.
+   *
+   * Possible values: OneTable, MultiTable
    */
   dataSchema?: string;
   /**
@@ -202,12 +204,8 @@ export interface ModelInfo {
   slidingWindow?: number;
   /** An optional field, indicating the manner to align multiple variables. */
   alignPolicy?: AlignPolicy;
-  /**
-   * Model status. One of CREATED, RUNNING, READY, and FAILED.
-   *
-   * Possible values: CREATED, RUNNING, READY, FAILED
-   */
-  status?: string;
+  /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
+  status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
   /** Diagnostics information to help inspect the states of model or variable. */
   diagnosticsInfo?: DiagnosticsInfo;
 }
@@ -217,13 +215,13 @@ export interface AlignPolicy {
   /**
    * An optional field, indicating how to align different variables to the same
    * time-range. Either Inner or Outer.
-   *
-   * Possible values: Inner, Outer
    */
-  alignMode?: string;
+  alignMode?: "Inner" | "Outer";
   /**
    * An optional field, indicating how missing values will be filled. One of
    * Previous, Subsequent, Linear, Zero, Fixed.
+   *
+   * Possible values: Previous, Subsequent, Linear, Zero, Fixed
    */
   fillNAMethod?: string;
   /** An optional field. Required when fillNAMethod is Fixed. */
