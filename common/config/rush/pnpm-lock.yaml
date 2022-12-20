@@ -2288,6 +2288,12 @@ packages:
       '@types/node': 18.11.15
     dev: false
 
+  /@types/fs-extra/9.0.13:
+    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+    dependencies:
+      '@types/node': 18.11.15
+    dev: false
+
   /@types/js-yaml/3.12.1:
     resolution: {integrity: sha512-SGGAhXLHDx+PK4YLNcNGa6goPf9XRWQNAUUbffkwVGGXIxmDKWyGGL4inzq2sPmExu431Ekb9aEMn9BkPqEYFA==}
     dev: false
@@ -5013,6 +5019,15 @@ packages:
   /fs-extra/10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: false
+
+  /fs-extra/11.1.0:
+    resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
+    engines: {node: '>=14.14'}
     dependencies:
       graceful-fs: 4.2.10
       jsonfile: 6.1.0
@@ -9864,7 +9879,7 @@ packages:
     dev: false
 
   file:projects/cadl-typescript.tgz:
-    resolution: {integrity: sha512-z53E4dQ5NosY02m2MTxGEyoBhAXD0dV4eZ+J61dM5lYRvTYwElPijYZ/+u2adCAAWbobLh+Pa9SGcEYjxpbxSQ==, tarball: file:projects/cadl-typescript.tgz}
+    resolution: {integrity: sha512-P2yplWuEYQpjR5yvFjwHfR4NxduZ5bJnG5r/6xboa+z2Ky8+RK7mHaySPybV7gnrDu6HDr4Vpj8duYF6haTlKA==, tarball: file:projects/cadl-typescript.tgz}
     name: '@rush-temp/cadl-typescript'
     version: 0.0.0
     dependencies:
@@ -9882,6 +9897,7 @@ packages:
       '@cadl-lang/rest': 0.38.0_@cadl-lang+compiler@0.38.5
       '@cadl-lang/versioning': 0.38.0
       '@types/chai': 4.3.4
+      '@types/fs-extra': 9.0.13
       '@types/mocha': 9.1.1
       '@types/node': 18.11.15
       '@types/prettier': 2.7.1
@@ -9891,6 +9907,7 @@ packages:
       chalk: 4.1.2
       cross-env: 7.0.3
       eslint: 8.29.0
+      fs-extra: 11.1.0
       mkdirp: 1.0.4
       mocha: 9.2.2
       prettier: 2.7.1
@@ -9931,7 +9948,7 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-hCaANMqF2scfbLygPWvyZnZHKQGdGIKQKCrANSAHmXPbdcIXvcGOOJvXBssFheExREpXnpeGgK9Wx/OCtRWmhA==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-UqRQ8aofxN4KDyQZ6d+SKdbXOYo+3hnVA4kHEhoX0K5v+F0VqBL12Qs5xtYAPOhii6BldNmB0d+SPUcnW/R80A==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
@@ -9955,7 +9972,7 @@ packages:
       '@azure/logger': 1.0.3
       '@microsoft.azure/autorest.testserver': 3.3.45
       '@types/chai': 4.3.4
-      '@types/fs-extra': 8.1.2
+      '@types/fs-extra': 9.0.13
       '@types/js-yaml': 3.12.1
       '@types/lodash': 4.14.191
       '@types/mocha': 5.2.7
@@ -9973,7 +9990,7 @@ packages:
       directory-tree: 2.3.1
       dotenv: 8.6.0
       eslint: 8.29.0
-      fs-extra: 10.1.0
+      fs-extra: 11.1.0
       handlebars: 4.7.7
       karma: 6.4.1
       karma-chrome-launcher: 3.1.1
