@@ -504,7 +504,7 @@ function mapCadlTypeToTypeScript(
     case "Boolean":
       return { type: `${cadlType.value}` };
     case "Model":
-      return mapCadlIntrinsicModelToTypeScript(program, cadlType, usage);
+      return mapCadlStdTypeToTypeScript(program, cadlType, usage);
   }
   if (cadlType.kind === undefined) {
     if (typeof cadlType === "string") {
@@ -610,7 +610,7 @@ function getSchemaForEnum(program: Program, e: Enum) {
 /**
  * Map Cadl intrinsic models to open api definitions
  */
-function mapCadlIntrinsicModelToTypeScript(
+function mapCadlStdTypeToTypeScript(
   program: Program,
   cadlType: Model,
   usage?: SchemaContext[]

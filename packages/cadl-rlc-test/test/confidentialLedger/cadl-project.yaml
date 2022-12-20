@@ -1,5 +1,6 @@
 emit:
   - "@azure-tools/cadl-typescript"
+  - "@azure-tools/cadl-autorest"
 options:
   "@azure-tools/cadl-typescript":
     azureSdkForJs: false
@@ -7,3 +8,5 @@ options:
     packageDetails:
       name: "@msinternal/confidential-ledger"
       description: "Confidential Ledger Service"
+  "@azure-tools/cadl-autorest":
+    "emitter-output-dir": "{output-dir}"

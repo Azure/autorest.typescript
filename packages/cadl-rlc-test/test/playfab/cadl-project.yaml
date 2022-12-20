@@ -1,5 +1,6 @@
 emit:
   - "@azure-tools/cadl-typescript"
+  - "@azure-tools/cadl-autorest"
 options:
   "@azure-tools/cadl-typescript":
     azureArm: true
@@ -9,3 +10,5 @@ options:
     packageDetails:
       name: "@msinternal/playfab"
       description: "PlayFab Service"
+  "@azure-tools/cadl-autorest":
+    "emitter-output-dir": "{output-dir}"

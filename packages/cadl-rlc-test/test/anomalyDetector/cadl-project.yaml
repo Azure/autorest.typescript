@@ -1,5 +1,6 @@
 emit:
   - "@azure-tools/cadl-typescript"
+  - "@azure-tools/cadl-autorest"
 options:
   "@azure-tools/cadl-typescript":
     generateMetadata: true
@@ -10,3 +11,5 @@ options:
       name: "@msinternal/ai-anomaly-detector"
       description: "A generated SDK for AnomalyDetectorRest."
       version: "1.0.0-beta.1"
+  "@azure-tools/cadl-autorest":
+    "emitter-output-dir": "{output-dir}"
