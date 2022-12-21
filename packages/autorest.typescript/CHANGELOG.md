@@ -1,4 +1,4 @@
-## 6.0.0-beta.6 (2022-12-21)
+## 6.0.0-rc.6 (2022-12-21)
 
 - [Feature] Support cadl compiler 0.38.0, Please refer to issue [#1704](https://github.com/Azure/autorest.typescript/pull/1704).  
 - [BugFix] Fix a few minor issues. Please refer to issue [#1700](https://github.com/Azure/autorest.typescript/pull/1700) for more details.  
