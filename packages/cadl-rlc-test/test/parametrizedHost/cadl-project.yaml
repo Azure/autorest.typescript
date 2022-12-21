@@ -3,7 +3,6 @@ emit:
   - "@azure-tools/cadl-autorest"
 options:
   "@azure-tools/cadl-typescript":
-    "sdk-folder": sdk/test/parameterized-host-rest
     generateMetadata: true
     generateTest: false
     azureSdkForJs: false
