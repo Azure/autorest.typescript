@@ -48,7 +48,11 @@ export async function transformRLCModel(
   client: Client,
   emitterOutputDir: string
 ): Promise<RLCModel> {
-  const options: RLCOptions = transformRLCOptions(program, emitterOptions);
+  const options: RLCOptions = transformRLCOptions(
+    program,
+    emitterOptions,
+    emitterOutputDir
+  );
   const srcPath = join(
     emitterOutputDir ?? "",
     "src",

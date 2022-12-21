@@ -15,10 +15,11 @@ import { getAuthentication } from "@cadl-lang/rest/http";
 
 export function transformRLCOptions(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: RLCOptions,
+  emitterOutputDir: string
 ): RLCOptions {
   // Extract the options from emitter option
-  const options = extractRLCOptions(program, emitterOptions);
+  const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
   const batch = listClients(program);
   options.batch = batch;
   return options;
@@ -26,7 +27,8 @@ export function transformRLCOptions(
 
 function extractRLCOptions(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: RLCOptions,
+  emitterOutputDir: string
 ): RLCOptions {
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
@@ -35,7 +37,7 @@ function extractRLCOptions(
   const generateMetadata = getGenerateMetadata(emitterOptions);
   const generateTest = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
-  const azureOutputDirectory = getAzureOutputDirectory(emitterOptions);
+  const azureOutputDirectory = getAzureOutputDirectory(emitterOutputDir);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -173,11 +175,9 @@ function getCredentialInfo(program: Program, emitterOptions: RLCOptions) {
   };
 }
 
-function getAzureOutputDirectory(
-  emitterOptions: RLCOptions
-): string | undefined {
-  const skdFolder = emitterOptions["sdk-folder"];
-  const sdkReletivePath = skdFolder
+function getAzureOutputDirectory(emitterOutputDir: string): string | undefined {
+  const sdkFolder = emitterOutputDir;
+  const sdkReletivePath = sdkFolder
     ?.replace(/\/$/, "")
     .split("/")
     .slice(-3)
