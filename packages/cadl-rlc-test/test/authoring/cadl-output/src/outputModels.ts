@@ -4,7 +4,7 @@
 /** The details of a project. */
 export interface ProjectOutput {
   /** The project name. */
-  projectName: string;
+  readonly projectName: string;
   /** The project kind. */
   projectKind:
     | "CustomSingleLabelClassification"
@@ -30,18 +30,10 @@ export interface ProjectOutput {
   readonly lastDeployedDateTime: string;
 }
 
-/** Provides status details for long running operations. */
-export interface OperationStatusOutput {
-  /** The unique ID of the operation. */
-  id: string;
-  /**
-   * The status of the operation
-   *
-   * Possible values: InProgress, Succeeded, Failed, Canceled
-   */
-  status: string;
-  /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModelOutput;
+/** A response containing error details. */
+export interface ErrorResponseOutput {
+  /** The error object. */
+  error: ErrorModelOutput;
 }
 
 /** The error object. */
@@ -66,10 +58,18 @@ export interface InnerErrorOutput {
   innererror?: InnerErrorOutput;
 }
 
-/** A response containing error details. */
-export interface ErrorResponseOutput {
-  /** The error object. */
-  error: ErrorModelOutput;
+/** Provides status details for long running operations. */
+export interface OperationStatusOutput {
+  /** The unique ID of the operation. */
+  id: string;
+  /**
+   * The status of the operation
+   *
+   * Possible values: InProgress, Succeeded, Failed, Canceled
+   */
+  status: string;
+  /** Error object that describes the error when status is "Failed". */
+  error?: ErrorModelOutput;
 }
 
 /** Paged collection of Project items */
@@ -83,7 +83,7 @@ export interface ProjectListOutput {
 /** The details of a project deployment. */
 export interface DeploymentOutput {
   /** The name of the deployment. */
-  name: string;
+  readonly name: string;
 }
 
 /** Paged collection of Deployment items */
@@ -118,7 +118,7 @@ export interface DeploymentJobOutput {
   /** The errors encountered while executing the job. */
   errors: ErrorModelOutput;
   /** The job ID. */
-  id: string;
+  readonly id: string;
 }
 
 /** Represents a warning that was encountered while executing the request. */
@@ -153,7 +153,7 @@ export interface SwapDeploymentsJobOutput {
   /** The errors encountered while executing the job. */
   errors: ErrorModelOutput;
   /** The job ID. */
-  id: string;
+  readonly id: string;
 }
 
 /** A collection of SupportedLanguage resources. */

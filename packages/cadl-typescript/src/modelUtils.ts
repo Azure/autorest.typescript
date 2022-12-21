@@ -10,8 +10,6 @@ import {
   getEffectiveModelType,
   getFormat,
   getFriendlyName,
-  getIntrinsicModelName,
-  getKnownValues,
   getMaxLength,
   getMaxValue,
   getMinLength,
@@ -21,7 +19,6 @@ import {
   getPropertyType,
   getSummary,
   getVisibility,
-  isIntrinsic,
   isNeverType,
   isNumericType,
   isSecret,
@@ -32,7 +29,9 @@ import {
   ModelProperty,
   Program,
   Type,
-  Union
+  Union,
+  isNullType,
+  Scalar
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -51,7 +50,7 @@ import {
   isStatusCode,
   HttpOperation
 } from "@cadl-lang/rest/http";
-import { getPagedResult } from "@azure-tools/cadl-azure-core";
+import { getPagedResult, isFixed } from "@azure-tools/cadl-azure-core";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -87,6 +86,8 @@ export function getSchemaForType(
     return getSchemaForUnion(program, type, usage);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
+  } else if (type.kind === "Scalar") {
+    return getSchemaForScalar(program, type);
   }
   if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
@@ -131,11 +132,12 @@ export function includeDerivedModel(model: Model): boolean {
   );
 }
 
-function isNullType(program: Program, type: Type): boolean {
-  return (
-    isIntrinsic(program, type) &&
-    getIntrinsicModelName(program, type) === "null"
-  );
+function getSchemaForScalar(program: Program,  scalar: Scalar) {
+  let result = getSchemaForStdScalar(program, scalar);
+  if (!result && scalar.baseScalar) {
+    result = getSchemaForScalar(program, scalar.baseScalar);
+  }
+  return applyIntrinsicDecorators(program, scalar, result);
 }
 
 function getSchemaForUnion(
@@ -143,57 +145,21 @@ function getSchemaForUnion(
   union: Union,
   usage?: SchemaContext[]
 ) {
-  let type: string;
-  const nonNullOptions = union.options.filter((t) => !isNullType(program, t));
+  const nonNullOptions = union.options.filter((t) => !isNullType(t));
   const nullable = union.options.length != nonNullOptions.length;
   if (nonNullOptions.length === 0 || nonNullOptions[0] === undefined) {
     reportDiagnostic(program, { code: "union-null", target: union });
     return {};
   }
 
-  const kind = nonNullOptions[0].kind;
-  switch (kind) {
-    case "String":
-      type = "string";
-      break;
-    case "Number":
-      type = "number";
-      break;
-    case "Boolean":
-      type = "boolean";
-      break;
-    case "Model":
-      type = "model";
-      break;
-    default:
-      reportInvalidUnionForTypescript();
-      return {};
-  }
-
   const values = [];
-  if (type === "model" || type === "array") {
-    // Model unions can only ever be a model type with 'null'
-    if (nonNullOptions.length === 1) {
-      // Get the schema for the model type
-      const schema: any = getSchemaForType(program, nonNullOptions[0], usage);
-      if (schema) {
-        schema["x-nullable"] = nullable;
-      }
-
-      return schema;
-    }
-  }
 
   for (const option of nonNullOptions) {
-    if (option.kind != kind) {
-      reportInvalidUnionForTypescript();
-    }
-
     // We already know it's not a model type
-    values.push(getSchemaForType(program, option));
+    values.push(getSchemaForType(program, option, usage));
   }
 
-  const schema: any = { type };
+  const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
     schema.type = values
@@ -201,17 +167,10 @@ function getSchemaForUnion(
       .join(" | ");
   }
   if (nullable) {
-    schema["x-nullable"] = true;
+    schema["required"] = false;
   }
 
   return schema;
-
-  function reportInvalidUnionForTypescript() {
-    reportDiagnostic(program, {
-      code: "union-unsupported",
-      target: union
-    });
-  }
 }
 
 // An openapi "string" can be defined in several different ways in Cadl
@@ -545,8 +504,7 @@ function mapCadlTypeToTypeScript(
     case "Boolean":
       return { type: `${cadlType.value}` };
     case "Model":
-    case "ModelProperty":
-      return mapCadlIntrinsicModelToTypeScript(program, cadlType, usage);
+      return mapCadlStdTypeToTypeScript(program, cadlType, usage);
   }
   if (cadlType.kind === undefined) {
     if (typeof cadlType === "string") {
@@ -558,7 +516,7 @@ function mapCadlTypeToTypeScript(
 }
 function applyIntrinsicDecorators(
   program: Program,
-  cadlType: Model | ModelProperty,
+  cadlType: Scalar | ModelProperty,
   target: any
 ): any {
   const newTarget = { ...target };
@@ -615,17 +573,6 @@ function applyIntrinsicDecorators(
     newTarget["x-ms-secret"] = true;
   }
 
-  if (isString) {
-    const values = getKnownValues(program, cadlType);
-    if (values) {
-      const enumSchema = { ...newTarget, ...getSchemaForEnum(program, values) };
-      enumSchema.name = "string";
-      enumSchema.typeName = "string";
-
-      return enumSchema;
-    }
-  }
-
   return newTarget;
 }
 function getSchemaForEnum(program: Program, e: Enum) {
@@ -647,8 +594,11 @@ function getSchemaForEnum(program: Program, e: Enum) {
       type === "string"
         ? values.map((item) => `"${item}"`).join("|")
         : values.map((item) => `${item}`).join("|");
+    if (!isFixed(program, e)) {
+      schema.name = "string";
+      schema.typeName = "string";
+    }
   }
-
   return schema;
   function enumMemberType(member: EnumMember) {
     if (typeof member.value === "number") {
@@ -660,15 +610,15 @@ function getSchemaForEnum(program: Program, e: Enum) {
 /**
  * Map Cadl intrinsic models to open api definitions
  */
-function mapCadlIntrinsicModelToTypeScript(
+function mapCadlStdTypeToTypeScript(
   program: Program,
-  cadlType: Model | ModelProperty,
+  cadlType: Model,
   usage?: SchemaContext[]
 ): any | undefined {
   const indexer = (cadlType as Model).indexer;
   if (indexer !== undefined) {
     if (!isNeverType(indexer.key)) {
-      const name = getIntrinsicModelName(program, indexer.key);
+      const name = indexer.key.name;
       let schema: any = {};
       if (name === "string") {
         const valueType = getSchemaForType(
@@ -683,7 +633,7 @@ function mapCadlIntrinsicModelToTypeScript(
           description: getDoc(program, cadlType)
         };
         if (
-          !isIntrinsic(program, indexer.value) &&
+          !program.checker.isStdType(indexer.value) &&
           !isUnknownType(indexer.value!)
         ) {
           schema.typeName = `Record<string, ${valueType.name}>`;
@@ -707,7 +657,7 @@ function mapCadlIntrinsicModelToTypeScript(
           description: getDoc(program, cadlType)
         };
         if (
-          !isIntrinsic(program, indexer.value) &&
+          !program.checker.isStdType(indexer.value) &&
           !isUnknownType(indexer.value!) &&
           indexer.value?.kind &&
           schema.items.name
@@ -748,17 +698,16 @@ function mapCadlIntrinsicModelToTypeScript(
       return schema;
     }
   }
-  return getSchemaForIntrinsic(program, cadlType);
 }
 
-function getSchemaForIntrinsic(
+function getSchemaForStdScalar(
   program: Program,
-  cadlType: Model | ModelProperty
+  cadlType: Scalar
 ) {
-  if (!isIntrinsic(program, cadlType)) {
+  if (!program.checker.isStdType(cadlType)) {
     return undefined;
   }
-  const name = getIntrinsicModelName(program, cadlType);
+  const name = cadlType.name;
   const description = getSummary(program, cadlType);
   switch (name) {
     case "bytes":

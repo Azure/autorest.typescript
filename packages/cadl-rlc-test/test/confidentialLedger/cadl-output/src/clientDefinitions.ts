@@ -177,8 +177,8 @@ export interface Routes {
     path: "/app/transactions/{transactionId}/status",
     transactionId: string
   ): GetTransactionStatus;
-  /** Resource for '/app/transactions:getCurrentLedgerEntry' has methods for the following verbs: get */
-  (path: "/app/transactions:getCurrentLedgerEntry"): GetCurrentLedgerEntry;
+  /** Resource for '/app/transactions/getCurrentLedgerEntry' has methods for the following verbs: get */
+  (path: "/app/transactions/getCurrentLedgerEntry"): GetCurrentLedgerEntry;
   /** Resource for '/app/users/\{userId\}' has methods for the following verbs: delete, get, patch */
   (path: "/app/users/{userId}", userId: string): DeleteUser;
 }

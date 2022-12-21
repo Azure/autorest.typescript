@@ -9,8 +9,6 @@ export interface LedgerEntry {
 
 /** Details about a Confidential ledger user. */
 export interface LedgerUser {
-  /** The user id, either an AAD object ID or certificate fingerprint. */
-  userId: string;
   /** The user's assigned role. */
   assignedRole: "Administrator" | "Contributor" | "Reader";
 }

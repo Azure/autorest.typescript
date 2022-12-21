@@ -65,7 +65,7 @@ export function isDefinedStatusCode(statusCode: StatusCode) {
 export function isBinaryPayload(body: Type, contentType: string) {
   contentType = `"${contentType}"`;
   if (
-    body.kind === "Model" &&
+    body.kind === "Scalar" &&
     body.name === "bytes" &&
     contentType !== `"application/json"` &&
     contentType !== `"text/plain"` &&

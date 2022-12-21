@@ -332,7 +332,7 @@
         }
       }
     },
-    "/app/transactions:getCurrentLedgerEntry": {
+    "/app/transactions/getCurrentLedgerEntry": {
       "get": {
         "operationId": "ConfidentialLedger_GetCurrentLedgerEntry",
         "summary": "Gets the current value available in the ledger.",
@@ -372,8 +372,8 @@
             "in": "path",
             "required": true,
             "description": "The user id, either an AAD object ID or certificate fingerprint.",
-            "type": "string",
-            "x-ms-skip-url-encoding": true
+            "x-ms-skip-url-encoding": true,
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -401,8 +401,8 @@
             "in": "path",
             "required": true,
             "description": "The user id, either an AAD object ID or certificate fingerprint.",
-            "type": "string",
-            "x-ms-skip-url-encoding": true
+            "x-ms-skip-url-encoding": true,
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -433,8 +433,8 @@
             "in": "path",
             "required": true,
             "description": "The user id, either an AAD object ID or certificate fingerprint.",
-            "type": "string",
-            "x-ms-skip-url-encoding": true
+            "x-ms-skip-url-encoding": true,
+            "type": "string"
           },
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -464,7 +464,8 @@
                 "userId": {
                   "type": "string",
                   "description": "The user id, either an AAD object ID or certificate fingerprint.",
-                  "x-ms-skip-url-encoding": true
+                  "x-ms-skip-url-encoding": true,
+                  "readOnly": true
                 },
                 "assignedRole": {
                   "$ref": "#/definitions/LedgerUserRole",
@@ -486,7 +487,8 @@
                 "userId": {
                   "type": "string",
                   "description": "The user id, either an AAD object ID or certificate fingerprint.",
-                  "x-ms-skip-url-encoding": true
+                  "x-ms-skip-url-encoding": true,
+                  "readOnly": true
                 },
                 "assignedRole": {
                   "$ref": "#/definitions/LedgerUserRole",
@@ -586,7 +588,8 @@
       "properties": {
         "collectionId": {
           "type": "string",
-          "description": "The collection id."
+          "description": "The collection id.",
+          "readOnly": true
         }
       },
       "description": "Identifier for collections.",
@@ -642,7 +645,8 @@
         "userId": {
           "type": "string",
           "description": "The user id, either an AAD object ID or certificate fingerprint.",
-          "x-ms-skip-url-encoding": true
+          "x-ms-skip-url-encoding": true,
+          "readOnly": true
         },
         "assignedRole": {
           "$ref": "#/definitions/LedgerUserRole",
@@ -731,9 +735,9 @@
         },
         "nextLink": {
           "type": "string",
-          "description": "Path from which to retrieve the next page of results.",
           "format": "uri",
-          "x-cadl-name": "Rest.ResourceLocation<LedgerEntry>"
+          "description": "Path from which to retrieve the next page of results.",
+          "x-cadl-name": "Rest.ResourceLocation"
         }
       },
       "description": "Paginated ledger entries returned in response to a query.",
@@ -811,6 +815,7 @@
       "in": "query",
       "required": true,
       "description": "The API version to use for this operation.",
+      "x-ms-client-name": "apiVersion",
       "minLength": 1,
       "type": "string",
       "x-ms-parameter-location": "method"

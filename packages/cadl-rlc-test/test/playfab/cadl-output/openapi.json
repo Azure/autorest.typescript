@@ -40,10 +40,11 @@
         "description": "This feature is in private preview with a set of managed partners. Method to\nexchange a legacy AuthenticationTicket or title SecretKey for an Entity Token\nor to refresh a still valid Entity Token.",
         "parameters": [
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -84,17 +85,19 @@
         "description": "This feature is in private preview with a set of managed partners. Write\nbatches of entity based events to PlayStream. The namespace of the Event must\nbe 'custom' or start with 'custom.'.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -134,17 +137,19 @@
         "description": "This feature is in private preview with a set of managed partners. Abort\npending file uploads to an entity's profile.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -185,17 +190,19 @@
         "description": "This feature is in private preview with a set of managed partners. Delete files\non an entity's profile.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -236,17 +243,19 @@
         "description": "This feature is in private preview with a set of managed partners. Finalize\nfile uploads to an entity's profile.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -287,17 +296,19 @@
         "description": "This feature is in private preview with a set of managed partners. Retrieves\nfile metadata from an entity's profile.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -338,17 +349,19 @@
         "description": "This feature is in private preview with a set of managed partners. Initiates\nfile uploads to an entity's profile.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -389,17 +402,19 @@
         "description": "This feature is in private preview with a set of managed partners. Retrieves\nobjects from an entity's profile.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -440,17 +455,19 @@
         "description": "This feature is in private preview with a set of managed partners. Sets objects\non an entity's profile.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -491,10 +508,11 @@
         "description": "This feature is in private preview with a set of managed partners.\nAuthenticates a player from the specified player account pool using the\n\"Android Device ID\" player identity provider, finds or provisions a\nmaster_player_account associated with the player identity, and returns an\nentity token for it. Optionally logs the authenticated player into the\nspecified title and returns an additional entity token for the\ntitle_player_account.",
         "parameters": [
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -534,10 +552,11 @@
         "description": "This feature is in private preview with a set of managed partners.\nAuthenticates a player from the specified player account pool using the\n\"Custom ID\" player identity provider, finds or provisions a\nmaster_player_account associated with the player identity, and returns an\nentity token for it. Optionally logs the authenticated player into the\nspecified title and returns an additional entity token for the\ntitle_player_account.",
         "parameters": [
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -577,10 +596,11 @@
         "description": "This feature is in private preview with a set of managed partners.\nAuthenticates a player from the specified player account pool using the \"IOS\nDevice ID\" player identity provider, finds or provisions a\nmaster_player_account associated with the player identity, and returns an\nentity token for it. Optionally logs the authenticated player into the\nspecified title and returns an additional entity token for the\ntitle_player_account.",
         "parameters": [
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -620,10 +640,11 @@
         "description": "This feature is in private preview with a set of managed partners.\nAuthenticates a player from the specified player account pool using the\n\"Nintendo Switch Device ID\" player identity provider, finds or provisions a\nmaster_player_account associated with the player identity, and returns an\nentity token for it. Optionally logs the authenticated player into the\nspecified title and returns an additional entity token for the\ntitle_player_account.",
         "parameters": [
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -663,17 +684,19 @@
         "description": "This feature is in private preview with a set of managed partners. Lists the\nplayer identities currently linked to a master_player_account.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -713,17 +736,19 @@
         "description": "This feature is in private preview with a set of managed partners. Removes the\nlink from a player identity to a master_player_account.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -763,17 +788,19 @@
         "description": "This feature is in private preview with a set of managed partners. Begins a\ntitle session for a master_player_account, returning an entity token for the\nassociated title_player_account, creating a profile for it if necessary.",
         "parameters": [
           {
-            "name": "X-EntityToken",
+            "name": "x-entity-token",
             "in": "header",
             "required": true,
             "description": "Token",
+            "x-ms-client-name": "X-EntityToken",
             "type": "string"
           },
           {
-            "name": "Accept",
+            "name": "accept",
             "in": "header",
             "required": true,
             "description": "Accept header",
+            "x-ms-client-name": "Accept",
             "type": "string",
             "enum": [
               "application/json"
@@ -881,18 +908,6 @@
       "x-ms-enum": {
         "name": "AccountLinkAction",
         "modelAsString": true
-      }
-    },
-    "AccountLinkActionKnownValues": {
-      "type": "string",
-      "enum": [
-        "CreateAndLinkNewAccount",
-        "LinkToExistingAccount",
-        "LeaveUnlinked"
-      ],
-      "x-ms-enum": {
-        "name": "AccountLinkActionKnownValues",
-        "modelAsString": false
       }
     },
     "ApiErrorWrapper": {
@@ -1711,19 +1726,6 @@
         "modelAsString": true
       }
     },
-    "OperationTypesKnownValues": {
-      "type": "string",
-      "enum": [
-        "Created",
-        "Updated",
-        "Deleted",
-        "None"
-      ],
-      "x-ms-enum": {
-        "name": "OperationTypesKnownValues",
-        "modelAsString": false
-      }
-    },
     "PlayerIdentityProvider": {
       "type": "string",
       "enum": [
@@ -1750,34 +1752,6 @@
       "x-ms-enum": {
         "name": "PlayerIdentityProvider",
         "modelAsString": true
-      }
-    },
-    "PlayerIdentityProviderKnownValues": {
-      "type": "string",
-      "enum": [
-        "AndroidDevice",
-        "Apple",
-        "CustomId",
-        "Email",
-        "FacebookInstantGames",
-        "GameCenter",
-        "Google",
-        "iOSDevice",
-        "Kongregate",
-        "NintendoSwitchDevice",
-        "NintendoAccount",
-        "OpenId",
-        "PSN",
-        "ServerCustomId",
-        "Steam",
-        "Twitch",
-        "Username",
-        "Xbox",
-        "GooglePlayGames"
-      ],
-      "x-ms-enum": {
-        "name": "PlayerIdentityProviderKnownValues",
-        "modelAsString": false
       }
     },
     "SetObject": {

@@ -12,27 +12,23 @@ import {
   Program
 } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
-import { isAbsolute } from "path";
 
 export function transformRLCOptions(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: RLCOptions,
+  emitterOutputDir: string
 ): RLCOptions {
   // Extract the options from emitter option
-  const options = extractRLCOptions(program, emitterOptions);
+  const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
   const batch = listClients(program);
   options.batch = batch;
-
-  // Fulfill the output dir if enabling sdk-folder in config
-  if (options["sdk-folder"] && isAbsolute(options["sdk-folder"])) {
-    program.compilerOptions.outputDir = options["sdk-folder"];
-  }
   return options;
 }
 
 function extractRLCOptions(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: RLCOptions,
+  emitterOutputDir: string
 ): RLCOptions {
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
@@ -41,7 +37,7 @@ function extractRLCOptions(
   const generateMetadata = getGenerateMetadata(emitterOptions);
   const generateTest = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
-  const azureOutputDirectory = getAzureOutputDirectory(emitterOptions);
+  const azureOutputDirectory = getAzureOutputDirectory(emitterOutputDir);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -179,11 +175,9 @@ function getCredentialInfo(program: Program, emitterOptions: RLCOptions) {
   };
 }
 
-function getAzureOutputDirectory(
-  emitterOptions: RLCOptions
-): string | undefined {
-  const skdFolder = emitterOptions["sdk-folder"];
-  const sdkReletivePath = skdFolder
+function getAzureOutputDirectory(emitterOutputDir: string): string | undefined {
+  const sdkFolder = emitterOutputDir;
+  const sdkReletivePath = sdkFolder
     ?.replace(/\/$/, "")
     .split("/")
     .slice(-3)

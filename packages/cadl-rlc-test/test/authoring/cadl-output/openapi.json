@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Microsoft Cognitive Language Service - Analyze Text Authoring",
-    "version": "2022-05-15-preview",
+    "version": "202ß2-05-15-preview",
     "x-cadl-generated": [
       {
         "emitter": "@azure-tools/cadl-autorest"
@@ -80,9 +80,9 @@
                 },
                 "nextLink": {
                   "type": "string",
-                  "description": "The link to the next page of items",
                   "format": "uri",
-                  "x-cadl-name": "Rest.ResourceLocation<Project>"
+                  "description": "The link to the next page of items",
+                  "x-cadl-name": "Rest.ResourceLocation"
                 }
               },
               "description": "Paged collection of Project items",
@@ -170,7 +170,8 @@
               "properties": {
                 "projectName": {
                   "type": "string",
-                  "description": "The project name."
+                  "description": "The project name.",
+                  "readOnly": true
                 },
                 "projectKind": {
                   "$ref": "#/definitions/ProjectKind",
@@ -248,7 +249,8 @@
               "properties": {
                 "projectName": {
                   "type": "string",
-                  "description": "The project name."
+                  "description": "The project name.",
+                  "readOnly": true
                 },
                 "projectKind": {
                   "$ref": "#/definitions/ProjectKind",
@@ -564,9 +566,9 @@
                 },
                 "nextLink": {
                   "type": "string",
-                  "description": "The link to the next page of items",
                   "format": "uri",
-                  "x-cadl-name": "Rest.ResourceLocation<Deployment>"
+                  "description": "The link to the next page of items",
+                  "x-cadl-name": "Rest.ResourceLocation"
                 }
               },
               "description": "Paged collection of Deployment items",
@@ -663,7 +665,8 @@
               "properties": {
                 "name": {
                   "type": "string",
-                  "description": "The name of the deployment."
+                  "description": "The name of the deployment.",
+                  "readOnly": true
                 }
               },
               "required": [
@@ -686,7 +689,8 @@
               "properties": {
                 "name": {
                   "type": "string",
-                  "description": "The name of the deployment."
+                  "description": "The name of the deployment.",
+                  "readOnly": true
                 }
               },
               "description": "A  resource was successfully created.",
@@ -860,7 +864,7 @@
         }
       }
     },
-    "/authoring/analyze-text/projects/{projectName}/deployments/swap": {
+    "/authoring/analyze-text/projects/{projectName}/deployments:swap": {
       "post": {
         "operationId": "Deployments_SwapDeployments",
         "description": "Swaps two existing deployments with each other.",
@@ -1059,7 +1063,8 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "The name of the deployment."
+          "description": "The name of the deployment.",
+          "readOnly": true
         }
       },
       "description": "The details of a project deployment.",
@@ -1111,7 +1116,8 @@
         },
         "id": {
           "type": "string",
-          "description": "The job ID."
+          "description": "The job ID.",
+          "readOnly": true
         }
       },
       "description": "The details of a deployment job.",
@@ -1243,9 +1249,9 @@
         },
         "nextLink": {
           "type": "string",
-          "description": "The link to the next page of items",
           "format": "uri",
-          "x-cadl-name": "Rest.ResourceLocation<SupportedLanguage>"
+          "description": "The link to the next page of items",
+          "x-cadl-name": "Rest.ResourceLocation"
         }
       },
       "description": "A collection of SupportedLanguage resources.",
@@ -1267,9 +1273,9 @@
         },
         "nextLink": {
           "type": "string",
-          "description": "The link to the next page of items",
           "format": "uri",
-          "x-cadl-name": "Rest.ResourceLocation<TrainingConfigVersion>"
+          "description": "The link to the next page of items",
+          "x-cadl-name": "Rest.ResourceLocation"
         }
       },
       "description": "A collection of TrainingConfigVersion resources.",
@@ -1282,7 +1288,8 @@
       "properties": {
         "projectName": {
           "type": "string",
-          "description": "The project name."
+          "description": "The project name.",
+          "readOnly": true
         },
         "projectKind": {
           "$ref": "#/definitions/ProjectKind",
@@ -1444,7 +1451,8 @@
         },
         "id": {
           "type": "string",
-          "description": "The job ID."
+          "description": "The job ID.",
+          "readOnly": true
         }
       },
       "description": "The details of a swap deployments job.",
@@ -1529,6 +1537,7 @@
       "in": "query",
       "required": true,
       "description": "The API version to use for this operation.",
+      "x-ms-client-name": "apiVersion",
       "minLength": 1,
       "type": "string",
       "x-ms-parameter-location": "method"
