@@ -6,9 +6,7 @@ Parametrized host test
 
 Key links:
 
-- [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/test/parameterized-host-rest)
 - [Package (NPM)](https://www.npmjs.com/package/@msinternal/parametrized-host)
-- [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/test/parameterized-host-rest/samples)
 
 ## Getting started
 
