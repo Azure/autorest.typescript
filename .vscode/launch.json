@@ -126,6 +126,8 @@
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/cadl-typescript",
       "runtimeArgs": [
+        "cross-env",
+        "TS_NODE_PROJECT=tsconfig.test.json",
         "mocha",
         "-r",
         "ts-node/register",

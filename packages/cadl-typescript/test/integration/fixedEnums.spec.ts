@@ -1,19 +1,17 @@
-import EnumsExtensibleClientFactory, {
-  EnumsExtensibleClient
-} from "./generated/enums/extensible/src/index.js";
 import { assert } from "chai";
-describe("ExtensibleEnums Rest Client", () => {
-  let client: EnumsExtensibleClient;
+import EnumsFixedClientFactory, {
+  EnumsFixedClient
+} from "./generated/enums/fixed/src/index.js";
+describe("FixedEnums Rest Client", () => {
+  let client: EnumsFixedClient;
 
   beforeEach(() => {
-    client = EnumsExtensibleClientFactory({ allowInsecureConnection: true });
+    client = EnumsFixedClientFactory({ allowInsecureConnection: true });
   });
 
   it("should get known value", async () => {
     try {
-      const result = await client
-        .path("/enums/extensible/string/known-value")
-        .get();
+      const result = await client.path("/enums/fixed/string/known-value").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Monday");
     } catch (err) {
@@ -21,39 +19,27 @@ describe("ExtensibleEnums Rest Client", () => {
     }
   });
 
-  it("should put known value", async () => {
+  // FIXME core-client can't JSON.stringfy this value
+  it.skip("should put known value", async () => {
     try {
-      const result = await client
-        .path("/enums/extensible/string/known-value")
-        .put({
-          body: JSON.stringify("Monday")
-        });
+      const result = await client.path("/enums/fixed/string/known-value").put({
+        body: "Monday"
+      });
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
   });
 
-  it("should get unknown value", async () => {
+  // FIXME core-client can't JSON.stringfy this value
+  it.skip("should put unknown value and receives 500", async () => {
     try {
       const result = await client
-        .path("/enums/extensible/string/unknown-value")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body, "Weekend");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should put unknown value", async () => {
-    try {
-      const result = await client
-        .path("/enums/extensible/string/unknown-value")
+        .path("/enums/fixed/string/unknown-value")
         .put({
-          body: JSON.stringify("Weekend")
+          body: "Weekend" as any
         });
-      assert.strictEqual(result.status, "204");
+      assert.strictEqual(result.status, "500");
     } catch (err) {
       assert.fail(err as string);
     }
