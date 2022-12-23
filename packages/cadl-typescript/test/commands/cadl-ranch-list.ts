@@ -17,6 +17,10 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "authentication/oauth2"
   },
   {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
+  },
+  {
     outputPath: "dictionary",
     inputPath: "dictionary"
   },
