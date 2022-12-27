@@ -143,7 +143,7 @@ export interface CorrelationChangesOutput {
 }
 
 // @public
-function createClient(Endpoint: string, ApiVersion: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorRestClient;
+function createClient(endpoint: string, apiVersion: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorRestClient;
 export default createClient;
 
 // @public (undocumented)
