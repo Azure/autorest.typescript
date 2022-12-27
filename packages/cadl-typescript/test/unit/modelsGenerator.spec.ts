@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitModelsFromCadl, emitParameterFromCadl } from "../emitUtil.js";
-import { assertEqualContent } from "../testUtil.js";
+import { emitModelsFromCadl, emitParameterFromCadl } from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 type VerifyPropertyConfig = {
   additionalCadlDefinition?: string;

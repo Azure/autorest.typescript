@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitResponsesFromCadl } from "../emitUtil.js";
-import { assertEqualContent } from "../testUtil.js";
+import { emitResponsesFromCadl } from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 describe("Responses.ts", () => {
   describe("property name generation", () => {

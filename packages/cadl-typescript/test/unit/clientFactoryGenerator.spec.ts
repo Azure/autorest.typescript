@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitClientFactoryFromCadl } from "../emitUtil.js";
-import { assertEqualContent } from "../testUtil.js";
+import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 describe("Client Factory generation testing", () => {
   describe("should handle url parameters", () => {
