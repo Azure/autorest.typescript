@@ -217,8 +217,7 @@ function convertClientLevelParameters(
     p => p.parameter.protocol.http?.in === ParameterLocation.Uri
   );
   if (hasUrlParameter && rawUriParameters.length > 0) {
-    // Currently only support one parametrized host
-    // TODO: support more parameters in url once the bug fixs - https://github.com/Azure/autorest.typescript/issues/1399
+    // convert the host parameters in url
     const clientParamAssignments = urlParameters.map(urlParameter => {
       const exampleUriParam = rawUriParameters.filter(
         param =>
@@ -229,9 +228,13 @@ function convertClientLevelParameters(
         exampleUriParam[0].exampleValue,
         true
       );
+      const normalizedName = normalizeName(
+        urlParameter.name,
+        NameType.Parameter
+      );
       return {
-        name: urlParameter.name,
-        assignment: `const ${urlParameter.name} = ` + urlValue + `;`
+        name: normalizedName,
+        assignment: `const ${normalizedName} = ` + urlValue + `;`
       };
     });
 
