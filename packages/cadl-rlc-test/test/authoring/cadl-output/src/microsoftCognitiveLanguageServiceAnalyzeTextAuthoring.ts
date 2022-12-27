@@ -7,15 +7,15 @@ import { MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient } from "./c
 
 /**
  * Initialize a new instance of the class MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient class.
- * @param Endpoint type: string The endpoint to use.
+ * @param endpoint type: string The endpoint to use.
  * @param credentials type: KeyCredential
  */
 export default function createClient(
-  Endpoint: string,
+  endpoint: string,
   credentials: KeyCredential,
   options: ClientOptions = {}
 ): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient {
-  const baseUrl = options.baseUrl ?? `${Endpoint}/language`;
+  const baseUrl = options.baseUrl ?? `${endpoint}/language`;
   options.apiVersion = options.apiVersion ?? "202ß2-05-15-preview";
   options = {
     ...options,
