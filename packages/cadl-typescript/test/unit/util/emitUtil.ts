@@ -54,8 +54,11 @@ export async function emitParameterFromCadl(cadlContent: string) {
   });
 }
 
-export async function emitClientDefinitionFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitClientDefinitionFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const clients = listClients(program);
   let paths = {};
   if (clients && clients[0]) {

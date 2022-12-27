@@ -295,7 +295,7 @@ function convertPathLevelParameters(
   };
   const pathParams = (pathDetail || []).pathParameters.map(p => {
     const pathParam: SampleParameter = {
-      name: p.name
+      name: normalizeName(p.name, NameType.Parameter)
     };
     // path params are mandatory we'll leave it empty if no input
     const value = !!res[p.name]
