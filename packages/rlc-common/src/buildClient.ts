@@ -56,6 +56,7 @@ export function buildClient(model: RLCModel): File | undefined {
     ? `${clientName}`
     : `${clientName}Client`;
 
+  normalizeUrlInfo(model);
   const urlParameters = model?.urlInfo?.urlParameters?.filter(
     // Do not include parameters with constant values in the signature, these should go in the options bag
     (p) => p.value === undefined
@@ -204,7 +205,7 @@ function getClientFactoryBody(
     baseUrl = `options.baseUrl ?? "${endpoint}"`;
   }
 
-  const apiVersion = getApiVersion(model);
+  const apiVersion = getApiVersionInQueryParam(model);
   let apiVersionStatement: string = "";
   if (apiVersion) {
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${apiVersion}"`;
@@ -298,7 +299,7 @@ function getClientFactoryBody(
   ];
 }
 
-function getApiVersion(model: RLCModel): string | undefined {
+function getApiVersionInQueryParam(model: RLCModel): string | undefined {
   if (!model.apiVersionInQueryParam) {
     return undefined;
   }
@@ -311,4 +312,31 @@ function getApiVersion(model: RLCModel): string | undefined {
   }
 
   return undefined;
+}
+
+function normalizeUrlInfo(model: RLCModel) {
+  if (
+    !model ||
+    !model.urlInfo ||
+    !model.urlInfo.endpoint ||
+    !model.urlInfo.urlParameters ||
+    model.urlInfo.urlParameters.length === 0
+  ) {
+    return;
+  }
+
+  let parsedEndpoint = model.urlInfo.endpoint;
+  const urlParameters = model.urlInfo.urlParameters;
+  urlParameters.forEach((urlParameter) => {
+    const name = urlParameter.name;
+    const normalizedName = normalizeName(name, NameType.Parameter);
+    if (name !== normalizedName) {
+      urlParameter.name = normalizedName;
+      parsedEndpoint = parsedEndpoint.replace(
+        `{${name}}`,
+        `{${normalizedName}}`
+      );
+    }
+  });
+  model.urlInfo.endpoint = parsedEndpoint;
 }

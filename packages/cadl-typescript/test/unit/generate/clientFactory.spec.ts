@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitClientFactoryFromCadl } from "../emitUtil.js";
 import { assertEqualContent } from "../testUtil.js";
 
-describe.only("Client Factory generation testing", () => {
+describe("Client Factory generation testing", () => {
   describe("should handle url parameters", () => {
     it("should handle zero parameter", async () => {
       const models = await emitClientFactoryFromCadl(`
@@ -321,7 +321,7 @@ describe.only("Client Factory generation testing", () => {
 
             /**
              * Initialize a new instance of the class testClient class.
-             * @param Endpoint type: string The endpoint to use.
+             * @param endpoint type: string The endpoint to use.
              */
             export default function createClient(
               endpoint: string,
