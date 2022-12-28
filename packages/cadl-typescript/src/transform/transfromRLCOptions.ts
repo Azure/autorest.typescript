@@ -6,12 +6,9 @@ import {
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
-import {
-  getServiceNamespace,
-  getServiceTitle,
-  Program
-} from "@cadl-lang/compiler";
+import { Program } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
+import { getDefaultService } from "./transform.js";
 
 export function transformRLCOptions(
   program: Program,
@@ -52,7 +49,7 @@ function extractRLCOptions(
 }
 
 function processAuth(program: Program) {
-  const serviceNs = getServiceNamespace(program);
+  const serviceNs = getDefaultService(program)?.type;
   if (!serviceNs) {
     return undefined;
   }
@@ -110,7 +107,7 @@ function getPackageDetails(
     name:
       emitterOptions.packageDetails?.name ??
       normalizeName(
-        emitterOptions?.title ?? getServiceTitle(program),
+        emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
         NameType.Class
       ),
     version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
@@ -127,7 +124,7 @@ function getPackageDetails(
 
 function getServiceInfo(program: Program): ServiceInfo {
   return {
-    title: getServiceTitle(program)
+    title: getDefaultService(program)?.title
   };
 }
 

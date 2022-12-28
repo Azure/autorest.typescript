@@ -84,6 +84,20 @@ const libDef = {
           "Cannot add security details to a namespace other than the service namespace."
       }
     },
+    "more-than-one-service": {
+      severity: "error",
+      messages: {
+        default:
+          "Only support one service and more than one services are not allowed."
+      }
+    },
+    "no-service-defined": {
+      severity: "error",
+      messages: {
+        default:
+          "No service defined and must have one and only one service defined."
+      }
+    },
     "resource-namespace": {
       severity: "error",
       messages: {
