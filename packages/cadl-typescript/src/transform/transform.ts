@@ -151,10 +151,11 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
 
 function getDefaultValue(program: Program, param?: ModelProperty) {
   const otherDefaultValue = param?.default;
-  const defaultApiVersion = getDefaultApiVersion(
-    program,
-    getDefaultService(program)?.type!
-  );
+  const serviceNamespace = getDefaultService(program)?.type;
+  if (!serviceNamespace) {
+    return undefined;
+  }
+  const defaultApiVersion = getDefaultApiVersion(program, serviceNamespace);
   if (isApiVersion(param) && defaultApiVersion) {
     return defaultApiVersion.value;
   } else if (isLiteralValue(otherDefaultValue)) {
