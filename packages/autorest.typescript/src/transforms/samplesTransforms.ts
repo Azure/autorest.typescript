@@ -265,6 +265,9 @@ function _transformSpecialLetterToSpace(str: string) {
   if (!str) {
     return str;
   }
+  if (str.startsWith("$DO_NOT_NORMALIZE$")) {
+    str = str.replace("$DO_NOT_NORMALIZE$", "");
+  }
   return str
     .replace(/_/g, " ")
     .replace(/\//g, " Or ")
