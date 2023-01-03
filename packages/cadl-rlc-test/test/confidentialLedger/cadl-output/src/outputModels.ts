@@ -55,6 +55,9 @@ export interface LedgerEntryOutput {
   readonly transactionId: string;
 }
 
+/** The collectionId parameter definition. */
+export interface CollectionIdParameterOutput {}
+
 /** A receipt certifying the transaction at the specified id. */
 export interface TransactionReceiptOutput {
   /** The receipt contents. */

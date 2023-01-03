@@ -669,6 +669,10 @@ export interface Routes {
 }
 
 // @public
+export interface StandardListQueryParametersOutput {
+}
+
+// @public
 export interface SupportedLanguageOutput {
     languageCode: string;
     languageName: string;
