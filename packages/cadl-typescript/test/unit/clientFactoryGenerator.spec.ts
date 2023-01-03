@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitClientFactoryFromCadl } from "../emitUtil.js";
-import { assertEqualContent } from "../testUtil.js";
+import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 describe("Client Factory generation testing", () => {
   describe("should handle url parameters", () => {
@@ -69,13 +69,13 @@ describe("Client Factory generation testing", () => {
 
           /**
            * Initialize a new instance of the class testClient class.
-           * @param Endpoint type: string The endpoint to use.
+           * @param endpoint type: string The endpoint to use.
            */
           export default function createClient(
-            Endpoint: string,
+            endpoint: string,
             options: ClientOptions = {}
           ): testClient {
-            const baseUrl = options.baseUrl ?? \`\${Endpoint}/language\`;
+            const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
           
             const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
             const userAgentPrefix =
@@ -98,7 +98,8 @@ describe("Client Factory generation testing", () => {
     });
 
     it("should handle two parameters", async () => {
-      const models = await emitClientFactoryFromCadl(`
+      const models = await emitClientFactoryFromCadl(
+        `
             @server(
               "{Endpoint}/language/{Version}",
               "Language Service",
@@ -120,7 +121,8 @@ describe("Client Factory generation testing", () => {
               V2
             }
             `,
-            true);
+        true
+      );
       assert.ok(models);
       assertEqualContent(
         models!.content,
@@ -130,15 +132,15 @@ describe("Client Factory generation testing", () => {
             
             /**
              * Initialize a new instance of the class testClient class.
-             * @param Endpoint type: string The endpoint to use.
-             * @param Version type: "V1"|"V2" The version to use
+             * @param endpoint type: string The endpoint to use.
+             * @param version type: "V1"|"V2" The version to use
              */
             export default function createClient(
-              Endpoint: string,
-              Version: "V1" | "V2",
+              endpoint: string,
+              version: "V1" | "V2",
               options: ClientOptions = {}
             ): testClient {
-              const baseUrl = options.baseUrl ?? \`\${Endpoint}/language/\${Version}\`;
+              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
               const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
               const userAgentPrefix =
@@ -160,7 +162,8 @@ describe("Client Factory generation testing", () => {
       );
     });
     it("should handle extensible enums in host parameters", async () => {
-      const models = await emitClientFactoryFromCadl(`
+      const models = await emitClientFactoryFromCadl(
+        `
             @server(
               "{Endpoint}/language/{Version}",
               "Language Service",
@@ -179,7 +182,8 @@ describe("Client Factory generation testing", () => {
               v1_1: "v1.1",
             }
             `,
-            true);
+        true
+      );
       assert.ok(models);
       assertEqualContent(
         models!.content,
@@ -189,15 +193,15 @@ describe("Client Factory generation testing", () => {
             
             /**
              * Initialize a new instance of the class testClient class.
-             * @param Endpoint type: string The endpoint to use.
-             * @param Version type: string The version to use. Possible values: v1.1
+             * @param endpoint type: string The endpoint to use.
+             * @param version type: string The version to use. Possible values: v1.1
              */
             export default function createClient(
-              Endpoint: string,
-              Version: string,
+              endpoint: string,
+              version: string,
               options: ClientOptions = {}
             ): testClient {
-              const baseUrl = options.baseUrl ?? \`\${Endpoint}/language/\${Version}\`;
+              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
               const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
               const userAgentPrefix =
@@ -248,13 +252,13 @@ describe("Client Factory generation testing", () => {
             
             /**
              * Initialize a new instance of the class testClient class.
-             * @param Endpoint type: string The endpoint to use.
+             * @param endpoint type: string The endpoint to use.
              */
             export default function createClient(
-              Endpoint: string,
+              endpoint: string,
               options: ClientOptions = {}
             ): testClient {
-              const baseUrl = options.baseUrl ?? \`\${Endpoint}/language\`;
+              const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
               options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
             
               const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
@@ -312,19 +316,19 @@ describe("Client Factory generation testing", () => {
             import { testClient } from "./clientDefinitions";
             
             export interface testClientOptions extends ClientOptions {
-              ApiVersion?: string;
+              apiVersion?: string;
             }
 
             /**
              * Initialize a new instance of the class testClient class.
-             * @param Endpoint type: string The endpoint to use.
+             * @param endpoint type: string The endpoint to use.
              */
             export default function createClient(
-              Endpoint: string,
+              endpoint: string,
               options: testClientOptions = {}
             ): testClient {
-              const ApiVersion = options.ApiVersion ?? "v1.1";
-              const baseUrl = options.baseUrl ?? \`\${Endpoint}/anomalydetector/\${ApiVersion}\`;
+              const apiVersion = options.apiVersion ?? "v1.1";
+              const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
             
               const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
               const userAgentPrefix =

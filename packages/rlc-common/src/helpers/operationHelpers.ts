@@ -13,7 +13,7 @@ import {
   RLCModel,
   SchemaContext
 } from "../interfaces.js";
-import { pascalCase } from "./nameUtils.js";
+import { NameType, normalizeName, pascalCase } from "./nameUtils.js";
 import { isObjectSchema } from "./schemaHelpers.js";
 
 export function buildMethodDefinitions(
@@ -52,7 +52,7 @@ export function getPathParamDefinitions(
 ): OptionalKind<ParameterDeclarationStructure>[] {
   return pathParams.map(({ name, type, description }) => {
     return {
-      name,
+      name: normalizeName(name, NameType.Parameter),
       type,
       description
     };

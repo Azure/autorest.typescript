@@ -5,20 +5,20 @@ import { RestTestLibrary } from "@cadl-lang/rest/testing";
 import { VersioningTestLibrary } from "@cadl-lang/versioning/testing";
 import { AzureCoreTestLibrary } from "@azure-tools/cadl-azure-core/testing";
 import { assert } from "chai";
-import { prettierTypeScriptOptions } from "../../src/lib.js";
 import { format } from "prettier";
+import { prettierTypeScriptOptions } from "../../../src/lib.js";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
-    libraries: [
-      RestTestLibrary,
-      VersioningTestLibrary,
-      AzureCoreTestLibrary
-    ]
+    libraries: [RestTestLibrary, VersioningTestLibrary, AzureCoreTestLibrary]
   });
 }
 
-export async function rlcEmitterFor(code: string, needNamespaces: boolean = true, needAzureCore: boolean = false): Promise<Program> {
+export async function rlcEmitterFor(
+  code: string,
+  needNamespaces: boolean = true,
+  needAzureCore: boolean = false
+): Promise<Program> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
   @service({
@@ -27,20 +27,20 @@ export async function rlcEmitterFor(code: string, needNamespaces: boolean = true
   })
 
   namespace Azure.TypeScript.Testing;
-  `
+  `;
   host.addCadlFile(
     "main.cadl",
     `
   import "@cadl-lang/rest";
   import "@cadl-lang/versioning";
-  ${needAzureCore ? 'import "@azure-tools/cadl-azure-core";': ""} 
+  ${needAzureCore ? 'import "@azure-tools/cadl-azure-core";' : ""} 
 
   using Cadl.Rest; 
   using Cadl.Http;
   using Cadl.Versioning;
-  ${needAzureCore? 'using Azure.Core;': ""}
+  ${needAzureCore ? "using Azure.Core;" : ""}
   
-  ${needNamespaces ? namespace: ""}
+  ${needNamespaces ? namespace : ""}
 
   ${code}
   `

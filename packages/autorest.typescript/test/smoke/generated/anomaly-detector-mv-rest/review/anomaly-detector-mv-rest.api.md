@@ -36,7 +36,7 @@ export type AnomalyDetectorMVClient = Client & {
 // @public (undocumented)
 export interface AnomalyDetectorMVClientOptions extends ClientOptions {
     // (undocumented)
-    ApiVersion?: "v1.1";
+    apiVersion?: "v1.1";
 }
 
 // @public (undocumented)
@@ -123,7 +123,7 @@ export interface CreateAndTrainMultivariateModelMediaTypesParam {
 export type CreateAndTrainMultivariateModelParameters = CreateAndTrainMultivariateModelMediaTypesParam & CreateAndTrainMultivariateModelBodyParam & RequestParameters;
 
 // @public
-function createClient(Endpoint: string, credentials: KeyCredential, options?: AnomalyDetectorMVClientOptions): AnomalyDetectorMVClient;
+function createClient(endpoint: string, credentials: KeyCredential, options?: AnomalyDetectorMVClientOptions): AnomalyDetectorMVClient;
 export default createClient;
 
 // @public (undocumented)

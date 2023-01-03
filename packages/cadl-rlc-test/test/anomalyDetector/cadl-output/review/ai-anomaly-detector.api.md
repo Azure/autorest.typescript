@@ -44,7 +44,7 @@ export type AnomalyDetectorClient = Client & {
 // @public (undocumented)
 export interface AnomalyDetectorClientOptions extends ClientOptions {
     // (undocumented)
-    ApiVersion?: string;
+    apiVersion?: string;
 }
 
 // @public
@@ -81,7 +81,7 @@ export interface CorrelationChangesOutput {
 }
 
 // @public
-function createClient(Endpoint: string, credentials: KeyCredential, options?: AnomalyDetectorClientOptions): AnomalyDetectorClient;
+function createClient(endpoint: string, credentials: KeyCredential, options?: AnomalyDetectorClientOptions): AnomalyDetectorClient;
 export default createClient;
 
 // @public (undocumented)

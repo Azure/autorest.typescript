@@ -3,8 +3,8 @@ import {
   emitClientDefinitionFromCadl,
   emitModelsFromCadl,
   emitParameterFromCadl
-} from "../emitUtil.js";
-import { assertEqualContent } from "../testUtil.js";
+} from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 describe("Doc generation testing", () => {
   describe("docs in models.ts & outputModels.ts", () => {

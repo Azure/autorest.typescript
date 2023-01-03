@@ -1,3 +1,4 @@
+import { listClients } from "@azure-tools/cadl-dpg";
 import {
   buildClient,
   buildClientDefinitions,
@@ -7,18 +8,20 @@ import {
   ImportKind,
   Schema
 } from "@azure-tools/rlc-common";
-import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
-import { transformSchemas } from "../../src/transform/transformSchemas.js";
-import { transformPaths } from "../../src/transform/transformPaths.js";
+import { rlcEmitterFor } from "./testUtil.js";
+import { transformToParameterTypes } from "../../../src/transform/transformParameters.js";
+import { transformSchemas } from "../../../src/transform/transformSchemas.js";
+import { transformPaths } from "../../../src/transform/transformPaths.js";
 import {
   transformApiVersionParam,
   transformUrlInfo
-} from "../../src/transform/transform.js";
-import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
-import { rlcEmitterFor } from "./testUtil.js";
-import { listClients } from "@azure-tools/cadl-dpg";
+} from "../../../src/transform/transform.js";
+import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
 
-export async function emitModelsFromCadl(cadlContent: string, needAzureCore: boolean = false) {
+export async function emitModelsFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
   const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const clients = listClients(program);
   let rlcSchemas: Schema[] = [];
@@ -51,8 +54,11 @@ export async function emitParameterFromCadl(cadlContent: string) {
   });
 }
 
-export async function emitClientDefinitionFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitClientDefinitionFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const clients = listClients(program);
   let paths = {};
   if (clients && clients[0]) {
@@ -66,7 +72,10 @@ export async function emitClientDefinitionFromCadl(cadlContent: string) {
   });
 }
 
-export async function emitClientFactoryFromCadl(cadlContent: string, needAzureCore: boolean = false) {
+export async function emitClientFactoryFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
   const program = await rlcEmitterFor(cadlContent, false, needAzureCore);
   const urlInfo = transformUrlInfo(program);
   const apiVersionInQueryParam = transformApiVersionParam(program);

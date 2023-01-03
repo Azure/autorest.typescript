@@ -6,22 +6,22 @@ import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorMVClient } from "./clientDefinitions";
 
 export interface AnomalyDetectorMVClientOptions extends ClientOptions {
-  ApiVersion?: "v1.1";
+  apiVersion?: "v1.1";
 }
 
 /**
  * Initialize a new instance of the class AnomalyDetectorMVClient class.
- * @param Endpoint type: string Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
+ * @param endpoint type: string Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
  * @param credentials type: KeyCredential
  */
 export default function createClient(
-  Endpoint: string,
+  endpoint: string,
   credentials: KeyCredential,
   options: AnomalyDetectorMVClientOptions = {}
 ): AnomalyDetectorMVClient {
-  const ApiVersion = options.ApiVersion ?? "v1.1";
+  const apiVersion = options.apiVersion ?? "v1.1";
   const baseUrl =
-    options.baseUrl ?? `${Endpoint}/anomalydetector/${ApiVersion}`;
+    options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;
 
   options = {
     ...options,
