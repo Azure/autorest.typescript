@@ -19,7 +19,7 @@ namespace Azure.Core.Foundations.Extensions;
 
 @doc("for internal use")
 @knownValues(DefaultLroTypesKV)
-model DefaultLroType is string;
+scalar DefaultLroType extends string;
 enum DefaultLroTypesKV {
   Default: "default",
 }

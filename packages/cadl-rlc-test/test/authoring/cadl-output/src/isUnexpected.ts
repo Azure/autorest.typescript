@@ -56,10 +56,10 @@ const responseMap: Record<string, string[]> = {
   "DELETE /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments": ["200"],
-  "POST /authoring/analyze-text/projects/{projectName}/deployments/swap": [
+  "POST /authoring/analyze-text/projects/{projectName}/deployments:swap": [
     "202",
   ],
-  "GET /authoring/analyze-text/projects/{projectName}/deployments/swap": [
+  "GET /authoring/analyze-text/projects/{projectName}/deployments:swap": [
     "202",
   ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}":

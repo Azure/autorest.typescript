@@ -16,7 +16,7 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface CollectionOutput {
-    collectionId: string;
+    readonly collectionId: string;
 }
 
 // @public (undocumented)
@@ -418,13 +418,12 @@ export interface LedgerEntryOutput {
 // @public
 export interface LedgerUser {
     assignedRole: "Administrator" | "Contributor" | "Reader";
-    userId: string;
 }
 
 // @public
 export interface LedgerUserOutput {
     assignedRole: "Administrator" | "Contributor" | "Reader";
-    userId: string;
+    readonly userId: string;
 }
 
 // @public (undocumented)
@@ -519,7 +518,7 @@ export interface Routes {
     (path: "/app/transactions/{transactionId}", transactionId: string): GetLedgerEntry;
     (path: "/app/transactions/{transactionId}/receipt", transactionId: string): GetReceipt;
     (path: "/app/transactions/{transactionId}/status", transactionId: string): GetTransactionStatus;
-    (path: "/app/transactions:getCurrentLedgerEntry"): GetCurrentLedgerEntry;
+    (path: "/app/transactions/getCurrentLedgerEntry"): GetCurrentLedgerEntry;
     (path: "/app/users/{userId}", userId: string): DeleteUser;
 }
 

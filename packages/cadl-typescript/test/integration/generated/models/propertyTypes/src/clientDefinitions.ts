@@ -68,101 +68,131 @@ import {
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface BooleanGet {
+  /** Get call */
   get(options?: BooleanGetParameters): StreamableMethod<BooleanGet200Response>;
+  /** Put operation */
   put(options: BooleanPutParameters): StreamableMethod<BooleanPut204Response>;
 }
 
 export interface StringGet {
+  /** Get call */
   get(options?: StringGetParameters): StreamableMethod<StringGet200Response>;
+  /** Put operation */
   put(options: StringPutParameters): StreamableMethod<StringPut204Response>;
 }
 
 export interface BytesGet {
+  /** Get call */
   get(options?: BytesGetParameters): StreamableMethod<BytesGet200Response>;
+  /** Put operation */
   put(options: BytesPutParameters): StreamableMethod<BytesPut204Response>;
 }
 
 export interface IntGet {
+  /** Get call */
   get(options?: IntGetParameters): StreamableMethod<IntGet200Response>;
+  /** Put operation */
   put(options: IntPutParameters): StreamableMethod<IntPut204Response>;
 }
 
 export interface FloatGet {
+  /** Get call */
   get(options?: FloatGetParameters): StreamableMethod<FloatGet200Response>;
+  /** Put operation */
   put(options: FloatPutParameters): StreamableMethod<FloatPut204Response>;
 }
 
 export interface DatetimeGet {
+  /** Get call */
   get(
     options?: DatetimeGetParameters
   ): StreamableMethod<DatetimeGet200Response>;
+  /** Put operation */
   put(options: DatetimePutParameters): StreamableMethod<DatetimePut204Response>;
 }
 
 export interface DurationGet {
+  /** Get call */
   get(
     options?: DurationGetParameters
   ): StreamableMethod<DurationGet200Response>;
+  /** Put operation */
   put(options: DurationPutParameters): StreamableMethod<DurationPut204Response>;
 }
 
 export interface EnumGet {
+  /** Get call */
   get(options?: EnumGetParameters): StreamableMethod<EnumGet200Response>;
+  /** Put operation */
   put(options: EnumPutParameters): StreamableMethod<EnumPut204Response>;
 }
 
 export interface ExtensibleEnumGet {
+  /** Get call */
   get(
     options?: ExtensibleEnumGetParameters
   ): StreamableMethod<ExtensibleEnumGet200Response>;
+  /** Put operation */
   put(
     options: ExtensibleEnumPutParameters
   ): StreamableMethod<ExtensibleEnumPut204Response>;
 }
 
 export interface ModelGet {
+  /** Get call */
   get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
+  /** Put operation */
   put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
 }
 
 export interface CollectionsStringGet {
+  /** Get call */
   get(
     options?: CollectionsStringGetParameters
   ): StreamableMethod<CollectionsStringGet200Response>;
+  /** Put operation */
   put(
     options: CollectionsStringPutParameters
   ): StreamableMethod<CollectionsStringPut204Response>;
 }
 
 export interface CollectionsIntGet {
+  /** Get call */
   get(
     options?: CollectionsIntGetParameters
   ): StreamableMethod<CollectionsIntGet200Response>;
+  /** Put operation */
   put(
     options: CollectionsIntPutParameters
   ): StreamableMethod<CollectionsIntPut204Response>;
 }
 
 export interface CollectionsModelGet {
+  /** Get call */
   get(
     options?: CollectionsModelGetParameters
   ): StreamableMethod<CollectionsModelGet200Response>;
+  /** Put operation */
   put(
     options: CollectionsModelPutParameters
   ): StreamableMethod<CollectionsModelPut204Response>;
 }
 
 export interface DictionaryStringGet {
+  /** Get call */
   get(
     options?: DictionaryStringGetParameters
   ): StreamableMethod<DictionaryStringGet200Response>;
+  /** Put operation */
   put(
     options: DictionaryStringPutParameters
   ): StreamableMethod<DictionaryStringPut204Response>;
 }
 
 export interface NeverGet {
+  /** Get call */
   get(options?: NeverGetParameters): StreamableMethod<NeverGet200Response>;
+  /** Put operation */
   put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
 }
 

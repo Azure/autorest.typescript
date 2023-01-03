@@ -6,27 +6,32 @@ using Azure.Core;
 
 namespace BatchServiceClient;
 
+@fixed
 enum OSType {
   Linux: "linux",
   Windows: "windows",
 }
 
+@fixed
 enum VerificationType {
   Verified: "verified",
   Unverified: "unverified",
 }
 
+@fixed
 enum CertificateState {
   Active: "active",
   Deleting: "deleting",
   DeleteFailed: "deletefailed",
 }
 
+@fixed
 enum CertificateFormat {
   Pfx: "pfx",
   Cer: "cer",
 }
 
+@fixed
 enum JobScheduleState {
   Active: "active",
   Completed: "completed",
@@ -35,105 +40,125 @@ enum JobScheduleState {
   Deleting: "deleting",
 }
 
+@fixed
 enum OnAllTasksComplete {
   NoAction: "noaction",
   TerminateJob: "terminatejob",
 }
 
+@fixed
 enum OnTaskFailure {
   NoAction: "noaction",
   PerformExitOptionsJobAction: "performexitoptionsjobaction",
 }
 
+@fixed
 enum ContainerWorkingDirectory {
   TaskWorkingDirectory: "taskWorkingDirectory",
   ContainerImageDefault: "containerImageDefault",
 }
 
+@fixed
 enum OutputFileUploadCondition {
   TaskSuccess: "tasksuccess",
   TaskFailure: "taskfailure",
   TaskCompletion: "taskcompletion",
 }
 
+@fixed
 enum AutoUserScope {
   Task: "task",
   Pool: "pool",
 }
 
+@fixed
 enum ElevationLevel {
   NonAdmin: "nonadmin",
   Admin: "admin",
 }
 
+@fixed
 enum PoolLifetimeOption {
   JobSchedule: "jobschedule",
   Job: "job",
 }
 
+@fixed
 enum CachingType {
   None: "none",
   ReadOnly: "readonly",
   ReadWrite: "readwrite",
 }
 
+@fixed
 enum StorageAccountType {
   StandardLRS: "standard_lrs",
   PremiumLRS: "premium_lrs",
 }
 
+@fixed
 enum DiskEncryptionTarget {
   OsDisk: "osdisk",
   TemporaryDisk: "temporarydisk",
 }
 
+@fixed
 enum NodePlacementPolicyType {
   Regional: "regional",
   Zonal: "zonal",
 }
 
+@fixed
 enum ComputeNodeFillType {
   Spread: "spread",
   Pack: "pack",
 }
 
+@fixed
 enum DynamicVNetAssignmentScope {
   None: "none",
   Job: "job",
 }
 
+@fixed
 enum InboundEndpointProtocol {
   Tcp: "tcp",
   Udp: "udp",
 }
 
+@fixed
 enum NetworkSecurityGroupRuleAccess {
   Allow: "allow",
   Deny: "deny",
 }
 
+@fixed
 enum IPAddressProvisioningType {
   BatchManaged: "batchmanaged",
   UserManaged: "usermanaged",
   NoPublicIPAddresses: "nopublicipaddresses",
 }
 
+@fixed
 enum CertificateStoreLocation {
   CurrentUser: "currentuser",
   LocalMachine: "localmachine",
 }
 
+@fixed
 enum CertificateVisibility {
   StartTask: "starttask",
   Task: "task",
   RemoteUser: "remoteuser",
 }
 
+@fixed
 enum LoginMode {
   Batch: "batch",
   Interactive: "interactive",
 }
 
+@fixed
 enum JobState {
   Active: "active",
   Disabling: "disabling",
@@ -144,48 +169,57 @@ enum JobState {
   Deleting: "deleting",
 }
 
+@fixed
 enum ErrorCategory {
   UserError: "usererror",
   ServerError: "servererror",
 }
 
+@fixed
 enum DisableJobOption {
   Requeue: "requeue",
   Terminate: "terminate",
   Wait: "wait",
 }
 
+@fixed
 enum JobPreparationTaskState {
   Running: "running",
   Completed: "completed",
 }
 
+@fixed
 enum TaskExecutionResult {
   Success: "success",
   Failure: "failure",
 }
 
+@fixed
 enum JobReleaseTaskState {
   Running: "running",
   Completed: "completed",
 }
 
+@fixed
 enum PoolState {
   Active: "active",
   Deleting: "deleting",
 }
 
+@fixed
 enum AllocationState {
   Steady: "steady",
   Resizing: "resizing",
   Stopping: "stopping",
 }
 
+@fixed
 enum PoolIdentityType {
   "UserAssigned",
   "None",
 }
 
+@fixed
 enum ComputeNodeDeallocationOption {
   Requeue: "requeue",
   Terminate: "terminate",
@@ -193,17 +227,20 @@ enum ComputeNodeDeallocationOption {
   RetainedData: "retaineddata",
 }
 
+@fixed
 enum JobAction {
   None: "none",
   Disable: "disable",
   Terminate: "terminate",
 }
 
+@fixed
 enum DependencyAction {
   Satisfy: "satisfy",
   Block: "block",
 }
 
+@fixed
 enum TaskState {
   Active: "active",
   Preparing: "preparing",
@@ -211,18 +248,21 @@ enum TaskState {
   Completed: "completed",
 }
 
+@fixed
 enum TaskAddStatus {
   Success: "success",
   ClientError: "clienterror",
   ServerError: "servererror",
 }
 
+@fixed
 enum SubtaskState {
   Preparing: "preparing",
   Running: "running",
   Completed: "completed",
 }
 
+@fixed
 enum ComputeNodeState {
   Idle: "idle",
   Rebooting: "rebooting",
@@ -239,16 +279,19 @@ enum ComputeNodeState {
   Preempted: "preempted",
 }
 
+@fixed
 enum SchedulingState {
   Enabled: "enabled",
   Disabled: "disabled",
 }
 
+@fixed
 enum StartTaskState {
   Running: "running",
   Completed: "completed",
 }
 
+@fixed
 enum ComputeNodeRebootOption {
   Requeue: "requeue",
   Terminate: "terminate",
@@ -256,6 +299,7 @@ enum ComputeNodeRebootOption {
   RetainedData: "retaineddata",
 }
 
+@fixed
 enum ComputeNodeReimageOption {
   Requeue: "requeue",
   Terminate: "terminate",
@@ -263,12 +307,14 @@ enum ComputeNodeReimageOption {
   RetainedData: "retaineddata",
 }
 
+@fixed
 enum DisableComputeNodeSchedulingOption {
   Requeue: "requeue",
   Terminate: "terminate",
   TaskCompletion: "taskcompletion",
 }
 
+@fixed
 enum StatusLevelTypes {
   "Error",
   "Info",

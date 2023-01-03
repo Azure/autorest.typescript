@@ -16,7 +16,7 @@ export default function createClient(
   options: ClientOptions = {}
 ): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient {
   const baseUrl = options.baseUrl ?? `${Endpoint}/language`;
-  options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
+  options.apiVersion = options.apiVersion ?? "202ß2-05-15-preview";
   options = {
     ...options,
     credentials: {

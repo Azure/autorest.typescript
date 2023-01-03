@@ -58,7 +58,7 @@ describe("Client Factory generation testing", () => {
           @service( {title: "PetStoreClient"})
           namespace PetStore;
           @doc("The endpoint to use.")
-          model Endpoint is string;
+          scalar Endpoint extends string;
           `);
       assert.ok(models);
       assertEqualContent(
@@ -110,13 +110,17 @@ describe("Client Factory generation testing", () => {
             @service( {title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
-            model Endpoint is string;
+            scalar Endpoint extends string;
+
+            #suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "for test"
             @doc("The version to use")
+            @fixed
             enum Version {
               V1,
               V2
             }
-            `);
+            `,
+            true);
       assert.ok(models);
       assertEqualContent(
         models!.content,
@@ -162,21 +166,20 @@ describe("Client Factory generation testing", () => {
               "Language Service",
               {
                 Endpoint: Endpoint,
-                Version: APIVersion
+                Version: Versions
               }
             )
             @service( {title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
-            model Endpoint is string;
+            scalar Endpoint extends string;
+
+            @doc("The version to use.")
             enum Versions {
               v1_1: "v1.1",
             }
-            
-            @knownValues(Versions)
-            @doc("The version to use.")
-            model APIVersion is string;
-            `);
+            `,
+            true);
       assert.ok(models);
       assertEqualContent(
         models!.content,
@@ -234,7 +237,7 @@ describe("Client Factory generation testing", () => {
             })
             namespace PetStore;
             @doc("The endpoint to use.")
-            model Endpoint is string;
+            scalar Endpoint extends string;
             `);
         assert.ok(models);
         assertEqualContent(
@@ -293,13 +296,13 @@ describe("Client Factory generation testing", () => {
             })
             namespace PetStore;
             @doc("The endpoint to use.")
-            model Endpoint is string;
+            scalar Endpoint extends string;
 
             enum Versions {
               v1_1: "v1.1",
             }
             @knownValues(Versions)
-            model APIVersion is string;
+            scalar APIVersion extends string;
             `);
         assert.ok(models);
         assertEqualContent(

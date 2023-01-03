@@ -19,7 +19,7 @@ using Azure.Core;
 )
 @service({
   title: "Microsoft Cognitive Language Service - Analyze Text Authoring",
-  version: "2022-05-15-preview",
+  version: "202ß2-05-15-preview",
 })
 @useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
 @versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
@@ -30,7 +30,7 @@ namespace Azure.Language.Authoring;
 
 // TODO: Use the common parameter for this
 @doc("The endpoint to use.")
-model Endpoint is string;
+scalar Endpoint extends string;
 
 // Models
 
@@ -39,6 +39,7 @@ model Project {
   @key
   @segment("projects")
   @doc("The project name.")
+  @visibility("read")
   projectName: string;
 
   @doc("The project kind.")
@@ -77,6 +78,7 @@ model Project {
 }
 
 @doc("Represents the project kind.")
+@fixed
 enum ProjectKind {
   @doc("For building a classification model to classify text using your own data. Each file will have only one label. For example, file 1 is classified as A and file 2 is classified as B.")
   CustomSingleLabelClassification,
@@ -97,6 +99,7 @@ model Deployment {
   @doc("The name of the deployment.")
   @key("deploymentName")
   @segment("deployments")
+  @visibility("read")
   name: string;
 }
 
@@ -128,6 +131,7 @@ model Job {
 }
 
 @doc("Represents the job status.")
+@fixed
 enum JobStatus {
   // These values are all camel-cased in the original spec
   notStarted,
@@ -156,6 +160,7 @@ model DeploymentJob {
   @doc("The job ID.")
   @key("jobId")
   @segment("jobs")
+  @visibility("read")
   id: string;
 }
 
@@ -166,6 +171,7 @@ model SwapDeploymentsJob {
 
   @doc("The job ID.")
   @key("jobId")
+  @visibility("read")
   @segment("swap/jobs")
   id: string;
 }

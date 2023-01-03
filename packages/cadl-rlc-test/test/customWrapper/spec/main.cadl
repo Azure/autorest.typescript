@@ -30,7 +30,7 @@ namespace Azure.Language.Authoring;
 // Common Parameters
 // TODO: Use the common parameter for this
 @doc("The endpoint to use.")
-model Endpoint is string;
+scalar Endpoint extends string;
 
 @doc("The details of a project deployment.")
 model Deployment {
