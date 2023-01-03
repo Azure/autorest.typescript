@@ -99,7 +99,7 @@ export function transformSchemas(program: Program, client: Client) {
           }
         }
       }
- 
+
       setModelMap(model, context);
       const indexer = (model as Model).indexer;
       if (indexer?.value && !program.stateMap(modelKey).get(indexer?.value)) {
