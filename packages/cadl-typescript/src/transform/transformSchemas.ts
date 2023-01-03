@@ -52,7 +52,9 @@ export function transformSchemas(program: Program, client: Client) {
     if (model) {
       model.usage = context;
     }
-
+    if (model.name === "") {
+      return;
+    }
     const modelStr = JSON.stringify(trimUsage(model));
     if (!schemaSet.has(modelStr)) {
       schemas.push(model);
@@ -97,9 +99,7 @@ export function transformSchemas(program: Program, client: Client) {
           }
         }
       }
-      if (model.name === "") {
-        return;
-      }
+ 
       setModelMap(model, context);
       const indexer = (model as Model).indexer;
       if (indexer?.value && !program.stateMap(modelKey).get(indexer?.value)) {
