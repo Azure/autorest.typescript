@@ -72,6 +72,9 @@ export interface OperationStatusOutput {
   error?: ErrorModelOutput;
 }
 
+/** Provides the most common query parameters for list operations. */
+export interface StandardListQueryParametersOutput {}
+
 /** Paged collection of Project items */
 export interface ProjectListOutput {
   /** The Project items on this page */
