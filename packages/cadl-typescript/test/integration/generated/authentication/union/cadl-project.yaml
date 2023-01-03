@@ -1,0 +1,12 @@
+emitters:
+  "../../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: false
+    generateTest: true
+    addCredentials: false
+    azureSdkForJs: false
+    isCadlTest: true
+    title: AuthUnionClient
+    packageDetails:
+      name: "@msinternal/auth-union"
+      description: "Auth Union Test Service"
+      version: "1.0.0"
