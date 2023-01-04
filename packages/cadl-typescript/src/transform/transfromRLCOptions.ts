@@ -6,9 +6,10 @@ import {
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
-import { Program } from "@cadl-lang/compiler";
+import { NoTarget, Program } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
 import { getDefaultService } from "./transform.js";
+import { reportDiagnostic } from "../lib.js";
 
 export function transformRLCOptions(
   program: Program,
@@ -78,6 +79,12 @@ function processAuth(program: Program) {
           securityInfo.addCredentials = true;
           if (!securityInfo.credentialScopes) {
             securityInfo.credentialScopes = [];
+          }
+          if (flow.scopes.length === 0) {
+            reportDiagnostic(program, {
+              code: "no-credential-scopes",
+              target: NoTarget
+            });
           }
           securityInfo.credentialScopes.push(
             ...flow.scopes.map((item) => {
@@ -149,7 +156,10 @@ function getGenerateTest(emitterOptions: RLCOptions) {
     : Boolean(emitterOptions.generateTest);
 }
 
-function getCredentialInfo(program: Program, emitterOptions: RLCOptions) {
+export function getCredentialInfo(
+  program: Program,
+  emitterOptions: RLCOptions
+) {
   const securityInfo = processAuth(program);
   const addCredentials =
     !securityInfo && emitterOptions.addCredentials === false

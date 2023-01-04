@@ -17,6 +17,7 @@ import {
   transformUrlInfo
 } from "../../../src/transform/transform.js";
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
+import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
 
 export async function emitModelsFromCadl(
   cadlContent: string,
@@ -78,6 +79,7 @@ export async function emitClientFactoryFromCadl(
 ) {
   const program = await rlcEmitterFor(cadlContent, false, needAzureCore);
   const urlInfo = transformUrlInfo(program);
+  const creadentialInfo = getCredentialInfo(program, {});
   const apiVersionInQueryParam = transformApiVersionParam(program);
   return buildClient({
     srcPath: "",
@@ -90,7 +92,8 @@ export async function emitClientFactoryFromCadl(
       packageDetails: {
         name: "test",
         version: "1.0.0-beta.1"
-      }
+      },
+      ...creadentialInfo
     }
   });
 }

@@ -4,7 +4,7 @@ options:
   "@azure-tools/cadl-typescript":
     azureSdkForJs: false
     "emitter-output-dir": "{output-dir}"
-    title: OpenAIInferenceRest
+    title: OpenAIAuthoringRest
     packageDetails:
       name: "@msinternal/openai"
-      description: "OpenAI Inference Service"
+      description: "OpenAI Authoring Service"
