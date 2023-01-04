@@ -6,33 +6,26 @@ import {
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
-import {
-  getServiceNamespace,
-  getServiceTitle,
-  Program
-} from "@cadl-lang/compiler";
+import { Program } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
-import { isAbsolute } from "path";
+import { getDefaultService } from "./transform.js";
 
 export function transformRLCOptions(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: RLCOptions,
+  emitterOutputDir: string
 ): RLCOptions {
   // Extract the options from emitter option
-  const options = extractRLCOptions(program, emitterOptions);
+  const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
   const batch = listClients(program);
   options.batch = batch;
-
-  // Fulfill the output dir if enabling sdk-folder in config
-  if (options["sdk-folder"] && isAbsolute(options["sdk-folder"])) {
-    program.compilerOptions.outputDir = options["sdk-folder"];
-  }
   return options;
 }
 
 function extractRLCOptions(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: RLCOptions,
+  emitterOutputDir: string
 ): RLCOptions {
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
@@ -41,6 +34,7 @@ function extractRLCOptions(
   const generateMetadata = getGenerateMetadata(emitterOptions);
   const generateTest = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
+  const azureOutputDirectory = getAzureOutputDirectory(emitterOutputDir);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -49,12 +43,13 @@ function extractRLCOptions(
     generateMetadata,
     generateTest,
     azureSdkForJs,
-    serviceInfo
+    serviceInfo,
+    azureOutputDirectory
   };
 }
 
 function processAuth(program: Program) {
-  const serviceNs = getServiceNamespace(program);
+  const serviceNs = getDefaultService(program)?.type;
   if (!serviceNs) {
     return undefined;
   }
@@ -112,7 +107,7 @@ function getPackageDetails(
     name:
       emitterOptions.packageDetails?.name ??
       normalizeName(
-        emitterOptions?.title ?? getServiceTitle(program),
+        emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
         NameType.Class
       ),
     version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
@@ -129,7 +124,7 @@ function getPackageDetails(
 
 function getServiceInfo(program: Program): ServiceInfo {
   return {
-    title: getServiceTitle(program)
+    title: getDefaultService(program)?.title
   };
 }
 
@@ -175,4 +170,16 @@ function getCredentialInfo(program: Program, emitterOptions: RLCOptions) {
     credentialScopes,
     credentialKeyHeaderName
   };
+}
+
+function getAzureOutputDirectory(emitterOutputDir: string): string | undefined {
+  const sdkFolder = emitterOutputDir;
+  const sdkReletivePath = sdkFolder
+    ?.replace(/\/$/, "")
+    .split("/")
+    .slice(-3)
+    .join("/");
+  return sdkReletivePath?.substring(0, 3) === "sdk"
+    ? sdkReletivePath
+    : undefined;
 }

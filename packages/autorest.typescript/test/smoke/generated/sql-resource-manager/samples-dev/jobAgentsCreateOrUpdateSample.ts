@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a job agent.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateJobAgent.json
  */
 async function createOrUpdateAJobAgent() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "group1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
   const serverName = "server1";
   const jobAgentName = "agent1";
   const parameters: JobAgent = {
@@ -41,4 +45,8 @@ async function createOrUpdateAJobAgent() {
   console.log(result);
 }
 
-createOrUpdateAJobAgent().catch(console.error);
+async function main() {
+  createOrUpdateAJobAgent();
+}
+
+main().catch(console.error);

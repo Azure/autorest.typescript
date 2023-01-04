@@ -13,16 +13,20 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates express route gateway tags.
  *
  * @summary Updates express route gateway tags.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ExpressRouteGatewayUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteGatewayUpdateTags.json
  */
 async function expressRouteGatewayUpdate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "resourceGroupName";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "resourceGroupName";
   const expressRouteGatewayName = "expressRouteGatewayName";
   const expressRouteGatewayParameters: TagsObject = {
     tags: { tag1: "value1", tag2: "value2" }
@@ -37,4 +41,8 @@ async function expressRouteGatewayUpdate() {
   console.log(result);
 }
 
-expressRouteGatewayUpdate().catch(console.error);
+async function main() {
+  expressRouteGatewayUpdate();
+}
+
+main().catch(console.error);

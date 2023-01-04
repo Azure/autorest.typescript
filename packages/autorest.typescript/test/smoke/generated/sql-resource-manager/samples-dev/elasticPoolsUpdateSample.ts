@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates an elastic pool.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolUpdateAssignMaintenanceConfiguration.json
  */
 async function assignsMaintenanceConfigurationToAnElasticPool() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-2369";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
   const serverName = "sqlcrudtest-8069";
   const elasticPoolName = "sqlcrudtest-8102";
   const parameters: ElasticPoolUpdate = {
@@ -40,8 +44,6 @@ async function assignsMaintenanceConfigurationToAnElasticPool() {
   console.log(result);
 }
 
-assignsMaintenanceConfigurationToAnElasticPool().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates an elastic pool.
  *
@@ -49,8 +51,9 @@ assignsMaintenanceConfigurationToAnElasticPool().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolUpdateResetMaintenanceConfiguration.json
  */
 async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-2369";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
   const serverName = "sqlcrudtest-8069";
   const elasticPoolName = "sqlcrudtest-8102";
   const parameters: ElasticPoolUpdate = {
@@ -68,8 +71,6 @@ async function resetsMaintenanceConfigurationOfAnElasticPoolToDefault() {
   console.log(result);
 }
 
-resetsMaintenanceConfigurationOfAnElasticPoolToDefault().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates an elastic pool.
  *
@@ -77,8 +78,9 @@ resetsMaintenanceConfigurationOfAnElasticPoolToDefault().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolUpdateMax.json
  */
 async function updateAnElasticPoolWithAllParameter() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-2369";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
   const serverName = "sqlcrudtest-8069";
   const elasticPoolName = "sqlcrudtest-8102";
   const parameters: ElasticPoolUpdate = {
@@ -98,8 +100,6 @@ async function updateAnElasticPoolWithAllParameter() {
   console.log(result);
 }
 
-updateAnElasticPoolWithAllParameter().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates an elastic pool.
  *
@@ -107,8 +107,9 @@ updateAnElasticPoolWithAllParameter().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolUpdateMin.json
  */
 async function updateAnElasticPoolWithMinimumParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-2369";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
   const serverName = "sqlcrudtest-8069";
   const elasticPoolName = "sqlcrudtest-8102";
   const parameters: ElasticPoolUpdate = {};
@@ -123,4 +124,11 @@ async function updateAnElasticPoolWithMinimumParameters() {
   console.log(result);
 }
 
-updateAnElasticPoolWithMinimumParameters().catch(console.error);
+async function main() {
+  assignsMaintenanceConfigurationToAnElasticPool();
+  resetsMaintenanceConfigurationOfAnElasticPoolToDefault();
+  updateAnElasticPoolWithAllParameter();
+  updateAnElasticPoolWithMinimumParameters();
+}
+
+main().catch(console.error);

@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a security rule in the specified network security group.
  *
  * @summary Creates or updates a security rule in the specified network security group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkSecurityGroupRuleCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkSecurityGroupRuleCreate.json
  */
 async function createSecurityRule() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkSecurityGroupName = "testnsg";
   const securityRuleName = "rule1";
   const securityRuleParameters: SecurityRule = {
@@ -46,4 +49,8 @@ async function createSecurityRule() {
   console.log(result);
 }
 
-createSecurityRule().catch(console.error);
+async function main() {
+  createSecurityRule();
+}
+
+main().catch(console.error);

@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a nat gateway.
  *
  * @summary Creates or updates a nat gateway.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NatGatewayCreateOrUpdate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NatGatewayCreateOrUpdate.json
  */
 async function createNatGateway() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const natGatewayName = "test-natgateway";
   const parameters: NatGateway = {
     location: "westus",
@@ -50,4 +53,8 @@ async function createNatGateway() {
   console.log(result);
 }
 
-createNatGateway().catch(console.error);
+async function main() {
+  createNatGateway();
+}
+
+main().catch(console.error);

@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates a virtual network gateway tags.
  *
  * @summary Updates a virtual network gateway tags.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayUpdateTags.json
  */
 async function updateVirtualNetworkGatewayTags() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayName = "vpngw";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
   const credential = new DefaultAzureCredential();
@@ -35,4 +38,8 @@ async function updateVirtualNetworkGatewayTags() {
   console.log(result);
 }
 
-updateVirtualNetworkGatewayTags().catch(console.error);
+async function main() {
+  updateVirtualNetworkGatewayTags();
+}
+
+main().catch(console.error);

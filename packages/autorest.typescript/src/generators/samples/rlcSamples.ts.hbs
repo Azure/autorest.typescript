@@ -42,6 +42,13 @@ async function {{name}}() {
   console.log(result);
 }
 
-{{name}}().catch(console.error);
 {{/each}}
+
+async function main() {
+{{#each samples}}
+  {{this.name}}();
+{{/each}}
+}
+
+main().catch(console.error);
 

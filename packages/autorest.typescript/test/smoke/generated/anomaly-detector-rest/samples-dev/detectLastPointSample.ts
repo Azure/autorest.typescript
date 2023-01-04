@@ -18,12 +18,12 @@ dotenv.config();
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/LastDetect.json
  */
 async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
-  const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
+  const endpoint = "{Endpoint}";
+  const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
+    endpoint,
+    apiVersion,
     credential
   );
   const options: DetectLastPointParameters = {
@@ -90,4 +90,8 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
   console.log(result);
 }
 
-detectAnomalyStatusOfTheLatestPointInTimeSeriesExample().catch(console.error);
+async function main() {
+  detectAnomalyStatusOfTheLatestPointInTimeSeriesExample();
+}
+
+main().catch(console.error);

@@ -1,0 +1,114 @@
+import { listClients } from "@azure-tools/cadl-dpg";
+import {
+  buildClient,
+  buildClientDefinitions,
+  buildParameterTypes,
+  buildResponseTypes,
+  buildSchemaTypes,
+  ImportKind,
+  Schema
+} from "@azure-tools/rlc-common";
+import { rlcEmitterFor } from "./testUtil.js";
+import { transformToParameterTypes } from "../../../src/transform/transformParameters.js";
+import { transformSchemas } from "../../../src/transform/transformSchemas.js";
+import { transformPaths } from "../../../src/transform/transformPaths.js";
+import {
+  transformApiVersionParam,
+  transformUrlInfo
+} from "../../../src/transform/transform.js";
+import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
+
+export async function emitModelsFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const clients = listClients(program);
+  let rlcSchemas: Schema[] = [];
+  if (clients && clients[0]) {
+    rlcSchemas = transformSchemas(program, clients[0]);
+  }
+  return buildSchemaTypes({
+    schemas: rlcSchemas,
+    srcPath: "",
+    paths: {},
+    libraryName: "test"
+  });
+}
+
+export async function emitParameterFromCadl(cadlContent: string) {
+  const program = await rlcEmitterFor(cadlContent);
+  const clients = listClients(program);
+  const importSet = new Map<ImportKind, Set<string>>();
+  let parameters;
+  if (clients && clients[0]) {
+    parameters = transformToParameterTypes(program, importSet, clients[0]);
+  }
+  return buildParameterTypes({
+    srcPath: "",
+    paths: {},
+    libraryName: "test",
+    schemas: [],
+    parameters,
+    importSet
+  });
+}
+
+export async function emitClientDefinitionFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const clients = listClients(program);
+  let paths = {};
+  if (clients && clients[0]) {
+    paths = transformPaths(program, clients[0]);
+  }
+  return buildClientDefinitions({
+    srcPath: "",
+    libraryName: "test",
+    schemas: [],
+    paths
+  });
+}
+
+export async function emitClientFactoryFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, false, needAzureCore);
+  const urlInfo = transformUrlInfo(program);
+  const apiVersionInQueryParam = transformApiVersionParam(program);
+  return buildClient({
+    srcPath: "",
+    libraryName: "test",
+    schemas: [],
+    paths: {},
+    urlInfo,
+    apiVersionInQueryParam,
+    options: {
+      packageDetails: {
+        name: "test",
+        version: "1.0.0-beta.1"
+      }
+    }
+  });
+}
+
+export async function emitResponsesFromCadl(cadlContent: string) {
+  const program = await rlcEmitterFor(cadlContent);
+  const importSet = new Map<ImportKind, Set<string>>();
+  const clients = listClients(program);
+  let responses;
+  if (clients && clients[0]) {
+    responses = transformToResponseTypes(program, importSet, clients[0]);
+  }
+  return buildResponseTypes({
+    srcPath: "",
+    libraryName: "test",
+    schemas: [],
+    paths: {},
+    responses,
+    importSet
+  });
+}

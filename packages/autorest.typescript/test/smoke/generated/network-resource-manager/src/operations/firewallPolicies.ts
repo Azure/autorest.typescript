@@ -32,6 +32,9 @@ import {
   FirewallPoliciesGetResponse,
   FirewallPoliciesCreateOrUpdateOptionalParams,
   FirewallPoliciesCreateOrUpdateResponse,
+  TagsObject,
+  FirewallPoliciesUpdateTagsOptionalParams,
+  FirewallPoliciesUpdateTagsResponse,
   FirewallPoliciesListNextResponse,
   FirewallPoliciesListAllNextResponse
 } from "../models";
@@ -362,6 +365,25 @@ export class FirewallPoliciesImpl implements FirewallPolicies {
   }
 
   /**
+   * Updates tags of a Azure Firewall Policy resource.
+   * @param resourceGroupName The name of the resource group.
+   * @param firewallPolicyName The name of the Firewall Policy.
+   * @param parameters Parameters supplied to update Azure Firewall Policy tags.
+   * @param options The options parameters.
+   */
+  updateTags(
+    resourceGroupName: string,
+    firewallPolicyName: string,
+    parameters: TagsObject,
+    options?: FirewallPoliciesUpdateTagsOptionalParams
+  ): Promise<FirewallPoliciesUpdateTagsResponse> {
+    return this.client.sendOperationRequest(
+      { resourceGroupName, firewallPolicyName, parameters, options },
+      updateTagsOperationSpec
+    );
+  }
+
+  /**
    * Lists all Firewall Policies in a resource group.
    * @param resourceGroupName The name of the resource group.
    * @param options The options parameters.
@@ -487,7 +509,31 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters15,
+  requestBody: Parameters.parameters18,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.firewallPolicyName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const updateTagsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}",
+  httpMethod: "PATCH",
+  responses: {
+    200: {
+      bodyMapper: Mappers.FirewallPolicy
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

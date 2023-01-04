@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets properties of a specified container.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersGetWithAllowProtectedAppendWritesAll.json
  */
 async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res9871";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9871";
   const accountName = "sto6217";
   const containerName = "container1634";
   const credential = new DefaultAzureCredential();
@@ -31,8 +34,6 @@ async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
   );
   console.log(result);
 }
-
-getBlobContainersGetWithAllowProtectedAppendWritesAll().catch(console.error);
 
 /**
  * This sample demonstrates how to Gets properties of a specified container.
@@ -41,8 +42,8 @@ getBlobContainersGetWithAllowProtectedAppendWritesAll().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersGet.json
  */
 async function getContainers() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res9871";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9871";
   const accountName = "sto6217";
   const containerName = "container1634";
   const credential = new DefaultAzureCredential();
@@ -55,4 +56,9 @@ async function getContainers() {
   console.log(result);
 }
 
-getContainers().catch(console.error);
+async function main() {
+  getBlobContainersGetWithAllowProtectedAppendWritesAll();
+  getContainers();
+}
+
+main().catch(console.error);

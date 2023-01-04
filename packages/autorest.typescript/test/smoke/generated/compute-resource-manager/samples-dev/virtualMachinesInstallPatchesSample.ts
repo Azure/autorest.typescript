@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Installs patches on the VM.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/VirtualMachineInstallPatches.json
  */
 async function installPatchStateOfAVirtualMachine() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroupName";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "myResourceGroupName";
   const vmName = "myVMName";
   const installPatchesInput: VirtualMachineInstallPatchesParameters = {
     maximumDuration: "PT4H",
@@ -42,4 +46,8 @@ async function installPatchStateOfAVirtualMachine() {
   console.log(result);
 }
 
-installPatchStateOfAVirtualMachine().catch(console.error);
+async function main() {
+  installPatchStateOfAVirtualMachine();
+}
+
+main().catch(console.error);

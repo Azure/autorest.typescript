@@ -516,7 +516,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters20,
+  requestBody: Parameters.parameters23,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

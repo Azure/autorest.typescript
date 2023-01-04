@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a server communication link.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/ServerCommunicationLinkCreateOrUpdate.json
  */
 async function createAServerCommunicationLink() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-7398";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
   const serverName = "sqlcrudtest-4645";
   const communicationLinkName = "link1";
   const parameters: ServerCommunicationLink = {
@@ -39,4 +43,8 @@ async function createAServerCommunicationLink() {
   console.log(result);
 }
 
-createAServerCommunicationLink().catch(console.error);
+async function main() {
+  createAServerCommunicationLink();
+}
+
+main().catch(console.error);

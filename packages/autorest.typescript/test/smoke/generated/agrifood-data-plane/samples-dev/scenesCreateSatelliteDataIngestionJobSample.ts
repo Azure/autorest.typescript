@@ -18,10 +18,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Scenes_CreateSatelliteDataIngestionJob.json
  */
 async function scenesCreateSatelliteDataIngestionJob() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const jobId = "JOB123";
@@ -33,4 +33,8 @@ async function scenesCreateSatelliteDataIngestionJob() {
   console.log(result);
 }
 
-scenesCreateSatelliteDataIngestionJob().catch(console.error);
+async function main() {
+  scenesCreateSatelliteDataIngestionJob();
+}
+
+main().catch(console.error);

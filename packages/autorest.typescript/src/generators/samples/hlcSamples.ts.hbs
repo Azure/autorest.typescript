@@ -10,6 +10,9 @@ import {
   {{clientClassName}}, 
 } from "{{clientPackageName}}";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 {{#each samples}}
 /**
@@ -44,6 +47,12 @@ async function {{this.sampleFunctionName}}() {
   {{/if}}
 }
 
-{{this.sampleFunctionName}}().catch(console.error);
-
 {{/each}}
+
+async function main() {
+{{#each samples}}
+  {{this.sampleFunctionName}}();
+{{/each}}
+}
+
+main().catch(console.error);

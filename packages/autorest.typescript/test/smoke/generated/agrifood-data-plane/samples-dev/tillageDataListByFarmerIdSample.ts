@@ -18,10 +18,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/TillageData_ListByFarmerId.json
  */
 async function tillageDataListByFarmerId() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const farmerId = "FARMER123";
@@ -36,4 +36,8 @@ async function tillageDataListByFarmerId() {
   console.log(result);
 }
 
-tillageDataListByFarmerId().catch(console.error);
+async function main() {
+  tillageDataListByFarmerId();
+}
+
+main().catch(console.error);

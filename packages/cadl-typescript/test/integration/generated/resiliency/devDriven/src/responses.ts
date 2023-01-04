@@ -6,7 +6,7 @@ import {
   ProductOutput,
   ProductListOutput,
   ErrorResponseOutput,
-  LROProductOutput,
+  LroProductOutput,
 } from "./outputModels";
 
 /** Returns {'received': <mode>} */
@@ -35,5 +35,5 @@ export interface GetPagesDefaultResponse extends HttpResponse {
 /** Initial response with ProvisioningState='Succeeded' */
 export interface Lro200Response extends HttpResponse {
   status: "200";
-  body: LROProductOutput;
+  body: LroProductOutput;
 }

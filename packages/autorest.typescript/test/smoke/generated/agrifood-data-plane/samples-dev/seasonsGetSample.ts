@@ -16,10 +16,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Seasons_Get.json
  */
 async function seasonsGet() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const seasonId = "SEASON123";
@@ -27,4 +27,8 @@ async function seasonsGet() {
   console.log(result);
 }
 
-seasonsGet().catch(console.error);
+async function main() {
+  seasonsGet();
+}
+
+main().catch(console.error);

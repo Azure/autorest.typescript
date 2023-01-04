@@ -1095,7 +1095,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters63,
+  requestBody: Parameters.parameters74,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1206,7 +1206,7 @@ const setSharedKeyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters64,
+  requestBody: Parameters.parameters75,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1282,7 +1282,7 @@ const resetSharedKeyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.parameters65,
+  requestBody: Parameters.parameters76,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1315,7 +1315,7 @@ const startPacketCaptureOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.parameters61,
+  requestBody: Parameters.parameters72,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -1348,7 +1348,7 @@ const stopPacketCaptureOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  requestBody: Parameters.parameters62,
+  requestBody: Parameters.parameters73,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

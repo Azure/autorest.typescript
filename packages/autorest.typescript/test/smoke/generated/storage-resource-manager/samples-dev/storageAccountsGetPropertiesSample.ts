@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Returns the properties for the specified storage account including but not limited to name, SKU name, location, and account status. The ListKeys operation should be used to retrieve storage keys.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountGetProperties.json
  */
 async function storageAccountGetProperties() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res9407";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9407";
   const accountName = "sto8596";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -29,8 +32,6 @@ async function storageAccountGetProperties() {
   );
   console.log(result);
 }
-
-storageAccountGetProperties().catch(console.error);
 
 /**
  * This sample demonstrates how to Returns the properties for the specified storage account including but not limited to name, SKU name, location, and account status. The ListKeys operation should be used to retrieve storage keys.
@@ -39,8 +40,8 @@ storageAccountGetProperties().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountGetPropertiesCMKEnabled.json
  */
 async function storageAccountGetPropertiesCmkEnabled() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res9407";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9407";
   const accountName = "sto8596";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -51,4 +52,9 @@ async function storageAccountGetPropertiesCmkEnabled() {
   console.log(result);
 }
 
-storageAccountGetPropertiesCmkEnabled().catch(console.error);
+async function main() {
+  storageAccountGetProperties();
+  storageAccountGetPropertiesCmkEnabled();
+}
+
+main().catch(console.error);

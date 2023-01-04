@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Renew a domain.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.DomainRegistration/stable/2021-02-01/examples/RenewDomain.json
  */
 async function renewAnExistingDomain() {
-  const subscriptionId = "3dddfa4f-cedf-4dc0-ba29-b6d1a69ab545";
-  const resourceGroupName = "RG";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "3dddfa4f-cedf-4dc0-ba29-b6d1a69ab545";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "RG";
   const domainName = "example.com";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
@@ -27,4 +31,8 @@ async function renewAnExistingDomain() {
   console.log(result);
 }
 
-renewAnExistingDomain().catch(console.error);
+async function main() {
+  renewAnExistingDomain();
+}
+
+main().catch(console.error);

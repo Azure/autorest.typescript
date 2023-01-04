@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a list of all virtualClusters in the subscription.
@@ -18,7 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/VirtualClusterList.json
  */
 async function listVirtualClusters() {
-  const subscriptionId = "20d7082a-0fc7-4468-82bd-542694d5042b";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20d7082a-0fc7-4468-82bd-542694d5042b";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -28,4 +32,8 @@ async function listVirtualClusters() {
   console.log(resArray);
 }
 
-listVirtualClusters().catch(console.error);
+async function main() {
+  listVirtualClusters();
+}
+
+main().catch(console.error);

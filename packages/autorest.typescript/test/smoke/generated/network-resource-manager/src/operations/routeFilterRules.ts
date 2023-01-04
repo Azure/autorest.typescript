@@ -402,8 +402,8 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.routeFilterName,
-    Parameters.ruleName
+    Parameters.ruleName,
+    Parameters.routeFilterName
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -425,8 +425,8 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.routeFilterName,
-    Parameters.ruleName
+    Parameters.ruleName,
+    Parameters.routeFilterName
   ],
   headerParameters: [Parameters.accept],
   serializer
@@ -458,8 +458,8 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId,
-    Parameters.routeFilterName,
-    Parameters.ruleName
+    Parameters.ruleName,
+    Parameters.routeFilterName
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",

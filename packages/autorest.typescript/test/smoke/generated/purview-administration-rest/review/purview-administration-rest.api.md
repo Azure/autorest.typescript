@@ -560,7 +560,7 @@ interface ComplexReplacerConfigOutput {
 }
 
 // @public
-function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
+function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
 
 // @public
 function createClient_2(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountClient;

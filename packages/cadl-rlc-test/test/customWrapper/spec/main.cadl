@@ -1,0 +1,74 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/versioning";
+import "@azure-tools/cadl-azure-core";
+import "./azure-core-foundations-extensions.cadl";
+
+using Cadl.Http;
+using Cadl.Rest;
+using Cadl.Versioning;
+using Azure.Core;
+using Azure.Core.Foundations.Extensions;
+
+// NOTE: These features are missing:
+// - Security definition for apiKey
+@server(
+  "{Endpoint}/language",
+  "Language Service",
+  {
+    Endpoint: Endpoint,
+  }
+)
+@service({
+  title: "Microsoft Cognitive Language Service - Analyze Text Authoring",
+  version: "2022-05-15-preview",
+})
+@useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
+@versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
+@route("/authoring/analyze-text/")
+namespace Azure.Language.Authoring;
+
+// Common Parameters
+// TODO: Use the common parameter for this
+@doc("The endpoint to use.")
+scalar Endpoint extends string;
+
+@doc("The details of a project deployment.")
+model Deployment {
+  @doc("The name of the deployment.")
+  @key("deploymentName")
+  @segment("deployments")
+  name: string;
+
+  @doc("The ID of the end-user, for use in tracking and rate-limiting.")
+  user?: string;
+
+  @doc("input type of embedding search to use")
+  input_type?: string;
+
+  @doc("ID of the model to use")
+  "model"?: string;
+
+  @doc("""
+  An input to embed, encoded as a string, a list of strings, or a list of token
+  lists
+  """)
+  input: string | string[] | integer[] | integer[][];  
+}
+
+@doc("Deployment resource creation parameters.")
+@withVisibility("create")
+model DeploymentCreationParameters {
+  ...Deployment;
+}
+
+interface Deployments {
+  @doc("Gets the details of a deployment.")
+  getDeployment is ResourceRead<Deployment>;
+  
+  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  @doc("Creates a new deployment or replaces an existing one.")
+  deployProject is CustomResourceCreateOrReplace<
+    Deployment,
+    CustomBodyWrapper<DeploymentCreationParameters>
+  >;
+}  

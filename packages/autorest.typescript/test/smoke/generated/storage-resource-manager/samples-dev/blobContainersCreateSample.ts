@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a new container under the specified account as described by request body. The container resource includes metadata and properties for that container. It does not include a list of the blobs contained by the container.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersPutDefaultEncryptionScope.json
  */
 async function putContainerWithDefaultEncryptionScope() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res3376";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res3376";
   const accountName = "sto328";
   const containerName = "container6185";
   const blobContainer: BlobContainer = {
@@ -40,8 +43,6 @@ async function putContainerWithDefaultEncryptionScope() {
   console.log(result);
 }
 
-putContainerWithDefaultEncryptionScope().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new container under the specified account as described by request body. The container resource includes metadata and properties for that container. It does not include a list of the blobs contained by the container.
  *
@@ -49,8 +50,8 @@ putContainerWithDefaultEncryptionScope().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersPutObjectLevelWorm.json
  */
 async function putContainerWithObjectLevelWorm() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res3376";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res3376";
   const accountName = "sto328";
   const containerName = "container6185";
   const blobContainer: BlobContainer = {
@@ -67,8 +68,6 @@ async function putContainerWithObjectLevelWorm() {
   console.log(result);
 }
 
-putContainerWithObjectLevelWorm().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new container under the specified account as described by request body. The container resource includes metadata and properties for that container. It does not include a list of the blobs contained by the container.
  *
@@ -76,8 +75,8 @@ putContainerWithObjectLevelWorm().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersPut.json
  */
 async function putContainers() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res3376";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res3376";
   const accountName = "sto328";
   const containerName = "container6185";
   const blobContainer: BlobContainer = {};
@@ -92,4 +91,10 @@ async function putContainers() {
   console.log(result);
 }
 
-putContainers().catch(console.error);
+async function main() {
+  putContainerWithDefaultEncryptionScope();
+  putContainerWithObjectLevelWorm();
+  putContainers();
+}
+
+main().catch(console.error);

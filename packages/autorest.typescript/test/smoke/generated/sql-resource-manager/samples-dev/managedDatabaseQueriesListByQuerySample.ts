@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Get query execution statistics by query id.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceQueryStatisticsList.json
  */
 async function obtainQueryExecutionStatistics() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-7398";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const databaseName = "database_1";
   const queryId = "42";
@@ -40,8 +44,6 @@ async function obtainQueryExecutionStatistics() {
   console.log(resArray);
 }
 
-obtainQueryExecutionStatistics().catch(console.error);
-
 /**
  * This sample demonstrates how to Get query execution statistics by query id.
  *
@@ -49,8 +51,9 @@ obtainQueryExecutionStatistics().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceQueryStatisticsListMax.json
  */
 async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-7398";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const databaseName = "database_1";
   const queryId = "42";
@@ -77,10 +80,6 @@ async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters() {
   console.log(resArray);
 }
 
-obtainQueryExecutionStatisticsExampleWithAllRequestParameters().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Get query execution statistics by query id.
  *
@@ -88,8 +87,9 @@ obtainQueryExecutionStatisticsExampleWithAllRequestParameters().catch(
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceQueryStatisticsListMin.json
  */
 async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequestParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-7398";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const databaseName = "database_1";
   const queryId = "42";
@@ -110,6 +110,10 @@ async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequ
   console.log(resArray);
 }
 
-obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequestParameters().catch(
-  console.error
-);
+async function main() {
+  obtainQueryExecutionStatistics();
+  obtainQueryExecutionStatisticsExampleWithAllRequestParameters();
+  obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequestParameters();
+}
+
+main().catch(console.error);

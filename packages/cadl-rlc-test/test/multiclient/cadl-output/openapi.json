@@ -45,9 +45,9 @@
                 },
                 "nextLink": {
                   "type": "string",
-                  "description": "The link to the next page of items",
                   "format": "uri",
-                  "x-cadl-name": "Rest.ResourceLocation<Resource>"
+                  "description": "The link to the next page of items",
+                  "x-cadl-name": "Rest.ResourceLocation"
                 }
               },
               "description": "Paged collection of Resource items",
@@ -398,6 +398,7 @@
       "in": "query",
       "required": true,
       "description": "The API version to use for this operation.",
+      "x-ms-client-name": "apiVersion",
       "minLength": 1,
       "type": "string",
       "x-ms-parameter-location": "method"

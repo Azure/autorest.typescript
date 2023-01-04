@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists all availability sets in a subscription.
@@ -21,7 +24,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListAvailabilitySetsInASubscription.json
  */
 async function listAvailabilitySetsInASubscription() {
-  const subscriptionId = "{subscriptionId}";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscriptionId}";
   const expand = "virtualMachines\\$ref";
   const options: AvailabilitySetsListBySubscriptionOptionalParams = { expand };
   const credential = new DefaultAzureCredential();
@@ -33,4 +36,8 @@ async function listAvailabilitySetsInASubscription() {
   console.log(resArray);
 }
 
-listAvailabilitySetsInASubscription().catch(console.error);
+async function main() {
+  listAvailabilitySetsInASubscription();
+}
+
+main().catch(console.error);

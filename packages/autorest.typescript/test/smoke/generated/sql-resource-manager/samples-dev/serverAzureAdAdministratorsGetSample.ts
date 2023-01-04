@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a Azure Active Directory administrator.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/AdministratorGet.json
  */
 async function getsAAzureActiveDirectoryAdministrator() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-4799";
   const serverName = "sqlcrudtest-6440";
   const administratorName = "ActiveDirectory";
   const credential = new DefaultAzureCredential();
@@ -32,4 +36,8 @@ async function getsAAzureActiveDirectoryAdministrator() {
   console.log(result);
 }
 
-getsAAzureActiveDirectoryAdministrator().catch(console.error);
+async function main() {
+  getsAAzureActiveDirectoryAdministrator();
+}
+
+main().catch(console.error);

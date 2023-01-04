@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Perform a database extension operation, like polybase import
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CreateOrUpdateDatabaseExtensions.json
  */
 async function createOrUpdateDatabaseExtensions() {
-  const subscriptionId = "a1c0814d-3c18-4e1e-a247-c128c12b1677";
-  const resourceGroupName = "rg_20cbe0f0-c2d9-4522-9177-5469aad53029";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "a1c0814d-3c18-4e1e-a247-c128c12b1677";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "rg_20cbe0f0-c2d9-4522-9177-5469aad53029";
   const serverName = "srv_1ffd1cf8-9951-47fb-807d-a9c384763849";
   const databaseName = "878e303f-1ea0-4f17-aa3d-a22ac5e9da08";
   const extensionName = "polybaseimport";
@@ -46,4 +51,8 @@ async function createOrUpdateDatabaseExtensions() {
   console.log(result);
 }
 
-createOrUpdateDatabaseExtensions().catch(console.error);
+async function main() {
+  createOrUpdateDatabaseExtensions();
+}
+
+main().catch(console.error);

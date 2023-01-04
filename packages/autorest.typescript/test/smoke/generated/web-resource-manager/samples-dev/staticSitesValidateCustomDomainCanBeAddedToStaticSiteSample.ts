@@ -13,6 +13,9 @@ import {
   WebSiteManagementClient
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Validates a particular custom domain can be added to a static site.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ValidateStaticSiteCustomDomain.json
  */
 async function validateACustomDomainForAStaticSite() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-  const resourceGroupName = "rg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
   const name = "testStaticSite0";
   const domainName = "custom.domain.net";
   const staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource = {};
@@ -37,4 +41,8 @@ async function validateACustomDomainForAStaticSite() {
   console.log(result);
 }
 
-validateACustomDomainForAStaticSite().catch(console.error);
+async function main() {
+  validateACustomDomainForAStaticSite();
+}
+
+main().catch(console.error);

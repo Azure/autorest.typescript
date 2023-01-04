@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to List shared galleries by subscription id or tenant id.
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/sharedGallery/ListSharedGalleries.json
  */
 async function getAGallery() {
-  const subscriptionId = "{subscription-id}";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "myLocation";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -29,4 +32,8 @@ async function getAGallery() {
   console.log(resArray);
 }
 
-getAGallery().catch(console.error);
+async function main() {
+  getAGallery();
+}
+
+main().catch(console.error);

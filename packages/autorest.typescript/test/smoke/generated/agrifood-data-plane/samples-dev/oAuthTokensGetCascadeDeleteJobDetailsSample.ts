@@ -16,10 +16,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/OAuthTokens_GetCascadeDeleteJobDetails.json
  */
 async function oAuthTokensGetCascadeDeleteJobDetails() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const jobId = "JOBID123";
@@ -27,4 +27,8 @@ async function oAuthTokensGetCascadeDeleteJobDetails() {
   console.log(result);
 }
 
-oAuthTokensGetCascadeDeleteJobDetails().catch(console.error);
+async function main() {
+  oAuthTokensGetCascadeDeleteJobDetails();
+}
+
+main().catch(console.error);

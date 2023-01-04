@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to The Reimage Role Instance asynchronous operation reinstalls the operating system on instances of web roles or worker roles.
@@ -18,9 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/ReimageCloudServiceRoleInstance.json
  */
 async function reimageCloudServiceRoleInstance() {
-  const subscriptionId = "{subscription-id}";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const roleInstanceName = "{roleInstance-name}";
-  const resourceGroupName = "ConstosoRG";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -32,4 +35,8 @@ async function reimageCloudServiceRoleInstance() {
   console.log(result);
 }
 
-reimageCloudServiceRoleInstance().catch(console.error);
+async function main() {
+  reimageCloudServiceRoleInstance();
+}
+
+main().catch(console.error);

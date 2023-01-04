@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Get properties of specified deleted account resource.
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/DeletedAccountGet.json
  */
 async function deletedAccountGet() {
-  const subscriptionId = "{subscription-id}";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const deletedAccountName = "sto1125";
   const location = "eastus";
   const credential = new DefaultAzureCredential();
@@ -27,4 +30,8 @@ async function deletedAccountGet() {
   console.log(result);
 }
 
-deletedAccountGet().catch(console.error);
+async function main() {
+  deletedAccountGet();
+}
+
+main().catch(console.error);

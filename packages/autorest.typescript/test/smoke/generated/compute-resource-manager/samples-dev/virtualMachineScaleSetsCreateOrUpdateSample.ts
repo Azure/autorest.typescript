@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update a VM scale set.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithExtensionsSuppressFailuresEnabled.json
  */
 async function createAVmssWithAnExtensionThatHasSuppressFailuresEnabled() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -98,8 +101,6 @@ async function createAVmssWithAnExtensionThatHasSuppressFailuresEnabled() {
   console.log(result);
 }
 
-createAVmssWithAnExtensionThatHasSuppressFailuresEnabled().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -107,8 +108,8 @@ createAVmssWithAnExtensionThatHasSuppressFailuresEnabled().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateACustomImageScaleSetFromAnUnmanagedGeneralizedOsImage.json
  */
 async function createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -162,10 +163,6 @@ async function createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage() {
   console.log(result);
 }
 
-createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -173,8 +170,8 @@ createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAPlatformImageScaleSetWithUnmanagedOsDisks.json
  */
 async function createAPlatformImageScaleSetWithUnmanagedOSDisks() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -237,8 +234,6 @@ async function createAPlatformImageScaleSetWithUnmanagedOSDisks() {
   console.log(result);
 }
 
-createAPlatformImageScaleSetWithUnmanagedOSDisks().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -246,8 +241,8 @@ createAPlatformImageScaleSetWithUnmanagedOSDisks().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetFromACustomImage.json
  */
 async function createAScaleSetFromACustomImage() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -301,8 +296,6 @@ async function createAScaleSetFromACustomImage() {
   console.log(result);
 }
 
-createAScaleSetFromACustomImage().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -310,8 +303,8 @@ createAScaleSetFromACustomImage().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetFromAGeneralizedSharedImage.json
  */
 async function createAScaleSetFromAGeneralizedSharedImage() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -365,8 +358,6 @@ async function createAScaleSetFromAGeneralizedSharedImage() {
   console.log(result);
 }
 
-createAScaleSetFromAGeneralizedSharedImage().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -374,8 +365,8 @@ createAScaleSetFromAGeneralizedSharedImage().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetFromASpecializedSharedImage.json
  */
 async function createAScaleSetFromASpecializedSharedImage() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -424,8 +415,6 @@ async function createAScaleSetFromASpecializedSharedImage() {
   console.log(result);
 }
 
-createAScaleSetFromASpecializedSharedImage().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -433,8 +422,8 @@ createAScaleSetFromASpecializedSharedImage().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithApplicationProfile.json
  */
 async function createAScaleSetWithApplicationProfile() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -506,8 +495,6 @@ async function createAScaleSetWithApplicationProfile() {
   console.log(result);
 }
 
-createAScaleSetWithApplicationProfile().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -515,8 +502,8 @@ createAScaleSetWithApplicationProfile().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScalesetWithDiskEncryptionSetResource.json
  */
 async function createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -591,10 +578,6 @@ async function createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk()
   console.log(result);
 }
 
-createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -602,8 +585,8 @@ createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetFromWithFpgaNetworkInterface.json
  */
 async function createAScaleSetWithFpgaNetworkInterfaces() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -675,8 +658,6 @@ async function createAScaleSetWithFpgaNetworkInterfaces() {
   console.log(result);
 }
 
-createAScaleSetWithFpgaNetworkInterfaces().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -684,8 +665,8 @@ createAScaleSetWithFpgaNetworkInterfaces().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithEncryptionAtHost.json
  */
 async function createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -747,10 +728,6 @@ async function createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty() 
   console.log(result);
 }
 
-createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -758,8 +735,8 @@ createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithUefiSettings.json
  */
 async function createAScaleSetWithUefiSettingsOfSecureBootAndVTpm() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -819,8 +796,6 @@ async function createAScaleSetWithUefiSettingsOfSecureBootAndVTpm() {
   console.log(result);
 }
 
-createAScaleSetWithUefiSettingsOfSecureBootAndVTpm().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -828,8 +803,8 @@ createAScaleSetWithUefiSettingsOfSecureBootAndVTpm().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithAMarketplaceImagePlan.json
  */
 async function createAScaleSetWithAMarketplaceImagePlan() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -890,8 +865,6 @@ async function createAScaleSetWithAMarketplaceImagePlan() {
   console.log(result);
 }
 
-createAScaleSetWithAMarketplaceImagePlan().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -899,8 +872,8 @@ createAScaleSetWithAMarketplaceImagePlan().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithAnAzureApplicationGateway.json
  */
 async function createAScaleSetWithAnAzureApplicationGateway() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -962,8 +935,6 @@ async function createAScaleSetWithAnAzureApplicationGateway() {
   console.log(result);
 }
 
-createAScaleSetWithAnAzureApplicationGateway().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -971,8 +942,8 @@ createAScaleSetWithAnAzureApplicationGateway().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithAnAzureLoadBalancer.json
  */
 async function createAScaleSetWithAnAzureLoadBalancer() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1044,8 +1015,6 @@ async function createAScaleSetWithAnAzureLoadBalancer() {
   console.log(result);
 }
 
-createAScaleSetWithAnAzureLoadBalancer().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1053,8 +1022,8 @@ createAScaleSetWithAnAzureLoadBalancer().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithAutomaticRepairs.json
  */
 async function createAScaleSetWithAutomaticRepairsEnabled() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     automaticRepairsPolicy: { enabled: true, gracePeriod: "PT30M" },
@@ -1111,8 +1080,6 @@ async function createAScaleSetWithAutomaticRepairsEnabled() {
   console.log(result);
 }
 
-createAScaleSetWithAutomaticRepairsEnabled().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1120,8 +1087,8 @@ createAScaleSetWithAutomaticRepairsEnabled().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithBootDiagnostics.json
  */
 async function createAScaleSetWithBootDiagnostics() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1184,8 +1151,6 @@ async function createAScaleSetWithBootDiagnostics() {
   console.log(result);
 }
 
-createAScaleSetWithBootDiagnostics().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1193,8 +1158,8 @@ createAScaleSetWithBootDiagnostics().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithEmptyDataDisksOnEachVm.json
  */
 async function createAScaleSetWithEmptyDataDisksOnEachVM() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1255,8 +1220,6 @@ async function createAScaleSetWithEmptyDataDisksOnEachVM() {
   console.log(result);
 }
 
-createAScaleSetWithEmptyDataDisksOnEachVM().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1264,8 +1227,8 @@ createAScaleSetWithEmptyDataDisksOnEachVM().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithDiffOsDiskUsingDiffDiskPlacement.json
  */
 async function createAScaleSetWithEphemeralOSDisksUsingPlacementProperty() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1327,10 +1290,6 @@ async function createAScaleSetWithEphemeralOSDisksUsingPlacementProperty() {
   console.log(result);
 }
 
-createAScaleSetWithEphemeralOSDisksUsingPlacementProperty().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1338,8 +1297,8 @@ createAScaleSetWithEphemeralOSDisksUsingPlacementProperty().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithDiffOsDisk.json
  */
 async function createAScaleSetWithEphemeralOSDisks() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1401,8 +1360,6 @@ async function createAScaleSetWithEphemeralOSDisks() {
   console.log(result);
 }
 
-createAScaleSetWithEphemeralOSDisks().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1410,8 +1367,8 @@ createAScaleSetWithEphemeralOSDisks().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithExtensionsTimeBudget.json
  */
 async function createAScaleSetWithExtensionTimeBudget() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1487,8 +1444,6 @@ async function createAScaleSetWithExtensionTimeBudget() {
   console.log(result);
 }
 
-createAScaleSetWithExtensionTimeBudget().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1496,8 +1451,8 @@ createAScaleSetWithExtensionTimeBudget().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithManagedBootDiagnostics.json
  */
 async function createAScaleSetWithManagedBootDiagnostics() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1554,8 +1509,6 @@ async function createAScaleSetWithManagedBootDiagnostics() {
   console.log(result);
 }
 
-createAScaleSetWithManagedBootDiagnostics().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1563,8 +1516,8 @@ createAScaleSetWithManagedBootDiagnostics().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithPasswordAuthentication.json
  */
 async function createAScaleSetWithPasswordAuthentication() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1620,8 +1573,6 @@ async function createAScaleSetWithPasswordAuthentication() {
   console.log(result);
 }
 
-createAScaleSetWithPasswordAuthentication().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1629,8 +1580,8 @@ createAScaleSetWithPasswordAuthentication().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithPremiumStorage.json
  */
 async function createAScaleSetWithPremiumStorage() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1686,8 +1637,6 @@ async function createAScaleSetWithPremiumStorage() {
   console.log(result);
 }
 
-createAScaleSetWithPremiumStorage().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1695,8 +1644,8 @@ createAScaleSetWithPremiumStorage().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithScaleInPolicy.json
  */
 async function createAScaleSetWithScaleInPolicy() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1753,8 +1702,6 @@ async function createAScaleSetWithScaleInPolicy() {
   console.log(result);
 }
 
-createAScaleSetWithScaleInPolicy().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1762,8 +1709,8 @@ createAScaleSetWithScaleInPolicy().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithSpotRestorePolicy.json
  */
 async function createAScaleSetWithSpotRestorePolicy() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1823,8 +1770,6 @@ async function createAScaleSetWithSpotRestorePolicy() {
   console.log(result);
 }
 
-createAScaleSetWithSpotRestorePolicy().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1832,8 +1777,8 @@ createAScaleSetWithSpotRestorePolicy().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithSshAuthentication.json
  */
 async function createAScaleSetWithSshAuthentication() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1900,8 +1845,6 @@ async function createAScaleSetWithSshAuthentication() {
   console.log(result);
 }
 
-createAScaleSetWithSshAuthentication().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1909,8 +1852,8 @@ createAScaleSetWithSshAuthentication().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithTerminateScheduledEventEnabled.json
  */
 async function createAScaleSetWithTerminateScheduledEventsEnabled() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -1969,8 +1912,6 @@ async function createAScaleSetWithTerminateScheduledEventsEnabled() {
   console.log(result);
 }
 
-createAScaleSetWithTerminateScheduledEventsEnabled().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -1978,8 +1919,8 @@ createAScaleSetWithTerminateScheduledEventsEnabled().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateAScaleSetWithUserData.json
  */
 async function createAScaleSetWithUserData() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -2036,8 +1977,6 @@ async function createAScaleSetWithUserData() {
   console.log(result);
 }
 
-createAScaleSetWithUserData().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -2045,8 +1984,8 @@ createAScaleSetWithUserData().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAScaleSetWithVMsInDifferentZones.json
  */
 async function createAScaleSetWithVirtualMachinesInDifferentZones() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "centralus",
@@ -2108,8 +2047,6 @@ async function createAScaleSetWithVirtualMachinesInDifferentZones() {
   console.log(result);
 }
 
-createAScaleSetWithVirtualMachinesInDifferentZones().catch(console.error);
-
 /**
  * This sample demonstrates how to Create or update a VM scale set.
  *
@@ -2117,8 +2054,8 @@ createAScaleSetWithVirtualMachinesInDifferentZones().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateAScaleSetWithCapacityReservation.json
  */
 async function createOrUpdateAScaleSetWithCapacityReservation() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "{vmss-name}";
   const parameters: VirtualMachineScaleSet = {
     location: "westus",
@@ -2180,4 +2117,37 @@ async function createOrUpdateAScaleSetWithCapacityReservation() {
   console.log(result);
 }
 
-createOrUpdateAScaleSetWithCapacityReservation().catch(console.error);
+async function main() {
+  createAVmssWithAnExtensionThatHasSuppressFailuresEnabled();
+  createACustomImageScaleSetFromAnUnmanagedGeneralizedOSImage();
+  createAPlatformImageScaleSetWithUnmanagedOSDisks();
+  createAScaleSetFromACustomImage();
+  createAScaleSetFromAGeneralizedSharedImage();
+  createAScaleSetFromASpecializedSharedImage();
+  createAScaleSetWithApplicationProfile();
+  createAScaleSetWithDiskEncryptionSetResourceInOSDiskAndDataDisk();
+  createAScaleSetWithFpgaNetworkInterfaces();
+  createAScaleSetWithHostEncryptionUsingEncryptionAtHostProperty();
+  createAScaleSetWithUefiSettingsOfSecureBootAndVTpm();
+  createAScaleSetWithAMarketplaceImagePlan();
+  createAScaleSetWithAnAzureApplicationGateway();
+  createAScaleSetWithAnAzureLoadBalancer();
+  createAScaleSetWithAutomaticRepairsEnabled();
+  createAScaleSetWithBootDiagnostics();
+  createAScaleSetWithEmptyDataDisksOnEachVM();
+  createAScaleSetWithEphemeralOSDisksUsingPlacementProperty();
+  createAScaleSetWithEphemeralOSDisks();
+  createAScaleSetWithExtensionTimeBudget();
+  createAScaleSetWithManagedBootDiagnostics();
+  createAScaleSetWithPasswordAuthentication();
+  createAScaleSetWithPremiumStorage();
+  createAScaleSetWithScaleInPolicy();
+  createAScaleSetWithSpotRestorePolicy();
+  createAScaleSetWithSshAuthentication();
+  createAScaleSetWithTerminateScheduledEventsEnabled();
+  createAScaleSetWithUserData();
+  createAScaleSetWithVirtualMachinesInDifferentZones();
+  createOrUpdateAScaleSetWithCapacityReservation();
+}
+
+main().catch(console.error);

@@ -18,12 +18,12 @@ dotenv.config();
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/ChangePointDetect.json
  */
 async function detectChangePointExample() {
-  const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
+  const endpoint = "{Endpoint}";
+  const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
+    endpoint,
+    apiVersion,
     credential
   );
   const options: DetectChangePointParameters = {
@@ -301,4 +301,8 @@ async function detectChangePointExample() {
   console.log(result);
 }
 
-detectChangePointExample().catch(console.error);
+async function main() {
+  detectChangePointExample();
+}
+
+main().catch(console.error);

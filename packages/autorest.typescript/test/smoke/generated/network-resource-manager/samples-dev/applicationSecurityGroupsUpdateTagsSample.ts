@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates an application security group's tags.
  *
  * @summary Updates an application security group's tags.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationSecurityGroupUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationSecurityGroupUpdateTags.json
  */
 async function updateApplicationSecurityGroupTags() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const applicationSecurityGroupName = "test-asg";
   const parameters: TagsObject = { tags: { tag1: "value1", tag2: "value2" } };
   const credential = new DefaultAzureCredential();
@@ -35,4 +38,8 @@ async function updateApplicationSecurityGroupTags() {
   console.log(result);
 }
 
-updateApplicationSecurityGroupTags().catch(console.error);
+async function main() {
+  updateApplicationSecurityGroupTags();
+}
+
+main().catch(console.error);

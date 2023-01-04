@@ -13,6 +13,9 @@ import {
   KeyVaultManagementClient
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Checks that the vault name is valid and is not already in use.
@@ -21,7 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/checkVaultNameAvailability.json
  */
 async function validateAVaultName() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const vaultName: VaultCheckNameAvailabilityParameters = {
     name: "sample-vault",
     type: "Microsoft.KeyVault/vaults"
@@ -32,4 +36,8 @@ async function validateAVaultName() {
   console.log(result);
 }
 
-validateAVaultName().catch(console.error);
+async function main() {
+  validateAVaultName();
+}
+
+main().catch(console.error);

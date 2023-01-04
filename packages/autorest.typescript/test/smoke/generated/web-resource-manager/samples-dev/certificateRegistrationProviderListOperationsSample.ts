@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Implements Csm operations Api to exposes the list of available Csm Apis under the resource provider
@@ -18,7 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.CertificateRegistration/stable/2021-02-01/examples/ListOperations.json
  */
 async function listOperations() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -28,4 +32,8 @@ async function listOperations() {
   console.log(resArray);
 }
 
-listOperations().catch(console.error);
+async function main() {
+  listOperations();
+}
+
+main().catch(console.error);

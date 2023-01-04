@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Get deleted app for a subscription at location.
@@ -18,7 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetDeletedWebAppByLocation.json
  */
 async function getDeletedWebAppByLocation() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const location = "West US 2";
   const deletedSiteId = "9";
   const credential = new DefaultAzureCredential();
@@ -30,4 +34,8 @@ async function getDeletedWebAppByLocation() {
   console.log(result);
 }
 
-getDeletedWebAppByLocation().catch(console.error);
+async function main() {
+  getDeletedWebAppByLocation();
+}
+
+main().catch(console.error);

@@ -18,10 +18,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Boundaries_Search.json
  */
 async function boundariesSearch() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const initialResponse = await client.path("/boundaries").post();
@@ -33,4 +33,8 @@ async function boundariesSearch() {
   console.log(result);
 }
 
-boundariesSearch().catch(console.error);
+async function main() {
+  boundariesSearch();
+}
+
+main().catch(console.error);

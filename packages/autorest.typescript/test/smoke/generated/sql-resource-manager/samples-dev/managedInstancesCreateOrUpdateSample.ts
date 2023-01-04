@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a managed instance.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceCreateMax.json
  */
 async function createManagedInstanceWithAllProperties() {
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstance = {
     administratorLogin: "dummylogin",
@@ -66,8 +70,6 @@ async function createManagedInstanceWithAllProperties() {
   console.log(result);
 }
 
-createManagedInstanceWithAllProperties().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a managed instance.
  *
@@ -75,8 +77,9 @@ createManagedInstanceWithAllProperties().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceCreateMin.json
  */
 async function createManagedInstanceWithMinimalProperties() {
-  const subscriptionId = "20D7082A-0FC7-4468-82BD-542694D5042B";
-  const resourceGroupName = "testrg";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstance = {
     administratorLogin: "dummylogin",
@@ -99,4 +102,9 @@ async function createManagedInstanceWithMinimalProperties() {
   console.log(result);
 }
 
-createManagedInstanceWithMinimalProperties().catch(console.error);
+async function main() {
+  createManagedInstanceWithAllProperties();
+  createManagedInstanceWithMinimalProperties();
+}
+
+main().catch(console.error);

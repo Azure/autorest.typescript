@@ -8,9 +8,12 @@ import {
 } from "@azure-tools/cadl-dpg";
 import { Schema, SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
-import { getResourceOperation } from "@cadl-lang/rest";
 import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
-import { getSchemaForType, includeDerivedModel } from "../modelUtils.js";
+import {
+  getSchemaForType,
+  includeDerivedModel,
+  getBodyType
+} from "../modelUtils.js";
 
 export function transformSchemas(program: Program, client: Client) {
   const schemas: Schema[] = [];
@@ -30,15 +33,9 @@ export function transformSchemas(program: Program, client: Client) {
     transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
-    if (route.parameters.bodyType) {
-      let bodyModel = route.parameters.bodyType;
-      const operation = getResourceOperation(program, route.operation);
-      if (operation) {
-        bodyModel = operation.resourceType;
-      }
-      if (bodyModel && bodyModel.kind === "Model") {
-        getGeneratedModels(bodyModel, SchemaContext.Input);
-      }
+    const bodyModel = getBodyType(program, route);
+    if (bodyModel && bodyModel.kind === "Model") {
+      getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
       for (const resps of resp.responses) {
@@ -55,7 +52,9 @@ export function transformSchemas(program: Program, client: Client) {
     if (model) {
       model.usage = context;
     }
-
+    if (model.name === "") {
+      return;
+    }
     const modelStr = JSON.stringify(trimUsage(model));
     if (!schemaSet.has(modelStr)) {
       schemas.push(model);
@@ -100,9 +99,7 @@ export function transformSchemas(program: Program, client: Client) {
           }
         }
       }
-      if (model.name === "") {
-        return;
-      }
+
       setModelMap(model, context);
       const indexer = (model as Model).indexer;
       if (indexer?.value && !program.stateMap(modelKey).get(indexer?.value)) {

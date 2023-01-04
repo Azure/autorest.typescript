@@ -19,10 +19,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/SeasonalFields_CreateCascadeDeleteJob.json
  */
 async function seasonalFieldsCreateCascadeDeleteJob() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const jobId = "JOB123";
@@ -40,4 +40,8 @@ async function seasonalFieldsCreateCascadeDeleteJob() {
   console.log(result);
 }
 
-seasonalFieldsCreateCascadeDeleteJob().catch(console.error);
+async function main() {
+  seasonalFieldsCreateCascadeDeleteJob();
+}
+
+main().catch(console.error);

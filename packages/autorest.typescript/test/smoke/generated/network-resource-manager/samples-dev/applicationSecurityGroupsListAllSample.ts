@@ -10,15 +10,18 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets all application security groups in a subscription.
  *
  * @summary Gets all application security groups in a subscription.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/ApplicationSecurityGroupListAll.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationSecurityGroupListAll.json
  */
 async function listAllApplicationSecurityGroups() {
-  const subscriptionId = "subid";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -28,4 +31,8 @@ async function listAllApplicationSecurityGroups() {
   console.log(resArray);
 }
 
-listAllApplicationSecurityGroups().catch(console.error);
+async function main() {
+  listAllApplicationSecurityGroups();
+}
+
+main().catch(console.error);

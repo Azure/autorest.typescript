@@ -16,10 +16,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/PlantingData_Get.json
  */
 async function plantingDataGet() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const farmerId = "FARMER123";
@@ -34,4 +34,8 @@ async function plantingDataGet() {
   console.log(result);
 }
 
-plantingDataGet().catch(console.error);
+async function main() {
+  plantingDataGet();
+}
+
+main().catch(console.error);

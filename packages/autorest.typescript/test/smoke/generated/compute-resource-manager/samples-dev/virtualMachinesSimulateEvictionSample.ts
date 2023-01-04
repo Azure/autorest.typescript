@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to The operation to simulate the eviction of spot virtual machine.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/SimulateEvictionOfVM.json
  */
 async function simulateEvictionAVirtualMachine() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "ResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "ResourceGroup";
   const vmName = "VMName";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -30,4 +33,8 @@ async function simulateEvictionAVirtualMachine() {
   console.log(result);
 }
 
-simulateEvictionAVirtualMachine().catch(console.error);
+async function main() {
+  simulateEvictionAVirtualMachine();
+}
+
+main().catch(console.error);

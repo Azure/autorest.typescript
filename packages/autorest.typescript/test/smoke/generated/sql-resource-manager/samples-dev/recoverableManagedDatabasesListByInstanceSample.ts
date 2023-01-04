@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets a list of recoverable managed databases.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListRecoverableManagedDatabasesByServer.json
  */
 async function listRecoverableDatabasesByManagedInstances() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Test1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "Test1";
   const managedInstanceName = "managedInstance";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -33,4 +37,8 @@ async function listRecoverableDatabasesByManagedInstances() {
   console.log(resArray);
 }
 
-listRecoverableDatabasesByManagedInstances().catch(console.error);
+async function main() {
+  listRecoverableDatabasesByManagedInstances();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Deletes the queue with the specified queue name, under the specified account if it exists.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueOperationDelete.json
  */
 async function queueOperationDelete() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res3376";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res3376";
   const accountName = "sto328";
   const queueName = "queue6185";
   const credential = new DefaultAzureCredential();
@@ -32,4 +35,8 @@ async function queueOperationDelete() {
   console.log(result);
 }
 
-queueOperationDelete().catch(console.error);
+async function main() {
+  queueOperationDelete();
+}
+
+main().catch(console.error);

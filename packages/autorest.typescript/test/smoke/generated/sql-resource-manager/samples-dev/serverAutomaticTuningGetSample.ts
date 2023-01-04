@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Retrieves server automatic tuning options.
@@ -18,8 +21,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerAutomaticTuningGet.json
  */
 async function getAServerAutomaticTuningSettings() {
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  const resourceGroupName = "default-sql-onebox";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "c3aa9078-0000-0000-0000-e36f151182d7";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "default-sql-onebox";
   const serverName = "testsvr11";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -30,4 +35,8 @@ async function getAServerAutomaticTuningSettings() {
   console.log(result);
 }
 
-getAServerAutomaticTuningSettings().catch(console.error);
+async function main() {
+  getAServerAutomaticTuningSettings();
+}
+
+main().catch(console.error);

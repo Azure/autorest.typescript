@@ -3,8 +3,11 @@ import "./routes.cadl";
 
 using Cadl.Rest;
 using Cadl.Http;
-@serviceTitle("BatchServiceClient")
-@serviceVersion("2022-01-01.15.0")
+
+@service({
+  title: "BatchServiceClient",
+  version: "2022-01-01.15.0",
+})
 @server(
   "{batchUrl}",
   "A client for issuing REST requests to the Azure Batch service.",

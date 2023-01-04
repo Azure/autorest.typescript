@@ -17,15 +17,15 @@ import {
   UrlInfo
 } from "@azure-tools/rlc-common";
 import {
-  getServiceNamespace,
-  getServiceTitle,
-  getServiceVersion,
   Program,
   Type,
   BooleanLiteral,
   StringLiteral,
   NumericLiteral,
-  ModelProperty
+  ModelProperty,
+  listServices,
+  NoTarget,
+  Service
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -41,15 +41,21 @@ import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { isApiVersion } from "../paramUtil.js";
+import { reportDiagnostic } from "../lib.js";
 
 export async function transformRLCModel(
   program: Program,
   emitterOptions: RLCOptions,
-  client: Client
+  client: Client,
+  emitterOutputDir: string
 ): Promise<RLCModel> {
-  const options: RLCOptions = transformRLCOptions(program, emitterOptions);
+  const options: RLCOptions = transformRLCOptions(
+    program,
+    emitterOptions,
+    emitterOutputDir
+  );
   const srcPath = join(
-    program.compilerOptions.outputDir ?? "",
+    emitterOutputDir ?? "",
     "src",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)
@@ -58,7 +64,7 @@ export async function transformRLCModel(
   const libraryName = normalizeName(
     options.batch && options.batch.length > 1
       ? client.name
-      : options?.title ?? getServiceTitle(program),
+      : options?.title ?? getDefaultService(program)?.title ?? "",
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();
@@ -95,7 +101,7 @@ export async function transformRLCModel(
 export function transformApiVersionParam(
   program: Program
 ): Parameter | undefined {
-  const apiVersion = getServiceVersion(program);
+  const apiVersion = getDefaultService(program)?.version;
   if (apiVersion && apiVersion !== "0000-00-00") {
     return {
       name: "api-version",
@@ -107,7 +113,7 @@ export function transformApiVersionParam(
 }
 
 export function transformUrlInfo(program: Program): UrlInfo | undefined {
-  const serviceNs = getServiceNamespace(program);
+  const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
   const urlParameters: PathParameter[] = [];
   if (serviceNs) {
@@ -132,15 +138,24 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
       }
     }
   }
+  // Set the default value if missing endpoint parameter
+  if (endpoint == undefined && urlParameters.length === 0) {
+    endpoint = "{endpoint}";
+    urlParameters.push({
+      name: "endpoint",
+      type: "string"
+    });
+  }
   return { endpoint, urlParameters };
 }
 
 function getDefaultValue(program: Program, param?: ModelProperty) {
   const otherDefaultValue = param?.default;
-  const defaultApiVersion = getDefaultApiVersion(
-    program,
-    getServiceNamespace(program)
-  );
+  const serviceNamespace = getDefaultService(program)?.type;
+  if (!serviceNamespace) {
+    return undefined;
+  }
+  const defaultApiVersion = getDefaultApiVersion(program, serviceNamespace);
   if (isApiVersion(param) && defaultApiVersion) {
     return defaultApiVersion.value;
   } else if (isLiteralValue(otherDefaultValue)) {
@@ -165,4 +180,21 @@ function isLiteralValue(
   }
 
   return false;
+}
+
+export function getDefaultService(program: Program): Service | undefined {
+  const services = listServices(program);
+  if (!services || services.length === 0) {
+    reportDiagnostic(program, {
+      code: "no-service-defined",
+      target: NoTarget
+    });
+  }
+  if (services.length > 1) {
+    reportDiagnostic(program, {
+      code: "more-than-one-service",
+      target: NoTarget
+    });
+  }
+  return services[0];
 }

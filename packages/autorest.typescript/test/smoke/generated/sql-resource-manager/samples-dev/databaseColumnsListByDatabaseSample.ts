@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to List database columns
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ColumnsListByDatabaseMax.json
  */
 async function filterDatabaseColumns() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "myRG";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
   const serverName = "serverName";
   const databaseName = "myDatabase";
   const schema = ["dbo"];
@@ -49,8 +53,6 @@ async function filterDatabaseColumns() {
   console.log(resArray);
 }
 
-filterDatabaseColumns().catch(console.error);
-
 /**
  * This sample demonstrates how to List database columns
  *
@@ -58,8 +60,9 @@ filterDatabaseColumns().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ColumnsListByDatabaseMin.json
  */
 async function listDatabaseColumns() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "myRG";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
   const serverName = "serverName";
   const databaseName = "myDatabase";
   const credential = new DefaultAzureCredential();
@@ -75,4 +78,9 @@ async function listDatabaseColumns() {
   console.log(resArray);
 }
 
-listDatabaseColumns().catch(console.error);
+async function main() {
+  filterDatabaseColumns();
+  listDatabaseColumns();
+}
+
+main().catch(console.error);

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets the current usage count and the limit for the resources of the location under the subscription.
@@ -18,7 +21,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListLocationUsage.json
  */
 async function usageList() {
-  const subscriptionId = "{subscription-id}";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "eastus2(stage)";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -29,4 +32,8 @@ async function usageList() {
   console.log(resArray);
 }
 
-usageList().catch(console.error);
+async function main() {
+  usageList();
+}
+
+main().catch(console.error);
