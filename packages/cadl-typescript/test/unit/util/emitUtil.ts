@@ -37,8 +37,11 @@ export async function emitModelsFromCadl(
   });
 }
 
-export async function emitParameterFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitParameterFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const clients = listClients(program);
   const importSet = new Map<ImportKind, Set<string>>();
   let parameters;
@@ -98,8 +101,11 @@ export async function emitClientFactoryFromCadl(
   });
 }
 
-export async function emitResponsesFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitResponsesFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const importSet = new Map<ImportKind, Set<string>>();
   const clients = listClients(program);
   let responses;
