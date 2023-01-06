@@ -210,9 +210,6 @@ export async function getAllExamples(
                   importedTypeSet.add(parameterTypeName);
                 }
               }
-              if (bodySchemaName === "AgentPool") {
-                bodySchemaName;
-              }
               paramAssignment =
                 `const ${parameterName}: ${bodySchemaName} = ` +
                 getParameterAssignment(methodParameter.exampleValue);
