@@ -1,7 +1,7 @@
 import "@cadl-lang/rest";
 import "@cadl-lang/versioning";
 import "@azure-tools/cadl-azure-core";
-import "./Contoso.WidgetManager.Shared";
+import "./shared";
 
 using Cadl.Http;
 using Cadl.Rest;
