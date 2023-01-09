@@ -1,0 +1,24 @@
+import "./openAI.Authoring/main.cadl";
+import "./openAI.Inference/main.cadl";
+import "@azure-tools/cadl-dpg";
+
+using Azure.DPG;
+namespace Customizations;
+
+@client({
+  name: "AuthoringClient",
+  service: Azure.OpenAI
+})
+interface AuthoringClient extends Azure.OpenAI.Deployments, Azure.OpenAI.Files, Azure.OpenAI.FineTunes, Azure.OpenAI.Models{
+ 
+}
+@client({
+  name: "InferenceClient",
+  service: Azure.OpenAI
+})
+interface InferenceClient {
+  @convenienceAPI
+  embeddings is Azure.OpenAI.embeddings;
+  @convenienceAPI
+  completions is Azure.OpenAI.completions;
+}
