@@ -1,7 +1,12 @@
+## 6.0.0-rc.7 (2023-01-09)
+
+- [Feature] Normalize parameter in host template and path uri, Please refer to pr [#1714](https://github.com/Azure/autorest.typescript/pull/1714).
+- [BugFix] Fix a few minor issues. Please refer to pr [#1717](https://github.com/Azure/autorest.typescript/pull/1717) for more details.
+
 ## 6.0.0-rc.6 (2022-12-21)
 
-- [Feature] Support cadl compiler 0.38.0, Please refer to issue [#1704](https://github.com/Azure/autorest.typescript/pull/1704).  
-- [BugFix] Fix a few minor issues. Please refer to issue [#1700](https://github.com/Azure/autorest.typescript/pull/1700) for more details.  
+- [Feature] Support cadl compiler 0.38.0, Please refer to issue [#1704](https://github.com/Azure/autorest.typescript/pull/1704).
+- [BugFix] Fix a few minor issues. Please refer to issue [#1700](https://github.com/Azure/autorest.typescript/pull/1700) for more details.
 
 ## 6.0.0-rc.5 (2022-12-14)
 
@@ -10,7 +15,6 @@
 - [Feature] Enhance never and unknown and enum array type generation in cadl emitter. Please refer to issue [#1685](https://github.com/Azure/autorest.typescript/pull/1685) and issue [#1683](https://github.com/Azure/autorest.typescript/pull/1683).
 - [Feature] Support custom wrapper in cadl emitter. Please refer to issue [#1690](https://github.com/Azure/autorest.typescript/pull/1690).
 - [Feature] Sample generation enhancement. Please refer to pr [#1696](https://github.com/Azure/autorest.typescript/pull/1696).
-
 
 ## 6.0.0-rc.4 (2022-11-30)
 
