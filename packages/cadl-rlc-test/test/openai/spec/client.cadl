@@ -9,16 +9,12 @@ namespace Customizations;
   name: "AuthoringClient",
   service: Azure.OpenAI
 })
-interface AuthoringClient extends Azure.OpenAI.Deployments, Azure.OpenAI.Files, Azure.OpenAI.FineTunes, Azure.OpenAI.Models{
- 
-}
+interface AuthoringClient extends Azure.OpenAI.Deployments, Azure.OpenAI.Files, Azure.OpenAI.FineTunes, Azure.OpenAI.Models{}
 @client({
   name: "InferenceClient",
   service: Azure.OpenAI
 })
 interface InferenceClient {
-  @convenienceAPI
   embeddings is Azure.OpenAI.embeddings;
-  @convenienceAPI
   completions is Azure.OpenAI.completions;
 }
