@@ -124,9 +124,6 @@ export function transformProperty(
   const usage = schemaUsage ??
     (obj.schema as M4ObjectSchema).usage ?? [SchemaContext.Input];
   const { type, typeName, outputTypeName } = getSchemaTypeName(obj);
-  if (obj.serializedName === "error") {
-    obj;
-  }
   return {
     name: `"${obj.serializedName}"`,
     type,

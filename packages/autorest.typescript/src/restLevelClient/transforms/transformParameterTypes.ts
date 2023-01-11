@@ -212,7 +212,7 @@ function getParameterSchema(
     );
   }
 
-  const description = getDocs(parameter);
+  let description = getDocs(parameter);
   let type;
   if (isPrimitiveSchema) {
     type = primitiveSchemaToType(parameter.schema, [
@@ -242,12 +242,50 @@ function getParameterSchema(
       typeName: schema.name
     };
   }
+  if (type === "Array<string>") {
+    const serializeInfo = getSpecialSerializeInfo(parameter);
+    if (serializeInfo.hasMultiCollection || serializeInfo.hasPipeCollection || serializeInfo.hasSsvCollection || serializeInfo.hasTsvCollection) {
+      type += " | string";
+      description += `This type has special collectionFormat, we provide ${serializeInfo.descriptions.join(", ")} from serializeHelper.ts to help`;
+    }
+  }
   return {
     name: propertyName,
     type,
     description,
     required: parameter.required
   };
+}
+
+export function getSpecialSerializeInfo(parameter: Parameter) {
+  let hasMultiCollection = false;
+  let hasPipeCollection = false;
+  let hasSsvCollection = false;
+  let hasTsvCollection = false;
+  const descriptions = [];
+  if (parameter.protocol.http?.explode === true && parameter.protocol.http?.style === 'form') {
+    hasMultiCollection = true;
+    descriptions.push("buildMultiCollection");
+  }
+  if (parameter.protocol.http?.style === "spaceDelimited") {
+    hasSsvCollection = true;
+    descriptions.push("buildSsvCollection");
+  }
+  if (parameter.protocol.http?.style === "pipeDelimited") {
+    hasPipeCollection = true;
+    descriptions.push("buildPipeCollection");
+  }
+  if (parameter.protocol.http?.style === "tabDelimited") {
+    hasTsvCollection = true;
+    descriptions.push("buildTsvCollection");
+  }
+  return {
+    hasMultiCollection,
+    hasPipeCollection,
+    hasSsvCollection,
+    hasTsvCollection,
+    descriptions
+  }
 }
 
 /**

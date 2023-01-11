@@ -28,6 +28,10 @@ export interface AnnotationDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
   pageDetails?: PagingDetails;
+  hasMultiCollection?: boolean;
+  hasPipeCollection?: boolean;
+  hasSsvCollection?: boolean;
+  hasTsvCollection?: boolean;
 }
 
 export interface PagingDetails {

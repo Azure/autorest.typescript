@@ -38,14 +38,14 @@ export interface EntityListByGuidsPathParameters {
 }
 
 export interface EntityListByGuidsQueryParamProperties {
-  /** An array of GUIDs of entities to list. */
-  guid: Array<string>;
+  /** An array of GUIDs of entities to list.This type has special collectionFormat, we provide buildMultiCollection from serializeHelper.ts to help */
+  guid: Array<string> | string;
   /** Whether to return minimal information for referred entities. */
   minExtInfo?: boolean;
   /** Whether to ignore relationship attributes. */
   ignoreRelationships?: boolean;
-  /** An array of the relationship types need to be excluded from the response. */
-  excludeRelationshipTypes?: Array<string>;
+  /** An array of the relationship types need to be excluded from the response.This type has special collectionFormat, we provide buildMultiCollection from serializeHelper.ts to help */
+  excludeRelationshipTypes?: Array<string> | string;
 }
 
 export interface EntityListByGuidsQueryParam {
@@ -90,8 +90,8 @@ export interface EntityDeleteByGuidsPathParameters {
 }
 
 export interface EntityDeleteByGuidsQueryParamProperties {
-  /** An array of GUIDs of entities to delete. */
-  guid: Array<string>;
+  /** An array of GUIDs of entities to delete.This type has special collectionFormat, we provide buildMultiCollection from serializeHelper.ts to help */
+  guid: Array<string> | string;
 }
 
 export interface EntityDeleteByGuidsQueryParam {
