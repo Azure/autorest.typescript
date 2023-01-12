@@ -34,12 +34,12 @@ export interface ApplicationDataListByFarmerIdQueryParamProperties {
   minTotalMaterial?: number;
   /** Maximum total amount of material applied during the application (inclusive). */
   maxTotalMaterial?: number;
-  /** Sources of the operation data. */
-  sources?: Array<string>;
-  /** Boundary IDs associated with operation data. */
-  associatedBoundaryIds?: Array<string>;
-  /** Operation boundary IDs associated with operation data. */
-  operationBoundaryIds?: Array<string>;
+  /** Sources of the operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  sources?: string;
+  /** Boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  associatedBoundaryIds?: string;
+  /** Operation boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  operationBoundaryIds?: string;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
   minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
@@ -56,17 +56,17 @@ export interface ApplicationDataListByFarmerIdQueryParamProperties {
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
   maxArea?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -100,12 +100,12 @@ export interface ApplicationDataListQueryParamProperties {
   minTotalMaterial?: number;
   /** Maximum total amount of material applied during the application (inclusive). */
   maxTotalMaterial?: number;
-  /** Sources of the operation data. */
-  sources?: Array<string>;
-  /** Boundary IDs associated with operation data. */
-  associatedBoundaryIds?: Array<string>;
-  /** Operation boundary IDs associated with operation data. */
-  operationBoundaryIds?: Array<string>;
+  /** Sources of the operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  sources?: string;
+  /** Boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  associatedBoundaryIds?: string;
+  /** Operation boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  operationBoundaryIds?: string;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
   minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
@@ -122,17 +122,17 @@ export interface ApplicationDataListQueryParamProperties {
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
   maxArea?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -176,21 +176,21 @@ export type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpd
 export type ApplicationDataDeleteParameters = RequestParameters;
 
 export interface AttachmentsListByFarmerIdQueryParamProperties {
-  /** Resource Ids of the resource. */
-  resourceIds?: Array<string>;
-  /** Resource Types of the resource. */
-  resourceTypes?: Array<string>;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Resource Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  resourceIds?: string;
+  /** Resource Types of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  resourceTypes?: string;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -274,23 +274,23 @@ export interface BoundariesListByFarmerIdQueryParamProperties {
   isPrimary?: boolean;
   /** Type of the parent it belongs to. */
   parentType?: string;
-  /** Parent Ids of the resource. */
-  parentIds?: Array<string>;
+  /** Parent Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  parentIds?: string;
   /** Minimum acreage of the boundary (inclusive). */
   minAcreage?: number;
   /** Maximum acreage of the boundary (inclusive). */
   maxAcreage?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -334,23 +334,23 @@ export interface BoundariesListQueryParamProperties {
   isPrimary?: boolean;
   /** Type of the parent it belongs to. */
   parentType?: string;
-  /** Parent Ids of the resource. */
-  parentIds?: Array<string>;
+  /** Parent Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  parentIds?: string;
   /** Minimum acreage of the boundary (inclusive). */
   minAcreage?: number;
   /** Maximum acreage of the boundary (inclusive). */
   maxAcreage?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -437,19 +437,19 @@ export type BoundariesGetOverlapParameters = BoundariesGetOverlapQueryParam &
   RequestParameters;
 
 export interface CropsListQueryParamProperties {
-  /** Crop phenotypes of the resource. */
-  phenotypes?: Array<string>;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Crop phenotypes of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  phenotypes?: string;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -492,23 +492,23 @@ export type CropsCreateOrUpdateParameters = CropsCreateOrUpdateMediaTypesParam &
 export type CropsDeleteParameters = RequestParameters;
 
 export interface CropVarietiesListByCropIdQueryParamProperties {
-  /** CropIds of the resource. */
-  cropIds?: Array<string>;
-  /** Brands of the resource. */
-  brands?: Array<string>;
-  /** Products of the resource. */
-  products?: Array<string>;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** CropIds of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  cropIds?: string;
+  /** Brands of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  brands?: string;
+  /** Products of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  products?: string;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -534,23 +534,23 @@ export type CropVarietiesListByCropIdParameters = CropVarietiesListByCropIdQuery
   RequestParameters;
 
 export interface CropVarietiesListQueryParamProperties {
-  /** CropIds of the resource. */
-  cropIds?: Array<string>;
-  /** Brands of the resource. */
-  brands?: Array<string>;
-  /** Products of the resource. */
-  products?: Array<string>;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** CropIds of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  cropIds?: string;
+  /** Brands of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  brands?: string;
+  /** Products of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  products?: string;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -594,17 +594,17 @@ export type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateM
 export type CropVarietiesDeleteParameters = RequestParameters;
 
 export interface FarmersListQueryParamProperties {
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -675,17 +675,17 @@ export type FarmOperationsCreateDataIngestionJobParameters = FarmOperationsCreat
 export type FarmOperationsGetDataIngestionJobDetailsParameters = RequestParameters;
 
 export interface FarmsListByFarmerIdQueryParamProperties {
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -711,17 +711,17 @@ export type FarmsListByFarmerIdParameters = FarmsListByFarmerIdQueryParam &
   RequestParameters;
 
 export interface FarmsListQueryParamProperties {
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -779,19 +779,19 @@ export type FarmsCreateCascadeDeleteJobParameters = FarmsCreateCascadeDeleteJobQ
   RequestParameters;
 
 export interface FieldsListByFarmerIdQueryParamProperties {
-  /** Farm Ids of the resource. */
-  farmIds?: Array<string>;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Farm Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  farmIds?: string;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -817,19 +817,19 @@ export type FieldsListByFarmerIdParameters = FieldsListByFarmerIdQueryParam &
   RequestParameters;
 
 export interface FieldsListQueryParamProperties {
-  /** Farm Ids of the resource. */
-  farmIds?: Array<string>;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Farm Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  farmIds?: string;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -911,12 +911,12 @@ export interface HarvestDataListByFarmerIdQueryParamProperties {
   minAvgSpeed?: number;
   /** Maximum AvgSpeed value (inclusive). */
   maxAvgSpeed?: number;
-  /** Sources of the operation data. */
-  sources?: Array<string>;
-  /** Boundary IDs associated with operation data. */
-  associatedBoundaryIds?: Array<string>;
-  /** Operation boundary IDs associated with operation data. */
-  operationBoundaryIds?: Array<string>;
+  /** Sources of the operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  sources?: string;
+  /** Boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  associatedBoundaryIds?: string;
+  /** Operation boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  operationBoundaryIds?: string;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
   minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
@@ -933,17 +933,17 @@ export interface HarvestDataListByFarmerIdQueryParamProperties {
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
   maxArea?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -993,12 +993,12 @@ export interface HarvestDataListQueryParamProperties {
   minAvgSpeed?: number;
   /** Maximum AvgSpeed value (inclusive). */
   maxAvgSpeed?: number;
-  /** Sources of the operation data. */
-  sources?: Array<string>;
-  /** Boundary IDs associated with operation data. */
-  associatedBoundaryIds?: Array<string>;
-  /** Operation boundary IDs associated with operation data. */
-  operationBoundaryIds?: Array<string>;
+  /** Sources of the operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  sources?: string;
+  /** Boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  associatedBoundaryIds?: string;
+  /** Operation boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  operationBoundaryIds?: string;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
   minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
@@ -1015,17 +1015,17 @@ export interface HarvestDataListQueryParamProperties {
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
   maxArea?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -1084,17 +1084,17 @@ export type ImageProcessingCreateRasterizeJobParameters = ImageProcessingCreateR
 export type ImageProcessingGetRasterizeJobParameters = RequestParameters;
 
 export interface OAuthProvidersListQueryParamProperties {
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -1138,10 +1138,10 @@ export type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdat
 export type OAuthProvidersDeleteParameters = RequestParameters;
 
 export interface OAuthTokensListQueryParamProperties {
-  /** Name of AuthProvider. */
-  authProviderIds?: Array<string>;
-  /** List of farmers. */
-  farmerIds?: Array<string>;
+  /** Name of AuthProvider. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  authProviderIds?: string;
+  /** List of farmers. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  farmerIds?: string;
   /** If the token object is valid. */
   isValid?: boolean;
   /** Minimum creation date of resource (inclusive). */
@@ -1210,12 +1210,12 @@ export interface PlantingDataListByFarmerIdQueryParamProperties {
   minAvgMaterial?: number;
   /** Maximum AvgMaterial value (inclusive). */
   maxAvgMaterial?: number;
-  /** Sources of the operation data. */
-  sources?: Array<string>;
-  /** Boundary IDs associated with operation data. */
-  associatedBoundaryIds?: Array<string>;
-  /** Operation boundary IDs associated with operation data. */
-  operationBoundaryIds?: Array<string>;
+  /** Sources of the operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  sources?: string;
+  /** Boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  associatedBoundaryIds?: string;
+  /** Operation boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  operationBoundaryIds?: string;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
   minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
@@ -1232,17 +1232,17 @@ export interface PlantingDataListByFarmerIdQueryParamProperties {
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
   maxArea?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -1280,12 +1280,12 @@ export interface PlantingDataListQueryParamProperties {
   minAvgMaterial?: number;
   /** Maximum AvgMaterial value (inclusive). */
   maxAvgMaterial?: number;
-  /** Sources of the operation data. */
-  sources?: Array<string>;
-  /** Boundary IDs associated with operation data. */
-  associatedBoundaryIds?: Array<string>;
-  /** Operation boundary IDs associated with operation data. */
-  operationBoundaryIds?: Array<string>;
+  /** Sources of the operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  sources?: string;
+  /** Boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  associatedBoundaryIds?: string;
+  /** Operation boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  operationBoundaryIds?: string;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
   minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
@@ -1302,17 +1302,17 @@ export interface PlantingDataListQueryParamProperties {
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
   maxArea?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -1372,12 +1372,12 @@ export interface ScenesListQueryParamProperties {
   maxCloudCoveragePercentage?: number;
   /** Filter scenes with dark pixel coverage percentage less than max value. Range [0 to 100.0]. */
   maxDarkPixelCoveragePercentage?: number;
-  /** List of image names to be filtered. */
-  imageNames?: Array<string>;
+  /** List of image names to be filtered. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  imageNames?: string;
   /** List of image resolutions in meters to be filtered. */
   imageResolutions?: Array<number>;
-  /** List of image formats to be filtered. */
-  imageFormats?: Array<string>;
+  /** List of image formats to be filtered. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  imageFormats?: string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1421,16 +1421,16 @@ export type ScenesDownloadParameters = ScenesDownloadQueryParam &
   RequestParameters;
 
 export interface SeasonalFieldsListByFarmerIdQueryParamProperties {
-  /** Farm Ids of the resource. */
-  farmIds?: Array<string>;
-  /** Field Ids of the resource. */
-  fieldIds?: Array<string>;
-  /** Season Ids of the resource. */
-  seasonIds?: Array<string>;
-  /** CropVarietyIds of the resource. */
-  cropVarietyIds?: Array<string>;
-  /** Ids of the crop it belongs to. */
-  cropIds?: Array<string>;
+  /** Farm Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  farmIds?: string;
+  /** Field Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  fieldIds?: string;
+  /** Season Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  seasonIds?: string;
+  /** CropVarietyIds of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  cropVarietyIds?: string;
+  /** Ids of the crop it belongs to. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  cropIds?: string;
   /** Minimum average yield value of the seasonal field(inclusive). */
   minAvgYieldValue?: number;
   /** Maximum average yield value of the seasonal field(inclusive). */
@@ -1447,17 +1447,17 @@ export interface SeasonalFieldsListByFarmerIdQueryParamProperties {
   minPlantingDateTime?: Date | string;
   /** Maximum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   maxPlantingDateTime?: Date | string;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -1483,16 +1483,16 @@ export type SeasonalFieldsListByFarmerIdParameters = SeasonalFieldsListByFarmerI
   RequestParameters;
 
 export interface SeasonalFieldsListQueryParamProperties {
-  /** Farm Ids of the resource. */
-  farmIds?: Array<string>;
-  /** Field Ids of the resource. */
-  fieldIds?: Array<string>;
-  /** Season Ids of the resource. */
-  seasonIds?: Array<string>;
-  /** CropVarietyIds of the resource. */
-  cropVarietyIds?: Array<string>;
-  /** Ids of the crop it belongs to. */
-  cropIds?: Array<string>;
+  /** Farm Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  farmIds?: string;
+  /** Field Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  fieldIds?: string;
+  /** Season Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  seasonIds?: string;
+  /** CropVarietyIds of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  cropVarietyIds?: string;
+  /** Ids of the crop it belongs to. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  cropIds?: string;
   /** Minimum average yield value of the seasonal field(inclusive). */
   minAvgYieldValue?: number;
   /** Maximum average yield value of the seasonal field(inclusive). */
@@ -1509,17 +1509,17 @@ export interface SeasonalFieldsListQueryParamProperties {
   minPlantingDateTime?: Date | string;
   /** Maximum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
   maxPlantingDateTime?: Date | string;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -1588,17 +1588,17 @@ export interface SeasonsListQueryParamProperties {
   maxEndDateTime?: Date | string;
   /** Years of the resource. */
   years?: Array<number>;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -1649,12 +1649,12 @@ export interface TillageDataListByFarmerIdQueryParamProperties {
   minTillagePressure?: number;
   /** Maximum pressure applied by a tillage implement (inclusive). */
   maxTillagePressure?: number;
-  /** Sources of the operation data. */
-  sources?: Array<string>;
-  /** Boundary IDs associated with operation data. */
-  associatedBoundaryIds?: Array<string>;
-  /** Operation boundary IDs associated with operation data. */
-  operationBoundaryIds?: Array<string>;
+  /** Sources of the operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  sources?: string;
+  /** Boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  associatedBoundaryIds?: string;
+  /** Operation boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  operationBoundaryIds?: string;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
   minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
@@ -1671,17 +1671,17 @@ export interface TillageDataListByFarmerIdQueryParamProperties {
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
   maxArea?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
@@ -1715,12 +1715,12 @@ export interface TillageDataListQueryParamProperties {
   minTillagePressure?: number;
   /** Maximum pressure applied by a tillage implement (inclusive). */
   maxTillagePressure?: number;
-  /** Sources of the operation data. */
-  sources?: Array<string>;
-  /** Boundary IDs associated with operation data. */
-  associatedBoundaryIds?: Array<string>;
-  /** Operation boundary IDs associated with operation data. */
-  operationBoundaryIds?: Array<string>;
+  /** Sources of the operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  sources?: string;
+  /** Boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  associatedBoundaryIds?: string;
+  /** Operation boundary IDs associated with operation data. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  operationBoundaryIds?: string;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
   minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
@@ -1737,17 +1737,17 @@ export interface TillageDataListQueryParamProperties {
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
   maxArea?: number;
-  /** Ids of the resource. */
-  ids?: Array<string>;
-  /** Names of the resource. */
-  names?: Array<string>;
+  /** Ids of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  ids?: string;
+  /** Names of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  names?: string;
   /**
    * Filters on key-value pairs within the Properties object.
-   * eg. "{testKey} eq {testValue}".
+   * eg. "{testKey} eq {testValue}". This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request
    */
-  propertyFilters?: Array<string>;
-  /** Statuses of the resource. */
-  statuses?: Array<string>;
+  propertyFilters?: string;
+  /** Statuses of the resource. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  statuses?: string;
   /** Minimum creation date of resource (inclusive). */
   minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */

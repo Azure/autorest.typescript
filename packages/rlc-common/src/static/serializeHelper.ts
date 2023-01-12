@@ -25,5 +25,5 @@ export function buildSsvCollection(queryParameters: string[]): string {
 
 export const buildTsvCollectionContent = `
 export function buildTsvCollection(queryParameters: string[]) {
-  return queryParameters.join("\t");
+  return queryParameters.join("\\t");
 }`;
