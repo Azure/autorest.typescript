@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitParameterFromCadl } from "../emitUtil.js";
-import { assertEqualContent } from "../testUtil.js";
+import { emitParameterFromCadl } from "./util/emitUtil.js";
+import { assertEqualContent } from "./util/testUtil.js";
 
 describe("Spread(...) and alias", () => {
   describe("Parameter generation", async () => {
@@ -103,11 +103,11 @@ describe("Spread(...) and alias", () => {
       );
     });
 
-    // FIXME https://github.com/Azure/autorest.typescript/issues/1701
-    it.skip("should flatten properties with one property in alias group and without position decorator", async () => {
+    it("should flatten properties with one property in alias group and without position decorator", async () => {
       const parameters = await emitParameterFromCadl(`
         alias SimpleModel = {
-            body: string;
+            name: string;
+            value?: int32;
         };
         @post op read(...SimpleModel): void;
       `);
@@ -116,38 +116,83 @@ describe("Spread(...) and alias", () => {
         parameters?.content!,
         `
               import { RequestParameters } from "@azure-rest/core-client";
-              import { SimpleModel } from "./models";
       
-              export interface ReadQueryParam {
-                body: Record<string, SimpleModel>;
+              export interface ReadBodyParam {
+                body?: { name: string; value: number };
               }  
       
-              export type ReadParameters = ReadQueryParam & RequestParameters;
+              export type ReadParameters = ReadBodyParam & RequestParameters;
             `
       );
     });
 
-    // FIXME https://github.com/Azure/autorest.typescript/issues/1701
-    it.skip("should flatten properties with more than one properties in alias group with no position decorator", async () => {
+    it("should flatten properties with more than one properties in alias group with no position decorator", async () => {
       const parameters = await emitParameterFromCadl(`
-          alias SimpleModel = {
-              id: string;
-              body: string;
-          };
-          @post op read(...SimpleModel): void;
+        model User {
+          name: string;
+        }    
+        alias SimpleModel = {
+          @query
+          @key
+          id: string;
+          user:User;
+        };
+        @post op read(...SimpleModel): void;
         `);
       assert.ok(parameters);
       assertEqualContent(
         parameters?.content!,
         `
                 import { RequestParameters } from "@azure-rest/core-client";
-                import { SimpleModel } from "./models";
+                import { User } from "./models";
         
-                export interface ReadQueryParam {
-                  body: Record<string, SimpleModel>;
+                export interface ReadBodyParam {
+                  body?: { user: User };
                 }  
+
+                export interface ReadQueryParamProperties {
+                  id: string;
+                }
+
+                export interface ReadQueryParam {
+                  queryParameters: ReadQueryParamProperties;
+                }
         
-                export type ReadParameters = ReadQueryParam & RequestParameters;
+                export type ReadParameters = ReadQueryParam & ReadBodyParam & RequestParameters;
+              `
+      );
+    });
+
+    it("should flatten properties without any spread", async () => {
+      const parameters = await emitParameterFromCadl(`
+        model User {
+          name: string;
+        }    
+        @post op read(@query
+          @key
+          id: string;
+          user:User;): void;
+        `);
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+                import { RequestParameters } from "@azure-rest/core-client";
+                import { User } from "./models";
+        
+                export interface ReadBodyParam {
+                  body?: { user: User };
+                }  
+
+                export interface ReadQueryParamProperties {
+                  id: string;
+                }
+
+                export interface ReadQueryParam {
+                  queryParameters: ReadQueryParamProperties;
+                }
+        
+                export type ReadParameters = ReadQueryParam & ReadBodyParam & RequestParameters;
               `
       );
     });
