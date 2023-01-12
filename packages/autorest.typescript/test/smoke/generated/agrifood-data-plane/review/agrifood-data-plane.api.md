@@ -859,6 +859,9 @@ export interface BoundaryOverlapResponseOutput {
 // @public
 export type BoundaryResourceMergeAndPatch = Partial<Boundary>;
 
+// @public (undocumented)
+export function buildMultiCollection(queryParameters: string[], parameterName: string): string;
+
 // @public
 export interface CascadeDeleteJobOutput {
     readonly createdDateTime?: string;
