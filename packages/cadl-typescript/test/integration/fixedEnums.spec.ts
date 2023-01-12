@@ -6,7 +6,12 @@ describe("FixedEnums Rest Client", () => {
   let client: EnumsFixedClient;
 
   beforeEach(() => {
-    client = EnumsFixedClientFactory({ allowInsecureConnection: true });
+    client = EnumsFixedClientFactory({
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      }
+    });
   });
 
   it("should get known value", async () => {
@@ -19,7 +24,7 @@ describe("FixedEnums Rest Client", () => {
     }
   });
 
-  it.only("should put known value", async () => {
+  it("should put known value", async () => {
     try {
       const result = await client.path("/enums/fixed/string/known-value").put({
         body: "Monday",
@@ -31,7 +36,7 @@ describe("FixedEnums Rest Client", () => {
     }
   });
 
-  it.only("should put unknown value and receives 500", async () => {
+  it("should put unknown value and receives 500", async () => {
     try {
       const result = await client
         .path("/enums/fixed/string/unknown-value")
