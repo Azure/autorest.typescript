@@ -1,6 +1,6 @@
 # AzureOpenAIApi REST client library for JavaScript
 
-Open AI Service
+OpenAI Inference Service
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

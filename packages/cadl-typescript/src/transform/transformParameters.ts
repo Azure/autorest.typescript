@@ -382,7 +382,7 @@ function generateAnomymousModelSigniture(
   let schemaSigiture = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
-    let propTypeName = getTypeName(propType);
+    const propTypeName = getTypeName(propType);
     if (!propType || !propTypeName) {
       continue;
     }
