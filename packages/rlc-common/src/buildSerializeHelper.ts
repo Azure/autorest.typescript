@@ -13,7 +13,7 @@ import {
   buildPipeCollectionContent,
   buildSsvCollectionContent,
   buildTsvCollectionContent
-} from "./static/serializeHelper";
+} from "./static/serializeHelper.js";
 
 export function buildSerializeHelper(model: RLCModel) {
   let serializeHelperContent = "";
