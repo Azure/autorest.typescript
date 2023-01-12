@@ -1,9 +1,9 @@
 export const buildMultiCollectionContent = `
 export function buildMultiCollection(
-  oriArray: string[],
+  queryParameters: string[],
   parameterName: string
 ) {
-  return oriArray
+  return queryParameters
     .map((item, index) => {
       if (index === 0) {
         return item;
@@ -14,16 +14,16 @@ export function buildMultiCollection(
 }`;
 
 export const buildPipeCollectionContent = `
-export function buildPipeCollection(oriArray: string[]): string {
-  return oriArray.join("|");
+export function buildPipeCollection(queryParameters: string[]): string {
+  return queryParameters.join("|");
 }`;
 
 export const buildSsvCollectionContent = `
-export function buildSsvCollection(oriArray: string[]): string {
-  return oriArray.join(" ");
+export function buildSsvCollection(queryParameters: string[]): string {
+  return queryParameters.join(" ");
 }`;
 
 export const buildTsvCollectionContent = `
-export function buildTsvCollection(oriArray: string[]) {
-  return oriArray.join("\t");
+export function buildTsvCollection(queryParameters: string[]) {
+  return queryParameters.join("\t");
 }`;

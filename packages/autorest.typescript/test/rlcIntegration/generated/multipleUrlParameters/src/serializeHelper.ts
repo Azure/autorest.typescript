@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 export function buildMultiCollection(
-  oriArray: string[],
+  queryParameters: string[],
   parameterName: string
 ) {
-  return oriArray
+  return queryParameters
     .map((item, index) => {
       if (index === 0) {
         return item;

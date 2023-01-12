@@ -245,8 +245,8 @@ function getParameterSchema(
   if (type === "Array<string>") {
     const serializeInfo = getSpecialSerializeInfo(parameter);
     if (serializeInfo.hasMultiCollection || serializeInfo.hasPipeCollection || serializeInfo.hasSsvCollection || serializeInfo.hasTsvCollection) {
-      type += " | string";
-      description += `This type has special collectionFormat, we provide ${serializeInfo.descriptions.join(", ")} from serializeHelper.ts to help`;
+      type = "string";
+      description += ` This parameter needs to be formatted as multi collection, we provide ${serializeInfo.descriptions.join(", ")} from serializeHelper.ts to help${serializeInfo.hasMultiCollection? ", you will probably need to set skipUrlEncoding as true when sending the request": ""}`;
     }
   }
   return {
