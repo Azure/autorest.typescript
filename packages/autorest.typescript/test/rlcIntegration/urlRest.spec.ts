@@ -478,17 +478,17 @@ describe("Integration tests for UrlRest", () => {
         .path("/queries/array/pipes/string/valid")
         .get({
           queryParameters: {
-            arrayQuery: testArray.join("|") as any
+            arrayQuery: testArray.join("|")
           }
         });
       const result3 = await client.path("/queries/array/ssv/string/valid").get({
         queryParameters: {
-          arrayQuery: testArray.join(" ") as any
+          arrayQuery: testArray.join(" ")
         }
       });
       const result4 = await client.path("/queries/array/tsv/string/valid").get({
         queryParameters: {
-          arrayQuery: testArray.join("\t") as any
+          arrayQuery: testArray.join("\t")
         }
       });
       assert.strictEqual(result.status, "200");
