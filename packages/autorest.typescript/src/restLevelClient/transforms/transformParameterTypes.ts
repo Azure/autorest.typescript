@@ -246,7 +246,7 @@ function getParameterSchema(
     const serializeInfo = getSpecialSerializeInfo(parameter);
     if (serializeInfo.hasMultiCollection || serializeInfo.hasPipeCollection || serializeInfo.hasSsvCollection || serializeInfo.hasTsvCollection) {
       type = "string";
-      description += ` This parameter needs to be formatted as multi collection, we provide ${serializeInfo.descriptions.join(", ")} from serializeHelper.ts to help${serializeInfo.hasMultiCollection? ", you will probably need to set skipUrlEncoding as true when sending the request": ""}`;
+      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(", ")} collection, we provide ${serializeInfo.descriptions.join(", ")} from serializeHelper.ts to help${serializeInfo.hasMultiCollection? ", you will probably need to set skipUrlEncoding as true when sending the request": ""}`;
     }
   }
   return {
@@ -263,28 +263,34 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
   let hasSsvCollection = false;
   let hasTsvCollection = false;
   const descriptions = [];
+  const collectionInfo = [];
   if (parameter.protocol.http?.explode === true && parameter.protocol.http?.style === 'form') {
     hasMultiCollection = true;
     descriptions.push("buildMultiCollection");
+    collectionInfo.push("multi");
   }
   if (parameter.protocol.http?.style === "spaceDelimited") {
     hasSsvCollection = true;
     descriptions.push("buildSsvCollection");
+    collectionInfo.push("ssv");
   }
   if (parameter.protocol.http?.style === "pipeDelimited") {
     hasPipeCollection = true;
     descriptions.push("buildPipeCollection");
+    collectionInfo.push("pipe");
   }
   if (parameter.protocol.http?.style === "tabDelimited") {
     hasTsvCollection = true;
     descriptions.push("buildTsvCollection");
+    collectionInfo.push("tsv");
   }
   return {
     hasMultiCollection,
     hasPipeCollection,
     hasSsvCollection,
     hasTsvCollection,
-    descriptions
+    descriptions,
+    collectionInfo
   }
 }
 
