@@ -5,9 +5,13 @@ import { Project, SourceFile } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   hasInputModels,
+  hasMultiCollection,
   hasOutputModels,
   hasPagingOperations,
+  hasPipeCollection,
   hasPollingOperations,
+  hasSsvCollection,
+  hasTsvCollection,
   hasUnexpectedHelper
 } from "./helpers/operationHelpers.js";
 import { RLCModel } from "./interfaces.js";
@@ -89,6 +93,19 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     exports.push("PollingHelper");
   }
 
+  if (
+    hasMultiCollection(model) ||
+    hasSsvCollection(model) ||
+    hasPipeCollection(model) ||
+    hasTsvCollection(model)
+  ) {
+    file.addImportDeclaration({
+      namespaceImport: "SerializeHelper",
+      moduleSpecifier: "./serializeHelper"
+    });
+    exports.push("SerializeHelper");
+  }
+
   file.addExportDeclarations([
     {
       moduleSpecifier: `./${moduleName}`,
@@ -163,6 +180,17 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
         moduleSpecifier: "./pollingHelper"
       }
     ]);
+  }
+
+  if (
+    hasMultiCollection(model) ||
+    hasSsvCollection(model) ||
+    hasPipeCollection(model) ||
+    hasTsvCollection(model)
+  ) {
+    file.addExportDeclarations([{
+      moduleSpecifier: "./serializeHelper"
+    }]);
   }
 
   file.addExportAssignment({

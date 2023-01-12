@@ -67,6 +67,22 @@ export function hasPollingOperations(model: RLCModel) {
   return Boolean(model.annotations?.hasLongRunning);
 }
 
+export function hasMultiCollection(model: RLCModel) {
+  return Boolean(model.annotations?.hasMultiCollection);
+}
+
+export function hasPipeCollection(model: RLCModel) {
+  return Boolean(model.annotations?.hasPipeCollection);
+}
+
+export function hasSsvCollection(model: RLCModel) {
+  return Boolean(model.annotations?.hasSsvCollection);
+}
+
+export function hasTsvCollection(model: RLCModel) {
+  return Boolean(model.annotations?.hasTsvCollection);
+}
+
 export function hasUnexpectedHelper(model: RLCModel) {
   const pathDictionary = model.paths;
   for (const details of Object.values(pathDictionary)) {

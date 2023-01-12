@@ -424,8 +424,8 @@ export type QueriesArrayStringNoCollectionFormatEmptyParameters = QueriesArraySt
   RequestParameters;
 
 export interface QueriesArrayStringSsvValidQueryParamProperties {
-  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
-  arrayQuery?: Array<string>;
+  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format This parameter needs to be formatted as ssv collection, we provide buildSsvCollection from serializeHelper.ts to help */
+  arrayQuery?: string;
 }
 
 export interface QueriesArrayStringSsvValidQueryParam {
@@ -436,8 +436,8 @@ export type QueriesArrayStringSsvValidParameters = QueriesArrayStringSsvValidQue
   RequestParameters;
 
 export interface QueriesArrayStringTsvValidQueryParamProperties {
-  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
-  arrayQuery?: Array<string>;
+  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format This parameter needs to be formatted as tsv collection, we provide buildTsvCollection from serializeHelper.ts to help */
+  arrayQuery?: string;
 }
 
 export interface QueriesArrayStringTsvValidQueryParam {
@@ -448,8 +448,8 @@ export type QueriesArrayStringTsvValidParameters = QueriesArrayStringTsvValidQue
   RequestParameters;
 
 export interface QueriesArrayStringPipesValidQueryParamProperties {
-  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
-  arrayQuery?: Array<string>;
+  /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format This parameter needs to be formatted as pipe collection, we provide buildPipeCollection from serializeHelper.ts to help */
+  arrayQuery?: string;
 }
 
 export interface QueriesArrayStringPipesValidQueryParam {

@@ -9,5 +9,6 @@ export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./isUnexpected";
 export * from "./outputModels";
+export * from "./serializeHelper";
 
 export default UrlRestClient;

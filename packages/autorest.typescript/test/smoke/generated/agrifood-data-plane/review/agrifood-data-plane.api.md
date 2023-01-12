@@ -165,8 +165,8 @@ export interface ApplicationDataListByFarmerIdQueryParam {
 export interface ApplicationDataListByFarmerIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    associatedBoundaryIds?: Array<string>;
-    ids?: Array<string>;
+    associatedBoundaryIds?: string;
+    ids?: string;
     maxArea?: number;
     maxAvgMaterial?: number;
     maxCreatedDateTime?: Date | string;
@@ -183,11 +183,11 @@ export interface ApplicationDataListByFarmerIdQueryParamProperties {
     minOperationModifiedDateTime?: Date | string;
     minOperationStartDateTime?: Date | string;
     minTotalMaterial?: number;
-    names?: Array<string>;
-    operationBoundaryIds?: Array<string>;
-    propertyFilters?: Array<string>;
-    sources?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    operationBoundaryIds?: string;
+    propertyFilters?: string;
+    sources?: string;
+    statuses?: string;
 }
 
 // @public
@@ -211,8 +211,8 @@ export interface ApplicationDataListQueryParam {
 export interface ApplicationDataListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    associatedBoundaryIds?: Array<string>;
-    ids?: Array<string>;
+    associatedBoundaryIds?: string;
+    ids?: string;
     maxArea?: number;
     maxAvgMaterial?: number;
     maxCreatedDateTime?: Date | string;
@@ -229,11 +229,11 @@ export interface ApplicationDataListQueryParamProperties {
     minOperationModifiedDateTime?: Date | string;
     minOperationStartDateTime?: Date | string;
     minTotalMaterial?: number;
-    names?: Array<string>;
-    operationBoundaryIds?: Array<string>;
-    propertyFilters?: Array<string>;
-    sources?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    operationBoundaryIds?: string;
+    propertyFilters?: string;
+    sources?: string;
+    statuses?: string;
 }
 
 // @public
@@ -464,16 +464,16 @@ export interface AttachmentsListByFarmerIdQueryParam {
 export interface AttachmentsListByFarmerIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    resourceIds?: Array<string>;
-    resourceTypes?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    resourceIds?: string;
+    resourceTypes?: string;
+    statuses?: string;
 }
 
 // @public (undocumented)
@@ -704,7 +704,7 @@ export interface BoundariesListByFarmerIdQueryParam {
 export interface BoundariesListByFarmerIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     isPrimary?: boolean;
     maxAcreage?: number;
     maxCreatedDateTime?: Date | string;
@@ -712,11 +712,11 @@ export interface BoundariesListByFarmerIdQueryParamProperties {
     minAcreage?: number;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    parentIds?: Array<string>;
+    names?: string;
+    parentIds?: string;
     parentType?: string;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -740,7 +740,7 @@ export interface BoundariesListQueryParam {
 export interface BoundariesListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     isPrimary?: boolean;
     maxAcreage?: number;
     maxCreatedDateTime?: Date | string;
@@ -748,11 +748,11 @@ export interface BoundariesListQueryParamProperties {
     minAcreage?: number;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    parentIds?: Array<string>;
+    names?: string;
+    parentIds?: string;
     parentType?: string;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -858,6 +858,9 @@ export interface BoundaryOverlapResponseOutput {
 
 // @public
 export type BoundaryResourceMergeAndPatch = Partial<Boundary>;
+
+// @public (undocumented)
+export function buildMultiCollection(queryParameters: string[], parameterName: string): string;
 
 // @public
 export interface CascadeDeleteJobOutput {
@@ -1029,15 +1032,15 @@ export interface CropsListQueryParam {
 export interface CropsListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    phenotypes?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    phenotypes?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -1169,17 +1172,17 @@ export interface CropVarietiesListByCropIdQueryParam {
 export interface CropVarietiesListByCropIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    brands?: Array<string>;
-    cropIds?: Array<string>;
-    ids?: Array<string>;
+    brands?: string;
+    cropIds?: string;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    products?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    products?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -1203,17 +1206,17 @@ export interface CropVarietiesListQueryParam {
 export interface CropVarietiesListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    brands?: Array<string>;
-    cropIds?: Array<string>;
-    ids?: Array<string>;
+    brands?: string;
+    cropIds?: string;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    products?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    products?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -1475,14 +1478,14 @@ export interface FarmersListQueryParam {
 export interface FarmersListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -1777,14 +1780,14 @@ export interface FarmsListByFarmerIdQueryParam {
 export interface FarmsListByFarmerIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -1808,14 +1811,14 @@ export interface FarmsListQueryParam {
 export interface FarmsListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -2038,15 +2041,15 @@ export interface FieldsListByFarmerIdQueryParam {
 export interface FieldsListByFarmerIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    farmIds?: Array<string>;
-    ids?: Array<string>;
+    farmIds?: string;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -2070,15 +2073,15 @@ export interface FieldsListQueryParam {
 export interface FieldsListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    farmIds?: Array<string>;
-    ids?: Array<string>;
+    farmIds?: string;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -2262,8 +2265,8 @@ export interface HarvestDataListByFarmerIdQueryParam {
 export interface HarvestDataListByFarmerIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    associatedBoundaryIds?: Array<string>;
-    ids?: Array<string>;
+    associatedBoundaryIds?: string;
+    ids?: string;
     maxArea?: number;
     maxAvgMoisture?: number;
     maxAvgSpeed?: number;
@@ -2288,11 +2291,11 @@ export interface HarvestDataListByFarmerIdQueryParamProperties {
     minOperationStartDateTime?: Date | string;
     minTotalWetMass?: number;
     minTotalYield?: number;
-    names?: Array<string>;
-    operationBoundaryIds?: Array<string>;
-    propertyFilters?: Array<string>;
-    sources?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    operationBoundaryIds?: string;
+    propertyFilters?: string;
+    sources?: string;
+    statuses?: string;
 }
 
 // @public
@@ -2316,8 +2319,8 @@ export interface HarvestDataListQueryParam {
 export interface HarvestDataListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    associatedBoundaryIds?: Array<string>;
-    ids?: Array<string>;
+    associatedBoundaryIds?: string;
+    ids?: string;
     maxArea?: number;
     maxAvgMoisture?: number;
     maxAvgSpeed?: number;
@@ -2342,11 +2345,11 @@ export interface HarvestDataListQueryParamProperties {
     minOperationStartDateTime?: Date | string;
     minTotalWetMass?: number;
     minTotalYield?: number;
-    names?: Array<string>;
-    operationBoundaryIds?: Array<string>;
-    propertyFilters?: Array<string>;
-    sources?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    operationBoundaryIds?: string;
+    propertyFilters?: string;
+    sources?: string;
+    statuses?: string;
 }
 
 // @public
@@ -2982,14 +2985,14 @@ export interface OAuthProvidersListQueryParam {
 export interface OAuthProvidersListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    statuses?: string;
 }
 
 // @public
@@ -3133,8 +3136,8 @@ export interface OAuthTokensListQueryParam {
 export interface OAuthTokensListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    authProviderIds?: Array<string>;
-    farmerIds?: Array<string>;
+    authProviderIds?: string;
+    farmerIds?: string;
     isValid?: boolean;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
@@ -3305,8 +3308,8 @@ export interface PlantingDataListByFarmerIdQueryParam {
 export interface PlantingDataListByFarmerIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    associatedBoundaryIds?: Array<string>;
-    ids?: Array<string>;
+    associatedBoundaryIds?: string;
+    ids?: string;
     maxArea?: number;
     maxAvgMaterial?: number;
     maxAvgPlantingRate?: number;
@@ -3325,11 +3328,11 @@ export interface PlantingDataListByFarmerIdQueryParamProperties {
     minOperationModifiedDateTime?: Date | string;
     minOperationStartDateTime?: Date | string;
     minTotalMaterial?: number;
-    names?: Array<string>;
-    operationBoundaryIds?: Array<string>;
-    propertyFilters?: Array<string>;
-    sources?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    operationBoundaryIds?: string;
+    propertyFilters?: string;
+    sources?: string;
+    statuses?: string;
 }
 
 // @public
@@ -3353,8 +3356,8 @@ export interface PlantingDataListQueryParam {
 export interface PlantingDataListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    associatedBoundaryIds?: Array<string>;
-    ids?: Array<string>;
+    associatedBoundaryIds?: string;
+    ids?: string;
     maxArea?: number;
     maxAvgMaterial?: number;
     maxAvgPlantingRate?: number;
@@ -3373,11 +3376,11 @@ export interface PlantingDataListQueryParamProperties {
     minOperationModifiedDateTime?: Date | string;
     minOperationStartDateTime?: Date | string;
     minTotalMaterial?: number;
-    names?: Array<string>;
-    operationBoundaryIds?: Array<string>;
-    propertyFilters?: Array<string>;
-    sources?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    operationBoundaryIds?: string;
+    propertyFilters?: string;
+    sources?: string;
+    statuses?: string;
 }
 
 // @public
@@ -3732,8 +3735,8 @@ export interface ScenesListQueryParamProperties {
     boundaryId: string;
     endDateTime?: Date | string;
     farmerId: string;
-    imageFormats?: Array<string>;
-    imageNames?: Array<string>;
+    imageFormats?: string;
+    imageNames?: string;
     imageResolutions?: Array<number>;
     maxCloudCoveragePercentage?: number;
     maxDarkPixelCoveragePercentage?: number;
@@ -4013,11 +4016,11 @@ export interface SeasonalFieldsListByFarmerIdQueryParamProperties {
     $skipToken?: string;
     avgSeedPopulationUnit?: string;
     avgYieldUnit?: string;
-    cropIds?: Array<string>;
-    cropVarietyIds?: Array<string>;
-    farmIds?: Array<string>;
-    fieldIds?: Array<string>;
-    ids?: Array<string>;
+    cropIds?: string;
+    cropVarietyIds?: string;
+    farmIds?: string;
+    fieldIds?: string;
+    ids?: string;
     maxAvgSeedPopulationValue?: number;
     maxAvgYieldValue?: number;
     maxCreatedDateTime?: Date | string;
@@ -4028,10 +4031,10 @@ export interface SeasonalFieldsListByFarmerIdQueryParamProperties {
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
     minPlantingDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    seasonIds?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    seasonIds?: string;
+    statuses?: string;
 }
 
 // @public
@@ -4057,11 +4060,11 @@ export interface SeasonalFieldsListQueryParamProperties {
     $skipToken?: string;
     avgSeedPopulationUnit?: string;
     avgYieldUnit?: string;
-    cropIds?: Array<string>;
-    cropVarietyIds?: Array<string>;
-    farmIds?: Array<string>;
-    fieldIds?: Array<string>;
-    ids?: Array<string>;
+    cropIds?: string;
+    cropVarietyIds?: string;
+    farmIds?: string;
+    fieldIds?: string;
+    ids?: string;
     maxAvgSeedPopulationValue?: number;
     maxAvgYieldValue?: number;
     maxCreatedDateTime?: Date | string;
@@ -4072,10 +4075,10 @@ export interface SeasonalFieldsListQueryParamProperties {
     minCreatedDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
     minPlantingDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    seasonIds?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    seasonIds?: string;
+    statuses?: string;
 }
 
 // @public
@@ -4219,7 +4222,7 @@ export interface SeasonsListQueryParam {
 export interface SeasonsListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    ids?: Array<string>;
+    ids?: string;
     maxCreatedDateTime?: Date | string;
     maxEndDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
@@ -4228,9 +4231,9 @@ export interface SeasonsListQueryParamProperties {
     minEndDateTime?: Date | string;
     minLastModifiedDateTime?: Date | string;
     minStartDateTime?: Date | string;
-    names?: Array<string>;
-    propertyFilters?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    propertyFilters?: string;
+    statuses?: string;
     years?: Array<number>;
 }
 
@@ -4380,8 +4383,8 @@ export interface TillageDataListByFarmerIdQueryParam {
 export interface TillageDataListByFarmerIdQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    associatedBoundaryIds?: Array<string>;
-    ids?: Array<string>;
+    associatedBoundaryIds?: string;
+    ids?: string;
     maxArea?: number;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
@@ -4398,11 +4401,11 @@ export interface TillageDataListByFarmerIdQueryParamProperties {
     minOperationStartDateTime?: Date | string;
     minTillageDepth?: number;
     minTillagePressure?: number;
-    names?: Array<string>;
-    operationBoundaryIds?: Array<string>;
-    propertyFilters?: Array<string>;
-    sources?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    operationBoundaryIds?: string;
+    propertyFilters?: string;
+    sources?: string;
+    statuses?: string;
 }
 
 // @public
@@ -4426,8 +4429,8 @@ export interface TillageDataListQueryParam {
 export interface TillageDataListQueryParamProperties {
     $maxPageSize?: number;
     $skipToken?: string;
-    associatedBoundaryIds?: Array<string>;
-    ids?: Array<string>;
+    associatedBoundaryIds?: string;
+    ids?: string;
     maxArea?: number;
     maxCreatedDateTime?: Date | string;
     maxLastModifiedDateTime?: Date | string;
@@ -4444,11 +4447,11 @@ export interface TillageDataListQueryParamProperties {
     minOperationStartDateTime?: Date | string;
     minTillageDepth?: number;
     minTillagePressure?: number;
-    names?: Array<string>;
-    operationBoundaryIds?: Array<string>;
-    propertyFilters?: Array<string>;
-    sources?: Array<string>;
-    statuses?: Array<string>;
+    names?: string;
+    operationBoundaryIds?: string;
+    propertyFilters?: string;
+    sources?: string;
+    statuses?: string;
 }
 
 // @public
