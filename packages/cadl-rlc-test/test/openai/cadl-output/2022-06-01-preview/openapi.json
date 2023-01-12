@@ -198,6 +198,13 @@
             "type": "string"
           },
           {
+            "name": "user",
+            "in": "header",
+            "required": false,
+            "description": "The ID of the end-user, for use in tracking and rate-limiting.",
+            "type": "string"
+          },
+          {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
@@ -206,10 +213,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "user": {
-                  "type": "string",
-                  "description": "The ID of the end-user, for use in tracking and rate-limiting."
-                },
                 "input_type": {
                   "type": "string",
                   "description": "input type of embedding search to use"

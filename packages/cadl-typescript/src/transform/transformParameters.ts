@@ -350,6 +350,10 @@ function extractNameFromCadlType(
     importedNames.forEach(importedModels.add, importedModels);
   }
   let typeName = getTypeName(bodySchema);
+  if (isAnonymousModel(bodySchema)) {
+    // Handle anonymous Model
+    return generateAnomymousModelSigniture(bodySchema, importedModels);
+  }
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
@@ -361,6 +365,36 @@ function extractNameFromCadlType(
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
   return typeName;
+}
+
+function isAnonymousModel(schema: Schema) {
+  return (
+    !schema.name &&
+    schema.type === "object" &&
+    !!(schema as ObjectSchema)?.properties
+  );
+}
+
+function generateAnomymousModelSigniture(
+  schema: ObjectSchema,
+  importedModels: Set<string>
+) {
+  let schemaSigiture = `{`;
+  for (const propName in schema.properties) {
+    const propType = schema.properties[propName]!;
+    let propTypeName = getTypeName(propType);
+    if (!propType || !propTypeName) {
+      continue;
+    }
+    const importNames = getImportedModelName(propType);
+    if (importNames) {
+      importNames!.forEach(importedModels.add, importedModels);
+    }
+    schemaSigiture += `${propName}: ${propTypeName};`;
+  }
+
+  schemaSigiture += `}`;
+  return schemaSigiture;
 }
 
 function extractDescriptionsFromBody(
