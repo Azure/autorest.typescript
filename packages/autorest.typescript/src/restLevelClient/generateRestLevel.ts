@@ -34,7 +34,8 @@ import {
   buildRecordedClientFile,
   buildSampleTest,
   buildLicenseFile,
-  buildReadmeFile
+  buildReadmeFile,
+  buildSerializeHelper
 } from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
@@ -108,6 +109,8 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildPaginateHelper, rlcModels);
   // buildPollingHelper
   generateFileByBuilder(project, buildPollingHelper, rlcModels);
+  // buildSerializeHelper
+  generateFileByBuilder(project, buildSerializeHelper, rlcModels);
   generateTopLevelIndexFile(rlcModels, project);
   if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);

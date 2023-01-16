@@ -130,6 +130,7 @@ export function getParameterAssignment(
     case SchemaType.Uri:
     case SchemaType.Credential:
     case SchemaType.Duration:
+    case SchemaType.ArmId:
       retValue = `"${rawValue
         ?.toString()
         .replace(/\\/g, "\\\\")

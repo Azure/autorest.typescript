@@ -123,6 +123,7 @@ export function primitiveSchemaToType(
     case SchemaType.Uri:
     case SchemaType.Uuid:
     case SchemaType.String:
+    case SchemaType.ArmId:
       return "string";
     case SchemaType.Binary:
       return schemaUse.includes(SchemaContext.Output)

@@ -262,6 +262,7 @@ function getXmlMetadata(
 
   let xmlElementName: string | undefined = undefined;
   let xmlNamespace = schema.serialization?.xml?.namespace;
+  let isXmlText: boolean = Boolean(schema.serialization?.xml?.text);
   let xmlNamespacePrefix = schema.serialization?.xml?.prefix;
   if (schema.type === SchemaType.Array) {
     const elementSchema = (schema as ArraySchema).elementType;
@@ -289,7 +290,8 @@ function getXmlMetadata(
     ...(xmlIsWrapped && { xmlIsWrapped }),
     ...(xmlElementName && { xmlElementName }),
     ...(xmlNamespace && { xmlNamespace }),
-    ...(xmlNamespacePrefix && { xmlNamespacePrefix })
+    ...(xmlNamespacePrefix && { xmlNamespacePrefix }),
+    ...(isXmlText && { xmlIsMsText: true })
   };
 }
 

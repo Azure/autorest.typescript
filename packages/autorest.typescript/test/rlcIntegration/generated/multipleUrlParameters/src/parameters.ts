@@ -38,14 +38,14 @@ export interface EntityListByGuidsPathParameters {
 }
 
 export interface EntityListByGuidsQueryParamProperties {
-  /** An array of GUIDs of entities to list. */
-  guid: Array<string>;
+  /** An array of GUIDs of entities to list. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  guid: string;
   /** Whether to return minimal information for referred entities. */
   minExtInfo?: boolean;
   /** Whether to ignore relationship attributes. */
   ignoreRelationships?: boolean;
-  /** An array of the relationship types need to be excluded from the response. */
-  excludeRelationshipTypes?: Array<string>;
+  /** An array of the relationship types need to be excluded from the response. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  excludeRelationshipTypes?: string;
 }
 
 export interface EntityListByGuidsQueryParam {
@@ -90,8 +90,8 @@ export interface EntityDeleteByGuidsPathParameters {
 }
 
 export interface EntityDeleteByGuidsQueryParamProperties {
-  /** An array of GUIDs of entities to delete. */
-  guid: Array<string>;
+  /** An array of GUIDs of entities to delete. This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
+  guid: string;
 }
 
 export interface EntityDeleteByGuidsQueryParam {
