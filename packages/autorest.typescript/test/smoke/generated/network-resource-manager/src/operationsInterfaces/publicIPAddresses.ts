@@ -216,8 +216,8 @@ export interface PublicIPAddresses {
     publicIpAddressName: string,
     options?: PublicIPAddressesDdosProtectionStatusOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PublicIPAddressesDdosProtectionStatusResponse>,
+    SimplePollerLike<
+      OperationState<PublicIPAddressesDdosProtectionStatusResponse>,
       PublicIPAddressesDdosProtectionStatusResponse
     >
   >;

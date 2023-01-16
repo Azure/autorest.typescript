@@ -149,8 +149,8 @@ export interface AzureFirewalls {
     azureFirewallName: string,
     options?: AzureFirewallsListLearnedPrefixesOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<AzureFirewallsListLearnedPrefixesResponse>,
+    SimplePollerLike<
+      OperationState<AzureFirewallsListLearnedPrefixesResponse>,
       AzureFirewallsListLearnedPrefixesResponse
     >
   >;

@@ -636,8 +636,8 @@ export class VirtualNetworksImpl implements VirtualNetworks {
     virtualNetworkName: string,
     options?: VirtualNetworksListDdosProtectionStatusOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<VirtualNetworksListDdosProtectionStatusResponse>,
+    SimplePollerLike<
+      OperationState<VirtualNetworksListDdosProtectionStatusResponse>,
       VirtualNetworksListDdosProtectionStatusResponse
     >
   > {
@@ -647,7 +647,7 @@ export class VirtualNetworksImpl implements VirtualNetworks {
     ): Promise<VirtualNetworksListDdosProtectionStatusResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -680,15 +680,18 @@ export class VirtualNetworksImpl implements VirtualNetworks {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, virtualNetworkName, options },
-      listDdosProtectionStatusOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, virtualNetworkName, options },
+      spec: listDdosProtectionStatusOperationSpec
+    });
+    const poller = await createHttpPoller<
+      VirtualNetworksListDdosProtectionStatusResponse,
+      OperationState<VirtualNetworksListDdosProtectionStatusResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

@@ -916,8 +916,8 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     publicIpAddressName: string,
     options?: PublicIPAddressesDdosProtectionStatusOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PublicIPAddressesDdosProtectionStatusResponse>,
+    SimplePollerLike<
+      OperationState<PublicIPAddressesDdosProtectionStatusResponse>,
       PublicIPAddressesDdosProtectionStatusResponse
     >
   > {
@@ -927,7 +927,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     ): Promise<PublicIPAddressesDdosProtectionStatusResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -960,15 +960,18 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, publicIpAddressName, options },
-      ddosProtectionStatusOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, publicIpAddressName, options },
+      spec: ddosProtectionStatusOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PublicIPAddressesDdosProtectionStatusResponse,
+      OperationState<PublicIPAddressesDdosProtectionStatusResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

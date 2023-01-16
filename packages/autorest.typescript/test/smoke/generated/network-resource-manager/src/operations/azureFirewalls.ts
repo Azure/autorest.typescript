@@ -498,8 +498,8 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     azureFirewallName: string,
     options?: AzureFirewallsListLearnedPrefixesOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<AzureFirewallsListLearnedPrefixesResponse>,
+    SimplePollerLike<
+      OperationState<AzureFirewallsListLearnedPrefixesResponse>,
       AzureFirewallsListLearnedPrefixesResponse
     >
   > {
@@ -509,7 +509,7 @@ export class AzureFirewallsImpl implements AzureFirewalls {
     ): Promise<AzureFirewallsListLearnedPrefixesResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -542,15 +542,18 @@ export class AzureFirewallsImpl implements AzureFirewalls {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, azureFirewallName, options },
-      listLearnedPrefixesOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, azureFirewallName, options },
+      spec: listLearnedPrefixesOperationSpec
+    });
+    const poller = await createHttpPoller<
+      AzureFirewallsListLearnedPrefixesResponse,
+      OperationState<AzureFirewallsListLearnedPrefixesResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

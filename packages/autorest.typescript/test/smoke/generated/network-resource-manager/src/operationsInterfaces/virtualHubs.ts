@@ -158,7 +158,7 @@ export interface VirtualHubs {
     virtualHubName: string,
     getInboundRoutesParameters: GetInboundRoutesParameters,
     options?: VirtualHubsGetInboundRoutesOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Gets the inbound routes configured for the Virtual Hub on a particular connection.
    * @param resourceGroupName The resource group name of the VirtualHub.
@@ -186,7 +186,7 @@ export interface VirtualHubs {
     virtualHubName: string,
     getOutboundRoutesParameters: GetOutboundRoutesParameters,
     options?: VirtualHubsGetOutboundRoutesOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Gets the outbound routes configured for the Virtual Hub on a particular connection.
    * @param resourceGroupName The resource group name of the VirtualHub.
