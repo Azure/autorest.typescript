@@ -150,7 +150,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "@types/node": "^14.0.0",
       dotenv: "^8.2.0",
       eslint: "^8.0.0",
-      mkdirp: "^1.0.4",
+      mkdirp: "^2.1.2",
       prettier: "2.2.1",
       rimraf: "^3.0.0",
       "source-map-support": "^0.5.9",
