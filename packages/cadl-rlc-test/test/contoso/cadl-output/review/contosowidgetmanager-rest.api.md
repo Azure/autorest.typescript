@@ -57,8 +57,7 @@ export interface CreateOrUpdateWidget201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CreateOrUpdateWidgetBodyParam {
-    // (undocumented)
-    body?: WidgetResourceMergeAndPatch;
+    body: WidgetResourceMergeAndPatch;
 }
 
 // @public (undocumented)
@@ -234,21 +233,7 @@ export interface ListWidgetsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListWidgetsParameters = ListWidgetsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ListWidgetsQueryParam {
-    // (undocumented)
-    queryParameters?: ListWidgetsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ListWidgetsQueryParamProperties {
-    maxpagesize?: number;
-    select?: string[];
-    skip?: number;
-    top?: number;
-}
+export type ListWidgetsParameters = RequestParameters;
 
 // @public
 export interface OperationStatusOutput {
@@ -306,7 +291,7 @@ export interface WidgetOutput {
     sharedModel?: FakedSharedModelOutput;
 }
 
-// @public (undocumented)
+// @public
 export type WidgetResourceMergeAndPatch = Partial<Widget>;
 
 // (No @packageDocumentation comment for this package)

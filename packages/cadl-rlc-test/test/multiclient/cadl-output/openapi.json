@@ -54,7 +54,7 @@
               "required": [
                 "value"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Resource, {}>"
+              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Resource, Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -75,32 +75,21 @@
         "description": "Creates a new resource or updates an existing one.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "name",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "name": "body",
+            "name": "resource",
             "in": "body",
+            "required": true,
+            "description": "The resource instance.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                }
-              },
-              "description": "The template for adding updateable properties.",
-              "required": [
-                "type"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrReplaceModel<Resource>"
+              "$ref": "#/definitions/Resource"
             }
           }
         ],
@@ -108,56 +97,13 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "name",
-                "type"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Resource"
             }
           },
           "201": {
             "description": "The request has succeeded and a new resource has been created as a result.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "readOnly": true
-                },
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                }
-              },
-              "description": "A  resource was successfully created.",
-              "required": [
-                "id",
-                "name",
-                "type"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Resource"
             }
           },
           "default": {
@@ -173,13 +119,13 @@
         "description": "Gets the details of a resource.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "name",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -202,13 +148,13 @@
         "description": "Deletes a resource.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "name",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {

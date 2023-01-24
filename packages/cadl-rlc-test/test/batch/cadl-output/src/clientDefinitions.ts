@@ -250,7 +250,7 @@ export interface ApplicationOperationsList {
    * API.
    */
   get(
-    options: ApplicationOperationsListParameters
+    options?: ApplicationOperationsListParameters
   ): StreamableMethod<
     | ApplicationOperationsList200Response
     | ApplicationOperationsListDefaultResponse
@@ -266,7 +266,7 @@ export interface ApplicationOperationsGet {
    * API.
    */
   get(
-    options: ApplicationOperationsGetParameters
+    options?: ApplicationOperationsGetParameters
   ): StreamableMethod<
     | ApplicationOperationsGet200Response
     | ApplicationOperationsGetDefaultResponse
@@ -283,7 +283,7 @@ export interface PoolOperationsListUsageMetrics {
    * last aggregation interval is returned.
    */
   get(
-    options: PoolOperationsListUsageMetricsParameters
+    options?: PoolOperationsListUsageMetricsParameters
   ): StreamableMethod<
     | PoolOperationsListUsageMetrics200Response
     | PoolOperationsListUsageMetricsDefaultResponse
@@ -475,7 +475,7 @@ export interface PoolOperationsRemoveNodes {
 export interface AccountOperationsListSupportedImages {
   /** Lists all Virtual Machine Images supported by the Azure Batch service. */
   get(
-    options: AccountOperationsListSupportedImagesParameters
+    options?: AccountOperationsListSupportedImagesParameters
   ): StreamableMethod<
     | AccountOperationsListSupportedImages200Response
     | AccountOperationsListSupportedImagesDefaultResponse
@@ -489,7 +489,7 @@ export interface AccountOperationsListPoolNodeCounts {
    * use a list query.
    */
   get(
-    options: AccountOperationsListPoolNodeCountsParameters
+    options?: AccountOperationsListPoolNodeCountsParameters
   ): StreamableMethod<
     | AccountOperationsListPoolNodeCounts200Response
     | AccountOperationsListPoolNodeCountsDefaultResponse

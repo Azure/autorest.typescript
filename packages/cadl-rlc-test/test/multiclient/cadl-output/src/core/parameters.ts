@@ -5,7 +5,8 @@ import { RequestParameters } from "@azure-rest/core-client";
 import { Resource } from "./models";
 
 export interface CreateOrUpdateBodyParam {
-  body?: Resource;
+  /** The resource instance. */
+  body: Resource;
 }
 
 export type CreateOrUpdateParameters = CreateOrUpdateBodyParam &
