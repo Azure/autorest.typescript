@@ -4,7 +4,7 @@
 /** Product resource */
 export interface ProductOutput {
   /** key of product */
-  key: string;
+  readonly key: string;
   /**
    * received mode
    *

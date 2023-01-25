@@ -15,7 +15,8 @@ function generate(path) {
 }
 
 function build(path) {
-  const command = `cd ${path}/cadl-output && npm install && npm run build`;
+  // Remove --ignore-engines when https://github.com/Azure/autorest.typescript/issues/1733 is fixed
+  const command = `cd ${path}/cadl-output && npm install --ignore-engines && npm run build`;
   console.log(command);
   const result = execSync(command);
   console.log("build output:", result.toString());
