@@ -21,11 +21,11 @@ In the TypeScript RLC generator, we support generate RLC code from both cadl inp
 graph TD
 A[CADL Files] -->|CADL compiler| B(CADL Program)
 B -->|CADL TypeScript emitter| C{RLCModel}
-C --> |RLC common| D(RLC File Content)
+C --> |RLC common| D{RLC File Content}
 D --> |CADL TypeScript emitter| E(JS RLC Code)
 F(Swager Files) -->|Autorest core & m4 plugin| G(Modelerfour)
 G -->|Autotest TypeScript Plugin| C
-D --> |Autorest TypeScript Plugin| E
+D --> |Autorest TypeScript Plugin| H(JS RLC Code)
 ```
 
 ### CADL RLC generation part
