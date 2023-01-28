@@ -50,7 +50,7 @@ Swagger Input -> Autorest Core & m4 Plugin -> Modelerfour -> Transform RLCModel 
 
 ```mermaid
 graph TD
-C(RLCModel) --> |RLC common| D(RLC File Content)
+C{RLCModel} --> |RLC common| D(RLC File Content)
 F(Swager Files) -->|Autorest core & m4 plugin| G(Modelerfour)
 G -->|Autotest TypeScript Plugin| C
 D --> |Autorest TypeScript Plugin| E(JS RLC code)
