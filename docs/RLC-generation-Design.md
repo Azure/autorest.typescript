@@ -2,7 +2,7 @@
 
 ## Basic Terms
 
-- **Cadl Files**: cloud service API definition written in [CADL](https://github.com/microsoft/cadl).
+- **Cadl Files**: Service API defined in [CADL](https://github.com/microsoft/cadl).
 - **Swagger Files**: REST api specification follow the definition in [OpenAPI](https://swagger.io/).
 - **CADL Program**: The model we get after CADL compiler has processed the cadl input.
 - **Modelerfour**: The code model we get after autorest core and modelerfour plugin has processed the swagger input.
