@@ -25,7 +25,7 @@ C --> |RLC common| D{RLC File Content}
 D --> |CADL TypeScript emitter| E(JS RLC Code)
 F(Swager Files) -->|Autorest core & m4 plugin| G(Modelerfour)
 G -->|Autotest TypeScript Plugin| C
-D --> |Autorest TypeScript Plugin| H(JS RLC Code)
+D --> |Autorest TypeScript Plugin| E
 ```
 
 ### CADL RLC generation part
