@@ -20,4 +20,8 @@ async function stringGetNull() {
   console.log(result);
 }
 
-stringGetNull().catch(console.error);
+async function main() {
+  stringGetNull();
+}
+
+main().catch(console.error);

@@ -1,7 +1,12 @@
-emitters:
+emit:
+  - "@azure-tools/cadl-typescript"
+  - "@azure-tools/cadl-autorest"
+options:
   "@azure-tools/cadl-typescript":
     azureSdkForJs: false
+    "emitter-output-dir": "{output-dir}"
     packageDetails:
       name: "@msinternal/authoring"
       description: "Authoring Ledger Service"
-  "@azure-tools/cadl-autorest": true
+  "@azure-tools/cadl-autorest":
+    "emitter-output-dir": "{output-dir}"

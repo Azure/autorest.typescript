@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates VirtualHub tags.
  *
  * @summary Updates VirtualHub tags.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualHubUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualHubUpdateTags.json
  */
 async function virtualHubUpdate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub2";
   const virtualHubParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
@@ -37,4 +40,8 @@ async function virtualHubUpdate() {
   console.log(result);
 }
 
-virtualHubUpdate().catch(console.error);
+async function main() {
+  virtualHubUpdate();
+}
+
+main().catch(console.error);

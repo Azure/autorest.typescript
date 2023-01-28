@@ -18,10 +18,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Farmers_List.json
  */
 async function farmersList() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const initialResponse = await client.path("/farmers").get();
@@ -33,4 +33,8 @@ async function farmersList() {
   console.log(result);
 }
 
-farmersList().catch(console.error);
+async function main() {
+  farmersList();
+}
+
+main().catch(console.error);

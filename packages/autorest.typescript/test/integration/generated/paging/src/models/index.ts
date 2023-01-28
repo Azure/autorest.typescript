@@ -388,10 +388,7 @@ export type PagingGetMultiplePagesNextResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingDuplicateParamsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** OData filter options. Pass in 'foo' */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the duplicateParamsNext operation. */
 export type PagingDuplicateParamsNextResponse = ProductResult;

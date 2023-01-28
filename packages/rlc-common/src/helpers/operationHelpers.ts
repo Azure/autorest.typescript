@@ -13,7 +13,7 @@ import {
   RLCModel,
   SchemaContext
 } from "../interfaces.js";
-import { pascalCase } from "./nameUtils.js";
+import { NameType, normalizeName, pascalCase } from "./nameUtils.js";
 import { isObjectSchema } from "./schemaHelpers.js";
 
 export function buildMethodDefinitions(
@@ -52,7 +52,7 @@ export function getPathParamDefinitions(
 ): OptionalKind<ParameterDeclarationStructure>[] {
   return pathParams.map(({ name, type, description }) => {
     return {
-      name,
+      name: normalizeName(name, NameType.Parameter),
       type,
       description
     };
@@ -65,6 +65,22 @@ export function hasPagingOperations(model: RLCModel) {
 
 export function hasPollingOperations(model: RLCModel) {
   return Boolean(model.annotations?.hasLongRunning);
+}
+
+export function hasMultiCollection(model: RLCModel) {
+  return Boolean(model.annotations?.hasMultiCollection);
+}
+
+export function hasPipeCollection(model: RLCModel) {
+  return Boolean(model.annotations?.hasPipeCollection);
+}
+
+export function hasSsvCollection(model: RLCModel) {
+  return Boolean(model.annotations?.hasSsvCollection);
+}
+
+export function hasTsvCollection(model: RLCModel) {
+  return Boolean(model.annotations?.hasTsvCollection);
 }
 
 export function hasUnexpectedHelper(model: RLCModel) {

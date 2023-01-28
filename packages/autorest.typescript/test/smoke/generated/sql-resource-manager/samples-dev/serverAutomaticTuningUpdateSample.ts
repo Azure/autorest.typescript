@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Update automatic tuning options on server.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerAutomaticTuningUpdateMax.json
  */
 async function updatesServerAutomaticTuningSettingsWithAllProperties() {
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  const resourceGroupName = "default-sql-onebox";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "c3aa9078-0000-0000-0000-e36f151182d7";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "default-sql-onebox";
   const serverName = "testsvr11";
   const parameters: ServerAutomaticTuning = {
     desiredState: "Auto",
@@ -42,8 +47,6 @@ async function updatesServerAutomaticTuningSettingsWithAllProperties() {
   console.log(result);
 }
 
-updatesServerAutomaticTuningSettingsWithAllProperties().catch(console.error);
-
 /**
  * This sample demonstrates how to Update automatic tuning options on server.
  *
@@ -51,8 +54,10 @@ updatesServerAutomaticTuningSettingsWithAllProperties().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerAutomaticTuningUpdateMin.json
  */
 async function updatesServerAutomaticTuningSettingsWithMinimalProperties() {
-  const subscriptionId = "c3aa9078-0000-0000-0000-e36f151182d7";
-  const resourceGroupName = "default-sql-onebox";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "c3aa9078-0000-0000-0000-e36f151182d7";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "default-sql-onebox";
   const serverName = "testsvr11";
   const parameters: ServerAutomaticTuning = { desiredState: "Auto" };
   const credential = new DefaultAzureCredential();
@@ -65,6 +70,9 @@ async function updatesServerAutomaticTuningSettingsWithMinimalProperties() {
   console.log(result);
 }
 
-updatesServerAutomaticTuningSettingsWithMinimalProperties().catch(
-  console.error
-);
+async function main() {
+  updatesServerAutomaticTuningSettingsWithAllProperties();
+  updatesServerAutomaticTuningSettingsWithMinimalProperties();
+}
+
+main().catch(console.error);

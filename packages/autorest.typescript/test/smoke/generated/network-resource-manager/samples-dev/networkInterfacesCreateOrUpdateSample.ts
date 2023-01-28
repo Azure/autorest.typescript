@@ -13,18 +13,22 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a network interface.
  *
  * @summary Creates or updates a network interface.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkInterfaceCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceCreate.json
  */
 async function createNetworkInterface() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkInterfaceName = "test-nic";
   const parameters: NetworkInterface = {
+    disableTcpStateTracking: true,
     enableAcceleratedNetworking: true,
     ipConfigurations: [
       {
@@ -51,17 +55,15 @@ async function createNetworkInterface() {
   console.log(result);
 }
 
-createNetworkInterface().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a network interface.
  *
  * @summary Creates or updates a network interface.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/NetworkInterfaceCreateGatewayLoadBalancerConsumer.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceCreateGatewayLoadBalancerConsumer.json
  */
 async function createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkInterfaceName = "test-nic";
   const parameters: NetworkInterface = {
     enableAcceleratedNetworking: true,
@@ -94,6 +96,9 @@ async function createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured()
   console.log(result);
 }
 
-createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured().catch(
-  console.error
-);
+async function main() {
+  createNetworkInterface();
+  createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured();
+}
+
+main().catch(console.error);

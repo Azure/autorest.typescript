@@ -13,6 +13,9 @@ import {
   WebSiteManagementClient
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Verifies if this VNET is compatible with an App Service Environment by analyzing the Network Security Group rules.
@@ -21,7 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/VerifyHostingEnvironmentVnet.json
  */
 async function verifyHostingEnvironmentVnet() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const parameters: VnetParameters = {
     vnetName: "vNet123",
     vnetResourceGroup: "vNet123rg",
@@ -33,4 +37,8 @@ async function verifyHostingEnvironmentVnet() {
   console.log(result);
 }
 
-verifyHostingEnvironmentVnet().catch(console.error);
+async function main() {
+  verifyHostingEnvironmentVnet();
+}
+
+main().catch(console.error);

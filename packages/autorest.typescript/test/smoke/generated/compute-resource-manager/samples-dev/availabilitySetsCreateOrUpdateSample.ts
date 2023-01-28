@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update an availability set.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateAnAvailabilitySet.json
  */
 async function createAnAvailabilitySet() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const availabilitySetName = "myAvailabilitySet";
   const parameters: AvailabilitySet = {
     location: "westus",
@@ -39,4 +42,8 @@ async function createAnAvailabilitySet() {
   console.log(result);
 }
 
-createAnAvailabilitySet().catch(console.error);
+async function main() {
+  createAnAvailabilitySet();
+}
+
+main().catch(console.error);

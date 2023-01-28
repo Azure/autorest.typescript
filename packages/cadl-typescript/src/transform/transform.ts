@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Client } from "@azure-tools/cadl-dpg";
+import { Client, getDefaultApiVersion } from "@azure-tools/cadl-dpg";
 import {
   ImportKind,
   NameType,
@@ -17,14 +17,15 @@ import {
   UrlInfo
 } from "@azure-tools/rlc-common";
 import {
-  getServiceNamespace,
-  getServiceTitle,
-  getServiceVersion,
   Program,
   Type,
   BooleanLiteral,
   StringLiteral,
-  NumericLiteral
+  NumericLiteral,
+  ModelProperty,
+  listServices,
+  NoTarget,
+  Service
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -39,15 +40,22 @@ import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
+import { isApiVersion } from "../paramUtil.js";
+import { reportDiagnostic } from "../lib.js";
 
 export async function transformRLCModel(
   program: Program,
   emitterOptions: RLCOptions,
-  client: Client
+  client: Client,
+  emitterOutputDir: string
 ): Promise<RLCModel> {
-  const options: RLCOptions = transformRLCOptions(program, emitterOptions);
+  const options: RLCOptions = transformRLCOptions(
+    program,
+    emitterOptions,
+    emitterOutputDir
+  );
   const srcPath = join(
-    program.compilerOptions.outputDir ?? "",
+    emitterOutputDir ?? "",
     "src",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)
@@ -56,13 +64,13 @@ export async function transformRLCModel(
   const libraryName = normalizeName(
     options.batch && options.batch.length > 1
       ? client.name
-      : options?.title ?? getServiceTitle(program),
+      : options?.title ?? getDefaultService(program)?.title ?? "",
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();
   const paths: Paths = transformPaths(program, client);
   const schemas: Schema[] = transformSchemas(program, client);
-  const apiVersionParam = transformApiVersionParam(program);
+  const apiVersionInQueryParam = transformApiVersionParam(program);
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet,
@@ -83,15 +91,17 @@ export async function transformRLCModel(
     schemas,
     responses,
     importSet,
-    apiVersionParam,
+    apiVersionInQueryParam,
     parameters,
     annotations,
     urlInfo
   };
 }
 
-function transformApiVersionParam(program: Program): Parameter | undefined {
-  const apiVersion = getServiceVersion(program);
+export function transformApiVersionParam(
+  program: Program
+): Parameter | undefined {
+  const apiVersion = getDefaultService(program)?.version;
   if (apiVersion && apiVersion !== "0000-00-00") {
     return {
       name: "api-version",
@@ -103,7 +113,7 @@ function transformApiVersionParam(program: Program): Parameter | undefined {
 }
 
 export function transformUrlInfo(program: Program): UrlInfo | undefined {
-  const serviceNs = getServiceNamespace(program);
+  const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
   const urlParameters: PathParameter[] = [];
   if (serviceNs) {
@@ -115,7 +125,6 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
       // Currently we only support one parameter in the servers definition
       for (const key of host[0].parameters.keys()) {
         const type = host?.[0]?.parameters.get(key)?.type;
-        const defaultValue = host?.[0]?.parameters.get(key)?.default;
 
         if (type) {
           const schema = getSchemaForType(program, type);
@@ -123,13 +132,36 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
             name: key,
             type: getTypeName(schema),
             description: getFormattedPropertyDoc(program, type, schema, " "),
-            value: isLiteralValue(defaultValue) ? defaultValue.value : undefined
+            value: getDefaultValue(program, host?.[0]?.parameters.get(key))
           });
         }
       }
     }
   }
+  // Set the default value if missing endpoint parameter
+  if (endpoint == undefined && urlParameters.length === 0) {
+    endpoint = "{endpoint}";
+    urlParameters.push({
+      name: "endpoint",
+      type: "string"
+    });
+  }
   return { endpoint, urlParameters };
+}
+
+function getDefaultValue(program: Program, param?: ModelProperty) {
+  const otherDefaultValue = param?.default;
+  const serviceNamespace = getDefaultService(program)?.type;
+  if (!serviceNamespace) {
+    return undefined;
+  }
+  const defaultApiVersion = getDefaultApiVersion(program, serviceNamespace);
+  if (isApiVersion(param) && defaultApiVersion) {
+    return defaultApiVersion.value;
+  } else if (isLiteralValue(otherDefaultValue)) {
+    return otherDefaultValue.value;
+  }
+  return undefined;
 }
 
 function isLiteralValue(
@@ -148,4 +180,21 @@ function isLiteralValue(
   }
 
   return false;
+}
+
+export function getDefaultService(program: Program): Service | undefined {
+  const services = listServices(program);
+  if (!services || services.length === 0) {
+    reportDiagnostic(program, {
+      code: "no-service-defined",
+      target: NoTarget
+    });
+  }
+  if (services.length > 1) {
+    reportDiagnostic(program, {
+      code: "more-than-one-service",
+      target: NoTarget
+    });
+  }
+  return services[0];
 }

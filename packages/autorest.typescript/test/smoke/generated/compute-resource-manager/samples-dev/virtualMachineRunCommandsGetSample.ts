@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Gets specific run command for a subscription in a location.
@@ -18,7 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/VirtualMachineRunCommandGet.json
  */
 async function virtualMachineRunCommandGet() {
-  const subscriptionId = "24fb23e3-6ba3-41f0-9b6e-e41131d5d61e";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "24fb23e3-6ba3-41f0-9b6e-e41131d5d61e";
   const location = "SoutheastAsia";
   const commandId = "RunPowerShellScript";
   const credential = new DefaultAzureCredential();
@@ -30,4 +34,8 @@ async function virtualMachineRunCommandGet() {
   console.log(result);
 }
 
-virtualMachineRunCommandGet().catch(console.error);
+async function main() {
+  virtualMachineRunCommandGet();
+}
+
+main().catch(console.error);

@@ -629,7 +629,6 @@ export type ManagedHsmSkuName = "Standard_B1" | "Custom_B32";
 
 // @public
 export interface ManagedHsmsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
-    top?: number;
 }
 
 // @public
@@ -645,7 +644,6 @@ export type ManagedHsmsListByResourceGroupResponse = ManagedHsmListResult;
 
 // @public
 export interface ManagedHsmsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
-    top?: number;
 }
 
 // @public
@@ -1130,7 +1128,6 @@ export type SecretsGetResponse = Secret;
 
 // @public
 export interface SecretsListNextOptionalParams extends coreClient.OperationOptions {
-    top?: number;
 }
 
 // @public
@@ -1339,7 +1336,6 @@ export type VaultsGetResponse = Vault;
 
 // @public
 export interface VaultsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
-    top?: number;
 }
 
 // @public
@@ -1355,7 +1351,6 @@ export type VaultsListByResourceGroupResponse = VaultListResult;
 
 // @public
 export interface VaultsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
-    top?: number;
 }
 
 // @public
@@ -1385,7 +1380,6 @@ export type VaultsListDeletedResponse = DeletedVaultListResult;
 
 // @public
 export interface VaultsListNextOptionalParams extends coreClient.OperationOptions {
-    top?: number;
 }
 
 // @public

@@ -18,7 +18,7 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-function createClient(Endpoint: string, credentials: KeyCredential, options?: ClientOptions): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
+function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
 export default createClient;
 
 // @public (undocumented)
@@ -137,7 +137,7 @@ export interface DeploymentJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
     readonly expirationDateTime: string;
-    id: string;
+    readonly id: string;
     jobId: string;
     readonly lastUpdatedDateTime: string;
     status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
@@ -152,7 +152,7 @@ export interface DeploymentListOutput {
 
 // @public
 export interface DeploymentOutput {
-    name: string;
+    readonly name: string;
 }
 
 // @public (undocumented)
@@ -588,7 +588,6 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
 export interface OperationStatusOutput {
     error?: ErrorModelOutput;
     id: string;
-    result?: never;
     status: string;
 }
 
@@ -625,7 +624,6 @@ export interface Project {
     language: string;
     multilingual?: boolean;
     projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
-    projectName: string;
     settings?: Record<string, string>;
     storageInputContainerName: string;
 }
@@ -646,7 +644,7 @@ export interface ProjectOutput {
     readonly lastTrainedDateTime: string;
     multilingual?: boolean;
     projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
-    projectName: string;
+    readonly projectName: string;
     settings?: Record<string, string>;
     storageInputContainerName: string;
 }
@@ -663,11 +661,15 @@ export interface Routes {
     (path: "/authoring/analyze-text/projects/{projectName}:train", projectName: string): Train;
     (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}", projectName: string, deploymentName: string): GetDeployment;
     (path: "/authoring/analyze-text/projects/{projectName}/deployments", projectName: string): ListDeployments;
-    (path: "/authoring/analyze-text/projects/{projectName}/deployments/swap", projectName: string): SwapDeployments;
+    (path: "/authoring/analyze-text/projects/{projectName}/deployments:swap", projectName: string): SwapDeployments;
     (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): GetDeploymentStatus;
     (path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}", projectName: string, deploymentName: string, jobId: string): GetSwapDeploymentsStatus;
     (path: "/authoring/analyze-text/projects/global/languages"): GetSupportedLanguages;
     (path: "/authoring/analyze-text/projects/global/training-config-versions"): ListTrainingConfigVersions;
+}
+
+// @public
+export interface StandardListQueryParametersOutput {
 }
 
 // @public
@@ -712,7 +714,7 @@ export interface SwapDeploymentsJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
     readonly expirationDateTime: string;
-    id: string;
+    readonly id: string;
     jobId: string;
     readonly lastUpdatedDateTime: string;
     status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";

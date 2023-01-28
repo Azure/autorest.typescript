@@ -16,10 +16,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Weather_GetDataDeleteJobDetails.json
  */
 async function weatherGetDataDeleteJobDetails() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const jobId = "JOB123";
@@ -27,4 +27,8 @@ async function weatherGetDataDeleteJobDetails() {
   console.log(result);
 }
 
-weatherGetDataDeleteJobDetails().catch(console.error);
+async function main() {
+  weatherGetDataDeleteJobDetails();
+}
+
+main().catch(console.error);

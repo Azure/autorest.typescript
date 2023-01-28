@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Returns activity on databases inside of an elastic pool.
@@ -18,8 +21,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/ElasticPoolDatabaseActivityList.json
  */
 async function listElasticPoolDatabaseActivity() {
-  const subscriptionId = "9d4e2ad0-e20b-4464-9219-353bded52513";
-  const resourceGroupName = "sqlcrudtest-4673";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "9d4e2ad0-e20b-4464-9219-353bded52513";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-4673";
   const serverName = "sqlcrudtest-603";
   const elasticPoolName = "7537";
   const credential = new DefaultAzureCredential();
@@ -35,4 +39,8 @@ async function listElasticPoolDatabaseActivity() {
   console.log(resArray);
 }
 
-listElasticPoolDatabaseActivity().catch(console.error);
+async function main() {
+  listElasticPoolDatabaseActivity();
+}
+
+main().catch(console.error);

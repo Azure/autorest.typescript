@@ -13,6 +13,9 @@ import {
   WebSiteManagementClient
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Description for Generates a preview workflow file for the static site
@@ -21,7 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GenerateStaticSiteWorkflowPreview.json
  */
 async function generatesAPreviewWorkflowFileForTheStaticSite() {
-  const subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const location = "West US 2";
   const staticSitesWorkflowPreviewRequest: StaticSitesWorkflowPreviewRequest = {
     branch: "master",
@@ -41,4 +45,8 @@ async function generatesAPreviewWorkflowFileForTheStaticSite() {
   console.log(result);
 }
 
-generatesAPreviewWorkflowFileForTheStaticSite().catch(console.error);
+async function main() {
+  generatesAPreviewWorkflowFileForTheStaticSite();
+}
+
+main().catch(console.error);

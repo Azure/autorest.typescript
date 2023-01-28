@@ -357,30 +357,21 @@ export type RestoreSecretResponse = SecretBundle;
 
 /** Optional parameters. */
 export interface GetSecretsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return in a page. If not specified, the service will return up to 25 results. */
-  maxresults?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSecretsNext operation. */
 export type GetSecretsNextResponse = SecretListResult;
 
 /** Optional parameters. */
 export interface GetSecretVersionsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return in a page. If not specified, the service will return up to 25 results. */
-  maxresults?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSecretVersionsNext operation. */
 export type GetSecretVersionsNextResponse = SecretListResult;
 
 /** Optional parameters. */
 export interface GetDeletedSecretsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return in a page. If not specified the service will return up to 25 results. */
-  maxresults?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDeletedSecretsNext operation. */
 export type GetDeletedSecretsNextResponse = DeletedSecretListResult;

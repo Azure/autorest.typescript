@@ -16,7 +16,7 @@ Cadl Program + User Options -> Transform RLCModel Paths -> Transform RLCModel Op
 
 Install [Node.js](https://nodejs.org/en/download/) 16 or above. (Verify by `node --version`)
 
-Install [Cadl](https://github.com/microsoft/cadl/) 0.37.
+Install [Cadl](https://github.com/microsoft/cadl/) 0.38.
 
 ## Initialize Cadl Project
 
@@ -32,20 +32,20 @@ Modify `package.json`, add one line under `dependencies`:
 
 ```diff
     "dependencies": {
-      "@cadl-lang/compiler": "^0.37.0",
-      "@cadl-lang/rest": "^0.19.0",
-      "@azure-tools/cadl-azure-core": "^0.9.0",
-+      "@azure-tools/cadl-typescript": "1.0.0-beta.4"
+      "@cadl-lang/compiler": "^0.38.5",
+      "@cadl-lang/rest": "^0.38.0",
+      "@azure-tools/cadl-azure-core": "^0.24.0",
++      "@azure-tools/cadl-typescript": "latest"
     },
 ```
 
 Run `npm install` again to install `@azure-tools/cadl-typescript`.
 
-Modify (or create) `cadl-project.yaml`, add one line under `emitters`:
+Modify (or create) `cadl-project.yaml`, add one line under `emit`:
 
 ```diff
-emitters:
-+  "@azure-tools/cadl-typescript": true
+emit:
++  - "@azure-tools/cadl-typescript"
 ```
 
 ## Modify cadl-project.yaml
@@ -53,8 +53,9 @@ emitters:
 One can further configure the SDK generated, using the emitter options on `@azure-tools/cadl-typescript`.
 
 ```yaml
-emitters:
+options:
   "@azure-tools/cadl-typescript":
+    "emitter-output-dir": "{output-dir}"
     packageDetails:
       name: "@azure-rest/confidential-ledger"
       description: "Confidential Ledger Service"

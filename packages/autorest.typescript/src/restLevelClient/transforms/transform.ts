@@ -4,7 +4,8 @@
 import {
   CodeModel,
   ImplementationLocation,
-  ParameterLocation
+  ParameterLocation,
+  Protocol
 } from "@autorest/codemodel";
 import {
   ImportKind,
@@ -23,7 +24,7 @@ import { NameType, normalizeName } from "../../utils/nameUtils";
 import { hasPollingOperations } from "../helpers/hasPollingOperations";
 import { isConstantSchema } from "../schemaHelpers";
 import { transformOptions } from "./transformOptions";
-import { transformParameterTypes } from "./transformParameterTypes";
+import { transformParameterTypes, getSpecialSerializeInfo } from "./transformParameterTypes";
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
@@ -42,7 +43,7 @@ export function transform(model: CodeModel): RLCModel {
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
     importSet: importDetails,
-    apiVersionParam: transformApiVersionParam(model),
+    apiVersionInQueryParam: transformApiVersionParam(model),
     parameters: transformParameterTypes(model, importDetails),
     annotations: transformAnnotationDetails(model),
     urlInfo: transformUrlInfo(model)
@@ -85,6 +86,10 @@ export function transformAnnotationDetails(
   // Add default values
   nextLinks.add("nextLink");
   itemNames.add("value");
+  let hasMultiCollection = false;
+  let hasPipeCollection = false;
+  let hasSsvCollection = false;
+  let hasTsvCollection = false;
   for (let operationGroup of model.operationGroups) {
     for (let operation of operationGroup.operations) {
       const paginationDetails = extractPaginationDetails(operation);
@@ -93,6 +98,13 @@ export function transformAnnotationDetails(
         nextLinkName && nextLinks.add(`${nextLinkName}`);
         itemName && itemNames.add(`${itemName}`);
       }
+      operation.signatureParameters?.forEach(parameter => {
+        const serializeInfo = getSpecialSerializeInfo(parameter);
+        hasMultiCollection = hasMultiCollection ? hasMultiCollection: serializeInfo.hasMultiCollection;
+        hasPipeCollection = hasPipeCollection ? hasPipeCollection: serializeInfo.hasPipeCollection;
+        hasSsvCollection = hasSsvCollection ? hasSsvCollection: serializeInfo.hasSsvCollection;
+        hasTsvCollection = hasTsvCollection ? hasTsvCollection: serializeInfo.hasTsvCollection;
+      })
     }
   }
 
@@ -106,7 +118,11 @@ export function transformAnnotationDetails(
       itemNames: [...itemNames],
       nextLinkNames: [...nextLinks],
       isComplexPaging
-    }
+    },
+    hasMultiCollection,
+    hasPipeCollection,
+    hasSsvCollection,
+    hasTsvCollection
   };
 }
 
@@ -114,3 +130,4 @@ function transformUrlInfo(model: CodeModel): UrlInfo {
   const { endpoint, urlParameters } = transformBaseUrl(model);
   return { endpoint, urlParameters };
 }
+

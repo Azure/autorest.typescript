@@ -215,9 +215,9 @@ export interface Routes {
     path: "/authoring/analyze-text/projects/{projectName}/deployments",
     projectName: string
   ): ListDeployments;
-  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/swap' has methods for the following verbs: post */
+  /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments:swap' has methods for the following verbs: post */
   (
-    path: "/authoring/analyze-text/projects/{projectName}/deployments/swap",
+    path: "/authoring/analyze-text/projects/{projectName}/deployments:swap",
     projectName: string
   ): SwapDeployments;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}/jobs/\{jobId\}' has methods for the following verbs: get */

@@ -1189,6 +1189,7 @@ export const ObjectWithXMsTextProperty: coreClient.CompositeMapper = {
       content: {
         serializedName: "content",
         xmlName: "content",
+        xmlIsMsText: true,
         type: {
           name: "String"
         }

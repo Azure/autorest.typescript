@@ -7,7 +7,7 @@ using Azure.Core;
 
 namespace AnomalyDetector.Univariate;
 
-enum ImputeModeKnownValues {
+enum ImputeMode {
   Auto: "auto",
   Previous: "previous",
   Linear: "linear",
@@ -16,10 +16,7 @@ enum ImputeModeKnownValues {
   NotFill: "notFill",
 }
 
-@knownValues(ImputeModeKnownValues)
-model ImputeMode is string;
-
-enum AnomalyDetectorErrorCodesKnownValues {
+enum AnomalyDetectorErrorCodes {
   "InvalidCustomInterval",
   "BadArgument",
   "InvalidGranularity",
@@ -33,9 +30,7 @@ enum AnomalyDetectorErrorCodesKnownValues {
   "InvalidImputeFixedValue",
 }
 
-@knownValues(AnomalyDetectorErrorCodesKnownValues)
-model AnomalyDetectorErrorCodes is string;
-
+@fixed
 enum TimeGranularity {
   Yearly: "yearly",
   Monthly: "monthly",
@@ -49,7 +44,7 @@ enum TimeGranularity {
 }
 
 @doc("The request of entire or last anomaly detection.")
-model DetectRequest {
+model UnivariateDetectionOptions {
   @doc("""
 Time series data points. Points should be sorted by timestamp in ascending
 order to match the anomaly detection result. If the data is not sorted
@@ -112,7 +107,7 @@ model TimeSeriesPoint {
 }
 
 @doc("The response of entire anomaly detection.")
-model EntireDetectResponse {
+model UnivariateEntireDetectionResult {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
 found.
@@ -178,7 +173,8 @@ sever the anomaly is. For normal points, the \"severity\" is always 0.
 @error
 model AnomalyDetectorError {
   @header
-  "x-ms-error"?: string,
+  @doc("Error code.")
+  "x-ms-error-code"?: string,
 
   @doc("The error code.")
   code?: AnomalyDetectorErrorCodes;
@@ -188,7 +184,7 @@ model AnomalyDetectorError {
 }
 
 @doc("The response of last anomaly detection.")
-model LastDetectResponse {
+model UnivariateLastDetectionResult {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
 found.
@@ -243,7 +239,7 @@ sever the anomaly is. For normal points, the \"severity\" is always 0.
 }
 
 @doc("The request of change point detection.")
-model ChangePointDetectRequest {
+model UnivariateChangePointDetectionOptions {
   @doc("""
 Time series data points. Points should be sorted by timestamp in ascending
 order to match the change point detection result.
@@ -284,7 +280,7 @@ be accepted.
 }
 
 @doc("The response of change point detection.")
-model ChangePointDetectResponse {
+model UnivariateChangePointDetectionResult {
   @doc("""
 Frequency extracted from the series, zero means no recurrent pattern has been
 found.

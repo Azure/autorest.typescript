@@ -1350,11 +1350,6 @@ const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1375,11 +1370,6 @@ const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1399,11 +1389,6 @@ const listByLocationNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1422,11 +1407,6 @@ const listByResourceGroupDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1448,11 +1428,6 @@ const listByResourceGroupInstanceNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1473,11 +1448,6 @@ const listByResourceGroupLocationNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.apiVersion1,
-    Parameters.onlyLatestPerDatabase,
-    Parameters.databaseState
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

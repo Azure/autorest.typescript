@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a route in the specified route table.
  *
  * @summary Creates or updates a route in the specified route table.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/RouteTableRouteCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteTableRouteCreate.json
  */
 async function createRoute() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeTableName = "testrt";
   const routeName = "route1";
   const routeParameters: Route = {
@@ -40,4 +43,8 @@ async function createRoute() {
   console.log(result);
 }
 
-createRoute().catch(console.error);
+async function main() {
+  createRoute();
+}
+
+main().catch(console.error);

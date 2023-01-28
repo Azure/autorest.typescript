@@ -137,7 +137,6 @@ export type AvailabilitySetsListAvailableSizesResponse = VirtualMachineSizeListR
 
 // @public
 export interface AvailabilitySetsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -279,7 +278,6 @@ export type CapacityReservationGroupsGetResponse = CapacityReservationGroup;
 
 // @public
 export interface CapacityReservationGroupsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
-    expand?: ExpandTypesForGetCapacityReservationGroups;
 }
 
 // @public
@@ -295,7 +293,6 @@ export type CapacityReservationGroupsListByResourceGroupResponse = CapacityReser
 
 // @public
 export interface CapacityReservationGroupsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
-    expand?: ExpandTypesForGetCapacityReservationGroups;
 }
 
 // @public
@@ -611,7 +608,6 @@ export type CloudServiceRoleInstancesGetResponse = RoleInstance;
 
 // @public
 export interface CloudServiceRoleInstancesListNextOptionalParams extends coreClient.OperationOptions {
-    expand?: InstanceViewTypes;
 }
 
 // @public
@@ -4165,8 +4161,6 @@ export interface ResourceSkus {
 
 // @public
 export interface ResourceSkusListNextOptionalParams extends coreClient.OperationOptions {
-    filter?: string;
-    includeExtendedLocations?: string;
 }
 
 // @public
@@ -4565,7 +4559,6 @@ export type SharedGalleriesGetResponse = SharedGallery;
 
 // @public
 export interface SharedGalleriesListNextOptionalParams extends coreClient.OperationOptions {
-    sharedTo?: SharedToValues;
 }
 
 // @public
@@ -4617,7 +4610,6 @@ export type SharedGalleryImagesGetResponse = SharedGalleryImage;
 
 // @public
 export interface SharedGalleryImagesListNextOptionalParams extends coreClient.OperationOptions {
-    sharedTo?: SharedToValues;
 }
 
 // @public
@@ -4658,7 +4650,6 @@ export type SharedGalleryImageVersionsGetResponse = SharedGalleryImageVersion;
 
 // @public
 export interface SharedGalleryImageVersionsListNextOptionalParams extends coreClient.OperationOptions {
-    sharedTo?: SharedToValues;
 }
 
 // @public
@@ -5747,7 +5738,6 @@ export type VirtualMachineRunCommandsGetResponse = RunCommandDocument;
 
 // @public
 export interface VirtualMachineRunCommandsListByVirtualMachineNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -6772,7 +6762,6 @@ export type VirtualMachineScaleSetVMRunCommandsGetResponse = VirtualMachineRunCo
 
 // @public
 export interface VirtualMachineScaleSetVMRunCommandsListNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
 }
 
 // @public
@@ -6856,9 +6845,6 @@ export type VirtualMachineScaleSetVMsGetResponse = VirtualMachineScaleSetVM;
 
 // @public
 export interface VirtualMachineScaleSetVMsListNextOptionalParams extends coreClient.OperationOptions {
-    expand?: string;
-    filter?: string;
-    select?: string;
 }
 
 // @public
@@ -7046,7 +7032,6 @@ export type VirtualMachineSizeTypes = string;
 
 // @public
 export interface VirtualMachinesListAllNextOptionalParams extends coreClient.OperationOptions {
-    statusOnly?: string;
 }
 
 // @public

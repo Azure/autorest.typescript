@@ -50,4 +50,4 @@ enum Versions {
 }
 
 @knownValues(Versions)
-model APIVersion is string;
+scalar APIVersion extends string;

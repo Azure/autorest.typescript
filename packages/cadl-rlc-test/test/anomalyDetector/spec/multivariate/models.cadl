@@ -7,7 +7,8 @@ using Azure.Core;
 
 namespace AnomalyDetector.Multivariate;
 
-enum FillNAMethodKnownValues {
+@doc("An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed.")
+enum FillNAMethod {
   "Previous",
   "Subsequent",
   "Linear",
@@ -15,11 +16,8 @@ enum FillNAMethodKnownValues {
   "Fixed",
 }
 
-@doc("An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed.")
-@knownValues(FillNAMethodKnownValues)
-model FillNAMethod is string;
-
-enum DetectionStatus {
+@fixed
+enum MultivariateBatchDetectionStatus {
   Created: "CREATED",
   Running: "RUNNING",
   Ready: "READY",
@@ -34,11 +32,13 @@ enum DataSchema {
   "MultiTable",
 }
 
+@fixed
 enum AlignMode {
   "Inner",
   "Outer",
 }
 
+@fixed
 enum ModelStatus {
   Created: "CREATED",
   Running: "RUNNING",
@@ -48,35 +48,37 @@ enum ModelStatus {
 
 @doc("Detection results for the given resultId.")
 @resource("multivariate/detect-batch")
-model DetectionResult {
+model MultivariateDetectionResult {
   @doc("Result identifier, which is used to fetch the results of an inference call.")
   @key
   @format("uuid")
   resultId: string;
 
   @doc("Multivariate anomaly detection status.")
-  summary: DetectionResultSummary;
+  summary: MultivariateBatchDetectionResultSummary;
 
   @doc("Detection result for each timestamp.")
   results: AnomalyState[];
 }
 
 @doc("Multivariate anomaly detection status.")
-model DetectionResultSummary {
+model MultivariateBatchDetectionResultSummary {
   @doc("Status of detection results. One of CREATED, RUNNING, READY, and FAILED.")
-  status: DetectionStatus;
+  status: MultivariateBatchDetectionStatus;
 
   @doc("Error message when detection is failed.")
   errors?: ErrorResponse[];
+  @doc("Variable Status.")
   variableStates?: VariableState[];
 
   @doc("""
 Detection request for batch inference. This is an asynchronous inference which
 will need another API to get detection results.
 """)
-  setupInfo: DetectionRequest;
+  setupInfo: MultivariateBatchDetectionOptions;
 }
 
+@doc("ErrorResponse contains code and message that shows the error information.")
 @error
 model ErrorResponse {
 
@@ -87,6 +89,7 @@ model ErrorResponse {
   message: string;
 }
 
+@doc("Variable Status.")
 model VariableState {
   @doc("Variable name in variable states.")
   variable?: string;
@@ -110,7 +113,7 @@ model VariableState {
 Detection request for batch inference. This is an asynchronous inference which
 will need another API to get detection results.
 """)
-model DetectionRequest {
+model MultivariateBatchDetectionOptions {
   @doc("""
 Source link to the input data to indicate an accessible Azure storage Uri,
 either pointed to an Azure blob storage folder, or pointed to a CSV file in
@@ -139,15 +142,18 @@ be date-time of ISO 8601 format.
   endTime: zonedDateTime;
 }
 
+@doc("Anomaly status and information.")
 model AnomalyState {
   @doc("The timestamp for this anomaly.")
   timestamp: zonedDateTime;
+  @doc("The detailed value of this anomalous timestamp.")
   value?: AnomalyValue;
 
   @doc("Error message for the current timestamp.")
   errors?: ErrorResponse[];
 }
 
+@doc("Detailed information of the anomalous timestamp.")
 model AnomalyValue {
   @doc("True if an anomaly is detected at the current timestamp.")
   isAnomaly: boolean;
@@ -167,9 +173,11 @@ well.
   @minValue(0.0)
   @maxValue(2.0)
   score: float32;
+  @doc("Interpretation of this anomalous timestamp.")
   interpretation?: AnomalyInterpretation[];
 }
 
+@doc("Interpretation of the anomalous timestamp.")
 model AnomalyInterpretation {
   @doc("Variable.")
   variable?: string;
@@ -179,9 +187,11 @@ This score shows the percentage contributing to the anomalous timestamp. A
 number between 0 and 1.
 """)
   contributionScore?: float32;
+  @doc("Correlation changes among the anomalous variables")
   correlationChanges?: CorrelationChanges;
 }
 
+@doc("Correlation changes among the anomalous variables")
 model CorrelationChanges {
   @doc("The correlated variables that have correlation changes under an anomaly.")
   changedVariables?: string[];
@@ -236,6 +246,7 @@ detect whether the timestamp is anomaly or not.
   @doc("Model status. One of CREATED, RUNNING, READY, and FAILED.")
   status?: ModelStatus;
 
+  @visibility("read")
   @doc("Error messages when failed to create a model.")
   errors?: ErrorResponse[];
 
@@ -263,10 +274,13 @@ Previous, Subsequent, Linear, Zero, Fixed.
 
 @doc("Diagnostics information to help inspect the states of model or variable.")
 model DiagnosticsInfo {
+  @doc("Model status.")
   modelState?: ModelState;
+  @doc("Variable Status.")
   variableStates?: VariableState[];
 }
 
+@doc("Model status.")
 model ModelState {
   @doc("""
 This indicates the number of passes of the entire training dataset the
@@ -292,7 +306,7 @@ epoch.
 
 @doc("Response of getting a model.")
 @resource("multivariate/models")
-model Model {
+model AnomalyDetectionModel {
   @doc("Model identifier.")
   @key
   @format("uuid")
@@ -316,7 +330,7 @@ information.
 model ModelList {
   @doc("List of models.")
   @items
-  models: Model[];
+  models: AnomalyDetectionModel[];
 
   @doc("Number of trained multivariate models.")
   currentCount: int32;
@@ -329,7 +343,8 @@ model ModelList {
   nextLink?: string;
 }
 
-model LastDetectionRequest {
+@doc("Request of last detection.")
+model MultivariateLastDetectionOptions {
   @doc("""
 This contains the inference data, including the name, timestamps(ISO 8601) and
 values of variables.
@@ -344,6 +359,7 @@ variables for one anomalous timestamp in the response. The default number is
   topContributorCount: int32;
 }
 
+@doc("Variable values.")
 model VariableValues {
   @doc("Variable name of last detection request.")
   variable: string;
@@ -355,8 +371,12 @@ model VariableValues {
   values: float32[];
 }
 
-model LastDetectionResult {
+
+@doc("Results of last detection.")
+model MultivariateLastDetectionResult {
+  @doc("Variable Status.")
   variableStates?: VariableState[];
+  @doc("Anomaly status and information.")
   results?: AnomalyState[];
 }
 

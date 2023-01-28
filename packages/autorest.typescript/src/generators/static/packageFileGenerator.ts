@@ -90,7 +90,7 @@ function regularAutorestPackage(
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
       ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
-      ...(useCoreV2 && { "@azure/core-client": "^1.6.1" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.7.0" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 &&
         coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
@@ -113,15 +113,14 @@ function regularAutorestPackage(
       "@rollup/plugin-json": "^4.1.0",
       "@rollup/plugin-multi-entry": "^4.1.0",
       "@rollup/plugin-node-resolve": "^13.1.3",
-      mkdirp: "^1.0.4",
+      mkdirp: "^2.1.2",
       rollup: "^2.66.1",
       "rollup-plugin-sourcemaps": "^0.6.3",
       typescript: "~4.8.0",
       "uglify-js": "^3.4.9",
-      rimraf: "^3.0.0"
+      rimraf: "^3.0.0",
+      dotenv: "^16.0.0"
     },
-    // TODO: Calculate the SDK path for the package
-    homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`,
     repository: {
       type: "git",
       url: "https://github.com/Azure/azure-sdk-for-js.git"
@@ -186,6 +185,10 @@ function regularAutorestPackage(
     },
     autoPublish: true
   };
+  if (azureOutputDirectory) {
+    packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
+  }
+
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";

@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListByResourceGroup.json
  */
 async function storageAccountListByResourceGroup() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res6117";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res6117";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
@@ -31,4 +34,8 @@ async function storageAccountListByResourceGroup() {
   console.log(resArray);
 }
 
-storageAccountListByResourceGroup().catch(console.error);
+async function main() {
+  storageAccountListByResourceGroup();
+}
+
+main().catch(console.error);

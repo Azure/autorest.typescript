@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates a VirtualWAN tags.
  *
  * @summary Updates a VirtualWAN tags.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualWANUpdateTags.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualWANUpdateTags.json
  */
 async function virtualWanUpdate() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualWANName = "wan1";
   const wANParameters: TagsObject = {
     tags: { key1: "value1", key2: "value2" }
@@ -37,4 +40,8 @@ async function virtualWanUpdate() {
   console.log(result);
 }
 
-virtualWanUpdate().catch(console.error);
+async function main() {
+  virtualWanUpdate();
+}
+
+main().catch(console.error);

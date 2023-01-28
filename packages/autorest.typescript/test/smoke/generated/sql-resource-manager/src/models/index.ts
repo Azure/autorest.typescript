@@ -10223,9 +10223,7 @@ export type DatabasesExportResponse = ImportExportOperationResult;
 
 /** Optional parameters. */
 export interface DatabasesListByServerNextOptionalParams
-  extends coreClient.OperationOptions {
-  skipToken?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type DatabasesListByServerNextResponse = DatabaseListResult;
@@ -10319,10 +10317,7 @@ export interface ElasticPoolsFailoverOptionalParams
 
 /** Optional parameters. */
 export interface ElasticPoolsListByServerNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of elements in the collection to skip. */
-  skip?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type ElasticPoolsListByServerNextResponse = ElasticPoolListResult;
@@ -10655,28 +10650,14 @@ export type DatabaseColumnsGetResponse = DatabaseColumn;
 
 /** Optional parameters. */
 export interface DatabaseColumnsListByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Array of Get3ItemsItem */
-  schema?: string[];
-  /** Array of Get4ItemsItem */
-  table?: string[];
-  /** Array of Get5ItemsItem */
-  column?: string[];
-  /** Array of Get6ItemsItem */
-  orderBy?: string[];
-  /** An opaque token that identifies a starting point in the collection. */
-  skiptoken?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseColumnsListByDatabaseNextResponse = DatabaseColumnListResult;
 
 /** Optional parameters. */
 export interface DatabaseColumnsListByTableNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByTableNext operation. */
 export type DatabaseColumnsListByTableNextResponse = DatabaseColumnListResult;
@@ -10721,10 +10702,7 @@ export type DatabaseSchemasGetResponse = DatabaseSchema;
 
 /** Optional parameters. */
 export interface DatabaseSchemasListByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type DatabaseSchemasListByDatabaseNextResponse = DatabaseSchemaListResult;
@@ -10776,10 +10754,7 @@ export type DatabaseTablesGetResponse = DatabaseTable;
 
 /** Optional parameters. */
 export interface DatabaseTablesListBySchemaNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySchemaNext operation. */
 export type DatabaseTablesListBySchemaNextResponse = DatabaseTableListResult;
@@ -11417,44 +11392,14 @@ export type JobExecutionsCreateOrUpdateResponse = JobExecution;
 
 /** Optional parameters. */
 export interface JobExecutionsListByAgentNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of elements in the collection to skip. */
-  skip?: number;
-  /** If specified, only job executions created at or after the specified time are included. */
-  createTimeMin?: Date;
-  /** If specified, only job executions created before the specified time are included. */
-  createTimeMax?: Date;
-  /** If specified, only job executions completed at or after the specified time are included. */
-  endTimeMin?: Date;
-  /** If specified, only job executions completed before the specified time are included. */
-  endTimeMax?: Date;
-  /** If specified, only active or only completed job executions are included. */
-  isActive?: boolean;
-  /** The number of elements to return from the collection. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByAgentNext operation. */
 export type JobExecutionsListByAgentNextResponse = JobExecutionListResult;
 
 /** Optional parameters. */
 export interface JobExecutionsListByJobNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of elements in the collection to skip. */
-  skip?: number;
-  /** If specified, only job executions created at or after the specified time are included. */
-  createTimeMin?: Date;
-  /** If specified, only job executions created before the specified time are included. */
-  createTimeMax?: Date;
-  /** If specified, only job executions completed at or after the specified time are included. */
-  endTimeMin?: Date;
-  /** If specified, only job executions completed before the specified time are included. */
-  endTimeMax?: Date;
-  /** If specified, only active or only completed job executions are included. */
-  isActive?: boolean;
-  /** The number of elements to return from the collection. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByJobNext operation. */
 export type JobExecutionsListByJobNextResponse = JobExecutionListResult;
@@ -11520,22 +11465,7 @@ export type JobStepExecutionsGetResponse = JobExecution;
 
 /** Optional parameters. */
 export interface JobStepExecutionsListByJobExecutionNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of elements in the collection to skip. */
-  skip?: number;
-  /** If specified, only job executions created at or after the specified time are included. */
-  createTimeMin?: Date;
-  /** If specified, only job executions created before the specified time are included. */
-  createTimeMax?: Date;
-  /** If specified, only job executions completed at or after the specified time are included. */
-  endTimeMin?: Date;
-  /** If specified, only job executions completed before the specified time are included. */
-  endTimeMax?: Date;
-  /** If specified, only active or only completed job executions are included. */
-  isActive?: boolean;
-  /** The number of elements to return from the collection. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByJobExecutionNext operation. */
 export type JobStepExecutionsListByJobExecutionNextResponse = JobExecutionListResult;
@@ -11646,44 +11576,14 @@ export type JobTargetExecutionsGetResponse = JobExecution;
 
 /** Optional parameters. */
 export interface JobTargetExecutionsListByJobExecutionNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of elements in the collection to skip. */
-  skip?: number;
-  /** If specified, only job executions created at or after the specified time are included. */
-  createTimeMin?: Date;
-  /** If specified, only job executions created before the specified time are included. */
-  createTimeMax?: Date;
-  /** If specified, only job executions completed at or after the specified time are included. */
-  endTimeMin?: Date;
-  /** If specified, only job executions completed before the specified time are included. */
-  endTimeMax?: Date;
-  /** If specified, only active or only completed job executions are included. */
-  isActive?: boolean;
-  /** The number of elements to return from the collection. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByJobExecutionNext operation. */
 export type JobTargetExecutionsListByJobExecutionNextResponse = JobExecutionListResult;
 
 /** Optional parameters. */
 export interface JobTargetExecutionsListByStepNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of elements in the collection to skip. */
-  skip?: number;
-  /** If specified, only job executions created at or after the specified time are included. */
-  createTimeMin?: Date;
-  /** If specified, only job executions created before the specified time are included. */
-  createTimeMax?: Date;
-  /** If specified, only job executions completed at or after the specified time are included. */
-  endTimeMin?: Date;
-  /** If specified, only job executions completed before the specified time are included. */
-  endTimeMax?: Date;
-  /** If specified, only active or only completed job executions are included. */
-  isActive?: boolean;
-  /** The number of elements to return from the collection. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByStepNext operation. */
 export type JobTargetExecutionsListByStepNextResponse = JobExecutionListResult;
@@ -11884,28 +11784,14 @@ export type ManagedDatabaseColumnsGetResponse = DatabaseColumn;
 
 /** Optional parameters. */
 export interface ManagedDatabaseColumnsListByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Array of Get3ItemsItem */
-  schema?: string[];
-  /** Array of Get4ItemsItem */
-  table?: string[];
-  /** Array of Get5ItemsItem */
-  column?: string[];
-  /** Array of Get6ItemsItem */
-  orderBy?: string[];
-  /** An opaque token that identifies a starting point in the collection. */
-  skiptoken?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseColumnsListByDatabaseNextResponse = DatabaseColumnListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseColumnsListByTableNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByTableNext operation. */
 export type ManagedDatabaseColumnsListByTableNextResponse = DatabaseColumnListResult;
@@ -11933,14 +11819,7 @@ export type ManagedDatabaseQueriesListByQueryResponse = ManagedInstanceQueryStat
 
 /** Optional parameters. */
 export interface ManagedDatabaseQueriesListByQueryNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Start time for observed period. */
-  startTime?: string;
-  /** End time for observed period. */
-  endTime?: string;
-  /** The time step to be used to summarize the metric values. */
-  interval?: QueryTimeGrainType;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByQueryNext operation. */
 export type ManagedDatabaseQueriesListByQueryNextResponse = ManagedInstanceQueryStatistics;
@@ -12048,10 +11927,7 @@ export type ManagedDatabaseSchemasGetResponse = DatabaseSchema;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSchemasListByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseSchemasListByDatabaseNextResponse = DatabaseSchemaListResult;
@@ -12102,16 +11978,7 @@ export type ManagedDatabaseSecurityEventsListByDatabaseResponse = SecurityEventC
 
 /** Optional parameters. */
 export interface ManagedDatabaseSecurityEventsListByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The number of elements in the collection to skip. */
-  skip?: number;
-  /** An opaque token that identifies a starting point in the collection. */
-  skiptoken?: string;
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-  /** The number of elements to return from the collection. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type ManagedDatabaseSecurityEventsListByDatabaseNextResponse = SecurityEventCollection;
@@ -12173,25 +12040,14 @@ export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse = 
 
 /** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  skipToken?: string;
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-  count?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCurrentByDatabaseNext operation. */
 export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse = SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  skipToken?: string;
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-  /** Specifies whether to include disabled recommendations or not. */
-  includeDisabledRecommendations?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRecommendedByDatabaseNext operation. */
 export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse = SensitivityLabelListResult;
@@ -12219,10 +12075,7 @@ export type ManagedDatabaseTablesGetResponse = DatabaseTable;
 
 /** Optional parameters. */
 export interface ManagedDatabaseTablesListBySchemaNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySchemaNext operation. */
 export type ManagedDatabaseTablesListBySchemaNextResponse = DatabaseTableListResult;
@@ -12508,10 +12361,7 @@ export interface ManagedInstanceKeysDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ManagedInstanceKeysListByInstanceNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
 export type ManagedInstanceKeysListByInstanceNextResponse = ManagedInstanceKeyListResult;
@@ -12948,25 +12798,14 @@ export interface SensitivityLabelsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface SensitivityLabelsListCurrentByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  skipToken?: string;
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-  count?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCurrentByDatabaseNext operation. */
 export type SensitivityLabelsListCurrentByDatabaseNextResponse = SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface SensitivityLabelsListRecommendedByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  skipToken?: string;
-  /** An OData filter expression that filters elements in the collection. */
-  filter?: string;
-  /** Specifies whether to include disabled recommendations or not. */
-  includeDisabledRecommendations?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRecommendedByDatabaseNext operation. */
 export type SensitivityLabelsListRecommendedByDatabaseNextResponse = SensitivityLabelListResult;
@@ -13563,10 +13402,7 @@ export type SyncGroupsListHubSchemasNextResponse = SyncFullSchemaPropertiesListR
 
 /** Optional parameters. */
 export interface SyncGroupsListLogsNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The continuation token for this operation. */
-  continuationToken?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listLogsNext operation. */
 export type SyncGroupsListLogsNextResponse = SyncGroupLogListResult;
@@ -14178,20 +14014,14 @@ export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse
 
 /** Optional parameters. */
 export interface ServersListByResourceGroupNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The child resources to include in the response. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ServersListByResourceGroupNextResponse = ServerListResult;
 
 /** Optional parameters. */
 export interface ServersListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The child resources to include in the response. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ServersListNextResponse = ServerListResult;
@@ -14208,10 +14038,7 @@ export type UsagesListByInstancePoolResponse = UsageListResult;
 
 /** Optional parameters. */
 export interface UsagesListByInstancePoolNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Optional request parameter to include managed instance usages within the instance pool. */
-  expandChildren?: boolean;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstancePoolNext operation. */
 export type UsagesListByInstancePoolNextResponse = UsageListResult;
@@ -14370,72 +14197,42 @@ export type LongTermRetentionBackupsListByResourceGroupServerResponse = LongTerm
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type LongTermRetentionBackupsListByDatabaseNextResponse = LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByLocationNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
 export type LongTermRetentionBackupsListByLocationNextResponse = LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByServerNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
 export type LongTermRetentionBackupsListByServerNextResponse = LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupDatabaseNext operation. */
 export type LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse = LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupLocationNext operation. */
 export type LongTermRetentionBackupsListByResourceGroupLocationNextResponse = LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupServerNext operation. */
 export type LongTermRetentionBackupsListByResourceGroupServerNextResponse = LongTermRetentionBackupListResult;
@@ -14546,72 +14343,42 @@ export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationRe
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByDatabaseNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByInstanceNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByInstanceNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByLocationNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByLocationNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupDatabaseNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupInstanceNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Whether or not to only get the latest backup for each database. */
-  onlyLatestPerDatabase?: boolean;
-  /** Whether to query against just live databases, just deleted databases, or all databases. */
-  databaseState?: DatabaseState;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupLocationNext operation. */
 export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
@@ -14724,52 +14491,28 @@ export interface ManagedInstancesFailoverOptionalParams
 
 /** Optional parameters. */
 export interface ManagedInstancesListByInstancePoolNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The child resources to include in the response. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstancePoolNext operation. */
 export type ManagedInstancesListByInstancePoolNextResponse = ManagedInstanceListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The child resources to include in the response. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type ManagedInstancesListNextResponse = ManagedInstanceListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesListByResourceGroupNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The child resources to include in the response. */
-  expand?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ManagedInstancesListByResourceGroupNextResponse = ManagedInstanceListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesListByManagedInstanceNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Start time for observed period. */
-  startTime?: string;
-  /** End time for observed period. */
-  endTime?: string;
-  /** The time step to be used to summarize the metric values. Default value is PT1H */
-  interval?: QueryTimeGrainType;
-  /** How many 'top queries' to return. Default is 5. */
-  numberOfQueries?: number;
-  /** Comma separated list of databases to be included into search. All DB's are included if this parameter is not specified. */
-  databases?: string;
-  /** Aggregation function to be used, default value is 'sum' */
-  aggregationFunction?: AggregationFunctionType;
-  /** Metric to be used for ranking top queries. Default is 'cpu' */
-  observationMetric?: MetricType;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagedInstanceNext operation. */
 export type ManagedInstancesListByManagedInstanceNextResponse = TopQueriesListResult;

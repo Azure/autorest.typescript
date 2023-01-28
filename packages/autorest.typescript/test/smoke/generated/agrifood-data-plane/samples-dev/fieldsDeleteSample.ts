@@ -16,10 +16,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Fields_Delete.json
  */
 async function fieldsDelete() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const farmerId = "FARMER123";
@@ -30,4 +30,8 @@ async function fieldsDelete() {
   console.log(result);
 }
 
-fieldsDelete().catch(console.error);
+async function main() {
+  fieldsDelete();
+}
+
+main().catch(console.error);

@@ -334,7 +334,6 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     while (continuationToken) {
       result = await this._listForManagementGroupNext(
         managementGroupId,
-        filter,
         continuationToken,
         options
       );
@@ -734,20 +733,16 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   /**
    * ListForManagementGroupNext
    * @param managementGroupId The ID of the management group.
-   * @param filter The filter to apply on the operation. Valid values for $filter are: 'atScope()' or
-   *               'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at
-   *               management group scope.
    * @param nextLink The nextLink from the previous successful call to the ListForManagementGroup method.
    * @param options The options parameters.
    */
   private _listForManagementGroupNext(
     managementGroupId: string,
-    filter: string,
     nextLink: string,
     options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
   ): Promise<PolicyAssignmentsListForManagementGroupNextResponse> {
     return this.client.sendOperationRequest(
-      { managementGroupId, filter, nextLink, options },
+      { managementGroupId, nextLink, options },
       listForManagementGroupNextOperationSpec
     );
   }
@@ -978,7 +973,6 @@ const listForResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -999,7 +993,6 @@ const listForResourceNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1024,7 +1017,6 @@ const listForManagementGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter2],
   urlParameters: [
     Parameters.$host,
     Parameters.managementGroupId,
@@ -1044,7 +1036,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

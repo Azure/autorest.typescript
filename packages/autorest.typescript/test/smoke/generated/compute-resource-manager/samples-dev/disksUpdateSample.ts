@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Updates (patches) a disk.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateOrUpdateABurstingEnabledManagedDisk.json
  */
 async function createOrUpdateABurstingEnabledManagedDisk() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = { burstingEnabled: true, diskSizeGB: 1024 };
   const credential = new DefaultAzureCredential();
@@ -35,8 +38,6 @@ async function createOrUpdateABurstingEnabledManagedDisk() {
   console.log(result);
 }
 
-createOrUpdateABurstingEnabledManagedDisk().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -44,8 +45,8 @@ createOrUpdateABurstingEnabledManagedDisk().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateAManagedDiskToAddAcceleratedNetworking.json
  */
 async function updateAManagedDiskToAddAcceleratedNetworking() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = {
     supportedCapabilities: { acceleratedNetwork: false }
@@ -60,8 +61,6 @@ async function updateAManagedDiskToAddAcceleratedNetworking() {
   console.log(result);
 }
 
-updateAManagedDiskToAddAcceleratedNetworking().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -69,8 +68,8 @@ updateAManagedDiskToAddAcceleratedNetworking().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateAManagedDiskToAddPurchasePlan.json
  */
 async function updateAManagedDiskToAddPurchasePlan() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = {
     purchasePlan: {
@@ -90,8 +89,6 @@ async function updateAManagedDiskToAddPurchasePlan() {
   console.log(result);
 }
 
-updateAManagedDiskToAddPurchasePlan().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -99,8 +96,8 @@ updateAManagedDiskToAddPurchasePlan().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateAManagedDiskToAddSupportsHibernation.json
  */
 async function updateAManagedDiskToAddSupportsHibernation() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = { supportsHibernation: true };
   const credential = new DefaultAzureCredential();
@@ -113,8 +110,6 @@ async function updateAManagedDiskToAddSupportsHibernation() {
   console.log(result);
 }
 
-updateAManagedDiskToAddSupportsHibernation().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -122,8 +117,8 @@ updateAManagedDiskToAddSupportsHibernation().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateAManagedDiskToChangeTier.json
  */
 async function updateAManagedDiskToChangeTier() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = { tier: "P30" };
   const credential = new DefaultAzureCredential();
@@ -136,8 +131,6 @@ async function updateAManagedDiskToChangeTier() {
   console.log(result);
 }
 
-updateAManagedDiskToChangeTier().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -145,8 +138,8 @@ updateAManagedDiskToChangeTier().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateAManagedDiskToDisableBursting.json
  */
 async function updateAManagedDiskToDisableBursting() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = { burstingEnabled: false };
   const credential = new DefaultAzureCredential();
@@ -159,8 +152,6 @@ async function updateAManagedDiskToDisableBursting() {
   console.log(result);
 }
 
-updateAManagedDiskToDisableBursting().catch(console.error);
-
 /**
  * This sample demonstrates how to Updates (patches) a disk.
  *
@@ -168,8 +159,8 @@ updateAManagedDiskToDisableBursting().catch(console.error);
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/UpdateAManagedDiskToRemoveDiskAccess.json
  */
 async function updateManagedDiskToRemoveDiskAccessResourceAssociation() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
   const disk: DiskUpdate = { networkAccessPolicy: "AllowAll" };
   const credential = new DefaultAzureCredential();
@@ -182,4 +173,14 @@ async function updateManagedDiskToRemoveDiskAccessResourceAssociation() {
   console.log(result);
 }
 
-updateManagedDiskToRemoveDiskAccessResourceAssociation().catch(console.error);
+async function main() {
+  createOrUpdateABurstingEnabledManagedDisk();
+  updateAManagedDiskToAddAcceleratedNetworking();
+  updateAManagedDiskToAddPurchasePlan();
+  updateAManagedDiskToAddSupportsHibernation();
+  updateAManagedDiskToChangeTier();
+  updateAManagedDiskToDisableBursting();
+  updateManagedDiskToRemoveDiskAccessResourceAssociation();
+}
+
+main().catch(console.error);

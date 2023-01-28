@@ -1819,20 +1819,14 @@ export type VaultsCheckNameAvailabilityResponse = CheckNameAvailabilityResult;
 
 /** Optional parameters. */
 export interface VaultsListByResourceGroupNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type VaultsListByResourceGroupNextResponse = VaultListResult;
 
 /** Optional parameters. */
 export interface VaultsListBySubscriptionNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
 export type VaultsListBySubscriptionNextResponse = VaultListResult;
@@ -1846,10 +1840,7 @@ export type VaultsListDeletedNextResponse = DeletedVaultListResult;
 
 /** Optional parameters. */
 export interface VaultsListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type VaultsListNextResponse = ResourceListResult;
@@ -1987,20 +1978,14 @@ export interface ManagedHsmsPurgeDeletedOptionalParams
 
 /** Optional parameters. */
 export interface ManagedHsmsListByResourceGroupNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
 export type ManagedHsmsListByResourceGroupNextResponse = ManagedHsmListResult;
 
 /** Optional parameters. */
 export interface ManagedHsmsListBySubscriptionNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
 export type ManagedHsmsListBySubscriptionNextResponse = ManagedHsmListResult;
@@ -2105,10 +2090,7 @@ export type SecretsListResponse = SecretListResult;
 
 /** Optional parameters. */
 export interface SecretsListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** Maximum number of results to return. */
-  top?: number;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type SecretsListNextResponse = SecretListResult;

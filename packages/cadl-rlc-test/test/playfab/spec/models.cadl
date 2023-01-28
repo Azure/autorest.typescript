@@ -5,17 +5,14 @@ using Cadl.Rest;
 namespace PlayFab;
 
 // FIXME: (missing-docs) Add documentation
-enum AccountLinkActionKnownValues {
+enum AccountLinkAction {
   "CreateAndLinkNewAccount",
   "LinkToExistingAccount",
   "LeaveUnlinked",
 }
 
-@knownValues(AccountLinkActionKnownValues)
-model AccountLinkAction is string;
-
 // FIXME: (missing-docs) Add documentation
-enum PlayerIdentityProviderKnownValues {
+enum PlayerIdentityProvider {
   "AndroidDevice",
   "Apple",
   "CustomId",
@@ -37,19 +34,13 @@ enum PlayerIdentityProviderKnownValues {
   "GooglePlayGames",
 }
 
-@knownValues(PlayerIdentityProviderKnownValues)
-model PlayerIdentityProvider is string;
-
 // FIXME: (missing-docs) Add documentation
-enum OperationTypesKnownValues {
+enum OperationTypes {
   "Created",
   "Updated",
   "Deleted",
   "None",
 }
-
-@knownValues(OperationTypesKnownValues)
-model OperationTypes is string;
 
 @doc("""
 This API must be called with X-SecretKey, X-Authentication or X-EntityToken

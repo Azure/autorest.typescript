@@ -16,6 +16,8 @@ import {
   ApplicationGatewaysImpl,
   ApplicationGatewayPrivateLinkResourcesImpl,
   ApplicationGatewayPrivateEndpointConnectionsImpl,
+  ApplicationGatewayWafDynamicManifestsDefaultImpl,
+  ApplicationGatewayWafDynamicManifestsImpl,
   ApplicationSecurityGroupsImpl,
   AvailableDelegationsImpl,
   AvailableResourceGroupDelegationsImpl,
@@ -26,6 +28,7 @@ import {
   BastionHostsImpl,
   NetworkInterfacesImpl,
   PublicIPAddressesImpl,
+  VipSwapImpl,
   CustomIPPrefixesImpl,
   DdosCustomPoliciesImpl,
   DdosProtectionPlansImpl,
@@ -42,6 +45,8 @@ import {
   ExpressRoutePortsLocationsImpl,
   ExpressRoutePortsImpl,
   ExpressRouteLinksImpl,
+  ExpressRoutePortAuthorizationsImpl,
+  ExpressRouteProviderPortsLocationImpl,
   FirewallPoliciesImpl,
   FirewallPolicyRuleCollectionGroupsImpl,
   FirewallPolicyIdpsSignaturesImpl,
@@ -61,6 +66,18 @@ import {
   NetworkInterfaceIPConfigurationsImpl,
   NetworkInterfaceLoadBalancersImpl,
   NetworkInterfaceTapConfigurationsImpl,
+  NetworkManagersImpl,
+  NetworkManagerCommitsImpl,
+  NetworkManagerDeploymentStatusOperationsImpl,
+  SubscriptionNetworkManagerConnectionsImpl,
+  ManagementGroupNetworkManagerConnectionsImpl,
+  ConnectivityConfigurationsImpl,
+  NetworkGroupsImpl,
+  StaticMembersImpl,
+  ScopeConnectionsImpl,
+  SecurityAdminConfigurationsImpl,
+  AdminRuleCollectionsImpl,
+  AdminRulesImpl,
   NetworkProfilesImpl,
   NetworkSecurityGroupsImpl,
   SecurityRulesImpl,
@@ -107,7 +124,9 @@ import {
   VpnSiteLinksImpl,
   VpnSitesConfigurationImpl,
   VpnServerConfigurationsImpl,
+  ConfigurationPolicyGroupsImpl,
   VirtualHubsImpl,
+  RouteMapsImpl,
   HubVirtualNetworkConnectionsImpl,
   VpnGatewaysImpl,
   VpnLinkConnectionsImpl,
@@ -130,6 +149,8 @@ import {
   ApplicationGateways,
   ApplicationGatewayPrivateLinkResources,
   ApplicationGatewayPrivateEndpointConnections,
+  ApplicationGatewayWafDynamicManifestsDefault,
+  ApplicationGatewayWafDynamicManifests,
   ApplicationSecurityGroups,
   AvailableDelegations,
   AvailableResourceGroupDelegations,
@@ -140,6 +161,7 @@ import {
   BastionHosts,
   NetworkInterfaces,
   PublicIPAddresses,
+  VipSwap,
   CustomIPPrefixes,
   DdosCustomPolicies,
   DdosProtectionPlans,
@@ -156,6 +178,8 @@ import {
   ExpressRoutePortsLocations,
   ExpressRoutePorts,
   ExpressRouteLinks,
+  ExpressRoutePortAuthorizations,
+  ExpressRouteProviderPortsLocation,
   FirewallPolicies,
   FirewallPolicyRuleCollectionGroups,
   FirewallPolicyIdpsSignatures,
@@ -175,6 +199,18 @@ import {
   NetworkInterfaceIPConfigurations,
   NetworkInterfaceLoadBalancers,
   NetworkInterfaceTapConfigurations,
+  NetworkManagers,
+  NetworkManagerCommits,
+  NetworkManagerDeploymentStatusOperations,
+  SubscriptionNetworkManagerConnections,
+  ManagementGroupNetworkManagerConnections,
+  ConnectivityConfigurations,
+  NetworkGroups,
+  StaticMembers,
+  ScopeConnections,
+  SecurityAdminConfigurations,
+  AdminRuleCollections,
+  AdminRules,
   NetworkProfiles,
   NetworkSecurityGroups,
   SecurityRules,
@@ -221,7 +257,9 @@ import {
   VpnSiteLinks,
   VpnSitesConfiguration,
   VpnServerConfigurations,
+  ConfigurationPolicyGroups,
   VirtualHubs,
+  RouteMaps,
   HubVirtualNetworkConnections,
   VpnGateways,
   VpnLinkConnections,
@@ -264,6 +302,18 @@ import {
   DeleteBastionShareableLinkOptionalParams,
   CheckDnsNameAvailabilityOptionalParams,
   CheckDnsNameAvailabilityResponse,
+  ExpressRouteProviderPortOptionalParams,
+  ExpressRouteProviderPortResponse,
+  ActiveConfigurationParameter,
+  ListActiveConnectivityConfigurationsOptionalParams,
+  ListActiveConnectivityConfigurationsResponse,
+  ListActiveSecurityAdminRulesOptionalParams,
+  ListActiveSecurityAdminRulesResponse,
+  QueryRequestOptions,
+  ListNetworkManagerEffectiveConnectivityConfigurationsOptionalParams,
+  ListNetworkManagerEffectiveConnectivityConfigurationsResponse,
+  ListNetworkManagerEffectiveSecurityAdminRulesOptionalParams,
+  ListNetworkManagerEffectiveSecurityAdminRulesResponse,
   SupportedSecurityProvidersOptionalParams,
   SupportedSecurityProvidersResponse,
   VirtualWanVpnProfileParameters,
@@ -336,6 +386,12 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.applicationGatewayPrivateEndpointConnections = new ApplicationGatewayPrivateEndpointConnectionsImpl(
       this
     );
+    this.applicationGatewayWafDynamicManifestsDefault = new ApplicationGatewayWafDynamicManifestsDefaultImpl(
+      this
+    );
+    this.applicationGatewayWafDynamicManifests = new ApplicationGatewayWafDynamicManifestsImpl(
+      this
+    );
     this.applicationSecurityGroups = new ApplicationSecurityGroupsImpl(this);
     this.availableDelegations = new AvailableDelegationsImpl(this);
     this.availableResourceGroupDelegations = new AvailableResourceGroupDelegationsImpl(
@@ -348,6 +404,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.bastionHosts = new BastionHostsImpl(this);
     this.networkInterfaces = new NetworkInterfacesImpl(this);
     this.publicIPAddresses = new PublicIPAddressesImpl(this);
+    this.vipSwap = new VipSwapImpl(this);
     this.customIPPrefixes = new CustomIPPrefixesImpl(this);
     this.ddosCustomPolicies = new DdosCustomPoliciesImpl(this);
     this.ddosProtectionPlans = new DdosProtectionPlansImpl(this);
@@ -380,6 +437,12 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.expressRoutePortsLocations = new ExpressRoutePortsLocationsImpl(this);
     this.expressRoutePorts = new ExpressRoutePortsImpl(this);
     this.expressRouteLinks = new ExpressRouteLinksImpl(this);
+    this.expressRoutePortAuthorizations = new ExpressRoutePortAuthorizationsImpl(
+      this
+    );
+    this.expressRouteProviderPortsLocation = new ExpressRouteProviderPortsLocationImpl(
+      this
+    );
     this.firewallPolicies = new FirewallPoliciesImpl(this);
     this.firewallPolicyRuleCollectionGroups = new FirewallPolicyRuleCollectionGroupsImpl(
       this
@@ -421,6 +484,26 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.networkInterfaceTapConfigurations = new NetworkInterfaceTapConfigurationsImpl(
       this
     );
+    this.networkManagers = new NetworkManagersImpl(this);
+    this.networkManagerCommits = new NetworkManagerCommitsImpl(this);
+    this.networkManagerDeploymentStatusOperations = new NetworkManagerDeploymentStatusOperationsImpl(
+      this
+    );
+    this.subscriptionNetworkManagerConnections = new SubscriptionNetworkManagerConnectionsImpl(
+      this
+    );
+    this.managementGroupNetworkManagerConnections = new ManagementGroupNetworkManagerConnectionsImpl(
+      this
+    );
+    this.connectivityConfigurations = new ConnectivityConfigurationsImpl(this);
+    this.networkGroups = new NetworkGroupsImpl(this);
+    this.staticMembers = new StaticMembersImpl(this);
+    this.scopeConnections = new ScopeConnectionsImpl(this);
+    this.securityAdminConfigurations = new SecurityAdminConfigurationsImpl(
+      this
+    );
+    this.adminRuleCollections = new AdminRuleCollectionsImpl(this);
+    this.adminRules = new AdminRulesImpl(this);
     this.networkProfiles = new NetworkProfilesImpl(this);
     this.networkSecurityGroups = new NetworkSecurityGroupsImpl(this);
     this.securityRules = new SecurityRulesImpl(this);
@@ -479,7 +562,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     this.vpnSiteLinks = new VpnSiteLinksImpl(this);
     this.vpnSitesConfiguration = new VpnSitesConfigurationImpl(this);
     this.vpnServerConfigurations = new VpnServerConfigurationsImpl(this);
+    this.configurationPolicyGroups = new ConfigurationPolicyGroupsImpl(this);
     this.virtualHubs = new VirtualHubsImpl(this);
+    this.routeMaps = new RouteMapsImpl(this);
     this.hubVirtualNetworkConnections = new HubVirtualNetworkConnectionsImpl(
       this
     );
@@ -1155,6 +1240,97 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   }
 
   /**
+   * Retrieves detail of a provider port.
+   * @param providerport The name of the provider port.
+   * @param options The options parameters.
+   */
+  expressRouteProviderPort(
+    providerport: string,
+    options?: ExpressRouteProviderPortOptionalParams
+  ): Promise<ExpressRouteProviderPortResponse> {
+    return this.sendOperationRequest(
+      { providerport, options },
+      expressRouteProviderPortOperationSpec
+    );
+  }
+
+  /**
+   * Lists active connectivity configurations in a network manager.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkManagerName The name of the network manager.
+   * @param parameters Active Configuration Parameter.
+   * @param options The options parameters.
+   */
+  listActiveConnectivityConfigurations(
+    resourceGroupName: string,
+    networkManagerName: string,
+    parameters: ActiveConfigurationParameter,
+    options?: ListActiveConnectivityConfigurationsOptionalParams
+  ): Promise<ListActiveConnectivityConfigurationsResponse> {
+    return this.sendOperationRequest(
+      { resourceGroupName, networkManagerName, parameters, options },
+      listActiveConnectivityConfigurationsOperationSpec
+    );
+  }
+
+  /**
+   * Lists active security admin rules in a network manager.
+   * @param resourceGroupName The name of the resource group.
+   * @param networkManagerName The name of the network manager.
+   * @param parameters Active Configuration Parameter.
+   * @param options The options parameters.
+   */
+  listActiveSecurityAdminRules(
+    resourceGroupName: string,
+    networkManagerName: string,
+    parameters: ActiveConfigurationParameter,
+    options?: ListActiveSecurityAdminRulesOptionalParams
+  ): Promise<ListActiveSecurityAdminRulesResponse> {
+    return this.sendOperationRequest(
+      { resourceGroupName, networkManagerName, parameters, options },
+      listActiveSecurityAdminRulesOperationSpec
+    );
+  }
+
+  /**
+   * List all effective connectivity configurations applied on a virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param parameters Parameters supplied to list correct page.
+   * @param options The options parameters.
+   */
+  listNetworkManagerEffectiveConnectivityConfigurations(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    parameters: QueryRequestOptions,
+    options?: ListNetworkManagerEffectiveConnectivityConfigurationsOptionalParams
+  ): Promise<ListNetworkManagerEffectiveConnectivityConfigurationsResponse> {
+    return this.sendOperationRequest(
+      { resourceGroupName, virtualNetworkName, parameters, options },
+      listNetworkManagerEffectiveConnectivityConfigurationsOperationSpec
+    );
+  }
+
+  /**
+   * List all effective security admin rules applied on a virtual network.
+   * @param resourceGroupName The name of the resource group.
+   * @param virtualNetworkName The name of the virtual network.
+   * @param parameters Parameters supplied to list correct page.
+   * @param options The options parameters.
+   */
+  listNetworkManagerEffectiveSecurityAdminRules(
+    resourceGroupName: string,
+    virtualNetworkName: string,
+    parameters: QueryRequestOptions,
+    options?: ListNetworkManagerEffectiveSecurityAdminRulesOptionalParams
+  ): Promise<ListNetworkManagerEffectiveSecurityAdminRulesResponse> {
+    return this.sendOperationRequest(
+      { resourceGroupName, virtualNetworkName, parameters, options },
+      listNetworkManagerEffectiveSecurityAdminRulesOperationSpec
+    );
+  }
+
+  /**
    * Gives the supported security providers for the virtual wan.
    * @param resourceGroupName The resource group name.
    * @param virtualWANName The name of the VirtualWAN for which supported security providers are needed.
@@ -1358,6 +1534,8 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   applicationGateways: ApplicationGateways;
   applicationGatewayPrivateLinkResources: ApplicationGatewayPrivateLinkResources;
   applicationGatewayPrivateEndpointConnections: ApplicationGatewayPrivateEndpointConnections;
+  applicationGatewayWafDynamicManifestsDefault: ApplicationGatewayWafDynamicManifestsDefault;
+  applicationGatewayWafDynamicManifests: ApplicationGatewayWafDynamicManifests;
   applicationSecurityGroups: ApplicationSecurityGroups;
   availableDelegations: AvailableDelegations;
   availableResourceGroupDelegations: AvailableResourceGroupDelegations;
@@ -1368,6 +1546,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   bastionHosts: BastionHosts;
   networkInterfaces: NetworkInterfaces;
   publicIPAddresses: PublicIPAddresses;
+  vipSwap: VipSwap;
   customIPPrefixes: CustomIPPrefixes;
   ddosCustomPolicies: DdosCustomPolicies;
   ddosProtectionPlans: DdosProtectionPlans;
@@ -1384,6 +1563,8 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   expressRoutePortsLocations: ExpressRoutePortsLocations;
   expressRoutePorts: ExpressRoutePorts;
   expressRouteLinks: ExpressRouteLinks;
+  expressRoutePortAuthorizations: ExpressRoutePortAuthorizations;
+  expressRouteProviderPortsLocation: ExpressRouteProviderPortsLocation;
   firewallPolicies: FirewallPolicies;
   firewallPolicyRuleCollectionGroups: FirewallPolicyRuleCollectionGroups;
   firewallPolicyIdpsSignatures: FirewallPolicyIdpsSignatures;
@@ -1403,6 +1584,18 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   networkInterfaceIPConfigurations: NetworkInterfaceIPConfigurations;
   networkInterfaceLoadBalancers: NetworkInterfaceLoadBalancers;
   networkInterfaceTapConfigurations: NetworkInterfaceTapConfigurations;
+  networkManagers: NetworkManagers;
+  networkManagerCommits: NetworkManagerCommits;
+  networkManagerDeploymentStatusOperations: NetworkManagerDeploymentStatusOperations;
+  subscriptionNetworkManagerConnections: SubscriptionNetworkManagerConnections;
+  managementGroupNetworkManagerConnections: ManagementGroupNetworkManagerConnections;
+  connectivityConfigurations: ConnectivityConfigurations;
+  networkGroups: NetworkGroups;
+  staticMembers: StaticMembers;
+  scopeConnections: ScopeConnections;
+  securityAdminConfigurations: SecurityAdminConfigurations;
+  adminRuleCollections: AdminRuleCollections;
+  adminRules: AdminRules;
   networkProfiles: NetworkProfiles;
   networkSecurityGroups: NetworkSecurityGroups;
   securityRules: SecurityRules;
@@ -1449,7 +1642,9 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
   vpnSiteLinks: VpnSiteLinks;
   vpnSitesConfiguration: VpnSitesConfiguration;
   vpnServerConfigurations: VpnServerConfigurations;
+  configurationPolicyGroups: ConfigurationPolicyGroups;
   virtualHubs: VirtualHubs;
+  routeMaps: RouteMaps;
   hubVirtualNetworkConnections: HubVirtualNetworkConnections;
   vpnGateways: VpnGateways;
   vpnLinkConnections: VpnLinkConnections;
@@ -1629,6 +1824,124 @@ const checkDnsNameAvailabilityOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
+const expressRouteProviderPortOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/providers/Microsoft.Network/expressRouteProviderPorts/{providerport}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteProviderPort
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.providerport
+  ],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const listActiveConnectivityConfigurationsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkManagers/{networkManagerName}/listActiveConnectivityConfigurations",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ActiveConnectivityConfigurationsListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.parameters6,
+  queryParameters: [Parameters.apiVersion, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.networkManagerName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const listActiveSecurityAdminRulesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkManagers/{networkManagerName}/listActiveSecurityAdminRules",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ActiveSecurityAdminRulesListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.parameters6,
+  queryParameters: [Parameters.apiVersion, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.networkManagerName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const listNetworkManagerEffectiveConnectivityConfigurationsOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/listNetworkManagerEffectiveConnectivityConfigurations",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper:
+        Mappers.NetworkManagerEffectiveConnectivityConfigurationListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.parameters7,
+  queryParameters: [Parameters.apiVersion, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.virtualNetworkName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
+const listNetworkManagerEffectiveSecurityAdminRulesOperationSpec: coreClient.OperationSpec = {
+  path:
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/listNetworkManagerEffectiveSecurityAdminRules",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: Mappers.NetworkManagerEffectiveSecurityAdminRulesListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.parameters7,
+  queryParameters: [Parameters.apiVersion, Parameters.top],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId,
+    Parameters.virtualNetworkName
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer
+};
 const supportedSecurityProvidersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans/{virtualWANName}/supportedSecurityProviders",
@@ -1696,7 +2009,6 @@ const putBastionShareableLinkNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1719,7 +2031,6 @@ const getBastionShareableLinkNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1743,7 +2054,6 @@ const getActiveSessionsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
@@ -1765,7 +2075,6 @@ const disconnectActiveSessionsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,

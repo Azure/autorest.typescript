@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Sets a managed database's long term retention policy.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstanceLongTermRetentionPolicyCreateOrUpdate.json
  */
 async function createOrUpdateTheLtrPolicyForTheManagedDatabase() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "testResourceGroup";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "testResourceGroup";
   const managedInstanceName = "testInstance";
   const databaseName = "testDatabase";
   const policyName = "default";
@@ -44,4 +49,8 @@ async function createOrUpdateTheLtrPolicyForTheManagedDatabase() {
   console.log(result);
 }
 
-createOrUpdateTheLtrPolicyForTheManagedDatabase().catch(console.error);
+async function main() {
+  createOrUpdateTheLtrPolicyForTheManagedDatabase();
+}
+
+main().catch(console.error);

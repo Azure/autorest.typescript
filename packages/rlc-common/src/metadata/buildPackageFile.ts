@@ -97,23 +97,30 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "build:samples": "echo skipped.",
       "build:test": "echo skipped.",
       "build:debug": "echo skipped.",
-      "check-format":
-        'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "test/**/*.ts" "samples-dev/**/*.ts" "*.{js,json}"',
+      "check-format": `prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ${appendPathWhenFormat(
+        generateTest,
+        generateSample
+      )}`,
       clean:
         "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "execute:samples": "echo skipped",
       "extract-api":
         "rimraf review && mkdirp ./review && api-extractor run --local",
-      format:
-        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "test/**/*.ts" "samples-dev/**/*.ts" "*.{js,json}"',
+      format: `prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ${appendPathWhenFormat(
+        generateTest,
+        generateSample
+      )}`,
       "generate:client":
         "autorest --typescript swagger/README.md && npm run format",
       "integration-test:browser": "echo skipped",
       "integration-test:node": "echo skipped",
       "integration-test": "echo skipped",
-      "lint:fix":
-        "eslint package.json api-extractor.json src test --ext .ts --fix --fix-type [problem,suggestion]",
-      lint: "eslint package.json api-extractor.json src test --ext .ts",
+      "lint:fix": `eslint package.json api-extractor.json src ${appednPathWhenLint(
+        generateTest
+      )} --ext .ts --fix --fix-type [problem,suggestion]`,
+      lint: `eslint package.json api-extractor.json src ${appednPathWhenLint(
+        generateTest
+      )} --ext .ts`,
       pack: "npm pack 2>&1",
       "test:browser": "echo skipped",
       "test:node": "echo skipped",
@@ -141,9 +148,9 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "@microsoft/api-extractor": "^7.31.1",
       autorest: "latest",
       "@types/node": "^14.0.0",
-      dotenv: "^8.2.0",
+      dotenv: "^16.0.0",
       eslint: "^8.0.0",
-      mkdirp: "^1.0.4",
+      mkdirp: "^2.1.2",
       prettier: "2.2.1",
       rimraf: "^3.0.0",
       "source-map-support": "^0.5.9",
@@ -215,7 +222,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
     packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.3.8";
     packageInfo.devDependencies["karma"] = "^6.2.0";
-    packageInfo.devDependencies["nyc"] = "^14.0.0";
+    packageInfo.devDependencies["nyc"] = "^15.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
     packageInfo.scripts["test"] =
       "npm run clean && npm run build:test && npm run unit-test";
@@ -270,4 +277,22 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   }
 
   return packageInfo;
+}
+
+function appendPathWhenFormat(
+  generateTest?: boolean,
+  generateSample?: boolean
+) {
+  let path = "";
+  if (generateTest) {
+    path = path + ` "test/**/*.ts"`;
+  }
+  if (generateSample) {
+    path = path + ` "samples-dev/**/*.ts"`;
+  }
+  return path;
+}
+
+function appednPathWhenLint(generateTest?: boolean) {
+  return generateTest ? "test" : "";
 }

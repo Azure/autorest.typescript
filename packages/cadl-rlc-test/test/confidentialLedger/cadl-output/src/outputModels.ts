@@ -4,7 +4,7 @@
 /** Identifier for collections. */
 export interface CollectionOutput {
   /** The collection id. */
-  collectionId: string;
+  readonly collectionId: string;
 }
 
 /** A response containing error details. */
@@ -55,6 +55,9 @@ export interface LedgerEntryOutput {
   readonly transactionId: string;
 }
 
+/** The collectionId parameter definition. */
+export interface CollectionIdParameterOutput {}
+
 /** A receipt certifying the transaction at the specified id. */
 export interface TransactionReceiptOutput {
   /** The receipt contents. */
@@ -79,7 +82,7 @@ export interface TransactionStatusOutput {
 /** Details about a Confidential ledger user. */
 export interface LedgerUserOutput {
   /** The user id, either an AAD object ID or certificate fingerprint. */
-  userId: string;
+  readonly userId: string;
   /** The user's assigned role. */
   assignedRole: "Administrator" | "Contributor" | "Reader";
 }

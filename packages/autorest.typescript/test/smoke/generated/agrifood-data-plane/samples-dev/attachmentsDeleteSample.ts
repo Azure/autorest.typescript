@@ -16,10 +16,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Attachments_Delete.json
  */
 async function attachmentsDelete() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const farmerId = "FARMER123";
@@ -34,4 +34,8 @@ async function attachmentsDelete() {
   console.log(result);
 }
 
-attachmentsDelete().catch(console.error);
+async function main() {
+  attachmentsDelete();
+}
+
+main().catch(console.error);

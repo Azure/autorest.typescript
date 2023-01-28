@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a server's DevOps audit settings.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerDevOpsAuditCreateMax.json
  */
 async function updateAServerDevOpsAuditSettingsWithAllParams() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "devAuditTestRG";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "devAuditTestRG";
   const serverName = "devOpsAuditTestSvr";
   const devOpsAuditingSettingsName = "default";
   const parameters: ServerDevOpsAuditingSettings = {
@@ -44,8 +48,6 @@ async function updateAServerDevOpsAuditSettingsWithAllParams() {
   console.log(result);
 }
 
-updateAServerDevOpsAuditSettingsWithAllParams().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a server's DevOps audit settings.
  *
@@ -53,8 +55,9 @@ updateAServerDevOpsAuditSettingsWithAllParams().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerDevOpsAuditCreateMin.json
  */
 async function updateAServerDevOpsAuditSettingsWithMinimalInput() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "devAuditTestRG";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "devAuditTestRG";
   const serverName = "devOpsAuditTestSvr";
   const devOpsAuditingSettingsName = "default";
   const parameters: ServerDevOpsAuditingSettings = {
@@ -74,4 +77,9 @@ async function updateAServerDevOpsAuditSettingsWithMinimalInput() {
   console.log(result);
 }
 
-updateAServerDevOpsAuditSettingsWithMinimalInput().catch(console.error);
+async function main() {
+  updateAServerDevOpsAuditSettingsWithAllParams();
+  updateAServerDevOpsAuditSettingsWithMinimalInput();
+}
+
+main().catch(console.error);

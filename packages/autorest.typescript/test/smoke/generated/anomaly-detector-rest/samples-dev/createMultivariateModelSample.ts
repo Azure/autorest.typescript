@@ -18,12 +18,12 @@ dotenv.config();
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/TrainModel.json
  */
 async function trainMultivariateModel() {
-  const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
+  const endpoint = "{Endpoint}";
+  const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
+    endpoint,
+    apiVersion,
     credential
   );
   const options: CreateMultivariateModelParameters = {
@@ -47,4 +47,8 @@ async function trainMultivariateModel() {
   console.log(result);
 }
 
-trainMultivariateModel().catch(console.error);
+async function main() {
+  trainMultivariateModel();
+}
+
+main().catch(console.error);

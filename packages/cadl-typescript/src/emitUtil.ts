@@ -2,7 +2,7 @@ import { ContentBuilder } from "@azure-tools/rlc-common";
 import { buildSchemaTypes } from "@azure-tools/rlc-common";
 import { File, RLCModel } from "@azure-tools/rlc-common";
 import { CompilerHost, Program } from "@cadl-lang/compiler";
-import { dirname, isAbsolute, join } from "path";
+import { dirname, join } from "path";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./lib.js";
 
@@ -22,7 +22,8 @@ export async function emitModels(rlcModels: RLCModel, program: Program) {
 export async function emitContentByBuilder(
   program: Program,
   builderFnOrList: ContentBuilder | ContentBuilder[],
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  emitterOutputDir?: string
 ) {
   if (!Array.isArray(builderFnOrList)) {
     builderFnOrList = [builderFnOrList];
@@ -30,17 +31,18 @@ export async function emitContentByBuilder(
   for (const builderFn of builderFnOrList) {
     const contentFile = builderFn(rlcModels);
     if (contentFile) {
-      await emitFile(contentFile, program);
+      await emitFile(contentFile, program, emitterOutputDir);
     }
   }
 }
 
-async function emitFile(file: File, program: Program) {
+async function emitFile(
+  file: File,
+  program: Program,
+  emitterOutputDir?: string
+) {
   const host: CompilerHost = program.host;
-  const filePath =
-    isAbsolute(file.path) || !program.compilerOptions.outputDir
-      ? file.path
-      : join(program.compilerOptions.outputDir, file.path);
+  const filePath = join(emitterOutputDir ?? "", file.path);
   const isJson = /\.json$/gi.test(filePath);
   const isSourceCode = /\.(ts|js)$/gi.test(filePath);
   const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;

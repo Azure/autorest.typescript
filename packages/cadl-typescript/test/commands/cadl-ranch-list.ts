@@ -17,12 +17,20 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "authentication/oauth2"
   },
   {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
+  },
+  {
     outputPath: "dictionary",
     inputPath: "dictionary"
   },
   {
-    outputPath: "extensibleEnums",
-    inputPath: "extensible-enums"
+    outputPath: "enums/extensible",
+    inputPath: "enums/extensible"
+  },
+  {
+    outputPath: "enums/fixed",
+    inputPath: "enums/fixed"
   },
   {
     outputPath: "hello",
@@ -45,8 +53,8 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "models/property-types"
   },
   {
-    outputPath: "models/readonlyProperties",
-    inputPath: "models/readonly-properties"
+    outputPath: "models/visibility",
+    inputPath: "models/visibility"
   },
   {
     outputPath: "models/usage",

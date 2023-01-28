@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or update policy with specified rule set name within a resource group.
  *
  * @summary Creates or update policy with specified rule set name within a resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/WafPolicyCreateOrUpdate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/WafPolicyCreateOrUpdate.json
  */
 async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const policyName = "Policy1";
   const parameters: WebApplicationFirewallPolicy = {
     customRules: [
@@ -104,7 +107,25 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
           selectorMatchOperator: "StartsWith"
         }
       ],
-      managedRuleSets: [{ ruleSetType: "OWASP", ruleSetVersion: "3.2" }]
+      managedRuleSets: [
+        {
+          ruleGroupOverrides: [
+            {
+              ruleGroupName: "REQUEST-931-APPLICATION-ATTACK-RFI",
+              rules: [
+                { action: "Log", ruleId: "931120", state: "Enabled" },
+                {
+                  action: "AnomalyScoring",
+                  ruleId: "931130",
+                  state: "Disabled"
+                }
+              ]
+            }
+          ],
+          ruleSetType: "OWASP",
+          ruleSetVersion: "3.2"
+        }
+      ]
     }
   };
   const credential = new DefaultAzureCredential();
@@ -117,4 +138,8 @@ async function createsOrUpdatesAWafPolicyWithinAResourceGroup() {
   console.log(result);
 }
 
-createsOrUpdatesAWafPolicyWithinAResourceGroup().catch(console.error);
+async function main() {
+  createsOrUpdatesAWafPolicyWithinAResourceGroup();
+}
+
+main().catch(console.error);

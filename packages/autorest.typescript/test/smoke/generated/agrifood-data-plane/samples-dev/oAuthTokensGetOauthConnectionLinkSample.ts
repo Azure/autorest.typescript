@@ -16,14 +16,18 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/OAuthTokens_GetOAuthConnectionLink.json
  */
 async function oAuthTokensGetOauthConnectionLink() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const result = await client.path("/oauth/tokens/:connect").post();
   console.log(result);
 }
 
-oAuthTokensGetOauthConnectionLink().catch(console.error);
+async function main() {
+  oAuthTokensGetOauthConnectionLink();
+}
+
+main().catch(console.error);

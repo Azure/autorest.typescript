@@ -20,4 +20,8 @@ async function stringGetWhitespace() {
   console.log(result);
 }
 
-stringGetWhitespace().catch(console.error);
+async function main() {
+  stringGetWhitespace();
+}
+
+main().catch(console.error);

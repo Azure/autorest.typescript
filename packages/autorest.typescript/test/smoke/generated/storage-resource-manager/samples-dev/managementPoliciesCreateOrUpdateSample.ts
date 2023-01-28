@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Sets the managementpolicy to the specified storage account.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicy.json
  */
 async function storageAccountSetManagementPolicies() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res7687";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
   const managementPolicyName = "default";
   const properties: ManagementPolicy = {
@@ -83,8 +86,6 @@ async function storageAccountSetManagementPolicies() {
   console.log(result);
 }
 
-storageAccountSetManagementPolicies().catch(console.error);
-
 /**
  * This sample demonstrates how to Sets the managementpolicy to the specified storage account.
  *
@@ -92,8 +93,8 @@ storageAccountSetManagementPolicies().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicyForBlockAndAppendBlobs.json
  */
 async function storageAccountSetManagementPolicyForBlockAndAppendBlobs() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res7687";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
   const managementPolicyName = "default";
   const properties: ManagementPolicy = {
@@ -129,8 +130,6 @@ async function storageAccountSetManagementPolicyForBlockAndAppendBlobs() {
   console.log(result);
 }
 
-storageAccountSetManagementPolicyForBlockAndAppendBlobs().catch(console.error);
-
 /**
  * This sample demonstrates how to Sets the managementpolicy to the specified storage account.
  *
@@ -138,8 +137,8 @@ storageAccountSetManagementPolicyForBlockAndAppendBlobs().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicyWithSnapshotAndVersion.json
  */
 async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res7687";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
   const managementPolicyName = "default";
   const properties: ManagementPolicy = {
@@ -187,8 +186,6 @@ async function storageAccountSetManagementPolicyWithSnapshotAndVersion() {
   console.log(result);
 }
 
-storageAccountSetManagementPolicyWithSnapshotAndVersion().catch(console.error);
-
 /**
  * This sample demonstrates how to Sets the managementpolicy to the specified storage account.
  *
@@ -196,8 +193,8 @@ storageAccountSetManagementPolicyWithSnapshotAndVersion().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountSetManagementPolicy_LastAccessTimeBasedBlobActions.json
  */
 async function storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res7687";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res7687";
   const accountName = "sto9699";
   const managementPolicyName = "default";
   const properties: ManagementPolicy = {
@@ -237,6 +234,11 @@ async function storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions()
   console.log(result);
 }
 
-storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions().catch(
-  console.error
-);
+async function main() {
+  storageAccountSetManagementPolicies();
+  storageAccountSetManagementPolicyForBlockAndAppendBlobs();
+  storageAccountSetManagementPolicyWithSnapshotAndVersion();
+  storageAccountSetManagementPolicyLastAccessTimeBasedBlobActions();
+}
+
+main().catch(console.error);

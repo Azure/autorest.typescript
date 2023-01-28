@@ -1516,12 +1516,6 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.filter,
-    Parameters.top,
-    Parameters.expand
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
@@ -1542,12 +1536,6 @@ const listNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.filter,
-    Parameters.top,
-    Parameters.expand
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,

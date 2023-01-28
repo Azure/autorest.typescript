@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Imports a bacpac into a new database.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ImportDatabaseWithNetworkIsolation.json
  */
 async function importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: ImportExistingDatabaseDefinition = {
@@ -51,10 +56,6 @@ async function importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWith
   console.log(result);
 }
 
-importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Imports a bacpac into a new database.
  *
@@ -62,8 +63,10 @@ importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndSto
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ImportDatabase.json
  */
 async function importsToAnExistingEmptyDatabase() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: ImportExistingDatabaseDefinition = {
@@ -86,4 +89,9 @@ async function importsToAnExistingEmptyDatabase() {
   console.log(result);
 }
 
-importsToAnExistingEmptyDatabase().catch(console.error);
+async function main() {
+  importsToAnExistingEmptyDatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount();
+  importsToAnExistingEmptyDatabase();
+}
+
+main().catch(console.error);

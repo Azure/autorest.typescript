@@ -1,6 +1,9 @@
 import { assert } from "chai";
-import UrlRest, {
-  UrlRestClient
+import UrlRest, { UrlRestClient } from "./generated/urlRest/src";
+import {
+  buildPipeCollection,
+  buildSsvCollection,
+  buildTsvCollection
 } from "./generated/urlRest/src";
 export type UriColor = "red color" | "green color" | "blue color";
 
@@ -478,17 +481,17 @@ describe("Integration tests for UrlRest", () => {
         .path("/queries/array/pipes/string/valid")
         .get({
           queryParameters: {
-            arrayQuery: testArray.join("|") as any
+            arrayQuery: buildPipeCollection(testArray)
           }
         });
       const result3 = await client.path("/queries/array/ssv/string/valid").get({
         queryParameters: {
-          arrayQuery: testArray.join(" ") as any
+          arrayQuery: buildSsvCollection(testArray)
         }
       });
       const result4 = await client.path("/queries/array/tsv/string/valid").get({
         queryParameters: {
-          arrayQuery: testArray.join("\t") as any
+          arrayQuery: buildTsvCollection(testArray)
         }
       });
       assert.strictEqual(result.status, "200");

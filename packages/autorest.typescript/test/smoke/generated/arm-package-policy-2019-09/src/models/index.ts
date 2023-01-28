@@ -424,20 +424,14 @@ export type PolicyAssignmentsGetByIdResponse = PolicyAssignment;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForResourceGroupNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listForResourceGroupNext operation. */
 export type PolicyAssignmentsListForResourceGroupNextResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForResourceNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listForResourceNext operation. */
 export type PolicyAssignmentsListForResourceNextResponse = PolicyAssignmentListResult;
@@ -451,10 +445,7 @@ export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignme
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListNextOptionalParams
-  extends coreClient.OperationOptions {
-  /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
-  filter?: string;
-}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
 export type PolicyAssignmentsListNextResponse = PolicyAssignmentListResult;

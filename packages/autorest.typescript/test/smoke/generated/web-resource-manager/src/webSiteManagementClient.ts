@@ -1164,7 +1164,6 @@ const listSourceControlsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
@@ -1180,11 +1179,6 @@ const listBillingMetersNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.billingLocation,
-    Parameters.osType
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1204,13 +1198,6 @@ const listGeoRegionsNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.sku,
-    Parameters.linuxWorkersEnabled,
-    Parameters.xenonWorkersEnabled,
-    Parameters.linuxDynamicWorkersEnabled
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1230,7 +1217,6 @@ const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreClient.Operati
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -1251,7 +1237,6 @@ const listPremierAddOnOffersNextOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

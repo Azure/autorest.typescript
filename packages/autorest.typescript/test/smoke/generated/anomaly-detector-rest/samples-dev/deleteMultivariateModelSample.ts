@@ -16,12 +16,12 @@ dotenv.config();
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/DeleteModel.json
  */
 async function deleteMultivariateModel() {
-  const Endpoint = "{Endpoint}";
-  const ApiVersion = "v1.1";
+  const endpoint = "{Endpoint}";
+  const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorRestClient(
-    Endpoint,
-    ApiVersion,
+    endpoint,
+    apiVersion,
     credential
   );
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
@@ -31,4 +31,8 @@ async function deleteMultivariateModel() {
   console.log(result);
 }
 
-deleteMultivariateModel().catch(console.error);
+async function main() {
+  deleteMultivariateModel();
+}
+
+main().catch(console.error);

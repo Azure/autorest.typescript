@@ -250,7 +250,7 @@ export function populateOperationParameters(
   const name = normalizeName(
     parameterName,
     NameType.Parameter,
-    true /** shouldGuard */
+    parameter.language.default.isTopLevelParameter /** shouldGuard */
   );
 
   const sameNameParams = operationParameters.filter(

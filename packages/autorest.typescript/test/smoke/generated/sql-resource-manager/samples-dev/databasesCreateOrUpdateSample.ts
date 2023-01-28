@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateVCoreDatabaseByServiceObjective.json
  */
 async function createsAVCoreDatabaseBySpecifyingServiceObjectiveName() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = {
@@ -40,8 +45,6 @@ async function createsAVCoreDatabaseBySpecifyingServiceObjectiveName() {
   console.log(result);
 }
 
-createsAVCoreDatabaseBySpecifyingServiceObjectiveName().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -49,8 +52,10 @@ createsAVCoreDatabaseBySpecifyingServiceObjectiveName().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateVCoreDatabaseBySkuNameCapacity.json
  */
 async function createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = {
@@ -68,8 +73,6 @@ async function createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity() {
   console.log(result);
 }
 
-createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -77,8 +80,10 @@ createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseCopyMode.json
  */
 async function createsADatabaseAsACopy() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "dbcopy";
   const parameters: Database = {
@@ -99,8 +104,6 @@ async function createsADatabaseAsACopy() {
   console.log(result);
 }
 
-createsADatabaseAsACopy().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -108,8 +111,10 @@ createsADatabaseAsACopy().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseSecondaryMode.json
  */
 async function createsADatabaseAsAnOnLineSecondary() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = {
@@ -131,8 +136,6 @@ async function createsADatabaseAsAnOnLineSecondary() {
   console.log(result);
 }
 
-createsADatabaseAsAnOnLineSecondary().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -140,8 +143,10 @@ createsADatabaseAsAnOnLineSecondary().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseNamedReplica.json
  */
 async function createsADatabaseAsNamedReplicaSecondary() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = {
@@ -163,8 +168,6 @@ async function createsADatabaseAsNamedReplicaSecondary() {
   console.log(result);
 }
 
-createsADatabaseAsNamedReplicaSecondary().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -172,8 +175,10 @@ createsADatabaseAsNamedReplicaSecondary().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabasePITRMode.json
  */
 async function createsADatabaseFromPointInTimeRestore() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "dbpitr";
   const parameters: Database = {
@@ -194,8 +199,6 @@ async function createsADatabaseFromPointInTimeRestore() {
   console.log(result);
 }
 
-createsADatabaseFromPointInTimeRestore().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -203,8 +206,10 @@ createsADatabaseFromPointInTimeRestore().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseDefaultMode.json
  */
 async function createsADatabaseWithDefaultMode() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = {
@@ -225,8 +230,6 @@ async function createsADatabaseWithDefaultMode() {
   console.log(result);
 }
 
-createsADatabaseWithDefaultMode().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -234,8 +237,10 @@ createsADatabaseWithDefaultMode().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseLedger.json
  */
 async function createsADatabaseWithLedgerOn() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = { isLedgerOn: true, location: "southeastasia" };
@@ -250,8 +255,6 @@ async function createsADatabaseWithLedgerOn() {
   console.log(result);
 }
 
-createsADatabaseWithLedgerOn().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -259,8 +262,10 @@ createsADatabaseWithLedgerOn().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseMin.json
  */
 async function createsADatabaseWithMinimumNumberOfParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = { location: "southeastasia" };
@@ -275,8 +280,6 @@ async function createsADatabaseWithMinimumNumberOfParameters() {
   console.log(result);
 }
 
-createsADatabaseWithMinimumNumberOfParameters().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -284,8 +287,10 @@ createsADatabaseWithMinimumNumberOfParameters().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseMaintenanceConfiguration.json
  */
 async function createsADatabaseWithPreferredMaintenanceWindow() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = {
@@ -308,8 +313,6 @@ async function createsADatabaseWithPreferredMaintenanceWindow() {
   console.log(result);
 }
 
-createsADatabaseWithPreferredMaintenanceWindow().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates a new database or updates an existing database.
  *
@@ -317,8 +320,10 @@ createsADatabaseWithPreferredMaintenanceWindow().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/CreateDatabaseConfiguredBackupStorageRedundancy.json
  */
 async function createsADatabaseWithSpecifiedBackupStorageRedundancy() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const parameters: Database = {
@@ -336,4 +341,18 @@ async function createsADatabaseWithSpecifiedBackupStorageRedundancy() {
   console.log(result);
 }
 
-createsADatabaseWithSpecifiedBackupStorageRedundancy().catch(console.error);
+async function main() {
+  createsAVCoreDatabaseBySpecifyingServiceObjectiveName();
+  createsAVCoreDatabaseBySpecifyingSkuNameAndCapacity();
+  createsADatabaseAsACopy();
+  createsADatabaseAsAnOnLineSecondary();
+  createsADatabaseAsNamedReplicaSecondary();
+  createsADatabaseFromPointInTimeRestore();
+  createsADatabaseWithDefaultMode();
+  createsADatabaseWithLedgerOn();
+  createsADatabaseWithMinimumNumberOfParameters();
+  createsADatabaseWithPreferredMaintenanceWindow();
+  createsADatabaseWithSpecifiedBackupStorageRedundancy();
+}
+
+main().catch(console.error);

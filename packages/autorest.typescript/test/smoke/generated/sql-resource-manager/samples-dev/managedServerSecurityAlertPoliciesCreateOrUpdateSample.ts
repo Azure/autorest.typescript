@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a threat detection policy.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedServerSecurityAlertCreateMax.json
  */
 async function updateAManagedServerThreatDetectionPolicyWithAllParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "securityalert-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "securityalert-4799";
   const managedInstanceName = "securityalert-6440";
   const securityAlertPolicyName = "Default";
   const parameters: ManagedServerSecurityAlertPolicy = {
@@ -46,10 +51,6 @@ async function updateAManagedServerThreatDetectionPolicyWithAllParameters() {
   console.log(result);
 }
 
-updateAManagedServerThreatDetectionPolicyWithAllParameters().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a threat detection policy.
  *
@@ -57,8 +58,10 @@ updateAManagedServerThreatDetectionPolicyWithAllParameters().catch(
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedServerSecurityAlertCreateMin.json
  */
 async function updateAManagedServerThreatDetectionPolicyWithMinimalParameters() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "securityalert-4799";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "securityalert-4799";
   const managedInstanceName = "securityalert-6440";
   const securityAlertPolicyName = "Default";
   const parameters: ManagedServerSecurityAlertPolicy = { state: "Enabled" };
@@ -73,6 +76,9 @@ async function updateAManagedServerThreatDetectionPolicyWithMinimalParameters() 
   console.log(result);
 }
 
-updateAManagedServerThreatDetectionPolicyWithMinimalParameters().catch(
-  console.error
-);
+async function main() {
+  updateAManagedServerThreatDetectionPolicyWithAllParameters();
+  updateAManagedServerThreatDetectionPolicyWithMinimalParameters();
+}
+
+main().catch(console.error);

@@ -3,7 +3,6 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { LongRunningOperationLocationHeaders } from "@azure/core-lro";
 import {
   ProjectOutput,
   OperationStatusOutput,
@@ -16,18 +15,28 @@ import {
   PagedTrainingConfigVersionOutput,
 } from "./outputModels";
 
+export interface CreateOrUpdate200Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has succeeded. */
 export interface CreateOrUpdate200Response extends HttpResponse {
   status: "200";
   body: ProjectOutput;
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & CreateOrUpdate200Headers;
+}
+
+export interface CreateOrUpdate201Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
 export interface CreateOrUpdate201Response extends HttpResponse {
   status: "201";
   body: ProjectOutput;
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & CreateOrUpdate201Headers;
 }
 
 export interface CreateOrUpdateDefaultResponse extends HttpResponse {
@@ -46,11 +55,16 @@ export interface GetDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface Delete202Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface Delete202Response extends HttpResponse {
   status: "202";
   body: OperationStatusOutput;
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & Delete202Headers;
 }
 
 export interface DeleteDefaultResponse extends HttpResponse {
@@ -69,10 +83,15 @@ export interface ListProjectsDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface Export202Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface Export202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & Export202Headers;
 }
 
 export interface ExportDefaultResponse extends HttpResponse {
@@ -80,10 +99,15 @@ export interface ExportDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface Importx202Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface Importx202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & Importx202Headers;
 }
 
 export interface ImportxDefaultResponse extends HttpResponse {
@@ -91,10 +115,15 @@ export interface ImportxDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface Train202Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface Train202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & Train202Headers;
 }
 
 export interface TrainDefaultResponse extends HttpResponse {
@@ -113,18 +142,28 @@ export interface GetDeploymentDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface DeployProject200Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has succeeded. */
 export interface DeployProject200Response extends HttpResponse {
   status: "200";
   body: DeploymentOutput;
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & DeployProject200Headers;
+}
+
+export interface DeployProject201Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
 export interface DeployProject201Response extends HttpResponse {
   status: "201";
   body: DeploymentOutput;
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & DeployProject201Headers;
 }
 
 export interface DeployProjectDefaultResponse extends HttpResponse {
@@ -132,11 +171,16 @@ export interface DeployProjectDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface DeleteDeployment202Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface DeleteDeployment202Response extends HttpResponse {
   status: "202";
   body: OperationStatusOutput;
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & DeleteDeployment202Headers;
 }
 
 export interface DeleteDeploymentDefaultResponse extends HttpResponse {
@@ -155,10 +199,15 @@ export interface ListDeploymentsDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface SwapDeployments202Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface SwapDeployments202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & LongRunningOperationLocationHeaders;
+  headers: RawHttpHeaders & SwapDeployments202Headers;
 }
 
 export interface SwapDeploymentsDefaultResponse extends HttpResponse {

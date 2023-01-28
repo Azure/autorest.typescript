@@ -16,10 +16,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Weather_GetDataIngestionJobDetails.json
  */
 async function weatherGetDataIngestionJobDetails() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const jobId = "JOB123";
@@ -27,4 +27,8 @@ async function weatherGetDataIngestionJobDetails() {
   console.log(result);
 }
 
-weatherGetDataIngestionJobDetails().catch(console.error);
+async function main() {
+  weatherGetDataIngestionJobDetails();
+}
+
+main().catch(console.error);

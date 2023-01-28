@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Get top resource consuming queries of a managed instance.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesList.json
  */
 async function obtainListOfInstanceTopResourceConsumingQueries() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-7398";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const interval = "PT1H";
   const observationMetric = "duration";
@@ -43,8 +47,6 @@ async function obtainListOfInstanceTopResourceConsumingQueries() {
   console.log(resArray);
 }
 
-obtainListOfInstanceTopResourceConsumingQueries().catch(console.error);
-
 /**
  * This sample demonstrates how to Get top resource consuming queries of a managed instance.
  *
@@ -52,8 +54,9 @@ obtainListOfInstanceTopResourceConsumingQueries().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesListMax.json
  */
 async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-7398";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const databases = "db1,db2";
   const startTime = "2020-03-10T12:00:00Z";
@@ -80,10 +83,6 @@ async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAn
   console.log(resArray);
 }
 
-obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Get top resource consuming queries of a managed instance.
  *
@@ -91,8 +90,9 @@ obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse().cat
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceTopQueriesListMin.json
  */
 async function obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "sqlcrudtest-7398";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
   const managedInstanceName = "sqlcrudtest-4645";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -106,6 +106,10 @@ async function obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndR
   console.log(resArray);
 }
 
-obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse().catch(
-  console.error
-);
+async function main() {
+  obtainListOfInstanceTopResourceConsumingQueries();
+  obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAndResponse();
+  obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndResponse();
+}
+
+main().catch(console.error);

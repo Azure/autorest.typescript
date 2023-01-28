@@ -13,6 +13,9 @@ import {
   StorageManagementClient
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Synchronously creates or updates an encryption scope under the specified storage account. If an encryption scope is already created and a subsequent request is issued with different properties, the encryption scope properties will be updated per the specified request.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountPutEncryptionScope.json
  */
 async function storageAccountPutEncryptionScope() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "resource-group-name";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "resource-group-name";
   const accountName = "{storage-account-name}";
   const encryptionScopeName = "{encryption-scope-name}";
   const encryptionScope: EncryptionScope = {};
@@ -37,8 +41,6 @@ async function storageAccountPutEncryptionScope() {
   console.log(result);
 }
 
-storageAccountPutEncryptionScope().catch(console.error);
-
 /**
  * This sample demonstrates how to Synchronously creates or updates an encryption scope under the specified storage account. If an encryption scope is already created and a subsequent request is issued with different properties, the encryption scope properties will be updated per the specified request.
  *
@@ -46,8 +48,9 @@ storageAccountPutEncryptionScope().catch(console.error);
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountPutEncryptionScopeWithInfrastructureEncryption.json
  */
 async function storageAccountPutEncryptionScopeWithInfrastructureEncryption() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "resource-group-name";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "resource-group-name";
   const accountName = "{storage-account-name}";
   const encryptionScopeName = "{encryption-scope-name}";
   const encryptionScope: EncryptionScope = {
@@ -64,6 +67,9 @@ async function storageAccountPutEncryptionScopeWithInfrastructureEncryption() {
   console.log(result);
 }
 
-storageAccountPutEncryptionScopeWithInfrastructureEncryption().catch(
-  console.error
-);
+async function main() {
+  storageAccountPutEncryptionScope();
+  storageAccountPutEncryptionScopeWithInfrastructureEncryption();
+}
+
+main().catch(console.error);

@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a workload classifier.
@@ -21,8 +24,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateWorkloadClassifierMax.json
  */
 async function createAWorkloadGroupWithAllPropertiesSpecified() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const workloadGroupName = "wlm_workloadgroup";
@@ -48,8 +53,6 @@ async function createAWorkloadGroupWithAllPropertiesSpecified() {
   console.log(result);
 }
 
-createAWorkloadGroupWithAllPropertiesSpecified().catch(console.error);
-
 /**
  * This sample demonstrates how to Creates or updates a workload classifier.
  *
@@ -57,8 +60,10 @@ createAWorkloadGroupWithAllPropertiesSpecified().catch(console.error);
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateWorkloadClassifierMin.json
  */
 async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "Default-SQL-SouthEastAsia";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName =
+    process.env["RESOURCE_GROUP"] || "Default-SQL-SouthEastAsia";
   const serverName = "testsvr";
   const databaseName = "testdb";
   const workloadGroupName = "wlm_workloadgroup";
@@ -77,4 +82,9 @@ async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
   console.log(result);
 }
 
-createAWorkloadGroupWithTheRequiredPropertiesSpecified().catch(console.error);
+async function main() {
+  createAWorkloadGroupWithAllPropertiesSpecified();
+  createAWorkloadGroupWithTheRequiredPropertiesSpecified();
+}
+
+main().catch(console.error);

@@ -13,6 +13,9 @@ import {
   KeyVaultManagementClient
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Create or update a managed HSM Pool in the specified subscription.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/ManagedHsm_CreateOrUpdate.json
  */
 async function createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool() {
-  const subscriptionId = "00000000-0000-0000-0000-000000000000";
-  const resourceGroupName = "hsm-group";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "hsm-group";
   const name = "hsm1";
   const parameters: ManagedHsm = {
     location: "westus",
@@ -46,4 +50,8 @@ async function createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool() {
   console.log(result);
 }
 
-createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool().catch(console.error);
+async function main() {
+  createANewManagedHsmPoolOrUpdateAnExistingManagedHsmPool();
+}
+
+main().catch(console.error);

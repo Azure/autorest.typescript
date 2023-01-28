@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a disk encryption set
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateADiskEncryptionSetWithKeyVaultFromADifferentSubscription.json
  */
 async function createADiskEncryptionSetWithKeyVaultFromADifferentSubscription() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
   const diskEncryptionSet: DiskEncryptionSet = {
     activeKey: {
@@ -42,10 +45,6 @@ async function createADiskEncryptionSetWithKeyVaultFromADifferentSubscription() 
   console.log(result);
 }
 
-createADiskEncryptionSetWithKeyVaultFromADifferentSubscription().catch(
-  console.error
-);
-
 /**
  * This sample demonstrates how to Creates or updates a disk encryption set
  *
@@ -53,8 +52,8 @@ createADiskEncryptionSetWithKeyVaultFromADifferentSubscription().catch(
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateADiskEncryptionSet.json
  */
 async function createADiskEncryptionSet() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
   const diskEncryptionSet: DiskEncryptionSet = {
     activeKey: {
@@ -78,4 +77,9 @@ async function createADiskEncryptionSet() {
   console.log(result);
 }
 
-createADiskEncryptionSet().catch(console.error);
+async function main() {
+  createADiskEncryptionSetWithKeyVaultFromADifferentSubscription();
+  createADiskEncryptionSet();
+}
+
+main().catch(console.error);

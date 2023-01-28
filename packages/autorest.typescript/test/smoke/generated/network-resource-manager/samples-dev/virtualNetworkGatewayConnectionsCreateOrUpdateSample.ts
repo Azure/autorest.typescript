@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates a virtual network gateway connection in the specified resource group.
  *
  * @summary Creates or updates a virtual network gateway connection in the specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/VirtualNetworkGatewayConnectionCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayConnectionCreate.json
  */
 async function createVirtualNetworkGatewayConnectionS2S() {
-  const subscriptionId = "subid";
-  const resourceGroupName = "rg1";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayConnectionName = "connS2S";
   const parameters: VirtualNetworkGatewayConnection = {
     connectionMode: "Default",
@@ -36,6 +39,18 @@ async function createVirtualNetworkGatewayConnectionS2S() {
       }
     ],
     enableBgp: false,
+    gatewayCustomBgpIpAddresses: [
+      {
+        customBgpIpAddress: "169.254.21.1",
+        ipConfigurationId:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/ipConfigurations/default"
+      },
+      {
+        customBgpIpAddress: "169.254.21.3",
+        ipConfigurationId:
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/vpngw/ipConfigurations/ActiveActive"
+      }
+    ],
     ingressNatRules: [
       {
         id:
@@ -99,4 +114,8 @@ async function createVirtualNetworkGatewayConnectionS2S() {
   console.log(result);
 }
 
-createVirtualNetworkGatewayConnectionS2S().catch(console.error);
+async function main() {
+  createVirtualNetworkGatewayConnectionS2S();
+}
+
+main().catch(console.error);

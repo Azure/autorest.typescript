@@ -16,10 +16,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Farmers_GetCascadeDeleteJobDetails.json
  */
 async function farmersGetCascadeDeleteJobDetails() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const jobId = "JOB123";
@@ -29,4 +29,8 @@ async function farmersGetCascadeDeleteJobDetails() {
   console.log(result);
 }
 
-farmersGetCascadeDeleteJobDetails().catch(console.error);
+async function main() {
+  farmersGetCascadeDeleteJobDetails();
+}
+
+main().catch(console.error);

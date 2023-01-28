@@ -18,10 +18,10 @@ dotenv.config();
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/CropVarieties_ListByCropId.json
  */
 async function cropVarietiesListByCropId() {
-  const Endpoint = "{Endpoint}";
+  const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
-    Endpoint,
+    endpoint,
     credential
   );
   const cropId = "CORN123";
@@ -36,4 +36,8 @@ async function cropVarietiesListByCropId() {
   console.log(result);
 }
 
-cropVarietiesListByCropId().catch(console.error);
+async function main() {
+  cropVarietiesListByCropId();
+}
+
+main().catch(console.error);

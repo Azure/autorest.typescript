@@ -13,16 +13,19 @@ import {
   NetworkManagementClient
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Creates or updates an ipGroups in a specified resource group.
  *
  * @summary Creates or updates an ipGroups in a specified resource group.
- * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2021-05-01/examples/IpGroupsCreate.json
+ * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpGroupsCreate.json
  */
 async function createOrUpdateIPGroups() {
-  const subscriptionId = "subId";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const ipGroupsName = "ipGroups1";
   const parameters: IpGroup = {
     ipAddresses: ["13.64.39.16/32", "40.74.146.80/31", "40.74.147.32/28"],
@@ -39,4 +42,8 @@ async function createOrUpdateIPGroups() {
   console.log(result);
 }
 
-createOrUpdateIPGroups().catch(console.error);
+async function main() {
+  createOrUpdateIPGroups();
+}
+
+main().catch(console.error);

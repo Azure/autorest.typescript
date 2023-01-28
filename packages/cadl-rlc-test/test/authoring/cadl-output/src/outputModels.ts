@@ -7,7 +7,7 @@ import { ErrorModel } from "@azure-rest/core-client";
 /** The details of a project. */
 export interface ProjectOutput {
   /** The project name. */
-  projectName: string;
+  readonly projectName: string;
   /** The project kind. */
   projectKind:
     | "CustomSingleLabelClassification"
@@ -45,14 +45,15 @@ export interface OperationStatusOutput {
   status: string;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
-  /** The result of the operation. */
-  result?: never;
 }
+
+/** Provides the most common query parameters for list operations. */
+export interface StandardListQueryParametersOutput {}
 
 /** The details of a project deployment. */
 export interface DeploymentOutput {
   /** The name of the deployment. */
-  name: string;
+  readonly name: string;
 }
 
 /** The details of a deployment job. */
@@ -79,7 +80,7 @@ export interface DeploymentJobOutput {
   /** The errors encountered while executing the job. */
   errors: ErrorModel;
   /** The job ID. */
-  id: string;
+  readonly id: string;
 }
 
 /** Represents a warning that was encountered while executing the request. */
@@ -114,7 +115,7 @@ export interface SwapDeploymentsJobOutput {
   /** The errors encountered while executing the job. */
   errors: ErrorModel;
   /** The job ID. */
-  id: string;
+  readonly id: string;
 }
 
 /** Represents a supported language. */

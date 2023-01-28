@@ -714,12 +714,6 @@ const listCurrentByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.skipToken,
-    Parameters.apiVersion2,
-    Parameters.filter1,
-    Parameters.count
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
@@ -740,12 +734,6 @@ const listRecommendedByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  queryParameters: [
-    Parameters.skipToken,
-    Parameters.apiVersion2,
-    Parameters.filter1,
-    Parameters.includeDisabledRecommendations
-  ],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,

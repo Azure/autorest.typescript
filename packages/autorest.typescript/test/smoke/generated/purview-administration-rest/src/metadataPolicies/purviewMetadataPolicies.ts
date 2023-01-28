@@ -7,15 +7,15 @@ import { PurviewMetadataPoliciesClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of the class PurviewMetadataPoliciesClient class.
- * @param Endpoint type: string The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
+ * @param endpoint type: string The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
  * @param credentials type: KeyCredential
  */
 export function createClient(
-  Endpoint: string,
+  endpoint: string,
   credentials: KeyCredential,
   options: ClientOptions = {}
 ): PurviewMetadataPoliciesClient {
-  const baseUrl = options.baseUrl ?? `${Endpoint}/policyStore`;
+  const baseUrl = options.baseUrl ?? `${endpoint}/policyStore`;
   options.apiVersion = options.apiVersion ?? "2021-07-01-preview";
   options = {
     ...options,

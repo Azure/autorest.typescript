@@ -175,7 +175,9 @@ function buildMapper(
   const serializedName =
     getDiscriminatorValue(schema) ||
     options.serializedName ||
-    (schema as ObjectSchema).discriminator && !isUberParent(schema as ObjectSchema) && getLanguageMetadata(schema.language).name ||
+    ((schema as ObjectSchema).discriminator &&
+      !isUberParent(schema as ObjectSchema) &&
+      getLanguageMetadata(schema.language).name) ||
     // Fallback to name only for XML schemas since they need a name, otherwise don't
     (options.hasXmlMetadata && getLanguageMetadata(schema.language).name);
 
@@ -260,6 +262,7 @@ function getXmlMetadata(
 
   let xmlElementName: string | undefined = undefined;
   let xmlNamespace = schema.serialization?.xml?.namespace;
+  let isXmlText: boolean = Boolean(schema.serialization?.xml?.text);
   let xmlNamespacePrefix = schema.serialization?.xml?.prefix;
   if (schema.type === SchemaType.Array) {
     const elementSchema = (schema as ArraySchema).elementType;
@@ -287,7 +290,8 @@ function getXmlMetadata(
     ...(xmlIsWrapped && { xmlIsWrapped }),
     ...(xmlElementName && { xmlElementName }),
     ...(xmlNamespace && { xmlNamespace }),
-    ...(xmlNamespacePrefix && { xmlNamespacePrefix })
+    ...(xmlNamespacePrefix && { xmlNamespacePrefix }),
+    ...(isXmlText && { xmlIsMsText: true })
   };
 }
 
@@ -297,10 +301,10 @@ function buildAdditionalProperties(
   const additionalProperties = getAdditionalProperties(objectSchema);
   return additionalProperties
     ? {
-      type: {
-        name: MapperType.Object
+        type: {
+          name: MapperType.Object
+        }
       }
-    }
     : undefined;
 }
 
@@ -350,7 +354,9 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
   );
 
   if (objectSchema.parents?.immediate[0]) {
-    uberParent = getMapperClassName(objectSchema.parents?.immediate[0] as ObjectSchema); 
+    uberParent = getMapperClassName(
+      objectSchema.parents?.immediate[0] as ObjectSchema
+    );
   }
   const mapper = buildMapper(
     schema,
@@ -593,7 +599,12 @@ function transformStringMapper(pipelineValue: PipelineValue) {
    */
   if (
     !isSchemaType(
-      [SchemaType.String, SchemaType.Credential, SchemaType.Uri],
+      [
+        SchemaType.String,
+        SchemaType.Credential,
+        SchemaType.Uri,
+        SchemaType.ArmId
+      ],
       schema
     )
   ) {
@@ -697,7 +708,9 @@ function processProperties(
     const propName = getLanguageMetadata(prop.language).name;
     const name = normalizeName(
       propName,
-      prop.language.default.isTopLevelParameter ? NameType.Parameter : NameType.Property,
+      prop.language.default.isTopLevelParameter
+        ? NameType.Parameter
+        : NameType.Property,
       true /** shouldGuard */
     );
     modelProperties[name] = getMapperOrRef(prop.schema, serializedName, {

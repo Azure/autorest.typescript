@@ -18,8 +18,9 @@ user an overall status of the time series.
 """)
 // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
 op DetectUnivariateEntireSeries(
-  @body body: DetectRequest,
-): EntireDetectResponse | AnomalyDetectorError;
+  @doc("Method of univariate anomaly detection.")
+  @body options: UnivariateDetectionOptions,
+): UnivariateEntireDetectionResult | AnomalyDetectorError;
 
 @post
 @route("timeseries/last/detect")
@@ -30,8 +31,9 @@ and based on all data to determine whether the last point is anomalous.
 """)
 // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
 op DetectUnivariateLastPoint(
-  @body body: DetectRequest,
-): LastDetectResponse | AnomalyDetectorError;
+  @doc("Method of univariate anomaly detection.")
+  @body options: UnivariateDetectionOptions,
+): UnivariateLastDetectionResult | AnomalyDetectorError;
 
 @post
 @route("timeseries/changepoint/detect")
@@ -39,5 +41,6 @@ op DetectUnivariateLastPoint(
 @doc("Evaluate change point score of every series point")
 // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
 op DetectUnivariateChangePoint(
-  @body body: ChangePointDetectRequest,
-): ChangePointDetectResponse | AnomalyDetectorError;
+  @doc("Method of univariate anomaly detection.")
+  @body options: UnivariateChangePointDetectionOptions,
+): UnivariateChangePointDetectionResult | AnomalyDetectorError;

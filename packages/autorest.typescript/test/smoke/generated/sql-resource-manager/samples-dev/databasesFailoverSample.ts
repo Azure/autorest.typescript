@@ -13,6 +13,9 @@ import {
   SqlManagementClient
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Failovers a database.
@@ -21,8 +24,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/FailoverDatabase.json
  */
 async function failoverAnDatabase() {
-  const subscriptionId = "00000000-1111-2222-3333-444444444444";
-  const resourceGroupName = "group1";
+  const subscriptionId =
+    process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
   const serverName = "testServer";
   const databaseName = "testDatabase";
   const replicaType = "Primary";
@@ -38,4 +42,8 @@ async function failoverAnDatabase() {
   console.log(result);
 }
 
-failoverAnDatabase().catch(console.error);
+async function main() {
+  failoverAnDatabase();
+}
+
+main().catch(console.error);

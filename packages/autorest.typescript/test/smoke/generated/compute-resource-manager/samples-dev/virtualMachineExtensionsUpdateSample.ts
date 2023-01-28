@@ -13,6 +13,9 @@ import {
   ComputeManagementClient
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to The operation to update the extension.
@@ -21,8 +24,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/UpdateVMExtensionWithSuppressFailureEnabled.json
  */
 async function updateVMExtension() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "myResourceGroup";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmName = "myVM";
   const vmExtensionName = "myVMExtension";
   const extensionParameters: VirtualMachineExtensionUpdate = {
@@ -44,4 +47,8 @@ async function updateVMExtension() {
   console.log(result);
 }
 
-updateVMExtension().catch(console.error);
+async function main() {
+  updateVMExtension();
+}
+
+main().catch(console.error);

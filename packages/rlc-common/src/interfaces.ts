@@ -6,7 +6,7 @@ export interface RLCModel {
   paths: Paths;
   options?: RLCOptions;
   schemas: Schema[];
-  apiVersionParam?: Parameter;
+  apiVersionInQueryParam?: Parameter;
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
@@ -28,6 +28,10 @@ export interface AnnotationDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
   pageDetails?: PagingDetails;
+  hasMultiCollection?: boolean;
+  hasPipeCollection?: boolean;
+  hasSsvCollection?: boolean;
+  hasTsvCollection?: boolean;
 }
 
 export interface PagingDetails {
@@ -96,7 +100,6 @@ export interface RLCOptions {
   productDocLink?: string;
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
-  "sdk-folder"?: string
 }
 
 export interface ServiceInfo {

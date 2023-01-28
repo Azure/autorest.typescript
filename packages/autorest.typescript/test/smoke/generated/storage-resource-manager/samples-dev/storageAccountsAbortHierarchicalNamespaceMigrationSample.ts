@@ -10,6 +10,9 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * This sample demonstrates how to Abort live Migration of storage account to enable Hns
@@ -18,8 +21,8 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountAbortHierarchicalNamespaceMigration.json
  */
 async function storageAccountAbortHierarchicalNamespaceMigration() {
-  const subscriptionId = "{subscription-id}";
-  const resourceGroupName = "res4228";
+  const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
+  const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4228";
   const accountName = "sto2434";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -30,4 +33,8 @@ async function storageAccountAbortHierarchicalNamespaceMigration() {
   console.log(result);
 }
 
-storageAccountAbortHierarchicalNamespaceMigration().catch(console.error);
+async function main() {
+  storageAccountAbortHierarchicalNamespaceMigration();
+}
+
+main().catch(console.error);
