@@ -77,13 +77,7 @@ export function getSchemaForType(
     return builtinType;
   }
   if (type.kind === "Model") {
-    if (type.name === "SupportedLanguages") {
-      type;
-    }
     const schema = getSchemaForModel(program, type, usage, needRef) as any;
-    if (schema.name.startsWith("Paged")) {
-      schema;
-    }
     if (usage && usage.includes(SchemaContext.Output)) {
       schema.outputTypeName = `${schema.name}Output`;
       schema.typeName = `${schema.name}`;

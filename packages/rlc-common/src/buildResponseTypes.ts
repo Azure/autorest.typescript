@@ -3,7 +3,6 @@
 
 import {
   InterfaceDeclarationStructure,
-  ModuleNamedNode,
   OptionalKind,
   Project,
   PropertySignatureStructure,
@@ -21,8 +20,6 @@ import {
   getResponseTypeName
 } from "./helpers/nameConstructors.js";
 
-let hasOperationLocationHeader = false;
-let hasLROHeader = false;
 let hasErrorResponse = false;
 export function buildResponseTypes(model: RLCModel) {
   const project = new Project();
@@ -40,7 +37,6 @@ export function buildResponseTypes(model: RLCModel) {
   for (const operationResponse of model.responses) {
     for (const response of operationResponse.responses) {
       // Building the response type base name
-      hasLROHeader = false;
       const baseResponseName = getResponseBaseName(
         operationResponse.operationGroup,
         operationResponse.operationName,
@@ -53,8 +49,6 @@ export function buildResponseTypes(model: RLCModel) {
       if (headersInterface) {
         hasHeaders = true;
         responsesFile.addInterface(headersInterface);
-      } else if (hasLROHeader) {
-        hasHeaders = true;
       }
 
       // Get the information to build the Response Interface
@@ -103,14 +97,6 @@ export function buildResponseTypes(model: RLCModel) {
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);
-  if (hasOperationLocationHeader) {
-    responsesFile.addImportDeclarations([
-      {
-        namedImports: ["LongRunningOperationLocationHeaders"],
-        moduleSpecifier: "@azure/core-lro"
-      }
-    ]);
-  }
 
   if (model.importSet?.has(ImportKind.ResponseOutput)) {
     const modelNamedImports = Array.from(
@@ -133,23 +119,7 @@ function getResponseHeaderInterfaceDefinition(
   baseName: string
 ): undefined | InterfaceDeclarationStructure {
   // Check if there are any required headers
-  let headers = response.headers;
-  if (!headers) {
-    return;
-  }
-  if (
-    headers.length > 0 &&
-    headers.some((header) => {
-      return header.name === '"operation-location"';
-    })
-  ) {
-    hasLROHeader = true;
-    hasOperationLocationHeader = true;
-    headers = headers.filter((header) => {
-      return header.name !== '"operation-location"';
-    });
-  }
-  if (headers.length === 0) {
+  if (!response.headers) {
     return;
   }
   const headersInterfaceName = `${baseName}Headers`;
@@ -157,7 +127,7 @@ function getResponseHeaderInterfaceDefinition(
     kind: StructureKind.Interface,
     isExported: true,
     name: headersInterfaceName,
-    properties: headers.map((h: ResponseHeaderSchema) => {
+    properties: response?.headers.map((h: ResponseHeaderSchema) => {
       const description = h.description;
       return {
         name: h.name,
@@ -203,15 +173,7 @@ function getResponseInterfaceProperties(
   if (headersInterfaceName) {
     responseProperties.push({
       name: "headers",
-      type: `RawHttpHeaders & ${headersInterfaceName}${
-        hasLROHeader ? " & LongRunningOperationLocationHeaders" : ""
-      }`,
-      kind: StructureKind.PropertySignature
-    });
-  } else if (hasLROHeader) {
-    responseProperties.push({
-      name: "headers",
-      type: "RawHttpHeaders & LongRunningOperationLocationHeaders",
+      type: `RawHttpHeaders & ${headersInterfaceName}`,
       kind: StructureKind.PropertySignature
     });
   }
