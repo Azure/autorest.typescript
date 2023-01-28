@@ -1,7 +1,8 @@
 # RLC generation Design
 
-## Basic Terms:
-- **Cadl Files**: cloud service API definition written in CADL 
+## Basic Terms
+
+- **Cadl Files**: cloud service API definition written in CADL.
 - **Swagger Files**: REST api specification written in OpenAPI.
 - **CADL Program**: The model we get after CADL compiler has processed the cadl input.
 - **Modelerfour**: The code model we get after autorest core and modelerfour plugin has processed the swagger input.
@@ -14,6 +15,8 @@
 
 ## TypeScript RLC generation Design Overview
 
+In the TypeScript RLC generator, we support generate RLC code from both cadl input and swagger input.
+
 ```mermaid
 graph TD
 A[CADL Files] -->|CADL compiler| B(CADL Program)
@@ -25,11 +28,30 @@ G -->|Autotest TypeScript Plugin| C
 D --> |Autorest TypeScript Plugin| E
 ```
 
-## CADL RLC generation part
+### CADL RLC generation part
+
+On a high level, the entire Rest Level Client generation process from CADL Input would be:
+
+Cadl Input -> Cadl Compiler -> Cadl Program -> Transform RLCModel -> Call RLC Common library to Generate Code
+
 ```mermaid
 graph TD
 A[CADL Files] -->|CADL compiler| B(CADL Program)
 B -->|CADL TypeScript emitter| C{RLCModel}
 C --> |RLC common| D(RLC File Content)
 D --> |CADL TypeScript emitter| E(JS RLC Code)
+```
+
+### Swagger RLC generation part
+
+And the entire Rest Level Client generation process from Swagger Input would be:  
+Swagger Input -> Autorest Core & m4 Plugin -> Modelerfour -> Transform RLCModel -> Call RLC Common library to Generate Code
+
+
+```mermaid
+graph TD
+C(RLCModel) --> |RLC common| D(RLC File Content)
+F(Swager Files) -->|Autorest core & m4 plugin| G(Modelerfour)
+G -->|Autotest TypeScript Plugin| C
+D --> |Autorest TypeScript Plugin| E(JS RLC code)
 ```
