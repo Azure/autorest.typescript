@@ -26,12 +26,12 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
-export async function getLongRunningPoller<TResult extends HttpResponse>(
+export {{#unless useLegacyLro}}async {{/unless}}function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,
   {{#if useLegacyLro}}
   options: LroEngineOptions<TResult, PollOperationState<TResult>> = {}
-  ): Promise<PollerLike<PollOperationState<TResult>, TResult>> {
+  ): PollerLike<PollOperationState<TResult>, TResult> {
     {{else}}
     options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {}
     ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
@@ -61,9 +61,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   };
 
   {{#if useLegacyLro}}
-  const poller = new LroEngine(poller, options);
-  await poller.poll();
-  return poller;
+  return new LroEngine(poller, options);
   {{else}}
   return await createHttpPoller(poller, options);
   {{/if}}
