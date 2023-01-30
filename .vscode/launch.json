@@ -84,7 +84,7 @@
     {
       "name": "Generate code for CadlRlcTest",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-rlc-test",
+      "cwd": "${workspaceFolder}/packages/cadl-rlc-test/test/openai",
       "runtimeArgs": ["cadl", "compile", "./spec/main.cadl"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],

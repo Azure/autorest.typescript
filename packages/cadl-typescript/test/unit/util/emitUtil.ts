@@ -17,6 +17,7 @@ import {
   transformUrlInfo
 } from "../../../src/transform/transform.js";
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
+import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
 
 export async function emitModelsFromCadl(
   cadlContent: string,
@@ -36,8 +37,11 @@ export async function emitModelsFromCadl(
   });
 }
 
-export async function emitParameterFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitParameterFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const clients = listClients(program);
   const importSet = new Map<ImportKind, Set<string>>();
   let parameters;
@@ -78,6 +82,7 @@ export async function emitClientFactoryFromCadl(
 ) {
   const program = await rlcEmitterFor(cadlContent, false, needAzureCore);
   const urlInfo = transformUrlInfo(program);
+  const creadentialInfo = getCredentialInfo(program, {});
   const apiVersionInQueryParam = transformApiVersionParam(program);
   return buildClient({
     srcPath: "",
@@ -90,13 +95,17 @@ export async function emitClientFactoryFromCadl(
       packageDetails: {
         name: "test",
         version: "1.0.0-beta.1"
-      }
+      },
+      ...creadentialInfo
     }
   });
 }
 
-export async function emitResponsesFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitResponsesFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const importSet = new Map<ImportKind, Set<string>>();
   const clients = listClients(program);
   let responses;

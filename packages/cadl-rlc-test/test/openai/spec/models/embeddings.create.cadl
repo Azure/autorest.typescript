@@ -5,7 +5,8 @@ using Cadl.Http;
 
 namespace Azure.OpenAI.Embeddings;
 
-model EmbeddingsRequest {
+alias EmbeddingsRequest = {
+    @header
     @doc("The ID of the end-user, for use in tracking and rate-limiting.")
     user?: string;
 

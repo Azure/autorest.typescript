@@ -9,6 +9,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
+import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
@@ -57,7 +58,25 @@ export interface Completions200Response extends HttpResponse {
 // @public (undocumented)
 export interface CompletionsBodyParam {
     // (undocumented)
-    body?: CompletionsRequest;
+    body?: {
+        prompt: string | string[] | string[][];
+        max_tokens: number;
+        temperature: number;
+        top_p: number;
+        logit_bias: Record<string, number>;
+        user: string;
+        n: number;
+        stream: boolean;
+        logprobs: number;
+        model: string;
+        echo: boolean;
+        stop: string | string[];
+        completion_config: string;
+        cache_level: number;
+        presence_penalty: number;
+        frequency_penalty: number;
+        best_of: number;
+    };
 }
 
 // @public (undocumented)
@@ -78,27 +97,6 @@ export interface CompletionsLogProbsModelOutput {
 
 // @public (undocumented)
 export type CompletionsParameters = CompletionsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface CompletionsRequest {
-    best_of?: number;
-    cache_level?: number;
-    completion_config?: string;
-    echo?: boolean;
-    frequency_penalty?: number;
-    logit_bias?: Record<string, number>;
-    logprobs?: number;
-    max_tokens?: number;
-    model?: string;
-    n?: number;
-    presence_penalty?: number;
-    prompt?: string | string[] | string[][];
-    stop?: string | string[];
-    stream?: boolean;
-    temperature?: number;
-    top_p?: number;
-    user?: string;
-}
 
 // @public
 function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureOpenAIApiClient;
@@ -130,7 +128,11 @@ export interface Embeddings200Response extends HttpResponse {
 // @public (undocumented)
 export interface EmbeddingsBodyParam {
     // (undocumented)
-    body?: EmbeddingsRequest;
+    body?: {
+        input_type: string;
+        model: string;
+        input: string | string[] | number[] | number[][];
+    };
 }
 
 // @public (undocumented)
@@ -142,6 +144,17 @@ export interface EmbeddingsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface EmbeddingsHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & EmbeddingsHeaders;
+}
+
+// @public (undocumented)
+export interface EmbeddingsHeaders {
+    user?: string;
+}
+
+// @public (undocumented)
 export interface EmbeddingsOutput {
     // (undocumented)
     data: Array<EmbeddingOutput>;
@@ -150,15 +163,7 @@ export interface EmbeddingsOutput {
 }
 
 // @public (undocumented)
-export type EmbeddingsParameters = EmbeddingsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface EmbeddingsRequest {
-    input: string | string[] | number[] | number[][];
-    input_type?: string;
-    model?: string;
-    user?: string;
-}
+export type EmbeddingsParameters = EmbeddingsHeaderParam & EmbeddingsBodyParam & RequestParameters;
 
 // @public
 export interface ErrorModelOutput {

@@ -1,9 +1,16 @@
 emit:
   - "@azure-tools/cadl-typescript"
+  - "@azure-tools/cadl-autorest"
 options:
   "@azure-tools/cadl-typescript":
+    generateMetadata: true
+    generateTest: true
+    multiClient: true
     azureSdkForJs: false
     "emitter-output-dir": "{output-dir}"
     packageDetails:
       name: "@msinternal/openai"
       description: "OpenAI Inference Service"
+      version: "1.0.0-beta.1"
+  "@azure-tools/cadl-autorest":
+    "emitter-output-dir": "{output-dir}"

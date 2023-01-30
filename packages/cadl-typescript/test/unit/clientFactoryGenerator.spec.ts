@@ -393,4 +393,107 @@ describe("Client Factory generation testing", () => {
       );
     });
   });
+
+  describe("should handle different auth options", () => {
+    it("should not generate credential if scope is empty", async () => {
+      const models = await emitClientFactoryFromCadl(`
+      @useAuth(
+        OAuth2Auth<[{
+          type: OAuth2FlowType.implicit,
+          authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+          scopes: []
+        }]>)
+      @service( {title: "PetStoreClient"})
+      namespace PetStore;
+      `);
+      assert.ok(models);
+      assertEqualContent(
+        models!.content,
+        `
+        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { testClient } from "./clientDefinitions";
+        
+        /**
+         * Initialize a new instance of the class testClient class.
+         * @param endpoint type: string
+         */
+        export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
+        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+        
+        const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+        const userAgentPrefix =
+            options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+            ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+            : \`\${userAgentInfo}\`;
+        options = {
+            ...options,
+            userAgentOptions: {
+            userAgentPrefix,
+            },
+        };
+        
+        const client = getClient(baseUrl, options) as testClient;
+        
+        return client;
+    }
+    `
+      );
+    });
+
+    it("should generate both credentials if both defined", async () => {
+      const models = await emitClientFactoryFromCadl(`
+      @useAuth(
+        ApiKeyAuth<ApiKeyLocation.header, "apiKey"> |
+          OAuth2Auth<[{
+            type: OAuth2FlowType.implicit,
+            authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+            scopes: ["https://petstor.com/default"]
+          }]>)
+      @service( {title: "PetStoreClient"})
+      namespace PetStore;
+      `);
+      assert.ok(models);
+      assertEqualContent(
+        models!.content,
+        `
+        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { TokenCredential, KeyCredential } from "@azure/core-auth";
+        import { testClient } from "./clientDefinitions";
+        
+        /**
+         * Initialize a new instance of the class testClient class.
+         * @param endpoint type: string
+         * @param credentials type: TokenCredential | KeyCredential
+         */
+        export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
+        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+
+        options = {
+            ...options,
+            credentials: {
+              scopes: ["https://petstor.com/default"],
+              apiKeyHeaderName: "apiKey",
+            },
+          };
+        
+        const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+        const userAgentPrefix =
+            options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+            ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+            : \`\${userAgentInfo}\`;
+        options = {
+            ...options,
+            userAgentOptions: {
+            userAgentPrefix,
+            },
+        };
+        
+        const client = getClient(baseUrl, credentials, options) as testClient;
+        
+        return client;
+    }
+    `
+      );
+    });
+  });
 });
