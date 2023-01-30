@@ -212,10 +212,8 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["karma-chrome-launcher"] = "^3.0.0";
     packageInfo.devDependencies["karma-coverage"] = "^2.0.0";
-    packageInfo.devDependencies["karma-edge-launcher"] = "^0.4.2";
     packageInfo.devDependencies["karma-env-preprocessor"] = "^0.1.1";
     packageInfo.devDependencies["karma-firefox-launcher"] = "^1.1.0";
-    packageInfo.devDependencies["karma-ie-launcher"] = "^1.0.0";
     packageInfo.devDependencies["karma-junit-reporter"] = "^2.0.1";
     packageInfo.devDependencies["karma-mocha-reporter"] = "^2.2.5";
     packageInfo.devDependencies["karma-mocha"] = "^2.0.1";
