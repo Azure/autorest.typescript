@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   SqlDatabaseGetResults,
   SqlResourcesListSqlDatabasesOptionalParams,
@@ -209,8 +209,8 @@ export interface SqlResources {
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
       SqlResourcesCreateUpdateSqlDatabaseResponse
     >
   >;
@@ -241,7 +241,7 @@ export interface SqlResources {
     accountName: string,
     databaseName: string,
     options?: SqlResourcesDeleteSqlDatabaseOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB SQL database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -285,8 +285,8 @@ export interface SqlResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
       SqlResourcesUpdateSqlDatabaseThroughputResponse
     >
   >;
@@ -319,8 +319,8 @@ export interface SqlResources {
     databaseName: string,
     options?: SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>,
       SqlResourcesMigrateSqlDatabaseToAutoscaleResponse
     >
   >;
@@ -350,10 +350,8 @@ export interface SqlResources {
     databaseName: string,
     options?: SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        SqlResourcesMigrateSqlDatabaseToManualThroughputResponse
-      >,
+    SimplePollerLike<
+      OperationState<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse>,
       SqlResourcesMigrateSqlDatabaseToManualThroughputResponse
     >
   >;
@@ -402,8 +400,8 @@ export interface SqlResources {
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlContainerOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
       SqlResourcesCreateUpdateSqlContainerResponse
     >
   >;
@@ -438,7 +436,7 @@ export interface SqlResources {
     databaseName: string,
     containerName: string,
     options?: SqlResourcesDeleteSqlContainerOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB SQL container.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -487,8 +485,8 @@ export interface SqlResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
       SqlResourcesUpdateSqlContainerThroughputResponse
     >
   >;
@@ -525,8 +523,8 @@ export interface SqlResources {
     containerName: string,
     options?: SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesMigrateSqlContainerToAutoscaleResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesMigrateSqlContainerToAutoscaleResponse>,
       SqlResourcesMigrateSqlContainerToAutoscaleResponse
     >
   >;
@@ -560,10 +558,8 @@ export interface SqlResources {
     containerName: string,
     options?: SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        SqlResourcesMigrateSqlContainerToManualThroughputResponse
-      >,
+    SimplePollerLike<
+      OperationState<SqlResourcesMigrateSqlContainerToManualThroughputResponse>,
       SqlResourcesMigrateSqlContainerToManualThroughputResponse
     >
   >;
@@ -619,8 +615,8 @@ export interface SqlResources {
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
       SqlResourcesCreateUpdateSqlStoredProcedureResponse
     >
   >;
@@ -660,7 +656,7 @@ export interface SqlResources {
     containerName: string,
     storedProcedureName: string,
     options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB SQL storedProcedure.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -715,10 +711,8 @@ export interface SqlResources {
     createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
-      >,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>,
       SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
     >
   >;
@@ -758,7 +752,7 @@ export interface SqlResources {
     containerName: string,
     userDefinedFunctionName: string,
     options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB SQL userDefinedFunction.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -812,8 +806,8 @@ export interface SqlResources {
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
       SqlResourcesCreateUpdateSqlTriggerResponse
     >
   >;
@@ -852,7 +846,7 @@ export interface SqlResources {
     containerName: string,
     triggerName: string,
     options?: SqlResourcesDeleteSqlTriggerOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB SQL trigger.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -899,8 +893,8 @@ export interface SqlResources {
     createUpdateSqlRoleDefinitionParameters: SqlRoleDefinitionCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlRoleDefinitionResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlRoleDefinitionResponse>,
       SqlResourcesCreateUpdateSqlRoleDefinitionResponse
     >
   >;
@@ -932,7 +926,7 @@ export interface SqlResources {
     resourceGroupName: string,
     accountName: string,
     options?: SqlResourcesDeleteSqlRoleDefinitionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB SQL Role Definition.
    * @param roleDefinitionId The GUID for the Role Definition.
@@ -975,8 +969,8 @@ export interface SqlResources {
     createUpdateSqlRoleAssignmentParameters: SqlRoleAssignmentCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlRoleAssignmentResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlRoleAssignmentResponse>,
       SqlResourcesCreateUpdateSqlRoleAssignmentResponse
     >
   >;
@@ -1008,7 +1002,7 @@ export interface SqlResources {
     resourceGroupName: string,
     accountName: string,
     options?: SqlResourcesDeleteSqlRoleAssignmentOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB SQL Role Assignment.
    * @param roleAssignmentId The GUID for the Role Assignment.
@@ -1039,10 +1033,8 @@ export interface SqlResources {
     location: ContinuousBackupRestoreLocation,
     options?: SqlResourcesRetrieveContinuousBackupInformationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        SqlResourcesRetrieveContinuousBackupInformationResponse
-      >,
+    SimplePollerLike<
+      OperationState<SqlResourcesRetrieveContinuousBackupInformationResponse>,
       SqlResourcesRetrieveContinuousBackupInformationResponse
     >
   >;

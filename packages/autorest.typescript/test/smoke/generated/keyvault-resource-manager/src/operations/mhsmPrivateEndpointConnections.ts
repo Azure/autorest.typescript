@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClient } from "../keyVaultManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   MhsmPrivateEndpointConnection,
   MhsmPrivateEndpointConnectionsListByResourceNextOptionalParams,
@@ -200,8 +204,8 @@ export class MhsmPrivateEndpointConnectionsImpl
     privateEndpointConnectionName: string,
     options?: MhsmPrivateEndpointConnectionsDeleteOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<MhsmPrivateEndpointConnectionsDeleteResponse>,
+    SimplePollerLike<
+      OperationState<MhsmPrivateEndpointConnectionsDeleteResponse>,
       MhsmPrivateEndpointConnectionsDeleteResponse
     >
   > {
@@ -211,7 +215,7 @@ export class MhsmPrivateEndpointConnectionsImpl
     ): Promise<MhsmPrivateEndpointConnectionsDeleteResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -244,13 +248,16 @@ export class MhsmPrivateEndpointConnectionsImpl
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, privateEndpointConnectionName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, privateEndpointConnectionName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<
+      MhsmPrivateEndpointConnectionsDeleteResponse,
+      OperationState<MhsmPrivateEndpointConnectionsDeleteResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

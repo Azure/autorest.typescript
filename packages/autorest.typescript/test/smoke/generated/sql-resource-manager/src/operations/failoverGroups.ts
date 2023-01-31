@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   FailoverGroup,
   FailoverGroupsListByServerNextOptionalParams,
@@ -165,8 +169,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
     parameters: FailoverGroup,
     options?: FailoverGroupsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<FailoverGroupsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<FailoverGroupsCreateOrUpdateResponse>,
       FailoverGroupsCreateOrUpdateResponse
     >
   > {
@@ -176,7 +180,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     ): Promise<FailoverGroupsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -209,13 +213,22 @@ export class FailoverGroupsImpl implements FailoverGroups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, failoverGroupName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        serverName,
+        failoverGroupName,
+        parameters,
+        options
+      },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      FailoverGroupsCreateOrUpdateResponse,
+      OperationState<FailoverGroupsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -261,14 +274,14 @@ export class FailoverGroupsImpl implements FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     options?: FailoverGroupsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -301,13 +314,13 @@ export class FailoverGroupsImpl implements FailoverGroups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, failoverGroupName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, failoverGroupName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -353,8 +366,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
     parameters: FailoverGroupUpdate,
     options?: FailoverGroupsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<FailoverGroupsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<FailoverGroupsUpdateResponse>,
       FailoverGroupsUpdateResponse
     >
   > {
@@ -364,7 +377,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     ): Promise<FailoverGroupsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -397,13 +410,22 @@ export class FailoverGroupsImpl implements FailoverGroups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, failoverGroupName, parameters, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        serverName,
+        failoverGroupName,
+        parameters,
+        options
+      },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      FailoverGroupsUpdateResponse,
+      OperationState<FailoverGroupsUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -468,8 +490,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
     failoverGroupName: string,
     options?: FailoverGroupsFailoverOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<FailoverGroupsFailoverResponse>,
+    SimplePollerLike<
+      OperationState<FailoverGroupsFailoverResponse>,
       FailoverGroupsFailoverResponse
     >
   > {
@@ -479,7 +501,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     ): Promise<FailoverGroupsFailoverResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -512,13 +534,16 @@ export class FailoverGroupsImpl implements FailoverGroups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, failoverGroupName, options },
-      failoverOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, failoverGroupName, options },
+      spec: failoverOperationSpec
+    });
+    const poller = await createHttpPoller<
+      FailoverGroupsFailoverResponse,
+      OperationState<FailoverGroupsFailoverResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -562,8 +587,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
     failoverGroupName: string,
     options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<FailoverGroupsForceFailoverAllowDataLossResponse>,
+    SimplePollerLike<
+      OperationState<FailoverGroupsForceFailoverAllowDataLossResponse>,
       FailoverGroupsForceFailoverAllowDataLossResponse
     >
   > {
@@ -573,7 +598,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     ): Promise<FailoverGroupsForceFailoverAllowDataLossResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -606,13 +631,16 @@ export class FailoverGroupsImpl implements FailoverGroups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, failoverGroupName, options },
-      forceFailoverAllowDataLossOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, failoverGroupName, options },
+      spec: forceFailoverAllowDataLossOperationSpec
+    });
+    const poller = await createHttpPoller<
+      FailoverGroupsForceFailoverAllowDataLossResponse,
+      OperationState<FailoverGroupsForceFailoverAllowDataLossResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

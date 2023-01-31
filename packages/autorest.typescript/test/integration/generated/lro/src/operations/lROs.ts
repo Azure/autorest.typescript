@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClient } from "../lROClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
@@ -124,8 +128,8 @@ export class LROsImpl implements LROs {
   async beginPut200Succeeded(
     options?: LROsPut200SucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPut200SucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsPut200SucceededResponse>,
       LROsPut200SucceededResponse
     >
   > {
@@ -143,7 +147,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -176,13 +180,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put200SucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put200SucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPut200SucceededResponse,
+      OperationState<LROsPut200SucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -209,8 +216,8 @@ export class LROsImpl implements LROs {
   async beginPatch200SucceededIgnoreHeaders(
     options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPatch200SucceededIgnoreHeadersResponse>,
+    SimplePollerLike<
+      OperationState<LROsPatch200SucceededIgnoreHeadersResponse>,
       LROsPatch200SucceededIgnoreHeadersResponse
     >
   > {
@@ -228,7 +235,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -261,13 +268,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      patch200SucceededIgnoreHeadersOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: patch200SucceededIgnoreHeadersOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPatch200SucceededIgnoreHeadersResponse,
+      OperationState<LROsPatch200SucceededIgnoreHeadersResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -293,8 +303,8 @@ export class LROsImpl implements LROs {
   async beginPatch201RetryWithAsyncHeader(
     options?: LROsPatch201RetryWithAsyncHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPatch201RetryWithAsyncHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LROsPatch201RetryWithAsyncHeaderResponse>,
       LROsPatch201RetryWithAsyncHeaderResponse
     >
   > {
@@ -312,7 +322,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -345,15 +355,18 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      patch201RetryWithAsyncHeaderOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: patch201RetryWithAsyncHeaderOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPatch201RetryWithAsyncHeaderResponse,
+      OperationState<LROsPatch201RetryWithAsyncHeaderResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;
@@ -378,8 +391,8 @@ export class LROsImpl implements LROs {
   async beginPatch202RetryWithAsyncAndLocationHeader(
     options?: LROsPatch202RetryWithAsyncAndLocationHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPatch202RetryWithAsyncAndLocationHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LROsPatch202RetryWithAsyncAndLocationHeaderResponse>,
       LROsPatch202RetryWithAsyncAndLocationHeaderResponse
     >
   > {
@@ -397,7 +410,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -430,13 +443,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      patch202RetryWithAsyncAndLocationHeaderOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: patch202RetryWithAsyncAndLocationHeaderOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPatch202RetryWithAsyncAndLocationHeaderResponse,
+      OperationState<LROsPatch202RetryWithAsyncAndLocationHeaderResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -465,8 +481,8 @@ export class LROsImpl implements LROs {
   async beginPut201Succeeded(
     options?: LROsPut201SucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPut201SucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsPut201SucceededResponse>,
       LROsPut201SucceededResponse
     >
   > {
@@ -484,7 +500,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -517,13 +533,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put201SucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put201SucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPut201SucceededResponse,
+      OperationState<LROsPut201SucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -550,8 +569,8 @@ export class LROsImpl implements LROs {
   async beginPost202List(
     options?: LROsPost202ListOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPost202ListResponse>,
+    SimplePollerLike<
+      OperationState<LROsPost202ListResponse>,
       LROsPost202ListResponse
     >
   > {
@@ -569,7 +588,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -602,13 +621,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      post202ListOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: post202ListOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPost202ListResponse,
+      OperationState<LROsPost202ListResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -635,8 +657,8 @@ export class LROsImpl implements LROs {
   async beginPut200SucceededNoState(
     options?: LROsPut200SucceededNoStateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPut200SucceededNoStateResponse>,
+    SimplePollerLike<
+      OperationState<LROsPut200SucceededNoStateResponse>,
       LROsPut200SucceededNoStateResponse
     >
   > {
@@ -654,7 +676,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -687,13 +709,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put200SucceededNoStateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put200SucceededNoStateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPut200SucceededNoStateResponse,
+      OperationState<LROsPut200SucceededNoStateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -720,8 +745,8 @@ export class LROsImpl implements LROs {
   async beginPut202Retry200(
     options?: LROsPut202Retry200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPut202Retry200Response>,
+    SimplePollerLike<
+      OperationState<LROsPut202Retry200Response>,
       LROsPut202Retry200Response
     >
   > {
@@ -739,7 +764,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -772,13 +797,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put202Retry200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put202Retry200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPut202Retry200Response,
+      OperationState<LROsPut202Retry200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -806,8 +834,8 @@ export class LROsImpl implements LROs {
   async beginPut201CreatingSucceeded200(
     options?: LROsPut201CreatingSucceeded200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPut201CreatingSucceeded200Response>,
+    SimplePollerLike<
+      OperationState<LROsPut201CreatingSucceeded200Response>,
       LROsPut201CreatingSucceeded200Response
     >
   > {
@@ -825,7 +853,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -858,13 +886,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put201CreatingSucceeded200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put201CreatingSucceeded200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPut201CreatingSucceeded200Response,
+      OperationState<LROsPut201CreatingSucceeded200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -893,8 +924,8 @@ export class LROsImpl implements LROs {
   async beginPut200UpdatingSucceeded204(
     options?: LROsPut200UpdatingSucceeded204OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPut200UpdatingSucceeded204Response>,
+    SimplePollerLike<
+      OperationState<LROsPut200UpdatingSucceeded204Response>,
       LROsPut200UpdatingSucceeded204Response
     >
   > {
@@ -912,7 +943,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -945,13 +976,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put200UpdatingSucceeded204OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put200UpdatingSucceeded204OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPut200UpdatingSucceeded204Response,
+      OperationState<LROsPut200UpdatingSucceeded204Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -980,8 +1014,8 @@ export class LROsImpl implements LROs {
   async beginPut201CreatingFailed200(
     options?: LROsPut201CreatingFailed200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPut201CreatingFailed200Response>,
+    SimplePollerLike<
+      OperationState<LROsPut201CreatingFailed200Response>,
       LROsPut201CreatingFailed200Response
     >
   > {
@@ -999,7 +1033,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1032,13 +1066,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put201CreatingFailed200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put201CreatingFailed200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPut201CreatingFailed200Response,
+      OperationState<LROsPut201CreatingFailed200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1067,8 +1104,8 @@ export class LROsImpl implements LROs {
   async beginPut200Acceptedcanceled200(
     options?: LROsPut200Acceptedcanceled200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPut200Acceptedcanceled200Response>,
+    SimplePollerLike<
+      OperationState<LROsPut200Acceptedcanceled200Response>,
       LROsPut200Acceptedcanceled200Response
     >
   > {
@@ -1086,7 +1123,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1119,13 +1156,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put200Acceptedcanceled200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put200Acceptedcanceled200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPut200Acceptedcanceled200Response,
+      OperationState<LROsPut200Acceptedcanceled200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1153,8 +1193,8 @@ export class LROsImpl implements LROs {
   async beginPutNoHeaderInRetry(
     options?: LROsPutNoHeaderInRetryOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutNoHeaderInRetryResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutNoHeaderInRetryResponse>,
       LROsPutNoHeaderInRetryResponse
     >
   > {
@@ -1172,7 +1212,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1205,13 +1245,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putNoHeaderInRetryOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putNoHeaderInRetryOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutNoHeaderInRetryResponse,
+      OperationState<LROsPutNoHeaderInRetryResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1239,8 +1282,8 @@ export class LROsImpl implements LROs {
   async beginPutAsyncRetrySucceeded(
     options?: LROsPutAsyncRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutAsyncRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutAsyncRetrySucceededResponse>,
       LROsPutAsyncRetrySucceededResponse
     >
   > {
@@ -1258,7 +1301,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1291,13 +1334,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncRetrySucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncRetrySucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutAsyncRetrySucceededResponse,
+      OperationState<LROsPutAsyncRetrySucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1326,8 +1372,8 @@ export class LROsImpl implements LROs {
   async beginPutAsyncNoRetrySucceeded(
     options?: LROsPutAsyncNoRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutAsyncNoRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutAsyncNoRetrySucceededResponse>,
       LROsPutAsyncNoRetrySucceededResponse
     >
   > {
@@ -1345,7 +1391,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1378,13 +1424,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncNoRetrySucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncNoRetrySucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutAsyncNoRetrySucceededResponse,
+      OperationState<LROsPutAsyncNoRetrySucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1413,8 +1462,8 @@ export class LROsImpl implements LROs {
   async beginPutAsyncRetryFailed(
     options?: LROsPutAsyncRetryFailedOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutAsyncRetryFailedResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutAsyncRetryFailedResponse>,
       LROsPutAsyncRetryFailedResponse
     >
   > {
@@ -1432,7 +1481,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1465,13 +1514,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncRetryFailedOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncRetryFailedOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutAsyncRetryFailedResponse,
+      OperationState<LROsPutAsyncRetryFailedResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1500,8 +1552,8 @@ export class LROsImpl implements LROs {
   async beginPutAsyncNoRetrycanceled(
     options?: LROsPutAsyncNoRetrycanceledOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutAsyncNoRetrycanceledResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutAsyncNoRetrycanceledResponse>,
       LROsPutAsyncNoRetrycanceledResponse
     >
   > {
@@ -1519,7 +1571,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1552,13 +1604,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncNoRetrycanceledOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncNoRetrycanceledOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutAsyncNoRetrycanceledResponse,
+      OperationState<LROsPutAsyncNoRetrycanceledResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1586,8 +1641,8 @@ export class LROsImpl implements LROs {
   async beginPutAsyncNoHeaderInRetry(
     options?: LROsPutAsyncNoHeaderInRetryOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutAsyncNoHeaderInRetryResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutAsyncNoHeaderInRetryResponse>,
       LROsPutAsyncNoHeaderInRetryResponse
     >
   > {
@@ -1605,7 +1660,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1638,13 +1693,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncNoHeaderInRetryOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncNoHeaderInRetryOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutAsyncNoHeaderInRetryResponse,
+      OperationState<LROsPutAsyncNoHeaderInRetryResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1670,8 +1728,8 @@ export class LROsImpl implements LROs {
   async beginPutNonResource(
     options?: LROsPutNonResourceOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutNonResourceResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutNonResourceResponse>,
       LROsPutNonResourceResponse
     >
   > {
@@ -1689,7 +1747,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1722,13 +1780,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putNonResourceOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putNonResourceOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutNonResourceResponse,
+      OperationState<LROsPutNonResourceResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1753,8 +1814,8 @@ export class LROsImpl implements LROs {
   async beginPutAsyncNonResource(
     options?: LROsPutAsyncNonResourceOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutAsyncNonResourceResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutAsyncNonResourceResponse>,
       LROsPutAsyncNonResourceResponse
     >
   > {
@@ -1772,7 +1833,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1805,13 +1866,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncNonResourceOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncNonResourceOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutAsyncNonResourceResponse,
+      OperationState<LROsPutAsyncNonResourceResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1836,8 +1900,8 @@ export class LROsImpl implements LROs {
   async beginPutSubResource(
     options?: LROsPutSubResourceOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutSubResourceResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutSubResourceResponse>,
       LROsPutSubResourceResponse
     >
   > {
@@ -1855,7 +1919,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1888,13 +1952,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putSubResourceOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putSubResourceOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutSubResourceResponse,
+      OperationState<LROsPutSubResourceResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1919,8 +1986,8 @@ export class LROsImpl implements LROs {
   async beginPutAsyncSubResource(
     options?: LROsPutAsyncSubResourceOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPutAsyncSubResourceResponse>,
+    SimplePollerLike<
+      OperationState<LROsPutAsyncSubResourceResponse>,
       LROsPutAsyncSubResourceResponse
     >
   > {
@@ -1938,7 +2005,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1971,13 +2038,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncSubResourceOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncSubResourceOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPutAsyncSubResourceResponse,
+      OperationState<LROsPutAsyncSubResourceResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2004,8 +2074,8 @@ export class LROsImpl implements LROs {
   async beginDeleteProvisioning202Accepted200Succeeded(
     options?: LROsDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteProvisioning202Accepted200SucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsDeleteProvisioning202Accepted200SucceededResponse>,
       LROsDeleteProvisioning202Accepted200SucceededResponse
     >
   > {
@@ -2023,7 +2093,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2056,13 +2126,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteProvisioning202Accepted200SucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteProvisioning202Accepted200SucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteProvisioning202Accepted200SucceededResponse,
+      OperationState<LROsDeleteProvisioning202Accepted200SucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2093,8 +2166,8 @@ export class LROsImpl implements LROs {
   async beginDeleteProvisioning202DeletingFailed200(
     options?: LROsDeleteProvisioning202DeletingFailed200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteProvisioning202DeletingFailed200Response>,
+    SimplePollerLike<
+      OperationState<LROsDeleteProvisioning202DeletingFailed200Response>,
       LROsDeleteProvisioning202DeletingFailed200Response
     >
   > {
@@ -2112,7 +2185,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2145,13 +2218,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteProvisioning202DeletingFailed200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteProvisioning202DeletingFailed200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteProvisioning202DeletingFailed200Response,
+      OperationState<LROsDeleteProvisioning202DeletingFailed200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2182,8 +2258,8 @@ export class LROsImpl implements LROs {
   async beginDeleteProvisioning202Deletingcanceled200(
     options?: LROsDeleteProvisioning202Deletingcanceled200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteProvisioning202Deletingcanceled200Response>,
+    SimplePollerLike<
+      OperationState<LROsDeleteProvisioning202Deletingcanceled200Response>,
       LROsDeleteProvisioning202Deletingcanceled200Response
     >
   > {
@@ -2201,7 +2277,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2234,13 +2310,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteProvisioning202Deletingcanceled200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteProvisioning202Deletingcanceled200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteProvisioning202Deletingcanceled200Response,
+      OperationState<LROsDeleteProvisioning202Deletingcanceled200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2268,7 +2347,7 @@ export class LROsImpl implements LROs {
    */
   async beginDelete204Succeeded(
     options?: LROsDelete204SucceededOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -2281,7 +2360,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2314,13 +2393,13 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      delete204SucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: delete204SucceededOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2346,8 +2425,8 @@ export class LROsImpl implements LROs {
   async beginDelete202Retry200(
     options?: LROsDelete202Retry200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDelete202Retry200Response>,
+    SimplePollerLike<
+      OperationState<LROsDelete202Retry200Response>,
       LROsDelete202Retry200Response
     >
   > {
@@ -2365,7 +2444,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2398,13 +2477,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      delete202Retry200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: delete202Retry200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDelete202Retry200Response,
+      OperationState<LROsDelete202Retry200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2431,8 +2513,8 @@ export class LROsImpl implements LROs {
   async beginDelete202NoRetry204(
     options?: LROsDelete202NoRetry204OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDelete202NoRetry204Response>,
+    SimplePollerLike<
+      OperationState<LROsDelete202NoRetry204Response>,
       LROsDelete202NoRetry204Response
     >
   > {
@@ -2450,7 +2532,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2483,13 +2565,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      delete202NoRetry204OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: delete202NoRetry204OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDelete202NoRetry204Response,
+      OperationState<LROsDelete202NoRetry204Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2516,8 +2601,8 @@ export class LROsImpl implements LROs {
   async beginDeleteNoHeaderInRetry(
     options?: LROsDeleteNoHeaderInRetryOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteNoHeaderInRetryResponse>,
+    SimplePollerLike<
+      OperationState<LROsDeleteNoHeaderInRetryResponse>,
       LROsDeleteNoHeaderInRetryResponse
     >
   > {
@@ -2535,7 +2620,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2568,13 +2653,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteNoHeaderInRetryOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteNoHeaderInRetryOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteNoHeaderInRetryResponse,
+      OperationState<LROsDeleteNoHeaderInRetryResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2601,8 +2689,8 @@ export class LROsImpl implements LROs {
   async beginDeleteAsyncNoHeaderInRetry(
     options?: LROsDeleteAsyncNoHeaderInRetryOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteAsyncNoHeaderInRetryResponse>,
+    SimplePollerLike<
+      OperationState<LROsDeleteAsyncNoHeaderInRetryResponse>,
       LROsDeleteAsyncNoHeaderInRetryResponse
     >
   > {
@@ -2620,7 +2708,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2653,13 +2741,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncNoHeaderInRetryOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncNoHeaderInRetryOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteAsyncNoHeaderInRetryResponse,
+      OperationState<LROsDeleteAsyncNoHeaderInRetryResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2686,8 +2777,8 @@ export class LROsImpl implements LROs {
   async beginDeleteAsyncRetrySucceeded(
     options?: LROsDeleteAsyncRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteAsyncRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsDeleteAsyncRetrySucceededResponse>,
       LROsDeleteAsyncRetrySucceededResponse
     >
   > {
@@ -2705,7 +2796,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2738,13 +2829,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncRetrySucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncRetrySucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteAsyncRetrySucceededResponse,
+      OperationState<LROsDeleteAsyncRetrySucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2771,8 +2865,8 @@ export class LROsImpl implements LROs {
   async beginDeleteAsyncNoRetrySucceeded(
     options?: LROsDeleteAsyncNoRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteAsyncNoRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsDeleteAsyncNoRetrySucceededResponse>,
       LROsDeleteAsyncNoRetrySucceededResponse
     >
   > {
@@ -2790,7 +2884,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2823,13 +2917,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncNoRetrySucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncNoRetrySucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteAsyncNoRetrySucceededResponse,
+      OperationState<LROsDeleteAsyncNoRetrySucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2856,8 +2953,8 @@ export class LROsImpl implements LROs {
   async beginDeleteAsyncRetryFailed(
     options?: LROsDeleteAsyncRetryFailedOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteAsyncRetryFailedResponse>,
+    SimplePollerLike<
+      OperationState<LROsDeleteAsyncRetryFailedResponse>,
       LROsDeleteAsyncRetryFailedResponse
     >
   > {
@@ -2875,7 +2972,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2908,13 +3005,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncRetryFailedOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncRetryFailedOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteAsyncRetryFailedResponse,
+      OperationState<LROsDeleteAsyncRetryFailedResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2941,8 +3041,8 @@ export class LROsImpl implements LROs {
   async beginDeleteAsyncRetrycanceled(
     options?: LROsDeleteAsyncRetrycanceledOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsDeleteAsyncRetrycanceledResponse>,
+    SimplePollerLike<
+      OperationState<LROsDeleteAsyncRetrycanceledResponse>,
       LROsDeleteAsyncRetrycanceledResponse
     >
   > {
@@ -2960,7 +3060,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2993,13 +3093,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncRetrycanceledOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncRetrycanceledOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsDeleteAsyncRetrycanceledResponse,
+      OperationState<LROsDeleteAsyncRetrycanceledResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3026,8 +3129,8 @@ export class LROsImpl implements LROs {
   async beginPost200WithPayload(
     options?: LROsPost200WithPayloadOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPost200WithPayloadResponse>,
+    SimplePollerLike<
+      OperationState<LROsPost200WithPayloadResponse>,
       LROsPost200WithPayloadResponse
     >
   > {
@@ -3045,7 +3148,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3078,13 +3181,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      post200WithPayloadOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: post200WithPayloadOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPost200WithPayloadResponse,
+      OperationState<LROsPost200WithPayloadResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3111,8 +3217,8 @@ export class LROsImpl implements LROs {
   async beginPost202Retry200(
     options?: LROsPost202Retry200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPost202Retry200Response>,
+    SimplePollerLike<
+      OperationState<LROsPost202Retry200Response>,
       LROsPost202Retry200Response
     >
   > {
@@ -3130,7 +3236,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3163,13 +3269,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      post202Retry200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: post202Retry200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPost202Retry200Response,
+      OperationState<LROsPost202Retry200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3196,8 +3305,8 @@ export class LROsImpl implements LROs {
   async beginPost202NoRetry204(
     options?: LROsPost202NoRetry204OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPost202NoRetry204Response>,
+    SimplePollerLike<
+      OperationState<LROsPost202NoRetry204Response>,
       LROsPost202NoRetry204Response
     >
   > {
@@ -3215,7 +3324,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3248,13 +3357,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      post202NoRetry204OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: post202NoRetry204OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPost202NoRetry204Response,
+      OperationState<LROsPost202NoRetry204Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3281,8 +3393,8 @@ export class LROsImpl implements LROs {
   async beginPostDoubleHeadersFinalLocationGet(
     options?: LROsPostDoubleHeadersFinalLocationGetOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPostDoubleHeadersFinalLocationGetResponse>,
+    SimplePollerLike<
+      OperationState<LROsPostDoubleHeadersFinalLocationGetResponse>,
       LROsPostDoubleHeadersFinalLocationGetResponse
     >
   > {
@@ -3300,7 +3412,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3333,15 +3445,18 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postDoubleHeadersFinalLocationGetOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postDoubleHeadersFinalLocationGetOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPostDoubleHeadersFinalLocationGetResponse,
+      OperationState<LROsPostDoubleHeadersFinalLocationGetResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -3368,8 +3483,8 @@ export class LROsImpl implements LROs {
   async beginPostDoubleHeadersFinalAzureHeaderGet(
     options?: LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>,
+    SimplePollerLike<
+      OperationState<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>,
       LROsPostDoubleHeadersFinalAzureHeaderGetResponse
     >
   > {
@@ -3387,7 +3502,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3420,15 +3535,18 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postDoubleHeadersFinalAzureHeaderGetOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postDoubleHeadersFinalAzureHeaderGetOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPostDoubleHeadersFinalAzureHeaderGetResponse,
+      OperationState<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation"
     });
     await poller.poll();
     return poller;
@@ -3458,10 +3576,8 @@ export class LROsImpl implements LROs {
   async beginPostDoubleHeadersFinalAzureHeaderGetDefault(
     options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
-      >,
+    SimplePollerLike<
+      OperationState<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>,
       LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
     >
   > {
@@ -3479,7 +3595,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3512,13 +3628,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse,
+      OperationState<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3549,8 +3668,8 @@ export class LROsImpl implements LROs {
   async beginPostAsyncRetrySucceeded(
     options?: LROsPostAsyncRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPostAsyncRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsPostAsyncRetrySucceededResponse>,
       LROsPostAsyncRetrySucceededResponse
     >
   > {
@@ -3568,7 +3687,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3601,13 +3720,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncRetrySucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncRetrySucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPostAsyncRetrySucceededResponse,
+      OperationState<LROsPostAsyncRetrySucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3636,8 +3758,8 @@ export class LROsImpl implements LROs {
   async beginPostAsyncNoRetrySucceeded(
     options?: LROsPostAsyncNoRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPostAsyncNoRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsPostAsyncNoRetrySucceededResponse>,
       LROsPostAsyncNoRetrySucceededResponse
     >
   > {
@@ -3655,7 +3777,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3688,13 +3810,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncNoRetrySucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncNoRetrySucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPostAsyncNoRetrySucceededResponse,
+      OperationState<LROsPostAsyncNoRetrySucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3723,8 +3848,8 @@ export class LROsImpl implements LROs {
   async beginPostAsyncRetryFailed(
     options?: LROsPostAsyncRetryFailedOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPostAsyncRetryFailedResponse>,
+    SimplePollerLike<
+      OperationState<LROsPostAsyncRetryFailedResponse>,
       LROsPostAsyncRetryFailedResponse
     >
   > {
@@ -3742,7 +3867,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3775,13 +3900,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncRetryFailedOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncRetryFailedOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPostAsyncRetryFailedResponse,
+      OperationState<LROsPostAsyncRetryFailedResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3810,8 +3938,8 @@ export class LROsImpl implements LROs {
   async beginPostAsyncRetrycanceled(
     options?: LROsPostAsyncRetrycanceledOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsPostAsyncRetrycanceledResponse>,
+    SimplePollerLike<
+      OperationState<LROsPostAsyncRetrycanceledResponse>,
       LROsPostAsyncRetrycanceledResponse
     >
   > {
@@ -3829,7 +3957,7 @@ export class LROsImpl implements LROs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3862,13 +3990,16 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncRetrycanceledOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncRetrycanceledOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsPostAsyncRetrycanceledResponse,
+      OperationState<LROsPostAsyncRetrycanceledResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

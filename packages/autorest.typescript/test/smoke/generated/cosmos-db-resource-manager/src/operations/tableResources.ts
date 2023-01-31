@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   TableGetResults,
   TableResourcesListTablesOptionalParams,
@@ -161,8 +165,8 @@ export class TableResourcesImpl implements TableResources {
     createUpdateTableParameters: TableCreateUpdateParameters,
     options?: TableResourcesCreateUpdateTableOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<TableResourcesCreateUpdateTableResponse>,
+    SimplePollerLike<
+      OperationState<TableResourcesCreateUpdateTableResponse>,
       TableResourcesCreateUpdateTableResponse
     >
   > {
@@ -172,7 +176,7 @@ export class TableResourcesImpl implements TableResources {
     ): Promise<TableResourcesCreateUpdateTableResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -205,19 +209,22 @@ export class TableResourcesImpl implements TableResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         tableName,
         createUpdateTableParameters,
         options
       },
-      createUpdateTableOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateTableOperationSpec
+    });
+    const poller = await createHttpPoller<
+      TableResourcesCreateUpdateTableResponse,
+      OperationState<TableResourcesCreateUpdateTableResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -261,14 +268,14 @@ export class TableResourcesImpl implements TableResources {
     accountName: string,
     tableName: string,
     options?: TableResourcesDeleteTableOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -301,13 +308,13 @@ export class TableResourcesImpl implements TableResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, tableName, options },
-      deleteTableOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, tableName, options },
+      spec: deleteTableOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -372,8 +379,8 @@ export class TableResourcesImpl implements TableResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: TableResourcesUpdateTableThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<TableResourcesUpdateTableThroughputResponse>,
+    SimplePollerLike<
+      OperationState<TableResourcesUpdateTableThroughputResponse>,
       TableResourcesUpdateTableThroughputResponse
     >
   > {
@@ -383,7 +390,7 @@ export class TableResourcesImpl implements TableResources {
     ): Promise<TableResourcesUpdateTableThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -416,19 +423,22 @@ export class TableResourcesImpl implements TableResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         tableName,
         updateThroughputParameters,
         options
       },
-      updateTableThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateTableThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      TableResourcesUpdateTableThroughputResponse,
+      OperationState<TableResourcesUpdateTableThroughputResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -474,8 +484,8 @@ export class TableResourcesImpl implements TableResources {
     tableName: string,
     options?: TableResourcesMigrateTableToAutoscaleOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<TableResourcesMigrateTableToAutoscaleResponse>,
+    SimplePollerLike<
+      OperationState<TableResourcesMigrateTableToAutoscaleResponse>,
       TableResourcesMigrateTableToAutoscaleResponse
     >
   > {
@@ -485,7 +495,7 @@ export class TableResourcesImpl implements TableResources {
     ): Promise<TableResourcesMigrateTableToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -518,13 +528,16 @@ export class TableResourcesImpl implements TableResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, tableName, options },
-      migrateTableToAutoscaleOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, tableName, options },
+      spec: migrateTableToAutoscaleOperationSpec
+    });
+    const poller = await createHttpPoller<
+      TableResourcesMigrateTableToAutoscaleResponse,
+      OperationState<TableResourcesMigrateTableToAutoscaleResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -566,8 +579,8 @@ export class TableResourcesImpl implements TableResources {
     tableName: string,
     options?: TableResourcesMigrateTableToManualThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<TableResourcesMigrateTableToManualThroughputResponse>,
+    SimplePollerLike<
+      OperationState<TableResourcesMigrateTableToManualThroughputResponse>,
       TableResourcesMigrateTableToManualThroughputResponse
     >
   > {
@@ -577,7 +590,7 @@ export class TableResourcesImpl implements TableResources {
     ): Promise<TableResourcesMigrateTableToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -610,13 +623,16 @@ export class TableResourcesImpl implements TableResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, tableName, options },
-      migrateTableToManualThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, tableName, options },
+      spec: migrateTableToManualThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      TableResourcesMigrateTableToManualThroughputResponse,
+      OperationState<TableResourcesMigrateTableToManualThroughputResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

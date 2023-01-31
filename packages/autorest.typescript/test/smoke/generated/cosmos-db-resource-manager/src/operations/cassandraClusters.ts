@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ClusterResource,
   CassandraClustersListBySubscriptionOptionalParams,
@@ -197,14 +201,14 @@ export class CassandraClustersImpl implements CassandraClusters {
     resourceGroupName: string,
     clusterName: string,
     options?: CassandraClustersDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -237,13 +241,13 @@ export class CassandraClustersImpl implements CassandraClusters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -283,8 +287,8 @@ export class CassandraClustersImpl implements CassandraClusters {
     body: ClusterResource,
     options?: CassandraClustersCreateUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<CassandraClustersCreateUpdateResponse>,
+    SimplePollerLike<
+      OperationState<CassandraClustersCreateUpdateResponse>,
       CassandraClustersCreateUpdateResponse
     >
   > {
@@ -294,7 +298,7 @@ export class CassandraClustersImpl implements CassandraClusters {
     ): Promise<CassandraClustersCreateUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -327,13 +331,16 @@ export class CassandraClustersImpl implements CassandraClusters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, body, options },
-      createUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, body, options },
+      spec: createUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      CassandraClustersCreateUpdateResponse,
+      OperationState<CassandraClustersCreateUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -376,8 +383,8 @@ export class CassandraClustersImpl implements CassandraClusters {
     body: ClusterResource,
     options?: CassandraClustersUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<CassandraClustersUpdateResponse>,
+    SimplePollerLike<
+      OperationState<CassandraClustersUpdateResponse>,
       CassandraClustersUpdateResponse
     >
   > {
@@ -387,7 +394,7 @@ export class CassandraClustersImpl implements CassandraClusters {
     ): Promise<CassandraClustersUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -420,13 +427,16 @@ export class CassandraClustersImpl implements CassandraClusters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, body, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, body, options },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      CassandraClustersUpdateResponse,
+      OperationState<CassandraClustersUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -468,8 +478,8 @@ export class CassandraClustersImpl implements CassandraClusters {
     body: CommandPostBody,
     options?: CassandraClustersInvokeCommandOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<CassandraClustersInvokeCommandResponse>,
+    SimplePollerLike<
+      OperationState<CassandraClustersInvokeCommandResponse>,
       CassandraClustersInvokeCommandResponse
     >
   > {
@@ -479,7 +489,7 @@ export class CassandraClustersImpl implements CassandraClusters {
     ): Promise<CassandraClustersInvokeCommandResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -512,13 +522,16 @@ export class CassandraClustersImpl implements CassandraClusters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, body, options },
-      invokeCommandOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, body, options },
+      spec: invokeCommandOperationSpec
+    });
+    const poller = await createHttpPoller<
+      CassandraClustersInvokeCommandResponse,
+      OperationState<CassandraClustersInvokeCommandResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -559,14 +572,14 @@ export class CassandraClustersImpl implements CassandraClusters {
     resourceGroupName: string,
     clusterName: string,
     options?: CassandraClustersDeallocateOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -599,13 +612,13 @@ export class CassandraClustersImpl implements CassandraClusters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, options },
-      deallocateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, options },
+      spec: deallocateOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -645,14 +658,14 @@ export class CassandraClustersImpl implements CassandraClusters {
     resourceGroupName: string,
     clusterName: string,
     options?: CassandraClustersStartOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -685,13 +698,13 @@ export class CassandraClustersImpl implements CassandraClusters {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, clusterName, options },
-      startOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, clusterName, options },
+      spec: startOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

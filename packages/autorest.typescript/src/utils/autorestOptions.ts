@@ -11,6 +11,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const host = getHost();
   const useCoreV2 = await getUseCoreV2(host);
   const restLevelClient = await getRestLevelClient(host);
+  const useLegacyLro = await getUseLegacyLro(host);
   const rlcShortcut = await getHasShortcutMethods(host);
   const azureArm = await getIsAzureArm(host);
   const addCredentials = await getAddCredentials(host);
@@ -73,8 +74,14 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     azureSdkForJs,
     productDocLink,
     coreHttpCompatMode,
-    dependencyInfo
+    dependencyInfo,
+    useLegacyLro
   };
+}
+
+async function getUseLegacyLro(host: AutorestExtensionHost): Promise<boolean> {
+  const useLegacyLroOption = await host.getValue("use-legacy-lro");
+  return useLegacyLroOption === null ? false : Boolean(useLegacyLroOption);
 }
 
 async function getHasShortcutMethods(

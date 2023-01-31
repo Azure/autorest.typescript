@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   DedicatedHost,
   DedicatedHostsListByHostGroupNextOptionalParams,
@@ -144,8 +148,8 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     parameters: DedicatedHost,
     options?: DedicatedHostsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DedicatedHostsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DedicatedHostsCreateOrUpdateResponse>,
       DedicatedHostsCreateOrUpdateResponse
     >
   > {
@@ -155,7 +159,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     ): Promise<DedicatedHostsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -188,13 +192,16 @@ export class DedicatedHostsImpl implements DedicatedHosts {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, hostGroupName, hostName, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, hostGroupName, hostName, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      DedicatedHostsCreateOrUpdateResponse,
+      OperationState<DedicatedHostsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -241,8 +248,8 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     parameters: DedicatedHostUpdate,
     options?: DedicatedHostsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<DedicatedHostsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<DedicatedHostsUpdateResponse>,
       DedicatedHostsUpdateResponse
     >
   > {
@@ -252,7 +259,7 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     ): Promise<DedicatedHostsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -285,13 +292,16 @@ export class DedicatedHostsImpl implements DedicatedHosts {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, hostGroupName, hostName, parameters, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, hostGroupName, hostName, parameters, options },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      DedicatedHostsUpdateResponse,
+      OperationState<DedicatedHostsUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -335,14 +345,14 @@ export class DedicatedHostsImpl implements DedicatedHosts {
     hostGroupName: string,
     hostName: string,
     options?: DedicatedHostsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -375,13 +385,13 @@ export class DedicatedHostsImpl implements DedicatedHosts {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, hostGroupName, hostName, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, hostGroupName, hostName, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

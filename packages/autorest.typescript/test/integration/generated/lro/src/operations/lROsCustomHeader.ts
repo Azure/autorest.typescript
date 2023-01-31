@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClient } from "../lROClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
@@ -47,8 +51,8 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
   async beginPutAsyncRetrySucceeded(
     options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
       LROsCustomHeaderPutAsyncRetrySucceededResponse
     >
   > {
@@ -66,7 +70,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -99,13 +103,16 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncRetrySucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncRetrySucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsCustomHeaderPutAsyncRetrySucceededResponse,
+      OperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -136,8 +143,8 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
   async beginPut201CreatingSucceeded200(
     options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
+    SimplePollerLike<
+      OperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
       LROsCustomHeaderPut201CreatingSucceeded200Response
     >
   > {
@@ -155,7 +162,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -188,13 +195,16 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put201CreatingSucceeded200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put201CreatingSucceeded200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsCustomHeaderPut201CreatingSucceeded200Response,
+      OperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -224,8 +234,8 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
   async beginPost202Retry200(
     options?: LROsCustomHeaderPost202Retry200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsCustomHeaderPost202Retry200Response>,
+    SimplePollerLike<
+      OperationState<LROsCustomHeaderPost202Retry200Response>,
       LROsCustomHeaderPost202Retry200Response
     >
   > {
@@ -243,7 +253,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -276,13 +286,16 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      post202Retry200OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: post202Retry200OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsCustomHeaderPost202Retry200Response,
+      OperationState<LROsCustomHeaderPost202Retry200Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -312,8 +325,8 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
   async beginPostAsyncRetrySucceeded(
     options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
       LROsCustomHeaderPostAsyncRetrySucceededResponse
     >
   > {
@@ -331,7 +344,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -364,13 +377,16 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncRetrySucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncRetrySucceededOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LROsCustomHeaderPostAsyncRetrySucceededResponse,
+      OperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

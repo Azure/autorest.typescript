@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   StaticSiteARMResource,
   StaticSitesListNextOptionalParams,
@@ -1054,8 +1058,8 @@ export class StaticSitesImpl implements StaticSites {
     staticSiteEnvelope: StaticSiteARMResource,
     options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<StaticSitesCreateOrUpdateStaticSiteResponse>,
+    SimplePollerLike<
+      OperationState<StaticSitesCreateOrUpdateStaticSiteResponse>,
       StaticSitesCreateOrUpdateStaticSiteResponse
     >
   > {
@@ -1065,7 +1069,7 @@ export class StaticSitesImpl implements StaticSites {
     ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1098,13 +1102,16 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, staticSiteEnvelope, options },
-      createOrUpdateStaticSiteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, staticSiteEnvelope, options },
+      spec: createOrUpdateStaticSiteOperationSpec
+    });
+    const poller = await createHttpPoller<
+      StaticSitesCreateOrUpdateStaticSiteResponse,
+      OperationState<StaticSitesCreateOrUpdateStaticSiteResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1144,14 +1151,14 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDeleteStaticSiteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1184,13 +1191,13 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, options },
-      deleteStaticSiteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, options },
+      spec: deleteStaticSiteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1354,14 +1361,14 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     environmentName: string,
     options?: StaticSitesDeleteStaticSiteBuildOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1394,13 +1401,13 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, environmentName, options },
-      deleteStaticSiteBuildOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, environmentName, options },
+      spec: deleteStaticSiteBuildOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1590,8 +1597,8 @@ export class StaticSitesImpl implements StaticSites {
     staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
     options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
       >,
       StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
@@ -1603,7 +1610,7 @@ export class StaticSitesImpl implements StaticSites {
     ): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1636,9 +1643,9 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         environmentName,
@@ -1646,10 +1653,15 @@ export class StaticSitesImpl implements StaticSites {
         staticSiteUserProvidedFunctionEnvelope,
         options
       },
-      registerUserProvidedFunctionAppWithStaticSiteBuildOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: registerUserProvidedFunctionAppWithStaticSiteBuildOperationSpec
+    });
+    const poller = await createHttpPoller<
+      StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse,
+      OperationState<
+        StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1723,14 +1735,14 @@ export class StaticSitesImpl implements StaticSites {
     environmentName: string,
     staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
     options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1763,19 +1775,19 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         environmentName,
         staticSiteZipDeploymentEnvelope,
         options
       },
-      createZipDeploymentForStaticSiteBuildOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createZipDeploymentForStaticSiteBuildOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1923,10 +1935,8 @@ export class StaticSitesImpl implements StaticSites {
     staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
     options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse
-      >,
+    SimplePollerLike<
+      OperationState<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>,
       StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse
     >
   > {
@@ -1936,7 +1946,7 @@ export class StaticSitesImpl implements StaticSites {
     ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1969,19 +1979,22 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         domainName,
         staticSiteCustomDomainRequestPropertiesEnvelope,
         options
       },
-      createOrUpdateStaticSiteCustomDomainOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateStaticSiteCustomDomainOperationSpec
+    });
+    const poller = await createHttpPoller<
+      StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse,
+      OperationState<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2027,14 +2040,14 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     domainName: string,
     options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2067,13 +2080,13 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, domainName, options },
-      deleteStaticSiteCustomDomainOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, domainName, options },
+      spec: deleteStaticSiteCustomDomainOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2117,14 +2130,14 @@ export class StaticSitesImpl implements StaticSites {
     domainName: string,
     staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
     options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2157,19 +2170,19 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         domainName,
         staticSiteCustomDomainRequestPropertiesEnvelope,
         options
       },
-      validateCustomDomainCanBeAddedToStaticSiteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: validateCustomDomainCanBeAddedToStaticSiteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2212,14 +2225,14 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDetachStaticSiteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2252,13 +2265,13 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, options },
-      detachStaticSiteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, options },
+      spec: detachStaticSiteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2420,8 +2433,8 @@ export class StaticSitesImpl implements StaticSites {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
       >,
       StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
@@ -2433,7 +2446,7 @@ export class StaticSitesImpl implements StaticSites {
     ): Promise<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2466,19 +2479,24 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         privateEndpointConnectionName,
         privateEndpointWrapper,
         options
       },
-      approveOrRejectPrivateEndpointConnectionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: approveOrRejectPrivateEndpointConnectionOperationSpec
+    });
+    const poller = await createHttpPoller<
+      StaticSitesApproveOrRejectPrivateEndpointConnectionResponse,
+      OperationState<
+        StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2523,8 +2541,8 @@ export class StaticSitesImpl implements StaticSites {
     privateEndpointConnectionName: string,
     options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<StaticSitesDeletePrivateEndpointConnectionResponse>,
+    SimplePollerLike<
+      OperationState<StaticSitesDeletePrivateEndpointConnectionResponse>,
       StaticSitesDeletePrivateEndpointConnectionResponse
     >
   > {
@@ -2534,7 +2552,7 @@ export class StaticSitesImpl implements StaticSites {
     ): Promise<StaticSitesDeletePrivateEndpointConnectionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2567,13 +2585,16 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, privateEndpointConnectionName, options },
-      deletePrivateEndpointConnectionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, privateEndpointConnectionName, options },
+      spec: deletePrivateEndpointConnectionOperationSpec
+    });
+    const poller = await createHttpPoller<
+      StaticSitesDeletePrivateEndpointConnectionResponse,
+      OperationState<StaticSitesDeletePrivateEndpointConnectionResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2690,8 +2711,8 @@ export class StaticSitesImpl implements StaticSites {
     staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
     options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
       >,
       StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
@@ -2703,7 +2724,7 @@ export class StaticSitesImpl implements StaticSites {
     ): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2736,19 +2757,24 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         functionAppName,
         staticSiteUserProvidedFunctionEnvelope,
         options
       },
-      registerUserProvidedFunctionAppWithStaticSiteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: registerUserProvidedFunctionAppWithStaticSiteOperationSpec
+    });
+    const poller = await createHttpPoller<
+      StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse,
+      OperationState<
+        StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2813,14 +2839,14 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
     options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2853,13 +2879,18 @@ export class StaticSitesImpl implements StaticSites {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, staticSiteZipDeploymentEnvelope, options },
-      createZipDeploymentForStaticSiteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        name,
+        staticSiteZipDeploymentEnvelope,
+        options
+      },
+      spec: createZipDeploymentForStaticSiteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

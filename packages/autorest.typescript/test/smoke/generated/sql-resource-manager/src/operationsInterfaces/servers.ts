@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   Server,
   ServersListByResourceGroupOptionalParams,
@@ -72,8 +72,8 @@ export interface Servers {
     parameters: Server,
     options?: ServersCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ServersCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ServersCreateOrUpdateResponse>,
       ServersCreateOrUpdateResponse
     >
   >;
@@ -102,7 +102,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     options?: ServersDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -129,7 +129,10 @@ export interface Servers {
     parameters: ServerUpdate,
     options?: ServersUpdateOptionalParams
   ): Promise<
-    PollerLike<PollOperationState<ServersUpdateResponse>, ServersUpdateResponse>
+    SimplePollerLike<
+      OperationState<ServersUpdateResponse>,
+      ServersUpdateResponse
+    >
   >;
   /**
    * Updates a server.
@@ -159,8 +162,8 @@ export interface Servers {
     parameters: ImportNewDatabaseDefinition,
     options?: ServersImportDatabaseOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ServersImportDatabaseResponse>,
+    SimplePollerLike<
+      OperationState<ServersImportDatabaseResponse>,
       ServersImportDatabaseResponse
     >
   >;
