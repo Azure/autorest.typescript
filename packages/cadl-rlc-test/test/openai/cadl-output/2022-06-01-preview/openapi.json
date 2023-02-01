@@ -61,14 +61,14 @@
         "description": "Return the completions for a given prompt.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "deploymentId",
             "in": "path",
             "required": true,
             "description": "deployment id of the deployed model",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
             "name": "body",
@@ -191,6 +191,9 @@
         "description": "Return the embeddings for a given prompt.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "deploymentId",
             "in": "path",
             "required": true,
@@ -203,9 +206,6 @@
             "required": false,
             "description": "The ID of the end-user, for use in tracking and rate-limiting.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
             "name": "body",
@@ -432,7 +432,8 @@
       "properties": {
         "deploymentId": {
           "type": "string",
-          "description": "deployment id of the deployed model"
+          "description": "deployment id of the deployed model",
+          "readOnly": true
         }
       },
       "description": "A specific deployment",
