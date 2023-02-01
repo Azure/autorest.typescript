@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { BodyFormDataClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class BodyFormDataClient class.
- *
+ * Initialize a new instance of `BodyFormDataClient`
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

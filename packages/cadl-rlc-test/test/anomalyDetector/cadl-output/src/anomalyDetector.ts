@@ -14,6 +14,7 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
  * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus2.api.cognitive.microsoft.com).
  * @param credentials KeyCredential which uniquely identify client credential.
+ * @param options The parameter options
  */
 export default function createClient(
   endpoint: string,

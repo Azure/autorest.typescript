@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { MultipleInheritanceRestClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class MultipleInheritanceRestClient class.
- *
+ * Initialize a new instance of `MultipleInheritanceRestClient`
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

@@ -6,7 +6,8 @@ import { ResponseClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ResponseClient`
- * @param endpoint
+ * @param endpoint The parameter endpoint
+ * @param options The parameter options
  */
 export function createClient(
   endpoint: string,

@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { DPGCustomizationClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class DPGCustomizationClient class.
- *
+ * Initialize a new instance of `DPGCustomizationClient`
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

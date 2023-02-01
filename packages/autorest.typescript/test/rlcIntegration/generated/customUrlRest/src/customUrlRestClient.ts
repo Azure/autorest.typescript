@@ -5,8 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { CustomUrlRestClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class CustomUrlRestClient class.
- * @param host type: string A string value that is used as a global part of the parameterized host
+ * Initialize a new instance of `CustomUrlRestClient`
+ * @param host A string value that is used as a global part of the parameterized host
+ * @param options The parameter options
  */
 export default function createClient(
   host: string,

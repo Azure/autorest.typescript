@@ -6,9 +6,10 @@ import { KeyCredential } from "@azure/core-auth";
 import { PurviewMetadataPoliciesClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class PurviewMetadataPoliciesClient class.
- * @param endpoint type: string The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
- * @param credentials type: KeyCredential
+ * Initialize a new instance of `PurviewMetadataPoliciesClient`
+ * @param endpoint The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
+ * @param credentials KeyCredential which uniquely identify client credential.
+ * @param options The parameter options
  */
 export function createClient(
   endpoint: string,

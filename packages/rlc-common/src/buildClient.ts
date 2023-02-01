@@ -105,23 +105,26 @@ export function buildClient(model: RLCModel): File | undefined {
         ])
   ];
 
+  const allClientParams = [
+    ...commonClientParams,
+    {
+      name: "options",
+      type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`
+    }
+  ];
   const functionStatement = {
     isExported: true,
     name: `createClient`,
-    parameters: [
-      ...commonClientParams,
-      {
-        name: "options",
-        type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`
-      }
-    ],
+    parameters: allClientParams,
     docs: [
       {
         description:
           `Initialize a new instance of \`${clientInterfaceName}\` \n` +
-          commonClientParams
+          allClientParams
             .map((param) => {
-              return `@param ${param.name} ${param.description ?? ""}`;
+              return `@param ${param.name} ${
+                param.description ?? "The parameter " + param.name
+              }`;
             })
             .join("\n")
       }

@@ -6,10 +6,11 @@ import { TokenCredential } from "@azure/core-auth";
 import { MultipleUrlParameterRestClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class MultipleUrlParameterRestClient class.
- * @param endpoint type: string The catalog endpoint of your Purview account. Example: https://{accountName}.purview.azure.com
- * @param serviceVersion type: "v2" | "v1" the version of api
- * @param credentials type: TokenCredential
+ * Initialize a new instance of `MultipleUrlParameterRestClient`
+ * @param endpoint The catalog endpoint of your Purview account. Example: https://{accountName}.purview.azure.com
+ * @param serviceVersion the version of api
+ * @param credentials TokenCredential which uniquely identify client credential.
+ * @param options The parameter options
  */
 export default function createClient(
   endpoint: string,

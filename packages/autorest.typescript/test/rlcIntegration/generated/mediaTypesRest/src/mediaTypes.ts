@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { MediaTypesClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class MediaTypesClient class.
- *
+ * Initialize a new instance of `MediaTypesClient`
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

@@ -7,8 +7,9 @@ import { MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient } from "./c
 
 /**
  * Initialize a new instance of `MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient`
- * @param endpoint
+ * @param endpoint The endpoint to use.
  * @param credentials KeyCredential which uniquely identify client credential.
+ * @param options The parameter options
  */
 export default function createClient(
   endpoint: string,

@@ -6,7 +6,8 @@ import { ContosoWidgetManagerClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ContosoWidgetManagerClient`
- * @param endpoint
+ * @param endpoint The parameter endpoint
+ * @param options The parameter options
  */
 export default function createClient(
   endpoint: string,

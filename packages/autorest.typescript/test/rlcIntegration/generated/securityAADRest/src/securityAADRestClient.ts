@@ -6,8 +6,9 @@ import { TokenCredential } from "@azure/core-auth";
 import { SecurityAADRestClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class SecurityAADRestClient class.
- * @param credentials type: TokenCredential
+ * Initialize a new instance of `SecurityAADRestClient`
+ * @param credentials TokenCredential which uniquely identify client credential.
+ * @param options The parameter options
  */
 export default function createClient(
   credentials: TokenCredential,

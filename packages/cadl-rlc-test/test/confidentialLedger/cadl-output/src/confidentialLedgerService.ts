@@ -7,8 +7,9 @@ import { ConfidentialLedgerServiceClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ConfidentialLedgerServiceClient`
- * @param ledgerUri
+ * @param ledgerUri The parameter ledgerUri
  * @param credentials TokenCredential which uniquely identify client credential.
+ * @param options The parameter options
  */
 export default function createClient(
   ledgerUri: string,

@@ -190,12 +190,12 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     clientFilePaths.forEach((path) => {
       packageInfo["//metadata"].constantPaths.push({
         path,
-        prefix: "packageDetails"
+        prefix: "userAgentInfo"
       });
     });
     // Only generate this from Swagger spec
     if (sourceFrom === "Swagger") {
-      packageInfo["//metadata"].constantPaths.add({
+      packageInfo["//metadata"].constantPaths.push({
         path: "swagger/README.md",
         prefix: "package-version"
       });

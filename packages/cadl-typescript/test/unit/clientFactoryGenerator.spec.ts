@@ -22,7 +22,7 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         *
+         * @param options The parameter options
          */
         export default function createClient(options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`localhost\`;
@@ -70,6 +70,7 @@ describe("Client Factory generation", () => {
           /**
            * Initialize a new instance of \`testClient\`
            * @param endpoint The endpoint to use.
+           * @param options The parameter options
            */
           export default function createClient(
             endpoint: string,
@@ -134,6 +135,7 @@ describe("Client Factory generation", () => {
              * Initialize a new instance of \`testClient\`
              * @param endpoint The endpoint to use.
              * @param version The version to use
+             * @param options The parameter options
              */
             export default function createClient(
               endpoint: string,
@@ -195,6 +197,7 @@ describe("Client Factory generation", () => {
              * Initialize a new instance of \`testClient\`
              * @param endpoint The endpoint to use.
              * @param version The version to use. Possible values: v1.1
+             * @param options The parameter options
              */
             export default function createClient(
               endpoint: string,
@@ -253,6 +256,7 @@ describe("Client Factory generation", () => {
             /**
              * Initialize a new instance of \`testClient\`
              * @param endpoint The endpoint to use.
+             * @param options The parameter options
              */
             export default function createClient(
               endpoint: string,
@@ -322,6 +326,7 @@ describe("Client Factory generation", () => {
             /**
              * Initialize a new instance of \`testClient\`
              * @param endpoint The endpoint to use.
+             * @param options The parameter options
              */
             export default function createClient(
               endpoint: string,
@@ -368,7 +373,8 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint
+         * @param endpoint The parameter endpoint
+         * @param options The parameter options
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -415,7 +421,8 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint
+         * @param endpoint The parameter endpoint
+         * @param options The parameter options
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -462,8 +469,9 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint 
+         * @param endpoint The parameter endpoint
          * @param credentials TokenCredential | KeyCredential which uniquely identify client credential.
+         * @param options The parameter options
          */
         export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
