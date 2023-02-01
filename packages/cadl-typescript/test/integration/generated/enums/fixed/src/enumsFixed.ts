@@ -6,7 +6,7 @@ import { EnumsFixedClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `EnumsFixedClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

@@ -6,7 +6,7 @@ import { DictClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `DictClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(options: ClientOptions = {}): DictClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;

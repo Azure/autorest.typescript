@@ -6,7 +6,7 @@ import { ModelsVisibilityAutomaticClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ModelsVisibilityAutomaticClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

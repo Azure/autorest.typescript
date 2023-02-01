@@ -6,7 +6,7 @@ import { ModelsPropertyTypesClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ModelsPropertyTypesClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

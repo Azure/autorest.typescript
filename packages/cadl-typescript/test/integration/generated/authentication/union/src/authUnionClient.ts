@@ -8,6 +8,7 @@ import { AuthUnionClient } from "./clientDefinitions";
 /**
  * Initialize a new instance of `AuthUnionClient`
  * @param credentials TokenCredential | KeyCredential which uniquely identify client credential.
+ * @param options The parameter options
  */
 export default function createClient(
   credentials: TokenCredential | KeyCredential,

@@ -6,7 +6,7 @@ import { ModelsUsageClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ModelsUsageClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

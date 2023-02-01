@@ -6,7 +6,7 @@ import { AzureLroClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AzureLroClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

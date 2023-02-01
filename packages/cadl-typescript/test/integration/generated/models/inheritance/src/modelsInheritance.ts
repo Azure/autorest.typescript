@@ -6,7 +6,7 @@ import { ModelsInheritanceClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ModelsInheritanceClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

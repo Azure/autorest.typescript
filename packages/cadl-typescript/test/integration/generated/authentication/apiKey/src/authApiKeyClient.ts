@@ -8,6 +8,7 @@ import { AuthApiKeyClient } from "./clientDefinitions";
 /**
  * Initialize a new instance of `AuthApiKeyClient`
  * @param credentials KeyCredential which uniquely identify client credential.
+ * @param options The parameter options
  */
 export default function createClient(
   credentials: KeyCredential,

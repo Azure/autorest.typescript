@@ -6,7 +6,7 @@ import { ArrayItemTypesClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ArrayItemTypesClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}

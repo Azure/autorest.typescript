@@ -6,7 +6,7 @@ import { SpecialWordsClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `SpecialWordsClient`
- *
+ * @param options The parameter options
  */
 export default function createClient(
   options: ClientOptions = {}
