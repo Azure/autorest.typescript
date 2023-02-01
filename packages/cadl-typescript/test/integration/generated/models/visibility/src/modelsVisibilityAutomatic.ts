@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ModelsVisibilityAutomaticClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ModelsVisibilityAutomaticClient class.
+ * Initialize a new instance of `ModelsVisibilityAutomaticClient`
  *
  */
 export default function createClient(

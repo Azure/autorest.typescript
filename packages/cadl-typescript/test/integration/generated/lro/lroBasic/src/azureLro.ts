@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { AzureLroClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class AzureLroClient class.
+ * Initialize a new instance of `AzureLroClient`
  *
  */
 export default function createClient(

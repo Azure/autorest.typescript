@@ -1,6 +1,6 @@
 # ModelsUsage REST client library for JavaScript
 
-Usage Test Service
+Illustrates usage of Record in different places(Operation parameters, return type or both).
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

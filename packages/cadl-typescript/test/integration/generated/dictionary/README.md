@@ -1,6 +1,6 @@
 # Dict REST client library for JavaScript
 
-Dictionary Test Service
+Illustrates various of dictionaries.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

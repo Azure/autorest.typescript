@@ -6,8 +6,8 @@ import { KeyCredential } from "@azure/core-auth";
 import { AuthApiKeyClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class AuthApiKeyClient class.
- * @param credentials type: KeyCredential
+ * Initialize a new instance of `AuthApiKeyClient`
+ * @param credentials KeyCredential which uniquely identify client credential.
  */
 export default function createClient(
   credentials: KeyCredential,

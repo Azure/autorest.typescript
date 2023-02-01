@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { CoreClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class CoreClient class.
- * @param endpoint type: string
+ * Initialize a new instance of `CoreClient`
+ * @param endpoint
  */
 export function createClient(
   endpoint: string,

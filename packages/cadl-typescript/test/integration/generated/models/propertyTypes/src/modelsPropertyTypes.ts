@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ModelsPropertyTypesClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ModelsPropertyTypesClient class.
+ * Initialize a new instance of `ModelsPropertyTypesClient`
  *
  */
 export default function createClient(

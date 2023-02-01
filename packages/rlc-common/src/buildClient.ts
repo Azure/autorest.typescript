@@ -94,7 +94,15 @@ export function buildClient(model: RLCModel): File | undefined {
     ...(addCredentials === false ||
     !isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
       ? []
-      : [{ name: "credentials", type: credentialTypes.join(" | ") }])
+      : [
+          {
+            name: "credentials",
+            type: credentialTypes.join(" | "),
+            description: `${credentialTypes.join(
+              " | "
+            )} which uniquely identify client credential.`
+          }
+        ])
   ];
 
   const functionStatement = {
@@ -110,12 +118,10 @@ export function buildClient(model: RLCModel): File | undefined {
     docs: [
       {
         description:
-          `Initialize a new instance of the class ${clientInterfaceName} class. \n` +
+          `Initialize a new instance of \`${clientInterfaceName}\` \n` +
           commonClientParams
             .map((param) => {
-              return `@param ${param.name} type: ${param.type} ${
-                param.description ?? ""
-              }`;
+              return `@param ${param.name} ${param.description ?? ""}`;
             })
             .join("\n")
       }

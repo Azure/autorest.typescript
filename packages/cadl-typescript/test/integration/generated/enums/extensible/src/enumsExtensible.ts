@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { EnumsExtensibleClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class EnumsExtensibleClient class.
+ * Initialize a new instance of `EnumsExtensibleClient`
  *
  */
 export default function createClient(

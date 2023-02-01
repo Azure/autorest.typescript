@@ -2,14 +2,18 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
+import { NameType, normalizeName } from "../helpers/nameUtils.js";
 import {
   hasPagingOperations,
   hasPollingOperations
 } from "../helpers/operationHelpers.js";
+import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
 import { RLCModel } from "../interfaces.js";
 
 let hasPaging = false;
 let hasLRO = false;
+let clientFilePaths: string[] = [];
+
 export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
   const generateMetadata = Boolean(model.options?.generateMetadata);
   if (!generateMetadata) {
@@ -45,22 +49,36 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     return;
   }
 
+  clientFilePaths.push(getClientFilePath(model));
+  hasPaging = hasPaging || hasPagingOperations(model);
+  hasLRO = hasLRO || hasPollingOperations(model);
+
   const {
     packageDetails,
     generateTest,
     generateSample,
     azureOutputDirectory,
     azureSdkForJs,
-    isCadlTest
+    isCadlTest,
+    sourceFrom,
+    multiClient,
+    batch
   } = model.options;
+  if (
+    multiClient &&
+    batch &&
+    batch.length > 1 &&
+    clientFilePaths.length < batch.length
+  ) {
+    return;
+  }
 
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   if (packageDetails.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
-  hasPaging = hasPaging || hasPagingOperations(model);
-  hasLRO = hasLRO || hasPollingOperations(model);
+
   const packageInfo: Record<string, any> = {
     name: `${packageDetails.name}`,
     "sdk-type": "client",
@@ -111,7 +129,9 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
         generateSample
       )}`,
       "generate:client":
-        "autorest --typescript swagger/README.md && npm run format",
+        sourceFrom === "Swagger"
+          ? "autorest --typescript swagger/README.md && npm run format"
+          : "echo skipped",
       "integration-test:browser": "echo skipped",
       "integration-test:node": "echo skipped",
       "integration-test": "echo skipped",
@@ -165,13 +185,21 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
 
   if (azureSdkForJs) {
     packageInfo["//metadata"] = {
-      constantPaths: [
-        {
-          path: "swagger/README.md",
-          prefix: "package-version"
-        }
-      ]
+      constantPaths: []
     };
+    clientFilePaths.forEach((path) => {
+      packageInfo["//metadata"].constantPaths.push({
+        path,
+        prefix: "packageDetails"
+      });
+    });
+    // Only generate this from Swagger spec
+    if (sourceFrom === "Swagger") {
+      packageInfo["//metadata"].constantPaths.add({
+        path: "swagger/README.md",
+        prefix: "package-version"
+      });
+    }
     packageInfo.scripts["build"] =
       "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local";
     packageInfo.scripts["build:debug"] =
@@ -294,4 +322,13 @@ function appendPathWhenFormat(
 
 function appednPathWhenLint(generateTest?: boolean) {
   return generateTest ? "test" : "";
+}
+
+function getClientFilePath(model: RLCModel) {
+  const { srcPath } = model;
+  const sdkReletivePart = getRelativePartFromSrcPath(srcPath);
+  const clientFilename = normalizeName(model.libraryName, NameType.File);
+  return sdkReletivePart
+    ? `src/${sdkReletivePart}/${clientFilename}.ts`
+    : `src/${clientFilename}.ts`;
 }

@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ArrayItemTypesClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ArrayItemTypesClient class.
+ * Initialize a new instance of `ArrayItemTypesClient`
  *
  */
 export default function createClient(

@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { HelloClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class HelloClient class.
+ * Initialize a new instance of `HelloClient`
  *
  */
 export default function createClient(options: ClientOptions = {}): HelloClient {

@@ -6,8 +6,8 @@ import { TokenCredential } from "@azure/core-auth";
 import { AuthOauth2Client } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class AuthOauth2Client class.
- * @param credentials type: TokenCredential
+ * Initialize a new instance of `AuthOauth2Client`
+ * @param credentials TokenCredential which uniquely identify client credential.
  */
 export default function createClient(
   credentials: TokenCredential,

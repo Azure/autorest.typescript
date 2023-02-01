@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { PlayFabClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class PlayFabClient class.
- * @param endpoint type: string
+ * Initialize a new instance of `PlayFabClient`
+ * @param endpoint The endpoint of your PlayFab service
  */
 export default function createClient(
   endpoint: string,

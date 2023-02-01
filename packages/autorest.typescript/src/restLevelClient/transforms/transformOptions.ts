@@ -43,5 +43,6 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.addCredentials = addCredentials;
   options.credentialScopes = credentialScopes;
   options.credentialKeyHeaderName = credentialKeyHeaderName;
+  options.sourceFrom = "Swagger";
   return options;
 }

@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ModelsUsageClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ModelsUsageClient class.
+ * Initialize a new instance of `ModelsUsageClient`
  *
  */
 export default function createClient(

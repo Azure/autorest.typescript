@@ -1,6 +1,12 @@
 # PlayFab REST client library for JavaScript
 
-PlayFab Service
+This feature is in private preview with a set of managed partners.  The
+Authentication APIs provide a convenient way to convert classic authentication
+responses into entity authentication models. These APIs will provide you with
+the entity authentication token needed for subsequent Entity API calls. APIs
+for authenticating player identities from a variety of identity providers
+(IDPs), linking them to PlayFab player accounts (master_player_account
+entities), and managing these links between identities and player accounts
 
 **If you are not familiar with our REST client, please spend 5 minutes to take a look at our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
 

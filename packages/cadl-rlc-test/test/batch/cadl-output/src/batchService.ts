@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { BatchServiceClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class BatchServiceClient class.
- * @param batchUrl type: string
+ * Initialize a new instance of `BatchServiceClient`
+ * @param batchUrl The base URL for all Azure Batch service requests.
  */
 export default function createClient(
   batchUrl: string,

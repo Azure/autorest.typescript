@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ModelsInheritanceClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ModelsInheritanceClient class.
+ * Initialize a new instance of `ModelsInheritanceClient`
  *
  */
 export default function createClient(

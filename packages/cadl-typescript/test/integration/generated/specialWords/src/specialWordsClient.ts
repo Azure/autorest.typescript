@@ -5,7 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { SpecialWordsClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class SpecialWordsClient class.
+ * Initialize a new instance of `SpecialWordsClient`
  *
  */
 export default function createClient(

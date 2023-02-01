@@ -13,8 +13,8 @@ export interface ParametrizedHostClientOptions extends ClientOptions {
 }
 
 /**
- * Initialize a new instance of the class ParametrizedHostClient class.
- * @param credentials type: TokenCredential
+ * Initialize a new instance of `ParametrizedHostClient`
+ * @param credentials TokenCredential which uniquely identify client credential.
  */
 export default function createClient(
   credentials: TokenCredential,

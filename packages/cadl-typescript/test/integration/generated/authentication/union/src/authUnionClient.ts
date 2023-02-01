@@ -6,8 +6,8 @@ import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { AuthUnionClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class AuthUnionClient class.
- * @param credentials type: TokenCredential | KeyCredential
+ * Initialize a new instance of `AuthUnionClient`
+ * @param credentials TokenCredential | KeyCredential which uniquely identify client credential.
  */
 export default function createClient(
   credentials: TokenCredential | KeyCredential,
