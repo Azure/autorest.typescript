@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
 
-describe("Client Factory generation testing", () => {
+describe.only("Client Factory generation", () => {
   describe("should handle url parameters", () => {
     it("should handle zero parameter", async () => {
       const models = await emitClientFactoryFromCadl(`
@@ -21,7 +21,7 @@ describe("Client Factory generation testing", () => {
         import { testClient } from "./clientDefinitions";
         
         /**
-         * Initialize a new instance of the class testClient class.
+         * Initialize a new instance of \`testClient\`
          *
          */
         export default function createClient(options: ClientOptions = {}): testClient {
@@ -68,8 +68,8 @@ describe("Client Factory generation testing", () => {
           import { testClient } from "./clientDefinitions";
 
           /**
-           * Initialize a new instance of the class testClient class.
-           * @param endpoint type: string The endpoint to use.
+           * Initialize a new instance of \`testClient\`
+           * @param endpoint The endpoint to use.
            */
           export default function createClient(
             endpoint: string,
@@ -131,9 +131,9 @@ describe("Client Factory generation testing", () => {
             import { testClient } from "./clientDefinitions";
             
             /**
-             * Initialize a new instance of the class testClient class.
-             * @param endpoint type: string The endpoint to use.
-             * @param version type: "V1"|"V2" The version to use
+             * Initialize a new instance of \`testClient\`
+             * @param endpoint The endpoint to use.
+             * @param version The version to use
              */
             export default function createClient(
               endpoint: string,
@@ -192,9 +192,9 @@ describe("Client Factory generation testing", () => {
             import { testClient } from "./clientDefinitions";
             
             /**
-             * Initialize a new instance of the class testClient class.
-             * @param endpoint type: string The endpoint to use.
-             * @param version type: string The version to use. Possible values: v1.1
+             * Initialize a new instance of \`testClient\`
+             * @param endpoint The endpoint to use.
+             * @param version The version to use. Possible values: v1.1
              */
             export default function createClient(
               endpoint: string,
@@ -251,8 +251,8 @@ describe("Client Factory generation testing", () => {
             import { testClient } from "./clientDefinitions";
             
             /**
-             * Initialize a new instance of the class testClient class.
-             * @param endpoint type: string The endpoint to use.
+             * Initialize a new instance of \`testClient\`
+             * @param endpoint The endpoint to use.
              */
             export default function createClient(
               endpoint: string,
@@ -320,8 +320,8 @@ describe("Client Factory generation testing", () => {
             }
 
             /**
-             * Initialize a new instance of the class testClient class.
-             * @param endpoint type: string The endpoint to use.
+             * Initialize a new instance of \`testClient\`
+             * @param endpoint The endpoint to use.
              */
             export default function createClient(
               endpoint: string,
@@ -367,8 +367,8 @@ describe("Client Factory generation testing", () => {
         import { testClient } from "./clientDefinitions";
         
         /**
-         * Initialize a new instance of the class testClient class.
-         * @param endpoint type: string
+         * Initialize a new instance of \`testClient\`
+         * @param endpoint
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -414,8 +414,8 @@ describe("Client Factory generation testing", () => {
         import { testClient } from "./clientDefinitions";
         
         /**
-         * Initialize a new instance of the class testClient class.
-         * @param endpoint type: string
+         * Initialize a new instance of \`testClient\`
+         * @param endpoint The endpoint to use.
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -461,9 +461,9 @@ describe("Client Factory generation testing", () => {
         import { testClient } from "./clientDefinitions";
         
         /**
-         * Initialize a new instance of the class testClient class.
-         * @param endpoint type: string
-         * @param credentials type: TokenCredential | KeyCredential
+         * Initialize a new instance of \`testClient\`
+         * @param endpoint 
+         * @param credentials TokenCredential | KeyCredential which uniquely identify client credential
          */
         export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
