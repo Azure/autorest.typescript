@@ -19,6 +19,7 @@ async function compileResourceOperation(code: string) {
     #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
     model TestModel {
       @key
+      @visibility("read")
       @segment("test")
       name: string;
       value: int32;
