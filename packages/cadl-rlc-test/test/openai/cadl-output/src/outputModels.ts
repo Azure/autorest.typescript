@@ -1,15 +1,34 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Expected response schema to embeddings request */
 export interface EmbeddingsOutput {
+  /** Type of the data field */
   object: "list";
-  data: Array<EmbeddingOutput>;
+  /** Embedding values for the prompts submitted in the request */
+  data: Array<EmbeddingItemOutput>;
+  /** ID of the model to use */
+  model?: string;
+  /** Usage counts for tokens input using the embeddings API */
+  usage: EmbeddingsUsageOutput;
 }
 
-export interface EmbeddingOutput {
+/** Expected response schema to embeddings object list item request */
+export interface EmbeddingItemOutput {
+  /** Name of the field in which the embedding is contained */
   object: "embedding";
+  /** List of embeddings value for the input prompt. These represents a measurement of releated of text strings */
   embedding: number[];
+  /** Index of the prompt to which the EmbeddingItem corresponds */
   index: number;
+}
+
+/** Measurment of the amount of tokens used in this request and response */
+export interface EmbeddingsUsageOutput {
+  /** Number of tokens sent in the original request */
+  prompt_tokens: number;
+  /** Total number of tokens transacted in this request/response */
+  total_tokens: number;
 }
 
 /** A response containing error details. */
@@ -41,7 +60,7 @@ export interface InnerErrorOutput {
 }
 
 /** Expected response schema to completion request */
-export interface CompletionOutput {
+export interface CompletionsOutput {
   /** Id for completion response */
   id?: string;
   /** Object for completion response */
@@ -52,6 +71,8 @@ export interface CompletionOutput {
   model?: string;
   /** Array of choices returned containing text completions to prompts sent */
   choices?: Array<ChoiceOutput>;
+  /** Usage counts for tokens input using the completions API */
+  usage: CompletionsUsageOutput;
 }
 
 /** Choice model within completion response */
@@ -61,13 +82,13 @@ export interface ChoiceOutput {
   /** Index */
   index?: number;
   /** Log Prob Model */
-  logprobs?: CompletionsLogProbsModelOutput;
+  logprobs?: CompletionsLogProbsOutput;
   /** Reason for finishing */
   finish_reason?: string;
 }
 
 /** LogProbs model within completion choice */
-export interface CompletionsLogProbsModelOutput {
+export interface CompletionsLogProbsOutput {
   /** Tokens */
   tokens?: string[];
   /** LogProbs of Tokens */
@@ -76,4 +97,14 @@ export interface CompletionsLogProbsModelOutput {
   top_logprobs?: Record<string, number>[];
   /** Text offset */
   text_offset?: number[];
+}
+
+/** Measurment of the amount of tokens used in this request and response */
+export interface CompletionsUsageOutput {
+  /** Number of tokens received in the completion */
+  completion_token: number;
+  /** Number of tokens sent in the original request */
+  prompt_tokens: number;
+  /** Total number of tokens transacted in this request/response */
+  total_tokens: number;
 }
