@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
 
-describe.only("Client Factory generation", () => {
+describe("Client Factory generation", () => {
   describe("should handle url parameters", () => {
     it("should handle zero parameter", async () => {
       const models = await emitClientFactoryFromCadl(`
@@ -415,7 +415,7 @@ describe.only("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint The endpoint to use.
+         * @param endpoint
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -463,7 +463,7 @@ describe.only("Client Factory generation", () => {
         /**
          * Initialize a new instance of \`testClient\`
          * @param endpoint 
-         * @param credentials TokenCredential | KeyCredential which uniquely identify client credential
+         * @param credentials TokenCredential | KeyCredential which uniquely identify client credential.
          */
         export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;

@@ -25,7 +25,8 @@ import {
   ModelProperty,
   listServices,
   NoTarget,
-  Service
+  Service,
+  getDoc
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -136,8 +137,14 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
           name: key,
           type: getTypeName(schema),
           description:
-            getFormattedPropertyDoc(program, property, schema, "") ??
-            getFormattedPropertyDoc(program, type, schema, ""),
+            (getDoc(program, property) &&
+              getFormattedPropertyDoc(
+                program,
+                property,
+                schema,
+                " " /* sperator*/
+              )) ??
+            getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
           value: getDefaultValue(program, host?.[0]?.parameters.get(key))
         });
       }
