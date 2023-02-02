@@ -104,8 +104,30 @@ function getParameterMetadata(
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
-  const type = getTypeName(schema);
+  let type = getTypeName(schema);
   const name = getParameterName(parameter.name);
+  let description =
+    getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
+  if (type === "string[]" || type === "Array<string>") {
+    const serializeInfo = getSpecialSerializeInfo(parameter);
+    if (
+      serializeInfo.hasMultiCollection ||
+      serializeInfo.hasPipeCollection ||
+      serializeInfo.hasSsvCollection ||
+      serializeInfo.hasTsvCollection
+    ) {
+      type = "string";
+      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
+        ", "
+      )} collection, we provide ${serializeInfo.descriptions.join(
+        ", "
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
+          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+          : ""
+      }`;
+    }
+  }
   return {
     type: paramType,
     name,
@@ -113,8 +135,7 @@ function getParameterMetadata(
       name,
       type,
       required: !parameter.param.optional,
-      description:
-        getFormattedPropertyDoc(program, parameter.param, schema) ?? ""
+      description
     }
   };
 }
@@ -413,4 +434,30 @@ function extractDescriptionsFromBody(
       ])
     );
   return description ? [description] : [];
+}
+
+export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
+  let hasMultiCollection = false;
+  let hasPipeCollection = false;
+  let hasSsvCollection = false;
+  let hasTsvCollection = false;
+  const descriptions = [];
+  const collectionInfo = [];
+  if (
+    (parameter.type === "query" || parameter.type === "header") &&
+    (parameter as any).format === "multi"
+  ) {
+    hasMultiCollection = true;
+    descriptions.push("buildMultiCollection");
+    collectionInfo.push("multi");
+  }
+  // TODO add other collection logic once cadl has supported it.
+  return {
+    hasMultiCollection,
+    hasPipeCollection,
+    hasSsvCollection,
+    hasTsvCollection,
+    descriptions,
+    collectionInfo
+  };
 }
