@@ -51,15 +51,6 @@
         "description": "Lists the existing projects.",
         "parameters": [
           {
-            "$ref": "#/parameters/Azure.Core.TopQueryParameter"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.SkipQueryParameter"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.MaxPageSizeQueryParameter"
-          },
-          {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
@@ -89,7 +80,7 @@
               "required": [
                 "value"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Project, (anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Project, Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -110,6 +101,9 @@
         "description": "Creates a new project or updates an existing one.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
@@ -117,41 +111,12 @@
             "type": "string"
           },
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "name": "body",
+            "name": "resource",
             "in": "body",
+            "required": true,
+            "description": "The resource instance.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "projectKind": {
-                  "$ref": "#/definitions/ProjectKind",
-                  "description": "The project kind."
-                },
-                "storageInputContainerName": {
-                  "type": "string",
-                  "description": "The storage container name."
-                },
-                "settings": {
-                  "$ref": "#/definitions/ProjectSettings",
-                  "description": "The project settings."
-                },
-                "multilingual": {
-                  "type": "boolean",
-                  "description": "Whether the project would be used for multiple languages or not."
-                },
-                "description": {
-                  "type": "string",
-                  "description": "The project description."
-                },
-                "language": {
-                  "type": "string",
-                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
-                }
-              },
-              "description": "The template for adding optional properties.",
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrUpdateModel<Project>"
+              "$ref": "#/definitions/ProjectUpdate"
             }
           }
         ],
@@ -166,73 +131,7 @@
               }
             },
             "schema": {
-              "type": "object",
-              "properties": {
-                "projectName": {
-                  "type": "string",
-                  "description": "The project name.",
-                  "readOnly": true
-                },
-                "projectKind": {
-                  "$ref": "#/definitions/ProjectKind",
-                  "description": "The project kind."
-                },
-                "storageInputContainerName": {
-                  "type": "string",
-                  "description": "The storage container name."
-                },
-                "settings": {
-                  "$ref": "#/definitions/ProjectSettings",
-                  "description": "The project settings."
-                },
-                "multilingual": {
-                  "type": "boolean",
-                  "description": "Whether the project would be used for multiple languages or not."
-                },
-                "description": {
-                  "type": "string",
-                  "description": "The project description."
-                },
-                "language": {
-                  "type": "string",
-                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
-                },
-                "createdDateTime": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Represents the project creation datetime.",
-                  "readOnly": true
-                },
-                "lastModifiedDateTime": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Represents the project last modification datetime.",
-                  "readOnly": true
-                },
-                "lastTrainedDateTime": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Represents the project last training datetime.",
-                  "readOnly": true
-                },
-                "lastDeployedDateTime": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Represents the project last deployment datetime.",
-                  "readOnly": true
-                }
-              },
-              "required": [
-                "projectName",
-                "projectKind",
-                "storageInputContainerName",
-                "language",
-                "createdDateTime",
-                "lastModifiedDateTime",
-                "lastTrainedDateTime",
-                "lastDeployedDateTime"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Project"
             }
           },
           "201": {
@@ -245,74 +144,7 @@
               }
             },
             "schema": {
-              "type": "object",
-              "properties": {
-                "projectName": {
-                  "type": "string",
-                  "description": "The project name.",
-                  "readOnly": true
-                },
-                "projectKind": {
-                  "$ref": "#/definitions/ProjectKind",
-                  "description": "The project kind."
-                },
-                "storageInputContainerName": {
-                  "type": "string",
-                  "description": "The storage container name."
-                },
-                "settings": {
-                  "$ref": "#/definitions/ProjectSettings",
-                  "description": "The project settings."
-                },
-                "multilingual": {
-                  "type": "boolean",
-                  "description": "Whether the project would be used for multiple languages or not."
-                },
-                "description": {
-                  "type": "string",
-                  "description": "The project description."
-                },
-                "language": {
-                  "type": "string",
-                  "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
-                },
-                "createdDateTime": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Represents the project creation datetime.",
-                  "readOnly": true
-                },
-                "lastModifiedDateTime": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Represents the project last modification datetime.",
-                  "readOnly": true
-                },
-                "lastTrainedDateTime": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Represents the project last training datetime.",
-                  "readOnly": true
-                },
-                "lastDeployedDateTime": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Represents the project last deployment datetime.",
-                  "readOnly": true
-                }
-              },
-              "description": "A  resource was successfully created.",
-              "required": [
-                "projectName",
-                "projectKind",
-                "storageInputContainerName",
-                "language",
-                "createdDateTime",
-                "lastModifiedDateTime",
-                "lastTrainedDateTime",
-                "lastDeployedDateTime"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Project"
             }
           },
           "default": {
@@ -331,14 +163,14 @@
         "description": "Gets the details of a project.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
             "description": "The project name.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -361,14 +193,14 @@
         "description": "Deletes a project.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
             "description": "The project name.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -397,11 +229,12 @@
                   "description": "Error object that describes the error when status is \"Failed\"."
                 }
               },
+              "description": "Provides status details for long running operations.",
               "required": [
                 "id",
                 "status"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<Azure.Core.(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.OperationStatus<never, Azure.Core.Foundations.Error>"
             }
           },
           "default": {
@@ -419,6 +252,9 @@
         "description": "Triggers a job to export a project's data.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
@@ -427,9 +263,6 @@
           },
           {
             "$ref": "#/parameters/ExportParams"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -458,14 +291,14 @@
         "description": "Triggers a job to export a project's data.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
             "description": "The project name.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -494,14 +327,14 @@
         "description": "Triggers a training job for a project.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
             "description": "The project name.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
             "name": "body",
@@ -539,14 +372,14 @@
         "description": "Lists the existing deployments.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
             "description": "The project name.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -575,7 +408,7 @@
               "required": [
                 "value"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Deployment, {}>"
+              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Deployment, Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -596,6 +429,9 @@
         "description": "Gets the details of a deployment.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
@@ -608,9 +444,6 @@
             "required": true,
             "description": "The name of the deployment.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -633,6 +466,9 @@
         "description": "Creates a new deployment or replaces an existing one.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
@@ -647,7 +483,13 @@
             "type": "string"
           },
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "description": "The resource instance.",
+            "schema": {
+              "$ref": "#/definitions/Deployment"
+            }
           }
         ],
         "responses": {
@@ -661,18 +503,7 @@
               }
             },
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "The name of the deployment.",
-                  "readOnly": true
-                }
-              },
-              "required": [
-                "name"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Deployment"
             }
           },
           "201": {
@@ -685,19 +516,7 @@
               }
             },
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "The name of the deployment.",
-                  "readOnly": true
-                }
-              },
-              "description": "A  resource was successfully created.",
-              "required": [
-                "name"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Deployment"
             }
           },
           "default": {
@@ -713,6 +532,9 @@
         "description": "Deletes a project deployment.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
@@ -725,9 +547,6 @@
             "required": true,
             "description": "The name of the deployment.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -756,11 +575,12 @@
                   "description": "Error object that describes the error when status is \"Failed\"."
                 }
               },
+              "description": "Provides status details for long running operations.",
               "required": [
                 "id",
                 "status"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<Azure.Core.(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.OperationStatus<never, Azure.Core.Foundations.Error>"
             }
           },
           "default": {
@@ -777,6 +597,9 @@
         "operationId": "Jobs_GetDeploymentStatus",
         "description": "Gets the status of an existing deployment job.",
         "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
           {
             "name": "projectName",
             "in": "path",
@@ -797,9 +620,6 @@
             "required": true,
             "description": "The job ID.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -824,6 +644,9 @@
         "description": "Gets the status of an existing swap deployment job.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
@@ -843,9 +666,6 @@
             "required": true,
             "description": "The job ID.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -870,14 +690,14 @@
         "description": "Swaps two existing deployments with each other.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "projectName",
             "in": "path",
             "required": true,
             "description": "The project name.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
             "$ref": "#/parameters/SwapDeploymentsParams"
@@ -909,6 +729,9 @@
         "description": "Gets the supported languages.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "$ref": "#/parameters/Azure.Core.TopQueryParameter"
           },
           {
@@ -916,9 +739,6 @@
           },
           {
             "$ref": "#/parameters/Azure.Core.MaxPageSizeQueryParameter"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -946,6 +766,9 @@
         "description": "Lists training configuration versions.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "$ref": "#/parameters/Azure.Core.TopQueryParameter"
           },
           {
@@ -953,9 +776,6 @@
           },
           {
             "$ref": "#/parameters/Azure.Core.MaxPageSizeQueryParameter"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -1388,6 +1208,41 @@
         "type": "string"
       },
       "description": "Represents the settings used to define the project behavior."
+    },
+    "ProjectUpdate": {
+      "type": "object",
+      "properties": {
+        "projectKind": {
+          "$ref": "#/definitions/ProjectKind",
+          "description": "The project kind."
+        },
+        "storageInputContainerName": {
+          "type": "string",
+          "description": "The storage container name."
+        },
+        "settings": {
+          "$ref": "#/definitions/ProjectSettings",
+          "description": "The project settings."
+        },
+        "multilingual": {
+          "type": "boolean",
+          "description": "Whether the project would be used for multiple languages or not."
+        },
+        "description": {
+          "type": "string",
+          "description": "The project description."
+        },
+        "language": {
+          "type": "string",
+          "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
+        }
+      },
+      "description": "The details of a project.",
+      "required": [
+        "projectKind",
+        "storageInputContainerName",
+        "language"
+      ]
     },
     "SupportedLanguage": {
       "type": "object",

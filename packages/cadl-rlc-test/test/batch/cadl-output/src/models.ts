@@ -3,8 +3,6 @@
 
 /** Contains utilization and resource usage statistics for the lifetime of a Pool. */
 export interface PoolStatistics {
-  /** The URL for the statistics. */
-  url: string;
   /** The start time of the time range covered by the statistics. */
   startTime: Date | string;
   /**
@@ -514,8 +512,6 @@ export interface NameValuePair {
 
 /** The results and errors from an execution of a Pool autoscale formula. */
 export interface AutoScaleRun {
-  /** The time at which the autoscale formula was last evaluated. */
-  timestamp: Date | string;
   /**
    * Each variable value is returned in the form $variable=value, and variables are
    * separated by semicolons.
@@ -1208,8 +1204,6 @@ export interface NodeRemoveParameters {
 
 /** Resource usage statistics for a Job. */
 export interface JobStatistics {
-  /** The URL of the statistics. */
-  url: string;
   /** The start time of the time range covered by the statistics. */
   startTime: Date | string;
   /**
@@ -2951,11 +2945,6 @@ export interface NodeDisableSchedulingParameters {
 
 /** The result of uploading Batch service log files from a specific Compute Node. */
 export interface UploadBatchServiceLogsResult {
-  /**
-   * The virtual directory name is part of the blob name for each log file uploaded,
-   * and it is built based poolId, nodeId and a unique identifier.
-   */
-  virtualDirectoryName: string;
   /** The number of log files which will be uploaded. */
   numberOfFilesUploaded: number;
 }

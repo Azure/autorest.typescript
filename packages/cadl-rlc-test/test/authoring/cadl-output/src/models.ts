@@ -26,6 +26,9 @@ export interface TrainingJobOptions {
   modelLabel: string;
 }
 
+/** The details of a project deployment. */
+export interface Deployment {}
+
 /** Swap deployment options. */
 export interface SwapDeploymentsOptions {
   /** Represents the first deployment name. */

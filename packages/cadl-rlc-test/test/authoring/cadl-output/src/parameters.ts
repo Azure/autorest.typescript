@@ -2,12 +2,19 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Project, TrainingJobOptions, SwapDeploymentsOptions } from "./models";
+import {
+  Project,
+  TrainingJobOptions,
+  Deployment,
+  SwapDeploymentsOptions,
+} from "./models";
 
+/** The resource instance. */
 export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 export interface CreateOrUpdateBodyParam {
-  body?: ProjectResourceMergeAndPatch;
+  /** The resource instance. */
+  body: ProjectResourceMergeAndPatch;
 }
 
 export interface CreateOrUpdateMediaTypesParam {
@@ -20,21 +27,7 @@ export type CreateOrUpdateParameters = CreateOrUpdateMediaTypesParam &
   RequestParameters;
 export type GetParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
-
-export interface ListProjectsQueryParamProperties {
-  /** The number of result items to return. */
-  top?: number;
-  /** The number of result items to skip. */
-  skip?: number;
-  /** The maximum number of result items per page. */
-  maxpagesize?: number;
-}
-
-export interface ListProjectsQueryParam {
-  queryParameters?: ListProjectsQueryParamProperties;
-}
-
-export type ListProjectsParameters = ListProjectsQueryParam & RequestParameters;
+export type ListProjectsParameters = RequestParameters;
 
 export interface ExportQueryParamProperties {
   /** The project file version. */
@@ -55,7 +48,14 @@ export interface TrainBodyParam {
 
 export type TrainParameters = TrainBodyParam & RequestParameters;
 export type GetDeploymentParameters = RequestParameters;
-export type DeployProjectParameters = RequestParameters;
+
+export interface DeployProjectBodyParam {
+  /** The resource instance. */
+  body: Deployment;
+}
+
+export type DeployProjectParameters = DeployProjectBodyParam &
+  RequestParameters;
 export type DeleteDeploymentParameters = RequestParameters;
 export type ListDeploymentsParameters = RequestParameters;
 

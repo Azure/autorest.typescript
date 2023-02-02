@@ -26,18 +26,6 @@
         "description": "List Widget resources",
         "parameters": [
           {
-            "$ref": "#/parameters/Azure.Core.TopQueryParameter"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.SkipQueryParameter"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.MaxPageSizeQueryParameter"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.SelectQueryParameter"
-          },
-          {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
@@ -67,7 +55,7 @@
               "required": [
                 "value"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Widget, (anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.CustomPage<Widget, Azure.Core.(anonymous model)>"
             }
           },
           "default": {
@@ -88,14 +76,14 @@
         "description": "Fetch a Widget by name.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "widgetName",
             "in": "path",
             "required": true,
             "description": "The widget name.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -118,6 +106,9 @@
         "description": "Creates or updates a Widget asynchronously.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "widgetName",
             "in": "path",
             "required": true,
@@ -125,25 +116,12 @@
             "type": "string"
           },
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "name": "body",
+            "name": "resource",
             "in": "body",
+            "required": true,
+            "description": "The resource instance.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "manufacturerId": {
-                  "type": "string",
-                  "description": "The ID of the widget's manufacturer."
-                },
-                "sharedModel": {
-                  "$ref": "#/definitions/FakedSharedModel",
-                  "description": "The faked shared model."
-                }
-              },
-              "description": "The template for adding optional properties.",
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrUpdateModel<Widget>"
+              "$ref": "#/definitions/WidgetUpdate"
             }
           }
         ],
@@ -158,27 +136,7 @@
               }
             },
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "The widget name.",
-                  "readOnly": true
-                },
-                "manufacturerId": {
-                  "type": "string",
-                  "description": "The ID of the widget's manufacturer."
-                },
-                "sharedModel": {
-                  "$ref": "#/definitions/FakedSharedModel",
-                  "description": "The faked shared model."
-                }
-              },
-              "required": [
-                "name",
-                "manufacturerId"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Widget"
             }
           },
           "201": {
@@ -191,28 +149,7 @@
               }
             },
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "The widget name.",
-                  "readOnly": true
-                },
-                "manufacturerId": {
-                  "type": "string",
-                  "description": "The ID of the widget's manufacturer."
-                },
-                "sharedModel": {
-                  "$ref": "#/definitions/FakedSharedModel",
-                  "description": "The faked shared model."
-                }
-              },
-              "description": "A  resource was successfully created.",
-              "required": [
-                "name",
-                "manufacturerId"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/Widget"
             }
           },
           "default": {
@@ -231,14 +168,14 @@
         "description": "Delete a Widget asynchronously.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "widgetName",
             "in": "path",
             "required": true,
             "description": "The widget name.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -267,11 +204,12 @@
                   "description": "Error object that describes the error when status is \"Failed\"."
                 }
               },
+              "description": "Provides status details for long running operations.",
               "required": [
                 "id",
                 "status"
               ],
-              "x-cadl-name": "Azure.Core.Foundations.AcceptedResponse<Azure.Core.(anonymous model)>"
+              "x-cadl-name": "Azure.Core.Foundations.OperationStatus<never, Azure.Core.Foundations.Error>"
             }
           },
           "default": {
@@ -289,6 +227,9 @@
         "description": "Gets status of a Widget operation.",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "widgetName",
             "in": "path",
             "required": true,
@@ -301,9 +242,6 @@
             "required": true,
             "description": "The unique ID of the operation.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -450,6 +388,25 @@
         "createdDate"
       ]
     },
+    "FakedSharedModelUpdate": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "description": "The tag."
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The created date."
+        }
+      },
+      "description": "Faked shared model",
+      "required": [
+        "tag",
+        "createdDate"
+      ]
+    },
     "Versions": {
       "type": "string",
       "enum": [
@@ -488,6 +445,23 @@
         "name",
         "manufacturerId"
       ]
+    },
+    "WidgetUpdate": {
+      "type": "object",
+      "properties": {
+        "manufacturerId": {
+          "type": "string",
+          "description": "The ID of the widget's manufacturer."
+        },
+        "sharedModel": {
+          "$ref": "#/definitions/FakedSharedModelUpdate",
+          "description": "The faked shared model."
+        }
+      },
+      "description": "A widget.",
+      "required": [
+        "manufacturerId"
+      ]
     }
   },
   "parameters": {
@@ -499,44 +473,6 @@
       "x-ms-client-name": "apiVersion",
       "minLength": 1,
       "type": "string",
-      "x-ms-parameter-location": "method"
-    },
-    "Azure.Core.MaxPageSizeQueryParameter": {
-      "name": "maxpagesize",
-      "in": "query",
-      "required": false,
-      "description": "The maximum number of result items per page.",
-      "type": "integer",
-      "format": "int32",
-      "x-ms-parameter-location": "method"
-    },
-    "Azure.Core.SelectQueryParameter": {
-      "name": "select",
-      "in": "query",
-      "required": false,
-      "description": "Select the specified fields to be included in the response.",
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "x-ms-parameter-location": "method"
-    },
-    "Azure.Core.SkipQueryParameter": {
-      "name": "skip",
-      "in": "query",
-      "required": false,
-      "description": "The number of result items to skip.",
-      "type": "integer",
-      "format": "int32",
-      "x-ms-parameter-location": "method"
-    },
-    "Azure.Core.TopQueryParameter": {
-      "name": "top",
-      "in": "query",
-      "required": false,
-      "description": "The number of result items to return.",
-      "type": "integer",
-      "format": "int32",
       "x-ms-parameter-location": "method"
     }
   }

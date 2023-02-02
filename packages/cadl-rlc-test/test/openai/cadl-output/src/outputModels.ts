@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Expected response schema to embeddings request */
+/** A specific deployment */
+export interface DeploymentOutput {
+  /** deployment id of the deployed model */
+  readonly deploymentId: string;
+}
+
 export interface EmbeddingsOutput {
   /** Type of the data field */
   object: "list";

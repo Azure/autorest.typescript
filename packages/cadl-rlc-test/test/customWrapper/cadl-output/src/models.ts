@@ -3,8 +3,6 @@
 
 /** Deployment resource creation parameters. */
 export interface DeploymentCreationParameters {
-  /** The name of the deployment. */
-  name: string;
   /** The ID of the end-user, for use in tracking and rate-limiting. */
   user?: string;
   /** input type of embedding search to use */
