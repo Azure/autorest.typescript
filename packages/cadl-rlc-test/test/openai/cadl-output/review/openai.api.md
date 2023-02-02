@@ -9,9 +9,9 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
+import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
 export type AzureOpenAIApiClient = Client & {
@@ -22,84 +22,77 @@ export type AzureOpenAIApiClient = Client & {
 export interface ChoiceOutput {
     finish_reason?: string;
     index?: number;
-    logprobs?: CompletionsLogProbsModelOutput;
+    logprobs?: CompletionsLogProbsOutput;
     text?: string;
 }
 
 // @public
-export interface CompletionOutput {
-    choices?: Array<ChoiceOutput>;
-    created?: number;
-    id?: string;
-    model?: string;
-    object: "text_completion";
-}
-
-// @public (undocumented)
-export interface Completions {
-    post(options?: CompletionsParameters): StreamableMethod<Completions200Response | CompletionsDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface Completions200Headers {
-    "apim-request-id": string;
-}
-
-// @public
-export interface Completions200Response extends HttpResponse {
-    // (undocumented)
-    body: CompletionOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & Completions200Headers;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface CompletionsBodyParam {
-    // (undocumented)
-    body?: {
-        prompt: string | string[] | string[][];
-        max_tokens: number;
-        temperature: number;
-        top_p: number;
-        logit_bias: Record<string, number>;
-        user: string;
-        n: number;
-        stream: boolean;
-        logprobs: number;
-        model: string;
-        echo: boolean;
-        stop: string | string[];
-        completion_config: string;
-        cache_level: number;
-        presence_penalty: number;
-        frequency_penalty: number;
-        best_of: number;
-    };
-}
-
-// @public (undocumented)
-export interface CompletionsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public
-export interface CompletionsLogProbsModelOutput {
+export interface CompletionsLogProbsOutput {
     text_offset?: number[];
     token_logprobs?: number[];
     tokens?: string[];
     top_logprobs?: Record<string, number>[];
 }
 
-// @public (undocumented)
-export type CompletionsParameters = CompletionsBodyParam & RequestParameters;
+// @public
+export interface CompletionsOptions {
+    best_of?: number;
+    cache_level?: number;
+    completion_config?: string;
+    echo?: boolean;
+    frequency_penalty?: number;
+    logit_bias?: Record<string, number>;
+    logprobs?: number;
+    max_tokens?: number;
+    model: string;
+    n?: number;
+    presence_penalty?: number;
+    prompt?: string[];
+    stop?: string[];
+    temperature?: number;
+    top_p?: number;
+    user?: string;
+}
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureOpenAIApiClient;
+export interface CompletionsOptionsOutput {
+    best_of?: number;
+    cache_level?: number;
+    completion_config?: string;
+    echo?: boolean;
+    frequency_penalty?: number;
+    logit_bias?: Record<string, number>;
+    logprobs?: number;
+    max_tokens?: number;
+    model: string;
+    n?: number;
+    presence_penalty?: number;
+    prompt?: string[];
+    stop?: string[];
+    temperature?: number;
+    top_p?: number;
+    user?: string;
+}
+
+// @public
+export interface CompletionsOutput {
+    choices?: Array<ChoiceOutput>;
+    created?: number;
+    id?: string;
+    model?: string;
+    object: "text_completion";
+    usage: CompletionsUsageOutput;
+}
+
+// @public
+export interface CompletionsUsageOutput {
+    completion_token: number;
+    prompt_tokens: number;
+    total_tokens: number;
+}
+
+// @public
+function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): AzureOpenAIApiClient;
 export default createClient;
 
 // @public
@@ -107,68 +100,34 @@ export interface DeploymentOutput {
     readonly deploymentId: string;
 }
 
-// @public (undocumented)
-export interface EmbeddingOutput {
-    // (undocumented)
+// @public
+export interface EmbeddingItemOutput {
     embedding: number[];
-    // (undocumented)
     index: number;
-    // (undocumented)
     object: "embedding";
 }
 
-// @public (undocumented)
-export interface Embeddings {
-    post(options?: EmbeddingsParameters): StreamableMethod<Embeddings200Response | EmbeddingsDefaultResponse>;
-}
-
 // @public
-export interface Embeddings200Response extends HttpResponse {
-    // (undocumented)
-    body: EmbeddingsOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface EmbeddingsBodyParam {
-    // (undocumented)
-    body?: {
-        input_type: string;
-        model: string;
-        input: string | string[] | number[] | number[][];
-    };
-}
-
-// @public (undocumented)
-export interface EmbeddingsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponseOutput;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface EmbeddingsHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & EmbeddingsHeaders;
-}
-
-// @public (undocumented)
-export interface EmbeddingsHeaders {
+export interface EmbeddingsOptions {
+    input: string | string[];
+    input_type?: string;
+    model?: string;
     user?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface EmbeddingsOutput {
-    // (undocumented)
-    data: Array<EmbeddingOutput>;
-    // (undocumented)
+    data: Array<EmbeddingItemOutput>;
+    model?: string;
     object: "list";
+    usage: EmbeddingsUsageOutput;
 }
 
-// @public (undocumented)
-export type EmbeddingsParameters = EmbeddingsHeaderParam & EmbeddingsBodyParam & RequestParameters;
+// @public
+export interface EmbeddingsUsageOutput {
+    prompt_tokens: number;
+    total_tokens: number;
+}
 
 // @public
 export interface ErrorModelOutput {
@@ -184,6 +143,73 @@ export interface ErrorResponseOutput {
     error: ErrorModelOutput;
 }
 
+// @public (undocumented)
+export interface GetCompletions {
+    post(options?: GetCompletionsParameters): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface GetCompletions200Headers {
+    "apim-request-id": string;
+}
+
+// @public
+export interface GetCompletions200Response extends HttpResponse {
+    // (undocumented)
+    body: CompletionsOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & GetCompletions200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetCompletionsBodyParam {
+    // (undocumented)
+    body?: CompletionsOptions;
+}
+
+// @public (undocumented)
+export interface GetCompletionsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetCompletionsParameters = GetCompletionsBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetEmbeddings {
+    post(options?: GetEmbeddingsParameters): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
+}
+
+// @public
+export interface GetEmbeddings200Response extends HttpResponse {
+    // (undocumented)
+    body: EmbeddingsOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetEmbeddingsBodyParam {
+    // (undocumented)
+    body?: EmbeddingsOptions;
+}
+
+// @public (undocumented)
+export interface GetEmbeddingsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponseOutput;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetEmbeddingsParameters = GetEmbeddingsBodyParam & RequestParameters;
+
 // @public
 export interface InnerErrorOutput {
     code: string;
@@ -191,15 +217,15 @@ export interface InnerErrorOutput {
 }
 
 // @public (undocumented)
-export function isUnexpected(response: Embeddings200Response | EmbeddingsDefaultResponse): response is EmbeddingsDefaultResponse;
+export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse): response is GetEmbeddingsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: Completions200Response | CompletionsDefaultResponse): response is CompletionsDefaultResponse;
+export function isUnexpected(response: GetCompletions200Response | GetCompletionsDefaultResponse): response is GetCompletionsDefaultResponse;
 
 // @public (undocumented)
 export interface Routes {
-    (path: "/deployments/{deploymentId}/embeddings", deploymentId: string): Embeddings;
-    (path: "/deployments/{deploymentId}/completions", deploymentId: string): Completions;
+    (path: "/deployments/{deploymentId}/embeddings", deploymentId: string): GetEmbeddings;
+    (path: "/deployments/{deploymentId}/completions", deploymentId: string): GetCompletions;
 }
 
 // (No @packageDocumentation comment for this package)
