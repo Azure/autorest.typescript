@@ -45,6 +45,7 @@ enum ServiceApiVersions {
 @Cadl.Rest.resource("deployments")
 model Deployment {
   @doc("deployment id of the deployed model")
+  @visibility("read")
   @key
   deploymentId: string;
 }

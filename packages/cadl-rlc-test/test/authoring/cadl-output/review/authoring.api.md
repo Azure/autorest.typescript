@@ -60,8 +60,7 @@ export interface CreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CreateOrUpdateBodyParam {
-    // (undocumented)
-    body?: ProjectResourceMergeAndPatch;
+    body: ProjectResourceMergeAndPatch;
 }
 
 // @public (undocumented)
@@ -133,6 +132,10 @@ export type DeleteDeploymentParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
 
 // @public
+export interface Deployment {
+}
+
+// @public
 export interface DeploymentJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
@@ -186,6 +189,11 @@ export interface DeployProject201Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeployProjectBodyParam {
+    body: Deployment;
+}
+
+// @public (undocumented)
 export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -194,7 +202,7 @@ export interface DeployProjectDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeployProjectParameters = RequestParameters;
+export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
 
 // @public
 export interface ErrorModelOutput {
@@ -273,7 +281,7 @@ export interface GetDefaultResponse extends HttpResponse {
 export interface GetDeployment {
     delete(options?: DeleteDeploymentParameters): StreamableMethod<DeleteDeployment202Response | DeleteDeploymentDefaultResponse>;
     get(options?: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
-    put(options?: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
+    put(options: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
 }
 
 // @public
@@ -527,20 +535,7 @@ export interface ListProjectsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListProjectsParameters = ListProjectsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ListProjectsQueryParam {
-    // (undocumented)
-    queryParameters?: ListProjectsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ListProjectsQueryParamProperties {
-    maxpagesize?: number;
-    skip?: number;
-    top?: number;
-}
+export type ListProjectsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ListTrainingConfigVersions {
@@ -649,7 +644,7 @@ export interface ProjectOutput {
     storageInputContainerName: string;
 }
 
-// @public (undocumented)
+// @public
 export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 // @public (undocumented)

@@ -3,7 +3,7 @@
 
 /** Identifier for collections. */
 export interface CollectionOutput {
-  collectionId: string;
+  readonly collectionId: string;
 }
 
 /** A response containing error details. */

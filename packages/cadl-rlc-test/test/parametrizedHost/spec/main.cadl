@@ -52,6 +52,7 @@ model MyFlow {
 @doc("Identifier for collections.")
 model Collection {
   @key
+  @visibility("read")
   collectionId: string;
 }
 

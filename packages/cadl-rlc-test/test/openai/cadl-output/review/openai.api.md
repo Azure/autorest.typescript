@@ -102,6 +102,11 @@ export type CompletionsParameters = CompletionsBodyParam & RequestParameters;
 function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureOpenAIApiClient;
 export default createClient;
 
+// @public
+export interface DeploymentOutput {
+    readonly deploymentId: string;
+}
+
 // @public (undocumented)
 export interface EmbeddingOutput {
     // (undocumented)

@@ -339,6 +339,7 @@ model Application {
   @doc("A string that uniquely identifies the application within the Account.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   id: string;
 
   @doc("The display name for the application.")
@@ -400,6 +401,7 @@ model PoolUsageMetrics {
   @doc("The ID of the Pool whose metrics are aggregated in this entry.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   poolId: string;
 
   @doc("The start time of the aggregation interval covered by this entry.")
@@ -440,6 +442,7 @@ model ImageInformation {
   @doc("The ID of the Compute Node agent SKU which the Image supports.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   nodeAgentSKUId: string;
 
   @doc("""
@@ -531,6 +534,7 @@ model PoolNodeCounts {
   @doc("The ID of the Pool.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   poolId: string;
 
   @doc("The number of Compute Nodes in each Compute Node state.")
@@ -590,6 +594,7 @@ model PoolStatistics {
   @doc("The URL for the statistics.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   url: string;
 
   @doc("The start time of the time range covered by the statistics.")
@@ -691,6 +696,7 @@ model JobStatistics {
   @doc("The URL of the statistics.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   url: string;
 
   @doc("The start time of the time range covered by the statistics.")
@@ -3375,6 +3381,7 @@ model TaskCountsResult {
   @doc("The Task counts for a Job.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   taskCounts: TaskCounts;
 
   @doc("The TaskSlot counts for a Job.")
@@ -3668,6 +3675,7 @@ model AutoScaleRun {
   @doc("The time at which the autoscale formula was last evaluated.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   timestamp: zonedDateTime;
 
   @doc("""
@@ -4835,6 +4843,7 @@ model ComputeNodeGetRemoteLoginSettingsResult {
   @doc("The IP address used for remote login to the Compute Node.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   remoteLoginIPAddress: string;
 
   @doc("The port used for remote login to the Compute Node.")
@@ -4881,6 +4890,7 @@ and it is built based poolId, nodeId and a unique identifier.
 """)
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @key
+  @visibility("read")
   virtualDirectoryName: string;
 
   @doc("The number of log files which will be uploaded.")
