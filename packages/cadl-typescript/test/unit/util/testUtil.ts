@@ -45,7 +45,9 @@ export async function rlcEmitterFor(
   ${code}
   `
   );
-  await host.compile("./");
+  await host.compile("./", {
+    warningAsError: false
+  });
   return host.program;
 }
 

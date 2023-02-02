@@ -27,143 +27,9 @@ import {
   UploadBatchServiceLogsResult,
 } from "./models";
 
-export interface ApplicationOperationsListHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id": string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id": boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date": string;
-}
-
-export interface ApplicationOperationsListQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  maxresults: number;
-  /**
-   * The maximum time that the server can spend processing the request, in seconds.
-   * The default is 30 seconds.
-   */
-  timeout: number;
-}
-
-export interface ApplicationOperationsListQueryParam {
-  queryParameters: ApplicationOperationsListQueryParamProperties;
-}
-
-export interface ApplicationOperationsListHeaderParam {
-  headers: RawHttpHeadersInput & ApplicationOperationsListHeaders;
-}
-
-export type ApplicationOperationsListParameters =
-  ApplicationOperationsListQueryParam &
-    ApplicationOperationsListHeaderParam &
-    RequestParameters;
-
-export interface ApplicationOperationsGetHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id": string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id": boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date": string;
-}
-
-export interface ApplicationOperationsGetQueryParamProperties {
-  /**
-   * The maximum time that the server can spend processing the request, in seconds.
-   * The default is 30 seconds.
-   */
-  timeout: number;
-}
-
-export interface ApplicationOperationsGetQueryParam {
-  queryParameters: ApplicationOperationsGetQueryParamProperties;
-}
-
-export interface ApplicationOperationsGetHeaderParam {
-  headers: RawHttpHeadersInput & ApplicationOperationsGetHeaders;
-}
-
-export type ApplicationOperationsGetParameters =
-  ApplicationOperationsGetQueryParam &
-    ApplicationOperationsGetHeaderParam &
-    RequestParameters;
-
-export interface PoolOperationsListUsageMetricsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id": string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id": boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date": string;
-}
-
-export interface PoolOperationsListUsageMetricsQueryParamProperties {
-  /**
-   * The earliest time from which to include metrics. This must be at least two and
-   * a half hours before the current time. If not specified this defaults to the
-   * start time of the last aggregation interval currently available.
-   */
-  starttime: string;
-  /**
-   * The latest time from which to include metrics. This must be at least two hours
-   * before the current time. If not specified this defaults to the end time of the
-   * last aggregation interval currently available.
-   */
-  endtime: string;
-  /**
-   * An OData $filter clause. For more information on constructing this filter, see
-   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
-   */
-  $filter: string;
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * results will be returned.
-   */
-  maxresults: number;
-  /**
-   * The maximum time that the server can spend processing the request, in seconds.
-   * The default is 30 seconds.
-   */
-  timeout: number;
-}
-
-export interface PoolOperationsListUsageMetricsQueryParam {
-  queryParameters: PoolOperationsListUsageMetricsQueryParamProperties;
-}
-
-export interface PoolOperationsListUsageMetricsHeaderParam {
-  headers: RawHttpHeadersInput & PoolOperationsListUsageMetricsHeaders;
-}
-
-export type PoolOperationsListUsageMetricsParameters =
-  PoolOperationsListUsageMetricsQueryParam &
-    PoolOperationsListUsageMetricsHeaderParam &
-    RequestParameters;
+export type ApplicationOperationsListParameters = RequestParameters;
+export type ApplicationOperationsGetParameters = RequestParameters;
+export type PoolOperationsListUsageMetricsParameters = RequestParameters;
 
 export interface PoolOperationsGetAllLifetimeStatisticsHeaders {
   /**
@@ -927,97 +793,8 @@ export type PoolOperationsRemoveNodesParameters =
     PoolOperationsRemoveNodesHeaderParam &
     PoolOperationsRemoveNodesBodyParam &
     RequestParameters;
-
-export interface AccountOperationsListSupportedImagesHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id": string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id": boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date": string;
-}
-
-export interface AccountOperationsListSupportedImagesQueryParamProperties {
-  /**
-   * An OData $filter clause. For more information on constructing this filter, see
-   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-   */
-  $filter: string;
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * results will be returned.
-   */
-  maxresults: number;
-  /**
-   * The maximum time that the server can spend processing the request, in seconds.
-   * The default is 30 seconds.
-   */
-  timeout: number;
-}
-
-export interface AccountOperationsListSupportedImagesQueryParam {
-  queryParameters: AccountOperationsListSupportedImagesQueryParamProperties;
-}
-
-export interface AccountOperationsListSupportedImagesHeaderParam {
-  headers: RawHttpHeadersInput & AccountOperationsListSupportedImagesHeaders;
-}
-
-export type AccountOperationsListSupportedImagesParameters =
-  AccountOperationsListSupportedImagesQueryParam &
-    AccountOperationsListSupportedImagesHeaderParam &
-    RequestParameters;
-
-export interface AccountOperationsListPoolNodeCountsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id": string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id": boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date": string;
-}
-
-export interface AccountOperationsListPoolNodeCountsQueryParamProperties {
-  /**
-   * An OData $filter clause. For more information on constructing this filter, see
-   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch.
-   */
-  $filter: string;
-  /** The maximum number of items to return in the response. */
-  maxresults: number;
-  /**
-   * The maximum time that the server can spend processing the request, in seconds.
-   * The default is 30 seconds.
-   */
-  timeout: number;
-}
-
-export interface AccountOperationsListPoolNodeCountsQueryParam {
-  queryParameters: AccountOperationsListPoolNodeCountsQueryParamProperties;
-}
-
-export interface AccountOperationsListPoolNodeCountsHeaderParam {
-  headers: RawHttpHeadersInput & AccountOperationsListPoolNodeCountsHeaders;
-}
-
-export type AccountOperationsListPoolNodeCountsParameters =
-  AccountOperationsListPoolNodeCountsQueryParam &
-    AccountOperationsListPoolNodeCountsHeaderParam &
-    RequestParameters;
+export type AccountOperationsListSupportedImagesParameters = RequestParameters;
+export type AccountOperationsListPoolNodeCountsParameters = RequestParameters;
 
 export interface JobOperationsGetAllLifetimeStatisticsHeaders {
   /**
@@ -3829,48 +3606,13 @@ export type ComputeNodeOperationsGetRemoteDesktopParameters =
     ComputeNodeOperationsGetRemoteDesktopHeaderParam &
     RequestParameters;
 
-export interface ComputeNodeOperationsUploadBatchServiceLogsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id": string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id": boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date": string;
-}
-
 export interface ComputeNodeOperationsUploadBatchServiceLogsBodyParam {
-  body?: UploadBatchServiceLogsResult;
-}
-
-export interface ComputeNodeOperationsUploadBatchServiceLogsQueryParamProperties {
-  /**
-   * The maximum time that the server can spend processing the request, in seconds.
-   * The default is 30 seconds.
-   */
-  timeout: number;
-}
-
-export interface ComputeNodeOperationsUploadBatchServiceLogsQueryParam {
-  queryParameters: ComputeNodeOperationsUploadBatchServiceLogsQueryParamProperties;
-}
-
-export interface ComputeNodeOperationsUploadBatchServiceLogsHeaderParam {
-  headers: RawHttpHeadersInput &
-    ComputeNodeOperationsUploadBatchServiceLogsHeaders;
+  /** The resource instance. */
+  body: UploadBatchServiceLogsResult;
 }
 
 export type ComputeNodeOperationsUploadBatchServiceLogsParameters =
-  ComputeNodeOperationsUploadBatchServiceLogsQueryParam &
-    ComputeNodeOperationsUploadBatchServiceLogsHeaderParam &
-    ComputeNodeOperationsUploadBatchServiceLogsBodyParam &
-    RequestParameters;
+  ComputeNodeOperationsUploadBatchServiceLogsBodyParam & RequestParameters;
 
 export interface ComputeNodeOperationsListHeaders {
   /**

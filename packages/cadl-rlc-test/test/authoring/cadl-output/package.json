@@ -57,7 +57,8 @@
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
     "@azure/core-paging": "^1.2.0",
-    "@azure/core-lro": "^2.2.0"
+    "@azure/core-lro": "^2.5.0",
+    "@azure/abort-controller": "^1.0.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
@@ -88,10 +89,8 @@
     "chai": "^4.2.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^2.0.0",
-    "karma-edge-launcher": "^0.4.2",
     "karma-env-preprocessor": "^0.1.1",
     "karma-firefox-launcher": "^1.1.0",
-    "karma-ie-launcher": "^1.0.0",
     "karma-junit-reporter": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
     "karma-mocha": "^2.0.1",

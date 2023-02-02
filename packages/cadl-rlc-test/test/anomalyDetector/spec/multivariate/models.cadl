@@ -52,6 +52,7 @@ model MultivariateDetectionResult {
   @doc("Result identifier, which is used to fetch the results of an inference call.")
   @key
   @format("uuid")
+  @visibility("read")
   resultId: string;
 
   @doc("Multivariate anomaly detection status.")
@@ -310,6 +311,7 @@ model AnomalyDetectionModel {
   @doc("Model identifier.")
   @key
   @format("uuid")
+  @visibility("read")
   modelId: string;
 
   @doc("Date and time (UTC) when the model was created.")

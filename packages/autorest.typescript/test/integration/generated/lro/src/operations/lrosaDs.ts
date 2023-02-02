@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClient } from "../lROClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   LrosaDsPutNonRetry400OptionalParams,
   LrosaDsPutNonRetry400Response,
@@ -87,8 +91,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutNonRetry400(
     options?: LrosaDsPutNonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutNonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutNonRetry400Response>,
       LrosaDsPutNonRetry400Response
     >
   > {
@@ -106,7 +110,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -139,13 +143,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putNonRetry400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putNonRetry400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutNonRetry400Response,
+      OperationState<LrosaDsPutNonRetry400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -171,8 +178,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutNonRetry201Creating400(
     options?: LrosaDsPutNonRetry201Creating400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutNonRetry201Creating400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutNonRetry201Creating400Response>,
       LrosaDsPutNonRetry201Creating400Response
     >
   > {
@@ -190,7 +197,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -223,13 +230,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putNonRetry201Creating400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putNonRetry201Creating400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutNonRetry201Creating400Response,
+      OperationState<LrosaDsPutNonRetry201Creating400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -256,8 +266,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutNonRetry201Creating400InvalidJson(
     options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>,
       LrosaDsPutNonRetry201Creating400InvalidJsonResponse
     >
   > {
@@ -275,7 +285,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -308,13 +318,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putNonRetry201Creating400InvalidJsonOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putNonRetry201Creating400InvalidJsonOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutNonRetry201Creating400InvalidJsonResponse,
+      OperationState<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -343,8 +356,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutAsyncRelativeRetry400(
     options?: LrosaDsPutAsyncRelativeRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutAsyncRelativeRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetry400Response>,
       LrosaDsPutAsyncRelativeRetry400Response
     >
   > {
@@ -362,7 +375,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -395,13 +408,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncRelativeRetry400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncRelativeRetry400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutAsyncRelativeRetry400Response,
+      OperationState<LrosaDsPutAsyncRelativeRetry400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -427,8 +443,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginDeleteNonRetry400(
     options?: LrosaDsDeleteNonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDeleteNonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteNonRetry400Response>,
       LrosaDsDeleteNonRetry400Response
     >
   > {
@@ -446,7 +462,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -479,13 +495,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteNonRetry400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteNonRetry400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsDeleteNonRetry400Response,
+      OperationState<LrosaDsDeleteNonRetry400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -510,8 +529,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginDelete202NonRetry400(
     options?: LrosaDsDelete202NonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDelete202NonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsDelete202NonRetry400Response>,
       LrosaDsDelete202NonRetry400Response
     >
   > {
@@ -529,7 +548,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -562,13 +581,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      delete202NonRetry400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: delete202NonRetry400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsDelete202NonRetry400Response,
+      OperationState<LrosaDsDelete202NonRetry400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -594,8 +616,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginDeleteAsyncRelativeRetry400(
     options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDeleteAsyncRelativeRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteAsyncRelativeRetry400Response>,
       LrosaDsDeleteAsyncRelativeRetry400Response
     >
   > {
@@ -613,7 +635,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -646,13 +668,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncRelativeRetry400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncRelativeRetry400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsDeleteAsyncRelativeRetry400Response,
+      OperationState<LrosaDsDeleteAsyncRelativeRetry400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -678,8 +703,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPostNonRetry400(
     options?: LrosaDsPostNonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPostNonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPostNonRetry400Response>,
       LrosaDsPostNonRetry400Response
     >
   > {
@@ -697,7 +722,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -730,13 +755,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postNonRetry400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postNonRetry400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPostNonRetry400Response,
+      OperationState<LrosaDsPostNonRetry400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -761,8 +789,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPost202NonRetry400(
     options?: LrosaDsPost202NonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPost202NonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPost202NonRetry400Response>,
       LrosaDsPost202NonRetry400Response
     >
   > {
@@ -780,7 +808,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -813,13 +841,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      post202NonRetry400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: post202NonRetry400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPost202NonRetry400Response,
+      OperationState<LrosaDsPost202NonRetry400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -845,8 +876,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPostAsyncRelativeRetry400(
     options?: LrosaDsPostAsyncRelativeRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPostAsyncRelativeRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPostAsyncRelativeRetry400Response>,
       LrosaDsPostAsyncRelativeRetry400Response
     >
   > {
@@ -864,7 +895,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -897,13 +928,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncRelativeRetry400OperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncRelativeRetry400OperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPostAsyncRelativeRetry400Response,
+      OperationState<LrosaDsPostAsyncRelativeRetry400Response>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -929,8 +963,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutError201NoProvisioningStatePayload(
     options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutError201NoProvisioningStatePayloadResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutError201NoProvisioningStatePayloadResponse>,
       LrosaDsPutError201NoProvisioningStatePayloadResponse
     >
   > {
@@ -948,7 +982,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -981,13 +1015,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putError201NoProvisioningStatePayloadOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putError201NoProvisioningStatePayloadOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutError201NoProvisioningStatePayloadResponse,
+      OperationState<LrosaDsPutError201NoProvisioningStatePayloadResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1016,8 +1053,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutAsyncRelativeRetryNoStatus(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutAsyncRelativeRetryNoStatusResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetryNoStatusResponse>,
       LrosaDsPutAsyncRelativeRetryNoStatusResponse
     >
   > {
@@ -1035,7 +1072,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1068,13 +1105,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncRelativeRetryNoStatusOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncRelativeRetryNoStatusOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutAsyncRelativeRetryNoStatusResponse,
+      OperationState<LrosaDsPutAsyncRelativeRetryNoStatusResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1103,8 +1143,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutAsyncRelativeRetryNoStatusPayload(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>,
       LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse
     >
   > {
@@ -1122,7 +1162,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1155,13 +1195,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncRelativeRetryNoStatusPayloadOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncRelativeRetryNoStatusPayloadOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse,
+      OperationState<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1189,7 +1232,7 @@ export class LrosaDsImpl implements LrosaDs {
    */
   async beginDelete204Succeeded(
     options?: LrosaDsDelete204SucceededOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -1202,7 +1245,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1235,13 +1278,13 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      delete204SucceededOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: delete204SucceededOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1267,8 +1310,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginDeleteAsyncRelativeRetryNoStatus(
     options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>,
       LrosaDsDeleteAsyncRelativeRetryNoStatusResponse
     >
   > {
@@ -1286,7 +1329,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1319,13 +1362,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncRelativeRetryNoStatusOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncRelativeRetryNoStatusOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsDeleteAsyncRelativeRetryNoStatusResponse,
+      OperationState<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1351,8 +1397,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPost202NoLocation(
     options?: LrosaDsPost202NoLocationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPost202NoLocationResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPost202NoLocationResponse>,
       LrosaDsPost202NoLocationResponse
     >
   > {
@@ -1370,7 +1416,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1403,13 +1449,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      post202NoLocationOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: post202NoLocationOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPost202NoLocationResponse,
+      OperationState<LrosaDsPost202NoLocationResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1436,8 +1485,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPostAsyncRelativeRetryNoPayload(
     options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>,
       LrosaDsPostAsyncRelativeRetryNoPayloadResponse
     >
   > {
@@ -1455,7 +1504,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1488,13 +1537,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncRelativeRetryNoPayloadOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncRelativeRetryNoPayloadOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPostAsyncRelativeRetryNoPayloadResponse,
+      OperationState<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1522,8 +1574,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPut200InvalidJson(
     options?: LrosaDsPut200InvalidJsonOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPut200InvalidJsonResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPut200InvalidJsonResponse>,
       LrosaDsPut200InvalidJsonResponse
     >
   > {
@@ -1541,7 +1593,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1574,13 +1626,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      put200InvalidJsonOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: put200InvalidJsonOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPut200InvalidJsonResponse,
+      OperationState<LrosaDsPut200InvalidJsonResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1607,8 +1662,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>,
       LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse
     >
   > {
@@ -1626,7 +1681,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1659,13 +1714,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncRelativeRetryInvalidHeaderOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncRelativeRetryInvalidHeaderOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse,
+      OperationState<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1693,10 +1751,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPutAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
-      >,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>,
       LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
     >
   > {
@@ -1714,7 +1770,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1747,13 +1803,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      putAsyncRelativeRetryInvalidJsonPollingOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: putAsyncRelativeRetryInvalidJsonPollingOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse,
+      OperationState<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1783,8 +1842,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginDelete202RetryInvalidHeader(
     options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDelete202RetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsDelete202RetryInvalidHeaderResponse>,
       LrosaDsDelete202RetryInvalidHeaderResponse
     >
   > {
@@ -1802,7 +1861,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1835,13 +1894,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      delete202RetryInvalidHeaderOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: delete202RetryInvalidHeaderOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsDelete202RetryInvalidHeaderResponse,
+      OperationState<LrosaDsDelete202RetryInvalidHeaderResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1868,8 +1930,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginDeleteAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>,
       LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse
     >
   > {
@@ -1887,7 +1949,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1920,13 +1982,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncRelativeRetryInvalidHeaderOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncRelativeRetryInvalidHeaderOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse,
+      OperationState<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1955,10 +2020,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginDeleteAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
-      >,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>,
       LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
     >
   > {
@@ -1976,7 +2039,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2009,13 +2072,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse,
+      OperationState<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2044,8 +2110,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPost202RetryInvalidHeader(
     options?: LrosaDsPost202RetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPost202RetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPost202RetryInvalidHeaderResponse>,
       LrosaDsPost202RetryInvalidHeaderResponse
     >
   > {
@@ -2063,7 +2129,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2096,13 +2162,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      post202RetryInvalidHeaderOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: post202RetryInvalidHeaderOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPost202RetryInvalidHeaderResponse,
+      OperationState<LrosaDsPost202RetryInvalidHeaderResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2130,8 +2199,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPostAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>,
       LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse
     >
   > {
@@ -2149,7 +2218,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2182,13 +2251,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncRelativeRetryInvalidHeaderOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncRelativeRetryInvalidHeaderOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse,
+      OperationState<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2217,10 +2289,8 @@ export class LrosaDsImpl implements LrosaDs {
   async beginPostAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
-      >,
+    SimplePollerLike<
+      OperationState<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>,
       LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
     >
   > {
@@ -2238,7 +2308,7 @@ export class LrosaDsImpl implements LrosaDs {
         }
       );
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2271,13 +2341,16 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { options },
-      postAsyncRelativeRetryInvalidJsonPollingOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { options },
+      spec: postAsyncRelativeRetryInvalidJsonPollingOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse,
+      OperationState<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

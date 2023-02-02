@@ -170,6 +170,13 @@ const libDef = {
       messages: {
         default: paramMessage`Invalid type '${"type"}' for a default value`
       }
+    },
+    "no-credential-scopes": {
+      severity: "warning",
+      messages: {
+        default:
+          "Please provide credential scopes to ensure the token credential signature can be generated."
+      }
     }
   },
   emitter: {

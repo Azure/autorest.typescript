@@ -50,6 +50,7 @@ import {
 } from "./utils/pagingOperations";
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
+import { createLroImports, createLroType } from "../utils/lroHelpers";
 
 /**
  * Function that writes the code for all the operations.
@@ -448,8 +449,10 @@ function getReturnType(
     modelNames
   );
 
+  const { useLegacyLro } = getAutorestOptions();
+
   return operation.isLro
-    ? `Promise<PollerLike<PollOperationState<${responseName}>,${responseName}>>`
+    ? createLroType({ responseName, useLegacyLro })
     : `Promise<${responseName}>`;
 }
 
@@ -900,7 +903,7 @@ function writeLroOperationBody(
   isInline?: boolean,
   isTracingEnabled = false
 ) {
-  const { useCoreV2 } = getAutorestOptions();
+  const { useCoreV2, useLegacyLro } = getAutorestOptions();
   const spanName = `${clientDetails.className}.${methodDeclaration.getName()}`;
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
@@ -929,7 +932,7 @@ function writeLroOperationBody(
       spanName
     )}
     };
-    const sendOperation = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec) => {
+    const sendOperationFn = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec) => {
       let currentRawResponse: coreClient.FullOperationResponse | undefined = undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
@@ -952,21 +955,29 @@ function writeLroOperationBody(
         headers: currentRawResponse!.headers.toJSON()
       }};
   }`;
+
+  const commonOptions = `intervalInMs: options?.updateIntervalInMs${
+    lroResourceLocationConfig
+      ? `, ${
+          useLegacyLro ? "lroResourceLocationConfig" : "resourceLocationConfig"
+        }: "${lroResourceLocationConfig.toLowerCase()}"`
+      : ""
+  }`;
   methodDeclaration.addStatements([
     sendOperationStatement,
-    `const lro = new LroImpl(sendOperation,${operationParamsName},
-      ${operationSpecName})`,
-    `const poller = new LroEngine(lro,{ resumeFrom: options?.resumeFrom, intervalInMs: options?.updateIntervalInMs${
-      lroResourceLocationConfig
-        ? `, lroResourceLocationConfig: "${lroResourceLocationConfig.toLowerCase()}"`
-        : ""
-    } });`,
+    `const lro = createLroSpec({sendOperationFn, args: ${operationParamsName},
+      spec: ${operationSpecName}})`,
+    `const poller = ${
+      useLegacyLro
+        ? `new LroEngine(lro, { resumeFrom: options?.resumeFrom, ${commonOptions} })`
+        : `await createHttpPoller<${responseName}, OperationState<${responseName}>>(lro, { restoreFrom: options?.resumeFrom, ${commonOptions} })`
+    };`,
     "await poller.poll();",
     "return poller;"
   ]);
 
   methodDeclaration.setReturnType(
-    `Promise<PollerLike<PollOperationState<${responseName}>,${responseName}>>`
+    createLroType({ responseName, useLegacyLro })
   );
 }
 
@@ -1228,7 +1239,7 @@ function addImports(
   operationGroupFile: SourceFile,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2 } = getAutorestOptions();
+  const { useCoreV2, useLegacyLro } = getAutorestOptions();
 
   const { className, mappers } = clientDetails;
   addPagingEsNextRef(operationGroupDetails.operations, operationGroupFile);
@@ -1295,11 +1306,11 @@ function addImports(
 
   if (hasLroOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["PollerLike", "PollOperationState", "LroEngine"],
+      namedImports: createLroImports(useLegacyLro),
       moduleSpecifier: "@azure/core-lro"
     });
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LroImpl"],
+      namedImports: ["createLroSpec"],
       moduleSpecifier: `../lroImpl`
     });
   }

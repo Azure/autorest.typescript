@@ -92,7 +92,7 @@ export interface ListLedgerEntries {
   >;
   /** A collection id may optionally be specified. */
   post(
-    options?: CreateLedgerEntryParameters
+    options: CreateLedgerEntryParameters
   ): StreamableMethod<
     CreateLedgerEntry201Response | CreateLedgerEntryDefaultResponse
   >;

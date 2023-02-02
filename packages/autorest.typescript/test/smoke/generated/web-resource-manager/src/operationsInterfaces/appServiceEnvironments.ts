@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   AppServiceEnvironmentResource,
   AppServiceEnvironmentsListOptionalParams,
@@ -369,8 +369,8 @@ export interface AppServiceEnvironments {
     hostingEnvironmentEnvelope: AppServiceEnvironmentResource,
     options?: AppServiceEnvironmentsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<AppServiceEnvironmentsCreateOrUpdateResponse>,
       AppServiceEnvironmentsCreateOrUpdateResponse
     >
   >;
@@ -397,7 +397,7 @@ export interface AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Delete an App Service Environment.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -505,10 +505,8 @@ export interface AppServiceEnvironments {
     multiRolePoolEnvelope: WorkerPoolResource,
     options?: AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
-      >,
+    SimplePollerLike<
+      OperationState<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse>,
       AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
     >
   >;
@@ -577,8 +575,8 @@ export interface AppServiceEnvironments {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
       >,
       AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnectionResponse
@@ -614,8 +612,8 @@ export interface AppServiceEnvironments {
     privateEndpointConnectionName: string,
     options?: AppServiceEnvironmentsDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse
       >,
       AppServiceEnvironmentsDeletePrivateEndpointConnectionResponse
@@ -684,10 +682,8 @@ export interface AppServiceEnvironments {
     workerPoolEnvelope: WorkerPoolResource,
     options?: AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
-      >,
+    SimplePollerLike<
+      OperationState<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse>,
       AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
     >
   >;

@@ -48,8 +48,7 @@ export interface CreateLedgerEntry201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CreateLedgerEntryBodyParam {
-    // (undocumented)
-    body?: LedgerEntry;
+    body: LedgerEntry;
 }
 
 // @public (undocumented)
@@ -61,18 +60,7 @@ export interface CreateLedgerEntryDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type CreateLedgerEntryParameters = CreateLedgerEntryQueryParam & CreateLedgerEntryBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface CreateLedgerEntryQueryParam {
-    // (undocumented)
-    queryParameters?: CreateLedgerEntryQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface CreateLedgerEntryQueryParamProperties {
-    collectionId?: string;
-}
+export type CreateLedgerEntryParameters = CreateLedgerEntryBodyParam & RequestParameters;
 
 // @public
 export interface CreateOrUpdateUser200Response extends HttpResponse {
@@ -92,8 +80,7 @@ export interface CreateOrUpdateUser201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CreateOrUpdateUserBodyParam {
-    // (undocumented)
-    body?: LedgerUserResourceMergeAndPatch;
+    body: LedgerUserResourceMergeAndPatch;
 }
 
 // @public (undocumented)
@@ -276,18 +263,7 @@ export interface GetLedgerEntryDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetLedgerEntryParameters = GetLedgerEntryQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetLedgerEntryQueryParam {
-    // (undocumented)
-    queryParameters?: GetLedgerEntryQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetLedgerEntryQueryParamProperties {
-    collectionId?: string;
-}
+export type GetLedgerEntryParameters = RequestParameters;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
@@ -430,7 +406,7 @@ export interface LedgerUserOutput {
     readonly userId: string;
 }
 
-// @public (undocumented)
+// @public
 export type LedgerUserResourceMergeAndPatch = Partial<LedgerUser>;
 
 // @public (undocumented)
@@ -460,7 +436,7 @@ export type ListCollectionsParameters = RequestParameters;
 // @public (undocumented)
 export interface ListLedgerEntries {
     get(options?: ListLedgerEntriesParameters): StreamableMethod<ListLedgerEntries200Response | ListLedgerEntriesDefaultResponse>;
-    post(options?: CreateLedgerEntryParameters): StreamableMethod<CreateLedgerEntry201Response | CreateLedgerEntryDefaultResponse>;
+    post(options: CreateLedgerEntryParameters): StreamableMethod<CreateLedgerEntry201Response | CreateLedgerEntryDefaultResponse>;
 }
 
 // @public

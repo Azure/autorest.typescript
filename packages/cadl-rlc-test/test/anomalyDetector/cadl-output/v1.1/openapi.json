@@ -528,7 +528,8 @@
         "modelId": {
           "type": "string",
           "description": "Model identifier.",
-          "format": "uuid"
+          "format": "uuid",
+          "readOnly": true
         },
         "createdTime": {
           "type": "string",
@@ -998,7 +999,8 @@
         "resultId": {
           "type": "string",
           "description": "Result identifier, which is used to fetch the results of an inference call.",
-          "format": "uuid"
+          "format": "uuid",
+          "readOnly": true
         },
         "summary": {
           "$ref": "#/definitions/Multivariate.MultivariateBatchDetectionResultSummary",

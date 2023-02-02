@@ -27,7 +27,7 @@ describe("LRO Rest Client", () => {
   describe("BodyPolling Strategy", () => {
     it("should handle initial response with terminal state through an Azure Resource", async () => {
       const initialResponse = await client.path("/lro/put/200/succeeded").put();
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -40,7 +40,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/put/200/succeeded/nostate")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -60,7 +60,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/put/201/creating/succeeded/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -82,7 +82,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/put/200/accepted/canceled/200")
           .put();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -98,7 +98,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/put/200/updating/succeeded/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -119,7 +119,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/put/201/created/failed/200")
           .put();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -137,7 +137,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/post/202/retry/200")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -150,7 +150,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/post/202/noretry/204")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -164,7 +164,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/delete/noheader")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -176,7 +176,7 @@ describe("LRO Rest Client", () => {
     it("should handle put202Retry200", async () => {
       const initialResponse = await client.path("/lro/put/202/retry/200").put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -190,7 +190,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/put/noheader/202/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -203,7 +203,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/putsubresource/202/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -216,7 +216,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/putnonresource/202/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -229,7 +229,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/delete/202/retry/200")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -243,7 +243,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/delete/202/noretry/204")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -257,7 +257,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/delete/provisioning/202/accepted/200/succeeded")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -270,7 +270,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/delete/provisioning/202/deleting/200/failed")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -288,7 +288,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/delete/provisioning/202/deleting/200/canceled")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -308,7 +308,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/delete/204/succeeded")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -333,7 +333,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/LROPostDoubleHeadersFinalLocationGet")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -347,9 +347,9 @@ describe("LRO Rest Client", () => {
         .path("/lro/LROPostDoubleHeadersFinalAzureHeaderGet")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0,
-        lroResourceLocationConfig: "azure-async-operation"
+        resourceLocationConfig: "azure-async-operation"
       });
 
       const result = await poller.pollUntilDone();
@@ -359,7 +359,7 @@ describe("LRO Rest Client", () => {
     it("should handle post200WithPayload", async () => {
       const initialResponse = await client.path("/lro/post/payload/200").post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -378,7 +378,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -391,7 +391,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/deleteasync/retry/succeeded")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -404,7 +404,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/deleteasync/noretry/succeeded")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -418,7 +418,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/deleteasync/retry/canceled")
           .delete();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -435,7 +435,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/deleteasync/retry/failed")
           .delete();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -451,7 +451,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/putasync/retry/succeeded")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -469,7 +469,7 @@ describe("LRO Rest Client", () => {
     it("should handle put201Succeeded", async () => {
       const initialResponse = await client.path("/lro/put/201/succeeded").put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -487,7 +487,7 @@ describe("LRO Rest Client", () => {
     it("should handle post202List", async () => {
       const initialResponse = await client.path("/lro/list").post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -512,7 +512,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/putasync/retry/failed")
           .put();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -528,7 +528,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/putnonresourceasync/202/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -541,7 +541,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/putasync/noheader/201/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -554,7 +554,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/putasync/noretry/succeeded")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -575,7 +575,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/putasync/noretry/canceled")
           .put();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -591,7 +591,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/putsubresourceasync/202/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -604,7 +604,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/deleteasync/noheader/202/204")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -617,7 +617,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/postasync/noretry/succeeded")
         .post({ body: { ...product } });
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -636,7 +636,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/postasync/retry/failed")
           .post({ body: product });
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -652,7 +652,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/postasync/retry/succeeded")
         .post({ body: { ...product } });
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -673,7 +673,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/postasync/retry/canceled")
           .post({ body: product });
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -695,7 +695,7 @@ describe("LRO Rest Client", () => {
           }
         });
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -724,7 +724,7 @@ describe("LRO Rest Client", () => {
           }
         });
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -748,7 +748,7 @@ describe("LRO Rest Client", () => {
           }
         });
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -773,7 +773,7 @@ describe("LRO Rest Client", () => {
           }
         });
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -799,7 +799,7 @@ describe("LRO Rest Client", () => {
           .put();
         assert.equal(initialResponse.status, "201");
         assert.isNotTrue(isUnexpected(initialResponse));
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
         await poller.pollUntilDone();
@@ -816,7 +816,7 @@ describe("LRO Rest Client", () => {
           .put();
         assert.equal(initialResponse.status, "201");
         assert.isNotTrue(isUnexpected(initialResponse));
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
         await poller.pollUntilDone();
@@ -833,7 +833,7 @@ describe("LRO Rest Client", () => {
           .put();
         assert.equal(initialResponse.status, "200");
         assert.isNotTrue(isUnexpected(initialResponse));
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -852,7 +852,7 @@ describe("LRO Rest Client", () => {
 
         assert.equal(initialResponse.status, "202");
         assert.isNotTrue(isUnexpected(initialResponse));
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -879,7 +879,7 @@ describe("LRO Rest Client", () => {
 
         assert.equal(initialResponse.status, "202");
         assert.isNotTrue(isUnexpected(initialResponse));
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
         await poller.pollUntilDone();
@@ -907,7 +907,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/nonretryerror/post/202/retry/400")
           .post();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -924,7 +924,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/nonretryerror/postasync/retry/400")
           .post();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -943,7 +943,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/error/put/201/noprovisioningstatepayload")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -956,7 +956,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/error/putasync/retry/nostatuspayload")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -969,7 +969,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/error/putasync/retry/nostatus")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -982,7 +982,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/error/delete/204/nolocation")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -995,7 +995,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/error/deleteasync/retry/nostatus")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1008,7 +1008,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/error/post/202/nolocation")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1021,7 +1021,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/error/postasync/retry/nopayload")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1035,7 +1035,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/error/put/200/invalidjson")
           .put();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -1051,7 +1051,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/error/putasync/retry/invalidheader")
           .put();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
         await poller.pollUntilDone();
@@ -1067,7 +1067,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/error/delete/202/retry/invalidheader")
           .delete();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -1084,7 +1084,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/error/deleteasync/retry/invalidheader")
           .delete();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -1101,7 +1101,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/error/deleteasync/retry/invalidjsonpolling")
           .delete();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -1117,7 +1117,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/error/post/202/retry/invalidheader")
           .post();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -1134,7 +1134,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/error/postasync/retry/invalidheader")
           .post();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -1151,7 +1151,7 @@ describe("LRO Rest Client", () => {
           .path("/lro/error/postasync/retry/invalidjsonpolling")
           .post();
 
-        const poller = getLongRunningPoller(client, initialResponse, {
+        const poller = await getLongRunningPoller(client, initialResponse, {
           intervalInMs: 0
         });
 
@@ -1168,7 +1168,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/retryerror/put/201/creating/succeeded/200")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1190,7 +1190,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/retryerror/putasync/retry/succeeded")
         .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1211,7 +1211,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/retryerror/delete/provisioning/202/accepted/200/succeeded")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1232,7 +1232,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/retryerror/delete/202/retry/200")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1245,7 +1245,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/retryerror/deleteasync/retry/succeeded")
         .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1258,7 +1258,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/retryerror/post/202/retry/200")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
@@ -1271,7 +1271,7 @@ describe("LRO Rest Client", () => {
         .path("/lro/retryerror/postasync/retry/succeeded")
         .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
+      const poller = await await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 

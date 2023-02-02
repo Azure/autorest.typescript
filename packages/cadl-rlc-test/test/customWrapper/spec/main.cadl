@@ -36,6 +36,7 @@ scalar Endpoint extends string;
 model Deployment {
   @doc("The name of the deployment.")
   @key("deploymentName")
+  @visibility("read")
   @segment("deployments")
   name: string;
 

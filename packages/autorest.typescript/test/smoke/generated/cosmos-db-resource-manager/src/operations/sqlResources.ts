@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   SqlDatabaseGetResults,
   SqlResourcesListSqlDatabasesOptionalParams,
@@ -682,8 +686,8 @@ export class SqlResourcesImpl implements SqlResources {
     createUpdateSqlDatabaseParameters: SqlDatabaseCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlDatabaseOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>,
       SqlResourcesCreateUpdateSqlDatabaseResponse
     >
   > {
@@ -693,7 +697,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesCreateUpdateSqlDatabaseResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -726,19 +730,22 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
         createUpdateSqlDatabaseParameters,
         options
       },
-      createUpdateSqlDatabaseOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateSqlDatabaseOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesCreateUpdateSqlDatabaseResponse,
+      OperationState<SqlResourcesCreateUpdateSqlDatabaseResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -782,14 +789,14 @@ export class SqlResourcesImpl implements SqlResources {
     accountName: string,
     databaseName: string,
     options?: SqlResourcesDeleteSqlDatabaseOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -822,13 +829,13 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, options },
-      deleteSqlDatabaseOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, databaseName, options },
+      spec: deleteSqlDatabaseOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -893,8 +900,8 @@ export class SqlResourcesImpl implements SqlResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>,
       SqlResourcesUpdateSqlDatabaseThroughputResponse
     >
   > {
@@ -904,7 +911,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesUpdateSqlDatabaseThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -937,19 +944,22 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
         updateThroughputParameters,
         options
       },
-      updateSqlDatabaseThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateSqlDatabaseThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesUpdateSqlDatabaseThroughputResponse,
+      OperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -995,8 +1005,8 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     options?: SqlResourcesMigrateSqlDatabaseToAutoscaleOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>,
       SqlResourcesMigrateSqlDatabaseToAutoscaleResponse
     >
   > {
@@ -1006,7 +1016,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1039,13 +1049,16 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, options },
-      migrateSqlDatabaseToAutoscaleOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, databaseName, options },
+      spec: migrateSqlDatabaseToAutoscaleOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesMigrateSqlDatabaseToAutoscaleResponse,
+      OperationState<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1087,10 +1100,8 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     options?: SqlResourcesMigrateSqlDatabaseToManualThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        SqlResourcesMigrateSqlDatabaseToManualThroughputResponse
-      >,
+    SimplePollerLike<
+      OperationState<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse>,
       SqlResourcesMigrateSqlDatabaseToManualThroughputResponse
     >
   > {
@@ -1100,7 +1111,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1133,13 +1144,16 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, options },
-      migrateSqlDatabaseToManualThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, databaseName, options },
+      spec: migrateSqlDatabaseToManualThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesMigrateSqlDatabaseToManualThroughputResponse,
+      OperationState<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1225,8 +1239,8 @@ export class SqlResourcesImpl implements SqlResources {
     createUpdateSqlContainerParameters: SqlContainerCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlContainerOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlContainerResponse>,
       SqlResourcesCreateUpdateSqlContainerResponse
     >
   > {
@@ -1236,7 +1250,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesCreateUpdateSqlContainerResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1269,9 +1283,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -1279,10 +1293,13 @@ export class SqlResourcesImpl implements SqlResources {
         createUpdateSqlContainerParameters,
         options
       },
-      createUpdateSqlContainerOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateSqlContainerOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesCreateUpdateSqlContainerResponse,
+      OperationState<SqlResourcesCreateUpdateSqlContainerResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1331,14 +1348,14 @@ export class SqlResourcesImpl implements SqlResources {
     databaseName: string,
     containerName: string,
     options?: SqlResourcesDeleteSqlContainerOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1371,13 +1388,19 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, containerName, options },
-      deleteSqlContainerOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        containerName,
+        options
+      },
+      spec: deleteSqlContainerOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1448,8 +1471,8 @@ export class SqlResourcesImpl implements SqlResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesUpdateSqlContainerThroughputResponse>,
       SqlResourcesUpdateSqlContainerThroughputResponse
     >
   > {
@@ -1459,7 +1482,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesUpdateSqlContainerThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1492,9 +1515,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -1502,10 +1525,13 @@ export class SqlResourcesImpl implements SqlResources {
         updateThroughputParameters,
         options
       },
-      updateSqlContainerThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateSqlContainerThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesUpdateSqlContainerThroughputResponse,
+      OperationState<SqlResourcesUpdateSqlContainerThroughputResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1556,8 +1582,8 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     options?: SqlResourcesMigrateSqlContainerToAutoscaleOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesMigrateSqlContainerToAutoscaleResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesMigrateSqlContainerToAutoscaleResponse>,
       SqlResourcesMigrateSqlContainerToAutoscaleResponse
     >
   > {
@@ -1567,7 +1593,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesMigrateSqlContainerToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1600,13 +1626,22 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, containerName, options },
-      migrateSqlContainerToAutoscaleOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        containerName,
+        options
+      },
+      spec: migrateSqlContainerToAutoscaleOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesMigrateSqlContainerToAutoscaleResponse,
+      OperationState<SqlResourcesMigrateSqlContainerToAutoscaleResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1653,10 +1688,8 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     options?: SqlResourcesMigrateSqlContainerToManualThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        SqlResourcesMigrateSqlContainerToManualThroughputResponse
-      >,
+    SimplePollerLike<
+      OperationState<SqlResourcesMigrateSqlContainerToManualThroughputResponse>,
       SqlResourcesMigrateSqlContainerToManualThroughputResponse
     >
   > {
@@ -1666,7 +1699,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesMigrateSqlContainerToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1699,13 +1732,22 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, containerName, options },
-      migrateSqlContainerToManualThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        containerName,
+        options
+      },
+      spec: migrateSqlContainerToManualThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesMigrateSqlContainerToManualThroughputResponse,
+      OperationState<SqlResourcesMigrateSqlContainerToManualThroughputResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1808,8 +1850,8 @@ export class SqlResourcesImpl implements SqlResources {
     createUpdateSqlStoredProcedureParameters: SqlStoredProcedureCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>,
       SqlResourcesCreateUpdateSqlStoredProcedureResponse
     >
   > {
@@ -1819,7 +1861,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesCreateUpdateSqlStoredProcedureResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1852,9 +1894,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -1863,10 +1905,13 @@ export class SqlResourcesImpl implements SqlResources {
         createUpdateSqlStoredProcedureParameters,
         options
       },
-      createUpdateSqlStoredProcedureOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateSqlStoredProcedureOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesCreateUpdateSqlStoredProcedureResponse,
+      OperationState<SqlResourcesCreateUpdateSqlStoredProcedureResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1921,14 +1966,14 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     storedProcedureName: string,
     options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1961,9 +2006,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -1971,10 +2016,10 @@ export class SqlResourcesImpl implements SqlResources {
         storedProcedureName,
         options
       },
-      deleteSqlStoredProcedureOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteSqlStoredProcedureOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2080,10 +2125,8 @@ export class SqlResourcesImpl implements SqlResources {
     createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
-      >,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>,
       SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse
     >
   > {
@@ -2093,7 +2136,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2126,9 +2169,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -2137,10 +2180,13 @@ export class SqlResourcesImpl implements SqlResources {
         createUpdateSqlUserDefinedFunctionParameters,
         options
       },
-      createUpdateSqlUserDefinedFunctionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateSqlUserDefinedFunctionOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse,
+      OperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2195,14 +2241,14 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     userDefinedFunctionName: string,
     options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2235,9 +2281,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -2245,10 +2291,10 @@ export class SqlResourcesImpl implements SqlResources {
         userDefinedFunctionName,
         options
       },
-      deleteSqlUserDefinedFunctionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteSqlUserDefinedFunctionOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2353,8 +2399,8 @@ export class SqlResourcesImpl implements SqlResources {
     createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlTriggerResponse>,
       SqlResourcesCreateUpdateSqlTriggerResponse
     >
   > {
@@ -2364,7 +2410,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesCreateUpdateSqlTriggerResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2397,9 +2443,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -2408,10 +2454,13 @@ export class SqlResourcesImpl implements SqlResources {
         createUpdateSqlTriggerParameters,
         options
       },
-      createUpdateSqlTriggerOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateSqlTriggerOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesCreateUpdateSqlTriggerResponse,
+      OperationState<SqlResourcesCreateUpdateSqlTriggerResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2465,14 +2514,14 @@ export class SqlResourcesImpl implements SqlResources {
     containerName: string,
     triggerName: string,
     options?: SqlResourcesDeleteSqlTriggerOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2505,9 +2554,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -2515,10 +2564,10 @@ export class SqlResourcesImpl implements SqlResources {
         triggerName,
         options
       },
-      deleteSqlTriggerOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteSqlTriggerOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2588,8 +2637,8 @@ export class SqlResourcesImpl implements SqlResources {
     createUpdateSqlRoleDefinitionParameters: SqlRoleDefinitionCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlRoleDefinitionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlRoleDefinitionResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlRoleDefinitionResponse>,
       SqlResourcesCreateUpdateSqlRoleDefinitionResponse
     >
   > {
@@ -2599,7 +2648,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesCreateUpdateSqlRoleDefinitionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2632,19 +2681,22 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         roleDefinitionId,
         resourceGroupName,
         accountName,
         createUpdateSqlRoleDefinitionParameters,
         options
       },
-      createUpdateSqlRoleDefinitionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateSqlRoleDefinitionOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesCreateUpdateSqlRoleDefinitionResponse,
+      OperationState<SqlResourcesCreateUpdateSqlRoleDefinitionResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2689,14 +2741,14 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     options?: SqlResourcesDeleteSqlRoleDefinitionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2729,13 +2781,13 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { roleDefinitionId, resourceGroupName, accountName, options },
-      deleteSqlRoleDefinitionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { roleDefinitionId, resourceGroupName, accountName, options },
+      spec: deleteSqlRoleDefinitionOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2816,8 +2868,8 @@ export class SqlResourcesImpl implements SqlResources {
     createUpdateSqlRoleAssignmentParameters: SqlRoleAssignmentCreateUpdateParameters,
     options?: SqlResourcesCreateUpdateSqlRoleAssignmentOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<SqlResourcesCreateUpdateSqlRoleAssignmentResponse>,
+    SimplePollerLike<
+      OperationState<SqlResourcesCreateUpdateSqlRoleAssignmentResponse>,
       SqlResourcesCreateUpdateSqlRoleAssignmentResponse
     >
   > {
@@ -2827,7 +2879,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesCreateUpdateSqlRoleAssignmentResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2860,19 +2912,22 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         roleAssignmentId,
         resourceGroupName,
         accountName,
         createUpdateSqlRoleAssignmentParameters,
         options
       },
-      createUpdateSqlRoleAssignmentOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateSqlRoleAssignmentOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesCreateUpdateSqlRoleAssignmentResponse,
+      OperationState<SqlResourcesCreateUpdateSqlRoleAssignmentResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -2917,14 +2972,14 @@ export class SqlResourcesImpl implements SqlResources {
     resourceGroupName: string,
     accountName: string,
     options?: SqlResourcesDeleteSqlRoleAssignmentOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -2957,13 +3012,13 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { roleAssignmentId, resourceGroupName, accountName, options },
-      deleteSqlRoleAssignmentOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { roleAssignmentId, resourceGroupName, accountName, options },
+      spec: deleteSqlRoleAssignmentOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -3026,10 +3081,8 @@ export class SqlResourcesImpl implements SqlResources {
     location: ContinuousBackupRestoreLocation,
     options?: SqlResourcesRetrieveContinuousBackupInformationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        SqlResourcesRetrieveContinuousBackupInformationResponse
-      >,
+    SimplePollerLike<
+      OperationState<SqlResourcesRetrieveContinuousBackupInformationResponse>,
       SqlResourcesRetrieveContinuousBackupInformationResponse
     >
   > {
@@ -3039,7 +3092,7 @@ export class SqlResourcesImpl implements SqlResources {
     ): Promise<SqlResourcesRetrieveContinuousBackupInformationResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -3072,9 +3125,9 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -3082,12 +3135,15 @@ export class SqlResourcesImpl implements SqlResources {
         location,
         options
       },
-      retrieveContinuousBackupInformationOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: retrieveContinuousBackupInformationOperationSpec
+    });
+    const poller = await createHttpPoller<
+      SqlResourcesRetrieveContinuousBackupInformationResponse,
+      OperationState<SqlResourcesRetrieveContinuousBackupInformationResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

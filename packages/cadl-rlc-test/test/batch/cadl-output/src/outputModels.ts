@@ -4,7 +4,7 @@
 /** Contains information about an application in an Azure Batch Account. */
 export interface ApplicationOutput {
   /** A string that uniquely identifies the application within the Account. */
-  id: string;
+  readonly id: string;
   /** The display name for the application. */
   displayName: string;
   /** The list of available versions of the application. */
@@ -50,7 +50,7 @@ export interface InnerErrorOutput {
 /** Usage metrics for a Pool across an aggregation interval. */
 export interface PoolUsageMetricsOutput {
   /** The ID of the Pool whose metrics are aggregated in this entry. */
-  poolId: string;
+  readonly poolId: string;
   /** The start time of the aggregation interval covered by this entry. */
   startTime: string;
   /** The end time of the aggregation interval covered by this entry. */
@@ -76,7 +76,7 @@ export interface PoolUsageMetricsListOutput {
 /** Contains utilization and resource usage statistics for the lifetime of a Pool. */
 export interface PoolStatisticsOutput {
   /** The URL for the statistics. */
-  url: string;
+  readonly url: string;
   /** The start time of the time range covered by the statistics. */
   startTime: string;
   /**
@@ -648,7 +648,7 @@ export interface NameValuePairOutput {
 /** The results and errors from an execution of a Pool autoscale formula. */
 export interface AutoScaleRunOutput {
   /** The time at which the autoscale formula was last evaluated. */
-  timestamp: string;
+  readonly timestamp: string;
   /**
    * Each variable value is returned in the form $variable=value, and variables are
    * separated by semicolons.
@@ -1248,7 +1248,7 @@ export interface BatchPoolListResultOutput {
  */
 export interface ImageInformationOutput {
   /** The ID of the Compute Node agent SKU which the Image supports. */
-  nodeAgentSKUId: string;
+  readonly nodeAgentSKUId: string;
   /**
    * A reference to an Azure Virtual Machines Marketplace Image or a Shared Image
    * Gallery Image. To get the list of all Azure Marketplace Image references
@@ -1286,7 +1286,7 @@ export interface ImageInformationListOutput {
 /** The number of Compute Nodes in each state for a Pool. */
 export interface PoolNodeCountsOutput {
   /** The ID of the Pool. */
-  poolId: string;
+  readonly poolId: string;
   /** The number of Compute Nodes in each Compute Node state. */
   dedicated?: NodeCountsOutput;
   /** The number of Compute Nodes in each Compute Node state. */
@@ -1336,7 +1336,7 @@ export interface PoolNodeCountsListOutput {
 /** Resource usage statistics for a Job. */
 export interface JobStatisticsOutput {
   /** The URL of the statistics. */
-  url: string;
+  readonly url: string;
   /** The start time of the time range covered by the statistics. */
   startTime: string;
   /**
@@ -2417,7 +2417,7 @@ export interface JobReleaseTaskExecutionInformationOutput {
 /** The Task and TaskSlot counts for a Job. */
 export interface TaskCountsResultOutput {
   /** The Task counts for a Job. */
-  taskCounts: TaskCountsOutput;
+  readonly taskCounts: TaskCountsOutput;
   /** The TaskSlot counts for a Job. */
   taskSlotCounts: TaskSlotCountsOutput;
 }
@@ -3661,7 +3661,7 @@ export interface VirtualMachineInfoOutput {
 /** The remote login settings for a Compute Node. */
 export interface ComputeNodeGetRemoteLoginSettingsResultOutput {
   /** The IP address used for remote login to the Compute Node. */
-  remoteLoginIPAddress: string;
+  readonly remoteLoginIPAddress: string;
   /** The port used for remote login to the Compute Node. */
   remoteLoginPort: number;
 }

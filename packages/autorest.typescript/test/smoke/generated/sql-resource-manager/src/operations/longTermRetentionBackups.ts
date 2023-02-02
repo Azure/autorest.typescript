@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   LongTermRetentionBackup,
   LongTermRetentionBackupsListByDatabaseNextOptionalParams,
@@ -613,8 +617,8 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     parameters: CopyLongTermRetentionBackupParameters,
     options?: LongTermRetentionBackupsCopyOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LongTermRetentionBackupsCopyResponse>,
+    SimplePollerLike<
+      OperationState<LongTermRetentionBackupsCopyResponse>,
       LongTermRetentionBackupsCopyResponse
     >
   > {
@@ -624,7 +628,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     ): Promise<LongTermRetentionBackupsCopyResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -657,9 +661,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         locationName,
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
@@ -667,10 +671,13 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         parameters,
         options
       },
-      copyOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: copyOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LongTermRetentionBackupsCopyResponse,
+      OperationState<LongTermRetentionBackupsCopyResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -722,8 +729,8 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     parameters: UpdateLongTermRetentionBackupParameters,
     options?: LongTermRetentionBackupsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LongTermRetentionBackupsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<LongTermRetentionBackupsUpdateResponse>,
       LongTermRetentionBackupsUpdateResponse
     >
   > {
@@ -733,7 +740,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     ): Promise<LongTermRetentionBackupsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -766,9 +773,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         locationName,
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
@@ -776,10 +783,13 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         parameters,
         options
       },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LongTermRetentionBackupsUpdateResponse,
+      OperationState<LongTermRetentionBackupsUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -855,14 +865,14 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -895,19 +905,19 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         locationName,
         longTermRetentionServerName,
         longTermRetentionDatabaseName,
         backupName,
         options
       },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1015,8 +1025,8 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     parameters: CopyLongTermRetentionBackupParameters,
     options?: LongTermRetentionBackupsCopyByResourceGroupOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LongTermRetentionBackupsCopyByResourceGroupResponse>,
+    SimplePollerLike<
+      OperationState<LongTermRetentionBackupsCopyByResourceGroupResponse>,
       LongTermRetentionBackupsCopyByResourceGroupResponse
     >
   > {
@@ -1026,7 +1036,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     ): Promise<LongTermRetentionBackupsCopyByResourceGroupResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1059,9 +1069,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         locationName,
         longTermRetentionServerName,
@@ -1070,10 +1080,13 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         parameters,
         options
       },
-      copyByResourceGroupOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: copyByResourceGroupOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LongTermRetentionBackupsCopyByResourceGroupResponse,
+      OperationState<LongTermRetentionBackupsCopyByResourceGroupResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1132,8 +1145,8 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     parameters: UpdateLongTermRetentionBackupParameters,
     options?: LongTermRetentionBackupsUpdateByResourceGroupOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LongTermRetentionBackupsUpdateByResourceGroupResponse>,
+    SimplePollerLike<
+      OperationState<LongTermRetentionBackupsUpdateByResourceGroupResponse>,
       LongTermRetentionBackupsUpdateByResourceGroupResponse
     >
   > {
@@ -1143,7 +1156,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     ): Promise<LongTermRetentionBackupsUpdateByResourceGroupResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1176,9 +1189,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         locationName,
         longTermRetentionServerName,
@@ -1187,10 +1200,13 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         parameters,
         options
       },
-      updateByResourceGroupOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateByResourceGroupOperationSpec
+    });
+    const poller = await createHttpPoller<
+      LongTermRetentionBackupsUpdateByResourceGroupResponse,
+      OperationState<LongTermRetentionBackupsUpdateByResourceGroupResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1277,14 +1293,14 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1317,9 +1333,9 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         locationName,
         longTermRetentionServerName,
@@ -1327,10 +1343,10 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
         backupName,
         options
       },
-      deleteByResourceGroupOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteByResourceGroupOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

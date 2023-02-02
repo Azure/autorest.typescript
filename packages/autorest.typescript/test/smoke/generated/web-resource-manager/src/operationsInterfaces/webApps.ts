@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   Site,
   WebAppsListOptionalParams,
@@ -1554,8 +1554,8 @@ export interface WebApps {
     siteEnvelope: Site,
     options?: WebAppsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateOrUpdateResponse>,
       WebAppsCreateOrUpdateResponse
     >
   >;
@@ -1695,7 +1695,7 @@ export interface WebApps {
     backupId: string,
     request: RestoreRequest,
     options?: WebAppsRestoreOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Restores a specific backup to another app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2000,8 +2000,8 @@ export interface WebApps {
     name: string,
     options?: WebAppsListPublishingCredentialsOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsListPublishingCredentialsResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsListPublishingCredentialsResponse>,
       WebAppsListPublishingCredentialsResponse
     >
   >;
@@ -2356,8 +2356,8 @@ export interface WebApps {
     mSDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateMSDeployOperationResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateMSDeployOperationResponse>,
       WebAppsCreateMSDeployOperationResponse
     >
   >;
@@ -2424,8 +2424,8 @@ export interface WebApps {
     functionEnvelope: FunctionEnvelope,
     options?: WebAppsCreateFunctionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateFunctionResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateFunctionResponse>,
       WebAppsCreateFunctionResponse
     >
   >;
@@ -2806,8 +2806,8 @@ export interface WebApps {
     mSDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
       WebAppsCreateInstanceMSDeployOperationResponse
     >
   >;
@@ -2944,8 +2944,8 @@ export interface WebApps {
     migrationOptions: StorageMigrationOptions,
     options?: WebAppsMigrateStorageOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsMigrateStorageResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsMigrateStorageResponse>,
       WebAppsMigrateStorageResponse
     >
   >;
@@ -2977,8 +2977,8 @@ export interface WebApps {
     migrationRequestEnvelope: MigrateMySqlRequest,
     options?: WebAppsMigrateMySqlOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsMigrateMySqlResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsMigrateMySqlResponse>,
       WebAppsMigrateMySqlResponse
     >
   >;
@@ -3112,8 +3112,8 @@ export interface WebApps {
     name: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
       WebAppsStartWebSiteNetworkTraceOperationResponse
     >
   >;
@@ -3324,10 +3324,8 @@ export interface WebApps {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
-      >,
+    SimplePollerLike<
+      OperationState<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>,
       WebAppsApproveOrRejectPrivateEndpointConnectionResponse
     >
   >;
@@ -3359,8 +3357,8 @@ export interface WebApps {
     privateEndpointConnectionName: string,
     options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
       WebAppsDeletePrivateEndpointConnectionResponse
     >
   >;
@@ -3535,7 +3533,7 @@ export interface WebApps {
     name: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Restores an app from a backup blob in Azure Storage.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3561,7 +3559,7 @@ export interface WebApps {
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3588,7 +3586,7 @@ export interface WebApps {
     name: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3629,8 +3627,8 @@ export interface WebApps {
     siteExtensionId: string,
     options?: WebAppsInstallSiteExtensionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsInstallSiteExtensionResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsInstallSiteExtensionResponse>,
       WebAppsInstallSiteExtensionResponse
     >
   >;
@@ -3691,8 +3689,8 @@ export interface WebApps {
     siteEnvelope: Site,
     options?: WebAppsCreateOrUpdateSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateOrUpdateSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateOrUpdateSlotResponse>,
       WebAppsCreateOrUpdateSlotResponse
     >
   >;
@@ -3859,7 +3857,7 @@ export interface WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Restores a specific backup to another app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4231,8 +4229,8 @@ export interface WebApps {
     slot: string,
     options?: WebAppsListPublishingCredentialsSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsListPublishingCredentialsSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsListPublishingCredentialsSlotResponse>,
       WebAppsListPublishingCredentialsSlotResponse
     >
   >;
@@ -4630,8 +4628,8 @@ export interface WebApps {
     mSDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateMSDeployOperationSlotResponse>,
       WebAppsCreateMSDeployOperationSlotResponse
     >
   >;
@@ -4708,8 +4706,8 @@ export interface WebApps {
     functionEnvelope: FunctionEnvelope,
     options?: WebAppsCreateInstanceFunctionSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateInstanceFunctionSlotResponse>,
       WebAppsCreateInstanceFunctionSlotResponse
     >
   >;
@@ -5153,8 +5151,8 @@ export interface WebApps {
     mSDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
       WebAppsCreateInstanceMSDeployOperationSlotResponse
     >
   >;
@@ -5438,8 +5436,8 @@ export interface WebApps {
     slot: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
       WebAppsStartWebSiteNetworkTraceOperationSlotResponse
     >
   >;
@@ -5691,8 +5689,8 @@ export interface WebApps {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
       >,
       WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
@@ -5730,8 +5728,8 @@ export interface WebApps {
     slot: string,
     options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>,
       WebAppsDeletePrivateEndpointConnectionSlotResponse
     >
   >;
@@ -5943,7 +5941,7 @@ export interface WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Restores an app from a backup blob in Azure Storage.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5974,7 +5972,7 @@ export interface WebApps {
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6005,7 +6003,7 @@ export interface WebApps {
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6054,8 +6052,8 @@ export interface WebApps {
     slot: string,
     options?: WebAppsInstallSiteExtensionSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsInstallSiteExtensionSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsInstallSiteExtensionSlotResponse>,
       WebAppsInstallSiteExtensionSlotResponse
     >
   >;
@@ -6106,7 +6104,7 @@ export interface WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6153,8 +6151,8 @@ export interface WebApps {
     siteSourceControl: SiteSourceControl,
     options?: WebAppsCreateOrUpdateSourceControlSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
       WebAppsCreateOrUpdateSourceControlSlotResponse
     >
   >;
@@ -6231,8 +6229,8 @@ export interface WebApps {
     slot: string,
     options?: WebAppsStartNetworkTraceSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsStartNetworkTraceSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsStartNetworkTraceSlotResponse>,
       WebAppsStartNetworkTraceSlotResponse
     >
   >;
@@ -6538,7 +6536,7 @@ export interface WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotWithProductionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6576,8 +6574,8 @@ export interface WebApps {
     siteSourceControl: SiteSourceControl,
     options?: WebAppsCreateOrUpdateSourceControlOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateOrUpdateSourceControlResponse>,
       WebAppsCreateOrUpdateSourceControlResponse
     >
   >;
@@ -6640,8 +6638,8 @@ export interface WebApps {
     name: string,
     options?: WebAppsStartNetworkTraceOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsStartNetworkTraceResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsStartNetworkTraceResponse>,
       WebAppsStartNetworkTraceResponse
     >
   >;

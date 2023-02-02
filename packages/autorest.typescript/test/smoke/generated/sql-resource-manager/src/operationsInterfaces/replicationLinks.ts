@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   ReplicationLink,
   ReplicationLinksListByDatabaseOptionalParams,
@@ -81,7 +81,7 @@ export interface ReplicationLinks {
     databaseName: string,
     linkId: string,
     options?: ReplicationLinksFailoverOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -114,7 +114,7 @@ export interface ReplicationLinks {
     databaseName: string,
     linkId: string,
     options?: ReplicationLinksFailoverAllowDataLossOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
    * This operation might result in data loss.
@@ -149,7 +149,7 @@ export interface ReplicationLinks {
     linkId: string,
     parameters: UnlinkParameters,
     options?: ReplicationLinksUnlinkOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a database replication link in forced or friendly way.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

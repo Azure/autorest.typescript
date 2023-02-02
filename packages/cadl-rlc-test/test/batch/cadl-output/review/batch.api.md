@@ -16,7 +16,7 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export interface AccountOperationsListPoolNodeCounts {
-    get(options: AccountOperationsListPoolNodeCountsParameters): StreamableMethod<AccountOperationsListPoolNodeCounts200Response | AccountOperationsListPoolNodeCountsDefaultResponse>;
+    get(options?: AccountOperationsListPoolNodeCountsParameters): StreamableMethod<AccountOperationsListPoolNodeCounts200Response | AccountOperationsListPoolNodeCountsDefaultResponse>;
 }
 
 // @public
@@ -36,37 +36,11 @@ export interface AccountOperationsListPoolNodeCountsDefaultResponse extends Http
 }
 
 // @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & AccountOperationsListPoolNodeCountsHeaders;
-}
-
-// @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type AccountOperationsListPoolNodeCountsParameters = AccountOperationsListPoolNodeCountsQueryParam & AccountOperationsListPoolNodeCountsHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsQueryParam {
-    // (undocumented)
-    queryParameters: AccountOperationsListPoolNodeCountsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsQueryParamProperties {
-    $filter: string;
-    maxresults: number;
-    timeout: number;
-}
+export type AccountOperationsListPoolNodeCountsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface AccountOperationsListSupportedImages {
-    get(options: AccountOperationsListSupportedImagesParameters): StreamableMethod<AccountOperationsListSupportedImages200Response | AccountOperationsListSupportedImagesDefaultResponse>;
+    get(options?: AccountOperationsListSupportedImagesParameters): StreamableMethod<AccountOperationsListSupportedImages200Response | AccountOperationsListSupportedImagesDefaultResponse>;
 }
 
 // @public
@@ -86,33 +60,7 @@ export interface AccountOperationsListSupportedImagesDefaultResponse extends Htt
 }
 
 // @public (undocumented)
-export interface AccountOperationsListSupportedImagesHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & AccountOperationsListSupportedImagesHeaders;
-}
-
-// @public (undocumented)
-export interface AccountOperationsListSupportedImagesHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type AccountOperationsListSupportedImagesParameters = AccountOperationsListSupportedImagesQueryParam & AccountOperationsListSupportedImagesHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface AccountOperationsListSupportedImagesQueryParam {
-    // (undocumented)
-    queryParameters: AccountOperationsListSupportedImagesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface AccountOperationsListSupportedImagesQueryParamProperties {
-    $filter: string;
-    maxresults: number;
-    timeout: number;
-}
+export type AccountOperationsListSupportedImagesParameters = RequestParameters;
 
 // @public
 export interface AffinityInformation {
@@ -132,7 +80,7 @@ export interface ApplicationListOutput {
 
 // @public (undocumented)
 export interface ApplicationOperationsGet {
-    get(options: ApplicationOperationsGetParameters): StreamableMethod<ApplicationOperationsGet200Response | ApplicationOperationsGetDefaultResponse>;
+    get(options?: ApplicationOperationsGetParameters): StreamableMethod<ApplicationOperationsGet200Response | ApplicationOperationsGetDefaultResponse>;
 }
 
 // @public
@@ -152,35 +100,11 @@ export interface ApplicationOperationsGetDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface ApplicationOperationsGetHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & ApplicationOperationsGetHeaders;
-}
-
-// @public (undocumented)
-export interface ApplicationOperationsGetHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type ApplicationOperationsGetParameters = ApplicationOperationsGetQueryParam & ApplicationOperationsGetHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface ApplicationOperationsGetQueryParam {
-    // (undocumented)
-    queryParameters: ApplicationOperationsGetQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ApplicationOperationsGetQueryParamProperties {
-    timeout: number;
-}
+export type ApplicationOperationsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ApplicationOperationsList {
-    get(options: ApplicationOperationsListParameters): StreamableMethod<ApplicationOperationsList200Response | ApplicationOperationsListDefaultResponse>;
+    get(options?: ApplicationOperationsListParameters): StreamableMethod<ApplicationOperationsList200Response | ApplicationOperationsListDefaultResponse>;
 }
 
 // @public
@@ -200,37 +124,12 @@ export interface ApplicationOperationsListDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface ApplicationOperationsListHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & ApplicationOperationsListHeaders;
-}
-
-// @public (undocumented)
-export interface ApplicationOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type ApplicationOperationsListParameters = ApplicationOperationsListQueryParam & ApplicationOperationsListHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface ApplicationOperationsListQueryParam {
-    // (undocumented)
-    queryParameters: ApplicationOperationsListQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ApplicationOperationsListQueryParamProperties {
-    maxresults: number;
-    timeout: number;
-}
+export type ApplicationOperationsListParameters = RequestParameters;
 
 // @public
 export interface ApplicationOutput {
     displayName: string;
-    id: string;
+    readonly id: string;
     versions: string[];
 }
 
@@ -276,7 +175,6 @@ export interface AutoPoolSpecificationOutput {
 export interface AutoScaleRun {
     error?: AutoScaleRunError;
     results?: string;
-    timestamp: Date | string;
 }
 
 // @public
@@ -297,7 +195,7 @@ export interface AutoScaleRunErrorOutput {
 export interface AutoScaleRunOutput {
     error?: AutoScaleRunErrorOutput;
     results?: string;
-    timestamp: string;
+    readonly timestamp: string;
 }
 
 // @public
@@ -1099,7 +997,7 @@ export interface ComputeNodeExtensionOperationsListQueryParamProperties {
 
 // @public
 export interface ComputeNodeGetRemoteLoginSettingsResultOutput {
-    remoteLoginIPAddress: string;
+    readonly remoteLoginIPAddress: string;
     remoteLoginPort: number;
 }
 
@@ -1698,8 +1596,7 @@ export interface ComputeNodeOperationsUploadBatchServiceLogs201Response extends 
 
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsBodyParam {
-    // (undocumented)
-    body?: UploadBatchServiceLogsResult;
+    body: UploadBatchServiceLogsResult;
 }
 
 // @public (undocumented)
@@ -1711,31 +1608,7 @@ export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse exte
 }
 
 // @public (undocumented)
-export interface ComputeNodeOperationsUploadBatchServiceLogsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsUploadBatchServiceLogsHeaders;
-}
-
-// @public (undocumented)
-export interface ComputeNodeOperationsUploadBatchServiceLogsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type ComputeNodeOperationsUploadBatchServiceLogsParameters = ComputeNodeOperationsUploadBatchServiceLogsQueryParam & ComputeNodeOperationsUploadBatchServiceLogsHeaderParam & ComputeNodeOperationsUploadBatchServiceLogsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface ComputeNodeOperationsUploadBatchServiceLogsQueryParam {
-    // (undocumented)
-    queryParameters: ComputeNodeOperationsUploadBatchServiceLogsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ComputeNodeOperationsUploadBatchServiceLogsQueryParamProperties {
-    timeout: number;
-}
+export type ComputeNodeOperationsUploadBatchServiceLogsParameters = ComputeNodeOperationsUploadBatchServiceLogsBodyParam & RequestParameters;
 
 // @public
 export interface ComputeNodeOutput {
@@ -2362,7 +2235,7 @@ export interface ImageInformationOutput {
     batchSupportEndOfLife?: string;
     capabilities?: string[];
     imageReference: ImageReferenceOutput;
-    nodeAgentSKUId: string;
+    readonly nodeAgentSKUId: string;
     osType: "linux" | "windows";
     verificationType: "verified" | "unverified";
 }
@@ -4101,7 +3974,6 @@ export interface JobStatistics {
     readIOGiB: number;
     readIOps: number;
     startTime: Date | string;
-    url: string;
     userCPUTime: string;
     waitTime: string;
     wallClockTime: string;
@@ -4119,7 +3991,7 @@ export interface JobStatisticsOutput {
     readIOGiB: number;
     readIOps: number;
     startTime: string;
-    url: string;
+    readonly url: string;
     userCPUTime: string;
     waitTime: string;
     wallClockTime: string;
@@ -4447,7 +4319,7 @@ export interface PoolNodeCountsListOutput {
 export interface PoolNodeCountsOutput {
     dedicated?: NodeCountsOutput;
     lowPriority?: NodeCountsOutput;
-    poolId: string;
+    readonly poolId: string;
 }
 
 // @public (undocumented)
@@ -4900,7 +4772,7 @@ export interface PoolOperationsListQueryParamProperties {
 
 // @public (undocumented)
 export interface PoolOperationsListUsageMetrics {
-    get(options: PoolOperationsListUsageMetricsParameters): StreamableMethod<PoolOperationsListUsageMetrics200Response | PoolOperationsListUsageMetricsDefaultResponse>;
+    get(options?: PoolOperationsListUsageMetricsParameters): StreamableMethod<PoolOperationsListUsageMetrics200Response | PoolOperationsListUsageMetricsDefaultResponse>;
 }
 
 // @public
@@ -4920,35 +4792,7 @@ export interface PoolOperationsListUsageMetricsDefaultResponse extends HttpRespo
 }
 
 // @public (undocumented)
-export interface PoolOperationsListUsageMetricsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsListUsageMetricsHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsListUsageMetricsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsListUsageMetricsParameters = PoolOperationsListUsageMetricsQueryParam & PoolOperationsListUsageMetricsHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsListUsageMetricsQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsListUsageMetricsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsListUsageMetricsQueryParamProperties {
-    $filter: string;
-    endtime: string;
-    maxresults: number;
-    starttime: string;
-    timeout: number;
-}
+export type PoolOperationsListUsageMetricsParameters = RequestParameters;
 
 // @public
 export interface PoolOperationsPatch204Response extends HttpResponse {
@@ -5266,7 +5110,6 @@ export interface PoolStatistics {
     lastUpdateTime: Date | string;
     resourceStats?: ResourceStatistics;
     startTime: Date | string;
-    url: string;
     usageStats?: UsageStatistics;
 }
 
@@ -5275,7 +5118,7 @@ export interface PoolStatisticsOutput {
     lastUpdateTime: string;
     resourceStats?: ResourceStatisticsOutput;
     startTime: string;
-    url: string;
+    readonly url: string;
     usageStats?: UsageStatisticsOutput;
 }
 
@@ -5288,7 +5131,7 @@ export interface PoolUsageMetricsListOutput {
 // @public
 export interface PoolUsageMetricsOutput {
     endTime: string;
-    poolId: string;
+    readonly poolId: string;
     startTime: string;
     totalCoreHours: number;
     vmSize: string;
@@ -5584,7 +5427,7 @@ export interface TaskCountsOutput {
 
 // @public
 export interface TaskCountsResultOutput {
-    taskCounts: TaskCountsOutput;
+    readonly taskCounts: TaskCountsOutput;
     taskSlotCounts: TaskSlotCountsOutput;
 }
 
@@ -6170,7 +6013,6 @@ export interface TaskStatisticsOutput {
 // @public
 export interface UploadBatchServiceLogsResult {
     numberOfFilesUploaded: number;
-    virtualDirectoryName: string;
 }
 
 // @public
