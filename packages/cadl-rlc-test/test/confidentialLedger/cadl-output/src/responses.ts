@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   CollectionOutput,
-  ErrorResponseOutput,
   PagedLedgerEntriesOutput,
   LedgerEntryOutput,
   TransactionReceiptOutput,
@@ -21,7 +20,7 @@ export interface ListCollections200Response extends HttpResponse {
 
 export interface ListCollectionsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -31,7 +30,7 @@ export interface GetEnclaveQuotes200Response extends HttpResponse {
 
 export interface GetEnclaveQuotesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -41,7 +40,7 @@ export interface GetConstitution200Response extends HttpResponse {
 
 export interface GetConstitutionDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -51,7 +50,7 @@ export interface GetConsortiumMembers200Response extends HttpResponse {
 
 export interface GetConsortiumMembersDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -62,7 +61,7 @@ export interface ListLedgerEntries200Response extends HttpResponse {
 
 export interface ListLedgerEntriesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 export interface CreateLedgerEntry201Headers {
@@ -77,7 +76,7 @@ export interface CreateLedgerEntry201Response extends HttpResponse {
 
 export interface CreateLedgerEntryDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -88,7 +87,7 @@ export interface GetLedgerEntry200Response extends HttpResponse {
 
 export interface GetLedgerEntryDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -99,7 +98,7 @@ export interface GetReceipt200Response extends HttpResponse {
 
 export interface GetReceiptDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -110,7 +109,7 @@ export interface GetTransactionStatus200Response extends HttpResponse {
 
 export interface GetTransactionStatusDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -121,7 +120,7 @@ export interface GetCurrentLedgerEntry200Response extends HttpResponse {
 
 export interface GetCurrentLedgerEntryDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -131,7 +130,7 @@ export interface DeleteUser204Response extends HttpResponse {
 
 export interface DeleteUserDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -142,7 +141,7 @@ export interface GetUser200Response extends HttpResponse {
 
 export interface GetUserDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -159,5 +158,5 @@ export interface CreateOrUpdateUser201Response extends HttpResponse {
 
 export interface CreateOrUpdateUserDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }

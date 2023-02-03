@@ -6,6 +6,7 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
@@ -20,26 +21,6 @@ export interface CollectionOutput {
 // @public
 function createClient(credentials: TokenCredential, options?: ParametrizedHostClientOptions): ParametrizedHostClient;
 export default createClient;
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: ListCollections200Response | ListCollectionsDefaultResponse): response is ListCollectionsDefaultResponse;
@@ -60,7 +41,7 @@ export interface ListCollections200Response extends HttpResponse {
 // @public (undocumented)
 export interface ListCollectionsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }

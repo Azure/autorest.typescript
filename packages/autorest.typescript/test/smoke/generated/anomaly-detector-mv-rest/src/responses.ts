@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   DetectionResultOutput,
-  ErrorResponseOutput,
   ModelOutput,
   ModelListOutput,
   LastDetectionResultOutput
@@ -27,7 +26,7 @@ export interface GetMultivariateBatchDetectionResultDefaultHeaders {
 export interface GetMultivariateBatchDetectionResultDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
 }
 
@@ -53,7 +52,7 @@ export interface CreateAndTrainMultivariateModelDefaultHeaders {
 export interface CreateAndTrainMultivariateModelDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateAndTrainMultivariateModelDefaultHeaders;
 }
 
@@ -71,7 +70,7 @@ export interface ListMultivariateModelsDefaultHeaders {
 /** List models of a resource. */
 export interface ListMultivariateModelsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListMultivariateModelsDefaultHeaders;
 }
 
@@ -89,7 +88,7 @@ export interface DeleteMultivariateModelDefaultHeaders {
 /** Delete an existing multivariate model according to the modelId */
 export interface DeleteMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteMultivariateModelDefaultHeaders;
 }
 
@@ -107,7 +106,7 @@ export interface GetMultivariateModelDefaultHeaders {
 /** Get detailed information of multivariate model, including the training status and variables used in the model. */
 export interface GetMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetMultivariateModelDefaultHeaders;
 }
 
@@ -135,7 +134,7 @@ export interface DetectMultivariateBatchAnomalyDefaultHeaders {
 export interface DetectMultivariateBatchAnomalyDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
 }
 
@@ -154,6 +153,6 @@ export interface DetectMultivariateLastAnomalyDefaultHeaders {
 export interface DetectMultivariateLastAnomalyDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DetectMultivariateLastAnomalyDefaultHeaders;
 }

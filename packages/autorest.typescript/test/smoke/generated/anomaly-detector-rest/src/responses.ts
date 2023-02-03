@@ -2,14 +2,13 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   EntireDetectResponseOutput,
   AnomalyDetectorErrorOutput,
   LastDetectResponseOutput,
   ChangePointDetectResponseOutput,
   DetectionResultOutput,
-  ErrorResponseOutput,
   ModelOutput,
   ModelListOutput,
   LastDetectionResultOutput
@@ -83,7 +82,7 @@ export interface GetBatchDetectionResultDefaultHeaders {
 /** For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api. */
 export interface GetBatchDetectionResultDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetBatchDetectionResultDefaultHeaders;
 }
 
@@ -107,7 +106,7 @@ export interface CreateMultivariateModelDefaultHeaders {
 /** Create and train a multivariate anomaly detection model. The request must include a source parameter to indicate an externally accessible Azure blob storage URI.There are two types of data input: An URI pointed to an Azure blob storage folder which contains multiple CSV files, and each CSV file contains two columns, timestamp and variable. Another type of input is an URI pointed to a CSV file in Azure blob storage, which contains all the variables and a timestamp column. */
 export interface CreateMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateMultivariateModelDefaultHeaders;
 }
 
@@ -125,7 +124,7 @@ export interface ListMultivariateModelDefaultHeaders {
 /** List models of a resource. */
 export interface ListMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListMultivariateModelDefaultHeaders;
 }
 
@@ -143,7 +142,7 @@ export interface DeleteMultivariateModelDefaultHeaders {
 /** Delete an existing multivariate model according to the modelId */
 export interface DeleteMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteMultivariateModelDefaultHeaders;
 }
 
@@ -161,7 +160,7 @@ export interface GetMultivariateModelDefaultHeaders {
 /** Get detailed information of multivariate model, including the training status and variables used in the model. */
 export interface GetMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetMultivariateModelDefaultHeaders;
 }
 
@@ -187,7 +186,7 @@ export interface BatchDetectAnomalyDefaultHeaders {
 /** Submit multivariate anomaly detection task with the modelId of trained model and inference data, the input schema should be the same with the training request. The request will complete asynchronously and return a resultId to query the detection result.The request should be a source link to indicate an externally accessible Azure storage Uri, either pointed to an Azure blob storage folder, or pointed to a CSV file in Azure blob storage. */
 export interface BatchDetectAnomalyDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & BatchDetectAnomalyDefaultHeaders;
 }
 
@@ -205,6 +204,6 @@ export interface LastDetectAnomalyDefaultHeaders {
 /** Submit multivariate anomaly detection task with the modelId of trained model and inference data, and the inference data should be put into request body in a JSON format. The request will complete synchronously and return the detection immediately in the response body. */
 export interface LastDetectAnomalyDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & LastDetectAnomalyDefaultHeaders;
 }

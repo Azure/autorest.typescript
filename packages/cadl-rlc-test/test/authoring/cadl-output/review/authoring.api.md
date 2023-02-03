@@ -6,9 +6,12 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { LroEngineOptions } from '@azure/core-lro';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { PollerLike } from '@azure/core-lro';
@@ -67,7 +70,7 @@ export interface CreateOrUpdateBodyParam {
 // @public (undocumented)
 export interface CreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -98,7 +101,7 @@ export interface Delete202Response extends HttpResponse {
 // @public (undocumented)
 export interface DeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -121,7 +124,7 @@ export interface DeleteDeployment202Response extends HttpResponse {
 // @public (undocumented)
 export interface DeleteDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -135,7 +138,7 @@ export type DeleteParameters = RequestParameters;
 // @public
 export interface DeploymentJobOutput {
     readonly createdDateTime: string;
-    errors: ErrorModelOutput;
+    errors: ErrorModel;
     readonly expirationDateTime: string;
     readonly id: string;
     jobId: string;
@@ -145,10 +148,7 @@ export interface DeploymentJobOutput {
 }
 
 // @public
-export interface DeploymentListOutput {
-    nextLink?: string;
-    value: Array<DeploymentOutput>;
-}
+export type DeploymentListOutput = Paged<DeploymentOutput>;
 
 // @public
 export interface DeploymentOutput {
@@ -188,27 +188,13 @@ export interface DeployProject201Response extends HttpResponse {
 // @public (undocumented)
 export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type DeployProjectParameters = RequestParameters;
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
 
 // @public (undocumented)
 export interface Export {
@@ -231,7 +217,7 @@ export interface Export202Response extends HttpResponse {
 // @public (undocumented)
 export interface ExportDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -264,7 +250,7 @@ export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 // @public (undocumented)
 export interface GetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -287,7 +273,7 @@ export interface GetDeployment200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -311,7 +297,7 @@ export interface GetDeploymentStatus200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -347,7 +333,7 @@ export interface GetSupportedLanguages200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetSupportedLanguagesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -384,7 +370,7 @@ export interface GetSwapDeploymentsStatus200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -413,19 +399,13 @@ export interface Importx202Response extends HttpResponse {
 // @public (undocumented)
 export interface ImportxDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type ImportxParameters = RequestParameters;
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
@@ -497,7 +477,7 @@ export interface ListDeployments200Response extends HttpResponse {
 // @public (undocumented)
 export interface ListDeploymentsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -521,7 +501,7 @@ export interface ListProjects200Response extends HttpResponse {
 // @public (undocumented)
 export interface ListProjectsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -558,7 +538,7 @@ export interface ListTrainingConfigVersions200Response extends HttpResponse {
 // @public (undocumented)
 export interface ListTrainingConfigVersionsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -586,22 +566,16 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
 
 // @public
 export interface OperationStatusOutput {
-    error?: ErrorModelOutput;
+    error?: ErrorModel;
     id: string;
     status: string;
 }
 
 // @public
-export interface PagedSupportedLanguageOutput {
-    nextLink?: string;
-    value: Array<SupportedLanguageOutput>;
-}
+export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
 
 // @public
-export interface PagedTrainingConfigVersionOutput {
-    nextLink?: string;
-    value: Array<TrainingConfigVersionOutput>;
-}
+export type PagedTrainingConfigVersionOutput = Paged<TrainingConfigVersionOutput>;
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -629,10 +603,7 @@ export interface Project {
 }
 
 // @public
-export interface ProjectListOutput {
-    nextLink?: string;
-    value: Array<ProjectOutput>;
-}
+export type ProjectListOutput = Paged<ProjectOutput>;
 
 // @public
 export interface ProjectOutput {
@@ -704,7 +675,7 @@ export interface SwapDeploymentsBodyParam {
 // @public (undocumented)
 export interface SwapDeploymentsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -712,7 +683,7 @@ export interface SwapDeploymentsDefaultResponse extends HttpResponse {
 // @public
 export interface SwapDeploymentsJobOutput {
     readonly createdDateTime: string;
-    errors: ErrorModelOutput;
+    errors: ErrorModel;
     readonly expirationDateTime: string;
     readonly id: string;
     jobId: string;
@@ -756,7 +727,7 @@ export interface TrainBodyParam {
 // @public (undocumented)
 export interface TrainDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }

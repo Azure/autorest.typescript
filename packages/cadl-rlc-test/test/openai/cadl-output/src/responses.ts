@@ -2,12 +2,8 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
-import {
-  EmbeddingsOutput,
-  ErrorResponseOutput,
-  CompletionOutput,
-} from "./outputModels";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import { EmbeddingsOutput, CompletionOutput } from "./outputModels";
 
 /** The request has succeeded. */
 export interface Embeddings200Response extends HttpResponse {
@@ -17,7 +13,7 @@ export interface Embeddings200Response extends HttpResponse {
 
 export interface EmbeddingsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 export interface Completions200Headers {
@@ -34,5 +30,5 @@ export interface Completions200Response extends HttpResponse {
 
 export interface CompletionsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }

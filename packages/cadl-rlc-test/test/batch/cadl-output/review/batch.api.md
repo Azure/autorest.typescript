@@ -6,7 +6,9 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -30,7 +32,7 @@ export interface AccountOperationsListPoolNodeCounts200Response extends HttpResp
 // @public (undocumented)
 export interface AccountOperationsListPoolNodeCountsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -80,7 +82,7 @@ export interface AccountOperationsListSupportedImages200Response extends HttpRes
 // @public (undocumented)
 export interface AccountOperationsListSupportedImagesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -125,10 +127,7 @@ export interface AffinityInformationOutput {
 }
 
 // @public
-export interface ApplicationListOutput {
-    nextLink?: string;
-    value: Array<ApplicationOutput>;
-}
+export type ApplicationListOutput = Paged<ApplicationOutput>;
 
 // @public (undocumented)
 export interface ApplicationOperationsGet {
@@ -146,7 +145,7 @@ export interface ApplicationOperationsGet200Response extends HttpResponse {
 // @public (undocumented)
 export interface ApplicationOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -194,7 +193,7 @@ export interface ApplicationOperationsList200Response extends HttpResponse {
 // @public (undocumented)
 export interface ApplicationOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -707,7 +706,7 @@ export interface CertificateOperationsAddBodyParam {
 // @public (undocumented)
 export interface CertificateOperationsAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -753,7 +752,7 @@ export interface CertificateOperationsCancelDeletion204Response extends HttpResp
 // @public (undocumented)
 export interface CertificateOperationsCancelDeletionDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -800,7 +799,7 @@ export interface CertificateOperationsDelete204Response extends HttpResponse {
 // @public (undocumented)
 export interface CertificateOperationsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -843,7 +842,7 @@ export interface CertificateOperationsGet200Response extends HttpResponse {
 // @public (undocumented)
 export interface CertificateOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -887,7 +886,7 @@ export interface CertificateOperationsList200Response extends HttpResponse {
 // @public (undocumented)
 export interface CertificateOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1014,7 +1013,7 @@ export interface ComputeNodeExtensionOperationsGet200Response extends HttpRespon
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1063,7 +1062,7 @@ export interface ComputeNodeExtensionOperationsList200Response extends HttpRespo
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1158,7 +1157,7 @@ export interface ComputeNodeOperationsAddUserBodyParam {
 // @public (undocumented)
 export interface ComputeNodeOperationsAddUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1205,7 +1204,7 @@ export interface ComputeNodeOperationsDeleteUser204Response extends HttpResponse
 // @public (undocumented)
 export interface ComputeNodeOperationsDeleteUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1256,7 +1255,7 @@ export interface ComputeNodeOperationsDisableSchedulingBodyParam {
 // @public (undocumented)
 export interface ComputeNodeOperationsDisableSchedulingDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1302,7 +1301,7 @@ export interface ComputeNodeOperationsEnableScheduling204Response extends HttpRe
 // @public (undocumented)
 export interface ComputeNodeOperationsEnableSchedulingDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1350,7 +1349,7 @@ export interface ComputeNodeOperationsGet200Response extends HttpResponse {
 // @public (undocumented)
 export interface ComputeNodeOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1397,7 +1396,7 @@ export interface ComputeNodeOperationsGetRemoteDesktop204Response extends HttpRe
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteDesktopDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1446,7 +1445,7 @@ export interface ComputeNodeOperationsGetRemoteLoginSettings200Response extends 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1494,7 +1493,7 @@ export interface ComputeNodeOperationsList200Response extends HttpResponse {
 // @public (undocumented)
 export interface ComputeNodeOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1548,7 +1547,7 @@ export interface ComputeNodeOperationsRebootBodyParam {
 // @public (undocumented)
 export interface ComputeNodeOperationsRebootDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1599,7 +1598,7 @@ export interface ComputeNodeOperationsReimageBodyParam {
 // @public (undocumented)
 export interface ComputeNodeOperationsReimageDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1645,7 +1644,7 @@ export interface ComputeNodeOperationsUpdateUserBodyParam {
 // @public (undocumented)
 export interface ComputeNodeOperationsUpdateUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1705,7 +1704,7 @@ export interface ComputeNodeOperationsUploadBatchServiceLogsBodyParam {
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -1876,20 +1875,6 @@ export interface ErrorMessageOutput {
 }
 
 // @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
-
-// @public
 export interface ExitCodeMapping {
     code: number;
     exitOptions: ExitOptions;
@@ -1961,7 +1946,7 @@ export interface FileOperationsDeleteFromComputeNode204Response extends HttpResp
 // @public (undocumented)
 export interface FileOperationsDeleteFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2010,7 +1995,7 @@ export interface FileOperationsDeleteFromTask204Response extends HttpResponse {
 // @public (undocumented)
 export interface FileOperationsDeleteFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2052,7 +2037,7 @@ export interface FileOperationsGetFromComputeNode204Response extends HttpRespons
 // @public (undocumented)
 export interface FileOperationsGetFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2097,7 +2082,7 @@ export interface FileOperationsGetFromTask204Response extends HttpResponse {
 // @public (undocumented)
 export interface FileOperationsGetFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2142,7 +2127,7 @@ export interface FileOperationsGetPropertiesFromComputeNode204Response extends H
 // @public (undocumented)
 export interface FileOperationsGetPropertiesFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2185,7 +2170,7 @@ export interface FileOperationsGetPropertiesFromTask204Response extends HttpResp
 // @public (undocumented)
 export interface FileOperationsGetPropertiesFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2235,7 +2220,7 @@ export interface FileOperationsListFromComputeNode200Response extends HttpRespon
 // @public (undocumented)
 export interface FileOperationsListFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2286,7 +2271,7 @@ export interface FileOperationsListFromTask200Response extends HttpResponse {
 // @public (undocumented)
 export interface FileOperationsListFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2352,10 +2337,7 @@ export interface HttpHeaderOutput {
 }
 
 // @public
-export interface ImageInformationListOutput {
-    nextLink?: string;
-    value: Array<ImageInformationOutput>;
-}
+export type ImageInformationListOutput = Paged<ImageInformationOutput>;
 
 // @public
 export interface ImageInformationOutput {
@@ -2414,12 +2396,6 @@ export interface InboundNATPoolOutput {
     name: string;
     networkSecurityGroupRules?: Array<NetworkSecurityGroupRuleOutput>;
     protocol: "tcp" | "udp";
-}
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
 }
 
 // @public
@@ -2763,7 +2739,7 @@ export interface JobOperationsAddBodyParam {
 // @public (undocumented)
 export interface JobOperationsAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2812,7 +2788,7 @@ export interface JobOperationsDelete204Response extends HttpResponse {
 // @public (undocumented)
 export interface JobOperationsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2867,7 +2843,7 @@ export interface JobOperationsDisableBodyParam {
 // @public (undocumented)
 export interface JobOperationsDisableDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2917,7 +2893,7 @@ export interface JobOperationsEnable204Response extends HttpResponse {
 // @public (undocumented)
 export interface JobOperationsEnableDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -2977,7 +2953,7 @@ export interface JobOperationsGetAllLifetimeStatistics200Response extends HttpRe
 // @public (undocumented)
 export interface JobOperationsGetAllLifetimeStatisticsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3012,7 +2988,7 @@ export interface JobOperationsGetAllLifetimeStatisticsQueryParamProperties {
 // @public (undocumented)
 export interface JobOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3066,7 +3042,7 @@ export interface JobOperationsGetTaskCounts200Response extends HttpResponse {
 // @public (undocumented)
 export interface JobOperationsGetTaskCountsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3109,7 +3085,7 @@ export interface JobOperationsList200Response extends HttpResponse {
 // @public (undocumented)
 export interface JobOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3130,7 +3106,7 @@ export interface JobOperationsListFromJobSchedule200Response extends HttpRespons
 // @public (undocumented)
 export interface JobOperationsListFromJobScheduleDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3198,7 +3174,7 @@ export interface JobOperationsListPreparationAndReleaseTaskStatus200Response ext
 // @public (undocumented)
 export interface JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3262,7 +3238,7 @@ export interface JobOperationsPatchBodyParam {
 // @public (undocumented)
 export interface JobOperationsPatchDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3317,7 +3293,7 @@ export interface JobOperationsTerminateBodyParam {
 // @public (undocumented)
 export interface JobOperationsTerminateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3367,7 +3343,7 @@ export interface JobOperationsUpdateBodyParam {
 // @public (undocumented)
 export interface JobOperationsUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3524,7 +3500,7 @@ export interface JobScheduleOperationsAddBodyParam {
 // @public (undocumented)
 export interface JobScheduleOperationsAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3565,7 +3541,7 @@ export interface JobScheduleOperationsDelete204Response extends HttpResponse {
 // @public (undocumented)
 export interface JobScheduleOperationsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3615,7 +3591,7 @@ export interface JobScheduleOperationsDisable204Response extends HttpResponse {
 // @public (undocumented)
 export interface JobScheduleOperationsDisableDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3665,7 +3641,7 @@ export interface JobScheduleOperationsEnable204Response extends HttpResponse {
 // @public (undocumented)
 export interface JobScheduleOperationsEnableDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3719,7 +3695,7 @@ export interface JobScheduleOperationsExists204Response extends HttpResponse {
 // @public (undocumented)
 export interface JobScheduleOperationsExistsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3766,7 +3742,7 @@ export interface JobScheduleOperationsGet200Response extends HttpResponse {
 // @public (undocumented)
 export interface JobScheduleOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3815,7 +3791,7 @@ export interface JobScheduleOperationsList200Response extends HttpResponse {
 // @public (undocumented)
 export interface JobScheduleOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3865,7 +3841,7 @@ export interface JobScheduleOperationsPatchBodyParam {
 // @public (undocumented)
 export interface JobScheduleOperationsPatchDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3915,7 +3891,7 @@ export interface JobScheduleOperationsTerminate204Response extends HttpResponse 
 // @public (undocumented)
 export interface JobScheduleOperationsTerminateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -3965,7 +3941,7 @@ export interface JobScheduleOperationsUpdateBodyParam {
 // @public (undocumented)
 export interface JobScheduleOperationsUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4438,10 +4414,7 @@ export interface PoolInformationOutput {
 }
 
 // @public
-export interface PoolNodeCountsListOutput {
-    nextLink?: string;
-    value: Array<PoolNodeCountsOutput>;
-}
+export type PoolNodeCountsListOutput = Paged<PoolNodeCountsOutput>;
 
 // @public
 export interface PoolNodeCountsOutput {
@@ -4470,7 +4443,7 @@ export interface PoolOperationsAddBodyParam {
 // @public (undocumented)
 export interface PoolOperationsAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4519,7 +4492,7 @@ export interface PoolOperationsDelete204Response extends HttpResponse {
 // @public (undocumented)
 export interface PoolOperationsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4569,7 +4542,7 @@ export interface PoolOperationsDisableAutoScale204Response extends HttpResponse 
 // @public (undocumented)
 export interface PoolOperationsDisableAutoScaleDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4620,7 +4593,7 @@ export interface PoolOperationsEnableAutoScaleBodyParam {
 // @public (undocumented)
 export interface PoolOperationsEnableAutoScaleDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4677,7 +4650,7 @@ export interface PoolOperationsEvaluateAutoScaleBodyParam {
 // @public (undocumented)
 export interface PoolOperationsEvaluateAutoScaleDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4718,7 +4691,7 @@ export interface PoolOperationsExists204Response extends HttpResponse {
 // @public (undocumented)
 export interface PoolOperationsExistsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4778,7 +4751,7 @@ export interface PoolOperationsGetAllLifetimeStatistics200Response extends HttpR
 // @public (undocumented)
 export interface PoolOperationsGetAllLifetimeStatisticsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4813,7 +4786,7 @@ export interface PoolOperationsGetAllLifetimeStatisticsQueryParamProperties {
 // @public (undocumented)
 export interface PoolOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4862,7 +4835,7 @@ export interface PoolOperationsList200Response extends HttpResponse {
 // @public (undocumented)
 export interface PoolOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4914,7 +4887,7 @@ export interface PoolOperationsListUsageMetrics200Response extends HttpResponse 
 // @public (undocumented)
 export interface PoolOperationsListUsageMetricsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -4964,7 +4937,7 @@ export interface PoolOperationsPatchBodyParam {
 // @public (undocumented)
 export interface PoolOperationsPatchDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5019,7 +4992,7 @@ export interface PoolOperationsRemoveNodesBodyParam {
 // @public (undocumented)
 export interface PoolOperationsRemoveNodesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5074,7 +5047,7 @@ export interface PoolOperationsResizeBodyParam {
 // @public (undocumented)
 export interface PoolOperationsResizeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5124,7 +5097,7 @@ export interface PoolOperationsStopResize204Response extends HttpResponse {
 // @public (undocumented)
 export interface PoolOperationsStopResizeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5179,7 +5152,7 @@ export interface PoolOperationsUpdatePropertiesBodyParam {
 // @public (undocumented)
 export interface PoolOperationsUpdatePropertiesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5280,10 +5253,7 @@ export interface PoolStatisticsOutput {
 }
 
 // @public
-export interface PoolUsageMetricsListOutput {
-    nextLink?: string;
-    value: Array<PoolUsageMetricsOutput>;
-}
+export type PoolUsageMetricsListOutput = Paged<PoolUsageMetricsOutput>;
 
 // @public
 export interface PoolUsageMetricsOutput {
@@ -5704,7 +5674,7 @@ export interface TaskOperationsAddCollectionBodyParam {
 // @public (undocumented)
 export interface TaskOperationsAddCollectionDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5739,7 +5709,7 @@ export interface TaskOperationsAddCollectionQueryParamProperties {
 // @public (undocumented)
 export interface TaskOperationsAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5787,7 +5757,7 @@ export interface TaskOperationsDelete204Response extends HttpResponse {
 // @public (undocumented)
 export interface TaskOperationsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5834,7 +5804,7 @@ export interface TaskOperationsGet200Response extends HttpResponse {
 // @public (undocumented)
 export interface TaskOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5883,7 +5853,7 @@ export interface TaskOperationsList200Response extends HttpResponse {
 // @public (undocumented)
 export interface TaskOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5935,7 +5905,7 @@ export interface TaskOperationsListSubtasks200Response extends HttpResponse {
 // @public (undocumented)
 export interface TaskOperationsListSubtasksDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -5982,7 +5952,7 @@ export interface TaskOperationsReactivate204Response extends HttpResponse {
 // @public (undocumented)
 export interface TaskOperationsReactivateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -6032,7 +6002,7 @@ export interface TaskOperationsTerminate204Response extends HttpResponse {
 // @public (undocumented)
 export interface TaskOperationsTerminateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -6082,7 +6052,7 @@ export interface TaskOperationsUpdateBodyParam {
 // @public (undocumented)
 export interface TaskOperationsUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }

@@ -6,6 +6,7 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
@@ -55,7 +56,7 @@ export interface CreateLedgerEntryBodyParam {
 // @public (undocumented)
 export interface CreateLedgerEntryDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -99,7 +100,7 @@ export interface CreateOrUpdateUserBodyParam {
 // @public (undocumented)
 export interface CreateOrUpdateUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -128,27 +129,13 @@ export interface DeleteUser204Response extends HttpResponse {
 // @public (undocumented)
 export interface DeleteUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type DeleteUserParameters = RequestParameters;
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
 
 // @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
@@ -167,7 +154,7 @@ export interface GetConsortiumMembers200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetConsortiumMembersDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -189,7 +176,7 @@ export interface GetConstitution200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetConstitutionDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -213,7 +200,7 @@ export interface GetCurrentLedgerEntry200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetCurrentLedgerEntryDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -246,7 +233,7 @@ export interface GetEnclaveQuotes200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetEnclaveQuotesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -270,7 +257,7 @@ export interface GetLedgerEntry200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetLedgerEntryDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -311,7 +298,7 @@ export interface GetReceipt200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetReceiptDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -335,7 +322,7 @@ export interface GetTransactionStatus200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetTransactionStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -354,19 +341,13 @@ export interface GetUser200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type GetUserParameters = RequestParameters;
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: ListCollections200Response | ListCollectionsDefaultResponse): response is ListCollectionsDefaultResponse;
@@ -449,7 +430,7 @@ export interface ListCollections200Response extends HttpResponse {
 // @public (undocumented)
 export interface ListCollectionsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -474,7 +455,7 @@ export interface ListLedgerEntries200Response extends HttpResponse {
 // @public (undocumented)
 export interface ListLedgerEntriesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }

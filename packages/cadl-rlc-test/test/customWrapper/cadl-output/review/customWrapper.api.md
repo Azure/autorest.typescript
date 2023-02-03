@@ -6,6 +6,7 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -57,27 +58,13 @@ export interface DeployProjectBodyParam {
 // @public (undocumented)
 export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
 
 // @public (undocumented)
 export interface GetDeployment {
@@ -96,19 +83,13 @@ export interface GetDeployment200Response extends HttpResponse {
 // @public (undocumented)
 export interface GetDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type GetDeploymentParameters = RequestParameters;
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: GetDeployment200Response | GetDeploymentDefaultResponse): response is GetDeploymentDefaultResponse;

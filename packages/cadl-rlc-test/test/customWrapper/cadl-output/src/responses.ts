@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { HttpResponse } from "@azure-rest/core-client";
-import { DeploymentOutput, ErrorResponseOutput } from "./outputModels";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import { DeploymentOutput } from "./outputModels";
 
 /** The request has succeeded. */
 export interface GetDeployment200Response extends HttpResponse {
@@ -12,7 +12,7 @@ export interface GetDeployment200Response extends HttpResponse {
 
 export interface GetDeploymentDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -29,5 +29,5 @@ export interface DeployProject201Response extends HttpResponse {
 
 export interface DeployProjectDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }

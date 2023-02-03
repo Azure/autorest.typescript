@@ -6,6 +6,7 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse as ErrorResponse_2 } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
@@ -104,7 +105,7 @@ export interface DeleteMultivariateModelDefaultHeaders {
 // @public (undocumented)
 export interface DeleteMultivariateModelDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse_2;
     // (undocumented)
     headers: RawHttpHeaders & DeleteMultivariateModelDefaultHeaders;
     // (undocumented)
@@ -148,7 +149,7 @@ export interface DetectMultivariateBatchAnomalyDefaultHeaders {
 // @public (undocumented)
 export interface DetectMultivariateBatchAnomalyDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse_2;
     // (undocumented)
     headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
     // (undocumented)
@@ -184,7 +185,7 @@ export interface DetectMultivariateLastAnomalyDefaultHeaders {
 // @public (undocumented)
 export interface DetectMultivariateLastAnomalyDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse_2;
     // (undocumented)
     headers: RawHttpHeaders & DetectMultivariateLastAnomalyDefaultHeaders;
     // (undocumented)
@@ -350,7 +351,7 @@ export interface GetMultivariateBatchDetectionResultDefaultHeaders {
 // @public (undocumented)
 export interface GetMultivariateBatchDetectionResultDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse_2;
     // (undocumented)
     headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
     // (undocumented)
@@ -376,7 +377,7 @@ export interface GetMultivariateModelDefaultHeaders {
 // @public (undocumented)
 export interface GetMultivariateModelDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse_2;
     // (undocumented)
     headers: RawHttpHeaders & GetMultivariateModelDefaultHeaders;
     // (undocumented)
@@ -438,7 +439,7 @@ export interface ListMultivariateModelsDefaultHeaders {
 // @public (undocumented)
 export interface ListMultivariateModelsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse_2;
     // (undocumented)
     headers: RawHttpHeaders & ListMultivariateModelsDefaultHeaders;
     // (undocumented)
@@ -625,7 +626,7 @@ export interface TrainMultivariateModelDefaultHeaders {
 // @public (undocumented)
 export interface TrainMultivariateModelDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse_2;
     // (undocumented)
     headers: RawHttpHeaders & TrainMultivariateModelDefaultHeaders;
     // (undocumented)

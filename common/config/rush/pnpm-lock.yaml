@@ -107,8 +107,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@azure-rest/core-client/1.0.1:
-    resolution: {integrity: sha512-xWSOx6ZF4AWu3IJabyVWDrwnC0x2USm9ZsuiczGwZoXGt0atI6Pm7NP89ocLEjB/vWWo+67SZc0dsXvxgzdeFQ==}
+  /@azure-rest/core-client/1.1.0:
+    resolution: {integrity: sha512-Eko7p3nqXpOPm3MDgvZ24L3bX2PCWw5lHYYbsyTDJnD5WeiZC7y0ctn0bEfYkFFaqFZCdKeqA3Nw16AVRuJlRw==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@azure/core-auth': 1.4.0
@@ -434,8 +434,8 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@azure/core-paging/1.4.0:
-    resolution: {integrity: sha512-tabFtZTg8D9XqZKEfNUOGh63SuYeOxmvH4GDcOJN+R1bZWZ1FZskctgY9Pmuwzhn+0Xvq9rmimK9hsvtLkeBsw==}
+  /@azure/core-paging/1.5.0:
+    resolution: {integrity: sha512-zqWdVIt+2Z+3wqxEOGzR5hXFZ8MGKK52x4vFLw8n58pR6ZfKRx3EXYTxTaYxYHc/PexPUTyimcTWFJbji9Z6Iw==}
     engines: {node: '>=14.0.0'}
     dependencies:
       tslib: 2.4.1
@@ -627,7 +627,7 @@ packages:
       '@azure/abort-controller': 1.1.0
       '@azure/core-http': 2.3.1
       '@azure/core-lro': 2.5.0
-      '@azure/core-paging': 1.4.0
+      '@azure/core-paging': 1.5.0
       '@azure/core-tracing': 1.0.0-preview.13
       '@azure/logger': 1.0.3
       events: 3.3.0
@@ -9916,11 +9916,11 @@ packages:
     dev: false
 
   file:projects/cadl-typescript.tgz:
-    resolution: {integrity: sha512-zYy6iPdg0zARnILCQN90fNdtp8f0mEunc10yeI5GIX8E5lZ3ySWPL1LYJDqJuRMr0Af/a6M2DuzHLSzPItspzQ==, tarball: file:projects/cadl-typescript.tgz}
+    resolution: {integrity: sha512-b+vJb3gV+d+IohWn+XunmJjMyptzs5rNIuLOOUvHhMl691dDNC1TnDC4feiVd4y4G0f/WAF2b/kucWxBtav6YA==, tarball: file:projects/cadl-typescript.tgz}
     name: '@rush-temp/cadl-typescript'
     version: 0.0.0
     dependencies:
-      '@azure-rest/core-client': 1.0.1
+      '@azure-rest/core-client': 1.1.0
       '@azure-tools/cadl-azure-core': 0.24.0_45b3e6f79972cdcc9be4cff2f875ce07
       '@azure-tools/cadl-dpg': 0.24.0_45b3e6f79972cdcc9be4cff2f875ce07
       '@azure-tools/cadl-ranch': 0.2.12
@@ -9928,7 +9928,7 @@ packages:
       '@azure-tools/cadl-ranch-specs': 0.6.3_31bdc46b262702ee3be268e2f58e1e00
       '@azure/core-auth': 1.4.0
       '@azure/core-lro': 2.5.0
-      '@azure/core-paging': 1.4.0
+      '@azure/core-paging': 1.5.0
       '@azure/core-rest-pipeline': 1.10.1
       '@cadl-lang/compiler': 0.38.5
       '@cadl-lang/rest': 0.38.0_@cadl-lang+compiler@0.38.5
@@ -9985,14 +9985,14 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-JUslAlry+7wp4+8hWrJn26EXkBbugTZIAPUrH3Nqb1gcUUL/URjPq7+/3yWd97knHFNfCijrXAOefuv03FW3pA==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-MNQ41HIvNaTX7nrCfathdRnSXrtKmv8sNGkQd038/FBZjb2uK9yeejWjzLViO69rhEuDCjZiWUXOJWFlruAPMA==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
       '@autorest/codemodel': 4.19.3
       '@autorest/extension-base': 3.5.1
       '@autorest/testmodeler': 2.4.0_bc1247b56580b1b7a90aeb7fe5bd82ab
-      '@azure-rest/core-client': 1.0.1
+      '@azure-rest/core-client': 1.1.0
       '@azure-tools/codegen': 2.9.2
       '@azure-tools/test-recorder': 1.0.2
       '@azure/abort-controller': 1.1.0
@@ -10001,7 +10001,7 @@ packages:
       '@azure/core-http': 1.2.6
       '@azure/core-http-compat': 1.3.0
       '@azure/core-lro': 2.5.0
-      '@azure/core-paging': 1.4.0
+      '@azure/core-paging': 1.5.0
       '@azure/core-rest-pipeline': 1.10.1
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.1.1

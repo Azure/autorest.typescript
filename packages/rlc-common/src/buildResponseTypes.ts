@@ -25,6 +25,7 @@ export function buildResponseTypes(model: RLCModel) {
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `responses.ts`);
+  hasErrorResponse = false;
   const responsesFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
   });

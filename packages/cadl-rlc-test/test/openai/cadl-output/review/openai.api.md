@@ -6,6 +6,7 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -63,7 +64,7 @@ export interface CompletionsBodyParam {
 // @public (undocumented)
 export interface CompletionsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -136,7 +137,7 @@ export interface EmbeddingsBodyParam {
 // @public (undocumented)
 export interface EmbeddingsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     status: string;
 }
@@ -158,26 +159,6 @@ export interface EmbeddingsRequest {
     input_type?: string;
     model?: string;
     user?: string;
-}
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
 }
 
 // @public (undocumented)

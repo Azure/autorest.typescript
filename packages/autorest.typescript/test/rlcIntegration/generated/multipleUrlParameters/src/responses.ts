@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   EntityMutationResponseOutput,
-  ErrorResponseOutput,
   AtlasEntitiesWithExtInfoOutput,
   AtlasEntityWithExtInfoOutput
 } from "./outputModels";
@@ -26,7 +25,7 @@ export interface EntityCreateOrUpdate200Response extends HttpResponse {
  */
 export interface EntityCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** List entities in bulk identified by its GUIDs. */
@@ -38,7 +37,7 @@ export interface EntityListByGuids200Response extends HttpResponse {
 /** List entities in bulk identified by its GUIDs. */
 export interface EntityListByGuidsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /**
@@ -59,7 +58,7 @@ export interface EntityCreateOrUpdateEntities200Response extends HttpResponse {
 export interface EntityCreateOrUpdateEntitiesDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** Delete a list of entities in bulk identified by their GUIDs or unique attributes. */
@@ -71,7 +70,7 @@ export interface EntityDeleteByGuids200Response extends HttpResponse {
 /** Delete a list of entities in bulk identified by their GUIDs or unique attributes. */
 export interface EntityDeleteByGuidsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** Associate a classification to multiple entities in bulk. */
@@ -83,7 +82,7 @@ export interface EntityAddClassification204Response extends HttpResponse {
 /** Associate a classification to multiple entities in bulk. */
 export interface EntityAddClassificationDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** Get complete definition of an entity given its GUID. */
@@ -95,7 +94,7 @@ export interface EntityGetByGuid200Response extends HttpResponse {
 /** Get complete definition of an entity given its GUID. */
 export interface EntityGetByGuidDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /**
@@ -119,7 +118,7 @@ export interface EntityPartialUpdateEntityAttributeByGuid200Response
 export interface EntityPartialUpdateEntityAttributeByGuidDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** Delete an entity identified by its GUID. */
@@ -131,7 +130,7 @@ export interface EntityDeleteByGuid200Response extends HttpResponse {
 /** Delete an entity identified by its GUID. */
 export interface EntityDeleteByGuidDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /**
@@ -153,5 +152,5 @@ export interface EntityExportGuid202Response extends HttpResponse {
  */
 export interface EntityExportGuidDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }

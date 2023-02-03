@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   WidgetOutput,
-  ErrorResponseOutput,
   ResourceOperationStatusOutput,
   OperationStatusOutput,
   WidgetListOutput,
@@ -19,7 +18,7 @@ export interface GetWidget200Response extends HttpResponse {
 
 export interface GetWidgetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -30,7 +29,7 @@ export interface GetWidgetOperationStatus200Response extends HttpResponse {
 
 export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 export interface CreateOrUpdateWidget200Headers {
@@ -59,7 +58,7 @@ export interface CreateOrUpdateWidget201Response extends HttpResponse {
 
 export interface CreateOrUpdateWidgetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 export interface DeleteWidget202Headers {
@@ -76,7 +75,7 @@ export interface DeleteWidget202Response extends HttpResponse {
 
 export interface DeleteWidgetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -87,5 +86,5 @@ export interface ListWidgets200Response extends HttpResponse {
 
 export interface ListWidgetsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }

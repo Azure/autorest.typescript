@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   ProductOutput,
   ProductListOutput,
-  ErrorResponseOutput,
   LroProductOutput,
 } from "./outputModels";
 
@@ -29,7 +28,7 @@ export interface GetPages200Response extends HttpResponse {
 
 export interface GetPagesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** Initial response with ProvisioningState='Succeeded' */

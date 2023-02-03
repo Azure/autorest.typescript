@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   ApplicationListOutput,
-  ErrorResponseOutput,
   ApplicationOutput,
   PoolUsageMetricsListOutput,
   PoolStatisticsOutput,
@@ -43,7 +42,7 @@ export interface ApplicationOperationsList200Response extends HttpResponse {
 
 export interface ApplicationOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -54,7 +53,7 @@ export interface ApplicationOperationsGet200Response extends HttpResponse {
 
 export interface ApplicationOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -67,7 +66,7 @@ export interface PoolOperationsListUsageMetrics200Response
 export interface PoolOperationsListUsageMetricsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -80,7 +79,7 @@ export interface PoolOperationsGetAllLifetimeStatistics200Response
 export interface PoolOperationsGetAllLifetimeStatisticsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -90,7 +89,7 @@ export interface PoolOperationsAdd204Response extends HttpResponse {
 
 export interface PoolOperationsAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -101,7 +100,7 @@ export interface PoolOperationsList200Response extends HttpResponse {
 
 export interface PoolOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -111,7 +110,7 @@ export interface PoolOperationsDelete204Response extends HttpResponse {
 
 export interface PoolOperationsDeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -121,7 +120,7 @@ export interface PoolOperationsExists204Response extends HttpResponse {
 
 export interface PoolOperationsExistsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -132,7 +131,7 @@ export interface PoolOperationsGet200Response extends HttpResponse {
 
 export interface PoolOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -142,7 +141,7 @@ export interface PoolOperationsPatch204Response extends HttpResponse {
 
 export interface PoolOperationsPatchDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -154,7 +153,7 @@ export interface PoolOperationsDisableAutoScale204Response
 export interface PoolOperationsDisableAutoScaleDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -165,7 +164,7 @@ export interface PoolOperationsEnableAutoScale204Response extends HttpResponse {
 export interface PoolOperationsEnableAutoScaleDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -178,7 +177,7 @@ export interface PoolOperationsEvaluateAutoScale200Response
 export interface PoolOperationsEvaluateAutoScaleDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -188,7 +187,7 @@ export interface PoolOperationsResize204Response extends HttpResponse {
 
 export interface PoolOperationsResizeDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -198,7 +197,7 @@ export interface PoolOperationsStopResize204Response extends HttpResponse {
 
 export interface PoolOperationsStopResizeDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -210,7 +209,7 @@ export interface PoolOperationsUpdateProperties204Response
 export interface PoolOperationsUpdatePropertiesDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -220,7 +219,7 @@ export interface PoolOperationsRemoveNodes204Response extends HttpResponse {
 
 export interface PoolOperationsRemoveNodesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -233,7 +232,7 @@ export interface AccountOperationsListSupportedImages200Response
 export interface AccountOperationsListSupportedImagesDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -246,7 +245,7 @@ export interface AccountOperationsListPoolNodeCounts200Response
 export interface AccountOperationsListPoolNodeCountsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -259,7 +258,7 @@ export interface JobOperationsGetAllLifetimeStatistics200Response
 export interface JobOperationsGetAllLifetimeStatisticsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -269,7 +268,7 @@ export interface JobOperationsDelete204Response extends HttpResponse {
 
 export interface JobOperationsDeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -280,7 +279,7 @@ export interface JobOperationsGet200Response extends HttpResponse {
 
 export interface JobOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -290,7 +289,7 @@ export interface JobOperationsPatch204Response extends HttpResponse {
 
 export interface JobOperationsPatchDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -300,7 +299,7 @@ export interface JobOperationsUpdate204Response extends HttpResponse {
 
 export interface JobOperationsUpdateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -310,7 +309,7 @@ export interface JobOperationsDisable204Response extends HttpResponse {
 
 export interface JobOperationsDisableDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -320,7 +319,7 @@ export interface JobOperationsEnable204Response extends HttpResponse {
 
 export interface JobOperationsEnableDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -330,7 +329,7 @@ export interface JobOperationsTerminate204Response extends HttpResponse {
 
 export interface JobOperationsTerminateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -340,7 +339,7 @@ export interface JobOperationsAdd204Response extends HttpResponse {
 
 export interface JobOperationsAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -351,7 +350,7 @@ export interface JobOperationsList200Response extends HttpResponse {
 
 export interface JobOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -364,7 +363,7 @@ export interface JobOperationsListFromJobSchedule200Response
 export interface JobOperationsListFromJobScheduleDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -377,7 +376,7 @@ export interface JobOperationsListPreparationAndReleaseTaskStatus200Response
 export interface JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -389,7 +388,7 @@ export interface JobOperationsGetTaskCounts200Response extends HttpResponse {
 export interface JobOperationsGetTaskCountsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -399,7 +398,7 @@ export interface CertificateOperationsAdd204Response extends HttpResponse {
 
 export interface CertificateOperationsAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -410,7 +409,7 @@ export interface CertificateOperationsList200Response extends HttpResponse {
 
 export interface CertificateOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -422,7 +421,7 @@ export interface CertificateOperationsCancelDeletion204Response
 export interface CertificateOperationsCancelDeletionDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -433,7 +432,7 @@ export interface CertificateOperationsDelete204Response extends HttpResponse {
 export interface CertificateOperationsDeleteDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -444,7 +443,7 @@ export interface CertificateOperationsGet200Response extends HttpResponse {
 
 export interface CertificateOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -455,7 +454,7 @@ export interface FileOperationsDeleteFromTask204Response extends HttpResponse {
 export interface FileOperationsDeleteFromTaskDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -465,7 +464,7 @@ export interface FileOperationsGetFromTask204Response extends HttpResponse {
 
 export interface FileOperationsGetFromTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -477,7 +476,7 @@ export interface FileOperationsGetPropertiesFromTask204Response
 export interface FileOperationsGetPropertiesFromTaskDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -489,7 +488,7 @@ export interface FileOperationsDeleteFromComputeNode204Response
 export interface FileOperationsDeleteFromComputeNodeDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -501,7 +500,7 @@ export interface FileOperationsGetFromComputeNode204Response
 export interface FileOperationsGetFromComputeNodeDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -513,7 +512,7 @@ export interface FileOperationsGetPropertiesFromComputeNode204Response
 export interface FileOperationsGetPropertiesFromComputeNodeDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -525,7 +524,7 @@ export interface FileOperationsListFromTask200Response extends HttpResponse {
 export interface FileOperationsListFromTaskDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -538,7 +537,7 @@ export interface FileOperationsListFromComputeNode200Response
 export interface FileOperationsListFromComputeNodeDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -549,7 +548,7 @@ export interface JobScheduleOperationsExists204Response extends HttpResponse {
 export interface JobScheduleOperationsExistsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -560,7 +559,7 @@ export interface JobScheduleOperationsDelete204Response extends HttpResponse {
 export interface JobScheduleOperationsDeleteDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -571,7 +570,7 @@ export interface JobScheduleOperationsGet200Response extends HttpResponse {
 
 export interface JobScheduleOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -582,7 +581,7 @@ export interface JobScheduleOperationsPatch204Response extends HttpResponse {
 export interface JobScheduleOperationsPatchDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -593,7 +592,7 @@ export interface JobScheduleOperationsUpdate204Response extends HttpResponse {
 export interface JobScheduleOperationsUpdateDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -604,7 +603,7 @@ export interface JobScheduleOperationsDisable204Response extends HttpResponse {
 export interface JobScheduleOperationsDisableDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -615,7 +614,7 @@ export interface JobScheduleOperationsEnable204Response extends HttpResponse {
 export interface JobScheduleOperationsEnableDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -627,7 +626,7 @@ export interface JobScheduleOperationsTerminate204Response
 export interface JobScheduleOperationsTerminateDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -637,7 +636,7 @@ export interface JobScheduleOperationsAdd204Response extends HttpResponse {
 
 export interface JobScheduleOperationsAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -648,7 +647,7 @@ export interface JobScheduleOperationsList200Response extends HttpResponse {
 
 export interface JobScheduleOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -658,7 +657,7 @@ export interface TaskOperationsAdd204Response extends HttpResponse {
 
 export interface TaskOperationsAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -669,7 +668,7 @@ export interface TaskOperationsList200Response extends HttpResponse {
 
 export interface TaskOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -681,7 +680,7 @@ export interface TaskOperationsAddCollection200Response extends HttpResponse {
 export interface TaskOperationsAddCollectionDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -691,7 +690,7 @@ export interface TaskOperationsDelete204Response extends HttpResponse {
 
 export interface TaskOperationsDeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -702,7 +701,7 @@ export interface TaskOperationsGet200Response extends HttpResponse {
 
 export interface TaskOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -712,7 +711,7 @@ export interface TaskOperationsUpdate204Response extends HttpResponse {
 
 export interface TaskOperationsUpdateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -724,7 +723,7 @@ export interface TaskOperationsListSubtasks200Response extends HttpResponse {
 export interface TaskOperationsListSubtasksDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -734,7 +733,7 @@ export interface TaskOperationsTerminate204Response extends HttpResponse {
 
 export interface TaskOperationsTerminateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -744,7 +743,7 @@ export interface TaskOperationsReactivate204Response extends HttpResponse {
 
 export interface TaskOperationsReactivateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -755,7 +754,7 @@ export interface ComputeNodeOperationsAddUser204Response extends HttpResponse {
 export interface ComputeNodeOperationsAddUserDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -767,7 +766,7 @@ export interface ComputeNodeOperationsDeleteUser204Response
 export interface ComputeNodeOperationsDeleteUserDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -779,7 +778,7 @@ export interface ComputeNodeOperationsUpdateUser204Response
 export interface ComputeNodeOperationsUpdateUserDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -790,7 +789,7 @@ export interface ComputeNodeOperationsGet200Response extends HttpResponse {
 
 export interface ComputeNodeOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -801,7 +800,7 @@ export interface ComputeNodeOperationsReboot204Response extends HttpResponse {
 export interface ComputeNodeOperationsRebootDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -812,7 +811,7 @@ export interface ComputeNodeOperationsReimage204Response extends HttpResponse {
 export interface ComputeNodeOperationsReimageDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -824,7 +823,7 @@ export interface ComputeNodeOperationsDisableScheduling204Response
 export interface ComputeNodeOperationsDisableSchedulingDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -836,7 +835,7 @@ export interface ComputeNodeOperationsEnableScheduling204Response
 export interface ComputeNodeOperationsEnableSchedulingDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -849,7 +848,7 @@ export interface ComputeNodeOperationsGetRemoteLoginSettings200Response
 export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
@@ -861,7 +860,7 @@ export interface ComputeNodeOperationsGetRemoteDesktop204Response
 export interface ComputeNodeOperationsGetRemoteDesktopDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 export interface ComputeNodeOperationsUploadBatchServiceLogs201Headers {
@@ -879,7 +878,7 @@ export interface ComputeNodeOperationsUploadBatchServiceLogs201Response
 export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -890,7 +889,7 @@ export interface ComputeNodeOperationsList200Response extends HttpResponse {
 
 export interface ComputeNodeOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -903,7 +902,7 @@ export interface ComputeNodeExtensionOperationsGet200Response
 export interface ComputeNodeExtensionOperationsGetDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
 
 /** The request has succeeded. */
@@ -916,5 +915,5 @@ export interface ComputeNodeExtensionOperationsList200Response
 export interface ComputeNodeExtensionOperationsListDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
 }
