@@ -438,9 +438,9 @@ function extractDescriptionsFromBody(
 
 export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
   let hasMultiCollection = false;
-  let hasPipeCollection = false;
-  let hasSsvCollection = false;
-  let hasTsvCollection = false;
+  const hasPipeCollection = false;
+  const hasSsvCollection = false;
+  const hasTsvCollection = false;
   const descriptions = [];
   const collectionInfo = [];
   if (
