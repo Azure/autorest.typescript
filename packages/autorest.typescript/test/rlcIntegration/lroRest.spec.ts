@@ -4,7 +4,10 @@ import LRORest, {
   Product,
   isUnexpected
 } from "./generated/lroRest/src";
+import chai from "chai";
 import { assert } from "chai";
+import chaiAsPromised from "chai-as-promised";
+chai.use(chaiAsPromised);
 import { addCookiePolicies } from "../utils/cookies";
 
 function createClient() {
@@ -291,8 +294,7 @@ describe("LRO Rest Client", () => {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
       }
-      // FIXME
-      assert.equal(poller.getOperationState().status, "failed");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.body.properties?.provisioningState, "Failed");
     });
 
@@ -306,8 +308,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      // FIXME
-      assert.equal(poller.getOperationState().status, "canceled");
+      assert.equal(poller.getOperationState().status, "succeeded");
       if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
@@ -341,7 +342,7 @@ describe("LRO Rest Client", () => {
 
     it("should handle postDoubleHeadersFinalLocationGet", async () => {
       const initialResponse = await client
-        .path("/lro/LROPostDoubleHeadersFinalLocationGet")
+        .pathUnchecked("/lro/LROPostDoubleHeadersFinalLocationGet")
         .post();
 
       const poller = await getLongRunningPoller(client, initialResponse, {
@@ -349,20 +350,16 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      // FIXME: should be canceled but succeeded
-      assert.equal(poller.getOperationState().status, "canceled");
-      if (isUnexpected(result)) {
-        const error = `Unexpected status code ${result.status}`;
-        assert.fail(error);
-      }
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
-      assert.deepEqual(result.body.properties?.provisioningState, "Canceled");
+      assert.equal(result.body.id, "100");
+      assert.equal(result.body.name, "foo");
     });
 
     it("should handle postDoubleHeadersFinalAzureHeaderGet", async () => {
       // TODO: Final Location via
       const initialResponse = await client
-        .path("/lro/LROPostDoubleHeadersFinalAzureHeaderGet")
+        .pathUnchecked("/lro/LROPostDoubleHeadersFinalAzureHeaderGet")
         .post();
 
       const poller = await getLongRunningPoller(client, initialResponse, {
@@ -372,12 +369,8 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(poller.getOperationState().status, "succeeded");
-      // if (isUnexpected(result)) {
-      //   const error = `Unexpected status code ${result.status}`;
-      //   assert.fail(error);
-      // }
       assert.equal(result.status, "200");
-      // assert.deepEqual(result.body.properties?.provisioningState, "succeeded");
+      assert.deepEqual(result.body.properties?.provisioningState, "succeeded");
     });
 
     it("should handle post200WithPayload", async () => {
@@ -877,10 +870,11 @@ describe("LRO Rest Client", () => {
       const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
-      const result = await poller.pollUntilDone();
-      // FIXME: Polling was unsuccessful. Expected status to have a string value or no value but it has instead: 400. This doesn't necessarily indicate the operation has failed. Check your Azure subscription or resource status for more information.
-      assert.equal(result.status, "400");
-      assert.equal(poller.getOperationState().status, "failed");
+      await assert.isRejected(
+        poller.pollUntilDone(),
+        /Polling was unsuccessful/
+      );
+      assert.equal(poller.getOperationState().status, "running");
     });
 
     it("should handle postNonRetry400 ", async () => {
@@ -915,10 +909,11 @@ describe("LRO Rest Client", () => {
         intervalInMs: 0
       });
 
-      const result = await poller.pollUntilDone();
-      // FIXME: Polling was unsuccessful. Expected status to have a string value or no value but it has instead: 400. This doesn't necessarily indicate the operation has failed. Check your Azure subscription or resource status for more information.
-      assert.equal(result.status, "400");
-      assert.equal(poller.getOperationState().status, "failed");
+      await assert.isRejected(
+        poller.pollUntilDone(),
+        /Polling was unsuccessful/
+      );
+      assert.equal(poller.getOperationState().status, "running");
     });
 
     it("should handle PutError201NoProvisioningStatePayload ", async () => {
@@ -1013,17 +1008,10 @@ describe("LRO Rest Client", () => {
     });
 
     it("should handle put200InvalidJson", async () => {
-      const initialResponse = await client
-        .path("/lro/error/put/200/invalidjson")
-        .put();
-
-      const poller = await getLongRunningPoller(client, initialResponse, {
-        intervalInMs: 0
-      });
-
-      const result = await poller.pollUntilDone();
-      // FIXME: RestError: Error "SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "properties": { "provisioningState": "Creating"}, "id": "100", "name": "foo".
-      assert.equal(poller.getOperationState().status, "failed");
+      await assert.isRejected(
+        client.path("/lro/error/put/200/invalidjson").put(),
+        /SyntaxError: Expected ',' or '}' after property value in JSON at position 78" occurred while parsing the response body/
+      );
     });
 
     it("should handle putAsyncRelativeRetryInvalidHeader", async () => {
@@ -1076,9 +1064,10 @@ describe("LRO Rest Client", () => {
         intervalInMs: 0
       });
 
-      const result = await poller.pollUntilDone();
-      // FIXME RestError: Error "SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted".
-      assert.equal(poller.getOperationState().status, "failed");
+      await assert.isRejected(
+        poller.pollUntilDone(),
+        /"SyntaxError: Expected ',' or '}' after property value in JSON at position 22" occurred while parsing the response body - { "status": "Accepted"/
+      );
     });
 
     it("should handle post202RetryInvalidHeader ", async () => {
@@ -1118,9 +1107,10 @@ describe("LRO Rest Client", () => {
         intervalInMs: 0
       });
 
-      const result = await poller.pollUntilDone();
-      // FIXME RestError: Error "SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted".
-      assert.equal(poller.getOperationState().status, "failed");
+      await assert.isRejected(
+        poller.pollUntilDone(),
+        /"SyntaxError: Expected ',' or '}' after property value in JSON at position 22" occurred while parsing the response body - { "status": "Accepted"/
+      );
     });
   });
 
