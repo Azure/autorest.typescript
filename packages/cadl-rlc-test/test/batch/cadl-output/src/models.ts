@@ -1,6 +1,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Contains utilization and resource usage statistics for the lifetime of a Pool. */
+export interface PoolStatistics {
+  /** The start time of the time range covered by the statistics. */
+  startTime: Date | string;
+  /**
+   * The time at which the statistics were last updated. All statistics are limited
+   * to the range between startTime and lastUpdateTime.
+   */
+  lastUpdateTime: Date | string;
+  /** Statistics related to Pool usage information. */
+  usageStats?: UsageStatistics;
+  /** Statistics related to resource consumption by Compute Nodes in a Pool. */
+  resourceStats?: ResourceStatistics;
+}
+
 /** Statistics related to Pool usage information. */
 export interface UsageStatistics {
   /** The start time of the time range covered by the statistics. */
@@ -1031,21 +1046,6 @@ export interface MetadataItem {
   value: string;
 }
 
-/** Contains utilization and resource usage statistics for the lifetime of a Pool. */
-export interface PoolStatistics {
-  /** The start time of the time range covered by the statistics. */
-  startTime: Date | string;
-  /**
-   * The time at which the statistics were last updated. All statistics are limited
-   * to the range between startTime and lastUpdateTime.
-   */
-  lastUpdateTime: Date | string;
-  /** Statistics related to Pool usage information. */
-  usageStats?: UsageStatistics;
-  /** Statistics related to resource consumption by Compute Nodes in a Pool. */
-  resourceStats?: ResourceStatistics;
-}
-
 /** The file system to mount on each node. */
 export interface MountConfiguration {
   /** This property is mutually exclusive with all other properties. */
@@ -1230,6 +1230,163 @@ export interface NodeRemoveParameters {
    * Possible values: requeue, terminate, taskcompletion, retaineddata
    */
   nodeDeallocationOption?: string;
+}
+
+/** Resource usage statistics for a Job. */
+export interface JobStatistics {
+  /** The start time of the time range covered by the statistics. */
+  startTime: Date | string;
+  /**
+   * The time at which the statistics were last updated. All statistics are limited
+   * to the range between startTime and lastUpdateTime.
+   */
+  lastUpdateTime: Date | string;
+  /**
+   * The total user mode CPU time (summed across all cores and all Compute Nodes)
+   * consumed by all Tasks in the Job.
+   */
+  userCPUTime: string;
+  /**
+   * The total kernel mode CPU time (summed across all cores and all Compute Nodes)
+   * consumed by all Tasks in the Job.
+   */
+  kernelCPUTime: string;
+  /**
+   *  The wall clock time is the elapsed time from when the Task started running on
+   * a Compute Node to when it finished (or to the last time the statistics were
+   * updated, if the Task had not finished by then). If a Task was retried, this
+   * includes the wall clock time of all the Task retries.
+   */
+  wallClockTime: string;
+  /** The total number of disk read operations made by all Tasks in the Job. */
+  readIOps: number;
+  /** The total number of disk write operations made by all Tasks in the Job. */
+  writeIOps: number;
+  /** The total amount of data in GiB read from disk by all Tasks in the Job. */
+  readIOGiB: number;
+  /** The total amount of data in GiB written to disk by all Tasks in the Job. */
+  writeIOGiB: number;
+  /** A Task completes successfully if it returns exit code 0. */
+  numSucceededTasks: number;
+  /**
+   * A Task fails if it exhausts its maximum retry count without returning exit code
+   * 0.
+   */
+  numFailedTasks: number;
+  /**
+   * The total number of retries on all the Tasks in the Job during the given time
+   * range.
+   */
+  numTaskRetries: number;
+  /**
+   * The wait time for a Task is defined as the elapsed time between the creation of
+   * the Task and the start of Task execution. (If the Task is retried due to
+   * failures, the wait time is the time to the most recent Task execution.) This
+   * value is only reported in the Account lifetime statistics; it is not included
+   * in the Job statistics.
+   */
+  waitTime: string;
+}
+
+/** An Azure Batch Job. */
+export interface BatchJob {
+  /**
+   * The ID is case-preserving and case-insensitive (that is, you may not have two
+   * IDs within an Account that differ only by case).
+   */
+  id?: string;
+  /** The display name for the Job. */
+  displayName?: string;
+  /**
+   * Whether Tasks in the Job can define dependencies on each other. The default is
+   * false.
+   */
+  usesTaskDependencies?: boolean;
+  /**
+   * Priority values can range from -1000 to 1000, with -1000 being the lowest
+   * priority and 1000 being the highest priority. The default value is 0.
+   */
+  priority?: number;
+  /**
+   * If the value is set to True, other high priority jobs submitted to the system
+   * will take precedence and will be able requeue tasks from this job. You can
+   * update a job's allowTaskPreemption after it has been created using the update
+   * job API.
+   */
+  allowTaskPreemption?: boolean;
+  /**
+   * The value of maxParallelTasks must be -1 or greater than 0 if specified. If not
+   * specified, the default value is -1, which means there's no limit to the number
+   * of tasks that can be run at once. You can update a job's maxParallelTasks after
+   * it has been created using the update job API.
+   */
+  maxParallelTasks?: number;
+  /** The execution constraints for a Job. */
+  constraints?: JobConstraints;
+  /**
+   * The Job Manager Task is automatically started when the Job is created. The
+   * Batch service tries to schedule the Job Manager Task before any other Tasks in
+   * the Job. When shrinking a Pool, the Batch service tries to preserve Nodes where
+   * Job Manager Tasks are running for as long as possible (that is, Compute Nodes
+   * running 'normal' Tasks are removed before Compute Nodes running Job Manager
+   * Tasks). When a Job Manager Task fails and needs to be restarted, the system
+   * tries to schedule it at the highest priority. If there are no idle Compute
+   * Nodes available, the system may terminate one of the running Tasks in the Pool
+   * and return it to the queue in order to make room for the Job Manager Task to
+   * restart. Note that a Job Manager Task in one Job does not have priority over
+   * Tasks in other Jobs. Across Jobs, only Job level priorities are observed. For
+   * example, if a Job Manager in a priority 0 Job needs to be restarted, it will
+   * not displace Tasks of a priority 1 Job. Batch will retry Tasks when a recovery
+   * operation is triggered on a Node. Examples of recovery operations include (but
+   * are not limited to) when an unhealthy Node is rebooted or a Compute Node
+   * disappeared due to host failure. Retries due to recovery operations are
+   * independent of and are not counted against the maxTaskRetryCount. Even if the
+   * maxTaskRetryCount is 0, an internal retry due to a recovery operation may
+   * occur. Because of this, all Tasks should be idempotent. This means Tasks need
+   * to tolerate being interrupted and restarted without causing any corruption or
+   * duplicate data. The best practice for long running Tasks is to use some form of
+   * checkpointing.
+   */
+  jobManagerTask?: JobManagerTask;
+  /**
+   * The Job Preparation Task is a special Task run on each Compute Node before any
+   * other Task of the Job.
+   */
+  jobPreparationTask?: JobPreparationTask;
+  /**
+   * The Job Release Task is a special Task run at the end of the Job on each
+   * Compute Node that has run any other Task of the Job.
+   */
+  jobReleaseTask?: JobReleaseTask;
+  /**
+   * Individual Tasks can override an environment setting specified here by
+   * specifying the same setting name with a different value.
+   */
+  commonEnvironmentSettings?: Array<EnvironmentSetting>;
+  /** Specifies how a Job should be assigned to a Pool. */
+  poolInfo?: PoolInformation;
+  /**
+   * The default is noaction.
+   *
+   * Possible values: noaction, terminatejob
+   */
+  onAllTasksComplete?: string;
+  /**
+   * A Task is considered to have failed if has a failureInfo. A failureInfo is set
+   * if the Task completes with a non-zero exit code after exhausting its retry
+   * count, or if there was an error starting the Task, for example due to a
+   * resource file download error. The default is noaction.
+   *
+   * Possible values: noaction, performexitoptionsjobaction
+   */
+  onTaskFailure?: string;
+  /** The network configuration for the Job. */
+  networkConfiguration?: JobNetworkConfiguration;
+  /**
+   * The Batch service does not assign any meaning to metadata; it is solely for the
+   * use of user code.
+   */
+  metadata?: Array<MetadataItem>;
 }
 
 /** The execution constraints for a Job. */
@@ -1958,163 +2115,6 @@ export interface JobSchedulingError {
   details?: Array<NameValuePair>;
 }
 
-/** Resource usage statistics for a Job. */
-export interface JobStatistics {
-  /** The start time of the time range covered by the statistics. */
-  startTime: Date | string;
-  /**
-   * The time at which the statistics were last updated. All statistics are limited
-   * to the range between startTime and lastUpdateTime.
-   */
-  lastUpdateTime: Date | string;
-  /**
-   * The total user mode CPU time (summed across all cores and all Compute Nodes)
-   * consumed by all Tasks in the Job.
-   */
-  userCPUTime: string;
-  /**
-   * The total kernel mode CPU time (summed across all cores and all Compute Nodes)
-   * consumed by all Tasks in the Job.
-   */
-  kernelCPUTime: string;
-  /**
-   *  The wall clock time is the elapsed time from when the Task started running on
-   * a Compute Node to when it finished (or to the last time the statistics were
-   * updated, if the Task had not finished by then). If a Task was retried, this
-   * includes the wall clock time of all the Task retries.
-   */
-  wallClockTime: string;
-  /** The total number of disk read operations made by all Tasks in the Job. */
-  readIOps: number;
-  /** The total number of disk write operations made by all Tasks in the Job. */
-  writeIOps: number;
-  /** The total amount of data in GiB read from disk by all Tasks in the Job. */
-  readIOGiB: number;
-  /** The total amount of data in GiB written to disk by all Tasks in the Job. */
-  writeIOGiB: number;
-  /** A Task completes successfully if it returns exit code 0. */
-  numSucceededTasks: number;
-  /**
-   * A Task fails if it exhausts its maximum retry count without returning exit code
-   * 0.
-   */
-  numFailedTasks: number;
-  /**
-   * The total number of retries on all the Tasks in the Job during the given time
-   * range.
-   */
-  numTaskRetries: number;
-  /**
-   * The wait time for a Task is defined as the elapsed time between the creation of
-   * the Task and the start of Task execution. (If the Task is retried due to
-   * failures, the wait time is the time to the most recent Task execution.) This
-   * value is only reported in the Account lifetime statistics; it is not included
-   * in the Job statistics.
-   */
-  waitTime: string;
-}
-
-/** An Azure Batch Job. */
-export interface BatchJob {
-  /**
-   * The ID is case-preserving and case-insensitive (that is, you may not have two
-   * IDs within an Account that differ only by case).
-   */
-  id?: string;
-  /** The display name for the Job. */
-  displayName?: string;
-  /**
-   * Whether Tasks in the Job can define dependencies on each other. The default is
-   * false.
-   */
-  usesTaskDependencies?: boolean;
-  /**
-   * Priority values can range from -1000 to 1000, with -1000 being the lowest
-   * priority and 1000 being the highest priority. The default value is 0.
-   */
-  priority?: number;
-  /**
-   * If the value is set to True, other high priority jobs submitted to the system
-   * will take precedence and will be able requeue tasks from this job. You can
-   * update a job's allowTaskPreemption after it has been created using the update
-   * job API.
-   */
-  allowTaskPreemption?: boolean;
-  /**
-   * The value of maxParallelTasks must be -1 or greater than 0 if specified. If not
-   * specified, the default value is -1, which means there's no limit to the number
-   * of tasks that can be run at once. You can update a job's maxParallelTasks after
-   * it has been created using the update job API.
-   */
-  maxParallelTasks?: number;
-  /** The execution constraints for a Job. */
-  constraints?: JobConstraints;
-  /**
-   * The Job Manager Task is automatically started when the Job is created. The
-   * Batch service tries to schedule the Job Manager Task before any other Tasks in
-   * the Job. When shrinking a Pool, the Batch service tries to preserve Nodes where
-   * Job Manager Tasks are running for as long as possible (that is, Compute Nodes
-   * running 'normal' Tasks are removed before Compute Nodes running Job Manager
-   * Tasks). When a Job Manager Task fails and needs to be restarted, the system
-   * tries to schedule it at the highest priority. If there are no idle Compute
-   * Nodes available, the system may terminate one of the running Tasks in the Pool
-   * and return it to the queue in order to make room for the Job Manager Task to
-   * restart. Note that a Job Manager Task in one Job does not have priority over
-   * Tasks in other Jobs. Across Jobs, only Job level priorities are observed. For
-   * example, if a Job Manager in a priority 0 Job needs to be restarted, it will
-   * not displace Tasks of a priority 1 Job. Batch will retry Tasks when a recovery
-   * operation is triggered on a Node. Examples of recovery operations include (but
-   * are not limited to) when an unhealthy Node is rebooted or a Compute Node
-   * disappeared due to host failure. Retries due to recovery operations are
-   * independent of and are not counted against the maxTaskRetryCount. Even if the
-   * maxTaskRetryCount is 0, an internal retry due to a recovery operation may
-   * occur. Because of this, all Tasks should be idempotent. This means Tasks need
-   * to tolerate being interrupted and restarted without causing any corruption or
-   * duplicate data. The best practice for long running Tasks is to use some form of
-   * checkpointing.
-   */
-  jobManagerTask?: JobManagerTask;
-  /**
-   * The Job Preparation Task is a special Task run on each Compute Node before any
-   * other Task of the Job.
-   */
-  jobPreparationTask?: JobPreparationTask;
-  /**
-   * The Job Release Task is a special Task run at the end of the Job on each
-   * Compute Node that has run any other Task of the Job.
-   */
-  jobReleaseTask?: JobReleaseTask;
-  /**
-   * Individual Tasks can override an environment setting specified here by
-   * specifying the same setting name with a different value.
-   */
-  commonEnvironmentSettings?: Array<EnvironmentSetting>;
-  /** Specifies how a Job should be assigned to a Pool. */
-  poolInfo?: PoolInformation;
-  /**
-   * The default is noaction.
-   *
-   * Possible values: noaction, terminatejob
-   */
-  onAllTasksComplete?: string;
-  /**
-   * A Task is considered to have failed if has a failureInfo. A failureInfo is set
-   * if the Task completes with a non-zero exit code after exhausting its retry
-   * count, or if there was an error starting the Task, for example due to a
-   * resource file download error. The default is noaction.
-   *
-   * Possible values: noaction, performexitoptionsjobaction
-   */
-  onTaskFailure?: string;
-  /** The network configuration for the Job. */
-  networkConfiguration?: JobNetworkConfiguration;
-  /**
-   * The Batch service does not assign any meaning to metadata; it is solely for the
-   * use of user code.
-   */
-  metadata?: Array<MetadataItem>;
-}
-
 /** Options when disabling a Job. */
 export interface BatchJobDisableParameters {
   /**
@@ -2214,6 +2214,29 @@ export interface DeleteCertificateError {
    * the Certificate, the list contains only about the first hundred.
    */
   values?: Array<NameValuePair>;
+}
+
+/**
+ * A Job Schedule that allows recurring Jobs by specifying when to run Jobs and a
+ * specification used to create each Job.
+ */
+export interface BatchJobSchedule {
+  /** A string that uniquely identifies the schedule within the Account. */
+  id?: string;
+  /** The display name for the schedule. */
+  displayName?: string;
+  /**
+   * All times are fixed respective to UTC and are not impacted by daylight saving
+   * time.
+   */
+  schedule?: Schedule;
+  /** Specifies details of the Jobs to be created on a schedule. */
+  jobSpecification?: JobSpecification;
+  /**
+   * The Batch service does not assign any meaning to metadata; it is solely for the
+   * use of user code.
+   */
+  metadata?: Array<MetadataItem>;
 }
 
 /**
@@ -2453,29 +2476,6 @@ export interface JobScheduleStatistics {
    * included in the Job statistics.
    */
   waitTime: string;
-}
-
-/**
- * A Job Schedule that allows recurring Jobs by specifying when to run Jobs and a
- * specification used to create each Job.
- */
-export interface BatchJobSchedule {
-  /** A string that uniquely identifies the schedule within the Account. */
-  id?: string;
-  /** The display name for the schedule. */
-  displayName?: string;
-  /**
-   * All times are fixed respective to UTC and are not impacted by daylight saving
-   * time.
-   */
-  schedule?: Schedule;
-  /** Specifies details of the Jobs to be created on a schedule. */
-  jobSpecification?: JobSpecification;
-  /**
-   * The Batch service does not assign any meaning to metadata; it is solely for the
-   * use of user code.
-   */
-  metadata?: Array<MetadataItem>;
 }
 
 /**

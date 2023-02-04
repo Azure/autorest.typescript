@@ -246,13 +246,6 @@ export interface ApplicationOutput {
 }
 
 // @public
-export interface ApplicationOutput {
-    displayName: string;
-    readonly id: string;
-    versions: string[];
-}
-
-// @public
 export interface ApplicationPackageReference {
     applicationId: string;
     version?: string;
@@ -308,13 +301,6 @@ export interface AutoScaleRunErrorOutput {
     code?: string;
     message?: string;
     values?: Array<NameValuePairOutput>;
-}
-
-// @public
-export interface AutoScaleRunOutput {
-    error?: AutoScaleRunErrorOutput;
-    results?: string;
-    readonly timestamp: string;
 }
 
 // @public
@@ -439,42 +425,6 @@ export interface BatchJobListResultOutput {
 }
 
 // @public
-export interface BatchJobListResultOutput {
-    "odata.nextLink"?: string;
-    value?: Array<BatchJobOutput>;
-}
-
-// @public
-export interface BatchJobOutput {
-    allowTaskPreemption?: boolean;
-    commonEnvironmentSettings?: Array<EnvironmentSettingOutput>;
-    constraints?: JobConstraintsOutput;
-    readonly creationTime?: string;
-    displayName?: string;
-    readonly eTag?: string;
-    readonly executionInfo?: JobExecutionInformationOutput;
-    id?: string;
-    jobManagerTask?: JobManagerTaskOutput;
-    jobPreparationTask?: JobPreparationTaskOutput;
-    jobReleaseTask?: JobReleaseTaskOutput;
-    readonly lastModified?: string;
-    maxParallelTasks?: number;
-    metadata?: Array<MetadataItemOutput>;
-    networkConfiguration?: JobNetworkConfigurationOutput;
-    onAllTasksComplete?: string;
-    onTaskFailure?: string;
-    poolInfo?: PoolInformationOutput;
-    readonly previousState?: string;
-    readonly previousStateTransitionTime?: string;
-    priority?: number;
-    readonly state?: string;
-    readonly stateTransitionTime?: string;
-    readonly stats?: JobStatisticsOutput;
-    readonly url?: string;
-    usesTaskDependencies?: boolean;
-}
-
-// @public
 export interface BatchJobOutput {
     allowTaskPreemption?: boolean;
     commonEnvironmentSettings?: Array<EnvironmentSettingOutput>;
@@ -517,25 +467,6 @@ export interface BatchJobSchedule {
 export interface BatchJobScheduleListResultOutput {
     "odata.nextLink"?: string;
     value?: Array<BatchJobScheduleOutput>;
-}
-
-// @public
-export interface BatchJobScheduleOutput {
-    readonly creationTime?: string;
-    displayName?: string;
-    readonly eTag?: string;
-    readonly executionInfo?: JobScheduleExecutionInformationOutput;
-    id?: string;
-    jobSpecification?: JobSpecificationOutput;
-    readonly lastModified?: string;
-    metadata?: Array<MetadataItemOutput>;
-    readonly previousState?: string;
-    readonly previousStateTransitionTime?: string;
-    schedule?: ScheduleOutput;
-    readonly state?: string;
-    readonly stateTransitionTime?: string;
-    readonly stats?: JobScheduleStatisticsOutput;
-    readonly url?: string;
 }
 
 // @public
@@ -665,48 +596,6 @@ export interface BatchPoolOutput {
 }
 
 // @public
-export interface BatchPoolOutput {
-    readonly allocationState?: string;
-    readonly allocationStateTransitionTime?: string;
-    applicationLicenses?: string[];
-    applicationPackageReferences?: Array<ApplicationPackageReferenceOutput>;
-    autoScaleEvaluationInterval?: string;
-    autoScaleFormula?: string;
-    readonly autoScaleRun?: AutoScaleRunOutput;
-    certificateReferences?: Array<CertificateReferenceOutput>;
-    cloudServiceConfiguration?: CloudServiceConfigurationOutput;
-    readonly creationTime?: string;
-    readonly currentDedicatedNodes?: number;
-    readonly currentLowPriorityNodes?: number;
-    readonly currentNodeCommunicationMode?: string;
-    displayName?: string;
-    enableAutoScale?: boolean;
-    enableInterNodeCommunication?: boolean;
-    readonly eTag?: string;
-    id?: string;
-    readonly identity?: BatchPoolIdentityOutput;
-    readonly lastModified?: string;
-    metadata?: Array<MetadataItemOutput>;
-    mountConfiguration?: Array<MountConfigurationOutput>;
-    networkConfiguration?: NetworkConfigurationOutput;
-    readonly resizeErrors?: Array<ResizeErrorOutput>;
-    resizeTimeout?: string;
-    startTask?: StartTaskOutput;
-    readonly state?: string;
-    readonly stateTransitionTime?: string;
-    readonly stats?: PoolStatisticsOutput;
-    targetDedicatedNodes?: number;
-    targetLowPriorityNodes?: number;
-    targetNodeCommunicationMode?: string;
-    taskSchedulingPolicy?: TaskSchedulingPolicyOutput;
-    taskSlotsPerNode?: number;
-    readonly url?: string;
-    userAccounts?: Array<UserAccountOutput>;
-    virtualMachineConfiguration?: VirtualMachineConfigurationOutput;
-    vmSize?: string;
-}
-
-// @public
 export interface BatchPoolResizeParameters {
     nodeDeallocationOption?: string;
     resizeTimeout?: string;
@@ -753,37 +642,6 @@ export interface BatchTaskListResultOutput {
 // @public
 export interface BatchTaskListSubtasksResultOutput {
     value?: Array<SubtaskInformationOutput>;
-}
-
-// @public
-export interface BatchTaskOutput {
-    affinityInfo?: AffinityInformationOutput;
-    applicationPackageReferences?: Array<ApplicationPackageReferenceOutput>;
-    authenticationTokenSettings?: AuthenticationTokenSettingsOutput;
-    commandLine?: string;
-    constraints?: TaskConstraintsOutput;
-    containerSettings?: TaskContainerSettingsOutput;
-    readonly creationTime?: string;
-    dependsOn?: TaskDependenciesOutput;
-    displayName?: string;
-    environmentSettings?: Array<EnvironmentSettingOutput>;
-    readonly eTag?: string;
-    readonly executionInfo?: TaskExecutionInformationOutput;
-    exitConditions?: ExitConditionsOutput;
-    id?: string;
-    readonly lastModified?: string;
-    multiInstanceSettings?: MultiInstanceSettingsOutput;
-    readonly nodeInfo?: ComputeNodeInformationOutput;
-    outputFiles?: Array<OutputFileOutput>;
-    readonly previousState?: string;
-    readonly previousStateTransitionTime?: string;
-    requiredSlots?: number;
-    resourceFiles?: Array<ResourceFileOutput>;
-    readonly state?: string;
-    readonly stateTransitionTime?: string;
-    readonly stats?: TaskStatisticsOutput;
-    readonly url?: string;
-    userIdentity?: UserIdentityOutput;
 }
 
 // @public
@@ -1116,22 +974,6 @@ export interface CertificateOperationsListQueryParamProperties {
     $select: string;
     maxresults?: number;
     timeOut?: number;
-}
-
-// @public
-export interface CertificateOutput {
-    certificateFormat?: string;
-    data?: string;
-    readonly deleteCertificateError?: DeleteCertificateErrorOutput;
-    password?: string;
-    readonly previousState?: string;
-    readonly previousStateTransitionTime?: string;
-    readonly publicData?: string;
-    readonly state?: string;
-    readonly stateTransitionTime?: string;
-    thumbprint?: string;
-    thumbprintAlgorithm?: string;
-    readonly url?: string;
 }
 
 // @public
@@ -2082,33 +1924,6 @@ export interface ComputeNodeOperationsUploadBatchServiceLogsQueryParam {
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsQueryParamProperties {
     timeOut?: number;
-}
-
-// @public
-export interface ComputeNodeOutput {
-    affinityId?: string;
-    allocationTime?: string;
-    certificateReferences?: Array<CertificateReferenceOutput>;
-    endpointConfiguration?: ComputeNodeEndpointConfigurationOutput;
-    errors?: Array<ComputeNodeErrorOutput>;
-    id?: string;
-    ipAddress?: string;
-    isDedicated?: boolean;
-    lastBootTime?: string;
-    nodeAgentInfo?: NodeAgentInformationOutput;
-    recentTasks?: Array<TaskInformationOutput>;
-    runningTasksCount?: number;
-    runningTaskSlotsCount?: number;
-    schedulingState?: string;
-    startTask?: StartTaskOutput;
-    startTaskInfo?: StartTaskInformationOutput;
-    state?: string;
-    stateTransitionTime?: string;
-    totalTasksRun?: number;
-    totalTasksSucceeded?: number;
-    url?: string;
-    virtualMachineInfo?: VirtualMachineInfoOutput;
-    vmSize?: string;
 }
 
 // @public
@@ -4705,24 +4520,6 @@ export interface JobStatisticsOutput {
     writeIOps: number;
 }
 
-// @public
-export interface JobStatisticsOutput {
-    kernelCPUTime: string;
-    lastUpdateTime: string;
-    numFailedTasks: number;
-    numSucceededTasks: number;
-    numTaskRetries: number;
-    readIOGiB: number;
-    readIOps: number;
-    startTime: string;
-    readonly url: string;
-    userCPUTime: string;
-    waitTime: string;
-    wallClockTime: string;
-    writeIOGiB: number;
-    writeIOps: number;
-}
-
 // @public (undocumented)
 export interface JobTerminate {
     post(options: JobTerminateParameters): StreamableMethod<JobTerminate202Response | JobTerminateDefaultResponse>;
@@ -5000,12 +4797,6 @@ export interface NodeFileListResultOutput {
 }
 
 // @public
-export interface NodeFileListResultOutput {
-    "odata.nextLink"?: string;
-    value?: Array<NodeFileOutput>;
-}
-
-// @public
 export interface NodeFileOutput {
     isDirectory?: boolean;
     name?: string;
@@ -5051,13 +4842,6 @@ export interface NodeUpdateUserParameters {
 export interface NodeVMExtensionListOutput {
     "odata.nextLink"?: string;
     value?: Array<NodeVMExtensionOutput>;
-}
-
-// @public
-export interface NodeVMExtensionOutput {
-    instanceView?: VMExtensionInstanceViewOutput;
-    provisioningState?: string;
-    vmExtension?: VMExtensionOutput;
 }
 
 // @public
@@ -5991,15 +5775,6 @@ export interface PoolStatistics {
     resourceStats?: ResourceStatistics;
     startTime: Date | string;
     usageStats?: UsageStatistics;
-}
-
-// @public
-export interface PoolStatisticsOutput {
-    lastUpdateTime: string;
-    resourceStats?: ResourceStatisticsOutput;
-    startTime: string;
-    readonly url: string;
-    usageStats?: UsageStatisticsOutput;
 }
 
 // @public

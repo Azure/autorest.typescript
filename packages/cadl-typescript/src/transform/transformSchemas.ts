@@ -6,7 +6,7 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/cadl-dpg";
-import { Schema, SchemaContext } from "@azure-tools/rlc-common";
+import { SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
 import {
@@ -16,8 +16,8 @@ import {
 } from "../modelUtils.js";
 
 export function transformSchemas(program: Program, client: Client) {
-  const schemas: Map<Schema, SchemaContext[]> = new Map<
-    Schema,
+  const schemas: Map<string, SchemaContext[]> = new Map<
+    string,
     SchemaContext[]
   >();
   const schemaMap: Map<any, any> = new Map<any, any>();
@@ -58,7 +58,7 @@ export function transformSchemas(program: Program, client: Client) {
     if (model.name === "") {
       return;
     }
-    const pureModel = trimUsage(model);
+    const pureModel = JSON.stringify(trimUsage(model));
     schemaMap.set(pureModel, model);
     let usage = schemas.get(pureModel) ?? [];
     if (!usage?.includes(context)) {
