@@ -456,7 +456,7 @@ function getSchemaForModel(
       }
 
       if (mutability.length > 0) {
-        // modelSchema.properties[name]["usage"] = mutability;
+        newPropSchema["usage"] = mutability;
       }
     }
     modelSchema.properties[name] = newPropSchema;

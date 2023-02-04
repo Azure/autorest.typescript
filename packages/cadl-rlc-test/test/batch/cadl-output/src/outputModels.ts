@@ -91,6 +91,16 @@ export interface BatchErrorDetailOutput {
   value?: string;
 }
 
+/** Contains information about an application in an Azure Batch Account. */
+export interface ApplicationOutput {
+  /** A string that uniquely identifies the application within the Account. */
+  readonly id: string;
+  /** The display name for the application. */
+  displayName: string;
+  /** The list of available versions of the application. */
+  versions: string[];
+}
+
 /** Usage metrics for a Pool across an aggregation interval. */
 export interface PoolUsageMetricsOutput {
   /** The ID of the Pool whose metrics are aggregated in this entry. */
@@ -1241,6 +1251,23 @@ export interface MetadataItemOutput {
   value: string;
 }
 
+/** Contains utilization and resource usage statistics for the lifetime of a Pool. */
+export interface PoolStatisticsOutput {
+  /** The URL for the statistics. */
+  readonly url: string;
+  /** The start time of the time range covered by the statistics. */
+  startTime: string;
+  /**
+   * The time at which the statistics were last updated. All statistics are limited
+   * to the range between startTime and lastUpdateTime.
+   */
+  lastUpdateTime: string;
+  /** Statistics related to Pool usage information. */
+  usageStats?: UsageStatisticsOutput;
+  /** Statistics related to resource consumption by Compute Nodes in a Pool. */
+  resourceStats?: ResourceStatisticsOutput;
+}
+
 /** The file system to mount on each node. */
 export interface MountConfigurationOutput {
   /** This property is mutually exclusive with all other properties. */
@@ -1364,6 +1391,212 @@ export interface BatchPoolListResultOutput {
   value?: Array<BatchPoolOutput>;
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+/** A Pool in the Azure Batch service. */
+export interface BatchPoolOutput {
+  /**
+   * The ID can contain any combination of alphanumeric characters including hyphens
+   * and underscores, and cannot contain more than 64 characters. The ID is
+   * case-preserving and case-insensitive (that is, you may not have two IDs within
+   * an Account that differ only by case).
+   */
+  id?: string;
+  /**
+   * The display name need not be unique and can contain any Unicode characters up
+   * to a maximum length of 1024.
+   */
+  displayName?: string;
+  /** The URL of the Pool. */
+  readonly url?: string;
+  /**
+   * This is an opaque string. You can use it to detect whether the Pool has changed
+   * between requests. In particular, you can be pass the ETag when updating a Pool
+   * to specify that your changes should take effect only if nobody else has
+   * modified the Pool in the meantime.
+   */
+  readonly eTag?: string;
+  /**
+   * This is the last time at which the Pool level data, such as the
+   * targetDedicatedNodes or enableAutoscale settings, changed. It does not factor
+   * in node-level changes such as a Compute Node changing state.
+   */
+  readonly lastModified?: string;
+  /** The creation time of the Pool. */
+  readonly creationTime?: string;
+  /**
+   * The current state of the Pool.
+   *
+   * Possible values: active, deleting
+   */
+  readonly state?: string;
+  /** The time at which the Pool entered its current state. */
+  readonly stateTransitionTime?: string;
+  /**
+   * Whether the Pool is resizing.
+   *
+   * Possible values: steady, resizing, stopping
+   */
+  readonly allocationState?: string;
+  /** The time at which the Pool entered its current allocation state. */
+  readonly allocationStateTransitionTime?: string;
+  /**
+   * For information about available sizes of virtual machines in Pools, see Choose
+   * a VM size for Compute Nodes in an Azure Batch Pool
+   * (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
+   */
+  vmSize?: string;
+  /**
+   * This property and virtualMachineConfiguration are mutually exclusive and one of
+   * the properties must be specified. This property cannot be specified if the
+   * Batch Account was created with its poolAllocationMode property set to
+   * 'UserSubscription'.
+   */
+  cloudServiceConfiguration?: CloudServiceConfigurationOutput;
+  /**
+   * This property and cloudServiceConfiguration are mutually exclusive and one of
+   * the properties must be specified.
+   */
+  virtualMachineConfiguration?: VirtualMachineConfigurationOutput;
+  /**
+   * This is the timeout for the most recent resize operation. (The initial sizing
+   * when the Pool is created counts as a resize.) The default value is 15 minutes.
+   */
+  resizeTimeout?: string;
+  /**
+   * This property is set only if one or more errors occurred during the last Pool
+   * resize, and only when the Pool allocationState is Steady.
+   */
+  readonly resizeErrors?: Array<ResizeErrorOutput>;
+  /** The number of dedicated Compute Nodes currently in the Pool. */
+  readonly currentDedicatedNodes?: number;
+  /**
+   * Spot/Low-priority Compute Nodes which have been preempted are included in this
+   * count.
+   */
+  readonly currentLowPriorityNodes?: number;
+  /** The desired number of dedicated Compute Nodes in the Pool. */
+  targetDedicatedNodes?: number;
+  /** The desired number of Spot/Low-priority Compute Nodes in the Pool. */
+  targetLowPriorityNodes?: number;
+  /**
+   * If false, at least one of targetDedicatedNodes and targetLowPriorityNodes must
+   * be specified. If true, the autoScaleFormula property is required and the Pool
+   * automatically resizes according to the formula. The default value is false.
+   */
+  enableAutoScale?: boolean;
+  /**
+   * This property is set only if the Pool automatically scales, i.e.
+   * enableAutoScale is true.
+   */
+  autoScaleFormula?: string;
+  /**
+   * This property is set only if the Pool automatically scales, i.e.
+   * enableAutoScale is true.
+   */
+  autoScaleEvaluationInterval?: string;
+  /**
+   * This property is set only if the Pool automatically scales, i.e.
+   * enableAutoScale is true.
+   */
+  readonly autoScaleRun?: AutoScaleRunOutput;
+  /**
+   * This imposes restrictions on which Compute Nodes can be assigned to the Pool.
+   * Specifying this value can reduce the chance of the requested number of Compute
+   * Nodes to be allocated in the Pool.
+   */
+  enableInterNodeCommunication?: boolean;
+  /** The network configuration for a Pool. */
+  networkConfiguration?: NetworkConfigurationOutput;
+  /**
+   * Batch will retry Tasks when a recovery operation is triggered on a Node.
+   * Examples of recovery operations include (but are not limited to) when an
+   * unhealthy Node is rebooted or a Compute Node disappeared due to host failure.
+   * Retries due to recovery operations are independent of and are not counted
+   * against the maxTaskRetryCount. Even if the maxTaskRetryCount is 0, an internal
+   * retry due to a recovery operation may occur. Because of this, all Tasks should
+   * be idempotent. This means Tasks need to tolerate being interrupted and
+   * restarted without causing any corruption or duplicate data. The best practice
+   * for long running Tasks is to use some form of checkpointing. In some cases the
+   * StartTask may be re-run even though the Compute Node was not rebooted. Special
+   * care should be taken to avoid StartTasks which create breakaway process or
+   * install/launch services from the StartTask working directory, as this will
+   * block Batch from being able to re-run the StartTask.
+   */
+  startTask?: StartTaskOutput;
+  /**
+   * For Windows Nodes, the Batch service installs the Certificates to the specified
+   * Certificate store and location. For Linux Compute Nodes, the Certificates are
+   * stored in a directory inside the Task working directory and an environment
+   * variable AZ_BATCH_CERTIFICATES_DIR is supplied to the Task to query for this
+   * location. For Certificates with visibility of 'remoteUser', a 'certs' directory
+   * is created in the user's home directory (e.g., /home/{user-name}/certs) and
+   * Certificates are placed in that directory.
+   */
+  certificateReferences?: Array<CertificateReferenceOutput>;
+  /**
+   * Changes to Package references affect all new Nodes joining the Pool, but do not
+   * affect Compute Nodes that are already in the Pool until they are rebooted or
+   * reimaged. There is a maximum of 10 Package references on any given Pool.
+   */
+  applicationPackageReferences?: Array<ApplicationPackageReferenceOutput>;
+  /**
+   * The list of application licenses must be a subset of available Batch service
+   * application licenses. If a license is requested which is not supported, Pool
+   * creation will fail.
+   */
+  applicationLicenses?: string[];
+  /**
+   * The default value is 1. The maximum value is the smaller of 4 times the number
+   * of cores of the vmSize of the pool or 256.
+   */
+  taskSlotsPerNode?: number;
+  /** If not specified, the default is spread. */
+  taskSchedulingPolicy?: TaskSchedulingPolicyOutput;
+  /** The list of user Accounts to be created on each Compute Node in the Pool. */
+  userAccounts?: Array<UserAccountOutput>;
+  /** A list of name-value pairs associated with the Pool as metadata. */
+  metadata?: Array<MetadataItemOutput>;
+  /**
+   * This property is populated only if the CloudPool was retrieved with an expand
+   * clause including the 'stats' attribute; otherwise it is null. The statistics
+   * may not be immediately available. The Batch service performs periodic roll-up
+   * of statistics. The typical delay is about 30 minutes.
+   */
+  readonly stats?: PoolStatisticsOutput;
+  /** This supports Azure Files, NFS, CIFS/SMB, and Blobfuse. */
+  mountConfiguration?: Array<MountConfigurationOutput>;
+  /**
+   * The list of user identities associated with the Batch pool. The user identity
+   * dictionary key references will be ARM resource ids in the form:
+   * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
+   */
+  readonly identity?: BatchPoolIdentityOutput;
+  /**
+   * If omitted, the default value is Default.
+   *
+   * Possible values: default, classic, simplified
+   */
+  targetNodeCommunicationMode?: string;
+  /**
+   * Determines how a pool communicates with the Batch service.
+   *
+   * Possible values: default, classic, simplified
+   */
+  readonly currentNodeCommunicationMode?: string;
+}
+
+/** The results and errors from an execution of a Pool autoscale formula. */
+export interface AutoScaleRunOutput {
+  /** The time at which the autoscale formula was last evaluated. */
+  readonly timestamp: string;
+  /**
+   * Each variable value is returned in the form $variable=value, and variables are
+   * separated by semicolons.
+   */
+  results?: string;
+  /** An error that occurred when executing or evaluating a Pool autoscale formula. */
+  error?: AutoScaleRunErrorOutput;
 }
 
 /** The result of listing the supported Virtual Machine Images. */
@@ -2390,6 +2623,215 @@ export interface JobSchedulingErrorOutput {
   details?: Array<NameValuePairOutput>;
 }
 
+/** Resource usage statistics for a Job. */
+export interface JobStatisticsOutput {
+  /** The URL of the statistics. */
+  readonly url: string;
+  /** The start time of the time range covered by the statistics. */
+  startTime: string;
+  /**
+   * The time at which the statistics were last updated. All statistics are limited
+   * to the range between startTime and lastUpdateTime.
+   */
+  lastUpdateTime: string;
+  /**
+   * The total user mode CPU time (summed across all cores and all Compute Nodes)
+   * consumed by all Tasks in the Job.
+   */
+  userCPUTime: string;
+  /**
+   * The total kernel mode CPU time (summed across all cores and all Compute Nodes)
+   * consumed by all Tasks in the Job.
+   */
+  kernelCPUTime: string;
+  /**
+   *  The wall clock time is the elapsed time from when the Task started running on
+   * a Compute Node to when it finished (or to the last time the statistics were
+   * updated, if the Task had not finished by then). If a Task was retried, this
+   * includes the wall clock time of all the Task retries.
+   */
+  wallClockTime: string;
+  /** The total number of disk read operations made by all Tasks in the Job. */
+  readIOps: number;
+  /** The total number of disk write operations made by all Tasks in the Job. */
+  writeIOps: number;
+  /** The total amount of data in GiB read from disk by all Tasks in the Job. */
+  readIOGiB: number;
+  /** The total amount of data in GiB written to disk by all Tasks in the Job. */
+  writeIOGiB: number;
+  /** A Task completes successfully if it returns exit code 0. */
+  numSucceededTasks: number;
+  /**
+   * A Task fails if it exhausts its maximum retry count without returning exit code
+   * 0.
+   */
+  numFailedTasks: number;
+  /**
+   * The total number of retries on all the Tasks in the Job during the given time
+   * range.
+   */
+  numTaskRetries: number;
+  /**
+   * The wait time for a Task is defined as the elapsed time between the creation of
+   * the Task and the start of Task execution. (If the Task is retried due to
+   * failures, the wait time is the time to the most recent Task execution.) This
+   * value is only reported in the Account lifetime statistics; it is not included
+   * in the Job statistics.
+   */
+  waitTime: string;
+}
+
+/** An Azure Batch Job. */
+export interface BatchJobOutput {
+  /**
+   * The ID is case-preserving and case-insensitive (that is, you may not have two
+   * IDs within an Account that differ only by case).
+   */
+  id?: string;
+  /** The display name for the Job. */
+  displayName?: string;
+  /**
+   * Whether Tasks in the Job can define dependencies on each other. The default is
+   * false.
+   */
+  usesTaskDependencies?: boolean;
+  /** The URL of the Job. */
+  readonly url?: string;
+  /**
+   * This is an opaque string. You can use it to detect whether the Job has changed
+   * between requests. In particular, you can be pass the ETag when updating a Job
+   * to specify that your changes should take effect only if nobody else has
+   * modified the Job in the meantime.
+   */
+  readonly eTag?: string;
+  /**
+   * This is the last time at which the Job level data, such as the Job state or
+   * priority, changed. It does not factor in task-level changes such as adding new
+   * Tasks or Tasks changing state.
+   */
+  readonly lastModified?: string;
+  /** The creation time of the Job. */
+  readonly creationTime?: string;
+  /**
+   * The state of the Job.
+   *
+   * Possible values: active, disabling, disabled, enabling, terminating, completed, deleting
+   */
+  readonly state?: string;
+  /** The time at which the Job entered its current state. */
+  readonly stateTransitionTime?: string;
+  /**
+   * This property is not set if the Job is in its initial Active state.
+   *
+   * Possible values: active, disabling, disabled, enabling, terminating, completed, deleting
+   */
+  readonly previousState?: string;
+  /** This property is not set if the Job is in its initial Active state. */
+  readonly previousStateTransitionTime?: string;
+  /**
+   * Priority values can range from -1000 to 1000, with -1000 being the lowest
+   * priority and 1000 being the highest priority. The default value is 0.
+   */
+  priority?: number;
+  /**
+   * If the value is set to True, other high priority jobs submitted to the system
+   * will take precedence and will be able requeue tasks from this job. You can
+   * update a job's allowTaskPreemption after it has been created using the update
+   * job API.
+   */
+  allowTaskPreemption?: boolean;
+  /**
+   * The value of maxParallelTasks must be -1 or greater than 0 if specified. If not
+   * specified, the default value is -1, which means there's no limit to the number
+   * of tasks that can be run at once. You can update a job's maxParallelTasks after
+   * it has been created using the update job API.
+   */
+  maxParallelTasks?: number;
+  /** The execution constraints for a Job. */
+  constraints?: JobConstraintsOutput;
+  /**
+   * The Job Manager Task is automatically started when the Job is created. The
+   * Batch service tries to schedule the Job Manager Task before any other Tasks in
+   * the Job. When shrinking a Pool, the Batch service tries to preserve Nodes where
+   * Job Manager Tasks are running for as long as possible (that is, Compute Nodes
+   * running 'normal' Tasks are removed before Compute Nodes running Job Manager
+   * Tasks). When a Job Manager Task fails and needs to be restarted, the system
+   * tries to schedule it at the highest priority. If there are no idle Compute
+   * Nodes available, the system may terminate one of the running Tasks in the Pool
+   * and return it to the queue in order to make room for the Job Manager Task to
+   * restart. Note that a Job Manager Task in one Job does not have priority over
+   * Tasks in other Jobs. Across Jobs, only Job level priorities are observed. For
+   * example, if a Job Manager in a priority 0 Job needs to be restarted, it will
+   * not displace Tasks of a priority 1 Job. Batch will retry Tasks when a recovery
+   * operation is triggered on a Node. Examples of recovery operations include (but
+   * are not limited to) when an unhealthy Node is rebooted or a Compute Node
+   * disappeared due to host failure. Retries due to recovery operations are
+   * independent of and are not counted against the maxTaskRetryCount. Even if the
+   * maxTaskRetryCount is 0, an internal retry due to a recovery operation may
+   * occur. Because of this, all Tasks should be idempotent. This means Tasks need
+   * to tolerate being interrupted and restarted without causing any corruption or
+   * duplicate data. The best practice for long running Tasks is to use some form of
+   * checkpointing.
+   */
+  jobManagerTask?: JobManagerTaskOutput;
+  /**
+   * The Job Preparation Task is a special Task run on each Compute Node before any
+   * other Task of the Job.
+   */
+  jobPreparationTask?: JobPreparationTaskOutput;
+  /**
+   * The Job Release Task is a special Task run at the end of the Job on each
+   * Compute Node that has run any other Task of the Job.
+   */
+  jobReleaseTask?: JobReleaseTaskOutput;
+  /**
+   * Individual Tasks can override an environment setting specified here by
+   * specifying the same setting name with a different value.
+   */
+  commonEnvironmentSettings?: Array<EnvironmentSettingOutput>;
+  /** Specifies how a Job should be assigned to a Pool. */
+  poolInfo?: PoolInformationOutput;
+  /**
+   * The default is noaction.
+   *
+   * Possible values: noaction, terminatejob
+   */
+  onAllTasksComplete?: string;
+  /**
+   * A Task is considered to have failed if has a failureInfo. A failureInfo is set
+   * if the Task completes with a non-zero exit code after exhausting its retry
+   * count, or if there was an error starting the Task, for example due to a
+   * resource file download error. The default is noaction.
+   *
+   * Possible values: noaction, performexitoptionsjobaction
+   */
+  onTaskFailure?: string;
+  /** The network configuration for the Job. */
+  networkConfiguration?: JobNetworkConfigurationOutput;
+  /**
+   * The Batch service does not assign any meaning to metadata; it is solely for the
+   * use of user code.
+   */
+  metadata?: Array<MetadataItemOutput>;
+  /** Contains information about the execution of a Job in the Azure Batch service. */
+  readonly executionInfo?: JobExecutionInformationOutput;
+  /**
+   * This property is populated only if the CloudJob was retrieved with an expand
+   * clause including the 'stats' attribute; otherwise it is null. The statistics
+   * may not be immediately available. The Batch service performs periodic roll-up
+   * of statistics. The typical delay is about 30 minutes.
+   */
+  readonly stats?: JobStatisticsOutput;
+}
+
+/** The result of listing the Jobs in an Account. */
+export interface BatchJobListResultOutput {
+  /** The list of Jobs. */
+  value?: Array<BatchJobOutput>;
+  /** The URL to get the next set of results. */
+  "odata.nextLink"?: string;
+}
+
 /** The result of listing the Jobs in an Account. */
 export interface BatchJobListResultOutput {
   /** The list of Jobs. */
@@ -2695,6 +3137,52 @@ export interface CertificateListResultOutput {
 }
 
 /**
+ * A Certificate that can be installed on Compute Nodes and can be used to
+ * authenticate operations on the machine.
+ */
+export interface CertificateOutput {
+  /**
+   * The X.509 thumbprint of the Certificate. This is a sequence of up to 40 hex
+   * digits.
+   */
+  thumbprint?: string;
+  /** The algorithm used to derive the thumbprint. */
+  thumbprintAlgorithm?: string;
+  /** The URL of the Certificate. */
+  readonly url?: string;
+  /**
+   * The state of the Certificate.
+   *
+   * Possible values: active, deleting, deletefailed
+   */
+  readonly state?: string;
+  /** The time at which the Certificate entered its current state. */
+  readonly stateTransitionTime?: string;
+  /**
+   * This property is not set if the Certificate is in its initial active state.
+   *
+   * Possible values: active, deleting, deletefailed
+   */
+  readonly previousState?: string;
+  /** This property is not set if the Certificate is in its initial Active state. */
+  readonly previousStateTransitionTime?: string;
+  /** The public part of the Certificate as a base-64 encoded .cer file. */
+  readonly publicData?: string;
+  /** This property is set only if the Certificate is in the DeleteFailed state. */
+  readonly deleteCertificateError?: DeleteCertificateErrorOutput;
+  /** The base64-encoded contents of the Certificate. The maximum size is 10KB. */
+  data?: string;
+  /**
+   * The format of the Certificate data.
+   *
+   * Possible values: pfx, cer
+   */
+  certificateFormat?: string;
+  /** This must be omitted if the Certificate format is cer. */
+  password?: string;
+}
+
+/**
  * The result of listing the files on a Compute Node, or the files associated with
  * a Task on a Compute Node.
  */
@@ -2729,6 +3217,17 @@ export interface FilePropertiesOutput {
   contentType?: string;
   /** The file mode is returned only for files on Linux Compute Nodes. */
   fileMode?: string;
+}
+
+/**
+ * The result of listing the files on a Compute Node, or the files associated with
+ * a Task on a Compute Node.
+ */
+export interface NodeFileListResultOutput {
+  /** The list of files. */
+  value?: Array<NodeFileOutput>;
+  /** The URL to get the next set of results. */
+  "odata.nextLink"?: string;
 }
 
 /**
@@ -3031,6 +3530,69 @@ export interface JobScheduleStatisticsOutput {
    * included in the Job statistics.
    */
   waitTime: string;
+}
+
+/**
+ * A Job Schedule that allows recurring Jobs by specifying when to run Jobs and a
+ * specification used to create each Job.
+ */
+export interface BatchJobScheduleOutput {
+  /** A string that uniquely identifies the schedule within the Account. */
+  id?: string;
+  /** The display name for the schedule. */
+  displayName?: string;
+  /** The URL of the Job Schedule. */
+  readonly url?: string;
+  /**
+   * This is an opaque string. You can use it to detect whether the Job Schedule has
+   * changed between requests. In particular, you can be pass the ETag with an
+   * Update Job Schedule request to specify that your changes should take effect
+   * only if nobody else has modified the schedule in the meantime.
+   */
+  readonly eTag?: string;
+  /**
+   * This is the last time at which the schedule level data, such as the Job
+   * specification or recurrence information, changed. It does not factor in
+   * job-level changes such as new Jobs being created or Jobs changing state.
+   */
+  readonly lastModified?: string;
+  /** The creation time of the Job Schedule. */
+  readonly creationTime?: string;
+  /**
+   * The state of the Job Schedule.
+   *
+   * Possible values: active, completed, disabled, terminating, deleting
+   */
+  readonly state?: string;
+  /** The time at which the Job Schedule entered the current state. */
+  readonly stateTransitionTime?: string;
+  /**
+   * This property is not present if the Job Schedule is in its initial active state.
+   *
+   * Possible values: active, completed, disabled, terminating, deleting
+   */
+  readonly previousState?: string;
+  /** This property is not present if the Job Schedule is in its initial active state. */
+  readonly previousStateTransitionTime?: string;
+  /**
+   * All times are fixed respective to UTC and are not impacted by daylight saving
+   * time.
+   */
+  schedule?: ScheduleOutput;
+  /** Specifies details of the Jobs to be created on a schedule. */
+  jobSpecification?: JobSpecificationOutput;
+  /**
+   * Contains information about Jobs that have been and will be run under a Job
+   * Schedule.
+   */
+  readonly executionInfo?: JobScheduleExecutionInformationOutput;
+  /**
+   * The Batch service does not assign any meaning to metadata; it is solely for the
+   * use of user code.
+   */
+  metadata?: Array<MetadataItemOutput>;
+  /** Resource usage statistics for a Job Schedule. */
+  readonly stats?: JobScheduleStatisticsOutput;
 }
 
 /** The result of listing the Job Schedules in an Account. */
@@ -3505,6 +4067,155 @@ export interface TaskAddResultOutput {
   error?: BatchErrorOutput;
 }
 
+/**
+ * Batch will retry Tasks when a recovery operation is triggered on a Node.
+ * Examples of recovery operations include (but are not limited to) when an
+ * unhealthy Node is rebooted or a Compute Node disappeared due to host failure.
+ * Retries due to recovery operations are independent of and are not counted
+ * against the maxTaskRetryCount. Even if the maxTaskRetryCount is 0, an internal
+ * retry due to a recovery operation may occur. Because of this, all Tasks should
+ * be idempotent. This means Tasks need to tolerate being interrupted and
+ * restarted without causing any corruption or duplicate data. The best practice
+ * for long running Tasks is to use some form of checkpointing.
+ */
+export interface BatchTaskOutput {
+  /**
+   * The ID can contain any combination of alphanumeric characters including hyphens
+   * and underscores, and cannot contain more than 64 characters.
+   */
+  id?: string;
+  /**
+   * The display name need not be unique and can contain any Unicode characters up
+   * to a maximum length of 1024.
+   */
+  displayName?: string;
+  /** The URL of the Task. */
+  readonly url?: string;
+  /**
+   * This is an opaque string. You can use it to detect whether the Task has changed
+   * between requests. In particular, you can be pass the ETag when updating a Task
+   * to specify that your changes should take effect only if nobody else has
+   * modified the Task in the meantime.
+   */
+  readonly eTag?: string;
+  /** The last modified time of the Task. */
+  readonly lastModified?: string;
+  /** The creation time of the Task. */
+  readonly creationTime?: string;
+  /** How the Batch service should respond when the Task completes. */
+  exitConditions?: ExitConditionsOutput;
+  /**
+   * The state of the Task.
+   *
+   * Possible values: active, preparing, running, completed
+   */
+  readonly state?: string;
+  /** The time at which the Task entered its current state. */
+  readonly stateTransitionTime?: string;
+  /**
+   * This property is not set if the Task is in its initial Active state.
+   *
+   * Possible values: active, preparing, running, completed
+   */
+  readonly previousState?: string;
+  /** This property is not set if the Task is in its initial Active state. */
+  readonly previousStateTransitionTime?: string;
+  /**
+   * For multi-instance Tasks, the command line is executed as the primary Task,
+   * after the primary Task and all subtasks have finished executing the
+   * coordination command line. The command line does not run under a shell, and
+   * therefore cannot take advantage of shell features such as environment variable
+   * expansion. If you want to take advantage of such features, you should invoke
+   * the shell in the command line, for example using "cmd /c MyCommand" in
+   * Windows or "/bin/sh -c MyCommand" in Linux. If the command line refers to
+   * file paths, it should use a relative path (relative to the Task working
+   * directory), or use the Batch provided environment variable
+   * (https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables).
+   */
+  commandLine?: string;
+  /**
+   * If the Pool that will run this Task has containerConfiguration set, this must
+   * be set as well. If the Pool that will run this Task doesn't have
+   * containerConfiguration set, this must not be set. When this is specified, all
+   * directories recursively below the AZ_BATCH_NODE_ROOT_DIR (the root of Azure
+   * Batch directories on the node) are mapped into the container, all Task
+   * environment variables are mapped into the container, and the Task command line
+   * is executed in the container. Files produced in the container outside of
+   * AZ_BATCH_NODE_ROOT_DIR might not be reflected to the host disk, meaning that
+   * Batch file APIs will not be able to access those files.
+   */
+  containerSettings?: TaskContainerSettingsOutput;
+  /**
+   * For multi-instance Tasks, the resource files will only be downloaded to the
+   * Compute Node on which the primary Task is executed. There is a maximum size for
+   * the list of resource files.  When the max size is exceeded, the request will
+   * fail and the response error code will be RequestEntityTooLarge. If this occurs,
+   * the collection of ResourceFiles must be reduced in size. This can be achieved
+   * using .zip files, Application Packages, or Docker Containers.
+   */
+  resourceFiles?: Array<ResourceFileOutput>;
+  /**
+   * For multi-instance Tasks, the files will only be uploaded from the Compute Node
+   * on which the primary Task is executed.
+   */
+  outputFiles?: Array<OutputFileOutput>;
+  /** A list of environment variable settings for the Task. */
+  environmentSettings?: Array<EnvironmentSettingOutput>;
+  /**
+   * A locality hint that can be used by the Batch service to select a Compute Node
+   * on which to start a Task.
+   */
+  affinityInfo?: AffinityInformationOutput;
+  /** Execution constraints to apply to a Task. */
+  constraints?: TaskConstraintsOutput;
+  /**
+   * The default is 1. A Task can only be scheduled to run on a compute node if the
+   * node has enough free scheduling slots available. For multi-instance Tasks, this
+   * must be 1.
+   */
+  requiredSlots?: number;
+  /** If omitted, the Task runs as a non-administrative user unique to the Task. */
+  userIdentity?: UserIdentityOutput;
+  /** Information about the execution of a Task. */
+  readonly executionInfo?: TaskExecutionInformationOutput;
+  /** Information about the Compute Node on which a Task ran. */
+  readonly nodeInfo?: ComputeNodeInformationOutput;
+  /**
+   * Multi-instance Tasks are commonly used to support MPI Tasks. In the MPI case,
+   * if any of the subtasks fail (for example due to exiting with a non-zero exit
+   * code) the entire multi-instance Task fails. The multi-instance Task is then
+   * terminated and retried, up to its retry limit.
+   */
+  multiInstanceSettings?: MultiInstanceSettingsOutput;
+  /** Resource usage statistics for a Task. */
+  readonly stats?: TaskStatisticsOutput;
+  /**
+   * This Task will not be scheduled until all Tasks that it depends on have
+   * completed successfully. If any of those Tasks fail and exhaust their retry
+   * counts, this Task will never be scheduled.
+   */
+  dependsOn?: TaskDependenciesOutput;
+  /**
+   * Application packages are downloaded and deployed to a shared directory, not the
+   * Task working directory. Therefore, if a referenced package is already on the
+   * Node, and is up to date, then it is not re-downloaded; the existing copy on the
+   * Compute Node is used. If a referenced Package cannot be installed, for example
+   * because the package has been deleted or because download failed, the Task
+   * fails.
+   */
+  applicationPackageReferences?: Array<ApplicationPackageReferenceOutput>;
+  /**
+   * If this property is set, the Batch service provides the Task with an
+   * authentication token which can be used to authenticate Batch service operations
+   * without requiring an Account access key. The token is provided via the
+   * AZ_BATCH_AUTHENTICATION_TOKEN environment variable. The operations that the
+   * Task can carry out using the token depend on the settings. For example, a Task
+   * can request Job permissions in order to add other Tasks to the Job, or check
+   * the status of the Job or of other Tasks under the Job.
+   */
+  authenticationTokenSettings?: AuthenticationTokenSettingsOutput;
+}
+
 /** The result of listing the subtasks of a Task. */
 export interface BatchTaskListSubtasksResultOutput {
   /** The list of subtasks. */
@@ -3871,6 +4582,134 @@ export interface ComputeNodeListResultOutput {
   "odata.nextLink"?: string;
 }
 
+/** A Compute Node in the Batch service. */
+export interface ComputeNodeOutput {
+  /**
+   * Every Compute Node that is added to a Pool is assigned a unique ID. Whenever a
+   * Compute Node is removed from a Pool, all of its local files are deleted, and
+   * the ID is reclaimed and could be reused for new Compute Nodes.
+   */
+  id?: string;
+  /** The URL of the Compute Node. */
+  url?: string;
+  /**
+   * The Spot/Low-priority Compute Node has been preempted. Tasks which were running
+   * on the Compute Node when it was preempted will be rescheduled when another
+   * Compute Node becomes available.
+   *
+   * Possible values: idle, rebooting, reimaging, running, unusable, creating, starting, waitingforstarttask, starttaskfailed, unknown, leavingpool, offline, preempted
+   */
+  state?: string;
+  /**
+   * Whether the Compute Node is available for Task scheduling.
+   *
+   * Possible values: enabled, disabled
+   */
+  schedulingState?: string;
+  /** The time at which the Compute Node entered its current state. */
+  stateTransitionTime?: string;
+  /** This property may not be present if the Compute Node state is unusable. */
+  lastBootTime?: string;
+  /**
+   * This is the time when the Compute Node was initially allocated and doesn't
+   * change once set. It is not updated when the Compute Node is service healed or
+   * preempted.
+   */
+  allocationTime?: string;
+  /**
+   * Every Compute Node that is added to a Pool is assigned a unique IP address.
+   * Whenever a Compute Node is removed from a Pool, all of its local files are
+   * deleted, and the IP address is reclaimed and could be reused for new Compute
+   * Nodes.
+   */
+  ipAddress?: string;
+  /**
+   * Note that this is just a soft affinity. If the target Compute Node is busy or
+   * unavailable at the time the Task is scheduled, then the Task will be scheduled
+   * elsewhere.
+   */
+  affinityId?: string;
+  /**
+   * For information about available sizes of virtual machines in Pools, see Choose
+   * a VM size for Compute Nodes in an Azure Batch Pool
+   * (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
+   */
+  vmSize?: string;
+  /**
+   * The total number of Job Tasks completed on the Compute Node. This includes Job
+   * Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start
+   * Tasks.
+   */
+  totalTasksRun?: number;
+  /**
+   * The total number of currently running Job Tasks on the Compute Node. This
+   * includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job
+   * Release or Start Tasks.
+   */
+  runningTasksCount?: number;
+  /**
+   * The total number of scheduling slots used by currently running Job Tasks on the
+   * Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job
+   * Preparation, Job Release or Start Tasks.
+   */
+  runningTaskSlotsCount?: number;
+  /**
+   * The total number of Job Tasks which completed successfully (with exitCode 0) on
+   * the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job
+   * Preparation, Job Release or Start Tasks.
+   */
+  totalTasksSucceeded?: number;
+  /**
+   * This property is present only if at least one Task has run on this Compute Node
+   * since it was assigned to the Pool.
+   */
+  recentTasks?: Array<TaskInformationOutput>;
+  /**
+   * Batch will retry Tasks when a recovery operation is triggered on a Node.
+   * Examples of recovery operations include (but are not limited to) when an
+   * unhealthy Node is rebooted or a Compute Node disappeared due to host failure.
+   * Retries due to recovery operations are independent of and are not counted
+   * against the maxTaskRetryCount. Even if the maxTaskRetryCount is 0, an internal
+   * retry due to a recovery operation may occur. Because of this, all Tasks should
+   * be idempotent. This means Tasks need to tolerate being interrupted and
+   * restarted without causing any corruption or duplicate data. The best practice
+   * for long running Tasks is to use some form of checkpointing. In some cases the
+   * StartTask may be re-run even though the Compute Node was not rebooted. Special
+   * care should be taken to avoid StartTasks which create breakaway process or
+   * install/launch services from the StartTask working directory, as this will
+   * block Batch from being able to re-run the StartTask.
+   */
+  startTask?: StartTaskOutput;
+  /** Information about a StartTask running on a Compute Node. */
+  startTaskInfo?: StartTaskInformationOutput;
+  /**
+   * For Windows Nodes, the Batch service installs the Certificates to the specified
+   * Certificate store and location. For Linux Compute Nodes, the Certificates are
+   * stored in a directory inside the Task working directory and an environment
+   * variable AZ_BATCH_CERTIFICATES_DIR is supplied to the Task to query for this
+   * location. For Certificates with visibility of 'remoteUser', a 'certs' directory
+   * is created in the user's home directory (e.g., /home/{user-name}/certs) and
+   * Certificates are placed in that directory.
+   */
+  certificateReferences?: Array<CertificateReferenceOutput>;
+  /** The list of errors that are currently being encountered by the Compute Node. */
+  errors?: Array<ComputeNodeErrorOutput>;
+  /**
+   * Whether this Compute Node is a dedicated Compute Node. If false, the Compute
+   * Node is a Spot/Low-priority Compute Node.
+   */
+  isDedicated?: boolean;
+  /** The endpoint configuration for the Compute Node. */
+  endpointConfiguration?: ComputeNodeEndpointConfigurationOutput;
+  /**
+   * The Batch Compute Node agent is a program that runs on each Compute Node in the
+   * Pool and provides Batch capability on the Compute Node.
+   */
+  nodeAgentInfo?: NodeAgentInformationOutput;
+  /** Info about the current state of the virtual machine. */
+  virtualMachineInfo?: VirtualMachineInfoOutput;
+}
+
 /** The configuration for virtual machine extension instance view. */
 export interface NodeVMExtensionOutput {
   /** The provisioning state of the virtual machine extension. */
@@ -3915,4 +4754,14 @@ export interface NodeVMExtensionListOutput {
   value?: Array<NodeVMExtensionOutput>;
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+/** The configuration for virtual machine extension instance view. */
+export interface NodeVMExtensionOutput {
+  /** The provisioning state of the virtual machine extension. */
+  provisioningState?: string;
+  /** The configuration for virtual machine extensions. */
+  vmExtension?: VMExtensionOutput;
+  /** The vm extension instance view. */
+  instanceView?: VMExtensionInstanceViewOutput;
 }
