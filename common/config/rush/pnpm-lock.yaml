@@ -286,20 +286,6 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-tools/cadl-typescript/1.0.0-beta.8:
-    resolution: {integrity: sha512-iW1tuJAbZQU4UECYziLAhN4gQwRwxLCgejdMpDrnEIAUe2A3+en3JWg8ybuoxUrCFn1QwkrWyFw5A3JoAu0RGA==}
-    dependencies:
-      '@azure-tools/cadl-azure-core': 0.24.0_45b3e6f79972cdcc9be4cff2f875ce07
-      '@azure-tools/cadl-dpg': 0.24.0_45b3e6f79972cdcc9be4cff2f875ce07
-      '@azure-tools/rlc-common': 1.0.0-beta.8
-      '@cadl-lang/compiler': 0.38.5
-      '@cadl-lang/rest': 0.38.0_@cadl-lang+compiler@0.38.5
-      fs-extra: 11.1.0
-      prettier: 2.8.3
-      ts-morph: 15.1.0
-      tslib: 2.4.1
-    dev: false
-
   /@azure-tools/codegen/2.9.2:
     resolution: {integrity: sha512-brVLyffOtPiEijYYBYgV+4q7IyAfqXIec7XbdEqvv7As6SeEdq5WtbtN9N0LdGVHDWtEfc+JArwIx9aYGFdMUg==}
     engines: {node: '>=12.0.0'}
@@ -9993,7 +9979,6 @@ packages:
       '@azure-tools/cadl-autorest': 0.25.0_7bda408ad9292541f5168a7f363c83f7
       '@azure-tools/cadl-azure-core': 0.25.0_e8193149b17686a81a86c2eef847af07
       '@azure-tools/cadl-dpg': 0.25.0_e8193149b17686a81a86c2eef847af07
-      '@azure-tools/cadl-typescript': 1.0.0-beta.8
       '@cadl-lang/compiler': 0.39.0
       '@cadl-lang/openapi': 0.39.0_e8193149b17686a81a86c2eef847af07
       '@cadl-lang/openapi3': 0.38.0_7f037d8c3166e9947eadca7a84842376
