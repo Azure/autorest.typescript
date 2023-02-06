@@ -370,7 +370,7 @@ describe("LRO Rest Client", () => {
       const result = await poller.pollUntilDone();
       assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
-      assert.deepEqual(result.body.properties?.provisioningState, "succeeded");
+      assert.deepEqual(result.body.status, "succeeded");
     });
 
     it("should handle post200WithPayload", async () => {
@@ -758,7 +758,6 @@ describe("LRO Rest Client", () => {
       if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
-        throw new Error(error);
       }
       assert.equal(result.body.properties?.provisioningState, "Succeeded");
       assert.equal(result.body.name, "foo");
@@ -1010,7 +1009,7 @@ describe("LRO Rest Client", () => {
     it("should handle put200InvalidJson", async () => {
       await assert.isRejected(
         client.path("/lro/error/put/200/invalidjson").put(),
-        /SyntaxError: Expected ',' or '}' after property value in JSON at position 78" occurred while parsing the response body/
+        /SyntaxError: Unexpected end of JSON input" occurred while parsing the response body/
       );
     });
 
@@ -1066,7 +1065,7 @@ describe("LRO Rest Client", () => {
 
       await assert.isRejected(
         poller.pollUntilDone(),
-        /"SyntaxError: Expected ',' or '}' after property value in JSON at position 22" occurred while parsing the response body - { "status": "Accepted"/
+        /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
       );
     });
 
@@ -1109,7 +1108,7 @@ describe("LRO Rest Client", () => {
 
       await assert.isRejected(
         poller.pollUntilDone(),
-        /"SyntaxError: Expected ',' or '}' after property value in JSON at position 22" occurred while parsing the response body - { "status": "Accepted"/
+        /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
       );
     });
   });
