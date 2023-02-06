@@ -127,15 +127,15 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/cadl-autorest/0.24.0_7bda408ad9292541f5168a7f363c83f7:
-    resolution: {integrity: sha512-q8A3GRlwyQJ+/8cJs3dzyB4sRSVORItVS27NOraOwaXMudk9W6wW4uwBpyR07B3iHUanC8ZECe6CaCDUUttbtg==}
+  /@azure-tools/cadl-autorest/0.25.0_7bda408ad9292541f5168a7f363c83f7:
+    resolution: {integrity: sha512-4i4siT4uDVm64gCDcuzDT8xikC2XPCMp4k+NWwPBF2v39IUZkDTtvqSWqRKXhpEVRZcTKbTlJLamfzWGfvdBtg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@azure-tools/cadl-azure-core': ~0.24.0
-      '@cadl-lang/compiler': ~0.38.0
-      '@cadl-lang/openapi': ~0.38.0
-      '@cadl-lang/rest': ~0.38.0
-      '@cadl-lang/versioning': ~0.38.0
+      '@azure-tools/cadl-azure-core': ~0.25.0
+      '@cadl-lang/compiler': ~0.39.0
+      '@cadl-lang/openapi': ~0.39.0
+      '@cadl-lang/rest': ~0.39.0
+      '@cadl-lang/versioning': ~0.39.0
     dependencies:
       '@azure-tools/cadl-azure-core': 0.25.0_e8193149b17686a81a86c2eef847af07
       '@cadl-lang/compiler': 0.39.0
@@ -9986,11 +9986,11 @@ packages:
     dev: false
 
   file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-gUXHr5WpNiTm3obo7SoK6TrsbVhg6ABku/VkzFfElgJDF1rehWuep3rSAeZyXXWDZrEYAvxXdD387KfEuV3GYw==, tarball: file:projects/cadl-rest-test.tgz}
+    resolution: {integrity: sha512-BeGh7aXwm6FpVekUZWqsEvoWVnOS00RGJdLof0qGhj6291z/+tFreaI50MxR2PbRTR6k/28Axm6dHOhu8Rb8LQ==, tarball: file:projects/cadl-rest-test.tgz}
     name: '@rush-temp/cadl-rest-test'
     version: 0.0.0
     dependencies:
-      '@azure-tools/cadl-autorest': 0.24.0_7bda408ad9292541f5168a7f363c83f7
+      '@azure-tools/cadl-autorest': 0.25.0_7bda408ad9292541f5168a7f363c83f7
       '@azure-tools/cadl-azure-core': 0.25.0_e8193149b17686a81a86c2eef847af07
       '@azure-tools/cadl-dpg': 0.25.0_e8193149b17686a81a86c2eef847af07
       '@azure-tools/cadl-typescript': 1.0.0-beta.8
