@@ -1,3 +1,8 @@
+## 6.0.0-rc.8 (2023-02-06)
+
+- [Feature] Upgrade prettier version in the package.json, Please refer to pr [#1741](https://github.com/Azure/autorest.typescript/pull/1741).
+- [Feature] Upgrade dotenv version in the package.json, Please refer to pr [#1730](https://github.com/Azure/autorest.typescript/pull/1730).
+
 ## 6.0.0-rc.7 (2023-01-09)
 
 - [Feature] Normalize parameter in host template and path uri, Please refer to pr [#1714](https://github.com/Azure/autorest.typescript/pull/1714).
