@@ -7,9 +7,9 @@ import { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions
 
 /**
  * Initialize a new instance of `AzureAgriFoodPlatformDataPlaneServiceClient`
- * @param endpoint The endpoint of your FarmBeats resource (protocol and hostname, for example: https://{resourceName}.farmbeats.azure.net).
- * @param credentials KeyCredential which uniquely identify client credential.
- * @param options The parameter options
+ * @param endpoint type: string, The endpoint of your FarmBeats resource (protocol and hostname, for example: https://{resourceName}.farmbeats.azure.net).
+ * @param credentials type: KeyCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

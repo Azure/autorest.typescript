@@ -7,9 +7,9 @@ import { PurviewMetadataPoliciesClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `PurviewMetadataPoliciesClient`
- * @param endpoint The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
- * @param credentials KeyCredential which uniquely identify client credential.
- * @param options The parameter options
+ * @param endpoint type: string, The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
+ * @param credentials type: KeyCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export function createClient(
   endpoint: string,
