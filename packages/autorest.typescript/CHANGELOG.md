@@ -1,5 +1,6 @@
 ## 6.0.0-rc.8 (2023-02-06)
 
+- [Feature] Upgrade core-lro to 2.5.x, Please refer to pr [#1586](https://github.com/Azure/autorest.typescript/pull/1586).
 - [Feature] Upgrade prettier version in the package.json, Please refer to pr [#1741](https://github.com/Azure/autorest.typescript/pull/1741).
 - [Feature] Upgrade dotenv version in the package.json, Please refer to pr [#1730](https://github.com/Azure/autorest.typescript/pull/1730).
 
