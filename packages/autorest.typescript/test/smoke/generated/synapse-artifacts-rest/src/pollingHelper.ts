@@ -31,7 +31,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       // response we were provided.
       return getLroResponse(initialResponse);
     },
-    sendPollRequest: async (path) => {
+    sendPollRequest: async path => {
       // This is the callback that is going to be called to poll the service
       // to get the latest status. We use the client provided and the polling path
       // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location
@@ -46,7 +46,6 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     }
   };
 
-  // enable resolveOnUnsuccessful flag by default
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
   return await createHttpPoller(poller, options);
 }
