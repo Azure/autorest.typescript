@@ -6,7 +6,7 @@ import { LRORestClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `LRORestClient`
- * @param options type: `ClientOptions`, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
