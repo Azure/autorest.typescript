@@ -1,6 +1,6 @@
 # AuthApiKey REST client library for JavaScript
 
-Auth api key Test Service
+Illustrates clients generated with ApiKey authentication.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

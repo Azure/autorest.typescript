@@ -72,6 +72,10 @@
   },
   "//metadata": {
     "constantPaths": [
+      {
+        "path": "src/httpInfrastructureRestClient.ts",
+        "prefix": "userAgentInfo"
+      },
       { "path": "swagger/README.md", "prefix": "package-version" }
     ]
   }

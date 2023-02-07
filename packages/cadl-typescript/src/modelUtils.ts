@@ -834,7 +834,7 @@ function getEnumStringDescription(type: any) {
   if (type.name === "string" && type.enum && type.enum.length > 0) {
     return `Possible values: ${type.enum.join(", ")}`;
   }
-  return "";
+  return undefined;
 }
 
 export function getFormattedPropertyDoc(

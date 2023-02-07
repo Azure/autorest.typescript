@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
 
-describe("Client Factory generation testing", () => {
+describe("Client Factory generation", () => {
   describe("should handle url parameters", () => {
     it("should handle zero parameter", async () => {
       const models = await emitClientFactoryFromCadl(`
@@ -21,8 +21,8 @@ describe("Client Factory generation testing", () => {
         import { testClient } from "./clientDefinitions";
         
         /**
-         * Initialize a new instance of the class testClient class.
-         *
+         * Initialize a new instance of \`testClient\`
+         * @param options type: ClientOptions, the parameter for all optional parameters
          */
         export default function createClient(options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`localhost\`;
@@ -68,8 +68,9 @@ describe("Client Factory generation testing", () => {
           import { testClient } from "./clientDefinitions";
 
           /**
-           * Initialize a new instance of the class testClient class.
-           * @param endpoint type: string The endpoint to use.
+           * Initialize a new instance of \`testClient\`
+           * @param endpoint type: string, The endpoint to use.
+           * @param options type: ClientOptions, the parameter for all optional parameters
            */
           export default function createClient(
             endpoint: string,
@@ -131,9 +132,10 @@ describe("Client Factory generation testing", () => {
             import { testClient } from "./clientDefinitions";
             
             /**
-             * Initialize a new instance of the class testClient class.
-             * @param endpoint type: string The endpoint to use.
-             * @param version type: "V1"|"V2" The version to use
+             * Initialize a new instance of \`testClient\`
+             * @param endpoint type: string, The endpoint to use.
+             * @param version type: "V1"|"V2", The version to use
+             * @param options type: ClientOptions, the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
@@ -192,9 +194,10 @@ describe("Client Factory generation testing", () => {
             import { testClient } from "./clientDefinitions";
             
             /**
-             * Initialize a new instance of the class testClient class.
-             * @param endpoint type: string The endpoint to use.
-             * @param version type: string The version to use. Possible values: v1.1
+             * Initialize a new instance of \`testClient\`
+             * @param endpoint type: string, The endpoint to use.
+             * @param version type: string, The version to use. Possible values: v1.1
+             * @param options type: ClientOptions, the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
@@ -251,8 +254,9 @@ describe("Client Factory generation testing", () => {
             import { testClient } from "./clientDefinitions";
             
             /**
-             * Initialize a new instance of the class testClient class.
-             * @param endpoint type: string The endpoint to use.
+             * Initialize a new instance of \`testClient\`
+             * @param endpoint type: string, The endpoint to use.
+             * @param options type: ClientOptions, the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
@@ -320,8 +324,9 @@ describe("Client Factory generation testing", () => {
             }
 
             /**
-             * Initialize a new instance of the class testClient class.
-             * @param endpoint type: string The endpoint to use.
+             * Initialize a new instance of \`testClient\`
+             * @param endpoint type: string, The endpoint to use.
+             * @param options type: testClientOptions, the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
@@ -367,8 +372,9 @@ describe("Client Factory generation testing", () => {
         import { testClient } from "./clientDefinitions";
         
         /**
-         * Initialize a new instance of the class testClient class.
-         * @param endpoint type: string
+         * Initialize a new instance of \`testClient\`
+         * @param endpoint type: string, The parameter endpoint
+         * @param options type: ClientOptions, the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -414,8 +420,9 @@ describe("Client Factory generation testing", () => {
         import { testClient } from "./clientDefinitions";
         
         /**
-         * Initialize a new instance of the class testClient class.
-         * @param endpoint type: string
+         * Initialize a new instance of \`testClient\`
+         * @param endpoint type: string, The parameter endpoint
+         * @param options type: ClientOptions, the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -461,9 +468,10 @@ describe("Client Factory generation testing", () => {
         import { testClient } from "./clientDefinitions";
         
         /**
-         * Initialize a new instance of the class testClient class.
-         * @param endpoint type: string
-         * @param credentials type: TokenCredential | KeyCredential
+         * Initialize a new instance of \`testClient\`
+         * @param endpoint type: string, The parameter endpoint
+         * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
+         * @param options type: ClientOptions, the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;

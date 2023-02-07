@@ -6,7 +6,7 @@ import {
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
-import { NoTarget, Program } from "@cadl-lang/compiler";
+import { getDoc, NoTarget, Program } from "@cadl-lang/compiler";
 import { getAuthentication } from "@cadl-lang/rest/http";
 import { getDefaultService } from "./transform.js";
 import { reportDiagnostic } from "../lib.js";
@@ -45,7 +45,8 @@ function extractRLCOptions(
     generateTest,
     azureSdkForJs,
     serviceInfo,
-    azureOutputDirectory
+    azureOutputDirectory,
+    sourceFrom: "Cadl"
   };
 }
 
@@ -130,8 +131,10 @@ function getPackageDetails(
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
+  const defaultService = getDefaultService(program);
   return {
-    title: getDefaultService(program)?.title
+    title: defaultService?.title,
+    description: defaultService && getDoc(program, defaultService.type)
   };
 }
 

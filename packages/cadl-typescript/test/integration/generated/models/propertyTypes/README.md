@@ -1,6 +1,6 @@
 # ModelsPropertyTypes REST client library for JavaScript
 
-Property Types Test Service
+Illustrates various property types for models
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

@@ -32,7 +32,7 @@
     "execute:samples": "echo skipped",
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
     "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\" ",
-    "generate:client": "autorest --typescript swagger/README.md && npm run format",
+    "generate:client": "echo skipped",
     "integration-test:browser": "echo skipped",
     "integration-test:node": "echo skipped",
     "integration-test": "echo skipped",

@@ -1,6 +1,6 @@
 # AzureLro REST client library for JavaScript
 
-LRO Basic Test Service
+All the basic lro test shall be added in this file
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

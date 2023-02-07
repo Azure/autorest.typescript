@@ -6,9 +6,10 @@ import { TokenCredential } from "@azure/core-auth";
 import { BatchServiceClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class BatchServiceClient class.
- * @param endpoint type: string
- * @param credentials type: TokenCredential
+ * Initialize a new instance of `BatchServiceClient`
+ * @param endpoint type: string, The parameter endpoint
+ * @param credentials type: TokenCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

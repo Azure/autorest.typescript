@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
-  Embeddings200Response,
-  EmbeddingsDefaultResponse,
-  Completions200Response,
-  CompletionsDefaultResponse,
+  GetEmbeddings200Response,
+  GetEmbeddingsDefaultResponse,
+  GetCompletions200Response,
+  GetCompletionsDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -14,18 +14,18 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: Embeddings200Response | EmbeddingsDefaultResponse
-): response is EmbeddingsDefaultResponse;
+  response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse
+): response is GetEmbeddingsDefaultResponse;
 export function isUnexpected(
-  response: Completions200Response | CompletionsDefaultResponse
-): response is CompletionsDefaultResponse;
+  response: GetCompletions200Response | GetCompletionsDefaultResponse
+): response is GetCompletionsDefaultResponse;
 export function isUnexpected(
   response:
-    | Embeddings200Response
-    | EmbeddingsDefaultResponse
-    | Completions200Response
-    | CompletionsDefaultResponse
-): response is EmbeddingsDefaultResponse | CompletionsDefaultResponse {
+    | GetEmbeddings200Response
+    | GetEmbeddingsDefaultResponse
+    | GetCompletions200Response
+    | GetCompletionsDefaultResponse
+): response is GetEmbeddingsDefaultResponse | GetCompletionsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

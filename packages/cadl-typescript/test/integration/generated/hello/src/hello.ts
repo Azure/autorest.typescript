@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { HelloClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class HelloClient class.
- *
+ * Initialize a new instance of `HelloClient`
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(options: ClientOptions = {}): HelloClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
