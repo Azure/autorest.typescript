@@ -6,8 +6,8 @@ import { BatchServiceClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `BatchServiceClient`
- * @param batchUrl The base URL for all Azure Batch service requests.
- * @param options The parameter options
+ * @param batchUrl type: string, The base URL for all Azure Batch service requests.
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   batchUrl: string,

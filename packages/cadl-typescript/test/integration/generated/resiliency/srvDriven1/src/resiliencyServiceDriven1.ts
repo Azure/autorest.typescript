@@ -6,7 +6,7 @@ import { ResiliencyServiceDriven1Client } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ResiliencyServiceDriven1Client`
- * @param options The parameter options
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}

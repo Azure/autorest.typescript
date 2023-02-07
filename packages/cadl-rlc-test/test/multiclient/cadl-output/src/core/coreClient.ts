@@ -6,8 +6,8 @@ import { CoreClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `CoreClient`
- * @param endpoint The parameter endpoint
- * @param options The parameter options
+ * @param endpoint type: string, The parameter endpoint
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export function createClient(
   endpoint: string,

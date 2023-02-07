@@ -7,10 +7,10 @@ import { AzureOpenAIApiClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AzureOpenAIApiClient`
- * @param endpoint Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * @param endpoint type: string, Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus.api.cognitive.microsoft.com).
- * @param credentials TokenCredential | KeyCredential which uniquely identify client credential.
- * @param options The parameter options
+ * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

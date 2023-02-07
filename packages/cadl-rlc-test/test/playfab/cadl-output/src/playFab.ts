@@ -6,8 +6,8 @@ import { PlayFabClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `PlayFabClient`
- * @param endpoint The endpoint of your PlayFab service
- * @param options The parameter options
+ * @param endpoint type: string, The endpoint of your PlayFab service
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

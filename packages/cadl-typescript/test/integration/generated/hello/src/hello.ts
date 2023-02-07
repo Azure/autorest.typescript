@@ -6,7 +6,7 @@ import { HelloClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `HelloClient`
- * @param options The parameter options
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(options: ClientOptions = {}): HelloClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;

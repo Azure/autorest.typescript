@@ -7,8 +7,8 @@ import { AuthOauth2Client } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AuthOauth2Client`
- * @param credentials TokenCredential which uniquely identify client credential.
- * @param options The parameter options
+ * @param credentials type: TokenCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   credentials: TokenCredential,

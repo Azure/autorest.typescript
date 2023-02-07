@@ -98,9 +98,7 @@ export function buildClient(model: RLCModel): File | undefined {
           {
             name: "credentials",
             type: credentialTypes.join(" | "),
-            description: `${credentialTypes.join(
-              " | "
-            )} which uniquely identify client credential.`
+            description: `uniquely identify client credential`
           }
         ])
   ];
@@ -109,7 +107,8 @@ export function buildClient(model: RLCModel): File | undefined {
     ...commonClientParams,
     {
       name: "options",
-      type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`
+      type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`,
+      description: "the parameter for all optional parameters"
     }
   ];
   const functionStatement = {
@@ -122,7 +121,10 @@ export function buildClient(model: RLCModel): File | undefined {
           `Initialize a new instance of \`${clientInterfaceName}\` \n` +
           allClientParams
             .map((param) => {
-              return `@param ${param.name} ${
+              return `@param ${param.name} type: ${param.type
+                .split("=")[0]
+                .split(" ")
+                .join("")}, ${
                 param.description ?? "The parameter " + param.name
               }`;
             })
