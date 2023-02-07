@@ -1,6 +1,6 @@
 # ResiliencyDevDriven REST client library for JavaScript
 
-Dev Driven Test Service
+DPG Swagger that tests our ability to grow up.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

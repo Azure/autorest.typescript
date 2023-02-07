@@ -5,8 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ContosoWidgetManagerClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ContosoWidgetManagerClient class.
- * @param endpoint type: string
+ * Initialize a new instance of `ContosoWidgetManagerClient`
+ * @param endpoint type: string, The parameter endpoint
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

@@ -63,6 +63,7 @@ export {{#unless useLegacyLro}}async {{/unless}}function getLongRunningPoller<TR
   {{#if useLegacyLro}}
   return new LroEngine(poller, options);
   {{else}}
+  options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
   return await createHttpPoller(poller, options);
   {{/if}}
 }

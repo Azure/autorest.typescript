@@ -2250,6 +2250,12 @@ packages:
       '@types/retry': 0.12.2
     dev: false
 
+  /@types/chai-as-promised/7.1.5:
+    resolution: {integrity: sha512-jStwss93SITGBwt/niYrkf2C+/1KTeZCZl1LaeezTlqppAKeoQC7jxyqYuP72sxBGKCIbw7oHgbYssIRzT5FCQ==}
+    dependencies:
+      '@types/chai': 4.3.4
+    dev: false
+
   /@types/chai/4.3.4:
     resolution: {integrity: sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==}
     dev: false
@@ -3393,6 +3399,15 @@ packages:
 
   /caseless/0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
+    dev: false
+
+  /chai-as-promised/7.1.1_chai@4.3.7:
+    resolution: {integrity: sha512-azL6xMoi+uxu6z4rhWQ1jbdUhOMhis2PvscD/xjLqNMkv3BPPp2JyyuTHOrf9BOosGpNQ11v6BKv/g57RXbiaA==}
+    peerDependencies:
+      chai: '>= 2.1.2 < 5'
+    dependencies:
+      chai: 4.3.7
+      check-error: 1.0.2
     dev: false
 
   /chai/4.3.7:
@@ -10026,7 +10041,7 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-Xcva404IPWaLmOqmcL0V6FwjtMiYg4RtCfmaAFc4yleLNAXGHqFkDi107kw0kbC2XV7rkmFnPFg80HREYYVcYw==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-aQkJ0d5BWzvv4Gpw34AND77HnFSEXqFCs75VOIRy2LsVJGmR5XjgTvzneX5VFHChYb1vxCai1RBY5neNr6Rrag==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
@@ -10050,6 +10065,7 @@ packages:
       '@azure/logger': 1.0.3
       '@microsoft.azure/autorest.testserver': 3.3.45
       '@types/chai': 4.3.4
+      '@types/chai-as-promised': 7.1.5
       '@types/fs-extra': 9.0.13
       '@types/js-yaml': 3.12.1
       '@types/lodash': 4.14.191
@@ -10064,6 +10080,7 @@ packages:
       autorest: 3.6.3
       buffer: 6.0.3
       chai: 4.3.7
+      chai-as-promised: 7.1.1_chai@4.3.7
       chalk: 4.1.2
       directory-tree: 2.3.1
       dotenv: 16.0.3

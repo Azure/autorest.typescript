@@ -456,7 +456,7 @@ function getSchemaForModel(
       }
 
       if (mutability.length > 0) {
-        // modelSchema.properties[name]["usage"] = mutability;
+        newPropSchema["usage"] = mutability;
       }
     }
     modelSchema.properties[name] = newPropSchema;
@@ -834,7 +834,7 @@ function getEnumStringDescription(type: any) {
   if (type.name === "string" && type.enum && type.enum.length > 0) {
     return `Possible values: ${type.enum.join(", ")}`;
   }
-  return "";
+  return undefined;
 }
 
 export function getFormattedPropertyDoc(

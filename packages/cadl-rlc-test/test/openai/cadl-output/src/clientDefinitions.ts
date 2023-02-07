@@ -1,27 +1,32 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { EmbeddingsParameters, CompletionsParameters } from "./parameters";
 import {
-  Embeddings200Response,
-  EmbeddingsDefaultResponse,
-  Completions200Response,
-  CompletionsDefaultResponse,
+  GetEmbeddingsParameters,
+  GetCompletionsParameters,
+} from "./parameters";
+import {
+  GetEmbeddings200Response,
+  GetEmbeddingsDefaultResponse,
+  GetCompletions200Response,
+  GetCompletionsDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface Embeddings {
+export interface GetEmbeddings {
   /** Return the embeddings for a given prompt. */
   post(
-    options?: EmbeddingsParameters
-  ): StreamableMethod<Embeddings200Response | EmbeddingsDefaultResponse>;
+    options?: GetEmbeddingsParameters
+  ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
 }
 
-export interface Completions {
+export interface GetCompletions {
   /** Return the completions for a given prompt. */
   post(
-    options?: CompletionsParameters
-  ): StreamableMethod<Completions200Response | CompletionsDefaultResponse>;
+    options?: GetCompletionsParameters
+  ): StreamableMethod<
+    GetCompletions200Response | GetCompletionsDefaultResponse
+  >;
 }
 
 export interface Routes {
@@ -29,12 +34,12 @@ export interface Routes {
   (
     path: "/deployments/{deploymentId}/embeddings",
     deploymentId: string
-  ): Embeddings;
+  ): GetEmbeddings;
   /** Resource for '/deployments/\{deploymentId\}/completions' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/completions",
     deploymentId: string
-  ): Completions;
+  ): GetCompletions;
 }
 
 export type AzureOpenAIApiClient = Client & {

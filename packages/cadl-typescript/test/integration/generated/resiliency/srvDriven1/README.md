@@ -1,6 +1,6 @@
 # ResiliencyServiceDriven1 REST client library for JavaScript
 
-Srv Driven 1 Test Service
+DPG Swagger, this is the initial swagger a service could do
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

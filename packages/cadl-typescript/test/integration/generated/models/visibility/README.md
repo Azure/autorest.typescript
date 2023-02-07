@@ -1,6 +1,6 @@
 # ModelsVisibilityAutomatic REST client library for JavaScript
 
-Visibility Test Service
+Illustrates models with visibility properties.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

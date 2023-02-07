@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { BodyStringRestClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class BodyStringRestClient class.
- *
+ * Initialize a new instance of `BodyStringRestClient`
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}

@@ -6,151 +6,152 @@ import {
   ApplicationOperationsListDefaultResponse,
   ApplicationOperationsGet200Response,
   ApplicationOperationsGetDefaultResponse,
-  PoolOperationsListUsageMetrics200Response,
-  PoolOperationsListUsageMetricsDefaultResponse,
-  PoolOperationsGetAllLifetimeStatistics200Response,
-  PoolOperationsGetAllLifetimeStatisticsDefaultResponse,
-  PoolOperationsAdd204Response,
-  PoolOperationsAddDefaultResponse,
-  PoolOperationsList200Response,
-  PoolOperationsListDefaultResponse,
-  PoolOperationsDelete204Response,
-  PoolOperationsDeleteDefaultResponse,
-  PoolOperationsExists204Response,
-  PoolOperationsExistsDefaultResponse,
-  PoolOperationsGet200Response,
-  PoolOperationsGetDefaultResponse,
-  PoolOperationsPatch204Response,
-  PoolOperationsPatchDefaultResponse,
-  PoolOperationsDisableAutoScale204Response,
-  PoolOperationsDisableAutoScaleDefaultResponse,
-  PoolOperationsEnableAutoScale204Response,
-  PoolOperationsEnableAutoScaleDefaultResponse,
-  PoolOperationsEvaluateAutoScale200Response,
-  PoolOperationsEvaluateAutoScaleDefaultResponse,
-  PoolOperationsResize204Response,
-  PoolOperationsResizeDefaultResponse,
-  PoolOperationsStopResize204Response,
-  PoolOperationsStopResizeDefaultResponse,
-  PoolOperationsUpdateProperties204Response,
-  PoolOperationsUpdatePropertiesDefaultResponse,
-  PoolOperationsRemoveNodes204Response,
-  PoolOperationsRemoveNodesDefaultResponse,
-  AccountOperationsListSupportedImages200Response,
-  AccountOperationsListSupportedImagesDefaultResponse,
-  AccountOperationsListPoolNodeCounts200Response,
-  AccountOperationsListPoolNodeCountsDefaultResponse,
-  JobOperationsGetAllLifetimeStatistics200Response,
-  JobOperationsGetAllLifetimeStatisticsDefaultResponse,
-  JobOperationsDelete204Response,
-  JobOperationsDeleteDefaultResponse,
-  JobOperationsGet200Response,
-  JobOperationsGetDefaultResponse,
-  JobOperationsPatch204Response,
-  JobOperationsPatchDefaultResponse,
-  JobOperationsUpdate204Response,
-  JobOperationsUpdateDefaultResponse,
-  JobOperationsDisable204Response,
-  JobOperationsDisableDefaultResponse,
-  JobOperationsEnable204Response,
-  JobOperationsEnableDefaultResponse,
-  JobOperationsTerminate204Response,
-  JobOperationsTerminateDefaultResponse,
-  JobOperationsAdd204Response,
-  JobOperationsAddDefaultResponse,
-  JobOperationsList200Response,
-  JobOperationsListDefaultResponse,
-  JobOperationsListFromJobSchedule200Response,
-  JobOperationsListFromJobScheduleDefaultResponse,
-  JobOperationsListPreparationAndReleaseTaskStatus200Response,
-  JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse,
-  JobOperationsGetTaskCounts200Response,
-  JobOperationsGetTaskCountsDefaultResponse,
-  CertificateOperationsAdd204Response,
+  PoolListUsageMetrics200Response,
+  PoolListUsageMetricsDefaultResponse,
+  PoolGetAllLifetimeStatistics200Response,
+  PoolGetAllLifetimeStatisticsDefaultResponse,
+  PoolAdd201Response,
+  PoolAddDefaultResponse,
+  PoolList200Response,
+  PoolListDefaultResponse,
+  PoolDelete202Response,
+  PoolDeleteDefaultResponse,
+  PoolExists404Response,
+  PoolExistsDefaultResponse,
+  PoolGet200Response,
+  PoolGetDefaultResponse,
+  PoolPatch200Response,
+  PoolPatchDefaultResponse,
+  PoolDisableAutoScale200Response,
+  PoolDisableAutoScaleDefaultResponse,
+  PoolEnableAutoScale200Response,
+  PoolEnableAutoScaleDefaultResponse,
+  PoolEvaluateAutoScale200Response,
+  PoolEvaluateAutoScaleDefaultResponse,
+  PoolResize200Response,
+  PoolResizeDefaultResponse,
+  PoolStopResize200Response,
+  PoolStopResizeDefaultResponse,
+  PoolUpdateProperties200Response,
+  PoolUpdatePropertiesDefaultResponse,
+  PoolRemoveNodes200Response,
+  PoolRemoveNodesDefaultResponse,
+  AccountListSupportedImages200Response,
+  AccountListSupportedImagesDefaultResponse,
+  AccountListPoolNodeCounts200Response,
+  AccountListPoolNodeCountsDefaultResponse,
+  JobGetAllLifetimeStatistics200Response,
+  JobGetAllLifetimeStatisticsDefaultResponse,
+  JobDelete202Response,
+  JobDeleteDefaultResponse,
+  JobGet200Response,
+  JobGetDefaultResponse,
+  JobPatch200Response,
+  JobPatchDefaultResponse,
+  JobUpdate200Response,
+  JobUpdateDefaultResponse,
+  JobDisable202Response,
+  JobDisableDefaultResponse,
+  JobEnable202Response,
+  JobEnableDefaultResponse,
+  JobTerminate202Response,
+  JobTerminateDefaultResponse,
+  JobAdd201Response,
+  JobAddDefaultResponse,
+  JobList200Response,
+  JobListDefaultResponse,
+  JobListFromJobSchedule200Response,
+  JobListFromJobScheduleDefaultResponse,
+  JobListPreparationAndReleaseTaskStatus200Response,
+  JobListPreparationAndReleaseTaskStatusDefaultResponse,
+  JobGetTaskCounts200Response,
+  JobGetTaskCountsDefaultResponse,
+  CertificateOperationsAdd201Response,
   CertificateOperationsAddDefaultResponse,
   CertificateOperationsList200Response,
   CertificateOperationsListDefaultResponse,
   CertificateOperationsCancelDeletion204Response,
   CertificateOperationsCancelDeletionDefaultResponse,
-  CertificateOperationsDelete204Response,
+  CertificateOperationsDelete202Response,
   CertificateOperationsDeleteDefaultResponse,
   CertificateOperationsGet200Response,
   CertificateOperationsGetDefaultResponse,
-  FileOperationsDeleteFromTask204Response,
-  FileOperationsDeleteFromTaskDefaultResponse,
-  FileOperationsGetFromTask204Response,
-  FileOperationsGetFromTaskDefaultResponse,
-  FileOperationsGetPropertiesFromTask204Response,
-  FileOperationsGetPropertiesFromTaskDefaultResponse,
-  FileOperationsDeleteFromComputeNode204Response,
-  FileOperationsDeleteFromComputeNodeDefaultResponse,
-  FileOperationsGetFromComputeNode204Response,
-  FileOperationsGetFromComputeNodeDefaultResponse,
-  FileOperationsGetPropertiesFromComputeNode204Response,
-  FileOperationsGetPropertiesFromComputeNodeDefaultResponse,
-  FileOperationsListFromTask200Response,
-  FileOperationsListFromTaskDefaultResponse,
-  FileOperationsListFromComputeNode200Response,
-  FileOperationsListFromComputeNodeDefaultResponse,
-  JobScheduleOperationsExists204Response,
-  JobScheduleOperationsExistsDefaultResponse,
-  JobScheduleOperationsDelete204Response,
-  JobScheduleOperationsDeleteDefaultResponse,
-  JobScheduleOperationsGet200Response,
-  JobScheduleOperationsGetDefaultResponse,
-  JobScheduleOperationsPatch204Response,
-  JobScheduleOperationsPatchDefaultResponse,
-  JobScheduleOperationsUpdate204Response,
-  JobScheduleOperationsUpdateDefaultResponse,
-  JobScheduleOperationsDisable204Response,
-  JobScheduleOperationsDisableDefaultResponse,
-  JobScheduleOperationsEnable204Response,
-  JobScheduleOperationsEnableDefaultResponse,
-  JobScheduleOperationsTerminate204Response,
-  JobScheduleOperationsTerminateDefaultResponse,
-  JobScheduleOperationsAdd204Response,
-  JobScheduleOperationsAddDefaultResponse,
-  JobScheduleOperationsList200Response,
-  JobScheduleOperationsListDefaultResponse,
-  TaskOperationsAdd204Response,
-  TaskOperationsAddDefaultResponse,
-  TaskOperationsList200Response,
-  TaskOperationsListDefaultResponse,
-  TaskOperationsAddCollection200Response,
-  TaskOperationsAddCollectionDefaultResponse,
-  TaskOperationsDelete204Response,
-  TaskOperationsDeleteDefaultResponse,
-  TaskOperationsGet200Response,
-  TaskOperationsGetDefaultResponse,
-  TaskOperationsUpdate204Response,
-  TaskOperationsUpdateDefaultResponse,
-  TaskOperationsListSubtasks200Response,
-  TaskOperationsListSubtasksDefaultResponse,
-  TaskOperationsTerminate204Response,
-  TaskOperationsTerminateDefaultResponse,
-  TaskOperationsReactivate204Response,
-  TaskOperationsReactivateDefaultResponse,
-  ComputeNodeOperationsAddUser204Response,
+  FileDeleteFromTask200Response,
+  FileDeleteFromTaskDefaultResponse,
+  FileGetFromTask200Response,
+  FileGetFromTaskDefaultResponse,
+  FileGetPropertiesFromTask200Response,
+  FileGetPropertiesFromTaskDefaultResponse,
+  FileDeleteFromComputeNode200Response,
+  FileDeleteFromComputeNodeDefaultResponse,
+  FileGetFromComputeNode200Response,
+  FileGetFromComputeNodeDefaultResponse,
+  FileGetPropertiesFromComputeNode200Response,
+  FileGetPropertiesFromComputeNodeDefaultResponse,
+  FileListFromTask200Response,
+  FileListFromTaskDefaultResponse,
+  FileListFromComputeNode200Response,
+  FileListFromComputeNodeDefaultResponse,
+  JobScheduleExists200Response,
+  JobScheduleExists204Response,
+  JobScheduleExistsDefaultResponse,
+  JobScheduleDelete202Response,
+  JobScheduleDeleteDefaultResponse,
+  JobScheduleGet200Response,
+  JobScheduleGetDefaultResponse,
+  JobSchedulePatch200Response,
+  JobSchedulePatchDefaultResponse,
+  JobScheduleUpdate200Response,
+  JobScheduleUpdateDefaultResponse,
+  JobScheduleDisable204Response,
+  JobScheduleDisableDefaultResponse,
+  JobScheduleEnable204Response,
+  JobScheduleEnableDefaultResponse,
+  JobScheduleTerminate202Response,
+  JobScheduleTerminateDefaultResponse,
+  JobScheduleAdd201Response,
+  JobScheduleAddDefaultResponse,
+  JobScheduleList200Response,
+  JobScheduleListDefaultResponse,
+  TaskAdd201Response,
+  TaskAddDefaultResponse,
+  TaskList200Response,
+  TaskListDefaultResponse,
+  TaskAddCollection200Response,
+  TaskAddCollectionDefaultResponse,
+  TaskDelete200Response,
+  TaskDeleteDefaultResponse,
+  TaskGet200Response,
+  TaskGetDefaultResponse,
+  TaskUpdate200Response,
+  TaskUpdateDefaultResponse,
+  TaskListSubtasks200Response,
+  TaskListSubtasksDefaultResponse,
+  TaskTerminate204Response,
+  TaskTerminateDefaultResponse,
+  TaskReactivate204Response,
+  TaskReactivateDefaultResponse,
+  ComputeNodeOperationsAddUser201Response,
   ComputeNodeOperationsAddUserDefaultResponse,
-  ComputeNodeOperationsDeleteUser204Response,
+  ComputeNodeOperationsDeleteUser200Response,
   ComputeNodeOperationsDeleteUserDefaultResponse,
-  ComputeNodeOperationsUpdateUser204Response,
+  ComputeNodeOperationsUpdateUser200Response,
   ComputeNodeOperationsUpdateUserDefaultResponse,
   ComputeNodeOperationsGet200Response,
   ComputeNodeOperationsGetDefaultResponse,
-  ComputeNodeOperationsReboot204Response,
+  ComputeNodeOperationsReboot202Response,
   ComputeNodeOperationsRebootDefaultResponse,
-  ComputeNodeOperationsReimage204Response,
+  ComputeNodeOperationsReimage202Response,
   ComputeNodeOperationsReimageDefaultResponse,
-  ComputeNodeOperationsDisableScheduling204Response,
+  ComputeNodeOperationsDisableScheduling200Response,
   ComputeNodeOperationsDisableSchedulingDefaultResponse,
-  ComputeNodeOperationsEnableScheduling204Response,
+  ComputeNodeOperationsEnableScheduling200Response,
   ComputeNodeOperationsEnableSchedulingDefaultResponse,
   ComputeNodeOperationsGetRemoteLoginSettings200Response,
   ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse,
-  ComputeNodeOperationsGetRemoteDesktop204Response,
+  ComputeNodeOperationsGetRemoteDesktop200Response,
   ComputeNodeOperationsGetRemoteDesktopDefaultResponse,
-  ComputeNodeOperationsUploadBatchServiceLogs201Response,
+  ComputeNodeOperationsUploadBatchServiceLogs200Response,
   ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse,
   ComputeNodeOperationsList200Response,
   ComputeNodeOperationsListDefaultResponse,
@@ -162,83 +163,83 @@ import {
 
 const responseMap: Record<string, string[]> = {
   "GET /applications": ["200"],
-  "GET /applications/{id}": ["200"],
+  "GET /applications/{applicationId}": ["200"],
   "GET /poolusagemetrics": ["200"],
   "GET /lifetimepoolstats": ["200"],
-  "POST /pools": ["204"],
+  "POST /pools": ["201"],
   "GET /pools": ["200"],
-  "DELETE /pools/{poolId}": ["204"],
-  "HEAD /pools/{poolId}": ["204"],
+  "DELETE /pools/{poolId}": ["202"],
+  "HEAD /pools/{poolId}": ["404"],
   "GET /pools/{poolId}": ["200"],
-  "PATCH /pools/{poolId}": ["204"],
-  "POST /pools/{poolId}/disableautoscale": ["204"],
-  "POST /pools/{poolId}/enableautoscale": ["204"],
+  "PATCH /pools/{poolId}": ["200"],
+  "POST /pools/{poolId}/disableautoscale": ["200"],
+  "POST /pools/{poolId}/enableautoscale": ["200"],
   "POST /pools/{poolId}/evaluateautoscale": ["200"],
-  "POST /pools/{poolId}/resize": ["204"],
-  "POST /pools/{poolId}/stopresize": ["204"],
-  "POST /pools/{poolId}/updateproperties": ["204"],
-  "POST /pools/{poolId}/removenodes": ["204"],
+  "POST /pools/{poolId}/resize": ["200"],
+  "POST /pools/{poolId}/stopresize": ["200"],
+  "POST /pools/{poolId}/updateproperties": ["200"],
+  "POST /pools/{poolId}/removenodes": ["200"],
   "GET /supportedimages": ["200"],
   "GET /nodecounts": ["200"],
   "GET /lifetimejobstats": ["200"],
-  "DELETE /jobs/{jobId}": ["204"],
+  "DELETE /jobs/{jobId}": ["202"],
   "GET /jobs/{jobId}": ["200"],
-  "PATCH /jobs/{jobId}": ["204"],
-  "PUT /jobs/{jobId}": ["204"],
-  "POST /jobs/{jobId}/disable": ["204"],
-  "POST /jobs/{jobId}/enable": ["204"],
-  "POST /jobs/{jobId}/terminate": ["204"],
-  "POST /jobs": ["204"],
+  "PATCH /jobs/{jobId}": ["200"],
+  "PUT /jobs/{jobId}": ["200"],
+  "POST /jobs/{jobId}/disable": ["202"],
+  "POST /jobs/{jobId}/enable": ["202"],
+  "POST /jobs/{jobId}/terminate": ["202"],
+  "POST /jobs": ["201"],
   "GET /jobs": ["200"],
   "GET /jobschedules/{jobScheduleId}/jobs": ["200"],
   "GET /jobs/{jobId}/jobpreparationandreleasetaskstatus": ["200"],
   "GET /jobs/{jobId}/taskcounts": ["200"],
-  "POST /certificates": ["204"],
+  "POST /certificates": ["201"],
   "GET /certificates": ["200"],
   "POST /certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete":
     ["204"],
   "DELETE /certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})":
-    ["204"],
+    ["202"],
   "GET /certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})":
     ["200"],
-  "DELETE /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["204"],
-  "GET /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["204"],
-  "HEAD /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["204"],
-  "DELETE /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["204"],
-  "GET /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["204"],
-  "HEAD /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["204"],
+  "DELETE /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
+  "GET /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
+  "HEAD /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
+  "DELETE /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
+  "GET /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
+  "HEAD /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
   "GET /jobs/{jobId}/tasks/{taskId}/files": ["200"],
   "GET /pools/{poolId}/nodes/{nodeId}/files": ["200"],
-  "HEAD /jobschedules/{jobScheduleId}": ["204"],
-  "DELETE /jobschedules/{jobScheduleId}": ["204"],
+  "HEAD /jobschedules/{jobScheduleId}": ["200", "204"],
+  "DELETE /jobschedules/{jobScheduleId}": ["202"],
   "GET /jobschedules/{jobScheduleId}": ["200"],
-  "PATCH /jobschedules/{jobScheduleId}": ["204"],
-  "PUT /jobschedules/{jobScheduleId}": ["204"],
+  "PATCH /jobschedules/{jobScheduleId}": ["200"],
+  "PUT /jobschedules/{jobScheduleId}": ["200"],
   "POST /jobschedules/{jobScheduleId}/disable": ["204"],
   "POST /jobschedules/{jobScheduleId}/enable": ["204"],
-  "POST /jobschedules/{jobScheduleId}/terminate": ["204"],
-  "POST /jobschedules": ["204"],
+  "POST /jobschedules/{jobScheduleId}/terminate": ["202"],
+  "POST /jobschedules": ["201"],
   "GET /jobschedules": ["200"],
-  "POST /jobs/{jobId}/tasks": ["204"],
+  "POST /jobs/{jobId}/tasks": ["201"],
   "GET /jobs/{jobId}/tasks": ["200"],
   "POST /jobs/{jobId}/addtaskcollection": ["200"],
-  "DELETE /jobs/{jobId}/tasks/{taskId}": ["204"],
+  "DELETE /jobs/{jobId}/tasks/{taskId}": ["200"],
   "GET /jobs/{jobId}/tasks/{taskId}": ["200"],
-  "PUT /jobs/{jobId}/tasks/{taskId}": ["204"],
+  "PUT /jobs/{jobId}/tasks/{taskId}": ["200"],
   "GET /jobs/{jobId}/tasks/{taskId}/subtasksinfo": ["200"],
   "POST /jobs/{jobId}/tasks/{taskId}/terminate": ["204"],
   "POST /jobs/{jobId}/tasks/{taskId}/reactivate": ["204"],
-  "POST /pools/{poolId}/nodes/{nodeId}/users": ["204"],
-  "DELETE /pools/{poolId}/nodes/{nodeId}/users/{userName}": ["204"],
-  "PUT /pools/{poolId}/nodes/{nodeId}/users/{userName}": ["204"],
+  "POST /pools/{poolId}/nodes/{nodeId}/users": ["201"],
+  "DELETE /pools/{poolId}/nodes/{nodeId}/users/{userName}": ["200"],
+  "PUT /pools/{poolId}/nodes/{nodeId}/users/{userName}": ["200"],
   "GET /pools/{poolId}/nodes/{nodeId}": ["200"],
-  "POST /pools/{poolId}/nodes/{nodeId}/reboot": ["204"],
-  "POST /pools/{poolId}/nodes/{nodeId}/reimage": ["204"],
-  "POST /pools/{poolId}/nodes/{nodeId}/disablescheduling": ["204"],
-  "POST /pools/{poolId}/nodes/{nodeId}/enablescheduling": ["204"],
+  "POST /pools/{poolId}/nodes/{nodeId}/reboot": ["202"],
+  "POST /pools/{poolId}/nodes/{nodeId}/reimage": ["202"],
+  "POST /pools/{poolId}/nodes/{nodeId}/disablescheduling": ["200"],
+  "POST /pools/{poolId}/nodes/{nodeId}/enablescheduling": ["200"],
   "GET /pools/{poolId}/nodes/{nodeId}/remoteloginsettings": ["200"],
-  "GET /pools/{poolId}/nodes/{nodeId}/rdp": ["204"],
-  "POST /pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs": ["201"],
+  "GET /pools/{poolId}/nodes/{nodeId}/rdp": ["200"],
+  "POST /pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs": ["200"],
   "GET /pools/{poolId}/nodes": ["200"],
   "GET /pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}": ["200"],
   "GET /pools/{poolId}/nodes/{nodeId}/extensions": ["200"],
@@ -256,135 +257,117 @@ export function isUnexpected(
 ): response is ApplicationOperationsGetDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsListUsageMetrics200Response
-    | PoolOperationsListUsageMetricsDefaultResponse
-): response is PoolOperationsListUsageMetricsDefaultResponse;
+    | PoolListUsageMetrics200Response
+    | PoolListUsageMetricsDefaultResponse
+): response is PoolListUsageMetricsDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsGetAllLifetimeStatistics200Response
-    | PoolOperationsGetAllLifetimeStatisticsDefaultResponse
-): response is PoolOperationsGetAllLifetimeStatisticsDefaultResponse;
+    | PoolGetAllLifetimeStatistics200Response
+    | PoolGetAllLifetimeStatisticsDefaultResponse
+): response is PoolGetAllLifetimeStatisticsDefaultResponse;
 export function isUnexpected(
-  response: PoolOperationsAdd204Response | PoolOperationsAddDefaultResponse
-): response is PoolOperationsAddDefaultResponse;
+  response: PoolAdd201Response | PoolAddDefaultResponse
+): response is PoolAddDefaultResponse;
 export function isUnexpected(
-  response: PoolOperationsList200Response | PoolOperationsListDefaultResponse
-): response is PoolOperationsListDefaultResponse;
+  response: PoolList200Response | PoolListDefaultResponse
+): response is PoolListDefaultResponse;
 export function isUnexpected(
-  response:
-    | PoolOperationsDelete204Response
-    | PoolOperationsDeleteDefaultResponse
-): response is PoolOperationsDeleteDefaultResponse;
+  response: PoolDelete202Response | PoolDeleteDefaultResponse
+): response is PoolDeleteDefaultResponse;
 export function isUnexpected(
-  response:
-    | PoolOperationsExists204Response
-    | PoolOperationsExistsDefaultResponse
-): response is PoolOperationsExistsDefaultResponse;
+  response: PoolExists404Response | PoolExistsDefaultResponse
+): response is PoolExistsDefaultResponse;
 export function isUnexpected(
-  response: PoolOperationsGet200Response | PoolOperationsGetDefaultResponse
-): response is PoolOperationsGetDefaultResponse;
+  response: PoolGet200Response | PoolGetDefaultResponse
+): response is PoolGetDefaultResponse;
 export function isUnexpected(
-  response: PoolOperationsPatch204Response | PoolOperationsPatchDefaultResponse
-): response is PoolOperationsPatchDefaultResponse;
+  response: PoolPatch200Response | PoolPatchDefaultResponse
+): response is PoolPatchDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsDisableAutoScale204Response
-    | PoolOperationsDisableAutoScaleDefaultResponse
-): response is PoolOperationsDisableAutoScaleDefaultResponse;
+    | PoolDisableAutoScale200Response
+    | PoolDisableAutoScaleDefaultResponse
+): response is PoolDisableAutoScaleDefaultResponse;
+export function isUnexpected(
+  response: PoolEnableAutoScale200Response | PoolEnableAutoScaleDefaultResponse
+): response is PoolEnableAutoScaleDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsEnableAutoScale204Response
-    | PoolOperationsEnableAutoScaleDefaultResponse
-): response is PoolOperationsEnableAutoScaleDefaultResponse;
+    | PoolEvaluateAutoScale200Response
+    | PoolEvaluateAutoScaleDefaultResponse
+): response is PoolEvaluateAutoScaleDefaultResponse;
+export function isUnexpected(
+  response: PoolResize200Response | PoolResizeDefaultResponse
+): response is PoolResizeDefaultResponse;
+export function isUnexpected(
+  response: PoolStopResize200Response | PoolStopResizeDefaultResponse
+): response is PoolStopResizeDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsEvaluateAutoScale200Response
-    | PoolOperationsEvaluateAutoScaleDefaultResponse
-): response is PoolOperationsEvaluateAutoScaleDefaultResponse;
+    | PoolUpdateProperties200Response
+    | PoolUpdatePropertiesDefaultResponse
+): response is PoolUpdatePropertiesDefaultResponse;
+export function isUnexpected(
+  response: PoolRemoveNodes200Response | PoolRemoveNodesDefaultResponse
+): response is PoolRemoveNodesDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsResize204Response
-    | PoolOperationsResizeDefaultResponse
-): response is PoolOperationsResizeDefaultResponse;
+    | AccountListSupportedImages200Response
+    | AccountListSupportedImagesDefaultResponse
+): response is AccountListSupportedImagesDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsStopResize204Response
-    | PoolOperationsStopResizeDefaultResponse
-): response is PoolOperationsStopResizeDefaultResponse;
+    | AccountListPoolNodeCounts200Response
+    | AccountListPoolNodeCountsDefaultResponse
+): response is AccountListPoolNodeCountsDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsUpdateProperties204Response
-    | PoolOperationsUpdatePropertiesDefaultResponse
-): response is PoolOperationsUpdatePropertiesDefaultResponse;
+    | JobGetAllLifetimeStatistics200Response
+    | JobGetAllLifetimeStatisticsDefaultResponse
+): response is JobGetAllLifetimeStatisticsDefaultResponse;
+export function isUnexpected(
+  response: JobDelete202Response | JobDeleteDefaultResponse
+): response is JobDeleteDefaultResponse;
+export function isUnexpected(
+  response: JobGet200Response | JobGetDefaultResponse
+): response is JobGetDefaultResponse;
+export function isUnexpected(
+  response: JobPatch200Response | JobPatchDefaultResponse
+): response is JobPatchDefaultResponse;
+export function isUnexpected(
+  response: JobUpdate200Response | JobUpdateDefaultResponse
+): response is JobUpdateDefaultResponse;
+export function isUnexpected(
+  response: JobDisable202Response | JobDisableDefaultResponse
+): response is JobDisableDefaultResponse;
+export function isUnexpected(
+  response: JobEnable202Response | JobEnableDefaultResponse
+): response is JobEnableDefaultResponse;
+export function isUnexpected(
+  response: JobTerminate202Response | JobTerminateDefaultResponse
+): response is JobTerminateDefaultResponse;
+export function isUnexpected(
+  response: JobAdd201Response | JobAddDefaultResponse
+): response is JobAddDefaultResponse;
+export function isUnexpected(
+  response: JobList200Response | JobListDefaultResponse
+): response is JobListDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolOperationsRemoveNodes204Response
-    | PoolOperationsRemoveNodesDefaultResponse
-): response is PoolOperationsRemoveNodesDefaultResponse;
+    | JobListFromJobSchedule200Response
+    | JobListFromJobScheduleDefaultResponse
+): response is JobListFromJobScheduleDefaultResponse;
 export function isUnexpected(
   response:
-    | AccountOperationsListSupportedImages200Response
-    | AccountOperationsListSupportedImagesDefaultResponse
-): response is AccountOperationsListSupportedImagesDefaultResponse;
+    | JobListPreparationAndReleaseTaskStatus200Response
+    | JobListPreparationAndReleaseTaskStatusDefaultResponse
+): response is JobListPreparationAndReleaseTaskStatusDefaultResponse;
+export function isUnexpected(
+  response: JobGetTaskCounts200Response | JobGetTaskCountsDefaultResponse
+): response is JobGetTaskCountsDefaultResponse;
 export function isUnexpected(
   response:
-    | AccountOperationsListPoolNodeCounts200Response
-    | AccountOperationsListPoolNodeCountsDefaultResponse
-): response is AccountOperationsListPoolNodeCountsDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobOperationsGetAllLifetimeStatistics200Response
-    | JobOperationsGetAllLifetimeStatisticsDefaultResponse
-): response is JobOperationsGetAllLifetimeStatisticsDefaultResponse;
-export function isUnexpected(
-  response: JobOperationsDelete204Response | JobOperationsDeleteDefaultResponse
-): response is JobOperationsDeleteDefaultResponse;
-export function isUnexpected(
-  response: JobOperationsGet200Response | JobOperationsGetDefaultResponse
-): response is JobOperationsGetDefaultResponse;
-export function isUnexpected(
-  response: JobOperationsPatch204Response | JobOperationsPatchDefaultResponse
-): response is JobOperationsPatchDefaultResponse;
-export function isUnexpected(
-  response: JobOperationsUpdate204Response | JobOperationsUpdateDefaultResponse
-): response is JobOperationsUpdateDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobOperationsDisable204Response
-    | JobOperationsDisableDefaultResponse
-): response is JobOperationsDisableDefaultResponse;
-export function isUnexpected(
-  response: JobOperationsEnable204Response | JobOperationsEnableDefaultResponse
-): response is JobOperationsEnableDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobOperationsTerminate204Response
-    | JobOperationsTerminateDefaultResponse
-): response is JobOperationsTerminateDefaultResponse;
-export function isUnexpected(
-  response: JobOperationsAdd204Response | JobOperationsAddDefaultResponse
-): response is JobOperationsAddDefaultResponse;
-export function isUnexpected(
-  response: JobOperationsList200Response | JobOperationsListDefaultResponse
-): response is JobOperationsListDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobOperationsListFromJobSchedule200Response
-    | JobOperationsListFromJobScheduleDefaultResponse
-): response is JobOperationsListFromJobScheduleDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobOperationsListPreparationAndReleaseTaskStatus200Response
-    | JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse
-): response is JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobOperationsGetTaskCounts200Response
-    | JobOperationsGetTaskCountsDefaultResponse
-): response is JobOperationsGetTaskCountsDefaultResponse;
-export function isUnexpected(
-  response:
-    | CertificateOperationsAdd204Response
+    | CertificateOperationsAdd201Response
     | CertificateOperationsAddDefaultResponse
 ): response is CertificateOperationsAddDefaultResponse;
 export function isUnexpected(
@@ -399,7 +382,7 @@ export function isUnexpected(
 ): response is CertificateOperationsCancelDeletionDefaultResponse;
 export function isUnexpected(
   response:
-    | CertificateOperationsDelete204Response
+    | CertificateOperationsDelete202Response
     | CertificateOperationsDeleteDefaultResponse
 ): response is CertificateOperationsDeleteDefaultResponse;
 export function isUnexpected(
@@ -408,147 +391,114 @@ export function isUnexpected(
     | CertificateOperationsGetDefaultResponse
 ): response is CertificateOperationsGetDefaultResponse;
 export function isUnexpected(
-  response:
-    | FileOperationsDeleteFromTask204Response
-    | FileOperationsDeleteFromTaskDefaultResponse
-): response is FileOperationsDeleteFromTaskDefaultResponse;
+  response: FileDeleteFromTask200Response | FileDeleteFromTaskDefaultResponse
+): response is FileDeleteFromTaskDefaultResponse;
+export function isUnexpected(
+  response: FileGetFromTask200Response | FileGetFromTaskDefaultResponse
+): response is FileGetFromTaskDefaultResponse;
 export function isUnexpected(
   response:
-    | FileOperationsGetFromTask204Response
-    | FileOperationsGetFromTaskDefaultResponse
-): response is FileOperationsGetFromTaskDefaultResponse;
+    | FileGetPropertiesFromTask200Response
+    | FileGetPropertiesFromTaskDefaultResponse
+): response is FileGetPropertiesFromTaskDefaultResponse;
 export function isUnexpected(
   response:
-    | FileOperationsGetPropertiesFromTask204Response
-    | FileOperationsGetPropertiesFromTaskDefaultResponse
-): response is FileOperationsGetPropertiesFromTaskDefaultResponse;
+    | FileDeleteFromComputeNode200Response
+    | FileDeleteFromComputeNodeDefaultResponse
+): response is FileDeleteFromComputeNodeDefaultResponse;
 export function isUnexpected(
   response:
-    | FileOperationsDeleteFromComputeNode204Response
-    | FileOperationsDeleteFromComputeNodeDefaultResponse
-): response is FileOperationsDeleteFromComputeNodeDefaultResponse;
+    | FileGetFromComputeNode200Response
+    | FileGetFromComputeNodeDefaultResponse
+): response is FileGetFromComputeNodeDefaultResponse;
 export function isUnexpected(
   response:
-    | FileOperationsGetFromComputeNode204Response
-    | FileOperationsGetFromComputeNodeDefaultResponse
-): response is FileOperationsGetFromComputeNodeDefaultResponse;
+    | FileGetPropertiesFromComputeNode200Response
+    | FileGetPropertiesFromComputeNodeDefaultResponse
+): response is FileGetPropertiesFromComputeNodeDefaultResponse;
+export function isUnexpected(
+  response: FileListFromTask200Response | FileListFromTaskDefaultResponse
+): response is FileListFromTaskDefaultResponse;
 export function isUnexpected(
   response:
-    | FileOperationsGetPropertiesFromComputeNode204Response
-    | FileOperationsGetPropertiesFromComputeNodeDefaultResponse
-): response is FileOperationsGetPropertiesFromComputeNodeDefaultResponse;
+    | FileListFromComputeNode200Response
+    | FileListFromComputeNodeDefaultResponse
+): response is FileListFromComputeNodeDefaultResponse;
 export function isUnexpected(
   response:
-    | FileOperationsListFromTask200Response
-    | FileOperationsListFromTaskDefaultResponse
-): response is FileOperationsListFromTaskDefaultResponse;
+    | JobScheduleExists200Response
+    | JobScheduleExists204Response
+    | JobScheduleExistsDefaultResponse
+): response is JobScheduleExistsDefaultResponse;
+export function isUnexpected(
+  response: JobScheduleDelete202Response | JobScheduleDeleteDefaultResponse
+): response is JobScheduleDeleteDefaultResponse;
+export function isUnexpected(
+  response: JobScheduleGet200Response | JobScheduleGetDefaultResponse
+): response is JobScheduleGetDefaultResponse;
+export function isUnexpected(
+  response: JobSchedulePatch200Response | JobSchedulePatchDefaultResponse
+): response is JobSchedulePatchDefaultResponse;
+export function isUnexpected(
+  response: JobScheduleUpdate200Response | JobScheduleUpdateDefaultResponse
+): response is JobScheduleUpdateDefaultResponse;
+export function isUnexpected(
+  response: JobScheduleDisable204Response | JobScheduleDisableDefaultResponse
+): response is JobScheduleDisableDefaultResponse;
+export function isUnexpected(
+  response: JobScheduleEnable204Response | JobScheduleEnableDefaultResponse
+): response is JobScheduleEnableDefaultResponse;
 export function isUnexpected(
   response:
-    | FileOperationsListFromComputeNode200Response
-    | FileOperationsListFromComputeNodeDefaultResponse
-): response is FileOperationsListFromComputeNodeDefaultResponse;
+    | JobScheduleTerminate202Response
+    | JobScheduleTerminateDefaultResponse
+): response is JobScheduleTerminateDefaultResponse;
+export function isUnexpected(
+  response: JobScheduleAdd201Response | JobScheduleAddDefaultResponse
+): response is JobScheduleAddDefaultResponse;
+export function isUnexpected(
+  response: JobScheduleList200Response | JobScheduleListDefaultResponse
+): response is JobScheduleListDefaultResponse;
+export function isUnexpected(
+  response: TaskAdd201Response | TaskAddDefaultResponse
+): response is TaskAddDefaultResponse;
+export function isUnexpected(
+  response: TaskList200Response | TaskListDefaultResponse
+): response is TaskListDefaultResponse;
+export function isUnexpected(
+  response: TaskAddCollection200Response | TaskAddCollectionDefaultResponse
+): response is TaskAddCollectionDefaultResponse;
+export function isUnexpected(
+  response: TaskDelete200Response | TaskDeleteDefaultResponse
+): response is TaskDeleteDefaultResponse;
+export function isUnexpected(
+  response: TaskGet200Response | TaskGetDefaultResponse
+): response is TaskGetDefaultResponse;
+export function isUnexpected(
+  response: TaskUpdate200Response | TaskUpdateDefaultResponse
+): response is TaskUpdateDefaultResponse;
+export function isUnexpected(
+  response: TaskListSubtasks200Response | TaskListSubtasksDefaultResponse
+): response is TaskListSubtasksDefaultResponse;
+export function isUnexpected(
+  response: TaskTerminate204Response | TaskTerminateDefaultResponse
+): response is TaskTerminateDefaultResponse;
+export function isUnexpected(
+  response: TaskReactivate204Response | TaskReactivateDefaultResponse
+): response is TaskReactivateDefaultResponse;
 export function isUnexpected(
   response:
-    | JobScheduleOperationsExists204Response
-    | JobScheduleOperationsExistsDefaultResponse
-): response is JobScheduleOperationsExistsDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsDelete204Response
-    | JobScheduleOperationsDeleteDefaultResponse
-): response is JobScheduleOperationsDeleteDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsGet200Response
-    | JobScheduleOperationsGetDefaultResponse
-): response is JobScheduleOperationsGetDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsPatch204Response
-    | JobScheduleOperationsPatchDefaultResponse
-): response is JobScheduleOperationsPatchDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsUpdate204Response
-    | JobScheduleOperationsUpdateDefaultResponse
-): response is JobScheduleOperationsUpdateDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsDisable204Response
-    | JobScheduleOperationsDisableDefaultResponse
-): response is JobScheduleOperationsDisableDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsEnable204Response
-    | JobScheduleOperationsEnableDefaultResponse
-): response is JobScheduleOperationsEnableDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsTerminate204Response
-    | JobScheduleOperationsTerminateDefaultResponse
-): response is JobScheduleOperationsTerminateDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsAdd204Response
-    | JobScheduleOperationsAddDefaultResponse
-): response is JobScheduleOperationsAddDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleOperationsList200Response
-    | JobScheduleOperationsListDefaultResponse
-): response is JobScheduleOperationsListDefaultResponse;
-export function isUnexpected(
-  response: TaskOperationsAdd204Response | TaskOperationsAddDefaultResponse
-): response is TaskOperationsAddDefaultResponse;
-export function isUnexpected(
-  response: TaskOperationsList200Response | TaskOperationsListDefaultResponse
-): response is TaskOperationsListDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskOperationsAddCollection200Response
-    | TaskOperationsAddCollectionDefaultResponse
-): response is TaskOperationsAddCollectionDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskOperationsDelete204Response
-    | TaskOperationsDeleteDefaultResponse
-): response is TaskOperationsDeleteDefaultResponse;
-export function isUnexpected(
-  response: TaskOperationsGet200Response | TaskOperationsGetDefaultResponse
-): response is TaskOperationsGetDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskOperationsUpdate204Response
-    | TaskOperationsUpdateDefaultResponse
-): response is TaskOperationsUpdateDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskOperationsListSubtasks200Response
-    | TaskOperationsListSubtasksDefaultResponse
-): response is TaskOperationsListSubtasksDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskOperationsTerminate204Response
-    | TaskOperationsTerminateDefaultResponse
-): response is TaskOperationsTerminateDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskOperationsReactivate204Response
-    | TaskOperationsReactivateDefaultResponse
-): response is TaskOperationsReactivateDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodeOperationsAddUser204Response
+    | ComputeNodeOperationsAddUser201Response
     | ComputeNodeOperationsAddUserDefaultResponse
 ): response is ComputeNodeOperationsAddUserDefaultResponse;
 export function isUnexpected(
   response:
-    | ComputeNodeOperationsDeleteUser204Response
+    | ComputeNodeOperationsDeleteUser200Response
     | ComputeNodeOperationsDeleteUserDefaultResponse
 ): response is ComputeNodeOperationsDeleteUserDefaultResponse;
 export function isUnexpected(
   response:
-    | ComputeNodeOperationsUpdateUser204Response
+    | ComputeNodeOperationsUpdateUser200Response
     | ComputeNodeOperationsUpdateUserDefaultResponse
 ): response is ComputeNodeOperationsUpdateUserDefaultResponse;
 export function isUnexpected(
@@ -558,22 +508,22 @@ export function isUnexpected(
 ): response is ComputeNodeOperationsGetDefaultResponse;
 export function isUnexpected(
   response:
-    | ComputeNodeOperationsReboot204Response
+    | ComputeNodeOperationsReboot202Response
     | ComputeNodeOperationsRebootDefaultResponse
 ): response is ComputeNodeOperationsRebootDefaultResponse;
 export function isUnexpected(
   response:
-    | ComputeNodeOperationsReimage204Response
+    | ComputeNodeOperationsReimage202Response
     | ComputeNodeOperationsReimageDefaultResponse
 ): response is ComputeNodeOperationsReimageDefaultResponse;
 export function isUnexpected(
   response:
-    | ComputeNodeOperationsDisableScheduling204Response
+    | ComputeNodeOperationsDisableScheduling200Response
     | ComputeNodeOperationsDisableSchedulingDefaultResponse
 ): response is ComputeNodeOperationsDisableSchedulingDefaultResponse;
 export function isUnexpected(
   response:
-    | ComputeNodeOperationsEnableScheduling204Response
+    | ComputeNodeOperationsEnableScheduling200Response
     | ComputeNodeOperationsEnableSchedulingDefaultResponse
 ): response is ComputeNodeOperationsEnableSchedulingDefaultResponse;
 export function isUnexpected(
@@ -583,12 +533,12 @@ export function isUnexpected(
 ): response is ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse;
 export function isUnexpected(
   response:
-    | ComputeNodeOperationsGetRemoteDesktop204Response
+    | ComputeNodeOperationsGetRemoteDesktop200Response
     | ComputeNodeOperationsGetRemoteDesktopDefaultResponse
 ): response is ComputeNodeOperationsGetRemoteDesktopDefaultResponse;
 export function isUnexpected(
   response:
-    | ComputeNodeOperationsUploadBatchServiceLogs201Response
+    | ComputeNodeOperationsUploadBatchServiceLogs200Response
     | ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse
 ): response is ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse;
 export function isUnexpected(
@@ -612,151 +562,152 @@ export function isUnexpected(
     | ApplicationOperationsListDefaultResponse
     | ApplicationOperationsGet200Response
     | ApplicationOperationsGetDefaultResponse
-    | PoolOperationsListUsageMetrics200Response
-    | PoolOperationsListUsageMetricsDefaultResponse
-    | PoolOperationsGetAllLifetimeStatistics200Response
-    | PoolOperationsGetAllLifetimeStatisticsDefaultResponse
-    | PoolOperationsAdd204Response
-    | PoolOperationsAddDefaultResponse
-    | PoolOperationsList200Response
-    | PoolOperationsListDefaultResponse
-    | PoolOperationsDelete204Response
-    | PoolOperationsDeleteDefaultResponse
-    | PoolOperationsExists204Response
-    | PoolOperationsExistsDefaultResponse
-    | PoolOperationsGet200Response
-    | PoolOperationsGetDefaultResponse
-    | PoolOperationsPatch204Response
-    | PoolOperationsPatchDefaultResponse
-    | PoolOperationsDisableAutoScale204Response
-    | PoolOperationsDisableAutoScaleDefaultResponse
-    | PoolOperationsEnableAutoScale204Response
-    | PoolOperationsEnableAutoScaleDefaultResponse
-    | PoolOperationsEvaluateAutoScale200Response
-    | PoolOperationsEvaluateAutoScaleDefaultResponse
-    | PoolOperationsResize204Response
-    | PoolOperationsResizeDefaultResponse
-    | PoolOperationsStopResize204Response
-    | PoolOperationsStopResizeDefaultResponse
-    | PoolOperationsUpdateProperties204Response
-    | PoolOperationsUpdatePropertiesDefaultResponse
-    | PoolOperationsRemoveNodes204Response
-    | PoolOperationsRemoveNodesDefaultResponse
-    | AccountOperationsListSupportedImages200Response
-    | AccountOperationsListSupportedImagesDefaultResponse
-    | AccountOperationsListPoolNodeCounts200Response
-    | AccountOperationsListPoolNodeCountsDefaultResponse
-    | JobOperationsGetAllLifetimeStatistics200Response
-    | JobOperationsGetAllLifetimeStatisticsDefaultResponse
-    | JobOperationsDelete204Response
-    | JobOperationsDeleteDefaultResponse
-    | JobOperationsGet200Response
-    | JobOperationsGetDefaultResponse
-    | JobOperationsPatch204Response
-    | JobOperationsPatchDefaultResponse
-    | JobOperationsUpdate204Response
-    | JobOperationsUpdateDefaultResponse
-    | JobOperationsDisable204Response
-    | JobOperationsDisableDefaultResponse
-    | JobOperationsEnable204Response
-    | JobOperationsEnableDefaultResponse
-    | JobOperationsTerminate204Response
-    | JobOperationsTerminateDefaultResponse
-    | JobOperationsAdd204Response
-    | JobOperationsAddDefaultResponse
-    | JobOperationsList200Response
-    | JobOperationsListDefaultResponse
-    | JobOperationsListFromJobSchedule200Response
-    | JobOperationsListFromJobScheduleDefaultResponse
-    | JobOperationsListPreparationAndReleaseTaskStatus200Response
-    | JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse
-    | JobOperationsGetTaskCounts200Response
-    | JobOperationsGetTaskCountsDefaultResponse
-    | CertificateOperationsAdd204Response
+    | PoolListUsageMetrics200Response
+    | PoolListUsageMetricsDefaultResponse
+    | PoolGetAllLifetimeStatistics200Response
+    | PoolGetAllLifetimeStatisticsDefaultResponse
+    | PoolAdd201Response
+    | PoolAddDefaultResponse
+    | PoolList200Response
+    | PoolListDefaultResponse
+    | PoolDelete202Response
+    | PoolDeleteDefaultResponse
+    | PoolExists404Response
+    | PoolExistsDefaultResponse
+    | PoolGet200Response
+    | PoolGetDefaultResponse
+    | PoolPatch200Response
+    | PoolPatchDefaultResponse
+    | PoolDisableAutoScale200Response
+    | PoolDisableAutoScaleDefaultResponse
+    | PoolEnableAutoScale200Response
+    | PoolEnableAutoScaleDefaultResponse
+    | PoolEvaluateAutoScale200Response
+    | PoolEvaluateAutoScaleDefaultResponse
+    | PoolResize200Response
+    | PoolResizeDefaultResponse
+    | PoolStopResize200Response
+    | PoolStopResizeDefaultResponse
+    | PoolUpdateProperties200Response
+    | PoolUpdatePropertiesDefaultResponse
+    | PoolRemoveNodes200Response
+    | PoolRemoveNodesDefaultResponse
+    | AccountListSupportedImages200Response
+    | AccountListSupportedImagesDefaultResponse
+    | AccountListPoolNodeCounts200Response
+    | AccountListPoolNodeCountsDefaultResponse
+    | JobGetAllLifetimeStatistics200Response
+    | JobGetAllLifetimeStatisticsDefaultResponse
+    | JobDelete202Response
+    | JobDeleteDefaultResponse
+    | JobGet200Response
+    | JobGetDefaultResponse
+    | JobPatch200Response
+    | JobPatchDefaultResponse
+    | JobUpdate200Response
+    | JobUpdateDefaultResponse
+    | JobDisable202Response
+    | JobDisableDefaultResponse
+    | JobEnable202Response
+    | JobEnableDefaultResponse
+    | JobTerminate202Response
+    | JobTerminateDefaultResponse
+    | JobAdd201Response
+    | JobAddDefaultResponse
+    | JobList200Response
+    | JobListDefaultResponse
+    | JobListFromJobSchedule200Response
+    | JobListFromJobScheduleDefaultResponse
+    | JobListPreparationAndReleaseTaskStatus200Response
+    | JobListPreparationAndReleaseTaskStatusDefaultResponse
+    | JobGetTaskCounts200Response
+    | JobGetTaskCountsDefaultResponse
+    | CertificateOperationsAdd201Response
     | CertificateOperationsAddDefaultResponse
     | CertificateOperationsList200Response
     | CertificateOperationsListDefaultResponse
     | CertificateOperationsCancelDeletion204Response
     | CertificateOperationsCancelDeletionDefaultResponse
-    | CertificateOperationsDelete204Response
+    | CertificateOperationsDelete202Response
     | CertificateOperationsDeleteDefaultResponse
     | CertificateOperationsGet200Response
     | CertificateOperationsGetDefaultResponse
-    | FileOperationsDeleteFromTask204Response
-    | FileOperationsDeleteFromTaskDefaultResponse
-    | FileOperationsGetFromTask204Response
-    | FileOperationsGetFromTaskDefaultResponse
-    | FileOperationsGetPropertiesFromTask204Response
-    | FileOperationsGetPropertiesFromTaskDefaultResponse
-    | FileOperationsDeleteFromComputeNode204Response
-    | FileOperationsDeleteFromComputeNodeDefaultResponse
-    | FileOperationsGetFromComputeNode204Response
-    | FileOperationsGetFromComputeNodeDefaultResponse
-    | FileOperationsGetPropertiesFromComputeNode204Response
-    | FileOperationsGetPropertiesFromComputeNodeDefaultResponse
-    | FileOperationsListFromTask200Response
-    | FileOperationsListFromTaskDefaultResponse
-    | FileOperationsListFromComputeNode200Response
-    | FileOperationsListFromComputeNodeDefaultResponse
-    | JobScheduleOperationsExists204Response
-    | JobScheduleOperationsExistsDefaultResponse
-    | JobScheduleOperationsDelete204Response
-    | JobScheduleOperationsDeleteDefaultResponse
-    | JobScheduleOperationsGet200Response
-    | JobScheduleOperationsGetDefaultResponse
-    | JobScheduleOperationsPatch204Response
-    | JobScheduleOperationsPatchDefaultResponse
-    | JobScheduleOperationsUpdate204Response
-    | JobScheduleOperationsUpdateDefaultResponse
-    | JobScheduleOperationsDisable204Response
-    | JobScheduleOperationsDisableDefaultResponse
-    | JobScheduleOperationsEnable204Response
-    | JobScheduleOperationsEnableDefaultResponse
-    | JobScheduleOperationsTerminate204Response
-    | JobScheduleOperationsTerminateDefaultResponse
-    | JobScheduleOperationsAdd204Response
-    | JobScheduleOperationsAddDefaultResponse
-    | JobScheduleOperationsList200Response
-    | JobScheduleOperationsListDefaultResponse
-    | TaskOperationsAdd204Response
-    | TaskOperationsAddDefaultResponse
-    | TaskOperationsList200Response
-    | TaskOperationsListDefaultResponse
-    | TaskOperationsAddCollection200Response
-    | TaskOperationsAddCollectionDefaultResponse
-    | TaskOperationsDelete204Response
-    | TaskOperationsDeleteDefaultResponse
-    | TaskOperationsGet200Response
-    | TaskOperationsGetDefaultResponse
-    | TaskOperationsUpdate204Response
-    | TaskOperationsUpdateDefaultResponse
-    | TaskOperationsListSubtasks200Response
-    | TaskOperationsListSubtasksDefaultResponse
-    | TaskOperationsTerminate204Response
-    | TaskOperationsTerminateDefaultResponse
-    | TaskOperationsReactivate204Response
-    | TaskOperationsReactivateDefaultResponse
-    | ComputeNodeOperationsAddUser204Response
+    | FileDeleteFromTask200Response
+    | FileDeleteFromTaskDefaultResponse
+    | FileGetFromTask200Response
+    | FileGetFromTaskDefaultResponse
+    | FileGetPropertiesFromTask200Response
+    | FileGetPropertiesFromTaskDefaultResponse
+    | FileDeleteFromComputeNode200Response
+    | FileDeleteFromComputeNodeDefaultResponse
+    | FileGetFromComputeNode200Response
+    | FileGetFromComputeNodeDefaultResponse
+    | FileGetPropertiesFromComputeNode200Response
+    | FileGetPropertiesFromComputeNodeDefaultResponse
+    | FileListFromTask200Response
+    | FileListFromTaskDefaultResponse
+    | FileListFromComputeNode200Response
+    | FileListFromComputeNodeDefaultResponse
+    | JobScheduleExists200Response
+    | JobScheduleExists204Response
+    | JobScheduleExistsDefaultResponse
+    | JobScheduleDelete202Response
+    | JobScheduleDeleteDefaultResponse
+    | JobScheduleGet200Response
+    | JobScheduleGetDefaultResponse
+    | JobSchedulePatch200Response
+    | JobSchedulePatchDefaultResponse
+    | JobScheduleUpdate200Response
+    | JobScheduleUpdateDefaultResponse
+    | JobScheduleDisable204Response
+    | JobScheduleDisableDefaultResponse
+    | JobScheduleEnable204Response
+    | JobScheduleEnableDefaultResponse
+    | JobScheduleTerminate202Response
+    | JobScheduleTerminateDefaultResponse
+    | JobScheduleAdd201Response
+    | JobScheduleAddDefaultResponse
+    | JobScheduleList200Response
+    | JobScheduleListDefaultResponse
+    | TaskAdd201Response
+    | TaskAddDefaultResponse
+    | TaskList200Response
+    | TaskListDefaultResponse
+    | TaskAddCollection200Response
+    | TaskAddCollectionDefaultResponse
+    | TaskDelete200Response
+    | TaskDeleteDefaultResponse
+    | TaskGet200Response
+    | TaskGetDefaultResponse
+    | TaskUpdate200Response
+    | TaskUpdateDefaultResponse
+    | TaskListSubtasks200Response
+    | TaskListSubtasksDefaultResponse
+    | TaskTerminate204Response
+    | TaskTerminateDefaultResponse
+    | TaskReactivate204Response
+    | TaskReactivateDefaultResponse
+    | ComputeNodeOperationsAddUser201Response
     | ComputeNodeOperationsAddUserDefaultResponse
-    | ComputeNodeOperationsDeleteUser204Response
+    | ComputeNodeOperationsDeleteUser200Response
     | ComputeNodeOperationsDeleteUserDefaultResponse
-    | ComputeNodeOperationsUpdateUser204Response
+    | ComputeNodeOperationsUpdateUser200Response
     | ComputeNodeOperationsUpdateUserDefaultResponse
     | ComputeNodeOperationsGet200Response
     | ComputeNodeOperationsGetDefaultResponse
-    | ComputeNodeOperationsReboot204Response
+    | ComputeNodeOperationsReboot202Response
     | ComputeNodeOperationsRebootDefaultResponse
-    | ComputeNodeOperationsReimage204Response
+    | ComputeNodeOperationsReimage202Response
     | ComputeNodeOperationsReimageDefaultResponse
-    | ComputeNodeOperationsDisableScheduling204Response
+    | ComputeNodeOperationsDisableScheduling200Response
     | ComputeNodeOperationsDisableSchedulingDefaultResponse
-    | ComputeNodeOperationsEnableScheduling204Response
+    | ComputeNodeOperationsEnableScheduling200Response
     | ComputeNodeOperationsEnableSchedulingDefaultResponse
     | ComputeNodeOperationsGetRemoteLoginSettings200Response
     | ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse
-    | ComputeNodeOperationsGetRemoteDesktop204Response
+    | ComputeNodeOperationsGetRemoteDesktop200Response
     | ComputeNodeOperationsGetRemoteDesktopDefaultResponse
-    | ComputeNodeOperationsUploadBatchServiceLogs201Response
+    | ComputeNodeOperationsUploadBatchServiceLogs200Response
     | ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse
     | ComputeNodeOperationsList200Response
     | ComputeNodeOperationsListDefaultResponse
@@ -767,68 +718,68 @@ export function isUnexpected(
 ): response is
   | ApplicationOperationsListDefaultResponse
   | ApplicationOperationsGetDefaultResponse
-  | PoolOperationsListUsageMetricsDefaultResponse
-  | PoolOperationsGetAllLifetimeStatisticsDefaultResponse
-  | PoolOperationsAddDefaultResponse
-  | PoolOperationsListDefaultResponse
-  | PoolOperationsDeleteDefaultResponse
-  | PoolOperationsExistsDefaultResponse
-  | PoolOperationsGetDefaultResponse
-  | PoolOperationsPatchDefaultResponse
-  | PoolOperationsDisableAutoScaleDefaultResponse
-  | PoolOperationsEnableAutoScaleDefaultResponse
-  | PoolOperationsEvaluateAutoScaleDefaultResponse
-  | PoolOperationsResizeDefaultResponse
-  | PoolOperationsStopResizeDefaultResponse
-  | PoolOperationsUpdatePropertiesDefaultResponse
-  | PoolOperationsRemoveNodesDefaultResponse
-  | AccountOperationsListSupportedImagesDefaultResponse
-  | AccountOperationsListPoolNodeCountsDefaultResponse
-  | JobOperationsGetAllLifetimeStatisticsDefaultResponse
-  | JobOperationsDeleteDefaultResponse
-  | JobOperationsGetDefaultResponse
-  | JobOperationsPatchDefaultResponse
-  | JobOperationsUpdateDefaultResponse
-  | JobOperationsDisableDefaultResponse
-  | JobOperationsEnableDefaultResponse
-  | JobOperationsTerminateDefaultResponse
-  | JobOperationsAddDefaultResponse
-  | JobOperationsListDefaultResponse
-  | JobOperationsListFromJobScheduleDefaultResponse
-  | JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse
-  | JobOperationsGetTaskCountsDefaultResponse
+  | PoolListUsageMetricsDefaultResponse
+  | PoolGetAllLifetimeStatisticsDefaultResponse
+  | PoolAddDefaultResponse
+  | PoolListDefaultResponse
+  | PoolDeleteDefaultResponse
+  | PoolExistsDefaultResponse
+  | PoolGetDefaultResponse
+  | PoolPatchDefaultResponse
+  | PoolDisableAutoScaleDefaultResponse
+  | PoolEnableAutoScaleDefaultResponse
+  | PoolEvaluateAutoScaleDefaultResponse
+  | PoolResizeDefaultResponse
+  | PoolStopResizeDefaultResponse
+  | PoolUpdatePropertiesDefaultResponse
+  | PoolRemoveNodesDefaultResponse
+  | AccountListSupportedImagesDefaultResponse
+  | AccountListPoolNodeCountsDefaultResponse
+  | JobGetAllLifetimeStatisticsDefaultResponse
+  | JobDeleteDefaultResponse
+  | JobGetDefaultResponse
+  | JobPatchDefaultResponse
+  | JobUpdateDefaultResponse
+  | JobDisableDefaultResponse
+  | JobEnableDefaultResponse
+  | JobTerminateDefaultResponse
+  | JobAddDefaultResponse
+  | JobListDefaultResponse
+  | JobListFromJobScheduleDefaultResponse
+  | JobListPreparationAndReleaseTaskStatusDefaultResponse
+  | JobGetTaskCountsDefaultResponse
   | CertificateOperationsAddDefaultResponse
   | CertificateOperationsListDefaultResponse
   | CertificateOperationsCancelDeletionDefaultResponse
   | CertificateOperationsDeleteDefaultResponse
   | CertificateOperationsGetDefaultResponse
-  | FileOperationsDeleteFromTaskDefaultResponse
-  | FileOperationsGetFromTaskDefaultResponse
-  | FileOperationsGetPropertiesFromTaskDefaultResponse
-  | FileOperationsDeleteFromComputeNodeDefaultResponse
-  | FileOperationsGetFromComputeNodeDefaultResponse
-  | FileOperationsGetPropertiesFromComputeNodeDefaultResponse
-  | FileOperationsListFromTaskDefaultResponse
-  | FileOperationsListFromComputeNodeDefaultResponse
-  | JobScheduleOperationsExistsDefaultResponse
-  | JobScheduleOperationsDeleteDefaultResponse
-  | JobScheduleOperationsGetDefaultResponse
-  | JobScheduleOperationsPatchDefaultResponse
-  | JobScheduleOperationsUpdateDefaultResponse
-  | JobScheduleOperationsDisableDefaultResponse
-  | JobScheduleOperationsEnableDefaultResponse
-  | JobScheduleOperationsTerminateDefaultResponse
-  | JobScheduleOperationsAddDefaultResponse
-  | JobScheduleOperationsListDefaultResponse
-  | TaskOperationsAddDefaultResponse
-  | TaskOperationsListDefaultResponse
-  | TaskOperationsAddCollectionDefaultResponse
-  | TaskOperationsDeleteDefaultResponse
-  | TaskOperationsGetDefaultResponse
-  | TaskOperationsUpdateDefaultResponse
-  | TaskOperationsListSubtasksDefaultResponse
-  | TaskOperationsTerminateDefaultResponse
-  | TaskOperationsReactivateDefaultResponse
+  | FileDeleteFromTaskDefaultResponse
+  | FileGetFromTaskDefaultResponse
+  | FileGetPropertiesFromTaskDefaultResponse
+  | FileDeleteFromComputeNodeDefaultResponse
+  | FileGetFromComputeNodeDefaultResponse
+  | FileGetPropertiesFromComputeNodeDefaultResponse
+  | FileListFromTaskDefaultResponse
+  | FileListFromComputeNodeDefaultResponse
+  | JobScheduleExistsDefaultResponse
+  | JobScheduleDeleteDefaultResponse
+  | JobScheduleGetDefaultResponse
+  | JobSchedulePatchDefaultResponse
+  | JobScheduleUpdateDefaultResponse
+  | JobScheduleDisableDefaultResponse
+  | JobScheduleEnableDefaultResponse
+  | JobScheduleTerminateDefaultResponse
+  | JobScheduleAddDefaultResponse
+  | JobScheduleListDefaultResponse
+  | TaskAddDefaultResponse
+  | TaskListDefaultResponse
+  | TaskAddCollectionDefaultResponse
+  | TaskDeleteDefaultResponse
+  | TaskGetDefaultResponse
+  | TaskUpdateDefaultResponse
+  | TaskListSubtasksDefaultResponse
+  | TaskTerminateDefaultResponse
+  | TaskReactivateDefaultResponse
   | ComputeNodeOperationsAddUserDefaultResponse
   | ComputeNodeOperationsDeleteUserDefaultResponse
   | ComputeNodeOperationsUpdateUserDefaultResponse

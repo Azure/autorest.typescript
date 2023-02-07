@@ -6,33 +6,33 @@ import { HttpResponse } from "@azure-rest/core-client";
 import {
   EmbeddingsOutput,
   ErrorResponseOutput,
-  CompletionOutput,
+  CompletionsOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface Embeddings200Response extends HttpResponse {
+export interface GetEmbeddings200Response extends HttpResponse {
   status: "200";
   body: EmbeddingsOutput;
 }
 
-export interface EmbeddingsDefaultResponse extends HttpResponse {
+export interface GetEmbeddingsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
-export interface Completions200Headers {
+export interface GetCompletions200Headers {
   /** Request ID for troubleshooting purposes */
   "apim-request-id": string;
 }
 
 /** The request has succeeded. */
-export interface Completions200Response extends HttpResponse {
+export interface GetCompletions200Response extends HttpResponse {
   status: "200";
-  body: CompletionOutput;
-  headers: RawHttpHeaders & Completions200Headers;
+  body: CompletionsOutput;
+  headers: RawHttpHeaders & GetCompletions200Headers;
 }
 
-export interface CompletionsDefaultResponse extends HttpResponse {
+export interface GetCompletionsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }

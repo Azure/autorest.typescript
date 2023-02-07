@@ -75,6 +75,7 @@
   },
   "//metadata": {
     "constantPaths": [
+      { "path": "src/dPGCustomizationClient.ts", "prefix": "userAgentInfo" },
       { "path": "swagger/README.md", "prefix": "package-version" }
     ]
   },
