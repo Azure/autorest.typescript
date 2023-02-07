@@ -26,7 +26,7 @@ describe("Parameters.ts", () => {
     });
   });
 
-  describe("query parameters generaiton", () => {
+  describe("query parameters generation", () => {
     it("should generate user-custom-query ", async () => {
       const parameters = await emitParameterFromCadl(
         `

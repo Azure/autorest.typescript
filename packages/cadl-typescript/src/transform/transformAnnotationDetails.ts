@@ -12,6 +12,7 @@ import {
   extractPagedMetadataNested,
   hasPollingOperations
 } from "../operationUtil.js";
+import { getSpecialSerializeInfo } from "./transformParameters.js";
 
 export function transformAnnotationDetails(
   program: Program,
@@ -22,10 +23,12 @@ export function transformAnnotationDetails(
     hasLongRunning: hasPollingOperations(program, client)
   };
   const details = extractPageDetailFromCore(program, client);
+  const serializeInfo = extractSpecialSerializeInfo(program, client);
   if (details) {
     return {
       ...details,
-      ...annotationDetails
+      ...annotationDetails,
+      ...serializeInfo
     };
   }
   // TODO: Remove this when @pageable is finally removed.
@@ -55,7 +58,10 @@ export function transformAnnotationDetails(
     }
   }
   if (nextLinks.size === 0) {
-    return annotationDetails;
+    return {
+      ...annotationDetails,
+      ...serializeInfo
+    };
   }
   return {
     ...annotationDetails,
@@ -64,7 +70,8 @@ export function transformAnnotationDetails(
       itemNames: ["value"],
       nextLinkNames: [...nextLinks],
       isComplexPaging: nextLinks.size > 1
-    }
+    },
+    ...serializeInfo
   };
 }
 const pageableOperationsKey = Symbol("pageable");
@@ -144,4 +151,58 @@ function parseItemName(paged: PagedResultMetadata): string | undefined {
     return pathComponents[pathComponents.length - 1];
   }
   return undefined;
+}
+
+function extractSpecialSerializeInfo(program: Program, client: Client) {
+  let hasMultiCollection = false;
+  let hasPipeCollection = false;
+  let hasTsvCollection = false;
+  let hasSsvCollection = false;
+  const operationGroups = listOperationGroups(program, client);
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(program, operationGroup);
+    for (const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      route.parameters.parameters.forEach((parameter) => {
+        const serializeInfo = getSpecialSerializeInfo(parameter);
+        hasMultiCollection = hasMultiCollection
+          ? hasMultiCollection
+          : serializeInfo.hasMultiCollection;
+        hasPipeCollection = hasPipeCollection
+          ? hasPipeCollection
+          : serializeInfo.hasPipeCollection;
+        hasTsvCollection = hasTsvCollection
+          ? hasTsvCollection
+          : serializeInfo.hasTsvCollection;
+        hasSsvCollection = hasSsvCollection
+          ? hasSsvCollection
+          : serializeInfo.hasSsvCollection;
+      });
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(program, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    route.parameters.parameters.forEach((parameter) => {
+      const serializeInfo = getSpecialSerializeInfo(parameter);
+      hasMultiCollection = hasMultiCollection
+        ? hasMultiCollection
+        : serializeInfo.hasMultiCollection;
+      hasPipeCollection = hasPipeCollection
+        ? hasPipeCollection
+        : serializeInfo.hasPipeCollection;
+      hasTsvCollection = hasTsvCollection
+        ? hasTsvCollection
+        : serializeInfo.hasTsvCollection;
+      hasSsvCollection = hasSsvCollection
+        ? hasSsvCollection
+        : serializeInfo.hasSsvCollection;
+    });
+  }
+  return {
+    hasMultiCollection,
+    hasPipeCollection,
+    hasTsvCollection,
+    hasSsvCollection
+  };
 }
