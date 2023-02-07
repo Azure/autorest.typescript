@@ -2,29 +2,20 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { TokenCredential } from "@azure/core-auth";
-import { BatchServiceClient } from "./clientDefinitions";
+import { CollectionFormatTestServiceClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `BatchServiceClient`
+ * Initialize a new instance of the class CollectionFormatTestServiceClient class.
  * @param endpoint type: string
- * @param credentials type: TokenCredential
  */
 export default function createClient(
   endpoint: string,
-  credentials: TokenCredential,
   options: ClientOptions = {}
-): BatchServiceClient {
+): CollectionFormatTestServiceClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2022-10-01.16.0";
-  options = {
-    ...options,
-    credentials: {
-      scopes: ["user_impersonation"],
-    },
-  };
+  options.apiVersion = options.apiVersion ?? "2022-12-16-preview";
 
-  const userAgentInfo = `azsdk-js-batch-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-collection-format-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -36,7 +27,10 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, credentials, options) as BatchServiceClient;
+  const client = getClient(
+    baseUrl,
+    options
+  ) as CollectionFormatTestServiceClient;
 
   return client;
 }
