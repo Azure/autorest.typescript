@@ -90,8 +90,7 @@ describe("LRO Rest Client", () => {
 
       const response = await poller.pollUntilDone();
       if (isUnexpected(response)) {
-        const error = `Unexpected status code ${response.status}`;
-        assert.fail(error);
+        assert.fail(`Unexpected status code ${response.status}`);
       }
       assert.equal(poller.getOperationState().status, "canceled");
       assert.equal(response.status, "200");
