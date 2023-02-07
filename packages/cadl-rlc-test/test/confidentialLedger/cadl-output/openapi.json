@@ -624,10 +624,7 @@
           "description": "The user's assigned role."
         }
       },
-      "description": "Details about a Confidential ledger user.",
-      "required": [
-        "assignedRole"
-      ]
+      "description": "Details about a Confidential ledger user."
     },
     "MyFlow": {
       "type": "object",

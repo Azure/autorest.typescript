@@ -401,11 +401,7 @@
           "description": "The created date."
         }
       },
-      "description": "Faked shared model",
-      "required": [
-        "tag",
-        "createdDate"
-      ]
+      "description": "Faked shared model"
     },
     "Versions": {
       "type": "string",
@@ -458,10 +454,7 @@
           "description": "The faked shared model."
         }
       },
-      "description": "A widget.",
-      "required": [
-        "manufacturerId"
-      ]
+      "description": "A widget."
     }
   },
   "parameters": {
