@@ -6,7 +6,7 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/cadl-dpg";
-import { Schema, SchemaContext } from "@azure-tools/rlc-common";
+import { SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
 import {
@@ -16,8 +16,11 @@ import {
 } from "../modelUtils.js";
 
 export function transformSchemas(program: Program, client: Client) {
-  const schemas: Schema[] = [];
-  const schemaSet: Set<string> = new Set<string>();
+  const schemas: Map<string, SchemaContext[]> = new Map<
+    string,
+    SchemaContext[]
+  >();
+  const schemaMap: Map<any, any> = new Map<any, any>();
   const operationGroups = listOperationGroups(program, client);
   const modelKey = Symbol("typescript-models-" + client.name);
   for (const operationGroup of operationGroups) {
@@ -55,11 +58,13 @@ export function transformSchemas(program: Program, client: Client) {
     if (model.name === "") {
       return;
     }
-    const modelStr = JSON.stringify(trimUsage(model));
-    if (!schemaSet.has(modelStr)) {
-      schemas.push(model);
-      schemaSet.add(modelStr);
+    const pureModel = JSON.stringify(trimUsage(model));
+    schemaMap.set(pureModel, model);
+    let usage = schemas.get(pureModel) ?? [];
+    if (!usage?.includes(context)) {
+      usage = usage.concat(context as SchemaContext[]);
     }
+    schemas.set(pureModel, usage);
   });
   function trimUsage(model: any) {
     if (typeof model !== "object") {
@@ -137,5 +142,8 @@ export function transformSchemas(program: Program, client: Client) {
       }
     }
   }
-  return schemas;
+  const allSchemas = Array.from(schemas, function (item) {
+    return { ...schemaMap.get(item[0]), usage: item[1] };
+  });
+  return allSchemas;
 }

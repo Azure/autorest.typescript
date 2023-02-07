@@ -24,6 +24,7 @@ import {
   buildRecordedClientFile,
   buildSampleTest,
   buildReadmeFile,
+  buildSerializeHelper,
   RLCOptions,
   RLCModel
 } from "@azure-tools/rlc-common";
@@ -53,6 +54,8 @@ export async function $onEmit(context: EmitContext) {
     await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
     await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
     await emitContentByBuilder(program, buildPollingHelper, rlcModels);
+    // buildSerializeHelper
+    await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
     // build metadata relevant files
     await emitContentByBuilder(
       program,
