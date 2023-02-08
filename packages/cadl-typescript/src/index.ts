@@ -94,7 +94,7 @@ function clearSrcFolder(model: RLCModel, count: number) {
   fsextra.emptyDirSync(srcPath);
   if (model?.options?.multiClient && count === 0) {
     const folderPath = path.join(
-      srcPath.substring(0, srcPath.indexOf(path.sep + "src" + path.sep) + 5)
+      srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4)
     );
     fsextra.emptyDirSync(folderPath);
   }
