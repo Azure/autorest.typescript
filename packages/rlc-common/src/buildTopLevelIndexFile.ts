@@ -44,7 +44,7 @@ export function buildTopLevelIndex(model: RLCModel) {
     });
     const content = indexFile.getFullText();
     const filePath = path.join(
-      srcPath.substring(0, srcPath.indexOf("/src/") + 5),
+      srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4),
       `index.ts`
     );
     return { path: filePath, content };

@@ -31,19 +31,22 @@ import {
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
 import { listClients } from "@azure-tools/cadl-dpg";
+import * as path from "path";
 
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const options: RLCOptions = context.options;
   const clients = listClients(program);
+  let count = -1;
   for (const client of clients) {
+    count++;
     const rlcModels = await transformRLCModel(
       program,
       options,
       client,
       context.emitterOutputDir
     );
-    clearSrcFolder(rlcModels);
+    clearSrcFolder(rlcModels, count);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
     await emitContentByBuilder(program, buildResponseTypes, rlcModels);
@@ -86,7 +89,14 @@ export async function $onEmit(context: EmitContext) {
   }
 }
 
-function clearSrcFolder(model: RLCModel) {
+function clearSrcFolder(model: RLCModel, count: number) {
   const srcPath = model.srcPath;
   fsextra.emptyDirSync(srcPath);
+  if (model?.options?.multiClient && count === 0) {
+    const folderPath = path.join(
+      srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4)
+    );
+    fsextra.emptyDirSync(folderPath);
+  }
+
 }
