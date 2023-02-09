@@ -6,7 +6,6 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
@@ -606,7 +605,7 @@ interface ErrorResponseModelErrorOutput extends ErrorModelOutput_2 {
 
 // @public
 interface ErrorResponseModelOutput {
-    error: ErrorModel;
+    error: ErrorModelOutput;
 }
 
 // @public

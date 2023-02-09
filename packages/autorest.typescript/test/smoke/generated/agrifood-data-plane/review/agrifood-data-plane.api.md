@@ -8,12 +8,7 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-<<<<<<< HEAD
-import { ErrorModel } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-=======
 import { CreateHttpPollerOptions } from '@azure/core-lro';
->>>>>>> main
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
@@ -65,7 +60,7 @@ export interface ApplicationDataCreateOrUpdateBodyParam {
 // @public
 export interface ApplicationDataCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -89,7 +84,7 @@ export interface ApplicationDataDelete204Response extends HttpResponse {
 // @public
 export interface ApplicationDataDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -115,7 +110,7 @@ export interface ApplicationDataGet200Response extends HttpResponse {
 // @public
 export interface ApplicationDataGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -152,7 +147,7 @@ export interface ApplicationDataListByFarmerId200Response extends HttpResponse {
 // @public
 export interface ApplicationDataListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -198,7 +193,7 @@ export interface ApplicationDataListByFarmerIdQueryParamProperties {
 // @public
 export interface ApplicationDataListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -338,7 +333,7 @@ export interface AttachmentsCreateOrUpdateBodyParam {
 // @public
 export interface AttachmentsCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -378,7 +373,7 @@ export interface AttachmentsDelete204Response extends HttpResponse {
 // @public
 export interface AttachmentsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -401,7 +396,7 @@ export interface AttachmentsDownload200Response extends HttpResponse {
 // @public
 export interface AttachmentsDownloadDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -427,7 +422,7 @@ export interface AttachmentsGet200Response extends HttpResponse {
 // @public
 export interface AttachmentsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -451,7 +446,7 @@ export interface AttachmentsListByFarmerId200Response extends HttpResponse {
 // @public
 export interface AttachmentsListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -497,7 +492,7 @@ export interface BoundariesCreateCascadeDeleteJob202Response extends HttpRespons
 // @public
 export interface BoundariesCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -541,7 +536,7 @@ export interface BoundariesCreateOrUpdateBodyParam {
 // @public
 export interface BoundariesCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -565,7 +560,7 @@ export interface BoundariesDelete204Response extends HttpResponse {
 // @public
 export interface BoundariesDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -605,7 +600,7 @@ export interface BoundariesGetCascadeDeleteJobDetails200Response extends HttpRes
 // @public
 export interface BoundariesGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -616,7 +611,7 @@ export type BoundariesGetCascadeDeleteJobDetailsParameters = RequestParameters;
 // @public
 export interface BoundariesGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -637,7 +632,7 @@ export interface BoundariesGetOverlap200Response extends HttpResponse {
 // @public
 export interface BoundariesGetOverlapDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -691,7 +686,7 @@ export interface BoundariesListByFarmerId200Response extends HttpResponse {
 // @public
 export interface BoundariesListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -727,7 +722,7 @@ export interface BoundariesListByFarmerIdQueryParamProperties {
 // @public
 export interface BoundariesListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -789,7 +784,7 @@ export interface BoundariesSearchByFarmerIdBodyParam {
 // @public
 export interface BoundariesSearchByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -805,7 +800,7 @@ export type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFarmerIdMed
 // @public
 export interface BoundariesSearchDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -945,7 +940,7 @@ export interface CropsCreateOrUpdateBodyParam {
 // @public
 export interface CropsCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -969,7 +964,7 @@ export interface CropsDelete204Response extends HttpResponse {
 // @public
 export interface CropsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -995,7 +990,7 @@ export interface CropsGet200Response extends HttpResponse {
 // @public
 export interface CropsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1019,7 +1014,7 @@ export interface CropsList200Response extends HttpResponse {
 // @public
 export interface CropsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1072,7 +1067,7 @@ export interface CropVarietiesCreateOrUpdateBodyParam {
 // @public
 export interface CropVarietiesCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1096,7 +1091,7 @@ export interface CropVarietiesDelete204Response extends HttpResponse {
 // @public
 export interface CropVarietiesDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1122,7 +1117,7 @@ export interface CropVarietiesGet200Response extends HttpResponse {
 // @public
 export interface CropVarietiesGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1159,7 +1154,7 @@ export interface CropVarietiesListByCropId200Response extends HttpResponse {
 // @public
 export interface CropVarietiesListByCropIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1193,7 +1188,7 @@ export interface CropVarietiesListByCropIdQueryParamProperties {
 // @public
 export interface CropVarietiesListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1270,7 +1265,7 @@ export interface ErrorModelOutput {
 
 // @public
 export interface ErrorResponseOutput {
-    error?: ErrorModel;
+    error?: ErrorModelOutput;
     traceId?: string;
 }
 
@@ -1323,7 +1318,7 @@ export interface FarmersCreateCascadeDeleteJob202Response extends HttpResponse {
 // @public
 export interface FarmersCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1366,7 +1361,7 @@ export interface FarmersCreateOrUpdateBodyParam {
 // @public
 export interface FarmersCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1390,7 +1385,7 @@ export interface FarmersDelete204Response extends HttpResponse {
 // @public
 export interface FarmersDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1430,7 +1425,7 @@ export interface FarmersGetCascadeDeleteJobDetails200Response extends HttpRespon
 // @public
 export interface FarmersGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1441,7 +1436,7 @@ export type FarmersGetCascadeDeleteJobDetailsParameters = RequestParameters;
 // @public
 export interface FarmersGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1465,7 +1460,7 @@ export interface FarmersList200Response extends HttpResponse {
 // @public
 export interface FarmersListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1552,7 +1547,7 @@ export interface FarmOperationsCreateDataIngestionJobBodyParam {
 // @public
 export interface FarmOperationsCreateDataIngestionJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1576,7 +1571,7 @@ export interface FarmOperationsGetDataIngestionJobDetails200Response extends Htt
 // @public
 export interface FarmOperationsGetDataIngestionJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1611,7 +1606,7 @@ export interface FarmsCreateCascadeDeleteJob202Response extends HttpResponse {
 // @public
 export interface FarmsCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1655,7 +1650,7 @@ export interface FarmsCreateOrUpdateBodyParam {
 // @public
 export interface FarmsCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1679,7 +1674,7 @@ export interface FarmsDelete204Response extends HttpResponse {
 // @public
 export interface FarmsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1719,7 +1714,7 @@ export interface FarmsGetCascadeDeleteJobDetails200Response extends HttpResponse
 // @public
 export interface FarmsGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1730,7 +1725,7 @@ export type FarmsGetCascadeDeleteJobDetailsParameters = RequestParameters;
 // @public
 export interface FarmsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1767,7 +1762,7 @@ export interface FarmsListByFarmerId200Response extends HttpResponse {
 // @public
 export interface FarmsListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1798,7 +1793,7 @@ export interface FarmsListByFarmerIdQueryParamProperties {
 // @public
 export interface FarmsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1872,7 +1867,7 @@ export interface FieldsCreateCascadeDeleteJob202Response extends HttpResponse {
 // @public
 export interface FieldsCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1916,7 +1911,7 @@ export interface FieldsCreateOrUpdateBodyParam {
 // @public
 export interface FieldsCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1940,7 +1935,7 @@ export interface FieldsDelete204Response extends HttpResponse {
 // @public
 export interface FieldsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1980,7 +1975,7 @@ export interface FieldsGetCascadeDeleteJobDetails200Response extends HttpRespons
 // @public
 export interface FieldsGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -1991,7 +1986,7 @@ export type FieldsGetCascadeDeleteJobDetailsParameters = RequestParameters;
 // @public
 export interface FieldsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2028,7 +2023,7 @@ export interface FieldsListByFarmerId200Response extends HttpResponse {
 // @public
 export interface FieldsListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2060,7 +2055,7 @@ export interface FieldsListByFarmerIdQueryParamProperties {
 // @public
 export interface FieldsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2165,7 +2160,7 @@ export interface HarvestDataCreateOrUpdateBodyParam {
 // @public
 export interface HarvestDataCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2189,7 +2184,7 @@ export interface HarvestDataDelete204Response extends HttpResponse {
 // @public
 export interface HarvestDataDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2215,7 +2210,7 @@ export interface HarvestDataGet200Response extends HttpResponse {
 // @public
 export interface HarvestDataGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2252,7 +2247,7 @@ export interface HarvestDataListByFarmerId200Response extends HttpResponse {
 // @public
 export interface HarvestDataListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2306,7 +2301,7 @@ export interface HarvestDataListByFarmerIdQueryParamProperties {
 // @public
 export interface HarvestDataListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2898,7 +2893,7 @@ export interface OAuthProvidersCreateOrUpdateBodyParam {
 // @public
 export interface OAuthProvidersCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2922,7 +2917,7 @@ export interface OAuthProvidersDelete204Response extends HttpResponse {
 // @public
 export interface OAuthProvidersDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2948,7 +2943,7 @@ export interface OAuthProvidersGet200Response extends HttpResponse {
 // @public
 export interface OAuthProvidersGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -2972,7 +2967,7 @@ export interface OAuthProvidersList200Response extends HttpResponse {
 // @public
 export interface OAuthProvidersListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3028,7 +3023,7 @@ export interface OAuthTokensCreateCascadeDeleteJob202Response extends HttpRespon
 // @public
 export interface OAuthTokensCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3065,7 +3060,7 @@ export interface OAuthTokensGetCascadeDeleteJobDetails200Response extends HttpRe
 // @public
 export interface OAuthTokensGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3094,7 +3089,7 @@ export interface OAuthTokensGetOAuthConnectionLinkBodyParam {
 // @public
 export interface OAuthTokensGetOAuthConnectionLinkDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3123,7 +3118,7 @@ export interface OAuthTokensList200Response extends HttpResponse {
 // @public
 export interface OAuthTokensListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3208,7 +3203,7 @@ export interface PlantingDataCreateOrUpdateBodyParam {
 // @public
 export interface PlantingDataCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3232,7 +3227,7 @@ export interface PlantingDataDelete204Response extends HttpResponse {
 // @public
 export interface PlantingDataDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3258,7 +3253,7 @@ export interface PlantingDataGet200Response extends HttpResponse {
 // @public
 export interface PlantingDataGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3295,7 +3290,7 @@ export interface PlantingDataListByFarmerId200Response extends HttpResponse {
 // @public
 export interface PlantingDataListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3343,7 +3338,7 @@ export interface PlantingDataListByFarmerIdQueryParamProperties {
 // @public
 export interface PlantingDataListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3637,7 +3632,7 @@ export interface ScenesCreateSatelliteDataIngestionJobBodyParam {
 // @public
 export interface ScenesCreateSatelliteDataIngestionJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3665,7 +3660,7 @@ export interface ScenesDownload200Response extends HttpResponse {
 // @public
 export interface ScenesDownloadDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3695,7 +3690,7 @@ export interface ScenesGetSatelliteDataIngestionJobDetails200Response extends Ht
 // @public
 export interface ScenesGetSatelliteDataIngestionJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3719,7 +3714,7 @@ export interface ScenesList200Response extends HttpResponse {
 // @public
 export interface ScenesListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3845,7 +3840,7 @@ export interface SeasonalFieldsCreateCascadeDeleteJob202Response extends HttpRes
 // @public
 export interface SeasonalFieldsCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3889,7 +3884,7 @@ export interface SeasonalFieldsCreateOrUpdateBodyParam {
 // @public
 export interface SeasonalFieldsCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3913,7 +3908,7 @@ export interface SeasonalFieldsDelete204Response extends HttpResponse {
 // @public
 export interface SeasonalFieldsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3953,7 +3948,7 @@ export interface SeasonalFieldsGetCascadeDeleteJobDetails200Response extends Htt
 // @public
 export interface SeasonalFieldsGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -3964,7 +3959,7 @@ export type SeasonalFieldsGetCascadeDeleteJobDetailsParameters = RequestParamete
 // @public
 export interface SeasonalFieldsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4001,7 +3996,7 @@ export interface SeasonalFieldsListByFarmerId200Response extends HttpResponse {
 // @public
 export interface SeasonalFieldsListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4045,7 +4040,7 @@ export interface SeasonalFieldsListByFarmerIdQueryParamProperties {
 // @public
 export interface SeasonalFieldsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4135,7 +4130,7 @@ export interface SeasonsCreateOrUpdateBodyParam {
 // @public
 export interface SeasonsCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4159,7 +4154,7 @@ export interface SeasonsDelete204Response extends HttpResponse {
 // @public
 export interface SeasonsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4185,7 +4180,7 @@ export interface SeasonsGet200Response extends HttpResponse {
 // @public
 export interface SeasonsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4209,7 +4204,7 @@ export interface SeasonsList200Response extends HttpResponse {
 // @public
 export interface SeasonsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4283,7 +4278,7 @@ export interface TillageDataCreateOrUpdateBodyParam {
 // @public
 export interface TillageDataCreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4307,7 +4302,7 @@ export interface TillageDataDelete204Response extends HttpResponse {
 // @public
 export interface TillageDataDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4333,7 +4328,7 @@ export interface TillageDataGet200Response extends HttpResponse {
 // @public
 export interface TillageDataGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4370,7 +4365,7 @@ export interface TillageDataListByFarmerId200Response extends HttpResponse {
 // @public
 export interface TillageDataListByFarmerIdDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4416,7 +4411,7 @@ export interface TillageDataListByFarmerIdQueryParamProperties {
 // @public
 export interface TillageDataListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4508,7 +4503,7 @@ export interface WeatherCreateDataDeleteJobBodyParam {
 // @public
 export interface WeatherCreateDataDeleteJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4537,7 +4532,7 @@ export interface WeatherCreateDataIngestionJobBodyParam {
 // @public
 export interface WeatherCreateDataIngestionJobDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4679,7 +4674,7 @@ export interface WeatherGetDataDeleteJobDetails200Response extends HttpResponse 
 // @public
 export interface WeatherGetDataDeleteJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4704,7 +4699,7 @@ export interface WeatherGetDataIngestionJobDetails200Response extends HttpRespon
 // @public
 export interface WeatherGetDataIngestionJobDetailsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }
@@ -4728,7 +4723,7 @@ export interface WeatherList200Response extends HttpResponse {
 // @public
 export interface WeatherListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
     // (undocumented)
     status: string;
 }

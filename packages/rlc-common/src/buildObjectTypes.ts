@@ -421,7 +421,7 @@ export function getPropertySignature(
       : property.typeName
       ? property.typeName
       : property.type;
-  if (property.typeName === "ErrorModel") {
+  if (property.typeName && property.fromCore) {
     importedModels.add(property.typeName);
     type = property.typeName;
   }

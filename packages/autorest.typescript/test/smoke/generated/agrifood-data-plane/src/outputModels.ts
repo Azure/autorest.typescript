@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ErrorModel } from "@azure-rest/core-client";
-
 /** Paged response contains list of requested objects and a URL link to get the next set of results. */
 export interface ApplicationDataListResponseOutput {
   /** List of requested objects. */
@@ -91,7 +89,7 @@ export interface MeasureOutput {
  */
 export interface ErrorResponseOutput {
   /** An error from the Azure AgPlatform service. */
-  error?: ErrorModel;
+  error?: ErrorModelOutput;
   /** Unique trace ID. */
   traceId?: string;
 }

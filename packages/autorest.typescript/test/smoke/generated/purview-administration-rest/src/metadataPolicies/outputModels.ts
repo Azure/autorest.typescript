@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ErrorModel } from "@azure-rest/core-client";
-
 /** List of Metadata roles */
 export interface MetadataRoleListOutput {
   values: Array<MetadataRoleOutput>;
@@ -53,7 +51,7 @@ export interface AttributeMatcherOutput {
 /** The error response model for metadata policy */
 export interface ErrorResponseModelOutput {
   /** The error model for metadata policy */
-  error: ErrorModel;
+  error: ErrorModelOutput;
 }
 
 /** The error model for metadata policy */

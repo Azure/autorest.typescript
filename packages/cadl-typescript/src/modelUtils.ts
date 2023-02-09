@@ -381,7 +381,9 @@ function getSchemaForModel(
   );
 
   if (
-    model.name === "ErrorResponse" &&
+    (model.name === "ErrorResponse" ||
+      model.name === "ErrorModel" ||
+      model.name === "Error") &&
     model.kind === "Model" &&
     model.namespace?.name === "Foundations" &&
     model.namespace.namespace?.name === "Core"
