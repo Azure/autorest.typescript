@@ -6,9 +6,10 @@ import { KeyCredential } from "@azure/core-auth";
 import { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class AzureAgriFoodPlatformDataPlaneServiceClient class.
- * @param endpoint type: string The endpoint of your FarmBeats resource (protocol and hostname, for example: https://{resourceName}.farmbeats.azure.net).
- * @param credentials type: KeyCredential
+ * Initialize a new instance of `AzureAgriFoodPlatformDataPlaneServiceClient`
+ * @param endpoint type: string, The endpoint of your FarmBeats resource (protocol and hostname, for example: https://{resourceName}.farmbeats.azure.net).
+ * @param credentials type: KeyCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

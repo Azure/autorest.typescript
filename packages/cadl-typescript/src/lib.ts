@@ -69,7 +69,8 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
       },
       nullable: true
     },
-    azureArm: { type: "boolean", nullable: true }
+    azureArm: { type: "boolean", nullable: true },
+    sourceFrom: { type: "string", nullable: true }
   },
   required: []
 };
@@ -169,6 +170,13 @@ const libDef = {
       severity: "error",
       messages: {
         default: paramMessage`Invalid type '${"type"}' for a default value`
+      }
+    },
+    "no-credential-scopes": {
+      severity: "warning",
+      messages: {
+        default:
+          "Please provide credential scopes to ensure the token credential signature can be generated."
       }
     }
   },

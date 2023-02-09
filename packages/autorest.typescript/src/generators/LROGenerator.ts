@@ -15,9 +15,17 @@ export async function generateLroFiles(
   }
   const LroClassFile = "lroImpl.ts";
   const baseTargetPath = srcPath || "";
-  const srcDir = joinPath(__dirname, "..", "..", "..", "src");
+  const staticDir = joinPath(
+    __dirname,
+    "..",
+    "..",
+    "..",
+    "src",
+    "generators",
+    "static"
+  );
   const fileContent = await promises.readFile(
-    joinPath(srcDir, LroClassFile),
+    joinPath(staticDir, LroClassFile),
     "utf-8"
   );
   project.createSourceFile(

@@ -130,7 +130,8 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
           methodParamNames: "",
           method,
           isLRO: false,
-          isPaging: false
+          isPaging: false,
+          useLegacyLro: false
         };
         // convert the parameters to the intermidate model - SampleParameters
         const rawParamters: TestSampleParameters = {
@@ -414,7 +415,9 @@ function enrichLROAndPagingInSample(
     sample.isPaging = true;
     addValueInImportedDict(getPackageName(), "paginate", importedDict);
   } else if (isLRO) {
+    const { useLegacyLro = false } = getAutorestOptions();
     sample.isLRO = true;
+    sample.useLegacyLro = useLegacyLro;
     addValueInImportedDict(
       getPackageName(),
       "getLongRunningPoller",

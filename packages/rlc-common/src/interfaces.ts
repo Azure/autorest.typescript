@@ -100,6 +100,7 @@ export interface RLCOptions {
   productDocLink?: string;
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
+  sourceFrom?: "Cadl" | "Swagger";
 }
 
 export interface ServiceInfo {

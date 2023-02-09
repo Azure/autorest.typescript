@@ -10,8 +10,12 @@ import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "./pagingHelper";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "./lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "./lroImpl";
 import {
   ApplicationGatewaysImpl,
   ApplicationGatewayPrivateLinkResourcesImpl,
@@ -968,8 +972,8 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     bslRequest: BastionShareableLinkListRequest,
     options?: PutBastionShareableLinkOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<PutBastionShareableLinkResponse>,
+    SimplePollerLike<
+      OperationState<PutBastionShareableLinkResponse>,
       PutBastionShareableLinkResponse
     >
   > {
@@ -979,7 +983,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     ): Promise<PutBastionShareableLinkResponse> => {
       return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1012,15 +1016,18 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, bastionHostName, bslRequest, options },
-      putBastionShareableLinkOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, bastionHostName, bslRequest, options },
+      spec: putBastionShareableLinkOperationSpec
+    });
+    const poller = await createHttpPoller<
+      PutBastionShareableLinkResponse,
+      OperationState<PutBastionShareableLinkResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -1038,14 +1045,14 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     options?: DeleteBastionShareableLinkOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1078,15 +1085,15 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, bastionHostName, bslRequest, options },
-      deleteBastionShareableLinkOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, bastionHostName, bslRequest, options },
+      spec: deleteBastionShareableLinkOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -1144,8 +1151,8 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     bastionHostName: string,
     options?: GetActiveSessionsOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<GetActiveSessionsResponse>,
+    SimplePollerLike<
+      OperationState<GetActiveSessionsResponse>,
       GetActiveSessionsResponse
     >
   > {
@@ -1155,7 +1162,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     ): Promise<GetActiveSessionsResponse> => {
       return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1188,15 +1195,18 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, bastionHostName, options },
-      getActiveSessionsOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, bastionHostName, options },
+      spec: getActiveSessionsOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GetActiveSessionsResponse,
+      OperationState<GetActiveSessionsResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;
@@ -1362,8 +1372,8 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     vpnClientParams: VirtualWanVpnProfileParameters,
     options?: GeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         GeneratevirtualwanvpnserverconfigurationvpnprofileResponse
       >,
       GeneratevirtualwanvpnserverconfigurationvpnprofileResponse
@@ -1375,7 +1385,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     ): Promise<GeneratevirtualwanvpnserverconfigurationvpnprofileResponse> => {
       return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1408,15 +1418,18 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, virtualWANName, vpnClientParams, options },
-      generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, virtualWANName, vpnClientParams, options },
+      spec: generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GeneratevirtualwanvpnserverconfigurationvpnprofileResponse,
+      OperationState<GeneratevirtualwanvpnserverconfigurationvpnprofileResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      lroResourceLocationConfig: "location"
+      resourceLocationConfig: "location"
     });
     await poller.poll();
     return poller;

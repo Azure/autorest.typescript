@@ -12,8 +12,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   GremlinDatabaseGetResults,
   GremlinResourcesListGremlinDatabasesOptionalParams,
@@ -258,8 +262,8 @@ export class GremlinResourcesImpl implements GremlinResources {
     createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
     options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>,
+    SimplePollerLike<
+      OperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>,
       GremlinResourcesCreateUpdateGremlinDatabaseResponse
     >
   > {
@@ -269,7 +273,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     ): Promise<GremlinResourcesCreateUpdateGremlinDatabaseResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -302,19 +306,22 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
         createUpdateGremlinDatabaseParameters,
         options
       },
-      createUpdateGremlinDatabaseOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateGremlinDatabaseOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GremlinResourcesCreateUpdateGremlinDatabaseResponse,
+      OperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -359,14 +366,14 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -399,13 +406,13 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, options },
-      deleteGremlinDatabaseOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, databaseName, options },
+      spec: deleteGremlinDatabaseOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -470,10 +477,8 @@ export class GremlinResourcesImpl implements GremlinResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        GremlinResourcesUpdateGremlinDatabaseThroughputResponse
-      >,
+    SimplePollerLike<
+      OperationState<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>,
       GremlinResourcesUpdateGremlinDatabaseThroughputResponse
     >
   > {
@@ -483,7 +488,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     ): Promise<GremlinResourcesUpdateGremlinDatabaseThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -516,19 +521,22 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
         updateThroughputParameters,
         options
       },
-      updateGremlinDatabaseThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateGremlinDatabaseThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GremlinResourcesUpdateGremlinDatabaseThroughputResponse,
+      OperationState<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -574,10 +582,8 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse
-      >,
+    SimplePollerLike<
+      OperationState<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse>,
       GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse
     >
   > {
@@ -587,7 +593,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     ): Promise<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -620,13 +626,16 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, options },
-      migrateGremlinDatabaseToAutoscaleOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, databaseName, options },
+      spec: migrateGremlinDatabaseToAutoscaleOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse,
+      OperationState<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -668,8 +677,8 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
       >,
       GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
@@ -681,7 +690,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     ): Promise<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -714,13 +723,18 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, options },
-      migrateGremlinDatabaseToManualThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, accountName, databaseName, options },
+      spec: migrateGremlinDatabaseToManualThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse,
+      OperationState<
+        GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -806,8 +820,8 @@ export class GremlinResourcesImpl implements GremlinResources {
     createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
     options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>,
+    SimplePollerLike<
+      OperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>,
       GremlinResourcesCreateUpdateGremlinGraphResponse
     >
   > {
@@ -817,7 +831,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     ): Promise<GremlinResourcesCreateUpdateGremlinGraphResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -850,9 +864,9 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -860,10 +874,13 @@ export class GremlinResourcesImpl implements GremlinResources {
         createUpdateGremlinGraphParameters,
         options
       },
-      createUpdateGremlinGraphOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createUpdateGremlinGraphOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GremlinResourcesCreateUpdateGremlinGraphResponse,
+      OperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -912,14 +929,14 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     graphName: string,
     options?: GremlinResourcesDeleteGremlinGraphOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -952,13 +969,19 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, graphName, options },
-      deleteGremlinGraphOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        graphName,
+        options
+      },
+      spec: deleteGremlinGraphOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1030,8 +1053,8 @@ export class GremlinResourcesImpl implements GremlinResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>,
+    SimplePollerLike<
+      OperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>,
       GremlinResourcesUpdateGremlinGraphThroughputResponse
     >
   > {
@@ -1041,7 +1064,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     ): Promise<GremlinResourcesUpdateGremlinGraphThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1074,9 +1097,9 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         accountName,
         databaseName,
@@ -1084,10 +1107,13 @@ export class GremlinResourcesImpl implements GremlinResources {
         updateThroughputParameters,
         options
       },
-      updateGremlinGraphThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateGremlinGraphThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GremlinResourcesUpdateGremlinGraphThroughputResponse,
+      OperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1138,10 +1164,8 @@ export class GremlinResourcesImpl implements GremlinResources {
     graphName: string,
     options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        GremlinResourcesMigrateGremlinGraphToAutoscaleResponse
-      >,
+    SimplePollerLike<
+      OperationState<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse>,
       GremlinResourcesMigrateGremlinGraphToAutoscaleResponse
     >
   > {
@@ -1151,7 +1175,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     ): Promise<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1184,13 +1208,22 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, graphName, options },
-      migrateGremlinGraphToAutoscaleOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        graphName,
+        options
+      },
+      spec: migrateGremlinGraphToAutoscaleOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GremlinResourcesMigrateGremlinGraphToAutoscaleResponse,
+      OperationState<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1237,8 +1270,8 @@ export class GremlinResourcesImpl implements GremlinResources {
     graphName: string,
     options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
       >,
       GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
@@ -1250,7 +1283,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     ): Promise<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1283,13 +1316,24 @@ export class GremlinResourcesImpl implements GremlinResources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, accountName, databaseName, graphName, options },
-      migrateGremlinGraphToManualThroughputOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        graphName,
+        options
+      },
+      spec: migrateGremlinGraphToManualThroughputOperationSpec
+    });
+    const poller = await createHttpPoller<
+      GremlinResourcesMigrateGremlinGraphToManualThroughputResponse,
+      OperationState<
+        GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

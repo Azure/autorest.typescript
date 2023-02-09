@@ -2,17 +2,19 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { KeyCredential } from "@azure/core-auth";
+import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { AzureOpenAIApiClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class AzureOpenAIApiClient class.
- * @param endpoint type: string
- * @param credentials type: KeyCredential
+ * Initialize a new instance of `AzureOpenAIApiClient`
+ * @param endpoint type: string, Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * https://westus.api.cognitive.microsoft.com).
+ * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
-  credentials: KeyCredential,
+  credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {}
 ): AzureOpenAIApiClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/openai`;
@@ -20,7 +22,8 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName: "apiKey",
+      scopes: ["https://cognitiveservices.azure.com/.default"],
+      apiKeyHeaderName: "api-key",
     },
   };
 

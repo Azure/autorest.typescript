@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClient } from "../webSiteManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   Site,
   WebAppsListNextOptionalParams,
@@ -6617,8 +6621,8 @@ export class WebAppsImpl implements WebApps {
     siteEnvelope: Site,
     options?: WebAppsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateOrUpdateResponse>,
       WebAppsCreateOrUpdateResponse
     >
   > {
@@ -6628,7 +6632,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -6661,13 +6665,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, siteEnvelope, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, siteEnvelope, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateOrUpdateResponse,
+      OperationState<WebAppsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -6884,14 +6891,14 @@ export class WebAppsImpl implements WebApps {
     backupId: string,
     request: RestoreRequest,
     options?: WebAppsRestoreOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -6924,13 +6931,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, backupId, request, options },
-      restoreOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, backupId, request, options },
+      spec: restoreOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -7458,8 +7465,8 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListPublishingCredentialsOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsListPublishingCredentialsResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsListPublishingCredentialsResponse>,
       WebAppsListPublishingCredentialsResponse
     >
   > {
@@ -7469,7 +7476,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsListPublishingCredentialsResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -7502,13 +7509,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, options },
-      listPublishingCredentialsOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, options },
+      spec: listPublishingCredentialsOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsListPublishingCredentialsResponse,
+      OperationState<WebAppsListPublishingCredentialsResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -8105,8 +8115,8 @@ export class WebAppsImpl implements WebApps {
     mSDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateMSDeployOperationResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateMSDeployOperationResponse>,
       WebAppsCreateMSDeployOperationResponse
     >
   > {
@@ -8116,7 +8126,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateMSDeployOperationResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -8149,13 +8159,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, mSDeploy, options },
-      createMSDeployOperationOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, mSDeploy, options },
+      spec: createMSDeployOperationOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateMSDeployOperationResponse,
+      OperationState<WebAppsCreateMSDeployOperationResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -8269,8 +8282,8 @@ export class WebAppsImpl implements WebApps {
     functionEnvelope: FunctionEnvelope,
     options?: WebAppsCreateFunctionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateFunctionResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateFunctionResponse>,
       WebAppsCreateFunctionResponse
     >
   > {
@@ -8280,7 +8293,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateFunctionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -8313,13 +8326,22 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, functionName, functionEnvelope, options },
-      createFunctionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        name,
+        functionName,
+        functionEnvelope,
+        options
+      },
+      spec: createFunctionOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateFunctionResponse,
+      OperationState<WebAppsCreateFunctionResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -8911,8 +8933,8 @@ export class WebAppsImpl implements WebApps {
     mSDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateInstanceMSDeployOperationResponse>,
       WebAppsCreateInstanceMSDeployOperationResponse
     >
   > {
@@ -8922,7 +8944,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateInstanceMSDeployOperationResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -8955,13 +8977,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, instanceId, mSDeploy, options },
-      createInstanceMSDeployOperationOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, instanceId, mSDeploy, options },
+      spec: createInstanceMSDeployOperationOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateInstanceMSDeployOperationResponse,
+      OperationState<WebAppsCreateInstanceMSDeployOperationResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -9237,8 +9262,8 @@ export class WebAppsImpl implements WebApps {
     migrationOptions: StorageMigrationOptions,
     options?: WebAppsMigrateStorageOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsMigrateStorageResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsMigrateStorageResponse>,
       WebAppsMigrateStorageResponse
     >
   > {
@@ -9248,7 +9273,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsMigrateStorageResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -9281,13 +9306,22 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { subscriptionName, resourceGroupName, name, migrationOptions, options },
-      migrateStorageOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        subscriptionName,
+        resourceGroupName,
+        name,
+        migrationOptions,
+        options
+      },
+      spec: migrateStorageOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsMigrateStorageResponse,
+      OperationState<WebAppsMigrateStorageResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -9332,8 +9366,8 @@ export class WebAppsImpl implements WebApps {
     migrationRequestEnvelope: MigrateMySqlRequest,
     options?: WebAppsMigrateMySqlOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsMigrateMySqlResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsMigrateMySqlResponse>,
       WebAppsMigrateMySqlResponse
     >
   > {
@@ -9343,7 +9377,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsMigrateMySqlResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -9376,13 +9410,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, migrationRequestEnvelope, options },
-      migrateMySqlOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, migrationRequestEnvelope, options },
+      spec: migrateMySqlOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsMigrateMySqlResponse,
+      OperationState<WebAppsMigrateMySqlResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -9576,8 +9613,8 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>,
       WebAppsStartWebSiteNetworkTraceOperationResponse
     >
   > {
@@ -9587,7 +9624,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsStartWebSiteNetworkTraceOperationResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -9620,13 +9657,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, options },
-      startWebSiteNetworkTraceOperationOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, options },
+      spec: startWebSiteNetworkTraceOperationOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsStartWebSiteNetworkTraceOperationResponse,
+      OperationState<WebAppsStartWebSiteNetworkTraceOperationResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -9966,10 +10006,8 @@ export class WebAppsImpl implements WebApps {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
-      >,
+    SimplePollerLike<
+      OperationState<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>,
       WebAppsApproveOrRejectPrivateEndpointConnectionResponse
     >
   > {
@@ -9979,7 +10017,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -10012,19 +10050,22 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         privateEndpointConnectionName,
         privateEndpointWrapper,
         options
       },
-      approveOrRejectPrivateEndpointConnectionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: approveOrRejectPrivateEndpointConnectionOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsApproveOrRejectPrivateEndpointConnectionResponse,
+      OperationState<WebAppsApproveOrRejectPrivateEndpointConnectionResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -10069,8 +10110,8 @@ export class WebAppsImpl implements WebApps {
     privateEndpointConnectionName: string,
     options?: WebAppsDeletePrivateEndpointConnectionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsDeletePrivateEndpointConnectionResponse>,
       WebAppsDeletePrivateEndpointConnectionResponse
     >
   > {
@@ -10080,7 +10121,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsDeletePrivateEndpointConnectionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -10113,13 +10154,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, privateEndpointConnectionName, options },
-      deletePrivateEndpointConnectionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, privateEndpointConnectionName, options },
+      spec: deletePrivateEndpointConnectionOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsDeletePrivateEndpointConnectionResponse,
+      OperationState<WebAppsDeletePrivateEndpointConnectionResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -10453,14 +10497,14 @@ export class WebAppsImpl implements WebApps {
     name: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -10493,13 +10537,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, request, options },
-      restoreFromBackupBlobOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, request, options },
+      spec: restoreFromBackupBlobOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -10540,14 +10584,14 @@ export class WebAppsImpl implements WebApps {
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -10580,13 +10624,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, restoreRequest, options },
-      restoreFromDeletedAppOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, restoreRequest, options },
+      spec: restoreFromDeletedAppOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -10628,14 +10672,14 @@ export class WebAppsImpl implements WebApps {
     name: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -10668,13 +10712,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, restoreRequest, options },
-      restoreSnapshotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, restoreRequest, options },
+      spec: restoreSnapshotOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -10753,8 +10797,8 @@ export class WebAppsImpl implements WebApps {
     siteExtensionId: string,
     options?: WebAppsInstallSiteExtensionOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsInstallSiteExtensionResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsInstallSiteExtensionResponse>,
       WebAppsInstallSiteExtensionResponse
     >
   > {
@@ -10764,7 +10808,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsInstallSiteExtensionResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -10797,13 +10841,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, siteExtensionId, options },
-      installSiteExtensionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, siteExtensionId, options },
+      spec: installSiteExtensionOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsInstallSiteExtensionResponse,
+      OperationState<WebAppsInstallSiteExtensionResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -10905,8 +10952,8 @@ export class WebAppsImpl implements WebApps {
     siteEnvelope: Site,
     options?: WebAppsCreateOrUpdateSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateOrUpdateSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateOrUpdateSlotResponse>,
       WebAppsCreateOrUpdateSlotResponse
     >
   > {
@@ -10916,7 +10963,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateOrUpdateSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -10949,13 +10996,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, siteEnvelope, options },
-      createOrUpdateSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, siteEnvelope, options },
+      spec: createOrUpdateSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateOrUpdateSlotResponse,
+      OperationState<WebAppsCreateOrUpdateSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -11203,14 +11253,14 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -11243,13 +11293,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, backupId, slot, request, options },
-      restoreSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, backupId, slot, request, options },
+      spec: restoreSlotOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -11866,8 +11916,8 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListPublishingCredentialsSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsListPublishingCredentialsSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsListPublishingCredentialsSlotResponse>,
       WebAppsListPublishingCredentialsSlotResponse
     >
   > {
@@ -11877,7 +11927,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsListPublishingCredentialsSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -11910,13 +11960,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, options },
-      listPublishingCredentialsSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, options },
+      spec: listPublishingCredentialsSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsListPublishingCredentialsSlotResponse,
+      OperationState<WebAppsListPublishingCredentialsSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -12559,8 +12612,8 @@ export class WebAppsImpl implements WebApps {
     mSDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateMSDeployOperationSlotResponse>,
       WebAppsCreateMSDeployOperationSlotResponse
     >
   > {
@@ -12570,7 +12623,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateMSDeployOperationSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -12603,13 +12656,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, mSDeploy, options },
-      createMSDeployOperationSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, mSDeploy, options },
+      spec: createMSDeployOperationSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateMSDeployOperationSlotResponse,
+      OperationState<WebAppsCreateMSDeployOperationSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -12736,8 +12792,8 @@ export class WebAppsImpl implements WebApps {
     functionEnvelope: FunctionEnvelope,
     options?: WebAppsCreateInstanceFunctionSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateInstanceFunctionSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateInstanceFunctionSlotResponse>,
       WebAppsCreateInstanceFunctionSlotResponse
     >
   > {
@@ -12747,7 +12803,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateInstanceFunctionSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -12780,9 +12836,9 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         functionName,
@@ -12790,10 +12846,13 @@ export class WebAppsImpl implements WebApps {
         functionEnvelope,
         options
       },
-      createInstanceFunctionSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createInstanceFunctionSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateInstanceFunctionSlotResponse,
+      OperationState<WebAppsCreateInstanceFunctionSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -13471,8 +13530,8 @@ export class WebAppsImpl implements WebApps {
     mSDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>,
       WebAppsCreateInstanceMSDeployOperationSlotResponse
     >
   > {
@@ -13482,7 +13541,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateInstanceMSDeployOperationSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -13515,13 +13574,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, instanceId, mSDeploy, options },
-      createInstanceMSDeployOperationSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, instanceId, mSDeploy, options },
+      spec: createInstanceMSDeployOperationSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateInstanceMSDeployOperationSlotResponse,
+      OperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -14013,8 +14075,8 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>,
       WebAppsStartWebSiteNetworkTraceOperationSlotResponse
     >
   > {
@@ -14024,7 +14086,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsStartWebSiteNetworkTraceOperationSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -14057,13 +14119,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, options },
-      startWebSiteNetworkTraceOperationSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, options },
+      spec: startWebSiteNetworkTraceOperationSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsStartWebSiteNetworkTraceOperationSlotResponse,
+      OperationState<WebAppsStartWebSiteNetworkTraceOperationSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -14463,8 +14528,8 @@ export class WebAppsImpl implements WebApps {
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
     options?: WebAppsApproveOrRejectPrivateEndpointConnectionSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
       >,
       WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
@@ -14476,7 +14541,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -14509,9 +14574,9 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         name,
         privateEndpointConnectionName,
@@ -14519,10 +14584,15 @@ export class WebAppsImpl implements WebApps {
         privateEndpointWrapper,
         options
       },
-      approveOrRejectPrivateEndpointConnectionSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: approveOrRejectPrivateEndpointConnectionSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse,
+      OperationState<
+        WebAppsApproveOrRejectPrivateEndpointConnectionSlotResponse
+      >
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -14572,8 +14642,8 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsDeletePrivateEndpointConnectionSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>,
       WebAppsDeletePrivateEndpointConnectionSlotResponse
     >
   > {
@@ -14583,7 +14653,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsDeletePrivateEndpointConnectionSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -14616,13 +14686,22 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, privateEndpointConnectionName, slot, options },
-      deletePrivateEndpointConnectionSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
+        resourceGroupName,
+        name,
+        privateEndpointConnectionName,
+        slot,
+        options
+      },
+      spec: deletePrivateEndpointConnectionSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsDeletePrivateEndpointConnectionSlotResponse,
+      OperationState<WebAppsDeletePrivateEndpointConnectionSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -15007,14 +15086,14 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -15047,13 +15126,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, request, options },
-      restoreFromBackupBlobSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, request, options },
+      spec: restoreFromBackupBlobSlotOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -15100,14 +15179,14 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -15140,13 +15219,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, restoreRequest, options },
-      restoreFromDeletedAppSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, restoreRequest, options },
+      spec: restoreFromDeletedAppSlotOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -15193,14 +15272,14 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -15233,13 +15312,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, restoreRequest, options },
-      restoreSnapshotSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, restoreRequest, options },
+      spec: restoreSnapshotSlotOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -15330,8 +15409,8 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsInstallSiteExtensionSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsInstallSiteExtensionSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsInstallSiteExtensionSlotResponse>,
       WebAppsInstallSiteExtensionSlotResponse
     >
   > {
@@ -15341,7 +15420,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsInstallSiteExtensionSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -15374,13 +15453,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, siteExtensionId, slot, options },
-      installSiteExtensionSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, siteExtensionId, slot, options },
+      spec: installSiteExtensionSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsInstallSiteExtensionSlotResponse,
+      OperationState<WebAppsInstallSiteExtensionSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -15472,14 +15554,14 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -15512,13 +15594,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, slotSwapEntity, options },
-      swapSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, slotSwapEntity, options },
+      spec: swapSlotOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -15625,8 +15707,8 @@ export class WebAppsImpl implements WebApps {
     siteSourceControl: SiteSourceControl,
     options?: WebAppsCreateOrUpdateSourceControlSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>,
       WebAppsCreateOrUpdateSourceControlSlotResponse
     >
   > {
@@ -15636,7 +15718,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateOrUpdateSourceControlSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -15669,13 +15751,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, siteSourceControl, options },
-      createOrUpdateSourceControlSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, siteSourceControl, options },
+      spec: createOrUpdateSourceControlSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateOrUpdateSourceControlSlotResponse,
+      OperationState<WebAppsCreateOrUpdateSourceControlSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -15783,8 +15868,8 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsStartNetworkTraceSlotOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsStartNetworkTraceSlotResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsStartNetworkTraceSlotResponse>,
       WebAppsStartNetworkTraceSlotResponse
     >
   > {
@@ -15794,7 +15879,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsStartNetworkTraceSlotResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -15827,13 +15912,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slot, options },
-      startNetworkTraceSlotOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slot, options },
+      spec: startNetworkTraceSlotOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsStartNetworkTraceSlotResponse,
+      OperationState<WebAppsStartNetworkTraceSlotResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -16370,14 +16458,14 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotWithProductionOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -16410,13 +16498,13 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, slotSwapEntity, options },
-      swapSlotWithProductionOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, slotSwapEntity, options },
+      spec: swapSlotWithProductionOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -16509,8 +16597,8 @@ export class WebAppsImpl implements WebApps {
     siteSourceControl: SiteSourceControl,
     options?: WebAppsCreateOrUpdateSourceControlOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsCreateOrUpdateSourceControlResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsCreateOrUpdateSourceControlResponse>,
       WebAppsCreateOrUpdateSourceControlResponse
     >
   > {
@@ -16520,7 +16608,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsCreateOrUpdateSourceControlResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -16553,13 +16641,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, siteSourceControl, options },
-      createOrUpdateSourceControlOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, siteSourceControl, options },
+      spec: createOrUpdateSourceControlOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsCreateOrUpdateSourceControlResponse,
+      OperationState<WebAppsCreateOrUpdateSourceControlResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -16652,8 +16743,8 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsStartNetworkTraceOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<WebAppsStartNetworkTraceResponse>,
+    SimplePollerLike<
+      OperationState<WebAppsStartNetworkTraceResponse>,
       WebAppsStartNetworkTraceResponse
     >
   > {
@@ -16663,7 +16754,7 @@ export class WebAppsImpl implements WebApps {
     ): Promise<WebAppsStartNetworkTraceResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -16696,13 +16787,16 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, options },
-      startNetworkTraceOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, options },
+      spec: startNetworkTraceOperationSpec
+    });
+    const poller = await createHttpPoller<
+      WebAppsStartNetworkTraceResponse,
+      OperationState<WebAppsStartNetworkTraceResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

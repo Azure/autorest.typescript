@@ -4,7 +4,7 @@
 /** The details of a project deployment. */
 export interface DeploymentOutput {
   /** The name of the deployment. */
-  name: string;
+  readonly name: string;
   /** The ID of the end-user, for use in tracking and rate-limiting. */
   user?: string;
   /** input type of embedding search to use */

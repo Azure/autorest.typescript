@@ -21,7 +21,6 @@ export interface DeploymentCreationParameters {
     input: string | string[] | number[] | number[][];
     input_type?: string;
     model?: string;
-    name: string;
     user?: string;
 }
 
@@ -30,7 +29,7 @@ export interface DeploymentOutput {
     input: string | string[] | number[] | number[][];
     input_type?: string;
     model?: string;
-    name: string;
+    readonly name: string;
     user?: string;
 }
 

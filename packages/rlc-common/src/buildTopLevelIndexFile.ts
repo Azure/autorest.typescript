@@ -5,6 +5,7 @@ import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { RLCModel } from "./interfaces.js";
 import { Project } from "ts-morph";
 import * as path from "path";
+import { getRelativePartFromSrcPath } from "./helpers/pathUtils.js";
 
 const batchOutputFolder: [string, string, string][] = [];
 
@@ -18,7 +19,7 @@ export function buildTopLevelIndex(model: RLCModel) {
   if (srcPath) {
     const clientName = model.libraryName;
     const moduleName = normalizeName(clientName, NameType.File);
-    const relativePath = "." + srcPath.substring(srcPath.indexOf("/src/") + 4);
+    const relativePath = "./" + getRelativePartFromSrcPath(srcPath);
     batchOutputFolder.push([relativePath, clientName, moduleName]);
   }
   if (
@@ -42,7 +43,10 @@ export function buildTopLevelIndex(model: RLCModel) {
       namedExports: [...allModules]
     });
     const content = indexFile.getFullText();
-    const filePath = path.join(srcPath.substring(0, srcPath.indexOf("/src/") + 5), `index.ts`);
+    const filePath = path.join(
+      srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4),
+      `index.ts`
+    );
     return { path: filePath, content };
   }
 }

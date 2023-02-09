@@ -4,15 +4,15 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
-  ApplicationListOutput,
+  ApplicationListResultOutput,
   ApplicationOutput,
   PoolUsageMetricsListOutput,
   PoolStatisticsOutput,
   BatchPoolListResultOutput,
   BatchPoolOutput,
   AutoScaleRunOutput,
-  ImageInformationListOutput,
-  PoolNodeCountsListOutput,
+  AccountListSupportedImagesResultOutput,
+  PoolNodeCountsListResultOutput,
   JobStatisticsOutput,
   BatchJobOutput,
   BatchJobListResultOutput,
@@ -29,15 +29,28 @@ import {
   BatchTaskListSubtasksResultOutput,
   ComputeNodeOutput,
   ComputeNodeGetRemoteLoginSettingsResultOutput,
+  UploadBatchServiceLogsResultOutput,
   ComputeNodeListResultOutput,
   NodeVMExtensionOutput,
   NodeVMExtensionListOutput,
 } from "./outputModels";
 
+export interface ApplicationOperationsList200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
 export interface ApplicationOperationsList200Response extends HttpResponse {
   status: "200";
-  body: ApplicationListOutput;
+  body: ApplicationListResultOutput;
+  headers: RawHttpHeaders & ApplicationOperationsList200Headers;
 }
 
 export interface ApplicationOperationsListDefaultResponse extends HttpResponse {
@@ -57,343 +70,688 @@ export interface ApplicationOperationsGetDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface PoolOperationsListUsageMetrics200Response
-  extends HttpResponse {
+export interface PoolListUsageMetrics200Response extends HttpResponse {
   status: "200";
   body: PoolUsageMetricsListOutput;
 }
 
-export interface PoolOperationsListUsageMetricsDefaultResponse
-  extends HttpResponse {
+export interface PoolListUsageMetricsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface PoolGetAllLifetimeStatistics200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
-export interface PoolOperationsGetAllLifetimeStatistics200Response
-  extends HttpResponse {
+export interface PoolGetAllLifetimeStatistics200Response extends HttpResponse {
   status: "200";
   body: PoolStatisticsOutput;
+  headers: RawHttpHeaders & PoolGetAllLifetimeStatistics200Headers;
 }
 
-export interface PoolOperationsGetAllLifetimeStatisticsDefaultResponse
+export interface PoolGetAllLifetimeStatisticsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsAdd204Response extends HttpResponse {
-  status: "204";
+export interface PoolAdd201Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
 }
 
-export interface PoolOperationsAddDefaultResponse extends HttpResponse {
+/** The request has succeeded and a new resource has been created as a result. */
+export interface PoolAdd201Response extends HttpResponse {
+  status: "201";
+  headers: RawHttpHeaders & PoolAdd201Headers;
+}
+
+export interface PoolAddDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface PoolList200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
-export interface PoolOperationsList200Response extends HttpResponse {
+export interface PoolList200Response extends HttpResponse {
   status: "200";
   body: BatchPoolListResultOutput;
+  headers: RawHttpHeaders & PoolList200Headers;
 }
 
-export interface PoolOperationsListDefaultResponse extends HttpResponse {
+export interface PoolListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsDelete204Response extends HttpResponse {
-  status: "204";
+export interface PoolDelete202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
 }
 
-export interface PoolOperationsDeleteDefaultResponse extends HttpResponse {
+/** The parameters for a widget status request */
+export interface PoolDelete202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & PoolDelete202Headers;
+}
+
+export interface PoolDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsExists204Response extends HttpResponse {
-  status: "204";
+/** The Pool does not exist. */
+export interface PoolExists404Response extends HttpResponse {
+  status: "404";
 }
 
-export interface PoolOperationsExistsDefaultResponse extends HttpResponse {
+export interface PoolExistsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
+}
+
+export interface PoolGet200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
 }
 
 /** The request has succeeded. */
-export interface PoolOperationsGet200Response extends HttpResponse {
+export interface PoolGet200Response extends HttpResponse {
   status: "200";
   body: BatchPoolOutput;
+  headers: RawHttpHeaders & PoolGet200Headers;
 }
 
-export interface PoolOperationsGetDefaultResponse extends HttpResponse {
+export interface PoolGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsPatch204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface PoolOperationsPatchDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsDisableAutoScale204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-export interface PoolOperationsDisableAutoScaleDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsEnableAutoScale204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface PoolOperationsEnableAutoScaleDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
+export interface PoolPatch200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
 }
 
 /** The request has succeeded. */
-export interface PoolOperationsEvaluateAutoScale200Response
-  extends HttpResponse {
+export interface PoolPatch200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & PoolPatch200Headers;
+}
+
+export interface PoolPatchDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface PoolDisableAutoScale200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface PoolDisableAutoScale200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & PoolDisableAutoScale200Headers;
+}
+
+export interface PoolDisableAutoScaleDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface PoolEnableAutoScale200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface PoolEnableAutoScale200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & PoolEnableAutoScale200Headers;
+}
+
+export interface PoolEnableAutoScaleDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface PoolEvaluateAutoScale200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface PoolEvaluateAutoScale200Response extends HttpResponse {
   status: "200";
   body: AutoScaleRunOutput;
+  headers: RawHttpHeaders & PoolEvaluateAutoScale200Headers;
 }
 
-export interface PoolOperationsEvaluateAutoScaleDefaultResponse
-  extends HttpResponse {
+export interface PoolEvaluateAutoScaleDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsResize204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface PoolOperationsResizeDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsStopResize204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface PoolOperationsStopResizeDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsUpdateProperties204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-export interface PoolOperationsUpdatePropertiesDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface PoolOperationsRemoveNodes204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface PoolOperationsRemoveNodesDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
+export interface PoolResize200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
 }
 
 /** The request has succeeded. */
-export interface AccountOperationsListSupportedImages200Response
-  extends HttpResponse {
+export interface PoolResize200Response extends HttpResponse {
   status: "200";
-  body: ImageInformationListOutput;
+  headers: RawHttpHeaders & PoolResize200Headers;
 }
 
-export interface AccountOperationsListSupportedImagesDefaultResponse
-  extends HttpResponse {
+export interface PoolResizeDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface PoolStopResize200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
 /** The request has succeeded. */
-export interface AccountOperationsListPoolNodeCounts200Response
-  extends HttpResponse {
+export interface PoolStopResize200Response extends HttpResponse {
   status: "200";
-  body: PoolNodeCountsListOutput;
+  headers: RawHttpHeaders & PoolStopResize200Headers;
 }
 
-export interface AccountOperationsListPoolNodeCountsDefaultResponse
+export interface PoolStopResizeDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface PoolUpdateProperties200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface PoolUpdateProperties200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & PoolUpdateProperties200Headers;
+}
+
+export interface PoolUpdatePropertiesDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface PoolRemoveNodes200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface PoolRemoveNodes200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & PoolRemoveNodes200Headers;
+}
+
+export interface PoolRemoveNodesDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface AccountListSupportedImages200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface AccountListSupportedImages200Response extends HttpResponse {
+  status: "200";
+  body: AccountListSupportedImagesResultOutput;
+  headers: RawHttpHeaders & AccountListSupportedImages200Headers;
+}
+
+export interface AccountListSupportedImagesDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface AccountListPoolNodeCounts200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+}
+
 /** The request has succeeded. */
-export interface JobOperationsGetAllLifetimeStatistics200Response
-  extends HttpResponse {
+export interface AccountListPoolNodeCounts200Response extends HttpResponse {
+  status: "200";
+  body: PoolNodeCountsListResultOutput;
+  headers: RawHttpHeaders & AccountListPoolNodeCounts200Headers;
+}
+
+export interface AccountListPoolNodeCountsDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobGetAllLifetimeStatistics200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface JobGetAllLifetimeStatistics200Response extends HttpResponse {
   status: "200";
   body: JobStatisticsOutput;
+  headers: RawHttpHeaders & JobGetAllLifetimeStatistics200Headers;
 }
 
-export interface JobOperationsGetAllLifetimeStatisticsDefaultResponse
+export interface JobGetAllLifetimeStatisticsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobOperationsDelete204Response extends HttpResponse {
-  status: "204";
+export interface JobDelete202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
 }
 
-export interface JobOperationsDeleteDefaultResponse extends HttpResponse {
+/** The parameters for a widget status request */
+export interface JobDelete202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & JobDelete202Headers;
+}
+
+export interface JobDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface JobGet200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
-export interface JobOperationsGet200Response extends HttpResponse {
+export interface JobGet200Response extends HttpResponse {
   status: "200";
   body: BatchJobOutput;
+  headers: RawHttpHeaders & JobGet200Headers;
 }
 
-export interface JobOperationsGetDefaultResponse extends HttpResponse {
+export interface JobGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobOperationsPatch204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobOperationsPatchDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobOperationsUpdate204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobOperationsUpdateDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobOperationsDisable204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobOperationsDisableDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobOperationsEnable204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobOperationsEnableDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobOperationsTerminate204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobOperationsTerminateDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobOperationsAdd204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobOperationsAddDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
+export interface JobPatch200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
 }
 
 /** The request has succeeded. */
-export interface JobOperationsList200Response extends HttpResponse {
+export interface JobPatch200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & JobPatch200Headers;
+}
+
+export interface JobPatchDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobUpdate200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface JobUpdate200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & JobUpdate200Headers;
+}
+
+export interface JobUpdateDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobDisable202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface JobDisable202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & JobDisable202Headers;
+}
+
+export interface JobDisableDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobEnable202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface JobEnable202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & JobEnable202Headers;
+}
+
+export interface JobEnableDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobTerminate202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface JobTerminate202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & JobTerminate202Headers;
+}
+
+export interface JobTerminateDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobAdd201Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
+  dataserviceid: string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
+export interface JobAdd201Response extends HttpResponse {
+  status: "201";
+  headers: RawHttpHeaders & JobAdd201Headers;
+}
+
+export interface JobAddDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobList200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface JobList200Response extends HttpResponse {
   status: "200";
   body: BatchJobListResultOutput;
+  headers: RawHttpHeaders & JobList200Headers;
 }
 
-export interface JobOperationsListDefaultResponse extends HttpResponse {
+export interface JobListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface JobListFromJobSchedule200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
-export interface JobOperationsListFromJobSchedule200Response
-  extends HttpResponse {
+export interface JobListFromJobSchedule200Response extends HttpResponse {
   status: "200";
   body: BatchJobListResultOutput;
+  headers: RawHttpHeaders & JobListFromJobSchedule200Headers;
 }
 
-export interface JobOperationsListFromJobScheduleDefaultResponse
-  extends HttpResponse {
+export interface JobListFromJobScheduleDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface JobListPreparationAndReleaseTaskStatus200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
-export interface JobOperationsListPreparationAndReleaseTaskStatus200Response
+export interface JobListPreparationAndReleaseTaskStatus200Response
   extends HttpResponse {
   status: "200";
   body: BatchJobListPreparationAndReleaseTaskStatusResultOutput;
+  headers: RawHttpHeaders & JobListPreparationAndReleaseTaskStatus200Headers;
 }
 
-export interface JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse
+export interface JobListPreparationAndReleaseTaskStatusDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
+}
+
+export interface JobGetTaskCounts200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
 }
 
 /** The request has succeeded. */
-export interface JobOperationsGetTaskCounts200Response extends HttpResponse {
+export interface JobGetTaskCounts200Response extends HttpResponse {
   status: "200";
   body: TaskCountsResultOutput;
+  headers: RawHttpHeaders & JobGetTaskCounts200Headers;
 }
 
-export interface JobOperationsGetTaskCountsDefaultResponse
-  extends HttpResponse {
+export interface JobGetTaskCountsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface CertificateOperationsAdd204Response extends HttpResponse {
-  status: "204";
+export interface CertificateOperationsAdd201Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
+export interface CertificateOperationsAdd201Response extends HttpResponse {
+  status: "201";
+  headers: RawHttpHeaders & CertificateOperationsAdd201Headers;
 }
 
 export interface CertificateOperationsAddDefaultResponse extends HttpResponse {
@@ -401,10 +759,22 @@ export interface CertificateOperationsAddDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface CertificateOperationsList200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
 export interface CertificateOperationsList200Response extends HttpResponse {
   status: "200";
   body: CertificateListResultOutput;
+  headers: RawHttpHeaders & CertificateOperationsList200Headers;
 }
 
 export interface CertificateOperationsListDefaultResponse extends HttpResponse {
@@ -412,10 +782,24 @@ export interface CertificateOperationsListDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface CertificateOperationsCancelDeletion204Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
 /** There is no content to send for this request, but the headers may be useful. */
 export interface CertificateOperationsCancelDeletion204Response
   extends HttpResponse {
   status: "204";
+  headers: RawHttpHeaders & CertificateOperationsCancelDeletion204Headers;
 }
 
 export interface CertificateOperationsCancelDeletionDefaultResponse
@@ -424,9 +808,21 @@ export interface CertificateOperationsCancelDeletionDefaultResponse
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface CertificateOperationsDelete204Response extends HttpResponse {
-  status: "204";
+export interface CertificateOperationsDelete202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface CertificateOperationsDelete202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & CertificateOperationsDelete202Headers;
 }
 
 export interface CertificateOperationsDeleteDefaultResponse
@@ -435,10 +831,22 @@ export interface CertificateOperationsDeleteDefaultResponse
   body: ErrorResponse;
 }
 
+export interface CertificateOperationsGet200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
 export interface CertificateOperationsGet200Response extends HttpResponse {
   status: "200";
   body: CertificateOutput;
+  headers: RawHttpHeaders & CertificateOperationsGet200Headers;
 }
 
 export interface CertificateOperationsGetDefaultResponse extends HttpResponse {
@@ -446,309 +854,678 @@ export interface CertificateOperationsGetDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface FileOperationsDeleteFromTask204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface FileOperationsDeleteFromTaskDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface FileOperationsGetFromTask204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface FileOperationsGetFromTaskDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface FileOperationsGetPropertiesFromTask204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-export interface FileOperationsGetPropertiesFromTaskDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface FileOperationsDeleteFromComputeNode204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-export interface FileOperationsDeleteFromComputeNodeDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface FileOperationsGetFromComputeNode204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-export interface FileOperationsGetFromComputeNodeDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface FileOperationsGetPropertiesFromComputeNode204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-export interface FileOperationsGetPropertiesFromComputeNodeDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
+export interface FileDeleteFromTask200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
 }
 
 /** The request has succeeded. */
-export interface FileOperationsListFromTask200Response extends HttpResponse {
+export interface FileDeleteFromTask200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & FileDeleteFromTask200Headers;
+}
+
+export interface FileDeleteFromTaskDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface FileGetFromTask200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The file creation time. */
+  "ocp-creation-time"?: string;
+  /** Whether the object represents a directory. */
+  "ocp-batch-file-isdirectory": boolean;
+  /** The URL of the file. */
+  "ocp-batch-file-url": string;
+  /** The file mode attribute in octal format. */
+  "ocp-batch-file-mode": string;
+  /** The length of the file. */
+  "content-length": number;
+}
+
+/** The request has succeeded. */
+export interface FileGetFromTask200Response extends HttpResponse {
+  status: "200";
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
+  headers: RawHttpHeaders & FileGetFromTask200Headers;
+}
+
+export interface FileGetFromTaskDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface FileGetPropertiesFromTask200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The file creation time. */
+  "ocp-creation-time"?: string;
+  /** Whether the object represents a directory. */
+  "ocp-batch-file-isdirectory": boolean;
+  /** The URL of the file. */
+  "ocp-batch-file-url": string;
+  /** The file mode attribute in octal format. */
+  "ocp-batch-file-mode": string;
+  /** The length of the file. */
+  "content-length": number;
+}
+
+/** The request has succeeded. */
+export interface FileGetPropertiesFromTask200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & FileGetPropertiesFromTask200Headers;
+}
+
+export interface FileGetPropertiesFromTaskDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface FileDeleteFromComputeNode200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+}
+
+/** The request has succeeded. */
+export interface FileDeleteFromComputeNode200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & FileDeleteFromComputeNode200Headers;
+}
+
+export interface FileDeleteFromComputeNodeDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface FileGetFromComputeNode200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The file creation time. */
+  "ocp-creation-time"?: string;
+  /** Whether the object represents a directory. */
+  "ocp-batch-file-isdirectory": boolean;
+  /** The URL of the file. */
+  "ocp-batch-file-url": string;
+  /** The file mode attribute in octal format. */
+  "ocp-batch-file-mode": string;
+  /** The length of the file. */
+  "content-length": number;
+}
+
+/** The request has succeeded. */
+export interface FileGetFromComputeNode200Response extends HttpResponse {
+  status: "200";
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
+  headers: RawHttpHeaders & FileGetFromComputeNode200Headers;
+}
+
+export interface FileGetFromComputeNodeDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface FileGetPropertiesFromComputeNode200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The file creation time. */
+  "ocp-creation-time"?: string;
+  /** Whether the object represents a directory. */
+  "ocp-batch-file-isdirectory": boolean;
+  /** The URL of the file. */
+  "ocp-batch-file-url": string;
+  /** The file mode attribute in octal format. */
+  "ocp-batch-file-mode": string;
+  /** The length of the file. */
+  "content-length": number;
+}
+
+/** The request has succeeded. */
+export interface FileGetPropertiesFromComputeNode200Response
+  extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & FileGetPropertiesFromComputeNode200Headers;
+}
+
+export interface FileGetPropertiesFromComputeNodeDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface FileListFromTask200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface FileListFromTask200Response extends HttpResponse {
   status: "200";
   body: NodeFileListResultOutput;
+  headers: RawHttpHeaders & FileListFromTask200Headers;
 }
 
-export interface FileOperationsListFromTaskDefaultResponse
-  extends HttpResponse {
+export interface FileListFromTaskDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface FileListFromComputeNode200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
-export interface FileOperationsListFromComputeNode200Response
-  extends HttpResponse {
+export interface FileListFromComputeNode200Response extends HttpResponse {
   status: "200";
   body: NodeFileListResultOutput;
+  headers: RawHttpHeaders & FileListFromComputeNode200Headers;
 }
 
-export interface FileOperationsListFromComputeNodeDefaultResponse
-  extends HttpResponse {
+export interface FileListFromComputeNodeDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleOperationsExists204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobScheduleOperationsExistsDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleOperationsDelete204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobScheduleOperationsDeleteDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
+export interface JobScheduleExists200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
 }
 
 /** The request has succeeded. */
-export interface JobScheduleOperationsGet200Response extends HttpResponse {
+export interface JobScheduleExists200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & JobScheduleExists200Headers;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface JobScheduleExists204Response extends HttpResponse {
+  status: "204";
+}
+
+export interface JobScheduleExistsDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobScheduleDelete202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+}
+
+/** The parameters for a widget status request */
+export interface JobScheduleDelete202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & JobScheduleDelete202Headers;
+}
+
+export interface JobScheduleDeleteDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobScheduleGet200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface JobScheduleGet200Response extends HttpResponse {
   status: "200";
   body: BatchJobScheduleOutput;
+  headers: RawHttpHeaders & JobScheduleGet200Headers;
 }
 
-export interface JobScheduleOperationsGetDefaultResponse extends HttpResponse {
+export interface JobScheduleGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleOperationsPatch204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobScheduleOperationsPatchDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleOperationsUpdate204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobScheduleOperationsUpdateDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleOperationsDisable204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobScheduleOperationsDisableDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleOperationsEnable204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobScheduleOperationsEnableDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleOperationsTerminate204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-export interface JobScheduleOperationsTerminateDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleOperationsAdd204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface JobScheduleOperationsAddDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
+export interface JobSchedulePatch200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
 }
 
 /** The request has succeeded. */
-export interface JobScheduleOperationsList200Response extends HttpResponse {
+export interface JobSchedulePatch200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & JobSchedulePatch200Headers;
+}
+
+export interface JobSchedulePatchDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobScheduleUpdate200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface JobScheduleUpdate200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & JobScheduleUpdate200Headers;
+}
+
+export interface JobScheduleUpdateDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobScheduleDisable204Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface JobScheduleDisable204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & JobScheduleDisable204Headers;
+}
+
+export interface JobScheduleDisableDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobScheduleEnable204Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface JobScheduleEnable204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & JobScheduleEnable204Headers;
+}
+
+export interface JobScheduleEnableDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobScheduleTerminate202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface JobScheduleTerminate202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & JobScheduleTerminate202Headers;
+}
+
+export interface JobScheduleTerminateDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobScheduleAdd201Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
+export interface JobScheduleAdd201Response extends HttpResponse {
+  status: "201";
+  headers: RawHttpHeaders & JobScheduleAdd201Headers;
+}
+
+export interface JobScheduleAddDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface JobScheduleList200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface JobScheduleList200Response extends HttpResponse {
   status: "200";
   body: BatchJobScheduleListResultOutput;
+  headers: RawHttpHeaders & JobScheduleList200Headers;
 }
 
-export interface JobScheduleOperationsListDefaultResponse extends HttpResponse {
+export interface JobScheduleListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface TaskOperationsAdd204Response extends HttpResponse {
-  status: "204";
+export interface TaskAdd201Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
 }
 
-export interface TaskOperationsAddDefaultResponse extends HttpResponse {
+/** The request has succeeded and a new resource has been created as a result. */
+export interface TaskAdd201Response extends HttpResponse {
+  status: "201";
+  headers: RawHttpHeaders & TaskAdd201Headers;
+}
+
+export interface TaskAddDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
+}
+
+export interface TaskList200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
 }
 
 /** The request has succeeded. */
-export interface TaskOperationsList200Response extends HttpResponse {
+export interface TaskList200Response extends HttpResponse {
   status: "200";
   body: BatchTaskListResultOutput;
+  headers: RawHttpHeaders & TaskList200Headers;
 }
 
-export interface TaskOperationsListDefaultResponse extends HttpResponse {
+export interface TaskListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
+export interface TaskAddCollection200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+}
+
 /** The request has succeeded. */
-export interface TaskOperationsAddCollection200Response extends HttpResponse {
+export interface TaskAddCollection200Response extends HttpResponse {
   status: "200";
   body: TaskAddCollectionResultOutput;
+  headers: RawHttpHeaders & TaskAddCollection200Headers;
 }
 
-export interface TaskOperationsAddCollectionDefaultResponse
-  extends HttpResponse {
+export interface TaskAddCollectionDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface TaskOperationsDelete204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface TaskOperationsDeleteDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
+export interface TaskDelete200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
 }
 
 /** The request has succeeded. */
-export interface TaskOperationsGet200Response extends HttpResponse {
+export interface TaskDelete200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & TaskDelete200Headers;
+}
+
+export interface TaskDeleteDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface TaskGet200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface TaskGet200Response extends HttpResponse {
   status: "200";
   body: BatchTaskOutput;
+  headers: RawHttpHeaders & TaskGet200Headers;
 }
 
-export interface TaskOperationsGetDefaultResponse extends HttpResponse {
+export interface TaskGetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface TaskOperationsUpdate204Response extends HttpResponse {
-  status: "204";
-}
-
-export interface TaskOperationsUpdateDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
+export interface TaskUpdate200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
 }
 
 /** The request has succeeded. */
-export interface TaskOperationsListSubtasks200Response extends HttpResponse {
+export interface TaskUpdate200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & TaskUpdate200Headers;
+}
+
+export interface TaskUpdateDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+}
+
+export interface TaskListSubtasks200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface TaskListSubtasks200Response extends HttpResponse {
   status: "200";
   body: BatchTaskListSubtasksResultOutput;
+  headers: RawHttpHeaders & TaskListSubtasks200Headers;
 }
 
-export interface TaskOperationsListSubtasksDefaultResponse
-  extends HttpResponse {
+export interface TaskListSubtasksDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface TaskOperationsTerminate204Response extends HttpResponse {
-  status: "204";
+export interface TaskTerminate204Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
 }
 
-export interface TaskOperationsTerminateDefaultResponse extends HttpResponse {
+/** There is no content to send for this request, but the headers may be useful. */
+export interface TaskTerminate204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & TaskTerminate204Headers;
+}
+
+export interface TaskTerminateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface TaskOperationsReactivate204Response extends HttpResponse {
-  status: "204";
+export interface TaskReactivate204Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
 }
 
-export interface TaskOperationsReactivateDefaultResponse extends HttpResponse {
+/** There is no content to send for this request, but the headers may be useful. */
+export interface TaskReactivate204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & TaskReactivate204Headers;
+}
+
+export interface TaskReactivateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ComputeNodeOperationsAddUser204Response extends HttpResponse {
-  status: "204";
+export interface ComputeNodeOperationsAddUser201Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
+export interface ComputeNodeOperationsAddUser201Response extends HttpResponse {
+  status: "201";
+  headers: RawHttpHeaders & ComputeNodeOperationsAddUser201Headers;
 }
 
 export interface ComputeNodeOperationsAddUserDefaultResponse
@@ -757,10 +1534,18 @@ export interface ComputeNodeOperationsAddUserDefaultResponse
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ComputeNodeOperationsDeleteUser204Response
+export interface ComputeNodeOperationsDeleteUser200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+}
+
+/** The request has succeeded. */
+export interface ComputeNodeOperationsDeleteUser200Response
   extends HttpResponse {
-  status: "204";
+  status: "200";
+  headers: RawHttpHeaders & ComputeNodeOperationsDeleteUser200Headers;
 }
 
 export interface ComputeNodeOperationsDeleteUserDefaultResponse
@@ -769,10 +1554,24 @@ export interface ComputeNodeOperationsDeleteUserDefaultResponse
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ComputeNodeOperationsUpdateUser204Response
+export interface ComputeNodeOperationsUpdateUser200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface ComputeNodeOperationsUpdateUser200Response
   extends HttpResponse {
-  status: "204";
+  status: "200";
+  headers: RawHttpHeaders & ComputeNodeOperationsUpdateUser200Headers;
 }
 
 export interface ComputeNodeOperationsUpdateUserDefaultResponse
@@ -781,10 +1580,22 @@ export interface ComputeNodeOperationsUpdateUserDefaultResponse
   body: ErrorResponse;
 }
 
+export interface ComputeNodeOperationsGet200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
 export interface ComputeNodeOperationsGet200Response extends HttpResponse {
   status: "200";
   body: ComputeNodeOutput;
+  headers: RawHttpHeaders & ComputeNodeOperationsGet200Headers;
 }
 
 export interface ComputeNodeOperationsGetDefaultResponse extends HttpResponse {
@@ -792,9 +1603,23 @@ export interface ComputeNodeOperationsGetDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ComputeNodeOperationsReboot204Response extends HttpResponse {
-  status: "204";
+export interface ComputeNodeOperationsReboot202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface ComputeNodeOperationsReboot202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & ComputeNodeOperationsReboot202Headers;
 }
 
 export interface ComputeNodeOperationsRebootDefaultResponse
@@ -803,9 +1628,23 @@ export interface ComputeNodeOperationsRebootDefaultResponse
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ComputeNodeOperationsReimage204Response extends HttpResponse {
-  status: "204";
+export interface ComputeNodeOperationsReimage202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface ComputeNodeOperationsReimage202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & ComputeNodeOperationsReimage202Headers;
 }
 
 export interface ComputeNodeOperationsReimageDefaultResponse
@@ -814,10 +1653,24 @@ export interface ComputeNodeOperationsReimageDefaultResponse
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ComputeNodeOperationsDisableScheduling204Response
+export interface ComputeNodeOperationsDisableScheduling200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface ComputeNodeOperationsDisableScheduling200Response
   extends HttpResponse {
-  status: "204";
+  status: "200";
+  headers: RawHttpHeaders & ComputeNodeOperationsDisableScheduling200Headers;
 }
 
 export interface ComputeNodeOperationsDisableSchedulingDefaultResponse
@@ -826,10 +1679,24 @@ export interface ComputeNodeOperationsDisableSchedulingDefaultResponse
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ComputeNodeOperationsEnableScheduling204Response
+export interface ComputeNodeOperationsEnableScheduling200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface ComputeNodeOperationsEnableScheduling200Response
   extends HttpResponse {
-  status: "204";
+  status: "200";
+  headers: RawHttpHeaders & ComputeNodeOperationsEnableScheduling200Headers;
 }
 
 export interface ComputeNodeOperationsEnableSchedulingDefaultResponse
@@ -838,11 +1705,24 @@ export interface ComputeNodeOperationsEnableSchedulingDefaultResponse
   body: ErrorResponse;
 }
 
+export interface ComputeNodeOperationsGetRemoteLoginSettings200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
 export interface ComputeNodeOperationsGetRemoteLoginSettings200Response
   extends HttpResponse {
   status: "200";
   body: ComputeNodeGetRemoteLoginSettingsResultOutput;
+  headers: RawHttpHeaders &
+    ComputeNodeOperationsGetRemoteLoginSettings200Headers;
 }
 
 export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse
@@ -851,10 +1731,24 @@ export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse
   body: ErrorResponse;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ComputeNodeOperationsGetRemoteDesktop204Response
+export interface ComputeNodeOperationsGetRemoteDesktop200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface ComputeNodeOperationsGetRemoteDesktop200Response
   extends HttpResponse {
-  status: "204";
+  status: "200";
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
+  headers: RawHttpHeaders & ComputeNodeOperationsGetRemoteDesktop200Headers;
 }
 
 export interface ComputeNodeOperationsGetRemoteDesktopDefaultResponse
@@ -863,16 +1757,20 @@ export interface ComputeNodeOperationsGetRemoteDesktopDefaultResponse
   body: ErrorResponse;
 }
 
-export interface ComputeNodeOperationsUploadBatchServiceLogs201Headers {
-  location: string;
+export interface ComputeNodeOperationsUploadBatchServiceLogs200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
 }
 
-/** The request has succeeded and a new resource has been created as a result. */
-export interface ComputeNodeOperationsUploadBatchServiceLogs201Response
+/** The request has succeeded. */
+export interface ComputeNodeOperationsUploadBatchServiceLogs200Response
   extends HttpResponse {
-  status: "201";
+  status: "200";
+  body: UploadBatchServiceLogsResultOutput;
   headers: RawHttpHeaders &
-    ComputeNodeOperationsUploadBatchServiceLogs201Headers;
+    ComputeNodeOperationsUploadBatchServiceLogs200Headers;
 }
 
 export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse
@@ -881,10 +1779,22 @@ export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse
   body: ErrorResponse;
 }
 
+export interface ComputeNodeOperationsList200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
 export interface ComputeNodeOperationsList200Response extends HttpResponse {
   status: "200";
   body: ComputeNodeListResultOutput;
+  headers: RawHttpHeaders & ComputeNodeOperationsList200Headers;
 }
 
 export interface ComputeNodeOperationsListDefaultResponse extends HttpResponse {
@@ -892,11 +1802,23 @@ export interface ComputeNodeOperationsListDefaultResponse extends HttpResponse {
   body: ErrorResponse;
 }
 
+export interface ComputeNodeExtensionOperationsGet200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
 export interface ComputeNodeExtensionOperationsGet200Response
   extends HttpResponse {
   status: "200";
   body: NodeVMExtensionOutput;
+  headers: RawHttpHeaders & ComputeNodeExtensionOperationsGet200Headers;
 }
 
 export interface ComputeNodeExtensionOperationsGetDefaultResponse
@@ -905,11 +1827,23 @@ export interface ComputeNodeExtensionOperationsGetDefaultResponse
   body: ErrorResponse;
 }
 
+export interface ComputeNodeExtensionOperationsList200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
 /** The request has succeeded. */
 export interface ComputeNodeExtensionOperationsList200Response
   extends HttpResponse {
   status: "200";
   body: NodeVMExtensionListOutput;
+  headers: RawHttpHeaders & ComputeNodeExtensionOperationsList200Headers;
 }
 
 export interface ComputeNodeExtensionOperationsListDefaultResponse

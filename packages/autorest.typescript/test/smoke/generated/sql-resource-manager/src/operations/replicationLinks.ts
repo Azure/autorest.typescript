@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClient } from "../sqlManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ReplicationLink,
   ReplicationLinksListByDatabaseNextOptionalParams,
@@ -259,14 +263,14 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     databaseName: string,
     linkId: string,
     options?: ReplicationLinksFailoverOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -299,13 +303,13 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, linkId, options },
-      failoverOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, databaseName, linkId, options },
+      spec: failoverOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -354,14 +358,14 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     databaseName: string,
     linkId: string,
     options?: ReplicationLinksFailoverAllowDataLossOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -394,13 +398,13 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, serverName, databaseName, linkId, options },
-      failoverAllowDataLossOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, serverName, databaseName, linkId, options },
+      spec: failoverAllowDataLossOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -451,14 +455,14 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     linkId: string,
     parameters: UnlinkParameters,
     options?: ReplicationLinksUnlinkOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -491,9 +495,9 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         serverName,
         databaseName,
@@ -501,10 +505,10 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         parameters,
         options
       },
-      unlinkOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: unlinkOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

@@ -94,27 +94,38 @@ export function buildClient(model: RLCModel): File | undefined {
     ...(addCredentials === false ||
     !isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
       ? []
-      : [{ name: "credentials", type: credentialTypes.join(" | ") }])
+      : [
+          {
+            name: "credentials",
+            type: credentialTypes.join(" | "),
+            description: `uniquely identify client credential`
+          }
+        ])
   ];
 
+  const allClientParams = [
+    ...commonClientParams,
+    {
+      name: "options",
+      type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`,
+      description: "the parameter for all optional parameters"
+    }
+  ];
   const functionStatement = {
     isExported: true,
     name: `createClient`,
-    parameters: [
-      ...commonClientParams,
-      {
-        name: "options",
-        type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`
-      }
-    ],
+    parameters: allClientParams,
     docs: [
       {
         description:
-          `Initialize a new instance of the class ${clientInterfaceName} class. \n` +
-          commonClientParams
+          `Initialize a new instance of \`${clientInterfaceName}\` \n` +
+          allClientParams
             .map((param) => {
-              return `@param ${param.name} type: ${param.type} ${
-                param.description ?? ""
+              return `@param ${param.name} type: ${param.type
+                .split("=")[0]
+                .split(" ")
+                .join("")}, ${
+                param.description ?? "The parameter " + param.name
               }`;
             })
             .join("\n")

@@ -15,7 +15,7 @@ import { TokenCredential } from '@azure/core-auth';
 // @public
 export interface CollectionOutput {
     // (undocumented)
-    collectionId: string;
+    readonly collectionId: string;
 }
 
 // @public

@@ -44,7 +44,7 @@ describe("DPGCustomization Client", () => {
       const initialResponse = await client
         .path("/customization/lro/{mode}", "raw")
         .put();
-      const poller = getLongRunningPoller(client, initialResponse);
+      const poller = await getLongRunningPoller(client, initialResponse);
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
     });
@@ -81,7 +81,7 @@ describe("DPGCustomization Client", () => {
       const initialResponse = await client
         .path("/customization/lro/{mode}", "model")
         .put();
-      const poller = getLongRunningPoller(client, initialResponse);
+      const poller = await getLongRunningPoller(client, initialResponse);
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
     });

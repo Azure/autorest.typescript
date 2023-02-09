@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   ApplicationDefinition,
   ApplicationDefinitionsListByResourceGroupOptionalParams,
@@ -56,7 +56,7 @@ export interface ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     options?: ApplicationDefinitionsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the managed application definition.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -81,8 +81,8 @@ export interface ApplicationDefinitions {
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
       ApplicationDefinitionsCreateOrUpdateResponse
     >
   >;
@@ -122,7 +122,7 @@ export interface ApplicationDefinitions {
   beginDeleteById(
     applicationDefinitionId: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the managed application definition.
    * @param applicationDefinitionId The fully qualified ID of the managed application definition,
@@ -149,8 +149,8 @@ export interface ApplicationDefinitions {
     parameters: ApplicationDefinition,
     options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
+    SimplePollerLike<
+      OperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
       ApplicationDefinitionsCreateOrUpdateByIdResponse
     >
   >;

@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface EmbeddingsRequest {
+/** Schema to create a prompt completion from a deployment */
+export interface EmbeddingsOptions {
   /** The ID of the end-user, for use in tracking and rate-limiting. */
   user?: string;
   /** input type of embedding search to use */
@@ -9,13 +10,18 @@ export interface EmbeddingsRequest {
   /** ID of the model to use */
   model?: string;
   /**
-   * An input to embed, encoded as a string, a list of strings, or a list of token
-   * lists
+   * Input text to get embeddings for, encoded as a string.
+   * To get embeddings for multiple inputs in a single request, pass an array of strings.
+   * Each input must not exceed 2048 tokens in length.
+   *
+   * Unless you are embedding code, we suggest replacing newlines (\n) in your input with a single space,
+   * as we have observed inferior results when newlines are present.
    */
-  input: string | string[] | number[] | number[][];
+  input: string | string[];
 }
 
-export interface CompletionsRequest {
+/** Post body schema to create a prompt completion from a deployment */
+export interface CompletionsOptions {
   /**
    * An optional prompt to complete from, encoded as a string, a list of strings, or
    * a list of token lists. Defaults to <|endoftext|>. The prompt to complete from.
@@ -25,7 +31,7 @@ export interface CompletionsRequest {
    * from the beginning of a new document. Maximum allowed size of string list is
    * 2048.
    */
-  prompt?: string | string[] | string[][];
+  prompt?: string[];
   /** The maximum number of tokens to generate. Has minimum of 0. */
   max_tokens?: number;
   /**
@@ -70,11 +76,6 @@ export interface CompletionsRequest {
    */
   n?: number;
   /**
-   * Whether to enable streaming for this endpoint. If set, tokens will be sent as
-   * server-sent events as they become available.
-   */
-  stream?: boolean;
-  /**
    * Include the log probabilities on the `logprobs` most likely tokens, as well the
    * chosen tokens. So for example, if `logprobs` is 10, the API will return a list
    * of the 10 most likely tokens. If `logprobs` is 0, only the chosen tokens will
@@ -82,11 +83,11 @@ export interface CompletionsRequest {
    */
   logprobs?: number;
   /** The name of the model to use */
-  model?: string;
+  model: string;
   /** Echo back the prompt in addition to the completion */
   echo?: boolean;
   /** A sequence which indicates the end of the current document. */
-  stop?: string | string[];
+  stop?: string[];
   /** Completion configuration */
   completion_config?: string;
   /**

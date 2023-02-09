@@ -1,6 +1,6 @@
 # ModelsInheritance REST client library for JavaScript
 
-Model Inheritance Test Service
+Illustrates inheritance and polymorphic model.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

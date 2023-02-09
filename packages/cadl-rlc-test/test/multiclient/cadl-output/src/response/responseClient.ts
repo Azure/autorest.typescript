@@ -5,8 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ResponseClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ResponseClient class.
- * @param endpoint type: string
+ * Initialize a new instance of `ResponseClient`
+ * @param endpoint type: string, The parameter endpoint
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export function createClient(
   endpoint: string,

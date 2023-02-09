@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   TableGetResults,
   TableResourcesListTablesOptionalParams,
@@ -70,8 +70,8 @@ export interface TableResources {
     createUpdateTableParameters: TableCreateUpdateParameters,
     options?: TableResourcesCreateUpdateTableOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<TableResourcesCreateUpdateTableResponse>,
+    SimplePollerLike<
+      OperationState<TableResourcesCreateUpdateTableResponse>,
       TableResourcesCreateUpdateTableResponse
     >
   >;
@@ -102,7 +102,7 @@ export interface TableResources {
     accountName: string,
     tableName: string,
     options?: TableResourcesDeleteTableOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB Table.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -146,8 +146,8 @@ export interface TableResources {
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
     options?: TableResourcesUpdateTableThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<TableResourcesUpdateTableThroughputResponse>,
+    SimplePollerLike<
+      OperationState<TableResourcesUpdateTableThroughputResponse>,
       TableResourcesUpdateTableThroughputResponse
     >
   >;
@@ -180,8 +180,8 @@ export interface TableResources {
     tableName: string,
     options?: TableResourcesMigrateTableToAutoscaleOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<TableResourcesMigrateTableToAutoscaleResponse>,
+    SimplePollerLike<
+      OperationState<TableResourcesMigrateTableToAutoscaleResponse>,
       TableResourcesMigrateTableToAutoscaleResponse
     >
   >;
@@ -211,8 +211,8 @@ export interface TableResources {
     tableName: string,
     options?: TableResourcesMigrateTableToManualThroughputOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<TableResourcesMigrateTableToManualThroughputResponse>,
+    SimplePollerLike<
+      OperationState<TableResourcesMigrateTableToManualThroughputResponse>,
       TableResourcesMigrateTableToManualThroughputResponse
     >
   >;

@@ -8,11 +8,11 @@ using Cadl.Rest;
 using Cadl.Versioning;
 
 @useAuth(
-  ApiKeyAuth<ApiKeyLocation.header, "apiKey"> |
+  ApiKeyAuth<ApiKeyLocation.header, "api-key"> |
     OAuth2Auth<[{
       type: OAuth2FlowType.implicit,
       authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
-      scopes: []
+      scopes: ["https://cognitiveservices.azure.com/.default"]
     }]>)
 @service(
   {
@@ -31,13 +31,18 @@ https://westus.api.cognitive.microsoft.com).
 )
 @versioned(ServiceApiVersions)
 @versionedDependency(
-  [[ServiceApiVersions.v2022_06_01_preview, Azure.Core.Versions.v1_0_Preview_1]]
+  [
+    [
+      ServiceApiVersions.v2022_12_01,
+      Azure.Core.Versions.v1_0_Preview_1
+    ]
+  ]
 )
 @doc("Azure OpenAI APIs for completions and search")
 namespace Azure.OpenAI;
 
 enum ServiceApiVersions {
-  v2022_06_01_preview: "2022-06-01-preview",
+  v2022_12_01: "2022-12-01",
 }
 
 
@@ -45,6 +50,7 @@ enum ServiceApiVersions {
 @Cadl.Rest.resource("deployments")
 model Deployment {
   @doc("deployment id of the deployed model")
+  @visibility("read")
   @key
   deploymentId: string;
 }

@@ -6,8 +6,9 @@ import { KeyCredential } from "@azure/core-auth";
 import { SecurityKeyRestClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class SecurityKeyRestClient class.
- * @param credentials type: KeyCredential
+ * Initialize a new instance of `SecurityKeyRestClient`
+ * @param credentials type: KeyCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   credentials: KeyCredential,

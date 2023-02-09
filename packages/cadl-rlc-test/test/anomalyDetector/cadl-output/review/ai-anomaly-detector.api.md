@@ -33,7 +33,7 @@ export interface AlignPolicyOutput {
 export interface AnomalyDetectionModelOutput {
     createdTime: string;
     lastUpdatedTime: string;
-    modelId: string;
+    readonly modelId: string;
     modelInfo?: ModelInfoOutput;
 }
 
@@ -538,7 +538,7 @@ export interface MultivariateBatchDetectionResultSummaryOutput {
 
 // @public
 export interface MultivariateDetectionResultOutput {
-    resultId: string;
+    readonly resultId: string;
     results: Array<AnomalyStateOutput>;
     summary: MultivariateBatchDetectionResultSummaryOutput;
 }

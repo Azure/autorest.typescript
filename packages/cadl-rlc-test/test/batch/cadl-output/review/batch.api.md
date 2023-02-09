@@ -15,22 +15,31 @@ import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
+import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
-export interface AccountOperationsListPoolNodeCounts {
-    get(options: AccountOperationsListPoolNodeCountsParameters): StreamableMethod<AccountOperationsListPoolNodeCounts200Response | AccountOperationsListPoolNodeCountsDefaultResponse>;
+export interface AccountListPoolNodeCounts {
+    get(options?: AccountListPoolNodeCountsParameters): StreamableMethod<AccountListPoolNodeCounts200Response | AccountListPoolNodeCountsDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface AccountListPoolNodeCounts200Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
 }
 
 // @public
-export interface AccountOperationsListPoolNodeCounts200Response extends HttpResponse {
+export interface AccountListPoolNodeCounts200Response extends HttpResponse {
     // (undocumented)
-    body: PoolNodeCountsListOutput;
+    body: PoolNodeCountsListResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & AccountListPoolNodeCounts200Headers;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsDefaultResponse extends HttpResponse {
+export interface AccountListPoolNodeCountsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -38,49 +47,59 @@ export interface AccountOperationsListPoolNodeCountsDefaultResponse extends Http
 }
 
 // @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsHeaderParam {
+export interface AccountListPoolNodeCountsHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & AccountOperationsListPoolNodeCountsHeaders;
+    headers?: RawHttpHeadersInput & AccountListPoolNodeCountsHeaders;
 }
 
 // @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface AccountListPoolNodeCountsHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type AccountOperationsListPoolNodeCountsParameters = AccountOperationsListPoolNodeCountsQueryParam & AccountOperationsListPoolNodeCountsHeaderParam & RequestParameters;
+export type AccountListPoolNodeCountsParameters = AccountListPoolNodeCountsQueryParam & AccountListPoolNodeCountsHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsQueryParam {
+export interface AccountListPoolNodeCountsQueryParam {
     // (undocumented)
-    queryParameters: AccountOperationsListPoolNodeCountsQueryParamProperties;
+    queryParameters?: AccountListPoolNodeCountsQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface AccountOperationsListPoolNodeCountsQueryParamProperties {
-    $filter: string;
-    maxresults: number;
-    timeout: number;
+export interface AccountListPoolNodeCountsQueryParamProperties {
+    $filter?: string;
+    maxresults?: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
-export interface AccountOperationsListSupportedImages {
-    get(options: AccountOperationsListSupportedImagesParameters): StreamableMethod<AccountOperationsListSupportedImages200Response | AccountOperationsListSupportedImagesDefaultResponse>;
+export interface AccountListSupportedImages {
+    get(options?: AccountListSupportedImagesParameters): StreamableMethod<AccountListSupportedImages200Response | AccountListSupportedImagesDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface AccountListSupportedImages200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface AccountOperationsListSupportedImages200Response extends HttpResponse {
+export interface AccountListSupportedImages200Response extends HttpResponse {
     // (undocumented)
-    body: ImageInformationListOutput;
+    body: AccountListSupportedImagesResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & AccountListSupportedImages200Headers;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface AccountOperationsListSupportedImagesDefaultResponse extends HttpResponse {
+export interface AccountListSupportedImagesDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -88,32 +107,38 @@ export interface AccountOperationsListSupportedImagesDefaultResponse extends Htt
 }
 
 // @public (undocumented)
-export interface AccountOperationsListSupportedImagesHeaderParam {
+export interface AccountListSupportedImagesHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & AccountOperationsListSupportedImagesHeaders;
+    headers?: RawHttpHeadersInput & AccountListSupportedImagesHeaders;
 }
 
 // @public (undocumented)
-export interface AccountOperationsListSupportedImagesHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface AccountListSupportedImagesHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type AccountOperationsListSupportedImagesParameters = AccountOperationsListSupportedImagesQueryParam & AccountOperationsListSupportedImagesHeaderParam & RequestParameters;
+export type AccountListSupportedImagesParameters = AccountListSupportedImagesQueryParam & AccountListSupportedImagesHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface AccountOperationsListSupportedImagesQueryParam {
+export interface AccountListSupportedImagesQueryParam {
     // (undocumented)
-    queryParameters: AccountOperationsListSupportedImagesQueryParamProperties;
+    queryParameters?: AccountListSupportedImagesQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface AccountOperationsListSupportedImagesQueryParamProperties {
-    $filter: string;
-    maxresults: number;
-    timeout: number;
+export interface AccountListSupportedImagesQueryParamProperties {
+    $filter?: string;
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public
+export interface AccountListSupportedImagesResultOutput {
+    "odata.nextLink"?: string;
+    value?: Array<ImageInformationOutput>;
 }
 
 // @public
@@ -127,11 +152,14 @@ export interface AffinityInformationOutput {
 }
 
 // @public
-export type ApplicationListOutput = Paged<ApplicationOutput>;
+export interface ApplicationListResultOutput {
+    "odata.nextLink"?: string;
+    value?: Array<ApplicationOutput>;
+}
 
 // @public (undocumented)
 export interface ApplicationOperationsGet {
-    get(options: ApplicationOperationsGetParameters): StreamableMethod<ApplicationOperationsGet200Response | ApplicationOperationsGetDefaultResponse>;
+    get(options?: ApplicationOperationsGetParameters): StreamableMethod<ApplicationOperationsGet200Response | ApplicationOperationsGetDefaultResponse>;
 }
 
 // @public
@@ -151,41 +179,27 @@ export interface ApplicationOperationsGetDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface ApplicationOperationsGetHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & ApplicationOperationsGetHeaders;
-}
-
-// @public (undocumented)
-export interface ApplicationOperationsGetHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type ApplicationOperationsGetParameters = ApplicationOperationsGetQueryParam & ApplicationOperationsGetHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface ApplicationOperationsGetQueryParam {
-    // (undocumented)
-    queryParameters: ApplicationOperationsGetQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ApplicationOperationsGetQueryParamProperties {
-    timeout: number;
-}
+export type ApplicationOperationsGetParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ApplicationOperationsList {
-    get(options: ApplicationOperationsListParameters): StreamableMethod<ApplicationOperationsList200Response | ApplicationOperationsListDefaultResponse>;
+    get(options?: ApplicationOperationsListParameters): StreamableMethod<ApplicationOperationsList200Response | ApplicationOperationsListDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ApplicationOperationsList200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
 export interface ApplicationOperationsList200Response extends HttpResponse {
     // (undocumented)
-    body: ApplicationListOutput;
+    body: ApplicationListResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & ApplicationOperationsList200Headers;
     // (undocumented)
     status: "200";
 }
@@ -201,14 +215,14 @@ export interface ApplicationOperationsListDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export interface ApplicationOperationsListHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ApplicationOperationsListHeaders;
+    headers?: RawHttpHeadersInput & ApplicationOperationsListHeaders;
 }
 
 // @public (undocumented)
 export interface ApplicationOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -217,19 +231,19 @@ export type ApplicationOperationsListParameters = ApplicationOperationsListQuery
 // @public (undocumented)
 export interface ApplicationOperationsListQueryParam {
     // (undocumented)
-    queryParameters: ApplicationOperationsListQueryParamProperties;
+    queryParameters?: ApplicationOperationsListQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ApplicationOperationsListQueryParamProperties {
-    maxresults: number;
-    timeout: number;
+    maxresults?: number;
+    timeOut?: number;
 }
 
 // @public
 export interface ApplicationOutput {
     displayName: string;
-    id: string;
+    readonly id: string;
     versions: string[];
 }
 
@@ -247,12 +261,12 @@ export interface ApplicationPackageReferenceOutput {
 
 // @public
 export interface AuthenticationTokenSettings {
-    access?: "job"[];
+    access?: string[];
 }
 
 // @public
 export interface AuthenticationTokenSettingsOutput {
-    access?: "job"[];
+    access?: string[];
 }
 
 // @public
@@ -260,7 +274,7 @@ export interface AutoPoolSpecification {
     autoPoolIdPrefix?: string;
     keepAlive?: boolean;
     pool?: PoolSpecification;
-    poolLifetimeOption: "jobschedule" | "job";
+    poolLifetimeOption: string;
 }
 
 // @public
@@ -268,14 +282,13 @@ export interface AutoPoolSpecificationOutput {
     autoPoolIdPrefix?: string;
     keepAlive?: boolean;
     pool?: PoolSpecificationOutput;
-    poolLifetimeOption: "jobschedule" | "job";
+    poolLifetimeOption: string;
 }
 
 // @public
 export interface AutoScaleRun {
     error?: AutoScaleRunError;
     results?: string;
-    timestamp: Date | string;
 }
 
 // @public
@@ -296,19 +309,19 @@ export interface AutoScaleRunErrorOutput {
 export interface AutoScaleRunOutput {
     error?: AutoScaleRunErrorOutput;
     results?: string;
-    timestamp: string;
+    readonly timestamp: string;
 }
 
 // @public
 export interface AutoUserSpecification {
-    elevationLevel?: "nonadmin" | "admin";
-    scope?: "task" | "pool";
+    elevationLevel?: string;
+    scope?: string;
 }
 
 // @public
 export interface AutoUserSpecificationOutput {
-    elevationLevel?: "nonadmin" | "admin";
-    scope?: "task" | "pool";
+    elevationLevel?: string;
+    scope?: string;
 }
 
 // @public
@@ -352,6 +365,14 @@ export interface AzureFileShareConfigurationOutput {
 }
 
 // @public
+export interface BatchApplicationListHeadersOutput extends BatchClientRequestHeadersOutput {
+}
+
+// @public
+export interface BatchClientRequestHeadersOutput {
+}
+
+// @public
 export interface BatchErrorDetailOutput {
     key?: string;
     value?: string;
@@ -377,8 +398,8 @@ export interface BatchJob {
     maxParallelTasks?: number;
     metadata?: Array<MetadataItem>;
     networkConfiguration?: JobNetworkConfiguration;
-    onAllTasksComplete?: "noaction" | "terminatejob";
-    onTaskFailure?: "noaction" | "performexitoptionsjobaction";
+    onAllTasksComplete?: string;
+    onTaskFailure?: string;
     poolInfo?: PoolInformation;
     priority?: number;
     usesTaskDependencies?: boolean;
@@ -386,7 +407,11 @@ export interface BatchJob {
 
 // @public
 export interface BatchJobDisableParameters {
-    disableTasks: "requeue" | "terminate" | "wait";
+    disableTasks: string;
+}
+
+// @public
+export interface BatchJobFileClientRequestHeadersOutput extends BatchClientRequestHeadersOutput {
 }
 
 // @public
@@ -418,13 +443,13 @@ export interface BatchJobOutput {
     maxParallelTasks?: number;
     metadata?: Array<MetadataItemOutput>;
     networkConfiguration?: JobNetworkConfigurationOutput;
-    onAllTasksComplete?: "noaction" | "terminatejob";
-    onTaskFailure?: "noaction" | "performexitoptionsjobaction";
+    onAllTasksComplete?: string;
+    onTaskFailure?: string;
     poolInfo?: PoolInformationOutput;
-    readonly previousState?: "active" | "disabling" | "disabled" | "enabling" | "terminating" | "completed" | "deleting";
+    readonly previousState?: string;
     readonly previousStateTransitionTime?: string;
     priority?: number;
-    readonly state?: "active" | "disabling" | "disabled" | "enabling" | "terminating" | "completed" | "deleting";
+    readonly state?: string;
     readonly stateTransitionTime?: string;
     readonly stats?: JobStatisticsOutput;
     readonly url?: string;
@@ -456,36 +481,18 @@ export interface BatchJobScheduleOutput {
     jobSpecification?: JobSpecificationOutput;
     readonly lastModified?: string;
     metadata?: Array<MetadataItemOutput>;
-    readonly previousState?: "active" | "completed" | "disabled" | "terminating" | "deleting";
+    readonly previousState?: string;
     readonly previousStateTransitionTime?: string;
     schedule?: ScheduleOutput;
-    readonly state?: "active" | "completed" | "disabled" | "terminating" | "deleting";
+    readonly state?: string;
     readonly stateTransitionTime?: string;
     readonly stats?: JobScheduleStatisticsOutput;
     readonly url?: string;
 }
 
 // @public
-export interface BatchJobScheduleUpdate {
-    jobSpecification?: object;
-    metadata?: Array<MetadataItem>;
-    schedule?: object;
-}
-
-// @public
 export interface BatchJobTerminateParameters {
     terminateReason?: string;
-}
-
-// @public
-export interface BatchJobUpdate {
-    allowTaskPreemption?: boolean;
-    constraints?: object;
-    maxParallelTasks?: number;
-    metadata?: Array<MetadataItem>;
-    onAllTasksComplete?: "noaction" | "terminatejob";
-    poolInfo?: object;
-    priority?: number;
 }
 
 // @public
@@ -507,6 +514,7 @@ export interface BatchPool {
     startTask?: StartTask;
     targetDedicatedNodes?: number;
     targetLowPriorityNodes?: number;
+    targetNodeCommunicationMode?: string;
     taskSchedulingPolicy?: TaskSchedulingPolicy;
     taskSlotsPerNode?: number;
     userAccounts?: Array<UserAccount>;
@@ -526,14 +534,18 @@ export interface BatchPoolEvaluateAutoScaleParameters {
 }
 
 // @public
+export interface BatchPoolFileClientRequestHeadersOutput extends BatchClientRequestHeadersOutput {
+}
+
+// @public
 export interface BatchPoolIdentity {
-    type: "UserAssigned" | "None";
+    type: string;
     userAssignedIdentities?: Array<UserAssignedIdentity>;
 }
 
 // @public
 export interface BatchPoolIdentityOutput {
-    type: "UserAssigned" | "None";
+    type: string;
     userAssignedIdentities?: Array<UserAssignedIdentityOutput>;
 }
 
@@ -545,7 +557,7 @@ export interface BatchPoolListResultOutput {
 
 // @public
 export interface BatchPoolOutput {
-    readonly allocationState?: "steady" | "resizing" | "stopping";
+    readonly allocationState?: string;
     readonly allocationStateTransitionTime?: string;
     applicationLicenses?: string[];
     applicationPackageReferences?: Array<ApplicationPackageReferenceOutput>;
@@ -557,6 +569,7 @@ export interface BatchPoolOutput {
     readonly creationTime?: string;
     readonly currentDedicatedNodes?: number;
     readonly currentLowPriorityNodes?: number;
+    readonly currentNodeCommunicationMode?: string;
     displayName?: string;
     enableAutoScale?: boolean;
     enableInterNodeCommunication?: boolean;
@@ -570,11 +583,12 @@ export interface BatchPoolOutput {
     readonly resizeErrors?: Array<ResizeErrorOutput>;
     resizeTimeout?: string;
     startTask?: StartTaskOutput;
-    readonly state?: "active" | "deleting";
+    readonly state?: string;
     readonly stateTransitionTime?: string;
     readonly stats?: PoolStatisticsOutput;
     targetDedicatedNodes?: number;
     targetLowPriorityNodes?: number;
+    targetNodeCommunicationMode?: string;
     taskSchedulingPolicy?: TaskSchedulingPolicyOutput;
     taskSlotsPerNode?: number;
     readonly url?: string;
@@ -585,18 +599,10 @@ export interface BatchPoolOutput {
 
 // @public
 export interface BatchPoolResizeParameters {
-    nodeDeallocationOption?: "requeue" | "terminate" | "taskcompletion" | "retaineddata";
+    nodeDeallocationOption?: string;
     resizeTimeout?: string;
     targetDedicatedNodes?: number;
     targetLowPriorityNodes?: number;
-}
-
-// @public
-export interface BatchPoolUpdate {
-    applicationPackageReferences?: Array<ApplicationPackageReference>;
-    certificateReferences?: Array<CertificateReference>;
-    metadata?: Array<MetadataItem>;
-    startTask?: object;
 }
 
 // @public (undocumented)
@@ -660,11 +666,11 @@ export interface BatchTaskOutput {
     multiInstanceSettings?: MultiInstanceSettingsOutput;
     readonly nodeInfo?: ComputeNodeInformationOutput;
     outputFiles?: Array<OutputFileOutput>;
-    readonly previousState?: "active" | "preparing" | "running" | "completed";
+    readonly previousState?: string;
     readonly previousStateTransitionTime?: string;
     requiredSlots?: number;
     resourceFiles?: Array<ResourceFileOutput>;
-    readonly state?: "active" | "preparing" | "running" | "completed";
+    readonly state?: string;
     readonly stateTransitionTime?: string;
     readonly stats?: TaskStatisticsOutput;
     readonly url?: string;
@@ -673,7 +679,7 @@ export interface BatchTaskOutput {
 
 // @public
 export interface Certificate {
-    certificateFormat?: "pfx" | "cer";
+    certificateFormat?: string;
     data?: string;
     password?: string;
     thumbprint?: string;
@@ -689,13 +695,23 @@ export interface CertificateListResultOutput {
 // @public (undocumented)
 export interface CertificateOperationsAdd {
     get(options: CertificateOperationsListParameters): StreamableMethod<CertificateOperationsList200Response | CertificateOperationsListDefaultResponse>;
-    post(options: CertificateOperationsAddParameters): StreamableMethod<CertificateOperationsAdd204Response | CertificateOperationsAddDefaultResponse>;
+    post(options: CertificateOperationsAddParameters): StreamableMethod<CertificateOperationsAdd201Response | CertificateOperationsAddDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface CertificateOperationsAdd201Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface CertificateOperationsAdd204Response extends HttpResponse {
+export interface CertificateOperationsAdd201Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & CertificateOperationsAdd201Headers;
+    // (undocumented)
+    status: "201";
 }
 
 // @public (undocumented)
@@ -714,14 +730,14 @@ export interface CertificateOperationsAddDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export interface CertificateOperationsAddHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & CertificateOperationsAddHeaders;
+    headers?: RawHttpHeadersInput & CertificateOperationsAddHeaders;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsAddHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -730,21 +746,32 @@ export type CertificateOperationsAddParameters = CertificateOperationsAddQueryPa
 // @public (undocumented)
 export interface CertificateOperationsAddQueryParam {
     // (undocumented)
-    queryParameters: CertificateOperationsAddQueryParamProperties;
+    queryParameters?: CertificateOperationsAddQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsAddQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsCancelDeletion {
-    post(options: CertificateOperationsCancelDeletionParameters): StreamableMethod<CertificateOperationsCancelDeletion204Response | CertificateOperationsCancelDeletionDefaultResponse>;
+    post(options?: CertificateOperationsCancelDeletionParameters): StreamableMethod<CertificateOperationsCancelDeletion204Response | CertificateOperationsCancelDeletionDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface CertificateOperationsCancelDeletion204Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
 export interface CertificateOperationsCancelDeletion204Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & CertificateOperationsCancelDeletion204Headers;
     // (undocumented)
     status: "204";
 }
@@ -760,14 +787,14 @@ export interface CertificateOperationsCancelDeletionDefaultResponse extends Http
 // @public (undocumented)
 export interface CertificateOperationsCancelDeletionHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & CertificateOperationsCancelDeletionHeaders;
+    headers?: RawHttpHeadersInput & CertificateOperationsCancelDeletionHeaders;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsCancelDeletionHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -776,24 +803,34 @@ export type CertificateOperationsCancelDeletionParameters = CertificateOperation
 // @public (undocumented)
 export interface CertificateOperationsCancelDeletionQueryParam {
     // (undocumented)
-    queryParameters: CertificateOperationsCancelDeletionQueryParamProperties;
+    queryParameters?: CertificateOperationsCancelDeletionQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsCancelDeletionQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsDelete {
-    delete(options: CertificateOperationsDeleteParameters): StreamableMethod<CertificateOperationsDelete204Response | CertificateOperationsDeleteDefaultResponse>;
+    delete(options?: CertificateOperationsDeleteParameters): StreamableMethod<CertificateOperationsDelete202Response | CertificateOperationsDeleteDefaultResponse>;
     get(options: CertificateOperationsGetParameters): StreamableMethod<CertificateOperationsGet200Response | CertificateOperationsGetDefaultResponse>;
 }
 
+// @public (undocumented)
+export interface CertificateOperationsDelete202Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
 // @public
-export interface CertificateOperationsDelete204Response extends HttpResponse {
+export interface CertificateOperationsDelete202Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & CertificateOperationsDelete202Headers;
+    // (undocumented)
+    status: "202";
 }
 
 // @public (undocumented)
@@ -807,14 +844,14 @@ export interface CertificateOperationsDeleteDefaultResponse extends HttpResponse
 // @public (undocumented)
 export interface CertificateOperationsDeleteHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & CertificateOperationsDeleteHeaders;
+    headers?: RawHttpHeadersInput & CertificateOperationsDeleteHeaders;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsDeleteHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -823,18 +860,28 @@ export type CertificateOperationsDeleteParameters = CertificateOperationsDeleteQ
 // @public (undocumented)
 export interface CertificateOperationsDeleteQueryParam {
     // (undocumented)
-    queryParameters: CertificateOperationsDeleteQueryParamProperties;
+    queryParameters?: CertificateOperationsDeleteQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsDeleteQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface CertificateOperationsGet200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
 export interface CertificateOperationsGet200Response extends HttpResponse {
     // (undocumented)
     body: CertificateOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & CertificateOperationsGet200Headers;
     // (undocumented)
     status: "200";
 }
@@ -850,14 +897,14 @@ export interface CertificateOperationsGetDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export interface CertificateOperationsGetHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & CertificateOperationsGetHeaders;
+    headers?: RawHttpHeadersInput & CertificateOperationsGetHeaders;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsGetHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -872,13 +919,23 @@ export interface CertificateOperationsGetQueryParam {
 // @public (undocumented)
 export interface CertificateOperationsGetQueryParamProperties {
     $select: string;
-    timeout: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface CertificateOperationsList200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
 export interface CertificateOperationsList200Response extends HttpResponse {
     // (undocumented)
     body: CertificateListResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & CertificateOperationsList200Headers;
     // (undocumented)
     status: "200";
 }
@@ -894,14 +951,14 @@ export interface CertificateOperationsListDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export interface CertificateOperationsListHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & CertificateOperationsListHeaders;
+    headers?: RawHttpHeadersInput & CertificateOperationsListHeaders;
 }
 
 // @public (undocumented)
 export interface CertificateOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -917,20 +974,20 @@ export interface CertificateOperationsListQueryParam {
 export interface CertificateOperationsListQueryParamProperties {
     $filter: string;
     $select: string;
-    maxresults: number;
-    timeout: number;
+    maxresults?: number;
+    timeOut?: number;
 }
 
 // @public
 export interface CertificateOutput {
-    certificateFormat?: "pfx" | "cer";
+    certificateFormat?: string;
     data?: string;
     readonly deleteCertificateError?: DeleteCertificateErrorOutput;
     password?: string;
-    readonly previousState?: "active" | "deleting" | "deletefailed";
+    readonly previousState?: string;
     readonly previousStateTransitionTime?: string;
     readonly publicData?: string;
-    readonly state?: "active" | "deleting" | "deletefailed";
+    readonly state?: string;
     readonly stateTransitionTime?: string;
     thumbprint?: string;
     thumbprintAlgorithm?: string;
@@ -939,20 +996,20 @@ export interface CertificateOutput {
 
 // @public
 export interface CertificateReference {
-    storeLocation?: "currentuser" | "localmachine";
+    storeLocation?: string;
     storeName?: string;
     thumbprint: string;
     thumbprintAlgorithm: string;
-    visibility?: ("starttask" | "task" | "remoteuser")[];
+    visibility?: string[];
 }
 
 // @public
 export interface CertificateReferenceOutput {
-    storeLocation?: "currentuser" | "localmachine";
+    storeLocation?: string;
     storeName?: string;
     thumbprint: string;
     thumbprintAlgorithm: string;
-    visibility?: ("starttask" | "task" | "remoteuser")[];
+    visibility?: string[];
 }
 
 // @public
@@ -999,13 +1056,23 @@ export interface ComputeNodeErrorOutput {
 
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsGet {
-    get(options: ComputeNodeExtensionOperationsGetParameters): StreamableMethod<ComputeNodeExtensionOperationsGet200Response | ComputeNodeExtensionOperationsGetDefaultResponse>;
+    get(options?: ComputeNodeExtensionOperationsGetParameters): StreamableMethod<ComputeNodeExtensionOperationsGet200Response | ComputeNodeExtensionOperationsGetDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeExtensionOperationsGet200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
 export interface ComputeNodeExtensionOperationsGet200Response extends HttpResponse {
     // (undocumented)
     body: NodeVMExtensionOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & ComputeNodeExtensionOperationsGet200Headers;
     // (undocumented)
     status: "200";
 }
@@ -1021,14 +1088,14 @@ export interface ComputeNodeExtensionOperationsGetDefaultResponse extends HttpRe
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsGetHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeExtensionOperationsGetHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeExtensionOperationsGetHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsGetHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1037,24 +1104,34 @@ export type ComputeNodeExtensionOperationsGetParameters = ComputeNodeExtensionOp
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsGetQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeExtensionOperationsGetQueryParamProperties;
+    queryParameters?: ComputeNodeExtensionOperationsGetQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsGetQueryParamProperties {
-    $select: string;
-    timeout: number;
+    $select?: string;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsList {
-    get(options: ComputeNodeExtensionOperationsListParameters): StreamableMethod<ComputeNodeExtensionOperationsList200Response | ComputeNodeExtensionOperationsListDefaultResponse>;
+    get(options?: ComputeNodeExtensionOperationsListParameters): StreamableMethod<ComputeNodeExtensionOperationsList200Response | ComputeNodeExtensionOperationsListDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeExtensionOperationsList200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
 export interface ComputeNodeExtensionOperationsList200Response extends HttpResponse {
     // (undocumented)
     body: NodeVMExtensionListOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & ComputeNodeExtensionOperationsList200Headers;
     // (undocumented)
     status: "200";
 }
@@ -1070,14 +1147,14 @@ export interface ComputeNodeExtensionOperationsListDefaultResponse extends HttpR
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsListHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeExtensionOperationsListHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeExtensionOperationsListHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1086,19 +1163,19 @@ export type ComputeNodeExtensionOperationsListParameters = ComputeNodeExtensionO
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsListQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeExtensionOperationsListQueryParamProperties;
+    queryParameters?: ComputeNodeExtensionOperationsListQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsListQueryParamProperties {
-    $select: string;
-    maxresults: number;
-    timeout: number;
+    $select?: string;
+    maxresults?: number;
+    timeOut?: number;
 }
 
 // @public
 export interface ComputeNodeGetRemoteLoginSettingsResultOutput {
-    remoteLoginIPAddress: string;
+    readonly remoteLoginIPAddress: string;
     remoteLoginPort: number;
 }
 
@@ -1140,13 +1217,24 @@ export interface ComputeNodeListResultOutput {
 
 // @public (undocumented)
 export interface ComputeNodeOperationsAddUser {
-    post(options: ComputeNodeOperationsAddUserParameters): StreamableMethod<ComputeNodeOperationsAddUser204Response | ComputeNodeOperationsAddUserDefaultResponse>;
+    post(options: ComputeNodeOperationsAddUserParameters): StreamableMethod<ComputeNodeOperationsAddUser201Response | ComputeNodeOperationsAddUserDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsAddUser201Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsAddUser204Response extends HttpResponse {
+export interface ComputeNodeOperationsAddUser201Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & ComputeNodeOperationsAddUser201Headers;
+    // (undocumented)
+    status: "201";
 }
 
 // @public (undocumented)
@@ -1165,14 +1253,14 @@ export interface ComputeNodeOperationsAddUserDefaultResponse extends HttpRespons
 // @public (undocumented)
 export interface ComputeNodeOperationsAddUserHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsAddUserHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsAddUserHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsAddUserHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1181,24 +1269,32 @@ export type ComputeNodeOperationsAddUserParameters = ComputeNodeOperationsAddUse
 // @public (undocumented)
 export interface ComputeNodeOperationsAddUserQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsAddUserQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsAddUserQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsAddUserQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsDeleteUser {
-    delete(options: ComputeNodeOperationsDeleteUserParameters): StreamableMethod<ComputeNodeOperationsDeleteUser204Response | ComputeNodeOperationsDeleteUserDefaultResponse>;
-    put(options: ComputeNodeOperationsUpdateUserParameters): StreamableMethod<ComputeNodeOperationsUpdateUser204Response | ComputeNodeOperationsUpdateUserDefaultResponse>;
+    delete(options?: ComputeNodeOperationsDeleteUserParameters): StreamableMethod<ComputeNodeOperationsDeleteUser200Response | ComputeNodeOperationsDeleteUserDefaultResponse>;
+    put(options: ComputeNodeOperationsUpdateUserParameters): StreamableMethod<ComputeNodeOperationsUpdateUser200Response | ComputeNodeOperationsUpdateUserDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsDeleteUser200Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsDeleteUser204Response extends HttpResponse {
+export interface ComputeNodeOperationsDeleteUser200Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & ComputeNodeOperationsDeleteUser200Headers;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
@@ -1212,14 +1308,14 @@ export interface ComputeNodeOperationsDeleteUserDefaultResponse extends HttpResp
 // @public (undocumented)
 export interface ComputeNodeOperationsDeleteUserHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsDeleteUserHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsDeleteUserHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsDeleteUserHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1228,23 +1324,34 @@ export type ComputeNodeOperationsDeleteUserParameters = ComputeNodeOperationsDel
 // @public (undocumented)
 export interface ComputeNodeOperationsDeleteUserQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsDeleteUserQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsDeleteUserQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsDeleteUserQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsDisableScheduling {
-    post(options: ComputeNodeOperationsDisableSchedulingParameters): StreamableMethod<ComputeNodeOperationsDisableScheduling204Response | ComputeNodeOperationsDisableSchedulingDefaultResponse>;
+    post(options: ComputeNodeOperationsDisableSchedulingParameters): StreamableMethod<ComputeNodeOperationsDisableScheduling200Response | ComputeNodeOperationsDisableSchedulingDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsDisableScheduling200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsDisableScheduling204Response extends HttpResponse {
+export interface ComputeNodeOperationsDisableScheduling200Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & ComputeNodeOperationsDisableScheduling200Headers;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
@@ -1263,14 +1370,14 @@ export interface ComputeNodeOperationsDisableSchedulingDefaultResponse extends H
 // @public (undocumented)
 export interface ComputeNodeOperationsDisableSchedulingHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsDisableSchedulingHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsDisableSchedulingHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsDisableSchedulingHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1279,23 +1386,34 @@ export type ComputeNodeOperationsDisableSchedulingParameters = ComputeNodeOperat
 // @public (undocumented)
 export interface ComputeNodeOperationsDisableSchedulingQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsDisableSchedulingQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsDisableSchedulingQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsDisableSchedulingQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsEnableScheduling {
-    post(options: ComputeNodeOperationsEnableSchedulingParameters): StreamableMethod<ComputeNodeOperationsEnableScheduling204Response | ComputeNodeOperationsEnableSchedulingDefaultResponse>;
+    post(options?: ComputeNodeOperationsEnableSchedulingParameters): StreamableMethod<ComputeNodeOperationsEnableScheduling200Response | ComputeNodeOperationsEnableSchedulingDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsEnableScheduling200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsEnableScheduling204Response extends HttpResponse {
+export interface ComputeNodeOperationsEnableScheduling200Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & ComputeNodeOperationsEnableScheduling200Headers;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
@@ -1309,14 +1427,14 @@ export interface ComputeNodeOperationsEnableSchedulingDefaultResponse extends Ht
 // @public (undocumented)
 export interface ComputeNodeOperationsEnableSchedulingHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsEnableSchedulingHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsEnableSchedulingHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsEnableSchedulingHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1325,23 +1443,33 @@ export type ComputeNodeOperationsEnableSchedulingParameters = ComputeNodeOperati
 // @public (undocumented)
 export interface ComputeNodeOperationsEnableSchedulingQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsEnableSchedulingQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsEnableSchedulingQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsEnableSchedulingQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGet {
-    get(options: ComputeNodeOperationsGetParameters): StreamableMethod<ComputeNodeOperationsGet200Response | ComputeNodeOperationsGetDefaultResponse>;
+    get(options?: ComputeNodeOperationsGetParameters): StreamableMethod<ComputeNodeOperationsGet200Response | ComputeNodeOperationsGetDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsGet200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
 export interface ComputeNodeOperationsGet200Response extends HttpResponse {
     // (undocumented)
     body: ComputeNodeOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & ComputeNodeOperationsGet200Headers;
     // (undocumented)
     status: "200";
 }
@@ -1357,14 +1485,14 @@ export interface ComputeNodeOperationsGetDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export interface ComputeNodeOperationsGetHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsGetHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsGetHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1373,24 +1501,35 @@ export type ComputeNodeOperationsGetParameters = ComputeNodeOperationsGetQueryPa
 // @public (undocumented)
 export interface ComputeNodeOperationsGetQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsGetQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsGetQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetQueryParamProperties {
-    $select: string;
-    timeout: number;
+    $select?: string;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteDesktop {
-    get(options: ComputeNodeOperationsGetRemoteDesktopParameters): StreamableMethod<ComputeNodeOperationsGetRemoteDesktop204Response | ComputeNodeOperationsGetRemoteDesktopDefaultResponse>;
+    get(options?: ComputeNodeOperationsGetRemoteDesktopParameters): StreamableMethod<ComputeNodeOperationsGetRemoteDesktop200Response | ComputeNodeOperationsGetRemoteDesktopDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsGetRemoteDesktop200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsGetRemoteDesktop204Response extends HttpResponse {
+export interface ComputeNodeOperationsGetRemoteDesktop200Response extends HttpResponse {
+    body: Uint8Array;
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & ComputeNodeOperationsGetRemoteDesktop200Headers;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
@@ -1404,15 +1543,14 @@ export interface ComputeNodeOperationsGetRemoteDesktopDefaultResponse extends Ht
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteDesktopHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsGetRemoteDesktopHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsGetRemoteDesktopHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteDesktopHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-    accept: "application/json, application/octet-stream";
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1421,23 +1559,33 @@ export type ComputeNodeOperationsGetRemoteDesktopParameters = ComputeNodeOperati
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteDesktopQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsGetRemoteDesktopQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsGetRemoteDesktopQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteDesktopQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteLoginSettings {
-    get(options: ComputeNodeOperationsGetRemoteLoginSettingsParameters): StreamableMethod<ComputeNodeOperationsGetRemoteLoginSettings200Response | ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse>;
+    get(options?: ComputeNodeOperationsGetRemoteLoginSettingsParameters): StreamableMethod<ComputeNodeOperationsGetRemoteLoginSettings200Response | ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsGetRemoteLoginSettings200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
 export interface ComputeNodeOperationsGetRemoteLoginSettings200Response extends HttpResponse {
     // (undocumented)
     body: ComputeNodeGetRemoteLoginSettingsResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & ComputeNodeOperationsGetRemoteLoginSettings200Headers;
     // (undocumented)
     status: "200";
 }
@@ -1453,14 +1601,14 @@ export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse exte
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteLoginSettingsHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsGetRemoteLoginSettingsHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsGetRemoteLoginSettingsHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteLoginSettingsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1469,12 +1617,12 @@ export type ComputeNodeOperationsGetRemoteLoginSettingsParameters = ComputeNodeO
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteLoginSettingsQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsGetRemoteLoginSettingsQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsGetRemoteLoginSettingsQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteLoginSettingsQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
@@ -1482,10 +1630,20 @@ export interface ComputeNodeOperationsList {
     get(options: ComputeNodeOperationsListParameters): StreamableMethod<ComputeNodeOperationsList200Response | ComputeNodeOperationsListDefaultResponse>;
 }
 
+// @public (undocumented)
+export interface ComputeNodeOperationsList200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
 // @public
 export interface ComputeNodeOperationsList200Response extends HttpResponse {
     // (undocumented)
     body: ComputeNodeListResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & ComputeNodeOperationsList200Headers;
     // (undocumented)
     status: "200";
 }
@@ -1501,14 +1659,14 @@ export interface ComputeNodeOperationsListDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export interface ComputeNodeOperationsListHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsListHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsListHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1523,20 +1681,31 @@ export interface ComputeNodeOperationsListQueryParam {
 // @public (undocumented)
 export interface ComputeNodeOperationsListQueryParamProperties {
     $filter: string;
-    $select: string;
-    maxresults: number;
-    timeout: number;
+    $select?: string;
+    maxresults?: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsReboot {
-    post(options: ComputeNodeOperationsRebootParameters): StreamableMethod<ComputeNodeOperationsReboot204Response | ComputeNodeOperationsRebootDefaultResponse>;
+    post(options: ComputeNodeOperationsRebootParameters): StreamableMethod<ComputeNodeOperationsReboot202Response | ComputeNodeOperationsRebootDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsReboot202Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsReboot204Response extends HttpResponse {
+export interface ComputeNodeOperationsReboot202Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & ComputeNodeOperationsReboot202Headers;
+    // (undocumented)
+    status: "202";
 }
 
 // @public (undocumented)
@@ -1555,14 +1724,14 @@ export interface ComputeNodeOperationsRebootDefaultResponse extends HttpResponse
 // @public (undocumented)
 export interface ComputeNodeOperationsRebootHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsRebootHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsRebootHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsRebootHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1571,23 +1740,34 @@ export type ComputeNodeOperationsRebootParameters = ComputeNodeOperationsRebootQ
 // @public (undocumented)
 export interface ComputeNodeOperationsRebootQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsRebootQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsRebootQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsRebootQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsReimage {
-    post(options: ComputeNodeOperationsReimageParameters): StreamableMethod<ComputeNodeOperationsReimage204Response | ComputeNodeOperationsReimageDefaultResponse>;
+    post(options: ComputeNodeOperationsReimageParameters): StreamableMethod<ComputeNodeOperationsReimage202Response | ComputeNodeOperationsReimageDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsReimage202Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsReimage204Response extends HttpResponse {
+export interface ComputeNodeOperationsReimage202Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & ComputeNodeOperationsReimage202Headers;
+    // (undocumented)
+    status: "202";
 }
 
 // @public (undocumented)
@@ -1606,14 +1786,14 @@ export interface ComputeNodeOperationsReimageDefaultResponse extends HttpRespons
 // @public (undocumented)
 export interface ComputeNodeOperationsReimageHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsReimageHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsReimageHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsReimageHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1622,18 +1802,29 @@ export type ComputeNodeOperationsReimageParameters = ComputeNodeOperationsReimag
 // @public (undocumented)
 export interface ComputeNodeOperationsReimageQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsReimageQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsReimageQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsReimageQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface ComputeNodeOperationsUpdateUser200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsUpdateUser204Response extends HttpResponse {
+export interface ComputeNodeOperationsUpdateUser200Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & ComputeNodeOperationsUpdateUser200Headers;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
@@ -1652,14 +1843,14 @@ export interface ComputeNodeOperationsUpdateUserDefaultResponse extends HttpResp
 // @public (undocumented)
 export interface ComputeNodeOperationsUpdateUserHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsUpdateUserHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsUpdateUserHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsUpdateUserHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1668,37 +1859,38 @@ export type ComputeNodeOperationsUpdateUserParameters = ComputeNodeOperationsUpd
 // @public (undocumented)
 export interface ComputeNodeOperationsUpdateUserQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsUpdateUserQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsUpdateUserQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsUpdateUserQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogs {
-    post(options: ComputeNodeOperationsUploadBatchServiceLogsParameters): StreamableMethod<ComputeNodeOperationsUploadBatchServiceLogs201Response | ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse>;
+    post(options: ComputeNodeOperationsUploadBatchServiceLogsParameters): StreamableMethod<ComputeNodeOperationsUploadBatchServiceLogs200Response | ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse>;
 }
 
 // @public (undocumented)
-export interface ComputeNodeOperationsUploadBatchServiceLogs201Headers {
-    // (undocumented)
-    location: string;
+export interface ComputeNodeOperationsUploadBatchServiceLogs200Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
 }
 
 // @public
-export interface ComputeNodeOperationsUploadBatchServiceLogs201Response extends HttpResponse {
+export interface ComputeNodeOperationsUploadBatchServiceLogs200Response extends HttpResponse {
     // (undocumented)
-    headers: RawHttpHeaders & ComputeNodeOperationsUploadBatchServiceLogs201Headers;
+    body: UploadBatchServiceLogsResultOutput;
     // (undocumented)
-    status: "201";
+    headers: RawHttpHeaders & ComputeNodeOperationsUploadBatchServiceLogs200Headers;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsBodyParam {
-    // (undocumented)
-    body?: UploadBatchServiceLogsResult;
+    body: UploadBatchServiceLogsConfiguration;
 }
 
 // @public (undocumented)
@@ -1712,14 +1904,14 @@ export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse exte
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & ComputeNodeOperationsUploadBatchServiceLogsHeaders;
+    headers?: RawHttpHeadersInput & ComputeNodeOperationsUploadBatchServiceLogsHeaders;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
@@ -1728,12 +1920,12 @@ export type ComputeNodeOperationsUploadBatchServiceLogsParameters = ComputeNodeO
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsQueryParam {
     // (undocumented)
-    queryParameters: ComputeNodeOperationsUploadBatchServiceLogsQueryParamProperties;
+    queryParameters?: ComputeNodeOperationsUploadBatchServiceLogsQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsQueryParamProperties {
-    timeout: number;
+    timeOut?: number;
 }
 
 // @public
@@ -1751,10 +1943,10 @@ export interface ComputeNodeOutput {
     recentTasks?: Array<TaskInformationOutput>;
     runningTasksCount?: number;
     runningTaskSlotsCount?: number;
-    schedulingState?: "enabled" | "disabled";
+    schedulingState?: string;
     startTask?: StartTaskOutput;
     startTaskInfo?: StartTaskInformationOutput;
-    state?: "idle" | "rebooting" | "reimaging" | "running" | "unusable" | "creating" | "starting" | "waitingforstarttask" | "starttaskfailed" | "unknown" | "leavingpool" | "offline" | "preempted";
+    state?: string;
     stateTransitionTime?: string;
     totalTasksRun?: number;
     totalTasksSucceeded?: number;
@@ -1776,14 +1968,14 @@ export interface ComputeNodeUser {
 export interface ContainerConfiguration {
     containerImageNames?: string[];
     containerRegistries?: Array<ContainerRegistry>;
-    type: "dockerCompatible";
+    type: string;
 }
 
 // @public
 export interface ContainerConfigurationOutput {
     containerImageNames?: string[];
     containerRegistries?: Array<ContainerRegistryOutput>;
-    type: "dockerCompatible";
+    type: string;
 }
 
 // @public
@@ -1803,23 +1995,23 @@ export interface ContainerRegistryOutput {
 }
 
 // @public
-function createClient(batchUrl: string, options?: ClientOptions): BatchServiceClient;
+function createClient(endpoint: string, credentials: TokenCredential, options?: ClientOptions): BatchServiceClient;
 export default createClient;
 
 // @public
 export interface DataDisk {
-    caching?: "none" | "readonly" | "readwrite";
+    caching?: string;
     diskSizeGB: number;
     lun: number;
-    storageAccountType?: "standard_lrs" | "premium_lrs";
+    storageAccountType?: string;
 }
 
 // @public
 export interface DataDiskOutput {
-    caching?: "none" | "readonly" | "readwrite";
+    caching?: string;
     diskSizeGB: number;
     lun: number;
-    storageAccountType?: "standard_lrs" | "premium_lrs";
+    storageAccountType?: string;
 }
 
 // @public
@@ -1838,22 +2030,22 @@ export interface DeleteCertificateErrorOutput {
 
 // @public
 export interface DiffDiskSettings {
-    placement?: "CacheDisk";
+    placement?: string;
 }
 
 // @public
 export interface DiffDiskSettingsOutput {
-    placement?: "CacheDisk";
+    placement?: string;
 }
 
 // @public
 export interface DiskEncryptionConfiguration {
-    targets?: ("osdisk" | "temporarydisk")[];
+    targets?: string[];
 }
 
 // @public
 export interface DiskEncryptionConfigurationOutput {
-    targets?: ("osdisk" | "temporarydisk")[];
+    targets?: string[];
 }
 
 // @public
@@ -1920,305 +2112,39 @@ export interface ExitConditionsOutput {
 
 // @public
 export interface ExitOptions {
-    dependencyAction?: "satisfy" | "block";
-    jobAction?: "none" | "disable" | "terminate";
+    dependencyAction?: string;
+    jobAction?: string;
 }
 
 // @public
 export interface ExitOptionsOutput {
-    dependencyAction?: "satisfy" | "block";
-    jobAction?: "none" | "disable" | "terminate";
+    dependencyAction?: string;
+    jobAction?: string;
 }
 
 // @public (undocumented)
-export interface FileOperationsDeleteFromComputeNode {
-    delete(options: FileOperationsDeleteFromComputeNodeParameters): StreamableMethod<FileOperationsDeleteFromComputeNode204Response | FileOperationsDeleteFromComputeNodeDefaultResponse>;
-    get(options: FileOperationsGetFromComputeNodeParameters): StreamableMethod<FileOperationsGetFromComputeNode204Response | FileOperationsGetFromComputeNodeDefaultResponse>;
-    head(options: FileOperationsGetPropertiesFromComputeNodeParameters): StreamableMethod<FileOperationsGetPropertiesFromComputeNode204Response | FileOperationsGetPropertiesFromComputeNodeDefaultResponse>;
+export interface FileDeleteFromComputeNode {
+    delete(options?: FileDeleteFromComputeNodeParameters): StreamableMethod<FileDeleteFromComputeNode200Response | FileDeleteFromComputeNodeDefaultResponse>;
+    get(options?: FileGetFromComputeNodeParameters): StreamableMethod<FileGetFromComputeNode200Response | FileGetFromComputeNodeDefaultResponse>;
+    head(options?: FileGetPropertiesFromComputeNodeParameters): StreamableMethod<FileGetPropertiesFromComputeNode200Response | FileGetPropertiesFromComputeNodeDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface FileDeleteFromComputeNode200Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
 }
 
 // @public
-export interface FileOperationsDeleteFromComputeNode204Response extends HttpResponse {
+export interface FileDeleteFromComputeNode200Response extends HttpResponse {
     // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromComputeNodeDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromComputeNodeHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & FileOperationsDeleteFromComputeNodeHeaders;
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromComputeNodeHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type FileOperationsDeleteFromComputeNodeParameters = FileOperationsDeleteFromComputeNodeQueryParam & FileOperationsDeleteFromComputeNodeHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromComputeNodeQueryParam {
-    // (undocumented)
-    queryParameters: FileOperationsDeleteFromComputeNodeQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromComputeNodeQueryParamProperties {
-    recursive: boolean;
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromTask {
-    delete(options: FileOperationsDeleteFromTaskParameters): StreamableMethod<FileOperationsDeleteFromTask204Response | FileOperationsDeleteFromTaskDefaultResponse>;
-    get(options: FileOperationsGetFromTaskParameters): StreamableMethod<FileOperationsGetFromTask204Response | FileOperationsGetFromTaskDefaultResponse>;
-    head(options: FileOperationsGetPropertiesFromTaskParameters): StreamableMethod<FileOperationsGetPropertiesFromTask204Response | FileOperationsGetPropertiesFromTaskDefaultResponse>;
-}
-
-// @public
-export interface FileOperationsDeleteFromTask204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromTaskDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromTaskHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & FileOperationsDeleteFromTaskHeaders;
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromTaskHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type FileOperationsDeleteFromTaskParameters = FileOperationsDeleteFromTaskQueryParam & FileOperationsDeleteFromTaskHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromTaskQueryParam {
-    // (undocumented)
-    queryParameters: FileOperationsDeleteFromTaskQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface FileOperationsDeleteFromTaskQueryParamProperties {
-    recursive: boolean;
-    timeout: number;
-}
-
-// @public
-export interface FileOperationsGetFromComputeNode204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface FileOperationsGetFromComputeNodeDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetFromComputeNodeHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & FileOperationsGetFromComputeNodeHeaders;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetFromComputeNodeHeaders {
-    "client-request-id": string;
-    "if-modified-since": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "ocp-range": string;
-    "return-client-request-id": boolean;
-    accept: "application/json, application/octet-stream";
-}
-
-// @public (undocumented)
-export type FileOperationsGetFromComputeNodeParameters = FileOperationsGetFromComputeNodeQueryParam & FileOperationsGetFromComputeNodeHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface FileOperationsGetFromComputeNodeQueryParam {
-    // (undocumented)
-    queryParameters: FileOperationsGetFromComputeNodeQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetFromComputeNodeQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface FileOperationsGetFromTask204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface FileOperationsGetFromTaskDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetFromTaskHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & FileOperationsGetFromTaskHeaders;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetFromTaskHeaders {
-    "client-request-id": string;
-    "if-modified-since": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "ocp-range": string;
-    "return-client-request-id": boolean;
-    accept: "application/json, application/octet-stream";
-}
-
-// @public (undocumented)
-export type FileOperationsGetFromTaskParameters = FileOperationsGetFromTaskQueryParam & FileOperationsGetFromTaskHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface FileOperationsGetFromTaskQueryParam {
-    // (undocumented)
-    queryParameters: FileOperationsGetFromTaskQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetFromTaskQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface FileOperationsGetPropertiesFromComputeNode204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromComputeNodeDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromComputeNodeHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & FileOperationsGetPropertiesFromComputeNodeHeaders;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromComputeNodeHeaders {
-    "client-request-id": string;
-    "if-modified-since": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type FileOperationsGetPropertiesFromComputeNodeParameters = FileOperationsGetPropertiesFromComputeNodeQueryParam & FileOperationsGetPropertiesFromComputeNodeHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromComputeNodeQueryParam {
-    // (undocumented)
-    queryParameters: FileOperationsGetPropertiesFromComputeNodeQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromComputeNodeQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface FileOperationsGetPropertiesFromTask204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromTaskDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromTaskHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & FileOperationsGetPropertiesFromTaskHeaders;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromTaskHeaders {
-    "client-request-id": string;
-    "if-modified-since": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type FileOperationsGetPropertiesFromTaskParameters = FileOperationsGetPropertiesFromTaskQueryParam & FileOperationsGetPropertiesFromTaskHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromTaskQueryParam {
-    // (undocumented)
-    queryParameters: FileOperationsGetPropertiesFromTaskQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface FileOperationsGetPropertiesFromTaskQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface FileOperationsListFromComputeNode {
-    get(options: FileOperationsListFromComputeNodeParameters): StreamableMethod<FileOperationsListFromComputeNode200Response | FileOperationsListFromComputeNodeDefaultResponse>;
-}
-
-// @public
-export interface FileOperationsListFromComputeNode200Response extends HttpResponse {
-    // (undocumented)
-    body: NodeFileListResultOutput;
+    headers: RawHttpHeaders & FileDeleteFromComputeNode200Headers;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromComputeNodeDefaultResponse extends HttpResponse {
+export interface FileDeleteFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -2226,50 +2152,56 @@ export interface FileOperationsListFromComputeNodeDefaultResponse extends HttpRe
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromComputeNodeHeaderParam {
+export interface FileDeleteFromComputeNodeHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & FileOperationsListFromComputeNodeHeaders;
+    headers?: RawHttpHeadersInput & FileDeleteFromComputeNodeHeaders;
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromComputeNodeHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface FileDeleteFromComputeNodeHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type FileOperationsListFromComputeNodeParameters = FileOperationsListFromComputeNodeQueryParam & FileOperationsListFromComputeNodeHeaderParam & RequestParameters;
+export type FileDeleteFromComputeNodeParameters = FileDeleteFromComputeNodeQueryParam & FileDeleteFromComputeNodeHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface FileOperationsListFromComputeNodeQueryParam {
+export interface FileDeleteFromComputeNodeQueryParam {
     // (undocumented)
-    queryParameters: FileOperationsListFromComputeNodeQueryParamProperties;
+    queryParameters?: FileDeleteFromComputeNodeQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromComputeNodeQueryParamProperties {
-    $filter: string;
-    maxresults: number;
-    recursive: boolean;
-    timeout: number;
+export interface FileDeleteFromComputeNodeQueryParamProperties {
+    recursive?: boolean;
+    timeOut?: number;
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromTask {
-    get(options: FileOperationsListFromTaskParameters): StreamableMethod<FileOperationsListFromTask200Response | FileOperationsListFromTaskDefaultResponse>;
+export interface FileDeleteFromTask {
+    delete(options: FileDeleteFromTaskParameters): StreamableMethod<FileDeleteFromTask200Response | FileDeleteFromTaskDefaultResponse>;
+    get(options?: FileGetFromTaskParameters): StreamableMethod<FileGetFromTask200Response | FileGetFromTaskDefaultResponse>;
+    head(options?: FileGetPropertiesFromTaskParameters): StreamableMethod<FileGetPropertiesFromTask200Response | FileGetPropertiesFromTaskDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface FileDeleteFromTask200Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
 }
 
 // @public
-export interface FileOperationsListFromTask200Response extends HttpResponse {
+export interface FileDeleteFromTask200Response extends HttpResponse {
     // (undocumented)
-    body: NodeFileListResultOutput;
+    headers: RawHttpHeaders & FileDeleteFromTask200Headers;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromTaskDefaultResponse extends HttpResponse {
+export interface FileDeleteFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -2277,33 +2209,389 @@ export interface FileOperationsListFromTaskDefaultResponse extends HttpResponse 
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromTaskHeaderParam {
+export interface FileDeleteFromTaskHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & FileOperationsListFromTaskHeaders;
+    headers?: RawHttpHeadersInput & FileDeleteFromTaskHeaders;
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromTaskHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface FileDeleteFromTaskHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type FileOperationsListFromTaskParameters = FileOperationsListFromTaskQueryParam & FileOperationsListFromTaskHeaderParam & RequestParameters;
+export type FileDeleteFromTaskParameters = FileDeleteFromTaskQueryParam & FileDeleteFromTaskHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface FileOperationsListFromTaskQueryParam {
+export interface FileDeleteFromTaskQueryParam {
     // (undocumented)
-    queryParameters: FileOperationsListFromTaskQueryParamProperties;
+    queryParameters: FileDeleteFromTaskQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface FileOperationsListFromTaskQueryParamProperties {
-    $filter: string;
-    maxresults: number;
+export interface FileDeleteFromTaskQueryParamProperties {
     recursive: boolean;
-    timeout: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface FileGetFromComputeNode200Headers {
+    "client-request-id"?: string;
+    "content-length": number;
+    "last-modified"?: string;
+    "ocp-batch-file-isdirectory": boolean;
+    "ocp-batch-file-mode": string;
+    "ocp-batch-file-url": string;
+    "ocp-creation-time"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface FileGetFromComputeNode200Response extends HttpResponse {
+    body: Uint8Array;
+    // (undocumented)
+    headers: RawHttpHeaders & FileGetFromComputeNode200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FileGetFromComputeNodeDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface FileGetFromComputeNodeHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & FileGetFromComputeNodeHeaders;
+}
+
+// @public (undocumented)
+export interface FileGetFromComputeNodeHeaders {
+    "client-request-id"?: string;
+    "if-modified-since"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "ocp-range"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type FileGetFromComputeNodeParameters = FileGetFromComputeNodeQueryParam & FileGetFromComputeNodeHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface FileGetFromComputeNodeQueryParam {
+    // (undocumented)
+    queryParameters?: FileGetFromComputeNodeQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface FileGetFromComputeNodeQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface FileGetFromTask200Headers {
+    "client-request-id"?: string;
+    "content-length": number;
+    "last-modified"?: string;
+    "ocp-batch-file-isdirectory": boolean;
+    "ocp-batch-file-mode": string;
+    "ocp-batch-file-url": string;
+    "ocp-creation-time"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface FileGetFromTask200Response extends HttpResponse {
+    body: Uint8Array;
+    // (undocumented)
+    headers: RawHttpHeaders & FileGetFromTask200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FileGetFromTaskDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface FileGetFromTaskHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & FileGetFromTaskHeaders;
+}
+
+// @public (undocumented)
+export interface FileGetFromTaskHeaders {
+    "client-request-id"?: string;
+    "if-modified-since"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "ocp-range"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type FileGetFromTaskParameters = FileGetFromTaskQueryParam & FileGetFromTaskHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface FileGetFromTaskQueryParam {
+    // (undocumented)
+    queryParameters?: FileGetFromTaskQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface FileGetFromTaskQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromComputeNode200Headers {
+    "client-request-id"?: string;
+    "content-length": number;
+    "last-modified"?: string;
+    "ocp-batch-file-isdirectory": boolean;
+    "ocp-batch-file-mode": string;
+    "ocp-batch-file-url": string;
+    "ocp-creation-time"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface FileGetPropertiesFromComputeNode200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & FileGetPropertiesFromComputeNode200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromComputeNodeDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromComputeNodeHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & FileGetPropertiesFromComputeNodeHeaders;
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromComputeNodeHeaders {
+    "client-request-id"?: string;
+    "if-modified-since"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type FileGetPropertiesFromComputeNodeParameters = FileGetPropertiesFromComputeNodeQueryParam & FileGetPropertiesFromComputeNodeHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface FileGetPropertiesFromComputeNodeQueryParam {
+    // (undocumented)
+    queryParameters?: FileGetPropertiesFromComputeNodeQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromComputeNodeQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromTask200Headers {
+    "client-request-id"?: string;
+    "content-length": number;
+    "last-modified"?: string;
+    "ocp-batch-file-isdirectory": boolean;
+    "ocp-batch-file-mode": string;
+    "ocp-batch-file-url": string;
+    "ocp-creation-time"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface FileGetPropertiesFromTask200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & FileGetPropertiesFromTask200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromTaskDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromTaskHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & FileGetPropertiesFromTaskHeaders;
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromTaskHeaders {
+    "client-request-id"?: string;
+    "if-modified-since"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type FileGetPropertiesFromTaskParameters = FileGetPropertiesFromTaskQueryParam & FileGetPropertiesFromTaskHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface FileGetPropertiesFromTaskQueryParam {
+    // (undocumented)
+    queryParameters?: FileGetPropertiesFromTaskQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface FileGetPropertiesFromTaskQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface FileListFromComputeNode {
+    get(options: FileListFromComputeNodeParameters): StreamableMethod<FileListFromComputeNode200Response | FileListFromComputeNodeDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface FileListFromComputeNode200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface FileListFromComputeNode200Response extends HttpResponse {
+    // (undocumented)
+    body: NodeFileListResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & FileListFromComputeNode200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FileListFromComputeNodeDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface FileListFromComputeNodeHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & FileListFromComputeNodeHeaders;
+}
+
+// @public (undocumented)
+export interface FileListFromComputeNodeHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type FileListFromComputeNodeParameters = FileListFromComputeNodeQueryParam & FileListFromComputeNodeHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface FileListFromComputeNodeQueryParam {
+    // (undocumented)
+    queryParameters: FileListFromComputeNodeQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface FileListFromComputeNodeQueryParamProperties {
+    $filter: string;
+    maxresults?: number;
+    recursive: boolean;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface FileListFromTask {
+    get(options: FileListFromTaskParameters): StreamableMethod<FileListFromTask200Response | FileListFromTaskDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface FileListFromTask200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface FileListFromTask200Response extends HttpResponse {
+    // (undocumented)
+    body: NodeFileListResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & FileListFromTask200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface FileListFromTaskDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface FileListFromTaskHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & FileListFromTaskHeaders;
+}
+
+// @public (undocumented)
+export interface FileListFromTaskHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type FileListFromTaskParameters = FileListFromTaskQueryParam & FileListFromTaskHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface FileListFromTaskQueryParam {
+    // (undocumented)
+    queryParameters: FileListFromTaskQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface FileListFromTaskQueryParamProperties {
+    $filter: string;
+    maxresults?: number;
+    recursive: boolean;
+    timeOut?: number;
 }
 
 // @public
@@ -2337,16 +2625,13 @@ export interface HttpHeaderOutput {
 }
 
 // @public
-export type ImageInformationListOutput = Paged<ImageInformationOutput>;
-
-// @public
 export interface ImageInformationOutput {
     batchSupportEndOfLife?: string;
     capabilities?: string[];
     imageReference: ImageReferenceOutput;
-    nodeAgentSKUId: string;
-    osType: "linux" | "windows";
-    verificationType: "verified" | "unverified";
+    readonly nodeAgentSKUId: string;
+    osType: string;
+    verificationType: string;
 }
 
 // @public
@@ -2373,7 +2658,7 @@ export interface InboundEndpointOutput {
     backendPort: number;
     frontendPort: number;
     name: string;
-    protocol: "tcp" | "udp";
+    protocol: string;
     publicFQDN: string;
     publicIPAddress: string;
 }
@@ -2385,7 +2670,7 @@ export interface InboundNATPool {
     frontendPortRangeStart: number;
     name: string;
     networkSecurityGroupRules?: Array<NetworkSecurityGroupRule>;
-    protocol: "tcp" | "udp";
+    protocol: string;
 }
 
 // @public
@@ -2395,14 +2680,14 @@ export interface InboundNATPoolOutput {
     frontendPortRangeStart: number;
     name: string;
     networkSecurityGroupRules?: Array<NetworkSecurityGroupRuleOutput>;
-    protocol: "tcp" | "udp";
+    protocol: string;
 }
 
 // @public
 export interface InstanceViewStatusOutput {
     code?: string;
     displayStatus?: string;
-    level?: "Error" | "Info" | "Warning";
+    level?: string;
     message?: string;
     time?: string;
 }
@@ -2414,97 +2699,97 @@ export function isUnexpected(response: ApplicationOperationsList200Response | Ap
 export function isUnexpected(response: ApplicationOperationsGet200Response | ApplicationOperationsGetDefaultResponse): response is ApplicationOperationsGetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsListUsageMetrics200Response | PoolOperationsListUsageMetricsDefaultResponse): response is PoolOperationsListUsageMetricsDefaultResponse;
+export function isUnexpected(response: PoolListUsageMetrics200Response | PoolListUsageMetricsDefaultResponse): response is PoolListUsageMetricsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsGetAllLifetimeStatistics200Response | PoolOperationsGetAllLifetimeStatisticsDefaultResponse): response is PoolOperationsGetAllLifetimeStatisticsDefaultResponse;
+export function isUnexpected(response: PoolGetAllLifetimeStatistics200Response | PoolGetAllLifetimeStatisticsDefaultResponse): response is PoolGetAllLifetimeStatisticsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsAdd204Response | PoolOperationsAddDefaultResponse): response is PoolOperationsAddDefaultResponse;
+export function isUnexpected(response: PoolAdd201Response | PoolAddDefaultResponse): response is PoolAddDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsList200Response | PoolOperationsListDefaultResponse): response is PoolOperationsListDefaultResponse;
+export function isUnexpected(response: PoolList200Response | PoolListDefaultResponse): response is PoolListDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsDelete204Response | PoolOperationsDeleteDefaultResponse): response is PoolOperationsDeleteDefaultResponse;
+export function isUnexpected(response: PoolDelete202Response | PoolDeleteDefaultResponse): response is PoolDeleteDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsExists204Response | PoolOperationsExistsDefaultResponse): response is PoolOperationsExistsDefaultResponse;
+export function isUnexpected(response: PoolExists404Response | PoolExistsDefaultResponse): response is PoolExistsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsGet200Response | PoolOperationsGetDefaultResponse): response is PoolOperationsGetDefaultResponse;
+export function isUnexpected(response: PoolGet200Response | PoolGetDefaultResponse): response is PoolGetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsPatch204Response | PoolOperationsPatchDefaultResponse): response is PoolOperationsPatchDefaultResponse;
+export function isUnexpected(response: PoolPatch200Response | PoolPatchDefaultResponse): response is PoolPatchDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsDisableAutoScale204Response | PoolOperationsDisableAutoScaleDefaultResponse): response is PoolOperationsDisableAutoScaleDefaultResponse;
+export function isUnexpected(response: PoolDisableAutoScale200Response | PoolDisableAutoScaleDefaultResponse): response is PoolDisableAutoScaleDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsEnableAutoScale204Response | PoolOperationsEnableAutoScaleDefaultResponse): response is PoolOperationsEnableAutoScaleDefaultResponse;
+export function isUnexpected(response: PoolEnableAutoScale200Response | PoolEnableAutoScaleDefaultResponse): response is PoolEnableAutoScaleDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsEvaluateAutoScale200Response | PoolOperationsEvaluateAutoScaleDefaultResponse): response is PoolOperationsEvaluateAutoScaleDefaultResponse;
+export function isUnexpected(response: PoolEvaluateAutoScale200Response | PoolEvaluateAutoScaleDefaultResponse): response is PoolEvaluateAutoScaleDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsResize204Response | PoolOperationsResizeDefaultResponse): response is PoolOperationsResizeDefaultResponse;
+export function isUnexpected(response: PoolResize200Response | PoolResizeDefaultResponse): response is PoolResizeDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsStopResize204Response | PoolOperationsStopResizeDefaultResponse): response is PoolOperationsStopResizeDefaultResponse;
+export function isUnexpected(response: PoolStopResize200Response | PoolStopResizeDefaultResponse): response is PoolStopResizeDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsUpdateProperties204Response | PoolOperationsUpdatePropertiesDefaultResponse): response is PoolOperationsUpdatePropertiesDefaultResponse;
+export function isUnexpected(response: PoolUpdateProperties200Response | PoolUpdatePropertiesDefaultResponse): response is PoolUpdatePropertiesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: PoolOperationsRemoveNodes204Response | PoolOperationsRemoveNodesDefaultResponse): response is PoolOperationsRemoveNodesDefaultResponse;
+export function isUnexpected(response: PoolRemoveNodes200Response | PoolRemoveNodesDefaultResponse): response is PoolRemoveNodesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: AccountOperationsListSupportedImages200Response | AccountOperationsListSupportedImagesDefaultResponse): response is AccountOperationsListSupportedImagesDefaultResponse;
+export function isUnexpected(response: AccountListSupportedImages200Response | AccountListSupportedImagesDefaultResponse): response is AccountListSupportedImagesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: AccountOperationsListPoolNodeCounts200Response | AccountOperationsListPoolNodeCountsDefaultResponse): response is AccountOperationsListPoolNodeCountsDefaultResponse;
+export function isUnexpected(response: AccountListPoolNodeCounts200Response | AccountListPoolNodeCountsDefaultResponse): response is AccountListPoolNodeCountsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsGetAllLifetimeStatistics200Response | JobOperationsGetAllLifetimeStatisticsDefaultResponse): response is JobOperationsGetAllLifetimeStatisticsDefaultResponse;
+export function isUnexpected(response: JobGetAllLifetimeStatistics200Response | JobGetAllLifetimeStatisticsDefaultResponse): response is JobGetAllLifetimeStatisticsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsDelete204Response | JobOperationsDeleteDefaultResponse): response is JobOperationsDeleteDefaultResponse;
+export function isUnexpected(response: JobDelete202Response | JobDeleteDefaultResponse): response is JobDeleteDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsGet200Response | JobOperationsGetDefaultResponse): response is JobOperationsGetDefaultResponse;
+export function isUnexpected(response: JobGet200Response | JobGetDefaultResponse): response is JobGetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsPatch204Response | JobOperationsPatchDefaultResponse): response is JobOperationsPatchDefaultResponse;
+export function isUnexpected(response: JobPatch200Response | JobPatchDefaultResponse): response is JobPatchDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsUpdate204Response | JobOperationsUpdateDefaultResponse): response is JobOperationsUpdateDefaultResponse;
+export function isUnexpected(response: JobUpdate200Response | JobUpdateDefaultResponse): response is JobUpdateDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsDisable204Response | JobOperationsDisableDefaultResponse): response is JobOperationsDisableDefaultResponse;
+export function isUnexpected(response: JobDisable202Response | JobDisableDefaultResponse): response is JobDisableDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsEnable204Response | JobOperationsEnableDefaultResponse): response is JobOperationsEnableDefaultResponse;
+export function isUnexpected(response: JobEnable202Response | JobEnableDefaultResponse): response is JobEnableDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsTerminate204Response | JobOperationsTerminateDefaultResponse): response is JobOperationsTerminateDefaultResponse;
+export function isUnexpected(response: JobTerminate202Response | JobTerminateDefaultResponse): response is JobTerminateDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsAdd204Response | JobOperationsAddDefaultResponse): response is JobOperationsAddDefaultResponse;
+export function isUnexpected(response: JobAdd201Response | JobAddDefaultResponse): response is JobAddDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsList200Response | JobOperationsListDefaultResponse): response is JobOperationsListDefaultResponse;
+export function isUnexpected(response: JobList200Response | JobListDefaultResponse): response is JobListDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsListFromJobSchedule200Response | JobOperationsListFromJobScheduleDefaultResponse): response is JobOperationsListFromJobScheduleDefaultResponse;
+export function isUnexpected(response: JobListFromJobSchedule200Response | JobListFromJobScheduleDefaultResponse): response is JobListFromJobScheduleDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsListPreparationAndReleaseTaskStatus200Response | JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse): response is JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse;
+export function isUnexpected(response: JobListPreparationAndReleaseTaskStatus200Response | JobListPreparationAndReleaseTaskStatusDefaultResponse): response is JobListPreparationAndReleaseTaskStatusDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobOperationsGetTaskCounts200Response | JobOperationsGetTaskCountsDefaultResponse): response is JobOperationsGetTaskCountsDefaultResponse;
+export function isUnexpected(response: JobGetTaskCounts200Response | JobGetTaskCountsDefaultResponse): response is JobGetTaskCountsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: CertificateOperationsAdd204Response | CertificateOperationsAddDefaultResponse): response is CertificateOperationsAddDefaultResponse;
+export function isUnexpected(response: CertificateOperationsAdd201Response | CertificateOperationsAddDefaultResponse): response is CertificateOperationsAddDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: CertificateOperationsList200Response | CertificateOperationsListDefaultResponse): response is CertificateOperationsListDefaultResponse;
@@ -2513,124 +2798,124 @@ export function isUnexpected(response: CertificateOperationsList200Response | Ce
 export function isUnexpected(response: CertificateOperationsCancelDeletion204Response | CertificateOperationsCancelDeletionDefaultResponse): response is CertificateOperationsCancelDeletionDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: CertificateOperationsDelete204Response | CertificateOperationsDeleteDefaultResponse): response is CertificateOperationsDeleteDefaultResponse;
+export function isUnexpected(response: CertificateOperationsDelete202Response | CertificateOperationsDeleteDefaultResponse): response is CertificateOperationsDeleteDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: CertificateOperationsGet200Response | CertificateOperationsGetDefaultResponse): response is CertificateOperationsGetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: FileOperationsDeleteFromTask204Response | FileOperationsDeleteFromTaskDefaultResponse): response is FileOperationsDeleteFromTaskDefaultResponse;
+export function isUnexpected(response: FileDeleteFromTask200Response | FileDeleteFromTaskDefaultResponse): response is FileDeleteFromTaskDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: FileOperationsGetFromTask204Response | FileOperationsGetFromTaskDefaultResponse): response is FileOperationsGetFromTaskDefaultResponse;
+export function isUnexpected(response: FileGetFromTask200Response | FileGetFromTaskDefaultResponse): response is FileGetFromTaskDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: FileOperationsGetPropertiesFromTask204Response | FileOperationsGetPropertiesFromTaskDefaultResponse): response is FileOperationsGetPropertiesFromTaskDefaultResponse;
+export function isUnexpected(response: FileGetPropertiesFromTask200Response | FileGetPropertiesFromTaskDefaultResponse): response is FileGetPropertiesFromTaskDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: FileOperationsDeleteFromComputeNode204Response | FileOperationsDeleteFromComputeNodeDefaultResponse): response is FileOperationsDeleteFromComputeNodeDefaultResponse;
+export function isUnexpected(response: FileDeleteFromComputeNode200Response | FileDeleteFromComputeNodeDefaultResponse): response is FileDeleteFromComputeNodeDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: FileOperationsGetFromComputeNode204Response | FileOperationsGetFromComputeNodeDefaultResponse): response is FileOperationsGetFromComputeNodeDefaultResponse;
+export function isUnexpected(response: FileGetFromComputeNode200Response | FileGetFromComputeNodeDefaultResponse): response is FileGetFromComputeNodeDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: FileOperationsGetPropertiesFromComputeNode204Response | FileOperationsGetPropertiesFromComputeNodeDefaultResponse): response is FileOperationsGetPropertiesFromComputeNodeDefaultResponse;
+export function isUnexpected(response: FileGetPropertiesFromComputeNode200Response | FileGetPropertiesFromComputeNodeDefaultResponse): response is FileGetPropertiesFromComputeNodeDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: FileOperationsListFromTask200Response | FileOperationsListFromTaskDefaultResponse): response is FileOperationsListFromTaskDefaultResponse;
+export function isUnexpected(response: FileListFromTask200Response | FileListFromTaskDefaultResponse): response is FileListFromTaskDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: FileOperationsListFromComputeNode200Response | FileOperationsListFromComputeNodeDefaultResponse): response is FileOperationsListFromComputeNodeDefaultResponse;
+export function isUnexpected(response: FileListFromComputeNode200Response | FileListFromComputeNodeDefaultResponse): response is FileListFromComputeNodeDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsExists204Response | JobScheduleOperationsExistsDefaultResponse): response is JobScheduleOperationsExistsDefaultResponse;
+export function isUnexpected(response: JobScheduleExists200Response | JobScheduleExists204Response | JobScheduleExistsDefaultResponse): response is JobScheduleExistsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsDelete204Response | JobScheduleOperationsDeleteDefaultResponse): response is JobScheduleOperationsDeleteDefaultResponse;
+export function isUnexpected(response: JobScheduleDelete202Response | JobScheduleDeleteDefaultResponse): response is JobScheduleDeleteDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsGet200Response | JobScheduleOperationsGetDefaultResponse): response is JobScheduleOperationsGetDefaultResponse;
+export function isUnexpected(response: JobScheduleGet200Response | JobScheduleGetDefaultResponse): response is JobScheduleGetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsPatch204Response | JobScheduleOperationsPatchDefaultResponse): response is JobScheduleOperationsPatchDefaultResponse;
+export function isUnexpected(response: JobSchedulePatch200Response | JobSchedulePatchDefaultResponse): response is JobSchedulePatchDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsUpdate204Response | JobScheduleOperationsUpdateDefaultResponse): response is JobScheduleOperationsUpdateDefaultResponse;
+export function isUnexpected(response: JobScheduleUpdate200Response | JobScheduleUpdateDefaultResponse): response is JobScheduleUpdateDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsDisable204Response | JobScheduleOperationsDisableDefaultResponse): response is JobScheduleOperationsDisableDefaultResponse;
+export function isUnexpected(response: JobScheduleDisable204Response | JobScheduleDisableDefaultResponse): response is JobScheduleDisableDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsEnable204Response | JobScheduleOperationsEnableDefaultResponse): response is JobScheduleOperationsEnableDefaultResponse;
+export function isUnexpected(response: JobScheduleEnable204Response | JobScheduleEnableDefaultResponse): response is JobScheduleEnableDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsTerminate204Response | JobScheduleOperationsTerminateDefaultResponse): response is JobScheduleOperationsTerminateDefaultResponse;
+export function isUnexpected(response: JobScheduleTerminate202Response | JobScheduleTerminateDefaultResponse): response is JobScheduleTerminateDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsAdd204Response | JobScheduleOperationsAddDefaultResponse): response is JobScheduleOperationsAddDefaultResponse;
+export function isUnexpected(response: JobScheduleAdd201Response | JobScheduleAddDefaultResponse): response is JobScheduleAddDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: JobScheduleOperationsList200Response | JobScheduleOperationsListDefaultResponse): response is JobScheduleOperationsListDefaultResponse;
+export function isUnexpected(response: JobScheduleList200Response | JobScheduleListDefaultResponse): response is JobScheduleListDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsAdd204Response | TaskOperationsAddDefaultResponse): response is TaskOperationsAddDefaultResponse;
+export function isUnexpected(response: TaskAdd201Response | TaskAddDefaultResponse): response is TaskAddDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsList200Response | TaskOperationsListDefaultResponse): response is TaskOperationsListDefaultResponse;
+export function isUnexpected(response: TaskList200Response | TaskListDefaultResponse): response is TaskListDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsAddCollection200Response | TaskOperationsAddCollectionDefaultResponse): response is TaskOperationsAddCollectionDefaultResponse;
+export function isUnexpected(response: TaskAddCollection200Response | TaskAddCollectionDefaultResponse): response is TaskAddCollectionDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsDelete204Response | TaskOperationsDeleteDefaultResponse): response is TaskOperationsDeleteDefaultResponse;
+export function isUnexpected(response: TaskDelete200Response | TaskDeleteDefaultResponse): response is TaskDeleteDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsGet200Response | TaskOperationsGetDefaultResponse): response is TaskOperationsGetDefaultResponse;
+export function isUnexpected(response: TaskGet200Response | TaskGetDefaultResponse): response is TaskGetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsUpdate204Response | TaskOperationsUpdateDefaultResponse): response is TaskOperationsUpdateDefaultResponse;
+export function isUnexpected(response: TaskUpdate200Response | TaskUpdateDefaultResponse): response is TaskUpdateDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsListSubtasks200Response | TaskOperationsListSubtasksDefaultResponse): response is TaskOperationsListSubtasksDefaultResponse;
+export function isUnexpected(response: TaskListSubtasks200Response | TaskListSubtasksDefaultResponse): response is TaskListSubtasksDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsTerminate204Response | TaskOperationsTerminateDefaultResponse): response is TaskOperationsTerminateDefaultResponse;
+export function isUnexpected(response: TaskTerminate204Response | TaskTerminateDefaultResponse): response is TaskTerminateDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: TaskOperationsReactivate204Response | TaskOperationsReactivateDefaultResponse): response is TaskOperationsReactivateDefaultResponse;
+export function isUnexpected(response: TaskReactivate204Response | TaskReactivateDefaultResponse): response is TaskReactivateDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsAddUser204Response | ComputeNodeOperationsAddUserDefaultResponse): response is ComputeNodeOperationsAddUserDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsAddUser201Response | ComputeNodeOperationsAddUserDefaultResponse): response is ComputeNodeOperationsAddUserDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsDeleteUser204Response | ComputeNodeOperationsDeleteUserDefaultResponse): response is ComputeNodeOperationsDeleteUserDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsDeleteUser200Response | ComputeNodeOperationsDeleteUserDefaultResponse): response is ComputeNodeOperationsDeleteUserDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsUpdateUser204Response | ComputeNodeOperationsUpdateUserDefaultResponse): response is ComputeNodeOperationsUpdateUserDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsUpdateUser200Response | ComputeNodeOperationsUpdateUserDefaultResponse): response is ComputeNodeOperationsUpdateUserDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: ComputeNodeOperationsGet200Response | ComputeNodeOperationsGetDefaultResponse): response is ComputeNodeOperationsGetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsReboot204Response | ComputeNodeOperationsRebootDefaultResponse): response is ComputeNodeOperationsRebootDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsReboot202Response | ComputeNodeOperationsRebootDefaultResponse): response is ComputeNodeOperationsRebootDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsReimage204Response | ComputeNodeOperationsReimageDefaultResponse): response is ComputeNodeOperationsReimageDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsReimage202Response | ComputeNodeOperationsReimageDefaultResponse): response is ComputeNodeOperationsReimageDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsDisableScheduling204Response | ComputeNodeOperationsDisableSchedulingDefaultResponse): response is ComputeNodeOperationsDisableSchedulingDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsDisableScheduling200Response | ComputeNodeOperationsDisableSchedulingDefaultResponse): response is ComputeNodeOperationsDisableSchedulingDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsEnableScheduling204Response | ComputeNodeOperationsEnableSchedulingDefaultResponse): response is ComputeNodeOperationsEnableSchedulingDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsEnableScheduling200Response | ComputeNodeOperationsEnableSchedulingDefaultResponse): response is ComputeNodeOperationsEnableSchedulingDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: ComputeNodeOperationsGetRemoteLoginSettings200Response | ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse): response is ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsGetRemoteDesktop204Response | ComputeNodeOperationsGetRemoteDesktopDefaultResponse): response is ComputeNodeOperationsGetRemoteDesktopDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsGetRemoteDesktop200Response | ComputeNodeOperationsGetRemoteDesktopDefaultResponse): response is ComputeNodeOperationsGetRemoteDesktopDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ComputeNodeOperationsUploadBatchServiceLogs201Response | ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse): response is ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse;
+export function isUnexpected(response: ComputeNodeOperationsUploadBatchServiceLogs200Response | ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse): response is ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: ComputeNodeOperationsList200Response | ComputeNodeOperationsListDefaultResponse): response is ComputeNodeOperationsListDefaultResponse;
@@ -2640,6 +2925,69 @@ export function isUnexpected(response: ComputeNodeExtensionOperationsGet200Respo
 
 // @public (undocumented)
 export function isUnexpected(response: ComputeNodeExtensionOperationsList200Response | ComputeNodeExtensionOperationsListDefaultResponse): response is ComputeNodeExtensionOperationsListDefaultResponse;
+
+// @public (undocumented)
+export interface JobAdd {
+    get(options: JobListParameters): StreamableMethod<JobList200Response | JobListDefaultResponse>;
+    post(options: JobAddParameters): StreamableMethod<JobAdd201Response | JobAddDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobAdd201Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobAdd201Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobAdd201Headers;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+export interface JobAddBodyParam {
+    body: BatchJob;
+}
+
+// @public (undocumented)
+export interface JobAddDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobAddHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobAddHeaders;
+}
+
+// @public (undocumented)
+export interface JobAddHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobAddParameters = JobAddQueryParam & JobAddHeaderParam & JobAddBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobAddQueryParam {
+    // (undocumented)
+    queryParameters?: JobAddQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobAddQueryParamProperties {
+    timeOut?: number;
+}
 
 // @public
 export interface JobConstraints {
@@ -2651,6 +2999,194 @@ export interface JobConstraints {
 export interface JobConstraintsOutput {
     maxTaskRetryCount?: number;
     maxWallClockTime?: string;
+}
+
+// @public (undocumented)
+export interface JobDelete {
+    delete(options?: JobDeleteParameters): StreamableMethod<JobDelete202Response | JobDeleteDefaultResponse>;
+    get(options?: JobGetParameters): StreamableMethod<JobGet200Response | JobGetDefaultResponse>;
+    patch(options: JobPatchParameters): StreamableMethod<JobPatch200Response | JobPatchDefaultResponse>;
+    put(options: JobUpdateParameters): StreamableMethod<JobUpdate200Response | JobUpdateDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobDelete202Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
+}
+
+// @public
+export interface JobDelete202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobDelete202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface JobDeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobDeleteHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobDeleteHeaders;
+}
+
+// @public (undocumented)
+export interface JobDeleteHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobDeleteParameters = JobDeleteQueryParam & JobDeleteHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobDeleteQueryParam {
+    // (undocumented)
+    queryParameters?: JobDeleteQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobDeleteQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobDisable {
+    post(options: JobDisableParameters): StreamableMethod<JobDisable202Response | JobDisableDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobDisable202Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobDisable202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobDisable202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface JobDisableBodyParam {
+    body: BatchJobDisableParameters;
+}
+
+// @public (undocumented)
+export interface JobDisableDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobDisableHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobDisableHeaders;
+}
+
+// @public (undocumented)
+export interface JobDisableHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobDisableParameters = JobDisableQueryParam & JobDisableHeaderParam & JobDisableBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobDisableQueryParam {
+    // (undocumented)
+    queryParameters?: JobDisableQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobDisableQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobEnable {
+    post(options?: JobEnableParameters): StreamableMethod<JobEnable202Response | JobEnableDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobEnable202Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobEnable202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobEnable202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface JobEnableDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobEnableHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobEnableHeaders;
+}
+
+// @public (undocumented)
+export interface JobEnableHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobEnableParameters = JobEnableQueryParam & JobEnableHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobEnableQueryParam {
+    // (undocumented)
+    queryParameters?: JobEnableQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobEnableQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -2669,6 +3205,359 @@ export interface JobExecutionInformationOutput {
     schedulingError?: JobSchedulingErrorOutput;
     startTime: string;
     terminateReason?: string;
+}
+
+// @public (undocumented)
+export interface JobGet200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface JobGet200Response extends HttpResponse {
+    // (undocumented)
+    body: BatchJobOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & JobGet200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface JobGetAllLifetimeStatistics {
+    get(options?: JobGetAllLifetimeStatisticsParameters): StreamableMethod<JobGetAllLifetimeStatistics200Response | JobGetAllLifetimeStatisticsDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobGetAllLifetimeStatistics200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface JobGetAllLifetimeStatistics200Response extends HttpResponse {
+    // (undocumented)
+    body: JobStatisticsOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & JobGetAllLifetimeStatistics200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface JobGetAllLifetimeStatisticsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobGetAllLifetimeStatisticsHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobGetAllLifetimeStatisticsHeaders;
+}
+
+// @public (undocumented)
+export interface JobGetAllLifetimeStatisticsHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobGetAllLifetimeStatisticsParameters = JobGetAllLifetimeStatisticsQueryParam & JobGetAllLifetimeStatisticsHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobGetAllLifetimeStatisticsQueryParam {
+    // (undocumented)
+    queryParameters?: JobGetAllLifetimeStatisticsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobGetAllLifetimeStatisticsQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobGetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobGetHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobGetHeaders;
+}
+
+// @public (undocumented)
+export interface JobGetHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobGetParameters = JobGetQueryParam & JobGetHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobGetQueryParam {
+    // (undocumented)
+    queryParameters?: JobGetQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobGetQueryParamProperties {
+    $expand?: string;
+    $select?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobGetTaskCounts {
+    get(options?: JobGetTaskCountsParameters): StreamableMethod<JobGetTaskCounts200Response | JobGetTaskCountsDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobGetTaskCounts200Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
+}
+
+// @public
+export interface JobGetTaskCounts200Response extends HttpResponse {
+    // (undocumented)
+    body: TaskCountsResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & JobGetTaskCounts200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface JobGetTaskCountsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobGetTaskCountsHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobGetTaskCountsHeaders;
+}
+
+// @public (undocumented)
+export interface JobGetTaskCountsHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobGetTaskCountsParameters = JobGetTaskCountsQueryParam & JobGetTaskCountsHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobGetTaskCountsQueryParam {
+    // (undocumented)
+    queryParameters?: JobGetTaskCountsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobGetTaskCountsQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobList200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface JobList200Response extends HttpResponse {
+    // (undocumented)
+    body: BatchJobListResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & JobList200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface JobListDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobListFromJobSchedule {
+    get(options: JobListFromJobScheduleParameters): StreamableMethod<JobListFromJobSchedule200Response | JobListFromJobScheduleDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobListFromJobSchedule200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface JobListFromJobSchedule200Response extends HttpResponse {
+    // (undocumented)
+    body: BatchJobListResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & JobListFromJobSchedule200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface JobListFromJobScheduleDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobListFromJobScheduleHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobListFromJobScheduleHeaders;
+}
+
+// @public (undocumented)
+export interface JobListFromJobScheduleHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobListFromJobScheduleParameters = JobListFromJobScheduleQueryParam & JobListFromJobScheduleHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobListFromJobScheduleQueryParam {
+    // (undocumented)
+    queryParameters: JobListFromJobScheduleQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobListFromJobScheduleQueryParamProperties {
+    $expand: string;
+    $filter: string;
+    $select: string;
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobListHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobListHeaders;
+}
+
+// @public (undocumented)
+export interface JobListHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobListParameters = JobListQueryParam & JobListHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobListPreparationAndReleaseTaskStatus {
+    get(options: JobListPreparationAndReleaseTaskStatusParameters): StreamableMethod<JobListPreparationAndReleaseTaskStatus200Response | JobListPreparationAndReleaseTaskStatusDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobListPreparationAndReleaseTaskStatus200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface JobListPreparationAndReleaseTaskStatus200Response extends HttpResponse {
+    // (undocumented)
+    body: BatchJobListPreparationAndReleaseTaskStatusResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & JobListPreparationAndReleaseTaskStatus200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface JobListPreparationAndReleaseTaskStatusDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobListPreparationAndReleaseTaskStatusHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobListPreparationAndReleaseTaskStatusHeaders;
+}
+
+// @public (undocumented)
+export interface JobListPreparationAndReleaseTaskStatusHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobListPreparationAndReleaseTaskStatusParameters = JobListPreparationAndReleaseTaskStatusQueryParam & JobListPreparationAndReleaseTaskStatusHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobListPreparationAndReleaseTaskStatusQueryParam {
+    // (undocumented)
+    queryParameters: JobListPreparationAndReleaseTaskStatusQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobListPreparationAndReleaseTaskStatusQueryParamProperties {
+    $filter: string;
+    $select: string;
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobListQueryParam {
+    // (undocumented)
+    queryParameters: JobListQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobListQueryParamProperties {
+    $expand: string;
+    $filter: string;
+    $select: string;
+    maxresults?: number;
+    timeOut?: number;
 }
 
 // @public
@@ -2720,24 +3609,29 @@ export interface JobNetworkConfigurationOutput {
 }
 
 // @public (undocumented)
-export interface JobOperationsAdd {
-    get(options: JobOperationsListParameters): StreamableMethod<JobOperationsList200Response | JobOperationsListDefaultResponse>;
-    post(options: JobOperationsAddParameters): StreamableMethod<JobOperationsAdd204Response | JobOperationsAddDefaultResponse>;
+export interface JobPatch200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface JobOperationsAdd204Response extends HttpResponse {
+export interface JobPatch200Response extends HttpResponse {
     // (undocumented)
-    status: "204";
+    headers: RawHttpHeaders & JobPatch200Headers;
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
-export interface JobOperationsAddBodyParam {
+export interface JobPatchBodyParam {
     body: BatchJob;
 }
 
 // @public (undocumented)
-export interface JobOperationsAddDefaultResponse extends HttpResponse {
+export interface JobPatchDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -2745,638 +3639,34 @@ export interface JobOperationsAddDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface JobOperationsAddHeaderParam {
+export interface JobPatchHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsAddHeaders;
+    headers?: RawHttpHeadersInput & JobPatchHeaders;
 }
 
 // @public (undocumented)
-export interface JobOperationsAddHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface JobPatchHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type JobOperationsAddParameters = JobOperationsAddQueryParam & JobOperationsAddHeaderParam & JobOperationsAddBodyParam & RequestParameters;
+export type JobPatchParameters = JobPatchQueryParam & JobPatchHeaderParam & JobPatchBodyParam & RequestParameters;
 
 // @public (undocumented)
-export interface JobOperationsAddQueryParam {
+export interface JobPatchQueryParam {
     // (undocumented)
-    queryParameters: JobOperationsAddQueryParamProperties;
+    queryParameters?: JobPatchQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface JobOperationsAddQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobOperationsDelete {
-    delete(options: JobOperationsDeleteParameters): StreamableMethod<JobOperationsDelete204Response | JobOperationsDeleteDefaultResponse>;
-    get(options: JobOperationsGetParameters): StreamableMethod<JobOperationsGet200Response | JobOperationsGetDefaultResponse>;
-    patch(options: JobOperationsPatchParameters): StreamableMethod<JobOperationsPatch204Response | JobOperationsPatchDefaultResponse>;
-    put(options: JobOperationsUpdateParameters): StreamableMethod<JobOperationsUpdate204Response | JobOperationsUpdateDefaultResponse>;
-}
-
-// @public
-export interface JobOperationsDelete204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobOperationsDeleteDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsDeleteHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsDeleteHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsDeleteHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsDeleteParameters = JobOperationsDeleteQueryParam & JobOperationsDeleteHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsDeleteQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsDeleteQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsDeleteQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobOperationsDisable {
-    post(options: JobOperationsDisableParameters): StreamableMethod<JobOperationsDisable204Response | JobOperationsDisableDefaultResponse>;
-}
-
-// @public
-export interface JobOperationsDisable204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobOperationsDisableBodyParam {
-    body: BatchJobDisableParameters;
-}
-
-// @public (undocumented)
-export interface JobOperationsDisableDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsDisableHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsDisableHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsDisableHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsDisableParameters = JobOperationsDisableQueryParam & JobOperationsDisableHeaderParam & JobOperationsDisableBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsDisableQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsDisableQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsDisableQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobOperationsEnable {
-    post(options: JobOperationsEnableParameters): StreamableMethod<JobOperationsEnable204Response | JobOperationsEnableDefaultResponse>;
-}
-
-// @public
-export interface JobOperationsEnable204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobOperationsEnableDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsEnableHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsEnableHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsEnableHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsEnableParameters = JobOperationsEnableQueryParam & JobOperationsEnableHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsEnableQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsEnableQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsEnableQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface JobOperationsGet200Response extends HttpResponse {
-    // (undocumented)
-    body: BatchJobOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface JobOperationsGetAllLifetimeStatistics {
-    get(options: JobOperationsGetAllLifetimeStatisticsParameters): StreamableMethod<JobOperationsGetAllLifetimeStatistics200Response | JobOperationsGetAllLifetimeStatisticsDefaultResponse>;
-}
-
-// @public
-export interface JobOperationsGetAllLifetimeStatistics200Response extends HttpResponse {
-    // (undocumented)
-    body: JobStatisticsOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface JobOperationsGetAllLifetimeStatisticsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetAllLifetimeStatisticsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsGetAllLifetimeStatisticsHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetAllLifetimeStatisticsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsGetAllLifetimeStatisticsParameters = JobOperationsGetAllLifetimeStatisticsQueryParam & JobOperationsGetAllLifetimeStatisticsHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsGetAllLifetimeStatisticsQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsGetAllLifetimeStatisticsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetAllLifetimeStatisticsQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsGetHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsGetParameters = JobOperationsGetQueryParam & JobOperationsGetHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsGetQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsGetQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetQueryParamProperties {
-    $expand: string;
-    $select: string;
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetTaskCounts {
-    get(options: JobOperationsGetTaskCountsParameters): StreamableMethod<JobOperationsGetTaskCounts200Response | JobOperationsGetTaskCountsDefaultResponse>;
-}
-
-// @public
-export interface JobOperationsGetTaskCounts200Response extends HttpResponse {
-    // (undocumented)
-    body: TaskCountsResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface JobOperationsGetTaskCountsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetTaskCountsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsGetTaskCountsHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetTaskCountsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsGetTaskCountsParameters = JobOperationsGetTaskCountsQueryParam & JobOperationsGetTaskCountsHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsGetTaskCountsQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsGetTaskCountsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsGetTaskCountsQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface JobOperationsList200Response extends HttpResponse {
-    // (undocumented)
-    body: BatchJobListResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface JobOperationsListDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsListFromJobSchedule {
-    get(options: JobOperationsListFromJobScheduleParameters): StreamableMethod<JobOperationsListFromJobSchedule200Response | JobOperationsListFromJobScheduleDefaultResponse>;
-}
-
-// @public
-export interface JobOperationsListFromJobSchedule200Response extends HttpResponse {
-    // (undocumented)
-    body: BatchJobListResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface JobOperationsListFromJobScheduleDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsListFromJobScheduleHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsListFromJobScheduleHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsListFromJobScheduleHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsListFromJobScheduleParameters = JobOperationsListFromJobScheduleQueryParam & JobOperationsListFromJobScheduleHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsListFromJobScheduleQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsListFromJobScheduleQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsListFromJobScheduleQueryParamProperties {
-    $expand: string;
-    $filter: string;
-    $select: string;
-    maxresults: number;
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobOperationsListHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsListHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsListParameters = JobOperationsListQueryParam & JobOperationsListHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsListPreparationAndReleaseTaskStatus {
-    get(options: JobOperationsListPreparationAndReleaseTaskStatusParameters): StreamableMethod<JobOperationsListPreparationAndReleaseTaskStatus200Response | JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse>;
-}
-
-// @public
-export interface JobOperationsListPreparationAndReleaseTaskStatus200Response extends HttpResponse {
-    // (undocumented)
-    body: BatchJobListPreparationAndReleaseTaskStatusResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsListPreparationAndReleaseTaskStatusHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsListPreparationAndReleaseTaskStatusHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsListPreparationAndReleaseTaskStatusHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsListPreparationAndReleaseTaskStatusParameters = JobOperationsListPreparationAndReleaseTaskStatusQueryParam & JobOperationsListPreparationAndReleaseTaskStatusHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsListPreparationAndReleaseTaskStatusQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsListPreparationAndReleaseTaskStatusQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsListPreparationAndReleaseTaskStatusQueryParamProperties {
-    $filter: string;
-    $select: string;
-    maxresults: number;
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobOperationsListQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsListQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsListQueryParamProperties {
-    $expand: string;
-    $filter: string;
-    $select: string;
-    maxresults: number;
-    timeout: number;
-}
-
-// @public
-export interface JobOperationsPatch204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobOperationsPatchBodyParam {
-    body: BatchJobUpdate;
-}
-
-// @public (undocumented)
-export interface JobOperationsPatchDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsPatchHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsPatchHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsPatchHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsPatchParameters = JobOperationsPatchQueryParam & JobOperationsPatchHeaderParam & JobOperationsPatchBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsPatchQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsPatchQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsPatchQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobOperationsTerminate {
-    post(options: JobOperationsTerminateParameters): StreamableMethod<JobOperationsTerminate204Response | JobOperationsTerminateDefaultResponse>;
-}
-
-// @public
-export interface JobOperationsTerminate204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobOperationsTerminateBodyParam {
-    body: BatchJobTerminateParameters;
-}
-
-// @public (undocumented)
-export interface JobOperationsTerminateDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsTerminateHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsTerminateHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsTerminateHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsTerminateParameters = JobOperationsTerminateQueryParam & JobOperationsTerminateHeaderParam & JobOperationsTerminateBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsTerminateQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsTerminateQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsTerminateQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface JobOperationsUpdate204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobOperationsUpdateBodyParam {
-    body: BatchJob;
-}
-
-// @public (undocumented)
-export interface JobOperationsUpdateDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobOperationsUpdateHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobOperationsUpdateHeaders;
-}
-
-// @public (undocumented)
-export interface JobOperationsUpdateHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobOperationsUpdateParameters = JobOperationsUpdateQueryParam & JobOperationsUpdateHeaderParam & JobOperationsUpdateBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobOperationsUpdateQueryParam {
-    // (undocumented)
-    queryParameters: JobOperationsUpdateQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobOperationsUpdateQueryParamProperties {
-    timeout: number;
+export interface JobPatchQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -3408,10 +3698,10 @@ export interface JobPreparationTaskExecutionInformationOutput {
     exitCode?: number;
     failureInfo?: TaskFailureInformationOutput;
     lastRetryTime?: string;
-    result?: "success" | "failure";
+    result?: string;
     retryCount: number;
     startTime: string;
-    state: "running" | "completed";
+    state: string;
     taskRootDirectory?: string;
     taskRootDirectoryUrl?: string;
 }
@@ -3447,9 +3737,9 @@ export interface JobReleaseTaskExecutionInformationOutput {
     endTime?: string;
     exitCode?: number;
     failureInfo?: TaskFailureInformationOutput;
-    result?: "success" | "failure";
+    result?: string;
     startTime: string;
-    state: "running" | "completed";
+    state: string;
     taskRootDirectory?: string;
     taskRootDirectoryUrl?: string;
 }
@@ -3464,6 +3754,244 @@ export interface JobReleaseTaskOutput {
     resourceFiles?: Array<ResourceFileOutput>;
     retentionTime?: string;
     userIdentity?: UserIdentityOutput;
+}
+
+// @public (undocumented)
+export interface JobScheduleAdd {
+    get(options?: JobScheduleListParameters): StreamableMethod<JobScheduleList200Response | JobScheduleListDefaultResponse>;
+    post(options: JobScheduleAddParameters): StreamableMethod<JobScheduleAdd201Response | JobScheduleAddDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobScheduleAdd201Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobScheduleAdd201Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobScheduleAdd201Headers;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+export interface JobScheduleAddBodyParam {
+    body: BatchJobSchedule;
+}
+
+// @public (undocumented)
+export interface JobScheduleAddDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobScheduleAddHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobScheduleAddHeaders;
+}
+
+// @public (undocumented)
+export interface JobScheduleAddHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobScheduleAddParameters = JobScheduleAddQueryParam & JobScheduleAddHeaderParam & JobScheduleAddBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobScheduleAddQueryParam {
+    // (undocumented)
+    queryParameters?: JobScheduleAddQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobScheduleAddQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobScheduleDelete202Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
+}
+
+// @public
+export interface JobScheduleDelete202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobScheduleDelete202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface JobScheduleDeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobScheduleDeleteHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobScheduleDeleteHeaders;
+}
+
+// @public (undocumented)
+export interface JobScheduleDeleteHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobScheduleDeleteParameters = JobScheduleDeleteQueryParam & JobScheduleDeleteHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobScheduleDeleteQueryParam {
+    // (undocumented)
+    queryParameters?: JobScheduleDeleteQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobScheduleDeleteQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobScheduleDisable {
+    post(options?: JobScheduleDisableParameters): StreamableMethod<JobScheduleDisable204Response | JobScheduleDisableDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobScheduleDisable204Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobScheduleDisable204Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobScheduleDisable204Headers;
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+export interface JobScheduleDisableDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobScheduleDisableHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobScheduleDisableHeaders;
+}
+
+// @public (undocumented)
+export interface JobScheduleDisableHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobScheduleDisableParameters = JobScheduleDisableQueryParam & JobScheduleDisableHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobScheduleDisableQueryParam {
+    // (undocumented)
+    queryParameters?: JobScheduleDisableQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobScheduleDisableQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobScheduleEnable {
+    post(options?: JobScheduleEnableParameters): StreamableMethod<JobScheduleEnable204Response | JobScheduleEnableDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobScheduleEnable204Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobScheduleEnable204Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobScheduleEnable204Headers;
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+export interface JobScheduleEnableDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobScheduleEnableHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobScheduleEnableHeaders;
+}
+
+// @public (undocumented)
+export interface JobScheduleEnableHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobScheduleEnableParameters = JobScheduleEnableQueryParam & JobScheduleEnableHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobScheduleEnableQueryParam {
+    // (undocumented)
+    queryParameters?: JobScheduleEnableQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobScheduleEnableQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -3481,24 +4009,38 @@ export interface JobScheduleExecutionInformationOutput {
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsAdd {
-    get(options: JobScheduleOperationsListParameters): StreamableMethod<JobScheduleOperationsList200Response | JobScheduleOperationsListDefaultResponse>;
-    post(options: JobScheduleOperationsAddParameters): StreamableMethod<JobScheduleOperationsAdd204Response | JobScheduleOperationsAddDefaultResponse>;
+export interface JobScheduleExists {
+    delete(options?: JobScheduleDeleteParameters): StreamableMethod<JobScheduleDelete202Response | JobScheduleDeleteDefaultResponse>;
+    get(options?: JobScheduleGetParameters): StreamableMethod<JobScheduleGet200Response | JobScheduleGetDefaultResponse>;
+    head(options?: JobScheduleExistsParameters): StreamableMethod<JobScheduleExists200Response | JobScheduleExists204Response | JobScheduleExistsDefaultResponse>;
+    patch(options: JobSchedulePatchParameters): StreamableMethod<JobSchedulePatch200Response | JobSchedulePatchDefaultResponse>;
+    put(options: JobScheduleUpdateParameters): StreamableMethod<JobScheduleUpdate200Response | JobScheduleUpdateDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobScheduleExists200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface JobScheduleOperationsAdd204Response extends HttpResponse {
+export interface JobScheduleExists200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobScheduleExists200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public
+export interface JobScheduleExists204Response extends HttpResponse {
     // (undocumented)
     status: "204";
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsAddBodyParam {
-    body: BatchJobSchedule;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsAddDefaultResponse extends HttpResponse {
+export interface JobScheduleExistsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -3506,241 +4048,56 @@ export interface JobScheduleOperationsAddDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsAddHeaderParam {
+export interface JobScheduleExistsHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsAddHeaders;
+    headers?: RawHttpHeadersInput & JobScheduleExistsHeaders;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsAddHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface JobScheduleExistsHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type JobScheduleOperationsAddParameters = JobScheduleOperationsAddQueryParam & JobScheduleOperationsAddHeaderParam & JobScheduleOperationsAddBodyParam & RequestParameters;
+export type JobScheduleExistsParameters = JobScheduleExistsQueryParam & JobScheduleExistsHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface JobScheduleOperationsAddQueryParam {
+export interface JobScheduleExistsQueryParam {
     // (undocumented)
-    queryParameters: JobScheduleOperationsAddQueryParamProperties;
+    queryParameters?: JobScheduleExistsQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsAddQueryParamProperties {
-    timeout: number;
+export interface JobScheduleExistsQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobScheduleGet200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface JobScheduleOperationsDelete204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDeleteDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDeleteHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsDeleteHeaders;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDeleteHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobScheduleOperationsDeleteParameters = JobScheduleOperationsDeleteQueryParam & JobScheduleOperationsDeleteHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobScheduleOperationsDeleteQueryParam {
-    // (undocumented)
-    queryParameters: JobScheduleOperationsDeleteQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDeleteQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDisable {
-    post(options: JobScheduleOperationsDisableParameters): StreamableMethod<JobScheduleOperationsDisable204Response | JobScheduleOperationsDisableDefaultResponse>;
-}
-
-// @public
-export interface JobScheduleOperationsDisable204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDisableDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDisableHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsDisableHeaders;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDisableHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobScheduleOperationsDisableParameters = JobScheduleOperationsDisableQueryParam & JobScheduleOperationsDisableHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobScheduleOperationsDisableQueryParam {
-    // (undocumented)
-    queryParameters: JobScheduleOperationsDisableQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsDisableQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsEnable {
-    post(options: JobScheduleOperationsEnableParameters): StreamableMethod<JobScheduleOperationsEnable204Response | JobScheduleOperationsEnableDefaultResponse>;
-}
-
-// @public
-export interface JobScheduleOperationsEnable204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsEnableDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsEnableHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsEnableHeaders;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsEnableHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobScheduleOperationsEnableParameters = JobScheduleOperationsEnableQueryParam & JobScheduleOperationsEnableHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobScheduleOperationsEnableQueryParam {
-    // (undocumented)
-    queryParameters: JobScheduleOperationsEnableQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsEnableQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsExists {
-    delete(options: JobScheduleOperationsDeleteParameters): StreamableMethod<JobScheduleOperationsDelete204Response | JobScheduleOperationsDeleteDefaultResponse>;
-    get(options: JobScheduleOperationsGetParameters): StreamableMethod<JobScheduleOperationsGet200Response | JobScheduleOperationsGetDefaultResponse>;
-    head(options: JobScheduleOperationsExistsParameters): StreamableMethod<JobScheduleOperationsExists204Response | JobScheduleOperationsExistsDefaultResponse>;
-    patch(options: JobScheduleOperationsPatchParameters): StreamableMethod<JobScheduleOperationsPatch204Response | JobScheduleOperationsPatchDefaultResponse>;
-    put(options: JobScheduleOperationsUpdateParameters): StreamableMethod<JobScheduleOperationsUpdate204Response | JobScheduleOperationsUpdateDefaultResponse>;
-}
-
-// @public
-export interface JobScheduleOperationsExists204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsExistsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsExistsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsExistsHeaders;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsExistsHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobScheduleOperationsExistsParameters = JobScheduleOperationsExistsQueryParam & JobScheduleOperationsExistsHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobScheduleOperationsExistsQueryParam {
-    // (undocumented)
-    queryParameters: JobScheduleOperationsExistsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsExistsQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface JobScheduleOperationsGet200Response extends HttpResponse {
+export interface JobScheduleGet200Response extends HttpResponse {
     // (undocumented)
     body: BatchJobScheduleOutput;
     // (undocumented)
+    headers: RawHttpHeaders & JobScheduleGet200Headers;
+    // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsGetDefaultResponse extends HttpResponse {
+export interface JobScheduleGetDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -3748,48 +4105,58 @@ export interface JobScheduleOperationsGetDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsGetHeaderParam {
+export interface JobScheduleGetHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsGetHeaders;
+    headers?: RawHttpHeadersInput & JobScheduleGetHeaders;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsGetHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface JobScheduleGetHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type JobScheduleOperationsGetParameters = JobScheduleOperationsGetQueryParam & JobScheduleOperationsGetHeaderParam & RequestParameters;
+export type JobScheduleGetParameters = JobScheduleGetQueryParam & JobScheduleGetHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface JobScheduleOperationsGetQueryParam {
+export interface JobScheduleGetQueryParam {
     // (undocumented)
-    queryParameters: JobScheduleOperationsGetQueryParamProperties;
+    queryParameters?: JobScheduleGetQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsGetQueryParamProperties {
-    $expand: string;
-    $select: string;
-    timeout: number;
+export interface JobScheduleGetQueryParamProperties {
+    $expand?: string;
+    $select?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobScheduleList200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface JobScheduleOperationsList200Response extends HttpResponse {
+export interface JobScheduleList200Response extends HttpResponse {
     // (undocumented)
     body: BatchJobScheduleListResultOutput;
     // (undocumented)
+    headers: RawHttpHeaders & JobScheduleList200Headers;
+    // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsListDefaultResponse extends HttpResponse {
+export interface JobScheduleListDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -3797,149 +4164,60 @@ export interface JobScheduleOperationsListDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsListHeaderParam {
+export interface JobScheduleListHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsListHeaders;
+    headers?: RawHttpHeadersInput & JobScheduleListHeaders;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface JobScheduleListHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type JobScheduleOperationsListParameters = JobScheduleOperationsListQueryParam & JobScheduleOperationsListHeaderParam & RequestParameters;
+export type JobScheduleListParameters = JobScheduleListQueryParam & JobScheduleListHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface JobScheduleOperationsListQueryParam {
+export interface JobScheduleListQueryParam {
     // (undocumented)
-    queryParameters: JobScheduleOperationsListQueryParamProperties;
+    queryParameters?: JobScheduleListQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsListQueryParamProperties {
-    $expand: string;
-    $filter: string;
-    $select: string;
-    maxresults: number;
-    timeout: number;
+export interface JobScheduleListQueryParamProperties {
+    $expand?: string;
+    $filter?: string;
+    $select?: string;
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulePatch200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface JobScheduleOperationsPatch204Response extends HttpResponse {
+export interface JobSchedulePatch200Response extends HttpResponse {
     // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsPatchBodyParam {
-    body: BatchJobScheduleUpdate;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsPatchDefaultResponse extends HttpResponse {
+    headers: RawHttpHeaders & JobSchedulePatch200Headers;
     // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
+    status: "200";
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsPatchHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsPatchHeaders;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsPatchHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobScheduleOperationsPatchParameters = JobScheduleOperationsPatchQueryParam & JobScheduleOperationsPatchHeaderParam & JobScheduleOperationsPatchBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobScheduleOperationsPatchQueryParam {
-    // (undocumented)
-    queryParameters: JobScheduleOperationsPatchQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsPatchQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsTerminate {
-    post(options: JobScheduleOperationsTerminateParameters): StreamableMethod<JobScheduleOperationsTerminate204Response | JobScheduleOperationsTerminateDefaultResponse>;
-}
-
-// @public
-export interface JobScheduleOperationsTerminate204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsTerminateDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsTerminateHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsTerminateHeaders;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsTerminateHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type JobScheduleOperationsTerminateParameters = JobScheduleOperationsTerminateQueryParam & JobScheduleOperationsTerminateHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface JobScheduleOperationsTerminateQueryParam {
-    // (undocumented)
-    queryParameters: JobScheduleOperationsTerminateQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsTerminateQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface JobScheduleOperationsUpdate204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface JobScheduleOperationsUpdateBodyParam {
+export interface JobSchedulePatchBodyParam {
     body: BatchJobSchedule;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsUpdateDefaultResponse extends HttpResponse {
+export interface JobSchedulePatchDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -3947,34 +4225,34 @@ export interface JobScheduleOperationsUpdateDefaultResponse extends HttpResponse
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsUpdateHeaderParam {
+export interface JobSchedulePatchHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & JobScheduleOperationsUpdateHeaders;
+    headers?: RawHttpHeadersInput & JobSchedulePatchHeaders;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsUpdateHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface JobSchedulePatchHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type JobScheduleOperationsUpdateParameters = JobScheduleOperationsUpdateQueryParam & JobScheduleOperationsUpdateHeaderParam & JobScheduleOperationsUpdateBodyParam & RequestParameters;
+export type JobSchedulePatchParameters = JobSchedulePatchQueryParam & JobSchedulePatchHeaderParam & JobSchedulePatchBodyParam & RequestParameters;
 
 // @public (undocumented)
-export interface JobScheduleOperationsUpdateQueryParam {
+export interface JobSchedulePatchQueryParam {
     // (undocumented)
-    queryParameters: JobScheduleOperationsUpdateQueryParamProperties;
+    queryParameters?: JobSchedulePatchQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface JobScheduleOperationsUpdateQueryParamProperties {
-    timeout: number;
+export interface JobSchedulePatchQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -4013,9 +4291,131 @@ export interface JobScheduleStatisticsOutput {
     writeIOps: number;
 }
 
+// @public (undocumented)
+export interface JobScheduleTerminate {
+    post(options?: JobScheduleTerminateParameters): StreamableMethod<JobScheduleTerminate202Response | JobScheduleTerminateDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobScheduleTerminate202Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobScheduleTerminate202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobScheduleTerminate202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface JobScheduleTerminateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobScheduleTerminateHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobScheduleTerminateHeaders;
+}
+
+// @public (undocumented)
+export interface JobScheduleTerminateHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobScheduleTerminateParameters = JobScheduleTerminateQueryParam & JobScheduleTerminateHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobScheduleTerminateQueryParam {
+    // (undocumented)
+    queryParameters?: JobScheduleTerminateQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobScheduleTerminateQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobScheduleUpdate200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobScheduleUpdate200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobScheduleUpdate200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface JobScheduleUpdateBodyParam {
+    body: BatchJobSchedule;
+}
+
+// @public (undocumented)
+export interface JobScheduleUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobScheduleUpdateHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobScheduleUpdateHeaders;
+}
+
+// @public (undocumented)
+export interface JobScheduleUpdateHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobScheduleUpdateParameters = JobScheduleUpdateQueryParam & JobScheduleUpdateHeaderParam & JobScheduleUpdateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobScheduleUpdateQueryParam {
+    // (undocumented)
+    queryParameters?: JobScheduleUpdateQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobScheduleUpdateQueryParamProperties {
+    timeOut?: number;
+}
+
 // @public
 export interface JobSchedulingError {
-    category: "usererror" | "servererror";
+    category: string;
     code?: string;
     details?: Array<NameValuePair>;
     message?: string;
@@ -4023,7 +4423,7 @@ export interface JobSchedulingError {
 
 // @public
 export interface JobSchedulingErrorOutput {
-    category: "usererror" | "servererror";
+    category: string;
     code?: string;
     details?: Array<NameValuePairOutput>;
     message?: string;
@@ -4041,8 +4441,8 @@ export interface JobSpecification {
     maxParallelTasks?: number;
     metadata?: Array<MetadataItem>;
     networkConfiguration?: JobNetworkConfiguration;
-    onAllTasksComplete?: "noaction" | "terminatejob";
-    onTaskFailure?: "noaction" | "performexitoptionsjobaction";
+    onAllTasksComplete?: string;
+    onTaskFailure?: string;
     poolInfo: PoolInformation;
     priority?: number;
     usesTaskDependencies?: boolean;
@@ -4060,8 +4460,8 @@ export interface JobSpecificationOutput {
     maxParallelTasks?: number;
     metadata?: Array<MetadataItemOutput>;
     networkConfiguration?: JobNetworkConfigurationOutput;
-    onAllTasksComplete?: "noaction" | "terminatejob";
-    onTaskFailure?: "noaction" | "performexitoptionsjobaction";
+    onAllTasksComplete?: string;
+    onTaskFailure?: string;
     poolInfo: PoolInformationOutput;
     priority?: number;
     usesTaskDependencies?: boolean;
@@ -4077,7 +4477,6 @@ export interface JobStatistics {
     readIOGiB: number;
     readIOps: number;
     startTime: Date | string;
-    url: string;
     userCPUTime: string;
     waitTime: string;
     wallClockTime: string;
@@ -4095,12 +4494,139 @@ export interface JobStatisticsOutput {
     readIOGiB: number;
     readIOps: number;
     startTime: string;
-    url: string;
+    readonly url: string;
     userCPUTime: string;
     waitTime: string;
     wallClockTime: string;
     writeIOGiB: number;
     writeIOps: number;
+}
+
+// @public (undocumented)
+export interface JobTerminate {
+    post(options: JobTerminateParameters): StreamableMethod<JobTerminate202Response | JobTerminateDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface JobTerminate202Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobTerminate202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobTerminate202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface JobTerminateBodyParam {
+    body: BatchJobTerminateParameters;
+}
+
+// @public (undocumented)
+export interface JobTerminateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobTerminateHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobTerminateHeaders;
+}
+
+// @public (undocumented)
+export interface JobTerminateHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobTerminateParameters = JobTerminateQueryParam & JobTerminateHeaderParam & JobTerminateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobTerminateQueryParam {
+    // (undocumented)
+    queryParameters?: JobTerminateQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobTerminateQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobUpdate200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface JobUpdate200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & JobUpdate200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface JobUpdateBodyParam {
+    body: BatchJob;
+}
+
+// @public (undocumented)
+export interface JobUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface JobUpdateHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & JobUpdateHeaders;
+}
+
+// @public (undocumented)
+export interface JobUpdateHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type JobUpdateParameters = JobUpdateQueryParam & JobUpdateHeaderParam & JobUpdateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface JobUpdateQueryParam {
+    // (undocumented)
+    queryParameters?: JobUpdateQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface JobUpdateQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -4173,7 +4699,7 @@ export interface NameValuePairOutput {
 
 // @public
 export interface NetworkConfiguration {
-    dynamicVNetAssignmentScope?: "none" | "job";
+    dynamicVNetAssignmentScope?: string;
     endpointConfiguration?: PoolEndpointConfiguration;
     publicIPAddressConfiguration?: PublicIPAddressConfiguration;
     subnetId?: string;
@@ -4181,7 +4707,7 @@ export interface NetworkConfiguration {
 
 // @public
 export interface NetworkConfigurationOutput {
-    dynamicVNetAssignmentScope?: "none" | "job";
+    dynamicVNetAssignmentScope?: string;
     endpointConfiguration?: PoolEndpointConfigurationOutput;
     publicIPAddressConfiguration?: PublicIPAddressConfigurationOutput;
     subnetId?: string;
@@ -4189,7 +4715,7 @@ export interface NetworkConfigurationOutput {
 
 // @public
 export interface NetworkSecurityGroupRule {
-    access: "allow" | "deny";
+    access: string;
     priority: number;
     sourceAddressPrefix: string;
     sourcePortRanges?: string[];
@@ -4197,7 +4723,7 @@ export interface NetworkSecurityGroupRule {
 
 // @public
 export interface NetworkSecurityGroupRuleOutput {
-    access: "allow" | "deny";
+    access: string;
     priority: number;
     sourceAddressPrefix: string;
     sourcePortRanges?: string[];
@@ -4243,7 +4769,7 @@ export interface NodeCountsOutput {
 
 // @public
 export interface NodeDisableSchedulingParameters {
-    nodeDisableSchedulingOption?: "requeue" | "terminate" | "taskcompletion";
+    nodeDisableSchedulingOption?: string;
 }
 
 // @public
@@ -4262,27 +4788,27 @@ export interface NodeFileOutput {
 
 // @public
 export interface NodePlacementConfiguration {
-    policy?: "regional" | "zonal";
+    policy?: string;
 }
 
 // @public
 export interface NodePlacementConfigurationOutput {
-    policy?: "regional" | "zonal";
+    policy?: string;
 }
 
 // @public
 export interface NodeRebootParameters {
-    nodeRebootOption?: "requeue" | "terminate" | "taskcompletion" | "retaineddata";
+    nodeRebootOption?: string;
 }
 
 // @public
 export interface NodeReimageParameters {
-    nodeReimageOption?: "requeue" | "terminate" | "taskcompletion" | "retaineddata";
+    nodeReimageOption?: string;
 }
 
 // @public
 export interface NodeRemoveParameters {
-    nodeDeallocationOption?: "requeue" | "terminate" | "taskcompletion" | "retaineddata";
+    nodeDeallocationOption?: string;
     nodeList: string[];
     resizeTimeout?: string;
 }
@@ -4368,12 +4894,12 @@ export interface OutputFileOutput {
 
 // @public
 export interface OutputFileUploadOptions {
-    uploadCondition: "tasksuccess" | "taskfailure" | "taskcompletion";
+    uploadCondition: string;
 }
 
 // @public
 export interface OutputFileUploadOptionsOutput {
-    uploadCondition: "tasksuccess" | "taskfailure" | "taskcompletion";
+    uploadCondition: string;
 }
 
 // @public
@@ -4391,6 +4917,253 @@ export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
+// @public (undocumented)
+export interface PoolAdd {
+    get(options?: PoolListParameters): StreamableMethod<PoolList200Response | PoolListDefaultResponse>;
+    post(options: PoolAddParameters): StreamableMethod<PoolAdd201Response | PoolAddDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolAdd201Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolAdd201Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PoolAdd201Headers;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+export interface PoolAddBodyParam {
+    body: BatchPool;
+}
+
+// @public (undocumented)
+export interface PoolAddDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolAddHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolAddHeaders;
+}
+
+// @public (undocumented)
+export interface PoolAddHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolAddParameters = PoolAddQueryParam & PoolAddHeaderParam & PoolAddBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolAddQueryParam {
+    // (undocumented)
+    queryParameters?: PoolAddQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolAddQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolDelete {
+    delete(options?: PoolDeleteParameters): StreamableMethod<PoolDelete202Response | PoolDeleteDefaultResponse>;
+    get(options: PoolGetParameters): StreamableMethod<PoolGet200Response | PoolGetDefaultResponse>;
+    head(options?: PoolExistsParameters): StreamableMethod<PoolExists404Response | PoolExistsDefaultResponse>;
+    patch(options: PoolPatchParameters): StreamableMethod<PoolPatch200Response | PoolPatchDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolDelete202Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
+}
+
+// @public
+export interface PoolDelete202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PoolDelete202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface PoolDeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolDeleteHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolDeleteHeaders;
+}
+
+// @public (undocumented)
+export interface PoolDeleteHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolDeleteParameters = PoolDeleteQueryParam & PoolDeleteHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolDeleteQueryParam {
+    // (undocumented)
+    queryParameters?: PoolDeleteQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolDeleteQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolDisableAutoScale {
+    post(options?: PoolDisableAutoScaleParameters): StreamableMethod<PoolDisableAutoScale200Response | PoolDisableAutoScaleDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolDisableAutoScale200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolDisableAutoScale200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PoolDisableAutoScale200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolDisableAutoScaleDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolDisableAutoScaleHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolDisableAutoScaleHeaders;
+}
+
+// @public (undocumented)
+export interface PoolDisableAutoScaleHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolDisableAutoScaleParameters = PoolDisableAutoScaleQueryParam & PoolDisableAutoScaleHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolDisableAutoScaleQueryParam {
+    // (undocumented)
+    queryParameters?: PoolDisableAutoScaleQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolDisableAutoScaleQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolEnableAutoScale {
+    post(options: PoolEnableAutoScaleParameters): StreamableMethod<PoolEnableAutoScale200Response | PoolEnableAutoScaleDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolEnableAutoScale200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolEnableAutoScale200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PoolEnableAutoScale200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolEnableAutoScaleBodyParam {
+    body: BatchPoolEnableAutoScaleParameters;
+}
+
+// @public (undocumented)
+export interface PoolEnableAutoScaleDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolEnableAutoScaleHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolEnableAutoScaleHeaders;
+}
+
+// @public (undocumented)
+export interface PoolEnableAutoScaleHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolEnableAutoScaleParameters = PoolEnableAutoScaleQueryParam & PoolEnableAutoScaleHeaderParam & PoolEnableAutoScaleBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolEnableAutoScaleQueryParam {
+    // (undocumented)
+    queryParameters?: PoolEnableAutoScaleQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolEnableAutoScaleQueryParamProperties {
+    timeOut?: number;
+}
+
 // @public
 export interface PoolEndpointConfiguration {
     inboundNATPools: Array<InboundNATPool>;
@@ -4399,6 +5172,232 @@ export interface PoolEndpointConfiguration {
 // @public
 export interface PoolEndpointConfigurationOutput {
     inboundNATPools: Array<InboundNATPoolOutput>;
+}
+
+// @public (undocumented)
+export interface PoolEvaluateAutoScale {
+    post(options: PoolEvaluateAutoScaleParameters): StreamableMethod<PoolEvaluateAutoScale200Response | PoolEvaluateAutoScaleDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolEvaluateAutoScale200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolEvaluateAutoScale200Response extends HttpResponse {
+    // (undocumented)
+    body: AutoScaleRunOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & PoolEvaluateAutoScale200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolEvaluateAutoScaleBodyParam {
+    body: BatchPoolEvaluateAutoScaleParameters;
+}
+
+// @public (undocumented)
+export interface PoolEvaluateAutoScaleDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolEvaluateAutoScaleHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolEvaluateAutoScaleHeaders;
+}
+
+// @public (undocumented)
+export interface PoolEvaluateAutoScaleHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolEvaluateAutoScaleParameters = PoolEvaluateAutoScaleQueryParam & PoolEvaluateAutoScaleHeaderParam & PoolEvaluateAutoScaleBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolEvaluateAutoScaleQueryParam {
+    // (undocumented)
+    queryParameters?: PoolEvaluateAutoScaleQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolEvaluateAutoScaleQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public
+export interface PoolExists404Response extends HttpResponse {
+    // (undocumented)
+    status: "404";
+}
+
+// @public (undocumented)
+export interface PoolExistsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolExistsHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolExistsHeaders;
+}
+
+// @public (undocumented)
+export interface PoolExistsHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolExistsParameters = PoolExistsQueryParam & PoolExistsHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolExistsQueryParam {
+    // (undocumented)
+    queryParameters?: PoolExistsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolExistsQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolGet200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolGet200Response extends HttpResponse {
+    // (undocumented)
+    body: BatchPoolOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & PoolGet200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolGetAllLifetimeStatistics {
+    get(options?: PoolGetAllLifetimeStatisticsParameters): StreamableMethod<PoolGetAllLifetimeStatistics200Response | PoolGetAllLifetimeStatisticsDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolGetAllLifetimeStatistics200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolGetAllLifetimeStatistics200Response extends HttpResponse {
+    // (undocumented)
+    body: PoolStatisticsOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & PoolGetAllLifetimeStatistics200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolGetAllLifetimeStatisticsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolGetAllLifetimeStatisticsHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolGetAllLifetimeStatisticsHeaders;
+}
+
+// @public (undocumented)
+export interface PoolGetAllLifetimeStatisticsHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolGetAllLifetimeStatisticsParameters = PoolGetAllLifetimeStatisticsQueryParam & PoolGetAllLifetimeStatisticsHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolGetAllLifetimeStatisticsQueryParam {
+    // (undocumented)
+    queryParameters?: PoolGetAllLifetimeStatisticsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolGetAllLifetimeStatisticsQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolGetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolGetHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolGetHeaders;
+}
+
+// @public (undocumented)
+export interface PoolGetHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolGetParameters = PoolGetQueryParam & PoolGetHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolGetQueryParam {
+    // (undocumented)
+    queryParameters: PoolGetQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolGetQueryParamProperties {
+    $expand: string;
+    $select: string;
+    timeOut?: number;
 }
 
 // @public
@@ -4413,427 +5412,26 @@ export interface PoolInformationOutput {
     poolId?: string;
 }
 
-// @public
-export type PoolNodeCountsListOutput = Paged<PoolNodeCountsOutput>;
-
-// @public
-export interface PoolNodeCountsOutput {
-    dedicated?: NodeCountsOutput;
-    lowPriority?: NodeCountsOutput;
-    poolId: string;
-}
-
 // @public (undocumented)
-export interface PoolOperationsAdd {
-    get(options: PoolOperationsListParameters): StreamableMethod<PoolOperationsList200Response | PoolOperationsListDefaultResponse>;
-    post(options: PoolOperationsAddParameters): StreamableMethod<PoolOperationsAdd204Response | PoolOperationsAddDefaultResponse>;
+export interface PoolList200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface PoolOperationsAdd204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsAddBodyParam {
-    body: BatchPool;
-}
-
-// @public (undocumented)
-export interface PoolOperationsAddDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsAddHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsAddHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsAddHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsAddParameters = PoolOperationsAddQueryParam & PoolOperationsAddHeaderParam & PoolOperationsAddBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsAddQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsAddQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsAddQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsDelete {
-    delete(options: PoolOperationsDeleteParameters): StreamableMethod<PoolOperationsDelete204Response | PoolOperationsDeleteDefaultResponse>;
-    get(options: PoolOperationsGetParameters): StreamableMethod<PoolOperationsGet200Response | PoolOperationsGetDefaultResponse>;
-    head(options: PoolOperationsExistsParameters): StreamableMethod<PoolOperationsExists204Response | PoolOperationsExistsDefaultResponse>;
-    patch(options: PoolOperationsPatchParameters): StreamableMethod<PoolOperationsPatch204Response | PoolOperationsPatchDefaultResponse>;
-}
-
-// @public
-export interface PoolOperationsDelete204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsDeleteDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsDeleteHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsDeleteHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsDeleteHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsDeleteParameters = PoolOperationsDeleteQueryParam & PoolOperationsDeleteHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsDeleteQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsDeleteQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsDeleteQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsDisableAutoScale {
-    post(options: PoolOperationsDisableAutoScaleParameters): StreamableMethod<PoolOperationsDisableAutoScale204Response | PoolOperationsDisableAutoScaleDefaultResponse>;
-}
-
-// @public
-export interface PoolOperationsDisableAutoScale204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsDisableAutoScaleDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsDisableAutoScaleHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsDisableAutoScaleHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsDisableAutoScaleHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsDisableAutoScaleParameters = PoolOperationsDisableAutoScaleQueryParam & PoolOperationsDisableAutoScaleHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsDisableAutoScaleQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsDisableAutoScaleQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsDisableAutoScaleQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEnableAutoScale {
-    post(options: PoolOperationsEnableAutoScaleParameters): StreamableMethod<PoolOperationsEnableAutoScale204Response | PoolOperationsEnableAutoScaleDefaultResponse>;
-}
-
-// @public
-export interface PoolOperationsEnableAutoScale204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsEnableAutoScaleBodyParam {
-    body: BatchPoolEnableAutoScaleParameters;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEnableAutoScaleDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEnableAutoScaleHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsEnableAutoScaleHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEnableAutoScaleHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsEnableAutoScaleParameters = PoolOperationsEnableAutoScaleQueryParam & PoolOperationsEnableAutoScaleHeaderParam & PoolOperationsEnableAutoScaleBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsEnableAutoScaleQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsEnableAutoScaleQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEnableAutoScaleQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEvaluateAutoScale {
-    post(options: PoolOperationsEvaluateAutoScaleParameters): StreamableMethod<PoolOperationsEvaluateAutoScale200Response | PoolOperationsEvaluateAutoScaleDefaultResponse>;
-}
-
-// @public
-export interface PoolOperationsEvaluateAutoScale200Response extends HttpResponse {
-    // (undocumented)
-    body: AutoScaleRunOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PoolOperationsEvaluateAutoScaleBodyParam {
-    body: BatchPoolEvaluateAutoScaleParameters;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEvaluateAutoScaleDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEvaluateAutoScaleHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsEvaluateAutoScaleHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEvaluateAutoScaleHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsEvaluateAutoScaleParameters = PoolOperationsEvaluateAutoScaleQueryParam & PoolOperationsEvaluateAutoScaleHeaderParam & PoolOperationsEvaluateAutoScaleBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsEvaluateAutoScaleQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsEvaluateAutoScaleQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsEvaluateAutoScaleQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface PoolOperationsExists204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsExistsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsExistsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsExistsHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsExistsHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsExistsParameters = PoolOperationsExistsQueryParam & PoolOperationsExistsHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsExistsQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsExistsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsExistsQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface PoolOperationsGet200Response extends HttpResponse {
-    // (undocumented)
-    body: BatchPoolOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetAllLifetimeStatistics {
-    get(options: PoolOperationsGetAllLifetimeStatisticsParameters): StreamableMethod<PoolOperationsGetAllLifetimeStatistics200Response | PoolOperationsGetAllLifetimeStatisticsDefaultResponse>;
-}
-
-// @public
-export interface PoolOperationsGetAllLifetimeStatistics200Response extends HttpResponse {
-    // (undocumented)
-    body: PoolStatisticsOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetAllLifetimeStatisticsDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetAllLifetimeStatisticsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsGetAllLifetimeStatisticsHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetAllLifetimeStatisticsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsGetAllLifetimeStatisticsParameters = PoolOperationsGetAllLifetimeStatisticsQueryParam & PoolOperationsGetAllLifetimeStatisticsHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsGetAllLifetimeStatisticsQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsGetAllLifetimeStatisticsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetAllLifetimeStatisticsQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsGetHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsGetParameters = PoolOperationsGetQueryParam & PoolOperationsGetHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsGetQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsGetQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsGetQueryParamProperties {
-    $expand: string;
-    $select: string;
-    timeout: number;
-}
-
-// @public
-export interface PoolOperationsList200Response extends HttpResponse {
+export interface PoolList200Response extends HttpResponse {
     // (undocumented)
     body: BatchPoolListResultOutput;
     // (undocumented)
+    headers: RawHttpHeaders & PoolList200Headers;
+    // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface PoolOperationsListDefaultResponse extends HttpResponse {
+export interface PoolListDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -4841,43 +5439,43 @@ export interface PoolOperationsListDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface PoolOperationsListHeaderParam {
+export interface PoolListHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsListHeaders;
+    headers?: RawHttpHeadersInput & PoolListHeaders;
 }
 
 // @public (undocumented)
-export interface PoolOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface PoolListHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type PoolOperationsListParameters = PoolOperationsListQueryParam & PoolOperationsListHeaderParam & RequestParameters;
+export type PoolListParameters = PoolListQueryParam & PoolListHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface PoolOperationsListQueryParam {
+export interface PoolListQueryParam {
     // (undocumented)
-    queryParameters: PoolOperationsListQueryParamProperties;
+    queryParameters?: PoolListQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface PoolOperationsListQueryParamProperties {
-    $expand: string;
-    $filter: string;
-    $select: string;
-    maxresults: number;
-    timeout: number;
+export interface PoolListQueryParamProperties {
+    $expand?: string;
+    $filter?: string;
+    $select?: string;
+    maxresults?: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
-export interface PoolOperationsListUsageMetrics {
-    get(options: PoolOperationsListUsageMetricsParameters): StreamableMethod<PoolOperationsListUsageMetrics200Response | PoolOperationsListUsageMetricsDefaultResponse>;
+export interface PoolListUsageMetrics {
+    get(options?: PoolListUsageMetricsParameters): StreamableMethod<PoolListUsageMetrics200Response | PoolListUsageMetricsDefaultResponse>;
 }
 
 // @public
-export interface PoolOperationsListUsageMetrics200Response extends HttpResponse {
+export interface PoolListUsageMetrics200Response extends HttpResponse {
     // (undocumented)
     body: PoolUsageMetricsListOutput;
     // (undocumented)
@@ -4885,7 +5483,7 @@ export interface PoolOperationsListUsageMetrics200Response extends HttpResponse 
 }
 
 // @public (undocumented)
-export interface PoolOperationsListUsageMetricsDefaultResponse extends HttpResponse {
+export interface PoolListUsageMetricsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -4893,264 +5491,45 @@ export interface PoolOperationsListUsageMetricsDefaultResponse extends HttpRespo
 }
 
 // @public (undocumented)
-export interface PoolOperationsListUsageMetricsHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsListUsageMetricsHeaders;
-}
+export type PoolListUsageMetricsParameters = RequestParameters;
 
-// @public (undocumented)
-export interface PoolOperationsListUsageMetricsHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsListUsageMetricsParameters = PoolOperationsListUsageMetricsQueryParam & PoolOperationsListUsageMetricsHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsListUsageMetricsQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsListUsageMetricsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsListUsageMetricsQueryParamProperties {
-    $filter: string;
-    endtime: string;
-    maxresults: number;
-    starttime: string;
-    timeout: number;
+// @public
+export interface PoolNodeCountsListResultOutput {
+    "odata.nextLink"?: string;
+    value?: Array<PoolNodeCountsOutput>;
 }
 
 // @public
-export interface PoolOperationsPatch204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
+export interface PoolNodeCountsOutput {
+    dedicated?: NodeCountsOutput;
+    lowPriority?: NodeCountsOutput;
+    readonly poolId: string;
 }
 
 // @public (undocumented)
-export interface PoolOperationsPatchBodyParam {
-    body: BatchPoolUpdate;
-}
-
-// @public (undocumented)
-export interface PoolOperationsPatchDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsPatchHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsPatchHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsPatchHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsPatchParameters = PoolOperationsPatchQueryParam & PoolOperationsPatchHeaderParam & PoolOperationsPatchBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsPatchQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsPatchQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsPatchQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsRemoveNodes {
-    post(options: PoolOperationsRemoveNodesParameters): StreamableMethod<PoolOperationsRemoveNodes204Response | PoolOperationsRemoveNodesDefaultResponse>;
+export interface PoolPatch200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface PoolOperationsRemoveNodes204Response extends HttpResponse {
+export interface PoolPatch200Response extends HttpResponse {
     // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsRemoveNodesBodyParam {
-    body: NodeRemoveParameters;
-}
-
-// @public (undocumented)
-export interface PoolOperationsRemoveNodesDefaultResponse extends HttpResponse {
+    headers: RawHttpHeaders & PoolPatch200Headers;
     // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
+    status: "200";
 }
 
 // @public (undocumented)
-export interface PoolOperationsRemoveNodesHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsRemoveNodesHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsRemoveNodesHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsRemoveNodesParameters = PoolOperationsRemoveNodesQueryParam & PoolOperationsRemoveNodesHeaderParam & PoolOperationsRemoveNodesBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsRemoveNodesQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsRemoveNodesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsRemoveNodesQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsResize {
-    post(options: PoolOperationsResizeParameters): StreamableMethod<PoolOperationsResize204Response | PoolOperationsResizeDefaultResponse>;
-}
-
-// @public
-export interface PoolOperationsResize204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsResizeBodyParam {
-    body: BatchPoolResizeParameters;
-}
-
-// @public (undocumented)
-export interface PoolOperationsResizeDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsResizeHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsResizeHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsResizeHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsResizeParameters = PoolOperationsResizeQueryParam & PoolOperationsResizeHeaderParam & PoolOperationsResizeBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsResizeQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsResizeQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsResizeQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsStopResize {
-    post(options: PoolOperationsStopResizeParameters): StreamableMethod<PoolOperationsStopResize204Response | PoolOperationsStopResizeDefaultResponse>;
-}
-
-// @public
-export interface PoolOperationsStopResize204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsStopResizeDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface PoolOperationsStopResizeHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsStopResizeHeaders;
-}
-
-// @public (undocumented)
-export interface PoolOperationsStopResizeHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type PoolOperationsStopResizeParameters = PoolOperationsStopResizeQueryParam & PoolOperationsStopResizeHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface PoolOperationsStopResizeQueryParam {
-    // (undocumented)
-    queryParameters: PoolOperationsStopResizeQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface PoolOperationsStopResizeQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface PoolOperationsUpdateProperties {
-    post(options: PoolOperationsUpdatePropertiesParameters): StreamableMethod<PoolOperationsUpdateProperties204Response | PoolOperationsUpdatePropertiesDefaultResponse>;
-}
-
-// @public
-export interface PoolOperationsUpdateProperties204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface PoolOperationsUpdatePropertiesBodyParam {
+export interface PoolPatchBodyParam {
     body: BatchPool;
 }
 
 // @public (undocumented)
-export interface PoolOperationsUpdatePropertiesDefaultResponse extends HttpResponse {
+export interface PoolPatchDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -5158,30 +5537,166 @@ export interface PoolOperationsUpdatePropertiesDefaultResponse extends HttpRespo
 }
 
 // @public (undocumented)
-export interface PoolOperationsUpdatePropertiesHeaderParam {
+export interface PoolPatchHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & PoolOperationsUpdatePropertiesHeaders;
+    headers?: RawHttpHeadersInput & PoolPatchHeaders;
 }
 
 // @public (undocumented)
-export interface PoolOperationsUpdatePropertiesHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface PoolPatchHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type PoolOperationsUpdatePropertiesParameters = PoolOperationsUpdatePropertiesQueryParam & PoolOperationsUpdatePropertiesHeaderParam & PoolOperationsUpdatePropertiesBodyParam & RequestParameters;
+export type PoolPatchParameters = PoolPatchQueryParam & PoolPatchHeaderParam & PoolPatchBodyParam & RequestParameters;
 
 // @public (undocumented)
-export interface PoolOperationsUpdatePropertiesQueryParam {
+export interface PoolPatchQueryParam {
     // (undocumented)
-    queryParameters: PoolOperationsUpdatePropertiesQueryParamProperties;
+    queryParameters?: PoolPatchQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface PoolOperationsUpdatePropertiesQueryParamProperties {
-    timeout: number;
+export interface PoolPatchQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolRemoveNodes {
+    post(options: PoolRemoveNodesParameters): StreamableMethod<PoolRemoveNodes200Response | PoolRemoveNodesDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolRemoveNodes200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolRemoveNodes200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PoolRemoveNodes200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolRemoveNodesBodyParam {
+    body: NodeRemoveParameters;
+}
+
+// @public (undocumented)
+export interface PoolRemoveNodesDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolRemoveNodesHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolRemoveNodesHeaders;
+}
+
+// @public (undocumented)
+export interface PoolRemoveNodesHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolRemoveNodesParameters = PoolRemoveNodesQueryParam & PoolRemoveNodesHeaderParam & PoolRemoveNodesBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolRemoveNodesQueryParam {
+    // (undocumented)
+    queryParameters?: PoolRemoveNodesQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolRemoveNodesQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolResize {
+    post(options: PoolResizeParameters): StreamableMethod<PoolResize200Response | PoolResizeDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolResize200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolResize200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PoolResize200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolResizeBodyParam {
+    body: BatchPoolResizeParameters;
+}
+
+// @public (undocumented)
+export interface PoolResizeDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolResizeHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolResizeHeaders;
+}
+
+// @public (undocumented)
+export interface PoolResizeHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolResizeParameters = PoolResizeQueryParam & PoolResizeHeaderParam & PoolResizeBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolResizeQueryParam {
+    // (undocumented)
+    queryParameters?: PoolResizeQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolResizeQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -5202,6 +5717,7 @@ export interface PoolSpecification {
     startTask?: StartTask;
     targetDedicatedNodes?: number;
     targetLowPriorityNodes?: number;
+    targetNodeCommunicationMode?: string;
     taskSchedulingPolicy?: TaskSchedulingPolicy;
     taskSlotsPerNode?: number;
     userAccounts?: Array<UserAccount>;
@@ -5227,6 +5743,7 @@ export interface PoolSpecificationOutput {
     startTask?: StartTaskOutput;
     targetDedicatedNodes?: number;
     targetLowPriorityNodes?: number;
+    targetNodeCommunicationMode?: string;
     taskSchedulingPolicy?: TaskSchedulingPolicyOutput;
     taskSlotsPerNode?: number;
     userAccounts?: Array<UserAccountOutput>;
@@ -5239,7 +5756,6 @@ export interface PoolStatistics {
     lastUpdateTime: Date | string;
     resourceStats?: ResourceStatistics;
     startTime: Date | string;
-    url: string;
     usageStats?: UsageStatistics;
 }
 
@@ -5248,8 +5764,131 @@ export interface PoolStatisticsOutput {
     lastUpdateTime: string;
     resourceStats?: ResourceStatisticsOutput;
     startTime: string;
-    url: string;
+    readonly url: string;
     usageStats?: UsageStatisticsOutput;
+}
+
+// @public (undocumented)
+export interface PoolStopResize {
+    post(options?: PoolStopResizeParameters): StreamableMethod<PoolStopResize200Response | PoolStopResizeDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolStopResize200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolStopResize200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PoolStopResize200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolStopResizeDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolStopResizeHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolStopResizeHeaders;
+}
+
+// @public (undocumented)
+export interface PoolStopResizeHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolStopResizeParameters = PoolStopResizeQueryParam & PoolStopResizeHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolStopResizeQueryParam {
+    // (undocumented)
+    queryParameters?: PoolStopResizeQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolStopResizeQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolUpdateProperties {
+    post(options: PoolUpdatePropertiesParameters): StreamableMethod<PoolUpdateProperties200Response | PoolUpdatePropertiesDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface PoolUpdateProperties200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface PoolUpdateProperties200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & PoolUpdateProperties200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface PoolUpdatePropertiesBodyParam {
+    body: BatchPool;
+}
+
+// @public (undocumented)
+export interface PoolUpdatePropertiesDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface PoolUpdatePropertiesHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & PoolUpdatePropertiesHeaders;
+}
+
+// @public (undocumented)
+export interface PoolUpdatePropertiesHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type PoolUpdatePropertiesParameters = PoolUpdatePropertiesQueryParam & PoolUpdatePropertiesHeaderParam & PoolUpdatePropertiesBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface PoolUpdatePropertiesQueryParam {
+    // (undocumented)
+    queryParameters?: PoolUpdatePropertiesQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface PoolUpdatePropertiesQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -5258,7 +5897,7 @@ export type PoolUsageMetricsListOutput = Paged<PoolUsageMetricsOutput>;
 // @public
 export interface PoolUsageMetricsOutput {
     endTime: string;
-    poolId: string;
+    readonly poolId: string;
     startTime: string;
     totalCoreHours: number;
     vmSize: string;
@@ -5267,13 +5906,13 @@ export interface PoolUsageMetricsOutput {
 // @public
 export interface PublicIPAddressConfiguration {
     ipAddressIds?: string[];
-    provision?: "batchmanaged" | "usermanaged" | "nopublicipaddresses";
+    provision?: string;
 }
 
 // @public
 export interface PublicIPAddressConfigurationOutput {
     ipAddressIds?: string[];
-    provision?: "batchmanaged" | "usermanaged" | "nopublicipaddresses";
+    provision?: string;
 }
 
 // @public
@@ -5361,47 +6000,47 @@ export interface ResourceStatisticsOutput {
 // @public (undocumented)
 export interface Routes {
     (path: "/applications"): ApplicationOperationsList;
-    (path: "/applications/{id}", id: string): ApplicationOperationsGet;
-    (path: "/poolusagemetrics"): PoolOperationsListUsageMetrics;
-    (path: "/lifetimepoolstats"): PoolOperationsGetAllLifetimeStatistics;
-    (path: "/pools"): PoolOperationsAdd;
-    (path: "/pools/{poolId}", poolId: string): PoolOperationsDelete;
-    (path: "/pools/{poolId}/disableautoscale", poolId: string): PoolOperationsDisableAutoScale;
-    (path: "/pools/{poolId}/enableautoscale", poolId: string): PoolOperationsEnableAutoScale;
-    (path: "/pools/{poolId}/evaluateautoscale", poolId: string): PoolOperationsEvaluateAutoScale;
-    (path: "/pools/{poolId}/resize", poolId: string): PoolOperationsResize;
-    (path: "/pools/{poolId}/stopresize", poolId: string): PoolOperationsStopResize;
-    (path: "/pools/{poolId}/updateproperties", poolId: string): PoolOperationsUpdateProperties;
-    (path: "/pools/{poolId}/removenodes", poolId: string): PoolOperationsRemoveNodes;
-    (path: "/supportedimages"): AccountOperationsListSupportedImages;
-    (path: "/nodecounts"): AccountOperationsListPoolNodeCounts;
-    (path: "/lifetimejobstats"): JobOperationsGetAllLifetimeStatistics;
-    (path: "/jobs/{jobId}", jobId: string): JobOperationsDelete;
-    (path: "/jobs/{jobId}/disable", jobId: string): JobOperationsDisable;
-    (path: "/jobs/{jobId}/enable", jobId: string): JobOperationsEnable;
-    (path: "/jobs/{jobId}/terminate", jobId: string): JobOperationsTerminate;
-    (path: "/jobs"): JobOperationsAdd;
-    (path: "/jobschedules/{jobScheduleId}/jobs", jobScheduleId: string): JobOperationsListFromJobSchedule;
-    (path: "/jobs/{jobId}/jobpreparationandreleasetaskstatus", jobId: string): JobOperationsListPreparationAndReleaseTaskStatus;
-    (path: "/jobs/{jobId}/taskcounts", jobId: string): JobOperationsGetTaskCounts;
+    (path: "/applications/{applicationId}", applicationId: string): ApplicationOperationsGet;
+    (path: "/poolusagemetrics"): PoolListUsageMetrics;
+    (path: "/lifetimepoolstats"): PoolGetAllLifetimeStatistics;
+    (path: "/pools"): PoolAdd;
+    (path: "/pools/{poolId}", poolId: string): PoolDelete;
+    (path: "/pools/{poolId}/disableautoscale", poolId: string): PoolDisableAutoScale;
+    (path: "/pools/{poolId}/enableautoscale", poolId: string): PoolEnableAutoScale;
+    (path: "/pools/{poolId}/evaluateautoscale", poolId: string): PoolEvaluateAutoScale;
+    (path: "/pools/{poolId}/resize", poolId: string): PoolResize;
+    (path: "/pools/{poolId}/stopresize", poolId: string): PoolStopResize;
+    (path: "/pools/{poolId}/updateproperties", poolId: string): PoolUpdateProperties;
+    (path: "/pools/{poolId}/removenodes", poolId: string): PoolRemoveNodes;
+    (path: "/supportedimages"): AccountListSupportedImages;
+    (path: "/nodecounts"): AccountListPoolNodeCounts;
+    (path: "/lifetimejobstats"): JobGetAllLifetimeStatistics;
+    (path: "/jobs/{jobId}", jobId: string): JobDelete;
+    (path: "/jobs/{jobId}/disable", jobId: string): JobDisable;
+    (path: "/jobs/{jobId}/enable", jobId: string): JobEnable;
+    (path: "/jobs/{jobId}/terminate", jobId: string): JobTerminate;
+    (path: "/jobs"): JobAdd;
+    (path: "/jobschedules/{jobScheduleId}/jobs", jobScheduleId: string): JobListFromJobSchedule;
+    (path: "/jobs/{jobId}/jobpreparationandreleasetaskstatus", jobId: string): JobListPreparationAndReleaseTaskStatus;
+    (path: "/jobs/{jobId}/taskcounts", jobId: string): JobGetTaskCounts;
     (path: "/certificates"): CertificateOperationsAdd;
     (path: "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete", thumbprintAlgorithm: string, thumbprint: string): CertificateOperationsCancelDeletion;
     (path: "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})", thumbprintAlgorithm: string, thumbprint: string): CertificateOperationsDelete;
-    (path: "/jobs/{jobId}/tasks/{taskId}/files/{filePath}", jobId: string, taskId: string, filePath: string): FileOperationsDeleteFromTask;
-    (path: "/pools/{poolId}/nodes/{nodeId}/files/{filePath}", poolId: string, nodeId: string, filePath: string): FileOperationsDeleteFromComputeNode;
-    (path: "/jobs/{jobId}/tasks/{taskId}/files", jobId: string, taskId: string): FileOperationsListFromTask;
-    (path: "/pools/{poolId}/nodes/{nodeId}/files", poolId: string, nodeId: string): FileOperationsListFromComputeNode;
-    (path: "/jobschedules/{jobScheduleId}", jobScheduleId: string): JobScheduleOperationsExists;
-    (path: "/jobschedules/{jobScheduleId}/disable", jobScheduleId: string): JobScheduleOperationsDisable;
-    (path: "/jobschedules/{jobScheduleId}/enable", jobScheduleId: string): JobScheduleOperationsEnable;
-    (path: "/jobschedules/{jobScheduleId}/terminate", jobScheduleId: string): JobScheduleOperationsTerminate;
-    (path: "/jobschedules"): JobScheduleOperationsAdd;
-    (path: "/jobs/{jobId}/tasks", jobId: string): TaskOperationsAdd;
-    (path: "/jobs/{jobId}/addtaskcollection", jobId: string): TaskOperationsAddCollection;
-    (path: "/jobs/{jobId}/tasks/{taskId}", jobId: string, taskId: string): TaskOperationsDelete;
-    (path: "/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId: string, taskId: string): TaskOperationsListSubtasks;
-    (path: "/jobs/{jobId}/tasks/{taskId}/terminate", jobId: string, taskId: string): TaskOperationsTerminate;
-    (path: "/jobs/{jobId}/tasks/{taskId}/reactivate", jobId: string, taskId: string): TaskOperationsReactivate;
+    (path: "/jobs/{jobId}/tasks/{taskId}/files/{filePath}", jobId: string, taskId: string, filePath: string): FileDeleteFromTask;
+    (path: "/pools/{poolId}/nodes/{nodeId}/files/{filePath}", poolId: string, nodeId: string, filePath: string): FileDeleteFromComputeNode;
+    (path: "/jobs/{jobId}/tasks/{taskId}/files", jobId: string, taskId: string): FileListFromTask;
+    (path: "/pools/{poolId}/nodes/{nodeId}/files", poolId: string, nodeId: string): FileListFromComputeNode;
+    (path: "/jobschedules/{jobScheduleId}", jobScheduleId: string): JobScheduleExists;
+    (path: "/jobschedules/{jobScheduleId}/disable", jobScheduleId: string): JobScheduleDisable;
+    (path: "/jobschedules/{jobScheduleId}/enable", jobScheduleId: string): JobScheduleEnable;
+    (path: "/jobschedules/{jobScheduleId}/terminate", jobScheduleId: string): JobScheduleTerminate;
+    (path: "/jobschedules"): JobScheduleAdd;
+    (path: "/jobs/{jobId}/tasks", jobId: string): TaskAdd;
+    (path: "/jobs/{jobId}/addtaskcollection", jobId: string): TaskAddCollection;
+    (path: "/jobs/{jobId}/tasks/{taskId}", jobId: string, taskId: string): TaskDelete;
+    (path: "/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId: string, taskId: string): TaskListSubtasks;
+    (path: "/jobs/{jobId}/tasks/{taskId}/terminate", jobId: string, taskId: string): TaskTerminate;
+    (path: "/jobs/{jobId}/tasks/{taskId}/reactivate", jobId: string, taskId: string): TaskReactivate;
     (path: "/pools/{poolId}/nodes/{nodeId}/users", poolId: string, nodeId: string): ComputeNodeOperationsAddUser;
     (path: "/pools/{poolId}/nodes/{nodeId}/users/{userName}", poolId: string, nodeId: string, userName: string): ComputeNodeOperationsDeleteUser;
     (path: "/pools/{poolId}/nodes/{nodeId}", poolId: string, nodeId: string): ComputeNodeOperationsGet;
@@ -5411,7 +6050,7 @@ export interface Routes {
     (path: "/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId: string, nodeId: string): ComputeNodeOperationsEnableScheduling;
     (path: "/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId: string, nodeId: string): ComputeNodeOperationsGetRemoteLoginSettings;
     (path: "/pools/{poolId}/nodes/{nodeId}/rdp", poolId: string, nodeId: string): ComputeNodeOperationsGetRemoteDesktop;
-    (path: "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs"): ComputeNodeOperationsUploadBatchServiceLogs;
+    (path: "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs", poolId: string, nodeId: string): ComputeNodeOperationsUploadBatchServiceLogs;
     (path: "/pools/{poolId}/nodes", poolId: string): ComputeNodeOperationsList;
     (path: "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}", poolId: string, nodeId: string, extensionName: string): ComputeNodeExtensionOperationsGet;
     (path: "/pools/{poolId}/nodes/{nodeId}/extensions", poolId: string, nodeId: string): ComputeNodeExtensionOperationsList;
@@ -5451,10 +6090,10 @@ export interface StartTaskInformationOutput {
     exitCode?: number;
     failureInfo?: TaskFailureInformationOutput;
     lastRetryTime?: string;
-    result?: "success" | "failure";
+    result?: string;
     retryCount: number;
     startTime: string;
-    state: "running" | "completed";
+    state: string;
 }
 
 // @public
@@ -5476,17 +6115,141 @@ export interface SubtaskInformationOutput {
     failureInfo?: TaskFailureInformationOutput;
     id?: number;
     nodeInfo?: ComputeNodeInformationOutput;
-    previousState?: "preparing" | "running" | "completed";
+    previousState?: string;
     previousStateTransitionTime?: string;
-    result?: "success" | "failure";
+    result?: string;
     startTime?: string;
-    state?: "preparing" | "running" | "completed";
+    state?: string;
     stateTransitionTime?: string;
+}
+
+// @public (undocumented)
+export interface TaskAdd {
+    get(options?: TaskListParameters): StreamableMethod<TaskList200Response | TaskListDefaultResponse>;
+    post(options: TaskAddParameters): StreamableMethod<TaskAdd201Response | TaskAddDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface TaskAdd201Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface TaskAdd201Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & TaskAdd201Headers;
+    // (undocumented)
+    status: "201";
+}
+
+// @public (undocumented)
+export interface TaskAddBodyParam {
+    body: BatchTask;
+}
+
+// @public (undocumented)
+export interface TaskAddCollection {
+    post(options: TaskAddCollectionParameters): StreamableMethod<TaskAddCollection200Response | TaskAddCollectionDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface TaskAddCollection200Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
+}
+
+// @public
+export interface TaskAddCollection200Response extends HttpResponse {
+    // (undocumented)
+    body: TaskAddCollectionResultOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & TaskAddCollection200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface TaskAddCollectionBodyParam {
+    body: BatchTaskCollection;
+}
+
+// @public (undocumented)
+export interface TaskAddCollectionDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface TaskAddCollectionHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & TaskAddCollectionHeaders;
+}
+
+// @public (undocumented)
+export interface TaskAddCollectionHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type TaskAddCollectionParameters = TaskAddCollectionQueryParam & TaskAddCollectionHeaderParam & TaskAddCollectionBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface TaskAddCollectionQueryParam {
+    // (undocumented)
+    queryParameters?: TaskAddCollectionQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface TaskAddCollectionQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
 export interface TaskAddCollectionResultOutput {
     value?: Array<TaskAddResultOutput>;
+}
+
+// @public (undocumented)
+export interface TaskAddDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface TaskAddHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & TaskAddHeaders;
+}
+
+// @public (undocumented)
+export interface TaskAddHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type TaskAddParameters = TaskAddQueryParam & TaskAddHeaderParam & TaskAddBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface TaskAddQueryParam {
+    // (undocumented)
+    queryParameters?: TaskAddQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface TaskAddQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -5495,7 +6258,7 @@ export interface TaskAddResultOutput {
     eTag?: string;
     lastModified?: string;
     location?: string;
-    status: "success" | "clienterror" | "servererror";
+    status: string;
     taskId: string;
 }
 
@@ -5532,7 +6295,7 @@ export interface TaskContainerSettings {
     containerRunOptions?: string;
     imageName: string;
     registry?: ContainerRegistry;
-    workingDirectory?: "taskWorkingDirectory" | "containerImageDefault";
+    workingDirectory?: string;
 }
 
 // @public
@@ -5540,7 +6303,7 @@ export interface TaskContainerSettingsOutput {
     containerRunOptions?: string;
     imageName: string;
     registry?: ContainerRegistryOutput;
-    workingDirectory?: "taskWorkingDirectory" | "containerImageDefault";
+    workingDirectory?: string;
 }
 
 // @public
@@ -5554,8 +6317,68 @@ export interface TaskCountsOutput {
 
 // @public
 export interface TaskCountsResultOutput {
-    taskCounts: TaskCountsOutput;
+    readonly taskCounts: TaskCountsOutput;
     taskSlotCounts: TaskSlotCountsOutput;
+}
+
+// @public (undocumented)
+export interface TaskDelete {
+    delete(options?: TaskDeleteParameters): StreamableMethod<TaskDelete200Response | TaskDeleteDefaultResponse>;
+    get(options?: TaskGetParameters): StreamableMethod<TaskGet200Response | TaskGetDefaultResponse>;
+    put(options: TaskUpdateParameters): StreamableMethod<TaskUpdate200Response | TaskUpdateDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface TaskDelete200Headers {
+    "client-request-id"?: string;
+    "request-id"?: string;
+}
+
+// @public
+export interface TaskDelete200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & TaskDelete200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface TaskDeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface TaskDeleteHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & TaskDeleteHeaders;
+}
+
+// @public (undocumented)
+export interface TaskDeleteHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type TaskDeleteParameters = TaskDeleteQueryParam & TaskDeleteHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface TaskDeleteQueryParam {
+    // (undocumented)
+    queryParameters?: TaskDeleteQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface TaskDeleteQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
@@ -5579,7 +6402,7 @@ export interface TaskExecutionInformation {
     lastRequeueTime?: Date | string;
     lastRetryTime?: Date | string;
     requeueCount: number;
-    result?: "success" | "failure";
+    result?: string;
     retryCount: number;
     startTime?: Date | string;
 }
@@ -5593,14 +6416,14 @@ export interface TaskExecutionInformationOutput {
     lastRequeueTime?: string;
     lastRetryTime?: string;
     requeueCount: number;
-    result?: "success" | "failure";
+    result?: string;
     retryCount: number;
     startTime?: string;
 }
 
 // @public
 export interface TaskFailureInformation {
-    category: "usererror" | "servererror";
+    category: string;
     code?: string;
     details?: Array<NameValuePair>;
     message?: string;
@@ -5608,10 +6431,70 @@ export interface TaskFailureInformation {
 
 // @public
 export interface TaskFailureInformationOutput {
-    category: "usererror" | "servererror";
+    category: string;
     code?: string;
     details?: Array<NameValuePairOutput>;
     message?: string;
+}
+
+// @public (undocumented)
+export interface TaskGet200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface TaskGet200Response extends HttpResponse {
+    // (undocumented)
+    body: BatchTaskOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & TaskGet200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface TaskGetDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface TaskGetHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & TaskGetHeaders;
+}
+
+// @public (undocumented)
+export interface TaskGetHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type TaskGetParameters = TaskGetQueryParam & TaskGetHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface TaskGetQueryParam {
+    // (undocumented)
+    queryParameters?: TaskGetQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface TaskGetQueryParamProperties {
+    $expand?: string;
+    $select?: string;
+    timeOut?: number;
 }
 
 // @public
@@ -5632,226 +6515,30 @@ export interface TaskInformationOutput {
     jobId?: string;
     subtaskId?: number;
     taskId?: string;
-    taskState: "active" | "preparing" | "running" | "completed";
+    taskState: string;
     taskUrl?: string;
 }
 
 // @public (undocumented)
-export interface TaskOperationsAdd {
-    get(options: TaskOperationsListParameters): StreamableMethod<TaskOperationsList200Response | TaskOperationsListDefaultResponse>;
-    post(options: TaskOperationsAddParameters): StreamableMethod<TaskOperationsAdd204Response | TaskOperationsAddDefaultResponse>;
+export interface TaskList200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface TaskOperationsAdd204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddBodyParam {
-    body: BatchTask;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddCollection {
-    post(options: TaskOperationsAddCollectionParameters): StreamableMethod<TaskOperationsAddCollection200Response | TaskOperationsAddCollectionDefaultResponse>;
-}
-
-// @public
-export interface TaskOperationsAddCollection200Response extends HttpResponse {
-    // (undocumented)
-    body: TaskAddCollectionResultOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddCollectionBodyParam {
-    body: BatchTaskCollection;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddCollectionDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddCollectionHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsAddCollectionHeaders;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddCollectionHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type TaskOperationsAddCollectionParameters = TaskOperationsAddCollectionQueryParam & TaskOperationsAddCollectionHeaderParam & TaskOperationsAddCollectionBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface TaskOperationsAddCollectionQueryParam {
-    // (undocumented)
-    queryParameters: TaskOperationsAddCollectionQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddCollectionQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsAddHeaders;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type TaskOperationsAddParameters = TaskOperationsAddQueryParam & TaskOperationsAddHeaderParam & TaskOperationsAddBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface TaskOperationsAddQueryParam {
-    // (undocumented)
-    queryParameters: TaskOperationsAddQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface TaskOperationsAddQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface TaskOperationsDelete {
-    delete(options: TaskOperationsDeleteParameters): StreamableMethod<TaskOperationsDelete204Response | TaskOperationsDeleteDefaultResponse>;
-    get(options: TaskOperationsGetParameters): StreamableMethod<TaskOperationsGet200Response | TaskOperationsGetDefaultResponse>;
-    put(options: TaskOperationsUpdateParameters): StreamableMethod<TaskOperationsUpdate204Response | TaskOperationsUpdateDefaultResponse>;
-}
-
-// @public
-export interface TaskOperationsDelete204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface TaskOperationsDeleteDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface TaskOperationsDeleteHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsDeleteHeaders;
-}
-
-// @public (undocumented)
-export interface TaskOperationsDeleteHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type TaskOperationsDeleteParameters = TaskOperationsDeleteQueryParam & TaskOperationsDeleteHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface TaskOperationsDeleteQueryParam {
-    // (undocumented)
-    queryParameters: TaskOperationsDeleteQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface TaskOperationsDeleteQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface TaskOperationsGet200Response extends HttpResponse {
-    // (undocumented)
-    body: BatchTaskOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface TaskOperationsGetDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface TaskOperationsGetHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsGetHeaders;
-}
-
-// @public (undocumented)
-export interface TaskOperationsGetHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type TaskOperationsGetParameters = TaskOperationsGetQueryParam & TaskOperationsGetHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface TaskOperationsGetQueryParam {
-    // (undocumented)
-    queryParameters: TaskOperationsGetQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface TaskOperationsGetQueryParamProperties {
-    $expand: string;
-    $select: string;
-    timeout: number;
-}
-
-// @public
-export interface TaskOperationsList200Response extends HttpResponse {
+export interface TaskList200Response extends HttpResponse {
     // (undocumented)
     body: BatchTaskListResultOutput;
     // (undocumented)
+    headers: RawHttpHeaders & TaskList200Headers;
+    // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface TaskOperationsListDefaultResponse extends HttpResponse {
+export interface TaskListDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -5859,51 +6546,61 @@ export interface TaskOperationsListDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface TaskOperationsListHeaderParam {
+export interface TaskListHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsListHeaders;
+    headers?: RawHttpHeadersInput & TaskListHeaders;
 }
 
 // @public (undocumented)
-export interface TaskOperationsListHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface TaskListHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type TaskOperationsListParameters = TaskOperationsListQueryParam & TaskOperationsListHeaderParam & RequestParameters;
+export type TaskListParameters = TaskListQueryParam & TaskListHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface TaskOperationsListQueryParam {
+export interface TaskListQueryParam {
     // (undocumented)
-    queryParameters: TaskOperationsListQueryParamProperties;
+    queryParameters?: TaskListQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface TaskOperationsListQueryParamProperties {
-    $expand: string;
-    $filter: string;
-    $select: string;
-    maxresults: number;
-    timeout: number;
+export interface TaskListQueryParamProperties {
+    $expand?: string;
+    $filter?: string;
+    $select?: string;
+    maxresults?: number;
+    timeOut?: number;
 }
 
 // @public (undocumented)
-export interface TaskOperationsListSubtasks {
-    get(options: TaskOperationsListSubtasksParameters): StreamableMethod<TaskOperationsListSubtasks200Response | TaskOperationsListSubtasksDefaultResponse>;
+export interface TaskListSubtasks {
+    get(options?: TaskListSubtasksParameters): StreamableMethod<TaskListSubtasks200Response | TaskListSubtasksDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface TaskListSubtasks200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    etag?: string;
 }
 
 // @public
-export interface TaskOperationsListSubtasks200Response extends HttpResponse {
+export interface TaskListSubtasks200Response extends HttpResponse {
     // (undocumented)
     body: BatchTaskListSubtasksResultOutput;
     // (undocumented)
+    headers: RawHttpHeaders & TaskListSubtasks200Headers;
+    // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface TaskOperationsListSubtasksDefaultResponse extends HttpResponse {
+export interface TaskListSubtasksDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -5911,46 +6608,57 @@ export interface TaskOperationsListSubtasksDefaultResponse extends HttpResponse 
 }
 
 // @public (undocumented)
-export interface TaskOperationsListSubtasksHeaderParam {
+export interface TaskListSubtasksHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsListSubtasksHeaders;
+    headers?: RawHttpHeadersInput & TaskListSubtasksHeaders;
 }
 
 // @public (undocumented)
-export interface TaskOperationsListSubtasksHeaders {
-    "client-request-id": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface TaskListSubtasksHeaders {
+    "client-request-id"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type TaskOperationsListSubtasksParameters = TaskOperationsListSubtasksQueryParam & TaskOperationsListSubtasksHeaderParam & RequestParameters;
+export type TaskListSubtasksParameters = TaskListSubtasksQueryParam & TaskListSubtasksHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface TaskOperationsListSubtasksQueryParam {
+export interface TaskListSubtasksQueryParam {
     // (undocumented)
-    queryParameters: TaskOperationsListSubtasksQueryParamProperties;
+    queryParameters?: TaskListSubtasksQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface TaskOperationsListSubtasksQueryParamProperties {
-    $select: string;
-    timeout: number;
+export interface TaskListSubtasksQueryParamProperties {
+    $select?: string;
+    timeOut?: number;
 }
 
 // @public (undocumented)
-export interface TaskOperationsReactivate {
-    post(options: TaskOperationsReactivateParameters): StreamableMethod<TaskOperationsReactivate204Response | TaskOperationsReactivateDefaultResponse>;
+export interface TaskReactivate {
+    post(options?: TaskReactivateParameters): StreamableMethod<TaskReactivate204Response | TaskReactivateDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface TaskReactivate204Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
 }
 
 // @public
-export interface TaskOperationsReactivate204Response extends HttpResponse {
+export interface TaskReactivate204Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & TaskReactivate204Headers;
     // (undocumented)
     status: "204";
 }
 
 // @public (undocumented)
-export interface TaskOperationsReactivateDefaultResponse extends HttpResponse {
+export interface TaskReactivateDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
@@ -5958,144 +6666,44 @@ export interface TaskOperationsReactivateDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface TaskOperationsReactivateHeaderParam {
+export interface TaskReactivateHeaderParam {
     // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsReactivateHeaders;
+    headers?: RawHttpHeadersInput & TaskReactivateHeaders;
 }
 
 // @public (undocumented)
-export interface TaskOperationsReactivateHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
+export interface TaskReactivateHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
 }
 
 // @public (undocumented)
-export type TaskOperationsReactivateParameters = TaskOperationsReactivateQueryParam & TaskOperationsReactivateHeaderParam & RequestParameters;
+export type TaskReactivateParameters = TaskReactivateQueryParam & TaskReactivateHeaderParam & RequestParameters;
 
 // @public (undocumented)
-export interface TaskOperationsReactivateQueryParam {
+export interface TaskReactivateQueryParam {
     // (undocumented)
-    queryParameters: TaskOperationsReactivateQueryParamProperties;
+    queryParameters?: TaskReactivateQueryParamProperties;
 }
 
 // @public (undocumented)
-export interface TaskOperationsReactivateQueryParamProperties {
-    timeout: number;
-}
-
-// @public (undocumented)
-export interface TaskOperationsTerminate {
-    post(options: TaskOperationsTerminateParameters): StreamableMethod<TaskOperationsTerminate204Response | TaskOperationsTerminateDefaultResponse>;
-}
-
-// @public
-export interface TaskOperationsTerminate204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface TaskOperationsTerminateDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface TaskOperationsTerminateHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsTerminateHeaders;
-}
-
-// @public (undocumented)
-export interface TaskOperationsTerminateHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type TaskOperationsTerminateParameters = TaskOperationsTerminateQueryParam & TaskOperationsTerminateHeaderParam & RequestParameters;
-
-// @public (undocumented)
-export interface TaskOperationsTerminateQueryParam {
-    // (undocumented)
-    queryParameters: TaskOperationsTerminateQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface TaskOperationsTerminateQueryParamProperties {
-    timeout: number;
-}
-
-// @public
-export interface TaskOperationsUpdate204Response extends HttpResponse {
-    // (undocumented)
-    status: "204";
-}
-
-// @public (undocumented)
-export interface TaskOperationsUpdateBodyParam {
-    body: BatchTask;
-}
-
-// @public (undocumented)
-export interface TaskOperationsUpdateDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface TaskOperationsUpdateHeaderParam {
-    // (undocumented)
-    headers: RawHttpHeadersInput & TaskOperationsUpdateHeaders;
-}
-
-// @public (undocumented)
-export interface TaskOperationsUpdateHeaders {
-    "client-request-id": string;
-    "if-match": string;
-    "if-modified-since": string;
-    "if-none-match": string;
-    "if-unmodified-since": string;
-    "ocp-date": string;
-    "return-client-request-id": boolean;
-}
-
-// @public (undocumented)
-export type TaskOperationsUpdateParameters = TaskOperationsUpdateQueryParam & TaskOperationsUpdateHeaderParam & TaskOperationsUpdateBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface TaskOperationsUpdateQueryParam {
-    // (undocumented)
-    queryParameters: TaskOperationsUpdateQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface TaskOperationsUpdateQueryParamProperties {
-    timeout: number;
+export interface TaskReactivateQueryParamProperties {
+    timeOut?: number;
 }
 
 // @public
 export interface TaskSchedulingPolicy {
-    nodeFillType: "spread" | "pack";
+    nodeFillType: string;
 }
 
 // @public
 export interface TaskSchedulingPolicyOutput {
-    nodeFillType: "spread" | "pack";
+    nodeFillType: string;
 }
 
 // @public
@@ -6137,10 +6745,140 @@ export interface TaskStatisticsOutput {
     writeIOps: number;
 }
 
+// @public (undocumented)
+export interface TaskTerminate {
+    post(options?: TaskTerminateParameters): StreamableMethod<TaskTerminate204Response | TaskTerminateDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface TaskTerminate204Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
 // @public
-export interface UploadBatchServiceLogsResult {
+export interface TaskTerminate204Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & TaskTerminate204Headers;
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+export interface TaskTerminateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface TaskTerminateHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & TaskTerminateHeaders;
+}
+
+// @public (undocumented)
+export interface TaskTerminateHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type TaskTerminateParameters = TaskTerminateQueryParam & TaskTerminateHeaderParam & RequestParameters;
+
+// @public (undocumented)
+export interface TaskTerminateQueryParam {
+    // (undocumented)
+    queryParameters?: TaskTerminateQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface TaskTerminateQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TaskUpdate200Headers {
+    "client-request-id"?: string;
+    "last-modified"?: string;
+    "request-id"?: string;
+    dataserviceid: string;
+    etag?: string;
+}
+
+// @public
+export interface TaskUpdate200Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & TaskUpdate200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface TaskUpdateBodyParam {
+    body: BatchTask;
+}
+
+// @public (undocumented)
+export interface TaskUpdateDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface TaskUpdateHeaderParam {
+    // (undocumented)
+    headers?: RawHttpHeadersInput & TaskUpdateHeaders;
+}
+
+// @public (undocumented)
+export interface TaskUpdateHeaders {
+    "client-request-id"?: string;
+    "if-match"?: string;
+    "if-modified-since"?: string;
+    "if-none-match"?: string;
+    "if-unmodified-since"?: string;
+    "ocp-date"?: string;
+    "return-client-request-id"?: boolean;
+}
+
+// @public (undocumented)
+export type TaskUpdateParameters = TaskUpdateQueryParam & TaskUpdateHeaderParam & TaskUpdateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface TaskUpdateQueryParam {
+    // (undocumented)
+    queryParameters?: TaskUpdateQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface TaskUpdateQueryParamProperties {
+    timeOut?: number;
+}
+
+// @public
+export interface UploadBatchServiceLogsConfiguration {
+    containerUrl: string;
+    endTime?: Date | string;
+    identityReference?: object;
+    startTime: Date | string;
+}
+
+// @public
+export interface UploadBatchServiceLogsResultOutput {
     numberOfFilesUploaded: number;
-    virtualDirectoryName: string;
+    readonly virtualDirectoryName: string;
 }
 
 // @public
@@ -6159,7 +6897,7 @@ export interface UsageStatisticsOutput {
 
 // @public
 export interface UserAccount {
-    elevationLevel?: "nonadmin" | "admin";
+    elevationLevel?: string;
     linuxUserConfiguration?: LinuxUserConfiguration;
     name: string;
     password: string;
@@ -6168,7 +6906,7 @@ export interface UserAccount {
 
 // @public
 export interface UserAccountOutput {
-    elevationLevel?: "nonadmin" | "admin";
+    elevationLevel?: string;
     linuxUserConfiguration?: LinuxUserConfigurationOutput;
     name: string;
     password: string;
@@ -6275,12 +7013,12 @@ export interface WindowsConfigurationOutput {
 
 // @public
 export interface WindowsUserConfiguration {
-    loginMode?: "batch" | "interactive";
+    loginMode?: string;
 }
 
 // @public
 export interface WindowsUserConfigurationOutput {
-    loginMode?: "batch" | "interactive";
+    loginMode?: string;
 }
 
 // (No @packageDocumentation comment for this package)

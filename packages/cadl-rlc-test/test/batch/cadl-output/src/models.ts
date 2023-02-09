@@ -3,8 +3,6 @@
 
 /** Contains utilization and resource usage statistics for the lifetime of a Pool. */
 export interface PoolStatistics {
-  /** The URL for the statistics. */
-  url: string;
   /** The start time of the time range covered by the statistics. */
   startTime: Date | string;
   /**
@@ -198,6 +196,12 @@ export interface BatchPool {
   metadata?: Array<MetadataItem>;
   /** This supports Azure Files, NFS, CIFS/SMB, and Blobfuse. */
   mountConfiguration?: Array<MountConfiguration>;
+  /**
+   * If omitted, the default value is Default.
+   *
+   * Possible values: default, classic, simplified
+   */
+  targetNodeCommunicationMode?: string;
 }
 
 /**
@@ -354,18 +358,28 @@ export interface DataDisk {
    * The default value for caching is readwrite. For information about the caching
    * options see:
    * https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/.
+   *
+   * Possible values: none, readonly, readwrite
    */
-  caching?: "none" | "readonly" | "readwrite";
+  caching?: string;
   /** The initial disk size in gigabytes. */
   diskSizeGB: number;
-  /** If omitted, the default is "standard_lrs". */
-  storageAccountType?: "standard_lrs" | "premium_lrs";
+  /**
+   * If omitted, the default is "standard_lrs".
+   *
+   * Possible values: standard_lrs, premium_lrs
+   */
+  storageAccountType?: string;
 }
 
 /** The configuration for container-enabled Pools. */
 export interface ContainerConfiguration {
-  /** The container technology to be used. */
-  type: "dockerCompatible";
+  /**
+   * The container technology to be used.
+   *
+   * Possible values: dockerCompatible
+   */
+  type: string;
   /**
    * This is the full Image reference, as would be specified to "docker pull". An
    * Image will be sourced from the default Docker registry unless the Image is
@@ -414,7 +428,7 @@ export interface DiskEncryptionConfiguration {
    * Linux pool, only "TemporaryDisk" is supported; on Windows pool, "OsDisk"
    * and "TemporaryDisk" must be specified.
    */
-  targets?: ("osdisk" | "temporarydisk")[];
+  targets?: string[];
 }
 
 /**
@@ -426,8 +440,10 @@ export interface NodePlacementConfiguration {
   /**
    * Allocation policy used by Batch Service to provision the nodes. If not
    * specified, Batch will use the regional policy.
+   *
+   * Possible values: regional, zonal
    */
-  policy?: "regional" | "zonal";
+  policy?: string;
 }
 
 /** The configuration for virtual machine extensions. */
@@ -484,8 +500,10 @@ export interface DiffDiskSettings {
    * https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
    * and Linux VMs at
    * https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
+   *
+   * Possible values: cachedisk
    */
-  placement?: "CacheDisk";
+  placement?: string;
 }
 
 /** An error that occurred when resizing a Pool. */
@@ -514,8 +532,6 @@ export interface NameValuePair {
 
 /** The results and errors from an execution of a Pool autoscale formula. */
 export interface AutoScaleRun {
-  /** The time at which the autoscale formula was last evaluated. */
-  timestamp: Date | string;
   /**
    * Each variable value is returned in the form $variable=value, and variables are
    * separated by semicolons.
@@ -568,8 +584,12 @@ export interface NetworkConfiguration {
    * https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration
    */
   subnetId?: string;
-  /** The scope of dynamic vnet assignment. */
-  dynamicVNetAssignmentScope?: "none" | "job";
+  /**
+   * The scope of dynamic vnet assignment.
+   *
+   * Possible values: none, job
+   */
+  dynamicVNetAssignmentScope?: string;
   /**
    * Pool endpoint configuration is only supported on Pools with the
    * virtualMachineConfiguration property.
@@ -606,8 +626,12 @@ export interface InboundNATPool {
    * 400.
    */
   name: string;
-  /** The protocol of the endpoint. */
-  protocol: "tcp" | "udp";
+  /**
+   * The protocol of the endpoint.
+   *
+   * Possible values: tcp, udp
+   */
+  protocol: string;
   /**
    * This must be unique within a Batch Pool. Acceptable values are between 1 and
    * 65535 except for 22, 3389, 29876 and 29877 as these are reserved. If any
@@ -650,8 +674,12 @@ export interface NetworkSecurityGroupRule {
    * the request fails with HTTP status code 400.
    */
   priority: number;
-  /** The action that should be taken for a specified IP address, subnet range or tag. */
-  access: "allow" | "deny";
+  /**
+   * The action that should be taken for a specified IP address, subnet range or tag.
+   *
+   * Possible values: allow, deny
+   */
+  access: string;
   /**
    * Valid values are a single IP address (i.e. 10.10.10.10), IP subnet (i.e.
    * 192.168.1.0/24), default tag, or * (for all addresses).  If any other values
@@ -670,8 +698,12 @@ export interface NetworkSecurityGroupRule {
 
 /** The public IP Address configuration of the networking configuration of a Pool. */
 export interface PublicIPAddressConfiguration {
-  /** The default value is BatchManaged. */
-  provision?: "batchmanaged" | "usermanaged" | "nopublicipaddresses";
+  /**
+   * The default value is BatchManaged.
+   *
+   * Possible values: batchmanaged, usermanaged, nopublicipaddresses
+   */
+  provision?: string;
   /**
    * The number of IPs specified here limits the maximum size of the Pool - 100
    * dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public
@@ -765,8 +797,12 @@ export interface TaskContainerSettings {
   imageName: string;
   /** This setting can be omitted if was already provided at Pool creation. */
   registry?: ContainerRegistry;
-  /** The default is 'taskWorkingDirectory'. */
-  workingDirectory?: "taskWorkingDirectory" | "containerImageDefault";
+  /**
+   * The default is 'taskWorkingDirectory'.
+   *
+   * Possible values: taskWorkingDirectory, containerImageDefault
+   */
+  workingDirectory?: string;
 }
 
 /** A single file or multiple files to be downloaded to a Compute Node. */
@@ -859,10 +895,16 @@ export interface AutoUserSpecification {
    * example, if the task mutates the registry in a way which could impact other
    * tasks, or if certificates have been specified on the pool which should not be
    * accessible by normal tasks but should be accessible by StartTasks.
+   *
+   * Possible values: task, pool
    */
-  scope?: "task" | "pool";
-  /** The default value is nonAdmin. */
-  elevationLevel?: "nonadmin" | "admin";
+  scope?: string;
+  /**
+   * The default value is nonAdmin.
+   *
+   * Possible values: nonadmin, admin
+   */
+  elevationLevel?: string;
 }
 
 /** A reference to a Certificate to be installed on Compute Nodes in a Pool. */
@@ -881,8 +923,10 @@ export interface CertificateReference {
    * For Certificates with visibility of 'remoteUser', a 'certs' directory is
    * created in the user's home directory (e.g., /home/{user-name}/certs) and
    * Certificates are placed in that directory.
+   *
+   * Possible values: currentuser, localmachine
    */
-  storeLocation?: "currentuser" | "localmachine";
+  storeLocation?: string;
   /**
    * This property is applicable only for Pools configured with Windows Compute
    * Nodes (that is, created with cloudServiceConfiguration, or with
@@ -896,12 +940,15 @@ export interface CertificateReference {
    * You can specify more than one visibility in this collection. The default is all
    * Accounts.
    */
-  visibility?: ("starttask" | "task" | "remoteuser")[];
+  visibility?: string[];
 }
 
 /** A reference to an Package to be deployed to Compute Nodes. */
 export interface ApplicationPackageReference {
-  /** The ID of the application to deploy. */
+  /**
+   * When creating a pool, the package's application ID must be fully qualified
+   * (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}).
+   */
   applicationId: string;
   /**
    * If this is omitted on a Pool, and no default version is specified for this
@@ -915,8 +962,12 @@ export interface ApplicationPackageReference {
 
 /** Specifies how Tasks should be distributed across Compute Nodes. */
 export interface TaskSchedulingPolicy {
-  /** If not specified, the default is spread. */
-  nodeFillType: "spread" | "pack";
+  /**
+   * If not specified, the default is spread.
+   *
+   * Possible values: spread, pack
+   */
+  nodeFillType: string;
 }
 
 /**
@@ -924,12 +975,19 @@ export interface TaskSchedulingPolicy {
  * Compute Node.
  */
 export interface UserAccount {
-  /** The name of the user Account. */
+  /**
+   * The name of the user Account. Names can contain any Unicode characters up to a
+   * maximum length of 20.
+   */
   name: string;
   /** The password for the user Account. */
   password: string;
-  /** The default value is nonAdmin. */
-  elevationLevel?: "nonadmin" | "admin";
+  /**
+   * The default value is nonAdmin.
+   *
+   * Possible values: nonadmin, admin
+   */
+  elevationLevel?: string;
   /**
    * This property is ignored if specified on a Windows Pool. If not specified, the
    * user is created with the default options.
@@ -971,8 +1029,10 @@ export interface WindowsUserConfiguration {
   /**
    * The default value for VirtualMachineConfiguration Pools is 'batch' and for
    * CloudServiceConfiguration Pools is 'interactive'.
+   *
+   * Possible values: batch, interactive
    */
-  loginMode?: "batch" | "interactive";
+  loginMode?: string;
 }
 
 /**
@@ -1081,8 +1141,10 @@ export interface BatchPoolIdentity {
    * The list of user identities associated with the Batch pool. The user identity
    * dictionary key references will be ARM resource ids in the form:
    * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
+   *
+   * Possible values: UserAssigned, None
    */
-  type: "UserAssigned" | "None";
+  type: string;
   /**
    * The user identity dictionary key references will be ARM resource ids in the
    * form:
@@ -1095,42 +1157,6 @@ export interface BatchPoolIdentity {
 export interface UserAssignedIdentity {
   /** The ARM resource id of the user assigned identity */
   resourceId: string;
-}
-
-/** The set of changes to be made to a Pool. */
-export interface BatchPoolUpdate {
-  /**
-   * If this element is present, it overwrites any existing StartTask. If omitted,
-   * any existing StartTask is left unchanged.
-   */
-  startTask?: object;
-  /**
-   * If this element is present, it replaces any existing Certificate references
-   * configured on the Pool. If omitted, any existing Certificate references are
-   * left unchanged. For Windows Nodes, the Batch service installs the Certificates
-   * to the specified Certificate store and location. For Linux Compute Nodes, the
-   * Certificates are stored in a directory inside the Task working directory and an
-   * environment variable AZ_BATCH_CERTIFICATES_DIR is supplied to the Task to query
-   * for this location. For Certificates with visibility of 'remoteUser', a 'certs'
-   * directory is created in the user's home directory (e.g.,
-   * /home/{user-name}/certs) and Certificates are placed in that directory.
-   */
-  certificateReferences?: Array<CertificateReference>;
-  /**
-   * Changes to Package references affect all new Nodes joining the Pool, but do not
-   * affect Compute Nodes that are already in the Pool until they are rebooted or
-   * reimaged. If this element is present, it replaces any existing Package
-   * references. If you specify an empty collection, then all Package references are
-   * removed from the Pool. If omitted, any existing Package references are left
-   * unchanged.
-   */
-  applicationPackageReferences?: Array<ApplicationPackageReference>;
-  /**
-   * If this element is present, it replaces any existing metadata configured on the
-   * Pool. If you specify an empty collection, any metadata is removed from the
-   * Pool. If omitted, any existing metadata is left unchanged.
-   */
-  metadata?: Array<MetadataItem>;
 }
 
 /** Options for enabling automatic scaling on a Pool. */
@@ -1180,12 +1206,12 @@ export interface BatchPoolResizeParameters {
    * calling the REST API directly, the HTTP status code is 400 (Bad Request).
    */
   resizeTimeout?: string;
-  /** The default value is requeue. */
-  nodeDeallocationOption?:
-    | "requeue"
-    | "terminate"
-    | "taskcompletion"
-    | "retaineddata";
+  /**
+   * The default value is requeue.
+   *
+   * Possible values: requeue, terminate, taskcompletion, retaineddata
+   */
+  nodeDeallocationOption?: string;
 }
 
 /** Options for removing Compute Nodes from a Pool. */
@@ -1198,18 +1224,16 @@ export interface NodeRemoveParameters {
    * calling the REST API directly, the HTTP status code is 400 (Bad Request).
    */
   resizeTimeout?: string;
-  /** The default value is requeue. */
-  nodeDeallocationOption?:
-    | "requeue"
-    | "terminate"
-    | "taskcompletion"
-    | "retaineddata";
+  /**
+   * The default value is requeue.
+   *
+   * Possible values: requeue, terminate, taskcompletion, retaineddata
+   */
+  nodeDeallocationOption?: string;
 }
 
 /** Resource usage statistics for a Job. */
 export interface JobStatistics {
-  /** The URL of the statistics. */
-  url: string;
   /** The start time of the time range covered by the statistics. */
   startTime: Date | string;
   /**
@@ -1341,15 +1365,21 @@ export interface BatchJob {
   commonEnvironmentSettings?: Array<EnvironmentSetting>;
   /** Specifies how a Job should be assigned to a Pool. */
   poolInfo?: PoolInformation;
-  /** The default is noaction. */
-  onAllTasksComplete?: "noaction" | "terminatejob";
+  /**
+   * The default is noaction.
+   *
+   * Possible values: noaction, terminatejob
+   */
+  onAllTasksComplete?: string;
   /**
    * A Task is considered to have failed if has a failureInfo. A failureInfo is set
    * if the Task completes with a non-zero exit code after exhausting its retry
    * count, or if there was an error starting the Task, for example due to a
    * resource file download error. The default is noaction.
+   *
+   * Possible values: noaction, performexitoptionsjobaction
    */
-  onTaskFailure?: "noaction" | "performexitoptionsjobaction";
+  onTaskFailure?: string;
   /** The network configuration for the Job. */
   networkConfiguration?: JobNetworkConfiguration;
   /**
@@ -1568,9 +1598,9 @@ export interface OutputFileBlobContainerDestination {
   /** The identity must have write access to the Azure Blob Storage container */
   identityReference?: ComputeNodeIdentityReference;
   /**
-   * These headers will be specified when uploading files to Azure Storage. For more
-   * information, see [Request Headers (All Blob
-   * Types)](https://docs.microsoft.com/rest/api/storageservices/put-blob#request-headers-all-blob-types).
+   * These headers will be specified when uploading files to Azure Storage. Official
+   * document on allowed headers when uploading blobs:
+   * https://docs.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types
    */
   uploadHeaders?: Array<HttpHeader>;
 }
@@ -1588,8 +1618,12 @@ export interface HttpHeader {
  * to perform the upload.
  */
 export interface OutputFileUploadOptions {
-  /** The default is taskcompletion. */
-  uploadCondition: "tasksuccess" | "taskfailure" | "taskcompletion";
+  /**
+   * The default is taskcompletion.
+   *
+   * Possible values: tasksuccess, taskfailure, taskcompletion
+   */
+  uploadCondition: string;
 }
 
 /** Execution constraints to apply to a Task. */
@@ -1625,7 +1659,7 @@ export interface AuthenticationTokenSettings {
    * 'job', which grants access to all operations related to the Job which contains
    * the Task.
    */
-  access?: "job"[];
+  access?: string[];
 }
 
 /**
@@ -1838,8 +1872,10 @@ export interface AutoPoolSpecification {
   /**
    * The minimum lifetime of created auto Pools, and how multiple Jobs on a schedule
    * are assigned to Pools.
+   *
+   * Possible values: jobschedule, job
    */
-  poolLifetimeOption: "jobschedule" | "job";
+  poolLifetimeOption: string;
   /**
    * If false, the Batch service deletes the Pool once its lifetime (as determined
    * by the poolLifetimeOption setting) expires; that is, when the Job or Job
@@ -1966,6 +2002,8 @@ export interface PoolSpecification {
    */
   certificateReferences?: Array<CertificateReference>;
   /**
+   * When creating a pool, the package's application ID must be fully qualified
+   * (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}).
    * Changes to Package references affect all new Nodes joining the Pool, but do not
    * affect Compute Nodes that are already in the Pool until they are rebooted or
    * reimaged. There is a maximum of 10 Package references on any given Pool.
@@ -1988,6 +2026,12 @@ export interface PoolSpecification {
   metadata?: Array<MetadataItem>;
   /** This supports Azure Files, NFS, CIFS/SMB, and Blobfuse. */
   mountConfiguration?: Array<MountConfiguration>;
+  /**
+   * If omitted, the default value is Default.
+   *
+   * Possible values: default, classic, simplified
+   */
+  targetNodeCommunicationMode?: string;
 }
 
 /** The network configuration for the Job. */
@@ -2051,8 +2095,12 @@ export interface JobExecutionInformation {
 
 /** An error encountered by the Batch service when scheduling a Job. */
 export interface JobSchedulingError {
-  /** The category of the error. */
-  category: "usererror" | "servererror";
+  /**
+   * The category of the error.
+   *
+   * Possible values: usererror, servererror
+   */
+  category: string;
   /**
    * An identifier for the Job scheduling error. Codes are invariant and are
    * intended to be consumed programmatically.
@@ -2067,56 +2115,14 @@ export interface JobSchedulingError {
   details?: Array<NameValuePair>;
 }
 
-/** The set of changes to be made to a Job. */
-export interface BatchJobUpdate {
-  /**
-   * Priority values can range from -1000 to 1000, with -1000 being the lowest
-   * priority and 1000 being the highest priority. If omitted, the priority of the
-   * Job is left unchanged.
-   */
-  priority?: number;
-  /**
-   * The value of maxParallelTasks must be -1 or greater than 0 if specified. If not
-   * specified, the default value is -1, which means there's no limit to the number
-   * of tasks that can be run at once. You can update a job's maxParallelTasks after
-   * it has been created using the update job API.
-   */
-  maxParallelTasks?: number;
-  /**
-   * If the value is set to True, other high priority jobs submitted to the system
-   * will take precedence and will be able requeue tasks from this job. You can
-   * update a job's allowTaskPreemption after it has been created using the update
-   * job API.
-   */
-  allowTaskPreemption?: boolean;
-  /**
-   * If omitted, the completion behavior is left unchanged. You may not change the
-   * value from terminatejob to noaction - that is, once you have engaged automatic
-   * Job termination, you cannot turn it off again. If you try to do this, the
-   * request fails with an 'invalid property value' error response; if you are
-   * calling the REST API directly, the HTTP status code is 400 (Bad Request).
-   */
-  onAllTasksComplete?: "noaction" | "terminatejob";
-  /** If omitted, the existing execution constraints are left unchanged. */
-  constraints?: object;
-  /**
-   * You may change the Pool for a Job only when the Job is disabled. The Patch Job
-   * call will fail if you include the poolInfo element and the Job is not disabled.
-   * If you specify an autoPoolSpecification in the poolInfo, only the keepAlive
-   * property of the autoPoolSpecification can be updated, and then only if the
-   * autoPoolSpecification has a poolLifetimeOption of Job (other job properties can
-   * be updated as normal). If omitted, the Job continues to run on its current
-   * Pool.
-   */
-  poolInfo?: object;
-  /** If omitted, the existing Job metadata is left unchanged. */
-  metadata?: Array<MetadataItem>;
-}
-
 /** Options when disabling a Job. */
 export interface BatchJobDisableParameters {
-  /** What to do with active Tasks associated with the Job. */
-  disableTasks: "requeue" | "terminate" | "wait";
+  /**
+   * What to do with active Tasks associated with the Job.
+   *
+   * Possible values: requeue, terminate, wait
+   */
+  disableTasks: string;
 }
 
 /** Options when terminating a Job. */
@@ -2146,8 +2152,12 @@ export interface TaskContainerExecutionInformation {
 
 /** Information about a Task failure. */
 export interface TaskFailureInformation {
-  /** The category of the error. */
-  category: "usererror" | "servererror";
+  /**
+   * The category of the error.
+   *
+   * Possible values: usererror, servererror
+   */
+  category: string;
   /**
    * An identifier for the Task error. Codes are invariant and are intended to be
    * consumed programmatically.
@@ -2176,8 +2186,12 @@ export interface Certificate {
   thumbprintAlgorithm?: string;
   /** The base64-encoded contents of the Certificate. The maximum size is 10KB. */
   data?: string;
-  /** The format of the Certificate data. */
-  certificateFormat?: "pfx" | "cer";
+  /**
+   * The format of the Certificate data.
+   *
+   * Possible values: pfx, cer
+   */
+  certificateFormat?: string;
   /** This must be omitted if the Certificate format is cer. */
   password?: string;
 }
@@ -2313,10 +2327,16 @@ export interface JobSpecification {
    * initially set onAllTasksComplete to noaction and update the Job properties to
    * set onAllTasksComplete to terminatejob once you have finished adding Tasks. The
    * default is noaction.
+   *
+   * Possible values: noaction, terminatejob
    */
-  onAllTasksComplete?: "noaction" | "terminatejob";
-  /** The default is noaction. */
-  onTaskFailure?: "noaction" | "performexitoptionsjobaction";
+  onAllTasksComplete?: string;
+  /**
+   * The default is noaction.
+   *
+   * Possible values: noaction, performexitoptionsjobaction
+   */
+  onTaskFailure?: string;
   /** The network configuration for the Job. */
   networkConfiguration?: JobNetworkConfiguration;
   /** The execution constraints for a Job. */
@@ -2456,23 +2476,6 @@ export interface JobScheduleStatistics {
    * included in the Job statistics.
    */
   waitTime: string;
-}
-
-/** The set of changes to be made to a Job Schedule. */
-export interface BatchJobScheduleUpdate {
-  /**
-   * All times are fixed respective to UTC and are not impacted by daylight saving
-   * time. If you do not specify this element, the existing schedule is left
-   * unchanged.
-   */
-  schedule?: object;
-  /**
-   * Updates affect only Jobs that are started after the update has taken place. Any
-   * currently active Job continues with the older specification.
-   */
-  jobSpecification?: object;
-  /** If you do not specify this element, existing metadata is left unchanged. */
-  metadata?: Array<MetadataItem>;
 }
 
 /**
@@ -2639,14 +2642,18 @@ export interface ExitOptions {
    * this property returns an error and the add Task request fails with an invalid
    * property value error; if you are calling the REST API directly, the HTTP status
    * code is 400 (Bad Request).
+   *
+   * Possible values: none, disable, terminate
    */
-  jobAction?: "none" | "disable" | "terminate";
+  jobAction?: string;
   /**
    * Possible values are 'satisfy' (allowing dependent tasks to progress) and
    * 'block' (dependent tasks continue to wait). Batch does not yet support
    * cancellation of dependent tasks.
+   *
+   * Possible values: satisfy, block
    */
-  dependencyAction?: "satisfy" | "block";
+  dependencyAction?: string;
 }
 
 /**
@@ -2731,8 +2738,10 @@ export interface TaskExecutionInformation {
   /**
    * If the value is 'failed', then the details of the failure can be found in the
    * failureInfo property.
+   *
+   * Possible values: success, failure
    */
-  result?: "success" | "failure";
+  result?: string;
 }
 
 /** Information about the Compute Node on which a Task ran. */
@@ -2925,37 +2934,58 @@ export interface NodeUpdateUserParameters {
 
 /** Options for rebooting a Compute Node. */
 export interface NodeRebootParameters {
-  /** The default value is requeue. */
-  nodeRebootOption?:
-    | "requeue"
-    | "terminate"
-    | "taskcompletion"
-    | "retaineddata";
+  /**
+   * The default value is requeue.
+   *
+   * Possible values: requeue, terminate, taskcompletion, retaineddata
+   */
+  nodeRebootOption?: string;
 }
 
 /** Options for reimaging a Compute Node. */
 export interface NodeReimageParameters {
-  /** The default value is requeue. */
-  nodeReimageOption?:
-    | "requeue"
-    | "terminate"
-    | "taskcompletion"
-    | "retaineddata";
+  /**
+   * The default value is requeue.
+   *
+   * Possible values: requeue, terminate, taskcompletion, retaineddata
+   */
+  nodeReimageOption?: string;
 }
 
 /** Options for disabling scheduling on a Compute Node. */
 export interface NodeDisableSchedulingParameters {
-  /** The default value is requeue. */
-  nodeDisableSchedulingOption?: "requeue" | "terminate" | "taskcompletion";
+  /**
+   * The default value is requeue.
+   *
+   * Possible values: requeue, terminate, taskcompletion
+   */
+  nodeDisableSchedulingOption?: string;
 }
 
-/** The result of uploading Batch service log files from a specific Compute Node. */
-export interface UploadBatchServiceLogsResult {
+/** The Azure Batch service log files upload configuration for a Compute Node. */
+export interface UploadBatchServiceLogsConfiguration {
   /**
-   * The virtual directory name is part of the blob name for each log file uploaded,
-   * and it is built based poolId, nodeId and a unique identifier.
+   * If a user assigned managed identity is not being used, the URL must include a
+   * Shared Access Signature (SAS) granting write permissions to the container. The
+   * SAS duration must allow enough time for the upload to finish. The start time
+   * for SAS is optional and recommended to not be specified.
    */
-  virtualDirectoryName: string;
-  /** The number of log files which will be uploaded. */
-  numberOfFilesUploaded: number;
+  containerUrl: string;
+  /**
+   * Any log file containing a log message in the time range will be uploaded. This
+   * means that the operation might retrieve more logs than have been requested
+   * since the entire log file is always uploaded, but the operation should not
+   * retrieve fewer logs than have been requested.
+   */
+  startTime: Date | string;
+  /**
+   * Any log file containing a log message in the time range will be uploaded. This
+   * means that the operation might retrieve more logs than have been requested
+   * since the entire log file is always uploaded, but the operation should not
+   * retrieve fewer logs than have been requested. If omitted, the default is to
+   * upload all logs available after the startTime.
+   */
+  endTime?: Date | string;
+  /** The identity must have write access to the Azure Blob Storage container. */
+  identityReference?: object;
 }

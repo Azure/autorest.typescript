@@ -1,6 +1,6 @@
 # Azure BatchService REST client library for JavaScript
 
-Batch Service
+A client for issuing REST requests to the Azure Batch service.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

@@ -4,68 +4,68 @@
 import {
   ApplicationOperationsListParameters,
   ApplicationOperationsGetParameters,
-  PoolOperationsListUsageMetricsParameters,
-  PoolOperationsGetAllLifetimeStatisticsParameters,
-  PoolOperationsAddParameters,
-  PoolOperationsListParameters,
-  PoolOperationsDeleteParameters,
-  PoolOperationsExistsParameters,
-  PoolOperationsGetParameters,
-  PoolOperationsPatchParameters,
-  PoolOperationsDisableAutoScaleParameters,
-  PoolOperationsEnableAutoScaleParameters,
-  PoolOperationsEvaluateAutoScaleParameters,
-  PoolOperationsResizeParameters,
-  PoolOperationsStopResizeParameters,
-  PoolOperationsUpdatePropertiesParameters,
-  PoolOperationsRemoveNodesParameters,
-  AccountOperationsListSupportedImagesParameters,
-  AccountOperationsListPoolNodeCountsParameters,
-  JobOperationsGetAllLifetimeStatisticsParameters,
-  JobOperationsDeleteParameters,
-  JobOperationsGetParameters,
-  JobOperationsPatchParameters,
-  JobOperationsUpdateParameters,
-  JobOperationsDisableParameters,
-  JobOperationsEnableParameters,
-  JobOperationsTerminateParameters,
-  JobOperationsAddParameters,
-  JobOperationsListParameters,
-  JobOperationsListFromJobScheduleParameters,
-  JobOperationsListPreparationAndReleaseTaskStatusParameters,
-  JobOperationsGetTaskCountsParameters,
+  PoolListUsageMetricsParameters,
+  PoolGetAllLifetimeStatisticsParameters,
+  PoolAddParameters,
+  PoolListParameters,
+  PoolDeleteParameters,
+  PoolExistsParameters,
+  PoolGetParameters,
+  PoolPatchParameters,
+  PoolDisableAutoScaleParameters,
+  PoolEnableAutoScaleParameters,
+  PoolEvaluateAutoScaleParameters,
+  PoolResizeParameters,
+  PoolStopResizeParameters,
+  PoolUpdatePropertiesParameters,
+  PoolRemoveNodesParameters,
+  AccountListSupportedImagesParameters,
+  AccountListPoolNodeCountsParameters,
+  JobGetAllLifetimeStatisticsParameters,
+  JobDeleteParameters,
+  JobGetParameters,
+  JobPatchParameters,
+  JobUpdateParameters,
+  JobDisableParameters,
+  JobEnableParameters,
+  JobTerminateParameters,
+  JobAddParameters,
+  JobListParameters,
+  JobListFromJobScheduleParameters,
+  JobListPreparationAndReleaseTaskStatusParameters,
+  JobGetTaskCountsParameters,
   CertificateOperationsAddParameters,
   CertificateOperationsListParameters,
   CertificateOperationsCancelDeletionParameters,
   CertificateOperationsDeleteParameters,
   CertificateOperationsGetParameters,
-  FileOperationsDeleteFromTaskParameters,
-  FileOperationsGetFromTaskParameters,
-  FileOperationsGetPropertiesFromTaskParameters,
-  FileOperationsDeleteFromComputeNodeParameters,
-  FileOperationsGetFromComputeNodeParameters,
-  FileOperationsGetPropertiesFromComputeNodeParameters,
-  FileOperationsListFromTaskParameters,
-  FileOperationsListFromComputeNodeParameters,
-  JobScheduleOperationsExistsParameters,
-  JobScheduleOperationsDeleteParameters,
-  JobScheduleOperationsGetParameters,
-  JobScheduleOperationsPatchParameters,
-  JobScheduleOperationsUpdateParameters,
-  JobScheduleOperationsDisableParameters,
-  JobScheduleOperationsEnableParameters,
-  JobScheduleOperationsTerminateParameters,
-  JobScheduleOperationsAddParameters,
-  JobScheduleOperationsListParameters,
-  TaskOperationsAddParameters,
-  TaskOperationsListParameters,
-  TaskOperationsAddCollectionParameters,
-  TaskOperationsDeleteParameters,
-  TaskOperationsGetParameters,
-  TaskOperationsUpdateParameters,
-  TaskOperationsListSubtasksParameters,
-  TaskOperationsTerminateParameters,
-  TaskOperationsReactivateParameters,
+  FileDeleteFromTaskParameters,
+  FileGetFromTaskParameters,
+  FileGetPropertiesFromTaskParameters,
+  FileDeleteFromComputeNodeParameters,
+  FileGetFromComputeNodeParameters,
+  FileGetPropertiesFromComputeNodeParameters,
+  FileListFromTaskParameters,
+  FileListFromComputeNodeParameters,
+  JobScheduleExistsParameters,
+  JobScheduleDeleteParameters,
+  JobScheduleGetParameters,
+  JobSchedulePatchParameters,
+  JobScheduleUpdateParameters,
+  JobScheduleDisableParameters,
+  JobScheduleEnableParameters,
+  JobScheduleTerminateParameters,
+  JobScheduleAddParameters,
+  JobScheduleListParameters,
+  TaskAddParameters,
+  TaskListParameters,
+  TaskAddCollectionParameters,
+  TaskDeleteParameters,
+  TaskGetParameters,
+  TaskUpdateParameters,
+  TaskListSubtasksParameters,
+  TaskTerminateParameters,
+  TaskReactivateParameters,
   ComputeNodeOperationsAddUserParameters,
   ComputeNodeOperationsDeleteUserParameters,
   ComputeNodeOperationsUpdateUserParameters,
@@ -86,151 +86,152 @@ import {
   ApplicationOperationsListDefaultResponse,
   ApplicationOperationsGet200Response,
   ApplicationOperationsGetDefaultResponse,
-  PoolOperationsListUsageMetrics200Response,
-  PoolOperationsListUsageMetricsDefaultResponse,
-  PoolOperationsGetAllLifetimeStatistics200Response,
-  PoolOperationsGetAllLifetimeStatisticsDefaultResponse,
-  PoolOperationsAdd204Response,
-  PoolOperationsAddDefaultResponse,
-  PoolOperationsList200Response,
-  PoolOperationsListDefaultResponse,
-  PoolOperationsDelete204Response,
-  PoolOperationsDeleteDefaultResponse,
-  PoolOperationsExists204Response,
-  PoolOperationsExistsDefaultResponse,
-  PoolOperationsGet200Response,
-  PoolOperationsGetDefaultResponse,
-  PoolOperationsPatch204Response,
-  PoolOperationsPatchDefaultResponse,
-  PoolOperationsDisableAutoScale204Response,
-  PoolOperationsDisableAutoScaleDefaultResponse,
-  PoolOperationsEnableAutoScale204Response,
-  PoolOperationsEnableAutoScaleDefaultResponse,
-  PoolOperationsEvaluateAutoScale200Response,
-  PoolOperationsEvaluateAutoScaleDefaultResponse,
-  PoolOperationsResize204Response,
-  PoolOperationsResizeDefaultResponse,
-  PoolOperationsStopResize204Response,
-  PoolOperationsStopResizeDefaultResponse,
-  PoolOperationsUpdateProperties204Response,
-  PoolOperationsUpdatePropertiesDefaultResponse,
-  PoolOperationsRemoveNodes204Response,
-  PoolOperationsRemoveNodesDefaultResponse,
-  AccountOperationsListSupportedImages200Response,
-  AccountOperationsListSupportedImagesDefaultResponse,
-  AccountOperationsListPoolNodeCounts200Response,
-  AccountOperationsListPoolNodeCountsDefaultResponse,
-  JobOperationsGetAllLifetimeStatistics200Response,
-  JobOperationsGetAllLifetimeStatisticsDefaultResponse,
-  JobOperationsDelete204Response,
-  JobOperationsDeleteDefaultResponse,
-  JobOperationsGet200Response,
-  JobOperationsGetDefaultResponse,
-  JobOperationsPatch204Response,
-  JobOperationsPatchDefaultResponse,
-  JobOperationsUpdate204Response,
-  JobOperationsUpdateDefaultResponse,
-  JobOperationsDisable204Response,
-  JobOperationsDisableDefaultResponse,
-  JobOperationsEnable204Response,
-  JobOperationsEnableDefaultResponse,
-  JobOperationsTerminate204Response,
-  JobOperationsTerminateDefaultResponse,
-  JobOperationsAdd204Response,
-  JobOperationsAddDefaultResponse,
-  JobOperationsList200Response,
-  JobOperationsListDefaultResponse,
-  JobOperationsListFromJobSchedule200Response,
-  JobOperationsListFromJobScheduleDefaultResponse,
-  JobOperationsListPreparationAndReleaseTaskStatus200Response,
-  JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse,
-  JobOperationsGetTaskCounts200Response,
-  JobOperationsGetTaskCountsDefaultResponse,
-  CertificateOperationsAdd204Response,
+  PoolListUsageMetrics200Response,
+  PoolListUsageMetricsDefaultResponse,
+  PoolGetAllLifetimeStatistics200Response,
+  PoolGetAllLifetimeStatisticsDefaultResponse,
+  PoolAdd201Response,
+  PoolAddDefaultResponse,
+  PoolList200Response,
+  PoolListDefaultResponse,
+  PoolDelete202Response,
+  PoolDeleteDefaultResponse,
+  PoolExists404Response,
+  PoolExistsDefaultResponse,
+  PoolGet200Response,
+  PoolGetDefaultResponse,
+  PoolPatch200Response,
+  PoolPatchDefaultResponse,
+  PoolDisableAutoScale200Response,
+  PoolDisableAutoScaleDefaultResponse,
+  PoolEnableAutoScale200Response,
+  PoolEnableAutoScaleDefaultResponse,
+  PoolEvaluateAutoScale200Response,
+  PoolEvaluateAutoScaleDefaultResponse,
+  PoolResize200Response,
+  PoolResizeDefaultResponse,
+  PoolStopResize200Response,
+  PoolStopResizeDefaultResponse,
+  PoolUpdateProperties200Response,
+  PoolUpdatePropertiesDefaultResponse,
+  PoolRemoveNodes200Response,
+  PoolRemoveNodesDefaultResponse,
+  AccountListSupportedImages200Response,
+  AccountListSupportedImagesDefaultResponse,
+  AccountListPoolNodeCounts200Response,
+  AccountListPoolNodeCountsDefaultResponse,
+  JobGetAllLifetimeStatistics200Response,
+  JobGetAllLifetimeStatisticsDefaultResponse,
+  JobDelete202Response,
+  JobDeleteDefaultResponse,
+  JobGet200Response,
+  JobGetDefaultResponse,
+  JobPatch200Response,
+  JobPatchDefaultResponse,
+  JobUpdate200Response,
+  JobUpdateDefaultResponse,
+  JobDisable202Response,
+  JobDisableDefaultResponse,
+  JobEnable202Response,
+  JobEnableDefaultResponse,
+  JobTerminate202Response,
+  JobTerminateDefaultResponse,
+  JobAdd201Response,
+  JobAddDefaultResponse,
+  JobList200Response,
+  JobListDefaultResponse,
+  JobListFromJobSchedule200Response,
+  JobListFromJobScheduleDefaultResponse,
+  JobListPreparationAndReleaseTaskStatus200Response,
+  JobListPreparationAndReleaseTaskStatusDefaultResponse,
+  JobGetTaskCounts200Response,
+  JobGetTaskCountsDefaultResponse,
+  CertificateOperationsAdd201Response,
   CertificateOperationsAddDefaultResponse,
   CertificateOperationsList200Response,
   CertificateOperationsListDefaultResponse,
   CertificateOperationsCancelDeletion204Response,
   CertificateOperationsCancelDeletionDefaultResponse,
-  CertificateOperationsDelete204Response,
+  CertificateOperationsDelete202Response,
   CertificateOperationsDeleteDefaultResponse,
   CertificateOperationsGet200Response,
   CertificateOperationsGetDefaultResponse,
-  FileOperationsDeleteFromTask204Response,
-  FileOperationsDeleteFromTaskDefaultResponse,
-  FileOperationsGetFromTask204Response,
-  FileOperationsGetFromTaskDefaultResponse,
-  FileOperationsGetPropertiesFromTask204Response,
-  FileOperationsGetPropertiesFromTaskDefaultResponse,
-  FileOperationsDeleteFromComputeNode204Response,
-  FileOperationsDeleteFromComputeNodeDefaultResponse,
-  FileOperationsGetFromComputeNode204Response,
-  FileOperationsGetFromComputeNodeDefaultResponse,
-  FileOperationsGetPropertiesFromComputeNode204Response,
-  FileOperationsGetPropertiesFromComputeNodeDefaultResponse,
-  FileOperationsListFromTask200Response,
-  FileOperationsListFromTaskDefaultResponse,
-  FileOperationsListFromComputeNode200Response,
-  FileOperationsListFromComputeNodeDefaultResponse,
-  JobScheduleOperationsExists204Response,
-  JobScheduleOperationsExistsDefaultResponse,
-  JobScheduleOperationsDelete204Response,
-  JobScheduleOperationsDeleteDefaultResponse,
-  JobScheduleOperationsGet200Response,
-  JobScheduleOperationsGetDefaultResponse,
-  JobScheduleOperationsPatch204Response,
-  JobScheduleOperationsPatchDefaultResponse,
-  JobScheduleOperationsUpdate204Response,
-  JobScheduleOperationsUpdateDefaultResponse,
-  JobScheduleOperationsDisable204Response,
-  JobScheduleOperationsDisableDefaultResponse,
-  JobScheduleOperationsEnable204Response,
-  JobScheduleOperationsEnableDefaultResponse,
-  JobScheduleOperationsTerminate204Response,
-  JobScheduleOperationsTerminateDefaultResponse,
-  JobScheduleOperationsAdd204Response,
-  JobScheduleOperationsAddDefaultResponse,
-  JobScheduleOperationsList200Response,
-  JobScheduleOperationsListDefaultResponse,
-  TaskOperationsAdd204Response,
-  TaskOperationsAddDefaultResponse,
-  TaskOperationsList200Response,
-  TaskOperationsListDefaultResponse,
-  TaskOperationsAddCollection200Response,
-  TaskOperationsAddCollectionDefaultResponse,
-  TaskOperationsDelete204Response,
-  TaskOperationsDeleteDefaultResponse,
-  TaskOperationsGet200Response,
-  TaskOperationsGetDefaultResponse,
-  TaskOperationsUpdate204Response,
-  TaskOperationsUpdateDefaultResponse,
-  TaskOperationsListSubtasks200Response,
-  TaskOperationsListSubtasksDefaultResponse,
-  TaskOperationsTerminate204Response,
-  TaskOperationsTerminateDefaultResponse,
-  TaskOperationsReactivate204Response,
-  TaskOperationsReactivateDefaultResponse,
-  ComputeNodeOperationsAddUser204Response,
+  FileDeleteFromTask200Response,
+  FileDeleteFromTaskDefaultResponse,
+  FileGetFromTask200Response,
+  FileGetFromTaskDefaultResponse,
+  FileGetPropertiesFromTask200Response,
+  FileGetPropertiesFromTaskDefaultResponse,
+  FileDeleteFromComputeNode200Response,
+  FileDeleteFromComputeNodeDefaultResponse,
+  FileGetFromComputeNode200Response,
+  FileGetFromComputeNodeDefaultResponse,
+  FileGetPropertiesFromComputeNode200Response,
+  FileGetPropertiesFromComputeNodeDefaultResponse,
+  FileListFromTask200Response,
+  FileListFromTaskDefaultResponse,
+  FileListFromComputeNode200Response,
+  FileListFromComputeNodeDefaultResponse,
+  JobScheduleExists200Response,
+  JobScheduleExists204Response,
+  JobScheduleExistsDefaultResponse,
+  JobScheduleDelete202Response,
+  JobScheduleDeleteDefaultResponse,
+  JobScheduleGet200Response,
+  JobScheduleGetDefaultResponse,
+  JobSchedulePatch200Response,
+  JobSchedulePatchDefaultResponse,
+  JobScheduleUpdate200Response,
+  JobScheduleUpdateDefaultResponse,
+  JobScheduleDisable204Response,
+  JobScheduleDisableDefaultResponse,
+  JobScheduleEnable204Response,
+  JobScheduleEnableDefaultResponse,
+  JobScheduleTerminate202Response,
+  JobScheduleTerminateDefaultResponse,
+  JobScheduleAdd201Response,
+  JobScheduleAddDefaultResponse,
+  JobScheduleList200Response,
+  JobScheduleListDefaultResponse,
+  TaskAdd201Response,
+  TaskAddDefaultResponse,
+  TaskList200Response,
+  TaskListDefaultResponse,
+  TaskAddCollection200Response,
+  TaskAddCollectionDefaultResponse,
+  TaskDelete200Response,
+  TaskDeleteDefaultResponse,
+  TaskGet200Response,
+  TaskGetDefaultResponse,
+  TaskUpdate200Response,
+  TaskUpdateDefaultResponse,
+  TaskListSubtasks200Response,
+  TaskListSubtasksDefaultResponse,
+  TaskTerminate204Response,
+  TaskTerminateDefaultResponse,
+  TaskReactivate204Response,
+  TaskReactivateDefaultResponse,
+  ComputeNodeOperationsAddUser201Response,
   ComputeNodeOperationsAddUserDefaultResponse,
-  ComputeNodeOperationsDeleteUser204Response,
+  ComputeNodeOperationsDeleteUser200Response,
   ComputeNodeOperationsDeleteUserDefaultResponse,
-  ComputeNodeOperationsUpdateUser204Response,
+  ComputeNodeOperationsUpdateUser200Response,
   ComputeNodeOperationsUpdateUserDefaultResponse,
   ComputeNodeOperationsGet200Response,
   ComputeNodeOperationsGetDefaultResponse,
-  ComputeNodeOperationsReboot204Response,
+  ComputeNodeOperationsReboot202Response,
   ComputeNodeOperationsRebootDefaultResponse,
-  ComputeNodeOperationsReimage204Response,
+  ComputeNodeOperationsReimage202Response,
   ComputeNodeOperationsReimageDefaultResponse,
-  ComputeNodeOperationsDisableScheduling204Response,
+  ComputeNodeOperationsDisableScheduling200Response,
   ComputeNodeOperationsDisableSchedulingDefaultResponse,
-  ComputeNodeOperationsEnableScheduling204Response,
+  ComputeNodeOperationsEnableScheduling200Response,
   ComputeNodeOperationsEnableSchedulingDefaultResponse,
   ComputeNodeOperationsGetRemoteLoginSettings200Response,
   ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse,
-  ComputeNodeOperationsGetRemoteDesktop204Response,
+  ComputeNodeOperationsGetRemoteDesktop200Response,
   ComputeNodeOperationsGetRemoteDesktopDefaultResponse,
-  ComputeNodeOperationsUploadBatchServiceLogs201Response,
+  ComputeNodeOperationsUploadBatchServiceLogs200Response,
   ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse,
   ComputeNodeOperationsList200Response,
   ComputeNodeOperationsListDefaultResponse,
@@ -250,7 +251,7 @@ export interface ApplicationOperationsList {
    * API.
    */
   get(
-    options: ApplicationOperationsListParameters
+    options?: ApplicationOperationsListParameters
   ): StreamableMethod<
     | ApplicationOperationsList200Response
     | ApplicationOperationsListDefaultResponse
@@ -266,14 +267,14 @@ export interface ApplicationOperationsGet {
    * API.
    */
   get(
-    options: ApplicationOperationsGetParameters
+    options?: ApplicationOperationsGetParameters
   ): StreamableMethod<
     | ApplicationOperationsGet200Response
     | ApplicationOperationsGetDefaultResponse
   >;
 }
 
-export interface PoolOperationsListUsageMetrics {
+export interface PoolListUsageMetrics {
   /**
    * If you do not specify a $filter clause including a poolId, the response
    * includes all Pools that existed in the Account in the time range of the
@@ -283,14 +284,13 @@ export interface PoolOperationsListUsageMetrics {
    * last aggregation interval is returned.
    */
   get(
-    options: PoolOperationsListUsageMetricsParameters
+    options?: PoolListUsageMetricsParameters
   ): StreamableMethod<
-    | PoolOperationsListUsageMetrics200Response
-    | PoolOperationsListUsageMetricsDefaultResponse
+    PoolListUsageMetrics200Response | PoolListUsageMetricsDefaultResponse
   >;
 }
 
-export interface PoolOperationsGetAllLifetimeStatistics {
+export interface PoolGetAllLifetimeStatistics {
   /**
    * Statistics are aggregated across all Pools that have ever existed in the
    * Account, from Account creation to the last update time of the statistics. The
@@ -298,33 +298,29 @@ export interface PoolOperationsGetAllLifetimeStatistics {
    * periodic roll-up of statistics. The typical delay is about 30 minutes.
    */
   get(
-    options: PoolOperationsGetAllLifetimeStatisticsParameters
+    options?: PoolGetAllLifetimeStatisticsParameters
   ): StreamableMethod<
-    | PoolOperationsGetAllLifetimeStatistics200Response
-    | PoolOperationsGetAllLifetimeStatisticsDefaultResponse
+    | PoolGetAllLifetimeStatistics200Response
+    | PoolGetAllLifetimeStatisticsDefaultResponse
   >;
 }
 
-export interface PoolOperationsAdd {
+export interface PoolAdd {
   /**
    * When naming Pools, avoid including sensitive information such as user names or
    * secret project names. This information may appear in telemetry logs accessible
    * to Microsoft Support engineers.
    */
   post(
-    options: PoolOperationsAddParameters
-  ): StreamableMethod<
-    PoolOperationsAdd204Response | PoolOperationsAddDefaultResponse
-  >;
+    options: PoolAddParameters
+  ): StreamableMethod<PoolAdd201Response | PoolAddDefaultResponse>;
   /** Lists all of the Pools in the specified Account. */
   get(
-    options: PoolOperationsListParameters
-  ): StreamableMethod<
-    PoolOperationsList200Response | PoolOperationsListDefaultResponse
-  >;
+    options?: PoolListParameters
+  ): StreamableMethod<PoolList200Response | PoolListDefaultResponse>;
 }
 
-export interface PoolOperationsDelete {
+export interface PoolDelete {
   /**
    * When you request that a Pool be deleted, the following actions occur: the Pool
    * state is set to deleting; any ongoing resize operation on the Pool are stopped;
@@ -340,45 +336,36 @@ export interface PoolOperationsDelete {
    * error code PoolBeingDeleted.
    */
   delete(
-    options: PoolOperationsDeleteParameters
-  ): StreamableMethod<
-    PoolOperationsDelete204Response | PoolOperationsDeleteDefaultResponse
-  >;
+    options?: PoolDeleteParameters
+  ): StreamableMethod<PoolDelete202Response | PoolDeleteDefaultResponse>;
   /** Gets basic properties of a Pool. */
   head(
-    options: PoolOperationsExistsParameters
-  ): StreamableMethod<
-    PoolOperationsExists204Response | PoolOperationsExistsDefaultResponse
-  >;
+    options?: PoolExistsParameters
+  ): StreamableMethod<PoolExists404Response | PoolExistsDefaultResponse>;
   /** Gets information about the specified Pool. */
   get(
-    options: PoolOperationsGetParameters
-  ): StreamableMethod<
-    PoolOperationsGet200Response | PoolOperationsGetDefaultResponse
-  >;
+    options: PoolGetParameters
+  ): StreamableMethod<PoolGet200Response | PoolGetDefaultResponse>;
   /**
    * This only replaces the Pool properties specified in the request. For example,
    * if the Pool has a StartTask associated with it, and a request does not specify
    * a StartTask element, then the Pool keeps the existing StartTask.
    */
   patch(
-    options: PoolOperationsPatchParameters
-  ): StreamableMethod<
-    PoolOperationsPatch204Response | PoolOperationsPatchDefaultResponse
-  >;
+    options: PoolPatchParameters
+  ): StreamableMethod<PoolPatch200Response | PoolPatchDefaultResponse>;
 }
 
-export interface PoolOperationsDisableAutoScale {
+export interface PoolDisableAutoScale {
   /** Disables automatic scaling for a Pool. */
   post(
-    options: PoolOperationsDisableAutoScaleParameters
+    options?: PoolDisableAutoScaleParameters
   ): StreamableMethod<
-    | PoolOperationsDisableAutoScale204Response
-    | PoolOperationsDisableAutoScaleDefaultResponse
+    PoolDisableAutoScale200Response | PoolDisableAutoScaleDefaultResponse
   >;
 }
 
-export interface PoolOperationsEnableAutoScale {
+export interface PoolEnableAutoScale {
   /**
    * You cannot enable automatic scaling on a Pool if a resize operation is in
    * progress on the Pool. If automatic scaling of the Pool is currently disabled,
@@ -388,28 +375,26 @@ export interface PoolOperationsEnableAutoScale {
    * more than once every 30 seconds.
    */
   post(
-    options: PoolOperationsEnableAutoScaleParameters
+    options: PoolEnableAutoScaleParameters
   ): StreamableMethod<
-    | PoolOperationsEnableAutoScale204Response
-    | PoolOperationsEnableAutoScaleDefaultResponse
+    PoolEnableAutoScale200Response | PoolEnableAutoScaleDefaultResponse
   >;
 }
 
-export interface PoolOperationsEvaluateAutoScale {
+export interface PoolEvaluateAutoScale {
   /**
    * This API is primarily for validating an autoscale formula, as it simply returns
    * the result without applying the formula to the Pool. The Pool must have auto
    * scaling enabled in order to evaluate a formula.
    */
   post(
-    options: PoolOperationsEvaluateAutoScaleParameters
+    options: PoolEvaluateAutoScaleParameters
   ): StreamableMethod<
-    | PoolOperationsEvaluateAutoScale200Response
-    | PoolOperationsEvaluateAutoScaleDefaultResponse
+    PoolEvaluateAutoScale200Response | PoolEvaluateAutoScaleDefaultResponse
   >;
 }
 
-export interface PoolOperationsResize {
+export interface PoolResize {
   /**
    * You can only resize a Pool when its allocation state is steady. If the Pool is
    * already resizing, the request fails with status code 409. When you resize a
@@ -420,13 +405,11 @@ export interface PoolOperationsResize {
    * Nodes, use the Pool remove Compute Nodes API instead.
    */
   post(
-    options: PoolOperationsResizeParameters
-  ): StreamableMethod<
-    PoolOperationsResize204Response | PoolOperationsResizeDefaultResponse
-  >;
+    options: PoolResizeParameters
+  ): StreamableMethod<PoolResize200Response | PoolResizeDefaultResponse>;
 }
 
-export interface PoolOperationsStopResize {
+export interface PoolStopResize {
   /**
    * This does not restore the Pool to its previous state before the resize
    * operation: it only stops any further changes being made, and the Pool maintains
@@ -437,66 +420,63 @@ export interface PoolOperationsStopResize {
    * be used to halt the initial sizing of the Pool when it is created.
    */
   post(
-    options: PoolOperationsStopResizeParameters
+    options?: PoolStopResizeParameters
   ): StreamableMethod<
-    | PoolOperationsStopResize204Response
-    | PoolOperationsStopResizeDefaultResponse
+    PoolStopResize200Response | PoolStopResizeDefaultResponse
   >;
 }
 
-export interface PoolOperationsUpdateProperties {
+export interface PoolUpdateProperties {
   /**
    * This fully replaces all the updatable properties of the Pool. For example, if
    * the Pool has a StartTask associated with it and if StartTask is not specified
    * with this request, then the Batch service will remove the existing StartTask.
    */
   post(
-    options: PoolOperationsUpdatePropertiesParameters
+    options: PoolUpdatePropertiesParameters
   ): StreamableMethod<
-    | PoolOperationsUpdateProperties204Response
-    | PoolOperationsUpdatePropertiesDefaultResponse
+    PoolUpdateProperties200Response | PoolUpdatePropertiesDefaultResponse
   >;
 }
 
-export interface PoolOperationsRemoveNodes {
+export interface PoolRemoveNodes {
   /**
    * This operation can only run when the allocation state of the Pool is steady.
    * When this operation runs, the allocation state changes from steady to resizing.
    * Each request may remove up to 100 nodes.
    */
   post(
-    options: PoolOperationsRemoveNodesParameters
+    options: PoolRemoveNodesParameters
   ): StreamableMethod<
-    | PoolOperationsRemoveNodes204Response
-    | PoolOperationsRemoveNodesDefaultResponse
+    PoolRemoveNodes200Response | PoolRemoveNodesDefaultResponse
   >;
 }
 
-export interface AccountOperationsListSupportedImages {
+export interface AccountListSupportedImages {
   /** Lists all Virtual Machine Images supported by the Azure Batch service. */
   get(
-    options: AccountOperationsListSupportedImagesParameters
+    options?: AccountListSupportedImagesParameters
   ): StreamableMethod<
-    | AccountOperationsListSupportedImages200Response
-    | AccountOperationsListSupportedImagesDefaultResponse
+    | AccountListSupportedImages200Response
+    | AccountListSupportedImagesDefaultResponse
   >;
 }
 
-export interface AccountOperationsListPoolNodeCounts {
+export interface AccountListPoolNodeCounts {
   /**
    * Gets the number of Compute Nodes in each state, grouped by Pool. Note that the
    * numbers returned may not always be up to date. If you need exact node counts,
    * use a list query.
    */
   get(
-    options: AccountOperationsListPoolNodeCountsParameters
+    options?: AccountListPoolNodeCountsParameters
   ): StreamableMethod<
-    | AccountOperationsListPoolNodeCounts200Response
-    | AccountOperationsListPoolNodeCountsDefaultResponse
+    | AccountListPoolNodeCounts200Response
+    | AccountListPoolNodeCountsDefaultResponse
   >;
 }
 
-export interface JobOperationsGetAllLifetimeStatistics {
+export interface JobGetAllLifetimeStatistics {
   /**
    * Statistics are aggregated across all Jobs that have ever existed in the
    * Account, from Account creation to the last update time of the statistics. The
@@ -504,14 +484,14 @@ export interface JobOperationsGetAllLifetimeStatistics {
    * periodic roll-up of statistics. The typical delay is about 30 minutes.
    */
   get(
-    options: JobOperationsGetAllLifetimeStatisticsParameters
+    options?: JobGetAllLifetimeStatisticsParameters
   ): StreamableMethod<
-    | JobOperationsGetAllLifetimeStatistics200Response
-    | JobOperationsGetAllLifetimeStatisticsDefaultResponse
+    | JobGetAllLifetimeStatistics200Response
+    | JobGetAllLifetimeStatisticsDefaultResponse
   >;
 }
 
-export interface JobOperationsDelete {
+export interface JobDelete {
   /**
    * Deleting a Job also deletes all Tasks that are part of that Job, and all Job
    * statistics. This also overrides the retention period for Task data; that is, if
@@ -523,39 +503,31 @@ export interface JobOperationsDelete {
    * that the Job is being deleted.
    */
   delete(
-    options: JobOperationsDeleteParameters
-  ): StreamableMethod<
-    JobOperationsDelete204Response | JobOperationsDeleteDefaultResponse
-  >;
+    options?: JobDeleteParameters
+  ): StreamableMethod<JobDelete202Response | JobDeleteDefaultResponse>;
   /** Gets information about the specified Job. */
   get(
-    options: JobOperationsGetParameters
-  ): StreamableMethod<
-    JobOperationsGet200Response | JobOperationsGetDefaultResponse
-  >;
+    options?: JobGetParameters
+  ): StreamableMethod<JobGet200Response | JobGetDefaultResponse>;
   /**
    * This replaces only the Job properties specified in the request. For example, if
    * the Job has constraints, and a request does not specify the constraints
    * element, then the Job keeps the existing constraints.
    */
   patch(
-    options: JobOperationsPatchParameters
-  ): StreamableMethod<
-    JobOperationsPatch204Response | JobOperationsPatchDefaultResponse
-  >;
+    options: JobPatchParameters
+  ): StreamableMethod<JobPatch200Response | JobPatchDefaultResponse>;
   /**
    * This fully replaces all the updatable properties of the Job. For example, if
    * the Job has constraints associated with it and if constraints is not specified
    * with this request, then the Batch service will remove the existing constraints.
    */
   put(
-    options: JobOperationsUpdateParameters
-  ): StreamableMethod<
-    JobOperationsUpdate204Response | JobOperationsUpdateDefaultResponse
-  >;
+    options: JobUpdateParameters
+  ): StreamableMethod<JobUpdate200Response | JobUpdateDefaultResponse>;
 }
 
-export interface JobOperationsDisable {
+export interface JobDisable {
   /**
    * The Batch Service immediately moves the Job to the disabling state. Batch then
    * uses the disableTasks parameter to determine what to do with the currently
@@ -567,13 +539,11 @@ export interface JobOperationsDisable {
    * the request fails with status code 409.
    */
   post(
-    options: JobOperationsDisableParameters
-  ): StreamableMethod<
-    JobOperationsDisable204Response | JobOperationsDisableDefaultResponse
-  >;
+    options: JobDisableParameters
+  ): StreamableMethod<JobDisable202Response | JobDisableDefaultResponse>;
 }
 
-export interface JobOperationsEnable {
+export interface JobEnable {
   /**
    * When you call this API, the Batch service sets a disabled Job to the enabling
    * state. After the this operation is completed, the Job moves to the active
@@ -583,13 +553,11 @@ export interface JobOperationsEnable {
    * than 180 days ago, those Tasks will not run.
    */
   post(
-    options: JobOperationsEnableParameters
-  ): StreamableMethod<
-    JobOperationsEnable204Response | JobOperationsEnableDefaultResponse
-  >;
+    options?: JobEnableParameters
+  ): StreamableMethod<JobEnable202Response | JobEnableDefaultResponse>;
 }
 
-export interface JobOperationsTerminate {
+export interface JobTerminate {
   /**
    * When a Terminate Job request is received, the Batch service sets the Job to the
    * terminating state. The Batch service then terminates any running Tasks
@@ -599,13 +567,11 @@ export interface JobOperationsTerminate {
    * Tasks cannot be added and any remaining active Tasks will not be scheduled.
    */
   post(
-    options: JobOperationsTerminateParameters
-  ): StreamableMethod<
-    JobOperationsTerminate204Response | JobOperationsTerminateDefaultResponse
-  >;
+    options: JobTerminateParameters
+  ): StreamableMethod<JobTerminate202Response | JobTerminateDefaultResponse>;
 }
 
-export interface JobOperationsAdd {
+export interface JobAdd {
   /**
    * The Batch service supports two ways to control the work done as part of a Job.
    * In the first approach, the user specifies a Job Manager Task. The Batch service
@@ -618,29 +584,24 @@ export interface JobOperationsAdd {
    * engineers.
    */
   post(
-    options: JobOperationsAddParameters
-  ): StreamableMethod<
-    JobOperationsAdd204Response | JobOperationsAddDefaultResponse
-  >;
+    options: JobAddParameters
+  ): StreamableMethod<JobAdd201Response | JobAddDefaultResponse>;
   /** Lists all of the Jobs in the specified Account. */
   get(
-    options: JobOperationsListParameters
-  ): StreamableMethod<
-    JobOperationsList200Response | JobOperationsListDefaultResponse
-  >;
+    options: JobListParameters
+  ): StreamableMethod<JobList200Response | JobListDefaultResponse>;
 }
 
-export interface JobOperationsListFromJobSchedule {
+export interface JobListFromJobSchedule {
   /** Lists the Jobs that have been created under the specified Job Schedule. */
   get(
-    options: JobOperationsListFromJobScheduleParameters
+    options: JobListFromJobScheduleParameters
   ): StreamableMethod<
-    | JobOperationsListFromJobSchedule200Response
-    | JobOperationsListFromJobScheduleDefaultResponse
+    JobListFromJobSchedule200Response | JobListFromJobScheduleDefaultResponse
   >;
 }
 
-export interface JobOperationsListPreparationAndReleaseTaskStatus {
+export interface JobListPreparationAndReleaseTaskStatus {
   /**
    * This API returns the Job Preparation and Job Release Task status on all Compute
    * Nodes that have run the Job Preparation or Job Release Task. This includes
@@ -650,14 +611,14 @@ export interface JobOperationsListPreparationAndReleaseTaskStatus {
    * JobPreparationTaskNotSpecified.
    */
   get(
-    options: JobOperationsListPreparationAndReleaseTaskStatusParameters
+    options: JobListPreparationAndReleaseTaskStatusParameters
   ): StreamableMethod<
-    | JobOperationsListPreparationAndReleaseTaskStatus200Response
-    | JobOperationsListPreparationAndReleaseTaskStatusDefaultResponse
+    | JobListPreparationAndReleaseTaskStatus200Response
+    | JobListPreparationAndReleaseTaskStatusDefaultResponse
   >;
 }
 
-export interface JobOperationsGetTaskCounts {
+export interface JobGetTaskCounts {
   /**
    * Task counts provide a count of the Tasks by active, running or completed Task
    * state, and a count of Tasks which succeeded or failed. Tasks in the preparing
@@ -665,10 +626,9 @@ export interface JobOperationsGetTaskCounts {
    * up to date. If you need exact task counts, use a list query.
    */
   get(
-    options: JobOperationsGetTaskCountsParameters
+    options?: JobGetTaskCountsParameters
   ): StreamableMethod<
-    | JobOperationsGetTaskCounts200Response
-    | JobOperationsGetTaskCountsDefaultResponse
+    JobGetTaskCounts200Response | JobGetTaskCountsDefaultResponse
   >;
 }
 
@@ -677,7 +637,7 @@ export interface CertificateOperationsAdd {
   post(
     options: CertificateOperationsAddParameters
   ): StreamableMethod<
-    | CertificateOperationsAdd204Response
+    | CertificateOperationsAdd201Response
     | CertificateOperationsAddDefaultResponse
   >;
   /** Lists all of the Certificates that have been added to the specified Account. */
@@ -700,7 +660,7 @@ export interface CertificateOperationsCancelDeletion {
    * then you can try again to delete the Certificate.
    */
   post(
-    options: CertificateOperationsCancelDeletionParameters
+    options?: CertificateOperationsCancelDeletionParameters
   ): StreamableMethod<
     | CertificateOperationsCancelDeletion204Response
     | CertificateOperationsCancelDeletionDefaultResponse
@@ -720,9 +680,9 @@ export interface CertificateOperationsDelete {
    * active if you decide that you want to continue using the Certificate.
    */
   delete(
-    options: CertificateOperationsDeleteParameters
+    options?: CertificateOperationsDeleteParameters
   ): StreamableMethod<
-    | CertificateOperationsDelete204Response
+    | CertificateOperationsDelete202Response
     | CertificateOperationsDeleteDefaultResponse
   >;
   /** Gets information about the specified Certificate. */
@@ -734,81 +694,77 @@ export interface CertificateOperationsDelete {
   >;
 }
 
-export interface FileOperationsDeleteFromTask {
+export interface FileDeleteFromTask {
   /** Deletes the specified Task file from the Compute Node where the Task ran. */
   delete(
-    options: FileOperationsDeleteFromTaskParameters
+    options: FileDeleteFromTaskParameters
   ): StreamableMethod<
-    | FileOperationsDeleteFromTask204Response
-    | FileOperationsDeleteFromTaskDefaultResponse
+    FileDeleteFromTask200Response | FileDeleteFromTaskDefaultResponse
   >;
   /** Returns the content of the specified Task file. */
   get(
-    options: FileOperationsGetFromTaskParameters
+    options?: FileGetFromTaskParameters
   ): StreamableMethod<
-    | FileOperationsGetFromTask204Response
-    | FileOperationsGetFromTaskDefaultResponse
+    FileGetFromTask200Response | FileGetFromTaskDefaultResponse
   >;
   /** Gets the properties of the specified Task file. */
   head(
-    options: FileOperationsGetPropertiesFromTaskParameters
+    options?: FileGetPropertiesFromTaskParameters
   ): StreamableMethod<
-    | FileOperationsGetPropertiesFromTask204Response
-    | FileOperationsGetPropertiesFromTaskDefaultResponse
+    | FileGetPropertiesFromTask200Response
+    | FileGetPropertiesFromTaskDefaultResponse
   >;
 }
 
-export interface FileOperationsDeleteFromComputeNode {
+export interface FileDeleteFromComputeNode {
   /** Deletes the specified file from the Compute Node. */
   delete(
-    options: FileOperationsDeleteFromComputeNodeParameters
+    options?: FileDeleteFromComputeNodeParameters
   ): StreamableMethod<
-    | FileOperationsDeleteFromComputeNode204Response
-    | FileOperationsDeleteFromComputeNodeDefaultResponse
+    | FileDeleteFromComputeNode200Response
+    | FileDeleteFromComputeNodeDefaultResponse
   >;
   /** Returns the content of the specified Compute Node file. */
   get(
-    options: FileOperationsGetFromComputeNodeParameters
+    options?: FileGetFromComputeNodeParameters
   ): StreamableMethod<
-    | FileOperationsGetFromComputeNode204Response
-    | FileOperationsGetFromComputeNodeDefaultResponse
+    FileGetFromComputeNode200Response | FileGetFromComputeNodeDefaultResponse
   >;
   /** Gets the properties of the specified Compute Node file. */
   head(
-    options: FileOperationsGetPropertiesFromComputeNodeParameters
+    options?: FileGetPropertiesFromComputeNodeParameters
   ): StreamableMethod<
-    | FileOperationsGetPropertiesFromComputeNode204Response
-    | FileOperationsGetPropertiesFromComputeNodeDefaultResponse
+    | FileGetPropertiesFromComputeNode200Response
+    | FileGetPropertiesFromComputeNodeDefaultResponse
   >;
 }
 
-export interface FileOperationsListFromTask {
+export interface FileListFromTask {
   /** Lists the files in a Task's directory on its Compute Node. */
   get(
-    options: FileOperationsListFromTaskParameters
+    options: FileListFromTaskParameters
   ): StreamableMethod<
-    | FileOperationsListFromTask200Response
-    | FileOperationsListFromTaskDefaultResponse
+    FileListFromTask200Response | FileListFromTaskDefaultResponse
   >;
 }
 
-export interface FileOperationsListFromComputeNode {
+export interface FileListFromComputeNode {
   /** Lists all of the files in Task directories on the specified Compute Node. */
   get(
-    options: FileOperationsListFromComputeNodeParameters
+    options: FileListFromComputeNodeParameters
   ): StreamableMethod<
-    | FileOperationsListFromComputeNode200Response
-    | FileOperationsListFromComputeNodeDefaultResponse
+    FileListFromComputeNode200Response | FileListFromComputeNodeDefaultResponse
   >;
 }
 
-export interface JobScheduleOperationsExists {
+export interface JobScheduleExists {
   /** Checks the specified Job Schedule exists. */
   head(
-    options: JobScheduleOperationsExistsParameters
+    options?: JobScheduleExistsParameters
   ): StreamableMethod<
-    | JobScheduleOperationsExists204Response
-    | JobScheduleOperationsExistsDefaultResponse
+    | JobScheduleExists200Response
+    | JobScheduleExists204Response
+    | JobScheduleExistsDefaultResponse
   >;
   /**
    * When you delete a Job Schedule, this also deletes all Jobs and Tasks under that
@@ -818,17 +774,15 @@ export interface JobScheduleOperationsExists {
    * though they are still counted towards Account lifetime statistics.
    */
   delete(
-    options: JobScheduleOperationsDeleteParameters
+    options?: JobScheduleDeleteParameters
   ): StreamableMethod<
-    | JobScheduleOperationsDelete204Response
-    | JobScheduleOperationsDeleteDefaultResponse
+    JobScheduleDelete202Response | JobScheduleDeleteDefaultResponse
   >;
   /** Gets information about the specified Job Schedule. */
   get(
-    options: JobScheduleOperationsGetParameters
+    options?: JobScheduleGetParameters
   ): StreamableMethod<
-    | JobScheduleOperationsGet200Response
-    | JobScheduleOperationsGetDefaultResponse
+    JobScheduleGet200Response | JobScheduleGetDefaultResponse
   >;
   /**
    * This replaces only the Job Schedule properties specified in the request. For
@@ -838,10 +792,9 @@ export interface JobScheduleOperationsExists {
    * running Jobs are unaffected.
    */
   patch(
-    options: JobScheduleOperationsPatchParameters
+    options: JobSchedulePatchParameters
   ): StreamableMethod<
-    | JobScheduleOperationsPatch204Response
-    | JobScheduleOperationsPatchDefaultResponse
+    JobSchedulePatch200Response | JobSchedulePatchDefaultResponse
   >;
   /**
    * This fully replaces all the updatable properties of the Job Schedule. For
@@ -851,84 +804,74 @@ export interface JobScheduleOperationsExists {
    * running Jobs are unaffected.
    */
   put(
-    options: JobScheduleOperationsUpdateParameters
+    options: JobScheduleUpdateParameters
   ): StreamableMethod<
-    | JobScheduleOperationsUpdate204Response
-    | JobScheduleOperationsUpdateDefaultResponse
+    JobScheduleUpdate200Response | JobScheduleUpdateDefaultResponse
   >;
 }
 
-export interface JobScheduleOperationsDisable {
+export interface JobScheduleDisable {
   /** No new Jobs will be created until the Job Schedule is enabled again. */
   post(
-    options: JobScheduleOperationsDisableParameters
+    options?: JobScheduleDisableParameters
   ): StreamableMethod<
-    | JobScheduleOperationsDisable204Response
-    | JobScheduleOperationsDisableDefaultResponse
+    JobScheduleDisable204Response | JobScheduleDisableDefaultResponse
   >;
 }
 
-export interface JobScheduleOperationsEnable {
+export interface JobScheduleEnable {
   /** Enables a Job Schedule. */
   post(
-    options: JobScheduleOperationsEnableParameters
+    options?: JobScheduleEnableParameters
   ): StreamableMethod<
-    | JobScheduleOperationsEnable204Response
-    | JobScheduleOperationsEnableDefaultResponse
+    JobScheduleEnable204Response | JobScheduleEnableDefaultResponse
   >;
 }
 
-export interface JobScheduleOperationsTerminate {
+export interface JobScheduleTerminate {
   /** Terminates a Job Schedule. */
   post(
-    options: JobScheduleOperationsTerminateParameters
+    options?: JobScheduleTerminateParameters
   ): StreamableMethod<
-    | JobScheduleOperationsTerminate204Response
-    | JobScheduleOperationsTerminateDefaultResponse
+    JobScheduleTerminate202Response | JobScheduleTerminateDefaultResponse
   >;
 }
 
-export interface JobScheduleOperationsAdd {
+export interface JobScheduleAdd {
   /** Adds a Job Schedule to the specified Account. */
   post(
-    options: JobScheduleOperationsAddParameters
+    options: JobScheduleAddParameters
   ): StreamableMethod<
-    | JobScheduleOperationsAdd204Response
-    | JobScheduleOperationsAddDefaultResponse
+    JobScheduleAdd201Response | JobScheduleAddDefaultResponse
   >;
   /** Lists all of the Job Schedules in the specified Account. */
   get(
-    options: JobScheduleOperationsListParameters
+    options?: JobScheduleListParameters
   ): StreamableMethod<
-    | JobScheduleOperationsList200Response
-    | JobScheduleOperationsListDefaultResponse
+    JobScheduleList200Response | JobScheduleListDefaultResponse
   >;
 }
 
-export interface TaskOperationsAdd {
+export interface TaskAdd {
   /**
    * The maximum lifetime of a Task from addition to completion is 180 days. If a
    * Task has not completed within 180 days of being added it will be terminated by
    * the Batch service and left in whatever state it was in at that time.
    */
   post(
-    options: TaskOperationsAddParameters
-  ): StreamableMethod<
-    TaskOperationsAdd204Response | TaskOperationsAddDefaultResponse
-  >;
+    options: TaskAddParameters
+  ): StreamableMethod<TaskAdd201Response | TaskAddDefaultResponse>;
   /**
    * For multi-instance Tasks, information such as affinityId, executionInfo and
    * nodeInfo refer to the primary Task. Use the list subtasks API to retrieve
    * information about subtasks.
    */
   get(
-    options: TaskOperationsListParameters
-  ): StreamableMethod<
-    TaskOperationsList200Response | TaskOperationsListDefaultResponse
-  >;
+    options?: TaskListParameters
+  ): StreamableMethod<TaskList200Response | TaskListDefaultResponse>;
 }
 
-export interface TaskOperationsAddCollection {
+export interface TaskAddCollection {
   /**
    * Note that each Task must have a unique ID. The Batch service may not return the
    * results for each Task in the same order the Tasks were submitted in this
@@ -946,14 +889,13 @@ export interface TaskOperationsAddCollection {
    * service and left in whatever state it was in at that time.
    */
   post(
-    options: TaskOperationsAddCollectionParameters
+    options: TaskAddCollectionParameters
   ): StreamableMethod<
-    | TaskOperationsAddCollection200Response
-    | TaskOperationsAddCollectionDefaultResponse
+    TaskAddCollection200Response | TaskAddCollectionDefaultResponse
   >;
 }
 
-export interface TaskOperationsDelete {
+export interface TaskDelete {
   /**
    * When a Task is deleted, all of the files in its directory on the Compute Node
    * where it ran are also deleted (regardless of the retention time). For
@@ -962,52 +904,43 @@ export interface TaskOperationsDelete {
    * background.
    */
   delete(
-    options: TaskOperationsDeleteParameters
-  ): StreamableMethod<
-    TaskOperationsDelete204Response | TaskOperationsDeleteDefaultResponse
-  >;
+    options?: TaskDeleteParameters
+  ): StreamableMethod<TaskDelete200Response | TaskDeleteDefaultResponse>;
   /**
    * For multi-instance Tasks, information such as affinityId, executionInfo and
    * nodeInfo refer to the primary Task. Use the list subtasks API to retrieve
    * information about subtasks.
    */
   get(
-    options: TaskOperationsGetParameters
-  ): StreamableMethod<
-    TaskOperationsGet200Response | TaskOperationsGetDefaultResponse
-  >;
+    options?: TaskGetParameters
+  ): StreamableMethod<TaskGet200Response | TaskGetDefaultResponse>;
   /** Updates the properties of the specified Task. */
   put(
-    options: TaskOperationsUpdateParameters
-  ): StreamableMethod<
-    TaskOperationsUpdate204Response | TaskOperationsUpdateDefaultResponse
-  >;
+    options: TaskUpdateParameters
+  ): StreamableMethod<TaskUpdate200Response | TaskUpdateDefaultResponse>;
 }
 
-export interface TaskOperationsListSubtasks {
+export interface TaskListSubtasks {
   /** If the Task is not a multi-instance Task then this returns an empty collection. */
   get(
-    options: TaskOperationsListSubtasksParameters
+    options?: TaskListSubtasksParameters
   ): StreamableMethod<
-    | TaskOperationsListSubtasks200Response
-    | TaskOperationsListSubtasksDefaultResponse
+    TaskListSubtasks200Response | TaskListSubtasksDefaultResponse
   >;
 }
 
-export interface TaskOperationsTerminate {
+export interface TaskTerminate {
   /**
    * When the Task has been terminated, it moves to the completed state. For
    * multi-instance Tasks, the terminate Task operation applies synchronously to the
    * primary task; subtasks are then terminated asynchronously in the background.
    */
   post(
-    options: TaskOperationsTerminateParameters
-  ): StreamableMethod<
-    TaskOperationsTerminate204Response | TaskOperationsTerminateDefaultResponse
-  >;
+    options?: TaskTerminateParameters
+  ): StreamableMethod<TaskTerminate204Response | TaskTerminateDefaultResponse>;
 }
 
-export interface TaskOperationsReactivate {
+export interface TaskReactivate {
   /**
    * Reactivation makes a Task eligible to be retried again up to its maximum retry
    * count. The Task's state is changed to active. As the Task is no longer in the
@@ -1018,10 +951,9 @@ export interface TaskOperationsReactivate {
    * will fail if the Job has completed (or is terminating or deleting).
    */
   post(
-    options: TaskOperationsReactivateParameters
+    options?: TaskReactivateParameters
   ): StreamableMethod<
-    | TaskOperationsReactivate204Response
-    | TaskOperationsReactivateDefaultResponse
+    TaskReactivate204Response | TaskReactivateDefaultResponse
   >;
 }
 
@@ -1033,7 +965,7 @@ export interface ComputeNodeOperationsAddUser {
   post(
     options: ComputeNodeOperationsAddUserParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsAddUser204Response
+    | ComputeNodeOperationsAddUser201Response
     | ComputeNodeOperationsAddUserDefaultResponse
   >;
 }
@@ -1044,9 +976,9 @@ export interface ComputeNodeOperationsDeleteUser {
    * running state.
    */
   delete(
-    options: ComputeNodeOperationsDeleteUserParameters
+    options?: ComputeNodeOperationsDeleteUserParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsDeleteUser204Response
+    | ComputeNodeOperationsDeleteUser200Response
     | ComputeNodeOperationsDeleteUserDefaultResponse
   >;
   /**
@@ -1058,7 +990,7 @@ export interface ComputeNodeOperationsDeleteUser {
   put(
     options: ComputeNodeOperationsUpdateUserParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsUpdateUser204Response
+    | ComputeNodeOperationsUpdateUser200Response
     | ComputeNodeOperationsUpdateUserDefaultResponse
   >;
 }
@@ -1066,7 +998,7 @@ export interface ComputeNodeOperationsDeleteUser {
 export interface ComputeNodeOperationsGet {
   /** Gets information about the specified Compute Node. */
   get(
-    options: ComputeNodeOperationsGetParameters
+    options?: ComputeNodeOperationsGetParameters
   ): StreamableMethod<
     | ComputeNodeOperationsGet200Response
     | ComputeNodeOperationsGetDefaultResponse
@@ -1078,7 +1010,7 @@ export interface ComputeNodeOperationsReboot {
   post(
     options: ComputeNodeOperationsRebootParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsReboot204Response
+    | ComputeNodeOperationsReboot202Response
     | ComputeNodeOperationsRebootDefaultResponse
   >;
 }
@@ -1092,7 +1024,7 @@ export interface ComputeNodeOperationsReimage {
   post(
     options: ComputeNodeOperationsReimageParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsReimage204Response
+    | ComputeNodeOperationsReimage202Response
     | ComputeNodeOperationsReimageDefaultResponse
   >;
 }
@@ -1105,7 +1037,7 @@ export interface ComputeNodeOperationsDisableScheduling {
   post(
     options: ComputeNodeOperationsDisableSchedulingParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsDisableScheduling204Response
+    | ComputeNodeOperationsDisableScheduling200Response
     | ComputeNodeOperationsDisableSchedulingDefaultResponse
   >;
 }
@@ -1116,9 +1048,9 @@ export interface ComputeNodeOperationsEnableScheduling {
    * state is disabled
    */
   post(
-    options: ComputeNodeOperationsEnableSchedulingParameters
+    options?: ComputeNodeOperationsEnableSchedulingParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsEnableScheduling204Response
+    | ComputeNodeOperationsEnableScheduling200Response
     | ComputeNodeOperationsEnableSchedulingDefaultResponse
   >;
 }
@@ -1132,7 +1064,7 @@ export interface ComputeNodeOperationsGetRemoteLoginSettings {
    * API.
    */
   get(
-    options: ComputeNodeOperationsGetRemoteLoginSettingsParameters
+    options?: ComputeNodeOperationsGetRemoteLoginSettingsParameters
   ): StreamableMethod<
     | ComputeNodeOperationsGetRemoteLoginSettings200Response
     | ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse
@@ -1147,9 +1079,9 @@ export interface ComputeNodeOperationsGetRemoteDesktop {
    * configuration, see the GetRemoteLoginSettings API.
    */
   get(
-    options: ComputeNodeOperationsGetRemoteDesktopParameters
+    options?: ComputeNodeOperationsGetRemoteDesktopParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsGetRemoteDesktop204Response
+    | ComputeNodeOperationsGetRemoteDesktop200Response
     | ComputeNodeOperationsGetRemoteDesktopDefaultResponse
   >;
 }
@@ -1164,7 +1096,7 @@ export interface ComputeNodeOperationsUploadBatchServiceLogs {
   post(
     options: ComputeNodeOperationsUploadBatchServiceLogsParameters
   ): StreamableMethod<
-    | ComputeNodeOperationsUploadBatchServiceLogs201Response
+    | ComputeNodeOperationsUploadBatchServiceLogs200Response
     | ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse
   >;
 }
@@ -1182,7 +1114,7 @@ export interface ComputeNodeOperationsList {
 export interface ComputeNodeExtensionOperationsGet {
   /** Gets information about the specified Compute Node Extension. */
   get(
-    options: ComputeNodeExtensionOperationsGetParameters
+    options?: ComputeNodeExtensionOperationsGetParameters
   ): StreamableMethod<
     | ComputeNodeExtensionOperationsGet200Response
     | ComputeNodeExtensionOperationsGetDefaultResponse
@@ -1192,7 +1124,7 @@ export interface ComputeNodeExtensionOperationsGet {
 export interface ComputeNodeExtensionOperationsList {
   /** Lists the Compute Nodes Extensions in the specified Pool. */
   get(
-    options: ComputeNodeExtensionOperationsListParameters
+    options?: ComputeNodeExtensionOperationsListParameters
   ): StreamableMethod<
     | ComputeNodeExtensionOperationsList200Response
     | ComputeNodeExtensionOperationsListDefaultResponse
@@ -1202,76 +1134,73 @@ export interface ComputeNodeExtensionOperationsList {
 export interface Routes {
   /** Resource for '/applications' has methods for the following verbs: get */
   (path: "/applications"): ApplicationOperationsList;
-  /** Resource for '/applications/\{id\}' has methods for the following verbs: get */
-  (path: "/applications/{id}", id: string): ApplicationOperationsGet;
+  /** Resource for '/applications/\{applicationId\}' has methods for the following verbs: get */
+  (
+    path: "/applications/{applicationId}",
+    applicationId: string
+  ): ApplicationOperationsGet;
   /** Resource for '/poolusagemetrics' has methods for the following verbs: get */
-  (path: "/poolusagemetrics"): PoolOperationsListUsageMetrics;
+  (path: "/poolusagemetrics"): PoolListUsageMetrics;
   /** Resource for '/lifetimepoolstats' has methods for the following verbs: get */
-  (path: "/lifetimepoolstats"): PoolOperationsGetAllLifetimeStatistics;
+  (path: "/lifetimepoolstats"): PoolGetAllLifetimeStatistics;
   /** Resource for '/pools' has methods for the following verbs: post, get */
-  (path: "/pools"): PoolOperationsAdd;
+  (path: "/pools"): PoolAdd;
   /** Resource for '/pools/\{poolId\}' has methods for the following verbs: delete, head, get, patch */
-  (path: "/pools/{poolId}", poolId: string): PoolOperationsDelete;
+  (path: "/pools/{poolId}", poolId: string): PoolDelete;
   /** Resource for '/pools/\{poolId\}/disableautoscale' has methods for the following verbs: post */
   (
     path: "/pools/{poolId}/disableautoscale",
     poolId: string
-  ): PoolOperationsDisableAutoScale;
+  ): PoolDisableAutoScale;
   /** Resource for '/pools/\{poolId\}/enableautoscale' has methods for the following verbs: post */
   (
     path: "/pools/{poolId}/enableautoscale",
     poolId: string
-  ): PoolOperationsEnableAutoScale;
+  ): PoolEnableAutoScale;
   /** Resource for '/pools/\{poolId\}/evaluateautoscale' has methods for the following verbs: post */
   (
     path: "/pools/{poolId}/evaluateautoscale",
     poolId: string
-  ): PoolOperationsEvaluateAutoScale;
+  ): PoolEvaluateAutoScale;
   /** Resource for '/pools/\{poolId\}/resize' has methods for the following verbs: post */
-  (path: "/pools/{poolId}/resize", poolId: string): PoolOperationsResize;
+  (path: "/pools/{poolId}/resize", poolId: string): PoolResize;
   /** Resource for '/pools/\{poolId\}/stopresize' has methods for the following verbs: post */
-  (
-    path: "/pools/{poolId}/stopresize",
-    poolId: string
-  ): PoolOperationsStopResize;
+  (path: "/pools/{poolId}/stopresize", poolId: string): PoolStopResize;
   /** Resource for '/pools/\{poolId\}/updateproperties' has methods for the following verbs: post */
   (
     path: "/pools/{poolId}/updateproperties",
     poolId: string
-  ): PoolOperationsUpdateProperties;
+  ): PoolUpdateProperties;
   /** Resource for '/pools/\{poolId\}/removenodes' has methods for the following verbs: post */
-  (
-    path: "/pools/{poolId}/removenodes",
-    poolId: string
-  ): PoolOperationsRemoveNodes;
+  (path: "/pools/{poolId}/removenodes", poolId: string): PoolRemoveNodes;
   /** Resource for '/supportedimages' has methods for the following verbs: get */
-  (path: "/supportedimages"): AccountOperationsListSupportedImages;
+  (path: "/supportedimages"): AccountListSupportedImages;
   /** Resource for '/nodecounts' has methods for the following verbs: get */
-  (path: "/nodecounts"): AccountOperationsListPoolNodeCounts;
+  (path: "/nodecounts"): AccountListPoolNodeCounts;
   /** Resource for '/lifetimejobstats' has methods for the following verbs: get */
-  (path: "/lifetimejobstats"): JobOperationsGetAllLifetimeStatistics;
+  (path: "/lifetimejobstats"): JobGetAllLifetimeStatistics;
   /** Resource for '/jobs/\{jobId\}' has methods for the following verbs: delete, get, patch, put */
-  (path: "/jobs/{jobId}", jobId: string): JobOperationsDelete;
+  (path: "/jobs/{jobId}", jobId: string): JobDelete;
   /** Resource for '/jobs/\{jobId\}/disable' has methods for the following verbs: post */
-  (path: "/jobs/{jobId}/disable", jobId: string): JobOperationsDisable;
+  (path: "/jobs/{jobId}/disable", jobId: string): JobDisable;
   /** Resource for '/jobs/\{jobId\}/enable' has methods for the following verbs: post */
-  (path: "/jobs/{jobId}/enable", jobId: string): JobOperationsEnable;
+  (path: "/jobs/{jobId}/enable", jobId: string): JobEnable;
   /** Resource for '/jobs/\{jobId\}/terminate' has methods for the following verbs: post */
-  (path: "/jobs/{jobId}/terminate", jobId: string): JobOperationsTerminate;
+  (path: "/jobs/{jobId}/terminate", jobId: string): JobTerminate;
   /** Resource for '/jobs' has methods for the following verbs: post, get */
-  (path: "/jobs"): JobOperationsAdd;
+  (path: "/jobs"): JobAdd;
   /** Resource for '/jobschedules/\{jobScheduleId\}/jobs' has methods for the following verbs: get */
   (
     path: "/jobschedules/{jobScheduleId}/jobs",
     jobScheduleId: string
-  ): JobOperationsListFromJobSchedule;
+  ): JobListFromJobSchedule;
   /** Resource for '/jobs/\{jobId\}/jobpreparationandreleasetaskstatus' has methods for the following verbs: get */
   (
     path: "/jobs/{jobId}/jobpreparationandreleasetaskstatus",
     jobId: string
-  ): JobOperationsListPreparationAndReleaseTaskStatus;
+  ): JobListPreparationAndReleaseTaskStatus;
   /** Resource for '/jobs/\{jobId\}/taskcounts' has methods for the following verbs: get */
-  (path: "/jobs/{jobId}/taskcounts", jobId: string): JobOperationsGetTaskCounts;
+  (path: "/jobs/{jobId}/taskcounts", jobId: string): JobGetTaskCounts;
   /** Resource for '/certificates' has methods for the following verbs: post, get */
   (path: "/certificates"): CertificateOperationsAdd;
   /** Resource for '/certificates(thumbprintAlgorithm=\{thumbprintAlgorithm\},thumbprint=\{thumbprint\})/canceldelete' has methods for the following verbs: post */
@@ -1292,79 +1221,76 @@ export interface Routes {
     jobId: string,
     taskId: string,
     filePath: string
-  ): FileOperationsDeleteFromTask;
+  ): FileDeleteFromTask;
   /** Resource for '/pools/\{poolId\}/nodes/\{nodeId\}/files/\{filePath\}' has methods for the following verbs: delete, get, head */
   (
     path: "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
     poolId: string,
     nodeId: string,
     filePath: string
-  ): FileOperationsDeleteFromComputeNode;
+  ): FileDeleteFromComputeNode;
   /** Resource for '/jobs/\{jobId\}/tasks/\{taskId\}/files' has methods for the following verbs: get */
   (
     path: "/jobs/{jobId}/tasks/{taskId}/files",
     jobId: string,
     taskId: string
-  ): FileOperationsListFromTask;
+  ): FileListFromTask;
   /** Resource for '/pools/\{poolId\}/nodes/\{nodeId\}/files' has methods for the following verbs: get */
   (
     path: "/pools/{poolId}/nodes/{nodeId}/files",
     poolId: string,
     nodeId: string
-  ): FileOperationsListFromComputeNode;
+  ): FileListFromComputeNode;
   /** Resource for '/jobschedules/\{jobScheduleId\}' has methods for the following verbs: head, delete, get, patch, put */
   (
     path: "/jobschedules/{jobScheduleId}",
     jobScheduleId: string
-  ): JobScheduleOperationsExists;
+  ): JobScheduleExists;
   /** Resource for '/jobschedules/\{jobScheduleId\}/disable' has methods for the following verbs: post */
   (
     path: "/jobschedules/{jobScheduleId}/disable",
     jobScheduleId: string
-  ): JobScheduleOperationsDisable;
+  ): JobScheduleDisable;
   /** Resource for '/jobschedules/\{jobScheduleId\}/enable' has methods for the following verbs: post */
   (
     path: "/jobschedules/{jobScheduleId}/enable",
     jobScheduleId: string
-  ): JobScheduleOperationsEnable;
+  ): JobScheduleEnable;
   /** Resource for '/jobschedules/\{jobScheduleId\}/terminate' has methods for the following verbs: post */
   (
     path: "/jobschedules/{jobScheduleId}/terminate",
     jobScheduleId: string
-  ): JobScheduleOperationsTerminate;
+  ): JobScheduleTerminate;
   /** Resource for '/jobschedules' has methods for the following verbs: post, get */
-  (path: "/jobschedules"): JobScheduleOperationsAdd;
+  (path: "/jobschedules"): JobScheduleAdd;
   /** Resource for '/jobs/\{jobId\}/tasks' has methods for the following verbs: post, get */
-  (path: "/jobs/{jobId}/tasks", jobId: string): TaskOperationsAdd;
+  (path: "/jobs/{jobId}/tasks", jobId: string): TaskAdd;
   /** Resource for '/jobs/\{jobId\}/addtaskcollection' has methods for the following verbs: post */
-  (
-    path: "/jobs/{jobId}/addtaskcollection",
-    jobId: string
-  ): TaskOperationsAddCollection;
+  (path: "/jobs/{jobId}/addtaskcollection", jobId: string): TaskAddCollection;
   /** Resource for '/jobs/\{jobId\}/tasks/\{taskId\}' has methods for the following verbs: delete, get, put */
   (
     path: "/jobs/{jobId}/tasks/{taskId}",
     jobId: string,
     taskId: string
-  ): TaskOperationsDelete;
+  ): TaskDelete;
   /** Resource for '/jobs/\{jobId\}/tasks/\{taskId\}/subtasksinfo' has methods for the following verbs: get */
   (
     path: "/jobs/{jobId}/tasks/{taskId}/subtasksinfo",
     jobId: string,
     taskId: string
-  ): TaskOperationsListSubtasks;
+  ): TaskListSubtasks;
   /** Resource for '/jobs/\{jobId\}/tasks/\{taskId\}/terminate' has methods for the following verbs: post */
   (
     path: "/jobs/{jobId}/tasks/{taskId}/terminate",
     jobId: string,
     taskId: string
-  ): TaskOperationsTerminate;
+  ): TaskTerminate;
   /** Resource for '/jobs/\{jobId\}/tasks/\{taskId\}/reactivate' has methods for the following verbs: post */
   (
     path: "/jobs/{jobId}/tasks/{taskId}/reactivate",
     jobId: string,
     taskId: string
-  ): TaskOperationsReactivate;
+  ): TaskReactivate;
   /** Resource for '/pools/\{poolId\}/nodes/\{nodeId\}/users' has methods for the following verbs: post */
   (
     path: "/pools/{poolId}/nodes/{nodeId}/users",
@@ -1422,7 +1348,9 @@ export interface Routes {
   ): ComputeNodeOperationsGetRemoteDesktop;
   /** Resource for '/pools/\{poolId\}/nodes/\{nodeId\}/uploadbatchservicelogs' has methods for the following verbs: post */
   (
-    path: "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs"
+    path: "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs",
+    poolId: string,
+    nodeId: string
   ): ComputeNodeOperationsUploadBatchServiceLogs;
   /** Resource for '/pools/\{poolId\}/nodes' has methods for the following verbs: get */
   (path: "/pools/{poolId}/nodes", poolId: string): ComputeNodeOperationsList;
