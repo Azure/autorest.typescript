@@ -102,14 +102,6 @@ stages:
               Pool:
               OSVmImage: "macOS-latest"
               NodeTestVersion: "16.x"
-            Browser_Linux_Node16:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage:
-              NodeTestVersion: "16.x"
-            Linux_Node14:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
@@ -139,14 +131,6 @@ stages:
             macOS_Node16:
               Pool:
               OSVmImage: "macOS-latest"
-              NodeTestVersion: "16.x"
-            Browser_Linux_Node16:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage:
-              NodeTestVersion: "16.x"
-            Linux_Node14:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -182,14 +166,6 @@ stages:
             macOS_Node16:
               Pool:
               OSVmImage: "macOS-latest"
-              NodeTestVersion: "16.x"
-            Browser_Linux_Node16:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage:
-              NodeTestVersion: "16.x"
-            Linux_Node14:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
@@ -257,14 +233,6 @@ stages:
               Pool:
               OSVmImage: "macOS-latest"
               NodeTestVersion: "16.x"
-            Browser_Linux_Node16:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage:
-              NodeTestVersion: "16.x"
-            Linux_Node14:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
@@ -294,14 +262,6 @@ stages:
             macOS_Node16:
               Pool:
               OSVmImage: "macOS-latest"
-              NodeTestVersion: "16.x"
-            Browser_Linux_Node16:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage:
-              NodeTestVersion: "16.x"
-            Linux_Node14:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
