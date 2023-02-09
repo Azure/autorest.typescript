@@ -24,7 +24,7 @@ stages:
     jobs:
       - job: Build
         strategy:
-          - template: images.yml
+          template: images.yml
         steps:
           - template: build.yml
           - script: |
@@ -99,7 +99,7 @@ stages:
         variables:
           - template: globals.yml
         strategy:
-          - template: images.yml
+          template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -117,7 +117,7 @@ stages:
         variables:
           - template: globals.yml
         strategy:
-          - template: images.yml
+          template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -140,7 +140,7 @@ stages:
         variables:
           - template: globals.yml
         strategy:
-          - template: images.yml
+          template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -194,7 +194,7 @@ stages:
         variables:
           - template: globals.yml
         strategy:
-          - template: images.yml
+          template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -212,7 +212,7 @@ stages:
         variables:
           - template: globals.yml
         strategy:
-          - template: images.yml
+          template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
