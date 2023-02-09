@@ -19,33 +19,12 @@ variables:
 pool:
   vmImage: ubuntu-20.04
 
-strategy:
-  matrix:
-    macOS_Node16:
-      Pool:
-      OSVmImage: "macOS-latest"
-      NodeTestVersion: "16.x"
-    Browser_Linux_Node16:
-      Pool: ${{ parameters.LinuxPool }}
-      OSVmImage:
-      NodeTestVersion: "16.x"
-    Linux_Node14:
-      Pool: ${{ parameters.LinuxPool }}
-      OSVmImage: "ubuntu-20.04"
-      NodeTestVersion: "16.x"
-    Linux_Node16:
-      Pool: ${{ parameters.LinuxPool }}
-      OSVmImage: "ubuntu-20.04"
-      NodeTestVersion: "16.x"
-    Windows_Latest:
-      Pool: 
-      OSVmImage: "Windows-latest"
-      NodeTestVersion: "16.x"
-
 stages:
   - stage: BuildStage
     jobs:
       - job: Build
+        strategy:
+          - template: images.yml
         steps:
           - template: build.yml
           - script: |
@@ -119,6 +98,8 @@ stages:
         dependsOn: Build
         variables:
           - template: globals.yml
+        strategy:
+          - template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -135,6 +116,8 @@ stages:
         dependsOn: Build
         variables:
           - template: globals.yml
+        strategy:
+          - template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -156,6 +139,8 @@ stages:
         dependsOn: Build
         variables:
           - template: globals.yml
+        strategy:
+          - template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -208,6 +193,8 @@ stages:
         dependsOn: Build
         variables:
           - template: globals.yml
+        strategy:
+          - template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -224,6 +211,8 @@ stages:
         dependsOn: Build
         variables:
           - template: globals.yml
+        strategy:
+          - template: images.yml
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
