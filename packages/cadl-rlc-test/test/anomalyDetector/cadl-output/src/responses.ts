@@ -2,13 +2,14 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import { HttpResponse } from "@azure-rest/core-client";
 import {
   UnivariateEntireDetectionResultOutput,
   AnomalyDetectorErrorOutput,
   UnivariateLastDetectionResultOutput,
   UnivariateChangePointDetectionResultOutput,
   MultivariateDetectionResultOutput,
+  ErrorResponseOutput,
   AnomalyDetectionModelOutput,
   ModelListOutput,
   MultivariateLastDetectionResultOutput,
@@ -82,7 +83,7 @@ export interface GetMultivariateBatchDetectionResultDefaultHeaders {
 export interface GetMultivariateBatchDetectionResultDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponse;
+  body: ErrorResponseOutput;
   headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
 }
 
@@ -105,7 +106,7 @@ export interface TrainMultivariateModelDefaultHeaders {
 
 export interface TrainMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
+  body: ErrorResponseOutput;
   headers: RawHttpHeaders & TrainMultivariateModelDefaultHeaders;
 }
 
@@ -122,7 +123,7 @@ export interface ListMultivariateModelsDefaultHeaders {
 
 export interface ListMultivariateModelsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
+  body: ErrorResponseOutput;
   headers: RawHttpHeaders & ListMultivariateModelsDefaultHeaders;
 }
 
@@ -138,7 +139,7 @@ export interface DeleteMultivariateModelDefaultHeaders {
 
 export interface DeleteMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
+  body: ErrorResponseOutput;
   headers: RawHttpHeaders & DeleteMultivariateModelDefaultHeaders;
 }
 
@@ -155,7 +156,7 @@ export interface GetMultivariateModelDefaultHeaders {
 
 export interface GetMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
+  body: ErrorResponseOutput;
   headers: RawHttpHeaders & GetMultivariateModelDefaultHeaders;
 }
 
@@ -182,7 +183,7 @@ export interface DetectMultivariateBatchAnomalyDefaultHeaders {
 export interface DetectMultivariateBatchAnomalyDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponse;
+  body: ErrorResponseOutput;
   headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
 }
 
@@ -200,6 +201,6 @@ export interface DetectMultivariateLastAnomalyDefaultHeaders {
 export interface DetectMultivariateLastAnomalyDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponse;
+  body: ErrorResponseOutput;
   headers: RawHttpHeaders & DetectMultivariateLastAnomalyDefaultHeaders;
 }

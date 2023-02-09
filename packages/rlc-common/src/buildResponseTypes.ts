@@ -103,7 +103,7 @@ export function buildResponseTypes(model: RLCModel) {
     const modelNamedImports = Array.from(
       model.importSet.get(ImportKind.ResponseOutput) || []
     ).filter((modelName) => {
-      return modelName !== "ErrorResponseOutput";
+      return !(modelName === "ErrorResponseOutput" && hasErrorResponse);
     });
     responsesFile.addImportDeclarations([
       {
@@ -159,7 +159,10 @@ function getResponseInterfaceProperties(
   if (response.body) {
     const description = response.body.description;
     let type = response.body.type;
-    if (response.body.type === "ErrorResponseOutput") {
+    if (
+      response.body.type === "ErrorResponseOutput" &&
+      response.body.fromCore
+    ) {
       type = "ErrorResponse";
       hasErrorResponse = true;
     }

@@ -143,6 +143,7 @@ export interface Schema {
   usage?: SchemaContext[];
   alias?: string;
   outputAlias?: string;
+  fromCore?: boolean;
 }
 
 export interface ObjectSchema extends Schema {

@@ -41,7 +41,12 @@ export function transformSchemas(program: Program, client: Client) {
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
-      if (resp.type.kind === "Model" && resp.type.name === "ErrorResponse") {
+      if (
+        resp.type.kind === "Model" &&
+        resp.type.name === "ErrorResponse" &&
+        resp.type.namespace?.name === "Foundations" &&
+        resp.type.namespace.namespace?.name === "Core"
+      ) {
         continue;
       }
       for (const resps of resp.responses) {

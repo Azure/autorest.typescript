@@ -380,6 +380,15 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
+  if (
+    model.name === "ErrorResponse" &&
+    model.kind === "Model" &&
+    model.namespace?.name === "Foundations" &&
+    model.namespace.namespace?.name === "Core"
+  ) {
+    modelSchema.fromCore = true;
+  }
+
   if (getPagedResult(program, model)) {
     const paged = extractPagedMetadataNested(program, model);
     if (paged && paged.itemsProperty) {
