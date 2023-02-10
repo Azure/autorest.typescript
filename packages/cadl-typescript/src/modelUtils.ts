@@ -50,11 +50,8 @@ import {
   isStatusCode,
   HttpOperation
 } from "@cadl-lang/rest/http";
-import {
-  getPagedResult,
-  PagedResultMetadata,
-  isFixed
-} from "@azure-tools/cadl-azure-core";
+import { getPagedResult, isFixed } from "@azure-tools/cadl-azure-core";
+import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -291,36 +288,6 @@ function isSchemaProperty(program: Program, property: ModelProperty) {
   const pathInfo = getPathParamName(program, property);
   const statusCodeinfo = isStatusCode(program, property);
   return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-}
-
-function extractPagedMetadataNested(
-  program: Program,
-  type: Model
-): PagedResultMetadata | undefined {
-  // This only works for `is Page<T>` not `extends Page<T>`.
-  let paged = getPagedResult(program, type);
-  if (paged) {
-    return paged;
-  }
-  if (type.baseModel) {
-    paged = getPagedResult(program, type.baseModel);
-  }
-  if (paged) {
-    return paged;
-  }
-  const templateArguments = type.templateArguments;
-  if (templateArguments) {
-    for (const argument of templateArguments) {
-      const modelArgument = argument as Model;
-      if (modelArgument) {
-        paged = extractPagedMetadataNested(program, modelArgument);
-        if (paged) {
-          return paged;
-        }
-      }
-    }
-  }
-  return paged;
 }
 // function getDefaultValue(program: Program, type: Type): any {
 //   switch (type.kind) {
