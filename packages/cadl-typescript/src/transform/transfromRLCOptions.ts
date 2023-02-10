@@ -1,4 +1,4 @@
-import { listClients } from "@azure-tools/cadl-dpg";
+import { DpgContext, listClients } from "@azure-tools/cadl-dpg";
 import {
   NameType,
   normalizeName,
@@ -14,11 +14,12 @@ import { reportDiagnostic } from "../lib.js";
 export function transformRLCOptions(
   program: Program,
   emitterOptions: RLCOptions,
-  emitterOutputDir: string
+  emitterOutputDir: string,
+  dpgContext: DpgContext
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
-  const batch = listClients(program);
+  const batch = listClients(dpgContext);
   options.batch = batch;
   return options;
 }

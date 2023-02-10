@@ -16,7 +16,7 @@ using OpenAPI;
 
 @service({title: "ParametrizedHost"})
 @useAuth(OAuth2Auth<[MyFlow]>)
-@versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
+@useDependency(Azure.Core.Versions.v1_0_Preview_1)
 @server(
   "{host}.{subdomain}.{sufix}.com/{apiVersion}",
   "Confidential Ledger Service",

@@ -1,6 +1,7 @@
 import { PagedResultMetadata } from "@azure-tools/cadl-azure-core";
 import {
   Client,
+  DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/cadl-dpg";
@@ -16,14 +17,15 @@ import { getSpecialSerializeInfo } from "./transformParameters.js";
 
 export function transformAnnotationDetails(
   program: Program,
-  client: Client
+  client: Client,
+  dpgContext: DpgContext
 ): AnnotationDetails | undefined {
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
-    hasLongRunning: hasPollingOperations(program, client)
+    hasLongRunning: hasPollingOperations(program, client, dpgContext)
   };
-  const details = extractPageDetailFromCore(program, client);
-  const serializeInfo = extractSpecialSerializeInfo(program, client);
+  const details = extractPageDetailFromCore(program, client, dpgContext);
+  const serializeInfo = extractSpecialSerializeInfo(program, client, dpgContext);
   if (details) {
     return {
       ...details,
@@ -33,9 +35,9 @@ export function transformAnnotationDetails(
   }
   // TODO: Remove this when @pageable is finally removed.
   const nextLinks = new Set<string>();
-  const operationGroups = listOperationGroups(program, client);
+  const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (getPageable(program, route.operation)) {
@@ -47,7 +49,7 @@ export function transformAnnotationDetails(
       }
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (getPageable(program, route.operation)) {
@@ -82,8 +84,8 @@ export function getPageable(
   return program.stateMap(pageableOperationsKey).get(entity);
 }
 
-function extractPageDetailFromCore(program: Program, client: Client) {
-  if (!hasPagingOperations(program, client)) {
+function extractPageDetailFromCore(program: Program, client: Client, dpgContext: DpgContext) {
+  if (!hasPagingOperations(program, client, dpgContext)) {
     return;
   }
   const nextLinks = new Set<string>();
@@ -91,15 +93,15 @@ function extractPageDetailFromCore(program: Program, client: Client) {
   // Add default values
   nextLinks.add("nextLink");
   itemNames.add("value");
-  const operationGroups = listOperationGroups(program, client);
+  const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       extractPageDetailFromCoreForRoute(route);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     extractPageDetailFromCoreForRoute(route);
@@ -153,14 +155,14 @@ function parseItemName(paged: PagedResultMetadata): string | undefined {
   return undefined;
 }
 
-function extractSpecialSerializeInfo(program: Program, client: Client) {
+function extractSpecialSerializeInfo(program: Program, client: Client, dpgContext: DpgContext) {
   let hasMultiCollection = false;
   let hasPipeCollection = false;
   let hasTsvCollection = false;
   let hasSsvCollection = false;
-  const operationGroups = listOperationGroups(program, client);
+  const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       route.parameters.parameters.forEach((parameter) => {
@@ -180,7 +182,7 @@ function extractSpecialSerializeInfo(program: Program, client: Client) {
       });
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     route.parameters.parameters.forEach((parameter) => {

@@ -18,6 +18,7 @@ import {
 } from "@cadl-lang/rest/http";
 import {
   Client,
+  DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup,
   OperationGroup
@@ -33,17 +34,17 @@ import {
   isPagingOperation
 } from "../operationUtil.js";
 
-export function transformPaths(program: Program, client: Client): Paths {
-  const operationGroups = listOperationGroups(program, client);
+export function transformPaths(program: Program, client: Client, dpgContext: DpgContext): Paths {
+  const operationGroups = listOperationGroups(dpgContext, client);
   const paths: Paths = {};
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformOperation(program, route, paths, operationGroup);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     transformOperation(program, route, paths);

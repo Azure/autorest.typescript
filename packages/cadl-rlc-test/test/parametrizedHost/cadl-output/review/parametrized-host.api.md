@@ -7,6 +7,7 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
@@ -58,9 +59,16 @@ export interface ListCollections200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListCollectionsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListCollectionsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & ListCollectionsDefaultHeaders;
     // (undocumented)
     status: string;
 }
