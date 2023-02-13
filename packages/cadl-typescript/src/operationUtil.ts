@@ -21,6 +21,7 @@ import {
 } from "@azure-tools/cadl-azure-core";
 import {
   Client,
+  DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup,
   OperationGroup
@@ -104,10 +105,17 @@ function hasDecorator(type: DecoratedType, name: string): boolean {
   return type.decorators.find((it) => it.decorator.name === name) !== undefined;
 }
 
-export function hasPollingOperations(program: Program, client: Client) {
-  const operationGroups = listOperationGroups(program, client);
+export function hasPollingOperations(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
+  const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (isLongRunningOperation(program, route)) {
@@ -115,7 +123,7 @@ export function hasPollingOperations(program: Program, client: Client) {
       }
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (isLongRunningOperation(program, route)) {
@@ -136,10 +144,17 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
   return false;
 }
 
-export function hasPagingOperations(program: Program, client: Client) {
-  const operationGroups = listOperationGroups(program, client);
+export function hasPagingOperations(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
+  const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (isPagingOperation(program, route)) {
@@ -147,7 +162,7 @@ export function hasPagingOperations(program: Program, client: Client) {
       }
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     if (isPagingOperation(program, route)) {

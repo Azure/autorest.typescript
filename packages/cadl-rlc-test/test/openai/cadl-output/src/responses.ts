@@ -11,9 +11,15 @@ export interface GetEmbeddings200Response extends HttpResponse {
   body: EmbeddingsOutput;
 }
 
+export interface GetEmbeddingsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
 export interface GetEmbeddingsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
+  headers: RawHttpHeaders & GetEmbeddingsDefaultHeaders;
 }
 
 export interface GetCompletions200Headers {
@@ -28,7 +34,13 @@ export interface GetCompletions200Response extends HttpResponse {
   headers: RawHttpHeaders & GetCompletions200Headers;
 }
 
+export interface GetCompletionsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
 export interface GetCompletionsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
+  headers: RawHttpHeaders & GetCompletionsDefaultHeaders;
 }

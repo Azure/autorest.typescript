@@ -18,7 +18,7 @@ using OpenAPI;
   version: "2022-10-01.16.0",
 })
 @useAuth(AADToken)
-@versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
+@useDependency(Azure.Core.Versions.v1_0_Preview_1)
 @doc("A client for issuing REST requests to the Azure Batch service.")
 namespace BatchServiceClient;
 

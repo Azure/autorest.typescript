@@ -53,9 +53,16 @@ export interface CreateLedgerEntryBodyParam {
 }
 
 // @public (undocumented)
+export interface CreateLedgerEntryDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface CreateLedgerEntryDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateLedgerEntryDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -85,9 +92,16 @@ export interface CreateOrUpdateUserBodyParam {
 }
 
 // @public (undocumented)
+export interface CreateOrUpdateUserDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface CreateOrUpdateUserDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdateUserDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -114,9 +128,16 @@ export interface DeleteUser204Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeleteUserDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface DeleteUserDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteUserDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -139,9 +160,16 @@ export interface GetConsortiumMembers200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetConsortiumMembersDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetConsortiumMembersDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetConsortiumMembersDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -161,9 +189,16 @@ export interface GetConstitution200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetConstitutionDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetConstitutionDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetConstitutionDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -185,9 +220,16 @@ export interface GetCurrentLedgerEntry200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetCurrentLedgerEntryDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetCurrentLedgerEntryDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetCurrentLedgerEntryDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -218,9 +260,16 @@ export interface GetEnclaveQuotes200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetEnclaveQuotesDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetEnclaveQuotesDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetEnclaveQuotesDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -242,9 +291,16 @@ export interface GetLedgerEntry200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetLedgerEntryDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetLedgerEntryDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetLedgerEntryDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -272,9 +328,16 @@ export interface GetReceipt200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetReceiptDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetReceiptDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetReceiptDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -296,9 +359,16 @@ export interface GetTransactionStatus200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetTransactionStatusDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetTransactionStatusDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetTransactionStatusDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -315,9 +385,16 @@ export interface GetUser200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetUserDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetUserDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetUserDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -404,9 +481,16 @@ export interface ListCollections200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListCollectionsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListCollectionsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListCollectionsDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -429,9 +513,16 @@ export interface ListLedgerEntries200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListLedgerEntriesDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListLedgerEntriesDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListLedgerEntriesDefaultHeaders;
     // (undocumented)
     status: string;
 }

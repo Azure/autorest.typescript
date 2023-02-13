@@ -157,9 +157,16 @@ export interface GetCompletionsBodyParam {
 }
 
 // @public (undocumented)
+export interface GetCompletionsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetCompletionsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetCompletionsDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -187,9 +194,16 @@ export interface GetEmbeddingsBodyParam {
 }
 
 // @public (undocumented)
+export interface GetEmbeddingsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetEmbeddingsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetEmbeddingsDefaultHeaders;
     // (undocumented)
     status: string;
 }

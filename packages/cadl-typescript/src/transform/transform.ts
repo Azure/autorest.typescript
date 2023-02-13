@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Client, getDefaultApiVersion } from "@azure-tools/cadl-dpg";
+import {
+  Client,
+  DpgContext,
+  getDefaultApiVersion
+} from "@azure-tools/cadl-dpg";
 import {
   ImportKind,
   NameType,
@@ -48,12 +52,14 @@ export async function transformRLCModel(
   program: Program,
   emitterOptions: RLCOptions,
   client: Client,
-  emitterOutputDir: string
+  emitterOutputDir: string,
+  dpgContext: DpgContext
 ): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(
     program,
     emitterOptions,
-    emitterOutputDir
+    emitterOutputDir,
+    dpgContext
   );
   const srcPath = join(
     emitterOutputDir ?? "",
@@ -69,21 +75,23 @@ export async function transformRLCModel(
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();
-  const paths: Paths = transformPaths(program, client);
-  const schemas: Schema[] = transformSchemas(program, client);
+  const paths: Paths = transformPaths(program, client, dpgContext);
+  const schemas: Schema[] = transformSchemas(program, client, dpgContext);
   const apiVersionInQueryParam = transformApiVersionParam(program);
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet,
-    client
+    client,
+    dpgContext
   );
   const parameters: OperationParameter[] = transformToParameterTypes(
     program,
     importSet,
-    client
+    client,
+    dpgContext
   );
-  const annotations = transformAnnotationDetails(program, client);
-  const urlInfo = transformUrlInfo(program);
+  const annotations = transformAnnotationDetails(program, client, dpgContext);
+  const urlInfo = transformUrlInfo(program, dpgContext);
   return {
     srcPath,
     libraryName,
@@ -113,7 +121,10 @@ export function transformApiVersionParam(
   return undefined;
 }
 
-export function transformUrlInfo(program: Program): UrlInfo | undefined {
+export function transformUrlInfo(
+  program: Program,
+  dpgContext: DpgContext
+): UrlInfo | undefined {
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
   const urlParameters: PathParameter[] = [];
@@ -145,7 +156,11 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
                 " " /* sperator*/
               )) ??
             getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
-          value: getDefaultValue(program, host?.[0]?.parameters.get(key))
+          value: getDefaultValue(
+            program,
+            dpgContext,
+            host?.[0]?.parameters.get(key)
+          )
         });
       }
     }
@@ -161,13 +176,17 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
   return { endpoint, urlParameters };
 }
 
-function getDefaultValue(program: Program, param?: ModelProperty) {
+function getDefaultValue(
+  program: Program,
+  dpgContext: DpgContext,
+  param?: ModelProperty
+) {
   const otherDefaultValue = param?.default;
   const serviceNamespace = getDefaultService(program)?.type;
   if (!serviceNamespace) {
     return undefined;
   }
-  const defaultApiVersion = getDefaultApiVersion(program, serviceNamespace);
+  const defaultApiVersion = getDefaultApiVersion(dpgContext, serviceNamespace);
   if (isApiVersion(param) && defaultApiVersion) {
     return defaultApiVersion.value;
   } else if (isLiteralValue(otherDefaultValue)) {

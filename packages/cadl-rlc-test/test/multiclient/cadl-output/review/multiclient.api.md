@@ -88,9 +88,16 @@ interface CreateOrUpdateBodyParam {
 }
 
 // @public (undocumented)
+interface CreateOrUpdateDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 interface CreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -130,9 +137,16 @@ interface Delete204Response extends HttpResponse {
 }
 
 // @public (undocumented)
+interface DeleteDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 interface DeleteDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -208,9 +222,16 @@ interface GetBinary200Response extends HttpResponse {
 type GetBinaryParameters = RequestParameters;
 
 // @public (undocumented)
+interface GetDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 interface GetDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -238,9 +259,16 @@ interface List200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+interface ListDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 interface ListDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -368,12 +396,16 @@ declare namespace Responses {
     export {
         CreateOrUpdate200Response,
         CreateOrUpdate201Response,
+        CreateOrUpdateDefaultHeaders,
         CreateOrUpdateDefaultResponse,
         Get200Response,
+        GetDefaultHeaders,
         GetDefaultResponse,
         Delete204Response,
+        DeleteDefaultHeaders,
         DeleteDefaultResponse,
         List200Response,
+        ListDefaultHeaders,
         ListDefaultResponse
     }
 }

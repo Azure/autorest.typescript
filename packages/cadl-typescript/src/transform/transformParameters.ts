@@ -29,6 +29,7 @@ import { isApiVersion } from "../paramUtil.js";
 import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
 import {
   Client,
+  DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup,
   OperationGroup
@@ -37,19 +38,23 @@ import {
 export function transformToParameterTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  client: Client
+  client: Client,
+  dpgContext: DpgContext
 ): OperationParameter[] {
-  const operationGroups = listOperationGroups(program, client);
+  const operationGroups = listOperationGroups(dpgContext, client);
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformToParameterTypesForRoute(program, route, operationGroup);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     transformToParameterTypesForRoute(program, route);

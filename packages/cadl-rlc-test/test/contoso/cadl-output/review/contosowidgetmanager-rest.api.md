@@ -64,9 +64,16 @@ export interface CreateOrUpdateWidgetBodyParam {
 }
 
 // @public (undocumented)
+export interface CreateOrUpdateWidgetDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface CreateOrUpdateWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdateWidgetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -95,9 +102,16 @@ export interface DeleteWidget202Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeleteWidgetDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface DeleteWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteWidgetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -154,9 +168,16 @@ export interface GetWidget200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetWidgetDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetWidgetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -175,9 +196,16 @@ export interface GetWidgetOperationStatus200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetWidgetOperationStatusDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetWidgetOperationStatusDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -223,9 +251,16 @@ export interface ListWidgets200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListWidgetsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListWidgetsDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListWidgetsDefaultHeaders;
     // (undocumented)
     status: string;
 }

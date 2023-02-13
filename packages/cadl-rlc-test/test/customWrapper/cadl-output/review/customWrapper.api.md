@@ -9,6 +9,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
@@ -55,9 +56,16 @@ export interface DeployProjectBodyParam {
 }
 
 // @public (undocumented)
+export interface DeployProjectDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeployProjectDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -80,9 +88,16 @@ export interface GetDeployment200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetDeploymentDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetDeploymentDefaultHeaders;
     // (undocumented)
     status: string;
 }

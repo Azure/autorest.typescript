@@ -215,8 +215,8 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "minify"
     ] = `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
-    packageInfo.devDependencies["@rollup/plugin-json"] = "^4.1.0";
-    packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^4.1.0";
+    packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
+    packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
     packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
     packageInfo.devDependencies["rollup"] = "^2.66.1";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
