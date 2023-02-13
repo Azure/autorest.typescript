@@ -16,7 +16,11 @@ import {
   getBodyType
 } from "../modelUtils.js";
 
-export function transformSchemas(program: Program, client: Client, dpgContext: DpgContext) {
+export function transformSchemas(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,
     SchemaContext[]
@@ -25,7 +29,10 @@ export function transformSchemas(program: Program, client: Client, dpgContext: D
   const operationGroups = listOperationGroups(dpgContext, client);
   const modelKey = Symbol("typescript-models-" + client.name);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformSchemaForRoute(route);

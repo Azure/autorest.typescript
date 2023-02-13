@@ -45,7 +45,10 @@ export function transformToParameterTypes(
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformToParameterTypesForRoute(program, route, operationGroup);

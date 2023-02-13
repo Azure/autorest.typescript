@@ -34,11 +34,18 @@ import {
   isPagingOperation
 } from "../operationUtil.js";
 
-export function transformPaths(program: Program, client: Client, dpgContext: DpgContext): Paths {
+export function transformPaths(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+): Paths {
   const operationGroups = listOperationGroups(dpgContext, client);
   const paths: Paths = {};
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformOperation(program, route, paths, operationGroup);

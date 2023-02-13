@@ -25,7 +25,11 @@ export function transformAnnotationDetails(
     hasLongRunning: hasPollingOperations(program, client, dpgContext)
   };
   const details = extractPageDetailFromCore(program, client, dpgContext);
-  const serializeInfo = extractSpecialSerializeInfo(program, client, dpgContext);
+  const serializeInfo = extractSpecialSerializeInfo(
+    program,
+    client,
+    dpgContext
+  );
   if (details) {
     return {
       ...details,
@@ -37,7 +41,10 @@ export function transformAnnotationDetails(
   const nextLinks = new Set<string>();
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (getPageable(program, route.operation)) {
@@ -84,7 +91,11 @@ export function getPageable(
   return program.stateMap(pageableOperationsKey).get(entity);
 }
 
-function extractPageDetailFromCore(program: Program, client: Client, dpgContext: DpgContext) {
+function extractPageDetailFromCore(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
   if (!hasPagingOperations(program, client, dpgContext)) {
     return;
   }
@@ -95,7 +106,10 @@ function extractPageDetailFromCore(program: Program, client: Client, dpgContext:
   itemNames.add("value");
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       extractPageDetailFromCoreForRoute(route);
@@ -155,14 +169,21 @@ function parseItemName(paged: PagedResultMetadata): string | undefined {
   return undefined;
 }
 
-function extractSpecialSerializeInfo(program: Program, client: Client, dpgContext: DpgContext) {
+function extractSpecialSerializeInfo(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
   let hasMultiCollection = false;
   let hasPipeCollection = false;
   let hasTsvCollection = false;
   let hasSsvCollection = false;
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       route.parameters.parameters.forEach((parameter) => {

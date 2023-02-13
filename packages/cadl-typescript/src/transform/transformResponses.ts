@@ -44,7 +44,10 @@ export function transformToResponseTypes(
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformToResponseTypesForRoute(route, operationGroup);

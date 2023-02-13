@@ -105,10 +105,17 @@ function hasDecorator(type: DecoratedType, name: string): boolean {
   return type.decorators.find((it) => it.decorator.name === name) !== undefined;
 }
 
-export function hasPollingOperations(program: Program, client: Client, dpgContext: DpgContext) {
+export function hasPollingOperations(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (isLongRunningOperation(program, route)) {
@@ -137,10 +144,17 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
   return false;
 }
 
-export function hasPagingOperations(program: Program, client: Client, dpgContext: DpgContext) {
+export function hasPagingOperations(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(dpgContext, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       if (isPagingOperation(program, route)) {

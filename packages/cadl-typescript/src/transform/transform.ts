@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Client, DpgContext, getDefaultApiVersion } from "@azure-tools/cadl-dpg";
+import {
+  Client,
+  DpgContext,
+  getDefaultApiVersion
+} from "@azure-tools/cadl-dpg";
 import {
   ImportKind,
   NameType,
@@ -117,7 +121,10 @@ export function transformApiVersionParam(
   return undefined;
 }
 
-export function transformUrlInfo(program: Program, dpgContext: DpgContext): UrlInfo | undefined {
+export function transformUrlInfo(
+  program: Program,
+  dpgContext: DpgContext
+): UrlInfo | undefined {
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
   const urlParameters: PathParameter[] = [];
@@ -149,7 +156,11 @@ export function transformUrlInfo(program: Program, dpgContext: DpgContext): UrlI
                 " " /* sperator*/
               )) ??
             getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
-          value: getDefaultValue(program, dpgContext, host?.[0]?.parameters.get(key))
+          value: getDefaultValue(
+            program,
+            dpgContext,
+            host?.[0]?.parameters.get(key)
+          )
         });
       }
     }
@@ -165,7 +176,11 @@ export function transformUrlInfo(program: Program, dpgContext: DpgContext): UrlI
   return { endpoint, urlParameters };
 }
 
-function getDefaultValue(program: Program, dpgContext: DpgContext, param?: ModelProperty) {
+function getDefaultValue(
+  program: Program,
+  dpgContext: DpgContext,
+  param?: ModelProperty
+) {
   const otherDefaultValue = param?.default;
   const serviceNamespace = getDefaultService(program)?.type;
   if (!serviceNamespace) {

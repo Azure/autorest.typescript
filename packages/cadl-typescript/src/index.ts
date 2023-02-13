@@ -100,5 +100,4 @@ function clearSrcFolder(model: RLCModel, count: number) {
     );
     fsextra.emptyDirSync(folderPath);
   }
-
 }
