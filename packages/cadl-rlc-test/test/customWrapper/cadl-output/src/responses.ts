@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import { DeploymentOutput, ErrorResponseOutput } from "./outputModels";
 
@@ -10,9 +11,15 @@ export interface GetDeployment200Response extends HttpResponse {
   body: DeploymentOutput;
 }
 
+export interface GetDeploymentDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
 export interface GetDeploymentDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
+  headers: RawHttpHeaders & GetDeploymentDefaultHeaders;
 }
 
 /** The request has succeeded. */
@@ -27,7 +34,13 @@ export interface DeployProject201Response extends HttpResponse {
   body: DeploymentOutput;
 }
 
+export interface DeployProjectDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
 export interface DeployProjectDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
+  headers: RawHttpHeaders & DeployProjectDefaultHeaders;
 }

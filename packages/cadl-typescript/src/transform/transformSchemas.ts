@@ -3,6 +3,7 @@
 
 import {
   Client,
+  DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/cadl-dpg";
@@ -15,22 +16,29 @@ import {
   getBodyType
 } from "../modelUtils.js";
 
-export function transformSchemas(program: Program, client: Client) {
+export function transformSchemas(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,
     SchemaContext[]
   >();
   const schemaMap: Map<any, any> = new Map<any, any>();
-  const operationGroups = listOperationGroups(program, client);
+  const operationGroups = listOperationGroups(dpgContext, client);
   const modelKey = Symbol("typescript-models-" + client.name);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformSchemaForRoute(route);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     transformSchemaForRoute(route);

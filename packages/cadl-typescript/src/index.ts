@@ -30,13 +30,14 @@ import {
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
-import { listClients } from "@azure-tools/cadl-dpg";
+import { listClients, createDpgContext } from "@azure-tools/cadl-dpg";
 import * as path from "path";
 
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const options: RLCOptions = context.options;
-  const clients = listClients(program);
+  const dpgContext = createDpgContext(context);
+  const clients = listClients(dpgContext);
   let count = -1;
   for (const client of clients) {
     count++;
@@ -44,7 +45,8 @@ export async function $onEmit(context: EmitContext) {
       program,
       options,
       client,
-      context.emitterOutputDir
+      context.emitterOutputDir,
+      dpgContext
     );
     clearSrcFolder(rlcModels, count);
     await emitModels(rlcModels, program);
@@ -98,5 +100,4 @@ function clearSrcFolder(model: RLCModel, count: number) {
     );
     fsextra.emptyDirSync(folderPath);
   }
-
 }

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   ProductOutput,
@@ -27,9 +28,15 @@ export interface GetPages200Response extends HttpResponse {
   body: ProductListOutput;
 }
 
+export interface GetPagesDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
 export interface GetPagesDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
+  headers: RawHttpHeaders & GetPagesDefaultHeaders;
 }
 
 /** Initial response with ProvisioningState='Succeeded' */

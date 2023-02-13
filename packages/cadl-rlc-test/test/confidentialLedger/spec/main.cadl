@@ -19,7 +19,7 @@ using OpenAPI;
   version: "2022-05-13",
 })
 @useAuth(OAuth2Auth<[MyFlow]>)
-@versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
+@useDependency(Azure.Core.Versions.v1_0_Preview_1)
 @server(
   "{ledgerUri}",
   "Confidential Ledger Service",
