@@ -4,6 +4,7 @@ import { TestHost } from "@cadl-lang/compiler/testing";
 import { RestTestLibrary } from "@cadl-lang/rest/testing";
 import { VersioningTestLibrary } from "@cadl-lang/versioning/testing";
 import { AzureCoreTestLibrary } from "@azure-tools/cadl-azure-core/testing";
+import { DpgContext } from "@azure-tools/cadl-dpg";
 import { assert } from "chai";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../../src/lib.js";
@@ -18,7 +19,7 @@ export async function rlcEmitterFor(
   code: string,
   needNamespaces: boolean = true,
   needAzureCore: boolean = false
-): Promise<Program> {
+): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
   @service({
@@ -48,7 +49,24 @@ export async function rlcEmitterFor(
   await host.compile("./", {
     warningAsError: false
   });
-  return host.program;
+  return host;
+}
+
+export function createDpgContextTestHelper(
+  program: Program 
+): DpgContext {
+  const defaultOptions = {
+    generateProtocolMethods: true,
+    generateConvenienceMethods: true,
+    emitters: [],
+  };
+  const resolvedOptions = { ...defaultOptions };
+  program.emitters = resolvedOptions.emitters as any;
+  return {
+    program: program,
+    generateProtocolMethods: resolvedOptions.generateProtocolMethods,
+    generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
+  } as DpgContext;
 }
 
 export function assertEqualContent(actual: string, expected: string) {
