@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/cadl-typescript",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "description": "An experimental CADL emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -58,7 +58,7 @@
     "@cadl-lang/rest": "~0.40.0",
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-common": "1.0.0-beta.9",
+    "@azure-tools/rlc-common": "1.0.0-beta.10",
     "ts-morph": "^15.1.0",
     "@azure-tools/cadl-dpg": "~0.26.0",
     "fs-extra": "^11.1.0"
