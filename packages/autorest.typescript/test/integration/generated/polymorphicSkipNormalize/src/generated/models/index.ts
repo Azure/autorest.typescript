@@ -660,7 +660,7 @@ export type MediaGraphInstanceState = string;
 
 /** Known values of {@link MediaGraphRtspTransport} that the service accepts. */
 export enum KnownMediaGraphRtspTransport {
-  /** HTTP/HTTPS transport. This should be used when HTTP tunneling is desired. */
+  /** HTTP\/HTTPS transport. This should be used when HTTP tunneling is desired. */
   Http = "Http",
   /** TCP transport. This should be used when HTTP tunneling is NOT desired. */
   Tcp = "Tcp"
@@ -744,9 +744,9 @@ export enum KnownMediaGraphImageFormatRawPixelFormat {
   Rgb565Be = "Rgb565be",
   /** Packed RGB 5:6:5, 16bpp, (msb)   5R 6G 5B(lsb), little-endian. */
   Rgb565Le = "Rgb565le",
-  /** Packed RGB 5:5:5, 16bpp, (msb)1X 5R 5G 5B(lsb), big-endian , X=unused/undefined. */
+  /** Packed RGB 5:5:5, 16bpp, (msb)1X 5R 5G 5B(lsb), big-endian , X=unused\/undefined. */
   Rgb555Be = "Rgb555be",
-  /** Packed RGB 5:5:5, 16bpp, (msb)1X 5R 5G 5B(lsb), little-endian, X=unused/undefined. */
+  /** Packed RGB 5:5:5, 16bpp, (msb)1X 5R 5G 5B(lsb), little-endian, X=unused\/undefined. */
   Rgb555Le = "Rgb555le",
   /** Packed RGB 8:8:8, 24bpp, RGBRGB. */
   Rgb24 = "Rgb24",
