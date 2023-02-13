@@ -49,7 +49,9 @@ function extractProperties(
         false
       ),
       // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
-      description: (metadata.description || "").replace(/^(\\)\//g, "\\/")
+      description: (metadata.description || "")
+        .replace(/^\//g, "\\/")
+        .replace(/([^\\])(\/)/g, "$1\\/")
     };
   });
 }
