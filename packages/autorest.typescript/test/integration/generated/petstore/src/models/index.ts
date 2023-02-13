@@ -97,7 +97,7 @@ export enum KnownRestrictionLevel {
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Unrestricted**: All RBAC permissions are allowed on the managed node resource group \
- * **ReadOnly**: Only *\\/read RBAC permissions allowed on the managed node resource group
+ * **ReadOnly**: Only *\/read RBAC permissions allowed on the managed node resource group
  */
 export type RestrictionLevel = string;
 
