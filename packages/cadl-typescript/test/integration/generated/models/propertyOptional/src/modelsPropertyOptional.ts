@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ModelsPropertyOptionalClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ModelsPropertyOptionalClient class.
- *
+ * Initialize a new instance of `ModelsPropertyOptionalClient`
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}

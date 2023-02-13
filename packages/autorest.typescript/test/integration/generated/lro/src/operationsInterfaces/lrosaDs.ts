@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   LrosaDsPutNonRetry400OptionalParams,
   LrosaDsPutNonRetry400Response,
@@ -70,8 +70,8 @@ export interface LrosaDs {
   beginPutNonRetry400(
     options?: LrosaDsPutNonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutNonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutNonRetry400Response>,
       LrosaDsPutNonRetry400Response
     >
   >;
@@ -90,8 +90,8 @@ export interface LrosaDs {
   beginPutNonRetry201Creating400(
     options?: LrosaDsPutNonRetry201Creating400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutNonRetry201Creating400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutNonRetry201Creating400Response>,
       LrosaDsPutNonRetry201Creating400Response
     >
   >;
@@ -111,8 +111,8 @@ export interface LrosaDs {
   beginPutNonRetry201Creating400InvalidJson(
     options?: LrosaDsPutNonRetry201Creating400InvalidJsonOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutNonRetry201Creating400InvalidJsonResponse>,
       LrosaDsPutNonRetry201Creating400InvalidJsonResponse
     >
   >;
@@ -132,8 +132,8 @@ export interface LrosaDs {
   beginPutAsyncRelativeRetry400(
     options?: LrosaDsPutAsyncRelativeRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutAsyncRelativeRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetry400Response>,
       LrosaDsPutAsyncRelativeRetry400Response
     >
   >;
@@ -152,8 +152,8 @@ export interface LrosaDs {
   beginDeleteNonRetry400(
     options?: LrosaDsDeleteNonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDeleteNonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteNonRetry400Response>,
       LrosaDsDeleteNonRetry400Response
     >
   >;
@@ -171,8 +171,8 @@ export interface LrosaDs {
   beginDelete202NonRetry400(
     options?: LrosaDsDelete202NonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDelete202NonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsDelete202NonRetry400Response>,
       LrosaDsDelete202NonRetry400Response
     >
   >;
@@ -191,8 +191,8 @@ export interface LrosaDs {
   beginDeleteAsyncRelativeRetry400(
     options?: LrosaDsDeleteAsyncRelativeRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDeleteAsyncRelativeRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteAsyncRelativeRetry400Response>,
       LrosaDsDeleteAsyncRelativeRetry400Response
     >
   >;
@@ -211,8 +211,8 @@ export interface LrosaDs {
   beginPostNonRetry400(
     options?: LrosaDsPostNonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPostNonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPostNonRetry400Response>,
       LrosaDsPostNonRetry400Response
     >
   >;
@@ -230,8 +230,8 @@ export interface LrosaDs {
   beginPost202NonRetry400(
     options?: LrosaDsPost202NonRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPost202NonRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPost202NonRetry400Response>,
       LrosaDsPost202NonRetry400Response
     >
   >;
@@ -250,8 +250,8 @@ export interface LrosaDs {
   beginPostAsyncRelativeRetry400(
     options?: LrosaDsPostAsyncRelativeRetry400OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPostAsyncRelativeRetry400Response>,
+    SimplePollerLike<
+      OperationState<LrosaDsPostAsyncRelativeRetry400Response>,
       LrosaDsPostAsyncRelativeRetry400Response
     >
   >;
@@ -270,8 +270,8 @@ export interface LrosaDs {
   beginPutError201NoProvisioningStatePayload(
     options?: LrosaDsPutError201NoProvisioningStatePayloadOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutError201NoProvisioningStatePayloadResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutError201NoProvisioningStatePayloadResponse>,
       LrosaDsPutError201NoProvisioningStatePayloadResponse
     >
   >;
@@ -291,8 +291,8 @@ export interface LrosaDs {
   beginPutAsyncRelativeRetryNoStatus(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutAsyncRelativeRetryNoStatusResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetryNoStatusResponse>,
       LrosaDsPutAsyncRelativeRetryNoStatusResponse
     >
   >;
@@ -314,8 +314,8 @@ export interface LrosaDs {
   beginPutAsyncRelativeRetryNoStatusPayload(
     options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse>,
       LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse
     >
   >;
@@ -334,7 +334,7 @@ export interface LrosaDs {
    */
   beginDelete204Succeeded(
     options?: LrosaDsDelete204SucceededOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Long running delete request, service returns a 204 to the initial request, indicating success.
    * @param options The options parameters.
@@ -350,8 +350,8 @@ export interface LrosaDs {
   beginDeleteAsyncRelativeRetryNoStatus(
     options?: LrosaDsDeleteAsyncRelativeRetryNoStatusOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse>,
       LrosaDsDeleteAsyncRelativeRetryNoStatusResponse
     >
   >;
@@ -370,8 +370,8 @@ export interface LrosaDs {
   beginPost202NoLocation(
     options?: LrosaDsPost202NoLocationOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPost202NoLocationResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPost202NoLocationResponse>,
       LrosaDsPost202NoLocationResponse
     >
   >;
@@ -391,8 +391,8 @@ export interface LrosaDs {
   beginPostAsyncRelativeRetryNoPayload(
     options?: LrosaDsPostAsyncRelativeRetryNoPayloadOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPostAsyncRelativeRetryNoPayloadResponse>,
       LrosaDsPostAsyncRelativeRetryNoPayloadResponse
     >
   >;
@@ -413,8 +413,8 @@ export interface LrosaDs {
   beginPut200InvalidJson(
     options?: LrosaDsPut200InvalidJsonOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPut200InvalidJsonResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPut200InvalidJsonResponse>,
       LrosaDsPut200InvalidJsonResponse
     >
   >;
@@ -434,8 +434,8 @@ export interface LrosaDs {
   beginPutAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse>,
       LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse
     >
   >;
@@ -456,10 +456,8 @@ export interface LrosaDs {
   beginPutAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
-      >,
+    SimplePollerLike<
+      OperationState<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse>,
       LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
     >
   >;
@@ -480,8 +478,8 @@ export interface LrosaDs {
   beginDelete202RetryInvalidHeader(
     options?: LrosaDsDelete202RetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDelete202RetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsDelete202RetryInvalidHeaderResponse>,
       LrosaDsDelete202RetryInvalidHeaderResponse
     >
   >;
@@ -501,8 +499,8 @@ export interface LrosaDs {
   beginDeleteAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse>,
       LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse
     >
   >;
@@ -522,10 +520,8 @@ export interface LrosaDs {
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
-      >,
+    SimplePollerLike<
+      OperationState<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse>,
       LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
     >
   >;
@@ -545,8 +541,8 @@ export interface LrosaDs {
   beginPost202RetryInvalidHeader(
     options?: LrosaDsPost202RetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPost202RetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPost202RetryInvalidHeaderResponse>,
       LrosaDsPost202RetryInvalidHeaderResponse
     >
   >;
@@ -567,8 +563,8 @@ export interface LrosaDs {
   beginPostAsyncRelativeRetryInvalidHeader(
     options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>,
+    SimplePollerLike<
+      OperationState<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse>,
       LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse
     >
   >;
@@ -590,10 +586,8 @@ export interface LrosaDs {
   beginPostAsyncRelativeRetryInvalidJsonPolling(
     options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
-        LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
-      >,
+    SimplePollerLike<
+      OperationState<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse>,
       LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
     >
   >;

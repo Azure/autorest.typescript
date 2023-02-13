@@ -33,8 +33,8 @@ async function {{name}}() {
     result.push(item);
   }
   {{else if this.isLRO}}
-  const initialResponse = await client.path({{this.pathParamNames}}).{{method}}({{methodParamNames}});
-  const poller = getLongRunningPoller(client, initialResponse);
+  const initialResponse ={{#unless this.useLegacyLro}} await{{/unless}} client.path({{this.pathParamNames}}).{{method}}({{methodParamNames}});
+  const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   {{else}}
   const result = await client.path({{this.pathParamNames}}).{{method}}({{methodParamNames}});

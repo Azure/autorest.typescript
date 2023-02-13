@@ -5,8 +5,8 @@ using Cadl.Http;
 
 namespace Azure.OpenAI.Completions;
 
-//@doc("Post body schema to create a prompt completion from a deployment")
-model CompletionsRequest {
+@doc("Post body schema to create a prompt completion from a deployment")
+model CompletionsOptions {
     @doc("""
 An optional prompt to complete from, encoded as a string, a list of strings, or
 a list of token lists. Defaults to <|endoftext|>. The prompt to complete from.
@@ -16,7 +16,7 @@ during training, so if a prompt is not specified the model will generate as if
 from the beginning of a new document. Maximum allowed size of string list is
 2048.
 """)
-    prompt?: CompletionsPrompt;
+    prompt?: string[];
 
     @doc("The maximum number of tokens to generate. Has minimum of 0.")
     max_tokens?: int32;
@@ -67,11 +67,12 @@ allowed.
 """)
     n?: int32;
 
-    @doc("""
-Whether to enable streaming for this endpoint. If set, tokens will be sent as
-server-sent events as they become available.
-""")
-    stream?: boolean;
+// stream mode requires some API update that we cannot generate nbow
+//     @doc("""
+// Whether to enable streaming for this endpoint. If set, tokens will be sent as
+// server-sent events as they become available.
+// """)
+//     stream?: boolean;
 
     @doc("""
 Include the log probabilities on the `logprobs` most likely tokens, as well the
@@ -82,13 +83,13 @@ have logprobs returned. Minimum of 0 and maximum of 100 allowed.
     logprobs?: int32;
 
     @doc("The name of the model to use")
-    "model"?: string;
+    "model": string;
 
     @doc("Echo back the prompt in addition to the completion")
     echo?: boolean;
 
     @doc("A sequence which indicates the end of the current document.")
-    stop?: CompletionsStop;
+    stop?: string[];
 
     @doc("Completion configuration")
     completion_config?: string;
@@ -119,12 +120,8 @@ stream intermediate progress if best_of > 1. Has maximum value of 128.
     best_of?: int32;
 };
 
-alias CompletionsPrompt = string | string[] | string[][];
-
-alias CompletionsStop = string | string[];
-
 @doc("Expected response schema to completion request")
-model Completion {
+model Completions {
     @doc("Request ID for troubleshooting purposes")
     @header "apim-request-id": string;
     @doc("Id for completion response")
@@ -137,6 +134,8 @@ model Completion {
     "model"?: string;
     @doc("Array of choices returned containing text completions to prompts sent")
     choices?: Choice[];
+    @doc("Usage counts for tokens input using the completions API")
+    usage: CompletionsUsage;
 }
 
 @doc("Choice model within completion response")
@@ -146,13 +145,13 @@ model Choice {
     @doc("Index")
     index?: int32;
     @doc("Log Prob Model")
-    logprobs?: CompletionsLogProbsModel;
+    logprobs?: CompletionsLogProbs;
     @doc("Reason for finishing")
     finish_reason?: string;
 }
 
 @doc("LogProbs model within completion choice")
-model CompletionsLogProbsModel {
+model CompletionsLogProbs {
     @doc("Tokens")
     tokens?: string[];
     @doc("LogProbs of Tokens")
@@ -161,4 +160,14 @@ model CompletionsLogProbsModel {
     top_logprobs?: Record<float32>[];
     @doc("Text offset")
     text_offset?: int32[];
+}
+
+@doc("Measurment of the amount of tokens used in this request and response")
+model CompletionsUsage {
+    @doc("Number of tokens received in the completion")
+    completion_token: int32,
+    @doc("Number of tokens sent in the original request")
+    prompt_tokens: int32,
+    @doc("Total number of tokens transacted in this request/response")
+    total_tokens: int32
 }

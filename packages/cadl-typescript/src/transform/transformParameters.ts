@@ -104,8 +104,30 @@ function getParameterMetadata(
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
-  const type = getTypeName(schema);
+  let type = getTypeName(schema);
   const name = getParameterName(parameter.name);
+  let description =
+    getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
+  if (type === "string[]" || type === "Array<string>") {
+    const serializeInfo = getSpecialSerializeInfo(parameter);
+    if (
+      serializeInfo.hasMultiCollection ||
+      serializeInfo.hasPipeCollection ||
+      serializeInfo.hasSsvCollection ||
+      serializeInfo.hasTsvCollection
+    ) {
+      type = "string";
+      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
+        ", "
+      )} collection, we provide ${serializeInfo.descriptions.join(
+        ", "
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
+          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+          : ""
+      }`;
+    }
+  }
   return {
     type: paramType,
     name,
@@ -113,8 +135,7 @@ function getParameterMetadata(
       name,
       type,
       required: !parameter.param.optional,
-      description:
-        getFormattedPropertyDoc(program, parameter.param, schema) ?? ""
+      description
     }
   };
 }
@@ -350,6 +371,10 @@ function extractNameFromCadlType(
     importedNames.forEach(importedModels.add, importedModels);
   }
   let typeName = getTypeName(bodySchema);
+  if (isAnonymousModel(bodySchema)) {
+    // Handle anonymous Model
+    return generateAnomymousModelSigniture(bodySchema, importedModels);
+  }
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
@@ -361,6 +386,36 @@ function extractNameFromCadlType(
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
   return typeName;
+}
+
+function isAnonymousModel(schema: Schema) {
+  return (
+    !schema.name &&
+    schema.type === "object" &&
+    !!(schema as ObjectSchema)?.properties
+  );
+}
+
+function generateAnomymousModelSigniture(
+  schema: ObjectSchema,
+  importedModels: Set<string>
+) {
+  let schemaSigiture = `{`;
+  for (const propName in schema.properties) {
+    const propType = schema.properties[propName]!;
+    const propTypeName = getTypeName(propType);
+    if (!propType || !propTypeName) {
+      continue;
+    }
+    const importNames = getImportedModelName(propType);
+    if (importNames) {
+      importNames!.forEach(importedModels.add, importedModels);
+    }
+    schemaSigiture += `${propName}: ${propTypeName};`;
+  }
+
+  schemaSigiture += `}`;
+  return schemaSigiture;
 }
 
 function extractDescriptionsFromBody(
@@ -379,4 +434,30 @@ function extractDescriptionsFromBody(
       ])
     );
   return description ? [description] : [];
+}
+
+export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
+  let hasMultiCollection = false;
+  const hasPipeCollection = false;
+  const hasSsvCollection = false;
+  const hasTsvCollection = false;
+  const descriptions = [];
+  const collectionInfo = [];
+  if (
+    (parameter.type === "query" || parameter.type === "header") &&
+    (parameter as any).format === "multi"
+  ) {
+    hasMultiCollection = true;
+    descriptions.push("buildMultiCollection");
+    collectionInfo.push("multi");
+  }
+  // TODO add other collection logic once cadl has supported it.
+  return {
+    hasMultiCollection,
+    hasPipeCollection,
+    hasSsvCollection,
+    hasTsvCollection,
+    descriptions,
+    collectionInfo
+  };
 }

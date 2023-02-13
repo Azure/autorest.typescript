@@ -32,6 +32,7 @@ import { ParameterDetails } from "../models/parameterDetails";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { PackageDetails } from "../models/packageDetails";
 import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
+import { createLroImports } from "../utils/lroHelpers";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -41,7 +42,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     hideClients,
     srcPath,
     packageDetails,
-    coreHttpCompatMode
+    coreHttpCompatMode,
+    useLegacyLro
   } = getAutorestOptions();
   const { addCredentials } = getSecurityInfoFromModel(clientDetails.security);
   const hasMappers = !!clientDetails.mappers.length;
@@ -135,11 +137,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
   if (hasInlineOperations && hasLro) {
     clientFile.addImportDeclaration({
-      namedImports: ["PollerLike", "PollOperationState", "LroEngine"],
+      namedImports: createLroImports(useLegacyLro),
       moduleSpecifier: "@azure/core-lro"
     });
     clientFile.addImportDeclaration({
-      namedImports: ["LroImpl"],
+      namedImports: ["createLroSpec"],
       moduleSpecifier: `./lroImpl`
     });
   }

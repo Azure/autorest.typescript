@@ -86,7 +86,7 @@ function regularAutorestPackage(
       node: ">=14.0.0"
     },
     dependencies: {
-      ...(hasLro && { "@azure/core-lro": "^2.2.0" }),
+      ...(hasLro && { "@azure/core-lro": "^2.5.0" }),
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
       ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
@@ -109,17 +109,17 @@ function regularAutorestPackage(
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
-      "@rollup/plugin-commonjs": "^21.0.1",
-      "@rollup/plugin-json": "^4.1.0",
-      "@rollup/plugin-multi-entry": "^4.1.0",
+      "@rollup/plugin-commonjs": "^24.0.0",
+      "@rollup/plugin-json": "^6.0.0",
+      "@rollup/plugin-multi-entry": "^6.0.0",
       "@rollup/plugin-node-resolve": "^13.1.3",
-      mkdirp: "^1.0.4",
+      mkdirp: "^2.1.2",
       rollup: "^2.66.1",
       "rollup-plugin-sourcemaps": "^0.6.3",
       typescript: "~4.8.0",
       "uglify-js": "^3.4.9",
       rimraf: "^3.0.0",
-      dotenv: "^8.2.0"
+      dotenv: "^16.0.0"
     },
     repository: {
       type: "git",

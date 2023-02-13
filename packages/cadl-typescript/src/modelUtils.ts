@@ -132,7 +132,7 @@ export function includeDerivedModel(model: Model): boolean {
   );
 }
 
-function getSchemaForScalar(program: Program,  scalar: Scalar) {
+function getSchemaForScalar(program: Program, scalar: Scalar) {
   let result = getSchemaForStdScalar(program, scalar);
   if (!result && scalar.baseScalar) {
     result = getSchemaForScalar(program, scalar.baseScalar);
@@ -456,7 +456,7 @@ function getSchemaForModel(
       }
 
       if (mutability.length > 0) {
-        // modelSchema.properties[name]["usage"] = mutability;
+        newPropSchema["usage"] = mutability;
       }
     }
     modelSchema.properties[name] = newPropSchema;
@@ -660,7 +660,8 @@ function mapCadlStdTypeToTypeScript(
           !program.checker.isStdType(indexer.value) &&
           !isUnknownType(indexer.value!) &&
           indexer.value?.kind &&
-          schema.items.name
+          schema.items.name &&
+          !schema.items.enum
         ) {
           schema.typeName = `Array<${schema.items.name}>`;
           if (usage && usage.includes(SchemaContext.Output)) {
@@ -700,10 +701,7 @@ function mapCadlStdTypeToTypeScript(
   }
 }
 
-function getSchemaForStdScalar(
-  program: Program,
-  cadlType: Scalar
-) {
+function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
   if (!program.checker.isStdType(cadlType)) {
     return undefined;
   }
@@ -836,7 +834,7 @@ function getEnumStringDescription(type: any) {
   if (type.name === "string" && type.enum && type.enum.length > 0) {
     return `Possible values: ${type.enum.join(", ")}`;
   }
-  return "";
+  return undefined;
 }
 
 export function getFormattedPropertyDoc(

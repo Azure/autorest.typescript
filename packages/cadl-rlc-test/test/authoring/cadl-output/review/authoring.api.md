@@ -6,15 +6,15 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { LroEngineOptions } from '@azure/core-lro';
+import { OperationState } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
-import { PollerLike } from '@azure/core-lro';
-import { PollOperationState } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
+import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
@@ -60,8 +60,7 @@ export interface CreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CreateOrUpdateBodyParam {
-    // (undocumented)
-    body?: ProjectResourceMergeAndPatch;
+    body: ProjectResourceMergeAndPatch;
 }
 
 // @public (undocumented)
@@ -133,6 +132,10 @@ export type DeleteDeploymentParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
 
 // @public
+export interface Deployment {
+}
+
+// @public
 export interface DeploymentJobOutput {
     readonly createdDateTime: string;
     errors: ErrorModelOutput;
@@ -186,6 +189,11 @@ export interface DeployProject201Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeployProjectBodyParam {
+    body: Deployment;
+}
+
+// @public (undocumented)
 export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponseOutput;
@@ -194,7 +202,7 @@ export interface DeployProjectDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeployProjectParameters = RequestParameters;
+export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
 
 // @public
 export interface ErrorModelOutput {
@@ -273,7 +281,7 @@ export interface GetDefaultResponse extends HttpResponse {
 export interface GetDeployment {
     delete(options?: DeleteDeploymentParameters): StreamableMethod<DeleteDeployment202Response | DeleteDeploymentDefaultResponse>;
     get(options?: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
-    put(options?: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
+    put(options: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
 }
 
 // @public
@@ -320,7 +328,7 @@ export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
 export type GetDeploymentStatusParameters = RequestParameters;
 
 // @public
-export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: LroEngineOptions<TResult, PollOperationState<TResult>>): PollerLike<PollOperationState<TResult>, TResult>;
+export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
@@ -527,20 +535,7 @@ export interface ListProjectsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListProjectsParameters = ListProjectsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ListProjectsQueryParam {
-    // (undocumented)
-    queryParameters?: ListProjectsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ListProjectsQueryParamProperties {
-    maxpagesize?: number;
-    skip?: number;
-    top?: number;
-}
+export type ListProjectsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ListTrainingConfigVersions {
@@ -649,7 +644,7 @@ export interface ProjectOutput {
     storageInputContainerName: string;
 }
 
-// @public (undocumented)
+// @public
 export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 // @public (undocumented)

@@ -25,7 +25,8 @@ import {
   ModelProperty,
   listServices,
   NoTarget,
-  Service
+  Service,
+  getDoc
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -124,17 +125,28 @@ export function transformUrlInfo(program: Program): UrlInfo | undefined {
     if (host && host?.[0] && host?.[0]?.parameters) {
       // Currently we only support one parameter in the servers definition
       for (const key of host[0].parameters.keys()) {
-        const type = host?.[0]?.parameters.get(key)?.type;
+        const property = host?.[0]?.parameters.get(key);
+        const type = property?.type;
 
-        if (type) {
-          const schema = getSchemaForType(program, type);
-          urlParameters.push({
-            name: key,
-            type: getTypeName(schema),
-            description: getFormattedPropertyDoc(program, type, schema, " "),
-            value: getDefaultValue(program, host?.[0]?.parameters.get(key))
-          });
+        if (!type) {
+          continue;
         }
+
+        const schema = getSchemaForType(program, type);
+        urlParameters.push({
+          name: key,
+          type: getTypeName(schema),
+          description:
+            (getDoc(program, property) &&
+              getFormattedPropertyDoc(
+                program,
+                property,
+                schema,
+                " " /* sperator*/
+              )) ??
+            getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
+          value: getDefaultValue(program, host?.[0]?.parameters.get(key))
+        });
       }
     }
   }

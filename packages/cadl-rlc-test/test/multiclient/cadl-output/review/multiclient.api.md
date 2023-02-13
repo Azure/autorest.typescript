@@ -61,7 +61,7 @@ function createClient_2(endpoint: string, options?: ClientOptions): ResponseClie
 interface CreateOrUpdate {
     delete(options?: DeleteParameters): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
     get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
-    put(options?: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
+    put(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
 
 // @public
@@ -82,8 +82,7 @@ interface CreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 interface CreateOrUpdateBodyParam {
-    // (undocumented)
-    body?: Resource;
+    body: Resource;
 }
 
 // @public (undocumented)

@@ -11,33 +11,13 @@ export type GetConsortiumMembersParameters = RequestParameters;
 export type ListLedgerEntriesParameters = RequestParameters;
 
 export interface CreateLedgerEntryBodyParam {
-  body?: LedgerEntry;
+  /** The resource instance. */
+  body: LedgerEntry;
 }
 
-export interface CreateLedgerEntryQueryParamProperties {
-  /** The collection id. */
-  collectionId?: string;
-}
-
-export interface CreateLedgerEntryQueryParam {
-  queryParameters?: CreateLedgerEntryQueryParamProperties;
-}
-
-export type CreateLedgerEntryParameters = CreateLedgerEntryQueryParam &
-  CreateLedgerEntryBodyParam &
+export type CreateLedgerEntryParameters = CreateLedgerEntryBodyParam &
   RequestParameters;
-
-export interface GetLedgerEntryQueryParamProperties {
-  /** The collection id. */
-  collectionId?: string;
-}
-
-export interface GetLedgerEntryQueryParam {
-  queryParameters?: GetLedgerEntryQueryParamProperties;
-}
-
-export type GetLedgerEntryParameters = GetLedgerEntryQueryParam &
-  RequestParameters;
+export type GetLedgerEntryParameters = RequestParameters;
 export type GetReceiptParameters = RequestParameters;
 export type GetTransactionStatusParameters = RequestParameters;
 
@@ -54,10 +34,12 @@ export type GetCurrentLedgerEntryParameters = GetCurrentLedgerEntryQueryParam &
   RequestParameters;
 export type DeleteUserParameters = RequestParameters;
 export type GetUserParameters = RequestParameters;
+/** The resource instance. */
 export type LedgerUserResourceMergeAndPatch = Partial<LedgerUser>;
 
 export interface CreateOrUpdateUserBodyParam {
-  body?: LedgerUserResourceMergeAndPatch;
+  /** The resource instance. */
+  body: LedgerUserResourceMergeAndPatch;
 }
 
 export interface CreateOrUpdateUserMediaTypesParam {

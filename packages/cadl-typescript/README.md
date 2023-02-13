@@ -32,9 +32,9 @@ Modify `package.json`, add one line under `dependencies`:
 
 ```diff
     "dependencies": {
-      "@cadl-lang/compiler": "^0.38.5",
-      "@cadl-lang/rest": "^0.38.0",
-      "@azure-tools/cadl-azure-core": "^0.24.0",
+      "@cadl-lang/compiler": "~0.39.0",
+      "@cadl-lang/rest": "~0.39.0",
+      "@azure-tools/cadl-azure-core": "~0.25.0",
 +      "@azure-tools/cadl-typescript": "latest"
     },
 ```

@@ -349,6 +349,28 @@ describe("Input/output model type", () => {
         true
       );
     });
+
+    it("should handle extensible enum array", async () => {
+      const cadlDefinition = `
+      #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+      enum DiskEncryptionTarget {
+        OsDisk: "osdisk",
+        TemporaryDisk: "temporarydisk",
+      }
+      `;
+      const cadlType = "DiskEncryptionTarget[]";
+      const typeScriptType = `string[]`;
+      const inputModelName = typeScriptType;
+      await verifyPropertyType(
+        cadlType,
+        inputModelName,
+        {
+          additionalCadlDefinition: cadlDefinition,
+          outputType: typeScriptType
+        },
+        true
+      );
+    }); 
   });
   describe("object generation", () => {
     it("should handle basic model -> type/interface", async () => {

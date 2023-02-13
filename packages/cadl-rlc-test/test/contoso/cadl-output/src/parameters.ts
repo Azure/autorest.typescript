@@ -6,10 +6,12 @@ import { Widget } from "./models";
 
 export type GetWidgetParameters = RequestParameters;
 export type GetWidgetOperationStatusParameters = RequestParameters;
+/** The resource instance. */
 export type WidgetResourceMergeAndPatch = Partial<Widget>;
 
 export interface CreateOrUpdateWidgetBodyParam {
-  body?: WidgetResourceMergeAndPatch;
+  /** The resource instance. */
+  body: WidgetResourceMergeAndPatch;
 }
 
 export interface CreateOrUpdateWidgetMediaTypesParam {
@@ -22,20 +24,4 @@ export type CreateOrUpdateWidgetParameters =
     CreateOrUpdateWidgetBodyParam &
     RequestParameters;
 export type DeleteWidgetParameters = RequestParameters;
-
-export interface ListWidgetsQueryParamProperties {
-  /** The number of result items to return. */
-  top?: number;
-  /** The number of result items to skip. */
-  skip?: number;
-  /** The maximum number of result items per page. */
-  maxpagesize?: number;
-  /** Select the specified fields to be included in the response. */
-  select?: string[];
-}
-
-export interface ListWidgetsQueryParam {
-  queryParameters?: ListWidgetsQueryParamProperties;
-}
-
-export type ListWidgetsParameters = ListWidgetsQueryParam & RequestParameters;
+export type ListWidgetsParameters = RequestParameters;

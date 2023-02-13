@@ -23,7 +23,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface CreateOrUpdate {
   /** Creates a new resource or updates an existing one. */
   put(
-    options?: CreateOrUpdateParameters
+    options: CreateOrUpdateParameters
   ): StreamableMethod<
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response

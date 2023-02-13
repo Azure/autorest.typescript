@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,
@@ -35,8 +35,8 @@ export interface LRORetrys {
   beginPut201CreatingSucceeded200(
     options?: LRORetrysPut201CreatingSucceeded200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LRORetrysPut201CreatingSucceeded200Response>,
+    SimplePollerLike<
+      OperationState<LRORetrysPut201CreatingSucceeded200Response>,
       LRORetrysPut201CreatingSucceeded200Response
     >
   >;
@@ -58,8 +58,8 @@ export interface LRORetrys {
   beginPutAsyncRelativeRetrySucceeded(
     options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LRORetrysPutAsyncRelativeRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LRORetrysPutAsyncRelativeRetrySucceededResponse>,
       LRORetrysPutAsyncRelativeRetrySucceededResponse
     >
   >;
@@ -81,8 +81,8 @@ export interface LRORetrys {
   beginDeleteProvisioning202Accepted200Succeeded(
     options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<
+    SimplePollerLike<
+      OperationState<
         LRORetrysDeleteProvisioning202Accepted200SucceededResponse
       >,
       LRORetrysDeleteProvisioning202Accepted200SucceededResponse
@@ -105,8 +105,8 @@ export interface LRORetrys {
   beginDelete202Retry200(
     options?: LRORetrysDelete202Retry200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LRORetrysDelete202Retry200Response>,
+    SimplePollerLike<
+      OperationState<LRORetrysDelete202Retry200Response>,
       LRORetrysDelete202Retry200Response
     >
   >;
@@ -126,8 +126,8 @@ export interface LRORetrys {
   beginDeleteAsyncRelativeRetrySucceeded(
     options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,
       LRORetrysDeleteAsyncRelativeRetrySucceededResponse
     >
   >;
@@ -147,8 +147,8 @@ export interface LRORetrys {
   beginPost202Retry200(
     options?: LRORetrysPost202Retry200OptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LRORetrysPost202Retry200Response>,
+    SimplePollerLike<
+      OperationState<LRORetrysPost202Retry200Response>,
       LRORetrysPost202Retry200Response
     >
   >;
@@ -169,8 +169,8 @@ export interface LRORetrys {
   beginPostAsyncRelativeRetrySucceeded(
     options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<LRORetrysPostAsyncRelativeRetrySucceededResponse>,
+    SimplePollerLike<
+      OperationState<LRORetrysPostAsyncRelativeRetrySucceededResponse>,
       LRORetrysPostAsyncRelativeRetrySucceededResponse
     >
   >;

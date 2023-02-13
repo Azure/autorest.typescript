@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClient } from "../resourceManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   GenericResourceExpanded,
   ResourcesListByResourceGroupNextOptionalParams,
@@ -211,14 +215,14 @@ export class ResourcesImpl implements Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesMoveResourcesOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -251,13 +255,13 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { sourceResourceGroupName, parameters, options },
-      moveResourcesOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { sourceResourceGroupName, parameters, options },
+      spec: moveResourcesOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -301,14 +305,14 @@ export class ResourcesImpl implements Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesValidateMoveResourcesOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -341,13 +345,13 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { sourceResourceGroupName, parameters, options },
-      validateMoveResourcesOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { sourceResourceGroupName, parameters, options },
+      spec: validateMoveResourcesOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -441,14 +445,14 @@ export class ResourcesImpl implements Resources {
     resourceName: string,
     apiVersion: string,
     options?: ResourcesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -481,9 +485,9 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         resourceProviderNamespace,
         parentResourcePath,
@@ -492,10 +496,10 @@ export class ResourcesImpl implements Resources {
         apiVersion,
         options
       },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -556,8 +560,8 @@ export class ResourcesImpl implements Resources {
     parameters: GenericResource,
     options?: ResourcesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ResourcesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ResourcesCreateOrUpdateResponse>,
       ResourcesCreateOrUpdateResponse
     >
   > {
@@ -567,7 +571,7 @@ export class ResourcesImpl implements Resources {
     ): Promise<ResourcesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -600,9 +604,9 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         resourceProviderNamespace,
         parentResourcePath,
@@ -612,10 +616,13 @@ export class ResourcesImpl implements Resources {
         parameters,
         options
       },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ResourcesCreateOrUpdateResponse,
+      OperationState<ResourcesCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -679,8 +686,8 @@ export class ResourcesImpl implements Resources {
     parameters: GenericResource,
     options?: ResourcesUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ResourcesUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ResourcesUpdateResponse>,
       ResourcesUpdateResponse
     >
   > {
@@ -690,7 +697,7 @@ export class ResourcesImpl implements Resources {
     ): Promise<ResourcesUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -723,9 +730,9 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      {
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: {
         resourceGroupName,
         resourceProviderNamespace,
         parentResourcePath,
@@ -735,10 +742,13 @@ export class ResourcesImpl implements Resources {
         parameters,
         options
       },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ResourcesUpdateResponse,
+      OperationState<ResourcesUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -845,14 +855,14 @@ export class ResourcesImpl implements Resources {
     resourceId: string,
     apiVersion: string,
     options?: ResourcesDeleteByIdOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -885,13 +895,13 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceId, apiVersion, options },
-      deleteByIdOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceId, apiVersion, options },
+      spec: deleteByIdOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -930,8 +940,8 @@ export class ResourcesImpl implements Resources {
     parameters: GenericResource,
     options?: ResourcesCreateOrUpdateByIdOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ResourcesCreateOrUpdateByIdResponse>,
+    SimplePollerLike<
+      OperationState<ResourcesCreateOrUpdateByIdResponse>,
       ResourcesCreateOrUpdateByIdResponse
     >
   > {
@@ -941,7 +951,7 @@ export class ResourcesImpl implements Resources {
     ): Promise<ResourcesCreateOrUpdateByIdResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -974,13 +984,16 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceId, apiVersion, parameters, options },
-      createOrUpdateByIdOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceId, apiVersion, parameters, options },
+      spec: createOrUpdateByIdOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ResourcesCreateOrUpdateByIdResponse,
+      OperationState<ResourcesCreateOrUpdateByIdResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -1026,8 +1039,8 @@ export class ResourcesImpl implements Resources {
     parameters: GenericResource,
     options?: ResourcesUpdateByIdOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ResourcesUpdateByIdResponse>,
+    SimplePollerLike<
+      OperationState<ResourcesUpdateByIdResponse>,
       ResourcesUpdateByIdResponse
     >
   > {
@@ -1037,7 +1050,7 @@ export class ResourcesImpl implements Resources {
     ): Promise<ResourcesUpdateByIdResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -1070,13 +1083,16 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceId, apiVersion, parameters, options },
-      updateByIdOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceId, apiVersion, parameters, options },
+      spec: updateByIdOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ResourcesUpdateByIdResponse,
+      OperationState<ResourcesUpdateByIdResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

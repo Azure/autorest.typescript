@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { LRORestClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class LRORestClient class.
- *
+ * Initialize a new instance of `LRORestClient`
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}

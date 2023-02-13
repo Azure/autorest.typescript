@@ -75,6 +75,7 @@ export interface RLCSampleDetail {
   method: string;
   isLRO: boolean;
   isPaging: boolean;
+  useLegacyLro: boolean;
 }
 
 export type SampleParameterPosition = "client" | "path" | "method";

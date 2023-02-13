@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { ResiliencyServiceDriven2Client } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ResiliencyServiceDriven2Client class.
- *
+ * Initialize a new instance of `ResiliencyServiceDriven2Client`
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}

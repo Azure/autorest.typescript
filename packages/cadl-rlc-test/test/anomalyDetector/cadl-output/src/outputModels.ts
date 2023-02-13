@@ -136,7 +136,7 @@ export interface UnivariateChangePointDetectionResultOutput {
 /** Detection results for the given resultId. */
 export interface MultivariateDetectionResultOutput {
   /** Result identifier, which is used to fetch the results of an inference call. */
-  resultId: string;
+  readonly resultId: string;
   /** Multivariate anomaly detection status. */
   summary: MultivariateBatchDetectionResultSummaryOutput;
   /** Detection result for each timestamp. */
@@ -355,7 +355,7 @@ export interface ModelStateOutput {
 /** Response of getting a model. */
 export interface AnomalyDetectionModelOutput {
   /** Model identifier. */
-  modelId: string;
+  readonly modelId: string;
   /** Date and time (UTC) when the model was created. */
   createdTime: string;
   /** Date and time (UTC) when the model was last updated. */

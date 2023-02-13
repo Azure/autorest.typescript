@@ -7,7 +7,7 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   ManagedInstance,
   ManagedInstancesListByInstancePoolOptionalParams,
@@ -96,8 +96,8 @@ export interface ManagedInstances {
     parameters: ManagedInstance,
     options?: ManagedInstancesCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedInstancesCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedInstancesCreateOrUpdateResponse>,
       ManagedInstancesCreateOrUpdateResponse
     >
   >;
@@ -126,7 +126,7 @@ export interface ManagedInstances {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: ManagedInstancesDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -153,8 +153,8 @@ export interface ManagedInstances {
     parameters: ManagedInstanceUpdate,
     options?: ManagedInstancesUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedInstancesUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedInstancesUpdateResponse>,
       ManagedInstancesUpdateResponse
     >
   >;
@@ -183,7 +183,7 @@ export interface ManagedInstances {
     resourceGroupName: string,
     managedInstanceName: string,
     options?: ManagedInstancesFailoverOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Failovers a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
