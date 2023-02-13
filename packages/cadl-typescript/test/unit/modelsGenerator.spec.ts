@@ -82,6 +82,14 @@ describe("Input/output model type", () => {
     );
   }
 
+  describe("null generation", async () => {
+    it("currently we ignore the `null` type", async () => {
+      const cadlType = "string | null";
+      const typeScriptType = "string";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+  });
+
   describe("number generation", () => {
     it("should handle int32 -> number", async () => {
       await verifyPropertyType("int32", "number");
@@ -370,7 +378,7 @@ describe("Input/output model type", () => {
         },
         true
       );
-    }); 
+    });
   });
   describe("object generation", () => {
     it("should handle basic model -> type/interface", async () => {
