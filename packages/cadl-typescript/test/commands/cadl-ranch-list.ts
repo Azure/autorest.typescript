@@ -75,5 +75,9 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "specialWords",
     inputPath: "special-words"
+  },
+  {
+    outputPath: "collectionFormat",
+    inputPath: "collectionFormat"
   }
 ];

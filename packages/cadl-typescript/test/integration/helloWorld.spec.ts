@@ -2,7 +2,7 @@ import HelloClientFactory, {
   HelloClient
 } from "./generated/hello/src/index.js";
 import { assert } from "chai";
-describe("HelloClient Rest Client", () => {
+describe.only("HelloClient Rest Client", () => {
   let client: HelloClient;
 
   beforeEach(() => {

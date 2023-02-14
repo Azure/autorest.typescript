@@ -1,0 +1,11 @@
+emitters:
+  "../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: false
+    generateTest: false
+    addCredentials: false
+    azureSdkForJs: false
+    isCadlTest: true
+    title: CollectionFormatClient
+    packageDetails:
+      name: "@msinternal/collection-format"
+      description: "Collection Format Test Service"
