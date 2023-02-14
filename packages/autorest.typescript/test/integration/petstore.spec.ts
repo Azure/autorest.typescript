@@ -7,10 +7,17 @@ describe("Integration tests for PetStore", () => {
 
   it("should create a client successfully", async () => {
     client = new PetStoreClient();
-    assert.notEqual(client, null);
+    assert.isNotNull(client);
   });
 
   it("should have correct defaultValue for Sequence Parameter", async () => {
-    assert.equal(status.mapper.defaultValue, "available");
+    assert.deepEqual(status.mapper.defaultValue, ["available", "unavailable"]);
+    client = new PetStoreClient();
+    try {
+      await client.findPetsByStatus();
+      assert.fail("Should throw exception");
+    } catch (err) {
+      assert.match(err, /pet\/findByStatus\?status=available,unavailable/);
+    }
   });
 });

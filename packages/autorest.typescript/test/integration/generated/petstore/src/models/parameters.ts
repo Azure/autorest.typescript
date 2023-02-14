@@ -100,7 +100,7 @@ export const accept: OperationParameter = {
 export const status: OperationQueryParameter = {
   parameterPath: ["options", "status"],
   mapper: {
-    defaultValue: "available",
+    defaultValue: ["available", "unavailable"],
     serializedName: "status",
     xmlName: "status",
     xmlElementName: "Get0ItemsItem",
