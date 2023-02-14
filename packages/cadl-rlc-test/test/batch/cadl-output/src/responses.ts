@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   ApplicationListResultOutput,
-  ErrorResponseOutput,
   ApplicationOutput,
   PoolUsageMetricsListOutput,
   PoolStatisticsOutput,
@@ -61,7 +60,7 @@ export interface ApplicationOperationsListDefaultHeaders {
 
 export interface ApplicationOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ApplicationOperationsListDefaultHeaders;
 }
 
@@ -78,7 +77,7 @@ export interface ApplicationOperationsGetDefaultHeaders {
 
 export interface ApplicationOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ApplicationOperationsGetDefaultHeaders;
 }
 
@@ -95,7 +94,7 @@ export interface PoolListUsageMetricsDefaultHeaders {
 
 export interface PoolListUsageMetricsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolListUsageMetricsDefaultHeaders;
 }
 
@@ -125,7 +124,7 @@ export interface PoolGetAllLifetimeStatisticsDefaultHeaders {
 export interface PoolGetAllLifetimeStatisticsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolGetAllLifetimeStatisticsDefaultHeaders;
 }
 
@@ -155,7 +154,7 @@ export interface PoolAddDefaultHeaders {
 
 export interface PoolAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolAddDefaultHeaders;
 }
 
@@ -184,7 +183,7 @@ export interface PoolListDefaultHeaders {
 
 export interface PoolListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolListDefaultHeaders;
 }
 
@@ -208,7 +207,7 @@ export interface PoolDeleteDefaultHeaders {
 
 export interface PoolDeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolDeleteDefaultHeaders;
 }
 
@@ -224,7 +223,7 @@ export interface PoolExistsDefaultHeaders {
 
 export interface PoolExistsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolExistsDefaultHeaders;
 }
 
@@ -253,7 +252,7 @@ export interface PoolGetDefaultHeaders {
 
 export interface PoolGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolGetDefaultHeaders;
 }
 
@@ -283,7 +282,7 @@ export interface PoolPatchDefaultHeaders {
 
 export interface PoolPatchDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolPatchDefaultHeaders;
 }
 
@@ -313,7 +312,7 @@ export interface PoolDisableAutoScaleDefaultHeaders {
 
 export interface PoolDisableAutoScaleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolDisableAutoScaleDefaultHeaders;
 }
 
@@ -343,7 +342,7 @@ export interface PoolEnableAutoScaleDefaultHeaders {
 
 export interface PoolEnableAutoScaleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolEnableAutoScaleDefaultHeaders;
 }
 
@@ -374,7 +373,7 @@ export interface PoolEvaluateAutoScaleDefaultHeaders {
 
 export interface PoolEvaluateAutoScaleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolEvaluateAutoScaleDefaultHeaders;
 }
 
@@ -404,7 +403,7 @@ export interface PoolResizeDefaultHeaders {
 
 export interface PoolResizeDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolResizeDefaultHeaders;
 }
 
@@ -434,7 +433,7 @@ export interface PoolStopResizeDefaultHeaders {
 
 export interface PoolStopResizeDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolStopResizeDefaultHeaders;
 }
 
@@ -464,7 +463,7 @@ export interface PoolUpdatePropertiesDefaultHeaders {
 
 export interface PoolUpdatePropertiesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolUpdatePropertiesDefaultHeaders;
 }
 
@@ -494,7 +493,7 @@ export interface PoolRemoveNodesDefaultHeaders {
 
 export interface PoolRemoveNodesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & PoolRemoveNodesDefaultHeaders;
 }
 
@@ -524,7 +523,7 @@ export interface AccountListSupportedImagesDefaultHeaders {
 export interface AccountListSupportedImagesDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & AccountListSupportedImagesDefaultHeaders;
 }
 
@@ -549,7 +548,7 @@ export interface AccountListPoolNodeCountsDefaultHeaders {
 
 export interface AccountListPoolNodeCountsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & AccountListPoolNodeCountsDefaultHeaders;
 }
 
@@ -579,7 +578,7 @@ export interface JobGetAllLifetimeStatisticsDefaultHeaders {
 export interface JobGetAllLifetimeStatisticsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobGetAllLifetimeStatisticsDefaultHeaders;
 }
 
@@ -603,7 +602,7 @@ export interface JobDeleteDefaultHeaders {
 
 export interface JobDeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobDeleteDefaultHeaders;
 }
 
@@ -632,7 +631,7 @@ export interface JobGetDefaultHeaders {
 
 export interface JobGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobGetDefaultHeaders;
 }
 
@@ -662,7 +661,7 @@ export interface JobPatchDefaultHeaders {
 
 export interface JobPatchDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobPatchDefaultHeaders;
 }
 
@@ -692,7 +691,7 @@ export interface JobUpdateDefaultHeaders {
 
 export interface JobUpdateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobUpdateDefaultHeaders;
 }
 
@@ -722,7 +721,7 @@ export interface JobDisableDefaultHeaders {
 
 export interface JobDisableDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobDisableDefaultHeaders;
 }
 
@@ -752,7 +751,7 @@ export interface JobEnableDefaultHeaders {
 
 export interface JobEnableDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobEnableDefaultHeaders;
 }
 
@@ -782,7 +781,7 @@ export interface JobTerminateDefaultHeaders {
 
 export interface JobTerminateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobTerminateDefaultHeaders;
 }
 
@@ -812,7 +811,7 @@ export interface JobAddDefaultHeaders {
 
 export interface JobAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobAddDefaultHeaders;
 }
 
@@ -841,7 +840,7 @@ export interface JobListDefaultHeaders {
 
 export interface JobListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobListDefaultHeaders;
 }
 
@@ -870,7 +869,7 @@ export interface JobListFromJobScheduleDefaultHeaders {
 
 export interface JobListFromJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobListFromJobScheduleDefaultHeaders;
 }
 
@@ -901,7 +900,7 @@ export interface JobListPreparationAndReleaseTaskStatusDefaultHeaders {
 export interface JobListPreparationAndReleaseTaskStatusDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders &
     JobListPreparationAndReleaseTaskStatusDefaultHeaders;
 }
@@ -927,7 +926,7 @@ export interface JobGetTaskCountsDefaultHeaders {
 
 export interface JobGetTaskCountsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobGetTaskCountsDefaultHeaders;
 }
 
@@ -955,7 +954,7 @@ export interface CertificateOperationsAddDefaultHeaders {
 
 export interface CertificateOperationsAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CertificateOperationsAddDefaultHeaders;
 }
 
@@ -984,7 +983,7 @@ export interface CertificateOperationsListDefaultHeaders {
 
 export interface CertificateOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CertificateOperationsListDefaultHeaders;
 }
 
@@ -1016,7 +1015,7 @@ export interface CertificateOperationsCancelDeletionDefaultHeaders {
 export interface CertificateOperationsCancelDeletionDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CertificateOperationsCancelDeletionDefaultHeaders;
 }
 
@@ -1045,7 +1044,7 @@ export interface CertificateOperationsDeleteDefaultHeaders {
 export interface CertificateOperationsDeleteDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CertificateOperationsDeleteDefaultHeaders;
 }
 
@@ -1074,7 +1073,7 @@ export interface CertificateOperationsGetDefaultHeaders {
 
 export interface CertificateOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CertificateOperationsGetDefaultHeaders;
 }
 
@@ -1098,7 +1097,7 @@ export interface FileDeleteFromTaskDefaultHeaders {
 
 export interface FileDeleteFromTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & FileDeleteFromTaskDefaultHeaders;
 }
 
@@ -1138,7 +1137,7 @@ export interface FileGetFromTaskDefaultHeaders {
 
 export interface FileGetFromTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & FileGetFromTaskDefaultHeaders;
 }
 
@@ -1176,7 +1175,7 @@ export interface FileGetPropertiesFromTaskDefaultHeaders {
 
 export interface FileGetPropertiesFromTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & FileGetPropertiesFromTaskDefaultHeaders;
 }
 
@@ -1200,7 +1199,7 @@ export interface FileDeleteFromComputeNodeDefaultHeaders {
 
 export interface FileDeleteFromComputeNodeDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & FileDeleteFromComputeNodeDefaultHeaders;
 }
 
@@ -1240,7 +1239,7 @@ export interface FileGetFromComputeNodeDefaultHeaders {
 
 export interface FileGetFromComputeNodeDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & FileGetFromComputeNodeDefaultHeaders;
 }
 
@@ -1280,7 +1279,7 @@ export interface FileGetPropertiesFromComputeNodeDefaultHeaders {
 export interface FileGetPropertiesFromComputeNodeDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & FileGetPropertiesFromComputeNodeDefaultHeaders;
 }
 
@@ -1309,7 +1308,7 @@ export interface FileListFromTaskDefaultHeaders {
 
 export interface FileListFromTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & FileListFromTaskDefaultHeaders;
 }
 
@@ -1338,7 +1337,7 @@ export interface FileListFromComputeNodeDefaultHeaders {
 
 export interface FileListFromComputeNodeDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & FileListFromComputeNodeDefaultHeaders;
 }
 
@@ -1371,7 +1370,7 @@ export interface JobScheduleExistsDefaultHeaders {
 
 export interface JobScheduleExistsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleExistsDefaultHeaders;
 }
 
@@ -1395,7 +1394,7 @@ export interface JobScheduleDeleteDefaultHeaders {
 
 export interface JobScheduleDeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleDeleteDefaultHeaders;
 }
 
@@ -1424,7 +1423,7 @@ export interface JobScheduleGetDefaultHeaders {
 
 export interface JobScheduleGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleGetDefaultHeaders;
 }
 
@@ -1454,7 +1453,7 @@ export interface JobSchedulePatchDefaultHeaders {
 
 export interface JobSchedulePatchDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobSchedulePatchDefaultHeaders;
 }
 
@@ -1484,7 +1483,7 @@ export interface JobScheduleUpdateDefaultHeaders {
 
 export interface JobScheduleUpdateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleUpdateDefaultHeaders;
 }
 
@@ -1514,7 +1513,7 @@ export interface JobScheduleDisableDefaultHeaders {
 
 export interface JobScheduleDisableDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleDisableDefaultHeaders;
 }
 
@@ -1544,7 +1543,7 @@ export interface JobScheduleEnableDefaultHeaders {
 
 export interface JobScheduleEnableDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleEnableDefaultHeaders;
 }
 
@@ -1574,7 +1573,7 @@ export interface JobScheduleTerminateDefaultHeaders {
 
 export interface JobScheduleTerminateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleTerminateDefaultHeaders;
 }
 
@@ -1604,7 +1603,7 @@ export interface JobScheduleAddDefaultHeaders {
 
 export interface JobScheduleAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleAddDefaultHeaders;
 }
 
@@ -1633,7 +1632,7 @@ export interface JobScheduleListDefaultHeaders {
 
 export interface JobScheduleListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & JobScheduleListDefaultHeaders;
 }
 
@@ -1663,7 +1662,7 @@ export interface TaskAddDefaultHeaders {
 
 export interface TaskAddDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskAddDefaultHeaders;
 }
 
@@ -1692,7 +1691,7 @@ export interface TaskListDefaultHeaders {
 
 export interface TaskListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskListDefaultHeaders;
 }
 
@@ -1717,7 +1716,7 @@ export interface TaskAddCollectionDefaultHeaders {
 
 export interface TaskAddCollectionDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskAddCollectionDefaultHeaders;
 }
 
@@ -1741,7 +1740,7 @@ export interface TaskDeleteDefaultHeaders {
 
 export interface TaskDeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskDeleteDefaultHeaders;
 }
 
@@ -1772,7 +1771,7 @@ export interface TaskGetDefaultHeaders {
 
 export interface TaskGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskGetDefaultHeaders;
 }
 
@@ -1802,7 +1801,7 @@ export interface TaskUpdateDefaultHeaders {
 
 export interface TaskUpdateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskUpdateDefaultHeaders;
 }
 
@@ -1831,7 +1830,7 @@ export interface TaskListSubtasksDefaultHeaders {
 
 export interface TaskListSubtasksDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskListSubtasksDefaultHeaders;
 }
 
@@ -1861,7 +1860,7 @@ export interface TaskTerminateDefaultHeaders {
 
 export interface TaskTerminateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskTerminateDefaultHeaders;
 }
 
@@ -1891,7 +1890,7 @@ export interface TaskReactivateDefaultHeaders {
 
 export interface TaskReactivateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TaskReactivateDefaultHeaders;
 }
 
@@ -1922,7 +1921,7 @@ export interface ComputeNodeOperationsAddUserDefaultHeaders {
 export interface ComputeNodeOperationsAddUserDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsAddUserDefaultHeaders;
 }
 
@@ -1948,7 +1947,7 @@ export interface ComputeNodeOperationsDeleteUserDefaultHeaders {
 export interface ComputeNodeOperationsDeleteUserDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsDeleteUserDefaultHeaders;
 }
 
@@ -1980,7 +1979,7 @@ export interface ComputeNodeOperationsUpdateUserDefaultHeaders {
 export interface ComputeNodeOperationsUpdateUserDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsUpdateUserDefaultHeaders;
 }
 
@@ -2009,7 +2008,7 @@ export interface ComputeNodeOperationsGetDefaultHeaders {
 
 export interface ComputeNodeOperationsGetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsGetDefaultHeaders;
 }
 
@@ -2040,7 +2039,7 @@ export interface ComputeNodeOperationsRebootDefaultHeaders {
 export interface ComputeNodeOperationsRebootDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsRebootDefaultHeaders;
 }
 
@@ -2071,7 +2070,7 @@ export interface ComputeNodeOperationsReimageDefaultHeaders {
 export interface ComputeNodeOperationsReimageDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsReimageDefaultHeaders;
 }
 
@@ -2103,7 +2102,7 @@ export interface ComputeNodeOperationsDisableSchedulingDefaultHeaders {
 export interface ComputeNodeOperationsDisableSchedulingDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders &
     ComputeNodeOperationsDisableSchedulingDefaultHeaders;
 }
@@ -2136,7 +2135,7 @@ export interface ComputeNodeOperationsEnableSchedulingDefaultHeaders {
 export interface ComputeNodeOperationsEnableSchedulingDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsEnableSchedulingDefaultHeaders;
 }
 
@@ -2168,7 +2167,7 @@ export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultHeaders {
 export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders &
     ComputeNodeOperationsGetRemoteLoginSettingsDefaultHeaders;
 }
@@ -2201,7 +2200,7 @@ export interface ComputeNodeOperationsGetRemoteDesktopDefaultHeaders {
 export interface ComputeNodeOperationsGetRemoteDesktopDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsGetRemoteDesktopDefaultHeaders;
 }
 
@@ -2229,7 +2228,7 @@ export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultHeaders {
 export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders &
     ComputeNodeOperationsUploadBatchServiceLogsDefaultHeaders;
 }
@@ -2259,7 +2258,7 @@ export interface ComputeNodeOperationsListDefaultHeaders {
 
 export interface ComputeNodeOperationsListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeOperationsListDefaultHeaders;
 }
 
@@ -2290,7 +2289,7 @@ export interface ComputeNodeExtensionOperationsGetDefaultHeaders {
 export interface ComputeNodeExtensionOperationsGetDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeExtensionOperationsGetDefaultHeaders;
 }
 
@@ -2321,6 +2320,6 @@ export interface ComputeNodeExtensionOperationsListDefaultHeaders {
 export interface ComputeNodeExtensionOperationsListDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ComputeNodeExtensionOperationsListDefaultHeaders;
 }

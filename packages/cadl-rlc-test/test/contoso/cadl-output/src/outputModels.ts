@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Paged } from "@azure/core-paging";
+import { ErrorModel } from "@azure-rest/core-client";
+
 /** A widget. */
 export interface WidgetOutput {
   /** The widget name. */
@@ -17,12 +20,6 @@ export interface FakedSharedModelOutput {
   tag: string;
   /** The created date. */
   createdDate: string;
-}
-
-/** A response containing error details. */
-export interface ErrorResponseOutput {
-  /** The error object. */
-  error: ErrorModelOutput;
 }
 
 /** The error object. */
@@ -58,7 +55,7 @@ export interface ResourceOperationStatusOutput {
    */
   status: string;
   /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModelOutput;
+  error?: ErrorModel;
   /** The result of the operation. */
   result?: WidgetOutput;
 }
@@ -74,13 +71,8 @@ export interface OperationStatusOutput {
    */
   status: string;
   /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModelOutput;
+  error?: ErrorModel;
 }
 
 /** Paged collection of Widget items */
-export interface WidgetListOutput {
-  /** The Widget items on this page */
-  value: Array<WidgetOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
+export type WidgetListOutput = Paged<WidgetOutput>;

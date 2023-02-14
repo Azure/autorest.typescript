@@ -11,6 +11,8 @@ export interface Pet {
   tags?: Tag[];
   /** pet status in the store */
   status?: PetStatus;
+  /** The restriction level applied to the cluster's node resource group */
+  petRestrictionLevel?: RestrictionLevel;
 }
 
 export interface Category {
@@ -80,6 +82,24 @@ export enum KnownPetStatus {
  * **sold**
  */
 export type PetStatus = string;
+
+/** Known values of {@link RestrictionLevel} that the service accepts. */
+export enum KnownRestrictionLevel {
+  /** All RBAC permissions are allowed on the managed node resource group */
+  Unrestricted = "Unrestricted",
+  /** Only *\/read RBAC permissions allowed on the managed node resource group */
+  ReadOnly = "ReadOnly"
+}
+
+/**
+ * Defines values for RestrictionLevel. \
+ * {@link KnownRestrictionLevel} can be used interchangeably with RestrictionLevel,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Unrestricted**: All RBAC permissions are allowed on the managed node resource group \
+ * **ReadOnly**: Only *\/read RBAC permissions allowed on the managed node resource group
+ */
+export type RestrictionLevel = string;
 
 /** Known values of {@link OrderStatus} that the service accepts. */
 export enum KnownOrderStatus {

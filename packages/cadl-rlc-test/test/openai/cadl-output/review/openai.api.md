@@ -6,6 +6,7 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -129,20 +130,6 @@ export interface EmbeddingsUsageOutput {
     total_tokens: number;
 }
 
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
-
 // @public (undocumented)
 export interface GetCompletions {
     post(options?: GetCompletionsParameters): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse>;
@@ -177,7 +164,7 @@ export interface GetCompletionsDefaultHeaders {
 // @public (undocumented)
 export interface GetCompletionsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetCompletionsDefaultHeaders;
     // (undocumented)
@@ -214,7 +201,7 @@ export interface GetEmbeddingsDefaultHeaders {
 // @public (undocumented)
 export interface GetEmbeddingsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetEmbeddingsDefaultHeaders;
     // (undocumented)
@@ -223,12 +210,6 @@ export interface GetEmbeddingsDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export type GetEmbeddingsParameters = GetEmbeddingsBodyParam & RequestParameters;
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse): response is GetEmbeddingsDefaultResponse;

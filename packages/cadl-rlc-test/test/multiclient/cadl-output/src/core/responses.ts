@@ -2,12 +2,8 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
-import {
-  ResourceOutput,
-  ErrorResponseOutput,
-  ResourceListOutput,
-} from "./outputModels";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import { ResourceOutput, ResourceListOutput } from "./outputModels";
 
 /** The request has succeeded. */
 export interface CreateOrUpdate200Response extends HttpResponse {
@@ -28,7 +24,7 @@ export interface CreateOrUpdateDefaultHeaders {
 
 export interface CreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
 }
 
@@ -45,7 +41,7 @@ export interface GetDefaultHeaders {
 
 export interface GetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDefaultHeaders;
 }
 
@@ -61,7 +57,7 @@ export interface DeleteDefaultHeaders {
 
 export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteDefaultHeaders;
 }
 
@@ -78,6 +74,6 @@ export interface ListDefaultHeaders {
 
 export interface ListDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListDefaultHeaders;
 }

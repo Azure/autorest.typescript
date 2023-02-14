@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   WidgetOutput,
-  ErrorResponseOutput,
   ResourceOperationStatusOutput,
   OperationStatusOutput,
   WidgetListOutput,
@@ -24,7 +23,7 @@ export interface GetWidgetDefaultHeaders {
 
 export interface GetWidgetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetWidgetDefaultHeaders;
 }
 
@@ -41,7 +40,7 @@ export interface GetWidgetOperationStatusDefaultHeaders {
 
 export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetWidgetOperationStatusDefaultHeaders;
 }
 
@@ -76,7 +75,7 @@ export interface CreateOrUpdateWidgetDefaultHeaders {
 
 export interface CreateOrUpdateWidgetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrUpdateWidgetDefaultHeaders;
 }
 
@@ -99,7 +98,7 @@ export interface DeleteWidgetDefaultHeaders {
 
 export interface DeleteWidgetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteWidgetDefaultHeaders;
 }
 
@@ -116,6 +115,6 @@ export interface ListWidgetsDefaultHeaders {
 
 export interface ListWidgetsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListWidgetsDefaultHeaders;
 }

@@ -1,4 +1,4 @@
-## 1.0.0-beta.10 (2023-02-13)
+## 1.0.0-beta.10 (2023-02-14)
 
 - [Feature] Import cadl-azure-core models from core libraries instead of generating it. Please refer to pr [#1665](https://github.com/Azure/autorest.typescript/pull/1665).
 - [Feature] Support cadl compiler 0.40.0, Please refer to pr [#1750](https://github.com/Azure/autorest.typescript/pull/1750).

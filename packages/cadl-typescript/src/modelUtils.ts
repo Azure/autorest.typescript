@@ -51,6 +51,7 @@ import {
   HttpOperation
 } from "@cadl-lang/rest/http";
 import { getPagedResult, isFixed } from "@azure-tools/cadl-azure-core";
+import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -288,7 +289,6 @@ function isSchemaProperty(program: Program, property: ModelProperty) {
   const statusCodeinfo = isStatusCode(program, property);
   return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
 }
-
 // function getDefaultValue(program: Program, type: Type): any {
 //   switch (type.kind) {
 //     case "String":
@@ -347,6 +347,39 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
+  if (
+    (model.name === "ErrorResponse" ||
+      model.name === "ErrorModel" ||
+      model.name === "Error") &&
+    model.kind === "Model" &&
+    model.namespace?.name === "Foundations" &&
+    model.namespace.namespace?.name === "Core"
+  ) {
+    modelSchema.fromCore = true;
+  }
+
+  if (getPagedResult(program, model)) {
+    const paged = extractPagedMetadataNested(program, model);
+    if (paged && paged.itemsProperty) {
+      const items = paged.itemsProperty as unknown as Model;
+      if (items && items.templateArguments) {
+        const templateName = items.templateArguments
+          ?.map((it) => {
+            switch (it.kind) {
+              case "Model":
+                return it.name;
+              case "String":
+                return it.value;
+              default:
+                return "";
+            }
+          })
+          .join("");
+        modelSchema.alias = `Paged<${templateName}>`;
+        modelSchema.outputAlias = `Paged<${templateName}Output>`;
+      }
+    }
+  }
   modelSchema.properties = {};
   const derivedModels = model.derivedModels.filter(includeDerivedModel);
 

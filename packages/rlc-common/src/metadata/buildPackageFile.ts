@@ -153,12 +153,12 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     autoPublish: false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "1.0.0-beta.10",
+      "@azure-rest/core-client": "^1.1.0",
       "@azure/core-rest-pipeline": "^1.8.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
       ...(hasPaging && {
-        "@azure/core-paging": "^1.2.0"
+        "@azure/core-paging": "^1.5.0"
       }),
       ...(hasLRO && {
         "@azure/core-lro": "^2.5.0",

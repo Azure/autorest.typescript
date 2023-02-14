@@ -2,11 +2,10 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   ProductOutput,
   ProductListOutput,
-  ErrorResponseOutput,
   LroProductOutput,
 } from "./outputModels";
 
@@ -35,7 +34,7 @@ export interface GetPagesDefaultHeaders {
 
 export interface GetPagesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetPagesDefaultHeaders;
 }
 

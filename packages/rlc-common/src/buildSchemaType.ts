@@ -4,6 +4,7 @@
 import { Project } from "ts-morph";
 import * as path from "path";
 import {
+  buildObjectAliases,
   buildObjectInterfaces,
   buildPolymorphicAliases
 } from "./buildObjectTypes.js";
@@ -41,15 +42,37 @@ export function generateModelFiles(
     importedModels,
     schemaContext
   );
+
   const objectTypeAliases = buildPolymorphicAliases(model, schemaContext);
 
-  if (objectTypeAliases.length || objectsDefinitions.length) {
+  const objectAliases = buildObjectAliases(model, importedModels, schemaContext);
+  if (objectTypeAliases.length || objectsDefinitions.length || objectAliases.length) {
     const modelsFile = project.createSourceFile(filePath, undefined, {
       overwrite: true
     });
 
     modelsFile.addInterfaces(objectsDefinitions);
     modelsFile.addTypeAliases(objectTypeAliases);
+    modelsFile.addTypeAliases(objectAliases);
+    if (importedModels.has("Paged")) {
+      modelsFile.addImportDeclarations([
+        {
+          namedImports: ["Paged"],
+          moduleSpecifier: "@azure/core-paging"
+        }
+      ]);
+      importedModels.delete("Paged");
+    }
+    if (importedModels.size > 0) {
+      modelsFile.addImportDeclarations([
+        {
+          namedImports: [
+            ...Array.from(importedModels || [])
+          ],
+          moduleSpecifier: "@azure-rest/core-client"
+        }
+      ]);
+    }
     return { path: filePath, content: modelsFile.getFullText() };
   }
   return undefined;

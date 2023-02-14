@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Paged } from "@azure/core-paging";
+import { ErrorModel } from "@azure-rest/core-client";
+
 /** The details of a project. */
 export interface ProjectOutput {
   /** The project name. */
@@ -30,34 +33,6 @@ export interface ProjectOutput {
   readonly lastDeployedDateTime: string;
 }
 
-/** A response containing error details. */
-export interface ErrorResponseOutput {
-  /** The error object. */
-  error: ErrorModelOutput;
-}
-
-/** The error object. */
-export interface ErrorModelOutput {
-  /** One of a server-defined set of error codes. */
-  code: string;
-  /** A human-readable representation of the error. */
-  message: string;
-  /** The target of the error. */
-  target?: string;
-  /** An array of details about specific errors that led to this reported error. */
-  details: Array<ErrorModelOutput>;
-  /** An object containing more specific information than the current object about the error. */
-  innererror?: InnerErrorOutput;
-}
-
-/** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
-export interface InnerErrorOutput {
-  /** One of a server-defined set of error codes. */
-  code: string;
-  /** Inner error. */
-  innererror?: InnerErrorOutput;
-}
-
 /** Provides status details for long running operations. */
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
@@ -69,32 +44,16 @@ export interface OperationStatusOutput {
    */
   status: string;
   /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModelOutput;
+  error?: ErrorModel;
 }
 
 /** Provides the most common query parameters for list operations. */
 export interface StandardListQueryParametersOutput {}
 
-/** Paged collection of Project items */
-export interface ProjectListOutput {
-  /** The Project items on this page */
-  value: Array<ProjectOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
 /** The details of a project deployment. */
 export interface DeploymentOutput {
   /** The name of the deployment. */
   readonly name: string;
-}
-
-/** Paged collection of Deployment items */
-export interface DeploymentListOutput {
-  /** The Deployment items on this page */
-  value: Array<DeploymentOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
 }
 
 /** The details of a deployment job. */
@@ -119,7 +78,7 @@ export interface DeploymentJobOutput {
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
-  errors: ErrorModelOutput;
+  errors: ErrorModel;
   /** The job ID. */
   readonly id: string;
 }
@@ -154,17 +113,9 @@ export interface SwapDeploymentsJobOutput {
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
-  errors: ErrorModelOutput;
+  errors: ErrorModel;
   /** The job ID. */
   readonly id: string;
-}
-
-/** A collection of SupportedLanguage resources. */
-export interface PagedSupportedLanguageOutput {
-  /** The SupportedLanguage items on this page */
-  value: Array<SupportedLanguageOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
 }
 
 /** Represents a supported language. */
@@ -175,14 +126,6 @@ export interface SupportedLanguageOutput {
   languageCode: string;
 }
 
-/** A collection of TrainingConfigVersion resources. */
-export interface PagedTrainingConfigVersionOutput {
-  /** The TrainingConfigVersion items on this page */
-  value: Array<TrainingConfigVersionOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
 /** Represents a training config version. */
 export interface TrainingConfigVersionOutput {
   /** Represents the version of the config. */
@@ -190,3 +133,13 @@ export interface TrainingConfigVersionOutput {
   /** Represents the training config version expiration date. */
   modelExpirationDate: string;
 }
+
+/** Paged collection of Project items */
+export type ProjectListOutput = Paged<ProjectOutput>;
+/** Paged collection of Deployment items */
+export type DeploymentListOutput = Paged<DeploymentOutput>;
+/** A collection of SupportedLanguage resources. */
+export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
+/** A collection of TrainingConfigVersion resources. */
+export type PagedTrainingConfigVersionOutput =
+  Paged<TrainingConfigVersionOutput>;

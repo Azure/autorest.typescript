@@ -20,10 +20,12 @@ import {
   getResponseTypeName
 } from "./helpers/nameConstructors.js";
 
+let hasErrorResponse = false;
 export function buildResponseTypes(model: RLCModel) {
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `responses.ts`);
+  hasErrorResponse = false;
   const responsesFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
   });
@@ -86,19 +88,26 @@ export function buildResponseTypes(model: RLCModel) {
       }
     ]);
   }
+  const namedImports = ["HttpResponse"];
+  if (hasErrorResponse) {
+    namedImports.push("ErrorResponse");
+  }
   responsesFile.addImportDeclarations([
     {
-      namedImports: ["HttpResponse"],
+      namedImports,
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);
 
   if (model.importSet?.has(ImportKind.ResponseOutput)) {
+    const modelNamedImports = Array.from(
+      model.importSet.get(ImportKind.ResponseOutput) || []
+    ).filter((modelName) => {
+      return !(modelName === "ErrorResponseOutput" && hasErrorResponse);
+    });
     responsesFile.addImportDeclarations([
       {
-        namedImports: [
-          ...Array.from(model.importSet.get(ImportKind.ResponseOutput) || [])
-        ],
+        namedImports: modelNamedImports,
         moduleSpecifier: "./outputModels"
       }
     ]);
@@ -149,9 +158,17 @@ function getResponseInterfaceProperties(
 
   if (response.body) {
     const description = response.body.description;
+    let type = response.body.type;
+    if (
+      response.body.type === "ErrorResponseOutput" &&
+      response.body.fromCore
+    ) {
+      type = "ErrorResponse";
+      hasErrorResponse = true;
+    }
     responseProperties.push({
       name: "body",
-      type: response.body.type,
+      type,
       kind: StructureKind.PropertySignature,
       ...(description && { docs: [{ description }] })
     });

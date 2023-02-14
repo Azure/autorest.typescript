@@ -49,6 +49,14 @@ export function transformSchemas(
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
+      if (
+        resp.type.kind === "Model" &&
+        resp.type.name === "ErrorResponse" &&
+        resp.type.namespace?.name === "Foundations" &&
+        resp.type.namespace.namespace?.name === "Core"
+      ) {
+        continue;
+      }
       for (const resps of resp.responses) {
         const respModel = resps.body;
         if (!respModel) {
@@ -124,6 +132,9 @@ export function transformSchemas(
           (!program.stateMap(modelKey).get(prop[1].type) ||
             !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
         ) {
+          if (prop[1].type.name === "Error") {
+            continue;
+          }
           getGeneratedModels(prop[1].type, context);
         }
       }

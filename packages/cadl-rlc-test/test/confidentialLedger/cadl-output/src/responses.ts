@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   CollectionOutput,
-  ErrorResponseOutput,
   PagedLedgerEntriesOutput,
   LedgerEntryOutput,
   TransactionReceiptOutput,
@@ -26,7 +25,7 @@ export interface ListCollectionsDefaultHeaders {
 
 export interface ListCollectionsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListCollectionsDefaultHeaders;
 }
 
@@ -42,7 +41,7 @@ export interface GetEnclaveQuotesDefaultHeaders {
 
 export interface GetEnclaveQuotesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetEnclaveQuotesDefaultHeaders;
 }
 
@@ -58,7 +57,7 @@ export interface GetConstitutionDefaultHeaders {
 
 export interface GetConstitutionDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetConstitutionDefaultHeaders;
 }
 
@@ -74,7 +73,7 @@ export interface GetConsortiumMembersDefaultHeaders {
 
 export interface GetConsortiumMembersDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetConsortiumMembersDefaultHeaders;
 }
 
@@ -91,7 +90,7 @@ export interface ListLedgerEntriesDefaultHeaders {
 
 export interface ListLedgerEntriesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListLedgerEntriesDefaultHeaders;
 }
 
@@ -112,7 +111,7 @@ export interface CreateLedgerEntryDefaultHeaders {
 
 export interface CreateLedgerEntryDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateLedgerEntryDefaultHeaders;
 }
 
@@ -129,7 +128,7 @@ export interface GetLedgerEntryDefaultHeaders {
 
 export interface GetLedgerEntryDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetLedgerEntryDefaultHeaders;
 }
 
@@ -146,7 +145,7 @@ export interface GetReceiptDefaultHeaders {
 
 export interface GetReceiptDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetReceiptDefaultHeaders;
 }
 
@@ -163,7 +162,7 @@ export interface GetTransactionStatusDefaultHeaders {
 
 export interface GetTransactionStatusDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetTransactionStatusDefaultHeaders;
 }
 
@@ -180,7 +179,7 @@ export interface GetCurrentLedgerEntryDefaultHeaders {
 
 export interface GetCurrentLedgerEntryDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetCurrentLedgerEntryDefaultHeaders;
 }
 
@@ -196,7 +195,7 @@ export interface DeleteUserDefaultHeaders {
 
 export interface DeleteUserDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteUserDefaultHeaders;
 }
 
@@ -213,7 +212,7 @@ export interface GetUserDefaultHeaders {
 
 export interface GetUserDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetUserDefaultHeaders;
 }
 
@@ -236,6 +235,6 @@ export interface CreateOrUpdateUserDefaultHeaders {
 
 export interface CreateOrUpdateUserDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrUpdateUserDefaultHeaders;
 }

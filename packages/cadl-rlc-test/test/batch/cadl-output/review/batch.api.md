@@ -6,7 +6,9 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -44,7 +46,7 @@ export interface AccountListPoolNodeCountsDefaultHeaders {
 // @public (undocumented)
 export interface AccountListPoolNodeCountsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & AccountListPoolNodeCountsDefaultHeaders;
     // (undocumented)
@@ -111,7 +113,7 @@ export interface AccountListSupportedImagesDefaultHeaders {
 // @public (undocumented)
 export interface AccountListSupportedImagesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & AccountListSupportedImagesDefaultHeaders;
     // (undocumented)
@@ -190,7 +192,7 @@ export interface ApplicationOperationsGetDefaultHeaders {
 // @public (undocumented)
 export interface ApplicationOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ApplicationOperationsGetDefaultHeaders;
     // (undocumented)
@@ -231,7 +233,7 @@ export interface ApplicationOperationsListDefaultHeaders {
 // @public (undocumented)
 export interface ApplicationOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ApplicationOperationsListDefaultHeaders;
     // (undocumented)
@@ -753,7 +755,7 @@ export interface CertificateOperationsAddDefaultHeaders {
 // @public (undocumented)
 export interface CertificateOperationsAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & CertificateOperationsAddDefaultHeaders;
     // (undocumented)
@@ -817,7 +819,7 @@ export interface CertificateOperationsCancelDeletionDefaultHeaders {
 // @public (undocumented)
 export interface CertificateOperationsCancelDeletionDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & CertificateOperationsCancelDeletionDefaultHeaders;
     // (undocumented)
@@ -881,7 +883,7 @@ export interface CertificateOperationsDeleteDefaultHeaders {
 // @public (undocumented)
 export interface CertificateOperationsDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & CertificateOperationsDeleteDefaultHeaders;
     // (undocumented)
@@ -941,7 +943,7 @@ export interface CertificateOperationsGetDefaultHeaders {
 // @public (undocumented)
 export interface CertificateOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & CertificateOperationsGetDefaultHeaders;
     // (undocumented)
@@ -1002,7 +1004,7 @@ export interface CertificateOperationsListDefaultHeaders {
 // @public (undocumented)
 export interface CertificateOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & CertificateOperationsListDefaultHeaders;
     // (undocumented)
@@ -1146,7 +1148,7 @@ export interface ComputeNodeExtensionOperationsGetDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeExtensionOperationsGetDefaultHeaders;
     // (undocumented)
@@ -1212,7 +1214,7 @@ export interface ComputeNodeExtensionOperationsListDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeExtensionOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeExtensionOperationsListDefaultHeaders;
     // (undocumented)
@@ -1325,7 +1327,7 @@ export interface ComputeNodeOperationsAddUserDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsAddUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsAddUserDefaultHeaders;
     // (undocumented)
@@ -1387,7 +1389,7 @@ export interface ComputeNodeOperationsDeleteUserDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsDeleteUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsDeleteUserDefaultHeaders;
     // (undocumented)
@@ -1456,7 +1458,7 @@ export interface ComputeNodeOperationsDisableSchedulingDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsDisableSchedulingDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsDisableSchedulingDefaultHeaders;
     // (undocumented)
@@ -1520,7 +1522,7 @@ export interface ComputeNodeOperationsEnableSchedulingDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsEnableSchedulingDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsEnableSchedulingDefaultHeaders;
     // (undocumented)
@@ -1585,7 +1587,7 @@ export interface ComputeNodeOperationsGetDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsGetDefaultHeaders;
     // (undocumented)
@@ -1650,7 +1652,7 @@ export interface ComputeNodeOperationsGetRemoteDesktopDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteDesktopDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsGetRemoteDesktopDefaultHeaders;
     // (undocumented)
@@ -1715,7 +1717,7 @@ export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsGetRemoteLoginSettingsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsGetRemoteLoginSettingsDefaultHeaders;
     // (undocumented)
@@ -1780,7 +1782,7 @@ export interface ComputeNodeOperationsListDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsListDefaultHeaders;
     // (undocumented)
@@ -1852,7 +1854,7 @@ export interface ComputeNodeOperationsRebootDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsRebootDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsRebootDefaultHeaders;
     // (undocumented)
@@ -1921,7 +1923,7 @@ export interface ComputeNodeOperationsReimageDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsReimageDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsReimageDefaultHeaders;
     // (undocumented)
@@ -1985,7 +1987,7 @@ export interface ComputeNodeOperationsUpdateUserDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsUpdateUserDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsUpdateUserDefaultHeaders;
     // (undocumented)
@@ -2053,7 +2055,7 @@ export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultHeaders {
 // @public (undocumented)
 export interface ComputeNodeOperationsUploadBatchServiceLogsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ComputeNodeOperationsUploadBatchServiceLogsDefaultHeaders;
     // (undocumented)
@@ -2226,20 +2228,6 @@ export interface ErrorMessageOutput {
 }
 
 // @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
-
-// @public
 export interface ExitCodeMapping {
     code: number;
     exitOptions: ExitOptions;
@@ -2324,7 +2312,7 @@ export interface FileDeleteFromComputeNodeDefaultHeaders {
 // @public (undocumented)
 export interface FileDeleteFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & FileDeleteFromComputeNodeDefaultHeaders;
     // (undocumented)
@@ -2388,7 +2376,7 @@ export interface FileDeleteFromTaskDefaultHeaders {
 // @public (undocumented)
 export interface FileDeleteFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & FileDeleteFromTaskDefaultHeaders;
     // (undocumented)
@@ -2453,7 +2441,7 @@ export interface FileGetFromComputeNodeDefaultHeaders {
 // @public (undocumented)
 export interface FileGetFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & FileGetFromComputeNodeDefaultHeaders;
     // (undocumented)
@@ -2520,7 +2508,7 @@ export interface FileGetFromTaskDefaultHeaders {
 // @public (undocumented)
 export interface FileGetFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & FileGetFromTaskDefaultHeaders;
     // (undocumented)
@@ -2586,7 +2574,7 @@ export interface FileGetPropertiesFromComputeNodeDefaultHeaders {
 // @public (undocumented)
 export interface FileGetPropertiesFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & FileGetPropertiesFromComputeNodeDefaultHeaders;
     // (undocumented)
@@ -2651,7 +2639,7 @@ export interface FileGetPropertiesFromTaskDefaultHeaders {
 // @public (undocumented)
 export interface FileGetPropertiesFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & FileGetPropertiesFromTaskDefaultHeaders;
     // (undocumented)
@@ -2718,7 +2706,7 @@ export interface FileListFromComputeNodeDefaultHeaders {
 // @public (undocumented)
 export interface FileListFromComputeNodeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & FileListFromComputeNodeDefaultHeaders;
     // (undocumented)
@@ -2786,7 +2774,7 @@ export interface FileListFromTaskDefaultHeaders {
 // @public (undocumented)
 export interface FileListFromTaskDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & FileListFromTaskDefaultHeaders;
     // (undocumented)
@@ -2910,12 +2898,6 @@ export interface InboundNATPoolOutput {
     name: string;
     networkSecurityGroupRules?: Array<NetworkSecurityGroupRuleOutput>;
     protocol: string;
-}
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
 }
 
 // @public
@@ -3197,7 +3179,7 @@ export interface JobAddDefaultHeaders {
 // @public (undocumented)
 export interface JobAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobAddDefaultHeaders;
     // (undocumented)
@@ -3273,7 +3255,7 @@ export interface JobDeleteDefaultHeaders {
 // @public (undocumented)
 export interface JobDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobDeleteDefaultHeaders;
     // (undocumented)
@@ -3346,7 +3328,7 @@ export interface JobDisableDefaultHeaders {
 // @public (undocumented)
 export interface JobDisableDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobDisableDefaultHeaders;
     // (undocumented)
@@ -3414,7 +3396,7 @@ export interface JobEnableDefaultHeaders {
 // @public (undocumented)
 export interface JobEnableDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobEnableDefaultHeaders;
     // (undocumented)
@@ -3519,7 +3501,7 @@ export interface JobGetAllLifetimeStatisticsDefaultHeaders {
 // @public (undocumented)
 export interface JobGetAllLifetimeStatisticsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobGetAllLifetimeStatisticsDefaultHeaders;
     // (undocumented)
@@ -3561,7 +3543,7 @@ export interface JobGetDefaultHeaders {
 // @public (undocumented)
 export interface JobGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobGetDefaultHeaders;
     // (undocumented)
@@ -3630,7 +3612,7 @@ export interface JobGetTaskCountsDefaultHeaders {
 // @public (undocumented)
 export interface JobGetTaskCountsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobGetTaskCountsDefaultHeaders;
     // (undocumented)
@@ -3690,7 +3672,7 @@ export interface JobListDefaultHeaders {
 // @public (undocumented)
 export interface JobListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobListDefaultHeaders;
     // (undocumented)
@@ -3728,7 +3710,7 @@ export interface JobListFromJobScheduleDefaultHeaders {
 // @public (undocumented)
 export interface JobListFromJobScheduleDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobListFromJobScheduleDefaultHeaders;
     // (undocumented)
@@ -3813,7 +3795,7 @@ export interface JobListPreparationAndReleaseTaskStatusDefaultHeaders {
 // @public (undocumented)
 export interface JobListPreparationAndReleaseTaskStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobListPreparationAndReleaseTaskStatusDefaultHeaders;
     // (undocumented)
@@ -3943,7 +3925,7 @@ export interface JobPatchDefaultHeaders {
 // @public (undocumented)
 export interface JobPatchDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobPatchDefaultHeaders;
     // (undocumented)
@@ -4104,7 +4086,7 @@ export interface JobScheduleAddDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleAddDefaultHeaders;
     // (undocumented)
@@ -4160,7 +4142,7 @@ export interface JobScheduleDeleteDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleDeleteDefaultHeaders;
     // (undocumented)
@@ -4228,7 +4210,7 @@ export interface JobScheduleDisableDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleDisableDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleDisableDefaultHeaders;
     // (undocumented)
@@ -4296,7 +4278,7 @@ export interface JobScheduleEnableDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleEnableDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleEnableDefaultHeaders;
     // (undocumented)
@@ -4387,7 +4369,7 @@ export interface JobScheduleExistsDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleExistsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleExistsDefaultHeaders;
     // (undocumented)
@@ -4451,7 +4433,7 @@ export interface JobScheduleGetDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleGetDefaultHeaders;
     // (undocumented)
@@ -4517,7 +4499,7 @@ export interface JobScheduleListDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleListDefaultHeaders;
     // (undocumented)
@@ -4585,7 +4567,7 @@ export interface JobSchedulePatchDefaultHeaders {
 // @public (undocumented)
 export interface JobSchedulePatchDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobSchedulePatchDefaultHeaders;
     // (undocumented)
@@ -4689,7 +4671,7 @@ export interface JobScheduleTerminateDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleTerminateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleTerminateDefaultHeaders;
     // (undocumented)
@@ -4757,7 +4739,7 @@ export interface JobScheduleUpdateDefaultHeaders {
 // @public (undocumented)
 export interface JobScheduleUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobScheduleUpdateDefaultHeaders;
     // (undocumented)
@@ -4919,7 +4901,7 @@ export interface JobTerminateDefaultHeaders {
 // @public (undocumented)
 export interface JobTerminateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobTerminateDefaultHeaders;
     // (undocumented)
@@ -4987,7 +4969,7 @@ export interface JobUpdateDefaultHeaders {
 // @public (undocumented)
 export interface JobUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & JobUpdateDefaultHeaders;
     // (undocumented)
@@ -5349,7 +5331,7 @@ export interface PoolAddDefaultHeaders {
 // @public (undocumented)
 export interface PoolAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolAddDefaultHeaders;
     // (undocumented)
@@ -5413,7 +5395,7 @@ export interface PoolDeleteDefaultHeaders {
 // @public (undocumented)
 export interface PoolDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolDeleteDefaultHeaders;
     // (undocumented)
@@ -5481,7 +5463,7 @@ export interface PoolDisableAutoScaleDefaultHeaders {
 // @public (undocumented)
 export interface PoolDisableAutoScaleDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolDisableAutoScaleDefaultHeaders;
     // (undocumented)
@@ -5550,7 +5532,7 @@ export interface PoolEnableAutoScaleDefaultHeaders {
 // @public (undocumented)
 export interface PoolEnableAutoScaleDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolEnableAutoScaleDefaultHeaders;
     // (undocumented)
@@ -5635,7 +5617,7 @@ export interface PoolEvaluateAutoScaleDefaultHeaders {
 // @public (undocumented)
 export interface PoolEvaluateAutoScaleDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolEvaluateAutoScaleDefaultHeaders;
     // (undocumented)
@@ -5683,7 +5665,7 @@ export interface PoolExistsDefaultHeaders {
 // @public (undocumented)
 export interface PoolExistsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolExistsDefaultHeaders;
     // (undocumented)
@@ -5770,7 +5752,7 @@ export interface PoolGetAllLifetimeStatisticsDefaultHeaders {
 // @public (undocumented)
 export interface PoolGetAllLifetimeStatisticsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolGetAllLifetimeStatisticsDefaultHeaders;
     // (undocumented)
@@ -5812,7 +5794,7 @@ export interface PoolGetDefaultHeaders {
 // @public (undocumented)
 export interface PoolGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolGetDefaultHeaders;
     // (undocumented)
@@ -5890,7 +5872,7 @@ export interface PoolListDefaultHeaders {
 // @public (undocumented)
 export interface PoolListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolListDefaultHeaders;
     // (undocumented)
@@ -5949,7 +5931,7 @@ export interface PoolListUsageMetricsDefaultHeaders {
 // @public (undocumented)
 export interface PoolListUsageMetricsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolListUsageMetricsDefaultHeaders;
     // (undocumented)
@@ -6002,7 +5984,7 @@ export interface PoolPatchDefaultHeaders {
 // @public (undocumented)
 export interface PoolPatchDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolPatchDefaultHeaders;
     // (undocumented)
@@ -6075,7 +6057,7 @@ export interface PoolRemoveNodesDefaultHeaders {
 // @public (undocumented)
 export interface PoolRemoveNodesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolRemoveNodesDefaultHeaders;
     // (undocumented)
@@ -6148,7 +6130,7 @@ export interface PoolResizeDefaultHeaders {
 // @public (undocumented)
 export interface PoolResizeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolResizeDefaultHeaders;
     // (undocumented)
@@ -6285,7 +6267,7 @@ export interface PoolStopResizeDefaultHeaders {
 // @public (undocumented)
 export interface PoolStopResizeDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolStopResizeDefaultHeaders;
     // (undocumented)
@@ -6358,7 +6340,7 @@ export interface PoolUpdatePropertiesDefaultHeaders {
 // @public (undocumented)
 export interface PoolUpdatePropertiesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & PoolUpdatePropertiesDefaultHeaders;
     // (undocumented)
@@ -6393,10 +6375,7 @@ export interface PoolUpdatePropertiesQueryParamProperties {
 }
 
 // @public
-export interface PoolUsageMetricsListOutput {
-    nextLink?: string;
-    value: Array<PoolUsageMetricsOutput>;
-}
+export type PoolUsageMetricsListOutput = Paged<PoolUsageMetricsOutput>;
 
 // @public
 export interface PoolUsageMetricsOutput {
@@ -6689,7 +6668,7 @@ export interface TaskAddCollectionDefaultHeaders {
 // @public (undocumented)
 export interface TaskAddCollectionDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskAddCollectionDefaultHeaders;
     // (undocumented)
@@ -6736,7 +6715,7 @@ export interface TaskAddDefaultHeaders {
 // @public (undocumented)
 export interface TaskAddDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskAddDefaultHeaders;
     // (undocumented)
@@ -6868,7 +6847,7 @@ export interface TaskDeleteDefaultHeaders {
 // @public (undocumented)
 export interface TaskDeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskDeleteDefaultHeaders;
     // (undocumented)
@@ -6989,7 +6968,7 @@ export interface TaskGetDefaultHeaders {
 // @public (undocumented)
 export interface TaskGetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskGetDefaultHeaders;
     // (undocumented)
@@ -7077,7 +7056,7 @@ export interface TaskListDefaultHeaders {
 // @public (undocumented)
 export interface TaskListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskListDefaultHeaders;
     // (undocumented)
@@ -7146,7 +7125,7 @@ export interface TaskListSubtasksDefaultHeaders {
 // @public (undocumented)
 export interface TaskListSubtasksDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskListSubtasksDefaultHeaders;
     // (undocumented)
@@ -7211,7 +7190,7 @@ export interface TaskReactivateDefaultHeaders {
 // @public (undocumented)
 export interface TaskReactivateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskReactivateDefaultHeaders;
     // (undocumented)
@@ -7328,7 +7307,7 @@ export interface TaskTerminateDefaultHeaders {
 // @public (undocumented)
 export interface TaskTerminateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskTerminateDefaultHeaders;
     // (undocumented)
@@ -7396,7 +7375,7 @@ export interface TaskUpdateDefaultHeaders {
 // @public (undocumented)
 export interface TaskUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TaskUpdateDefaultHeaders;
     // (undocumented)

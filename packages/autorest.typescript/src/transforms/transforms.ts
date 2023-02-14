@@ -48,7 +48,10 @@ function extractProperties(
         choice?.choiceType?.type ?? SchemaType.String,
         false
       ),
-      description: metadata.description
+      // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
+      description: (metadata.description || "")
+        .replace(/^\//g, "\\/")
+        .replace(/([^\\])(\/)/g, "$1\\/")
     };
   });
 }
