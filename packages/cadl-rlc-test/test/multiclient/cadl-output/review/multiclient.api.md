@@ -6,7 +6,9 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -93,7 +95,7 @@ interface CreateOrUpdateDefaultHeaders {
 // @public (undocumented)
 interface CreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
     // (undocumented)
@@ -142,7 +144,7 @@ interface DeleteDefaultHeaders {
 // @public (undocumented)
 interface DeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & DeleteDefaultHeaders;
     // (undocumented)
@@ -174,20 +176,6 @@ interface DeleteWithHeaders204Response extends HttpResponse {
 
 // @public (undocumented)
 type DeleteWithHeadersParameters = RequestParameters;
-
-// @public
-interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
 
 // @public
 interface Get200Response extends HttpResponse {
@@ -241,7 +229,7 @@ interface GetDefaultHeaders {
 // @public (undocumented)
 interface GetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetDefaultHeaders;
     // (undocumented)
@@ -256,12 +244,6 @@ type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
 
 // @public (undocumented)
 type GetParameters = RequestParameters;
-
-// @public
-interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 interface List {
@@ -284,7 +266,7 @@ interface ListDefaultHeaders {
 // @public (undocumented)
 interface ListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ListDefaultHeaders;
     // (undocumented)
@@ -303,9 +285,6 @@ declare namespace Models {
 declare namespace OutputModels {
     export {
         ResourceOutput,
-        ErrorResponseOutput,
-        ErrorModelOutput,
-        InnerErrorOutput,
         ResourceListOutput
     }
 }
@@ -371,10 +350,7 @@ interface Resource {
 }
 
 // @public
-interface ResourceListOutput {
-    nextLink?: string;
-    value: Array<ResourceOutput>;
-}
+type ResourceListOutput = Paged<ResourceOutput>;
 
 // @public (undocumented)
 interface ResourceOutput {

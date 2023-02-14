@@ -7,9 +7,12 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
+import { ErrorModel } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -71,7 +74,7 @@ export interface CreateOrUpdateDefaultHeaders {
 // @public (undocumented)
 export interface CreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
     // (undocumented)
@@ -109,7 +112,7 @@ export interface DeleteDefaultHeaders {
 // @public (undocumented)
 export interface DeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & DeleteDefaultHeaders;
     // (undocumented)
@@ -139,7 +142,7 @@ export interface DeleteDeploymentDefaultHeaders {
 // @public (undocumented)
 export interface DeleteDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & DeleteDeploymentDefaultHeaders;
     // (undocumented)
@@ -159,7 +162,7 @@ export interface Deployment {
 // @public
 export interface DeploymentJobOutput {
     readonly createdDateTime: string;
-    errors: ErrorModelOutput;
+    errors: ErrorModel;
     readonly expirationDateTime: string;
     readonly id: string;
     jobId: string;
@@ -169,10 +172,7 @@ export interface DeploymentJobOutput {
 }
 
 // @public
-export interface DeploymentListOutput {
-    nextLink?: string;
-    value: Array<DeploymentOutput>;
-}
+export type DeploymentListOutput = Paged<DeploymentOutput>;
 
 // @public
 export interface DeploymentOutput {
@@ -222,7 +222,7 @@ export interface DeployProjectDefaultHeaders {
 // @public (undocumented)
 export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & DeployProjectDefaultHeaders;
     // (undocumented)
@@ -231,20 +231,6 @@ export interface DeployProjectDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
 
 // @public (undocumented)
 export interface Export {
@@ -272,7 +258,7 @@ export interface ExportDefaultHeaders {
 // @public (undocumented)
 export interface ExportDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ExportDefaultHeaders;
     // (undocumented)
@@ -312,7 +298,7 @@ export interface GetDefaultHeaders {
 // @public (undocumented)
 export interface GetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetDefaultHeaders;
     // (undocumented)
@@ -342,7 +328,7 @@ export interface GetDeploymentDefaultHeaders {
 // @public (undocumented)
 export interface GetDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetDeploymentDefaultHeaders;
     // (undocumented)
@@ -373,7 +359,7 @@ export interface GetDeploymentStatusDefaultHeaders {
 // @public (undocumented)
 export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetDeploymentStatusDefaultHeaders;
     // (undocumented)
@@ -416,7 +402,7 @@ export interface GetSupportedLanguagesDefaultHeaders {
 // @public (undocumented)
 export interface GetSupportedLanguagesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetSupportedLanguagesDefaultHeaders;
     // (undocumented)
@@ -460,7 +446,7 @@ export interface GetSwapDeploymentsStatusDefaultHeaders {
 // @public (undocumented)
 export interface GetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetSwapDeploymentsStatusDefaultHeaders;
     // (undocumented)
@@ -496,7 +482,7 @@ export interface ImportxDefaultHeaders {
 // @public (undocumented)
 export interface ImportxDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ImportxDefaultHeaders;
     // (undocumented)
@@ -505,12 +491,6 @@ export interface ImportxDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export type ImportxParameters = RequestParameters;
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
@@ -587,7 +567,7 @@ export interface ListDeploymentsDefaultHeaders {
 // @public (undocumented)
 export interface ListDeploymentsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ListDeploymentsDefaultHeaders;
     // (undocumented)
@@ -618,7 +598,7 @@ export interface ListProjectsDefaultHeaders {
 // @public (undocumented)
 export interface ListProjectsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ListProjectsDefaultHeaders;
     // (undocumented)
@@ -649,7 +629,7 @@ export interface ListTrainingConfigVersionsDefaultHeaders {
 // @public (undocumented)
 export interface ListTrainingConfigVersionsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ListTrainingConfigVersionsDefaultHeaders;
     // (undocumented)
@@ -679,22 +659,16 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
 
 // @public
 export interface OperationStatusOutput {
-    error?: ErrorModelOutput;
+    error?: ErrorModel;
     id: string;
     status: string;
 }
 
 // @public
-export interface PagedSupportedLanguageOutput {
-    nextLink?: string;
-    value: Array<SupportedLanguageOutput>;
-}
+export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
 
 // @public
-export interface PagedTrainingConfigVersionOutput {
-    nextLink?: string;
-    value: Array<TrainingConfigVersionOutput>;
-}
+export type PagedTrainingConfigVersionOutput = Paged<TrainingConfigVersionOutput>;
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -722,10 +696,7 @@ export interface Project {
 }
 
 // @public
-export interface ProjectListOutput {
-    nextLink?: string;
-    value: Array<ProjectOutput>;
-}
+export type ProjectListOutput = Paged<ProjectOutput>;
 
 // @public
 export interface ProjectOutput {
@@ -802,7 +773,7 @@ export interface SwapDeploymentsDefaultHeaders {
 // @public (undocumented)
 export interface SwapDeploymentsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & SwapDeploymentsDefaultHeaders;
     // (undocumented)
@@ -812,7 +783,7 @@ export interface SwapDeploymentsDefaultResponse extends HttpResponse {
 // @public
 export interface SwapDeploymentsJobOutput {
     readonly createdDateTime: string;
-    errors: ErrorModelOutput;
+    errors: ErrorModel;
     readonly expirationDateTime: string;
     readonly id: string;
     jobId: string;
@@ -861,7 +832,7 @@ export interface TrainDefaultHeaders {
 // @public (undocumented)
 export interface TrainDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & TrainDefaultHeaders;
     // (undocumented)

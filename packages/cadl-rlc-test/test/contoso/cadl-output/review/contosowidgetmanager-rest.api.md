@@ -7,8 +7,11 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
+import { ErrorModel } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -68,7 +71,7 @@ export interface CreateOrUpdateWidgetDefaultHeaders {
 // @public (undocumented)
 export interface CreateOrUpdateWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & CreateOrUpdateWidgetDefaultHeaders;
     // (undocumented)
@@ -106,7 +109,7 @@ export interface DeleteWidgetDefaultHeaders {
 // @public (undocumented)
 export interface DeleteWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & DeleteWidgetDefaultHeaders;
     // (undocumented)
@@ -123,11 +126,6 @@ export interface ErrorModelOutput {
     innererror?: InnerErrorOutput;
     message: string;
     target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
 }
 
 // @public
@@ -177,7 +175,7 @@ export interface GetWidgetDefaultHeaders {
 // @public (undocumented)
 export interface GetWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetWidgetDefaultHeaders;
     // (undocumented)
@@ -205,7 +203,7 @@ export interface GetWidgetOperationStatusDefaultHeaders {
 // @public (undocumented)
 export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & GetWidgetOperationStatusDefaultHeaders;
     // (undocumented)
@@ -260,7 +258,7 @@ export interface ListWidgetsDefaultHeaders {
 // @public (undocumented)
 export interface ListWidgetsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
     // (undocumented)
     headers: RawHttpHeaders & ListWidgetsDefaultHeaders;
     // (undocumented)
@@ -272,7 +270,7 @@ export type ListWidgetsParameters = RequestParameters;
 
 // @public
 export interface OperationStatusOutput {
-    error?: ErrorModelOutput;
+    error?: ErrorModel;
     id: string;
     status: string;
 }
@@ -294,7 +292,7 @@ export interface PagingOptions<TResponse> {
 
 // @public
 export interface ResourceOperationStatusOutput {
-    error?: ErrorModelOutput;
+    error?: ErrorModel;
     id: string;
     result?: WidgetOutput;
     status: string;
@@ -314,10 +312,7 @@ export interface Widget {
 }
 
 // @public
-export interface WidgetListOutput {
-    nextLink?: string;
-    value: Array<WidgetOutput>;
-}
+export type WidgetListOutput = Paged<WidgetOutput>;
 
 // @public
 export interface WidgetOutput {

@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
-import { DeploymentOutput, ErrorResponseOutput } from "./outputModels";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import { DeploymentOutput } from "./outputModels";
 
 /** The request has succeeded. */
 export interface GetDeployment200Response extends HttpResponse {
@@ -18,7 +18,7 @@ export interface GetDeploymentDefaultHeaders {
 
 export interface GetDeploymentDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDeploymentDefaultHeaders;
 }
 
@@ -41,6 +41,6 @@ export interface DeployProjectDefaultHeaders {
 
 export interface DeployProjectDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeployProjectDefaultHeaders;
 }

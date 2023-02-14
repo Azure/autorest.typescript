@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   ProjectOutput,
-  ErrorResponseOutput,
   OperationStatusOutput,
   ProjectListOutput,
   DeploymentOutput,
@@ -47,7 +46,7 @@ export interface CreateOrUpdateDefaultHeaders {
 
 export interface CreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
 }
 
@@ -64,7 +63,7 @@ export interface GetDefaultHeaders {
 
 export interface GetDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDefaultHeaders;
 }
 
@@ -87,7 +86,7 @@ export interface DeleteDefaultHeaders {
 
 export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteDefaultHeaders;
 }
 
@@ -104,7 +103,7 @@ export interface ListProjectsDefaultHeaders {
 
 export interface ListProjectsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListProjectsDefaultHeaders;
 }
 
@@ -126,7 +125,7 @@ export interface ExportDefaultHeaders {
 
 export interface ExportDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ExportDefaultHeaders;
 }
 
@@ -148,7 +147,7 @@ export interface ImportxDefaultHeaders {
 
 export interface ImportxDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ImportxDefaultHeaders;
 }
 
@@ -170,7 +169,7 @@ export interface TrainDefaultHeaders {
 
 export interface TrainDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & TrainDefaultHeaders;
 }
 
@@ -187,7 +186,7 @@ export interface GetDeploymentDefaultHeaders {
 
 export interface GetDeploymentDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDeploymentDefaultHeaders;
 }
 
@@ -222,7 +221,7 @@ export interface DeployProjectDefaultHeaders {
 
 export interface DeployProjectDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeployProjectDefaultHeaders;
 }
 
@@ -245,7 +244,7 @@ export interface DeleteDeploymentDefaultHeaders {
 
 export interface DeleteDeploymentDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteDeploymentDefaultHeaders;
 }
 
@@ -262,7 +261,7 @@ export interface ListDeploymentsDefaultHeaders {
 
 export interface ListDeploymentsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListDeploymentsDefaultHeaders;
 }
 
@@ -284,7 +283,7 @@ export interface SwapDeploymentsDefaultHeaders {
 
 export interface SwapDeploymentsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & SwapDeploymentsDefaultHeaders;
 }
 
@@ -301,7 +300,7 @@ export interface GetDeploymentStatusDefaultHeaders {
 
 export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDeploymentStatusDefaultHeaders;
 }
 
@@ -318,7 +317,7 @@ export interface GetSwapDeploymentsStatusDefaultHeaders {
 
 export interface GetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetSwapDeploymentsStatusDefaultHeaders;
 }
 
@@ -335,7 +334,7 @@ export interface GetSupportedLanguagesDefaultHeaders {
 
 export interface GetSupportedLanguagesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetSupportedLanguagesDefaultHeaders;
 }
 
@@ -353,6 +352,6 @@ export interface ListTrainingConfigVersionsDefaultHeaders {
 export interface ListTrainingConfigVersionsDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListTrainingConfigVersionsDefaultHeaders;
 }
