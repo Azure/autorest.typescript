@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@cadl-lang/compiler": "~0.40.0",
-    "@azure-tools/cadl-typescript": "1.0.0-beta.9",
+    "@azure-tools/cadl-typescript": "1.0.0-beta.10",
     "@cadl-lang/rest": "~0.40.0",
     "@cadl-lang/openapi": "~0.40.0",
     "@cadl-lang/versioning": "~0.40.0",
