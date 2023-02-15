@@ -3,7 +3,7 @@ import CollectionFormatClientFactory, {
     buildMultiCollection,
   CollectionFormatClient
 } from "./generated/collectionFormat/src/index.js";
-describe.only("Collection Format Rest Client", () => {
+describe("Collection Format Rest Client", () => {
   let client: CollectionFormatClient;
   const colors = ["blue", "red", "green"]
 
@@ -35,7 +35,8 @@ describe.only("Collection Format Rest Client", () => {
       const result = await client.path("/collectionFormat/csv").get({
         queryParameters: {
           colors: colors
-        }
+        },
+        skipUrlEncoding: true
       });
       assert.strictEqual(result.status, "200");
     } catch (err) {
