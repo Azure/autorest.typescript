@@ -14,9 +14,3 @@ export interface TestCsv200Response extends HttpResponse {
   status: "200";
   body: string;
 }
-
-/** The request has succeeded. */
-export interface TestDefault200Response extends HttpResponse {
-  status: "200";
-  body: string;
-}

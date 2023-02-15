@@ -43,17 +43,17 @@ describe.only("Collection Format Rest Client", () => {
     }
   });
 
-  it("should serialize default format query array parameter", async () => {
-    try {
-      const result = await client.path("/collectionFormat/default").get({
-        queryParameters: {
-          colors: buildMultiCollection(colors, 'colors')
-        },
-        skipUrlEncoding: true
-      });
-      assert.strictEqual(result.status, "200");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
+  // it.skip("should serialize default format query array parameter", async () => {
+  //   try {
+  //     const result = await client.path("/collectionFormat/default").get({
+  //       queryParameters: {
+  //         colors: buildMultiCollection(colors, 'colors')
+  //       },
+  //       skipUrlEncoding: true
+  //     });
+  //     assert.strictEqual(result.status, "200");
+  //   } catch (err) {
+  //     assert.fail(err as string);
+  //   }
+  // });
 });
