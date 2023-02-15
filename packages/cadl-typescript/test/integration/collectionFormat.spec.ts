@@ -20,11 +20,10 @@ describe.only("Collection Format Rest Client", () => {
     try {
       const result = await client.path("/collectionFormat/multi").get({
         queryParameters: {
-            colors: buildMultiCollection(colors, 'colors')
+          colors: buildMultiCollection(colors, 'colors')
         },
         skipUrlEncoding: true
       });
-      console.log(result);
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -35,7 +34,7 @@ describe.only("Collection Format Rest Client", () => {
     try {
       const result = await client.path("/collectionFormat/csv").get({
         queryParameters: {
-            colors: colors
+          colors: colors
         }
       });
       assert.strictEqual(result.status, "200");
@@ -48,7 +47,7 @@ describe.only("Collection Format Rest Client", () => {
     try {
       const result = await client.path("/collectionFormat/default").get({
         queryParameters: {
-            colors: buildMultiCollection(colors, 'colors')
+          colors: buildMultiCollection(colors, 'colors')
         },
         skipUrlEncoding: true
       });

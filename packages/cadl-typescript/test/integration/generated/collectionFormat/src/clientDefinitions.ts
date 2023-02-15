@@ -26,11 +26,11 @@ export interface TestDefault {
 }
 
 export interface Routes {
-  /** Resource for '/collectionFormat/collectionFormat/multi' has methods for the following verbs: get */
+  /** Resource for '/collectionFormat/multi' has methods for the following verbs: get */
   (path: "/collectionFormat/multi"): TestMulti;
-  /** Resource for '/collectionFormat/collectionFormat/csv' has methods for the following verbs: get */
+  /** Resource for '/collectionFormat/csv' has methods for the following verbs: get */
   (path: "/collectionFormat/csv"): TestCsv;
-  /** Resource for '/collectionFormat/collectionFormat/default' has methods for the following verbs: get */
+  /** Resource for '/collectionFormat/default' has methods for the following verbs: get */
   (path: "/collectionFormat/default"): TestDefault;
 }
 
