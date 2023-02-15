@@ -45,7 +45,7 @@ export interface CompletionsOptions {
     logit_bias?: Record<string, number>;
     logprobs?: number;
     max_tokens?: number;
-    model: string;
+    model?: string;
     n?: number;
     presence_penalty?: number;
     prompt?: string[];
@@ -65,7 +65,7 @@ export interface CompletionsOptionsOutput {
     logit_bias?: Record<string, number>;
     logprobs?: number;
     max_tokens?: number;
-    model: string;
+    model?: string;
     n?: number;
     presence_penalty?: number;
     prompt?: string[];
@@ -87,7 +87,7 @@ export interface CompletionsOutput {
 
 // @public
 export interface CompletionsUsageOutput {
-    completion_token: number;
+    completion_tokens: number;
     prompt_tokens: number;
     total_tokens: number;
 }

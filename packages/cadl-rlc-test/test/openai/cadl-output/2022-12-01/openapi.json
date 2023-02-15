@@ -107,8 +107,7 @@
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
-        },
-        "x-ms-convenient-api": true
+        }
       }
     },
     "/deployments/{deploymentId}/embeddings": {
@@ -153,8 +152,7 @@
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
-        },
-        "x-ms-convenient-api": true
+        }
       }
     }
   },
@@ -430,15 +428,12 @@
           "description": "How many generations to create server side, and display only the best. Will not\nstream intermediate progress if best_of > 1. Has maximum value of 128."
         }
       },
-      "description": "Post body schema to create a prompt completion from a deployment",
-      "required": [
-        "model"
-      ]
+      "description": "Post body schema to create a prompt completion from a deployment"
     },
     "Completions.CompletionsUsage": {
       "type": "object",
       "properties": {
-        "completion_token": {
+        "completion_tokens": {
           "type": "integer",
           "format": "int32",
           "description": "Number of tokens received in the completion"
@@ -454,9 +449,9 @@
           "description": "Total number of tokens transacted in this request/response"
         }
       },
-      "description": "Measurment of the amount of tokens used in this request and response",
+      "description": "Representation of the token counts processed for a completions request.\nCounts consider all tokens across prompts, choices, choice alternates, best_of generations, and other consumers.",
       "required": [
-        "completion_token",
+        "completion_tokens",
         "prompt_tokens",
         "total_tokens"
       ]

@@ -100,7 +100,7 @@ export interface CompletionsOptionsOutput {
    */
   logprobs?: number;
   /** The name of the model to use */
-  model: string;
+  model?: string;
   /** Echo back the prompt in addition to the completion */
   echo?: boolean;
   /** A sequence which indicates the end of the current document. */
@@ -170,10 +170,13 @@ export interface CompletionsLogProbsOutput {
   text_offset?: number[];
 }
 
-/** Measurment of the amount of tokens used in this request and response */
+/**
+ * Representation of the token counts processed for a completions request.
+ * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and other consumers.
+ */
 export interface CompletionsUsageOutput {
   /** Number of tokens received in the completion */
-  completion_token: number;
+  completion_tokens: number;
   /** Number of tokens sent in the original request */
   prompt_tokens: number;
   /** Total number of tokens transacted in this request/response */

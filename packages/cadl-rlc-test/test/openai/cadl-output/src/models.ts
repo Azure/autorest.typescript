@@ -83,7 +83,7 @@ export interface CompletionsOptions {
    */
   logprobs?: number;
   /** The name of the model to use */
-  model: string;
+  model?: string;
   /** Echo back the prompt in addition to the completion */
   echo?: boolean;
   /** A sequence which indicates the end of the current document. */
