@@ -31,7 +31,8 @@ import {
   Type,
   Union,
   isNullType,
-  Scalar
+  Scalar,
+  UnionVariant
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -85,6 +86,8 @@ export function getSchemaForType(
     return schema;
   } else if (type.kind === "Union") {
     return getSchemaForUnion(program, type, usage);
+  } else if (type.kind === "UnionVariant") {
+    return getSchemaForUnionVariant(program, type, usage)
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
@@ -146,8 +149,9 @@ function getSchemaForUnion(
   union: Union,
   usage?: SchemaContext[]
 ) {
-  const nonNullOptions = union.options.filter((t) => !isNullType(t));
-  const nullable = union.options.length != nonNullOptions.length;
+  const variants = Array.from(union.variants.values());
+  const nonNullOptions = variants.filter((t) => !isNullType(t));
+  const nullable = variants.length !== nonNullOptions.length;
   if (nonNullOptions.length === 0 || nonNullOptions[0] === undefined) {
     reportDiagnostic(program, { code: "union-null", target: union });
     return {};
@@ -155,9 +159,9 @@ function getSchemaForUnion(
 
   const values = [];
 
-  for (const option of nonNullOptions) {
+  for (const variant of nonNullOptions) {
     // We already know it's not a model type
-    values.push(getSchemaForType(program, option, usage));
+    values.push(getSchemaForType(program, variant.type, usage));
   }
 
   const schema: any = {};
@@ -172,6 +176,14 @@ function getSchemaForUnion(
   }
 
   return schema;
+}
+
+function getSchemaForUnionVariant(
+  program: Program,
+  variant: UnionVariant,
+  usage?: SchemaContext[]
+): Schema {
+  return getSchemaForType(program, variant, usage);
 }
 
 // An openapi "string" can be defined in several different ways in Cadl
