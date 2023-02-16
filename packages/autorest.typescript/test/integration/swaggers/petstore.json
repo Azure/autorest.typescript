@@ -133,7 +133,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "default": "available"
+            "default": ["available", "unavailable"]
           }
         ],
         "responses": {
