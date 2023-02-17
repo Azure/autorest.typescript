@@ -6,5 +6,22 @@ export interface ModelWithSimpleUnionProperty {
 }
 
 export interface ModelWithNamedUnionProperty {
-  namedUnion: Model1 | Model2;
+  namedUnion: MyNamedUnion;
 }
+
+/** The first one of the unioned model type. */
+export interface Model1 extends BaseModel {
+  prop1: number;
+}
+
+/** This is a base model. */
+export interface BaseModel {
+  name: string;
+}
+
+/** The second one of the unioned model type. */
+export interface Model2 extends BaseModel {
+  prop2: number;
+}
+
+export type MyNamedUnion = Model1 | Model2;

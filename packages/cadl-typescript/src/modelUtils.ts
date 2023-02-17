@@ -87,7 +87,7 @@ export function getSchemaForType(
   } else if (type.kind === "Union") {
     return getSchemaForUnion(program, type, usage);
   } else if (type.kind === "UnionVariant") {
-    return getSchemaForUnionVariant(program, type, usage)
+    return getSchemaForUnionVariant(program, type, usage);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
@@ -150,7 +150,7 @@ function getSchemaForUnion(
   usage?: SchemaContext[]
 ) {
   const variants = Array.from(union.variants.values());
-  const nonNullOptions = variants.filter((t) => !isNullType(t));
+  const nonNullOptions = variants.filter((t) => !isNullType(t.type));
   const nullable = variants.length !== nonNullOptions.length;
   if (nonNullOptions.length === 0 || nonNullOptions[0] === undefined) {
     reportDiagnostic(program, { code: "union-null", target: union });
@@ -167,9 +167,21 @@ function getSchemaForUnion(
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
-    schema.type = values
-      .map((item) => `${getTypeName(item) ?? item}`)
+    const unionAlias = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
       .join(" | ");
+    const outputUnionAlias = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
+      .join(" | ");
+    schema.type = !union.expression && union.name ? union.name : unionAlias;
+    if (!union.expression) {
+      schema.name = union.name;
+      schema.type = "object";
+      schema.typeName = union.name;
+      schema.outputTypeName = union.name + "Output";
+      schema.alias = unionAlias;
+      schema.outputAlias = outputUnionAlias;
+    }
   }
   if (nullable) {
     schema["required"] = false;
@@ -847,9 +859,9 @@ function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
   }
 }
 
-export function getTypeName(schema: Schema): string {
+export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   // TODO: Handle more cases
-  return getPriorityName(schema) ?? schema.type ?? "any";
+  return getPriorityName(schema, usage) ?? schema.type ?? "any";
 }
 
 export function getImportedModelName(schema: Schema): string[] | undefined {
@@ -869,8 +881,12 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
   }
 }
 
-function getPriorityName(schema: Schema): string {
-  return schema.outputTypeName ?? schema.typeName ?? schema.name;
+function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
+  return usage &&
+    usage.includes(SchemaContext.Input) &&
+    !usage.includes(SchemaContext.Output)
+    ? schema.typeName ?? schema.name
+    : schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
 function getDictionaryValueName(schema: DictionarySchema): string | undefined {
   return schema.outputValueTypeName ?? schema.valueTypeName ?? undefined;
