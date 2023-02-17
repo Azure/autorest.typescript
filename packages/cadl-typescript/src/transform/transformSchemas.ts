@@ -137,6 +137,30 @@ export function transformSchemas(
           }
           getGeneratedModels(prop[1].type, context);
         }
+        if (
+          prop[1].type.kind === "Union" &&
+          (!program.stateMap(modelKey).get(prop[1].type) ||
+            !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
+        ) {
+          const variants = Array.from(prop[1].type.variants.values());
+          let hasModels = false;
+          for (const variant of variants) {
+            if (
+              variant.type.kind === "Model" &&
+              (!program.stateMap(modelKey).get(variant.type) ||
+                !program
+                  .stateMap(modelKey)
+                  .get(variant.type)
+                  ?.includes(context))
+            ) {
+              hasModels = true;
+              getGeneratedModels(variant.type, context);
+            }
+          }
+          if (hasModels) {
+            setModelMap(prop[1].type, context);
+          }
+        }
       }
       const baseModel = model.baseModel;
       if (

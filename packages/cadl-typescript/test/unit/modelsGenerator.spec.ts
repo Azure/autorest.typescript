@@ -853,6 +853,72 @@ describe("Input/output model type", () => {
     });
   });
 
+  describe("Union Models generation", () => {
+    it("should handle named unions", async () => {
+      const cadlDefinition = `
+      @doc("This is a base model.")
+      model BaseModel {
+        name: string;
+      }
+      
+      @doc("The first one of the unioned model type.")
+      model Model1 extends BaseModel {
+        prop1: int32;
+      }
+      
+      @doc("The second one of the unioned model type.")
+      model Model2 extends BaseModel {
+        prop2: int32;
+      }
+      
+      union MyNamedUnion {
+        one: Model1,
+        two: Model2,
+      }
+      `;
+      const cadlType = "MyNamedUnion";
+      const inputModelName = "MyNamedUnion";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `MyNamedUnionOutput`,
+        additionalInputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1 extends BaseModel {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModel {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2 extends BaseModel {
+          prop2: number;
+        }
+       
+        export type MyNamedUnion = Model1 | Model2;`,
+        additionalOutputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1Output extends BaseModelOutput {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModelOutput {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2Output extends BaseModelOutput {
+          prop2: number;
+        }
+       
+       export type MyNamedUnionOutput = Model1Output | Model2Output;`
+      });
+    });
+  });
+
   describe("'is' keyword generation", () => {
     it("should handle A is B, only A is referenced", async () => {
       const cadlDefinition = `
