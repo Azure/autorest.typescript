@@ -8,12 +8,32 @@ export interface GetEmbeddingsBodyParam {
   body?: EmbeddingsOptions;
 }
 
-export type GetEmbeddingsParameters = GetEmbeddingsBodyParam &
+export interface GetEmbeddingsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
+}
+
+export interface GetEmbeddingsQueryParam {
+  queryParameters: GetEmbeddingsQueryParamProperties;
+}
+
+export type GetEmbeddingsParameters = GetEmbeddingsQueryParam &
+  GetEmbeddingsBodyParam &
   RequestParameters;
 
 export interface GetCompletionsBodyParam {
   body?: CompletionsOptions;
 }
 
-export type GetCompletionsParameters = GetCompletionsBodyParam &
+export interface GetCompletionsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
+}
+
+export interface GetCompletionsQueryParam {
+  queryParameters: GetCompletionsQueryParamProperties;
+}
+
+export type GetCompletionsParameters = GetCompletionsQueryParam &
+  GetCompletionsBodyParam &
   RequestParameters;

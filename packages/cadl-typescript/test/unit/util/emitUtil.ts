@@ -41,9 +41,10 @@ export async function emitModelsFromCadl(
 
 export async function emitParameterFromCadl(
   cadlContent: string,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  ignoreClientApiVersion: boolean = false
 ) {
-  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const context = await rlcEmitterFor(cadlContent, true, needAzureCore, ignoreClientApiVersion);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = listClients(dpgContext);

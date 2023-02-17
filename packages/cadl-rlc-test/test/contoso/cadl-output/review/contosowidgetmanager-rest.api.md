@@ -84,7 +84,18 @@ export interface CreateOrUpdateWidgetMediaTypesParam {
 }
 
 // @public (undocumented)
-export type CreateOrUpdateWidgetParameters = CreateOrUpdateWidgetMediaTypesParam & CreateOrUpdateWidgetBodyParam & RequestParameters;
+export type CreateOrUpdateWidgetParameters = CreateOrUpdateWidgetQueryParam & CreateOrUpdateWidgetMediaTypesParam & CreateOrUpdateWidgetBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface CreateOrUpdateWidgetQueryParam {
+    // (undocumented)
+    queryParameters: CreateOrUpdateWidgetQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateWidgetQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface DeleteWidget202Headers {
@@ -117,7 +128,18 @@ export interface DeleteWidgetDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeleteWidgetParameters = RequestParameters;
+export type DeleteWidgetParameters = DeleteWidgetQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface DeleteWidgetQueryParam {
+    // (undocumented)
+    queryParameters: DeleteWidgetQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface DeleteWidgetQueryParamProperties {
+    "api-version": string;
+}
 
 // @public
 export interface ErrorModelOutput {
@@ -211,10 +233,32 @@ export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetWidgetOperationStatusParameters = RequestParameters;
+export type GetWidgetOperationStatusParameters = GetWidgetOperationStatusQueryParam & RequestParameters;
 
 // @public (undocumented)
-export type GetWidgetParameters = RequestParameters;
+export interface GetWidgetOperationStatusQueryParam {
+    // (undocumented)
+    queryParameters: GetWidgetOperationStatusQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface GetWidgetOperationStatusQueryParamProperties {
+    "api-version": string;
+}
+
+// @public (undocumented)
+export type GetWidgetParameters = GetWidgetQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetWidgetQueryParam {
+    // (undocumented)
+    queryParameters: GetWidgetQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface GetWidgetQueryParamProperties {
+    "api-version": string;
+}
 
 // @public
 export interface InnerErrorOutput {
@@ -266,7 +310,18 @@ export interface ListWidgetsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListWidgetsParameters = RequestParameters;
+export type ListWidgetsParameters = ListWidgetsQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface ListWidgetsQueryParam {
+    // (undocumented)
+    queryParameters: ListWidgetsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface ListWidgetsQueryParamProperties {
+    "api-version": string;
+}
 
 // @public
 export interface OperationStatusOutput {

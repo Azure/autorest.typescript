@@ -45,7 +45,7 @@ import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
-import { isApiVersion } from "../paramUtil.js";
+import { isApiVersion } from "@azure-tools/cadl-dpg";
 import { reportDiagnostic } from "../lib.js";
 
 export async function transformRLCModel(
@@ -176,7 +176,7 @@ export function transformUrlInfo(
   return { endpoint, urlParameters };
 }
 
-function getDefaultValue(
+export function getDefaultValue(
   program: Program,
   dpgContext: DpgContext,
   param?: ModelProperty
@@ -187,7 +187,7 @@ function getDefaultValue(
     return undefined;
   }
   const defaultApiVersion = getDefaultApiVersion(dpgContext, serviceNamespace);
-  if (isApiVersion(param) && defaultApiVersion) {
+  if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
     return defaultApiVersion.value;
   } else if (isLiteralValue(otherDefaultValue)) {
     return otherDefaultValue.value;
