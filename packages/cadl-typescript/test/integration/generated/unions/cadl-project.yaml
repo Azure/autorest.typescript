@@ -1,0 +1,11 @@
+emitters:
+  "../../../../../../../../../../packages/cadl-typescript/dist/src/index.js":
+    generateMetadata: false
+    generateTest: false
+    addCredentials: false
+    azureSdkForJs: false
+    isCadlTest: true
+    title: UnionsClient
+    packageDetails:
+      name: "@msinternal/unions"
+      description: "Unions Test Service"
