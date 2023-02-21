@@ -112,6 +112,29 @@ describe("Input/output model type", () => {
     });
 
     it("should generate nullable dictionary", async () => {
+      const cadlDefinition = `
+      model SimpleModel {
+        color: "red" | "blue";
+      }
+      `;
+      const cadlType = "SimpleModel | null";
+      const typeScriptType = "SimpleModel | null";
+      await verifyPropertyType(cadlType, typeScriptType, {
+        additionalCadlDefinition: cadlDefinition,
+        additionalInputContent: `
+        export interface SimpleModel {
+          color: "red" | "blue";
+        }
+          `,
+        additionalOutputContent: `
+        export interface SimpleModelOutput {
+          color: "red" | "blue";
+        }
+          `
+      });
+    });
+
+    it("should generate nullable dictionary", async () => {
       const cadlType = 'Record<"test" | null>';
       const typeScriptType = 'Record<string, "test" | null>';
       await verifyPropertyType(cadlType, typeScriptType);
@@ -970,6 +993,55 @@ describe("Input/output model type", () => {
         }
        
        export type MyNamedUnionOutput = Model1Output | Model2Output;`
+      });
+    });
+
+    it.only("should handle nullable named unions", async () => {
+      const cadlDefinition = `
+      @doc("The first one of the unioned model type.")
+      model Model1 {
+        prop1: int32;
+      }
+      
+      @doc("The second one of the unioned model type.")
+      model Model2 {
+        prop2: int32;
+      }
+      
+      union MyNamedUnion {
+        one: Model1,
+        two: Model2 | null,
+      }
+      `;
+      const cadlType = "MyNamedUnion";
+      const inputModelName = "MyNamedUnion";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `MyNamedUnionOutput`,
+        additionalInputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1 {
+          prop1: number;
+        }
+      
+        /** The second one of the unioned model type. */
+        export interface Model2 {
+          prop2: number;
+        }
+       
+        export type MyNamedUnion = Model1 | Model2 | null;`,
+        additionalOutputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1Output {
+          prop1: number;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2Output {
+          prop2: number;
+        }
+       
+       export type MyNamedUnionOutput = Model1Output | Model2Output | null;`
       });
     });
   });
