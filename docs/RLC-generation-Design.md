@@ -23,21 +23,23 @@ D --> |Autorest TypeScript Plugin| E
 
 To better understand the above flowchart, we list some basic terms here.
 
-- **Cadl Files**: Service API defined in [CADL](https://github.com/microsoft/cadl).
-- **Swagger Files**: REST api specification follow the definition in [OpenAPI](https://swagger.io/).
-- **CADL Program**: The model we get after CADL compiler has processed the cadl input.
-- **Modelerfour**: The code model we get after autorest core and modelerfour plugin has processed the swagger input.
-- **RLCModel**: The model we defined internally which contains all the necessary information we need to build the RLC file content.
-- **CADL compiler**: The module that compiles the cadl input and provides a set of APIs to CADL emitter to get the cadl program model.
-- **Autorest core & m4 plugin**: The module that takes swagger files as input and output the code model modelerfour.
-- **CADL TypeScript emitter**: This module transforms the CADL program into RLCModel.
-- **RLC common**: The common part that takes RLCModel as input and build the RLC file content.
-- **Autorest TypeScript plugin**: This module transforms the Modelerfour into RLCModel.
+- **Cadl Files**: A Service API that is defined using the [CADL](https://github.com/microsoft/cadl) language.
+- **Swagger Files**: A REST api specification that follows the [OpenAPI](https://swagger.io/) definition.
+- **CADL Program**: An internal model that is provided after CADL compiler has processed the CADL input.
+- **Modelerfour**: A code model that is provided after Autorest core and Modelerfour plugin have processed the swagger input.
+- **RLCModel**: An internally defined model that contains all the necessary information required to build the RLC file content.
+- **CADL compiler**: A module that compiles the CADL input and provides a set of APIs to the CADL emitter to retrieve the CADL program model.
+- **Autorest core & m4 plugin**: A module that takes swagger files as input and outputs the code model Modelerfour.
+- **CADL TypeScript emitter**: A module that transforms the CADL program into RLCModel.
+- **RLC common**: A common part that takes RLCModel as input and builds the RLC file content.
+- **Autorest TypeScript plugin**: A module that transforms the Modelerfour into RLCModel.
 
 ## RLC generation from CADL
 
-On a high level, the entire RLC generation process from CADL Input would be:  
-Cadl Input -> Cadl Compiler -> Cadl Program -> Transform RLCModel -> Call RLC Common library to Generate Code
+On a high level, the RLC generation process from CADL input involves the following steps:
+1. The CADL input is processed by the CADL compiler to generate a CADL program model.
+1. The CADL program model is transformed into an RLCModel.
+1. The RLCModel is passed to the RLC Common library, which generates the code for the RLC file.
 
 ```mermaid
 graph TD
@@ -49,8 +51,10 @@ D --> |CADL TypeScript emitter| E(JS RLC Code)
 
 ## RLC generation from Swagger
 
-And the entire RLC generation process from Swagger Input would be:  
-Swagger Input -> Autorest Core & m4 Plugin -> Modelerfour -> Transform RLCModel -> Call RLC Common library to Generate Code
+On a high level, the RLC generation process from CADL input involves the following steps:
+1. The Swagger input is processed by the Autorest core & Modelerfour plugin to generate a code model Modelerfour.
+1. The Modelerfour model is transformed into an RLCModel.
+1. The RLCModel is passed to the RLC Common library, which generates the code for the RLC file.
 
 ```mermaid
 graph TD
