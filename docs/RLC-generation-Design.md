@@ -51,7 +51,7 @@ D --> |CADL TypeScript emitter| E(JS RLC Code)
 
 ## RLC generation from Swagger
 
-On a high level, the RLC generation process from CADL input involves the following steps:
+On a high level, the RLC generation process from Swagger input involves the following steps:
 1. The Swagger input is processed by the Autorest core & Modelerfour plugin to generate a code model Modelerfour.
 1. The Modelerfour model is transformed into an RLCModel.
 1. The RLCModel is passed to the RLC Common library, which generates the code for the RLC file.
