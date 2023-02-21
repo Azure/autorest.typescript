@@ -13,8 +13,12 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClient } from "../keyVaultManagementClient";
-import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl } from "../lroImpl";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
 import {
   ManagedHsm,
   ManagedHsmsListByResourceGroupNextOptionalParams,
@@ -246,8 +250,8 @@ export class ManagedHsmsImpl implements ManagedHsms {
     parameters: ManagedHsm,
     options?: ManagedHsmsCreateOrUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedHsmsCreateOrUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedHsmsCreateOrUpdateResponse>,
       ManagedHsmsCreateOrUpdateResponse
     >
   > {
@@ -257,7 +261,7 @@ export class ManagedHsmsImpl implements ManagedHsms {
     ): Promise<ManagedHsmsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -290,13 +294,16 @@ export class ManagedHsmsImpl implements ManagedHsms {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, parameters, options },
-      createOrUpdateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, parameters, options },
+      spec: createOrUpdateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ManagedHsmsCreateOrUpdateResponse,
+      OperationState<ManagedHsmsCreateOrUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -338,8 +345,8 @@ export class ManagedHsmsImpl implements ManagedHsms {
     parameters: ManagedHsm,
     options?: ManagedHsmsUpdateOptionalParams
   ): Promise<
-    PollerLike<
-      PollOperationState<ManagedHsmsUpdateResponse>,
+    SimplePollerLike<
+      OperationState<ManagedHsmsUpdateResponse>,
       ManagedHsmsUpdateResponse
     >
   > {
@@ -349,7 +356,7 @@ export class ManagedHsmsImpl implements ManagedHsms {
     ): Promise<ManagedHsmsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -382,13 +389,16 @@ export class ManagedHsmsImpl implements ManagedHsms {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, parameters, options },
-      updateOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, parameters, options },
+      spec: updateOperationSpec
+    });
+    const poller = await createHttpPoller<
+      ManagedHsmsUpdateResponse,
+      OperationState<ManagedHsmsUpdateResponse>
+    >(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -427,14 +437,14 @@ export class ManagedHsmsImpl implements ManagedHsms {
     resourceGroupName: string,
     name: string,
     options?: ManagedHsmsDeleteOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -467,13 +477,13 @@ export class ManagedHsmsImpl implements ManagedHsms {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { resourceGroupName, name, options },
-      deleteOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { resourceGroupName, name, options },
+      spec: deleteOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
@@ -581,14 +591,14 @@ export class ManagedHsmsImpl implements ManagedHsms {
     name: string,
     location: string,
     options?: ManagedHsmsPurgeDeletedOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
+  ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = async (
+    const sendOperationFn = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
     ) => {
@@ -621,13 +631,13 @@ export class ManagedHsmsImpl implements ManagedHsms {
       };
     };
 
-    const lro = new LroImpl(
-      sendOperation,
-      { name, location, options },
-      purgeDeletedOperationSpec
-    );
-    const poller = new LroEngine(lro, {
-      resumeFrom: options?.resumeFrom,
+    const lro = createLroSpec({
+      sendOperationFn,
+      args: { name, location, options },
+      spec: purgeDeletedOperationSpec
+    });
+    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
+      restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();

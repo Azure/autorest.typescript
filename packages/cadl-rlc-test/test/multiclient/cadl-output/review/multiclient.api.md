@@ -6,7 +6,9 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -61,7 +63,7 @@ function createClient_2(endpoint: string, options?: ClientOptions): ResponseClie
 interface CreateOrUpdate {
     delete(options?: DeleteParameters): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
     get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
-    put(options?: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
+    put(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
 
 // @public
@@ -82,14 +84,20 @@ interface CreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 interface CreateOrUpdateBodyParam {
-    // (undocumented)
-    body?: Resource;
+    body: Resource;
+}
+
+// @public (undocumented)
+interface CreateOrUpdateDefaultHeaders {
+    "x-ms-error-code"?: string;
 }
 
 // @public (undocumented)
 interface CreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -129,9 +137,16 @@ interface Delete204Response extends HttpResponse {
 }
 
 // @public (undocumented)
+interface DeleteDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 interface DeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -161,20 +176,6 @@ interface DeleteWithHeaders204Response extends HttpResponse {
 
 // @public (undocumented)
 type DeleteWithHeadersParameters = RequestParameters;
-
-// @public
-interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
 
 // @public
 interface Get200Response extends HttpResponse {
@@ -221,9 +222,16 @@ interface GetBinary200Response extends HttpResponse {
 type GetBinaryParameters = RequestParameters;
 
 // @public (undocumented)
+interface GetDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 interface GetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -236,12 +244,6 @@ type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
 
 // @public (undocumented)
 type GetParameters = RequestParameters;
-
-// @public
-interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 interface List {
@@ -257,9 +259,16 @@ interface List200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+interface ListDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 interface ListDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -276,9 +285,6 @@ declare namespace Models {
 declare namespace OutputModels {
     export {
         ResourceOutput,
-        ErrorResponseOutput,
-        ErrorModelOutput,
-        InnerErrorOutput,
         ResourceListOutput
     }
 }
@@ -344,10 +350,7 @@ interface Resource {
 }
 
 // @public
-interface ResourceListOutput {
-    nextLink?: string;
-    value: Array<ResourceOutput>;
-}
+type ResourceListOutput = Paged<ResourceOutput>;
 
 // @public (undocumented)
 interface ResourceOutput {
@@ -393,12 +396,16 @@ declare namespace Responses {
     export {
         CreateOrUpdate200Response,
         CreateOrUpdate201Response,
+        CreateOrUpdateDefaultHeaders,
         CreateOrUpdateDefaultResponse,
         Get200Response,
+        GetDefaultHeaders,
         GetDefaultResponse,
         Delete204Response,
+        DeleteDefaultHeaders,
         DeleteDefaultResponse,
         List200Response,
+        ListDefaultHeaders,
         ListDefaultResponse
     }
 }

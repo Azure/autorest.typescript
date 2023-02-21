@@ -3,6 +3,7 @@
 
 import {
   Client,
+  DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup,
   OperationGroup
@@ -36,19 +37,23 @@ import {
 export function transformToResponseTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  client: Client
+  client: Client,
+  dpgContext: DpgContext
 ): OperationResponse[] {
-  const operationGroups = listOperationGroups(program, client);
+  const operationGroups = listOperationGroups(dpgContext, client);
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformToResponseTypesForRoute(route, operationGroup);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     transformToResponseTypesForRoute(route);
@@ -144,6 +149,7 @@ function transformBody(
   // So we'll union all body shapes together with "|"
   const typeSet = new Set<string>();
   const descriptions = new Set<string>();
+  let fromCore = false;
   for (const data of response.responses) {
     const body = data?.body;
     if (!body) {
@@ -160,6 +166,9 @@ function transformBody(
     const bodySchema = getSchemaForType(program, body!.type, [
       SchemaContext.Output
     ]) as Schema;
+    if (bodySchema.fromCore) {
+      fromCore = true;
+    }
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
     if (importedNames) {
@@ -175,6 +184,7 @@ function transformBody(
   return {
     name: "body",
     type: [...typeSet].join("|"),
-    description: [...descriptions].join("\n\n")
+    description: [...descriptions].join("\n\n"),
+    fromCore
   };
 }

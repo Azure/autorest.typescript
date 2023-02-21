@@ -6,10 +6,11 @@ import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorRestClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class AnomalyDetectorRestClient class.
- * @param endpoint type: string Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
- * @param apiVersion type: string Anomaly Detector API version (for example, v1.1).
- * @param credentials type: KeyCredential
+ * Initialize a new instance of `AnomalyDetectorRestClient`
+ * @param endpoint type: string, Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
+ * @param apiVersion type: string, Anomaly Detector API version (for example, v1.1).
+ * @param credentials type: KeyCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

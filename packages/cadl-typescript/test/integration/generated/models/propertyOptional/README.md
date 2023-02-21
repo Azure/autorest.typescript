@@ -1,6 +1,6 @@
 # ModelsPropertyOptional REST client library for JavaScript
 
-Optional Property Test Service
+Illustrates models with optional properties.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

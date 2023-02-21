@@ -6,14 +6,17 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { CreateHttpPollerOptions } from '@azure/core-lro';
+import { ErrorModel } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { LroEngineOptions } from '@azure/core-lro';
+import { OperationState } from '@azure/core-lro';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
-import { PollerLike } from '@azure/core-lro';
-import { PollOperationState } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
+import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
@@ -57,14 +60,20 @@ export interface CreateOrUpdateWidget201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CreateOrUpdateWidgetBodyParam {
-    // (undocumented)
-    body?: WidgetResourceMergeAndPatch;
+    body: WidgetResourceMergeAndPatch;
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateWidgetDefaultHeaders {
+    "x-ms-error-code"?: string;
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdateWidgetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -93,9 +102,16 @@ export interface DeleteWidget202Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeleteWidgetDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface DeleteWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteWidgetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -110,11 +126,6 @@ export interface ErrorModelOutput {
     innererror?: InnerErrorOutput;
     message: string;
     target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
 }
 
 // @public
@@ -133,7 +144,7 @@ export interface FakedSharedModelOutput {
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public
-export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: LroEngineOptions<TResult, PollOperationState<TResult>>): PollerLike<PollOperationState<TResult>, TResult>;
+export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
@@ -157,9 +168,16 @@ export interface GetWidget200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetWidgetDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetWidgetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetWidgetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -178,9 +196,16 @@ export interface GetWidgetOperationStatus200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetWidgetOperationStatusDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetWidgetOperationStatusDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -226,33 +251,26 @@ export interface ListWidgets200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListWidgetsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListWidgetsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListWidgetsDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
-export type ListWidgetsParameters = ListWidgetsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ListWidgetsQueryParam {
-    // (undocumented)
-    queryParameters?: ListWidgetsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ListWidgetsQueryParamProperties {
-    maxpagesize?: number;
-    select?: string[];
-    skip?: number;
-    top?: number;
-}
+export type ListWidgetsParameters = RequestParameters;
 
 // @public
 export interface OperationStatusOutput {
-    error?: ErrorModelOutput;
+    error?: ErrorModel;
     id: string;
     status: string;
 }
@@ -274,7 +292,7 @@ export interface PagingOptions<TResponse> {
 
 // @public
 export interface ResourceOperationStatusOutput {
-    error?: ErrorModelOutput;
+    error?: ErrorModel;
     id: string;
     result?: WidgetOutput;
     status: string;
@@ -294,10 +312,7 @@ export interface Widget {
 }
 
 // @public
-export interface WidgetListOutput {
-    nextLink?: string;
-    value: Array<WidgetOutput>;
-}
+export type WidgetListOutput = Paged<WidgetOutput>;
 
 // @public
 export interface WidgetOutput {
@@ -306,7 +321,7 @@ export interface WidgetOutput {
     sharedModel?: FakedSharedModelOutput;
 }
 
-// @public (undocumented)
+// @public
 export type WidgetResourceMergeAndPatch = Partial<Widget>;
 
 // (No @packageDocumentation comment for this package)

@@ -96,6 +96,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -175,7 +181,8 @@
       "type": "object",
       "properties": {
         "collectionId": {
-          "type": "string"
+          "type": "string",
+          "readOnly": true
         }
       },
       "description": "Identifier for collections.",

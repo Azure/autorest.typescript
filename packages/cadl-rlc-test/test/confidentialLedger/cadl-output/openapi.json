@@ -76,6 +76,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -99,6 +105,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -122,6 +134,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -145,6 +163,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -171,6 +195,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -186,27 +216,15 @@
         "description": "A collection id may optionally be specified.",
         "parameters": [
           {
-            "$ref": "#/parameters/CollectionIdParameter"
-          },
-          {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
-            "name": "body",
+            "name": "resource",
             "in": "body",
+            "required": true,
+            "description": "The resource instance.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "contents": {
-                  "type": "string",
-                  "description": "Contents of the ledger entry."
-                }
-              },
-              "description": "The template for adding updateable properties.",
-              "required": [
-                "contents"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrReplaceModel<LedgerEntry>"
+              "$ref": "#/definitions/LedgerEntry"
             }
           }
         ],
@@ -223,6 +241,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -237,17 +261,14 @@
         "description": "Get a LedgerEntry",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "transactionId",
             "in": "path",
             "required": true,
             "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/CollectionIdParameter"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -259,6 +280,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -273,14 +300,14 @@
         "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "transactionId",
             "in": "path",
             "required": true,
             "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -292,6 +319,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -306,14 +339,14 @@
         "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "transactionId",
             "in": "path",
             "required": true,
             "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -325,6 +358,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -339,10 +378,10 @@
         "description": "Runs a custom action on LedgerEntry",
         "parameters": [
           {
-            "$ref": "#/parameters/CollectionIdParameter"
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           },
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+            "$ref": "#/parameters/CollectionIdParameter"
           }
         ],
         "responses": {
@@ -354,6 +393,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -368,15 +413,15 @@
         "description": "Delete a LedgerUser",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "userId",
             "in": "path",
             "required": true,
             "description": "The user id, either an AAD object ID or certificate fingerprint.",
             "x-ms-skip-url-encoding": true,
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -385,6 +430,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -397,15 +448,15 @@
         "description": "Get a LedgerUser",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "userId",
             "in": "path",
             "required": true,
             "description": "The user id, either an AAD object ID or certificate fingerprint.",
             "x-ms-skip-url-encoding": true,
             "type": "string"
-          },
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
           }
         ],
         "responses": {
@@ -417,6 +468,12 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -429,6 +486,9 @@
         "description": "Creates or updates a LedgerUser",
         "parameters": [
           {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
             "name": "userId",
             "in": "path",
             "required": true,
@@ -437,21 +497,12 @@
             "type": "string"
           },
           {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "name": "body",
+            "name": "resource",
             "in": "body",
+            "required": true,
+            "description": "The resource instance.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "assignedRole": {
-                  "$ref": "#/definitions/LedgerUserRole",
-                  "description": "The user's assigned role."
-                }
-              },
-              "description": "The template for adding optional properties.",
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreateOrUpdateModel<LedgerUser>"
+              "$ref": "#/definitions/LedgerUserUpdate"
             }
           }
         ],
@@ -459,52 +510,23 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "userId": {
-                  "type": "string",
-                  "description": "The user id, either an AAD object ID or certificate fingerprint.",
-                  "x-ms-skip-url-encoding": true,
-                  "readOnly": true
-                },
-                "assignedRole": {
-                  "$ref": "#/definitions/LedgerUserRole",
-                  "description": "The user's assigned role."
-                }
-              },
-              "required": [
-                "userId",
-                "assignedRole"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceOkResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/LedgerUser"
             }
           },
           "201": {
             "description": "The request has succeeded and a new resource has been created as a result.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "userId": {
-                  "type": "string",
-                  "description": "The user id, either an AAD object ID or certificate fingerprint.",
-                  "x-ms-skip-url-encoding": true,
-                  "readOnly": true
-                },
-                "assignedRole": {
-                  "$ref": "#/definitions/LedgerUserRole",
-                  "description": "The user's assigned role."
-                }
-              },
-              "description": "A  resource was successfully created.",
-              "required": [
-                "userId",
-                "assignedRole"
-              ],
-              "x-cadl-name": "Azure.Core.Foundations.ResourceCreatedResponse<Azure.Core.(anonymous model)>"
+              "$ref": "#/definitions/LedgerUser"
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
@@ -671,6 +693,16 @@
         "name": "LedgerUserRole",
         "modelAsString": false
       }
+    },
+    "LedgerUserUpdate": {
+      "type": "object",
+      "properties": {
+        "assignedRole": {
+          "$ref": "#/definitions/LedgerUserRole",
+          "description": "The user's assigned role."
+        }
+      },
+      "description": "Details about a Confidential ledger user."
     },
     "MyFlow": {
       "type": "object",

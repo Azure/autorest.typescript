@@ -31,8 +31,8 @@ export interface GetModel {
 }
 
 export interface Routes {
-  /** Resource for '/models/visibility' has methods for the following verbs: get, head, put, patch, post, delete */
-  (path: "/models/visibility"): GetModel;
+  /** Resource for '/models/visibility/automatic' has methods for the following verbs: get, head, put, patch, post, delete */
+  (path: "/models/visibility/automatic"): GetModel;
 }
 
 export type ModelsVisibilityAutomaticClient = Client & {

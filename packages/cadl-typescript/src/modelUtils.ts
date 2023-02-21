@@ -31,7 +31,8 @@ import {
   Type,
   Union,
   isNullType,
-  Scalar
+  Scalar,
+  UnionVariant
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -51,6 +52,7 @@ import {
   HttpOperation
 } from "@cadl-lang/rest/http";
 import { getPagedResult, isFixed } from "@azure-tools/cadl-azure-core";
+import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -84,6 +86,8 @@ export function getSchemaForType(
     return schema;
   } else if (type.kind === "Union") {
     return getSchemaForUnion(program, type, usage);
+  } else if (type.kind === "UnionVariant") {
+    return getSchemaForUnionVariant(program, type, usage);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
@@ -132,7 +136,7 @@ export function includeDerivedModel(model: Model): boolean {
   );
 }
 
-function getSchemaForScalar(program: Program,  scalar: Scalar) {
+function getSchemaForScalar(program: Program, scalar: Scalar) {
   let result = getSchemaForStdScalar(program, scalar);
   if (!result && scalar.baseScalar) {
     result = getSchemaForScalar(program, scalar.baseScalar);
@@ -145,8 +149,9 @@ function getSchemaForUnion(
   union: Union,
   usage?: SchemaContext[]
 ) {
-  const nonNullOptions = union.options.filter((t) => !isNullType(t));
-  const nullable = union.options.length != nonNullOptions.length;
+  const variants = Array.from(union.variants.values());
+  const nonNullOptions = variants.filter((t) => !isNullType(t.type));
+  const nullable = variants.length !== nonNullOptions.length;
   if (nonNullOptions.length === 0 || nonNullOptions[0] === undefined) {
     reportDiagnostic(program, { code: "union-null", target: union });
     return {};
@@ -154,23 +159,43 @@ function getSchemaForUnion(
 
   const values = [];
 
-  for (const option of nonNullOptions) {
+  for (const variant of nonNullOptions) {
     // We already know it's not a model type
-    values.push(getSchemaForType(program, option, usage));
+    values.push(getSchemaForType(program, variant.type, usage));
   }
 
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
-    schema.type = values
-      .map((item) => `${getTypeName(item) ?? item}`)
+    const unionAlias = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
       .join(" | ");
+    const outputUnionAlias = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
+      .join(" | ");
+    schema.type = !union.expression && union.name ? union.name : unionAlias;
+    if (!union.expression) {
+      schema.name = union.name;
+      schema.type = "object";
+      schema.typeName = union.name;
+      schema.outputTypeName = union.name + "Output";
+      schema.alias = unionAlias;
+      schema.outputAlias = outputUnionAlias;
+    }
   }
   if (nullable) {
     schema["required"] = false;
   }
 
   return schema;
+}
+
+function getSchemaForUnionVariant(
+  program: Program,
+  variant: UnionVariant,
+  usage?: SchemaContext[]
+): Schema {
+  return getSchemaForType(program, variant, usage);
 }
 
 // An openapi "string" can be defined in several different ways in Cadl
@@ -288,7 +313,6 @@ function isSchemaProperty(program: Program, property: ModelProperty) {
   const statusCodeinfo = isStatusCode(program, property);
   return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
 }
-
 // function getDefaultValue(program: Program, type: Type): any {
 //   switch (type.kind) {
 //     case "String":
@@ -347,6 +371,39 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
+  if (
+    (model.name === "ErrorResponse" ||
+      model.name === "ErrorModel" ||
+      model.name === "Error") &&
+    model.kind === "Model" &&
+    model.namespace?.name === "Foundations" &&
+    model.namespace.namespace?.name === "Core"
+  ) {
+    modelSchema.fromCore = true;
+  }
+
+  if (getPagedResult(program, model)) {
+    const paged = extractPagedMetadataNested(program, model);
+    if (paged && paged.itemsProperty) {
+      const items = paged.itemsProperty as unknown as Model;
+      if (items && items.templateArguments) {
+        const templateName = items.templateArguments
+          ?.map((it) => {
+            switch (it.kind) {
+              case "Model":
+                return it.name;
+              case "String":
+                return it.value;
+              default:
+                return "";
+            }
+          })
+          .join("");
+        modelSchema.alias = `Paged<${templateName}>`;
+        modelSchema.outputAlias = `Paged<${templateName}Output>`;
+      }
+    }
+  }
   modelSchema.properties = {};
   const derivedModels = model.derivedModels.filter(includeDerivedModel);
 
@@ -456,7 +513,7 @@ function getSchemaForModel(
       }
 
       if (mutability.length > 0) {
-        // modelSchema.properties[name]["usage"] = mutability;
+        newPropSchema["usage"] = mutability;
       }
     }
     modelSchema.properties[name] = newPropSchema;
@@ -660,7 +717,8 @@ function mapCadlStdTypeToTypeScript(
           !program.checker.isStdType(indexer.value) &&
           !isUnknownType(indexer.value!) &&
           indexer.value?.kind &&
-          schema.items.name
+          schema.items.name &&
+          !schema.items.enum
         ) {
           schema.typeName = `Array<${schema.items.name}>`;
           if (usage && usage.includes(SchemaContext.Output)) {
@@ -700,10 +758,7 @@ function mapCadlStdTypeToTypeScript(
   }
 }
 
-function getSchemaForStdScalar(
-  program: Program,
-  cadlType: Scalar
-) {
+function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
   if (!program.checker.isStdType(cadlType)) {
     return undefined;
   }
@@ -804,9 +859,9 @@ function getSchemaForStdScalar(
   }
 }
 
-export function getTypeName(schema: Schema): string {
+export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   // TODO: Handle more cases
-  return getPriorityName(schema) ?? schema.type ?? "any";
+  return getPriorityName(schema, usage) ?? schema.type ?? "any";
 }
 
 export function getImportedModelName(schema: Schema): string[] | undefined {
@@ -826,8 +881,12 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
   }
 }
 
-function getPriorityName(schema: Schema): string {
-  return schema.outputTypeName ?? schema.typeName ?? schema.name;
+function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
+  return usage &&
+    usage.includes(SchemaContext.Input) &&
+    !usage.includes(SchemaContext.Output)
+    ? schema.typeName ?? schema.name
+    : schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
 function getDictionaryValueName(schema: DictionarySchema): string | undefined {
   return schema.outputValueTypeName ?? schema.valueTypeName ?? undefined;
@@ -836,7 +895,7 @@ function getEnumStringDescription(type: any) {
   if (type.name === "string" && type.enum && type.enum.length > 0) {
     return `Possible values: ${type.enum.join(", ")}`;
   }
-  return "";
+  return undefined;
 }
 
 export function getFormattedPropertyDoc(

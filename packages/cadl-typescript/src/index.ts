@@ -24,25 +24,31 @@ import {
   buildRecordedClientFile,
   buildSampleTest,
   buildReadmeFile,
+  buildSerializeHelper,
   RLCOptions,
   RLCModel
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
-import { listClients } from "@azure-tools/cadl-dpg";
+import { listClients, createDpgContext } from "@azure-tools/cadl-dpg";
+import * as path from "path";
 
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const options: RLCOptions = context.options;
-  const clients = listClients(program);
+  const dpgContext = createDpgContext(context);
+  const clients = listClients(dpgContext);
+  let count = -1;
   for (const client of clients) {
+    count++;
     const rlcModels = await transformRLCModel(
       program,
       options,
       client,
-      context.emitterOutputDir
+      context.emitterOutputDir,
+      dpgContext
     );
-    clearSrcFolder(rlcModels);
+    clearSrcFolder(rlcModels, count);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
     await emitContentByBuilder(program, buildResponseTypes, rlcModels);
@@ -53,6 +59,8 @@ export async function $onEmit(context: EmitContext) {
     await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
     await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
     await emitContentByBuilder(program, buildPollingHelper, rlcModels);
+    // buildSerializeHelper
+    await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
     // build metadata relevant files
     await emitContentByBuilder(
       program,
@@ -83,7 +91,13 @@ export async function $onEmit(context: EmitContext) {
   }
 }
 
-function clearSrcFolder(model: RLCModel) {
+function clearSrcFolder(model: RLCModel, count: number) {
   const srcPath = model.srcPath;
   fsextra.emptyDirSync(srcPath);
+  if (model?.options?.multiClient && count === 0) {
+    const folderPath = path.join(
+      srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4)
+    );
+    fsextra.emptyDirSync(folderPath);
+  }
 }

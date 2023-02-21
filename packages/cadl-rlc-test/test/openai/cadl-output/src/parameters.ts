@@ -2,16 +2,18 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { EmbeddingsRequest, CompletionsRequest } from "./models";
+import { EmbeddingsOptions, CompletionsOptions } from "./models";
 
-export interface EmbeddingsBodyParam {
-  body?: EmbeddingsRequest;
+export interface GetEmbeddingsBodyParam {
+  body?: EmbeddingsOptions;
 }
 
-export type EmbeddingsParameters = EmbeddingsBodyParam & RequestParameters;
+export type GetEmbeddingsParameters = GetEmbeddingsBodyParam &
+  RequestParameters;
 
-export interface CompletionsBodyParam {
-  body?: CompletionsRequest;
+export interface GetCompletionsBodyParam {
+  body?: CompletionsOptions;
 }
 
-export type CompletionsParameters = CompletionsBodyParam & RequestParameters;
+export type GetCompletionsParameters = GetCompletionsBodyParam &
+  RequestParameters;

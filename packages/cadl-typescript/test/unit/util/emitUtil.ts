@@ -8,7 +8,7 @@ import {
   ImportKind,
   Schema
 } from "@azure-tools/rlc-common";
-import { rlcEmitterFor } from "./testUtil.js";
+import { createDpgContextTestHelper, rlcEmitterFor } from "./testUtil.js";
 import { transformToParameterTypes } from "../../../src/transform/transformParameters.js";
 import { transformSchemas } from "../../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../../src/transform/transformPaths.js";
@@ -17,16 +17,19 @@ import {
   transformUrlInfo
 } from "../../../src/transform/transform.js";
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
+import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
 
 export async function emitModelsFromCadl(
   cadlContent: string,
   needAzureCore: boolean = false
 ) {
-  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
-  const clients = listClients(program);
+  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const program = context.program;
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = listClients(dpgContext);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
-    rlcSchemas = transformSchemas(program, clients[0]);
+    rlcSchemas = transformSchemas(program, clients[0], dpgContext);
   }
   return buildSchemaTypes({
     schemas: rlcSchemas,
@@ -36,13 +39,23 @@ export async function emitModelsFromCadl(
   });
 }
 
-export async function emitParameterFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
-  const clients = listClients(program);
+export async function emitParameterFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const program = context.program;
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = listClients(dpgContext);
   const importSet = new Map<ImportKind, Set<string>>();
   let parameters;
   if (clients && clients[0]) {
-    parameters = transformToParameterTypes(program, importSet, clients[0]);
+    parameters = transformToParameterTypes(
+      program,
+      importSet,
+      clients[0],
+      dpgContext
+    );
   }
   return buildParameterTypes({
     srcPath: "",
@@ -58,11 +71,13 @@ export async function emitClientDefinitionFromCadl(
   cadlContent: string,
   needAzureCore: boolean = false
 ) {
-  const program = await rlcEmitterFor(cadlContent, true, needAzureCore);
-  const clients = listClients(program);
+  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const program = context.program;
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = listClients(dpgContext);
   let paths = {};
   if (clients && clients[0]) {
-    paths = transformPaths(program, clients[0]);
+    paths = transformPaths(program, clients[0], dpgContext);
   }
   return buildClientDefinitions({
     srcPath: "",
@@ -76,8 +91,11 @@ export async function emitClientFactoryFromCadl(
   cadlContent: string,
   needAzureCore: boolean = false
 ) {
-  const program = await rlcEmitterFor(cadlContent, false, needAzureCore);
-  const urlInfo = transformUrlInfo(program);
+  const context = await rlcEmitterFor(cadlContent, false, needAzureCore);
+  const program = context.program;
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const urlInfo = transformUrlInfo(program, dpgContext);
+  const creadentialInfo = getCredentialInfo(program, {});
   const apiVersionInQueryParam = transformApiVersionParam(program);
   return buildClient({
     srcPath: "",
@@ -90,18 +108,29 @@ export async function emitClientFactoryFromCadl(
       packageDetails: {
         name: "test",
         version: "1.0.0-beta.1"
-      }
+      },
+      ...creadentialInfo
     }
   });
 }
 
-export async function emitResponsesFromCadl(cadlContent: string) {
-  const program = await rlcEmitterFor(cadlContent);
+export async function emitResponsesFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false
+) {
+  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const program = context.program;
+  const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = new Map<ImportKind, Set<string>>();
-  const clients = listClients(program);
+  const clients = listClients(dpgContext);
   let responses;
   if (clients && clients[0]) {
-    responses = transformToResponseTypes(program, importSet, clients[0]);
+    responses = transformToResponseTypes(
+      program,
+      importSet,
+      clients[0],
+      dpgContext
+    );
   }
   return buildResponseTypes({
     srcPath: "",

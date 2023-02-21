@@ -133,7 +133,7 @@
               "type": "string"
             },
             "collectionFormat": "csv",
-            "default": "available"
+            "default": ["available", "unavailable"]
           }
         ],
         "responses": {
@@ -885,6 +885,25 @@
           "type": "string",
           "description": "pet status in the store",
           "enum": ["available", "pending", "sold"]
+        },
+        "petRestrictionLevel": {
+          "type": "string",
+          "enum": ["Unrestricted", "ReadOnly"],
+          "x-ms-enum": {
+            "name": "RestrictionLevel",
+            "modelAsString": true,
+            "values": [
+              {
+                "value": "Unrestricted",
+                "description": "All RBAC permissions are allowed on the managed node resource group"
+              },
+              {
+                "value": "ReadOnly",
+                "description": "Only */read RBAC permissions allowed on the managed node resource group"
+              }
+            ]
+          },
+          "description": "The restriction level applied to the cluster's node resource group"
         }
       },
       "title": "A pet",

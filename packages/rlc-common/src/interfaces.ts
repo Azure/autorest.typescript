@@ -100,6 +100,7 @@ export interface RLCOptions {
   productDocLink?: string;
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
+  sourceFrom?: "Cadl" | "Swagger";
 }
 
 export interface ServiceInfo {
@@ -140,6 +141,9 @@ export interface Schema {
   default?: any;
   readOnly?: boolean;
   usage?: SchemaContext[];
+  alias?: string;
+  outputAlias?: string;
+  fromCore?: boolean;
 }
 
 export interface ObjectSchema extends Schema {

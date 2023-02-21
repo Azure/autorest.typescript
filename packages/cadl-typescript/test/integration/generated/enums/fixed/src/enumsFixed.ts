@@ -5,8 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { EnumsFixedClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class EnumsFixedClient class.
- *
+ * Initialize a new instance of `EnumsFixedClient`
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}

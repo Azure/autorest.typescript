@@ -1,5 +1,7 @@
 import "@azure-tools/cadl-azure-core";
 import "@cadl-lang/rest";
+import "@azure-tools/cadl-dpg";
+import "@cadl-lang/openapi";
 
 import "./models/completions.create.cadl";
 import "./models/embeddings.create.cadl";
@@ -7,14 +9,20 @@ import "./models/embeddings.create.cadl";
 using Cadl.Rest;
 using Cadl.Http;
 using Azure.Core;
+using OpenAPI;
+using Azure.DPG;
 
 namespace Azure.OpenAI;
 
 @doc("Return the embeddings for a given prompt.")
 @Cadl.Rest.actionSeparator("/")
-op embeddings is Azure.Core.ResourceAction<Deployment, Embeddings.EmbeddingsRequest, Embeddings.Embeddings>;
+@action("embeddings")
+@OpenAPI.extension("x-ms-convenient-api", true)
+op getEmbeddings is Azure.Core.ResourceAction<Deployment, Embeddings.EmbeddingsOptions, Embeddings.Embeddings>;
 
 
 @doc("Return the completions for a given prompt.")
 @Cadl.Rest.actionSeparator("/")
-op completions is Azure.Core.ResourceAction<Deployment, Completions.CompletionsRequest, Completions.Completion>;
+@action("completions")
+@OpenAPI.extension("x-ms-convenient-api", true)
+op getCompletions is Azure.Core.ResourceAction<Deployment, Completions.CompletionsOptions, Completions.Completions>;

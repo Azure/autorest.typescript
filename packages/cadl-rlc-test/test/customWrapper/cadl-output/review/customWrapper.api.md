@@ -6,8 +6,10 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
@@ -20,7 +22,6 @@ export interface DeploymentCreationParameters {
     input: string | string[] | number[] | number[][];
     input_type?: string;
     model?: string;
-    name: string;
     user?: string;
 }
 
@@ -29,7 +30,7 @@ export interface DeploymentOutput {
     input: string | string[] | number[] | number[][];
     input_type?: string;
     model?: string;
-    name: string;
+    readonly name: string;
     user?: string;
 }
 
@@ -55,29 +56,22 @@ export interface DeployProjectBodyParam {
 }
 
 // @public (undocumented)
+export interface DeployProjectDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeployProjectDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
 
 // @public (undocumented)
 export interface GetDeployment {
@@ -94,21 +88,22 @@ export interface GetDeployment200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetDeploymentDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetDeploymentDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type GetDeploymentParameters = RequestParameters;
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: GetDeployment200Response | GetDeploymentDefaultResponse): response is GetDeploymentDefaultResponse;

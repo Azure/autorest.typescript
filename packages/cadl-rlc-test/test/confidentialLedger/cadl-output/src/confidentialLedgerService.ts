@@ -6,9 +6,10 @@ import { TokenCredential } from "@azure/core-auth";
 import { ConfidentialLedgerServiceClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class ConfidentialLedgerServiceClient class.
- * @param ledgerUri type: string
- * @param credentials type: TokenCredential
+ * Initialize a new instance of `ConfidentialLedgerServiceClient`
+ * @param ledgerUri type: string, The parameter ledgerUri
+ * @param credentials type: TokenCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   ledgerUri: string,

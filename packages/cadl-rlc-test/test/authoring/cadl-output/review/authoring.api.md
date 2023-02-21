@@ -6,15 +6,18 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { CreateHttpPollerOptions } from '@azure/core-lro';
+import { ErrorModel } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { LroEngineOptions } from '@azure/core-lro';
+import { OperationState } from '@azure/core-lro';
+import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
-import { PollerLike } from '@azure/core-lro';
-import { PollOperationState } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
+import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
@@ -60,14 +63,20 @@ export interface CreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface CreateOrUpdateBodyParam {
-    // (undocumented)
-    body?: ProjectResourceMergeAndPatch;
+    body: ProjectResourceMergeAndPatch;
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateDefaultHeaders {
+    "x-ms-error-code"?: string;
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -96,9 +105,16 @@ export interface Delete202Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeleteDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface DeleteDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -119,9 +135,16 @@ export interface DeleteDeployment202Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeleteDeploymentDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface DeleteDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteDeploymentDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -133,9 +156,13 @@ export type DeleteDeploymentParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
 
 // @public
+export interface Deployment {
+}
+
+// @public
 export interface DeploymentJobOutput {
     readonly createdDateTime: string;
-    errors: ErrorModelOutput;
+    errors: ErrorModel;
     readonly expirationDateTime: string;
     readonly id: string;
     jobId: string;
@@ -145,10 +172,7 @@ export interface DeploymentJobOutput {
 }
 
 // @public
-export interface DeploymentListOutput {
-    nextLink?: string;
-    value: Array<DeploymentOutput>;
-}
+export type DeploymentListOutput = Paged<DeploymentOutput>;
 
 // @public
 export interface DeploymentOutput {
@@ -186,29 +210,27 @@ export interface DeployProject201Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface DeployProjectBodyParam {
+    body: Deployment;
+}
+
+// @public (undocumented)
+export interface DeployProjectDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface DeployProjectDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeployProjectDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
-export type DeployProjectParameters = RequestParameters;
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
+export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface Export {
@@ -229,9 +251,16 @@ export interface Export202Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ExportDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ExportDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ExportDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -262,9 +291,16 @@ export interface Get200Response extends HttpResponse {
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public (undocumented)
+export interface GetDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -273,7 +309,7 @@ export interface GetDefaultResponse extends HttpResponse {
 export interface GetDeployment {
     delete(options?: DeleteDeploymentParameters): StreamableMethod<DeleteDeployment202Response | DeleteDeploymentDefaultResponse>;
     get(options?: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
-    put(options?: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
+    put(options: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
 }
 
 // @public
@@ -285,9 +321,16 @@ export interface GetDeployment200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetDeploymentDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetDeploymentDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetDeploymentDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -309,9 +352,16 @@ export interface GetDeploymentStatus200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetDeploymentStatusDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetDeploymentStatusDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -320,7 +370,7 @@ export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
 export type GetDeploymentStatusParameters = RequestParameters;
 
 // @public
-export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: LroEngineOptions<TResult, PollOperationState<TResult>>): PollerLike<PollOperationState<TResult>, TResult>;
+export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
@@ -345,9 +395,16 @@ export interface GetSupportedLanguages200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetSupportedLanguagesDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetSupportedLanguagesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetSupportedLanguagesDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -382,9 +439,16 @@ export interface GetSwapDeploymentsStatus200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface GetSwapDeploymentsStatusDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface GetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetSwapDeploymentsStatusDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -411,21 +475,22 @@ export interface Importx202Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ImportxDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ImportxDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ImportxDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
 export type ImportxParameters = RequestParameters;
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
@@ -495,9 +560,16 @@ export interface ListDeployments200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListDeploymentsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListDeploymentsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListDeploymentsDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -519,28 +591,22 @@ export interface ListProjects200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListProjectsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListProjectsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListProjectsDefaultHeaders;
     // (undocumented)
     status: string;
 }
 
 // @public (undocumented)
-export type ListProjectsParameters = ListProjectsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ListProjectsQueryParam {
-    // (undocumented)
-    queryParameters?: ListProjectsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ListProjectsQueryParamProperties {
-    maxpagesize?: number;
-    skip?: number;
-    top?: number;
-}
+export type ListProjectsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ListTrainingConfigVersions {
@@ -556,9 +622,16 @@ export interface ListTrainingConfigVersions200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListTrainingConfigVersionsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListTrainingConfigVersionsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListTrainingConfigVersionsDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -586,22 +659,16 @@ export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client
 
 // @public
 export interface OperationStatusOutput {
-    error?: ErrorModelOutput;
+    error?: ErrorModel;
     id: string;
     status: string;
 }
 
 // @public
-export interface PagedSupportedLanguageOutput {
-    nextLink?: string;
-    value: Array<SupportedLanguageOutput>;
-}
+export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
 
 // @public
-export interface PagedTrainingConfigVersionOutput {
-    nextLink?: string;
-    value: Array<TrainingConfigVersionOutput>;
-}
+export type PagedTrainingConfigVersionOutput = Paged<TrainingConfigVersionOutput>;
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -629,10 +696,7 @@ export interface Project {
 }
 
 // @public
-export interface ProjectListOutput {
-    nextLink?: string;
-    value: Array<ProjectOutput>;
-}
+export type ProjectListOutput = Paged<ProjectOutput>;
 
 // @public
 export interface ProjectOutput {
@@ -649,7 +713,7 @@ export interface ProjectOutput {
     storageInputContainerName: string;
 }
 
-// @public (undocumented)
+// @public
 export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 // @public (undocumented)
@@ -702,9 +766,16 @@ export interface SwapDeploymentsBodyParam {
 }
 
 // @public (undocumented)
+export interface SwapDeploymentsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface SwapDeploymentsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & SwapDeploymentsDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -712,7 +783,7 @@ export interface SwapDeploymentsDefaultResponse extends HttpResponse {
 // @public
 export interface SwapDeploymentsJobOutput {
     readonly createdDateTime: string;
-    errors: ErrorModelOutput;
+    errors: ErrorModel;
     readonly expirationDateTime: string;
     readonly id: string;
     jobId: string;
@@ -754,9 +825,16 @@ export interface TrainBodyParam {
 }
 
 // @public (undocumented)
+export interface TrainDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface TrainDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & TrainDefaultHeaders;
     // (undocumented)
     status: string;
 }

@@ -3,10 +3,11 @@
 
 import {
   Client,
+  DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/cadl-dpg";
-import { Schema, SchemaContext } from "@azure-tools/rlc-common";
+import { SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
 import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
 import {
@@ -15,19 +16,29 @@ import {
   getBodyType
 } from "../modelUtils.js";
 
-export function transformSchemas(program: Program, client: Client) {
-  const schemas: Schema[] = [];
-  const schemaSet: Set<string> = new Set<string>();
-  const operationGroups = listOperationGroups(program, client);
+export function transformSchemas(
+  program: Program,
+  client: Client,
+  dpgContext: DpgContext
+) {
+  const schemas: Map<string, SchemaContext[]> = new Map<
+    string,
+    SchemaContext[]
+  >();
+  const schemaMap: Map<any, any> = new Map<any, any>();
+  const operationGroups = listOperationGroups(dpgContext, client);
   const modelKey = Symbol("typescript-models-" + client.name);
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformSchemaForRoute(route);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     transformSchemaForRoute(route);
@@ -38,6 +49,14 @@ export function transformSchemas(program: Program, client: Client) {
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
+      if (
+        resp.type.kind === "Model" &&
+        resp.type.name === "ErrorResponse" &&
+        resp.type.namespace?.name === "Foundations" &&
+        resp.type.namespace.namespace?.name === "Core"
+      ) {
+        continue;
+      }
       for (const resps of resp.responses) {
         const respModel = resps.body;
         if (!respModel) {
@@ -55,11 +74,13 @@ export function transformSchemas(program: Program, client: Client) {
     if (model.name === "") {
       return;
     }
-    const modelStr = JSON.stringify(trimUsage(model));
-    if (!schemaSet.has(modelStr)) {
-      schemas.push(model);
-      schemaSet.add(modelStr);
+    const pureModel = JSON.stringify(trimUsage(model));
+    schemaMap.set(pureModel, model);
+    let usage = schemas.get(pureModel) ?? [];
+    if (!usage?.includes(context)) {
+      usage = usage.concat(context as SchemaContext[]);
     }
+    schemas.set(pureModel, usage);
   });
   function trimUsage(model: any) {
     if (typeof model !== "object") {
@@ -111,7 +132,34 @@ export function transformSchemas(program: Program, client: Client) {
           (!program.stateMap(modelKey).get(prop[1].type) ||
             !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
         ) {
+          if (prop[1].type.name === "Error") {
+            continue;
+          }
           getGeneratedModels(prop[1].type, context);
+        }
+        if (
+          prop[1].type.kind === "Union" &&
+          (!program.stateMap(modelKey).get(prop[1].type) ||
+            !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
+        ) {
+          const variants = Array.from(prop[1].type.variants.values());
+          let hasModels = false;
+          for (const variant of variants) {
+            if (
+              variant.type.kind === "Model" &&
+              (!program.stateMap(modelKey).get(variant.type) ||
+                !program
+                  .stateMap(modelKey)
+                  .get(variant.type)
+                  ?.includes(context))
+            ) {
+              hasModels = true;
+              getGeneratedModels(variant.type, context);
+            }
+          }
+          if (hasModels) {
+            setModelMap(prop[1].type, context);
+          }
         }
       }
       const baseModel = model.baseModel;
@@ -137,5 +185,8 @@ export function transformSchemas(program: Program, client: Client) {
       }
     }
   }
-  return schemas;
+  const allSchemas = Array.from(schemas, function (item) {
+    return { ...schemaMap.get(item[0]), usage: item[1] };
+  });
+  return allSchemas;
 }

@@ -6,9 +6,10 @@ import { KeyCredential } from "@azure/core-auth";
 import { MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of the class MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient class.
- * @param endpoint type: string The endpoint to use.
- * @param credentials type: KeyCredential
+ * Initialize a new instance of `MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient`
+ * @param endpoint type: string, The endpoint to use.
+ * @param credentials type: KeyCredential, uniquely identify client credential
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

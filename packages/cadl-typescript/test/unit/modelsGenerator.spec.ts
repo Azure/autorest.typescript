@@ -82,6 +82,14 @@ describe("Input/output model type", () => {
     );
   }
 
+  describe("null generation", async () => {
+    it("currently we ignore the `null` type", async () => {
+      const cadlType = "string | null";
+      const typeScriptType = "string";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+  });
+
   describe("number generation", () => {
     it("should handle int32 -> number", async () => {
       await verifyPropertyType("int32", "number");
@@ -338,6 +346,28 @@ describe("Input/output model type", () => {
       `;
       const cadlType = "DiskEncryptionTarget[]";
       const typeScriptType = `("osdisk" | "temporarydisk")[]`;
+      const inputModelName = typeScriptType;
+      await verifyPropertyType(
+        cadlType,
+        inputModelName,
+        {
+          additionalCadlDefinition: cadlDefinition,
+          outputType: typeScriptType
+        },
+        true
+      );
+    });
+
+    it("should handle extensible enum array", async () => {
+      const cadlDefinition = `
+      #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+      enum DiskEncryptionTarget {
+        OsDisk: "osdisk",
+        TemporaryDisk: "temporarydisk",
+      }
+      `;
+      const cadlType = "DiskEncryptionTarget[]";
+      const typeScriptType = `string[]`;
       const inputModelName = typeScriptType;
       await verifyPropertyType(
         cadlType,
@@ -820,6 +850,72 @@ describe("Input/output model type", () => {
       const cadlType = `"job"[] | string[]`;
       const typeScriptType = `"job"[] | string[]`;
       await verifyPropertyType(cadlType, typeScriptType);
+    });
+  });
+
+  describe("Union Models generation", () => {
+    it("should handle named unions", async () => {
+      const cadlDefinition = `
+      @doc("This is a base model.")
+      model BaseModel {
+        name: string;
+      }
+      
+      @doc("The first one of the unioned model type.")
+      model Model1 extends BaseModel {
+        prop1: int32;
+      }
+      
+      @doc("The second one of the unioned model type.")
+      model Model2 extends BaseModel {
+        prop2: int32;
+      }
+      
+      union MyNamedUnion {
+        one: Model1,
+        two: Model2,
+      }
+      `;
+      const cadlType = "MyNamedUnion";
+      const inputModelName = "MyNamedUnion";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `MyNamedUnionOutput`,
+        additionalInputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1 extends BaseModel {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModel {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2 extends BaseModel {
+          prop2: number;
+        }
+       
+        export type MyNamedUnion = Model1 | Model2;`,
+        additionalOutputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1Output extends BaseModelOutput {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModelOutput {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2Output extends BaseModelOutput {
+          prop2: number;
+        }
+       
+       export type MyNamedUnionOutput = Model1Output | Model2Output;`
+      });
     });
   });
 

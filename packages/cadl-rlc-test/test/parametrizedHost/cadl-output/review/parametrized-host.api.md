@@ -6,7 +6,9 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
@@ -14,32 +16,12 @@ import { TokenCredential } from '@azure/core-auth';
 // @public
 export interface CollectionOutput {
     // (undocumented)
-    collectionId: string;
+    readonly collectionId: string;
 }
 
 // @public
 function createClient(credentials: TokenCredential, options?: ParametrizedHostClientOptions): ParametrizedHostClient;
 export default createClient;
-
-// @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
-export interface ErrorResponseOutput {
-    error: ErrorModelOutput;
-}
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: ListCollections200Response | ListCollectionsDefaultResponse): response is ListCollectionsDefaultResponse;
@@ -58,9 +40,16 @@ export interface ListCollections200Response extends HttpResponse {
 }
 
 // @public (undocumented)
+export interface ListCollectionsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
 export interface ListCollectionsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: ErrorResponseOutput;
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ListCollectionsDefaultHeaders;
     // (undocumented)
     status: string;
 }

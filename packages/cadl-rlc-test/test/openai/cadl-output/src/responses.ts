@@ -2,37 +2,45 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
-import {
-  EmbeddingsOutput,
-  ErrorResponseOutput,
-  CompletionOutput,
-} from "./outputModels";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import { EmbeddingsOutput, CompletionsOutput } from "./outputModels";
 
 /** The request has succeeded. */
-export interface Embeddings200Response extends HttpResponse {
+export interface GetEmbeddings200Response extends HttpResponse {
   status: "200";
   body: EmbeddingsOutput;
 }
 
-export interface EmbeddingsDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponseOutput;
+export interface GetEmbeddingsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
 }
 
-export interface Completions200Headers {
+export interface GetEmbeddingsDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & GetEmbeddingsDefaultHeaders;
+}
+
+export interface GetCompletions200Headers {
   /** Request ID for troubleshooting purposes */
   "apim-request-id": string;
 }
 
 /** The request has succeeded. */
-export interface Completions200Response extends HttpResponse {
+export interface GetCompletions200Response extends HttpResponse {
   status: "200";
-  body: CompletionOutput;
-  headers: RawHttpHeaders & Completions200Headers;
+  body: CompletionsOutput;
+  headers: RawHttpHeaders & GetCompletions200Headers;
 }
 
-export interface CompletionsDefaultResponse extends HttpResponse {
+export interface GetCompletionsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetCompletionsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponseOutput;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & GetCompletionsDefaultHeaders;
 }

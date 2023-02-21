@@ -29,6 +29,7 @@ import { isApiVersion } from "../paramUtil.js";
 import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
 import {
   Client,
+  DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup,
   OperationGroup
@@ -37,19 +38,23 @@ import {
 export function transformToParameterTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  client: Client
+  client: Client,
+  dpgContext: DpgContext
 ): OperationParameter[] {
-  const operationGroups = listOperationGroups(program, client);
+  const operationGroups = listOperationGroups(dpgContext, client);
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
   for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(program, operationGroup);
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       transformToParameterTypesForRoute(program, route, operationGroup);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(program, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     transformToParameterTypesForRoute(program, route);
@@ -104,8 +109,30 @@ function getParameterMetadata(
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
-  const type = getTypeName(schema);
+  let type = getTypeName(schema);
   const name = getParameterName(parameter.name);
+  let description =
+    getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
+  if (type === "string[]" || type === "Array<string>") {
+    const serializeInfo = getSpecialSerializeInfo(parameter);
+    if (
+      serializeInfo.hasMultiCollection ||
+      serializeInfo.hasPipeCollection ||
+      serializeInfo.hasSsvCollection ||
+      serializeInfo.hasTsvCollection
+    ) {
+      type = "string";
+      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
+        ", "
+      )} collection, we provide ${serializeInfo.descriptions.join(
+        ", "
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
+          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+          : ""
+      }`;
+    }
+  }
   return {
     type: paramType,
     name,
@@ -113,8 +140,7 @@ function getParameterMetadata(
       name,
       type,
       required: !parameter.param.optional,
-      description:
-        getFormattedPropertyDoc(program, parameter.param, schema) ?? ""
+      description
     }
   };
 }
@@ -350,6 +376,10 @@ function extractNameFromCadlType(
     importedNames.forEach(importedModels.add, importedModels);
   }
   let typeName = getTypeName(bodySchema);
+  if (isAnonymousModel(bodySchema)) {
+    // Handle anonymous Model
+    return generateAnomymousModelSigniture(bodySchema, importedModels);
+  }
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
@@ -361,6 +391,36 @@ function extractNameFromCadlType(
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
   return typeName;
+}
+
+function isAnonymousModel(schema: Schema) {
+  return (
+    !schema.name &&
+    schema.type === "object" &&
+    !!(schema as ObjectSchema)?.properties
+  );
+}
+
+function generateAnomymousModelSigniture(
+  schema: ObjectSchema,
+  importedModels: Set<string>
+) {
+  let schemaSigiture = `{`;
+  for (const propName in schema.properties) {
+    const propType = schema.properties[propName]!;
+    const propTypeName = getTypeName(propType);
+    if (!propType || !propTypeName) {
+      continue;
+    }
+    const importNames = getImportedModelName(propType);
+    if (importNames) {
+      importNames!.forEach(importedModels.add, importedModels);
+    }
+    schemaSigiture += `${propName}: ${propTypeName};`;
+  }
+
+  schemaSigiture += `}`;
+  return schemaSigiture;
 }
 
 function extractDescriptionsFromBody(
@@ -379,4 +439,30 @@ function extractDescriptionsFromBody(
       ])
     );
   return description ? [description] : [];
+}
+
+export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
+  let hasMultiCollection = false;
+  const hasPipeCollection = false;
+  const hasSsvCollection = false;
+  const hasTsvCollection = false;
+  const descriptions = [];
+  const collectionInfo = [];
+  if (
+    (parameter.type === "query" || parameter.type === "header") &&
+    (parameter as any).format === "multi"
+  ) {
+    hasMultiCollection = true;
+    descriptions.push("buildMultiCollection");
+    collectionInfo.push("multi");
+  }
+  // TODO add other collection logic once cadl has supported it.
+  return {
+    hasMultiCollection,
+    hasPipeCollection,
+    hasSsvCollection,
+    hasTsvCollection,
+    descriptions,
+    collectionInfo
+  };
 }

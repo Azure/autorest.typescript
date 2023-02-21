@@ -66,6 +66,13 @@ export const Pet: coreClient.CompositeMapper = {
         type: {
           name: "String"
         }
+      },
+      petRestrictionLevel: {
+        serializedName: "petRestrictionLevel",
+        xmlName: "petRestrictionLevel",
+        type: {
+          name: "String"
+        }
       }
     }
   }
