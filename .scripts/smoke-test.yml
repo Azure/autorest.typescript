@@ -21,7 +21,6 @@ jobs:
           OSVmImage: "Windows-latest"
           NodeTestVersion: "16.x"
     steps:
-      - script: npm config set ignore-engines true
       - template: build.yml
       - script: npm run clone:specs
         workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
