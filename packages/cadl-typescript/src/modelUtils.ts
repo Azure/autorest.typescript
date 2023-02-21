@@ -30,9 +30,10 @@ import {
   Program,
   Type,
   Union,
-  isNullType,
+  // isNullType,
   Scalar,
-  UnionVariant
+  UnionVariant,
+  isNullType
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -104,6 +105,9 @@ export function getSchemaForType(
   if (isNeverType(type)) {
     return { type: "never" };
   }
+  if (isNullType(type)) {
+    return { type: "null" };
+  }
   reportDiagnostic(program, {
     code: "invalid-schema",
     format: { type: type.kind },
@@ -150,16 +154,9 @@ function getSchemaForUnion(
   usage?: SchemaContext[]
 ) {
   const variants = Array.from(union.variants.values());
-  const nonNullOptions = variants.filter((t) => !isNullType(t.type));
-  const nullable = variants.length !== nonNullOptions.length;
-  if (nonNullOptions.length === 0 || nonNullOptions[0] === undefined) {
-    reportDiagnostic(program, { code: "union-null", target: union });
-    return {};
-  }
-
   const values = [];
 
-  for (const variant of nonNullOptions) {
+  for (const variant of variants) {
     // We already know it's not a model type
     values.push(getSchemaForType(program, variant.type, usage));
   }
@@ -182,9 +179,6 @@ function getSchemaForUnion(
       schema.alias = unionAlias;
       schema.outputAlias = outputUnionAlias;
     }
-  }
-  if (nullable) {
-    schema["required"] = false;
   }
 
   return schema;
@@ -691,7 +685,8 @@ function mapCadlStdTypeToTypeScript(
         };
         if (
           !program.checker.isStdType(indexer.value) &&
-          !isUnknownType(indexer.value!)
+          !isUnknownType(indexer.value!) &&
+          !isUnionType(indexer.value!)
         ) {
           schema.typeName = `Record<string, ${valueType.name}>`;
           schema.valueTypeName = valueType.name;
@@ -756,6 +751,10 @@ function mapCadlStdTypeToTypeScript(
       return schema;
     }
   }
+}
+
+function isUnionType(type: Type) {
+  return type.kind === "Union";
 }
 
 function getSchemaForStdScalar(program: Program, cadlType: Scalar) {

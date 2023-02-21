@@ -83,9 +83,37 @@ describe("Input/output model type", () => {
   }
 
   describe("null generation", async () => {
-    it("currently we ignore the `null` type", async () => {
+    it("should generate null only", async () => {
+      const cadlType = "null";
+      const typeScriptType = "null";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should generate nullable union", async () => {
       const cadlType = "string | null";
-      const typeScriptType = "string";
+      const typeScriptType = "string | null";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should generate nullable array", async () => {
+      const cadlDefinition = `
+      alias nullableArray = int32 | null;`;
+      const cadlType = "nullableArray[]";
+      const typeScriptType = "(number | null)[]";
+      await verifyPropertyType(cadlType, typeScriptType, {
+        additionalCadlDefinition: cadlDefinition
+      });
+    });
+
+    it("should generate nullable dictionary", async () => {
+      const cadlType = "Record<boolean | null>";
+      const typeScriptType = "Record<string, boolean | null>";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should generate nullable dictionary", async () => {
+      const cadlType = 'Record<"test" | null>';
+      const typeScriptType = 'Record<string, "test" | null>';
       await verifyPropertyType(cadlType, typeScriptType);
     });
   });
@@ -786,7 +814,34 @@ describe("Input/output model type", () => {
       });
     });
 
-    // TODO: the behavior isn't finalized
+    it("should handle nullable optional/required parameter", async () => {
+      const cadlDefinition = `
+      model SimpleModel {
+        foo?: string | null;
+        bar: string | null;
+        baz: string;
+      }
+      `;
+      const cadlType = `SimpleModel`;
+      const inputModelName = cadlType;
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `${inputModelName}Output`,
+        additionalInputContent: `
+        export interface ${inputModelName} {
+          foo?: string | null;
+          bar: string | null;
+          baz: string;
+        }`,
+        additionalOutputContent: `
+        export interface ${inputModelName}Output {
+          foo?: string | null;
+          bar: string | null;
+          baz: string;
+        }`
+      });
+    });
+
     it("should handle optional parameter with defaul value -> general type ", async () => {
       const cadlDefinition = `
       model SimpleModel {
@@ -981,7 +1036,6 @@ describe("Input/output model type", () => {
       );
     });
 
-    // Remember to fix this case to scalar when upgrading compiler
     it("should handle A is B, B is string", async () => {
       const cadlDefinition = `
       scalar MyStr extends string;`;
