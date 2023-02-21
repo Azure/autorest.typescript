@@ -1,10 +1,10 @@
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: "16.x"
+      versionSpec: "16.19.0"
     displayName: "Use Node 16"
   - script: |
-      npm install -g @microsoft/rush  
+      npm install -g @microsoft/rush
     displayName: "Install Rush"
   - script: |
       node common/scripts/install-run-rush.js update
