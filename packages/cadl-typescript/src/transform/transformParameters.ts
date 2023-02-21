@@ -76,7 +76,11 @@ export function transformToParameterTypes(
       parameters: []
     };
     // transform query param
-    const queryParams = transformQueryParameters(program, dpgContext, parameters);
+    const queryParams = transformQueryParameters(
+      program,
+      dpgContext,
+      parameters
+    );
     // transform path param
     const pathParams = transformPathParameters();
     // transform header param includeing content-type
@@ -160,7 +164,9 @@ function transformQueryParameters(
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
-    (p) => p.type === "query" && !(isApiVersion(dpgContext, p) && getDefaultService(program)?.version)
+    (p) =>
+      p.type === "query" &&
+      !(isApiVersion(dpgContext, p) && getDefaultService(program)?.version)
   );
   if (!queryParameters.length) {
     return [];
