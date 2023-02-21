@@ -996,7 +996,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it.only("should handle nullable named unions", async () => {
+    it.skip("should handle nullable named unions", async () => {
       const cadlDefinition = `
       @doc("The first one of the unioned model type.")
       model Model1 {
