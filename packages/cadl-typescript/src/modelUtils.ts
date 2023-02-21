@@ -30,10 +30,9 @@ import {
   Program,
   Type,
   Union,
-  // isNullType,
+  isNullType,
   Scalar,
-  UnionVariant,
-  isNullType
+  UnionVariant
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
