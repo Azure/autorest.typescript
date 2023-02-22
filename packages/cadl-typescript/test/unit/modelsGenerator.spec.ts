@@ -83,9 +83,61 @@ describe("Input/output model type", () => {
   }
 
   describe("null generation", async () => {
-    it("currently we ignore the `null` type", async () => {
+    it("should generate null only", async () => {
+      const cadlType = "null";
+      const typeScriptType = "null";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should generate nullable union", async () => {
       const cadlType = "string | null";
-      const typeScriptType = "string";
+      const typeScriptType = "string | null";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should generate nullable array", async () => {
+      const cadlDefinition = `
+      alias nullableArray = int32 | null;`;
+      const cadlType = "nullableArray[]";
+      const typeScriptType = "(number | null)[]";
+      await verifyPropertyType(cadlType, typeScriptType, {
+        additionalCadlDefinition: cadlDefinition
+      });
+    });
+
+    it("should generate nullable boolean dictionary", async () => {
+      const cadlType = "Record<boolean | null>";
+      const typeScriptType = "Record<string, boolean | null>";
+      await verifyPropertyType(cadlType, typeScriptType);
+    });
+
+    it("should generate nullable model", async () => {
+      const cadlDefinition = `
+      model SimpleModel {
+        color: "red" | "blue";
+      }
+      `;
+      const cadlType = "SimpleModel | null";
+      const typeScriptType = "SimpleModel | null";
+      await verifyPropertyType(cadlType, typeScriptType, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: "SimpleModelOutput | null",
+        additionalInputContent: `
+        export interface SimpleModel {
+          color: "red" | "blue";
+        }
+          `,
+        additionalOutputContent: `
+        export interface SimpleModelOutput {
+          color: "red" | "blue";
+        }
+          `
+      });
+    });
+
+    it("should generate nullable literal dictionary", async () => {
+      const cadlType = 'Record<"test" | null>';
+      const typeScriptType = 'Record<string, "test" | null>';
       await verifyPropertyType(cadlType, typeScriptType);
     });
   });
@@ -786,7 +838,34 @@ describe("Input/output model type", () => {
       });
     });
 
-    // TODO: the behavior isn't finalized
+    it("should handle nullable optional/required parameter", async () => {
+      const cadlDefinition = `
+      model SimpleModel {
+        foo?: string | null;
+        bar: string | null;
+        baz: string;
+      }
+      `;
+      const cadlType = `SimpleModel`;
+      const inputModelName = cadlType;
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `${inputModelName}Output`,
+        additionalInputContent: `
+        export interface ${inputModelName} {
+          foo?: string | null;
+          bar: string | null;
+          baz: string;
+        }`,
+        additionalOutputContent: `
+        export interface ${inputModelName}Output {
+          foo?: string | null;
+          bar: string | null;
+          baz: string;
+        }`
+      });
+    });
+
     it("should handle optional parameter with defaul value -> general type ", async () => {
       const cadlDefinition = `
       model SimpleModel {
@@ -853,6 +932,171 @@ describe("Input/output model type", () => {
     });
   });
 
+  describe("Union Models generation", () => {
+    it("should handle named unions", async () => {
+      const cadlDefinition = `
+      @doc("This is a base model.")
+      model BaseModel {
+        name: string;
+      }
+      
+      @doc("The first one of the unioned model type.")
+      model Model1 extends BaseModel {
+        prop1: int32;
+      }
+      
+      @doc("The second one of the unioned model type.")
+      model Model2 extends BaseModel {
+        prop2: int32;
+      }
+      
+      union MyNamedUnion {
+        one: Model1,
+        two: Model2,
+      }
+      `;
+      const cadlType = "MyNamedUnion";
+      const inputModelName = "MyNamedUnion";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `MyNamedUnionOutput`,
+        additionalInputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1 extends BaseModel {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModel {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2 extends BaseModel {
+          prop2: number;
+        }
+       
+        export type MyNamedUnion = Model1 | Model2;`,
+        additionalOutputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1Output extends BaseModelOutput {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModelOutput {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2Output extends BaseModelOutput {
+          prop2: number;
+        }
+       
+       export type MyNamedUnionOutput = Model1Output | Model2Output;`
+      });
+    });
+
+    it("should handle named unions with null variant", async () => {
+      const cadlDefinition = `
+      @doc("The first one of the unioned model type.")
+      model Model1 {
+        prop1: int32;
+      }
+      
+      @doc("The second one of the unioned model type.")
+      model Model2 {
+        prop2: int32;
+      }
+      
+      union MyNamedUnion {
+        one: Model1,
+        two: Model2,
+        three: null
+      }
+      `;
+      const cadlType = "MyNamedUnion";
+      const inputModelName = "MyNamedUnion";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `MyNamedUnionOutput`,
+        additionalInputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1 {
+          prop1: number;
+        }
+      
+        /** The second one of the unioned model type. */
+        export interface Model2 {
+          prop2: number;
+        }
+       
+        export type MyNamedUnion = Model1 | Model2 | null;`,
+        additionalOutputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1Output {
+          prop1: number;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2Output {
+          prop2: number;
+        }
+       
+       export type MyNamedUnionOutput = Model1Output | Model2Output | null;`
+      });
+    });
+
+    it("should handle nullable named unions", async () => {
+      const cadlDefinition = `
+      @doc("The first one of the unioned model type.")
+      model Model1 {
+        prop1: int32;
+      }
+      
+      @doc("The second one of the unioned model type.")
+      model Model2 {
+        prop2: int32;
+      }
+      
+      union MyNamedUnion {
+        one: Model1,
+        two: Model2,
+      }
+      `;
+      const cadlType = "MyNamedUnion | null";
+      const inputModelName = "MyNamedUnion | null";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `MyNamedUnionOutput | null`,
+        additionalInputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1 {
+          prop1: number;
+        }
+      
+        /** The second one of the unioned model type. */
+        export interface Model2 {
+          prop2: number;
+        }
+       
+        export type MyNamedUnion = Model1 | Model2;`,
+        additionalOutputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1Output {
+          prop1: number;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2Output {
+          prop2: number;
+        }
+       
+       export type MyNamedUnionOutput = Model1Output | Model2Output;`
+      });
+    });
+  });
+
   describe("'is' keyword generation", () => {
     it("should handle A is B, only A is referenced", async () => {
       const cadlDefinition = `
@@ -915,7 +1159,6 @@ describe("Input/output model type", () => {
       );
     });
 
-    // Remember to fix this case to scalar when upgrading compiler
     it("should handle A is B, B is string", async () => {
       const cadlDefinition = `
       scalar MyStr extends string;`;

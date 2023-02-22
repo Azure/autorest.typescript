@@ -31,7 +31,8 @@ import {
   Type,
   Union,
   isNullType,
-  Scalar
+  Scalar,
+  UnionVariant
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -85,6 +86,8 @@ export function getSchemaForType(
     return schema;
   } else if (type.kind === "Union") {
     return getSchemaForUnion(program, type, usage);
+  } else if (type.kind === "UnionVariant") {
+    return getSchemaForUnionVariant(program, type, usage);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
@@ -100,6 +103,9 @@ export function getSchemaForType(
   }
   if (isNeverType(type)) {
     return { type: "never" };
+  }
+  if (isNullType(type)) {
+    return { type: "null" };
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
@@ -146,32 +152,47 @@ function getSchemaForUnion(
   union: Union,
   usage?: SchemaContext[]
 ) {
-  const nonNullOptions = union.options.filter((t) => !isNullType(t));
-  const nullable = union.options.length != nonNullOptions.length;
-  if (nonNullOptions.length === 0 || nonNullOptions[0] === undefined) {
-    reportDiagnostic(program, { code: "union-null", target: union });
-    return {};
-  }
-
+  const variants = Array.from(union.variants.values());
   const values = [];
 
-  for (const option of nonNullOptions) {
+  for (const variant of variants) {
     // We already know it's not a model type
-    values.push(getSchemaForType(program, option, usage));
+    values.push(getSchemaForType(program, variant.type, usage));
   }
 
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
-    schema.type = values
-      .map((item) => `${getTypeName(item) ?? item}`)
+    const unionAlias = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
       .join(" | ");
-  }
-  if (nullable) {
-    schema["required"] = false;
+    const outputUnionAlias = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
+      .join(" | ");
+    if (!union.expression) {
+      schema.name = union.name;
+      schema.type = "object";
+      schema.typeName = union.name;
+      schema.outputTypeName = union.name + "Output";
+      schema.alias = unionAlias;
+      schema.outputAlias = outputUnionAlias;
+    } else if (union.expression && !union.name){
+      schema.type = unionAlias;
+      schema.outputTypeName = outputUnionAlias;
+    } else {
+      schema.type = union.name ?? unionAlias;
+    }
   }
 
   return schema;
+}
+
+function getSchemaForUnionVariant(
+  program: Program,
+  variant: UnionVariant,
+  usage?: SchemaContext[]
+): Schema {
+  return getSchemaForType(program, variant, usage);
 }
 
 // An openapi "string" can be defined in several different ways in Cadl
@@ -667,7 +688,8 @@ function mapCadlStdTypeToTypeScript(
         };
         if (
           !program.checker.isStdType(indexer.value) &&
-          !isUnknownType(indexer.value!)
+          !isUnknownType(indexer.value!) &&
+          !isUnionType(indexer.value!)
         ) {
           schema.typeName = `Record<string, ${valueType.name}>`;
           schema.valueTypeName = valueType.name;
@@ -732,6 +754,10 @@ function mapCadlStdTypeToTypeScript(
       return schema;
     }
   }
+}
+
+function isUnionType(type: Type) {
+  return type.kind === "Union";
 }
 
 function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
@@ -835,9 +861,9 @@ function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
   }
 }
 
-export function getTypeName(schema: Schema): string {
+export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   // TODO: Handle more cases
-  return getPriorityName(schema) ?? schema.type ?? "any";
+  return getPriorityName(schema, usage) ?? schema.type ?? "any";
 }
 
 export function getImportedModelName(schema: Schema): string[] | undefined {
@@ -857,8 +883,12 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
   }
 }
 
-function getPriorityName(schema: Schema): string {
-  return schema.outputTypeName ?? schema.typeName ?? schema.name;
+function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
+  return usage &&
+    usage.includes(SchemaContext.Input) &&
+    !usage.includes(SchemaContext.Output)
+    ? schema.typeName ?? schema.name
+    : schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
 function getDictionaryValueName(schema: DictionarySchema): string | undefined {
   return schema.outputValueTypeName ?? schema.valueTypeName ?? undefined;
