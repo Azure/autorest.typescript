@@ -146,7 +146,8 @@ export function transformSchemas(
           let hasModels = false;
           for (const variant of variants) {
             if (
-              variant.type.kind === "Model" &&
+              (variant.type.kind === "Model" ||
+                variant.type.kind === "Union") &&
               (!program.stateMap(modelKey).get(variant.type) ||
                 !program
                   .stateMap(modelKey)
@@ -182,6 +183,22 @@ export function transformSchemas(
         ) {
           getGeneratedModels(child, context);
         }
+      }
+    } else if (model.kind === "Union") {
+      const variants = Array.from(model.variants.values());
+      let hasModels = false;
+      for (const variant of variants) {
+        if (
+          (variant.type.kind === "Model" || variant.type.kind === "Union") &&
+          (!program.stateMap(modelKey).get(variant.type) ||
+            !program.stateMap(modelKey).get(variant.type)?.includes(context))
+        ) {
+          hasModels = true;
+          getGeneratedModels(variant.type, context);
+        }
+      }
+      if (hasModels) {
+        setModelMap(model, context);
       }
     }
   }

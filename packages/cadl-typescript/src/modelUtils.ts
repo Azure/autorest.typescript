@@ -169,7 +169,6 @@ function getSchemaForUnion(
     const outputUnionAlias = values
       .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
       .join(" | ");
-    schema.type = !union.expression && union.name ? union.name : unionAlias;
     if (!union.expression) {
       schema.name = union.name;
       schema.type = "object";
@@ -177,6 +176,11 @@ function getSchemaForUnion(
       schema.outputTypeName = union.name + "Output";
       schema.alias = unionAlias;
       schema.outputAlias = outputUnionAlias;
+    } else if (union.expression && !union.name){
+      schema.type = unionAlias;
+      schema.outputTypeName = outputUnionAlias;
+    } else {
+      schema.type = union.name ?? unionAlias;
     }
   }
 
