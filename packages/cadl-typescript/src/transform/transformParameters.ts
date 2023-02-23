@@ -166,7 +166,10 @@ function transformQueryParameters(
   const queryParameters = parameters.parameters.filter(
     (p) =>
       p.type === "query" &&
-      !(isApiVersion(dpgContext, p) && getDefaultValue(program, dpgContext, p.param))
+      !(
+        isApiVersion(dpgContext, p) &&
+        getDefaultValue(program, dpgContext, p.param)
+      )
   );
   if (!queryParameters.length) {
     return [];
