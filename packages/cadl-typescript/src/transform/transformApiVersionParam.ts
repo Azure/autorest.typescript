@@ -15,18 +15,6 @@ export function transformApiVersionParam(
   program: Program,
   dpgContext: DpgContext
 ): Parameter | undefined {
-  const serviceApiVersion = getDefaultService(program)?.version;
-  if (
-    serviceApiVersion &&
-    serviceApiVersion &&
-    serviceApiVersion !== "0000-00-00"
-  ) {
-    return {
-      name: "api-version",
-      type: "constant",
-      default: serviceApiVersion
-    };
-  }
   const operationGroups = listOperationGroups(dpgContext, client);
   let apiVersionParam;
   let hasClientApiVersion = false;
@@ -98,6 +86,18 @@ export function transformApiVersionParam(
       name: "api-version",
       type: "constant",
       default: apiVersion
+    };
+  }
+  const serviceApiVersion = getDefaultService(program)?.version;
+  if (
+    serviceApiVersion &&
+    serviceApiVersion &&
+    serviceApiVersion !== "0000-00-00"
+  ) {
+    return {
+      name: "api-version",
+      type: "constant",
+      default: serviceApiVersion
     };
   }
   return undefined;
