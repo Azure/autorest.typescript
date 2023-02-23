@@ -12,10 +12,8 @@ import { createDpgContextTestHelper, rlcEmitterFor } from "./testUtil.js";
 import { transformToParameterTypes } from "../../../src/transform/transformParameters.js";
 import { transformSchemas } from "../../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../../src/transform/transformPaths.js";
-import {
-  transformApiVersionParam,
-  transformUrlInfo
-} from "../../../src/transform/transform.js";
+import { transformUrlInfo } from "../../../src/transform/transform.js";
+import { transformApiVersionParam } from "../../../src/transform/transformApiVersionParam.js";
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
 import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
 
@@ -44,7 +42,12 @@ export async function emitParameterFromCadl(
   needAzureCore: boolean = false,
   ignoreClientApiVersion: boolean = false
 ) {
-  const context = await rlcEmitterFor(cadlContent, true, needAzureCore, ignoreClientApiVersion);
+  const context = await rlcEmitterFor(
+    cadlContent,
+    true,
+    needAzureCore,
+    ignoreClientApiVersion
+  );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = listClients(dpgContext);
@@ -97,7 +100,16 @@ export async function emitClientFactoryFromCadl(
   const dpgContext = createDpgContextTestHelper(context.program);
   const urlInfo = transformUrlInfo(program, dpgContext);
   const creadentialInfo = getCredentialInfo(program, {});
-  const apiVersionInQueryParam = transformApiVersionParam(program);
+  const clients = listClients(dpgContext);
+  let apiVersionInQueryParam;
+  if (clients && clients[0]) {
+    apiVersionInQueryParam = transformApiVersionParam(
+      clients[0],
+      program,
+      dpgContext
+    );
+  }
+
   return buildClient({
     srcPath: "",
     libraryName: "test",
