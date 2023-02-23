@@ -172,18 +172,7 @@ export interface GetCompletionsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetCompletionsParameters = GetCompletionsQueryParam & GetCompletionsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetCompletionsQueryParam {
-    // (undocumented)
-    queryParameters: GetCompletionsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetCompletionsQueryParamProperties {
-    "api-version": string;
-}
+export type GetCompletionsParameters = GetCompletionsBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface GetEmbeddings {
@@ -220,18 +209,7 @@ export interface GetEmbeddingsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetEmbeddingsParameters = GetEmbeddingsQueryParam & GetEmbeddingsBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetEmbeddingsQueryParam {
-    // (undocumented)
-    queryParameters: GetEmbeddingsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetEmbeddingsQueryParamProperties {
-    "api-version": string;
-}
+export type GetEmbeddingsParameters = GetEmbeddingsBodyParam & RequestParameters;
 
 // @public (undocumented)
 export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse): response is GetEmbeddingsDefaultResponse;

@@ -33,11 +33,10 @@ export interface GetLanguagesQueryParamProperties {
    * is appropriate for your scenario, see the description of the [response object](#response-body).
    */
   scope?: string;
-  "api-version": string;
 }
 
 export interface GetLanguagesQueryParam {
-  queryParameters: GetLanguagesQueryParamProperties;
+  queryParameters?: GetLanguagesQueryParamProperties;
 }
 
 export interface GetLanguagesHeaderParam {
@@ -127,7 +126,6 @@ export interface TranslateQueryParamProperties {
    * specifies that the service is allowed to fall back to a general system when a custom system doesn't exist.
    */
   allowFallback?: boolean;
-  "api-version": string;
 }
 
 export interface TranslateQueryParam {
@@ -170,7 +168,6 @@ export interface TransliterateQueryParamProperties {
    * scripts available for the selected combination of input language and input script.
    */
   toScript: string;
-  "api-version": string;
 }
 
 export interface TransliterateQueryParam {
@@ -196,20 +193,11 @@ export interface DetectBodyParam {
   body: Array<InputTextElement>;
 }
 
-export interface DetectQueryParamProperties {
-  "api-version": string;
-}
-
-export interface DetectQueryParam {
-  queryParameters: DetectQueryParamProperties;
-}
-
 export interface DetectHeaderParam {
   headers?: RawHttpHeadersInput & DetectHeaders;
 }
 
-export type DetectParameters = DetectQueryParam &
-  DetectHeaderParam &
+export type DetectParameters = DetectHeaderParam &
   DetectBodyParam &
   RequestParameters;
 
@@ -234,11 +222,10 @@ export interface BreakSentenceQueryParamProperties {
    * If a script isn't specified, the default script of the language will be assumed.
    */
   script?: string;
-  "api-version": string;
 }
 
 export interface BreakSentenceQueryParam {
-  queryParameters: BreakSentenceQueryParamProperties;
+  queryParameters?: BreakSentenceQueryParamProperties;
 }
 
 export interface BreakSentenceHeaderParam {
@@ -271,7 +258,6 @@ export interface DictionaryLookupQueryParamProperties {
    * The target language must be one of the supported languages included in the dictionary scope.
    */
   to: string;
-  "api-version": string;
 }
 
 export interface DictionaryLookupQueryParam {
@@ -308,7 +294,6 @@ export interface DictionaryExamplesQueryParamProperties {
    * The target language must be one of the supported languages included in the dictionary scope.
    */
   to: string;
-  "api-version": string;
 }
 
 export interface DictionaryExamplesQueryParam {

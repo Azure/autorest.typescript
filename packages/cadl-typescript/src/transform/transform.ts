@@ -12,7 +12,6 @@ import {
   normalizeName,
   OperationParameter,
   OperationResponse,
-  Parameter,
   PathParameter,
   Paths,
   RLCModel,
@@ -30,7 +29,8 @@ import {
   listServices,
   NoTarget,
   Service,
-  getDoc
+  getDoc,
+  getService
 } from "@cadl-lang/compiler";
 import { getServers } from "@cadl-lang/rest/http";
 import { join } from "path";
@@ -47,6 +47,7 @@ import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { isApiVersion } from "@azure-tools/cadl-dpg";
 import { reportDiagnostic } from "../lib.js";
+import { transformApiVersionParam } from "./transformApiVersionParam.js";
 
 export async function transformRLCModel(
   program: Program,
@@ -77,7 +78,11 @@ export async function transformRLCModel(
   const importSet = new Map<ImportKind, Set<string>>();
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
-  const apiVersionInQueryParam = transformApiVersionParam(program);
+  const apiVersionInQueryParam = transformApiVersionParam(
+    client,
+    program,
+    dpgContext
+  );
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet,
@@ -105,20 +110,6 @@ export async function transformRLCModel(
     annotations,
     urlInfo
   };
-}
-
-export function transformApiVersionParam(
-  program: Program
-): Parameter | undefined {
-  const apiVersion = getDefaultService(program)?.version;
-  if (apiVersion && apiVersion !== "0000-00-00") {
-    return {
-      name: "api-version",
-      type: "constant",
-      default: apiVersion
-    };
-  }
-  return undefined;
 }
 
 export function transformUrlInfo(
@@ -186,9 +177,11 @@ export function getDefaultValue(
   if (!serviceNamespace) {
     return undefined;
   }
-  const defaultApiVersion = getDefaultApiVersion(dpgContext, serviceNamespace);
+  const defaultApiVersion =
+    getDefaultApiVersion(dpgContext, serviceNamespace)?.value ??
+    getService(program, serviceNamespace)?.version;
   if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
-    return defaultApiVersion.value;
+    return defaultApiVersion;
   } else if (isLiteralValue(otherDefaultValue)) {
     return otherDefaultValue.value;
   }

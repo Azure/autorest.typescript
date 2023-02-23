@@ -14,6 +14,7 @@ export default function createClient(
   options: ClientOptions = {}
 ): ContosoWidgetManagerClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
+  options.apiVersion = options.apiVersion ?? "2022-11-01-preview";
 
   const userAgentInfo = `azsdk-js-contosowidgetmanager-rest/1.0.0-beta.1`;
   const userAgentPrefix =

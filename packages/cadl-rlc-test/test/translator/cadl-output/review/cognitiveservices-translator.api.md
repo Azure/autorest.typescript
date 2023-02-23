@@ -88,13 +88,11 @@ export type BreakSentenceParameters = BreakSentenceQueryParam & BreakSentenceHea
 // @public (undocumented)
 export interface BreakSentenceQueryParam {
     // (undocumented)
-    queryParameters: BreakSentenceQueryParamProperties;
+    queryParameters?: BreakSentenceQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface BreakSentenceQueryParamProperties {
-    // (undocumented)
-    "api-version": string;
     language?: string;
     script?: string;
 }
@@ -185,19 +183,7 @@ export interface DetectHeaders {
 }
 
 // @public (undocumented)
-export type DetectParameters = DetectQueryParam & DetectHeaderParam & DetectBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface DetectQueryParam {
-    // (undocumented)
-    queryParameters: DetectQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface DetectQueryParamProperties {
-    // (undocumented)
-    "api-version": string;
-}
+export type DetectParameters = DetectHeaderParam & DetectBodyParam & RequestParameters;
 
 // @public
 export interface DictionaryExampleElementOutput {
@@ -268,8 +254,6 @@ export interface DictionaryExamplesQueryParam {
 
 // @public (undocumented)
 export interface DictionaryExamplesQueryParamProperties {
-    // (undocumented)
-    "api-version": string;
     from: string;
     to: string;
 }
@@ -348,8 +332,6 @@ export interface DictionaryLookupQueryParam {
 
 // @public (undocumented)
 export interface DictionaryLookupQueryParamProperties {
-    // (undocumented)
-    "api-version": string;
     from: string;
     to: string;
 }
@@ -435,13 +417,11 @@ export type GetLanguagesParameters = GetLanguagesQueryParam & GetLanguagesHeader
 // @public (undocumented)
 export interface GetLanguagesQueryParam {
     // (undocumented)
-    queryParameters: GetLanguagesQueryParamProperties;
+    queryParameters?: GetLanguagesQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface GetLanguagesQueryParamProperties {
-    // (undocumented)
-    "api-version": string;
     scope?: string;
 }
 
@@ -597,8 +577,6 @@ export interface TranslateQueryParam {
 
 // @public (undocumented)
 export interface TranslateQueryParamProperties {
-    // (undocumented)
-    "api-version": string;
     allowFallback?: boolean;
     category?: string;
     from?: string;
@@ -702,8 +680,6 @@ export interface TransliterateQueryParam {
 
 // @public (undocumented)
 export interface TransliterateQueryParamProperties {
-    // (undocumented)
-    "api-version": string;
     fromScript: string;
     language: string;
     toScript: string;

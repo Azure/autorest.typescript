@@ -35,7 +35,7 @@ import {
   OperationGroup,
   isApiVersion
 } from "@azure-tools/cadl-dpg";
-import { getDefaultService } from "./transform.js";
+import { getDefaultValue } from "./transform.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -166,7 +166,7 @@ function transformQueryParameters(
   const queryParameters = parameters.parameters.filter(
     (p) =>
       p.type === "query" &&
-      !(isApiVersion(dpgContext, p) && getDefaultService(program)?.version)
+      !(isApiVersion(dpgContext, p) && getDefaultValue(program, dpgContext, p.param))
   );
   if (!queryParameters.length) {
     return [];

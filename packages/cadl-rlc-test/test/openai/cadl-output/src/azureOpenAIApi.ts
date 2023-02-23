@@ -18,7 +18,7 @@ export default function createClient(
   options: ClientOptions = {}
 ): AzureOpenAIApiClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/openai`;
-
+  options.apiVersion = options.apiVersion ?? "2022-12-01";
   options = {
     ...options,
     credentials: {
