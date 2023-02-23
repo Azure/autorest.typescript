@@ -28,7 +28,8 @@ export enum MapperTypes {
   Uuid = "Uuid",
   Number = "Number",
   Sequence = "Sequence",
-  any = "any"
+  any = "any",
+  Dictionary = "Dictionary"
 }
 
 /**
@@ -73,7 +74,7 @@ export function getStringForValue(
       return quotedStrings ? `"${valueString}"` : `${valueString}`;
     case MapperTypes.Sequence:
       if (mapperType) {
-        return getStringForValue(
+        return getStringForSequence(
           value,
           (mapperType as SequenceMapperType).element.type.name
         );
@@ -81,6 +82,21 @@ export function getStringForValue(
     default:
       throw new Error(`Unexpected value type: ${valueType}`);
   }
+}
+
+function getStringForSequence(
+  value: any,
+  valueType: AllSchemaTypes | MapperTypes | string
+) {
+  if (Array.isArray(value)) {
+    const valuesArr = [];
+    for (let item of value) {
+      valuesArr.push(getStringForValue(item, valueType));
+    }
+    return `[${valuesArr.join(", ")}]`;
+  }
+  const valueStr = getStringForValue(value, valueType);
+  return `[${valueStr}]`;
 }
 
 /**
