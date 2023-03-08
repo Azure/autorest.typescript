@@ -55,7 +55,18 @@ export interface ListCollectionsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListCollectionsParameters = RequestParameters;
+export type ListCollectionsParameters = ListCollectionsQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface ListCollectionsQueryParam {
+    // (undocumented)
+    queryParameters: ListCollectionsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface ListCollectionsQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export type ParametrizedHostClient = Client & {

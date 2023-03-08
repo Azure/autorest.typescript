@@ -26,4 +26,4 @@ export * from "./metadata/buildRollupConfig.js";
 export * from "./metadata/buildTsConfig.js";
 export * from "./metadata/buildESLintConfig.js";
 export * from "./metadata/buildLicenseFile.js";
-export * from "./buildSerializeHelper.js"
+export * from "./buildSerializeHelper.js";

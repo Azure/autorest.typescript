@@ -45,8 +45,16 @@ export function generateModelFiles(
 
   const objectTypeAliases = buildPolymorphicAliases(model, schemaContext);
 
-  const objectAliases = buildObjectAliases(model, importedModels, schemaContext);
-  if (objectTypeAliases.length || objectsDefinitions.length || objectAliases.length) {
+  const objectAliases = buildObjectAliases(
+    model,
+    importedModels,
+    schemaContext
+  );
+  if (
+    objectTypeAliases.length ||
+    objectsDefinitions.length ||
+    objectAliases.length
+  ) {
     const modelsFile = project.createSourceFile(filePath, undefined, {
       overwrite: true
     });
@@ -66,9 +74,7 @@ export function generateModelFiles(
     if (importedModels.size > 0) {
       modelsFile.addImportDeclarations([
         {
-          namedImports: [
-            ...Array.from(importedModels || [])
-          ],
+          namedImports: [...Array.from(importedModels || [])],
           moduleSpecifier: "@azure-rest/core-client"
         }
       ]);

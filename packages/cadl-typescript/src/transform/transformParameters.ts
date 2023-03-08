@@ -25,15 +25,17 @@ import {
   getFormattedPropertyDoc,
   getBodyType
 } from "../modelUtils.js";
-import { isApiVersion } from "../paramUtil.js";
+
 import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
 import {
   Client,
   DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  OperationGroup
+  OperationGroup,
+  isApiVersion
 } from "@azure-tools/cadl-dpg";
+import { getDefaultValue } from "./transform.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -74,7 +76,11 @@ export function transformToParameterTypes(
       parameters: []
     };
     // transform query param
-    const queryParams = transformQueryParameters(program, parameters);
+    const queryParams = transformQueryParameters(
+      program,
+      dpgContext,
+      parameters
+    );
     // transform path param
     const pathParams = transformPathParameters();
     // transform header param includeing content-type
@@ -154,10 +160,16 @@ function getParameterName(name: string) {
 
 function transformQueryParameters(
   program: Program,
+  dpgContext: DpgContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
-    (p) => p.type === "query" && !isApiVersion(p)
+    (p) =>
+      p.type === "query" &&
+      !(
+        isApiVersion(dpgContext, p) &&
+        getDefaultValue(program, dpgContext, p.param)
+      )
   );
   if (!queryParameters.length) {
     return [];

@@ -18,13 +18,14 @@ export async function createRLCEmitterTestHost() {
 export async function rlcEmitterFor(
   code: string,
   needNamespaces: boolean = true,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  ignoreClientApiVersion: boolean = false
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
   @service({
     title: "Azure TypeScript Testing",
-    version: "2022-12-16-preview",
+    ${ignoreClientApiVersion? "": 'version: "2022-12-16-preview",'}
   })
 
   namespace Azure.TypeScript.Testing;

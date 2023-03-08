@@ -21,10 +21,10 @@ import {
   DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  OperationGroup
+  OperationGroup,
+  isApiVersion
 } from "@azure-tools/cadl-dpg";
 import { getSchemaForType } from "../modelUtils.js";
-import { isApiVersion } from "../paramUtil.js";
 import {
   getOperationGroupName,
   getOperationStatuscode,
@@ -48,13 +48,13 @@ export function transformPaths(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      transformOperation(program, route, paths, operationGroup);
+      transformOperation(program, route, paths, dpgContext, operationGroup);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    transformOperation(program, route, paths);
+    transformOperation(program, route, paths, dpgContext);
   }
   return paths;
 }
@@ -99,6 +99,7 @@ function transformOperation(
   program: Program,
   route: HttpOperation,
   paths: Paths,
+  dpgContext: DpgContext,
   operationGroup?: OperationGroup
 ) {
   const respNames = [];
@@ -112,7 +113,7 @@ function transformOperation(
   }
   const method: OperationMethod = {
     description: getDoc(program, route.operation) ?? "",
-    hasOptionalOptions: !hasRequiredOptions(route.parameters),
+    hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
     optionsName: getParameterTypeName(
       getOperationGroupName(operationGroup),
       route.operation.name
@@ -156,11 +157,14 @@ function transformOperation(
   }
 }
 
-function hasRequiredOptions(routeParameters: HttpOperationParameters) {
+function hasRequiredOptions(
+  dpgContext: DpgContext,
+  routeParameters: HttpOperationParameters
+) {
   const isRequiredBodyParam = routeParameters.bodyParameter?.optional === false;
   const containsRequiredNonBodyParam = routeParameters.parameters
     .filter((parameter) => ["query", "header"].includes(parameter.type))
-    .filter((parameter) => !isApiVersion(parameter))
+    .filter((parameter) => !isApiVersion(dpgContext, parameter))
     .filter((parameter) => !!parameter.param)
     .some((parameter) => parameter.param.optional === false);
   return isRequiredBodyParam || containsRequiredNonBodyParam;
