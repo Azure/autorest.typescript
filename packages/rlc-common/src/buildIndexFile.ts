@@ -188,9 +188,11 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
     hasPipeCollection(model) ||
     hasTsvCollection(model)
   ) {
-    file.addExportDeclarations([{
-      moduleSpecifier: "./serializeHelper"
-    }]);
+    file.addExportDeclarations([
+      {
+        moduleSpecifier: "./serializeHelper"
+      }
+    ]);
   }
 
   file.addExportAssignment({
