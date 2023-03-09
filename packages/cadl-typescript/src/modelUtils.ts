@@ -32,7 +32,8 @@ import {
   Union,
   isNullType,
   Scalar,
-  UnionVariant
+  UnionVariant,
+  getProjectedName
 } from "@cadl-lang/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -176,7 +177,7 @@ function getSchemaForUnion(
       schema.outputTypeName = union.name + "Output";
       schema.alias = unionAlias;
       schema.outputAlias = outputUnionAlias;
-    } else if (union.expression && !union.name){
+    } else if (union.expression && !union.name) {
       schema.type = unionAlias;
       schema.outputTypeName = outputUnionAlias;
     } else {
@@ -334,10 +335,10 @@ function getSchemaForModel(
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
-  const friendlyName = getFriendlyName(program, model);
+  const restApiName = getProjectedName(program, model, "json");
   let name = model.name;
   if (
-    !friendlyName &&
+    !restApiName &&
     model.templateArguments &&
     model.templateArguments.length > 0 &&
     getPagedResult(program, model)
@@ -357,7 +358,7 @@ function getSchemaForModel(
         .join("") + "List";
   }
   let modelSchema: ObjectSchema = {
-    name: friendlyName ?? name,
+    name: restApiName ?? name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };

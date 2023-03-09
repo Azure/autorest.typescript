@@ -1170,4 +1170,32 @@ describe("Input/output model type", () => {
       });
     });
   });
+
+  describe("@projectedName with json", () => {
+    it.only("should generate the property with josn projectedName", async () => {
+      const cadlDefinition = `
+      @doc("This is a x model.")
+      model XModel {
+        @projectedName("json", "xJson")
+        x: int32;
+      }
+      `;
+      const cadlType = "XModel";
+      const inputModelName = "XModel";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `XModelOutput`,
+        additionalInputContent: `
+        /** This is a x model. */
+        export interface XModel {
+          xJson: number;
+        }`,
+        additionalOutputContent: `
+        /** This is a x model. */
+        export interface XModelOutput {
+          xJson: number;
+        }`
+      });
+    });
+  });
 });
