@@ -337,6 +337,7 @@ function getSchemaForModel(
 ) {
   const overridedModelName =
     getProjectedName(program, model, "javascript") ??
+    getProjectedName(program, model, "client") ??
     getFriendlyName(program, model);
   let name = model.name;
   if (
