@@ -1172,27 +1172,62 @@ describe("Input/output model type", () => {
   });
 
   describe("@projectedName with json", () => {
-    it.only("should generate the property with josn projectedName", async () => {
+    it("should generate projected json name for property", async () => {
       const cadlDefinition = `
-      @doc("This is a x model.")
-      model XModel {
+      @doc("This is a Foo model.")
+      model FooModel {
         @projectedName("json", "xJson")
+        @projectedName("javascript", "MadeForTS")
+        @projectedName("client", "NotToUseMeAsName") // Should be ignored
         x: int32;
+
+        y: string;
       }
       `;
-      const cadlType = "XModel";
-      const inputModelName = "XModel";
+      const cadlType = "FooModel";
+      const inputModelName = "FooModel";
       await verifyPropertyType(cadlType, inputModelName, {
         additionalCadlDefinition: cadlDefinition,
-        outputType: `XModelOutput`,
+        outputType: `FooModelOutput`,
         additionalInputContent: `
-        /** This is a x model. */
-        export interface XModel {
+        /** This is a Foo model. */
+        export interface FooModel {
+          xJson: number;
+          y: string;
+        }`,
+        additionalOutputContent: `
+        /** This is a Foo model. */
+        export interface FooModelOutput {
+          xJson: number;
+          y: string;
+        }`
+      });
+    });
+
+    it("should generate augmented projected json name for property", async () => {
+      const cadlDefinition = `
+      @doc("This is a Foo model.")
+      model FooModel {
+        x: int32;
+      }
+
+      @@projectedName(FooModel.x, "client", "NotToUseMeAsName") // Should be ignored
+      @@projectedName(FooModel.x, "javascript", "MadeForTS")
+      @@projectedName(FooModel.x, "json", "xJson")
+      `;
+      const cadlType = "FooModel";
+      const inputModelName = "FooModel";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `FooModelOutput`,
+        additionalInputContent: `
+        /** This is a Foo model. */
+        export interface FooModel {
           xJson: number;
         }`,
         additionalOutputContent: `
-        /** This is a x model. */
-        export interface XModelOutput {
+        /** This is a Foo model. */
+        export interface FooModelOutput {
           xJson: number;
         }`
       });
