@@ -2,6 +2,7 @@ import { Program } from "@typespec/compiler";
 import { createTestHost } from "@typespec/compiler/testing";
 import { TestHost } from "@typespec/compiler/testing";
 import { RestTestLibrary } from "@typespec/rest/testing";
+import { HttpTestLibrary } from "@typespec/http/testing";
 import { VersioningTestLibrary } from "@typespec/versioning/testing";
 import { AzureCoreTestLibrary } from "@azure-tools/typespec-azure-core/testing";
 import { DpgContext } from "@azure-tools/typespec-client-generator-core";
@@ -11,7 +12,12 @@ import { prettierTypeScriptOptions } from "../../../src/lib.js";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
-    libraries: [RestTestLibrary, VersioningTestLibrary, AzureCoreTestLibrary]
+    libraries: [
+      HttpTestLibrary,
+      RestTestLibrary,
+      VersioningTestLibrary,
+      AzureCoreTestLibrary
+    ]
   });
 }
 
@@ -30,9 +36,10 @@ export async function rlcEmitterFor(
 
   namespace Azure.TypeScript.Testing;
   `;
-  host.addCadlFile(
+  host.addTypeSpecFile(
     "main.tsp",
     `
+  import "@typespec/http";
   import "@typespec/rest";
   import "@typespec/versioning";
   ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 

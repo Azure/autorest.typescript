@@ -3,18 +3,18 @@ import { dirname, join as joinPath } from "path";
 import { fileURLToPath } from "url";
 import { CadlRanchConfig } from "./cadl-ranch-list.js";
 
-export async function runCadl(config: CadlRanchConfig) {
+export async function runTypespec(config: CadlRanchConfig) {
   const targetFolder = config.outputPath,
-    sourceCadl = config.inputPath;
+    sourceTypespec = config.inputPath;
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
   console.log(`=== Start ${targetFolder} ===`);
 
-  const cadlPath = joinPath(
+  const typespecPath = joinPath(
     `${__dirname}`,
     "..",
     "..",
-    `./node_modules/@azure-tools/cadl-ranch-specs/http/${sourceCadl}`
+    `./node_modules/@azure-tools/cadl-ranch-specs/http/${sourceTypespec}`
   );
   // const emitterPath = joinPath(
   //   `${__dirname}`,
@@ -27,13 +27,13 @@ export async function runCadl(config: CadlRanchConfig) {
     "..",
     `./integration/generated/${targetFolder}`
   );
-  const cadlCommand = `cd ${outputPath} && cadl`;
+  const typespecCommand = `cd ${outputPath} && tsp`;
   const commandArguments: string[] = [
     "compile",
-    `${cadlPath}`,
+    `${typespecPath}`,
     `--output-path=.`
   ];
-  const command = `${cadlCommand} ${commandArguments.join(" ")}`;
+  const command = `${typespecCommand} ${commandArguments.join(" ")}`;
   console.log(command);
   const result = execSync(command);
   console.log(`=== End ${targetFolder} ===`);

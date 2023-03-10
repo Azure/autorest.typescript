@@ -114,7 +114,7 @@ describe("Client Factory generation", () => {
             @doc("The endpoint to use.")
             scalar Endpoint extends string;
 
-            #suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "for test"
+            #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
             @doc("The version to use")
             @fixed
             enum Version {
