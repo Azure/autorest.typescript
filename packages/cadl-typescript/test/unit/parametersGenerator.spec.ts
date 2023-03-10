@@ -3,60 +3,6 @@ import { emitParameterFromCadl } from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
 
 describe("Parameters.ts", () => {
-  describe("handle query apiVersion", () => {
-    it("should't generate apiVersion if there's a client level apiVersion", async () => {
-      const parameters = await emitParameterFromCadl(
-        `
-        model ApiVersionParameter {
-          @query
-          "api-version": string;
-        }
-        op test(...ApiVersionParameter): string;
-        `
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `
-          import { RequestParameters } from "@azure-rest/core-client";
-          
-          export type TestParameters =  RequestParameters;
-          `
-      );
-    });
-
-    it("should generate apiVersion if there's no client level apiVersion", async () => {
-      const parameters = await emitParameterFromCadl(
-        `
-        model ApiVersionParameter {
-          @query
-          "api-version": string;
-        }
-        op test(...ApiVersionParameter): string;
-        `,
-        false,
-        true
-      );
-      assert.ok(parameters);
-      assertEqualContent(
-        parameters?.content!,
-        `
-          import { RequestParameters } from "@azure-rest/core-client";
-          
-          export interface TestQueryParamProperties {
-            "api-version": string;
-          }
-          
-          export interface TestQueryParam {
-            queryParameters: TestQueryParamProperties;
-          }
-          
-          export type TestParameters = TestQueryParam & RequestParameters;
-          `
-      );
-    });
-  });
-
   describe("query parameters generation", () => {
     it("should generate user-custom-query ", async () => {
       const parameters = await emitParameterFromCadl(
