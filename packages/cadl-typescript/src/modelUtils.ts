@@ -335,10 +335,10 @@ function getSchemaForModel(
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
-  const restApiName = getProjectedName(program, model, "json");
+  const friendlyName = getFriendlyName(program, model);
   let name = model.name;
   if (
-    !restApiName &&
+    !friendlyName &&
     model.templateArguments &&
     model.templateArguments.length > 0 &&
     getPagedResult(program, model)
@@ -358,7 +358,7 @@ function getSchemaForModel(
         .join("") + "List";
   }
   let modelSchema: ObjectSchema = {
-    name: restApiName ?? name,
+    name: friendlyName ?? name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };
@@ -454,7 +454,7 @@ function getSchemaForModel(
     return modelSchema;
   }
   for (const [propName, prop] of model.properties) {
-    const name = `"${propName}"`;
+    const name = `"${getProjectedName(program, prop, "json") ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
