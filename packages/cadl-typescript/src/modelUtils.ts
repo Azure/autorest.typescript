@@ -33,7 +33,7 @@ import {
   isNullType,
   Scalar,
   UnionVariant
-} from "@cadl-lang/compiler";
+} from "@typespec/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
   DictionarySchema,
@@ -43,15 +43,15 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { getResourceOperation } from "@cadl-lang/rest";
+import { getResourceOperation } from "@typespec/rest";
 import {
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
   isStatusCode,
   HttpOperation
-} from "@cadl-lang/rest/http";
-import { getPagedResult, isFixed } from "@azure-tools/cadl-azure-core";
+} from "@typespec/http";
+import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export function getBinaryType(usage: SchemaContext[]) {

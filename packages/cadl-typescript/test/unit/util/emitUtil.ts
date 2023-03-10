@@ -1,4 +1,4 @@
-import { listClients } from "@azure-tools/cadl-dpg";
+import { listClients } from "@azure-tools/typespec-client-generator-core";
 import {
   buildClient,
   buildClientDefinitions,

@@ -1,0 +1,10 @@
+emit:
+  - "@azure-tools/cadl-typescript"
+  - "@azure-tools/typespec-autorest"
+options:
+  "@azure-tools/cadl-typescript":
+    azureSdkForJs: false
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@msinternal/authoring"
+      description: "Authoring Ledger Service"

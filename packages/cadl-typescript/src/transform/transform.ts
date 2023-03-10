@@ -5,7 +5,7 @@ import {
   Client,
   DpgContext,
   getDefaultApiVersion
-} from "@azure-tools/cadl-dpg";
+} from "@azure-tools/typespec-client-generator-core";
 import {
   ImportKind,
   NameType,
@@ -31,8 +31,8 @@ import {
   Service,
   getDoc,
   getService
-} from "@cadl-lang/compiler";
-import { getServers } from "@cadl-lang/rest/http";
+} from "@typespec/compiler";
+import { getServers } from "@typespec/http";
 import { join } from "path";
 import {
   getFormattedPropertyDoc,
@@ -45,7 +45,7 @@ import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
-import { isApiVersion } from "@azure-tools/cadl-dpg";
+import { isApiVersion } from "@azure-tools/typespec-client-generator-core";
 import { reportDiagnostic } from "../lib.js";
 import { transformApiVersionParam } from "./transformApiVersionParam.js";
 

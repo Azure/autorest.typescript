@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Program, EmitContext } from "@cadl-lang/compiler";
+import { Program, EmitContext } from "@typespec/compiler";
 import * as fsextra from "fs-extra";
 import {
   buildClientDefinitions,
@@ -30,7 +30,10 @@ import {
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
-import { listClients, createDpgContext } from "@azure-tools/cadl-dpg";
+import {
+  listClients,
+  createDpgContext
+} from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 
 export async function $onEmit(context: EmitContext) {

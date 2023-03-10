@@ -4,10 +4,10 @@ import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 function generate(path) {
-  const command = `cd ${path} && cadl compile ./spec`;
+  const command = `cd ${path} && tsp compile ./spec`;
   console.log(command);
   const result = execSync(command);
-  console.log("cadl output:", result.toString());
+  console.log("TypeSpec output:", result.toString());
   if (result.stderr) {
     console.log(Error(result.stderr));
     process.exitCode = 1;
@@ -15,7 +15,7 @@ function generate(path) {
 }
 
 function build(path) {
-  const command = `cd ${path}/cadl-output && npm install && npm run build`;
+  const command = `cd ${path}/generated/typespec-ts && npm install && npm run build`;
   console.log(command);
   const result = execSync(command);
   console.log("build output:", result.toString());

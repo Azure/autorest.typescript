@@ -5,7 +5,7 @@ import {
   paramMessage,
   createCadlLibrary,
   JSONSchemaType
-} from "@cadl-lang/compiler";
+} from "@typespec/compiler";
 import { RLCOptions } from "@azure-tools/rlc-common";
 import { Options } from "prettier";
 

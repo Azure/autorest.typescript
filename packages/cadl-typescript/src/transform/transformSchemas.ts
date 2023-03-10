@@ -6,10 +6,10 @@ import {
   DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup
-} from "@azure-tools/cadl-dpg";
+} from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Model, Program, Type } from "@cadl-lang/compiler";
-import { getHttpOperation, HttpOperation } from "@cadl-lang/rest/http";
+import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
+import { getHttpOperation, HttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
   includeDerivedModel,

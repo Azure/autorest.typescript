@@ -1,4 +1,7 @@
-import { DpgContext, listClients } from "@azure-tools/cadl-dpg";
+import {
+  DpgContext,
+  listClients
+} from "@azure-tools/typespec-client-generator-core";
 import {
   NameType,
   normalizeName,
@@ -6,8 +9,8 @@ import {
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
-import { getDoc, NoTarget, Program } from "@cadl-lang/compiler";
-import { getAuthentication } from "@cadl-lang/rest/http";
+import { getDoc, NoTarget, Program } from "@typespec/compiler";
+import { getAuthentication } from "@typespec/http";
 import { getDefaultService } from "./transform.js";
 import { reportDiagnostic } from "../lib.js";
 

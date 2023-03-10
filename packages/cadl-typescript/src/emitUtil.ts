@@ -1,7 +1,7 @@
 import { ContentBuilder } from "@azure-tools/rlc-common";
 import { buildSchemaTypes } from "@azure-tools/rlc-common";
 import { File, RLCModel } from "@azure-tools/rlc-common";
-import { CompilerHost, Program } from "@cadl-lang/compiler";
+import { CompilerHost, Program } from "@typespec/compiler";
 import { dirname, join } from "path";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./lib.js";
