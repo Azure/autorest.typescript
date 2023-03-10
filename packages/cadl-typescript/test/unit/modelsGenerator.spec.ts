@@ -1233,4 +1233,59 @@ describe("Input/output model type", () => {
       });
     });
   });
+
+  describe("@friendlyName for model", () => {
+    it("should generate friendly name for property", async () => {
+      const cadlDefinition = `
+      @friendlyName("MyNameIsA")
+      model A { }
+      `;
+      const cadlType = "A";
+      const inputModelName = "MyNameIsA";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `MyNameIsAOutput`,
+        additionalInputContent: `
+        export interface MyNameIsA {}
+        `,
+        additionalOutputContent: `
+        export interface MyNameIsAOutput {}
+        `
+      });
+    });
+
+    it("should generate templated friendly name for property", async () => {
+      const cadlDefinition = `
+      @friendlyName("{name}Model", Base)
+      model Base { }
+
+      @friendlyName("Templated{name}", T)
+      model Templated<T> {
+        prop: T;
+      }
+
+      model X is Templated<Base>{};
+      `;
+      const cadlType = "X";
+      const inputModelName = "TemplatedBase";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `TemplatedBaseOutput`,
+        additionalInputContent: `
+        export interface TemplatedBase {
+           prop: BaseModel;
+        }
+
+        export interface BaseModel {}
+        `,
+        additionalOutputContent: `
+        export interface TemplatedBaseOutput {
+          prop: BaseModelOutput;
+        }
+
+        export interface BaseModelOutput {}
+        `
+      });
+    });
+  });
 });
