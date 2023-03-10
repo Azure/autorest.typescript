@@ -1171,7 +1171,7 @@ describe("Input/output model type", () => {
     });
   });
 
-  describe("@projectedName with json", () => {
+  describe("@projectedName", () => {
     it("should generate projected json name for property", async () => {
       const cadlDefinition = `
       @doc("This is a Foo model.")
@@ -1229,6 +1229,33 @@ describe("Input/output model type", () => {
         /** This is a Foo model. */
         export interface FooModelOutput {
           xJson: number;
+        }`
+      });
+    });
+
+    it("should generate projected model name over friendly name", async () => {
+      const cadlDefinition = `
+      @projectedName("javascript", "CustomProjectedModel")
+      @friendlyName("CustomFriendlyModel")
+      @doc("This is a Foo model.")
+      model FooModel {
+        x: int32;
+      }
+      `;
+      const cadlType = "FooModel";
+      const inputModelName = "CustomProjectedModel";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `CustomProjectedModelOutput`,
+        additionalInputContent: `
+        /** This is a Foo model. */
+        export interface CustomProjectedModel {
+          x: number;
+        }`,
+        additionalOutputContent: `
+        /** This is a Foo model. */
+        export interface CustomProjectedModelOutput {
+          x: number;
         }`
       });
     });

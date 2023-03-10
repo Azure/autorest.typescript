@@ -335,10 +335,12 @@ function getSchemaForModel(
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
-  const friendlyName = getFriendlyName(program, model);
+  const overridedModelName =
+    getProjectedName(program, model, "javascript") ??
+    getFriendlyName(program, model);
   let name = model.name;
   if (
-    !friendlyName &&
+    !overridedModelName &&
     model.templateArguments &&
     model.templateArguments.length > 0 &&
     getPagedResult(program, model)
@@ -358,7 +360,7 @@ function getSchemaForModel(
         .join("") + "List";
   }
   let modelSchema: ObjectSchema = {
-    name: friendlyName ?? name,
+    name: overridedModelName ?? name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };
