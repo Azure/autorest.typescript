@@ -1235,7 +1235,8 @@ describe("Input/output model type", () => {
 
     it("should generate projected model name over friendly name", async () => {
       const cadlDefinition = `
-      @projectedName("javascript", "CustomProjectedModel")
+      @projectedName("javascript", "CustomProjectedModelTS")
+      @projectedName("json", "CustomProjectedModel")
       @friendlyName("CustomFriendlyModel")
       @doc("This is a Foo model.")
       model FooModel {
@@ -1262,7 +1263,7 @@ describe("Input/output model type", () => {
   });
 
   describe("@friendlyName for model", () => {
-    it("should generate friendly name for property", async () => {
+    it("should generate friendly name", async () => {
       const cadlDefinition = `
       @friendlyName("MyNameIsA")
       model A { }
@@ -1281,7 +1282,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should generate templated friendly name for property", async () => {
+    it("should generate templated friendly name", async () => {
       const cadlDefinition = `
       @friendlyName("{name}Model", Base)
       model Base { }
