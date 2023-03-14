@@ -71,9 +71,21 @@ const testedTypes: TypeDetail[] = [
   {
     type: "never",
     defaultValue: undefined
+  },
+  {
+    type: "collections/nullable-item",
+    defaultValue: [1, null, 3]
+  },
+  {
+    type: "dictionary/nullable-value",
+    defaultValue: { k1: "hello", k2: "world", k3: null }
+  },
+  {
+    type: "nullable-model",
+    defaultValue: { property: null }
   }
 ];
-describe("ModelsPropertyTypesClient Rest Client", () => {
+describe.only("ModelsPropertyTypesClient Rest Client", () => {
   let client: ModelsPropertyTypesClient;
 
   beforeEach(() => {
