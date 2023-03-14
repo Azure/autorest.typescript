@@ -65,6 +65,8 @@ export async function transformRLCModel(
   const srcPath = join(
     emitterOutputDir ?? "",
     "src",
+    // When generating modular library, RLC has to go under rest folder
+    options.isModularLibrary ? "rest" : "",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)
       : ""

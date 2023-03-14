@@ -101,6 +101,7 @@ export interface RLCOptions {
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
   sourceFrom?: "Cadl" | "Swagger";
+  isModularLibrary?: boolean;
 }
 
 export interface ServiceInfo {

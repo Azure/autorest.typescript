@@ -9,7 +9,6 @@ import {
   getDoc,
   getEffectiveModelType,
   getFormat,
-  getFriendlyName,
   getMaxLength,
   getMaxValue,
   getMinLength,

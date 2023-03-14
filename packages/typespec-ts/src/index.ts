@@ -92,6 +92,10 @@ export async function $onEmit(context: EmitContext) {
       context.emitterOutputDir
     );
   }
+
+  if (options.isModularLibrary) {
+    // TODO: Emit modular parts of the library
+  }
 }
 
 function clearSrcFolder(model: RLCModel, count: number) {
