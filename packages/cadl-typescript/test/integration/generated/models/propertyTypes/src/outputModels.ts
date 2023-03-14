@@ -71,6 +71,12 @@ export interface InnerModelOutput {
   property: string;
 }
 
+/** Model with nullable model properties */
+export interface NullableModelPropertyOutput {
+  /** Property */
+  property: InnerModelOutput | null;
+}
+
 /** Model with collection string properties */
 export interface CollectionsStringPropertyOutput {
   /** Property */
@@ -89,17 +95,23 @@ export interface CollectionsModelPropertyOutput {
   property: Array<InnerModelOutput>;
 }
 
+/** Model with collection with nullable values */
+export interface CollectionsNullableItemPropertyOutput {
+  /** Property */
+  property: (number | null)[];
+}
+
 /** Model with dictionary string properties */
 export interface DictionaryStringPropertyOutput {
   /** Property */
   property: Record<string, string>;
 }
 
+/** Model with collection with nullable values */
+export interface DictionaryNullableValuePropertyOutput {
+  /** Property */
+  property: Record<string, string | null>;
+}
+
 /** Model with a property never. (This property should not be included). */
 export interface NeverPropertyOutput {}
-
-/** Model with collection int with nullable values */
-export interface CollectionsNullableIntPropertyOutput {
-  /** Property */
-  property: (number | null)[];
-}

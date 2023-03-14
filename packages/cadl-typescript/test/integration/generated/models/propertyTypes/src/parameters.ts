@@ -13,12 +13,14 @@ import {
   EnumProperty,
   ExtensibleEnumProperty,
   ModelProperty,
+  NullableModelProperty,
   CollectionsStringProperty,
   CollectionsIntProperty,
   CollectionsModelProperty,
+  CollectionsNullableItemProperty,
   DictionaryStringProperty,
+  DictionaryNullableValueProperty,
   NeverProperty,
-  CollectionsNullableIntProperty,
 } from "./models";
 
 export type BooleanGetParameters = RequestParameters;
@@ -102,6 +104,15 @@ export interface ModelPutBodyParam {
 }
 
 export type ModelPutParameters = ModelPutBodyParam & RequestParameters;
+export type NullableModelGetParameters = RequestParameters;
+
+export interface NullableModelPutBodyParam {
+  /** body */
+  body: NullableModelProperty;
+}
+
+export type NullableModelPutParameters = NullableModelPutBodyParam &
+  RequestParameters;
 export type CollectionsStringGetParameters = RequestParameters;
 
 export interface CollectionsStringPutBodyParam {
@@ -129,6 +140,15 @@ export interface CollectionsModelPutBodyParam {
 
 export type CollectionsModelPutParameters = CollectionsModelPutBodyParam &
   RequestParameters;
+export type CollectionsNullableItemGetParameters = RequestParameters;
+
+export interface CollectionsNullableItemPutBodyParam {
+  /** body */
+  body: CollectionsNullableItemProperty;
+}
+
+export type CollectionsNullableItemPutParameters =
+  CollectionsNullableItemPutBodyParam & RequestParameters;
 export type DictionaryStringGetParameters = RequestParameters;
 
 export interface DictionaryStringPutBodyParam {
@@ -138,6 +158,15 @@ export interface DictionaryStringPutBodyParam {
 
 export type DictionaryStringPutParameters = DictionaryStringPutBodyParam &
   RequestParameters;
+export type DictionaryNullableValueGetParameters = RequestParameters;
+
+export interface DictionaryNullableValuePutBodyParam {
+  /** body */
+  body: DictionaryNullableValueProperty;
+}
+
+export type DictionaryNullableValuePutParameters =
+  DictionaryNullableValuePutBodyParam & RequestParameters;
 export type NeverGetParameters = RequestParameters;
 
 export interface NeverPutBodyParam {
@@ -146,12 +175,3 @@ export interface NeverPutBodyParam {
 }
 
 export type NeverPutParameters = NeverPutBodyParam & RequestParameters;
-export type CollectionsNullableIntGetParameters = RequestParameters;
-
-export interface CollectionsNullableIntPutBodyParam {
-  /** body */
-  body: CollectionsNullableIntProperty;
-}
-
-export type CollectionsNullableIntPutParameters =
-  CollectionsNullableIntPutBodyParam & RequestParameters;

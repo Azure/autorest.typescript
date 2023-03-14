@@ -13,12 +13,14 @@ import {
   EnumPropertyOutput,
   ExtensibleEnumPropertyOutput,
   ModelPropertyOutput,
+  NullableModelPropertyOutput,
   CollectionsStringPropertyOutput,
   CollectionsIntPropertyOutput,
   CollectionsModelPropertyOutput,
+  CollectionsNullableItemPropertyOutput,
   DictionaryStringPropertyOutput,
+  DictionaryNullableValuePropertyOutput,
   NeverPropertyOutput,
-  CollectionsNullableIntPropertyOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
@@ -132,6 +134,17 @@ export interface ModelPut204Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
+export interface NullableModelGet200Response extends HttpResponse {
+  status: "200";
+  body: NullableModelPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface NullableModelPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
 export interface CollectionsStringGet200Response extends HttpResponse {
   status: "200";
   body: CollectionsStringPropertyOutput;
@@ -165,6 +178,17 @@ export interface CollectionsModelPut204Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
+export interface CollectionsNullableItemGet200Response extends HttpResponse {
+  status: "200";
+  body: CollectionsNullableItemPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CollectionsNullableItemPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
 export interface DictionaryStringGet200Response extends HttpResponse {
   status: "200";
   body: DictionaryStringPropertyOutput;
@@ -176,6 +200,17 @@ export interface DictionaryStringPut204Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
+export interface DictionaryNullableValueGet200Response extends HttpResponse {
+  status: "200";
+  body: DictionaryNullableValuePropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface DictionaryNullableValuePut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
 export interface NeverGet200Response extends HttpResponse {
   status: "200";
   body: NeverPropertyOutput;
@@ -183,16 +218,5 @@ export interface NeverGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface NeverPut204Response extends HttpResponse {
-  status: "204";
-}
-
-/** The request has succeeded. */
-export interface CollectionsNullableIntGet200Response extends HttpResponse {
-  status: "200";
-  body: CollectionsNullableIntPropertyOutput;
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface CollectionsNullableIntPut204Response extends HttpResponse {
   status: "204";
 }

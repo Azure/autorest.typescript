@@ -22,18 +22,22 @@ import {
   ExtensibleEnumPutParameters,
   ModelGetParameters,
   ModelPutParameters,
+  NullableModelGetParameters,
+  NullableModelPutParameters,
   CollectionsStringGetParameters,
   CollectionsStringPutParameters,
   CollectionsIntGetParameters,
   CollectionsIntPutParameters,
   CollectionsModelGetParameters,
   CollectionsModelPutParameters,
+  CollectionsNullableItemGetParameters,
+  CollectionsNullableItemPutParameters,
   DictionaryStringGetParameters,
   DictionaryStringPutParameters,
+  DictionaryNullableValueGetParameters,
+  DictionaryNullableValuePutParameters,
   NeverGetParameters,
   NeverPutParameters,
-  CollectionsNullableIntGetParameters,
-  CollectionsNullableIntPutParameters,
 } from "./parameters";
 import {
   BooleanGet200Response,
@@ -56,18 +60,22 @@ import {
   ExtensibleEnumPut204Response,
   ModelGet200Response,
   ModelPut204Response,
+  NullableModelGet200Response,
+  NullableModelPut204Response,
   CollectionsStringGet200Response,
   CollectionsStringPut204Response,
   CollectionsIntGet200Response,
   CollectionsIntPut204Response,
   CollectionsModelGet200Response,
   CollectionsModelPut204Response,
+  CollectionsNullableItemGet200Response,
+  CollectionsNullableItemPut204Response,
   DictionaryStringGet200Response,
   DictionaryStringPut204Response,
+  DictionaryNullableValueGet200Response,
+  DictionaryNullableValuePut204Response,
   NeverGet200Response,
   NeverPut204Response,
-  CollectionsNullableIntGet200Response,
-  CollectionsNullableIntPut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -149,6 +157,17 @@ export interface ModelGet {
   put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
 }
 
+export interface NullableModelGet {
+  /** Get call */
+  get(
+    options?: NullableModelGetParameters
+  ): StreamableMethod<NullableModelGet200Response>;
+  /** Put operation */
+  put(
+    options: NullableModelPutParameters
+  ): StreamableMethod<NullableModelPut204Response>;
+}
+
 export interface CollectionsStringGet {
   /** Get call */
   get(
@@ -182,6 +201,17 @@ export interface CollectionsModelGet {
   ): StreamableMethod<CollectionsModelPut204Response>;
 }
 
+export interface CollectionsNullableItemGet {
+  /** Get call */
+  get(
+    options?: CollectionsNullableItemGetParameters
+  ): StreamableMethod<CollectionsNullableItemGet200Response>;
+  /** Put operation */
+  put(
+    options: CollectionsNullableItemPutParameters
+  ): StreamableMethod<CollectionsNullableItemPut204Response>;
+}
+
 export interface DictionaryStringGet {
   /** Get call */
   get(
@@ -193,22 +223,22 @@ export interface DictionaryStringGet {
   ): StreamableMethod<DictionaryStringPut204Response>;
 }
 
+export interface DictionaryNullableValueGet {
+  /** Get call */
+  get(
+    options?: DictionaryNullableValueGetParameters
+  ): StreamableMethod<DictionaryNullableValueGet200Response>;
+  /** Put operation */
+  put(
+    options: DictionaryNullableValuePutParameters
+  ): StreamableMethod<DictionaryNullableValuePut204Response>;
+}
+
 export interface NeverGet {
   /** Get call */
   get(options?: NeverGetParameters): StreamableMethod<NeverGet200Response>;
   /** Put operation */
   put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
-}
-
-export interface CollectionsNullableIntGet {
-  /** Get call */
-  get(
-    options?: CollectionsNullableIntGetParameters
-  ): StreamableMethod<CollectionsNullableIntGet200Response>;
-  /** Put operation */
-  put(
-    options: CollectionsNullableIntPutParameters
-  ): StreamableMethod<CollectionsNullableIntPut204Response>;
 }
 
 export interface Routes {
@@ -232,20 +262,26 @@ export interface Routes {
   (path: "/models/properties/types/extensible-enum"): ExtensibleEnumGet;
   /** Resource for '/models/properties/types/model' has methods for the following verbs: get, put */
   (path: "/models/properties/types/model"): ModelGet;
+  /** Resource for '/models/properties/types/nullable-model' has methods for the following verbs: get, put */
+  (path: "/models/properties/types/nullable-model"): NullableModelGet;
   /** Resource for '/models/properties/types/collections/string' has methods for the following verbs: get, put */
   (path: "/models/properties/types/collections/string"): CollectionsStringGet;
   /** Resource for '/models/properties/types/collections/int' has methods for the following verbs: get, put */
   (path: "/models/properties/types/collections/int"): CollectionsIntGet;
   /** Resource for '/models/properties/types/collections/model' has methods for the following verbs: get, put */
   (path: "/models/properties/types/collections/model"): CollectionsModelGet;
+  /** Resource for '/models/properties/types/collections/nullable-item' has methods for the following verbs: get, put */
+  (
+    path: "/models/properties/types/collections/nullable-item"
+  ): CollectionsNullableItemGet;
   /** Resource for '/models/properties/types/dictionary/string' has methods for the following verbs: get, put */
   (path: "/models/properties/types/dictionary/string"): DictionaryStringGet;
+  /** Resource for '/models/properties/types/dictionary/nullable-value' has methods for the following verbs: get, put */
+  (
+    path: "/models/properties/types/dictionary/nullable-value"
+  ): DictionaryNullableValueGet;
   /** Resource for '/models/properties/types/never' has methods for the following verbs: get, put */
   (path: "/models/properties/types/never"): NeverGet;
-  /** Resource for '/models/properties/types/collections/nullable-int' has methods for the following verbs: get, put */
-  (
-    path: "/models/properties/types/collections/nullable-int"
-  ): CollectionsNullableIntGet;
 }
 
 export type ModelsPropertyTypesClient = Client & {
