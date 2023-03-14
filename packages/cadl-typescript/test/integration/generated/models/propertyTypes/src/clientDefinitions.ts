@@ -32,6 +32,8 @@ import {
   DictionaryStringPutParameters,
   NeverGetParameters,
   NeverPutParameters,
+  CollectionsNullableIntGetParameters,
+  CollectionsNullableIntPutParameters,
 } from "./parameters";
 import {
   BooleanGet200Response,
@@ -64,6 +66,8 @@ import {
   DictionaryStringPut204Response,
   NeverGet200Response,
   NeverPut204Response,
+  CollectionsNullableIntGet200Response,
+  CollectionsNullableIntPut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -196,6 +200,17 @@ export interface NeverGet {
   put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
 }
 
+export interface CollectionsNullableIntGet {
+  /** Get call */
+  get(
+    options?: CollectionsNullableIntGetParameters
+  ): StreamableMethod<CollectionsNullableIntGet200Response>;
+  /** Put operation */
+  put(
+    options: CollectionsNullableIntPutParameters
+  ): StreamableMethod<CollectionsNullableIntPut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/models/properties/types/boolean' has methods for the following verbs: get, put */
   (path: "/models/properties/types/boolean"): BooleanGet;
@@ -227,6 +242,10 @@ export interface Routes {
   (path: "/models/properties/types/dictionary/string"): DictionaryStringGet;
   /** Resource for '/models/properties/types/never' has methods for the following verbs: get, put */
   (path: "/models/properties/types/never"): NeverGet;
+  /** Resource for '/models/properties/types/collections/nullable-int' has methods for the following verbs: get, put */
+  (
+    path: "/models/properties/types/collections/nullable-int"
+  ): CollectionsNullableIntGet;
 }
 
 export type ModelsPropertyTypesClient = Client & {

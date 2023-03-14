@@ -97,3 +97,9 @@ export interface DictionaryStringProperty {
 
 /** Model with a property never. (This property should not be included). */
 export interface NeverProperty {}
+
+/** Model with collection int with nullable values */
+export interface CollectionsNullableIntProperty {
+  /** Property */
+  property: (number | null)[];
+}

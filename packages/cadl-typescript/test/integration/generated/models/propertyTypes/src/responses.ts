@@ -18,6 +18,7 @@ import {
   CollectionsModelPropertyOutput,
   DictionaryStringPropertyOutput,
   NeverPropertyOutput,
+  CollectionsNullableIntPropertyOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
@@ -182,5 +183,16 @@ export interface NeverGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface NeverPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface CollectionsNullableIntGet200Response extends HttpResponse {
+  status: "200";
+  body: CollectionsNullableIntPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CollectionsNullableIntPut204Response extends HttpResponse {
   status: "204";
 }
