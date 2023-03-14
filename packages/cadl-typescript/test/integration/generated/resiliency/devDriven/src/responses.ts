@@ -22,20 +22,37 @@ export interface PostModel200Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface GetPages200Response extends HttpResponse {
+export interface GetProtocolPages200Response extends HttpResponse {
   status: "200";
   body: ProductListOutput;
 }
 
-export interface GetPagesDefaultHeaders {
+export interface GetProtocolPagesDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface GetPagesDefaultResponse extends HttpResponse {
+export interface GetProtocolPagesDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & GetPagesDefaultHeaders;
+  headers: RawHttpHeaders & GetProtocolPagesDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetConveniencePages200Response extends HttpResponse {
+  status: "200";
+  body: ProductListOutput;
+}
+
+export interface GetConveniencePagesDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetConveniencePagesDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & GetConveniencePagesDefaultHeaders;
 }
 
 /** Initial response with ProvisioningState='Succeeded' */

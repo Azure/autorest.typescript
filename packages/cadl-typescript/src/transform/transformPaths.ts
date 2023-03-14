@@ -9,13 +9,13 @@ import {
   ResponseTypes,
   OperationMethod
 } from "@azure-tools/rlc-common";
-import { getDoc, ignoreDiagnostics, Program } from "@cadl-lang/compiler";
+import { getDoc, ignoreDiagnostics, Program } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
   HttpOperationParameters,
   HttpOperationResponse
-} from "@cadl-lang/rest/http";
+} from "@typespec/http";
 import {
   Client,
   DpgContext,
@@ -23,7 +23,7 @@ import {
   listOperationsInOperationGroup,
   OperationGroup,
   isApiVersion
-} from "@azure-tools/cadl-dpg";
+} from "@azure-tools/typespec-client-generator-core";
 import { getSchemaForType } from "../modelUtils.js";
 import {
   getOperationGroupName,

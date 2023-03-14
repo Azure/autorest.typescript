@@ -4,14 +4,17 @@
 import {
   GetModelParameters,
   PostModelParameters,
-  GetPagesParameters,
+  GetProtocolPagesParameters,
+  GetConveniencePagesParameters,
   LroParameters,
 } from "./parameters";
 import {
   GetModel200Response,
   PostModel200Response,
-  GetPages200Response,
-  GetPagesDefaultResponse,
+  GetProtocolPages200Response,
+  GetProtocolPagesDefaultResponse,
+  GetConveniencePages200Response,
+  GetConveniencePagesDefaultResponse,
   Lro200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -23,11 +26,22 @@ export interface GetModel {
   post(options: PostModelParameters): StreamableMethod<PostModel200Response>;
 }
 
-export interface GetPages {
-  /** Get pages that you will either return to users in pages of raw bodies, or pages of models following group. */
+export interface GetProtocolPages {
+  /** Get pages of protocol bodies. */
   get(
-    options?: GetPagesParameters
-  ): StreamableMethod<GetPages200Response | GetPagesDefaultResponse>;
+    options?: GetProtocolPagesParameters
+  ): StreamableMethod<
+    GetProtocolPages200Response | GetProtocolPagesDefaultResponse
+  >;
+}
+
+export interface GetConveniencePages {
+  /** Get pages of models. */
+  get(
+    options?: GetConveniencePagesParameters
+  ): StreamableMethod<
+    GetConveniencePages200Response | GetConveniencePagesDefaultResponse
+  >;
 }
 
 export interface Lro {
@@ -41,8 +55,14 @@ export interface Routes {
     path: "/resiliency/devdriven/customization/model/{mode}",
     mode: "raw" | "model"
   ): GetModel;
-  /** Resource for '/resiliency/devdriven/products' has methods for the following verbs: get */
-  (path: "/resiliency/devdriven/products"): GetPages;
+  /** Resource for '/resiliency/devdriven/customization/paging/protocol/products' has methods for the following verbs: get */
+  (
+    path: "/resiliency/devdriven/customization/paging/protocol/products"
+  ): GetProtocolPages;
+  /** Resource for '/resiliency/devdriven/customization/paging/convenience/products' has methods for the following verbs: get */
+  (
+    path: "/resiliency/devdriven/customization/paging/convenience/products"
+  ): GetConveniencePages;
   /** Resource for '/resiliency/devdriven/customization/lro/\{mode\}' has methods for the following verbs: put */
   (
     path: "/resiliency/devdriven/customization/lro/{mode}",

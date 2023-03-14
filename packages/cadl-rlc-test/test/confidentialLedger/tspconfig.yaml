@@ -1,0 +1,12 @@
+emit:
+  - "@azure-tools/cadl-typescript"
+  - "@azure-tools/typespec-autorest"
+options:
+  "@azure-tools/cadl-typescript":
+    azureSdkForJs: false
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@msinternal/confidential-ledger"
+      description: "Confidential Ledger Service"
+  "@azure-tools/typespec-autorest":
+     "emitter-output-dir": "{project-root}/generated/openapi"

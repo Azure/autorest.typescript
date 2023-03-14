@@ -26,15 +26,15 @@ Make sure `npx cadl compile .` runs correctly.
 
 ## Add cadl-typescript
 
-Make sure the version of [cadl-typescript release](https://www.npmjs.com/package/@azure-tools/cadl-typescript) depends on the same version of "@cadl-lang/compiler" as in your Cadl project.
+Make sure the version of [cadl-typescript release](https://www.npmjs.com/package/@azure-tools/cadl-typescript) depends on the same version of "@typespec/compiler" as in your Cadl project.
 
 Modify `package.json`, add one line under `dependencies`:
 
 ```diff
     "dependencies": {
-      "@cadl-lang/compiler": "latest",
-      "@cadl-lang/rest": "latest",
-      "@azure-tools/cadl-azure-core": "latest",
+      "@typespec/compiler": "latest",
+      "@typespec/rest": "latest",
+      "@azure-tools/typespec-azure-core": "latest",
 +      "@azure-tools/cadl-typescript": "latest"
     },
 ```
@@ -55,7 +55,7 @@ One can further configure the SDK generated, using the emitter options on `@azur
 ```yaml
 options:
   "@azure-tools/cadl-typescript":
-    "emitter-output-dir": "{output-dir}"
+    
     packageDetails:
       name: "@azure-rest/confidential-ledger"
       description: "Confidential Ledger Service"

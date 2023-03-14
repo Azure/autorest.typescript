@@ -12,5 +12,6 @@ export interface PostModelBodyParam {
 }
 
 export type PostModelParameters = PostModelBodyParam & RequestParameters;
-export type GetPagesParameters = RequestParameters;
+export type GetProtocolPagesParameters = RequestParameters;
+export type GetConveniencePagesParameters = RequestParameters;
 export type LroParameters = RequestParameters;

@@ -143,7 +143,7 @@ describe("Doc generation testing", () => {
     it("should generate contentType description", async () => {
       const parameters = await emitParameterFromCadl(
         `
-        #suppress "@cadl-lang/rest/content-type-ignored" "for test"
+        #suppress "@typespec/http/content-type-ignored" "for test"
         op test(@doc("content type") @header contentType: "application/octet-stream"): string;
         `
       );

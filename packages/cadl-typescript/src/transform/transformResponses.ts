@@ -7,7 +7,7 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup,
   OperationGroup
-} from "@azure-tools/cadl-dpg";
+} from "@azure-tools/typespec-client-generator-core";
 import {
   ResponseHeaderSchema,
   ImportKind,
@@ -16,12 +16,12 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { Program, getDoc, ignoreDiagnostics } from "@cadl-lang/compiler";
+import { Program, getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
   HttpOperationResponse
-} from "@cadl-lang/rest/http";
+} from "@typespec/http";
 import {
   getImportedModelName,
   getTypeName,

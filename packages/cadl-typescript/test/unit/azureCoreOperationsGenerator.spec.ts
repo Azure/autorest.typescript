@@ -4,7 +4,7 @@ import {
   emitResponsesFromCadl
 } from "./util/emitUtil.js";
 
-describe("cadl-azure-core: operation templates", () => {
+describe("typespec-azure-core: operation templates", () => {
   it("ResourceCreateWithServiceProvidedName", async () => {
     const { parameters, responses } = await compileResourceOperation(
       `@test op create is Azure.Core.ResourceCreateWithServiceProvidedName<TestModel, Customizations>;`
@@ -16,7 +16,7 @@ describe("cadl-azure-core: operation templates", () => {
 
 async function compileResourceOperation(code: string) {
   const content = `
-    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+    #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     model TestModel {
       @key
       @visibility("read")
@@ -25,9 +25,9 @@ async function compileResourceOperation(code: string) {
       value: int32;
     }
 
-    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+    #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     model CustomParameters {
-      #suppress "@azure-tools/cadl-azure-core/casing-style" "for test"
+      #suppress "@azure-tools/typespec-azure-core/casing-style" "for test"
       @header
       "x-ms-foobar": string;
 
@@ -37,31 +37,31 @@ async function compileResourceOperation(code: string) {
       customBodyParam: string;
     }
 
-    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+    #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     model CustomResponseProperties {
-      #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
-      #suppress "@azure-tools/cadl-azure-core/casing-style" "for test"
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+      #suppress "@azure-tools/typespec-azure-core/casing-style" "for test"
       @header
       "x-ms-response-id": int32;
-      #suppress "@azure-tools/cadl-azure-core/casing-style" "for test"
+      #suppress "@azure-tools/typespec-azure-core/casing-style" "for test"
       @doc("A timestamp when this job or item was created (in unix epochs).")
       @visibility("read")
       created_at?: int32;
     }
 
-    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+    #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     model Customizations {
       parameters: CustomParameters;
       response: CustomResponseProperties;
     }
 
-    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+    #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     model CustomizationsNoBody {
       parameters: OmitProperties<CustomParameters, "customBodyParam">;
       response: CustomResponseProperties;
     }
 
-    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+    #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     ${code}
     `;
   const parameters = await emitParameterFromCadl(content, true);

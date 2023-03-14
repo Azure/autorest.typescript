@@ -47,13 +47,13 @@ describe("Input/output model type", () => {
     const schemaOutput = await emitModelsFromCadl(
       `
     ${additionalCadlDefinition}
-    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+    #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     model InputOutputModel {
       prop: ${cadlType};
     }
 
-    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "for test"
-    #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+    #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+    #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     @route("/models")
     @get
     op getModel(@body input: InputOutputModel): InputOutputModel;`,
@@ -235,7 +235,7 @@ describe("Input/output model type", () => {
     // TODO: Is enum convered to string literals only? Do we need to generate enum instaed?
     it("should handle enum -> string_literals", async () => {
       const cadlTypeDefinition = `
-      #suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "for test"
+      #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
       @fixed
       enum TranslationLanguageValues {
         English,
@@ -388,8 +388,8 @@ describe("Input/output model type", () => {
 
     it("should handle fixed enum array", async () => {
       const cadlDefinition = `
-      #suppress "@azure-tools/cadl-azure-core/use-extensible-enum" "for test"
-      #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+      #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       @fixed
       enum DiskEncryptionTarget {
         OsDisk: "osdisk",
@@ -412,7 +412,7 @@ describe("Input/output model type", () => {
 
     it("should handle extensible enum array", async () => {
       const cadlDefinition = `
-      #suppress "@azure-tools/cadl-azure-core/documentation-required" "for test"
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       enum DiskEncryptionTarget {
         OsDisk: "osdisk",
         TemporaryDisk: "temporarydisk",

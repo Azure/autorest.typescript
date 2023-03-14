@@ -8,24 +8,24 @@ import {
   Model,
   Program,
   Type
-} from "@cadl-lang/compiler";
+} from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
   HttpOperationResponse,
   StatusCode
-} from "@cadl-lang/rest/http";
+} from "@typespec/http";
 import {
   getPagedResult,
   PagedResultMetadata
-} from "@azure-tools/cadl-azure-core";
+} from "@azure-tools/typespec-azure-core";
 import {
   Client,
   DpgContext,
   listOperationGroups,
   listOperationsInOperationGroup,
   OperationGroup
-} from "@azure-tools/cadl-dpg";
+} from "@azure-tools/typespec-client-generator-core";
 
 export function getNormalizedOperationName(
   route: HttpOperation,

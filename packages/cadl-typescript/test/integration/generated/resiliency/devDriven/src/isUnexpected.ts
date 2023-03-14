@@ -1,21 +1,38 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetPages200Response, GetPagesDefaultResponse } from "./responses";
+import {
+  GetProtocolPages200Response,
+  GetProtocolPagesDefaultResponse,
+  GetConveniencePages200Response,
+  GetConveniencePagesDefaultResponse,
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /resiliency/devdriven/customization/model/{mode}": ["200"],
   "POST /resiliency/devdriven/customization/model/{mode}": ["200"],
-  "GET /resiliency/devdriven/products": ["200"],
+  "GET /resiliency/devdriven/customization/paging/protocol/products": ["200"],
+  "GET /resiliency/devdriven/customization/paging/convenience/products": [
+    "200",
+  ],
   "PUT /resiliency/devdriven/customization/lro/{mode}": ["200"],
 };
 
 export function isUnexpected(
-  response: GetPages200Response | GetPagesDefaultResponse
-): response is GetPagesDefaultResponse;
+  response: GetProtocolPages200Response | GetProtocolPagesDefaultResponse
+): response is GetProtocolPagesDefaultResponse;
 export function isUnexpected(
-  response: GetPages200Response | GetPagesDefaultResponse
-): response is GetPagesDefaultResponse {
+  response: GetConveniencePages200Response | GetConveniencePagesDefaultResponse
+): response is GetConveniencePagesDefaultResponse;
+export function isUnexpected(
+  response:
+    | GetProtocolPages200Response
+    | GetProtocolPagesDefaultResponse
+    | GetConveniencePages200Response
+    | GetConveniencePagesDefaultResponse
+): response is
+  | GetProtocolPagesDefaultResponse
+  | GetConveniencePagesDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

@@ -82,10 +82,12 @@
       "protocol": "inspector"
     },
     {
-      "name": "Generate code for CadlRlcTest",
+      "name": "Generate code for TSPRlcTest",
+
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/cadl-rlc-test/test/openai",
-      "runtimeArgs": ["cadl", "compile", "./spec/main.cadl"],
+      "runtimeArgs": ["tsp", "compile", "./spec/main.tsp"],
+
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",

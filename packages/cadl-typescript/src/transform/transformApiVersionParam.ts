@@ -4,10 +4,10 @@ import {
   isApiVersion,
   listOperationGroups,
   listOperationsInOperationGroup
-} from "@azure-tools/cadl-dpg";
-import { ignoreDiagnostics, Program } from "@cadl-lang/compiler";
+} from "@azure-tools/typespec-client-generator-core";
+import { ignoreDiagnostics, Program } from "@typespec/compiler";
 import { Parameter } from "@azure-tools/rlc-common";
-import { getHttpOperation } from "@cadl-lang/rest/http";
+import { getHttpOperation } from "@typespec/http";
 import { getDefaultService, getDefaultValue } from "./transform.js";
 
 export function transformApiVersionParam(

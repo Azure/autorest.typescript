@@ -10,13 +10,13 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Program, Type } from "@cadl-lang/compiler";
+import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
   HttpOperationParameter,
   HttpOperationParameters
-} from "@cadl-lang/rest/http";
+} from "@typespec/http";
 import {
   getImportedModelName,
   getTypeName,
@@ -34,7 +34,7 @@ import {
   listOperationsInOperationGroup,
   OperationGroup,
   isApiVersion
-} from "@azure-tools/cadl-dpg";
+} from "@azure-tools/typespec-client-generator-core";
 import { getDefaultValue } from "./transform.js";
 
 export function transformToParameterTypes(
