@@ -85,7 +85,7 @@
       "name": "Generate code for TSPRlcTest",
 
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-rlc-test/test/openai",
+      "cwd": "${workspaceFolder}/packages/typespec-rlc-test/test/openai",
       "runtimeArgs": ["tsp", "compile", "./spec/main.tsp"],
 
       "runtimeExecutable": "npx",

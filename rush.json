@@ -334,8 +334,8 @@
       "projectFolder": "packages/typespec-ts"
     },
     {
-      "packageName": "@msinternal/cadl-rest-test",
-      "projectFolder": "packages/cadl-rlc-test"
+      "packageName": "@msinternal/typespec-rest-test",
+      "projectFolder": "packages/typespec-rlc-test"
     }
   ]
 }

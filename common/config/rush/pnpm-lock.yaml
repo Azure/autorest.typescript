@@ -1,15 +1,15 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@rush-temp/cadl-rest-test': file:./projects/cadl-rest-test.tgz
   '@rush-temp/rlc-common': file:./projects/rlc-common.tgz
   '@rush-temp/typescript': file:./projects/typescript.tgz
+  '@rush-temp/typespec-rest-test': file:./projects/typespec-rest-test.tgz
   '@rush-temp/typespec-ts': file:./projects/typespec-ts.tgz
 
 dependencies:
-  '@rush-temp/cadl-rest-test': file:projects/cadl-rest-test.tgz
   '@rush-temp/rlc-common': file:projects/rlc-common.tgz
   '@rush-temp/typescript': file:projects/typescript.tgz
+  '@rush-temp/typespec-rest-test': file:projects/typespec-rest-test.tgz
   '@rush-temp/typespec-ts': file:projects/typespec-ts.tgz
 
 packages:
@@ -7627,28 +7627,6 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  file:projects/cadl-rest-test.tgz:
-    resolution: {integrity: sha512-WJLQUTuShngRdaWTjxc5H/r8/j1iUL2Zz7tJ6c59xxcW2kNZz7tMTdm12P7xkLQZ8XJys68O4lR7SxBeECPO6Q==, tarball: file:projects/cadl-rest-test.tgz}
-    name: '@rush-temp/cadl-rest-test'
-    version: 0.0.0
-    dependencies:
-      '@azure-tools/typespec-autorest': 0.28.0_84bf6830f24e7b88b2bf20c3de0b2efe
-      '@azure-tools/typespec-azure-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
-      '@azure-tools/typespec-client-generator-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
-      '@types/mocha': 5.2.7
-      '@types/node': 18.15.3
-      '@typespec/compiler': 0.42.0
-      '@typespec/http': 0.42.0_@typespec+compiler@0.42.0
-      '@typespec/openapi': 0.42.0_3e43a48590f72610124ce0fe6bf58955
-      '@typespec/openapi3': 0.42.0_0eea3474c00484bb6ee09a8bce0d2ae0
-      '@typespec/prettier-plugin-typespec': 0.42.0
-      '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
-      '@typespec/versioning': 0.42.0
-      prettier: 2.7.1
-      ts-node: 8.10.2_typescript@4.8.4
-      typescript: 4.8.4
-    dev: false
-
   file:projects/rlc-common.tgz:
     resolution: {integrity: sha512-UhvnPuW+Nzj4/PmAWdXtclcUz4oadaUDG713U3zrqZnAkBWBj2CPL+G9ZK+fhXHlaNk0z/3NctymXz6IS2Hb3A==, tarball: file:projects/rlc-common.tgz}
     name: '@rush-temp/rlc-common'
@@ -7760,6 +7738,28 @@ packages:
       - utf-8-validate
       - webpack-bundle-analyzer
       - webpack-dev-server
+    dev: false
+
+  file:projects/typespec-rest-test.tgz:
+    resolution: {integrity: sha512-jwcbxeL/F5nK97XL6Xu6hvc0++M1urkmJqfvCSA6QPIYpOv9ER4lkSAx7uPAtQKir3+O/M9tY1gj1D+DKUBknQ==, tarball: file:projects/typespec-rest-test.tgz}
+    name: '@rush-temp/typespec-rest-test'
+    version: 0.0.0
+    dependencies:
+      '@azure-tools/typespec-autorest': 0.28.0_84bf6830f24e7b88b2bf20c3de0b2efe
+      '@azure-tools/typespec-azure-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
+      '@azure-tools/typespec-client-generator-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
+      '@types/mocha': 5.2.7
+      '@types/node': 18.15.3
+      '@typespec/compiler': 0.42.0
+      '@typespec/http': 0.42.0_@typespec+compiler@0.42.0
+      '@typespec/openapi': 0.42.0_3e43a48590f72610124ce0fe6bf58955
+      '@typespec/openapi3': 0.42.0_0eea3474c00484bb6ee09a8bce0d2ae0
+      '@typespec/prettier-plugin-typespec': 0.42.0
+      '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
+      '@typespec/versioning': 0.42.0
+      prettier: 2.7.1
+      ts-node: 8.10.2_typescript@4.8.4
+      typescript: 4.8.4
     dev: false
 
   file:projects/typespec-ts.tgz:

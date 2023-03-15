@@ -23,7 +23,7 @@ rush rebuild
 
    1. Unit tests (which could be found at `test/unit/*`)
    2. Integration tests (which could be found at `test/integration/*`)
-   3. Smoke tests (which could be found at `../../packages/cadl-rlc-test`)
+   3. Smoke tests (which could be found at `../../packages/typespec-rlc-test`)
 
 1. You can run the Unit tests & Integration tests using the following command:
 
@@ -44,7 +44,7 @@ Running the command above will do the following things:
 5. You can run the Smoke tests using the following command:
 
 ```shell
-cd ../../packages/cadl-rlc-test
+cd ../../packages/typespec-rlc-test
 npm run smoke-test
 ```
 

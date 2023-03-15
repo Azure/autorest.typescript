@@ -1,5 +1,5 @@
 {
-  "name": "@msinternal/cadl-rest-test",
+  "name": "@msinternal/typespec-rest-test",
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
