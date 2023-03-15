@@ -76,7 +76,7 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
 };
 
 const libDef = {
-  name: "@azure-tools/cadl-typescript",
+  name: "@azure-tools/typespec-ts",
   diagnostics: {
     "security-service-namespace": {
       severity: "error",

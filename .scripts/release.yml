@@ -68,7 +68,7 @@ stages:
                         npm config delete //registry.npmjs.org/:_authToken
                       displayName: "Publish to NPM"
       - stage: CadlTypescriptRelease
-        displayName: "Release: @azure-tools/cadl-typescript"
+        displayName: "Release: @azure-tools/typespec-ts"
         dependsOn: ${{parameters.DependsOn}}
         jobs:
           - deployment: TagRepository
@@ -97,12 +97,12 @@ stages:
                     - script: |
                         cd package
                         npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(MAIN_VERSION) --tag v$(MAIN_VERSION) --notes='release  build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
-                      displayName: "Publish @azure-tools/cadl-typescript to GitHub"
+                      displayName: "Publish @azure-tools/typespec-ts to GitHub"
           - deployment: PublishToNpm
             variables:
               TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
             environment: npm
-            displayName: Publish @azure-tools/cadl-typescript to NPM
+            displayName: Publish @azure-tools/typespec-ts to NPM
             condition: ne(variables['SetDevVersion'], 'true')
             pool:
               name: ${{ parameters.LinuxPool }}
@@ -211,7 +211,7 @@ stages:
           TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
           DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['SetCadlTypescriptDevVersion.DEV_VERSION'] ]
         environment: githubtsjssdk
-        displayName: Publish @azure-tools/cadl-typescript dev version to GitHub
+        displayName: Publish @azure-tools/typespec-ts dev version to GitHub
         pool:
           name: ${{ parameters.LinuxPool }}
           vmImage: ${{ parameters.OSVmImage }}
@@ -229,7 +229,7 @@ stages:
                     cd package
                     tree .
                     npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
-                  displayName: "Publish @azure-tools/cadl-typescript to GitHub"
+                  displayName: "Publish @azure-tools/typespec-ts to GitHub"
       - deployment: PublishRLCCommonToGithub
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
@@ -300,7 +300,7 @@ stages:
                     npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
                     npm publish $(TAR_NAME) --access public --tag dev
                     npm config delete //registry.npmjs.org/:_authToken
-                  displayName: "Publish @azure-tools/cadl-typescript to NPM"
+                  displayName: "Publish @azure-tools/typespec-ts to NPM"
       - deployment: PublishRLCCommonToNpm
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:

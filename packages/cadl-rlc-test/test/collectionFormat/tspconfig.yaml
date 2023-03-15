@@ -1,7 +1,7 @@
 emit:
-  - "@azure-tools/cadl-typescript"
+  - "@azure-tools/typespec-ts"
 options:
-  "@azure-tools/cadl-typescript":
+  "@azure-tools/typespec-ts":
     title: Collection Format Test Service
     generateMetadata: true
     generateTest: true

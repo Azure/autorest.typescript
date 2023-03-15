@@ -1,14 +1,14 @@
 # Introduction
 
-This library is the Cadl typescript emitter for Rest Level Client. It take [Cadl](https://github.com/microsoft/cadl) as input, transform it into RLCModel, then call rlc-common library to generate the RLC code.
+This library is the TypeSpec typescript emitter for Rest Level Client. It take [TypeSpec](https://github.com/microsoft/typespec) as input, transform it into RLCModel, then call rlc-common library to generate the RLC code.
 
 On a high level, the entire Rest Level Client generation process would be:
 
-Cadl Input -> Cadl Compiler -> Cadl Program -> Transform RLCModel -> Call RLC Common library to Generate Code
+TypeSpec Input -> TypeSpec Compiler -> TypeSpec Program -> Transform RLCModel -> TypeSpec RLC Common library to Generate Code
 
 Within the Transform RLCModel, it has the following stages:
 
-Cadl Program + User Options -> Transform RLCModel Paths -> Transform RLCModel Options -> Transform RLCModel Schemas -> Transform RLCModel Response and Parameter Types -> call RLCCommon libraries to generate the code.
+TypeSpec Program + User Options -> Transform RLCModel Paths -> Transform RLCModel Options -> Transform RLCModel Schemas -> Transform RLCModel Response and Parameter Types -> TypeSpec RLCCommon libraries to generate the code.
 
 # How to use
 
@@ -16,17 +16,17 @@ Cadl Program + User Options -> Transform RLCModel Paths -> Transform RLCModel Op
 
 Install [Node.js](https://nodejs.org/en/download/) 16 or above. (Verify by `node --version`)
 
-Install [Cadl](https://github.com/microsoft/cadl/) latest.
+Install [TypeSpec](https://github.com/microsoft/typespec) latest.
 
-## Initialize Cadl Project
+## Initialize TypeSpec Project
 
-Follow [Cadl Getting Started](https://github.com/microsoft/cadl/#using-node--npm) to initialize your Cadl project.
+Follow [TypeSpec Getting Started](hhttps://github.com/microsoft/typespec#getting-started) to initialize your TypeSpec project.
 
-Make sure `npx cadl compile .` runs correctly.
+Make sure `npx tsp compile .` runs correctly.
 
-## Add cadl-typescript
+## Add typespec-ts
 
-Make sure the version of [cadl-typescript release](https://www.npmjs.com/package/@azure-tools/cadl-typescript) depends on the same version of "@typespec/compiler" as in your Cadl project.
+Make sure the version of [typespec-ts release](https://www.npmjs.com/package/@azure-tools/typespec-ts) depends on the same version of "@typespec/compiler" as in your TypeSpec project.
 
 Modify `package.json`, add one line under `dependencies`:
 
@@ -35,27 +35,26 @@ Modify `package.json`, add one line under `dependencies`:
       "@typespec/compiler": "latest",
       "@typespec/rest": "latest",
       "@azure-tools/typespec-azure-core": "latest",
-+      "@azure-tools/cadl-typescript": "latest"
++      "@azure-tools/typespec-ts": "latest"
     },
 ```
 
-Run `npm install` again to install `@azure-tools/cadl-typescript`.
+Run `npm install` again to install `@azure-tools/typespec-ts`.
 
-Modify (or create) `cadl-project.yaml`, add one line under `emit`:
+Modify (or create) `tspconfig.yaml`, add one line under `emit`:
 
 ```diff
 emit:
-+  - "@azure-tools/cadl-typescript"
++  - "@azure-tools/typespec-ts"
 ```
 
-## Modify cadl-project.yaml
+## Modify tspconfig.yaml
 
-One can further configure the SDK generated, using the emitter options on `@azure-tools/cadl-typescript`.
+One can further configure the SDK generated, using the emitter options on `@azure-tools/typespec-ts`.
 
 ```yaml
 options:
-  "@azure-tools/cadl-typescript":
-    
+  "@azure-tools/typespec-ts":
     packageDetails:
       name: "@azure-rest/confidential-ledger"
       description: "Confidential Ledger Service"
@@ -63,7 +62,7 @@ options:
 
 ## Generate Typescript
 
-Same `npx cadl compile .` or `npx cadl compile . --outputPath=<target-folder>`.
+Same `npx tsp compile .` or `npx tsp compile . --outputPath=<target-folder>`.
 
 If `outputPath` option is not provided, generated code will be under `cadl-output` folder.
 
@@ -81,7 +80,7 @@ Provide the metadata for `package.json`, `README.md` and user-agent information.
 
 ### title
 
-Generally the codegen will leverage the title defined in `@service` decorator in Cadl to name our client. But if you'd like to override it you could config the `title` info.
+Generally the codegen will leverage the title defined in `@service` decorator in TypeSpec to name our client. But if you'd like to override it you could config the `title` info.
 
 ```yaml
 title: AnomalyDetectorRest
@@ -121,12 +120,12 @@ We support two types of authentication: Azure Key Credential(AzureKey) and Token
 
 There are two ways to set up our credential details
 
-- To use `@useAuth` decorator in Cadl
+- To use `@useAuth` decorator in TypeSpec
 - To config in yaml file
 
-Please notice defining in Cadl is recommanded and also has higher priority than second one.
+Please notice defining in TypeSpec is recommanded and also has higher priority than second one.
 
-To enable credential in `cadl-project.yaml` and we need to provide more details to let codegen know types.
+To enable credential in `tspconfig.yaml` and we need to provide more details to let codegen know types.
 
 ### credentialScopes
 

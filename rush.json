@@ -330,7 +330,7 @@
       "projectFolder": "packages/rlc-common"
     },
     {
-      "packageName": "@azure-tools/cadl-typescript",
+      "packageName": "@azure-tools/typespec-ts",
       "projectFolder": "packages/cadl-typescript"
     },
     {

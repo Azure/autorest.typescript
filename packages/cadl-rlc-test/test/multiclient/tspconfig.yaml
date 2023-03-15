@@ -1,14 +1,14 @@
 emit:
-  - "@azure-tools/cadl-typescript"
+  - "@azure-tools/typespec-ts"
   - "@azure-tools/typespec-autorest"
 options:
-  "@azure-tools/cadl-typescript":
+  "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     generateMetadata: true
     generateTest: true
     multiClient: true
     azureSdkForJs: false
-    
+
     packageDetails:
       name: "@msinternal/multiclient"
       description: "Multi Client Service"
