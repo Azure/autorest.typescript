@@ -331,7 +331,7 @@
     },
     {
       "packageName": "@azure-tools/typespec-ts",
-      "projectFolder": "packages/cadl-typescript"
+      "projectFolder": "packages/typespec-ts"
     },
     {
       "packageName": "@msinternal/cadl-rest-test",
