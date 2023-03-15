@@ -289,18 +289,14 @@
                 "result": {
                   "$ref": "#/definitions/Widget",
                   "description": "The result of the operation."
-                },
-                "widgetName": {
-                  "type": "string",
-                  "description": "The widget name."
                 }
               },
+              "description": "Provides status details for long running operations.",
               "required": [
                 "id",
-                "status",
-                "widgetName"
+                "status"
               ],
-              "x-typespec-name": "(anonymous model)"
+              "x-typespec-name": "Azure.Core.ResourceOperationStatus<Widget, Widget, Azure.Core.Foundations.Error>"
             }
           },
           "default": {
