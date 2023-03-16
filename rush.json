@@ -334,8 +334,8 @@
       "projectFolder": "packages/typespec-ts"
     },
     {
-      "packageName": "@msinternal/typespec-rest-test",
-      "projectFolder": "packages/typespec-rlc-test"
+      "packageName": "@msinternal/typespec-test",
+      "projectFolder": "packages/typespec-test"
     }
   ]
 }

@@ -3,13 +3,13 @@ lockfileVersion: 5.3
 specifiers:
   '@rush-temp/rlc-common': file:./projects/rlc-common.tgz
   '@rush-temp/typescript': file:./projects/typescript.tgz
-  '@rush-temp/typespec-rest-test': file:./projects/typespec-rest-test.tgz
+  '@rush-temp/typespec-test': file:./projects/typespec-test.tgz
   '@rush-temp/typespec-ts': file:./projects/typespec-ts.tgz
 
 dependencies:
   '@rush-temp/rlc-common': file:projects/rlc-common.tgz
   '@rush-temp/typescript': file:projects/typescript.tgz
-  '@rush-temp/typespec-rest-test': file:projects/typespec-rest-test.tgz
+  '@rush-temp/typespec-test': file:projects/typespec-test.tgz
   '@rush-temp/typespec-ts': file:projects/typespec-ts.tgz
 
 packages:
@@ -2359,14 +2359,14 @@ packages:
       '@xtuc/long': 4.2.2
     dev: false
 
-  /@webpack-cli/configtest/1.2.0_60837b3112975a99a21632a65b8b9237:
+  /@webpack-cli/configtest/1.2.0_bfdea6b19a9eeacebe80ae46f61fd0af:
     resolution: {integrity: sha512-4FB8Tj6xyVkyqjj1OaTqCjXYULB9FMkqQ8yGrZjRDrYh0nOE+7Lhs45WioWQQMV+ceFlE368Ukhe6xdvJM9Egg==}
     peerDependencies:
       webpack: 4.x.x || 5.x.x
       webpack-cli: 4.x.x
     dependencies:
-      webpack: 5.76.1_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_webpack@5.76.1
+      webpack: 5.76.2_webpack-cli@4.10.0
+      webpack-cli: 4.10.0_webpack@5.76.2
     dev: false
 
   /@webpack-cli/info/1.5.0_webpack-cli@4.10.0:
@@ -2375,7 +2375,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.10.0_webpack@5.76.1
+      webpack-cli: 4.10.0_webpack@5.76.2
     dev: false
 
   /@webpack-cli/serve/1.7.0_webpack-cli@4.10.0:
@@ -2387,7 +2387,7 @@ packages:
       webpack-dev-server:
         optional: true
     dependencies:
-      webpack-cli: 4.10.0_webpack@5.76.1
+      webpack-cli: 4.10.0_webpack@5.76.2
     dev: false
 
   /@xtuc/ieee754/1.2.0:
@@ -6542,7 +6542,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /source-map-loader/1.1.3_webpack@5.76.1:
+  /source-map-loader/1.1.3_webpack@5.76.2:
     resolution: {integrity: sha512-6YHeF+XzDOrT/ycFJNI53cgEsp/tHTMl37hi7uVyqFAlTXW109JazaQCkbc+jjoL2637qkH1amLi+JzrIpt5lA==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -6553,7 +6553,7 @@ packages:
       loader-utils: 2.0.4
       schema-utils: 3.1.1
       source-map: 0.6.1
-      webpack: 5.76.1_webpack-cli@4.10.0
+      webpack: 5.76.2_webpack-cli@4.10.0
       whatwg-mimetype: 2.3.0
     dev: false
 
@@ -6810,7 +6810,7 @@ packages:
       readable-stream: 3.6.2
     dev: false
 
-  /terser-webpack-plugin/5.3.7_webpack@5.76.1:
+  /terser-webpack-plugin/5.3.7_webpack@5.76.2:
     resolution: {integrity: sha512-AfKwIktyP7Cu50xNjXF/6Qb5lBNzYaWpU6YfoX3uZicTx0zTy0stDDCsvjDapKsSDvOeWo5MEq4TmdBy2cNoHw==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -6831,7 +6831,7 @@ packages:
       schema-utils: 3.1.1
       serialize-javascript: 6.0.1
       terser: 5.16.6
-      webpack: 5.76.1_webpack-cli@4.10.0
+      webpack: 5.76.2_webpack-cli@4.10.0
     dev: false
 
   /terser/5.16.6:
@@ -7292,7 +7292,7 @@ packages:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
     dev: false
 
-  /webpack-cli/4.10.0_webpack@5.76.1:
+  /webpack-cli/4.10.0_webpack@5.76.2:
     resolution: {integrity: sha512-NLhDfH/h4O6UOy+0LSso42xvYypClINuMNBVVzX4vX98TmTaTUxwRbXdhucbFMd2qLaCTcLq/PdYrvi8onw90w==}
     engines: {node: '>=10.13.0'}
     hasBin: true
@@ -7313,7 +7313,7 @@ packages:
         optional: true
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 1.2.0_60837b3112975a99a21632a65b8b9237
+      '@webpack-cli/configtest': 1.2.0_bfdea6b19a9eeacebe80ae46f61fd0af
       '@webpack-cli/info': 1.5.0_webpack-cli@4.10.0
       '@webpack-cli/serve': 1.7.0_webpack-cli@4.10.0
       colorette: 2.0.19
@@ -7323,7 +7323,7 @@ packages:
       import-local: 3.1.0
       interpret: 2.2.0
       rechoir: 0.7.1
-      webpack: 5.76.1_webpack-cli@4.10.0
+      webpack: 5.76.2_webpack-cli@4.10.0
       webpack-merge: 5.8.0
     dev: false
 
@@ -7340,8 +7340,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: false
 
-  /webpack/5.76.1_webpack-cli@4.10.0:
-    resolution: {integrity: sha512-4+YIK4Abzv8172/SGqObnUjaIHjLEuUasz9EwQj/9xmPPkYJy2Mh03Q/lJfSD3YLzbxy5FeTq5Uw0323Oh6SJQ==}
+  /webpack/5.76.2_webpack-cli@4.10.0:
+    resolution: {integrity: sha512-Th05ggRm23rVzEOlX8y67NkYCHa9nTNcwHPBhdg+lKG+mtiW7XgggjAeeLnADAe7mLjJ6LUNfgHAuRRh+Z6J7w==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -7371,9 +7371,9 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.1.1
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.7_webpack@5.76.1
+      terser-webpack-plugin: 5.3.7_webpack@5.76.2
       watchpack: 2.4.0
-      webpack-cli: 4.10.0_webpack@5.76.1
+      webpack-cli: 4.10.0_webpack@5.76.2
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
@@ -7714,15 +7714,15 @@ packages:
       puppeteer: 3.3.0
       rimraf: 3.0.2
       sinon: 10.0.0
-      source-map-loader: 1.1.3_webpack@5.76.1
+      source-map-loader: 1.1.3_webpack@5.76.2
       source-map-support: 0.5.21
       ts-morph: 15.1.0
       ts-node: 8.10.2_typescript@4.8.4
       tslib: 2.5.0
       typescript: 4.8.4
       wait-port: 0.2.14
-      webpack: 5.76.1_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_webpack@5.76.1
+      webpack: 5.76.2_webpack-cli@4.10.0
+      webpack-cli: 4.10.0_webpack@5.76.2
       yargs: 17.7.1
     transitivePeerDependencies:
       - '@swc/core'
@@ -7740,9 +7740,9 @@ packages:
       - webpack-dev-server
     dev: false
 
-  file:projects/typespec-rest-test.tgz:
-    resolution: {integrity: sha512-jwcbxeL/F5nK97XL6Xu6hvc0++M1urkmJqfvCSA6QPIYpOv9ER4lkSAx7uPAtQKir3+O/M9tY1gj1D+DKUBknQ==, tarball: file:projects/typespec-rest-test.tgz}
-    name: '@rush-temp/typespec-rest-test'
+  file:projects/typespec-test.tgz:
+    resolution: {integrity: sha512-jD8+8/eh/KcABzdozeS7RCbNkrYljW4gnPs1Kl7zY9nR8Y8hHIPlQGySEU2Wd2M+tkDd6HPSAl1GbFPGkZ6mQQ==, tarball: file:projects/typespec-test.tgz}
+    name: '@rush-temp/typespec-test'
     version: 0.0.0
     dependencies:
       '@azure-tools/typespec-autorest': 0.28.0_84bf6830f24e7b88b2bf20c3de0b2efe

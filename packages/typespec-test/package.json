@@ -1,5 +1,5 @@
 {
-  "name": "@msinternal/typespec-rest-test",
+  "name": "@msinternal/typespec-test",
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
