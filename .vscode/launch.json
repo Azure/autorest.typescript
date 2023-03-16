@@ -82,19 +82,21 @@
       "protocol": "inspector"
     },
     {
-      "name": "Generate code for CadlRlcTest",
+      "name": "Generate code for TSPRlcTest",
+
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-rlc-test/test/openai",
-      "runtimeArgs": ["cadl", "compile", "./spec/main.cadl"],
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/openai",
+      "runtimeArgs": ["tsp", "compile", "./spec/main.tsp"],
+
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "Generate code for CadlEmitter",
+      "name": "Generate code for TspEmitter",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-typescript",
+      "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": ["ts-node", "./test/commands/gen-cadl-ranch.ts"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
@@ -102,9 +104,9 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "[CADL] - Unit Test",
+      "name": "[TypeSpec] - Unit Test",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-typescript",
+      "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [
         "mocha",
         "-r",
@@ -122,9 +124,9 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "[CADL] - Integration Test",
+      "name": "[TypeSpec] - Integration Test",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/cadl-typescript",
+      "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [
         "cross-env",
         "TS_NODE_PROJECT=tsconfig.test.json",

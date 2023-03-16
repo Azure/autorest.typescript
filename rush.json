@@ -330,12 +330,12 @@
       "projectFolder": "packages/rlc-common"
     },
     {
-      "packageName": "@azure-tools/cadl-typescript",
-      "projectFolder": "packages/cadl-typescript"
+      "packageName": "@azure-tools/typespec-ts",
+      "projectFolder": "packages/typespec-ts"
     },
     {
-      "packageName": "@msinternal/cadl-rest-test",
-      "projectFolder": "packages/cadl-rlc-test"
+      "packageName": "@msinternal/typespec-test",
+      "projectFolder": "packages/typespec-test"
     }
   ]
 }
