@@ -1244,18 +1244,18 @@ describe("Input/output model type", () => {
       }
       `;
       const cadlType = "FooModel";
-      const inputModelName = "CustomProjectedModel";
+      const inputModelName = "CustomProjectedModelTS";
       await verifyPropertyType(cadlType, inputModelName, {
         additionalCadlDefinition: cadlDefinition,
-        outputType: `CustomProjectedModelOutput`,
+        outputType: `CustomProjectedModelTSOutput`,
         additionalInputContent: `
         /** This is a Foo model. */
-        export interface CustomProjectedModel {
+        export interface CustomProjectedModelTS {
           x: number;
         }`,
         additionalOutputContent: `
         /** This is a Foo model. */
-        export interface CustomProjectedModelOutput {
+        export interface CustomProjectedModelTSOutput {
           x: number;
         }`
       });

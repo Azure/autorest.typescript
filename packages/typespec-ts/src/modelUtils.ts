@@ -336,7 +336,9 @@ function getSchemaForModel(
   needRef?: boolean
 ) {
   const overridedModelName =
-    getProjectedName(program, model, "json") ?? getFriendlyName(program, model);
+    getProjectedName(program, model, "javascript") ??
+    getProjectedName(program, model, "client") ??
+    getFriendlyName(program, model);
   let name = model.name;
   if (
     !overridedModelName &&
@@ -455,7 +457,8 @@ function getSchemaForModel(
     return modelSchema;
   }
   for (const [propName, prop] of model.properties) {
-    const name = `"${getProjectedName(program, prop, "json") ?? propName}"`;
+    const restApiName = getProjectedName(program, prop, "json");
+    const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
@@ -584,9 +587,9 @@ function applyIntrinsicDecorators(
     newTarget.description = docStr;
   }
 
-  const friendlyName = getFriendlyName(program, cadlType);
-  if (friendlyName) {
-    newTarget.name = friendlyName;
+  const restApiName = getProjectedName(program, cadlType, "json");
+  if (restApiName) {
+    newTarget.name = restApiName;
   }
 
   const summaryStr = getSummary(program, cadlType);
