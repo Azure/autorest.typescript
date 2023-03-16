@@ -243,10 +243,10 @@ stages:
         steps:
           - template: build.yml
           - script: npm run smoke-test
-            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-rlc-test
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Code From Cadl"
           - script: npm run check:tree
-            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-rlc-test
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Check git Tree"
 
       - job: Cadl_Ranch_Test
