@@ -1170,4 +1170,150 @@ describe("Input/output model type", () => {
       });
     });
   });
+
+  describe("@projectedName", () => {
+    it("should generate projected json name for property", async () => {
+      const cadlDefinition = `
+      @doc("This is a Foo model.")
+      model FooModel {
+        @projectedName("json", "xJson")
+        @projectedName("javascript", "MadeForTS")
+        @projectedName("client", "NotToUseMeAsName") // Should be ignored
+        x: int32;
+
+        y: string;
+      }
+      `;
+      const cadlType = "FooModel";
+      const inputModelName = "FooModel";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `FooModelOutput`,
+        additionalInputContent: `
+        /** This is a Foo model. */
+        export interface FooModel {
+          xJson: number;
+          y: string;
+        }`,
+        additionalOutputContent: `
+        /** This is a Foo model. */
+        export interface FooModelOutput {
+          xJson: number;
+          y: string;
+        }`
+      });
+    });
+
+    it("should generate augmented projected json name for property", async () => {
+      const cadlDefinition = `
+      @doc("This is a Foo model.")
+      model FooModel {
+        x: int32;
+      }
+
+      @@projectedName(FooModel.x, "client", "NotToUseMeAsName") // Should be ignored
+      @@projectedName(FooModel.x, "javascript", "MadeForTS")
+      @@projectedName(FooModel.x, "json", "xJson")
+      `;
+      const cadlType = "FooModel";
+      const inputModelName = "FooModel";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `FooModelOutput`,
+        additionalInputContent: `
+        /** This is a Foo model. */
+        export interface FooModel {
+          xJson: number;
+        }`,
+        additionalOutputContent: `
+        /** This is a Foo model. */
+        export interface FooModelOutput {
+          xJson: number;
+        }`
+      });
+    });
+
+    it("should generate projected model name over friendly name", async () => {
+      const cadlDefinition = `
+      @projectedName("javascript", "CustomProjectedModelTS")
+      @projectedName("json", "CustomProjectedModel")
+      @friendlyName("CustomFriendlyModel")
+      @doc("This is a Foo model.")
+      model FooModel {
+        x: int32;
+      }
+      `;
+      const cadlType = "FooModel";
+      const inputModelName = "CustomProjectedModelTS";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `CustomProjectedModelTSOutput`,
+        additionalInputContent: `
+        /** This is a Foo model. */
+        export interface CustomProjectedModelTS {
+          x: number;
+        }`,
+        additionalOutputContent: `
+        /** This is a Foo model. */
+        export interface CustomProjectedModelTSOutput {
+          x: number;
+        }`
+      });
+    });
+  });
+
+  describe("@friendlyName for model", () => {
+    it("should generate friendly name", async () => {
+      const cadlDefinition = `
+      @friendlyName("MyNameIsA")
+      model A { }
+      `;
+      const cadlType = "A";
+      const inputModelName = "MyNameIsA";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `MyNameIsAOutput`,
+        additionalInputContent: `
+        export interface MyNameIsA {}
+        `,
+        additionalOutputContent: `
+        export interface MyNameIsAOutput {}
+        `
+      });
+    });
+
+    it("should generate templated friendly name", async () => {
+      const cadlDefinition = `
+      @friendlyName("{name}Model", Base)
+      model Base { }
+
+      @friendlyName("Templated{name}", T)
+      model Templated<T> {
+        prop: T;
+      }
+
+      model X is Templated<Base>{};
+      `;
+      const cadlType = "X";
+      const inputModelName = "TemplatedBase";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `TemplatedBaseOutput`,
+        additionalInputContent: `
+        export interface TemplatedBase {
+           prop: BaseModel;
+        }
+
+        export interface BaseModel {}
+        `,
+        additionalOutputContent: `
+        export interface TemplatedBaseOutput {
+          prop: BaseModelOutput;
+        }
+
+        export interface BaseModelOutput {}
+        `
+      });
+    });
+  });
 });
