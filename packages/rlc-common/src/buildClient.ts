@@ -16,6 +16,7 @@ import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { isConstantSchema } from "./helpers/schemaHelpers.js";
 import { buildMethodShortcutImplementation } from "./buildMethodShortcuts.js";
 import { RLCModel, Schema, File, PathParameter } from "./interfaces.js";
+import { getImportModuleName } from "./helpers/nameConstructors.js";
 
 function getClientOptionsInterface(
   clientName: string,
@@ -43,7 +44,7 @@ function getClientOptionsInterface(
 
 export function buildClient(model: RLCModel): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
-  const { srcPath } = model;
+  const { srcPath, options } = model;
   const project = new Project();
   const filePath = path.join(srcPath, `${name}.ts`);
   const clientFile = project.createSourceFile(filePath, undefined, {
@@ -54,7 +55,7 @@ export function buildClient(model: RLCModel): File | undefined {
   const clientName = model.libraryName;
   const clientInterfaceName = clientName.endsWith("Client")
     ? `${clientName}`
-    : `${clientName}Client`;
+    : `${clientName}${options?.isModularLibrary ? "Context" : "Client"}`;
 
   normalizeUrlInfo(model);
   const urlParameters = model?.urlInfo?.urlParameters?.filter(
@@ -162,7 +163,13 @@ export function buildClient(model: RLCModel): File | undefined {
   clientFile.addImportDeclarations([
     {
       namedImports: [`${clientInterfaceName}`],
-      moduleSpecifier: "./clientDefinitions"
+      moduleSpecifier: getImportModuleName(
+        {
+          cjsName: "./clientDefinitions",
+          esModulesName: "./clientDefinitions.js"
+        },
+        model
+      )
     }
   ]);
   return { path: filePath, content: clientFile.getFullText() };

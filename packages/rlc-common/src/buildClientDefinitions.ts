@@ -25,6 +25,7 @@ import {
   normalizeName
 } from "./helpers/nameUtils.js";
 import { pascalCase } from "./helpers/nameUtils.js";
+import { getImportModuleName } from "./helpers/nameConstructors.js";
 
 export function buildClientDefinitions(model: RLCModel) {
   const options = {
@@ -68,7 +69,7 @@ export function buildClientDefinitions(model: RLCModel) {
 
   const clientInterfaceName = clientName.endsWith("Client")
     ? `${clientName}`
-    : `${clientName}Client`;
+    : `${clientName}${model.options?.isModularLibrary ? "Context" : "Client"}`;
 
   clientDefinitionsFile.addTypeAlias({
     isExported: true,
@@ -94,14 +95,20 @@ export function buildClientDefinitions(model: RLCModel) {
   if (options.importedParameters.size) {
     clientDefinitionsFile.addImportDeclaration({
       namedImports: [...options.importedParameters],
-      moduleSpecifier: "./parameters"
+      moduleSpecifier: getImportModuleName(
+        { cjsName: "./parameters", esModulesName: "./parameters.js" },
+        model
+      )
     });
   }
 
   if (options.importedResponses.size) {
     clientDefinitionsFile.addImportDeclaration({
       namedImports: [...options.importedResponses],
-      moduleSpecifier: "./responses"
+      moduleSpecifier: getImportModuleName(
+        { cjsName: "./responses", esModulesName: "./responses.js" },
+        model
+      )
     });
   }
 

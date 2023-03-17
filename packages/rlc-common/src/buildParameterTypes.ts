@@ -18,6 +18,7 @@ import {
   Schema
 } from "./interfaces.js";
 import {
+  getImportModuleName,
   getParameterBaseName,
   getParameterTypeName
 } from "./helpers/nameConstructors.js";
@@ -153,7 +154,13 @@ export function buildParameterTypes(model: RLCModel) {
         namedImports: [
           ...Array.from(model.importSet?.get(ImportKind.ParameterInput) || [])
         ],
-        moduleSpecifier: "./models"
+        moduleSpecifier: getImportModuleName(
+          {
+            cjsName: `./models`,
+            esModulesName: `./models.js`
+          },
+          model
+        )
       }
     ]);
   }

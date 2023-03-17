@@ -16,6 +16,7 @@ import {
 } from "./interfaces.js";
 import * as path from "path";
 import {
+  getImportModuleName,
   getResponseBaseName,
   getResponseTypeName
 } from "./helpers/nameConstructors.js";
@@ -108,7 +109,13 @@ export function buildResponseTypes(model: RLCModel) {
     responsesFile.addImportDeclarations([
       {
         namedImports: modelNamedImports,
-        moduleSpecifier: "./outputModels"
+        moduleSpecifier: getImportModuleName(
+          {
+            cjsName: `./outputModels`,
+            esModulesName: `./outputModels.js`
+          },
+          model
+        )
       }
     ]);
   }

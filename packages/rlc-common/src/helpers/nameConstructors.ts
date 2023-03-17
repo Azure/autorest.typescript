@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { RLCModel } from "../interfaces.js";
 import { NameType, normalizeName } from "./nameUtils.js";
 
 /**
@@ -90,4 +91,20 @@ export function getParameterTypeName(
     `${baseNameOrOperationGroup}_Parameters`,
     NameType.Interface
   );
+}
+
+export interface ModuleName {
+  esModulesName: string;
+  cjsName: string;
+}
+/**
+ * This is a helper function that gets the right import module depending on the type of
+ * library being generated
+ */
+export function getImportModuleName(name: ModuleName, codeModel: RLCModel) {
+  if (codeModel.options?.isModularLibrary) {
+    return name.esModulesName;
+  }
+
+  return name.cjsName;
 }

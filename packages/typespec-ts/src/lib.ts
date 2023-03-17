@@ -70,7 +70,8 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
       nullable: true
     },
     azureArm: { type: "boolean", nullable: true },
-    sourceFrom: { type: "string", nullable: true }
+    sourceFrom: { type: "string", nullable: true },
+    isModularLibrary: { type: "boolean", nullable: true, default: false }
   },
   required: []
 };
