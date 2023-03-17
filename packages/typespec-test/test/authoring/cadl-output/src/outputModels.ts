@@ -139,7 +139,6 @@ export type ProjectListOutput = Paged<ProjectOutput>;
 /** Paged collection of Deployment items */
 export type DeploymentListOutput = Paged<DeploymentOutput>;
 /** A collection of SupportedLanguage resources. */
-export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
+export type SupportedLanguagesOutput = Paged<SupportedLanguageOutput>;
 /** A collection of TrainingConfigVersion resources. */
-export type PagedTrainingConfigVersionOutput =
-  Paged<TrainingConfigVersionOutput>;
+export type TrainingConfigVersionsOutput = Paged<TrainingConfigVersionOutput>;

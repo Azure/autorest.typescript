@@ -35,12 +35,20 @@ import {
   createDpgContext
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
+import { buildSharedTypes } from "./modular/buildSharedTypes.js";
+import { Project } from "ts-morph";
+import { buildClientContext } from "./modular/buildClientContext.js";
+import { emitCodeModel } from "./modular/buildCodeModel.js";
+import { buildRootIndex } from "./modular/buildRootIndex.js";
+// import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const options: RLCOptions = context.options;
   const dpgContext = createDpgContext(context);
   const clients = listClients(dpgContext);
+  const srcPath: string = context.emitterOutputDir;
+  fsextra.emptyDirSync(srcPath);
   let count = -1;
   for (const client of clients) {
     count++;
@@ -70,10 +78,10 @@ export async function $onEmit(context: EmitContext) {
       [
         buildEsLintConfig,
         buildRollupConfig,
-        buildTsConfig,
         buildApiExtractorConfig,
+        buildReadmeFile,
         buildPackageFile,
-        buildReadmeFile
+        buildTsConfig
       ],
       rlcModels,
       context.emitterOutputDir
@@ -95,6 +103,25 @@ export async function $onEmit(context: EmitContext) {
 
   if (options.isModularLibrary) {
     // TODO: Emit modular parts of the library
+    const project = new Project();
+    const modularCodeModel = emitCodeModel(context, { casing: "camel" });
+
+    for (const client of modularCodeModel.clients) {
+      buildSharedTypes(project, srcPath);
+      buildClientContext(client, project, srcPath);
+      buildRootIndex(project, srcPath);
+      // emitPackage(project, srcPath, modularCodeModel);
+      // emitTsConfig(project, srcPath, modularCodeModel);
+    }
+
+    for (let file of project.getSourceFiles()) {
+      emitContentByBuilder(
+        program,
+        () => ({ content: file.getFullText(), path: file.getFilePath() }),
+        modularCodeModel as any
+      );
+      // emitFile(program, { content: hrlcClient.content, path: hrlcClient.path });
+    }
   }
 }
 
