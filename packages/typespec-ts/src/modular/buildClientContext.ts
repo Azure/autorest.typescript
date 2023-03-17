@@ -34,7 +34,7 @@ export function buildClientContext(
     (p) => p.clientName === "credential"
   );
 
-  let baseUrlParam: Parameter | undefined = parameters.find(
+  const baseUrlParam: Parameter | undefined = parameters.find(
     (p) => p.location === "endpointPath"
   );
 
@@ -103,17 +103,15 @@ function importCredential(
 ): void {
   switch (credential.type.type) {
     case "Key":
-      const azureKeyCredential = "AzureKeyCredential";
       clientSourceFile.addImportDeclaration({
         moduleSpecifier: "@azure/core-auth",
-        namedImports: [azureKeyCredential]
+        namedImports: ["AzureKeyCredential"]
       });
       return;
     case "OAuth2":
-      const azureTokenCredential = "TokenCredential";
       clientSourceFile.addImportDeclaration({
         moduleSpecifier: "@azure/core-auth",
-        namedImports: [azureTokenCredential]
+        namedImports: ["TokenCredential"]
       });
       return;
     default:

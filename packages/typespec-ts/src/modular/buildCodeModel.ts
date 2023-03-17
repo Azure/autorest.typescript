@@ -1035,13 +1035,9 @@ function emitListOrDict(
   type: Model
 ): Record<string, any> | undefined {
   if (type.indexer !== undefined) {
-    if (isNeverType(type.indexer.key)) {
-    } else {
+    if (!isNeverType(type.indexer.key)) {
       const name = type.indexer.key.name;
-      const elementType = type.indexer.value!;
       if (name === "string") {
-        if (elementType.kind === "Intrinsic") {
-        }
         return {
           type: "dict",
           elementType: getType(program, type.indexer.value!)

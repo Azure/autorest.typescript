@@ -114,8 +114,8 @@ export async function $onEmit(context: EmitContext) {
       // emitTsConfig(project, srcPath, modularCodeModel);
     }
 
-    for (let file of project.getSourceFiles()) {
-      emitContentByBuilder(
+    for (const file of project.getSourceFiles()) {
+      await emitContentByBuilder(
         program,
         () => ({ content: file.getFullText(), path: file.getFilePath() }),
         modularCodeModel as any
