@@ -1,7 +1,7 @@
 emit:
-  - "@azure-tools/cadl-typescript"
+  - "@azure-tools/typespec-ts"
 options:
-  "@azure-tools/cadl-typescript":
+  "@azure-tools/typespec-ts":
     title: Batch Service
     generateMetadata: true
     generateTest: true
