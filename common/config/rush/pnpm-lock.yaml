@@ -2829,7 +2829,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001466
-      electron-to-chromium: 1.4.330
+      electron-to-chromium: 1.4.331
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
     dev: false
@@ -3504,8 +3504,8 @@ packages:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: false
 
-  /electron-to-chromium/1.4.330:
-    resolution: {integrity: sha512-PqyefhybrVdjAJ45HaPLtuVaehiSw7C3ya0aad+rvmV53IVyXmYRk3pwIOb2TxTDTnmgQdn46NjMMaysx79/6Q==}
+  /electron-to-chromium/1.4.331:
+    resolution: {integrity: sha512-tdtr9y9oJl8VDiS+HeB6e/JDJqdDGjIk3yRfEMHm5rDnWQ/D5SbafybAayInxolbfbH6pouV5g7ZUAwE/WVtHw==}
     dev: false
 
   /elliptic/6.5.4:
@@ -7651,7 +7651,7 @@ packages:
     dev: false
 
   file:projects/typescript.tgz:
-    resolution: {integrity: sha512-cSQkUiyzSbIKx7eyTGbnUlMEUko5e2/WkWA/t6Ic8uJc+QsivUOOLi5Jj0aXCDMdcoQyd4U7mYhX3uM9aPG6rA==, tarball: file:projects/typescript.tgz}
+    resolution: {integrity: sha512-eIt24pj95JzocS8tS1B7Ysf8vbyi//hvz9qCRdUusqHWIwRx2f7ncu9J1nYm97SEeVxX9mUQ9NHGrHYPvG6glA==, tarball: file:projects/typescript.tgz}
     name: '@rush-temp/typescript'
     version: 0.0.0
     dependencies:
@@ -7741,7 +7741,7 @@ packages:
     dev: false
 
   file:projects/typespec-test.tgz:
-    resolution: {integrity: sha512-jD8+8/eh/KcABzdozeS7RCbNkrYljW4gnPs1Kl7zY9nR8Y8hHIPlQGySEU2Wd2M+tkDd6HPSAl1GbFPGkZ6mQQ==, tarball: file:projects/typespec-test.tgz}
+    resolution: {integrity: sha512-vrKU39jJTwUNESJmMhJfFc5C0a8wf5A+pkx9WIJM96XqiSFnudbq91XutW/ZwIiKmEO8g2Y+6p2dtUdF8YSm1w==, tarball: file:projects/typespec-test.tgz}
     name: '@rush-temp/typespec-test'
     version: 0.0.0
     dependencies:
@@ -7763,7 +7763,7 @@ packages:
     dev: false
 
   file:projects/typespec-ts.tgz:
-    resolution: {integrity: sha512-ZdDXa5Y6R7lO335iZDDJfhBNN/nTdkY0VvwWyIj/Baocs57eC0Un/WvQNgYR/N16OWzB6NXfYkhtpEY83fFHpQ==, tarball: file:projects/typespec-ts.tgz}
+    resolution: {integrity: sha512-Lag6tHqsVOLNiJqKGnUTLoaUZpaN/WHWnvJUrXWgIvM8DMk5WSa++BAuwSwlSbxzg/gaftpWwzw8Yj3+i530LA==, tarball: file:projects/typespec-ts.tgz}
     name: '@rush-temp/typespec-ts'
     version: 0.0.0
     dependencies:
