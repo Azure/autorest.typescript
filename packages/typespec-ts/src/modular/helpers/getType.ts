@@ -17,12 +17,13 @@ export function getType(type: Type): TypeMetadata {
       };
     case "boolean":
       return { name: "boolean" };
-    case "constant":
+    case "constant": {
       let typeName: string = type.value ?? "undefined";
       if (type.valueType?.type === "string") {
         typeName = type.value ? `"${type.value}"` : "undefined";
       }
       return { name: typeName };
+    }
     case "datetime":
       return { name: "Date" };
     case "enum":
