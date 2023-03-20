@@ -69,5 +69,9 @@
       "ts"
     ],
     "loader": "ts-node/esm"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Azure/autorest.typescript/issues"
+  },
+  "homepage": "https://github.com/Azure/autorest.typescript/tree/main/packages/typespec-ts/"
 }

@@ -42,5 +42,9 @@
     "fs-extra": "^10.0.0",
     "@types/fs-extra": "^8.1.0",
     "ts-node": "^10.7.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Azure/autorest.typescript/issues"
+  },
+  "homepage": "https://github.com/Azure/autorest.typescript/tree/main/packages/rlc-common/"
 }
