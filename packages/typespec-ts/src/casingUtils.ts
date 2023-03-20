@@ -27,3 +27,15 @@ export function camelToSnakeCase(name: string): string {
 
   return camelToSnakeCaseRe(name[0]!.toLowerCase() + name.slice(1));
 }
+
+export function toPascalCase(name: string) {
+  return `${name}`
+    .toLowerCase()
+    .replace(new RegExp(/[-_]+/, "g"), " ")
+    .replace(new RegExp(/[^a-zA-Z0-9\s]/, "g"), "")
+    .replace(
+      new RegExp(/\s+(.)(\w*)/, "g"),
+      (_$1, $2, $3) => `${$2.toUpperCase() + $3.toLowerCase()}`
+    )
+    .replace(new RegExp(/\w/), (s) => s.toUpperCase());
+}

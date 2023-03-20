@@ -41,6 +41,7 @@ import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { buildRootIndex } from "./modular/buildRootIndex.js";
 import { buildModels } from "./modular/emitModels.js";
+import { buildOperationFiles } from "./modular/buildOperations.js";
 // import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 
 export async function $onEmit(context: EmitContext) {
@@ -112,6 +113,7 @@ export async function $onEmit(context: EmitContext) {
       buildClientContext(client, project, srcPath);
       buildRootIndex(project, srcPath);
       buildModels(modularCodeModel, project, srcPath);
+      buildOperationFiles(client, project, srcPath);
       // emitPackage(project, srcPath, modularCodeModel);
       // emitTsConfig(project, srcPath, modularCodeModel);
     }
