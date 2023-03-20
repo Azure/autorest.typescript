@@ -40,6 +40,7 @@ import { Project } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { buildRootIndex } from "./modular/buildRootIndex.js";
+import { buildModels } from "./modular/emitModels.js";
 // import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 
 export async function $onEmit(context: EmitContext) {
@@ -110,6 +111,7 @@ export async function $onEmit(context: EmitContext) {
       buildSharedTypes(project, srcPath);
       buildClientContext(client, project, srcPath);
       buildRootIndex(project, srcPath);
+      buildModels(modularCodeModel, project, srcPath);
       // emitPackage(project, srcPath, modularCodeModel);
       // emitTsConfig(project, srcPath, modularCodeModel);
     }
