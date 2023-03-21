@@ -20,7 +20,7 @@ Install [TypeSpec](https://github.com/microsoft/typespec) latest.
 
 ## Initialize TypeSpec Project
 
-Follow [TypeSpec Getting Started](hhttps://github.com/microsoft/typespec#getting-started) to initialize your TypeSpec project.
+Follow [TypeSpec Getting Started](https://github.com/microsoft/typespec#getting-started) to initialize your TypeSpec project.
 
 Make sure `npx tsp compile .` runs correctly.
 
