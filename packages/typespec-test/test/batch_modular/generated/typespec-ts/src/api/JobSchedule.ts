@@ -14,7 +14,7 @@ import {
   BatchJobScheduleListResult,
 } from "./models.js";
 
-export interface Jobschedulejobscheduleexistsoptions extends RequestOptions {
+export interface JobScheduleJobScheduleExistsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -63,7 +63,7 @@ export interface Jobschedulejobscheduleexistsoptions extends RequestOptions {
 export async function jobScheduleExists(
   context: Client,
   jobScheduleId: string,
-  options: Jobschedulejobscheduleexistsoptions = { requestOptions: {} }
+  options: JobScheduleJobScheduleExistsOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
@@ -95,7 +95,7 @@ export async function jobScheduleExists(
   return;
 }
 
-export interface Jobscheduledeletejobscheduleoptions extends RequestOptions {
+export interface JobScheduleDeleteJobScheduleOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -150,7 +150,7 @@ export interface Jobscheduledeletejobscheduleoptions extends RequestOptions {
 export async function deleteJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: Jobscheduledeletejobscheduleoptions = { requestOptions: {} }
+  options: JobScheduleDeleteJobScheduleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
@@ -182,7 +182,7 @@ export async function deleteJobSchedule(
   return;
 }
 
-export interface Jobschedulegetjobscheduleoptions extends RequestOptions {
+export interface JobScheduleGetJobScheduleOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -235,7 +235,7 @@ export interface Jobschedulegetjobscheduleoptions extends RequestOptions {
 export async function getJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: Jobschedulegetjobscheduleoptions = { requestOptions: {} }
+  options: JobScheduleGetJobScheduleOptions = { requestOptions: {} }
 ): Promise<BatchJobSchedule> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
@@ -1386,7 +1386,7 @@ export async function getJobSchedule(
   };
 }
 
-export interface Jobschedulepatchjobscheduleoptions extends RequestOptions {
+export interface JobSchedulePatchJobScheduleOptions extends RequestOptions {
   /** A string that uniquely identifies the schedule within the Account. */
   id?: string;
   /** The display name for the schedule. */
@@ -1491,7 +1491,7 @@ export interface Jobschedulepatchjobscheduleoptions extends RequestOptions {
 export async function patchJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: Jobschedulepatchjobscheduleoptions = { requestOptions: {} }
+  options: JobSchedulePatchJobScheduleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
@@ -1531,7 +1531,7 @@ export async function patchJobSchedule(
   return;
 }
 
-export interface Jobscheduleupdatejobscheduleoptions extends RequestOptions {
+export interface JobScheduleUpdateJobScheduleOptions extends RequestOptions {
   /** A string that uniquely identifies the schedule within the Account. */
   id?: string;
   /** The display name for the schedule. */
@@ -1636,7 +1636,7 @@ export interface Jobscheduleupdatejobscheduleoptions extends RequestOptions {
 export async function updateJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: Jobscheduleupdatejobscheduleoptions = { requestOptions: {} }
+  options: JobScheduleUpdateJobScheduleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
@@ -1676,7 +1676,7 @@ export async function updateJobSchedule(
   return;
 }
 
-export interface Jobscheduledisablejobscheduleoptions extends RequestOptions {
+export interface JobScheduleDisableJobScheduleOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1725,7 +1725,7 @@ export interface Jobscheduledisablejobscheduleoptions extends RequestOptions {
 export async function disableJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: Jobscheduledisablejobscheduleoptions = { requestOptions: {} }
+  options: JobScheduleDisableJobScheduleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}/disable", jobScheduleId)
@@ -1757,7 +1757,7 @@ export async function disableJobSchedule(
   return;
 }
 
-export interface Jobscheduleenablejobscheduleoptions extends RequestOptions {
+export interface JobScheduleEnableJobScheduleOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1806,7 +1806,7 @@ export interface Jobscheduleenablejobscheduleoptions extends RequestOptions {
 export async function enableJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: Jobscheduleenablejobscheduleoptions = { requestOptions: {} }
+  options: JobScheduleEnableJobScheduleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}/enable", jobScheduleId)
@@ -1838,7 +1838,7 @@ export async function enableJobSchedule(
   return;
 }
 
-export interface Jobscheduleterminatejobscheduleoptions extends RequestOptions {
+export interface JobScheduleTerminateJobScheduleOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1887,7 +1887,7 @@ export interface Jobscheduleterminatejobscheduleoptions extends RequestOptions {
 export async function terminateJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: Jobscheduleterminatejobscheduleoptions = { requestOptions: {} }
+  options: JobScheduleTerminateJobScheduleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}/terminate", jobScheduleId)
@@ -1919,7 +1919,7 @@ export async function terminateJobSchedule(
   return;
 }
 
-export interface Jobscheduleaddjobscheduleoptions extends RequestOptions {
+export interface JobScheduleAddJobScheduleOptions extends RequestOptions {
   /** A string that uniquely identifies the schedule within the Account. */
   id?: string;
   /** The display name for the schedule. */
@@ -1993,7 +1993,7 @@ export interface Jobscheduleaddjobscheduleoptions extends RequestOptions {
 /** Adds a Job Schedule to the specified Account. */
 export async function addJobSchedule(
   context: Client,
-  options: Jobscheduleaddjobscheduleoptions = { requestOptions: {} }
+  options: JobScheduleAddJobScheduleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobschedules").post({
     headers: {
@@ -2023,7 +2023,7 @@ export async function addJobSchedule(
   return;
 }
 
-export interface Jobschedulelistjobschedulesoptions extends RequestOptions {
+export interface JobScheduleListJobSchedulesOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2061,7 +2061,7 @@ export interface Jobschedulelistjobschedulesoptions extends RequestOptions {
 /** Lists all of the Job Schedules in the specified Account. */
 export async function listJobSchedules(
   context: Client,
-  options: Jobschedulelistjobschedulesoptions = { requestOptions: {} }
+  options: JobScheduleListJobSchedulesOptions = { requestOptions: {} }
 ): Promise<BatchJobScheduleListResult> {
   const result = await context.path("/jobschedules").get({
     headers: {

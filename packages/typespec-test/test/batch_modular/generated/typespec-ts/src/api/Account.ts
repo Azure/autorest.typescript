@@ -8,7 +8,7 @@ import {
   PoolNodeCountsListResult,
 } from "./models.js";
 
-export interface Accountlistsupportedimagesoptions extends RequestOptions {
+export interface AccountListSupportedImagesOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -42,7 +42,7 @@ export interface Accountlistsupportedimagesoptions extends RequestOptions {
 /** Lists all Virtual Machine Images supported by the Azure Batch service. */
 export async function listSupportedImages(
   context: Client,
-  options: Accountlistsupportedimagesoptions = { requestOptions: {} }
+  options: AccountListSupportedImagesOptions = { requestOptions: {} }
 ): Promise<AccountListSupportedImagesResult> {
   const result = await context.path("/supportedimages").get({
     headers: {
@@ -86,7 +86,7 @@ export async function listSupportedImages(
   };
 }
 
-export interface Accountlistpoolnodecountsoptions extends RequestOptions {
+export interface AccountListPoolNodeCountsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -124,7 +124,7 @@ export interface Accountlistpoolnodecountsoptions extends RequestOptions {
  */
 export async function listPoolNodeCounts(
   context: Client,
-  options: Accountlistpoolnodecountsoptions = { requestOptions: {} }
+  options: AccountListPoolNodeCountsOptions = { requestOptions: {} }
 ): Promise<PoolNodeCountsListResult> {
   const result = await context.path("/nodecounts").get({
     headers: {

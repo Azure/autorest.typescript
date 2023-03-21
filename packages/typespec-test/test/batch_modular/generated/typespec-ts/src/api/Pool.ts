@@ -27,7 +27,7 @@ import {
   ComputeNodeDeallocationOption,
 } from "./models.js";
 
-export interface Poollistusagemetricsoptions extends RequestOptions {}
+export interface PoolListUsageMetricsOptions extends RequestOptions {}
 
 /**
  * If you do not specify a $filter clause including a poolId, the response
@@ -39,7 +39,7 @@ export interface Poollistusagemetricsoptions extends RequestOptions {}
  */
 export async function listUsageMetrics(
   context: Client,
-  options: Poollistusagemetricsoptions = { requestOptions: {} }
+  options: PoolListUsageMetricsOptions = { requestOptions: {} }
 ): Promise<CustomPagePoolUsageMetrics> {
   const result = await context.path("/poolusagemetrics").get({
     headers: { Accept: "application/json", ...options.requestOptions?.headers },
@@ -60,7 +60,7 @@ export async function listUsageMetrics(
   };
 }
 
-export interface Poolgetalllifetimestatisticsoptions extends RequestOptions {
+export interface PoolGetAllLifetimeStatisticsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -89,7 +89,7 @@ export interface Poolgetalllifetimestatisticsoptions extends RequestOptions {
  */
 export async function getAllLifetimeStatistics(
   context: Client,
-  options: Poolgetalllifetimestatisticsoptions = { requestOptions: {} }
+  options: PoolGetAllLifetimeStatisticsOptions = { requestOptions: {} }
 ): Promise<PoolStatistics> {
   const result = await context.path("/lifetimepoolstats").get({
     headers: {
@@ -144,7 +144,7 @@ export async function getAllLifetimeStatistics(
   };
 }
 
-export interface Pooladdpooloptions extends RequestOptions {
+export interface PoolAddPoolOptions extends RequestOptions {
   /**
    * The ID can contain any combination of alphanumeric characters including hyphens
    * and underscores, and cannot contain more than 64 characters. The ID is
@@ -347,7 +347,7 @@ export interface Pooladdpooloptions extends RequestOptions {
  */
 export async function addPool(
   context: Client,
-  options: Pooladdpooloptions = { requestOptions: {} }
+  options: PoolAddPoolOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/pools").post({
     headers: {
@@ -383,7 +383,7 @@ export async function addPool(
   return;
 }
 
-export interface Poollistpoolsoptions extends RequestOptions {
+export interface PoolListPoolsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -421,7 +421,7 @@ export interface Poollistpoolsoptions extends RequestOptions {
 /** Lists all of the Pools in the specified Account. */
 export async function listPools(
   context: Client,
-  options: Poollistpoolsoptions = { requestOptions: {} }
+  options: PoolListPoolsOptions = { requestOptions: {} }
 ): Promise<BatchPoolListResult> {
   const result = await context.path("/pools").get({
     headers: {
@@ -858,7 +858,7 @@ export async function listPools(
   };
 }
 
-export interface Pooldeletepooloptions extends RequestOptions {
+export interface PoolDeletePoolOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -920,7 +920,7 @@ export interface Pooldeletepooloptions extends RequestOptions {
 export async function deletePool(
   context: Client,
   poolId: string,
-  options: Pooldeletepooloptions = { requestOptions: {} }
+  options: PoolDeletePoolOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/pools/{poolId}", poolId).delete({
     headers: {
@@ -950,7 +950,7 @@ export async function deletePool(
   return;
 }
 
-export interface Poolexistsoptions extends RequestOptions {
+export interface PoolExistsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -999,7 +999,7 @@ export interface Poolexistsoptions extends RequestOptions {
 export async function exists(
   context: Client,
   poolId: string,
-  options: Poolexistsoptions = { requestOptions: {} }
+  options: PoolExistsOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/pools/{poolId}", poolId).head({
     headers: {
@@ -1029,7 +1029,7 @@ export async function exists(
   return;
 }
 
-export interface Poolgetpooloptions extends RequestOptions {
+export interface PoolGetPoolOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1082,7 +1082,7 @@ export interface Poolgetpooloptions extends RequestOptions {
 export async function getPool(
   context: Client,
   poolId: string,
-  options: Poolgetpooloptions = { requestOptions: {} }
+  options: PoolGetPoolOptions = { requestOptions: {} }
 ): Promise<BatchPool> {
   const result = await context.path("/pools/{poolId}", poolId).get({
     headers: {
@@ -1545,7 +1545,7 @@ export async function getPool(
   };
 }
 
-export interface Poolpatchpooloptions extends RequestOptions {
+export interface PoolPatchPoolOptions extends RequestOptions {
   /**
    * The ID can contain any combination of alphanumeric characters including hyphens
    * and underscores, and cannot contain more than 64 characters. The ID is
@@ -1773,7 +1773,7 @@ export interface Poolpatchpooloptions extends RequestOptions {
 export async function patchPool(
   context: Client,
   poolId: string,
-  options: Poolpatchpooloptions = { requestOptions: {} }
+  options: PoolPatchPoolOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/pools/{poolId}", poolId).patch({
     headers: {
@@ -1817,7 +1817,7 @@ export async function patchPool(
   return;
 }
 
-export interface Pooldisableautoscaleoptions extends RequestOptions {
+export interface PoolDisableAutoScaleOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1842,7 +1842,7 @@ export interface Pooldisableautoscaleoptions extends RequestOptions {
 export async function disableAutoScale(
   context: Client,
   poolId: string,
-  options: Pooldisableautoscaleoptions = { requestOptions: {} }
+  options: PoolDisableAutoScaleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/disableautoscale", poolId)
@@ -1866,7 +1866,7 @@ export async function disableAutoScale(
   return;
 }
 
-export interface Poolenableautoscaleoptions extends RequestOptions {
+export interface PoolEnableAutoScaleOptions extends RequestOptions {
   /**
    * The formula is checked for validity before it is applied to the Pool. If the
    * formula is not valid, the Batch service rejects the request with detailed error
@@ -1943,7 +1943,7 @@ export interface Poolenableautoscaleoptions extends RequestOptions {
 export async function enableAutoScale(
   context: Client,
   poolId: string,
-  options: Poolenableautoscaleoptions = { requestOptions: {} }
+  options: PoolEnableAutoScaleOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/enableautoscale", poolId)
@@ -1984,7 +1984,7 @@ export async function enableAutoScale(
   return;
 }
 
-export interface Poolevaluateautoscaleoptions extends RequestOptions {
+export interface PoolEvaluateAutoScaleOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2016,7 +2016,7 @@ export async function evaluateAutoScale(
   context: Client,
   autoScaleFormula: string,
   poolId: string,
-  options: Poolevaluateautoscaleoptions = { requestOptions: {} }
+  options: PoolEvaluateAutoScaleOptions = { requestOptions: {} }
 ): Promise<AutoScaleRun> {
   const result = await context
     .path("/pools/{poolId}/evaluateautoscale", poolId)
@@ -2056,7 +2056,7 @@ export async function evaluateAutoScale(
   };
 }
 
-export interface Poolresizeoptions extends RequestOptions {
+export interface PoolResizeOptions extends RequestOptions {
   /** The desired number of dedicated Compute Nodes in the Pool. */
   targetDedicatedNodes?: number;
   /** The desired number of Spot/Low-priority Compute Nodes in the Pool. */
@@ -2127,7 +2127,7 @@ export interface Poolresizeoptions extends RequestOptions {
 export async function resize(
   context: Client,
   poolId: string,
-  options: Poolresizeoptions = { requestOptions: {} }
+  options: PoolResizeOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/pools/{poolId}/resize", poolId).post({
     headers: {
@@ -2170,7 +2170,7 @@ export async function resize(
   return;
 }
 
-export interface Poolstopresizeoptions extends RequestOptions {
+export interface PoolStopResizeOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2227,7 +2227,7 @@ export interface Poolstopresizeoptions extends RequestOptions {
 export async function stopResize(
   context: Client,
   poolId: string,
-  options: Poolstopresizeoptions = { requestOptions: {} }
+  options: PoolStopResizeOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/pools/{poolId}/stopresize", poolId).post({
     headers: {
@@ -2257,7 +2257,7 @@ export async function stopResize(
   return;
 }
 
-export interface Poolupdatepropertiesoptions extends RequestOptions {
+export interface PoolUpdatePropertiesOptions extends RequestOptions {
   /**
    * The ID can contain any combination of alphanumeric characters including hyphens
    * and underscores, and cannot contain more than 64 characters. The ID is
@@ -2461,7 +2461,7 @@ export interface Poolupdatepropertiesoptions extends RequestOptions {
 export async function updateProperties(
   context: Client,
   poolId: string,
-  options: Poolupdatepropertiesoptions = { requestOptions: {} }
+  options: PoolUpdatePropertiesOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/updateproperties", poolId)
@@ -2499,7 +2499,7 @@ export async function updateProperties(
   return;
 }
 
-export interface Poolremovenodesoptions extends RequestOptions {
+export interface PoolRemoveNodesOptions extends RequestOptions {
   /**
    * The default value is 15 minutes. The minimum value is 5 minutes. If you specify
    * a value less than 5 minutes, the Batch service returns an error; if you are
@@ -2563,7 +2563,7 @@ export async function removeNodes(
   context: Client,
   nodeList: string[],
   poolId: string,
-  options: Poolremovenodesoptions = { requestOptions: {} }
+  options: PoolRemoveNodesOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/removenodes", poolId)

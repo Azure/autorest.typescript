@@ -242,7 +242,9 @@ export function buildOperationOptions(
   ).filter((p) => p.optional);
   const options = [...optionalBodyParams, ...optionalParameters];
 
-  const name = toPascalCase(`${operation.groupName}${operation.name}Options`);
+  const name = `${toPascalCase(operation.groupName)}${toPascalCase(
+    operation.name
+  )}Options`;
 
   sourceFile.addInterface({
     name,
@@ -268,7 +270,7 @@ function buildParameterType(
     throw new Error("Type should be defined");
   }
 
-  let typeMetadata = getType(type);
+  const typeMetadata = getType(type);
   let typeName = typeMetadata.name;
   if (typeMetadata.modifier === "Array") {
     typeName = `${typeName}[]`;

@@ -14,7 +14,7 @@ import {
   ComputeNodeListResult,
 } from "./models.js";
 
-export interface Computenodesadduseroptions extends RequestOptions {
+export interface ComputeNodesAddUserOptions extends RequestOptions {
   /** The default value is false. */
   isAdmin?: boolean;
   /**
@@ -68,7 +68,7 @@ export async function addUser(
   name: string,
   poolId: string,
   nodeId: string,
-  options: Computenodesadduseroptions = { requestOptions: {} }
+  options: ComputeNodesAddUserOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/users", poolId, nodeId)
@@ -100,7 +100,7 @@ export async function addUser(
   return;
 }
 
-export interface Computenodesdeleteuseroptions extends RequestOptions {
+export interface ComputeNodesDeleteUserOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -130,7 +130,7 @@ export async function deleteUser(
   poolId: string,
   nodeId: string,
   userName: string,
-  options: Computenodesdeleteuseroptions = { requestOptions: {} }
+  options: ComputeNodesDeleteUserOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -159,7 +159,7 @@ export async function deleteUser(
   return;
 }
 
-export interface Computenodesupdateuseroptions extends RequestOptions {
+export interface ComputeNodesUpdateUserOptions extends RequestOptions {
   /**
    * The password is required for Windows Compute Nodes (those created with
    * 'cloudServiceConfiguration', or created with 'virtualMachineConfiguration'
@@ -214,7 +214,7 @@ export async function updateUser(
   poolId: string,
   nodeId: string,
   userName: string,
-  options: Computenodesupdateuseroptions = { requestOptions: {} }
+  options: ComputeNodesUpdateUserOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -249,7 +249,7 @@ export async function updateUser(
   return;
 }
 
-export interface Computenodesgetcomputenodeoptions extends RequestOptions {
+export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -277,7 +277,7 @@ export async function getComputeNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Computenodesgetcomputenodeoptions = { requestOptions: {} }
+  options: ComputeNodesGetComputeNodeOptions = { requestOptions: {} }
 ): Promise<ComputeNode> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId)
@@ -530,7 +530,7 @@ export async function getComputeNode(
   };
 }
 
-export interface Computenodesrebootcomputenodeoptions extends RequestOptions {
+export interface ComputeNodesRebootComputeNodeOptions extends RequestOptions {
   /** The default value is requeue. */
   nodeRebootOption?: ComputeNodeRebootOption;
   /**
@@ -560,7 +560,7 @@ export async function rebootComputeNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Computenodesrebootcomputenodeoptions = { requestOptions: {} }
+  options: ComputeNodesRebootComputeNodeOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/reboot", poolId, nodeId)
@@ -590,7 +590,7 @@ export async function rebootComputeNode(
   return;
 }
 
-export interface Computenodesreimagecomputenodeoptions extends RequestOptions {
+export interface ComputeNodesReimageComputeNodeOptions extends RequestOptions {
   /** The default value is requeue. */
   nodeReimageOption?: ComputeNodeReimageOption;
   /**
@@ -624,7 +624,7 @@ export async function reimageComputeNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Computenodesreimagecomputenodeoptions = { requestOptions: {} }
+  options: ComputeNodesReimageComputeNodeOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/reimage", poolId, nodeId)
@@ -654,7 +654,7 @@ export async function reimageComputeNode(
   return;
 }
 
-export interface Computenodesdisableschedulingoptions extends RequestOptions {
+export interface ComputeNodesDisableSchedulingOptions extends RequestOptions {
   /** The default value is requeue. */
   nodeDisableSchedulingOption?: DisableComputeNodeSchedulingOption;
   /**
@@ -687,7 +687,7 @@ export async function disableScheduling(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Computenodesdisableschedulingoptions = { requestOptions: {} }
+  options: ComputeNodesDisableSchedulingOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/disablescheduling", poolId, nodeId)
@@ -717,7 +717,7 @@ export async function disableScheduling(
   return;
 }
 
-export interface Computenodesenableschedulingoptions extends RequestOptions {
+export interface ComputeNodesEnableSchedulingOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -746,7 +746,7 @@ export async function enableScheduling(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Computenodesenableschedulingoptions = { requestOptions: {} }
+  options: ComputeNodesEnableSchedulingOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId, nodeId)
@@ -770,7 +770,7 @@ export async function enableScheduling(
   return;
 }
 
-export interface Computenodesgetremoteloginsettingsoptions
+export interface ComputeNodesGetRemoteLoginSettingsOptions
   extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -803,7 +803,7 @@ export async function getRemoteLoginSettings(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Computenodesgetremoteloginsettingsoptions = { requestOptions: {} }
+  options: ComputeNodesGetRemoteLoginSettingsOptions = { requestOptions: {} }
 ): Promise<ComputeNodeGetRemoteLoginSettingsResult> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId, nodeId)
@@ -831,7 +831,7 @@ export async function getRemoteLoginSettings(
   };
 }
 
-export interface Computenodesgetremotedesktopoptions extends RequestOptions {
+export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -862,7 +862,7 @@ export async function getRemoteDesktop(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Computenodesgetremotedesktopoptions = { requestOptions: {} }
+  options: ComputeNodesGetRemoteDesktopOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/rdp", poolId, nodeId)
@@ -887,7 +887,7 @@ export async function getRemoteDesktop(
   return;
 }
 
-export interface Computenodesuploadbatchservicelogsoptions
+export interface ComputeNodesUploadBatchServiceLogsOptions
   extends RequestOptions {
   /**
    * Any log file containing a log message in the time range will be uploaded. This
@@ -933,7 +933,7 @@ export async function uploadBatchServiceLogs(
   startTime: Date,
   poolId: string,
   nodeId: string,
-  options: Computenodesuploadbatchservicelogsoptions = { requestOptions: {} }
+  options: ComputeNodesUploadBatchServiceLogsOptions = { requestOptions: {} }
 ): Promise<UploadBatchServiceLogsResult> {
   const result = await context
     .path(
@@ -974,7 +974,7 @@ export async function uploadBatchServiceLogs(
   };
 }
 
-export interface Computenodeslistoptions extends RequestOptions {
+export interface ComputeNodesListOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1011,7 +1011,7 @@ export interface Computenodeslistoptions extends RequestOptions {
 export async function list(
   context: Client,
   poolId: string,
-  options: Computenodeslistoptions = { requestOptions: {} }
+  options: ComputeNodesListOptions = { requestOptions: {} }
 ): Promise<ComputeNodeListResult> {
   const result = await context.path("/pools/{poolId}/nodes", poolId).get({
     headers: {

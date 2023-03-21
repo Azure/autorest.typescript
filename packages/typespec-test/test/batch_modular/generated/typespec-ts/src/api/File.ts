@@ -5,7 +5,7 @@ import { RequestOptions } from "../common/interfaces.js";
 import { BatchServiceContext as Client, isUnexpected } from "../rest/index.js";
 import { NodeFileListResult } from "./models.js";
 
-export interface Filedeletefromtaskoptions extends RequestOptions {
+export interface FileDeleteFromTaskOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -39,7 +39,7 @@ export async function deleteFromTask(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: Filedeletefromtaskoptions = { requestOptions: {} }
+  options: FileDeleteFromTaskOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -71,7 +71,7 @@ export async function deleteFromTask(
   return;
 }
 
-export interface Filegetfromtaskoptions extends RequestOptions {
+export interface FileGetFromTaskOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -115,7 +115,7 @@ export async function getFromTask(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: Filegetfromtaskoptions = { requestOptions: {} }
+  options: FileGetFromTaskOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -152,7 +152,7 @@ export async function getFromTask(
   return;
 }
 
-export interface Filegetpropertiesfromtaskoptions extends RequestOptions {
+export interface FileGetPropertiesFromTaskOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -191,7 +191,7 @@ export async function getPropertiesFromTask(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: Filegetpropertiesfromtaskoptions = { requestOptions: {} }
+  options: FileGetPropertiesFromTaskOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -226,7 +226,7 @@ export async function getPropertiesFromTask(
   return;
 }
 
-export interface Filedeletefromcomputenodeoptions extends RequestOptions {
+export interface FileDeleteFromComputeNodeOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -260,7 +260,7 @@ export async function deleteFromComputeNode(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: Filedeletefromcomputenodeoptions = { requestOptions: {} }
+  options: FileDeleteFromComputeNodeOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -292,7 +292,7 @@ export async function deleteFromComputeNode(
   return;
 }
 
-export interface Filegetfromcomputenodeoptions extends RequestOptions {
+export interface FileGetFromComputeNodeOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -336,7 +336,7 @@ export async function getFromComputeNode(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: Filegetfromcomputenodeoptions = { requestOptions: {} }
+  options: FileGetFromComputeNodeOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -373,7 +373,7 @@ export async function getFromComputeNode(
   return;
 }
 
-export interface Filegetpropertiesfromcomputenodeoptions
+export interface FileGetPropertiesFromComputeNodeOptions
   extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -413,7 +413,7 @@ export async function getPropertiesFromComputeNode(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: Filegetpropertiesfromcomputenodeoptions = { requestOptions: {} }
+  options: FileGetPropertiesFromComputeNodeOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -448,7 +448,7 @@ export async function getPropertiesFromComputeNode(
   return;
 }
 
-export interface Filelistfromtaskoptions extends RequestOptions {
+export interface FileListFromTaskOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -489,7 +489,7 @@ export async function listFromTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: Filelistfromtaskoptions = { requestOptions: {} }
+  options: FileListFromTaskOptions = { requestOptions: {} }
 ): Promise<NodeFileListResult> {
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}/files", jobId, taskId)
@@ -535,7 +535,7 @@ export async function listFromTask(
   };
 }
 
-export interface Filelistfromcomputenodeoptions extends RequestOptions {
+export interface FileListFromComputeNodeOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -573,7 +573,7 @@ export async function listFromComputeNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Filelistfromcomputenodeoptions = { requestOptions: {} }
+  options: FileListFromComputeNodeOptions = { requestOptions: {} }
 ): Promise<NodeFileListResult> {
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/files", poolId, nodeId)

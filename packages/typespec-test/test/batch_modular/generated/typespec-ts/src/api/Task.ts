@@ -26,7 +26,7 @@ import {
   BatchTaskListSubtasksResult,
 } from "./models.js";
 
-export interface Taskaddtaskoptions extends RequestOptions {
+export interface TaskAddTaskOptions extends RequestOptions {
   /**
    * The ID can contain any combination of alphanumeric characters including hyphens
    * and underscores, and cannot contain more than 64 characters.
@@ -184,7 +184,7 @@ export interface Taskaddtaskoptions extends RequestOptions {
 export async function addTask(
   context: Client,
   jobId: string,
-  options: Taskaddtaskoptions = { requestOptions: {} }
+  options: TaskAddTaskOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobs/{jobId}/tasks", jobId).post({
     headers: {
@@ -235,7 +235,7 @@ export async function addTask(
   return;
 }
 
-export interface Tasklisttasksoptions extends RequestOptions {
+export interface TaskListTasksOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -278,7 +278,7 @@ export interface Tasklisttasksoptions extends RequestOptions {
 export async function listTasks(
   context: Client,
   jobId: string,
-  options: Tasklisttasksoptions = { requestOptions: {} }
+  options: TaskListTasksOptions = { requestOptions: {} }
 ): Promise<BatchTaskListResult> {
   const result = await context.path("/jobs/{jobId}/tasks", jobId).get({
     headers: {
@@ -545,7 +545,7 @@ export async function listTasks(
   };
 }
 
-export interface Taskaddtaskcollectionoptions extends RequestOptions {
+export interface TaskAddTaskCollectionOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -588,7 +588,7 @@ export async function addTaskCollection(
   context: Client,
   value: BatchTask[],
   jobId: string,
-  options: Taskaddtaskcollectionoptions = { requestOptions: {} }
+  options: TaskAddTaskCollectionOptions = { requestOptions: {} }
 ): Promise<TaskAddCollectionResult> {
   const result = await context
     .path("/jobs/{jobId}/addtaskcollection", jobId)
@@ -638,7 +638,7 @@ export async function addTaskCollection(
   };
 }
 
-export interface Taskdeletetaskcollectionoptions extends RequestOptions {
+export interface TaskDeleteTaskCollectionOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -694,7 +694,7 @@ export async function deleteTaskCollection(
   context: Client,
   jobId: string,
   taskId: string,
-  options: Taskdeletetaskcollectionoptions = { requestOptions: {} }
+  options: TaskDeleteTaskCollectionOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -726,7 +726,7 @@ export async function deleteTaskCollection(
   return;
 }
 
-export interface Taskgettaskcollectionoptions extends RequestOptions {
+export interface TaskGetTaskCollectionOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -784,7 +784,7 @@ export async function getTaskCollection(
   context: Client,
   jobId: string,
   taskId: string,
-  options: Taskgettaskcollectionoptions = { requestOptions: {} }
+  options: TaskGetTaskCollectionOptions = { requestOptions: {} }
 ): Promise<BatchTask> {
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -1066,7 +1066,7 @@ export async function getTaskCollection(
   };
 }
 
-export interface Taskupdatetaskcollectionoptions extends RequestOptions {
+export interface TaskUpdateTaskCollectionOptions extends RequestOptions {
   /**
    * The ID can contain any combination of alphanumeric characters including hyphens
    * and underscores, and cannot contain more than 64 characters.
@@ -1245,7 +1245,7 @@ export async function updateTaskCollection(
   context: Client,
   jobId: string,
   taskId: string,
-  options: Taskupdatetaskcollectionoptions = { requestOptions: {} }
+  options: TaskUpdateTaskCollectionOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -1308,7 +1308,7 @@ export async function updateTaskCollection(
   return;
 }
 
-export interface Tasklistsubtasksoptions extends RequestOptions {
+export interface TaskListSubtasksOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1336,7 +1336,7 @@ export async function listSubtasks(
   context: Client,
   jobId: string,
   taskId: string,
-  options: Tasklistsubtasksoptions = { requestOptions: {} }
+  options: TaskListSubtasksOptions = { requestOptions: {} }
 ): Promise<BatchTaskListSubtasksResult> {
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
@@ -1406,7 +1406,7 @@ export async function listSubtasks(
   };
 }
 
-export interface Taskterminatetaskcollectionoptions extends RequestOptions {
+export interface TaskTerminateTaskCollectionOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1460,7 +1460,7 @@ export async function terminateTaskCollection(
   context: Client,
   jobId: string,
   taskId: string,
-  options: Taskterminatetaskcollectionoptions = { requestOptions: {} }
+  options: TaskTerminateTaskCollectionOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
@@ -1492,7 +1492,7 @@ export async function terminateTaskCollection(
   return;
 }
 
-export interface Taskreactivatetaskcollectionoptions extends RequestOptions {
+export interface TaskReactivateTaskCollectionOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1550,7 +1550,7 @@ export async function reactivateTaskCollection(
   context: Client,
   jobId: string,
   taskId: string,
-  options: Taskreactivatetaskcollectionoptions = { requestOptions: {} }
+  options: TaskReactivateTaskCollectionOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)

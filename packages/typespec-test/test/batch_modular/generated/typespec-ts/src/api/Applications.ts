@@ -5,7 +5,7 @@ import { RequestOptions } from "../common/interfaces.js";
 import { BatchServiceContext as Client, isUnexpected } from "../rest/index.js";
 import { ApplicationListResult, Application } from "./models.js";
 
-export interface Applicationslistapplicationsoptions extends RequestOptions {
+export interface ApplicationsListApplicationsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -40,7 +40,7 @@ export interface Applicationslistapplicationsoptions extends RequestOptions {
  */
 export async function listApplications(
   context: Client,
-  options: Applicationslistapplicationsoptions = { requestOptions: {} }
+  options: ApplicationsListApplicationsOptions = { requestOptions: {} }
 ): Promise<ApplicationListResult> {
   const result = await context.path("/applications").get({
     headers: {
@@ -73,7 +73,7 @@ export async function listApplications(
   };
 }
 
-export interface Applicationsgetoptions extends RequestOptions {}
+export interface ApplicationsGetOptions extends RequestOptions {}
 
 /**
  * This operation returns only Applications and versions that are available for
@@ -85,7 +85,7 @@ export interface Applicationsgetoptions extends RequestOptions {}
 export async function get(
   context: Client,
   applicationId: string,
-  options: Applicationsgetoptions = { requestOptions: {} }
+  options: ApplicationsGetOptions = { requestOptions: {} }
 ): Promise<Application> {
   const result = await context
     .path("/applications/{applicationId}", applicationId)

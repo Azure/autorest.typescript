@@ -24,7 +24,7 @@ import {
   TaskCountsResult,
 } from "./models.js";
 
-export interface Jobgetalllifetimestatisticsoptions extends RequestOptions {
+export interface JobGetAllLifetimeStatisticsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -53,7 +53,7 @@ export interface Jobgetalllifetimestatisticsoptions extends RequestOptions {
  */
 export async function getAllLifetimeStatistics(
   context: Client,
-  options: Jobgetalllifetimestatisticsoptions = { requestOptions: {} }
+  options: JobGetAllLifetimeStatisticsOptions = { requestOptions: {} }
 ): Promise<JobStatistics> {
   const result = await context.path("/lifetimejobstats").get({
     headers: {
@@ -91,7 +91,7 @@ export async function getAllLifetimeStatistics(
   };
 }
 
-export interface Jobdeletejoboptions extends RequestOptions {
+export interface JobDeleteJobOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -149,7 +149,7 @@ export interface Jobdeletejoboptions extends RequestOptions {
 export async function deleteJob(
   context: Client,
   jobId: string,
-  options: Jobdeletejoboptions = { requestOptions: {} }
+  options: JobDeleteJobOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobs/{jobId}", jobId).delete({
     headers: {
@@ -179,7 +179,7 @@ export async function deleteJob(
   return;
 }
 
-export interface Jobgetjoboptions extends RequestOptions {
+export interface JobGetJobOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -232,7 +232,7 @@ export interface Jobgetjoboptions extends RequestOptions {
 export async function getJob(
   context: Client,
   jobId: string,
-  options: Jobgetjoboptions = { requestOptions: {} }
+  options: JobGetJobOptions = { requestOptions: {} }
 ): Promise<BatchJob> {
   const result = await context.path("/jobs/{jobId}", jobId).get({
     headers: {
@@ -1218,7 +1218,7 @@ export async function getJob(
   };
 }
 
-export interface Jobpatchjoboptions extends RequestOptions {
+export interface JobPatchJobOptions extends RequestOptions {
   /**
    * The ID is case-preserving and case-insensitive (that is, you may not have two
    * IDs within an Account that differ only by case).
@@ -1398,7 +1398,7 @@ export interface Jobpatchjoboptions extends RequestOptions {
 export async function patchJob(
   context: Client,
   jobId: string,
-  options: Jobpatchjoboptions = { requestOptions: {} }
+  options: JobPatchJobOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobs/{jobId}", jobId).patch({
     headers: {
@@ -1444,7 +1444,7 @@ export async function patchJob(
   return;
 }
 
-export interface Jobupdatejoboptions extends RequestOptions {
+export interface JobUpdateJobOptions extends RequestOptions {
   /**
    * The ID is case-preserving and case-insensitive (that is, you may not have two
    * IDs within an Account that differ only by case).
@@ -1624,7 +1624,7 @@ export interface Jobupdatejoboptions extends RequestOptions {
 export async function updateJob(
   context: Client,
   jobId: string,
-  options: Jobupdatejoboptions = { requestOptions: {} }
+  options: JobUpdateJobOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobs/{jobId}", jobId).put({
     headers: {
@@ -1670,7 +1670,7 @@ export async function updateJob(
   return;
 }
 
-export interface Jobdisablejoboptions extends RequestOptions {
+export interface JobDisableJobOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1731,7 +1731,7 @@ export async function disableJob(
   context: Client,
   disableTasks: DisableJobOption,
   jobId: string,
-  options: Jobdisablejoboptions = { requestOptions: {} }
+  options: JobDisableJobOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobs/{jobId}/disable", jobId).post({
     headers: {
@@ -1763,7 +1763,7 @@ export async function disableJob(
   return;
 }
 
-export interface Jobenablejoboptions extends RequestOptions {
+export interface JobEnableJobOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1819,7 +1819,7 @@ export interface Jobenablejoboptions extends RequestOptions {
 export async function enableJob(
   context: Client,
   jobId: string,
-  options: Jobenablejoboptions = { requestOptions: {} }
+  options: JobEnableJobOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobs/{jobId}/enable", jobId).post({
     headers: {
@@ -1849,7 +1849,7 @@ export async function enableJob(
   return;
 }
 
-export interface Jobterminatejoboptions extends RequestOptions {
+export interface JobTerminateJobOptions extends RequestOptions {
   /**
    * The text you want to appear as the Job's TerminateReason. The default is
    * 'UserTerminate'.
@@ -1912,7 +1912,7 @@ export interface Jobterminatejoboptions extends RequestOptions {
 export async function terminateJob(
   context: Client,
   jobId: string,
-  options: Jobterminatejoboptions = { requestOptions: {} }
+  options: JobTerminateJobOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobs/{jobId}/terminate", jobId).post({
     headers: {
@@ -1948,7 +1948,7 @@ export async function terminateJob(
   return;
 }
 
-export interface Jobaddjoboptions extends RequestOptions {
+export interface JobAddJobOptions extends RequestOptions {
   /**
    * The ID is case-preserving and case-insensitive (that is, you may not have two
    * IDs within an Account that differ only by case).
@@ -2109,7 +2109,7 @@ export interface Jobaddjoboptions extends RequestOptions {
  */
 export async function addJob(
   context: Client,
-  options: Jobaddjoboptions = { requestOptions: {} }
+  options: JobAddJobOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/jobs").post({
     headers: {
@@ -2147,7 +2147,7 @@ export async function addJob(
   return;
 }
 
-export interface Joblistjobsoptions extends RequestOptions {
+export interface JobListJobsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2185,7 +2185,7 @@ export interface Joblistjobsoptions extends RequestOptions {
 /** Lists all of the Jobs in the specified Account. */
 export async function listJobs(
   context: Client,
-  options: Joblistjobsoptions = { requestOptions: {} }
+  options: JobListJobsOptions = { requestOptions: {} }
 ): Promise<BatchJobListResult> {
   const result = await context.path("/jobs").get({
     headers: {
@@ -3153,7 +3153,7 @@ export async function listJobs(
   };
 }
 
-export interface Joblistfromjobscheduleoptions extends RequestOptions {
+export interface JobListFromJobScheduleOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3192,7 +3192,7 @@ export interface Joblistfromjobscheduleoptions extends RequestOptions {
 export async function listFromJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: Joblistfromjobscheduleoptions = { requestOptions: {} }
+  options: JobListFromJobScheduleOptions = { requestOptions: {} }
 ): Promise<BatchJobListResult> {
   const result = await context
     .path("/jobschedules/{jobScheduleId}/jobs", jobScheduleId)
@@ -4162,7 +4162,7 @@ export async function listFromJobSchedule(
   };
 }
 
-export interface Joblistpreparationandreleasetaskstatusoptions
+export interface JobListPreparationAndReleaseTaskStatusOptions
   extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -4207,7 +4207,7 @@ export interface Joblistpreparationandreleasetaskstatusoptions
 export async function listPreparationAndReleaseTaskStatus(
   context: Client,
   jobId: string,
-  options: Joblistpreparationandreleasetaskstatusoptions = {
+  options: JobListPreparationAndReleaseTaskStatusOptions = {
     requestOptions: {},
   }
 ): Promise<BatchJobListPreparationAndReleaseTaskStatusResult> {
@@ -4337,7 +4337,7 @@ export async function listPreparationAndReleaseTaskStatus(
   };
 }
 
-export interface Jobgettaskcountsoptions extends RequestOptions {
+export interface JobGetTaskCountsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -4367,7 +4367,7 @@ export interface Jobgettaskcountsoptions extends RequestOptions {
 export async function getTaskCounts(
   context: Client,
   jobId: string,
-  options: Jobgettaskcountsoptions = { requestOptions: {} }
+  options: JobGetTaskCountsOptions = { requestOptions: {} }
 ): Promise<TaskCountsResult> {
   const result = await context.path("/jobs/{jobId}/taskcounts", jobId).get({
     headers: {

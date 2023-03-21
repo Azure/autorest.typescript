@@ -11,7 +11,7 @@ import {
   CertificateListResult,
 } from "./models.js";
 
-export interface Certificatesaddcertificateoptions extends RequestOptions {
+export interface CertificatesAddCertificateOptions extends RequestOptions {
   /**
    * The X.509 thumbprint of the Certificate. This is a sequence of up to 40 hex
    * digits.
@@ -64,7 +64,7 @@ export interface Certificatesaddcertificateoptions extends RequestOptions {
 /** Adds a Certificate to the specified Account. */
 export async function addCertificate(
   context: Client,
-  options: Certificatesaddcertificateoptions = { requestOptions: {} }
+  options: CertificatesAddCertificateOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/certificates").post({
     headers: {
@@ -98,7 +98,7 @@ export async function addCertificate(
   return;
 }
 
-export interface Certificateslistcertificatesoptions extends RequestOptions {
+export interface CertificatesListCertificatesOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -134,7 +134,7 @@ export interface Certificateslistcertificatesoptions extends RequestOptions {
 /** Lists all of the Certificates that have been added to the specified Account. */
 export async function listCertificates(
   context: Client,
-  options: Certificateslistcertificatesoptions = { requestOptions: {} }
+  options: CertificatesListCertificatesOptions = { requestOptions: {} }
 ): Promise<CertificateListResult> {
   const result = await context.path("/certificates").get({
     headers: {
@@ -189,7 +189,7 @@ export async function listCertificates(
   };
 }
 
-export interface Certificatescancelcertificatedeletionoptions
+export interface CertificatesCancelCertificateDeletionOptions
   extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -224,7 +224,7 @@ export async function cancelCertificateDeletion(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: Certificatescancelcertificatedeletionoptions = { requestOptions: {} }
+  options: CertificatesCancelCertificateDeletionOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -252,7 +252,7 @@ export async function cancelCertificateDeletion(
   return;
 }
 
-export interface Certificatesdeletecertificateoptions extends RequestOptions {
+export interface CertificatesDeleteCertificateOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -288,7 +288,7 @@ export async function deleteCertificate(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: Certificatesdeletecertificateoptions = { requestOptions: {} }
+  options: CertificatesDeleteCertificateOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
     .path(
@@ -316,7 +316,7 @@ export async function deleteCertificate(
   return;
 }
 
-export interface Certificatesgetcertificateoptions extends RequestOptions {
+export interface CertificatesGetCertificateOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -344,7 +344,7 @@ export async function getCertificate(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: Certificatesgetcertificateoptions = { requestOptions: {} }
+  options: CertificatesGetCertificateOptions = { requestOptions: {} }
 ): Promise<Certificate> {
   const result = await context
     .path(

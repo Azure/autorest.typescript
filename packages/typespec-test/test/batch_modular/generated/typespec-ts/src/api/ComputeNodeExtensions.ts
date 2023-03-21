@@ -5,7 +5,7 @@ import { RequestOptions } from "../common/interfaces.js";
 import { BatchServiceContext as Client, isUnexpected } from "../rest/index.js";
 import { NodeVMExtension, NodeVMExtensionList } from "./models.js";
 
-export interface Computenodeextensionsgetcomputenodeextensionsoptions
+export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions
   extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -35,7 +35,7 @@ export async function getComputeNodeExtensions(
   poolId: string,
   nodeId: string,
   extensionName: string,
-  options: Computenodeextensionsgetcomputenodeextensionsoptions = {
+  options: ComputeNodeExtensionsGetComputeNodeExtensionsOptions = {
     requestOptions: {},
   }
 ): Promise<NodeVMExtension> {
@@ -109,7 +109,7 @@ export async function getComputeNodeExtensions(
   };
 }
 
-export interface Computenodeextensionslistcomputenodeextensionsoptions
+export interface ComputeNodeExtensionsListComputeNodeExtensionsOptions
   extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -143,7 +143,7 @@ export async function listComputeNodeExtensions(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: Computenodeextensionslistcomputenodeextensionsoptions = {
+  options: ComputeNodeExtensionsListComputeNodeExtensionsOptions = {
     requestOptions: {},
   }
 ): Promise<NodeVMExtensionList> {
