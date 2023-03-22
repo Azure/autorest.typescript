@@ -34,7 +34,7 @@ API.
   @route("/applications")
   @operationId("Application_List")
   @get
-  List is Azure.Core.Foundations.Operation<
+  ListApplications is Azure.Core.Foundations.Operation<
     BatchApplicationListHeaders,
     BatchResponseHeaders & ApplicationListResult
   > ; 
@@ -128,7 +128,7 @@ to Microsoft Support engineers.
     "Add a pool with mount drive specified"
   )
   @post
-  Add is Azure.Core.Foundations.Operation<
+  AddPool is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @body
       @doc("The Pool to be added.")
@@ -153,7 +153,7 @@ to Microsoft Support engineers.
     "Pool list"
   )
   @get
-  List is Azure.Core.Foundations.Operation<
+  ListPools is Azure.Core.Foundations.Operation<
     BatchApplicationListHeaders &{
       @doc("""
 An OData $filter clause. For more information on constructing this filter, see
@@ -196,7 +196,7 @@ error code PoolBeingDeleted.
   )
   @route("/pools/{poolId}")
   @delete
-  Delete is Azure.Core.Foundations.Operation<
+  DeletePool is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchPoolHeaders,
     DeleteResponseHeaders
   >;
@@ -227,7 +227,7 @@ error code PoolBeingDeleted.
   )
   @route("/pools/{poolId}")
   @get
-  Get is Azure.Core.Foundations.Operation<
+  GetPool is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchPoolHeaders & {
 
       @doc("An OData $select clause.")
@@ -254,7 +254,7 @@ a StartTask element, then the Pool keeps the existing StartTask.
   )
   @route("/pools/{poolId}")
   @patch
-  Patch is Azure.Core.Foundations.Operation<
+  PatchPool is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchPoolHeaders &{
       @doc("The parameters for the request.")
       @body
@@ -543,7 +543,7 @@ that the Job is being deleted.
   @example("./examples/JobDelete.json", "Delete Job")
   @route("/jobs/{jobId}")
   @delete
-  Delete is Azure.Core.Foundations.Operation<
+  DeleteJob is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job to delete.")
       @path
@@ -558,7 +558,7 @@ that the Job is being deleted.
   @example("./examples/JobGet.json", "Job get")
   @route("/jobs/{jobId}")
   @get
-  Get is Azure.Core.Foundations.Operation<
+  GetJob is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job.")
       @path
@@ -587,7 +587,7 @@ element, then the Job keeps the existing constraints.
   @example("./examples/JobPatch.json", "Job patch")
   @route("/jobs/{jobId}")
   @patch
-  Patch is Azure.Core.Foundations.Operation<
+  PatchJob is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job whose properties you want to update.")
       @path
@@ -617,7 +617,7 @@ with this request, then the Batch service will remove the existing constraints.
   @example("./examples/JobUpdate.json", "Job update")
   @route("/jobs/{jobId}")
   @put
-  Update is Azure.Core.Foundations.Operation<
+  UpdateJob is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job whose properties you want to update.")
       @path
@@ -652,7 +652,7 @@ the request fails with status code 409.
   @example("./examples/JobDisable.json", "Job disable")
   @route("/jobs/{jobId}/disable")
   @post
-  Disable is Azure.Core.Foundations.Operation<
+  DisableJob is Azure.Core.Foundations.Operation<
      BatchClientRequestHeaders & BatchMatchHeaders &{
       @doc("The ID of the Job to disable.")
       @path
@@ -684,7 +684,7 @@ than 180 days ago, those Tasks will not run.
   @example("./examples/JobEnable.json", "Job enable")
   @route("/jobs/{jobId}/enable")
   @post
-  Enable is Azure.Core.Foundations.Operation<
+  EnableJob is Azure.Core.Foundations.Operation<
      BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job to enable.")
       @path
@@ -713,7 +713,7 @@ Tasks cannot be added and any remaining active Tasks will not be scheduled.
   @example("./examples/JobTerminate.json", "Job terminate")
   @route("/jobs/{jobId}/terminate")
   @post
-  Terminate is Azure.Core.Foundations.Operation<
+  TerminateJob is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job to terminate.")
       @path
@@ -749,7 +749,7 @@ engineers.
   @example("./examples/JobAdd_Complex.json", "Add a complex job")
   @route("/jobs")
   @post
-  Add is Azure.Core.Foundations.Operation<
+  AddJob is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @doc("The Job to be added.")
       @body
@@ -770,7 +770,7 @@ engineers.
   @example("./examples/JobList.json", "Job list")
   @route("/jobs")
   @get
-  List is Azure.Core.Foundations.Operation<
+  ListJobs is Azure.Core.Foundations.Operation<
     BatchApplicationListHeaders & {
       @doc("""
 An OData $filter clause. For more information on constructing this filter, see
@@ -883,7 +883,7 @@ interface Certificates {
   @example("./examples/CertificateAdd.json", "Certificate add")
   @route("/certificates")
   @post
-  Add is Azure.Core.Foundations.Operation<
+  AddCertificate is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
     
       @doc("The Certificate to be added.")
@@ -901,7 +901,7 @@ interface Certificates {
   @example("./examples/CertificateList.json", "Certificate list")
   @route("/certificates")
   @get
-  List is Azure.Core.Foundations.Operation<
+  ListCertificates is Azure.Core.Foundations.Operation<
     BatchApplicationListHeaders & {
       @doc("""
 An OData $filter clause. For more information on constructing this filter, see
@@ -930,7 +930,7 @@ then you can try again to delete the Certificate.
   @example("./examples/CertificateCancelDelete.json", "Certificate cancel delete")
   @route("/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete")
   @post
-  CancelDeletion is Azure.Core.Foundations.Operation<
+  CancelCertificateDeletion is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @doc("The algorithm used to derive the thumbprint parameter. This must be sha1.")
       @path
@@ -967,7 +967,7 @@ active if you decide that you want to continue using the Certificate.
   @example("./examples/CertificateDelete.json", "Certificate delete")
   @route("/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})")
   @delete
-  Delete is Azure.Core.Foundations.Operation<
+  DeleteCertificate is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @doc("The algorithm used to derive the thumbprint parameter. This must be sha1.")
       @path
@@ -987,7 +987,7 @@ active if you decide that you want to continue using the Certificate.
   @example("./examples/CertificateGet.json", "Certificate get")
   @route("/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})")
   @get
-  Get is Azure.Core.Foundations.Operation<
+  GetCertificate is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @doc("The algorithm used to derive the thumbprint parameter. This must be sha1.")
       @path
@@ -1188,7 +1188,7 @@ interface JobSchedule {
   @example("./examples/JobScheduleExists.json", "Check Job Schedule Exists")
   @route("/jobschedules/{jobScheduleId}")
   @head
-  Exists is Azure.Core.Foundations.Operation<
+  JobScheduleExists is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job Schedule which you want to check.")
       @path
@@ -1215,7 +1215,7 @@ though they are still counted towards Account lifetime statistics.
   @example("./examples/JobScheduleDelete.json", "JobSchedule delete")
   @route("/jobschedules/{jobScheduleId}")
   @delete
-  Delete is Azure.Core.Foundations.Operation<
+  DeleteJobSchedule is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job Schedule to delete.")
       @path
@@ -1228,7 +1228,7 @@ though they are still counted towards Account lifetime statistics.
   @example("./examples/JobScheduleGet.json", "JobSchedule get")
   @route("/jobschedules/{jobScheduleId}")
   @get
-  Get is Azure.Core.Foundations.Operation<
+  GetJobSchedule is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job Schedule to get.")
       @path
@@ -1256,7 +1256,7 @@ running Jobs are unaffected.
   @example("./examples/JobSchedulePatch.json", "JobSchedule patch")
   @route("/jobschedules/{jobScheduleId}")
   @patch
-  Patch is Azure.Core.Foundations.Operation<
+  PatchJobSchedule is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job Schedule to update.")
       @path
@@ -1287,7 +1287,7 @@ running Jobs are unaffected.
   @example("./examples/JobScheduleUpdate.json", "JobSchedule update")
   @route("/jobschedules/{jobScheduleId}")
   @put
-  Update is Azure.Core.Foundations.Operation<
+  UpdateJobSchedule is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job Schedule to update.")
       @path
@@ -1312,7 +1312,7 @@ running Jobs are unaffected.
   @example("./examples/JobScheduleDisable.json", "JobSchedule disable")
   @route("/jobschedules/{jobScheduleId}/disable")
   @post
-  Disable is Azure.Core.Foundations.Operation<
+  DisableJobSchedule is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job Schedule to disable.")
       @path
@@ -1333,7 +1333,7 @@ running Jobs are unaffected.
   @example("./examples/JobScheduleEnable.json", "JobSchedule enable")
   @route("/jobschedules/{jobScheduleId}/enable")
   @post
-  Enable is Azure.Core.Foundations.Operation<
+  EnableJobSchedule is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job Schedule to enable.")
       @path
@@ -1354,7 +1354,7 @@ running Jobs are unaffected.
   @example("./examples/JobScheduleTerminate.json", "JobSchedule terminate")
   @route("/jobschedules/{jobScheduleId}/terminate")
   @post
-  Terminate is Azure.Core.Foundations.Operation<
+  TerminateJobSchedule is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job Schedule to terminates.")
       @path
@@ -1376,7 +1376,7 @@ running Jobs are unaffected.
   @example("./examples/JobScheduleAdd_Complex.json", "Add a complex JobScheduleAdd")
   @route("/jobschedules")
   @post
-  Add is Azure.Core.Foundations.Operation<
+  AddJobSchedule is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @doc("The Job Schedule to be added.")
       @body
@@ -1397,7 +1397,7 @@ running Jobs are unaffected.
   @example("./examples/JobScheduleList.json", "JobSchedule list")
   @route("/jobschedules")
   @get
-  List is Azure.Core.Foundations.Operation<
+  ListJobSchedules is Azure.Core.Foundations.Operation<
     BatchApplicationListHeaders & {
       @doc("""
 An OData $filter clause. For more information on constructing this filter, see
@@ -1433,7 +1433,7 @@ the Batch service and left in whatever state it was in at that time.
   @example("./examples/TaskAdd_RequiredSlots.json", "Add a task with extra slot requirement")
   @route("/jobs/{jobId}/tasks")
   @post
-  Add is Azure.Core.Foundations.Operation<
+  AddTask is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @doc("The ID of the Job to which the Task is to be added.")
       @path
@@ -1462,7 +1462,7 @@ information about subtasks.
   @example("./examples/TaskList.json", "Task list")
   @route("/jobs/{jobId}/tasks")
   @get
-  List is Azure.Core.Foundations.Operation<
+  ListTasks is Azure.Core.Foundations.Operation<
     BatchApplicationListHeaders & {
       @doc("The ID of the Job.")
       @path
@@ -1507,7 +1507,7 @@ service and left in whatever state it was in at that time.
   @example("./examples/TaskAddCollection_Complex.json", "Add a complex collection of tasks")
   @route("/jobs/{jobId}/addtaskcollection")
   @post
-  AddCollection is Azure.Core.Foundations.Operation<
+  AddTaskCollection is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @doc("The ID of the Job to which the Task collection is to be added.")
       @path
@@ -1531,7 +1531,7 @@ background.
   @example("./examples/TaskDelete.json", "Task delete")
   @route("/jobs/{jobId}/tasks/{taskId}")
   @delete
-  Delete is Azure.Core.Foundations.Operation<
+  DeleteTaskCollection is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job from which to delete the Task.")
       @path
@@ -1556,7 +1556,7 @@ information about subtasks.
   @example("./examples/TaskGet.json", "Task get")
   @route("/jobs/{jobId}/tasks/{taskId}")
   @get
-  Get is Azure.Core.Foundations.Operation<
+  GetTaskCollection is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job that contains the Task.")
       @path
@@ -1586,7 +1586,7 @@ information about subtasks.
   @example("./examples/TaskUpdate.json", "Task update")
   @route("/jobs/{jobId}/tasks/{taskId}")
   @put
-  Update is Azure.Core.Foundations.Operation<
+  UpdateTaskCollection is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job containing the Task.")
       @path
@@ -1644,7 +1644,7 @@ primary task; subtasks are then terminated asynchronously in the background.
   @example("./examples/TaskTerminate.json", "Task terminate")
   @route("/jobs/{jobId}/tasks/{taskId}/terminate")
   @post
-  Terminate is Azure.Core.Foundations.Operation<
+  TerminateTaskCollection is Azure.Core.Foundations.Operation<
      BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job containing the Task.")
       @path
@@ -1677,7 +1677,7 @@ will fail if the Job has completed (or is terminating or deleting).
   @example("./examples/TaskReactivate.json", "Task reactivate")
   @route("/jobs/{jobId}/tasks/{taskId}/reactivate")
   @post
-  Reactivate is Azure.Core.Foundations.Operation<
+  ReactivateTaskCollection is Azure.Core.Foundations.Operation<
      BatchClientRequestHeaders & BatchMatchHeaders & {
       @doc("The ID of the Job containing the Task.")
       @path
@@ -1804,7 +1804,7 @@ Account on a Compute Node only when it is in the idle or running state.
   @example("./examples/NodeGet_Basic.json", "Node get")
   @route("/pools/{poolId}/nodes/{nodeId}")
   @get
-  Get is Azure.Core.Foundations.Operation<
+  GetComputeNode is Azure.Core.Foundations.Operation<
      BatchClientRequestHeaders & {
       @doc("The ID of the Pool that contains the Compute Node.")
       @path
@@ -1826,7 +1826,7 @@ Account on a Compute Node only when it is in the idle or running state.
   @example("./examples/NodeReboot.json", "Node reboot")
   @route("/pools/{poolId}/nodes/{nodeId}/reboot")
   @post
-  Reboot is Azure.Core.Foundations.Operation<
+  RebootComputeNode is Azure.Core.Foundations.Operation<
      BatchClientRequestHeaders & {
       @doc("The ID of the Pool that contains the Compute Node.")
       @path
@@ -1859,7 +1859,7 @@ cloud service configuration property.
   @example("./examples/NodeReimage.json", "Node reimage")
   @route("/pools/{poolId}/nodes/{nodeId}/reimage")
   @post
-  Reimage is Azure.Core.Foundations.Operation<
+  ReimageComputeNode is Azure.Core.Foundations.Operation<
      BatchClientRequestHeaders & {
       @doc("The ID of the Pool that contains the Compute Node.")
       @path
@@ -2066,7 +2066,7 @@ interface ComputeNodeExtensions {
   @example("./examples/ComputeNodeExtensionGet.json", "Get compute node extension")
   @route("/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}")
   @get
-  Get is Azure.Core.Foundations.Operation<
+  GetComputeNodeExtensions is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders & {
       @doc("The ID of the Pool that contains the Compute Node.")
       @path
@@ -2095,7 +2095,7 @@ about.
   @example("./examples/ComputeNodeExtensionList.json", "List compute node extensions")
   @route("/pools/{poolId}/nodes/{nodeId}/extensions")
   @get
-  List is Azure.Core.Foundations.Operation<
+  ListComputeNodeExtensions is Azure.Core.Foundations.Operation<
     BatchApplicationListHeaders &  {
       @doc("The ID of the Pool that contains Compute Node.")
       @path
