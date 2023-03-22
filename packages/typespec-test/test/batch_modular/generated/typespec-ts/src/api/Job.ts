@@ -24,7 +24,7 @@ import {
   TaskCountsResult,
 } from "./models.js";
 
-export interface JobGetAllLifetimeStatisticsOptions extends RequestOptions {
+export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -51,9 +51,9 @@ export interface JobGetAllLifetimeStatisticsOptions extends RequestOptions {
  * statistics may not be immediately available. The Batch service performs
  * periodic roll-up of statistics. The typical delay is about 30 minutes.
  */
-export async function getAllLifetimeStatistics(
+export async function getAllJobLifetimeStatistics(
   context: Client,
-  options: JobGetAllLifetimeStatisticsOptions = { requestOptions: {} }
+  options: JobGetAllJobLifetimeStatisticsOptions = { requestOptions: {} }
 ): Promise<JobStatistics> {
   const result = await context.path("/lifetimejobstats").get({
     headers: {

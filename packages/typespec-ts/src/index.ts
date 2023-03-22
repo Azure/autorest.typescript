@@ -42,6 +42,7 @@ import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { buildRootIndex } from "./modular/buildRootIndex.js";
 import { buildModels } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
+import { buildApiIndexFile } from "./modular/buildApiIndex.js";
 // import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 
 export async function $onEmit(context: EmitContext) {
@@ -114,6 +115,7 @@ export async function $onEmit(context: EmitContext) {
       buildRootIndex(project, srcPath);
       buildModels(modularCodeModel, project, srcPath);
       buildOperationFiles(client, project, srcPath);
+      buildApiIndexFile(project, srcPath);
       // emitPackage(project, srcPath, modularCodeModel);
       // emitTsConfig(project, srcPath, modularCodeModel);
     }

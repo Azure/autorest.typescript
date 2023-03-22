@@ -99,7 +99,7 @@ export interface PoolListUsageMetricsDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & PoolListUsageMetricsDefaultHeaders;
 }
 
-export interface PoolGetAllLifetimeStatistics200Headers {
+export interface PoolGetAllPoolLifetimeStatistics200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -111,22 +111,23 @@ export interface PoolGetAllLifetimeStatistics200Headers {
 }
 
 /** The request has succeeded. */
-export interface PoolGetAllLifetimeStatistics200Response extends HttpResponse {
+export interface PoolGetAllPoolLifetimeStatistics200Response
+  extends HttpResponse {
   status: "200";
   body: PoolStatisticsOutput;
-  headers: RawHttpHeaders & PoolGetAllLifetimeStatistics200Headers;
+  headers: RawHttpHeaders & PoolGetAllPoolLifetimeStatistics200Headers;
 }
 
-export interface PoolGetAllLifetimeStatisticsDefaultHeaders {
+export interface PoolGetAllPoolLifetimeStatisticsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface PoolGetAllLifetimeStatisticsDefaultResponse
+export interface PoolGetAllPoolLifetimeStatisticsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & PoolGetAllLifetimeStatisticsDefaultHeaders;
+  headers: RawHttpHeaders & PoolGetAllPoolLifetimeStatisticsDefaultHeaders;
 }
 
 export interface PoolAddPool201Headers {
@@ -570,7 +571,7 @@ export interface AccountListPoolNodeCountsDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & AccountListPoolNodeCountsDefaultHeaders;
 }
 
-export interface JobGetAllLifetimeStatistics200Headers {
+export interface JobGetAllJobLifetimeStatistics200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -582,22 +583,23 @@ export interface JobGetAllLifetimeStatistics200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobGetAllLifetimeStatistics200Response extends HttpResponse {
+export interface JobGetAllJobLifetimeStatistics200Response
+  extends HttpResponse {
   status: "200";
   body: JobStatisticsOutput;
-  headers: RawHttpHeaders & JobGetAllLifetimeStatistics200Headers;
+  headers: RawHttpHeaders & JobGetAllJobLifetimeStatistics200Headers;
 }
 
-export interface JobGetAllLifetimeStatisticsDefaultHeaders {
+export interface JobGetAllJobLifetimeStatisticsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface JobGetAllLifetimeStatisticsDefaultResponse
+export interface JobGetAllJobLifetimeStatisticsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & JobGetAllLifetimeStatisticsDefaultHeaders;
+  headers: RawHttpHeaders & JobGetAllJobLifetimeStatisticsDefaultHeaders;
 }
 
 export interface JobDeleteJob202Headers {

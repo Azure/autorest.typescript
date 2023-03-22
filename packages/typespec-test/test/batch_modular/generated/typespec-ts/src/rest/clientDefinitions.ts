@@ -5,7 +5,7 @@ import {
   ApplicationsListApplicationsParameters,
   ApplicationsGetParameters,
   PoolListUsageMetricsParameters,
-  PoolGetAllLifetimeStatisticsParameters,
+  PoolGetAllPoolLifetimeStatisticsParameters,
   PoolAddPoolParameters,
   PoolListPoolsParameters,
   PoolDeletePoolParameters,
@@ -21,7 +21,7 @@ import {
   PoolRemoveNodesParameters,
   AccountListSupportedImagesParameters,
   AccountListPoolNodeCountsParameters,
-  JobGetAllLifetimeStatisticsParameters,
+  JobGetAllJobLifetimeStatisticsParameters,
   JobDeleteJobParameters,
   JobGetJobParameters,
   JobPatchJobParameters,
@@ -88,8 +88,8 @@ import {
   ApplicationsGetDefaultResponse,
   PoolListUsageMetrics200Response,
   PoolListUsageMetricsDefaultResponse,
-  PoolGetAllLifetimeStatistics200Response,
-  PoolGetAllLifetimeStatisticsDefaultResponse,
+  PoolGetAllPoolLifetimeStatistics200Response,
+  PoolGetAllPoolLifetimeStatisticsDefaultResponse,
   PoolAddPool201Response,
   PoolAddPoolDefaultResponse,
   PoolListPools200Response,
@@ -121,8 +121,8 @@ import {
   AccountListSupportedImagesDefaultResponse,
   AccountListPoolNodeCounts200Response,
   AccountListPoolNodeCountsDefaultResponse,
-  JobGetAllLifetimeStatistics200Response,
-  JobGetAllLifetimeStatisticsDefaultResponse,
+  JobGetAllJobLifetimeStatistics200Response,
+  JobGetAllJobLifetimeStatisticsDefaultResponse,
   JobDeleteJob202Response,
   JobDeleteJobDefaultResponse,
   JobGetJob200Response,
@@ -290,7 +290,7 @@ export interface PoolListUsageMetrics {
   >;
 }
 
-export interface PoolGetAllLifetimeStatistics {
+export interface PoolGetAllPoolLifetimeStatistics {
   /**
    * Statistics are aggregated across all Pools that have ever existed in the
    * Account, from Account creation to the last update time of the statistics. The
@@ -298,10 +298,10 @@ export interface PoolGetAllLifetimeStatistics {
    * periodic roll-up of statistics. The typical delay is about 30 minutes.
    */
   get(
-    options?: PoolGetAllLifetimeStatisticsParameters
+    options?: PoolGetAllPoolLifetimeStatisticsParameters
   ): StreamableMethod<
-    | PoolGetAllLifetimeStatistics200Response
-    | PoolGetAllLifetimeStatisticsDefaultResponse
+    | PoolGetAllPoolLifetimeStatistics200Response
+    | PoolGetAllPoolLifetimeStatisticsDefaultResponse
   >;
 }
 
@@ -480,7 +480,7 @@ export interface AccountListPoolNodeCounts {
   >;
 }
 
-export interface JobGetAllLifetimeStatistics {
+export interface JobGetAllJobLifetimeStatistics {
   /**
    * Statistics are aggregated across all Jobs that have ever existed in the
    * Account, from Account creation to the last update time of the statistics. The
@@ -488,10 +488,10 @@ export interface JobGetAllLifetimeStatistics {
    * periodic roll-up of statistics. The typical delay is about 30 minutes.
    */
   get(
-    options?: JobGetAllLifetimeStatisticsParameters
+    options?: JobGetAllJobLifetimeStatisticsParameters
   ): StreamableMethod<
-    | JobGetAllLifetimeStatistics200Response
-    | JobGetAllLifetimeStatisticsDefaultResponse
+    | JobGetAllJobLifetimeStatistics200Response
+    | JobGetAllJobLifetimeStatisticsDefaultResponse
   >;
 }
 
@@ -1165,7 +1165,7 @@ export interface Routes {
   /** Resource for '/poolusagemetrics' has methods for the following verbs: get */
   (path: "/poolusagemetrics"): PoolListUsageMetrics;
   /** Resource for '/lifetimepoolstats' has methods for the following verbs: get */
-  (path: "/lifetimepoolstats"): PoolGetAllLifetimeStatistics;
+  (path: "/lifetimepoolstats"): PoolGetAllPoolLifetimeStatistics;
   /** Resource for '/pools' has methods for the following verbs: post, get */
   (path: "/pools"): PoolAddPool;
   /** Resource for '/pools/\{poolId\}' has methods for the following verbs: delete, head, get, patch */
@@ -1201,7 +1201,7 @@ export interface Routes {
   /** Resource for '/nodecounts' has methods for the following verbs: get */
   (path: "/nodecounts"): AccountListPoolNodeCounts;
   /** Resource for '/lifetimejobstats' has methods for the following verbs: get */
-  (path: "/lifetimejobstats"): JobGetAllLifetimeStatistics;
+  (path: "/lifetimejobstats"): JobGetAllJobLifetimeStatistics;
   /** Resource for '/jobs/\{jobId\}' has methods for the following verbs: delete, get, patch, put */
   (path: "/jobs/{jobId}", jobId: string): JobDeleteJob;
   /** Resource for '/jobs/\{jobId\}/disable' has methods for the following verbs: post */
