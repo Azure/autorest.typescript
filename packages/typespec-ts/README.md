@@ -20,7 +20,7 @@ Install [TypeSpec](https://github.com/microsoft/typespec) latest.
 
 ## Initialize TypeSpec Project
 
-Follow [TypeSpec Getting Started](hhttps://github.com/microsoft/typespec#getting-started) to initialize your TypeSpec project.
+Follow [TypeSpec Getting Started](https://github.com/microsoft/typespec#getting-started) to initialize your TypeSpec project.
 
 Make sure `npx tsp compile .` runs correctly.
 
@@ -62,9 +62,9 @@ options:
 
 ## Generate Typescript
 
-Same `npx tsp compile .` or `npx tsp compile . --outputPath=<target-folder>`.
+Same `npx tsp compile .` or `npx tsp compile . --output-path=<target-folder>`.
 
-If `outputPath` option is not provided, generated code will be under `cadl-output` folder.
+If `output-path` option is not provided, generated code will be under `tsp-output` folder.
 
 ## Emitter Options
 
