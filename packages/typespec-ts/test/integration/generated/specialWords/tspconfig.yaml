@@ -1,4 +1,6 @@
-emitters:
+emit:
+  - "../../../../../../../../../../packages/typespec-ts/dist/src/index.js"
+options:
   "../../../../../../../../../../packages/typespec-ts/dist/src/index.js":
     generateMetadata: false
     generateTest: false
