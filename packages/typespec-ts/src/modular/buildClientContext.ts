@@ -1,11 +1,7 @@
-import {
-  FunctionDeclaration,
-  OptionalKind,
-  ParameterDeclarationStructure,
-  Project,
-  SourceFile
-} from "ts-morph";
-import { getParameterType } from "./helpers/parameterHelpers.js";
+import { FunctionDeclaration, Project, SourceFile } from "ts-morph";
+import { getClientParameters } from "./helpers/clientHelpers.js";
+import { importCredential } from "./helpers/credentialHelpers.js";
+import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, Parameter } from "./modularCodeModel.js";
 
 /**
@@ -92,69 +88,4 @@ function addCredentialOptionsStatement(
     default:
       return;
   }
-}
-
-/**
- * Thuis function adds an import to the soruce file to import the right credential
- */
-function importCredential(
-  credential: Parameter,
-  clientSourceFile: SourceFile
-): void {
-  switch (credential.type.type) {
-    case "Key":
-      clientSourceFile.addImportDeclaration({
-        moduleSpecifier: "@azure/core-auth",
-        namedImports: ["AzureKeyCredential"]
-      });
-      return;
-    case "OAuth2":
-      clientSourceFile.addImportDeclaration({
-        moduleSpecifier: "@azure/core-auth",
-        namedImports: ["TokenCredential"]
-      });
-      return;
-    default:
-      throw new Error(
-        `Credential of type ${credential.type.type} is not yet supported`
-      );
-  }
-}
-
-function getClientParameters({ parameters, name }: Client) {
-  let optionsParam = {
-    name: "options",
-    type: `${name}Options`,
-    initializer: "{}"
-  };
-
-  if (
-    !parameters
-      .filter((p) => p.implementation === "Client" && !p.isApiVersion)
-      .some((p) => p.optional || (!p.optional && p.clientDefaultValue))
-  ) {
-    optionsParam = {
-      name: "options",
-      type: `ClientOptions`,
-      initializer: "{}"
-    };
-  }
-
-  const signatureParams = [
-    ...parameters
-      .filter((p) => p.type.type !== "constant")
-      .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
-        return {
-          name: p.clientName,
-          type: getParameterType(p)
-        };
-      }),
-    optionsParam
-  ];
-
-  return signatureParams;
-}
-
-export function getClientName(client: Client) {
-  return client.name.replace(/Client$/, "");
 }
