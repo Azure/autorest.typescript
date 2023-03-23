@@ -25,8 +25,7 @@ import {
   buildSampleTest,
   buildReadmeFile,
   buildSerializeHelper,
-  RLCOptions,
-  RLCModel
+  RLCOptions
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
@@ -52,7 +51,6 @@ export async function $onEmit(context: EmitContext) {
   const dpgContext = createDpgContext(context);
   const clients = listClients(dpgContext);
   const srcPath: string = context.emitterOutputDir;
-  fsextra.emptyDirSync(srcPath);
   let count = -1;
   for (const client of clients) {
     count++;
@@ -63,7 +61,7 @@ export async function $onEmit(context: EmitContext) {
       context.emitterOutputDir,
       dpgContext
     );
-    clearSrcFolder(rlcModels, count);
+    clearSrcFolder(srcPath, count, rlcModels?.options?.multiClient);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
     await emitContentByBuilder(program, buildResponseTypes, rlcModels);
@@ -134,10 +132,13 @@ export async function $onEmit(context: EmitContext) {
   }
 }
 
-function clearSrcFolder(model: RLCModel, count: number) {
-  const srcPath = model.srcPath;
+function clearSrcFolder(
+  srcPath: string,
+  count: number,
+  isMultiClient: boolean = false
+) {
   fsextra.emptyDirSync(srcPath);
-  if (model?.options?.multiClient && count === 0) {
+  if (isMultiClient && count === 0) {
     const folderPath = path.join(
       srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4)
     );
