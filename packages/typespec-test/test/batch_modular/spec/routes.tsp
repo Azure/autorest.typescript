@@ -94,7 +94,7 @@ periodic roll-up of statistics. The typical delay is about 30 minutes.
     "Pool get lifetime statistics"
   )
   @get
-  GetAllLifetimeStatistics is Azure.Core.Foundations.Operation<
+  GetAllPoolLifetimeStatistics is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders,
     BatchResponseHeaders & PoolStatistics 
   >; 
@@ -523,7 +523,7 @@ periodic roll-up of statistics. The typical delay is about 30 minutes.
   @example("./examples/JobGetLifetimeStatistics.json", "Job get lifetime statistics")
   @route("/lifetimejobstats")
   @get
-  GetAllLifetimeStatistics is Azure.Core.Foundations.Operation<
+  GetAllJobLifetimeStatistics is Azure.Core.Foundations.Operation<
     BatchClientRequestHeaders,
     BatchResponseHeaders & JobStatistics
   >;

@@ -8,8 +8,8 @@ import {
   ApplicationsGetDefaultResponse,
   PoolListUsageMetrics200Response,
   PoolListUsageMetricsDefaultResponse,
-  PoolGetAllLifetimeStatistics200Response,
-  PoolGetAllLifetimeStatisticsDefaultResponse,
+  PoolGetAllPoolLifetimeStatistics200Response,
+  PoolGetAllPoolLifetimeStatisticsDefaultResponse,
   PoolAddPool201Response,
   PoolAddPoolDefaultResponse,
   PoolListPools200Response,
@@ -41,8 +41,8 @@ import {
   AccountListSupportedImagesDefaultResponse,
   AccountListPoolNodeCounts200Response,
   AccountListPoolNodeCountsDefaultResponse,
-  JobGetAllLifetimeStatistics200Response,
-  JobGetAllLifetimeStatisticsDefaultResponse,
+  JobGetAllJobLifetimeStatistics200Response,
+  JobGetAllJobLifetimeStatisticsDefaultResponse,
   JobDeleteJob202Response,
   JobDeleteJobDefaultResponse,
   JobGetJob200Response,
@@ -261,9 +261,9 @@ export function isUnexpected(
 ): response is PoolListUsageMetricsDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolGetAllLifetimeStatistics200Response
-    | PoolGetAllLifetimeStatisticsDefaultResponse
-): response is PoolGetAllLifetimeStatisticsDefaultResponse;
+    | PoolGetAllPoolLifetimeStatistics200Response
+    | PoolGetAllPoolLifetimeStatisticsDefaultResponse
+): response is PoolGetAllPoolLifetimeStatisticsDefaultResponse;
 export function isUnexpected(
   response: PoolAddPool201Response | PoolAddPoolDefaultResponse
 ): response is PoolAddPoolDefaultResponse;
@@ -324,9 +324,9 @@ export function isUnexpected(
 ): response is AccountListPoolNodeCountsDefaultResponse;
 export function isUnexpected(
   response:
-    | JobGetAllLifetimeStatistics200Response
-    | JobGetAllLifetimeStatisticsDefaultResponse
-): response is JobGetAllLifetimeStatisticsDefaultResponse;
+    | JobGetAllJobLifetimeStatistics200Response
+    | JobGetAllJobLifetimeStatisticsDefaultResponse
+): response is JobGetAllJobLifetimeStatisticsDefaultResponse;
 export function isUnexpected(
   response: JobDeleteJob202Response | JobDeleteJobDefaultResponse
 ): response is JobDeleteJobDefaultResponse;
@@ -590,8 +590,8 @@ export function isUnexpected(
     | ApplicationsGetDefaultResponse
     | PoolListUsageMetrics200Response
     | PoolListUsageMetricsDefaultResponse
-    | PoolGetAllLifetimeStatistics200Response
-    | PoolGetAllLifetimeStatisticsDefaultResponse
+    | PoolGetAllPoolLifetimeStatistics200Response
+    | PoolGetAllPoolLifetimeStatisticsDefaultResponse
     | PoolAddPool201Response
     | PoolAddPoolDefaultResponse
     | PoolListPools200Response
@@ -623,8 +623,8 @@ export function isUnexpected(
     | AccountListSupportedImagesDefaultResponse
     | AccountListPoolNodeCounts200Response
     | AccountListPoolNodeCountsDefaultResponse
-    | JobGetAllLifetimeStatistics200Response
-    | JobGetAllLifetimeStatisticsDefaultResponse
+    | JobGetAllJobLifetimeStatistics200Response
+    | JobGetAllJobLifetimeStatisticsDefaultResponse
     | JobDeleteJob202Response
     | JobDeleteJobDefaultResponse
     | JobGetJob200Response
@@ -746,7 +746,7 @@ export function isUnexpected(
   | ApplicationsListApplicationsDefaultResponse
   | ApplicationsGetDefaultResponse
   | PoolListUsageMetricsDefaultResponse
-  | PoolGetAllLifetimeStatisticsDefaultResponse
+  | PoolGetAllPoolLifetimeStatisticsDefaultResponse
   | PoolAddPoolDefaultResponse
   | PoolListPoolsDefaultResponse
   | PoolDeletePoolDefaultResponse
@@ -762,7 +762,7 @@ export function isUnexpected(
   | PoolRemoveNodesDefaultResponse
   | AccountListSupportedImagesDefaultResponse
   | AccountListPoolNodeCountsDefaultResponse
-  | JobGetAllLifetimeStatisticsDefaultResponse
+  | JobGetAllJobLifetimeStatisticsDefaultResponse
   | JobDeleteJobDefaultResponse
   | JobGetJobDefaultResponse
   | JobPatchJobDefaultResponse
