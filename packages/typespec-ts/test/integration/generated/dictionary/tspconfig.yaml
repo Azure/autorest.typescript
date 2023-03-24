@@ -1,7 +1,8 @@
 emit:
-  - "../../../../../../../../../../packages/typespec-ts/dist/src/index.js"
+  - "@azure-tools/typespec-ts"
 options:
-  "../../../../../../../../../../packages/typespec-ts/dist/src/index.js":
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
     generateMetadata: true
     generateTest: false
     addCredentials: false
