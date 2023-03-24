@@ -61,7 +61,8 @@ export async function $onEmit(context: EmitContext) {
       context.emitterOutputDir,
       dpgContext
     );
-    clearSrcFolder(srcPath, count, rlcModels?.options?.multiClient);
+    const pathToClear = options.isModularLibrary ? srcPath : rlcModels.srcPath;
+    clearSrcFolder(pathToClear, count, rlcModels?.options?.multiClient);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
     await emitContentByBuilder(program, buildResponseTypes, rlcModels);
