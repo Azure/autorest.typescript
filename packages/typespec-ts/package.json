@@ -14,7 +14,7 @@
     "check-format": "npm run prettier -- --check",
     "prettier": "prettier --config ./.prettierrc src/**/*.ts",
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
-    "integration-test-ci": "npm run start-test-server & npm run generate-and-run",
+    "integration-test-ci": "npm run start-test-server & copy:typespec && npm run generate-and-run",
     "start-test-server": "mkdirp -p coverage && npx cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http  --coverageFile ./coverage/cadl-ranch-coverage-typescript.json",
     "copy:typespec": "rm -rf temp && mkdirp -p temp && cp -r ./node_modules/@azure-tools/cadl-ranch-specs/http ./temp",
     "generate-and-run": "npm run generate-cadl-only && npm run integration-test:alone && npm run stop-test-server",
