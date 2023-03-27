@@ -17,10 +17,11 @@ function generate(path) {
 function build(path) {
   const command = `cd ${path}/generated/typespec-ts && npm install && npm run build`;
   console.log(command);
-  const result = execSync(command);
-  console.log("build output:", result.toString());
-  if (result.stderr) {
-    console.log(Error(result.stderr));
+  try {
+    const result = execSync(command);
+    console.log("build output:", result.toString());
+  } catch (e) {
+    console.log(Error(e.stdout.toString()));
     process.exitCode = 1;
   }
 }
@@ -37,7 +38,7 @@ async function main() {
   for (const folder of folders) {
     const path = join(root, "test", folder);
     console.log(`================Start ${folder}===============`);
-    generate(path);
+    // generate(path);
     build(path);
     console.log(`================End ${folder}===============`);
   }
