@@ -4,7 +4,7 @@ import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 function generate(path) {
-  const command = `cd ${path} && tsp compile ./spec`;
+  const command = `cd ${path} && npx tsp compile ./spec`;
   console.log(command);
   const result = execSync(command);
   console.log("TypeSpec output:", result.toString());
