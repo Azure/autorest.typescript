@@ -115,10 +115,10 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: node common/scripts/install-run-rushx.js generate-swaggers
+          - script: npm run generate-swaggers
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate HLC Test Clients"
-          - script: node common/scripts/install-run-rushx.js check:tree
+          - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
 
@@ -145,16 +145,16 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: node common/scripts/install-run-rushx.js rlc-generate-swaggers
+          - script: npm run rlc-generate-swaggers
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC Test Clients"
-          - script: node common/scripts/install-run-rushx.js generate-version-tolerance
+          - script: npm run generate-version-tolerance
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC version tolerance initial version"
-          - script: node common/scripts/install-run-rushx.js generate-version-tolerance:tests
+          - script: npm run generate-version-tolerance:tests
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Generate RLC version tolerance update version"
-          - script: node common/scripts/install-run-rushx.js check:tree
+          - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
       - job: Autorest_Typescript_Test
@@ -180,23 +180,23 @@ stages:
             inputs:
               versionSpec: $(NodeTestVersion)
             displayName: "Use Node $(NodeTestVersion)"
-          - script: node common/scripts/install-run-rushx.js start-test-server:v2 &
+          - script: npm run start-test-server:v2 &
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Start Test Server"
-          - script: node common/scripts/install-run-rushx.js test:node:alone
+          - script: npm run test:node:alone
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Run Node Tests"
-          - script: node common/scripts/install-run-rushx.js test:browser:alone
+          - script: npm run test:browser:alone
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Run Browser Tests"
-          - script: node common/scripts/install-run-rushx.js stop-test-server
+          - script: npm run stop-test-server
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Stop Test Server"
-          - script: node common/scripts/install-run-rushx.js check:tree
+          - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
             displayName: "Check git Tree"
           - script: |
-              node common/scripts/install-run-rushx.js coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
+              npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript/node_modules/@microsoft.azure/autorest.testserver
             displayName: "Upload Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
@@ -245,7 +245,7 @@ stages:
           - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Code From Cadl"
-          - script: node common/scripts/install-run-rushx.js run check:tree
+          - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Check git Tree"
 
@@ -272,19 +272,19 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: node common/scripts/install-run-rushx.js check-format
+          - script: npm run check-format
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
             displayName: "Lint check for rlc common lib"
-          - script: node common/scripts/install-run-rushx.js lint
+          - script: npm run lint
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Lint check for Cadl emitter"
-          - script: node common/scripts/install-run-rushx.js check-format
+          - script: npm run check-format
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Format check for Cadl emitter"
-          - script: node common/scripts/install-run-rushx.js test
+          - script: npm run test
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Generate RLC Test Clients from Cadl-ranch"
-          - script: node common/scripts/install-run-rushx.js check:tree
+          - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Check git Tree"
           - script: npx cadl-ranch check-coverage ./node_modules/@azure-tools/cadl-ranch-specs/http --coverageFiles $(CADL_TESTSERVER_COVERAGE_REPORT)
