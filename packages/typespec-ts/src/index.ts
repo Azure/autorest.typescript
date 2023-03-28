@@ -50,7 +50,7 @@ export async function $onEmit(context: EmitContext) {
   const dpgContext = createDpgContext(context);
   const clients = listClients(dpgContext);
   const srcPath: string = context.emitterOutputDir;
-  // fsextra.emptyDirSync(srcPath);
+  fsextra.emptyDirSync(srcPath);
   let count = -1;
   for (const client of clients) {
     count++;
