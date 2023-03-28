@@ -3,8 +3,10 @@ import {
   FunctionDeclarationStructure,
   MethodDeclarationStructure,
   OptionalKind,
+  ParameterDeclarationStructure,
   Project,
   Scope,
+  SourceFile,
   StructureKind
 } from "ts-morph";
 import { toCamelCase } from "../casingUtils.js";
@@ -45,9 +47,25 @@ export function buildClassicalClient(
       .map((p) => p.name)
       .join(",")})`
   ]);
-
+  importCredential(params, clientFile);
   buildClientOperationGroups(client, clientClass);
   clientFile.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+}
+
+function importCredential(
+  params: OptionalKind<ParameterDeclarationStructure>[],
+  clientSourceFile: SourceFile
+): void {
+  const credential = params.find((p) => p.name === "credential");
+
+  if (!credential) {
+    return;
+  }
+
+  clientSourceFile.addImportDeclaration({
+    moduleSpecifier: "@azure/core-auth",
+    namedImports: [credential.type ?? "TokenCredential"]
+  });
 }
 
 function buildClientOperationGroups(
