@@ -68,8 +68,11 @@ Whenever you work on adding a feature/fixing a bug, this would probably be your 
 1. Create a tspconfig.yaml in `./test/integration/generated/authentication/apiKey` folder and put the following content in it.
 
    ```yaml
-   emitters:
-     "../../../../../../../../../../../packages/typespec-ts/dist/src/index.js":
+   emit:
+     - "@azure-tools/typespec-ts"
+   options:
+     "@azure-tools/typespec-ts":
+       "emitter-output-dir": "{project-root}"
        generateMetadata: true
        generateTest: true
        includeShortcuts: true
