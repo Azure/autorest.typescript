@@ -38,7 +38,7 @@ async function main() {
   for (const folder of folders) {
     const path = join(root, "test", folder);
     console.log(`================Start ${folder}===============`);
-    // generate(path);
+    generate(path);
     build(path);
     console.log(`================End ${folder}===============`);
   }
