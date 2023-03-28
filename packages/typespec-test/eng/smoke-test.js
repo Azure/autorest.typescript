@@ -24,15 +24,6 @@ function build(path) {
     console.log(Error(e.stdout.toString()));
     process.exitCode = 1;
   }
-
-  if (result.stdout) {
-    console.log(result.stdout.toString());
-  }
-
-  if (result.stderr) {
-    console.log(Error(result.stderr.toString()));
-    process.exitCode = 1;
-  }
 }
 
 async function main() {
