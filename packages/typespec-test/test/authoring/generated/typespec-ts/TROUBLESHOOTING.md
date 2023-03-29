@@ -1,4 +1,4 @@
-# Troubleshoot client library issues
+# Troubleshoot <client name> library issues
 
 This troubleshooting guide contains instructions to diagnose frequently encountered issues while using the our client library for JavaScript and TypeScript.
 
