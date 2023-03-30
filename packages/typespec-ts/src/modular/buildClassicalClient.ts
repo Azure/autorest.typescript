@@ -85,22 +85,6 @@ function importCredential(
   });
 }
 
-function importCredential(
-  params: OptionalKind<ParameterDeclarationStructure>[],
-  clientSourceFile: SourceFile
-): void {
-  const credential = params.find((p) => p.name === "credential");
-
-  if (!credential) {
-    return;
-  }
-
-  clientSourceFile.addImportDeclaration({
-    moduleSpecifier: "@azure/core-auth",
-    namedImports: [credential.type ?? "TokenCredential"]
-  });
-}
-
 function buildClientOperationGroups(
   client: Client,
   clientClass: ClassDeclaration
