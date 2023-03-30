@@ -211,7 +211,10 @@ export {
   ApplicationsListApplicationsOptions,
   ApplicationsGetOptions,
 } from "./api/Applications.js";
-export { createBatchService } from "./api/BatchServiceContext.js";
+export {
+  createBatchService,
+  BatchServiceContext,
+} from "./api/BatchServiceContext.js";
 export {
   addCertificate,
   listCertificates,
@@ -376,5 +379,4 @@ export {
   TaskTerminateTaskCollectionOptions,
   TaskReactivateTaskCollectionOptions,
 } from "./api/Task.js";
-export { BatchServiceContext } from "./rest/clientDefinitions.js";
 export { ClientOptions, RequestOptions } from "./common/interfaces.js";

@@ -18,6 +18,11 @@ export function buildClientContext(
     `${srcPath}/src/api/${name}Context.ts`
   );
 
+  clientContextFile.addExportDeclaration({
+    moduleSpecifier: "../rest/index.js",
+    namedExports: [`${name}Context`]
+  });
+
   const factoryFunction = clientContextFile.addFunction({
     docs: [description],
     name: `create${name}`,

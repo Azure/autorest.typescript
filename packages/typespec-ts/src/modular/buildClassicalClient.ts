@@ -49,7 +49,24 @@ export function buildClassicalClient(
   ]);
   importCredential(params, clientFile);
   buildClientOperationGroups(client, clientClass);
-  clientFile.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
+  importAllModels(clientFile, srcPath);
+  clientFile.fixUnusedIdentifiers();
+}
+
+function importAllModels(clientFile: SourceFile, srcPath: string) {
+  const project = clientFile.getProject();
+  const apiModels = project.getSourceFile(`${srcPath}/src/api/index.ts`);
+
+  if (!apiModels) {
+    return;
+  }
+
+  const exported = [...apiModels.getExportedDeclarations().keys()];
+
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `./api/index.js`,
+    namedImports: exported
+  });
 }
 
 function importCredential(
@@ -129,4 +146,9 @@ function buildClientOperationGroups(
       );
     }
   }
+  // Import ClientOptions
+  clientClass.getSourceFile().addImportDeclaration({
+    moduleSpecifier: `./common/interfaces.js`,
+    namedImports: ["ClientOptions"]
+  });
 }

@@ -1,5 +1,5 @@
 import { Project, SourceFile } from "ts-morph";
-import { buildParameterType } from "./helpers/typeHelpers.js";
+import { buildType } from "./helpers/typeHelpers.js";
 import {
   getOperationFunction,
   getOperationOptionsName
@@ -86,7 +86,7 @@ export function buildOperationOptions(
       return {
         docs: [p.description],
         hasQuestionToken: true,
-        ...buildParameterType(p.clientName, p.type)
+        ...buildType(p.clientName, p.type)
       };
     })
   });

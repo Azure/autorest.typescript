@@ -5,7 +5,7 @@ import {
 } from "ts-morph";
 import { toPascalCase } from "../../casingUtils.js";
 import { Operation, Parameter, Property, Type } from "../modularCodeModel.js";
-import { buildParameterType } from "./typeHelpers.js";
+import { buildType } from "./typeHelpers.js";
 
 /**
  * This operation builds and returns the function declaration for an operation.
@@ -19,7 +19,7 @@ export function getOperationFunction(
     operation.bodyParameter?.type.properties ?? []
   )
     .filter((p) => !p.optional)
-    .map((p) => buildParameterType(p.clientName, p.type));
+    .map((p) => buildType(p.clientName, p.type));
 
   parameters = parameters.concat(
     operation.parameters
@@ -29,7 +29,7 @@ export function getOperationFunction(
           p.type.type !== "constant" &&
           !p.optional
       )
-      .map((p) => buildParameterType(p.clientName, p.type))
+      .map((p) => buildType(p.clientName, p.type))
   );
 
   // Add context as the first parameter
@@ -46,7 +46,7 @@ export function getOperationFunction(
   const response = operation.responses[0]!;
   const returnType =
     response?.type?.type === "model"
-      ? buildParameterType(response.type.name, response.type)
+      ? buildType(response.type.name, response.type)
       : { name: "", type: "void" };
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {

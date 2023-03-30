@@ -64,7 +64,10 @@ export function getType(type: Type): TypeMetadata {
   }
 }
 
-export function buildParameterType(
+/**
+ * Gets the Typescript representation of a TypeSpec type
+ */
+export function buildType(
   clientName: string | undefined,
   type: Type | undefined
 ) {

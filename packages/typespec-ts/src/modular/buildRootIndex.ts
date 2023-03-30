@@ -25,10 +25,6 @@ export function buildRootIndex(
 
   file.addExportDeclarations([
     {
-      moduleSpecifier: `./rest/clientDefinitions.js`,
-      namedExports: [`${clientName}Context`]
-    },
-    {
       moduleSpecifier: `./common/interfaces.js`,
       namedExports: [`ClientOptions`, `RequestOptions`]
     }
