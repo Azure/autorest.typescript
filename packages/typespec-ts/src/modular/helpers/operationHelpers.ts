@@ -273,7 +273,7 @@ function isOptionalWithouDefault(
   return Boolean(param.optional && !param.clientDefaultValue);
 }
 function getOptionalWithoutDefault(param: OptionalWithoutDefaultType) {
-  return `"${param.restApiName}": options.${param.clientName}`;
+  return `...(options.${param.clientName} && {"${param.restApiName}": options.${param.clientName}})`;
 }
 
 type OptionalWithDefaultType = (Parameter | Property) & {
@@ -286,7 +286,17 @@ function isOptionalWithDefault(
 }
 
 function getOptionalWithDefault(param: OptionalWithDefaultType) {
-  return `"${param.restApiName}": options.${param.clientName} ?? "${param.clientDefaultValue}"`;
+  return `"${param.restApiName}": options.${
+    param.clientName
+  } ?? ${getQuotedValue(param)}`;
+}
+
+function getQuotedValue(param: OptionalWithDefaultType) {
+  if (param.type.type === "string") {
+    return `"${param.clientDefaultValue}"`;
+  } else {
+    return param.clientDefaultValue;
+  }
 }
 
 /**

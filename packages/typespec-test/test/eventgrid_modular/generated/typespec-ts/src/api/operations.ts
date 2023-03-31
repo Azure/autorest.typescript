@@ -49,14 +49,16 @@ export async function publishCloudEvent(
       body: {
         id: id,
         source: source,
-        data: options.data,
-        data_base64: options.dataBase64,
+        ...(options.data && { data: options.data }),
+        ...(options.dataBase64 && { data_base64: options.dataBase64 }),
         type: type,
-        time: options.time,
+        ...(options.time && { time: options.time }),
         specversion: specversion,
-        dataschema: options.dataschema,
-        datacontenttype: options.datacontenttype,
-        subject: options.subject,
+        ...(options.dataschema && { dataschema: options.dataschema }),
+        ...(options.datacontenttype && {
+          datacontenttype: options.datacontenttype,
+        }),
+        ...(options.subject && { subject: options.subject }),
       },
     });
   if (isUnexpected(result)) {
@@ -121,8 +123,8 @@ export async function receiveBatchOfCloudEvents(
         ...options.requestOptions?.headers,
       },
       queryParameters: {
-        maxEvents: options.maxEvents,
-        timeout: options.timeout,
+        ...(options.maxEvents && { maxEvents: options.maxEvents }),
+        ...(options.timeout && { timeout: options.timeout }),
       },
     });
   if (isUnexpected(result)) {

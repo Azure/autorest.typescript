@@ -21,6 +21,7 @@ export type AccessScope = string;
 // @public (undocumented)
 export interface AccountListPoolNodeCountsOptions extends RequestOptions {
     $filter?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -31,6 +32,7 @@ export interface AccountListPoolNodeCountsOptions extends RequestOptions {
 // @public (undocumented)
 export interface AccountListSupportedImagesOptions extends RequestOptions {
     $filter?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -94,10 +96,12 @@ export interface ApplicationPackageReference {
 
 // @public (undocumented)
 export interface ApplicationsGetOptions extends RequestOptions {
+    accept?: "application/json";
 }
 
 // @public (undocumented)
 export interface ApplicationsListApplicationsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -456,6 +460,7 @@ export interface CertificatesDeleteCertificateOptions extends RequestOptions {
 // @public (undocumented)
 export interface CertificatesGetCertificateOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -466,6 +471,7 @@ export interface CertificatesGetCertificateOptions extends RequestOptions {
 export interface CertificatesListCertificatesOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -546,6 +552,7 @@ export interface ComputeNodeError {
 // @public (undocumented)
 export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -555,6 +562,7 @@ export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions extends Re
 // @public (undocumented)
 export interface ComputeNodeExtensionsListComputeNodeExtensionsOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -640,6 +648,7 @@ export interface ComputeNodesEnableSchedulingOptions extends RequestOptions {
 // @public (undocumented)
 export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -648,6 +657,7 @@ export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -656,6 +666,7 @@ export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesGetRemoteLoginSettingsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -666,6 +677,7 @@ export interface ComputeNodesGetRemoteLoginSettingsOptions extends RequestOption
 export interface ComputeNodesListOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -710,6 +722,7 @@ export interface ComputeNodesUpdateUserOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesUploadBatchServiceLogsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     content_type?: string;
     endTime?: Date;
@@ -921,6 +934,7 @@ export interface FileDeleteFromTaskOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface FileGetFromComputeNodeOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ifModifiedSince?: string;
     ifUnmodifiedSince?: string;
@@ -932,6 +946,7 @@ export interface FileGetFromComputeNodeOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface FileGetFromTaskOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ifModifiedSince?: string;
     ifUnmodifiedSince?: string;
@@ -964,6 +979,7 @@ export interface FileGetPropertiesFromTaskOptions extends RequestOptions {
 // @public (undocumented)
 export interface FileListFromComputeNodeOptions extends RequestOptions {
     $filter?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -975,6 +991,7 @@ export interface FileListFromComputeNodeOptions extends RequestOptions {
 // @public (undocumented)
 export interface FileListFromTaskOptions extends RequestOptions {
     $filter?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1196,6 +1213,7 @@ export interface JobExecutionInformation {
 
 // @public (undocumented)
 export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -1206,6 +1224,7 @@ export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
 export interface JobGetJobOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -1218,6 +1237,7 @@ export interface JobGetJobOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface JobGetTaskCountsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -1229,6 +1249,7 @@ export interface JobListFromJobScheduleOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1241,6 +1262,7 @@ export interface JobListJobsOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1252,6 +1274,7 @@ export interface JobListJobsOptions extends RequestOptions {
 export interface JobListPreparationAndReleaseTaskStatusOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1464,6 +1487,7 @@ export function jobScheduleExists(context: BatchServiceContext, jobScheduleId: s
 export interface JobScheduleGetJobScheduleOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -1491,6 +1515,7 @@ export interface JobScheduleListJobSchedulesOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -2030,6 +2055,7 @@ export interface PoolEndpointConfiguration {
 
 // @public (undocumented)
 export interface PoolEvaluateAutoScaleOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     content_type?: string;
     ocpDate?: string;
@@ -2051,6 +2077,7 @@ export interface PoolExistsOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface PoolGetAllPoolLifetimeStatisticsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -2061,6 +2088,7 @@ export interface PoolGetAllPoolLifetimeStatisticsOptions extends RequestOptions 
 export interface PoolGetPoolOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -2088,6 +2116,7 @@ export interface PoolListPoolsOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -2097,6 +2126,7 @@ export interface PoolListPoolsOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface PoolListUsageMetricsOptions extends RequestOptions {
+    accept?: "application/json";
 }
 
 // @public
@@ -2461,6 +2491,7 @@ export type TaskAddStatus = string;
 
 // @public (undocumented)
 export interface TaskAddTaskCollectionOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     content_type?: string;
     ocpDate?: string;
@@ -2588,6 +2619,7 @@ export interface TaskFailureInformation {
 export interface TaskGetTaskCollectionOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -2617,6 +2649,7 @@ export interface TaskInformation {
 // @public (undocumented)
 export interface TaskListSubtasksOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -2628,6 +2661,7 @@ export interface TaskListTasksOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;

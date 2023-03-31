@@ -1,7 +1,7 @@
 {
-  "name": "@msinternal/eventgrid",
+  "name": "@azure-rest/batch",
   "version": "1.0.0-beta.1",
-  "description": "\"Azure EventGrid\"",
+  "description": "\"Batch Service\"",
   "sdk-type": "client",
   "main": "dist/index.js",
   "module": "dist-esm/src/index.js",
@@ -27,8 +27,8 @@
       { "path": "src/utils/constants.ts", "prefix": "SDK_VERSION" }
     ]
   },
-  "types": "types/latest/eventgrid.d.ts",
-  "typesVersions": { "<3.6": { "*": ["types/3.1/eventgrid.d.ts"] } },
+  "types": "types/latest/batch.d.ts",
+  "typesVersions": { "<3.6": { "*": ["types/3.1/batch.d.ts"] } },
   "scripts": {
     "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:samples": "echo Obsolete",
@@ -72,7 +72,7 @@
   "author": "Microsoft Corporation",
   "license": "MIT",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
-  "homepage": "https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/eventgrid/eventgrid/README.md",
+  "homepage": "https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/batch/batch/README.md",
   "sideEffects": false,
   "prettier": "@azure/eslint-plugin-azure-sdk/prettier.json",
   "devDependencies": {
