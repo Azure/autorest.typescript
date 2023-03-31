@@ -46,6 +46,10 @@ const testedTypes: TypeDetail[] = [
   {
     type: "model",
     defaultValue: [{ property: "hello" }, { property: "world" }]
+  },
+  {
+    type: "nullable-float",
+    defaultValue: [[1.2, null, 3.0]]
   }
 ];
 describe("Array Item-Types Client", () => {
@@ -64,7 +68,6 @@ describe("Array Item-Types Client", () => {
           .path(`/arrays/item-types/${params.type}` as any)
           .get();
         assert.strictEqual(result.status, "200");
-        console.log("debug", result.body, params.defaultValue);
         assert.deepEqual(result.body, params.defaultValue);
       } catch (err) {
         assert.fail(err as string);

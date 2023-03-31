@@ -14,25 +14,15 @@ export async function runTypespec(config: CadlRanchConfig) {
     `${__dirname}`,
     "..",
     "..",
-    `./node_modules/@azure-tools/cadl-ranch-specs/http/${sourceTypespec}`
+    `./temp/http/${sourceTypespec}`
   );
-  // const emitterPath = joinPath(
-  //   `${__dirname}`,
-  //   "..",
-  //   "..",
-  //   "./dist/src/index.js"
-  // );
   const outputPath = joinPath(
     `${__dirname}`,
     "..",
     `./integration/generated/${targetFolder}`
   );
   const typespecCommand = `cd ${outputPath} && tsp`;
-  const commandArguments: string[] = [
-    "compile",
-    `${typespecPath}`,
-    `--output-path=.`
-  ];
+  const commandArguments: string[] = ["compile", `${typespecPath}`];
   const command = `${typespecCommand} ${commandArguments.join(" ")}`;
   console.log(command);
   const result = execSync(command);

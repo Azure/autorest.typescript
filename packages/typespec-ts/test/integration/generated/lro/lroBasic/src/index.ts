@@ -7,6 +7,7 @@ export * from "./azureLro";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
+export * from "./outputModels";
 export * from "./pollingHelper";
 
 export default AzureLro;

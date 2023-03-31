@@ -41,12 +41,20 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "lro/lro-basic"
   },
   {
+    outputPath: "lro/lroCore",
+    inputPath: "lro/lro-core"
+  },
+  {
     outputPath: "models/inheritance",
     inputPath: "models/inheritance"
   },
   {
     outputPath: "models/propertyOptional",
     inputPath: "models/property-optional"
+  },
+  {
+    outputPath: "models/propertyNullable",
+    inputPath: "models/property-nullable"
   },
   {
     outputPath: "models/propertyTypes",

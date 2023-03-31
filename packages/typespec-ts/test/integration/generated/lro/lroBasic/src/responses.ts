@@ -2,21 +2,22 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
+import { UserOutput } from "./outputModels";
 
 /** The request has succeeded. */
 export interface Create200Response extends HttpResponse {
   status: "200";
-  body: string;
+  body: UserOutput;
 }
 
 /** The request has succeeded. */
 export interface Polling200Response extends HttpResponse {
   status: "200";
-  body: string;
+  body: UserOutput;
 }
 
 /** The request has succeeded. */
 export interface Get200Response extends HttpResponse {
   status: "200";
-  body: string;
+  body: UserOutput;
 }

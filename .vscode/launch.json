@@ -11,7 +11,7 @@
       "port": 9229
     },
     {
-      "name": "Run Debug Smoke Test",
+      "name": "[Autorest] Run Debug Smoke Test",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/autorest.typescript",
       "runtimeArgs": [
@@ -30,7 +30,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "[autorest.typescript]-UnitTests",
+      "name": "[Autorest] Debug Unit Tests",
       "cwd": "${workspaceFolder}/packages/autorest.typescript",
       "program": "./node_modules/mocha/bin/_mocha",
       "args": [
@@ -48,7 +48,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "[autorest.typescript]-IntegrationTests",
+      "name": "[Autorest] Debug Integration Tests",
       "cwd": "${workspaceFolder}/packages/autorest.typescript",
       "program": "./node_modules/mocha/bin/_mocha",
       "args": [
@@ -66,7 +66,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "[autorest.typescript]-IntegrationTests - Current File",
+      "name": "[Autorest] Debug Integration Tests - Current File",
       "cwd": "${workspaceFolder}/packages/autorest.typescript",
       "program": "./node_modules/mocha/bin/_mocha",
       "args": [
@@ -82,19 +82,18 @@
       "protocol": "inspector"
     },
     {
-      "name": "Generate code for TSPRlcTest",
+      "name": "[TypeSpec] Smoke Test Debug",
 
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-test/test/openai",
-      "runtimeArgs": ["tsp", "compile", "./spec/main.tsp"],
-
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/batch_modular",
+      "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "Generate code for TspEmitter",
+      "name": "[TypeSpec] Generate integration code",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": ["ts-node", "./test/commands/gen-cadl-ranch.ts"],
@@ -104,7 +103,7 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "[TypeSpec] - Unit Test",
+      "name": "[TypeSpec] Debug Unit Test",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [
@@ -124,7 +123,7 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "[TypeSpec] - Integration Test",
+      "name": "[TypeSpec] Debug Integration Test",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [

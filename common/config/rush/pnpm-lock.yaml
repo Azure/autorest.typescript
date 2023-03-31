@@ -105,8 +105,8 @@ packages:
       '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
     dev: false
 
-  /@azure-tools/cadl-ranch-specs/0.9.2_373f949346e14a5a4235bd043c969190:
-    resolution: {integrity: sha512-E7yl78Owyh4PvZZnPdxXHrBREU4mJnBa1swEEaiIkvjWKFWquFOF1sV2SfhOERy4+m3hNYDEXkMucQzaMALu1g==}
+  /@azure-tools/cadl-ranch-specs/0.10.0_373f949346e14a5a4235bd043c969190:
+    resolution: {integrity: sha512-Vy9LO3fSlRX0a96UbZmJR71lJRNxEnZFPX17gIKhHxk4jH+8WzPZBLPPRt9A2wlOe9CGqYOxQTKIPW1CMIHYKw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.2.1
@@ -116,7 +116,7 @@ packages:
       '@typespec/rest': ~0.42.0
       '@typespec/versioning': ~0.42.0
     dependencies:
-      '@azure-tools/cadl-ranch': 0.4.1
+      '@azure-tools/cadl-ranch': 0.4.2
       '@azure-tools/cadl-ranch-api': 0.2.1
       '@azure-tools/cadl-ranch-expect': 0.2.1_3e43a48590f72610124ce0fe6bf58955
       '@azure-tools/typespec-azure-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
@@ -130,8 +130,8 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-tools/cadl-ranch/0.4.1:
-    resolution: {integrity: sha512-sReF0msFbt8kzbxnVRD2sQKvVVh2aKaXeY3R/Oanzk3/i6mZbz7PqIRyQHcl71K5t27/sD2cw4HK6wvrG5S8Gw==}
+  /@azure-tools/cadl-ranch/0.4.2:
+    resolution: {integrity: sha512-XZIW1YWHDcedQTgEw3XvG09e3zVb1KWqQKnvBtUWxpz+D6OxhHNimiAn/p9n5ZpofgLGVIzjr3IMWZNBSn5pPw==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
@@ -153,7 +153,7 @@ packages:
       morgan: 1.10.0
       node-fetch: 3.3.1
       picocolors: 1.0.0
-      prettier: 2.7.1
+      prettier: 2.8.4
       source-map-support: 0.5.21
       winston: 3.8.2
       xml2js: 0.4.23
@@ -2534,7 +2534,7 @@ packages:
     dev: false
 
   /array-flatten/1.1.1:
-    resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
+    resolution: {integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=}
     dev: false
 
   /array-union/2.1.0:
@@ -2839,7 +2839,7 @@ packages:
     dev: false
 
   /buffer-equal-constant-time/1.0.1:
-    resolution: {integrity: sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==}
+    resolution: {integrity: sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=}
     dev: false
 
   /buffer-from/1.1.2:
@@ -3132,7 +3132,7 @@ packages:
     dev: false
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: false
 
   /connect/3.7.0:
@@ -3182,7 +3182,7 @@ packages:
     dev: false
 
   /cookie-signature/1.0.6:
-    resolution: {integrity: sha512-QADzlaHc8icV8I7vbaJXJwod9HWYp8uCqf1xa4OfNu1T7JVxQIrUgOWtHdNDtPiywmFbiS12VjotIXLrKM3orQ==}
+    resolution: {integrity: sha1-4wOogrNCzD7oylE6eZmXNNqzriw=}
     dev: false
 
   /cookie/0.4.2:
@@ -3501,7 +3501,7 @@ packages:
     dev: false
 
   /ee-first/1.1.1:
-    resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
+    resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: false
 
   /electron-to-chromium/1.4.332:
@@ -4097,7 +4097,7 @@ packages:
     dev: false
 
   /fresh/0.5.2:
-    resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
+    resolution: {integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -5315,7 +5315,7 @@ packages:
     dev: false
 
   /media-typer/0.3.0:
-    resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
+    resolution: {integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -5325,7 +5325,7 @@ packages:
     dev: false
 
   /merge-descriptors/1.0.1:
-    resolution: {integrity: sha512-cCi6g3/Zr1iqQi6ySbseM1Xvooa98N0w31jzUYrXPX2xqObmFGHJ0tQ5u74H3mVh7wLouTseZyYIq39g8cNp1w==}
+    resolution: {integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=}
     dev: false
 
   /merge-stream/2.0.0:
@@ -6008,7 +6008,7 @@ packages:
   /puppeteer/3.3.0:
     resolution: {integrity: sha512-23zNqRltZ1PPoK28uRefWJ/zKb5Jhnzbbwbpcna2o5+QMn17F0khq5s1bdH3vPlyj+J36pubccR8wiNA/VE0Vw==}
     engines: {node: '>=10.18.1'}
-    deprecated: < 19.2.0 is no longer supported
+    deprecated: < 19.4.0 is no longer supported
     requiresBuild: true
     dependencies:
       debug: 4.3.4
@@ -7176,7 +7176,7 @@ packages:
     dev: false
 
   /utils-merge/1.0.1:
-    resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
+    resolution: {integrity: sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=}
     engines: {node: '>= 0.4.0'}
     dev: false
 
@@ -7768,14 +7768,14 @@ packages:
     dev: false
 
   file:projects/typespec-ts.tgz:
-    resolution: {integrity: sha512-Lag6tHqsVOLNiJqKGnUTLoaUZpaN/WHWnvJUrXWgIvM8DMk5WSa++BAuwSwlSbxzg/gaftpWwzw8Yj3+i530LA==, tarball: file:projects/typespec-ts.tgz}
+    resolution: {integrity: sha512-EmlwK1sZf+MEva+ZCq4AtXIaO7pf/s5qVdIVTkXJplNGRt+8SYLoAia5Ih16sd9sKnZI+XjKnZvCYSUunHT3xw==, tarball: file:projects/typespec-ts.tgz}
     name: '@rush-temp/typespec-ts'
     version: 0.0.0
     dependencies:
       '@azure-rest/core-client': 1.1.1
-      '@azure-tools/cadl-ranch': 0.4.1
+      '@azure-tools/cadl-ranch': 0.4.2
       '@azure-tools/cadl-ranch-expect': 0.2.1_3e43a48590f72610124ce0fe6bf58955
-      '@azure-tools/cadl-ranch-specs': 0.9.2_373f949346e14a5a4235bd043c969190
+      '@azure-tools/cadl-ranch-specs': 0.10.0_373f949346e14a5a4235bd043c969190
       '@azure-tools/typespec-azure-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
       '@azure-tools/typespec-client-generator-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
       '@azure/core-auth': 1.4.0
@@ -7791,6 +7791,8 @@ packages:
       '@typescript-eslint/parser': 5.55.0_eslint@8.36.0+typescript@4.8.4
       '@typespec/compiler': 0.42.0
       '@typespec/http': 0.42.0_@typespec+compiler@0.42.0
+      '@typespec/openapi': 0.42.0_3e43a48590f72610124ce0fe6bf58955
+      '@typespec/openapi3': 0.42.0_0eea3474c00484bb6ee09a8bce0d2ae0
       '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
       '@typespec/versioning': 0.42.0
       chai: 4.3.7
