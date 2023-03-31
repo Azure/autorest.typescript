@@ -4,7 +4,13 @@ import {
   ParameterDeclarationStructure
 } from "ts-morph";
 import { toPascalCase } from "../../casingUtils.js";
-import { Operation, Parameter, Property, Type } from "../modularCodeModel.js";
+import {
+  BodyParameter,
+  Operation,
+  Parameter,
+  Property,
+  Type
+} from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
 
 /**
@@ -15,11 +21,16 @@ export function getOperationFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const optionsType = getOperationOptionsName(operation);
   // Extract required parameters
-  let parameters: OptionalKind<ParameterDeclarationStructure>[] = (
-    operation.bodyParameter?.type.properties ?? []
-  )
-    .filter((p) => !p.optional)
-    .map((p) => buildType(p.clientName, p.type));
+  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [];
+
+  if (operation.bodyParameter?.type.type === "model") {
+    parameters = (operation.bodyParameter?.type.properties ?? [])
+      .filter((p) => !p.optional)
+      .map((p) => buildType(p.clientName, p.type));
+  } else if (operation.bodyParameter?.type.type === "list") {
+    const bodyArray = operation.bodyParameter;
+    parameters.push(buildType(bodyArray.clientName, bodyArray.type));
+  }
 
   parameters = parameters.concat(
     operation.parameters
@@ -27,6 +38,7 @@ export function getOperationFunction(
         (p) =>
           p.implementation === "Method" &&
           p.type.type !== "constant" &&
+          p.clientDefaultValue === undefined &&
           !p.optional
       )
       .map((p) => buildType(p.clientName, p.type))
@@ -107,9 +119,10 @@ function getRequestParameters(operation: Operation): string {
 
   const contentTypeParameter = operation.parameters.find(isContentType);
 
-  const parametersImplementation:
-    | Record<"header" | "query" | "body", string[]>
-    | Record<"contentType", string> = {
+  const parametersImplementation: Record<
+    "header" | "query" | "body",
+    string[]
+  > = {
     header: [],
     query: [],
     body: []
@@ -119,12 +132,6 @@ function getRequestParameters(operation: Operation): string {
     if (param.location === "header" || param.location === "query") {
       parametersImplementation[param.location].push(getParameterMap(param));
     }
-  }
-
-  for (const param of operation.bodyParameter?.type.properties?.filter(
-    (p) => !p.readonly
-  ) ?? []) {
-    parametersImplementation.body.push(getParameterMap(param));
   }
 
   let paramStr = "";
@@ -145,13 +152,34 @@ function getRequestParameters(operation: Operation): string {
     )}},`;
   }
 
-  if (operation.bodyParameter && operation.bodyParameter.type.properties) {
-    paramStr = `${paramStr}\nbody: {${parametersImplementation.body.join(
-      ",\n"
-    )}},`;
-  }
+  paramStr = `${paramStr}${buildBodyParameter(operation.bodyParameter)}`;
 
   return paramStr;
+}
+
+function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
+  if (!bodyParameter) {
+    return "";
+  }
+
+  if (bodyParameter.type.type === "model") {
+    const bodyParts: string[] = [];
+    for (const param of bodyParameter?.type.properties?.filter(
+      (p) => !p.readonly
+    ) ?? []) {
+      bodyParts.push(getParameterMap(param));
+    }
+
+    if (bodyParameter && bodyParameter.type.properties) {
+      return `\nbody: {${bodyParts.join(",\n")}},`;
+    }
+  }
+
+  if (bodyParameter.type.type === "list") {
+    return `\nbody: ${bodyParameter.clientName},`;
+  }
+
+  return "";
 }
 
 /**
@@ -195,7 +223,7 @@ function getContentTypeValue(param: Parameter | Property) {
   }
 
   if (defaultValue) {
-    return `contentType: options.${param.clientName} ?? "${defaultValue}"`;
+    return `contentType: (options.${param.clientName} as any) ?? "${defaultValue}"`;
   } else {
     return `contentType: options.${param.clientName}`;
   }

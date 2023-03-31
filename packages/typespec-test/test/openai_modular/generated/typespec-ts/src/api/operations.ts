@@ -15,6 +15,8 @@ export interface GetEmbeddingsOptions extends RequestOptions {
   inputType?: string;
   /** ID of the model to use */
   model?: string;
+  /** Accept header. */
+  accept?: "application/json";
   /** Body parameter Content-Type. Known values are: application/json. */
   content_type?: string;
 }
@@ -29,7 +31,7 @@ export async function getEmbeddings(
   const result = await context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
-      contentType: options.content_type ?? "application/json",
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         Accept: "application/json",
         ...options.requestOptions?.headers,
@@ -150,6 +152,8 @@ export interface GetCompletionsOptions extends RequestOptions {
    * stream intermediate progress if best_of > 1. Has maximum value of 128.
    */
   bestOf?: number;
+  /** Accept header. */
+  accept?: "application/json";
   /** Body parameter Content-Type. Known values are: application/json. */
   content_type?: string;
 }
@@ -163,7 +167,7 @@ export async function getCompletions(
   const result = await context
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
-      contentType: options.content_type ?? "application/json",
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         Accept: "application/json",
         ...options.requestOptions?.headers,

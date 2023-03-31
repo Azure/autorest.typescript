@@ -36,7 +36,7 @@ export function buildClassicalClient(
     scope: Scope.Private
   });
 
-  // TODO: We may need to generate constructo overloads at some point. Here we'd do that.
+  // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
     docs: [description],
     parameters: params

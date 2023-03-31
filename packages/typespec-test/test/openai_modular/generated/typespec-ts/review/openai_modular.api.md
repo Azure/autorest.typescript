@@ -109,6 +109,7 @@ export function getCompletions(context: OpenAIContext, deploymentId: string, opt
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends RequestOptions {
+    accept?: "application/json";
     bestOf?: number;
     cacheLevel?: number;
     completionConfig?: string;
@@ -133,6 +134,7 @@ export function getEmbeddings(context: OpenAIContext, input: string | string[], 
 
 // @public (undocumented)
 export interface GetEmbeddingsOptions extends RequestOptions {
+    accept?: "application/json";
     content_type?: string;
     inputType?: string;
     model?: string;
