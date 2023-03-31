@@ -27,6 +27,7 @@ export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `parameters.ts`);
+  const partialBodyTypeNames = new Set<string>();
   const parametersFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
   });
@@ -93,7 +94,7 @@ export function buildParameterTypes(model: RLCModel) {
         i
       );
 
-      const bodyTypeAlias = buildBodyTypeAlias(parameter);
+      const bodyTypeAlias = buildBodyTypeAlias(parameter, partialBodyTypeNames);
       if (bodyTypeAlias) {
         parametersFile.addTypeAlias(bodyTypeAlias);
       }
@@ -451,7 +452,10 @@ function buildBodyParametersDefinition(
   }
 }
 
-export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
+export function buildBodyTypeAlias(
+  parameters: ParameterMetadatas,
+  partialBodyTypeNames: Set<string>
+) {
   const bodyParameters = parameters.body;
   if (
     !bodyParameters ||
@@ -471,6 +475,11 @@ export function buildBodyTypeAlias(parameters: ParameterMetadatas) {
   const contentType = headerParameters[0].param.type;
   const description = `${schema.description}`;
   const typeName = `${schema.typeName}ResourceMergeAndPatch`;
+  if (partialBodyTypeNames.has(typeName)) {
+    return null;
+  } else {
+    partialBodyTypeNames.add(typeName);
+  }
   if (contentType.includes("application/merge-patch+json")) {
     const type = `Partial<${schema.typeName}>`;
     return {

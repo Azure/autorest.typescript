@@ -17,7 +17,7 @@ describe("AzureLroClient Rest Client", () => {
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
       assert.strictEqual(initalResponse.status, "200");
-      assert.equal(result.body, "Test for polling succeed");
+      assert.equal(result.body.name, "bob");
     } catch (err) {
       assert.fail(err as string);
     }

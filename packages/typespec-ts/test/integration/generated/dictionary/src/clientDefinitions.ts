@@ -22,6 +22,8 @@ import {
   ModelValuePutParameters,
   RecursiveModelValueGetParameters,
   RecursiveModelValuePutParameters,
+  NullableFloatValueGetParameters,
+  NullableFloatValuePutParameters,
 } from "./parameters";
 import {
   Int32ValueGet200Response,
@@ -44,6 +46,8 @@ import {
   ModelValuePut204Response,
   RecursiveModelValueGet200Response,
   RecursiveModelValuePut204Response,
+  NullableFloatValueGet200Response,
+  NullableFloatValuePut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -137,6 +141,15 @@ export interface RecursiveModelValueGet {
   ): StreamableMethod<RecursiveModelValuePut204Response>;
 }
 
+export interface NullableFloatValueGet {
+  get(
+    options?: NullableFloatValueGetParameters
+  ): StreamableMethod<NullableFloatValueGet200Response>;
+  put(
+    options: NullableFloatValuePutParameters
+  ): StreamableMethod<NullableFloatValuePut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/dictionary/int32' has methods for the following verbs: get, put */
   (path: "/dictionary/int32"): Int32ValueGet;
@@ -158,6 +171,8 @@ export interface Routes {
   (path: "/dictionary/model"): ModelValueGet;
   /** Resource for '/dictionary/model/recursive' has methods for the following verbs: get, put */
   (path: "/dictionary/model/recursive"): RecursiveModelValueGet;
+  /** Resource for '/dictionary/nullable-float' has methods for the following verbs: get, put */
+  (path: "/dictionary/nullable-float"): NullableFloatValueGet;
 }
 
 export type DictClient = Client & {

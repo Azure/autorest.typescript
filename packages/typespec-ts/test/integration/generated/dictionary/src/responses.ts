@@ -113,3 +113,14 @@ export interface RecursiveModelValueGet200Response extends HttpResponse {
 export interface RecursiveModelValuePut204Response extends HttpResponse {
   status: "204";
 }
+
+/** The request has succeeded. */
+export interface NullableFloatValueGet200Response extends HttpResponse {
+  status: "200";
+  body: Record<string, number | null>;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface NullableFloatValuePut204Response extends HttpResponse {
+  status: "204";
+}

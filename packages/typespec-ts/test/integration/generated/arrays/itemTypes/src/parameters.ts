@@ -76,3 +76,11 @@ export interface ModelValuePutBodyParam {
 
 export type ModelValuePutParameters = ModelValuePutBodyParam &
   RequestParameters;
+export type NullableFloatValueGetParameters = RequestParameters;
+
+export interface NullableFloatValuePutBodyParam {
+  body: (number | null)[];
+}
+
+export type NullableFloatValuePutParameters = NullableFloatValuePutBodyParam &
+  RequestParameters;

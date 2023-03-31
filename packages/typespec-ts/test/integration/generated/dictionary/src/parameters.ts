@@ -84,3 +84,11 @@ export interface RecursiveModelValuePutBodyParam {
 
 export type RecursiveModelValuePutParameters = RecursiveModelValuePutBodyParam &
   RequestParameters;
+export type NullableFloatValueGetParameters = RequestParameters;
+
+export interface NullableFloatValuePutBodyParam {
+  body: Record<string, number | null>;
+}
+
+export type NullableFloatValuePutParameters = NullableFloatValuePutBodyParam &
+  RequestParameters;

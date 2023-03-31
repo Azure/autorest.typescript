@@ -20,6 +20,8 @@ import {
   UnknownValuePutParameters,
   ModelValueGetParameters,
   ModelValuePutParameters,
+  NullableFloatValueGetParameters,
+  NullableFloatValuePutParameters,
 } from "./parameters";
 import {
   Int32ValueGet200Response,
@@ -40,6 +42,8 @@ import {
   UnknownValuePut204Response,
   ModelValueGet200Response,
   ModelValuePut204Response,
+  NullableFloatValueGet200Response,
+  NullableFloatValuePut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -124,6 +128,15 @@ export interface ModelValueGet {
   ): StreamableMethod<ModelValuePut204Response>;
 }
 
+export interface NullableFloatValueGet {
+  get(
+    options?: NullableFloatValueGetParameters
+  ): StreamableMethod<NullableFloatValueGet200Response>;
+  put(
+    options: NullableFloatValuePutParameters
+  ): StreamableMethod<NullableFloatValuePut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/arrays/item-types/int32' has methods for the following verbs: get, put */
   (path: "/arrays/item-types/int32"): Int32ValueGet;
@@ -143,6 +156,8 @@ export interface Routes {
   (path: "/arrays/item-types/unknown"): UnknownValueGet;
   /** Resource for '/arrays/item-types/model' has methods for the following verbs: get, put */
   (path: "/arrays/item-types/model"): ModelValueGet;
+  /** Resource for '/arrays/item-types/nullable-float' has methods for the following verbs: get, put */
+  (path: "/arrays/item-types/nullable-float"): NullableFloatValueGet;
 }
 
 export type ArrayItemTypesClient = Client & {

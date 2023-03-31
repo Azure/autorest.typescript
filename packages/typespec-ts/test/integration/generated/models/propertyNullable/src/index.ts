@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import AzureLro from "./azureLro";
+import ModelsPropertyNullable from "./modelsPropertyNullable";
 
-export * from "./azureLro";
+export * from "./modelsPropertyNullable";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
+export * from "./models";
 export * from "./outputModels";
-export * from "./pollingHelper";
 
-export default AzureLro;
+export default ModelsPropertyNullable;
