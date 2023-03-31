@@ -1,19 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BatchServiceContext } from "../rest/index.js";
+import { OpenAIContext } from "../rest/index.js";
+import { AzureKeyCredential } from "@azure/core-auth";
 import { TokenCredential } from "@azure/core-auth";
 import getClient from "../rest/index.js";
 import { ClientOptions } from "../common/interfaces.js";
 
-export { BatchServiceContext } from "../rest/index.js";
+export { OpenAIContext } from "../rest/index.js";
 
-/** A client for issuing REST requests to the Azure Batch service. */
-export function createBatchService(
+/** Azure OpenAI APIs for completions and search */
+export function createOpenAI(
   endpoint: string,
-  credential: TokenCredential,
+  credential: AzureKeyCredential | TokenCredential,
   options: ClientOptions = {}
-): BatchServiceContext {
+): OpenAIContext {
   const baseUrl = endpoint;
   const clientContext = getClient(baseUrl, credential, options);
   return clientContext;

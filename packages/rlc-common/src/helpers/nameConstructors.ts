@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RLCModel } from "../interfaces.js";
+import { RLCModel, RLCOptions } from "../interfaces.js";
 import { NameType, normalizeName } from "./nameUtils.js";
 
 /**
@@ -107,4 +107,17 @@ export function getImportModuleName(name: ModuleName, codeModel: RLCModel) {
   }
 
   return name.cjsName;
+}
+
+export function getClientName(model: RLCModel) {
+  const clientName = model.libraryName;
+  let clientInterfaceName = clientName.endsWith("Client")
+    ? `${clientName}`
+    : `${clientName}Client`;
+
+  if (model.options?.isModularLibrary) {
+    clientInterfaceName = `${clientName.replace("Client", "")}Context`;
+  }
+
+  return clientInterfaceName;
 }

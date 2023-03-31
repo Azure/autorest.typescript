@@ -3,7 +3,6 @@ import {
   FunctionDeclarationStructure,
   MethodDeclarationStructure,
   OptionalKind,
-  ParameterDeclarationStructure,
   Project,
   Scope,
   SourceFile,
@@ -47,7 +46,7 @@ export function buildClassicalClient(
       .map((p) => p.name)
       .join(",")})`
   ]);
-  importCredential(params, clientFile);
+  importCredential(clientFile);
   buildClientOperationGroups(client, clientClass);
   importAllModels(clientFile, srcPath);
   clientFile.fixUnusedIdentifiers();
@@ -69,19 +68,10 @@ function importAllModels(clientFile: SourceFile, srcPath: string) {
   });
 }
 
-function importCredential(
-  params: OptionalKind<ParameterDeclarationStructure>[],
-  clientSourceFile: SourceFile
-): void {
-  const credential = params.find((p) => p.name === "credential");
-
-  if (!credential) {
-    return;
-  }
-
+function importCredential(clientSourceFile: SourceFile): void {
   clientSourceFile.addImportDeclaration({
     moduleSpecifier: "@azure/core-auth",
-    namedImports: [credential.type ?? "TokenCredential"]
+    namedImports: ["TokenCredential", "AzureKeyCredential"]
   });
 }
 

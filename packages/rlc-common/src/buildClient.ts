@@ -16,7 +16,10 @@ import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { isConstantSchema } from "./helpers/schemaHelpers.js";
 import { buildMethodShortcutImplementation } from "./buildMethodShortcuts.js";
 import { RLCModel, Schema, File, PathParameter } from "./interfaces.js";
-import { getImportModuleName } from "./helpers/nameConstructors.js";
+import {
+  getClientName,
+  getImportModuleName
+} from "./helpers/nameConstructors.js";
 
 function getClientOptionsInterface(
   clientName: string,
@@ -52,10 +55,7 @@ export function buildClient(model: RLCModel): File | undefined {
   });
 
   // Get all paths
-  const clientName = model.libraryName;
-  const clientInterfaceName = clientName.endsWith("Client")
-    ? `${clientName}`
-    : `${clientName}${options?.isModularLibrary ? "Context" : "Client"}`;
+  const clientInterfaceName = getClientName(model);
 
   normalizeUrlInfo(model);
   const urlParameters = model?.urlInfo?.urlParameters?.filter(

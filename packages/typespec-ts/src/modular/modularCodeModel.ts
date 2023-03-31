@@ -68,7 +68,8 @@ export interface Type {
     | "integer"
     | "float"
     | "boolean"
-    | "dict";
+    | "dict"
+    | "combined";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;
@@ -80,6 +81,7 @@ export interface Type {
   xmlMetadata?: XmlMetadata;
   format?: string;
   properties?: Property[];
+  types?: Type[];
 }
 
 export interface Client {
