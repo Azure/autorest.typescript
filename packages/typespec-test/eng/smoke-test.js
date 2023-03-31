@@ -4,7 +4,7 @@ import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 function generate(path) {
-  const command = `cd ${path} && tsp compile ./spec`;
+  const command = `cd ${path} && npx tsp compile ./spec`;
   console.log(command);
   const result = execSync(command);
   console.log("TypeSpec output:", result.toString());
@@ -17,10 +17,11 @@ function generate(path) {
 function build(path) {
   const command = `cd ${path}/generated/typespec-ts && npm install && npm run build`;
   console.log(command);
-  const result = execSync(command);
-  console.log("build output:", result.toString());
-  if (result.stderr) {
-    console.log(Error(result.stderr));
+  try {
+    const result = execSync(command);
+    console.log("build output:", result.toString());
+  } catch (e) {
+    console.log(Error(e.stdout.toString()));
     process.exitCode = 1;
   }
 }

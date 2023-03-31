@@ -60,7 +60,8 @@ export async function listUsageMetrics(
   };
 }
 
-export interface PoolGetAllLifetimeStatisticsOptions extends RequestOptions {
+export interface PoolGetAllPoolLifetimeStatisticsOptions
+  extends RequestOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -87,9 +88,9 @@ export interface PoolGetAllLifetimeStatisticsOptions extends RequestOptions {
  * statistics may not be immediately available. The Batch service performs
  * periodic roll-up of statistics. The typical delay is about 30 minutes.
  */
-export async function getAllLifetimeStatistics(
+export async function getAllPoolLifetimeStatistics(
   context: Client,
-  options: PoolGetAllLifetimeStatisticsOptions = { requestOptions: {} }
+  options: PoolGetAllPoolLifetimeStatisticsOptions = { requestOptions: {} }
 ): Promise<PoolStatistics> {
   const result = await context.path("/lifetimepoolstats").get({
     headers: {

@@ -68,7 +68,7 @@ export type ApplicationsListApplicationsParameters =
 export type ApplicationsGetParameters = RequestParameters;
 export type PoolListUsageMetricsParameters = RequestParameters;
 
-export interface PoolGetAllLifetimeStatisticsHeaders {
+export interface PoolGetAllPoolLifetimeStatisticsHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -84,7 +84,7 @@ export interface PoolGetAllLifetimeStatisticsHeaders {
   "ocp-date"?: string;
 }
 
-export interface PoolGetAllLifetimeStatisticsQueryParamProperties {
+export interface PoolGetAllPoolLifetimeStatisticsQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -92,17 +92,17 @@ export interface PoolGetAllLifetimeStatisticsQueryParamProperties {
   timeOut?: number;
 }
 
-export interface PoolGetAllLifetimeStatisticsQueryParam {
-  queryParameters?: PoolGetAllLifetimeStatisticsQueryParamProperties;
+export interface PoolGetAllPoolLifetimeStatisticsQueryParam {
+  queryParameters?: PoolGetAllPoolLifetimeStatisticsQueryParamProperties;
 }
 
-export interface PoolGetAllLifetimeStatisticsHeaderParam {
-  headers?: RawHttpHeadersInput & PoolGetAllLifetimeStatisticsHeaders;
+export interface PoolGetAllPoolLifetimeStatisticsHeaderParam {
+  headers?: RawHttpHeadersInput & PoolGetAllPoolLifetimeStatisticsHeaders;
 }
 
-export type PoolGetAllLifetimeStatisticsParameters =
-  PoolGetAllLifetimeStatisticsQueryParam &
-    PoolGetAllLifetimeStatisticsHeaderParam &
+export type PoolGetAllPoolLifetimeStatisticsParameters =
+  PoolGetAllPoolLifetimeStatisticsQueryParam &
+    PoolGetAllPoolLifetimeStatisticsHeaderParam &
     RequestParameters;
 
 export interface PoolAddPoolHeaders {
@@ -919,7 +919,7 @@ export type AccountListPoolNodeCountsParameters =
     AccountListPoolNodeCountsHeaderParam &
     RequestParameters;
 
-export interface JobGetAllLifetimeStatisticsHeaders {
+export interface JobGetAllJobLifetimeStatisticsHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -935,7 +935,7 @@ export interface JobGetAllLifetimeStatisticsHeaders {
   "ocp-date"?: string;
 }
 
-export interface JobGetAllLifetimeStatisticsQueryParamProperties {
+export interface JobGetAllJobLifetimeStatisticsQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -943,17 +943,17 @@ export interface JobGetAllLifetimeStatisticsQueryParamProperties {
   timeOut?: number;
 }
 
-export interface JobGetAllLifetimeStatisticsQueryParam {
-  queryParameters?: JobGetAllLifetimeStatisticsQueryParamProperties;
+export interface JobGetAllJobLifetimeStatisticsQueryParam {
+  queryParameters?: JobGetAllJobLifetimeStatisticsQueryParamProperties;
 }
 
-export interface JobGetAllLifetimeStatisticsHeaderParam {
-  headers?: RawHttpHeadersInput & JobGetAllLifetimeStatisticsHeaders;
+export interface JobGetAllJobLifetimeStatisticsHeaderParam {
+  headers?: RawHttpHeadersInput & JobGetAllJobLifetimeStatisticsHeaders;
 }
 
-export type JobGetAllLifetimeStatisticsParameters =
-  JobGetAllLifetimeStatisticsQueryParam &
-    JobGetAllLifetimeStatisticsHeaderParam &
+export type JobGetAllJobLifetimeStatisticsParameters =
+  JobGetAllJobLifetimeStatisticsQueryParam &
+    JobGetAllJobLifetimeStatisticsHeaderParam &
     RequestParameters;
 
 export interface JobDeleteJobHeaders {
