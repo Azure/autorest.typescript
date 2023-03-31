@@ -138,7 +138,7 @@ function clearSrcFolder(
   count: number,
   isMultiClient: boolean = false
 ) {
-  fsextra.emptyDirSync(srcPath);
+  // fsextra.emptyDirSync(srcPath);
   if (isMultiClient && count === 0) {
     const folderPath = path.join(
       srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4)
