@@ -13,7 +13,10 @@ export {
   ApplicationsListApplicationsOptions,
   ApplicationsGetOptions,
 } from "./Applications.js";
-export { createBatchService } from "./BatchServiceContext.js";
+export {
+  createBatchService,
+  BatchServiceContext,
+} from "./BatchServiceContext.js";
 export {
   addCertificate,
   listCertificates,

@@ -1,5 +1,5 @@
 import { Project, SourceFile } from "ts-morph";
-import { getType } from "./helpers/getType.js";
+import { getType } from "./helpers/typeHelpers.js";
 import { ModularCodeModel } from "./modularCodeModel.js";
 
 /**

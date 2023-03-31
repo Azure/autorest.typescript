@@ -63,3 +63,22 @@ export function getType(type: Type): TypeMetadata {
       throw new Error(`Unsupported type ${type.type}`);
   }
 }
+
+/**
+ * Gets the Typescript representation of a TypeSpec type
+ */
+export function buildType(
+  clientName: string | undefined,
+  type: Type | undefined
+) {
+  if (!type) {
+    throw new Error("Type should be defined");
+  }
+
+  const typeMetadata = getType(type);
+  let typeName = typeMetadata.name;
+  if (typeMetadata.modifier === "Array") {
+    typeName = `${typeName}[]`;
+  }
+  return { name: clientName ?? "", type: typeName };
+}
