@@ -6,9 +6,13 @@ export function emitPackage(
   srcPath: string,
   codeModel: ModularCodeModel
 ) {
-  const packageJson = project.createSourceFile(`${srcPath}/package.json`, "", {
-    overwrite: true
-  });
+  const packageJson = project.createSourceFile(
+    `${srcPath}/package-files/package.json`,
+    "",
+    {
+      overwrite: true
+    }
+  );
   const content = {
     name: `${
       codeModel.options?.packageDetails?.name ?? "@msinternal/unamedpackage"
@@ -189,9 +193,13 @@ export function emitTsConfig(
   srcPath: string,
   codeModel: ModularCodeModel
 ) {
-  const tsConfig = project.createSourceFile(`${srcPath}/tsconfig.json`, "", {
-    overwrite: true
-  });
+  const tsConfig = project.createSourceFile(
+    `${srcPath}/package-files/tsconfig.json`,
+    "",
+    {
+      overwrite: true
+    }
+  );
   const content = {
     extends: "../../../tsconfig.package",
     compilerOptions: {

@@ -27,7 +27,8 @@ function build(path) {
 }
 
 async function main() {
-  const folder = process.argv[4];
+  const folder = process.argv[process.argv.length - 1];
+  // const folder = process.argv[4];
 
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
