@@ -29,15 +29,15 @@ export async function getEmbeddings(
   const result = await context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
+      contentType: options.content_type ?? "application/json",
       headers: {
         Accept: "application/json",
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       body: {
-        ...(options.user && { user: options.user }),
-        ...(options.inputType && { input_type: options.inputType }),
-        ...(options.model && { model: options.model }),
+        user: options.user,
+        input_type: options.inputType,
+        model: options.model,
         input: input,
       },
     });
@@ -163,34 +163,28 @@ export async function getCompletions(
   const result = await context
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
+      contentType: options.content_type ?? "application/json",
       headers: {
         Accept: "application/json",
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       body: {
-        ...(options.prompt && { prompt: options.prompt }),
-        ...(options.maxTokens && { max_tokens: options.maxTokens }),
-        ...(options.temperature && { temperature: options.temperature }),
-        ...(options.topP && { top_p: options.topP }),
-        ...(options.logitBias && { logit_bias: options.logitBias }),
-        ...(options.user && { user: options.user }),
-        ...(options.n && { n: options.n }),
-        ...(options.logprobs && { logprobs: options.logprobs }),
-        ...(options.model && { model: options.model }),
-        ...(options.echo && { echo: options.echo }),
-        ...(options.stop && { stop: options.stop }),
-        ...(options.completionConfig && {
-          completion_config: options.completionConfig,
-        }),
-        ...(options.cacheLevel && { cache_level: options.cacheLevel }),
-        ...(options.presencePenalty && {
-          presence_penalty: options.presencePenalty,
-        }),
-        ...(options.frequencyPenalty && {
-          frequency_penalty: options.frequencyPenalty,
-        }),
-        ...(options.bestOf && { best_of: options.bestOf }),
+        prompt: options.prompt,
+        max_tokens: options.maxTokens,
+        temperature: options.temperature,
+        top_p: options.topP,
+        logit_bias: options.logitBias,
+        user: options.user,
+        n: options.n,
+        logprobs: options.logprobs,
+        model: options.model,
+        echo: options.echo,
+        stop: options.stop,
+        completion_config: options.completionConfig,
+        cache_level: options.cacheLevel,
+        presence_penalty: options.presencePenalty,
+        frequency_penalty: options.frequencyPenalty,
+        best_of: options.bestOf,
       },
     });
   if (isUnexpected(result)) {

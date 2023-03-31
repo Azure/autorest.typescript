@@ -61,6 +61,7 @@ export interface Type {
     | "constant"
     | "model"
     | "list"
+    | "byte-array"
     | "datetime"
     | "float"
     | "duration"

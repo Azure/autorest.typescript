@@ -34,6 +34,8 @@ export function getType(type: Type): TypeMetadata {
     case "float":
     case "integer":
       return { name: "number" };
+    case "byte-array":
+      return { name: "Uint8Array" };
     case "list":
       if (!type.elementType) {
         throw new Error("Unable to process Array with no elementType");

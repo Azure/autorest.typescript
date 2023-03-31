@@ -102,13 +102,14 @@ function getRequestParameters(operation: Operation): string {
   }
 
   const operationParameters = operation.parameters.filter(
-    (p) => p.implementation !== "Client"
+    (p) => p.implementation !== "Client" && !isContentType(p)
   );
 
-  const parametersImplementation: Record<
-    "header" | "query" | "body",
-    string[]
-  > = {
+  const contentTypeParameter = operation.parameters.find(isContentType);
+
+  const parametersImplementation:
+    | Record<"header" | "query" | "body", string[]>
+    | Record<"contentType", string> = {
     header: [],
     query: [],
     body: []
@@ -128,21 +129,25 @@ function getRequestParameters(operation: Operation): string {
 
   let paramStr = "";
 
+  if (contentTypeParameter) {
+    paramStr = `${getContentTypeValue(contentTypeParameter)},`;
+  }
+
   if (parametersImplementation.header.length) {
     paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
-      "\n"
-    )}...options.requestOptions?.headers},`;
+      ",\n"
+    )}, ...options.requestOptions?.headers},`;
   }
 
   if (parametersImplementation.query.length) {
     paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
-      "\n"
+      ",\n"
     )}},`;
   }
 
   if (operation.bodyParameter && operation.bodyParameter.type.properties) {
     paramStr = `${paramStr}\nbody: {${parametersImplementation.body.join(
-      "\n"
+      ",\n"
     )}},`;
   }
 
@@ -153,21 +158,107 @@ function getRequestParameters(operation: Operation): string {
  * This function helps with renames, translating client names to rest api names
  */
 function getParameterMap(param: Parameter | Property) {
-  const defaultValue = getDefaultValue(param);
-
-  if (param.optional || (param.type.type === "constant" && !defaultValue)) {
-    return `...(options.${param.clientName} && {"${
-      param.restApiName
-    }": ${`options.${param.clientName}})`},`;
+  if (isConstant(param)) {
+    return getConstantValue(param);
   }
 
-  return `"${param.restApiName}": ${
-    param.optional
-      ? `options.${param.clientName} ${defaultValue}`
-      : param.type.type === "constant"
-      ? `${defaultValue}`
-      : param.clientName
-  },`;
+  if (isOptionalWithouDefault(param)) {
+    return getOptionalWithoutDefault(param);
+  }
+
+  if (isOptionalWithDefault(param)) {
+    return getOptionalWithDefault(param);
+  }
+
+  if (isRequired(param)) {
+    return getRequired(param);
+  }
+
+  throw new Error(`Parameter ${param.clientName} is not supported`);
+}
+
+function isContentType(param: Parameter): boolean {
+  return (
+    param.location === "header" &&
+    param.restApiName.toLowerCase() === "content-type"
+  );
+}
+
+function getContentTypeValue(param: Parameter | Property) {
+  const defaultValue =
+    param.clientDefaultValue ?? param.type.clientDefaultValue;
+
+  if (!defaultValue) {
+    throw new Error(
+      `Constant ${param.clientName} does not have a default value`
+    );
+  }
+
+  if (defaultValue) {
+    return `contentType: options.${param.clientName} ?? "${defaultValue}"`;
+  } else {
+    return `contentType: options.${param.clientName}`;
+  }
+}
+
+type RequiredType = (Parameter | Property) & {
+  type: { optional: false | undefined; value: string };
+};
+
+function isRequired(param: Parameter | Property): param is RequiredType {
+  return !param.optional;
+}
+
+function getRequired(param: RequiredType) {
+  return `"${param.restApiName}": ${param.clientName}`;
+}
+
+type ConstantType = (Parameter | Property) & {
+  type: { type: "constant"; value: string };
+};
+
+function getConstantValue(param: ConstantType) {
+  const defaultValue =
+    param.clientDefaultValue ?? param.type.clientDefaultValue;
+
+  if (!defaultValue) {
+    throw new Error(
+      `Constant ${param.clientName} does not have a default value`
+    );
+  }
+
+  return `"${param.restApiName}": "${defaultValue}"`;
+}
+
+function isConstant(param: Parameter | Property): param is ConstantType {
+  return (
+    param.type.type === "constant" && param.clientDefaultValue !== undefined
+  );
+}
+
+type OptionalWithoutDefaultType = (Parameter | Property) & {
+  type: { optional: true; clientDefaultValue: never };
+};
+function isOptionalWithouDefault(
+  param: Parameter | Property
+): param is OptionalWithoutDefaultType {
+  return Boolean(param.optional && !param.clientDefaultValue);
+}
+function getOptionalWithoutDefault(param: OptionalWithoutDefaultType) {
+  return `"${param.restApiName}": options.${param.clientName}`;
+}
+
+type OptionalWithDefaultType = (Parameter | Property) & {
+  type: { optional: true; clientDefaultValue: string };
+};
+function isOptionalWithDefault(
+  param: Parameter | Property
+): param is OptionalWithDefaultType {
+  return Boolean(param.clientDefaultValue);
+}
+
+function getOptionalWithDefault(param: OptionalWithDefaultType) {
+  return `"${param.restApiName}": options.${param.clientName} ?? "${param.clientDefaultValue}"`;
 }
 
 /**

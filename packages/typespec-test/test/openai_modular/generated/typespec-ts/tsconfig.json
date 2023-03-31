@@ -1,13 +1,25 @@
 {
-  "extends": "../../../tsconfig.package",
   "compilerOptions": {
+    "target": "ES2017",
+    "module": "es6",
+    "lib": [],
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "outDir": "./dist-esm",
-    "declarationDir": "./types",
-    "paths": { "@msinternal/openai_modular": ["./src/index.js"] },
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "rootDir": "."
+    "declarationDir": "./types"
   },
-  "ts-node": { "esm": true },
-  "include": ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["./src/**/*.ts"]
 }
