@@ -6,11 +6,14 @@ import {
   GetEmbeddingsDefaultResponse,
   GetCompletions200Response,
   GetCompletionsDefaultResponse,
+  GetChatCompletions200Response,
+  GetChatCompletionsDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "POST /deployments/{deploymentId}/embeddings": ["200"],
   "POST /deployments/{deploymentId}/completions": ["200"],
+  "POST /deployments/{deploymentId}/chat/completions": ["200"],
 };
 
 export function isUnexpected(
@@ -20,12 +23,20 @@ export function isUnexpected(
   response: GetCompletions200Response | GetCompletionsDefaultResponse
 ): response is GetCompletionsDefaultResponse;
 export function isUnexpected(
+  response: GetChatCompletions200Response | GetChatCompletionsDefaultResponse
+): response is GetChatCompletionsDefaultResponse;
+export function isUnexpected(
   response:
     | GetEmbeddings200Response
     | GetEmbeddingsDefaultResponse
     | GetCompletions200Response
     | GetCompletionsDefaultResponse
-): response is GetEmbeddingsDefaultResponse | GetCompletionsDefaultResponse {
+    | GetChatCompletions200Response
+    | GetChatCompletionsDefaultResponse
+): response is
+  | GetEmbeddingsDefaultResponse
+  | GetCompletionsDefaultResponse
+  | GetChatCompletionsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

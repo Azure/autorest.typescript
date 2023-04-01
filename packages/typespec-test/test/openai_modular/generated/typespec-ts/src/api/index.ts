@@ -8,14 +8,22 @@ export {
   EmbeddingsOptions,
   DeploymentCompletionsOptionsCompletions,
   Choice,
-  CompletionsLogProbs,
+  CompletionsLogProbabilityModel,
+  CompletionsFinishReason,
   CompletionsUsage,
   CompletionsOptions,
+  DeploymentChatCompletionsOptionsChatCompletions,
+  ChatChoice,
+  ChatMessage,
+  ChatRole,
+  ChatCompletionsOptions,
 } from "./models.js";
 export { createOpenAI, OpenAIContext } from "./OpenAIContext.js";
 export {
   getEmbeddings,
   getCompletions,
+  getChatCompletions,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
+  GetChatCompletionsOptions,
 } from "./operations.js";

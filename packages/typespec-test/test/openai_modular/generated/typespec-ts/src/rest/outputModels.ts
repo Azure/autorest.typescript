@@ -7,178 +7,330 @@ export interface DeploymentOutput {
   readonly deploymentId: string;
 }
 
-/** Expected response schema to embeddings request */
+/**
+ * Representation of the response data from an embeddings request.
+ * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
+ * recommendations, and other similar scenarios.
+ */
 export interface EmbeddingsOutput {
-  /** Type of the data field */
-  object: "list";
-  /** Embedding values for the prompts submitted in the request */
+  /** Embedding values for the prompts submitted in the request. */
   data: Array<EmbeddingItemOutput>;
-  /** ID of the model to use */
-  model?: string;
-  /** Usage counts for tokens input using the embeddings API */
+  /** Usage counts for tokens input using the embeddings API. */
   usage: EmbeddingsUsageOutput;
 }
 
-/** Expected response schema to embeddings object list item request */
+/** Representation of a single embeddings relatedness comparison. */
 export interface EmbeddingItemOutput {
-  /** Name of the field in which the embedding is contained */
-  object: "embedding";
-  /** List of embeddings value for the input prompt. These represents a measurement of releated of text strings */
+  /**
+   * List of embeddings value for the input prompt. These represent a measurement of the
+   * vector-based relatedness of the provided input.
+   */
   embedding: number[];
-  /** Index of the prompt to which the EmbeddingItem corresponds */
+  /** Index of the prompt to which the EmbeddingItem corresponds. */
   index: number;
 }
 
-/** Measurment of the amount of tokens used in this request and response */
+/** Measurement of the amount of tokens used in this request and response. */
 export interface EmbeddingsUsageOutput {
-  /** Number of tokens sent in the original request */
+  /** Number of tokens sent in the original request. */
   prompt_tokens: number;
-  /** Total number of tokens transacted in this request/response */
+  /** Total number of tokens transacted in this request/response. */
   total_tokens: number;
 }
 
-/** Post body schema to create a prompt completion from a deployment */
+/**
+ * The configuration information for a completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
 export interface CompletionsOptionsOutput {
   /**
-   * An optional prompt to complete from, encoded as a string, a list of strings, or
-   * a list of token lists. Defaults to <|endoftext|>. The prompt to complete from.
-   * If you would like to provide multiple prompts, use the POST variant of this
-   * method. Note that <|endoftext|> is the document separator that the model sees
-   * during training, so if a prompt is not specified the model will generate as if
-   * from the beginning of a new document. Maximum allowed size of string list is
-   * 2048.
+   * The prompts to generate completions from. Defaults to a single prompt of <|endoftext|> if not
+   * otherwise specified.
    */
   prompt?: string[];
-  /** The maximum number of tokens to generate. Has minimum of 0. */
+  /** The maximum number of tokens to generate. */
   max_tokens?: number;
   /**
-   * What sampling temperature to use. Higher values means the model will take more
-   * risks. Try 0.9 for more creative applications, and 0 (argmax sampling) for ones
-   * with a well-defined answer.
-   * We generally recommend using this or `top_p` but
-   * not both.
-   * Minimum of 0 and maximum of 2 allowed.
-   *
+   * The sampling temperature to use that controls the apparent creativity of generated completions.
+   * Higher values will make output more random while lower values will make results more focused
+   * and deterministic.
+   * It is not recommended to modify temperature and top_p for the same completions request as the
+   * interaction of these two settings is difficult to predict.
    */
   temperature?: number;
   /**
-   * An alternative to sampling with temperature, called nucleus sampling, where the
-   * model considers the results of the tokens with top_p probability mass. So 0.1
-   * means only the tokens comprising the top 10% probability mass are
+   * An alternative to sampling with temperature called nucleus sampling. This value causes the
+   * model to consider the results of tokens with the provided probability mass. As an example, a
+   * value of 0.15 will cause only the tokens comprising the top 15% of probability mass to be
    * considered.
-   * We generally recommend using this or `temperature` but not
-   * both.
-   * Minimum of 0 and maximum of 1 allowed.
-   *
+   * It is not recommended to modify temperature and top_p for the same completions request as the
+   * interaction of these two settings is difficult to predict.
    */
   top_p?: number;
   /**
-   * Defaults to null. Modify the likelihood of specified tokens appearing in the
-   * completion. Accepts a json object that maps tokens (specified by their token ID
-   * in the GPT tokenizer) to an associated bias value from -100 to 100. You can use
-   * this tokenizer tool (which works for both GPT-2 and GPT-3) to convert text to
-   * token IDs. Mathematically, the bias is added to the logits generated by the
-   * model prior to sampling. The exact effect will vary per model, but values
-   * between -1 and 1 should decrease or increase likelihood of selection; values
-   * like -100 or 100 should result in a ban or exclusive selection of the relevant
-   * token. As an example, you can pass {"50256" &#58; -100} to prevent the
-   * <|endoftext|> token from being generated.
+   * A map between GPT token IDs and bias scores that influences the probability of specific tokens
+   * appearing in a completions response. Token IDs are computed via external tokenizer tools, while
+   * bias scores reside in the range of -100 to 100 with minimum and maximum values corresponding to
+   * a full ban or exclusive selection of a token, respectively. The exact behavior of a given bias
+   * score varies by model.
    */
   logit_bias?: Record<string, number>;
-  /** The ID of the end-user, for use in tracking and rate-limiting. */
+  /**
+   * An identifier for the caller or end user of the operation. This may be used for tracking
+   * or rate-limiting purposes.
+   */
   user?: string;
   /**
-   * How many snippets to generate for each prompt. Minimum of 1 and maximum of 128
-   * allowed.
+   * The number of completions choices that should be generated per provided prompt as part of an
+   * overall completions response.
+   * Because this setting can generate many completions, it may quickly consume your token quota.
+   * Use carefully and ensure reasonable settings for max_tokens and stop.
    */
   n?: number;
   /**
-   * Include the log probabilities on the `logprobs` most likely tokens, as well the
-   * chosen tokens. So for example, if `logprobs` is 10, the API will return a list
-   * of the 10 most likely tokens. If `logprobs` is 0, only the chosen tokens will
-   * have logprobs returned. Minimum of 0 and maximum of 100 allowed.
+   * A value that controls the emission of log probabilities for the provided number of most likely
+   * tokens within a completions response.
    */
   logprobs?: number;
-  /** The name of the model to use */
-  model?: string;
-  /** Echo back the prompt in addition to the completion */
-  echo?: boolean;
-  /** A sequence which indicates the end of the current document. */
-  stop?: string[];
-  /** Completion configuration */
-  completion_config?: string;
   /**
-   * can be used to disable any server-side caching, 0=no cache, 1=prompt prefix
-   * enabled, 2=full cache
+   * A value specifying whether completions responses should include input prompts as prefixes to
+   * their generated output.
    */
-  cache_level?: number;
+  echo?: boolean;
+  /** A collection of textual sequences that will end completions generation. */
+  stop?: string[];
   /**
-   * How much to penalize new tokens based on their existing frequency in the text
-   * so far. Decreases the model's likelihood to repeat the same line verbatim. Has
-   * minimum of -2 and maximum of 2.
+   * A value that influences the probability of generated tokens appearing based on their existing
+   * presence in generated text.
+   * Positive values will make tokens less likely to appear when they already exist and increase the
+   * model's likelihood to output new topics.
    */
   presence_penalty?: number;
   /**
-   * How much to penalize new tokens based on whether they appear in the text so
-   * far. Increases the model's likelihood to talk about new topics.
+   * A value that influences the probability of generated tokens appearing based on their cumulative
+   * frequency in generated text.
+   * Positive values will make tokens less likely to appear as their frequency increases and
+   * decrease the likelihood of the model repeating the same statements verbatim.
    */
   frequency_penalty?: number;
   /**
-   * How many generations to create server side, and display only the best. Will not
-   * stream intermediate progress if best_of > 1. Has maximum value of 128.
+   * A value that controls how many completions will be internally generated prior to response
+   * formulation.
+   * When used together with n, best_of controls the number of candidate completions and must be
+   * greater than n.
+   * Because this setting can generate many completions, it may quickly consume your token quota.
+   * Use carefully and ensure reasonable settings for max_tokens and stop.
    */
   best_of?: number;
+  /** A value indicating whether chat completions should be streamed for this request. */
+  stream?: boolean;
+  /**
+   * The model name to provide as part of this completions request.
+   * Not applicable to Azure OpenAI, where deployment information should be included in the Azure
+   * resource URI that's connected to.
+   */
+  model?: string;
 }
 
-/** Expected response schema to completion request */
+/**
+ * Representation of the response data from a completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
 export interface CompletionsOutput {
-  /** Id for completion response */
-  id?: string;
-  /** Object for completion response */
-  object: "text_completion";
-  /** Created time for completion response */
-  created?: number;
-  /** Model used for completion response */
-  model?: string;
-  /** Array of choices returned containing text completions to prompts sent */
+  /** A unique identifier associated with this completions response. */
+  id: string;
+  /**
+   * The first timestamp associated with generation activity for this completions response,
+   * represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
+   */
+  created: number;
+  /**
+   * The collection of completions choices associated with this completions response.
+   * Generally, `n` choices are generated per provided prompt with a default value of 1.
+   * Token limits and other settings may limit the number of choices generated.
+   */
   choices?: Array<ChoiceOutput>;
-  /** Usage counts for tokens input using the completions API */
+  /** Usage information for tokens processed and generated as part of this completions operation. */
   usage: CompletionsUsageOutput;
 }
 
-/** Choice model within completion response */
+/**
+ * The representation of a single prompt completion as part of an overall completions request.
+ * Generally, `n` choices are generated per provided prompt with a default value of 1.
+ * Token limits and other settings may limit the number of choices generated.
+ */
 export interface ChoiceOutput {
-  /** Generated text for given completion prompt */
-  text?: string;
-  /** Index */
-  index?: number;
-  /** Log Prob Model */
-  logprobs?: CompletionsLogProbsOutput;
-  /** Reason for finishing */
-  finish_reason?: string;
+  /** The generated text for a given completions prompt. */
+  text: string;
+  /** The ordered index associated with this completions choice. */
+  index: number;
+  /** The log probabilities model for tokens associated with this completions choice. */
+  logprobs?: CompletionsLogProbabilityModelOutput;
+  /**
+   * Reason for finishing
+   *
+   * Possible values: none, stopped, tokenLimitReached, contentFiltered
+   */
+  finish_reason: string;
 }
 
-/** LogProbs model within completion choice */
-export interface CompletionsLogProbsOutput {
-  /** Tokens */
+/** Representation of a log probabilities model for a completions generation. */
+export interface CompletionsLogProbabilityModelOutput {
+  /** The textual forms of tokens evaluated in this probability model. */
   tokens?: string[];
-  /** LogProbs of Tokens */
+  /** A collection of log probability values for the tokens in this completions data. */
   token_logprobs?: number[];
-  /** Top LogProbs */
+  /** A mapping of tokens to maximum log probability values in this completions data. */
   top_logprobs?: Record<string, number>[];
-  /** Text offset */
+  /** The text offsets associated with tokens in this completions data. */
   text_offset?: number[];
 }
 
 /**
  * Representation of the token counts processed for a completions request.
- * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and other consumers.
+ * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
+ * other consumers.
  */
 export interface CompletionsUsageOutput {
-  /** Number of tokens received in the completion */
+  /** The number of tokens generated across all completions emissions. */
   completion_tokens: number;
-  /** Number of tokens sent in the original request */
+  /** The number of tokens in the provided prompts for the completions request. */
   prompt_tokens: number;
-  /** Total number of tokens transacted in this request/response */
+  /** The total number of tokens processed for the completions request and response. */
   total_tokens: number;
+}
+
+/** A single, role-attributed message within a chat completion interaction. */
+export interface ChatMessageOutput {
+  /**
+   * The role associated with this message payload.
+   *
+   * Possible values: system, assistant, user
+   */
+  role: string;
+  /** The text associated with this message payload. */
+  content?: string;
+}
+
+/**
+ * The configuration information for a chat completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export interface ChatCompletionsOptionsOutput {
+  /**
+   * The collection of context messages associated with this chat completions request.
+   * Typical usage begins with a chat message for the System role that provides instructions for
+   * the behavior of the assistant, followed by alternating messages between the User and
+   * Assistant roles.
+   */
+  messages: Array<ChatMessageOutput>;
+  /** The maximum number of tokens to generate. */
+  max_tokens?: number;
+  /**
+   * The sampling temperature to use that controls the apparent creativity of generated completions.
+   * Higher values will make output more random while lower values will make results more focused
+   * and deterministic.
+   * It is not recommended to modify temperature and top_p for the same completions request as the
+   * interaction of these two settings is difficult to predict.
+   */
+  temperature?: number;
+  /**
+   * An alternative to sampling with temperature called nucleus sampling. This value causes the
+   * model to consider the results of tokens with the provided probability mass. As an example, a
+   * value of 0.15 will cause only the tokens comprising the top 15% of probability mass to be
+   * considered.
+   * It is not recommended to modify temperature and top_p for the same completions request as the
+   * interaction of these two settings is difficult to predict.
+   */
+  top_p?: number;
+  /**
+   * A map between GPT token IDs and bias scores that influences the probability of specific tokens
+   * appearing in a completions response. Token IDs are computed via external tokenizer tools, while
+   * bias scores reside in the range of -100 to 100 with minimum and maximum values corresponding to
+   * a full ban or exclusive selection of a token, respectively. The exact behavior of a given bias
+   * score varies by model.
+   */
+  logit_bias?: Record<string, number>;
+  /**
+   * An identifier for the caller or end user of the operation. This may be used for tracking
+   * or rate-limiting purposes.
+   */
+  user?: string;
+  /**
+   * The number of completions choices that should be generated per provided prompt as part of an
+   * overall completions response.
+   * Because this setting can generate many completions, it may quickly consume your token quota.
+   * Use carefully and ensure reasonable settings for max_tokens and stop.
+   */
+  n?: number;
+  /** A collection of textual sequences that will end completions generation. */
+  stop?: string[];
+  /**
+   * A value that influences the probability of generated tokens appearing based on their existing
+   * presence in generated text.
+   * Positive values will make tokens less likely to appear when they already exist and increase the
+   * model's likelihood to output new topics.
+   */
+  presence_penalty?: number;
+  /**
+   * A value that influences the probability of generated tokens appearing based on their cumulative
+   * frequency in generated text.
+   * Positive values will make tokens less likely to appear as their frequency increases and
+   * decrease the likelihood of the model repeating the same statements verbatim.
+   */
+  frequency_penalty?: number;
+  /** A value indicating whether chat completions should be streamed for this request. */
+  stream?: boolean;
+  /**
+   * The model name to provide as part of this completions request.
+   * Not applicable to Azure OpenAI, where deployment information should be included in the Azure
+   * resource URI that's connected to.
+   */
+  model?: string;
+}
+
+/**
+ * Representation of the response data from a chat completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export interface ChatCompletionsOutput {
+  /** A unique identifier associated with this chat completions response. */
+  id: string;
+  /**
+   * The first timestamp associated with generation activity for this completions response,
+   * represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
+   */
+  created: number;
+  /**
+   * The collection of completions choices associated with this completions response.
+   * Generally, `n` choices are generated per provided prompt with a default value of 1.
+   * Token limits and other settings may limit the number of choices generated.
+   */
+  choices?: Array<ChatChoiceOutput>;
+  /** Usage information for tokens processed and generated as part of this completions operation. */
+  usage: CompletionsUsageOutput;
+}
+
+/**
+ * The representation of a single prompt completion as part of an overall chat completions request.
+ * Generally, `n` choices are generated per provided prompt with a default value of 1.
+ * Token limits and other settings may limit the number of choices generated.
+ */
+export interface ChatChoiceOutput {
+  /** The chat message for a given chat completions prompt. */
+  message?: ChatMessageOutput;
+  /** The ordered index associated with this chat completions choice. */
+  index: number;
+  /**
+   * The reason that this chat completions choice completed its generated.
+   *
+   * Possible values: none, stopped, tokenLimitReached, contentFiltered
+   */
+  finish_reason: string;
+  /** The delta message content for a streaming response. */
+  delta?: ChatMessageOutput;
 }

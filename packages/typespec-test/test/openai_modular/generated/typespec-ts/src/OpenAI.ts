@@ -6,12 +6,16 @@ import { ClientOptions } from "./common/interfaces.js";
 import {
   DeploymentEmbeddingsOptionsEmbeddings,
   DeploymentCompletionsOptionsCompletions,
+  DeploymentChatCompletionsOptionsChatCompletions,
+  ChatMessage,
   createOpenAI,
   OpenAIContext,
   getEmbeddings,
   getCompletions,
+  getChatCompletions,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
+  GetChatCompletionsOptions,
 } from "./api/index.js";
 
 export class OpenAI {
@@ -39,5 +43,13 @@ export class OpenAI {
     options: GetCompletionsOptions = { requestOptions: {} }
   ): Promise<DeploymentCompletionsOptionsCompletions> {
     return getCompletions(this._client, deploymentId, options);
+  }
+
+  getChatCompletions(
+    messages: ChatMessage[],
+    deploymentId: string,
+    options: GetChatCompletionsOptions = { requestOptions: {} }
+  ): Promise<DeploymentChatCompletionsOptionsChatCompletions> {
+    return getChatCompletions(this._client, messages, deploymentId, options);
   }
 }
