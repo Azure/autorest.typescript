@@ -51,7 +51,7 @@ export function transformResponseTypes(
       const headers = transformHeaders(response);
       // transform body
       let body = undefined;
-      if (isSchemaResponse(response)) {
+      if (isSchemaResponse(response) || (response as any).binary) {
         body = transformBody(response, importedModels);    
       }
       const rlcResponseUnit: ResponseMetadata = {
