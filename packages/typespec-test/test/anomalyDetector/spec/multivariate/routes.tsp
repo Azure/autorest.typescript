@@ -4,6 +4,7 @@ import "./models.tsp";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;
+using Azure.Core;
 
 namespace AnomalyDetector.Multivariate;
 
@@ -111,8 +112,9 @@ op DetectMultivariateBatchAnomaly(
   @statusCode statusCode: 202,
   @doc("Id of the detection result.")
   @header "Operation-Id": string,
-  @doc("Location of the detection result.")
-  @header "Operation-Location": string,
+  @pollingLocation
+  @header("Operation-Location")
+  operationLocation: ResourceLocation<ResourceOperationStatus<MultivariateDetectionResult>>;
   @body result: MultivariateDetectionResult,
 } | ResponseError;
 

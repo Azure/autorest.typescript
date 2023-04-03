@@ -9,7 +9,7 @@
     "@typespec/rest": "~0.42.0",
     "@typespec/openapi": "~0.42.0",
     "@typespec/versioning": "~0.42.0",
-    "@azure-tools/typespec-azure-core": "~0.28.0",
+    "@azure-tools/typespec-azure-core": "~0.28.1",
     "@azure-tools/typespec-autorest": "~0.28.0",
     "@azure-tools/typespec-client-generator-core": "~0.28.0",
     "@typespec/openapi3": "~0.42.0",

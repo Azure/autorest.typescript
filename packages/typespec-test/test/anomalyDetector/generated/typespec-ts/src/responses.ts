@@ -163,7 +163,6 @@ export interface GetMultivariateModelDefaultResponse extends HttpResponse {
 export interface DetectMultivariateBatchAnomaly202Headers {
   /** Id of the detection result. */
   "operation-id": string;
-  /** Location of the detection result. */
   "operation-location": string;
 }
 

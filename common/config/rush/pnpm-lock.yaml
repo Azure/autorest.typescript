@@ -190,25 +190,6 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-tools/typespec-autorest/0.28.0_84bf6830f24e7b88b2bf20c3de0b2efe:
-    resolution: {integrity: sha512-BEitqXLZGc3fzr5F6LoSV7hdHfYFc+YghU3cMTC74lDRLZ1IkiAB0pwaKHHSMicTHqufxaCmmsodYljQyNEo1g==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@azure-tools/typespec-azure-core': ~0.28.0
-      '@typespec/compiler': ~0.42.0
-      '@typespec/http': ~0.42.0
-      '@typespec/openapi': ~0.42.0
-      '@typespec/rest': ~0.42.0
-      '@typespec/versioning': ~0.42.0
-    dependencies:
-      '@azure-tools/typespec-azure-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
-      '@typespec/compiler': 0.42.0
-      '@typespec/http': 0.42.0_@typespec+compiler@0.42.0
-      '@typespec/openapi': 0.42.0_3e43a48590f72610124ce0fe6bf58955
-      '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
-      '@typespec/versioning': 0.42.0
-    dev: false
-
   /@azure-tools/typespec-autorest/0.28.0_ce0406cb082020e210f5b6efc917c8e1:
     resolution: {integrity: sha512-BEitqXLZGc3fzr5F6LoSV7hdHfYFc+YghU3cMTC74lDRLZ1IkiAB0pwaKHHSMicTHqufxaCmmsodYljQyNEo1g==}
     engines: {node: '>=16.0.0'}
@@ -226,20 +207,6 @@ packages:
       '@typespec/openapi': 0.42.0_3e43a48590f72610124ce0fe6bf58955
       '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
       '@typespec/versioning': 0.42.0
-    dev: false
-
-  /@azure-tools/typespec-azure-core/0.28.0_3e43a48590f72610124ce0fe6bf58955:
-    resolution: {integrity: sha512-5qs2ItWRfndL4ScAGhIceff03uejpNlSbQwOYo3QjYzzJ9+xGXqtY8NIBOR/JbKe1/3SdCkoeoRjf4KQ7/OvZw==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ~0.42.0
-      '@typespec/http': ~0.42.0
-      '@typespec/rest': ~0.42.0
-    dependencies:
-      '@typespec/compiler': 0.42.0
-      '@typespec/http': 0.42.0_@typespec+compiler@0.42.0
-      '@typespec/lint': 0.42.0_@typespec+compiler@0.42.0
-      '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
     dev: false
 
   /@azure-tools/typespec-azure-core/0.28.1_3e43a48590f72610124ce0fe6bf58955:
@@ -7779,12 +7746,12 @@ packages:
     dev: false
 
   file:projects/typespec-test.tgz:
-    resolution: {integrity: sha512-vrKU39jJTwUNESJmMhJfFc5C0a8wf5A+pkx9WIJM96XqiSFnudbq91XutW/ZwIiKmEO8g2Y+6p2dtUdF8YSm1w==, tarball: file:projects/typespec-test.tgz}
+    resolution: {integrity: sha512-uBj7wKODl8nYLB/zyDdRZTkZI9Z2CLXYgwqyHN5giC4OvfIL/yCN3KFvtoZMgoCD68RN2Lc1w+B4bQ1PXNAkXQ==, tarball: file:projects/typespec-test.tgz}
     name: '@rush-temp/typespec-test'
     version: 0.0.0
     dependencies:
-      '@azure-tools/typespec-autorest': 0.28.0_84bf6830f24e7b88b2bf20c3de0b2efe
-      '@azure-tools/typespec-azure-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
+      '@azure-tools/typespec-autorest': 0.28.0_ce0406cb082020e210f5b6efc917c8e1
+      '@azure-tools/typespec-azure-core': 0.28.1_3e43a48590f72610124ce0fe6bf58955
       '@azure-tools/typespec-client-generator-core': 0.28.0_3e43a48590f72610124ce0fe6bf58955
       '@types/mocha': 5.2.7
       '@types/node': 18.15.3
