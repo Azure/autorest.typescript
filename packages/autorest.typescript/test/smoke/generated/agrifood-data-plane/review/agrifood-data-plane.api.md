@@ -384,6 +384,7 @@ export interface AttachmentsDownload {
 
 // @public
 export interface AttachmentsDownload200Response extends HttpResponse {
+    body: Uint8Array;
     // (undocumented)
     status: "200";
 }
@@ -3627,6 +3628,7 @@ export interface ScenesDownload {
 
 // @public
 export interface ScenesDownload200Response extends HttpResponse {
+    body: Uint8Array;
     // (undocumented)
     status: "200";
 }
