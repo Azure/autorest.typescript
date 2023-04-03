@@ -23,6 +23,7 @@ import {
   getFormatDocs,
   primitiveSchemaToType
 } from "../schemaHelpers";
+import { isSchemaResponse } from "../../utils/schemaHelpers";
 
 export function transformResponseTypes(
   model: CodeModel,
@@ -49,7 +50,10 @@ export function transformResponseTypes(
       // transform header
       const headers = transformHeaders(response);
       // transform body
-      const body = transformBody(response, importedModels);
+      let body = undefined;
+      if (isSchemaResponse(response)) {
+        body = transformBody(response, importedModels);    
+      }
       const rlcResponseUnit: ResponseMetadata = {
         statusCode: getStatusCode(schemaResponse),
         description: operationLanguageMetadata.description,

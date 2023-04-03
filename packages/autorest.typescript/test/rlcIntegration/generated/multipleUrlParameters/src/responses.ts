@@ -77,7 +77,6 @@ export interface EntityDeleteByGuidsDefaultResponse extends HttpResponse {
 /** Associate a classification to multiple entities in bulk. */
 export interface EntityAddClassification204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Associate a classification to multiple entities in bulk. */

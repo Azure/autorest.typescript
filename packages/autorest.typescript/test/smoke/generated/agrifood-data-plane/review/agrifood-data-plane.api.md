@@ -76,8 +76,6 @@ export type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpd
 // @public
 export interface ApplicationDataDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -365,8 +363,6 @@ export type AttachmentsCreateOrUpdateParameters = AttachmentsCreateOrUpdateMedia
 // @public
 export interface AttachmentsDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -388,7 +384,6 @@ export interface AttachmentsDownload {
 
 // @public
 export interface AttachmentsDownload200Response extends HttpResponse {
-    body: Uint8Array;
     // (undocumented)
     status: "200";
 }
@@ -551,8 +546,6 @@ export type BoundariesCreateOrUpdateParameters = BoundariesCreateOrUpdateMediaTy
 
 // @public
 export interface BoundariesDelete204Response extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
     // (undocumented)
     status: "204";
 }
@@ -956,8 +949,6 @@ export type CropsCreateOrUpdateParameters = CropsCreateOrUpdateMediaTypesParam &
 // @public
 export interface CropsDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -1082,8 +1073,6 @@ export type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateM
 
 // @public
 export interface CropVarietiesDelete204Response extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
     // (undocumented)
     status: "204";
 }
@@ -1377,8 +1366,6 @@ export type FarmersCreateOrUpdateParameters = FarmersCreateOrUpdateMediaTypesPar
 // @public
 export interface FarmersDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -1666,8 +1653,6 @@ export type FarmsCreateOrUpdateParameters = FarmsCreateOrUpdateMediaTypesParam &
 // @public
 export interface FarmsDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -1927,8 +1912,6 @@ export type FieldsCreateOrUpdateParameters = FieldsCreateOrUpdateMediaTypesParam
 // @public
 export interface FieldsDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -2175,8 +2158,6 @@ export type HarvestDataCreateOrUpdateParameters = HarvestDataCreateOrUpdateMedia
 
 // @public
 export interface HarvestDataDelete204Response extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
     // (undocumented)
     status: "204";
 }
@@ -2441,8 +2422,6 @@ export interface ImageProcessingCreateRasterizeJobBodyParam {
 
 // @public
 export interface ImageProcessingCreateRasterizeJobDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
     // (undocumented)
     status: string;
 }
@@ -2909,8 +2888,6 @@ export type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdat
 // @public
 export interface OAuthProvidersDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -3218,8 +3195,6 @@ export type PlantingDataCreateOrUpdateParameters = PlantingDataCreateOrUpdateMed
 
 // @public
 export interface PlantingDataDelete204Response extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
     // (undocumented)
     status: "204";
 }
@@ -3652,7 +3627,6 @@ export interface ScenesDownload {
 
 // @public
 export interface ScenesDownload200Response extends HttpResponse {
-    body: Uint8Array;
     // (undocumented)
     status: "200";
 }
@@ -3900,8 +3874,6 @@ export type SeasonalFieldsCreateOrUpdateParameters = SeasonalFieldsCreateOrUpdat
 // @public
 export interface SeasonalFieldsDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -4146,8 +4118,6 @@ export type SeasonsCreateOrUpdateParameters = SeasonsCreateOrUpdateMediaTypesPar
 // @public
 export interface SeasonsDelete204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -4293,8 +4263,6 @@ export type TillageDataCreateOrUpdateParameters = TillageDataCreateOrUpdateMedia
 
 // @public
 export interface TillageDataDelete204Response extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
     // (undocumented)
     status: "204";
 }

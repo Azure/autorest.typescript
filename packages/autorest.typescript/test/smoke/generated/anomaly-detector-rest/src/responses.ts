@@ -132,7 +132,6 @@ export interface ListMultivariateModelDefaultResponse extends HttpResponse {
 /** Delete an existing multivariate model according to the modelId */
 export interface DeleteMultivariateModel204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 export interface DeleteMultivariateModelDefaultHeaders {

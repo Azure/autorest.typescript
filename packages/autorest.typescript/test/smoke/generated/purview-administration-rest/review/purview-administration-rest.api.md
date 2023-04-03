@@ -373,8 +373,6 @@ type CollectionsCreateOrUpdateCollectionParameters = CollectionsCreateOrUpdateCo
 // @public
 interface CollectionsDeleteCollection204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 
@@ -1398,15 +1396,11 @@ type ResourceSetRulesCreateOrUpdateResourceSetRuleParameters = ResourceSetRulesC
 // @public
 interface ResourceSetRulesDeleteResourceSetRule200Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "200";
 }
 
 // @public
 interface ResourceSetRulesDeleteResourceSetRule204Response extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
     // (undocumented)
     status: "204";
 }
