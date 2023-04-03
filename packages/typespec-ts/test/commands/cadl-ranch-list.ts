@@ -1,6 +1,7 @@
 export interface CadlRanchConfig {
   outputPath: string;
   inputPath: string;
+  debug?: boolean;
 }
 
 export const cadls: CadlRanchConfig[] = [
@@ -38,11 +39,16 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "lro/lroBasic",
-    inputPath: "lro/lro-basic"
+    inputPath: "lro/lro-basic",
+    debug: true
   },
   {
     outputPath: "lro/lroCore",
     inputPath: "lro/lro-core"
+  },
+  {
+    outputPath: "lro/lroRPC",
+    inputPath: "lro/lro-rpc"
   },
   {
     outputPath: "models/inheritance",

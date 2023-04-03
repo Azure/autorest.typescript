@@ -1,0 +1,14 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    azureSdkForJs: false
+    isCadlTest: true
+    packageDetails:
+      name: "@msinternal/lro-rpc"
+      description: "LRO RPC Test Service"
+      version: "1.0.0"

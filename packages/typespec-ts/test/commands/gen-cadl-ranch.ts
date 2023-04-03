@@ -4,15 +4,19 @@ import pkg from "chalk";
 const { bold } = pkg;
 const logError = (str: string) => console.error(bold.red(str));
 
-async function generateCadls() {
+async function generateCadls(isDebugging = false) {
   const list = cadls;
   for (const cadl of list) {
+    if (isDebugging === true && cadl.debug !== true) {
+      continue;
+    }
     await runTypespec(cadl);
   }
 }
 
 async function main() {
-  await generateCadls();
+  const isDebugging = process.argv.indexOf("--debug") !== -1;
+  await generateCadls(isDebugging);
 }
 
 main().catch((error) => {
