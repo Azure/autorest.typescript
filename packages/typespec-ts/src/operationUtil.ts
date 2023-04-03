@@ -2,13 +2,7 @@
 // Licensed under the MIT License.
 
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import {
-  DecoratedType,
-  ignoreDiagnostics,
-  Model,
-  Program,
-  Type
-} from "@typespec/compiler";
+import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
