@@ -16,6 +16,7 @@ import {
   StatusCode
 } from "@typespec/http";
 import {
+  getLroMetadata,
   getPagedResult,
   PagedResultMetadata
 } from "@azure-tools/typespec-azure-core";
@@ -82,27 +83,7 @@ export function isLongRunningOperation(
   program: Program,
   operation: HttpOperation
 ) {
-  program;
-  for (const resp of operation.responses) {
-    if (!resp.responses || !resp.responses.length) {
-      continue;
-    }
-    if (hasDecorator(operation.operation, "$pollingOperation")) {
-      return true;
-    }
-    for (const unit of resp.responses) {
-      for (const [_, header] of Object.entries(unit.headers!)) {
-        if (hasDecorator(header, "$pollingLocation")) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
-
-function hasDecorator(type: DecoratedType, name: string): boolean {
-  return type.decorators.find((it) => it.decorator.name === name) !== undefined;
+  return !!getLroMetadata(program, operation.operation);
 }
 
 export function hasPollingOperations(

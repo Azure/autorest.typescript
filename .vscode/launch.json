@@ -92,7 +92,7 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "[TypeSpec] Generate integration code",
+      "name": "[TypeSpec] Debug generate integration code",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [

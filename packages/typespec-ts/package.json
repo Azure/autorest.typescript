@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "@typespec/compiler": "~0.42.0",
-    "@azure-tools/typespec-azure-core": "~0.28.0",
+    "@azure-tools/typespec-azure-core": "~0.28.1",
     "@typespec/rest": "~0.42.0",
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
