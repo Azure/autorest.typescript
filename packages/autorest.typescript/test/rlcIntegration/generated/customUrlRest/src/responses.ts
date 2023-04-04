@@ -7,7 +7,6 @@ import { ErrorModelOutput } from "./outputModels";
 /** Get a 200 to test a valid base uri */
 export interface PathsGetEmpty200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Get a 200 to test a valid base uri */

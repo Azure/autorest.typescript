@@ -42,7 +42,6 @@ export interface BasicGetValidDefaultResponse extends HttpResponse {
 /** Please put {id: 2, name: 'abc', color: 'Magenta'} */
 export interface BasicPutValid200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Please put {id: 2, name: 'abc', color: 'Magenta'} */
@@ -114,7 +113,6 @@ export interface PrimitiveGetIntDefaultResponse extends HttpResponse {
 /** Put complex types with integer properties */
 export interface PrimitivePutInt200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with integer properties */
@@ -138,7 +136,6 @@ export interface PrimitiveGetLongDefaultResponse extends HttpResponse {
 /** Put complex types with long properties */
 export interface PrimitivePutLong200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with long properties */
@@ -162,7 +159,6 @@ export interface PrimitiveGetFloatDefaultResponse extends HttpResponse {
 /** Put complex types with float properties */
 export interface PrimitivePutFloat200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with float properties */
@@ -186,7 +182,6 @@ export interface PrimitiveGetDoubleDefaultResponse extends HttpResponse {
 /** Put complex types with double properties */
 export interface PrimitivePutDouble200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with double properties */
@@ -210,7 +205,6 @@ export interface PrimitiveGetBoolDefaultResponse extends HttpResponse {
 /** Put complex types with bool properties */
 export interface PrimitivePutBool200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with bool properties */
@@ -234,7 +228,6 @@ export interface PrimitiveGetStringDefaultResponse extends HttpResponse {
 /** Put complex types with string properties */
 export interface PrimitivePutString200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with string properties */
@@ -258,7 +251,6 @@ export interface PrimitiveGetDateDefaultResponse extends HttpResponse {
 /** Put complex types with date properties */
 export interface PrimitivePutDate200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with date properties */
@@ -282,7 +274,6 @@ export interface PrimitiveGetDateTimeDefaultResponse extends HttpResponse {
 /** Put complex types with datetime properties */
 export interface PrimitivePutDateTime200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with datetime properties */
@@ -307,7 +298,6 @@ export interface PrimitiveGetDateTimeRfc1123DefaultResponse
 /** Put complex types with datetimeRfc1123 properties */
 export interface PrimitivePutDateTimeRfc1123200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with datetimeRfc1123 properties */
@@ -332,7 +322,6 @@ export interface PrimitiveGetDurationDefaultResponse extends HttpResponse {
 /** Put complex types with duration properties */
 export interface PrimitivePutDuration200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with duration properties */
@@ -356,7 +345,6 @@ export interface PrimitiveGetByteDefaultResponse extends HttpResponse {
 /** Put complex types with byte properties */
 export interface PrimitivePutByte200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with byte properties */
@@ -380,7 +368,6 @@ export interface ArrayGetValidDefaultResponse extends HttpResponse {
 /** Put complex types with array property */
 export interface ArrayPutValid200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with array property */
@@ -404,7 +391,6 @@ export interface ArrayGetEmptyDefaultResponse extends HttpResponse {
 /** Put complex types with array property which is empty */
 export interface ArrayPutEmpty200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with array property which is empty */
@@ -440,7 +426,6 @@ export interface DictionaryGetValidDefaultResponse extends HttpResponse {
 /** Put complex types with dictionary property */
 export interface DictionaryPutValid200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with dictionary property */
@@ -464,7 +449,6 @@ export interface DictionaryGetEmptyDefaultResponse extends HttpResponse {
 /** Put complex types with dictionary property which is empty */
 export interface DictionaryPutEmpty200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types with dictionary property which is empty */
@@ -512,7 +496,6 @@ export interface InheritanceGetValidDefaultResponse extends HttpResponse {
 /** Put complex types that extend others */
 export interface InheritancePutValid200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types that extend others */
@@ -536,7 +519,6 @@ export interface PolymorphismGetValidDefaultResponse extends HttpResponse {
 /** Put complex types that are polymorphic */
 export interface PolymorphismPutValid200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types that are polymorphic */
@@ -601,7 +583,6 @@ export interface PolymorphismGetComplicatedDefaultResponse
 /** Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
 export interface PolymorphismPutComplicated200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
@@ -629,7 +610,6 @@ export interface PolymorphismPutMissingDiscriminatorDefaultResponse
 export interface PolymorphismPutValidMissingRequired200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client */
@@ -655,7 +635,6 @@ export interface PolymorphicrecursiveGetValidDefaultResponse
 /** Put complex types that are polymorphic and have recursive references */
 export interface PolymorphicrecursivePutValid200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types that are polymorphic and have recursive references */
@@ -680,7 +659,6 @@ export interface ReadonlypropertyGetValidDefaultResponse extends HttpResponse {
 /** Put complex types that have readonly properties */
 export interface ReadonlypropertyPutValid200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put complex types that have readonly properties */

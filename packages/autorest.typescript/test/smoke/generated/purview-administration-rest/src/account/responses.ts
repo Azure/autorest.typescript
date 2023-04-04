@@ -95,7 +95,6 @@ export interface CollectionsCreateOrUpdateCollectionDefaultResponse
 /** Deletes a Collection entity. */
 export interface CollectionsDeleteCollection204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Collection entity. */
@@ -177,14 +176,12 @@ export interface ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse
 export interface ResourceSetRulesDeleteResourceSetRule200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a ResourceSetRuleConfig resource. */
 export interface ResourceSetRulesDeleteResourceSetRule204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a ResourceSetRuleConfig resource. */

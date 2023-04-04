@@ -4,7 +4,11 @@ import Paging, {
   PagingClient,
   paginate,
   getLongRunningPoller,
-  isUnexpected
+  isUnexpected,
+  PagingGetNullNextLinkNamePages200Response,
+  PagingGetWithQueryParams200Response,
+  PagingGetMultiplePagesLRO202Response,
+  PagingGetMultiplePagesFragmentNextLink200Response
 } from "./generated/pagingRest/src";
 
 describe("Integration tests for Paging Rest Client", () => {
@@ -26,7 +30,6 @@ describe("Integration tests for Paging Rest Client", () => {
       if (isUnexpected(initialResponse)) {
         const error = `Unexpected status code ${initialResponse.status}`;
         assert.fail(error);
-        throw error;
       }
 
       const iter = paginate(client, initialResponse);
@@ -42,6 +45,10 @@ describe("Integration tests for Paging Rest Client", () => {
   describe("#getNoItemNamePages", () => {
     it("should return result of the default 'value' node", async () => {
       const initialResponse = await client.path("/paging/noitemname").get();
+      if (isUnexpected(initialResponse)) {
+        const error = `Unexpected status code ${initialResponse.status}`;
+        assert.fail(error);
+      }
       const iter = paginate(client, initialResponse);
 
       const items: ProductOutput[] = [];
@@ -68,7 +75,14 @@ describe("Integration tests for Paging Rest Client", () => {
         }
       ];
       const response = await client.path("/paging/nullnextlink").get();
-      assert.deepEqual(response.body.values, expected);
+      if (isUnexpected(response)) {
+        const error = `Unexpected status code ${response.status}`;
+        assert.fail(error);
+      }
+      assert.deepEqual(
+        (response as PagingGetNullNextLinkNamePages200Response).body.values,
+        expected
+      );
     });
   });
 
@@ -98,15 +112,19 @@ describe("Integration tests for Paging Rest Client", () => {
       if (isUnexpected(response)) {
         const error = `Unexpected status code ${response.status}`;
         assert.fail(error);
-        throw error;
       }
 
-      const items: ProductOutput[] = response.body.values || [];
+      const items: ProductOutput[] =
+        (response as PagingGetWithQueryParams200Response).body.values || [];
 
       const nextResponse = await client
         .path("/paging/multiple/nextOperationWithQueryParams")
         .get({ queryParameters: { queryConstant: true } });
 
+      if (isUnexpected(nextResponse)) {
+        const error = `Unexpected status code ${nextResponse.status}`;
+        assert.fail(error);
+      }
       const iter = paginate(client, nextResponse);
 
       for await (const item of iter) {
@@ -122,8 +140,15 @@ describe("Integration tests for Paging Rest Client", () => {
       let response = await client.path("/paging/multiple/odata").get();
       let index = 1;
       let items: ProductOutput[] = [];
+      if (isUnexpected(response)) {
+        const error = `Unexpected status code ${response.status}`;
+        assert.fail(error);
+      }
 
-      const iter = paginate(client, response);
+      const iter = paginate(
+        client,
+        response as PagingGetWithQueryParams200Response
+      );
 
       for await (const item of iter) {
         assert.equal(item.properties?.id, index);
@@ -177,7 +202,10 @@ describe("Integration tests for Paging Rest Client", () => {
     it("succeeds", async () => {
       let response = await client.path("/paging/multiple").get();
 
-      const iter = paginate(client, response);
+      const iter = paginate(
+        client,
+        response as PagingGetWithQueryParams200Response
+      );
 
       let index = 1;
       let items: ProductOutput[] = [];
@@ -230,34 +258,41 @@ describe("Integration tests for Paging Rest Client", () => {
       const initialResponse = await client
         .path("/paging/multiple/fragment/{tenant}", tenant)
         .get({ queryParameters: { api_version: "1.6" } });
-
+      if (isUnexpected(initialResponse)) {
+        const error = `Unexpected status code ${initialResponse.status}`;
+        assert.fail(error);
+      }
       let firstRun = true;
-      const iter = paginate(client, initialResponse, {
-        customGetPage: async pageLink => {
-          const result = firstRun
-            ? initialResponse
-            : await client
-                .path(
-                  "/paging/multiple/fragment/{tenant}/{nextLink}",
-                  tenant,
-                  pageLink
-                )
-                .get({
-                  queryParameters: { api_version: "1.6" },
-                  skipUrlEncoding: true
-                });
-          firstRun = false;
-          if (isUnexpected(result)) {
-            throw new Error("Unexpected status code");
+      const iter = paginate(
+        client,
+        initialResponse as PagingGetMultiplePagesFragmentNextLink200Response,
+        {
+          customGetPage: async pageLink => {
+            const result = firstRun
+              ? (initialResponse as PagingGetMultiplePagesFragmentNextLink200Response)
+              : await client
+                  .path(
+                    "/paging/multiple/fragment/{tenant}/{nextLink}",
+                    tenant,
+                    pageLink
+                  )
+                  .get({
+                    queryParameters: { api_version: "1.6" },
+                    skipUrlEncoding: true
+                  });
+            firstRun = false;
+            const nextLink = (result as PagingGetMultiplePagesFragmentNextLink200Response)
+              .body["odata.nextLink"];
+            const values =
+              (result as PagingGetMultiplePagesFragmentNextLink200Response)
+                .body["values"] ?? [];
+            return {
+              page: values,
+              nextPageLink: nextLink
+            };
           }
-          const nextLink = result.body["odata.nextLink"];
-          const values = result.body["values"] ?? [];
-          return {
-            page: values,
-            nextPageLink: nextLink
-          };
         }
-      });
+      );
 
       let index = 0;
       let items: ProductOutput[] = [];
@@ -293,27 +328,37 @@ describe("Integration tests for Paging Rest Client", () => {
         .get({
           queryParameters: { requiredQueryParameter: 100, queryConstant: true }
         });
-
+      if (isUnexpected(initialResponse)) {
+        const error = `Unexpected status code ${initialResponse.status}`;
+        assert.fail(error);
+      }
       let firstRun = true;
-      const iter = paginate(client, initialResponse, {
-        customGetPage: async pageLink => {
-          const result = firstRun
-            ? initialResponse
-            : await client
-                .path("/paging/multiple/nextOperationWithQueryParams")
-                .get({ queryParameters: { queryConstant: true } });
-          firstRun = false;
-          if (isUnexpected(result)) {
-            throw new Error("Unexpected status code");
+      const iter = paginate(
+        client,
+        initialResponse as PagingGetWithQueryParams200Response,
+        {
+          customGetPage: async pageLink => {
+            const result = firstRun
+              ? initialResponse
+              : await client
+                  .path("/paging/multiple/nextOperationWithQueryParams")
+                  .get({ queryParameters: { queryConstant: true } });
+            firstRun = false;
+            if (isUnexpected(result)) {
+              throw new Error("Unexpected status code");
+            }
+            const nextLink = (result as PagingGetWithQueryParams200Response)
+              .body["nextLink"];
+            const values =
+              (result as PagingGetWithQueryParams200Response).body["values"] ??
+              [];
+            return {
+              page: values,
+              nextPageLink: nextLink
+            };
           }
-          const nextLink = result.body["nextLink"];
-          const values = result.body["values"] ?? [];
-          return {
-            page: values,
-            nextPageLink: nextLink
-          };
         }
-      });
+      );
 
       for await (const item of iter) {
         items.push(item);
@@ -328,7 +373,10 @@ describe("Integration tests for Paging Rest Client", () => {
       let response = await client
         .path("/paging/multiple/withpath/{offset}", 100)
         .get();
-
+      if (isUnexpected(response)) {
+        const error = `Unexpected status code ${response.status}`;
+        assert.fail(error);
+      }
       const iter = paginate(client, response);
 
       let items: ProductOutput[] = [];
@@ -346,13 +394,19 @@ describe("Integration tests for Paging Rest Client", () => {
   describe("#getMultiplePagesLRO", () => {
     it("succeeds and gets 10 pages", async () => {
       const initialResponse = await client.path("/paging/multiple/lro").post();
-
+      if (isUnexpected(initialResponse)) {
+        const error = `Unexpected status code ${initialResponse.status}`;
+        assert.fail(error);
+      }
       const poller = await getLongRunningPoller(client, initialResponse, {
         intervalInMs: 0
       });
 
       const pagingResult = await poller.pollUntilDone();
-      const iter = paginate(client, pagingResult);
+      const iter = paginate(
+        client,
+        pagingResult as PagingGetMultiplePagesLRO202Response
+      );
 
       let index = 0;
       let items: ProductOutput[] = [];

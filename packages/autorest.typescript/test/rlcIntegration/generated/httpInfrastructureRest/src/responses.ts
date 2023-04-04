@@ -38,7 +38,6 @@ export interface HttpFailureGetNoModelEmpty200Response extends HttpResponse {
 /** Return 200 status code if successful */
 export interface HttpSuccessHead200200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 200 status code if successful */
@@ -74,7 +73,6 @@ export interface HttpSuccessOptions200DefaultResponse extends HttpResponse {
 /** Put boolean value true returning 200 success */
 export interface HttpSuccessPut200200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put boolean value true returning 200 success */
@@ -86,7 +84,6 @@ export interface HttpSuccessPut200DefaultResponse extends HttpResponse {
 /** Patch true Boolean value in request returning 200 */
 export interface HttpSuccessPatch200200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Patch true Boolean value in request returning 200 */
@@ -98,7 +95,6 @@ export interface HttpSuccessPatch200DefaultResponse extends HttpResponse {
 /** Post bollean value true in request that returns a 200 */
 export interface HttpSuccessPost200200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Post bollean value true in request that returns a 200 */
@@ -110,7 +106,6 @@ export interface HttpSuccessPost200DefaultResponse extends HttpResponse {
 /** Delete simple boolean value true returns 200 */
 export interface HttpSuccessDelete200200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Delete simple boolean value true returns 200 */
@@ -122,7 +117,6 @@ export interface HttpSuccessDelete200DefaultResponse extends HttpResponse {
 /** Put true Boolean value in request returns 201 */
 export interface HttpSuccessPut201201Response extends HttpResponse {
   status: "201";
-  body: Record<string, unknown>;
 }
 
 /** Put true Boolean value in request returns 201 */
@@ -134,7 +128,6 @@ export interface HttpSuccessPut201DefaultResponse extends HttpResponse {
 /** Post true Boolean value in request returns 201 (Created) */
 export interface HttpSuccessPost201201Response extends HttpResponse {
   status: "201";
-  body: Record<string, unknown>;
 }
 
 /** Post true Boolean value in request returns 201 (Created) */
@@ -146,7 +139,6 @@ export interface HttpSuccessPost201DefaultResponse extends HttpResponse {
 /** Put true Boolean value in request returns 202 (Accepted) */
 export interface HttpSuccessPut202202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Put true Boolean value in request returns 202 (Accepted) */
@@ -158,7 +150,6 @@ export interface HttpSuccessPut202DefaultResponse extends HttpResponse {
 /** Patch true Boolean value in request returns 202 */
 export interface HttpSuccessPatch202202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Patch true Boolean value in request returns 202 */
@@ -170,7 +161,6 @@ export interface HttpSuccessPatch202DefaultResponse extends HttpResponse {
 /** Post true Boolean value in request returns 202 (Accepted) */
 export interface HttpSuccessPost202202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Post true Boolean value in request returns 202 (Accepted) */
@@ -182,7 +172,6 @@ export interface HttpSuccessPost202DefaultResponse extends HttpResponse {
 /** Delete true Boolean value in request returns 202 (accepted) */
 export interface HttpSuccessDelete202202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Delete true Boolean value in request returns 202 (accepted) */
@@ -194,7 +183,6 @@ export interface HttpSuccessDelete202DefaultResponse extends HttpResponse {
 /** Return 204 status code if successful */
 export interface HttpSuccessHead204204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Return 204 status code if successful */
@@ -206,7 +194,6 @@ export interface HttpSuccessHead204DefaultResponse extends HttpResponse {
 /** Put true Boolean value in request returns 204 (no content) */
 export interface HttpSuccessPut204204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Put true Boolean value in request returns 204 (no content) */
@@ -218,7 +205,6 @@ export interface HttpSuccessPut204DefaultResponse extends HttpResponse {
 /** Patch true Boolean value in request returns 204 (no content) */
 export interface HttpSuccessPatch204204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Patch true Boolean value in request returns 204 (no content) */
@@ -230,7 +216,6 @@ export interface HttpSuccessPatch204DefaultResponse extends HttpResponse {
 /** Post true Boolean value in request returns 204 (no content) */
 export interface HttpSuccessPost204204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Post true Boolean value in request returns 204 (no content) */
@@ -242,7 +227,6 @@ export interface HttpSuccessPost204DefaultResponse extends HttpResponse {
 /** Delete true Boolean value in request returns 204 (no content) */
 export interface HttpSuccessDelete204204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Delete true Boolean value in request returns 204 (no content) */
@@ -254,13 +238,11 @@ export interface HttpSuccessDelete204DefaultResponse extends HttpResponse {
 /** Return 404 status code */
 export interface HttpSuccessHead404204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Return 404 status code */
 export interface HttpSuccessHead404404Response extends HttpResponse {
   status: "404";
-  body: Record<string, unknown>;
 }
 
 /** Return 404 status code */
@@ -272,7 +254,6 @@ export interface HttpSuccessHead404DefaultResponse extends HttpResponse {
 /** Return 300 status code and redirect to /http/success/200 */
 export interface HttpRedirectsHead300200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsHead300300Headers {
@@ -283,7 +264,6 @@ export interface HttpRedirectsHead300300Headers {
 /** Return 300 status code and redirect to /http/success/200 */
 export interface HttpRedirectsHead300300Response extends HttpResponse {
   status: "300";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsHead300300Headers;
 }
 
@@ -296,7 +276,6 @@ export interface HttpRedirectsHead300DefaultResponse extends HttpResponse {
 /** Return 300 status code and redirect to /http/success/200 */
 export interface HttpRedirectsGet300200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsGet300300Headers {
@@ -320,7 +299,6 @@ export interface HttpRedirectsGet300DefaultResponse extends HttpResponse {
 /** Return 301 status code and redirect to /http/success/200 */
 export interface HttpRedirectsHead301200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsHead301301Headers {
@@ -331,7 +309,6 @@ export interface HttpRedirectsHead301301Headers {
 /** Return 301 status code and redirect to /http/success/200 */
 export interface HttpRedirectsHead301301Response extends HttpResponse {
   status: "301";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsHead301301Headers;
 }
 
@@ -344,7 +321,6 @@ export interface HttpRedirectsHead301DefaultResponse extends HttpResponse {
 /** Return 301 status code and redirect to /http/success/200 */
 export interface HttpRedirectsGet301200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsGet301301Headers {
@@ -355,7 +331,6 @@ export interface HttpRedirectsGet301301Headers {
 /** Return 301 status code and redirect to /http/success/200 */
 export interface HttpRedirectsGet301301Response extends HttpResponse {
   status: "301";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsGet301301Headers;
 }
 
@@ -373,7 +348,6 @@ export interface HttpRedirectsPut301301Headers {
 /** Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation */
 export interface HttpRedirectsPut301301Response extends HttpResponse {
   status: "301";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsPut301301Headers;
 }
 
@@ -386,7 +360,6 @@ export interface HttpRedirectsPut301DefaultResponse extends HttpResponse {
 /** Return 302 status code and redirect to /http/success/200 */
 export interface HttpRedirectsHead302200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsHead302302Headers {
@@ -397,7 +370,6 @@ export interface HttpRedirectsHead302302Headers {
 /** Return 302 status code and redirect to /http/success/200 */
 export interface HttpRedirectsHead302302Response extends HttpResponse {
   status: "302";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsHead302302Headers;
 }
 
@@ -410,7 +382,6 @@ export interface HttpRedirectsHead302DefaultResponse extends HttpResponse {
 /** Return 302 status code and redirect to /http/success/200 */
 export interface HttpRedirectsGet302200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsGet302302Headers {
@@ -421,7 +392,6 @@ export interface HttpRedirectsGet302302Headers {
 /** Return 302 status code and redirect to /http/success/200 */
 export interface HttpRedirectsGet302302Response extends HttpResponse {
   status: "302";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsGet302302Headers;
 }
 
@@ -439,7 +409,6 @@ export interface HttpRedirectsPatch302302Headers {
 /** Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation */
 export interface HttpRedirectsPatch302302Response extends HttpResponse {
   status: "302";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsPatch302302Headers;
 }
 
@@ -452,7 +421,6 @@ export interface HttpRedirectsPatch302DefaultResponse extends HttpResponse {
 /** Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code */
 export interface HttpRedirectsPost303200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsPost303303Headers {
@@ -463,7 +431,6 @@ export interface HttpRedirectsPost303303Headers {
 /** Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code */
 export interface HttpRedirectsPost303303Response extends HttpResponse {
   status: "303";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsPost303303Headers;
 }
 
@@ -476,7 +443,6 @@ export interface HttpRedirectsPost303DefaultResponse extends HttpResponse {
 /** Redirect with 307, resulting in a 200 success */
 export interface HttpRedirectsHead307200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsHead307307Headers {
@@ -487,7 +453,6 @@ export interface HttpRedirectsHead307307Headers {
 /** Redirect with 307, resulting in a 200 success */
 export interface HttpRedirectsHead307307Response extends HttpResponse {
   status: "307";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsHead307307Headers;
 }
 
@@ -500,7 +465,6 @@ export interface HttpRedirectsHead307DefaultResponse extends HttpResponse {
 /** Redirect get with 307, resulting in a 200 success */
 export interface HttpRedirectsGet307200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsGet307307Headers {
@@ -511,7 +475,6 @@ export interface HttpRedirectsGet307307Headers {
 /** Redirect get with 307, resulting in a 200 success */
 export interface HttpRedirectsGet307307Response extends HttpResponse {
   status: "307";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsGet307307Headers;
 }
 
@@ -524,7 +487,6 @@ export interface HttpRedirectsGet307DefaultResponse extends HttpResponse {
 /** options redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsOptions307200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsOptions307307Headers {
@@ -535,7 +497,6 @@ export interface HttpRedirectsOptions307307Headers {
 /** options redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsOptions307307Response extends HttpResponse {
   status: "307";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsOptions307307Headers;
 }
 
@@ -548,7 +509,6 @@ export interface HttpRedirectsOptions307DefaultResponse extends HttpResponse {
 /** Put redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsPut307200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsPut307307Headers {
@@ -559,7 +519,6 @@ export interface HttpRedirectsPut307307Headers {
 /** Put redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsPut307307Response extends HttpResponse {
   status: "307";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsPut307307Headers;
 }
 
@@ -572,7 +531,6 @@ export interface HttpRedirectsPut307DefaultResponse extends HttpResponse {
 /** Patch redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsPatch307200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsPatch307307Headers {
@@ -583,7 +541,6 @@ export interface HttpRedirectsPatch307307Headers {
 /** Patch redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsPatch307307Response extends HttpResponse {
   status: "307";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsPatch307307Headers;
 }
 
@@ -596,7 +553,6 @@ export interface HttpRedirectsPatch307DefaultResponse extends HttpResponse {
 /** Post redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsPost307200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsPost307307Headers {
@@ -607,7 +563,6 @@ export interface HttpRedirectsPost307307Headers {
 /** Post redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsPost307307Response extends HttpResponse {
   status: "307";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsPost307307Headers;
 }
 
@@ -620,7 +575,6 @@ export interface HttpRedirectsPost307DefaultResponse extends HttpResponse {
 /** Delete redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsDelete307200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 export interface HttpRedirectsDelete307307Headers {
@@ -631,7 +585,6 @@ export interface HttpRedirectsDelete307307Headers {
 /** Delete redirected with 307, resulting in a 200 after redirect */
 export interface HttpRedirectsDelete307307Response extends HttpResponse {
   status: "307";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & HttpRedirectsDelete307307Headers;
 }
 
@@ -831,7 +784,6 @@ export interface HttpServerFailureDelete505DefaultResponse
 /** Return 408 status code, then 200 after retry */
 export interface HttpRetryHead408200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 408 status code, then 200 after retry */
@@ -843,7 +795,6 @@ export interface HttpRetryHead408DefaultResponse extends HttpResponse {
 /** Return 500 status code, then 200 after retry */
 export interface HttpRetryPut500200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 500 status code, then 200 after retry */
@@ -855,7 +806,6 @@ export interface HttpRetryPut500DefaultResponse extends HttpResponse {
 /** Return 500 status code, then 200 after retry */
 export interface HttpRetryPatch500200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 500 status code, then 200 after retry */
@@ -867,7 +817,6 @@ export interface HttpRetryPatch500DefaultResponse extends HttpResponse {
 /** Return 502 status code, then 200 after retry */
 export interface HttpRetryGet502200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 502 status code, then 200 after retry */
@@ -891,7 +840,6 @@ export interface HttpRetryOptions502DefaultResponse extends HttpResponse {
 /** Return 503 status code, then 200 after retry */
 export interface HttpRetryPost503200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 503 status code, then 200 after retry */
@@ -903,7 +851,6 @@ export interface HttpRetryPost503DefaultResponse extends HttpResponse {
 /** Return 503 status code, then 200 after retry */
 export interface HttpRetryDelete503200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 503 status code, then 200 after retry */
@@ -915,7 +862,6 @@ export interface HttpRetryDelete503DefaultResponse extends HttpResponse {
 /** Return 504 status code, then 200 after retry */
 export interface HttpRetryPut504200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 504 status code, then 200 after retry */
@@ -927,7 +873,6 @@ export interface HttpRetryPut504DefaultResponse extends HttpResponse {
 /** Return 504 status code, then 200 after retry */
 export interface HttpRetryPatch504200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Return 504 status code, then 200 after retry */
@@ -947,7 +892,6 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError200Valid200Re
 export interface MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
@@ -968,7 +912,6 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError204Valid200Re
 export interface MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 204 response with no payload */
@@ -989,7 +932,6 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError201Invalid200
 export interface MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 201 response with valid payload: {'statusCode': '201'} */
@@ -1010,7 +952,6 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError202None200Res
 export interface MultipleResponsesGet200Model204NoModelDefaultError202None204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 202 response with no payload: */
@@ -1031,7 +972,6 @@ export interface MultipleResponsesGet200Model204NoModelDefaultError400Valid200Re
 export interface MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'} */
@@ -1220,14 +1160,12 @@ export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400V
 export interface MultipleResponsesGet202None204NoneDefaultError202None202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Send a 202 response with no payload */
 export interface MultipleResponsesGet202None204NoneDefaultError202None204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 202 response with no payload */
@@ -1241,14 +1179,12 @@ export interface MultipleResponsesGet202None204NoneDefaultError202NoneDefaultRes
 export interface MultipleResponsesGet202None204NoneDefaultError204None202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Send a 204 response with no payload */
 export interface MultipleResponsesGet202None204NoneDefaultError204None204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 204 response with no payload */
@@ -1262,14 +1198,12 @@ export interface MultipleResponsesGet202None204NoneDefaultError204NoneDefaultRes
 export interface MultipleResponsesGet202None204NoneDefaultError400Valid202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
 export interface MultipleResponsesGet202None204NoneDefaultError400Valid204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
@@ -1283,84 +1217,72 @@ export interface MultipleResponsesGet202None204NoneDefaultError400ValidDefaultRe
 export interface MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Send a 202 response with an unexpected payload {'property': 'value'} */
 export interface MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 202 response with an unexpected payload {'property': 'value'} */
 export interface MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse
   extends HttpResponse {
   status: string;
-  body: Record<string, unknown>;
 }
 
 /** Send a 204 response with no payload */
 export interface MultipleResponsesGet202None204NoneDefaultNone204None202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Send a 204 response with no payload */
 export interface MultipleResponsesGet202None204NoneDefaultNone204None204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 204 response with no payload */
 export interface MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse
   extends HttpResponse {
   status: string;
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with no payload */
 export interface MultipleResponsesGet202None204NoneDefaultNone400None202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with no payload */
 export interface MultipleResponsesGet202None204NoneDefaultNone400None204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with no payload */
 export interface MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse
   extends HttpResponse {
   status: string;
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with an unexpected payload {'property': 'value'} */
 export interface MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with an unexpected payload {'property': 'value'} */
 export interface MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with an unexpected payload {'property': 'value'} */
 export interface MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse
   extends HttpResponse {
   status: string;
-  body: Record<string, unknown>;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
@@ -1381,7 +1303,6 @@ export interface MultipleResponsesGetDefaultModelA200None200Response
 export interface MultipleResponsesGetDefaultModelA400Valid200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with valid payload: {'statusCode': '400'} */
@@ -1395,7 +1316,6 @@ export interface MultipleResponsesGetDefaultModelA400ValidDefaultResponse
 export interface MultipleResponsesGetDefaultModelA400None200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with no payload */
@@ -1409,42 +1329,36 @@ export interface MultipleResponsesGetDefaultModelA400NoneDefaultResponse
 export interface MultipleResponsesGetDefaultNone200Invalid200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Send a 200 response with no payload */
 export interface MultipleResponsesGetDefaultNone200None200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with valid payload: {'statusCode': '400'} */
 export interface MultipleResponsesGetDefaultNone400Invalid200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with valid payload: {'statusCode': '400'} */
 export interface MultipleResponsesGetDefaultNone400InvalidDefaultResponse
   extends HttpResponse {
   status: string;
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with no payload */
 export interface MultipleResponsesGetDefaultNone400None200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Send a 400 response with no payload */
 export interface MultipleResponsesGetDefaultNone400NoneDefaultResponse
   extends HttpResponse {
   status: string;
-  body: Record<string, unknown>;
 }
 
 /** Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A */

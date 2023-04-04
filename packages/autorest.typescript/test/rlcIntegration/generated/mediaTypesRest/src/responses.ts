@@ -12,13 +12,11 @@ export interface AnalyzeBody200Response extends HttpResponse {
 /** Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type. */
 export interface AnalyzeBodyNoAcceptHeader202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type. */
 export interface AnalyzeBodyNoAcceptHeaderDefaultResponse extends HttpResponse {
   status: string;
-  body: Record<string, unknown>;
 }
 
 /** Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter */
