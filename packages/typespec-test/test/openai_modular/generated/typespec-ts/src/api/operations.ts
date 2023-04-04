@@ -66,11 +66,6 @@ export async function getEmbeddings(
 }
 
 export interface GetCompletionsOptions extends RequestOptions {
-  /**
-   * The prompts to generate completions from. Defaults to a single prompt of <|endoftext|> if not
-   * otherwise specified.
-   */
-  prompt?: string[];
   /** The maximum number of tokens to generate. */
   maxTokens?: number;
   /**
@@ -166,6 +161,7 @@ export interface GetCompletionsOptions extends RequestOptions {
  */
 export async function getCompletions(
   context: Client,
+  prompt: string[],
   deploymentId: string,
   options: GetCompletionsOptions = { requestOptions: {} }
 ): Promise<DeploymentCompletionsOptionsCompletions> {
@@ -178,7 +174,7 @@ export async function getCompletions(
         ...options.requestOptions?.headers,
       },
       body: {
-        ...(options.prompt && { prompt: options.prompt }),
+        prompt: prompt,
         ...(options.maxTokens && { max_tokens: options.maxTokens }),
         ...(options.temperature && { temperature: options.temperature }),
         ...(options.topP && { top_p: options.topP }),

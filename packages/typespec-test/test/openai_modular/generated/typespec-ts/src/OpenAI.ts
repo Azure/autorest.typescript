@@ -39,10 +39,11 @@ export class OpenAI {
   }
 
   getCompletions(
+    prompt: string[],
     deploymentId: string,
     options: GetCompletionsOptions = { requestOptions: {} }
   ): Promise<DeploymentCompletionsOptionsCompletions> {
-    return getCompletions(this._client, deploymentId, options);
+    return getCompletions(this._client, prompt, deploymentId, options);
   }
 
   getChatCompletions(

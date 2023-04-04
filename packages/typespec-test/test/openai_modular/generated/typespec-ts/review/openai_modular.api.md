@@ -82,7 +82,7 @@ export interface CompletionsOptions {
     model?: string;
     n?: number;
     presencePenalty?: number;
-    prompt?: string[];
+    prompt: string[];
     stop?: string[];
     stream?: boolean;
     temperature?: number;
@@ -162,7 +162,7 @@ export interface GetChatCompletionsOptions extends RequestOptions {
 }
 
 // @public
-export function getCompletions(context: OpenAIContext, deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
+export function getCompletions(context: OpenAIContext, prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends RequestOptions {
@@ -177,7 +177,6 @@ export interface GetCompletionsOptions extends RequestOptions {
     model?: string;
     n?: number;
     presencePenalty?: number;
-    prompt?: string[];
     stop?: string[];
     stream?: boolean;
     temperature?: number;
