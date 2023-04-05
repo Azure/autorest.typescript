@@ -82,7 +82,7 @@ export interface CompletionsOptions {
     model?: string;
     n?: number;
     presencePenalty?: number;
-    prompt: string[];
+    prompt?: string[] | string;
     stop?: string[];
     stream?: boolean;
     temperature?: number;
@@ -161,7 +161,7 @@ export interface GetChatCompletionsOptions extends RequestOptions {
 }
 
 // @public
-export function getCompletions(context: OpenAIContext, prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
+export function getCompletions(context: OpenAIContext, deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends RequestOptions {
@@ -176,6 +176,7 @@ export interface GetCompletionsOptions extends RequestOptions {
     model?: string;
     n?: number;
     presencePenalty?: number;
+    prompt?: string[] | string;
     stop?: string[];
     stream?: boolean;
     temperature?: number;
@@ -200,7 +201,7 @@ export class OpenAIClient {
     // (undocumented)
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<DeploymentChatCompletionsOptionsChatCompletions>;
     // (undocumented)
-    getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
+    getCompletions(deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
     // (undocumented)
     getEmbeddings(input: string | string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<DeploymentEmbeddingsOptionsEmbeddings>;
 }

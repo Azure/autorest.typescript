@@ -48,7 +48,7 @@ export interface CompletionsOptionsOutput {
    * The prompts to generate completions from. Defaults to a single prompt of <|endoftext|> if not
    * otherwise specified.
    */
-  prompt: string[];
+  prompt?: string[] | string;
   /** The maximum number of tokens to generate. */
   max_tokens?: number;
   /**

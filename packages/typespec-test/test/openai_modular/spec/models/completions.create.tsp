@@ -17,7 +17,7 @@ model CompletionsOptions {
     """)
     @projectedName("json", "prompt")
     @projectedName("csharp", "Prompts")
-    prompt: string[];
+    prompt?: string[] | string;
 
     @doc("The maximum number of tokens to generate.")
     @projectedName("json", "max_tokens")
