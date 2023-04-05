@@ -7,7 +7,7 @@ export function buildRootIndex(
   project: Project,
   srcPath: string
 ) {
-  const clientName = getClientName(client);
+  const clientName = `${getClientName(client)}Client`;
   const clientFile = project.getSourceFile(`${srcPath}/src/${clientName}.ts`);
 
   if (!clientFile) {
@@ -22,6 +22,7 @@ export function buildRootIndex(
 
   exportModels(file, srcPath);
   exportOptionsInterfaces(client, file, srcPath);
+  exportClassicalClient(client, file);
 
   file.addExportDeclarations([
     {
@@ -31,19 +32,27 @@ export function buildRootIndex(
   ]);
 }
 
+function exportClassicalClient(client: Client, indexFile: SourceFile) {
+  const clientName = `${getClientName(client)}Client`;
+  indexFile.addExportDeclaration({
+    namedExports: [clientName],
+    moduleSpecifier: `./${clientName}.js`
+  });
+}
+
 function exportOptionsInterfaces(
-  _client: Client,
+  client: Client,
   indexFile: SourceFile,
   srcPath: string
 ) {
-  // const clientName = getClientName(client);
+  const clientContextName = `${getClientName(client)}Context`;
   const project = indexFile.getProject();
   const files = project.getSourceFiles(`${srcPath}/src/api/**`);
 
   for (const file of files) {
-    // if (file.getBaseNameWithoutExtension() === clientName) {
-    //   continue;
-    // }
+    if (file.getBaseNameWithoutExtension() === clientContextName) {
+      continue;
+    }
 
     if (file.getBaseNameWithoutExtension() === "models") {
       continue;

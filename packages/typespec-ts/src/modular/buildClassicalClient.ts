@@ -20,19 +20,22 @@ export function buildClassicalClient(
   srcPath: string
 ) {
   const { description } = client;
-  const name = getClientName(client);
+  const modularClientName = getClientName(client);
+  const classicalClientname = `${getClientName(client)}Client`;
   const params = getClientParameters(client);
 
-  const clientFile = project.createSourceFile(`${srcPath}/src/${name}.ts`);
+  const clientFile = project.createSourceFile(
+    `${srcPath}/src/${classicalClientname}.ts`
+  );
   const clientClass = clientFile.addClass({
     isExported: true,
-    name: `${name}`
+    name: `${classicalClientname}`
   });
 
   // Add the private client member. This will be the client context from /api
   clientClass.addProperty({
     name: "_client",
-    type: `${name}Context`,
+    type: `${modularClientName}Context`,
     scope: Scope.Private
   });
 
@@ -42,7 +45,7 @@ export function buildClassicalClient(
     parameters: params
   });
   constructor.addStatements([
-    `this._client = create${name}(${(params ?? [])
+    `this._client = create${modularClientName}(${(params ?? [])
       .map((p) => p.name)
       .join(",")})`
   ]);

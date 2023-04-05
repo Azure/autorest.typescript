@@ -18,7 +18,7 @@ import {
   GetChatCompletionsOptions,
 } from "./api/index.js";
 
-export class OpenAI {
+export class OpenAIClient {
   private _client: OpenAIContext;
 
   /** Azure OpenAI APIs for completions and search */

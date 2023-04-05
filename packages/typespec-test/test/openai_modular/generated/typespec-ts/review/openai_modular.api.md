@@ -97,9 +97,6 @@ export interface CompletionsUsage {
     totalTokens: number;
 }
 
-// @public
-export function createOpenAI(endpoint: string, credential: AzureKeyCredential | TokenCredential, options?: ClientOptions): OpenAIContext;
-
 // @public (undocumented)
 export interface DeploymentChatCompletionsOptionsChatCompletions {
     choices?: ChatChoice[];
@@ -141,6 +138,8 @@ export interface EmbeddingsUsage {
     totalTokens: number;
 }
 
+// Warning: (ae-forgotten-export) The symbol "OpenAIContext" needs to be exported by the entry point index.d.ts
+//
 // @public
 export function getChatCompletions(context: OpenAIContext, messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<DeploymentChatCompletionsOptionsChatCompletions>;
 
@@ -196,9 +195,15 @@ export interface GetEmbeddingsOptions extends RequestOptions {
 }
 
 // @public (undocumented)
-export type OpenAIContext = Client & {
-    path: Routes;
-};
+export class OpenAIClient {
+    constructor(endpoint: string, credential: AzureKeyCredential | TokenCredential, options?: ClientOptions);
+    // (undocumented)
+    getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<DeploymentChatCompletionsOptionsChatCompletions>;
+    // (undocumented)
+    getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
+    // (undocumented)
+    getEmbeddings(input: string | string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<DeploymentEmbeddingsOptionsEmbeddings>;
+}
 
 // @public (undocumented)
 export interface RequestOptions {
@@ -211,10 +216,6 @@ export interface RequestOptions {
         skipUrlEncoding?: boolean;
     };
 }
-
-// Warnings were encountered during analysis:
-//
-// src/rest/clientDefinitions.ts:71:3 - (ae-forgotten-export) The symbol "Routes" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
