@@ -11,7 +11,7 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `AnomalyDetectorClient`
- * @param endpoint type: string, Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * @param endpoint type: string, Supported Azure Cognitive Services endpoints (protocol and host name, such as
  * https://westus2.api.cognitive.microsoft.com).
  * @param credentials type: KeyCredential, uniquely identify client credential
  * @param options type: AnomalyDetectorClientOptions, the parameter for all optional parameters
