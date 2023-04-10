@@ -247,6 +247,7 @@ describe("api-version", () => {
         assert.ok(models);
         assertEqualContent(models!.content, expectedRes);
       });
+      // promoted cases
     });
     describe("without default value", () => {
       // FIXME

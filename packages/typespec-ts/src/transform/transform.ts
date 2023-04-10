@@ -47,7 +47,7 @@ import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { isApiVersion } from "@azure-tools/typespec-client-generator-core";
 import { reportDiagnostic } from "../lib.js";
-import { transformApiVersionParam } from "./transformApiVersionParam.js";
+import { transformApiVersionInfo } from "./transformApiVersionParam.js";
 
 export async function transformRLCModel(
   program: Program,
@@ -80,11 +80,7 @@ export async function transformRLCModel(
   const importSet = new Map<ImportKind, Set<string>>();
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
-  const apiVersionInQueryParam = transformApiVersionParam(
-    client,
-    program,
-    dpgContext
-  );
+
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet,
@@ -99,6 +95,12 @@ export async function transformRLCModel(
   );
   const annotations = transformAnnotationDetails(program, client, dpgContext);
   const urlInfo = transformUrlInfo(program, dpgContext);
+  const apiVersionInfo = transformApiVersionInfo(
+    client,
+    program,
+    dpgContext,
+    urlInfo
+  );
   return {
     srcPath,
     libraryName,
@@ -107,7 +109,7 @@ export async function transformRLCModel(
     schemas,
     responses,
     importSet,
-    apiVersionInQueryParam,
+    apiVersionInfo,
     parameters,
     annotations,
     urlInfo
@@ -142,12 +144,7 @@ export function transformUrlInfo(
           type: getTypeName(schema),
           description:
             (getDoc(program, property) &&
-              getFormattedPropertyDoc(
-                program,
-                property,
-                schema,
-                " " /* sperator*/
-              )) ??
+              getFormattedPropertyDoc(program, property, schema, " ")) ??
             getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
           value: getDefaultValue(
             program,
