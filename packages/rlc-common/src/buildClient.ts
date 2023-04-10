@@ -224,7 +224,7 @@ function getClientFactoryBody(
   }
 
   let apiVersionStatement: string = "";
-  // Genereate only when we have a default value AND its position is query/none
+  // Set the default api-version when we have a default AND its position is query/none
   if (
     (model.apiVersionInfo?.definedPosition === "query" ||
       model.apiVersionInfo?.definedPosition === "none") &&
