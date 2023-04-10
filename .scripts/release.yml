@@ -67,7 +67,7 @@ stages:
                         npm publish $(TAR_NAME) --access public --tag latest
                         npm config delete //registry.npmjs.org/:_authToken
                       displayName: "Publish to NPM"
-      - stage: CadlTypescriptRelease
+      - stage: TypeSpecTSRelease
         displayName: "Release: @azure-tools/typespec-ts"
         dependsOn: ${{parameters.DependsOn}}
         jobs:
@@ -81,8 +81,8 @@ stages:
               vmImage: ${{ parameters.OSVmImage }}
 
             variables:
-              MAIN_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.MAIN_VERSION'] ]
-              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
+              MAIN_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackTypeSpecTSArtifacts.MAIN_VERSION'] ]
+              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackTypeSpecTSArtifacts.TAR_NAME'] ]
 
             strategy:
               runOnce:
@@ -100,7 +100,7 @@ stages:
                       displayName: "Publish @azure-tools/typespec-ts to GitHub"
           - deployment: PublishToNpm
             variables:
-              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
+              TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackTypeSpecTSArtifacts.TAR_NAME'] ]
             environment: npm
             displayName: Publish @azure-tools/typespec-ts to NPM
             condition: ne(variables['SetDevVersion'], 'true')
@@ -205,11 +205,11 @@ stages:
                     tree .
                     npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
                   displayName: "Publish @autorest/typescript to GitHub"
-      - deployment: PublishCadlTypescriptToGithub
+      - deployment: PublishTypeSpecTSToGithub
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
-          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
-          DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['SetCadlTypescriptDevVersion.DEV_VERSION'] ]
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackTypeSpecTSArtifacts.TAR_NAME'] ]
+          DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['SetTypeSpecTSDevVersion.DEV_VERSION'] ]
         environment: githubtsjssdk
         displayName: Publish @azure-tools/typespec-ts dev version to GitHub
         pool:
@@ -281,7 +281,7 @@ stages:
       - deployment: PublishCadlAutorestToNpm
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
-          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackCadlTypescriptArtifacts.TAR_NAME'] ]
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackTypeSpecTSArtifacts.TAR_NAME'] ]
         environment: npmtsjssdk
         displayName: Publish @azure-tools/cadl-autorest dev version to NPM
         pool:
