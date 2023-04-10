@@ -19,7 +19,6 @@ export interface StringGetNullDefaultResponse extends HttpResponse {
 /** Set string value null */
 export interface StringPutNull200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Set string value null */
@@ -43,7 +42,6 @@ export interface StringGetEmptyDefaultResponse extends HttpResponse {
 /** Set string value empty '' */
 export interface StringPutEmpty200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Set string value empty '' */
@@ -67,7 +65,6 @@ export interface StringGetMbcsDefaultResponse extends HttpResponse {
 /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
 export interface StringPutMbcs200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
@@ -91,7 +88,6 @@ export interface StringGetWhitespaceDefaultResponse extends HttpResponse {
 /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
 export interface StringPutWhitespace200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
@@ -141,7 +137,6 @@ export interface StringGetBase64UrlEncodedDefaultResponse extends HttpResponse {
 /** Put value that is base64url encoded */
 export interface StringPutBase64UrlEncoded200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Put value that is base64url encoded */
@@ -179,7 +174,6 @@ export interface EnumGetNotExpandableDefaultResponse extends HttpResponse {
 /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
 export interface EnumPutNotExpandable200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
@@ -203,7 +197,6 @@ export interface EnumGetReferencedDefaultResponse extends HttpResponse {
 /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
 export interface EnumPutReferenced200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
@@ -227,7 +220,6 @@ export interface EnumGetReferencedConstantDefaultResponse extends HttpResponse {
 /** Sends value 'green-color' from a constant */
 export interface EnumPutReferencedConstant200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Sends value 'green-color' from a constant */

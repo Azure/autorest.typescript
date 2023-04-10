@@ -135,8 +135,6 @@ export interface DeleteMultivariateModel {
 // @public
 export interface DeleteMultivariateModel204Response extends HttpResponse {
     // (undocumented)
-    body: Record<string, unknown>;
-    // (undocumented)
     status: "204";
 }
 

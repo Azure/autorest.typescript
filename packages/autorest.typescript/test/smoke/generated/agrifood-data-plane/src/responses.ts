@@ -103,7 +103,6 @@ export interface ApplicationDataCreateOrUpdateDefaultResponse
 /** Deletes a specified application data resource under a particular farmer. */
 export interface ApplicationDataDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified application data resource under a particular farmer. */
@@ -157,7 +156,6 @@ export interface AttachmentsCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes a specified attachment resource under a particular farmer. */
 export interface AttachmentsDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified attachment resource under a particular farmer. */
@@ -289,7 +287,6 @@ export interface BoundariesCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes a specified boundary resource under a particular farmer. */
 export interface BoundariesDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified boundary resource under a particular farmer. */
@@ -355,7 +352,6 @@ export interface CropsCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes Crop for given crop id. */
 export interface CropsDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes Crop for given crop id. */
@@ -422,7 +418,6 @@ export interface CropVarietiesCreateOrUpdateDefaultResponse
 /** Deletes a specified crop variety resource under a particular crop. */
 export interface CropVarietiesDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified crop variety resource under a particular crop. */
@@ -476,7 +471,6 @@ export interface FarmersCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes a specified farmer resource. */
 export interface FarmersDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified farmer resource. */
@@ -597,7 +591,6 @@ export interface FarmsCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes a specified farm resource under a particular farmer. */
 export interface FarmsDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified farm resource under a particular farmer. */
@@ -690,7 +683,6 @@ export interface FieldsCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes a specified field resource under a particular farmer. */
 export interface FieldsDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified field resource under a particular farmer. */
@@ -783,7 +775,6 @@ export interface HarvestDataCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes a specified harvest data resource under a particular farmer. */
 export interface HarvestDataDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified harvest data resource under a particular farmer. */
@@ -803,7 +794,6 @@ export interface ImageProcessingCreateRasterizeJob202Response
 export interface ImageProcessingCreateRasterizeJobDefaultResponse
   extends HttpResponse {
   status: string;
-  body: Record<string, unknown>;
 }
 
 /** Get ImageProcessing Rasterize job's details. */
@@ -859,7 +849,6 @@ export interface OAuthProvidersCreateOrUpdateDefaultResponse
 /** Deletes an specified oauthProvider resource. */
 export interface OAuthProvidersDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes an specified oauthProvider resource. */
@@ -981,7 +970,6 @@ export interface PlantingDataCreateOrUpdateDefaultResponse
 /** Deletes a specified planting data resource under a particular farmer. */
 export interface PlantingDataDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified planting data resource under a particular farmer. */
@@ -1102,7 +1090,6 @@ export interface SeasonalFieldsCreateOrUpdateDefaultResponse
 /** Deletes a specified seasonal-field resource under a particular farmer. */
 export interface SeasonalFieldsDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified seasonal-field resource under a particular farmer. */
@@ -1184,7 +1171,6 @@ export interface SeasonsCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes a specified season resource. */
 export interface SeasonsDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified season resource. */
@@ -1250,7 +1236,6 @@ export interface TillageDataCreateOrUpdateDefaultResponse extends HttpResponse {
 /** Deletes a specified tillage data resource under a particular farmer. */
 export interface TillageDataDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a specified tillage data resource under a particular farmer. */

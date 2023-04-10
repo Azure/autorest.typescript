@@ -76,7 +76,6 @@ export interface KqlScriptCreateOrUpdate200Response extends HttpResponse {
 /** Creates or updates a KQL Script */
 export interface KqlScriptCreateOrUpdate202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a KQL Script */
@@ -100,19 +99,16 @@ export interface KqlScriptGetByNameDefaultResponse extends HttpResponse {
 /** Delete KQL script by name */
 export interface KqlScriptDeleteByName200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Delete KQL script by name */
 export interface KqlScriptDeleteByName202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Delete KQL script by name */
 export interface KqlScriptDeleteByName204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Delete KQL script by name */
@@ -124,13 +120,11 @@ export interface KqlScriptDeleteByNameDefaultResponse extends HttpResponse {
 /** Rename KQL script */
 export interface KqlScriptRename200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Rename KQL script */
 export interface KqlScriptRename202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Rename KQL script */
@@ -180,7 +174,6 @@ export interface MetastoreUpdateDefaultResponse extends HttpResponse {
 /** Remove files in Syms */
 export interface MetastoreDelete204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Remove files in Syms */
@@ -214,7 +207,6 @@ export interface SparkConfigurationCreateOrUpdateSparkConfiguration200Response
 export interface SparkConfigurationCreateOrUpdateSparkConfiguration202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a sparkconfiguration. */
@@ -235,7 +227,6 @@ export interface SparkConfigurationGetSparkConfiguration200Response
 export interface SparkConfigurationGetSparkConfiguration304Response
   extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Gets a sparkConfiguration. */
@@ -249,21 +240,18 @@ export interface SparkConfigurationGetSparkConfigurationDefaultResponse
 export interface SparkConfigurationDeleteSparkConfiguration200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a sparkConfiguration. */
 export interface SparkConfigurationDeleteSparkConfiguration202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a sparkConfiguration. */
 export interface SparkConfigurationDeleteSparkConfiguration204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a sparkConfiguration. */
@@ -277,14 +265,12 @@ export interface SparkConfigurationDeleteSparkConfigurationDefaultResponse
 export interface SparkConfigurationRenameSparkConfiguration200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Renames a sparkConfiguration. */
 export interface SparkConfigurationRenameSparkConfiguration202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Renames a sparkConfiguration. */
@@ -329,7 +315,6 @@ export interface DataFlowCreateOrUpdateDataFlow200Response
 export interface DataFlowCreateOrUpdateDataFlow202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a data flow. */
@@ -354,19 +339,16 @@ export interface DataFlowGetDataFlowDefaultResponse extends HttpResponse {
 /** Deletes a data flow. */
 export interface DataFlowDeleteDataFlow200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a data flow. */
 export interface DataFlowDeleteDataFlow202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a data flow. */
 export interface DataFlowDeleteDataFlow204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a data flow. */
@@ -378,13 +360,11 @@ export interface DataFlowDeleteDataFlowDefaultResponse extends HttpResponse {
 /** Renames a dataflow. */
 export interface DataFlowRenameDataFlow200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Renames a dataflow. */
 export interface DataFlowRenameDataFlow202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Renames a dataflow. */
@@ -423,7 +403,6 @@ export interface DataFlowDebugSessionCreateDataFlowDebugSession202Headers {
 export interface DataFlowDebugSessionCreateDataFlowDebugSession202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders &
     DataFlowDebugSessionCreateDataFlowDebugSession202Headers;
 }
@@ -467,7 +446,6 @@ export interface DataFlowDebugSessionAddDataFlowDefaultResponse
 export interface DataFlowDebugSessionDeleteDataFlowDebugSession200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a data flow debug session. */
@@ -493,7 +471,6 @@ export interface DataFlowDebugSessionExecuteCommand202Headers {
 export interface DataFlowDebugSessionExecuteCommand202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & DataFlowDebugSessionExecuteCommand202Headers;
 }
 
@@ -526,7 +503,6 @@ export interface DatasetCreateOrUpdateDataset200Response extends HttpResponse {
 /** Creates or updates a dataset. */
 export interface DatasetCreateOrUpdateDataset202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a dataset. */
@@ -545,7 +521,6 @@ export interface DatasetGetDataset200Response extends HttpResponse {
 /** Gets a dataset. */
 export interface DatasetGetDataset304Response extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Gets a dataset. */
@@ -557,19 +532,16 @@ export interface DatasetGetDatasetDefaultResponse extends HttpResponse {
 /** Deletes a dataset. */
 export interface DatasetDeleteDataset200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a dataset. */
 export interface DatasetDeleteDataset202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a dataset. */
 export interface DatasetDeleteDataset204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a dataset. */
@@ -581,13 +553,11 @@ export interface DatasetDeleteDatasetDefaultResponse extends HttpResponse {
 /** Renames a dataset. */
 export interface DatasetRenameDataset200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Renames a dataset. */
 export interface DatasetRenameDataset202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Renames a dataset. */
@@ -642,7 +612,6 @@ export interface LibraryListDefaultResponse extends HttpResponse {
 /** Flush Library */
 export interface LibraryFlush200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Flush Library */
@@ -678,7 +647,6 @@ export interface LibraryGetOperationResultDefaultResponse extends HttpResponse {
 /** Delete Library */
 export interface LibraryDelete200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Delete Library */
@@ -690,7 +658,6 @@ export interface LibraryDelete202Response extends HttpResponse {
 /** Delete Library */
 export interface LibraryDelete409Response extends HttpResponse {
   status: "409";
-  body: Record<string, unknown>;
 }
 
 /** Delete Library */
@@ -708,7 +675,6 @@ export interface LibraryGet200Response extends HttpResponse {
 /** Get Library */
 export interface LibraryGet304Response extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Get Library */
@@ -720,7 +686,6 @@ export interface LibraryGetDefaultResponse extends HttpResponse {
 /** Creates a library with the library name. */
 export interface LibraryCreate200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Creates a library with the library name. */
@@ -738,7 +703,6 @@ export interface LibraryCreateDefaultResponse extends HttpResponse {
 /** Append the content to the library resource created using the create operation. The maximum content size is 4MiB. Content larger than 4MiB must be appended in 4MiB chunks */
 export interface LibraryAppend201Response extends HttpResponse {
   status: "201";
-  body: Record<string, unknown>;
 }
 
 /** Append the content to the library resource created using the create operation. The maximum content size is 4MiB. Content larger than 4MiB must be appended in 4MiB chunks */
@@ -772,7 +736,6 @@ export interface LinkedServiceCreateOrUpdateLinkedService200Response
 export interface LinkedServiceCreateOrUpdateLinkedService202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a linked service. */
@@ -791,7 +754,6 @@ export interface LinkedServiceGetLinkedService200Response extends HttpResponse {
 /** Gets a linked service. */
 export interface LinkedServiceGetLinkedService304Response extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Gets a linked service. */
@@ -805,21 +767,18 @@ export interface LinkedServiceGetLinkedServiceDefaultResponse
 export interface LinkedServiceDeleteLinkedService200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a linked service. */
 export interface LinkedServiceDeleteLinkedService202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a linked service. */
 export interface LinkedServiceDeleteLinkedService204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a linked service. */
@@ -833,14 +792,12 @@ export interface LinkedServiceDeleteLinkedServiceDefaultResponse
 export interface LinkedServiceRenameLinkedService200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Renames a linked service. */
 export interface LinkedServiceRenameLinkedService202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Renames a linked service. */
@@ -889,7 +846,6 @@ export interface NotebookCreateOrUpdateNotebook200Response
 export interface NotebookCreateOrUpdateNotebook202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a Note Book. */
@@ -908,7 +864,6 @@ export interface NotebookGetNotebook200Response extends HttpResponse {
 /** Gets a Note Book. */
 export interface NotebookGetNotebook304Response extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Gets a Note Book. */
@@ -920,19 +875,16 @@ export interface NotebookGetNotebookDefaultResponse extends HttpResponse {
 /** Deletes a Note book. */
 export interface NotebookDeleteNotebook200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Note book. */
 export interface NotebookDeleteNotebook202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Note book. */
 export interface NotebookDeleteNotebook204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Note book. */
@@ -944,13 +896,11 @@ export interface NotebookDeleteNotebookDefaultResponse extends HttpResponse {
 /** Renames a notebook. */
 export interface NotebookRenameNotebook200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Renames a notebook. */
 export interface NotebookRenameNotebook202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Renames a notebook. */
@@ -962,25 +912,21 @@ export interface NotebookRenameNotebookDefaultResponse extends HttpResponse {
 /** Get notebook operation result */
 export interface NotebookOperationResultGet200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Get notebook operation result */
 export interface NotebookOperationResultGet201Response extends HttpResponse {
   status: "201";
-  body: Record<string, unknown>;
 }
 
 /** Get notebook operation result */
 export interface NotebookOperationResultGet202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Get notebook operation result */
 export interface NotebookOperationResultGet204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Get notebook operation result */
@@ -1015,7 +961,6 @@ export interface PipelineCreateOrUpdatePipeline200Response
 export interface PipelineCreateOrUpdatePipeline202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a pipeline. */
@@ -1034,7 +979,6 @@ export interface PipelineGetPipeline200Response extends HttpResponse {
 /** Gets a pipeline. */
 export interface PipelineGetPipeline304Response extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Gets a pipeline. */
@@ -1046,19 +990,16 @@ export interface PipelineGetPipelineDefaultResponse extends HttpResponse {
 /** Deletes a pipeline. */
 export interface PipelineDeletePipeline200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a pipeline. */
 export interface PipelineDeletePipeline202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a pipeline. */
 export interface PipelineDeletePipeline204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a pipeline. */
@@ -1070,13 +1011,11 @@ export interface PipelineDeletePipelineDefaultResponse extends HttpResponse {
 /** Renames a pipeline. */
 export interface PipelineRenamePipeline200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Renames a pipeline. */
 export interface PipelineRenamePipeline202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Renames a pipeline. */
@@ -1139,7 +1078,6 @@ export interface PipelineRunQueryActivityRunsDefaultResponse
 /** Cancel a pipeline run by its run ID. */
 export interface PipelineRunCancelPipelineRun200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Cancel a pipeline run by its run ID. */
@@ -1174,7 +1112,6 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
 export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a Spark Job Definition. */
@@ -1195,7 +1132,6 @@ export interface SparkJobDefinitionGetSparkJobDefinition200Response
 export interface SparkJobDefinitionGetSparkJobDefinition304Response
   extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Gets a Spark Job Definition. */
@@ -1209,21 +1145,18 @@ export interface SparkJobDefinitionGetSparkJobDefinitionDefaultResponse
 export interface SparkJobDefinitionDeleteSparkJobDefinition200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Spark Job Definition. */
 export interface SparkJobDefinitionDeleteSparkJobDefinition202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Spark Job Definition. */
 export interface SparkJobDefinitionDeleteSparkJobDefinition204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Spark Job Definition. */
@@ -1258,14 +1191,12 @@ export interface SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse
 export interface SparkJobDefinitionRenameSparkJobDefinition200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Renames a sparkJobDefinition. */
 export interface SparkJobDefinitionRenameSparkJobDefinition202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Renames a sparkJobDefinition. */
@@ -1345,7 +1276,6 @@ export interface SqlScriptCreateOrUpdateSqlScript200Response
 export interface SqlScriptCreateOrUpdateSqlScript202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a Sql Script. */
@@ -1364,7 +1294,6 @@ export interface SqlScriptGetSqlScript200Response extends HttpResponse {
 /** Gets a sql script. */
 export interface SqlScriptGetSqlScript304Response extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Gets a sql script. */
@@ -1376,19 +1305,16 @@ export interface SqlScriptGetSqlScriptDefaultResponse extends HttpResponse {
 /** Deletes a Sql Script. */
 export interface SqlScriptDeleteSqlScript200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Sql Script. */
 export interface SqlScriptDeleteSqlScript202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Sql Script. */
 export interface SqlScriptDeleteSqlScript204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a Sql Script. */
@@ -1400,13 +1326,11 @@ export interface SqlScriptDeleteSqlScriptDefaultResponse extends HttpResponse {
 /** Renames a sqlScript. */
 export interface SqlScriptRenameSqlScript200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Renames a sqlScript. */
 export interface SqlScriptRenameSqlScript202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Renames a sqlScript. */
@@ -1437,7 +1361,6 @@ export interface TriggerCreateOrUpdateTrigger200Response extends HttpResponse {
 /** Creates or updates a trigger. */
 export interface TriggerCreateOrUpdateTrigger202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Creates or updates a trigger. */
@@ -1456,7 +1379,6 @@ export interface TriggerGetTrigger200Response extends HttpResponse {
 /** Gets a trigger. */
 export interface TriggerGetTrigger304Response extends HttpResponse {
   status: "304";
-  body: Record<string, unknown>;
 }
 
 /** Gets a trigger. */
@@ -1468,19 +1390,16 @@ export interface TriggerGetTriggerDefaultResponse extends HttpResponse {
 /** Deletes a trigger. */
 export interface TriggerDeleteTrigger200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a trigger. */
 export interface TriggerDeleteTrigger202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a trigger. */
 export interface TriggerDeleteTrigger204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Deletes a trigger. */
@@ -1500,7 +1419,6 @@ export interface TriggerSubscribeTriggerToEvents200Response
 export interface TriggerSubscribeTriggerToEvents202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Subscribe event trigger to events. */
@@ -1535,7 +1453,6 @@ export interface TriggerUnsubscribeTriggerFromEvents200Response
 export interface TriggerUnsubscribeTriggerFromEvents202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
 }
 
 /** Unsubscribe event trigger from events. */
@@ -1548,7 +1465,6 @@ export interface TriggerUnsubscribeTriggerFromEventsDefaultResponse
 /** Starts a trigger. */
 export interface TriggerStartTrigger200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Starts a trigger. */
@@ -1560,7 +1476,6 @@ export interface TriggerStartTriggerDefaultResponse extends HttpResponse {
 /** Stops a trigger. */
 export interface TriggerStopTrigger200Response extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Stops a trigger. */
@@ -1573,7 +1488,6 @@ export interface TriggerStopTriggerDefaultResponse extends HttpResponse {
 export interface TriggerRunRerunTriggerInstance200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Rerun single trigger instance by runId. */
@@ -1587,7 +1501,6 @@ export interface TriggerRunRerunTriggerInstanceDefaultResponse
 export interface TriggerRunCancelTriggerInstance200Response
   extends HttpResponse {
   status: "200";
-  body: Record<string, unknown>;
 }
 
 /** Cancel single trigger instance by runId. */

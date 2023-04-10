@@ -93,5 +93,13 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "unions",
     inputPath: "unions"
+  },
+  {
+    outputPath: "collectionFormat",
+    inputPath: "collectionFormat"
+  },
+  {
+    outputPath: "projection",
+    inputPath: "projection"
   }
 ];
