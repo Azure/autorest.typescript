@@ -249,7 +249,7 @@ describe("api-version", () => {
       });
     });
     describe("without default value", () => {
-      // FIXME ==> confirm with qiaoqiao
+      // FIXME
       it.skip("due to cross version", async () => {
         const def = buildQueryDefinition({
           "@service": true,

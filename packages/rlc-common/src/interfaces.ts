@@ -6,7 +6,7 @@ export interface RLCModel {
   paths: Paths;
   options?: RLCOptions;
   schemas: Schema[];
-  apiVersionInQueryParam?: Parameter;
+  apiVersionInfo?: ApiVersionInfo;
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
@@ -23,6 +23,12 @@ export interface UrlInfo {
   endpoint?: string;
   urlParameters?: PathParameter[];
   pathTemplateApiVersion?: PathTemplateApiVersion;
+}
+
+export interface ApiVersionInfo {
+  definedPosition: "path" | "query" | "both" | "none";
+  defaultValue?: string;
+  isCrossedVersion: boolean;
 }
 export interface AnnotationDetails {
   hasPaging?: boolean;
