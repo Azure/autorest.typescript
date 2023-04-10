@@ -19,7 +19,6 @@ export interface LROsPut200Succeeded200Response extends HttpResponse {
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
 export interface LROsPut200Succeeded204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
@@ -133,7 +132,6 @@ export interface LROsPost202List202Headers {
 /** Long running put request, service returns a 202 with empty body to first request, returns a 200 with body [{ 'id': '100', 'name': 'foo' }]. */
 export interface LROsPost202List202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsPost202List202Headers;
 }
 
@@ -499,7 +497,6 @@ export interface LROsDeleteProvisioning202Deletingcanceled200DefaultResponse
 /** Long running delete succeeds and returns right away */
 export interface LROsDelete204Succeeded204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Long running delete succeeds and returns right away */
@@ -524,7 +521,6 @@ export interface LROsDelete202Retry200202Headers {
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
 export interface LROsDelete202Retry200202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsDelete202Retry200202Headers;
 }
 
@@ -550,7 +546,6 @@ export interface LROsDelete202NoRetry204202Headers {
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
 export interface LROsDelete202NoRetry204202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsDelete202NoRetry204202Headers;
 }
 
@@ -568,14 +563,12 @@ export interface LROsDeleteNoHeaderInRetry202Headers {
 /** Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header. */
 export interface LROsDeleteNoHeaderInRetry202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsDeleteNoHeaderInRetry202Headers;
 }
 
 /** Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header. */
 export interface LROsDeleteNoHeaderInRetry204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header. */
@@ -593,7 +586,6 @@ export interface LROsDeleteAsyncNoHeaderInRetry202Headers {
 export interface LROsDeleteAsyncNoHeaderInRetry202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsDeleteAsyncNoHeaderInRetry202Headers;
 }
 
@@ -601,7 +593,6 @@ export interface LROsDeleteAsyncNoHeaderInRetry202Response
 export interface LROsDeleteAsyncNoHeaderInRetry204Response
   extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
@@ -623,7 +614,6 @@ export interface LROsDeleteAsyncRetrySucceeded202Headers {
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
 export interface LROsDeleteAsyncRetrySucceeded202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsDeleteAsyncRetrySucceeded202Headers;
 }
 
@@ -647,7 +637,6 @@ export interface LROsDeleteAsyncNoRetrySucceeded202Headers {
 export interface LROsDeleteAsyncNoRetrySucceeded202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsDeleteAsyncNoRetrySucceeded202Headers;
 }
 
@@ -670,7 +659,6 @@ export interface LROsDeleteAsyncRetryFailed202Headers {
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
 export interface LROsDeleteAsyncRetryFailed202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsDeleteAsyncRetryFailed202Headers;
 }
 
@@ -693,7 +681,6 @@ export interface LROsDeleteAsyncRetrycanceled202Headers {
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
 export interface LROsDeleteAsyncRetrycanceled202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsDeleteAsyncRetrycanceled202Headers;
 }
 
@@ -732,7 +719,6 @@ export interface LROsPost202Retry200202Headers {
 /** Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
 export interface LROsPost202Retry200202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsPost202Retry200202Headers;
 }
 
@@ -822,7 +808,6 @@ export interface LROsPostAsyncRetrySucceeded202Headers {
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
 export interface LROsPostAsyncRetrySucceeded202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsPostAsyncRetrySucceeded202Headers;
 }
 
@@ -851,7 +836,6 @@ export interface LROsPostAsyncNoRetrySucceeded202Headers {
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
 export interface LROsPostAsyncNoRetrySucceeded202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsPostAsyncNoRetrySucceeded202Headers;
 }
 
@@ -874,7 +858,6 @@ export interface LROsPostAsyncRetryFailed202Headers {
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
 export interface LROsPostAsyncRetryFailed202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsPostAsyncRetryFailed202Headers;
 }
 
@@ -896,7 +879,6 @@ export interface LROsPostAsyncRetrycanceled202Headers {
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
 export interface LROsPostAsyncRetrycanceled202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsPostAsyncRetrycanceled202Headers;
 }
 
@@ -992,7 +974,6 @@ export interface LRORetrysDelete202Retry200202Headers {
 /** Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
 export interface LRORetrysDelete202Retry200202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LRORetrysDelete202Retry200202Headers;
 }
 
@@ -1016,7 +997,6 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceeded202Headers {
 export interface LRORetrysDeleteAsyncRelativeRetrySucceeded202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders &
     LRORetrysDeleteAsyncRelativeRetrySucceeded202Headers;
 }
@@ -1038,7 +1018,6 @@ export interface LRORetrysPost202Retry200202Headers {
 /** Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
 export interface LRORetrysPost202Retry200202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LRORetrysPost202Retry200202Headers;
 }
 
@@ -1061,7 +1040,6 @@ export interface LRORetrysPostAsyncRelativeRetrySucceeded202Headers {
 export interface LRORetrysPostAsyncRelativeRetrySucceeded202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LRORetrysPostAsyncRelativeRetrySucceeded202Headers;
 }
 
@@ -1166,7 +1144,6 @@ export interface LrosaDsDeleteNonRetry400202Headers {
 /** Long running delete request, service returns a 400 with an error body */
 export interface LrosaDsDeleteNonRetry400202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsDeleteNonRetry400202Headers;
 }
 
@@ -1186,7 +1163,6 @@ export interface LrosaDsDelete202NonRetry400202Headers {
 /** Long running delete request, service returns a 202 with a location header */
 export interface LrosaDsDelete202NonRetry400202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsDelete202NonRetry400202Headers;
 }
 
@@ -1210,7 +1186,6 @@ export interface LrosaDsDeleteAsyncRelativeRetry400202Headers {
 export interface LrosaDsDeleteAsyncRelativeRetry400202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsDeleteAsyncRelativeRetry400202Headers;
 }
 
@@ -1231,7 +1206,6 @@ export interface LrosaDsPostNonRetry400202Headers {
 /** Long running post request, service returns a 400 with no error body */
 export interface LrosaDsPostNonRetry400202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsPostNonRetry400202Headers;
 }
 
@@ -1251,7 +1225,6 @@ export interface LrosaDsPost202NonRetry400202Headers {
 /** Long running post request, service returns a 202 with a location header */
 export interface LrosaDsPost202NonRetry400202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsPost202NonRetry400202Headers;
 }
 
@@ -1274,7 +1247,6 @@ export interface LrosaDsPostAsyncRelativeRetry400202Headers {
 export interface LrosaDsPostAsyncRelativeRetry400202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsPostAsyncRelativeRetry400202Headers;
 }
 
@@ -1358,7 +1330,6 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse
 /** Long running delete request, service returns a 204 to the initial request, indicating success. */
 export interface LrosaDsDelete204Succeeded204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Long running delete request, service returns a 204 to the initial request, indicating success. */
@@ -1380,7 +1351,6 @@ export interface LrosaDsDeleteAsyncRelativeRetryNoStatus202Headers {
 export interface LrosaDsDeleteAsyncRelativeRetryNoStatus202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsDeleteAsyncRelativeRetryNoStatus202Headers;
 }
 
@@ -1401,7 +1371,6 @@ export interface LrosaDsPost202NoLocation202Headers {
 /** Long running post request, service returns a 202 to the initial request, without a location header. */
 export interface LrosaDsPost202NoLocation202Response extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsPost202NoLocation202Headers;
 }
 
@@ -1424,7 +1393,6 @@ export interface LrosaDsPostAsyncRelativeRetryNoPayload202Headers {
 export interface LrosaDsPostAsyncRelativeRetryNoPayload202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsPostAsyncRelativeRetryNoPayload202Headers;
 }
 
@@ -1444,7 +1412,6 @@ export interface LrosaDsPut200InvalidJson200Response extends HttpResponse {
 /** Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json */
 export interface LrosaDsPut200InvalidJson204Response extends HttpResponse {
   status: "204";
-  body: Record<string, unknown>;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json */
@@ -1513,7 +1480,6 @@ export interface LrosaDsDelete202RetryInvalidHeader202Headers {
 export interface LrosaDsDelete202RetryInvalidHeader202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsDelete202RetryInvalidHeader202Headers;
 }
 
@@ -1537,7 +1503,6 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Headers {
 export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders &
     LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Headers;
 }
@@ -1562,7 +1527,6 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Headers {
 export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders &
     LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Headers;
 }
@@ -1585,7 +1549,6 @@ export interface LrosaDsPost202RetryInvalidHeader202Headers {
 export interface LrosaDsPost202RetryInvalidHeader202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LrosaDsPost202RetryInvalidHeader202Headers;
 }
 
@@ -1609,7 +1572,6 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidHeader202Headers {
 export interface LrosaDsPostAsyncRelativeRetryInvalidHeader202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders &
     LrosaDsPostAsyncRelativeRetryInvalidHeader202Headers;
 }
@@ -1634,7 +1596,6 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Headers {
 export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders &
     LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Headers;
 }
@@ -1702,7 +1663,6 @@ export interface LROsCustomHeaderPost202Retry200202Headers {
 export interface LROsCustomHeaderPost202Retry200202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsCustomHeaderPost202Retry200202Headers;
 }
 
@@ -1726,7 +1686,6 @@ export interface LROsCustomHeaderPostAsyncRetrySucceeded202Headers {
 export interface LROsCustomHeaderPostAsyncRetrySucceeded202Response
   extends HttpResponse {
   status: "202";
-  body: Record<string, unknown>;
   headers: RawHttpHeaders & LROsCustomHeaderPostAsyncRetrySucceeded202Headers;
 }
 

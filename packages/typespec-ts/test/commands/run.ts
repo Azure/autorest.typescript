@@ -21,7 +21,7 @@ export async function runTypespec(config: CadlRanchConfig) {
     "..",
     `./integration/generated/${targetFolder}`
   );
-  const typespecCommand = `cd ${outputPath} && tsp`;
+  const typespecCommand = `cd ${outputPath} && npx tsp`;
   const commandArguments: string[] = ["compile", `${typespecPath}`];
   const command = `${typespecCommand} ${commandArguments.join(" ")}`;
   console.log(command);
