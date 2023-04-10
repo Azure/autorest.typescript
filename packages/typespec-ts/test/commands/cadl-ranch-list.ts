@@ -91,5 +91,9 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "collectionFormat",
     inputPath: "collectionFormat"
+  },
+  {
+    outputPath: "projection",
+    inputPath: "projection"
   }
 ];
