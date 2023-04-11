@@ -9,7 +9,7 @@ import {
 import { ignoreDiagnostics, Program } from "@typespec/compiler";
 import { ApiVersionInfo, UrlInfo } from "@azure-tools/rlc-common";
 import { HttpOperationParameter, getHttpOperation } from "@typespec/http";
-import { getDefaultService, getDefaultValue } from "./transform.js";
+import { getDefaultService, predictDefaultValue } from "../modelUtils.js";
 
 export function transformApiVersionInfo(
   client: Client,
@@ -34,9 +34,7 @@ export function transformApiVersionInfo(
     pathVersionDetail
   );
   const isCrossedVersion =
-    definedPosition === "query"
-      ? Boolean(queryVersionDetail?.isCrossedVersion)
-      : false;
+    queryVersionDetail?.isCrossedVersion ?? pathVersionDetail?.isCrossedVersion;
   let defaultValue =
     definedDefault ??
     pathVersionDetail?.defaultValue ??
@@ -108,7 +106,7 @@ function getOperationQueryApiVersion(
         (p) =>
           p.type === "query" &&
           isApiVersion(dpgContext, p) &&
-          getDefaultValue(program, dpgContext, p.param)
+          predictDefaultValue(program, dpgContext, p.param)
       );
       if (
         apiVersions.length === 1 &&
@@ -122,8 +120,8 @@ function getOperationQueryApiVersion(
         break;
       } else if (
         apiVersions.length == 1 &&
-        getDefaultValue(program, dpgContext, apiVersions[0]?.param) !==
-          getDefaultValue(program, dpgContext, apiVersionParam?.param)
+        predictDefaultValue(program, dpgContext, apiVersions[0]?.param) !==
+          predictDefaultValue(program, dpgContext, apiVersionParam?.param)
       ) {
         hasClientApiVersion = false;
         break;
@@ -137,7 +135,7 @@ function getOperationQueryApiVersion(
       (p) =>
         p.type === "query" &&
         isApiVersion(dpgContext, p) &&
-        getDefaultValue(program, dpgContext, p.param)
+        predictDefaultValue(program, dpgContext, p.param)
     );
     if (apiVersions.length === 1 && !hasClientApiVersion && !apiVersionParam) {
       apiVersionParam = apiVersions[0];
@@ -147,8 +145,8 @@ function getOperationQueryApiVersion(
       break;
     } else if (
       apiVersions.length == 1 &&
-      getDefaultValue(program, dpgContext, apiVersions[0]?.param) !==
-        getDefaultValue(program, dpgContext, apiVersionParam?.param)
+      predictDefaultValue(program, dpgContext, apiVersions[0]?.param) !==
+        predictDefaultValue(program, dpgContext, apiVersionParam?.param)
     ) {
       hasClientApiVersion = false;
       break;
@@ -160,7 +158,7 @@ function getOperationQueryApiVersion(
   const detail: ApiVersionInfo = {
     definedPosition: "query",
     isCrossedVersion: !hasClientApiVersion,
-    defaultValue: getDefaultValue(
+    defaultValue: predictDefaultValue(
       program,
       dpgContext,
       apiVersionParam!.param

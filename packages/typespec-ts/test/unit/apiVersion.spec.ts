@@ -250,7 +250,6 @@ describe.only("api-version", () => {
       // promoted cases
     });
     describe("without default value", () => {
-      // FIXME
       it.only("due to cross version", async () => {
         const def = buildQueryDefinition({
           "@service": true,

@@ -11,8 +11,8 @@ import {
 } from "@azure-tools/rlc-common";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";
-import { getDefaultService } from "./transform.js";
 import { reportDiagnostic } from "../lib.js";
+import { getDefaultService } from "../modelUtils.js";
 
 export function transformRLCOptions(
   program: Program,

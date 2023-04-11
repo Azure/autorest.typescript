@@ -23,7 +23,8 @@ import {
   getSchemaForType,
   getBinaryType,
   getFormattedPropertyDoc,
-  getBodyType
+  getBodyType,
+  predictDefaultValue
 } from "../modelUtils.js";
 
 import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
@@ -35,7 +36,6 @@ import {
   OperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { getDefaultValue } from "./transform.js";
 
 export function transformToParameterTypes(
   program: Program,
@@ -168,7 +168,7 @@ function transformQueryParameters(
       p.type === "query" &&
       !(
         isApiVersion(dpgContext, p) &&
-        getDefaultValue(program, dpgContext, p.param)
+        predictDefaultValue(program, dpgContext, p.param, true)
       )
   );
   if (!queryParameters.length) {
