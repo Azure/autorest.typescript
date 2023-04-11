@@ -11,7 +11,8 @@ import {
   ImportKind,
   RLCModel,
   AnnotationDetails,
-  UrlInfo
+  UrlInfo,
+  ApiVersionInfo
 } from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
@@ -24,14 +25,19 @@ import { NameType, normalizeName } from "../../utils/nameUtils";
 import { hasPollingOperations } from "../helpers/hasPollingOperations";
 import { isConstantSchema } from "../schemaHelpers";
 import { transformOptions } from "./transformOptions";
-import { transformParameterTypes, getSpecialSerializeInfo } from "./transformParameterTypes";
+import {
+  transformParameterTypes,
+  getSpecialSerializeInfo
+} from "./transformParameterTypes";
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
+import { UUID } from "crypto";
 
 export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
   const importDetails = new Map<ImportKind, Set<string>>();
+  const urlInfo = transformUrlInfo(model);
   const rlcModel: RLCModel = {
     libraryName: normalizeName(
       getLanguageMetadata(model.language).name,
@@ -43,17 +49,83 @@ export function transform(model: CodeModel): RLCModel {
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
     importSet: importDetails,
-    apiVersionInQueryParam: transformApiVersionParam(model),
     parameters: transformParameterTypes(model, importDetails),
     annotations: transformAnnotationDetails(model),
-    urlInfo: transformUrlInfo(model)
+    urlInfo: transformUrlInfo(model),
+    apiVersionInfo: transformApiVersion(model, urlInfo)
   };
   return rlcModel;
 }
 
-function transformApiVersionParam(model: CodeModel) {
+function transformApiVersion(
+  model: CodeModel,
+  urlInfo: UrlInfo
+): ApiVersionInfo | undefined {
+  const queryVersionDetail = getOperationQueryApiVersion(model);
+  const pathVersionDetail = getPathApiVersion(urlInfo);
+  const definedPosition = extractDefinedPosition(
+    queryVersionDetail,
+    pathVersionDetail
+  );
+  const isCrossedVersion =
+    definedPosition === "query"
+      ? Boolean(queryVersionDetail?.isCrossedVersion)
+      : false;
+  let defaultValue =
+    pathVersionDetail?.defaultValue ?? queryVersionDetail?.defaultValue;
+
+  // Clear the default value if there exists cross version
+  if (isCrossedVersion) {
+    defaultValue = undefined;
+  }
+
+  return {
+    definedPosition,
+    isCrossedVersion,
+    defaultValue
+  };
+}
+
+function extractDefinedPosition(
+  queryApiVersion?: ApiVersionInfo,
+  pathVersionDetail?: ApiVersionInfo
+) {
+  let pos: "none" | "both" | "query" | "path" = "none";
+  if (queryApiVersion && pathVersionDetail) {
+    pos = "both";
+  } else if (queryApiVersion && !pathVersionDetail) {
+    pos = "query";
+  } else if (!queryApiVersion && pathVersionDetail) {
+    pos = "path";
+  }
+
+  return pos;
+}
+
+function getPathApiVersion(urlInfo?: UrlInfo): ApiVersionInfo | undefined {
+  if (!urlInfo) {
+    return;
+  }
+  const param = urlInfo.urlParameters?.filter(
+    p =>
+      p.name.toLowerCase() === "api-version" ||
+      p.name.toLowerCase() === "apiversion"
+  );
+  if (!param || param?.length < 1) {
+    return;
+  }
+  const detail: ApiVersionInfo = {
+    definedPosition: "query",
+    isCrossedVersion: false
+  };
+  return detail;
+}
+
+function getOperationQueryApiVersion(
+  model: CodeModel
+): ApiVersionInfo | undefined {
   if (!model.globalParameters || !model.globalParameters.length) {
-    return undefined;
+    return;
   }
 
   const apiVersionParam = model.globalParameters
@@ -69,13 +141,13 @@ function transformApiVersionParam(model: CodeModel) {
 
   if (apiVersionParam && isConstantSchema(apiVersionParam.schema)) {
     return {
-      name: "api-version",
-      type: "constant",
-      default: apiVersionParam.schema.value.value.toString()
+      definedPosition: "path",
+      isCrossedVersion: false,
+      defaultValue: apiVersionParam.schema.value.value.toString()
     };
   }
 
-  return undefined;
+  return;
 }
 
 export function transformAnnotationDetails(
@@ -100,11 +172,19 @@ export function transformAnnotationDetails(
       }
       operation.signatureParameters?.forEach(parameter => {
         const serializeInfo = getSpecialSerializeInfo(parameter);
-        hasMultiCollection = hasMultiCollection ? hasMultiCollection: serializeInfo.hasMultiCollection;
-        hasPipeCollection = hasPipeCollection ? hasPipeCollection: serializeInfo.hasPipeCollection;
-        hasSsvCollection = hasSsvCollection ? hasSsvCollection: serializeInfo.hasSsvCollection;
-        hasTsvCollection = hasTsvCollection ? hasTsvCollection: serializeInfo.hasTsvCollection;
-      })
+        hasMultiCollection = hasMultiCollection
+          ? hasMultiCollection
+          : serializeInfo.hasMultiCollection;
+        hasPipeCollection = hasPipeCollection
+          ? hasPipeCollection
+          : serializeInfo.hasPipeCollection;
+        hasSsvCollection = hasSsvCollection
+          ? hasSsvCollection
+          : serializeInfo.hasSsvCollection;
+        hasTsvCollection = hasTsvCollection
+          ? hasTsvCollection
+          : serializeInfo.hasTsvCollection;
+      });
     }
   }
 
@@ -130,4 +210,3 @@ function transformUrlInfo(model: CodeModel): UrlInfo {
   const { endpoint, urlParameters } = transformBaseUrl(model);
   return { endpoint, urlParameters };
 }
-

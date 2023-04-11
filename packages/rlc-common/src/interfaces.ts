@@ -22,13 +22,12 @@ export interface PathTemplateApiVersion {
 export interface UrlInfo {
   endpoint?: string;
   urlParameters?: PathParameter[];
-  pathTemplateApiVersion?: PathTemplateApiVersion;
 }
 
 export interface ApiVersionInfo {
-  definedPosition: "path" | "query" | "both" | "none";
+  definedPosition?: "path" | "query" | "both" | "none";
   defaultValue?: string;
-  isCrossedVersion: boolean;
+  isCrossedVersion?: boolean;
 }
 export interface AnnotationDetails {
   hasPaging?: boolean;

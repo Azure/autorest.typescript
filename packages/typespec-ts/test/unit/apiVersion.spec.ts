@@ -226,7 +226,7 @@ const buildPathReturn_WithoutDefault = () => {
   }`;
 };
 
-describe("api-version", () => {
+describe.only("api-version", () => {
   describe("defined in query position", () => {
     describe("with default value", () => {
       it("in @serivce", async () => {
@@ -251,7 +251,7 @@ describe("api-version", () => {
     });
     describe("without default value", () => {
       // FIXME
-      it.skip("due to cross version", async () => {
+      it.only("due to cross version", async () => {
         const def = buildQueryDefinition({
           "@service": true,
           "@versioned": false,
