@@ -1,3 +1,7 @@
+## 6.0.0 (2023-04-10)
+
+- Next generation TypeScript/JavaScript code generator GA.
+
 ## 6.0.0-rc.10 (2023-03-16)
 
 - [Feature] Rename to typespec-ts. Please refer to pr [#1782](https://github.com/Azure/autorest.typescript/pull/1782).
