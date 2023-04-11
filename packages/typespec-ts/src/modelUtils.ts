@@ -995,7 +995,7 @@ export function predictDefaultValue(
   if (isLiteralValue(specificDefault)) {
     return specificDefault.value;
   }
-  const type = getSchemaForType(program, param);
+  const type = getSchemaForType(program, param.type);
   console.log(type);
   const serviceNamespace = getDefaultService(program)?.type;
   if (!serviceNamespace || !allowImagination) {
