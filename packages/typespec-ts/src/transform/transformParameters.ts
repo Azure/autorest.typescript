@@ -168,7 +168,7 @@ function transformQueryParameters(
       p.type === "query" &&
       !(
         isApiVersion(dpgContext, p) &&
-        predictDefaultValue(program, dpgContext, p.param, true)
+        predictDefaultValue(program, dpgContext, p.param)
       )
   );
   if (!queryParameters.length) {

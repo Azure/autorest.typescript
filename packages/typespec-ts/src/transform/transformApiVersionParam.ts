@@ -8,8 +8,12 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics, Program } from "@typespec/compiler";
 import { ApiVersionInfo, UrlInfo } from "@azure-tools/rlc-common";
-import { HttpOperationParameter, getHttpOperation } from "@typespec/http";
-import { getDefaultService, predictDefaultValue } from "../modelUtils.js";
+import { getHttpOperation } from "@typespec/http";
+import {
+  getDefaultService,
+  getSchemaForType,
+  trimUsage
+} from "../modelUtils.js";
 
 export function transformApiVersionInfo(
   client: Client,
@@ -93,8 +97,7 @@ function getOperationQueryApiVersion(
   dpgContext: DpgContext
 ): ApiVersionInfo | undefined {
   const operationGroups = listOperationGroups(dpgContext, client);
-  let apiVersionParam: HttpOperationParameter | undefined;
-  let hasClientApiVersion = false;
+  const apiVersionTypes = new Set<string>();
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -102,28 +105,15 @@ function getOperationQueryApiVersion(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      const apiVersions = route.parameters.parameters.filter(
-        (p) =>
-          p.type === "query" &&
-          isApiVersion(dpgContext, p) &&
-          predictDefaultValue(program, dpgContext, p.param)
+      const params = route.parameters.parameters.filter(
+        (p) => p.type === "query" && isApiVersion(dpgContext, p)
       );
-      if (
-        apiVersions.length === 1 &&
-        !hasClientApiVersion &&
-        !apiVersionParam
-      ) {
-        apiVersionParam = apiVersions[0];
-        hasClientApiVersion = true;
-      } else if (apiVersions.length !== 1) {
-        hasClientApiVersion = false;
-        break;
-      } else if (
-        apiVersions.length == 1 &&
-        predictDefaultValue(program, dpgContext, apiVersions[0]?.param) !==
-          predictDefaultValue(program, dpgContext, apiVersionParam?.param)
-      ) {
-        hasClientApiVersion = false;
+      params.map((p) => {
+        const type = getSchemaForType(program, p.param.type);
+        const typeString = JSON.stringify(trimUsage(type));
+        apiVersionTypes.add(typeString);
+      });
+      if (apiVersionTypes.size > 1) {
         break;
       }
     }
@@ -131,38 +121,26 @@ function getOperationQueryApiVersion(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    const apiVersions = route.parameters.parameters.filter(
-      (p) =>
-        p.type === "query" &&
-        isApiVersion(dpgContext, p) &&
-        predictDefaultValue(program, dpgContext, p.param)
+    const params = route.parameters.parameters.filter(
+      (p) => p.type === "query" && isApiVersion(dpgContext, p)
     );
-    if (apiVersions.length === 1 && !hasClientApiVersion && !apiVersionParam) {
-      apiVersionParam = apiVersions[0];
-      hasClientApiVersion = true;
-    } else if (apiVersions.length !== 1) {
-      hasClientApiVersion = false;
-      break;
-    } else if (
-      apiVersions.length == 1 &&
-      predictDefaultValue(program, dpgContext, apiVersions[0]?.param) !==
-        predictDefaultValue(program, dpgContext, apiVersionParam?.param)
-    ) {
-      hasClientApiVersion = false;
+    params.map((p) => {
+      const type = getSchemaForType(program, p.param.type);
+      const typeString = JSON.stringify(trimUsage(type));
+      apiVersionTypes.add(typeString);
+    });
+    if (apiVersionTypes.size > 1) {
       break;
     }
   }
-  if (!apiVersionParam) {
+  // If no api-version parameter defined return directly
+  if (apiVersionTypes.size === 0) {
     return;
   }
   const detail: ApiVersionInfo = {
     definedPosition: "query",
-    isCrossedVersion: !hasClientApiVersion,
-    defaultValue: predictDefaultValue(
-      program,
-      dpgContext,
-      apiVersionParam!.param
-    ) as string
+    isCrossedVersion: apiVersionTypes.size > 1,
+    defaultValue: undefined // We won't prompt the query versions into client one
   };
   return detail;
 }

@@ -42,6 +42,17 @@ const buildDefaultDefinition = (options: DefinitionOptions) => {
 const buildQueryDefinition = (options: DefinitionOptions) => {
   const crossVersionDef = options.crossVersion
     ? `
+  enum VersionEnum {
+    v1,
+    v2,
+  }
+  model ApiVersion3Parameter {
+    @query
+    "api-version": VersionEnum;
+  }
+  @route("/baz")
+  op baz(...ApiVersion3Parameter): string;
+
   model ApiVersion2Parameter {
     @query
     "api-version": "v1.1";
@@ -226,7 +237,7 @@ const buildPathReturn_WithoutDefault = () => {
   }`;
 };
 
-describe.only("api-version", () => {
+describe("api-version", () => {
   describe("defined in query position", () => {
     describe("with default value", () => {
       it("in @serivce", async () => {
@@ -247,10 +258,9 @@ describe.only("api-version", () => {
         assert.ok(models);
         assertEqualContent(models!.content, expectedRes);
       });
-      // promoted cases
     });
     describe("without default value", () => {
-      it.only("due to cross version", async () => {
+      it("due to cross version", async () => {
         const def = buildQueryDefinition({
           "@service": true,
           "@versioned": false,
@@ -275,8 +285,7 @@ describe.only("api-version", () => {
   });
   describe("defined in url path", () => {
     describe("with default value", () => {
-      // FIXME
-      it.skip("in @serivce", async () => {
+      it("in @serivce", async () => {
         const def = buildPathDefinition({
           "@service": true
         });
@@ -309,8 +318,7 @@ describe.only("api-version", () => {
     });
   });
   describe("defined in both positions[path preferred]", () => {
-    // FIXME
-    describe.skip("with default value", () => {
+    describe("with default value", () => {
       it("in @serivce", async () => {
         const def = buildMixedDefinition({
           "@service": true
@@ -354,8 +362,7 @@ describe.only("api-version", () => {
         assert.ok(models);
         assertEqualContent(models!.content, expectedRes);
       });
-      // FIXME
-      it.skip("in @versioned", async () => {
+      it("in @versioned", async () => {
         const def = buildDefaultDefinition({
           "@versioned": true
         });

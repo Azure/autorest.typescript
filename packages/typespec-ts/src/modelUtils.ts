@@ -974,19 +974,16 @@ export function getBodyType(
 /**
  * Predict if the default value exists in param, we would follow the rules:
  * 1. If we have specific default literal in param
- * 2. If we only have on literal value available for this type
- * 3. If allowImagination = true, we take the default api-version value into considerations
+ * 2. If we take the default api-version value into considerations
  * @param program
  * @param dpgContext
  * @param param The param to predict
- * @param allowImagination If truthy we'll take the default api-version value into considerations
  * @returns
  */
 export function predictDefaultValue(
   program: Program,
   dpgContext: DpgContext,
-  param?: ModelProperty,
-  allowImagination = false
+  param?: ModelProperty
 ) {
   if (!param) {
     return;
@@ -995,10 +992,8 @@ export function predictDefaultValue(
   if (isLiteralValue(specificDefault)) {
     return specificDefault.value;
   }
-  const type = getSchemaForType(program, param.type);
-  console.log(type);
   const serviceNamespace = getDefaultService(program)?.type;
-  if (!serviceNamespace || !allowImagination) {
+  if (!serviceNamespace) {
     return;
   }
   const defaultApiVersion = getEnrichedDefaultApiVersion(program, dpgContext);
@@ -1051,4 +1046,19 @@ export function getEnrichedDefaultApiVersion(
     getDefaultApiVersion(dpgContext, getDefaultService(program)?.type!)
       ?.value ?? getDefaultService(program)?.version
   );
+}
+
+export function trimUsage(model: any) {
+  if (typeof model !== "object") {
+    return model;
+  }
+  const tmpModel = Object.assign({}, model);
+  const tmpModelKeys = Object.keys(tmpModel).filter((item) => {
+    return item !== "usage";
+  });
+  const ordered = tmpModelKeys.sort().reduce((obj, key) => {
+    (obj as any)[key] = trimUsage(tmpModel[key]);
+    return obj;
+  }, {});
+  return ordered;
 }

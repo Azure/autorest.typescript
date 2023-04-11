@@ -136,8 +136,7 @@ export function transformUrlInfo(
           value: predictDefaultValue(
             program,
             dpgContext,
-            host?.[0]?.parameters.get(key),
-            true
+            host?.[0]?.parameters.get(key)
           )
         });
       }
