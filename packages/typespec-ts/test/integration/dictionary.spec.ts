@@ -56,12 +56,11 @@ const testedTypes: TypeDetail[] = [
         children: { "k2.1": { property: "inner world" } }
       }
     }
+  },
+  {
+    type: "nullable-float",
+    defaultValue: { k1: 1.2, k2: 0.5, k3: null }
   }
-  // TODO: remember to undo it
-  // {
-  //   type: "nullable-float",
-  //   defaultValue: { k1: "hello", k2: "world", k3: null }
-  // }
 ];
 describe("Dictionary Client", () => {
   let client: DictClient;
