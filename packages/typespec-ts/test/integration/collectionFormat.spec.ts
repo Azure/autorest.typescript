@@ -16,7 +16,7 @@ describe("Collection Format Rest Client", () => {
     });
   });
 
-  it.skip("should serialize multi format query array parameter", async () => {
+  it("should serialize multi format query array parameter", async () => {
     try {
       const result = await client.path("/collectionFormat/multi").get({
         queryParameters: {
@@ -30,7 +30,7 @@ describe("Collection Format Rest Client", () => {
     }
   });
 
-  it.skip("should serialize csv format query array parameter", async () => {
+  it("should serialize csv format query array parameter", async () => {
     try {
       const result = await client.path("/collectionFormat/csv").get({
         queryParameters: {
