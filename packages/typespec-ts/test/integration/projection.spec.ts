@@ -2,7 +2,7 @@ import { assert } from "chai";
 import ProjectionClientFactory, {
   ProjectionClient
 } from "./generated/projection/src/index.js";
-describe("Collection Format Rest Client", () => {
+describe("Projected Name Rest Client", () => {
   let client: ProjectionClient;
 
   beforeEach(() => {
