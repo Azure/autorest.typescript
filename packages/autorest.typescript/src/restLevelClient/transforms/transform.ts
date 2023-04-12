@@ -65,7 +65,7 @@ function transformApiVersion(
   const queryVersionDetail = getOperationQueryApiVersion(model);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
-    queryVersionDetail?.isCrossedVersion ?? pathVersionDetail?.isCrossedVersion;
+    pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
   let defaultValue =
     pathVersionDetail?.defaultValue ?? queryVersionDetail?.defaultValue;
 
