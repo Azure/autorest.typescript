@@ -25,10 +25,12 @@ export interface UrlInfo {
 }
 
 export interface ApiVersionInfo {
-  definedPosition?: "path" | "query" | "both" | "none";
+  definedPosition?: ApiVersionPosition;
   defaultValue?: string;
   isCrossedVersion?: boolean;
 }
+
+export type ApiVersionPosition = "path" | "query" | "both" | "none";
 export interface AnnotationDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;

@@ -12,7 +12,9 @@ import {
   RLCModel,
   AnnotationDetails,
   UrlInfo,
-  ApiVersionInfo
+  ApiVersionInfo,
+  extractPathApiVersion,
+  extractDefinedPosition
 } from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
@@ -32,7 +34,6 @@ import {
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
-import { UUID } from "crypto";
 
 export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
@@ -62,7 +63,7 @@ function transformApiVersion(
   urlInfo: UrlInfo
 ): ApiVersionInfo | undefined {
   const queryVersionDetail = getOperationQueryApiVersion(model);
-  const pathVersionDetail = getPathApiVersion(urlInfo);
+  const pathVersionDetail = extractPathApiVersion(urlInfo);
   const definedPosition = extractDefinedPosition(
     queryVersionDetail,
     pathVersionDetail
@@ -84,41 +85,6 @@ function transformApiVersion(
     isCrossedVersion,
     defaultValue
   };
-}
-
-function extractDefinedPosition(
-  queryApiVersion?: ApiVersionInfo,
-  pathVersionDetail?: ApiVersionInfo
-) {
-  let pos: "none" | "both" | "query" | "path" = "none";
-  if (queryApiVersion && pathVersionDetail) {
-    pos = "both";
-  } else if (queryApiVersion && !pathVersionDetail) {
-    pos = "query";
-  } else if (!queryApiVersion && pathVersionDetail) {
-    pos = "path";
-  }
-
-  return pos;
-}
-
-function getPathApiVersion(urlInfo?: UrlInfo): ApiVersionInfo | undefined {
-  if (!urlInfo) {
-    return;
-  }
-  const param = urlInfo.urlParameters?.filter(
-    p =>
-      p.name.toLowerCase() === "api-version" ||
-      p.name.toLowerCase() === "apiversion"
-  );
-  if (!param || param?.length < 1) {
-    return;
-  }
-  const detail: ApiVersionInfo = {
-    definedPosition: "query",
-    isCrossedVersion: false
-  };
-  return detail;
 }
 
 function getOperationQueryApiVersion(

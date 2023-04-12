@@ -34,7 +34,7 @@ import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
-import { transformApiVersionInfo } from "./transformApiVersionParam.js";
+import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 
 export async function transformRLCModel(
   program: Program,

@@ -7,7 +7,12 @@ import {
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics, Program } from "@typespec/compiler";
-import { ApiVersionInfo, UrlInfo } from "@azure-tools/rlc-common";
+import {
+  ApiVersionInfo,
+  UrlInfo,
+  extractPathApiVersion,
+  extractDefinedPosition
+} from "@azure-tools/rlc-common";
 import { getHttpOperation } from "@typespec/http";
 import {
   getDefaultService,
@@ -26,7 +31,7 @@ export function transformApiVersionInfo(
     program,
     dpgContext
   );
-  const pathVersionDetail = getPathApiVersion(urlInfo);
+  const pathVersionDetail = extractPathApiVersion(urlInfo);
 
   // TODO: remember to switch TCGC directly once the change is applied
   // https://github.com/Azure/typespec-azure/pull/2821
@@ -54,41 +59,6 @@ export function transformApiVersionInfo(
     isCrossedVersion,
     defaultValue
   };
-}
-
-function extractDefinedPosition(
-  queryApiVersion?: ApiVersionInfo,
-  pathVersionDetail?: ApiVersionInfo
-) {
-  let pos: "none" | "both" | "query" | "path" = "none";
-  if (queryApiVersion && pathVersionDetail) {
-    pos = "both";
-  } else if (queryApiVersion && !pathVersionDetail) {
-    pos = "query";
-  } else if (!queryApiVersion && pathVersionDetail) {
-    pos = "path";
-  }
-
-  return pos;
-}
-
-function getPathApiVersion(urlInfo?: UrlInfo): ApiVersionInfo | undefined {
-  if (!urlInfo) {
-    return;
-  }
-  const param = urlInfo.urlParameters?.filter(
-    (p) =>
-      p.name.toLowerCase() === "api-version" ||
-      p.name.toLowerCase() === "apiversion"
-  );
-  if (!param || param?.length < 1) {
-    return;
-  }
-  const detail: ApiVersionInfo = {
-    definedPosition: "query",
-    isCrossedVersion: false
-  };
-  return detail;
 }
 
 function getOperationQueryApiVersion(

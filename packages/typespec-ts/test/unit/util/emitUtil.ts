@@ -13,7 +13,7 @@ import { transformToParameterTypes } from "../../../src/transform/transformParam
 import { transformSchemas } from "../../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../../src/transform/transformPaths.js";
 import { transformUrlInfo } from "../../../src/transform/transform.js";
-import { transformApiVersionInfo } from "../../../src/transform/transformApiVersionParam.js";
+import { transformApiVersionInfo } from "../../../src/transform/transformApiVersionInfo.js";
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
 import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
 
