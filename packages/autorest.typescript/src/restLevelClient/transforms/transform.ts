@@ -64,14 +64,8 @@ function transformApiVersion(
 ): ApiVersionInfo | undefined {
   const queryVersionDetail = getOperationQueryApiVersion(model);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
-  const definedPosition = extractDefinedPosition(
-    queryVersionDetail,
-    pathVersionDetail
-  );
   const isCrossedVersion =
-    definedPosition === "query"
-      ? Boolean(queryVersionDetail?.isCrossedVersion)
-      : false;
+    queryVersionDetail?.isCrossedVersion ?? pathVersionDetail?.isCrossedVersion;
   let defaultValue =
     pathVersionDetail?.defaultValue ?? queryVersionDetail?.defaultValue;
 
@@ -81,7 +75,10 @@ function transformApiVersion(
   }
 
   return {
-    definedPosition,
+    definedPosition: extractDefinedPosition(
+      queryVersionDetail,
+      pathVersionDetail
+    ),
     isCrossedVersion,
     defaultValue
   };

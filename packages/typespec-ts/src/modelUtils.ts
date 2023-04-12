@@ -1038,14 +1038,30 @@ export function getDefaultService(program: Program): Service | undefined {
   return services[0];
 }
 
+/**
+ * Get the default api-version both from versioned and service decorator
+ * TODO: remember to switch to TCGC once the fix is done
+ * @param program
+ * @param dpgContext
+ * @returns default api-version value
+ */
 export function getEnrichedDefaultApiVersion(
   program: Program,
   dpgContext: DpgContext
 ): string | undefined {
-  return (
-    getDefaultApiVersion(dpgContext, getDefaultService(program)?.type!)
-      ?.value ?? getDefaultService(program)?.version
+  const serviceNamespace = getDefaultService(program);
+  if (!serviceNamespace) {
+    return;
+  }
+
+  const defaultVersion = getDefaultApiVersion(
+    dpgContext,
+    serviceNamespace!.type
   );
+  if (defaultVersion) {
+    return defaultVersion.value;
+  }
+  return serviceNamespace.version;
 }
 
 export function trimUsage(model: any) {

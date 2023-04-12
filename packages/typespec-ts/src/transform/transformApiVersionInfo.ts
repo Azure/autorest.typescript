@@ -1,7 +1,6 @@
 import {
   Client,
   DpgContext,
-  getDefaultApiVersion,
   isApiVersion,
   listOperationGroups,
   listOperationsInOperationGroup
@@ -15,7 +14,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { getHttpOperation } from "@typespec/http";
 import {
-  getDefaultService,
+  getEnrichedDefaultApiVersion,
   getSchemaForType,
   trimUsage
 } from "../modelUtils.js";
@@ -32,20 +31,10 @@ export function transformApiVersionInfo(
     dpgContext
   );
   const pathVersionDetail = extractPathApiVersion(urlInfo);
-
-  // TODO: remember to switch TCGC directly once the change is applied
-  // https://github.com/Azure/typespec-azure/pull/2821
-  const definedDefault =
-    getDefaultApiVersion(dpgContext, getDefaultService(program)?.type!)
-      ?.value ?? getDefaultService(program)?.version;
-  const definedPosition = extractDefinedPosition(
-    queryVersionDetail,
-    pathVersionDetail
-  );
   const isCrossedVersion =
     queryVersionDetail?.isCrossedVersion ?? pathVersionDetail?.isCrossedVersion;
   let defaultValue =
-    definedDefault ??
+    getEnrichedDefaultApiVersion(program, dpgContext) ??
     pathVersionDetail?.defaultValue ??
     queryVersionDetail?.defaultValue;
 
@@ -55,7 +44,10 @@ export function transformApiVersionInfo(
   }
 
   return {
-    definedPosition,
+    definedPosition: extractDefinedPosition(
+      queryVersionDetail,
+      pathVersionDetail
+    ),
     isCrossedVersion,
     defaultValue
   };
