@@ -11,7 +11,10 @@ import {
   ImportKind,
   RLCModel,
   AnnotationDetails,
-  UrlInfo
+  UrlInfo,
+  ApiVersionInfo,
+  extractPathApiVersion,
+  extractDefinedPosition
 } from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
@@ -24,7 +27,10 @@ import { NameType, normalizeName } from "../../utils/nameUtils";
 import { hasPollingOperations } from "../helpers/hasPollingOperations";
 import { isConstantSchema } from "../schemaHelpers";
 import { transformOptions } from "./transformOptions";
-import { transformParameterTypes, getSpecialSerializeInfo } from "./transformParameterTypes";
+import {
+  transformParameterTypes,
+  getSpecialSerializeInfo
+} from "./transformParameterTypes";
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
@@ -32,6 +38,7 @@ import { transformSchemas } from "./transformSchemas";
 export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
   const importDetails = new Map<ImportKind, Set<string>>();
+  const urlInfo = transformUrlInfo(model);
   const rlcModel: RLCModel = {
     libraryName: normalizeName(
       getLanguageMetadata(model.language).name,
@@ -43,17 +50,45 @@ export function transform(model: CodeModel): RLCModel {
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
     importSet: importDetails,
-    apiVersionInQueryParam: transformApiVersionParam(model),
     parameters: transformParameterTypes(model, importDetails),
     annotations: transformAnnotationDetails(model),
-    urlInfo: transformUrlInfo(model)
+    urlInfo: transformUrlInfo(model),
+    apiVersionInfo: transformApiVersion(model, urlInfo)
   };
   return rlcModel;
 }
 
-function transformApiVersionParam(model: CodeModel) {
+function transformApiVersion(
+  model: CodeModel,
+  urlInfo: UrlInfo
+): ApiVersionInfo | undefined {
+  const queryVersionDetail = getOperationQueryApiVersion(model);
+  const pathVersionDetail = extractPathApiVersion(urlInfo);
+  const isCrossedVersion =
+    pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
+  let defaultValue =
+    pathVersionDetail?.defaultValue ?? queryVersionDetail?.defaultValue;
+
+  // Clear the default value if there exists cross version
+  if (isCrossedVersion) {
+    defaultValue = undefined;
+  }
+
+  return {
+    definedPosition: extractDefinedPosition(
+      queryVersionDetail,
+      pathVersionDetail
+    ),
+    isCrossedVersion,
+    defaultValue
+  };
+}
+
+function getOperationQueryApiVersion(
+  model: CodeModel
+): ApiVersionInfo | undefined {
   if (!model.globalParameters || !model.globalParameters.length) {
-    return undefined;
+    return;
   }
 
   const apiVersionParam = model.globalParameters
@@ -69,13 +104,13 @@ function transformApiVersionParam(model: CodeModel) {
 
   if (apiVersionParam && isConstantSchema(apiVersionParam.schema)) {
     return {
-      name: "api-version",
-      type: "constant",
-      default: apiVersionParam.schema.value.value.toString()
+      definedPosition: "path",
+      isCrossedVersion: false,
+      defaultValue: apiVersionParam.schema.value.value.toString()
     };
   }
 
-  return undefined;
+  return;
 }
 
 export function transformAnnotationDetails(
@@ -100,11 +135,19 @@ export function transformAnnotationDetails(
       }
       operation.signatureParameters?.forEach(parameter => {
         const serializeInfo = getSpecialSerializeInfo(parameter);
-        hasMultiCollection = hasMultiCollection ? hasMultiCollection: serializeInfo.hasMultiCollection;
-        hasPipeCollection = hasPipeCollection ? hasPipeCollection: serializeInfo.hasPipeCollection;
-        hasSsvCollection = hasSsvCollection ? hasSsvCollection: serializeInfo.hasSsvCollection;
-        hasTsvCollection = hasTsvCollection ? hasTsvCollection: serializeInfo.hasTsvCollection;
-      })
+        hasMultiCollection = hasMultiCollection
+          ? hasMultiCollection
+          : serializeInfo.hasMultiCollection;
+        hasPipeCollection = hasPipeCollection
+          ? hasPipeCollection
+          : serializeInfo.hasPipeCollection;
+        hasSsvCollection = hasSsvCollection
+          ? hasSsvCollection
+          : serializeInfo.hasSsvCollection;
+        hasTsvCollection = hasTsvCollection
+          ? hasTsvCollection
+          : serializeInfo.hasTsvCollection;
+      });
     }
   }
 
@@ -130,4 +173,3 @@ function transformUrlInfo(model: CodeModel): UrlInfo {
   const { endpoint, urlParameters } = transformBaseUrl(model);
   return { endpoint, urlParameters };
 }
-

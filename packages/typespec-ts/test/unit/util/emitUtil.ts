@@ -13,7 +13,7 @@ import { transformToParameterTypes } from "../../../src/transform/transformParam
 import { transformSchemas } from "../../../src/transform/transformSchemas.js";
 import { transformPaths } from "../../../src/transform/transformPaths.js";
 import { transformUrlInfo } from "../../../src/transform/transform.js";
-import { transformApiVersionParam } from "../../../src/transform/transformApiVersionParam.js";
+import { transformApiVersionInfo } from "../../../src/transform/transformApiVersionInfo.js";
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
 import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
 
@@ -101,12 +101,13 @@ export async function emitClientFactoryFromCadl(
   const urlInfo = transformUrlInfo(program, dpgContext);
   const creadentialInfo = getCredentialInfo(program, {});
   const clients = listClients(dpgContext);
-  let apiVersionInQueryParam;
+  let apiVersionInfo;
   if (clients && clients[0]) {
-    apiVersionInQueryParam = transformApiVersionParam(
+    apiVersionInfo = transformApiVersionInfo(
       clients[0],
       program,
-      dpgContext
+      dpgContext,
+      urlInfo
     );
   }
 
@@ -116,7 +117,7 @@ export async function emitClientFactoryFromCadl(
     schemas: [],
     paths: {},
     urlInfo,
-    apiVersionInQueryParam,
+    apiVersionInfo,
     options: {
       packageDetails: {
         name: "test",

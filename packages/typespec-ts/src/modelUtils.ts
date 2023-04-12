@@ -27,13 +27,19 @@ import {
   isUnknownType,
   Model,
   ModelProperty,
-  Program,
   Type,
   Union,
   isNullType,
   Scalar,
   UnionVariant,
-  getProjectedName
+  getProjectedName,
+  StringLiteral,
+  BooleanLiteral,
+  NoTarget,
+  NumericLiteral,
+  Service,
+  listServices,
+  Program
 } from "@typespec/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -54,6 +60,11 @@ import {
 } from "@typespec/http";
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
+import {
+  DpgContext,
+  getDefaultApiVersion,
+  isApiVersion
+} from "@azure-tools/typespec-client-generator-core";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -958,4 +969,112 @@ export function getBodyType(
     }
   }
   return bodyModel;
+}
+
+/**
+ * Predict if the default value exists in param, we would follow the rules:
+ * 1. If we have specific default literal in param
+ * 2. If we take the default api-version value into considerations
+ * @param program
+ * @param dpgContext
+ * @param param The param to predict
+ * @returns
+ */
+export function predictDefaultValue(
+  program: Program,
+  dpgContext: DpgContext,
+  param?: ModelProperty
+) {
+  if (!param) {
+    return;
+  }
+  const specificDefault = param?.default;
+  if (isLiteralValue(specificDefault)) {
+    return specificDefault.value;
+  }
+  const serviceNamespace = getDefaultService(program)?.type;
+  if (!serviceNamespace) {
+    return;
+  }
+  const defaultApiVersion = getEnrichedDefaultApiVersion(program, dpgContext);
+  if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
+    return defaultApiVersion;
+  }
+  return;
+}
+
+function isLiteralValue(
+  type?: Type
+): type is StringLiteral | NumericLiteral | BooleanLiteral {
+  if (!type) {
+    return false;
+  }
+
+  if (
+    type.kind === "Boolean" ||
+    type.kind === "String" ||
+    type.kind === "Number"
+  ) {
+    return type.value !== undefined;
+  }
+
+  return false;
+}
+
+export function getDefaultService(program: Program): Service | undefined {
+  const services = listServices(program);
+  if (!services || services.length === 0) {
+    reportDiagnostic(program, {
+      code: "no-service-defined",
+      target: NoTarget
+    });
+  }
+  if (services.length > 1) {
+    reportDiagnostic(program, {
+      code: "more-than-one-service",
+      target: NoTarget
+    });
+  }
+  return services[0];
+}
+
+/**
+ * Get the default api-version both from versioned and service decorator
+ * TODO: remember to switch to TCGC once the fix is done
+ * @param program
+ * @param dpgContext
+ * @returns default api-version value
+ */
+export function getEnrichedDefaultApiVersion(
+  program: Program,
+  dpgContext: DpgContext
+): string | undefined {
+  const serviceNamespace = getDefaultService(program);
+  if (!serviceNamespace) {
+    return;
+  }
+
+  const defaultVersion = getDefaultApiVersion(
+    dpgContext,
+    serviceNamespace!.type
+  );
+  if (defaultVersion) {
+    return defaultVersion.value;
+  }
+  return serviceNamespace.version;
+}
+
+export function trimUsage(model: any) {
+  if (typeof model !== "object") {
+    return model;
+  }
+  const tmpModel = Object.assign({}, model);
+  const tmpModelKeys = Object.keys(tmpModel).filter((item) => {
+    return item !== "usage";
+  });
+  const ordered = tmpModelKeys.sort().reduce((obj, key) => {
+    (obj as any)[key] = trimUsage(tmpModel[key]);
+    return obj;
+  }, {});
+  return ordered;
 }

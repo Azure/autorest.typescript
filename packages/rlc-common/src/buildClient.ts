@@ -223,10 +223,14 @@ function getClientFactoryBody(
     baseUrl = `options.baseUrl ?? "${endpoint}"`;
   }
 
-  const apiVersion = getApiVersionInQueryParam(model);
   let apiVersionStatement: string = "";
-  if (apiVersion) {
-    apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${apiVersion}"`;
+  // Set the default api-version when we have a default AND its position is query/none
+  if (
+    (model.apiVersionInfo?.definedPosition === "query" ||
+      model.apiVersionInfo?.definedPosition === "none") &&
+    !!model.apiVersionInfo?.defaultValue
+  ) {
+    apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
   }
 
   if (!clientPackageName.endsWith("-rest")) {
@@ -315,21 +319,6 @@ function getClientFactoryBody(
     getClient,
     returnStatement
   ];
-}
-
-function getApiVersionInQueryParam(model: RLCModel): string | undefined {
-  if (!model.apiVersionInQueryParam) {
-    return undefined;
-  }
-
-  if (
-    model.apiVersionInQueryParam &&
-    isConstantSchema(model.apiVersionInQueryParam as Schema)
-  ) {
-    return model.apiVersionInQueryParam.default;
-  }
-
-  return undefined;
 }
 
 function normalizeUrlInfo(model: RLCModel) {
