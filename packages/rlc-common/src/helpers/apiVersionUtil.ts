@@ -20,7 +20,7 @@ export function extractPathApiVersion(
     return;
   }
   const detail: ApiVersionInfo = {
-    definedPosition: "query",
+    definedPosition: "path",
     isCrossedVersion: Boolean(param?.length > 1),
     defaultValue:
       param.length === 1 ? (param[0].value as string | undefined) : undefined
