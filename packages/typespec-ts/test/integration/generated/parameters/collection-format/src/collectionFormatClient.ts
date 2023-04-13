@@ -12,7 +12,7 @@ export default function createClient(
   options: ClientOptions = {}
 ): CollectionFormatClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "2022-12-16-preview";
+  options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-collectionFormat-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

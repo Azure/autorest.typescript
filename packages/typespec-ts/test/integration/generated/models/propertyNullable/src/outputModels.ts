@@ -46,5 +46,11 @@ export interface CollectionsModelPropertyOutput {
   /** Required property */
   requiredProperty: string;
   /** Property */
-  nullableProperty: Array<StringPropertyOutput> | null;
+  nullableProperty: Array<InnerModelOutput> | null;
+}
+
+/** Inner model used in collections model property */
+export interface InnerModelOutput {
+  /** Inner model property */
+  property: string;
 }

@@ -61,7 +61,7 @@ import {
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 import {
-  DpgContext,
+  SdkContext,
   getDefaultApiVersion,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
@@ -856,7 +856,7 @@ function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
         typeName: "Date | string",
         outputTypeName: "string"
       };
-    case "zonedDateTime":
+    case "utcDateTime":
       return {
         type: "string",
         format: "date-time",
@@ -982,7 +982,7 @@ export function getBodyType(
  */
 export function predictDefaultValue(
   program: Program,
-  dpgContext: DpgContext,
+  dpgContext: SdkContext,
   param?: ModelProperty
 ) {
   if (!param) {
@@ -1047,7 +1047,7 @@ export function getDefaultService(program: Program): Service | undefined {
  */
 export function getEnrichedDefaultApiVersion(
   program: Program,
-  dpgContext: DpgContext
+  dpgContext: SdkContext
 ): string | undefined {
   const serviceNamespace = getDefaultService(program);
   if (!serviceNamespace) {

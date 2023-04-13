@@ -62,19 +62,19 @@ model Project {
 
   @doc("Represents the project creation datetime.")
   @visibility("read")
-  createdDateTime: zonedDateTime;
+  createdDateTime: utcDateTime;
 
   @doc("Represents the project last modification datetime.")
   @visibility("read")
-  lastModifiedDateTime: zonedDateTime;
+  lastModifiedDateTime: utcDateTime;
 
   @doc("Represents the project last training datetime.")
   @visibility("read")
-  lastTrainedDateTime: zonedDateTime;
+  lastTrainedDateTime: utcDateTime;
 
   @doc("Represents the project last deployment datetime.")
   @visibility("read")
-  lastDeployedDateTime: zonedDateTime;
+  lastDeployedDateTime: utcDateTime;
 }
 
 @doc("Represents the project kind.")
@@ -110,15 +110,15 @@ model Job {
 
   @doc("The creation date time of the job.")
   @visibility("read")
-  createdDateTime: zonedDateTime;
+  createdDateTime: utcDateTime;
 
   @doc("The the last date time the job was updated.")
   @visibility("read")
-  lastUpdatedDateTime: zonedDateTime;
+  lastUpdatedDateTime: utcDateTime;
 
   @doc("The expiration date time of the job.")
   @visibility("read")
-  expirationDateTime: zonedDateTime;
+  expirationDateTime: utcDateTime;
 
   @doc("The job status.")
   status: JobStatus;
