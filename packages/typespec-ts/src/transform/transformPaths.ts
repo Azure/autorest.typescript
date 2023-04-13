@@ -17,11 +17,11 @@ import {
   HttpOperationResponse
 } from "@typespec/http";
 import {
-  Client,
-  DpgContext,
+  SdkClient,
+  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  OperationGroup,
+  SdkOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import { getSchemaForType } from "../modelUtils.js";
@@ -36,8 +36,8 @@ import {
 
 export function transformPaths(
   program: Program,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ): Paths {
   const operationGroups = listOperationGroups(dpgContext, client);
   const paths: Paths = {};
@@ -65,7 +65,7 @@ export function transformPaths(
  */
 function getResponseTypes(
   operation: HttpOperation,
-  operationGroup?: OperationGroup
+  operationGroup?: SdkOperationGroup
 ): ResponseTypes {
   const returnTypes: ResponseTypes = {
     error: [],
@@ -99,8 +99,8 @@ function transformOperation(
   program: Program,
   route: HttpOperation,
   paths: Paths,
-  dpgContext: DpgContext,
-  operationGroup?: OperationGroup
+  dpgContext: SdkContext,
+  operationGroup?: SdkOperationGroup
 ) {
   const respNames = [];
   for (const resp of route.responses) {
@@ -158,7 +158,7 @@ function transformOperation(
 }
 
 function hasRequiredOptions(
-  dpgContext: DpgContext,
+  dpgContext: SdkContext,
   routeParameters: HttpOperationParameters
 ) {
   const isRequiredBodyParam = routeParameters.bodyParameter?.optional === false;

@@ -375,7 +375,7 @@ describe("Responses.ts", () => {
 
     it("verify datetime array from responses", async () => {
       const responses = await emitResponsesFromCadl(`
-      @get op read(): zonedDateTime[];
+      @get op read(): utcDateTime[];
       `);
       assert.ok(responses);
       assertEqualContent(

@@ -31,7 +31,7 @@ import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
 import {
   listClients,
-  createDpgContext
+  createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 import { buildSharedTypes } from "./modular/buildSharedTypes.js";
@@ -48,7 +48,7 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const options: RLCOptions = context.options;
-  const dpgContext = createDpgContext(context);
+  const dpgContext = createSdkContext(context);
   const clients = listClients(dpgContext);
   const srcPath: string = context.emitterOutputDir;
   let count = -1;

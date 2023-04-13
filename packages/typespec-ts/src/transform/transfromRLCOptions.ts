@@ -1,5 +1,5 @@
 import {
-  DpgContext,
+  SdkContext,
   listClients
 } from "@azure-tools/typespec-client-generator-core";
 import {
@@ -18,7 +18,7 @@ export function transformRLCOptions(
   program: Program,
   emitterOptions: RLCOptions,
   emitterOutputDir: string,
-  dpgContext: DpgContext
+  dpgContext: SdkContext
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);

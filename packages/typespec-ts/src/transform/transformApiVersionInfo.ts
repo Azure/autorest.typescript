@@ -1,6 +1,6 @@
 import {
-  Client,
-  DpgContext,
+  SdkClient,
+  SdkContext,
   isApiVersion,
   listOperationGroups,
   listOperationsInOperationGroup
@@ -20,9 +20,9 @@ import {
 } from "../modelUtils.js";
 
 export function transformApiVersionInfo(
-  client: Client,
+  client: SdkClient,
   program: Program,
-  dpgContext: DpgContext,
+  dpgContext: SdkContext,
   urlInfo?: UrlInfo
 ): ApiVersionInfo | undefined {
   const queryVersionDetail = getOperationQueryApiVersion(
@@ -54,9 +54,9 @@ export function transformApiVersionInfo(
 }
 
 function getOperationQueryApiVersion(
-  client: Client,
+  client: SdkClient,
   program: Program,
-  dpgContext: DpgContext
+  dpgContext: SdkContext
 ): ApiVersionInfo | undefined {
   const operationGroups = listOperationGroups(dpgContext, client);
   const apiVersionTypes = new Set<string>();
