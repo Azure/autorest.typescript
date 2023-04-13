@@ -5,7 +5,7 @@ import { RestTestLibrary } from "@typespec/rest/testing";
 import { HttpTestLibrary } from "@typespec/http/testing";
 import { VersioningTestLibrary } from "@typespec/versioning/testing";
 import { AzureCoreTestLibrary } from "@azure-tools/typespec-azure-core/testing";
-import { DpgContext } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { assert } from "chai";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../../src/lib.js";
@@ -60,7 +60,7 @@ export async function rlcEmitterFor(
   return host;
 }
 
-export function createDpgContextTestHelper(program: Program): DpgContext {
+export function createDpgContextTestHelper(program: Program): SdkContext {
   const defaultOptions = {
     generateProtocolMethods: true,
     generateConvenienceMethods: true,
@@ -72,7 +72,7 @@ export function createDpgContextTestHelper(program: Program): DpgContext {
     program: program,
     generateProtocolMethods: resolvedOptions.generateProtocolMethods,
     generateConvenienceMethods: resolvedOptions.generateConvenienceMethods
-  } as DpgContext;
+  } as SdkContext;
 }
 
 export function assertEqualContent(actual: string, expected: string) {
