@@ -41,21 +41,21 @@ stages:
             name: SetRLCCommonMainVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
           - script: |
-              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace(/-beta.*/g, '') + '-alpha'").$(Build.BuildNumber)
+              export DEV_VERSION=$(node -p -e "require('./package.json').version + '-alpha'").$(Build.BuildNumber)
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
               npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
             name: SetAutorestTypescriptDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
           - script: |
-              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace(/-beta.*/g, '') + '-alpha'".$(Build.BuildNumber)
+              export DEV_VERSION=$(node -p -e "require('./package.json').version + '-alpha'".$(Build.BuildNumber)
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
               npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
             name: SetTypeSpecTSDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
           - script: |
-              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace(/-beta.*/g, '') + '-alpha'".$(Build.BuildNumber)
+              export DEV_VERSION=$(node -p -e "require('./package.json').version + '-alpha'".$(Build.BuildNumber)
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
               npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
