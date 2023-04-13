@@ -99,5 +99,13 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "internal",
     inputPath: "internal"
+  },
+  {
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
+  },
+  {
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
   }
 ];

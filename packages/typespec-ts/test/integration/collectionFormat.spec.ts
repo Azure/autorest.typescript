@@ -52,7 +52,7 @@ describe("Collection Format Rest Client", () => {
         },
         skipUrlEncoding: true
       });
-      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
