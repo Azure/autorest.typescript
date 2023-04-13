@@ -2393,7 +2393,7 @@ a half hours before the current time. If not specified this defaults to the
 start time of the last aggregation interval currently available.
 """)
         @query
-        starttime?: zonedDateTime;
+        starttime?: utcDateTime;
 
         @doc("""
 The latest time from which to include metrics. This must be at least two hours
@@ -2401,7 +2401,7 @@ before the current time. If not specified this defaults to the end time of the
 last aggregation interval currently available.
 """)
         @query
-        endtime?: zonedDateTime;
+        endtime?: utcDateTime;
 
         @doc("""
 An OData $filter clause. For more information on constructing this filter, see

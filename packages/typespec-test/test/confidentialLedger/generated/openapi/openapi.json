@@ -766,7 +766,7 @@
           "type": "string",
           "format": "uri",
           "description": "Path from which to retrieve the next page of results.",
-          "x-typespec-name": "Rest.ResourceLocation"
+          "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
         }
       },
       "description": "Paginated ledger entries returned in response to a query.",

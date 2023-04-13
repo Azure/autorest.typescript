@@ -56,15 +56,15 @@ import {
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
-  Client,
+  SdkClient,
   listClients,
   listOperationGroups,
   listOperationsInOperationGroup,
   isApiVersion,
   getDefaultApiVersion,
   getClientNamespaceString,
-  createDpgContext,
-  DpgContext
+  createSdkContext,
+  SdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import {
@@ -368,7 +368,7 @@ function emitBodyParameter(
 }
 
 function emitParameter(
-  context: DpgContext,
+  context: SdkContext,
   parameter: HttpOperationParameter | HttpServerParameter,
   implementation: string
 ): Parameter {
@@ -579,7 +579,7 @@ function emitResponse(
 }
 
 function emitOperation(
-  context: DpgContext,
+  context: SdkContext,
   operation: Operation,
   operationGroupName: string
 ): HrlcOperation {
@@ -616,7 +616,7 @@ function addPagingInformation(
 }
 
 function emitLroPagingOperation(
-  context: DpgContext,
+  context: SdkContext,
   operation: Operation,
   operationGroupName: string
 ): HrlcOperation {
@@ -632,7 +632,7 @@ function emitLroPagingOperation(
 }
 
 function emitLroOperation(
-  context: DpgContext,
+  context: SdkContext,
   operation: Operation,
   operationGroupName: string
 ): HrlcOperation {
@@ -646,7 +646,7 @@ function emitLroOperation(
 }
 
 function emitPagingOperation(
-  context: DpgContext,
+  context: SdkContext,
   operation: Operation,
   operationGroupName: string
 ): HrlcOperation {
@@ -660,7 +660,7 @@ function emitPagingOperation(
 }
 
 function emitBasicOperation(
-  context: DpgContext,
+  context: SdkContext,
   operation: Operation,
   operationGroupName: string
 ): HrlcOperation {
@@ -951,7 +951,7 @@ function emitStdScalar(
       return { type: "boolean" };
     case "plainDate":
       return { type: "date" };
-    case "zonedDateTime":
+    case "utcDateTime":
       return { type: "datetime", format: "date-time" };
     case "plainTime":
       return { type: "time" };
@@ -1171,8 +1171,8 @@ function emitType(program: Program, type: EmitterType): Record<string, any> {
 }
 
 function emitOperationGroups(
-  context: DpgContext,
-  client: Client
+  context: SdkContext,
+  client: SdkClient
 ): OperationGroup[] {
   const operationGroups: OperationGroup[] = [];
   for (const operationGroup of listOperationGroups(context, client)) {
@@ -1216,7 +1216,7 @@ function getServerHelper(
 }
 
 function emitServerParams(
-  context: DpgContext,
+  context: SdkContext,
   namespace: Namespace
 ): Parameter[] {
   const server = getServerHelper(context.program, namespace);
@@ -1319,7 +1319,7 @@ function emitCredentialParam(
 }
 
 function emitGlobalParameters(
-  context: DpgContext,
+  context: SdkContext,
   namespace: Namespace
 ): Parameter[] {
   const clientParameters = emitServerParams(context, namespace);
@@ -1330,7 +1330,7 @@ function emitGlobalParameters(
   return clientParameters;
 }
 
-function getApiVersionParameter(context: DpgContext): Parameter | void {
+function getApiVersionParameter(context: SdkContext): Parameter | void {
   const version = getDefaultApiVersion(
     context,
     getServiceNamespace(context.program)
@@ -1356,7 +1356,7 @@ function getApiVersionParameter(context: DpgContext): Parameter | void {
   }
 }
 
-function emitClients(context: DpgContext, namespace: string): HrlcClient[] {
+function emitClients(context: SdkContext, namespace: string): HrlcClient[] {
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
@@ -1387,7 +1387,7 @@ function getServiceNamespace(program: Program): Namespace {
   return listServices(program)[0]!.type;
 }
 
-function getNamespace(context: DpgContext, clientName: string): string {
+function getNamespace(context: SdkContext, clientName: string): string {
   // We get client namespaces from the client name. If there's a dot, we add that to the namespace
   const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
   if (!submodule) {
@@ -1396,7 +1396,7 @@ function getNamespace(context: DpgContext, clientName: string): string {
   return submodule;
 }
 
-function getNamespaces(context: DpgContext): Set<string> {
+function getNamespaces(context: SdkContext): Set<string> {
   const namespaces = new Set<string>();
   for (const client of listClients(context)) {
     namespaces.add(getNamespace(context, client.name));
@@ -1409,7 +1409,7 @@ export function emitCodeModel(
   options: { casing: "snake" | "camel" } = { casing: "snake" }
 ): ModularCodeModel {
   CASING = options.casing ?? CASING;
-  const dpgContext = createDpgContext(context);
+  const dpgContext = createSdkContext(context);
   const clientNamespaceString =
     getClientNamespaceString(dpgContext)?.toLowerCase();
   // Get types

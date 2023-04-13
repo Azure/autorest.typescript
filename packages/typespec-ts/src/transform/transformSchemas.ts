@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import {
-  Client,
-  DpgContext,
+  SdkClient,
+  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -19,8 +19,8 @@ import {
 
 export function transformSchemas(
   program: Program,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ) {
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,

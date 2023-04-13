@@ -1,7 +1,7 @@
 import { PagedResultMetadata } from "@azure-tools/typespec-azure-core";
 import {
-  Client,
-  DpgContext,
+  SdkClient,
+  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -17,8 +17,8 @@ import { getSpecialSerializeInfo } from "./transformParameters.js";
 
 export function transformAnnotationDetails(
   program: Program,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ): AnnotationDetails | undefined {
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
@@ -93,8 +93,8 @@ export function getPageable(
 
 function extractPageDetailFromCore(
   program: Program,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ) {
   if (!hasPagingOperations(program, client, dpgContext)) {
     return;
@@ -171,8 +171,8 @@ function parseItemName(paged: PagedResultMetadata): string | undefined {
 
 function extractSpecialSerializeInfo(
   program: Program,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ) {
   let hasMultiCollection = false;
   let hasPipeCollection = false;

@@ -448,7 +448,7 @@ describe("Parameters.ts", () => {
 
     it("datetime array request generation", async () => {
       const parameters = await emitParameterFromCadl(`
-      @post op read(@body body: zonedDateTime[]): void;
+      @post op read(@body body: utcDateTime[]): void;
       `);
       assert.ok(parameters);
       assertEqualContent(

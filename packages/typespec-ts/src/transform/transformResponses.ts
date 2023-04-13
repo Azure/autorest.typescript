@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import {
-  Client,
-  DpgContext,
+  SdkClient,
+  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  OperationGroup
+  SdkOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ResponseHeaderSchema,
@@ -37,8 +37,8 @@ import {
 export function transformToResponseTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ): OperationResponse[] {
   const operationGroups = listOperationGroups(dpgContext, client);
   const rlcResponses: OperationResponse[] = [];
@@ -63,7 +63,7 @@ export function transformToResponseTypes(
   }
   function transformToResponseTypesForRoute(
     route: HttpOperation,
-    operationGroup?: OperationGroup
+    operationGroup?: SdkOperationGroup
   ) {
     const rlcOperationUnit: OperationResponse = {
       operationGroup: getOperationGroupName(operationGroup),

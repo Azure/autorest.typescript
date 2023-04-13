@@ -104,10 +104,10 @@ model VariableState {
   effectiveCount?: int32;
 
   @doc("First valid timestamp with value of input data.")
-  firstTimestamp?: zonedDateTime;
+  firstTimestamp?: utcDateTime;
 
   @doc("Last valid timestamp with value of input data.")
-  lastTimestamp?: zonedDateTime;
+  lastTimestamp?: utcDateTime;
 }
 
 @doc("""
@@ -134,19 +134,19 @@ variables for one anomalous timestamp in the response. The default number is
 A required field, indicating the start time of data for detection, which should
 be date-time of ISO 8601 format.
 """)
-  startTime: zonedDateTime;
+  startTime: utcDateTime;
 
   @doc("""
 A required field, indicating the end time of data for detection, which should
 be date-time of ISO 8601 format.
 """)
-  endTime: zonedDateTime;
+  endTime: utcDateTime;
 }
 
 @doc("Anomaly status and information.")
 model AnomalyState {
   @doc("The timestamp for this anomaly.")
-  timestamp: zonedDateTime;
+  timestamp: utcDateTime;
   @doc("The detailed value of this anomalous timestamp.")
   value?: AnomalyValue;
 
@@ -220,13 +220,13 @@ DataSchema is OneTable.
 A required field, indicating the start time of training data, which should be
 date-time of ISO 8601 format.
 """)
-  startTime: zonedDateTime;
+  startTime: utcDateTime;
 
   @doc("""
 A required field, indicating the end time of training data, which should be
 date-time of ISO 8601 format.
 """)
-  endTime: zonedDateTime;
+  endTime: utcDateTime;
 
   @doc("""
 An optional field. The display name of the model whose maximum length is 24
@@ -315,10 +315,10 @@ model AnomalyDetectionModel {
   modelId: string;
 
   @doc("Date and time (UTC) when the model was created.")
-  createdTime: zonedDateTime;
+  createdTime: utcDateTime;
 
   @doc("Date and time (UTC) when the model was last updated.")
-  lastUpdatedTime: zonedDateTime;
+  lastUpdatedTime: utcDateTime;
 
   @doc("""
 Training result of a model including its status, errors and diagnostics

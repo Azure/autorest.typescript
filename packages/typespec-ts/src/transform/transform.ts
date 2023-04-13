@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import {
-  Client,
-  DpgContext
+  SdkClient,
+  SdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ImportKind,
@@ -39,9 +39,9 @@ import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 export async function transformRLCModel(
   program: Program,
   emitterOptions: RLCOptions,
-  client: Client,
+  client: SdkClient,
   emitterOutputDir: string,
-  dpgContext: DpgContext
+  dpgContext: SdkContext
 ): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(
     program,
@@ -105,7 +105,7 @@ export async function transformRLCModel(
 
 export function transformUrlInfo(
   program: Program,
-  dpgContext: DpgContext
+  dpgContext: SdkContext
 ): UrlInfo | undefined {
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;

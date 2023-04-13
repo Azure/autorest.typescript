@@ -737,10 +737,10 @@ describe("Input/output model type", () => {
         outputType
       });
     });
-    it("should handle zonedDateTime -> string in output model &  `Date | string` in input model", async () => {
+    it("should handle utcDateTime -> string in output model &  `Date | string` in input model", async () => {
       const inputType = "Date | string";
       const outputType = "string";
-      await verifyPropertyType("zonedDateTime", inputType, {
+      await verifyPropertyType("utcDateTime", inputType, {
         outputType
       });
     });
