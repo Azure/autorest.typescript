@@ -11,7 +11,6 @@ export { BatchServiceContext } from "../rest/index.js";
 export function createBatchService(
   endpoint: string,
   credential: TokenCredential,
-  apiVersion: string,
   options: ClientOptions = {}
 ): BatchServiceContext {
   const baseUrl = endpoint;

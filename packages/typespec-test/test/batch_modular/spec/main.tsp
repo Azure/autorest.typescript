@@ -11,10 +11,14 @@ using TypeSpec.Versioning;
   version: "2022-10-01.16.0",
 })
 @useAuth(AADToken)
-@useDependency(Azure.Core.Versions.v1_0_Preview_1)
+@versioned(BatchService.Versions)
 
 @doc("A client for issuing REST requests to the Azure Batch service.")
 namespace BatchService;
+
+enum Versions {
+  v2022_10_01: "2022-10-01.16.0",
+}
 
 @doc("The Azure Active Directory OAuth2 Flow")
 model AADToken

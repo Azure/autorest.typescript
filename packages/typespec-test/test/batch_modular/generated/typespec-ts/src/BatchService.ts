@@ -201,15 +201,9 @@ export class BatchService {
   constructor(
     endpoint: string,
     credential: TokenCredential,
-    apiVersion: string,
     options: ClientOptions = {}
   ) {
-    this._client = createBatchService(
-      endpoint,
-      credential,
-      apiVersion,
-      options
-    );
+    this._client = createBatchService(endpoint, credential, options);
   }
 
   applications = {
