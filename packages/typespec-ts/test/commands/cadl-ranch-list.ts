@@ -95,5 +95,9 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "projection",
     inputPath: "projection"
+  },
+  {
+    outputPath: "internal",
+    inputPath: "internal"
   }
 ];
