@@ -107,5 +107,13 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "server/path/multiple",
     inputPath: "server/path/multiple"
+  },
+  {
+    outputPath: "azure/core",
+    inputPath: "azure/core"
+  },
+  {
+    outputPath: "azure/core-traits",
+    inputPath: "azure/core/traits"
   }
 ];
