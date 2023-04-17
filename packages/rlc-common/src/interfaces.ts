@@ -10,7 +10,7 @@ export interface RLCModel {
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
-  annotations?: AnnotationDetails;
+  annotations?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
 }
 
@@ -31,7 +31,7 @@ export interface ApiVersionInfo {
 }
 
 export type ApiVersionPosition = "path" | "query" | "both" | "none";
-export interface AnnotationDetails {
+export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
   pageDetails?: PagingDetails;

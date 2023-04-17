@@ -10,7 +10,7 @@ import {
 import {
   ImportKind,
   RLCModel,
-  AnnotationDetails,
+  HelperFunctionDetails,
   UrlInfo,
   ApiVersionInfo,
   extractPathApiVersion,
@@ -115,7 +115,7 @@ function getOperationQueryApiVersion(
 
 export function transformAnnotationDetails(
   model: CodeModel
-): AnnotationDetails {
+): HelperFunctionDetails {
   const nextLinks = new Set<string>();
   const itemNames = new Set<string>();
   // Add default values

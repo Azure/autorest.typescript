@@ -5,7 +5,7 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { AnnotationDetails } from "@azure-tools/rlc-common";
+import { HelperFunctionDetails } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
 import { getHttpOperation, HttpOperation } from "@typespec/http";
 import {
@@ -19,7 +19,7 @@ export function transformAnnotationDetails(
   program: Program,
   client: SdkClient,
   dpgContext: SdkContext
-): AnnotationDetails | undefined {
+): HelperFunctionDetails | undefined {
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
     hasLongRunning: hasPollingOperations(program, client, dpgContext)

@@ -44,7 +44,8 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "lro/lroCore",
-    inputPath: "lro/lro-core"
+    inputPath: "lro/lro-core",
+    debug: true
   },
   {
     outputPath: "lro/lroRPC",

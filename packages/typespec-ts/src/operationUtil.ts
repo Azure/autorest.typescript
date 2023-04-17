@@ -77,7 +77,8 @@ export function isLongRunningOperation(
   program: Program,
   operation: HttpOperation
 ) {
-  return !!getLroMetadata(program, operation.operation);
+  const meta = getLroMetadata(program, operation.operation);
+  return !!meta;
 }
 
 export function hasPollingOperations(
