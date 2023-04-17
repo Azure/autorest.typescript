@@ -1399,7 +1399,7 @@ packages:
     dev: false
 
   /array-flatten/1.1.1:
-    resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
+    resolution: {integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=}
     dev: false
 
   /array-union/2.1.0:
@@ -1577,7 +1577,7 @@ packages:
     dev: false
 
   /buffer-equal-constant-time/1.0.1:
-    resolution: {integrity: sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==}
+    resolution: {integrity: sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=}
     dev: false
 
   /buffer-from/1.1.2:
@@ -1841,7 +1841,7 @@ packages:
     dev: false
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: false
 
   /connect/3.7.0:
@@ -1875,7 +1875,7 @@ packages:
     dev: false
 
   /cookie-signature/1.0.6:
-    resolution: {integrity: sha512-QADzlaHc8icV8I7vbaJXJwod9HWYp8uCqf1xa4OfNu1T7JVxQIrUgOWtHdNDtPiywmFbiS12VjotIXLrKM3orQ==}
+    resolution: {integrity: sha1-4wOogrNCzD7oylE6eZmXNNqzriw=}
     dev: false
 
   /cookie/0.4.2:
@@ -2118,7 +2118,7 @@ packages:
     dev: false
 
   /ee-first/1.1.1:
-    resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
+    resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: false
 
   /electron-to-chromium/1.4.356:
@@ -2691,7 +2691,7 @@ packages:
     dev: false
 
   /fresh/0.5.2:
-    resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
+    resolution: {integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -3687,7 +3687,7 @@ packages:
     dev: false
 
   /media-typer/0.3.0:
-    resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
+    resolution: {integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=}
     engines: {node: '>= 0.6'}
     dev: false
 
@@ -3697,7 +3697,7 @@ packages:
     dev: false
 
   /merge-descriptors/1.0.1:
-    resolution: {integrity: sha512-cCi6g3/Zr1iqQi6ySbseM1Xvooa98N0w31jzUYrXPX2xqObmFGHJ0tQ5u74H3mVh7wLouTseZyYIq39g8cNp1w==}
+    resolution: {integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=}
     dev: false
 
   /merge-stream/2.0.0:
@@ -5312,7 +5312,7 @@ packages:
     dev: false
 
   /utils-merge/1.0.1:
-    resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
+    resolution: {integrity: sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=}
     engines: {node: '>= 0.4.0'}
     dev: false
 
@@ -5883,7 +5883,7 @@ packages:
     dev: false
 
   file:projects/typespec-ts.tgz:
-    resolution: {integrity: sha512-JDf2wREG3ffOIvMCX0haSXsdYPafIXHXpY9Edhfq35MEj3QIkkJSX7PUBZ0yeJl2MjEBv54td9opVSpArbBn6w==, tarball: file:projects/typespec-ts.tgz}
+    resolution: {integrity: sha512-kvTw72hp9utlrbm7D+1vTSg6Uwpyt5J29TqmMKpuy/WFLnokBzJW5Twv4mzZIYzXoLY2QtQ1f3t18BefQnI7yQ==, tarball: file:projects/typespec-ts.tgz}
     name: '@rush-temp/typespec-ts'
     version: 0.0.0
     dependencies:
@@ -5891,6 +5891,7 @@ packages:
       '@azure-tools/cadl-ranch': 0.4.4
       '@azure-tools/cadl-ranch-expect': 0.2.2_34ec5f5afefe82559595183196b15141
       '@azure-tools/cadl-ranch-specs': 0.11.2_613b9edcad889e76a0ebac716b0f83c7
+      '@azure-tools/typespec-autorest': 0.29.0_c65f431a99db2a6fa8c2ef4beaa5af77
       '@azure-tools/typespec-azure-core': 0.29.0_34ec5f5afefe82559595183196b15141
       '@azure-tools/typespec-client-generator-core': 0.29.0_34ec5f5afefe82559595183196b15141
       '@azure/core-auth': 1.4.0
