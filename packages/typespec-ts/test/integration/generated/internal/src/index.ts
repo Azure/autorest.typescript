@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import CollectionFormatClient from "./collectionFormatClient";
+import InternalClient from "./internalClient";
 
-export * from "./collectionFormatClient";
+export * from "./internalClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
+export * from "./models";
 export * from "./outputModels";
-export * from "./serializeHelper";
 
-export default CollectionFormatClient;
+export default InternalClient;

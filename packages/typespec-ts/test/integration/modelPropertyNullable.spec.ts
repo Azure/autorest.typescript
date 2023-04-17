@@ -36,7 +36,7 @@ const testedTypes: TypeDetail[] = [
     defaultValue: [{ property: "hello" }, { property: "world" }]
   }
 ];
-describe.skip("ModelsPropertyNullableClient Rest Client", () => {
+describe("ModelsPropertyNullableClient Rest Client", () => {
   let client: ModelsPropertyNullableClient;
 
   beforeEach(() => {

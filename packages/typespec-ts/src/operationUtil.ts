@@ -15,11 +15,11 @@ import {
   PagedResultMetadata
 } from "@azure-tools/typespec-azure-core";
 import {
-  Client,
-  DpgContext,
+  SdkClient,
+  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  OperationGroup
+  SdkOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 
 export function getNormalizedOperationName(
@@ -46,7 +46,7 @@ export function getOperationStatuscode(
 }
 
 // FIXME: this is the placeholder function to extract the operationGroupName
-export function getOperationGroupName(operationGroup?: OperationGroup) {
+export function getOperationGroupName(operationGroup?: SdkOperationGroup) {
   return operationGroup?.type.name ?? "";
 }
 
@@ -82,8 +82,8 @@ export function isLongRunningOperation(
 
 export function hasPollingOperations(
   program: Program,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ) {
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
@@ -121,8 +121,8 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
 
 export function hasPagingOperations(
   program: Program,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ) {
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {

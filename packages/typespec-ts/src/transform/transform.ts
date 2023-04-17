@@ -2,9 +2,8 @@
 // Licensed under the MIT License.
 
 import {
-  Client,
-  DpgContext,
-  getDefaultApiVersion
+  SdkClient,
+  SdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ImportKind,
@@ -19,25 +18,15 @@ import {
   Schema,
   UrlInfo
 } from "@azure-tools/rlc-common";
-import {
-  Program,
-  Type,
-  BooleanLiteral,
-  StringLiteral,
-  NumericLiteral,
-  ModelProperty,
-  listServices,
-  NoTarget,
-  Service,
-  getDoc,
-  getService
-} from "@typespec/compiler";
+import { Program, getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
 import { join } from "path";
 import {
+  getDefaultService,
   getFormattedPropertyDoc,
   getSchemaForType,
-  getTypeName
+  getTypeName,
+  predictDefaultValue
 } from "../modelUtils.js";
 import { transformAnnotationDetails } from "./transformAnnotationDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
@@ -45,16 +34,14 @@ import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
-import { isApiVersion } from "@azure-tools/typespec-client-generator-core";
-import { reportDiagnostic } from "../lib.js";
-import { transformApiVersionParam } from "./transformApiVersionParam.js";
+import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 
 export async function transformRLCModel(
   program: Program,
   emitterOptions: RLCOptions,
-  client: Client,
+  client: SdkClient,
   emitterOutputDir: string,
-  dpgContext: DpgContext
+  dpgContext: SdkContext
 ): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(
     program,
@@ -80,11 +67,7 @@ export async function transformRLCModel(
   const importSet = new Map<ImportKind, Set<string>>();
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
-  const apiVersionInQueryParam = transformApiVersionParam(
-    client,
-    program,
-    dpgContext
-  );
+
   const responses: OperationResponse[] = transformToResponseTypes(
     program,
     importSet,
@@ -99,6 +82,12 @@ export async function transformRLCModel(
   );
   const annotations = transformAnnotationDetails(program, client, dpgContext);
   const urlInfo = transformUrlInfo(program, dpgContext);
+  const apiVersionInfo = transformApiVersionInfo(
+    client,
+    program,
+    dpgContext,
+    urlInfo
+  );
   return {
     srcPath,
     libraryName,
@@ -107,7 +96,7 @@ export async function transformRLCModel(
     schemas,
     responses,
     importSet,
-    apiVersionInQueryParam,
+    apiVersionInfo,
     parameters,
     annotations,
     urlInfo
@@ -116,7 +105,7 @@ export async function transformRLCModel(
 
 export function transformUrlInfo(
   program: Program,
-  dpgContext: DpgContext
+  dpgContext: SdkContext
 ): UrlInfo | undefined {
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
@@ -142,14 +131,9 @@ export function transformUrlInfo(
           type: getTypeName(schema),
           description:
             (getDoc(program, property) &&
-              getFormattedPropertyDoc(
-                program,
-                property,
-                schema,
-                " " /* sperator*/
-              )) ??
+              getFormattedPropertyDoc(program, property, schema, " ")) ??
             getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
-          value: getDefaultValue(
+          value: predictDefaultValue(
             program,
             dpgContext,
             host?.[0]?.parameters.get(key)
@@ -167,60 +151,4 @@ export function transformUrlInfo(
     });
   }
   return { endpoint, urlParameters };
-}
-
-export function getDefaultValue(
-  program: Program,
-  dpgContext: DpgContext,
-  param?: ModelProperty
-) {
-  const otherDefaultValue = param?.default;
-  const serviceNamespace = getDefaultService(program)?.type;
-  if (!serviceNamespace) {
-    return undefined;
-  }
-  const defaultApiVersion =
-    getDefaultApiVersion(dpgContext, serviceNamespace)?.value ??
-    getService(program, serviceNamespace)?.version;
-  if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
-    return defaultApiVersion;
-  } else if (isLiteralValue(otherDefaultValue)) {
-    return otherDefaultValue.value;
-  }
-  return undefined;
-}
-
-function isLiteralValue(
-  type?: Type
-): type is StringLiteral | NumericLiteral | BooleanLiteral {
-  if (!type) {
-    return false;
-  }
-
-  if (
-    type.kind === "Boolean" ||
-    type.kind === "String" ||
-    type.kind === "Number"
-  ) {
-    return type.value !== undefined;
-  }
-
-  return false;
-}
-
-export function getDefaultService(program: Program): Service | undefined {
-  const services = listServices(program);
-  if (!services || services.length === 0) {
-    reportDiagnostic(program, {
-      code: "no-service-defined",
-      target: NoTarget
-    });
-  }
-  if (services.length > 1) {
-    reportDiagnostic(program, {
-      code: "more-than-one-service",
-      target: NoTarget
-    });
-  }
-  return services[0];
 }

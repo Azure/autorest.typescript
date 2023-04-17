@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import {
-  Client,
-  DpgContext,
+  SdkClient,
+  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -13,13 +13,14 @@ import { getHttpOperation, HttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
   includeDerivedModel,
-  getBodyType
+  getBodyType,
+  trimUsage
 } from "../modelUtils.js";
 
 export function transformSchemas(
   program: Program,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ) {
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,
@@ -82,20 +83,7 @@ export function transformSchemas(
     }
     schemas.set(pureModel, usage);
   });
-  function trimUsage(model: any) {
-    if (typeof model !== "object") {
-      return model;
-    }
-    const tmpModel = Object.assign({}, model);
-    const tmpModelKeys = Object.keys(tmpModel).filter((item) => {
-      return item !== "usage";
-    });
-    const ordered = tmpModelKeys.sort().reduce((obj, key) => {
-      (obj as any)[key] = trimUsage(tmpModel[key]);
-      return obj;
-    }, {});
-    return ordered;
-  }
+
   function setModelMap(type: Type, schemaContext: SchemaContext) {
     if (program.stateMap(modelKey).get(type)) {
       const context = program.stateMap(modelKey).get(type);

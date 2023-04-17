@@ -49,7 +49,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "nullable-float",
-    defaultValue: [[1.2, null, 3.0]]
+    defaultValue: [1.2, null, 3.0]
   }
 ];
 describe("Array Item-Types Client", () => {

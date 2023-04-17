@@ -23,25 +23,25 @@ import {
   getSchemaForType,
   getBinaryType,
   getFormattedPropertyDoc,
-  getBodyType
+  getBodyType,
+  predictDefaultValue
 } from "../modelUtils.js";
 
 import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
 import {
-  Client,
-  DpgContext,
+  SdkClient,
+  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  OperationGroup,
+  SdkOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { getDefaultValue } from "./transform.js";
 
 export function transformToParameterTypes(
   program: Program,
   importDetails: Map<ImportKind, Set<string>>,
-  client: Client,
-  dpgContext: DpgContext
+  client: SdkClient,
+  dpgContext: SdkContext
 ): OperationParameter[] {
   const operationGroups = listOperationGroups(dpgContext, client);
   const rlcParameters: OperationParameter[] = [];
@@ -67,7 +67,7 @@ export function transformToParameterTypes(
   function transformToParameterTypesForRoute(
     program: Program,
     route: HttpOperation,
-    operationGroup?: OperationGroup
+    operationGroup?: SdkOperationGroup
   ) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
@@ -160,7 +160,7 @@ function getParameterName(name: string) {
 
 function transformQueryParameters(
   program: Program,
-  dpgContext: DpgContext,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
@@ -168,7 +168,7 @@ function transformQueryParameters(
       p.type === "query" &&
       !(
         isApiVersion(dpgContext, p) &&
-        getDefaultValue(program, dpgContext, p.param)
+        predictDefaultValue(program, dpgContext, p.param)
       )
   );
   if (!queryParameters.length) {

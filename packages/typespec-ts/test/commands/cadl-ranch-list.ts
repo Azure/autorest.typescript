@@ -95,11 +95,23 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "unions"
   },
   {
-    outputPath: "collectionFormat",
-    inputPath: "collectionFormat"
+    outputPath: "parameters/collection-format",
+    inputPath: "parameters/collection-format"
   },
   {
     outputPath: "projection",
     inputPath: "projection"
+  },
+  {
+    outputPath: "internal",
+    inputPath: "internal"
+  },
+  {
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
+  },
+  {
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
   }
 ];

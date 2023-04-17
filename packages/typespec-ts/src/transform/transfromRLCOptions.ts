@@ -1,5 +1,5 @@
 import {
-  DpgContext,
+  SdkContext,
   listClients
 } from "@azure-tools/typespec-client-generator-core";
 import {
@@ -11,14 +11,14 @@ import {
 } from "@azure-tools/rlc-common";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";
-import { getDefaultService } from "./transform.js";
 import { reportDiagnostic } from "../lib.js";
+import { getDefaultService } from "../modelUtils.js";
 
 export function transformRLCOptions(
   program: Program,
   emitterOptions: RLCOptions,
   emitterOutputDir: string,
-  dpgContext: DpgContext
+  dpgContext: SdkContext
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
