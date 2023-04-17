@@ -14,3 +14,15 @@ export function buildMultiCollection(
     })
     .join("&");
 }
+
+export function buildPipeCollection(queryParameters: string[]): string {
+  return queryParameters.join("|");
+}
+
+export function buildSsvCollection(queryParameters: string[]): string {
+  return queryParameters.join(" ");
+}
+
+export function buildTsvCollection(queryParameters: string[]) {
+  return queryParameters.join("\t");
+}
