@@ -28,7 +28,7 @@ import {
   getTypeName,
   predictDefaultValue
 } from "../modelUtils.js";
-import { transformAnnotationDetails } from "./transformAnnotationDetails.js";
+import { transformHelperFunctionDetails } from "./transformHelperFunctionDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
@@ -80,7 +80,11 @@ export async function transformRLCModel(
     client,
     dpgContext
   );
-  const annotations = transformAnnotationDetails(program, client, dpgContext);
+  const annotations = transformHelperFunctionDetails(
+    program,
+    client,
+    dpgContext
+  );
   const urlInfo = transformUrlInfo(program, dpgContext);
   const apiVersionInfo = transformApiVersionInfo(
     client,

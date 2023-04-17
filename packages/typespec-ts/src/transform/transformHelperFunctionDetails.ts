@@ -15,7 +15,7 @@ import {
 } from "../operationUtil.js";
 import { getSpecialSerializeInfo } from "./transformParameters.js";
 
-export function transformAnnotationDetails(
+export function transformHelperFunctionDetails(
   program: Program,
   client: SdkClient,
   dpgContext: SdkContext
