@@ -2,13 +2,15 @@
 // Licensed under the MIT license.
 
 import {
+  CreateOrReplace200LogicalResponse,
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
   Delete202Response,
   DeleteDefaultResponse,
+  Export200LogicalResponse,
   Export202Response,
-  ExportDefaultResponse,
+  ExportDefaultResponse
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -16,7 +18,7 @@ const responseMap: Record<string, string[]> = {
   "GET /azure/lro/core/users/{name}": ["202"],
   "DELETE /azure/lro/core/users/{name}": ["202"],
   "POST /azure/lro/core/users/{name}:export": ["202"],
-  "GET /azure/lro/core/users/{name}:export": ["202"],
+  "GET /azure/lro/core/users/{name}:export": ["202"]
 };
 
 export function isUnexpected(
@@ -24,21 +26,24 @@ export function isUnexpected(
     | CreateOrReplace200Response
     | CreateOrReplace201Response
     | CreateOrReplaceDefaultResponse
+    | CreateOrReplace200LogicalResponse
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
   response: Delete202Response | DeleteDefaultResponse
 ): response is DeleteDefaultResponse;
 export function isUnexpected(
-  response: Export202Response | ExportDefaultResponse
+  response: Export202Response | ExportDefaultResponse | Export200LogicalResponse
 ): response is ExportDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrReplace200Response
     | CreateOrReplace201Response
+    | CreateOrReplace200LogicalResponse
     | CreateOrReplaceDefaultResponse
     | Delete202Response
     | DeleteDefaultResponse
     | Export202Response
+    | Export200LogicalResponse
     | ExportDefaultResponse
 ): response is
   | CreateOrReplaceDefaultResponse

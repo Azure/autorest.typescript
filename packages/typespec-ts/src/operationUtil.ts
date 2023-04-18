@@ -81,6 +81,7 @@ export function isLongRunningOperation(
   return !!meta;
 }
 
+// LRO-TODO - refactor the duplicated logic
 export function hasPollingOperations(
   program: Program,
   client: SdkClient,

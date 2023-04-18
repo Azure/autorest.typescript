@@ -85,7 +85,13 @@ export type PathParameter = {
 
 export interface OperationAnnotations {
   isLongRunning?: boolean;
+  lroMetadata?: LROMetadata;
   isPageable?: boolean;
+}
+
+export interface LROMetadata {
+  logicResponseTypes?: ResponseTypes;
+  allowedOverloading?: boolean;
 }
 
 export interface RLCOptions {

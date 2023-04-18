@@ -8,8 +8,17 @@ import {
   LroResponse,
   OperationState,
   SimplePollerLike,
-  createHttpPoller,
+  createHttpPoller
 } from "@azure/core-lro";
+import {
+  CreateOrReplace200LogicalResponse,
+  CreateOrReplace200Response,
+  CreateOrReplace201Response,
+  CreateOrReplaceDefaultResponse,
+  Export200LogicalResponse,
+  Export202Response,
+  ExportDefaultResponse
+} from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -17,6 +26,26 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
+
+export async function getLongRunningPoller<
+  TResult extends
+    | CreateOrReplace200LogicalResponse
+    | CreateOrReplaceDefaultResponse
+>(
+  client: Client,
+  initialResponse:
+    | CreateOrReplace200Response
+    | CreateOrReplace201Response
+    | CreateOrReplaceDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends Export200LogicalResponse | ExportDefaultResponse
+>(
+  client: Client,
+  initialResponse: Export202Response | ExportDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,
@@ -43,7 +72,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       lroResponse.rawResponse.headers["x-ms-original-url"] =
         initialResponse.request.url;
       return lroResponse;
-    },
+    }
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
@@ -69,7 +98,7 @@ function getLroResponse<TResult extends HttpResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body,
-    },
+      body: response.body
+    }
   };
 }

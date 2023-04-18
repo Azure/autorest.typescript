@@ -49,6 +49,8 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         map = { ...map, ...{ [operation]: success } };
       }
 
+      // LRO-TODO - add lro logical response types
+
       const successTypes = methodDetails[0].responseTypes.success;
       const errorTypes = methodDetails[0].responseTypes.error;
 

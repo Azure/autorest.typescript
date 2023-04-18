@@ -125,6 +125,7 @@ function transformOperation(
     annotations: {
       isLongRunning: isLongRunningOperation(program, route),
       isPageable: isPagingOperation(program, route)
+      // LRO-TODO - enrich the logic response types
     }
   };
   if (

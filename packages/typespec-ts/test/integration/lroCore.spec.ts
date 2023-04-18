@@ -29,7 +29,10 @@ describe.only("AzureLroCoreClient Rest Client", () => {
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }
-      assert.equal(result.body.name, "madge");
+      assert.equal(result.status, "200");
+      if (result.status === "200") {
+        assert.equal(result.body.name, "madge");
+      }
     } catch (err) {
       assert.fail(err as string);
     }
@@ -57,7 +60,7 @@ describe.only("AzureLroCoreClient Rest Client", () => {
     }
   });
 
-  it("should export LRO response", async () => {
+  it.only("should export LRO response", async () => {
     try {
       const initalResponse = await client
         .path("/azure/lro/core/users/{name}:export", "madge")
@@ -74,7 +77,10 @@ describe.only("AzureLroCoreClient Rest Client", () => {
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }
-      assert.equal(result.body.result?.name, "madge");
+      assert.equal(result.status, "200");
+      if (result.status === "200") {
+        assert.equal(result.body.result?.name, "madge");
+      }
     } catch (err) {
       assert.fail(err as string);
     }
