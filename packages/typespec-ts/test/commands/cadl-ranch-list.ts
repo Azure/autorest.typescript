@@ -39,8 +39,8 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "lro/lroBasic",
-    inputPath: "lro/lro-basic",
-    debug: true
+    inputPath: "lro/lro-basic"
+    // debug: true
   },
   {
     outputPath: "lro/lroCore",

@@ -45,7 +45,7 @@ export interface CreateOrReplaceDefaultResponse extends HttpResponse {
 }
 
 /** The final response for long-running createOrReplace operation */
-export interface CreateOrReplace200LogicalResponse extends HttpResponse {
+export interface CreateOrReplaceLogicalResponse extends HttpResponse {
   status: "200";
   body: UserOutput;
 }
@@ -74,7 +74,7 @@ export interface DeleteDefaultResponse extends HttpResponse {
 }
 
 /** The final response for long-running delete operation */
-export interface Delete200LogicalResponse extends HttpResponse {
+export interface DeleteLogicalResponse extends HttpResponse {
   status: "200";
   body: OperationStatusOutput;
 }
@@ -103,7 +103,7 @@ export interface ExportDefaultResponse extends HttpResponse {
 }
 
 /** The final response for long-running export operation */
-export interface Export200LogicalResponse extends HttpResponse {
+export interface ExportLogicalResponse extends HttpResponse {
   status: "200";
   body: ResourceOperationStatusOutput;
 }

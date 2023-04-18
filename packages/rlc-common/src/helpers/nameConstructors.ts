@@ -37,7 +37,7 @@ export function getLroLogical200ResponseName(
   operationName: string
 ) {
   return normalizeName(
-    `${operationGroup}_${operationName}_200_Logical_Response`,
+    `${operationGroup}_${operationName}_Logical_Response`,
     NameType.Interface
   );
 }

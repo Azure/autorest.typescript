@@ -4,13 +4,13 @@
 import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
-  CreateOrReplace200LogicalResponse,
+  CreateOrReplaceLogicalResponse,
   CreateOrReplaceDefaultResponse,
   Delete202Response,
-  Delete200LogicalResponse,
+  DeleteLogicalResponse,
   DeleteDefaultResponse,
   Export202Response,
-  Export200LogicalResponse,
+  ExportLogicalResponse,
   ExportDefaultResponse,
 } from "./responses";
 
@@ -26,26 +26,26 @@ export function isUnexpected(
   response:
     | CreateOrReplace200Response
     | CreateOrReplace201Response
-    | CreateOrReplace200LogicalResponse
+    | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
-  response: Delete202Response | Delete200LogicalResponse | DeleteDefaultResponse
+  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse
 ): response is DeleteDefaultResponse;
 export function isUnexpected(
-  response: Export202Response | Export200LogicalResponse | ExportDefaultResponse
+  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse
 ): response is ExportDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrReplace200Response
     | CreateOrReplace201Response
-    | CreateOrReplace200LogicalResponse
+    | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
     | Delete202Response
-    | Delete200LogicalResponse
+    | DeleteLogicalResponse
     | DeleteDefaultResponse
     | Export202Response
-    | Export200LogicalResponse
+    | ExportLogicalResponse
     | ExportDefaultResponse
 ): response is
   | CreateOrReplaceDefaultResponse

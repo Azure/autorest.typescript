@@ -49,7 +49,7 @@ function buildOverloadDetail(model: RLCModel): LroOverloadDetail {
         const finalRespoonse = lroDetail.logicalResponseTypes?.success
           .concat(methodDetails[0].responseTypes.error)
           .join("|");
-        if (!initalResponses && !finalRespoonse) {
+        if (initalResponses && finalRespoonse) {
           res.detail!.push({
             initalResponses: initalResponses,
             finalResponses: finalRespoonse!
