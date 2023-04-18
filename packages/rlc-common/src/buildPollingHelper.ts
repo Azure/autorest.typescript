@@ -5,9 +5,10 @@ import hbs from "handlebars";
 import { hasPollingOperations } from "./helpers/operationHelpers.js";
 import { pollingContent } from "./static/pollingContent.js";
 
-interface LroOverloadDetail {
-  shouldGenerate: boolean;
-  detail?: ResponseMap[];
+interface LroDetail {
+  shouldGenerateOverload?: boolean;
+  overloadMap?: ResponseMap[];
+  importedResponses?: string[];
 }
 
 interface ResponseMap {
@@ -19,7 +20,7 @@ export function buildPollingHelper(model: RLCModel) {
   if (!hasPollingOperations(model)) {
     return;
   }
-  let overloadDetail: LroOverloadDetail = buildOverloadDetail(model);
+  let overloadDetail: LroDetail = buildOverloadDetail(model);
   const readmeFileContents = hbs.compile(pollingContent, { noEscape: true });
   const { srcPath } = model;
   return {
@@ -28,36 +29,42 @@ export function buildPollingHelper(model: RLCModel) {
   };
 }
 
-function buildOverloadDetail(model: RLCModel): LroOverloadDetail {
+function buildOverloadDetail(model: RLCModel): LroDetail {
   if (!model.helperDetails?.shouldGenerateLroOverload) {
     return {
-      shouldGenerate: false
+      shouldGenerateOverload: false
     };
   }
-  const res: LroOverloadDetail = {
-    shouldGenerate: true,
-    detail: []
-  };
+  const detail = [];
   const pathDictionary = model.paths;
+  const responses = new Set<string>();
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
       const lroDetail = methodDetails[0].annotations?.lroDetails;
       if (lroDetail?.isLongRunning) {
-        const initalResponses = methodDetails[0].responseTypes.success
-          .concat(methodDetails[0].responseTypes.error)
-          .join("|");
-        const finalRespoonse = lroDetail.logicalResponseTypes?.success
-          .concat(methodDetails[0].responseTypes.error)
-          .join("|");
+        const initalResponses = methodDetails[0].responseTypes.success.concat(
+          methodDetails[0].responseTypes.error
+        );
+
+        const finalRespoonse = lroDetail.logicalResponseTypes?.success.concat(
+          methodDetails[0].responseTypes.error
+        );
+
         if (initalResponses && finalRespoonse) {
-          res.detail!.push({
-            initalResponses: initalResponses,
-            finalResponses: finalRespoonse!
+          initalResponses.forEach((n) => responses.add(n));
+          finalRespoonse.forEach((n) => responses.add(n));
+          detail!.push({
+            initalResponses: initalResponses.join("|"),
+            finalResponses: finalRespoonse.join("|")
           });
         }
       }
     }
   }
 
-  return res;
+  return {
+    shouldGenerateOverload: responses.size > 0 && detail.length > 0,
+    importedResponses: Array.from(responses),
+    overloadMap: detail
+  };
 }

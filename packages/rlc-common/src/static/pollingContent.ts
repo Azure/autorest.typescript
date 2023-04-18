@@ -18,6 +18,13 @@ import {
   SimplePollerLike,
   createHttpPoller
 } from "@azure/core-lro";
+{{#if shouldGenerateOverload}}
+import {
+  {{#each importedResponses}}
+  {{this}},
+  {{/each}}
+} from "./responses";
+{{/if}}
 {{/if}}
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -26,8 +33,8 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
-{{#if shouldGenerate}}
-{{#each detail}}
+{{#if shouldGenerateOverload}}
+{{#each overloadMap}}
 export async function getLongRunningPoller<
   TResult extends {{ this.finalResponses }}
 >(

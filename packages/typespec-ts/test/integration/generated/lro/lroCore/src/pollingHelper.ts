@@ -8,8 +8,20 @@ import {
   LroResponse,
   OperationState,
   SimplePollerLike,
-  createHttpPoller,
+  createHttpPoller
 } from "@azure/core-lro";
+import {
+  CreateOrReplace200Response,
+  CreateOrReplace201Response,
+  CreateOrReplaceLogicalResponse,
+  CreateOrReplaceDefaultResponse,
+  Delete202Response,
+  DeleteLogicalResponse,
+  DeleteDefaultResponse,
+  Export202Response,
+  ExportLogicalResponse,
+  ExportDefaultResponse
+} from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -26,28 +38,22 @@ export async function getLongRunningPoller<
   initialResponse:
     | CreateOrReplace200Response
     | CreateOrReplace201Response
-    | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+export async function getLongRunningPoller<
+  TResult extends ExportLogicalResponse | ExportDefaultResponse
+>(
+  client: Client,
+  initialResponse: Export202Response | ExportDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
   TResult extends DeleteLogicalResponse | DeleteDefaultResponse
 >(
   client: Client,
-  initialResponse:
-    | Delete202Response
-    | DeleteLogicalResponse
-    | DeleteDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends ExportLogicalResponse | ExportDefaultResponse
->(
-  client: Client,
-  initialResponse:
-    | Export202Response
-    | ExportLogicalResponse
-    | ExportDefaultResponse,
+  initialResponse: Delete202Response | DeleteDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
@@ -76,7 +82,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       lroResponse.rawResponse.headers["x-ms-original-url"] =
         initialResponse.request.url;
       return lroResponse;
-    },
+    }
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
@@ -102,7 +108,7 @@ function getLroResponse<TResult extends HttpResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body,
-    },
+      body: response.body
+    }
   };
 }
