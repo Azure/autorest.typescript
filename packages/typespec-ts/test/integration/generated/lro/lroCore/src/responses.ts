@@ -6,7 +6,7 @@ import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   UserOutput,
   OperationStatusOutput,
-  ResourceOperationStatusOutput
+  ResourceOperationStatusOutput,
 } from "./outputModels";
 
 export interface CreateOrReplace200Headers {
@@ -19,12 +19,6 @@ export interface CreateOrReplace200Response extends HttpResponse {
   status: "200";
   body: UserOutput;
   headers: RawHttpHeaders & CreateOrReplace200Headers;
-}
-
-/** The request has succeeded. */
-export interface CreateOrReplace200LogicalResponse extends HttpResponse {
-  status: "200";
-  body: UserOutput;
 }
 
 export interface CreateOrReplace201Headers {
@@ -50,6 +44,12 @@ export interface CreateOrReplaceDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & CreateOrReplaceDefaultHeaders;
 }
 
+/** The final response for long-running createOrReplace operation */
+export interface CreateOrReplace200LogicalResponse extends HttpResponse {
+  status: "200";
+  body: UserOutput;
+}
+
 export interface Delete202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -62,12 +62,6 @@ export interface Delete202Response extends HttpResponse {
   headers: RawHttpHeaders & Delete202Headers;
 }
 
-/** The request has been accepted for processing, but processing has not yet completed. */
-export interface Delete200LogicalResponse extends HttpResponse {
-  status: "200";
-  body: OperationStatusOutput;
-}
-
 export interface DeleteDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
@@ -77,6 +71,12 @@ export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & DeleteDefaultHeaders;
+}
+
+/** The final response for long-running delete operation */
+export interface Delete200LogicalResponse extends HttpResponse {
+  status: "200";
+  body: OperationStatusOutput;
 }
 
 export interface Export202Headers {
@@ -91,14 +91,6 @@ export interface Export202Response extends HttpResponse {
   headers: RawHttpHeaders & Export202Headers;
 }
 
-/**
- * The final response for long-running export operation
- */
-export interface Export200LogicalResponse extends HttpResponse {
-  status: "200";
-  body: ResourceOperationStatusOutput;
-}
-
 export interface ExportDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
@@ -108,4 +100,10 @@ export interface ExportDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & ExportDefaultHeaders;
+}
+
+/** The final response for long-running export operation */
+export interface Export200LogicalResponse extends HttpResponse {
+  status: "200";
+  body: ResourceOperationStatusOutput;
 }

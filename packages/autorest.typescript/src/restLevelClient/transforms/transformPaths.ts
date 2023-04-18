@@ -91,7 +91,9 @@ export function transformPaths(model: CodeModel): Paths {
             successStatus: gerOperationSuccessStatus(operation),
             operationName,
             annotations: {
-              isLongRunning: isLongRunningOperation(operation),
+              lroDetails: {
+                isLongRunning: isLongRunningOperation(operation)
+              },
               isPageable: isPagingOperation(operation)
             }
           };

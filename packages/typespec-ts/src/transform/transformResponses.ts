@@ -14,7 +14,8 @@ import {
   OperationResponse,
   ResponseMetadata,
   Schema,
-  SchemaContext
+  SchemaContext,
+  getLroLogical200ResponseName
 } from "@azure-tools/rlc-common";
 import { Program, getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
@@ -31,7 +32,8 @@ import {
 import {
   getOperationGroupName,
   getOperationStatuscode,
-  isBinaryPayload
+  isBinaryPayload,
+  shouldGenerateLroLogicalResponse
 } from "../operationUtil.js";
 
 export function transformToResponseTypes(
@@ -85,7 +87,15 @@ export function transformToResponseTypes(
         headers,
         body
       });
-      // LRO-TODO - include logic response details
+    }
+    const lroLogicalResponse = transformLroLogicalResponse(
+      program,
+      route,
+      getOperationGroupName(operationGroup),
+      rlcOperationUnit.responses
+    );
+    if (!!lroLogicalResponse) {
+      rlcOperationUnit.responses.push(lroLogicalResponse);
     }
     rlcResponses.push(rlcOperationUnit);
   }
@@ -188,4 +198,35 @@ function transformBody(
     description: [...descriptions].join("\n\n"),
     fromCore
   };
+}
+
+function transformLroLogicalResponse(
+  program: Program,
+  route: HttpOperation,
+  operationGroupName: string,
+  existingResponses: ResponseMetadata[]
+): ResponseMetadata | undefined {
+  const shouldGenereate = shouldGenerateLroLogicalResponse(
+    program,
+    route,
+    undefined,
+    existingResponses
+  );
+  if (!shouldGenereate) {
+    return;
+  }
+  const sortedResponses = existingResponses
+    .filter((r) => r.statusCode.startsWith("20"))
+    .sort((r1, r2) => (r1.statusCode > r2.statusCode ? -1 : 1));
+  const successResp = sortedResponses[0];
+  const logicalLROResponse: ResponseMetadata = {
+    statusCode: "200",
+    description: `The final response for long-running ${route.operation.name} operation`,
+    predefinedName: getLroLogical200ResponseName(
+      operationGroupName,
+      route.operation.name
+    ),
+    body: successResp?.body
+  };
+  return logicalLROResponse;
 }

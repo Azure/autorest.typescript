@@ -13,9 +13,8 @@ import {
 } from "ts-morph";
 import * as path from "path";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
-import { isConstantSchema } from "./helpers/schemaHelpers.js";
 import { buildMethodShortcutImplementation } from "./buildMethodShortcuts.js";
-import { RLCModel, Schema, File, PathParameter } from "./interfaces.js";
+import { RLCModel, File, PathParameter } from "./interfaces.js";
 import { getImportModuleName } from "./helpers/nameConstructors.js";
 
 function getClientOptionsInterface(

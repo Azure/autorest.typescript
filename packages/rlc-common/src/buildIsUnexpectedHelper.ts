@@ -38,7 +38,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
       // LROs may call the same path but with GET
       // to get the operation status.
       if (
-        methodDetails[0].annotations?.isLongRunning &&
+        methodDetails[0].annotations?.lroDetails?.isLongRunning &&
         originalMethod !== "GET"
       ) {
         const operation = `GET ${path}`;
@@ -49,10 +49,18 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         map = { ...map, ...{ [operation]: success } };
       }
 
-      // LRO-TODO - add lro logical response types
-
       const successTypes = methodDetails[0].responseTypes.success;
       const errorTypes = methodDetails[0].responseTypes.error;
+
+      if (
+        model.helperDetails?.shouldGenerateLroOverload &&
+        methodDetails[0].annotations?.lroDetails?.logicalResponseTypes?.success
+      ) {
+        successTypes.push(
+          ...methodDetails[0].annotations?.lroDetails?.logicalResponseTypes
+            .success
+        );
+      }
 
       if (!successTypes.length || !errorTypes.length || !errorTypes[0]) {
         continue;

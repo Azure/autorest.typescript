@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  Paths,
+  ResponseMetadata,
+  ResponseTypes,
+  getLroLogical200ResponseName,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
 import {
   getHttpOperation,
@@ -21,6 +28,7 @@ import {
   listOperationsInOperationGroup,
   SdkOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
+import { LroDetails } from "@azure-tools/rlc-common";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -77,11 +85,60 @@ export function isLongRunningOperation(
   program: Program,
   operation: HttpOperation
 ) {
-  const meta = getLroMetadata(program, operation.operation);
-  return !!meta;
+  return Boolean(getLroMetadata(program, operation.operation));
 }
 
-// LRO-TODO - refactor the duplicated logic
+export function shouldGenerateLroLogicalResponse(
+  program: Program,
+  operation: HttpOperation,
+  existingResponseTypes?: ResponseTypes,
+  existingResponses?: ResponseMetadata[]
+) {
+  const metadata = getLroMetadata(program, operation.operation);
+  if (!metadata) {
+    return false;
+  }
+  const hasSuccessReturn = existingResponses?.filter((r) =>
+    r.statusCode.startsWith("20")
+  );
+  if (existingResponseTypes?.success || hasSuccessReturn) {
+    return true;
+  }
+  return false;
+}
+
+export function extractLroDetails(
+  program: Program,
+  operation: HttpOperation,
+  responsesTypes: ResponseTypes,
+  operationGroupName: string
+): LroDetails {
+  let logicalResponseTypes: ResponseTypes | undefined;
+  // By default we'll disable the overloading
+  let allowedOverloading = shouldGenerateLroLogicalResponse(
+    program,
+    operation,
+    responsesTypes
+  );
+  if (allowedOverloading) {
+    logicalResponseTypes = {
+      error: responsesTypes.error,
+      success: [
+        getLroLogical200ResponseName(
+          operationGroupName,
+          operation.operation.name
+        )
+      ]
+    };
+  }
+
+  return {
+    isLongRunning: Boolean(getLroMetadata(program, operation.operation)),
+    logicalResponseTypes,
+    allowedOverloading
+  };
+}
+
 export function hasPollingOperations(
   program: Program,
   client: SdkClient,
@@ -177,4 +234,23 @@ export function extractPagedMetadataNested(
     }
   }
   return paged;
+}
+
+export function shouldGenerateLroOverload(pathDictionary: Paths) {
+  let lroCounts = 0,
+    allowCounts = 0;
+  for (const details of Object.values(pathDictionary)) {
+    for (const methodDetails of Object.values(details.methods)) {
+      const lroDetail = methodDetails[0].annotations?.lroDetails;
+      if (lroDetail?.isLongRunning) {
+        lroCounts++;
+        if (!lroDetail.allowedOverloading) {
+          return false;
+        }
+        allowCounts++;
+      }
+    }
+  }
+
+  return Boolean(lroCounts > 0 && lroCounts === allowCounts);
 }

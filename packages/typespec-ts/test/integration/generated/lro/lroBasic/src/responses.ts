@@ -10,6 +10,12 @@ export interface Create200Response extends HttpResponse {
   body: UserOutput;
 }
 
+/** The final response for long-running create operation */
+export interface Create200LogicalResponse extends HttpResponse {
+  status: "200";
+  body: UserOutput;
+}
+
 /** The request has succeeded. */
 export interface Polling200Response extends HttpResponse {
   status: "200";

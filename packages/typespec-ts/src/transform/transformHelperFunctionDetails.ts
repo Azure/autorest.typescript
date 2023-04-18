@@ -19,7 +19,7 @@ export function transformHelperFunctionDetails(
   program: Program,
   client: SdkClient,
   dpgContext: SdkContext
-): HelperFunctionDetails | undefined {
+): HelperFunctionDetails {
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
     hasLongRunning: hasPollingOperations(program, client, dpgContext)

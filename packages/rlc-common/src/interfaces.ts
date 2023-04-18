@@ -10,7 +10,7 @@ export interface RLCModel {
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
-  annotations?: HelperFunctionDetails;
+  helperDetails?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
 }
 
@@ -34,6 +34,7 @@ export type ApiVersionPosition = "path" | "query" | "both" | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
+  shouldGenerateLroOverload?: boolean;
   pageDetails?: PagingDetails;
   hasMultiCollection?: boolean;
   hasPipeCollection?: boolean;
@@ -84,13 +85,13 @@ export type PathParameter = {
 };
 
 export interface OperationAnnotations {
-  isLongRunning?: boolean;
-  lroMetadata?: LROMetadata;
+  lroDetails?: LroDetails;
   isPageable?: boolean;
 }
 
-export interface LROMetadata {
-  logicResponseTypes?: ResponseTypes;
+export interface LroDetails {
+  isLongRunning?: boolean;
+  logicalResponseTypes?: ResponseTypes;
   allowedOverloading?: boolean;
 }
 
@@ -230,6 +231,7 @@ export interface ResponseMetadata {
   description?: string;
   headers?: ResponseHeaderSchema[];
   body?: ResponseBodySchema;
+  predefinedName?: string;
 }
 
 export type ResponseHeaderSchema = Schema;

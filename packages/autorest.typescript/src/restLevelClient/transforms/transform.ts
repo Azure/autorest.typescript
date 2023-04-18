@@ -51,7 +51,7 @@ export function transform(model: CodeModel): RLCModel {
     responses: transformResponseTypes(model, importDetails),
     importSet: importDetails,
     parameters: transformParameterTypes(model, importDetails),
-    annotations: transformAnnotationDetails(model),
+    helperDetails: transformHelperDetails(model),
     urlInfo: transformUrlInfo(model),
     apiVersionInfo: transformApiVersion(model, urlInfo)
   };
@@ -113,7 +113,7 @@ function getOperationQueryApiVersion(
   return;
 }
 
-export function transformAnnotationDetails(
+export function transformHelperDetails(
   model: CodeModel
 ): HelperFunctionDetails {
   const nextLinks = new Set<string>();
@@ -162,6 +162,7 @@ export function transformAnnotationDetails(
       nextLinkNames: [...nextLinks],
       isComplexPaging
     },
+    shouldGenerateLroOverload: false,
     hasMultiCollection,
     hasPipeCollection,
     hasSsvCollection,
