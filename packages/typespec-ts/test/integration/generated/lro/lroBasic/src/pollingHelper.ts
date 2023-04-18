@@ -10,6 +10,7 @@ import {
   SimplePollerLike,
   createHttpPoller,
 } from "@azure/core-lro";
+import { Create200Response, CreateLogicalResponse } from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -18,7 +19,7 @@ import {
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
 export async function getLongRunningPoller<
-  TResult extends Create200LogicalResponse
+  TResult extends CreateLogicalResponse
 >(
   client: Client,
   initialResponse: Create200Response,

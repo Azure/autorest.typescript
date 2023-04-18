@@ -11,7 +11,7 @@ export interface Create200Response extends HttpResponse {
 }
 
 /** The final response for long-running create operation */
-export interface Create200LogicalResponse extends HttpResponse {
+export interface CreateLogicalResponse extends HttpResponse {
   status: "200";
   body: UserOutput;
 }

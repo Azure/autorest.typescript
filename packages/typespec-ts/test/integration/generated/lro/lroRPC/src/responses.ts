@@ -35,6 +35,11 @@ export interface CreateJobDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & CreateJobDefaultHeaders;
 }
 
+/** The final response for long-running createJob operation */
+export interface CreateJobLogicalResponse extends HttpResponse {
+  status: "200";
+}
+
 /** The request has succeeded. */
 export interface GetJob200Response extends HttpResponse {
   status: "200";
@@ -50,6 +55,12 @@ export interface GetJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & GetJobDefaultHeaders;
+}
+
+/** The final response for long-running getJob operation */
+export interface GetJobLogicalResponse extends HttpResponse {
+  status: "200";
+  body: JobResultOutput;
 }
 
 /** The request has succeeded. */
@@ -84,6 +95,11 @@ export interface CreateJobFinalOnLocationDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & CreateJobFinalOnLocationDefaultHeaders;
 }
 
+/** The final response for long-running createJobFinalOnLocation operation */
+export interface CreateJobFinalOnLocationLogicalResponse extends HttpResponse {
+  status: "200";
+}
+
 /** The request has succeeded. */
 export interface GetPoll200Response extends HttpResponse {
   status: "200";
@@ -99,4 +115,10 @@ export interface GetPollDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & GetPollDefaultHeaders;
+}
+
+/** The final response for long-running getPoll operation */
+export interface GetPollLogicalResponse extends HttpResponse {
+  status: "200";
+  body: JobPollResultOutput;
 }

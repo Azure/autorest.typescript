@@ -4,13 +4,17 @@
 import {
   CreateJob200Response,
   CreateJob202Response,
+  CreateJobLogicalResponse,
   CreateJobDefaultResponse,
   GetJob200Response,
+  GetJobLogicalResponse,
   GetJobDefaultResponse,
   CreateJobFinalOnLocation200Response,
   CreateJobFinalOnLocation202Response,
+  CreateJobFinalOnLocationLogicalResponse,
   CreateJobFinalOnLocationDefaultResponse,
   GetPoll200Response,
+  GetPollLogicalResponse,
   GetPollDefaultResponse,
 } from "./responses";
 
@@ -29,31 +33,37 @@ export function isUnexpected(
   response:
     | CreateJob200Response
     | CreateJob202Response
+    | CreateJobLogicalResponse
     | CreateJobDefaultResponse
 ): response is CreateJobDefaultResponse;
 export function isUnexpected(
-  response: GetJob200Response | GetJobDefaultResponse
+  response: GetJob200Response | GetJobLogicalResponse | GetJobDefaultResponse
 ): response is GetJobDefaultResponse;
 export function isUnexpected(
   response:
     | CreateJobFinalOnLocation200Response
     | CreateJobFinalOnLocation202Response
+    | CreateJobFinalOnLocationLogicalResponse
     | CreateJobFinalOnLocationDefaultResponse
 ): response is CreateJobFinalOnLocationDefaultResponse;
 export function isUnexpected(
-  response: GetPoll200Response | GetPollDefaultResponse
+  response: GetPoll200Response | GetPollLogicalResponse | GetPollDefaultResponse
 ): response is GetPollDefaultResponse;
 export function isUnexpected(
   response:
     | CreateJob200Response
     | CreateJob202Response
+    | CreateJobLogicalResponse
     | CreateJobDefaultResponse
     | GetJob200Response
+    | GetJobLogicalResponse
     | GetJobDefaultResponse
     | CreateJobFinalOnLocation200Response
     | CreateJobFinalOnLocation202Response
+    | CreateJobFinalOnLocationLogicalResponse
     | CreateJobFinalOnLocationDefaultResponse
     | GetPoll200Response
+    | GetPollLogicalResponse
     | GetPollDefaultResponse
 ): response is
   | CreateJobDefaultResponse
