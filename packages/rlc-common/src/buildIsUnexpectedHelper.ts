@@ -49,7 +49,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         map = { ...map, ...{ [operation]: success } };
       }
 
-      const successTypes = methodDetails[0].responseTypes.success;
+      const successTypes = [...methodDetails[0].responseTypes.success];
       const errorTypes = methodDetails[0].responseTypes.error;
 
       if (
