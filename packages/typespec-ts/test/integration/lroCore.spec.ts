@@ -1,5 +1,6 @@
 import AzureLroCoreClientFactory, {
   AzureLroCoreClient,
+  ExportLogicalResponse,
   getLongRunningPoller,
   isUnexpected
 } from "./generated/lro/lroCore/src/index.js";
@@ -80,7 +81,10 @@ describe.only("AzureLroCoreClient Rest Client", () => {
       }
       assert.equal(result.status, "200");
       if (result.status === "200") {
-        assert.equal(result.body.result?.name, "madge");
+        assert.equal(
+          (result as ExportLogicalResponse).body.result?.name,
+          "madge"
+        );
       }
     } catch (err) {
       assert.fail(err as string);
