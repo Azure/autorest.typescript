@@ -11,7 +11,7 @@ import {
   DeleteDefaultResponse,
   Export202Response,
   ExportLogicalResponse,
-  ExportDefaultResponse
+  ExportDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -19,7 +19,7 @@ const responseMap: Record<string, string[]> = {
   "GET /azure/lro/core/users/{name}": ["202"],
   "DELETE /azure/lro/core/users/{name}": ["202"],
   "POST /azure/lro/core/users/{name}:export": ["202"],
-  "GET /azure/lro/core/users/{name}:export": ["202"]
+  "GET /azure/lro/core/users/{name}:export": ["202"],
 };
 
 export function isUnexpected(
@@ -35,7 +35,6 @@ export function isUnexpected(
 export function isUnexpected(
   response: Export202Response | ExportLogicalResponse | ExportDefaultResponse
 ): response is ExportDefaultResponse;
-
 export function isUnexpected(
   response:
     | CreateOrReplace200Response
