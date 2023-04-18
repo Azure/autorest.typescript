@@ -48,9 +48,3 @@ export interface CollectionsModelProperty {
   /** Property */
   nullableProperty: Array<InnerModel> | null;
 }
-
-/** Inner model used in collections model property */
-export interface InnerModel {
-  /** Inner model property */
-  property: string;
-}

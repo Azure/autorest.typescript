@@ -1,8 +1,11 @@
 import { assert } from "chai";
 import AzureCoreClientFactory, {
-  AzureCoreClient
+  AzureCoreClient, buildMultiCollection
 } from "./generated/azure/core/src/index.js";
-describe.only("Azure Core Rest Client", () => {
+import AzureCoreTraitsClientFactory, {
+  AzureCoreTraitsClient
+} from "./generated/azure/core-traits/src/index.js";
+describe("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
 
   beforeEach(() => {
@@ -19,9 +22,10 @@ describe.only("Azure Core Rest Client", () => {
       const result = await client.path("/azure/core/users/{id}", 1).put({
         body: {
           name: "Madge"
-        }
+        },
+        contentType: "application/json"
       });
-      assert.strictEqual(result.status, "20");
+      assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -52,7 +56,7 @@ describe.only("Azure Core Rest Client", () => {
   it("should delete user", async () => {
     try {
       const result = await client.path("/azure/core/users/{id}", 1).delete();
-      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -60,7 +64,17 @@ describe.only("Azure Core Rest Client", () => {
 
   it("should list users", async () => {
     try {
-      const result = await client.path("/azure/core/users").get();
+      const result = await client.path("/azure/core/users").get({
+        queryParameters: {
+          top: 5,
+          skip: 10,
+          orderby: "id",
+          filter: "id lt 10",
+          select: buildMultiCollection(["id", "orders", "etag"], "select"),
+          expand: "orders"
+        },
+        skipUrlEncoding: true
+      });
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -88,4 +102,42 @@ describe.only("Azure Core Rest Client", () => {
   //       assert.fail(err as string);
   //     }
   //   });
+});
+
+describe.only("Azure Core Traits Rest Client", () => {
+  let client: AzureCoreTraitsClient;
+
+  beforeEach(() => {
+    client = AzureCoreTraitsClientFactory({
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      }
+    });
+  });
+
+  it("should get user traits", async () => {
+    try {
+      const result = await client.path("/azure/traits/user/{id}", 1).get({
+        headers: {
+          foo: "123",
+          "If-Match": "valid",
+          "If-None-Match": "invalid",
+          "If-Modified-Since": "Thu, 26 Aug 2021 14:38:00 GMT",
+          "If-Unmodified-Since": "Fri, 26 Aug 2022 14:38:00 GMT"
+        }
+      })
+      assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+  it("should delete user traits", async () => {
+    try {
+      const result = await client.path("/azure/traits/api/{apiVersion}/user/{id}", "2022-12-01-preview", 1).delete();
+      assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });

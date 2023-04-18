@@ -25,13 +25,6 @@ export interface UserOrderOutput {
   detail: string;
 }
 
-export interface ListQueryParametersTraitOutput {
-  queryParams: Output;
-}
-
-/** The parameters for exporting a user. */
-export interface UserExportParamsOutput {}
-
 /** Paged collection of User items */
 export type UserListOutput = Paged<UserOutput>;
 /** Paged collection of User items */

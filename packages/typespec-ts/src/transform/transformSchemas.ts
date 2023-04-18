@@ -4,6 +4,7 @@
 import {
   SdkClient,
   SdkContext,
+  getAllModels,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -22,6 +23,11 @@ export function transformSchemas(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
+  const allModels = getAllModels(dpgContext);
+  const allModelContainers: Model[] = [];
+  for (const model of allModels) {
+    allModelContainers.push(model);
+  }
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,
     SchemaContext[]
@@ -46,7 +52,14 @@ export function transformSchemas(
   }
   function transformSchemaForRoute(route: HttpOperation) {
     const bodyModel = getBodyType(program, route);
-    if (bodyModel && bodyModel.kind === "Model") {
+    if (route.operation.name === "list") {
+      route;
+    }
+    if (
+      bodyModel &&
+      bodyModel.kind === "Model" &&
+      allModelContainers.indexOf(bodyModel) > -1
+    ) {
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
@@ -60,8 +73,25 @@ export function transformSchemas(
       }
       for (const resps of resp.responses) {
         const respModel = resps.body;
-        if (!respModel) {
+        if (
+          !respModel ||
+          (respModel.type.kind === "Model" &&
+            !respModel.type.templateMapper &&
+            allModelContainers.indexOf(respModel.type) === -1)
+        ) {
           continue;
+        }
+        if (respModel.type.kind === "Model") {
+          if (
+            respModel.type.templateMapper &&
+            respModel.type.templateMapper.args &&
+            respModel.type.templateMapper.args.length > 0 &&
+            respModel.type.templateMapper.args[0]?.kind === "Model" &&
+            allModelContainers.indexOf(respModel.type.templateMapper.args[0]) ===
+              -1
+          ) {
+            continue;
+          }
         }
         getGeneratedModels(respModel.type, SchemaContext.Output);
       }
@@ -97,13 +127,17 @@ export function transformSchemas(
   }
   function getGeneratedModels(model: Type, context: SchemaContext) {
     if (model.kind === "Model") {
-      if (model.templateArguments && model.templateArguments.length > 0) {
-        for (const temp of model.templateArguments) {
+      if (model.templateMapper && model.templateMapper.args && model.templateMapper.args.length > 0) {
+        for (const temp of model.templateMapper.args) {
           if (
             !program.stateMap(modelKey).get(temp) ||
             !program.stateMap(modelKey).get(temp)?.includes(context)
           ) {
-            getGeneratedModels(temp, context);
+            if (temp.kind === "Model" && allModelContainers.indexOf(temp) > -1) {
+              getGeneratedModels(temp, context);
+            } else if (temp.kind !== "Model") {
+              getGeneratedModels(temp, context);
+            }
             break;
           }
         }
