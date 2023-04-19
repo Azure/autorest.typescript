@@ -806,7 +806,11 @@ function getName(program: Program, type: Model): string {
   if (friendlyName) {
     return friendlyName;
   } else {
-    if (type.templateMapper && type.templateMapper.args && type.templateMapper.args.length > 0) {
+    if (
+      type.templateMapper &&
+      type.templateMapper.args &&
+      type.templateMapper.args.length > 0
+    ) {
       return (
         type.name +
         type.templateMapper.args
