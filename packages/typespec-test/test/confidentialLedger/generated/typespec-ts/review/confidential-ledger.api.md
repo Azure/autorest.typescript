@@ -16,10 +16,6 @@ import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface CollectionIdParameterOutput {
-}
-
-// @public
 export interface CollectionOutput {
     readonly collectionId: string;
 }
