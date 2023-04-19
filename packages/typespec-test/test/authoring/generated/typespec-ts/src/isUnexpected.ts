@@ -52,11 +52,11 @@ const responseMap: Record<string, string[]> = {
   "DELETE /authoring/analyze-text/projects/{projectName}": ["202"],
   "GET /authoring/analyze-text/projects": ["200"],
   "POST /authoring/analyze-text/projects/{projectName}:export": ["202"],
-  "GET /authoring/analyze-text/projects/{projectName}:export": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}:export": ["200", "202"],
   "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
-  "GET /authoring/analyze-text/projects/{projectName}:importx": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}:importx": ["200", "202"],
   "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
-  "GET /authoring/analyze-text/projects/{projectName}:train": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}:train": ["200", "202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["200"],
   "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
@@ -68,6 +68,7 @@ const responseMap: Record<string, string[]> = {
     "202",
   ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments:swap": [
+    "200",
     "202",
   ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}":
