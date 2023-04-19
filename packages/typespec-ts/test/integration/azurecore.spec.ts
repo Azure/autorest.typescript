@@ -5,7 +5,7 @@ import AzureCoreClientFactory, {
 import AzureCoreTraitsClientFactory, {
   AzureCoreTraitsClient
 } from "./generated/azure/core-traits/src/index.js";
-describe("Azure Core Rest Client", () => {
+describe.only("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
 
   beforeEach(() => {

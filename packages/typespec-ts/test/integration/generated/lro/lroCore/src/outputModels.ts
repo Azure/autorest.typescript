@@ -12,6 +12,20 @@ export interface UserOutput {
 }
 
 /** Provides status details for long running operations. */
+export interface OperationStatusOutput {
+  /** The unique ID of the operation. */
+  id: string;
+  /**
+   * The status of the operation
+   *
+   * Possible values: InProgress, Succeeded, Failed, Canceled
+   */
+  status: string;
+  /** Error object that describes the error when status is "Failed". */
+  error?: ErrorModel;
+}
+
+/** Provides status details for long running operations. */
 export interface ResourceOperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
