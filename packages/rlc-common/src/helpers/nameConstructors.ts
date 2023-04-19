@@ -32,7 +32,7 @@ export function getResponseTypeName(
   );
 }
 
-export function getLroLogical200ResponseName(
+export function getLroLogicalResponseName(
   operationGroup: string,
   operationName: string
 ) {

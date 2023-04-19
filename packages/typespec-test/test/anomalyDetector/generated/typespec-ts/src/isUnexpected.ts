@@ -19,6 +19,7 @@ import {
   GetMultivariateModel200Response,
   GetMultivariateModelDefaultResponse,
   DetectMultivariateBatchAnomaly202Response,
+  DetectMultivariateBatchAnomalyLogicalResponse,
   DetectMultivariateBatchAnomalyDefaultResponse,
   DetectMultivariateLastAnomaly200Response,
   DetectMultivariateLastAnomalyDefaultResponse,
@@ -81,6 +82,7 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | DetectMultivariateBatchAnomaly202Response
+    | DetectMultivariateBatchAnomalyLogicalResponse
     | DetectMultivariateBatchAnomalyDefaultResponse
 ): response is DetectMultivariateBatchAnomalyDefaultResponse;
 export function isUnexpected(
@@ -107,6 +109,7 @@ export function isUnexpected(
     | GetMultivariateModel200Response
     | GetMultivariateModelDefaultResponse
     | DetectMultivariateBatchAnomaly202Response
+    | DetectMultivariateBatchAnomalyLogicalResponse
     | DetectMultivariateBatchAnomalyDefaultResponse
     | DetectMultivariateLastAnomaly200Response
     | DetectMultivariateLastAnomalyDefaultResponse

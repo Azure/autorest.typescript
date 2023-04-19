@@ -10,6 +10,11 @@ import {
   SimplePollerLike,
   createHttpPoller,
 } from "@azure/core-lro";
+import {
+  DetectMultivariateBatchAnomaly202Response,
+  DetectMultivariateBatchAnomalyDefaultResponse,
+  DetectMultivariateBatchAnomalyLogicalResponse,
+} from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -17,6 +22,17 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
+export async function getLongRunningPoller<
+  TResult extends
+    | DetectMultivariateBatchAnomalyLogicalResponse
+    | DetectMultivariateBatchAnomalyDefaultResponse
+>(
+  client: Client,
+  initialResponse:
+    | DetectMultivariateBatchAnomaly202Response
+    | DetectMultivariateBatchAnomalyDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,

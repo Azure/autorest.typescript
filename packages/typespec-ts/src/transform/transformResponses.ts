@@ -15,7 +15,7 @@ import {
   ResponseMetadata,
   Schema,
   SchemaContext,
-  getLroLogical200ResponseName
+  getLroLogicalResponseName
 } from "@azure-tools/rlc-common";
 import { Program, getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
@@ -222,7 +222,7 @@ function transformLroLogicalResponse(
   const logicalLROResponse: ResponseMetadata = {
     statusCode: "200",
     description: `The final response for long-running ${route.operation.name} operation`,
-    predefinedName: getLroLogical200ResponseName(
+    predefinedName: getLroLogicalResponseName(
       operationGroupName,
       route.operation.name
     ),

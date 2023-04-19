@@ -10,6 +10,18 @@ import {
   SimplePollerLike,
   createHttpPoller,
 } from "@azure/core-lro";
+import {
+  CreateOrUpdateWidget200Response,
+  CreateOrUpdateWidget201Response,
+  CreateOrUpdateWidgetDefaultResponse,
+  CreateOrUpdateWidgetLogicalResponse,
+  DeleteWidget202Response,
+  DeleteWidgetDefaultResponse,
+  DeleteWidgetLogicalResponse,
+  GetWidgetOperationStatus200Response,
+  GetWidgetOperationStatusDefaultResponse,
+  GetWidgetOperationStatusLogicalResponse,
+} from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -17,6 +29,36 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
+export async function getLongRunningPoller<
+  TResult extends
+    | CreateOrUpdateWidgetLogicalResponse
+    | CreateOrUpdateWidgetDefaultResponse
+>(
+  client: Client,
+  initialResponse:
+    | CreateOrUpdateWidget200Response
+    | CreateOrUpdateWidget201Response
+    | CreateOrUpdateWidgetDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse
+>(
+  client: Client,
+  initialResponse: DeleteWidget202Response | DeleteWidgetDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
+    | GetWidgetOperationStatusLogicalResponse
+    | GetWidgetOperationStatusDefaultResponse
+>(
+  client: Client,
+  initialResponse:
+    | GetWidgetOperationStatus200Response
+    | GetWidgetOperationStatusDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,

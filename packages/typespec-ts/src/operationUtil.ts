@@ -6,7 +6,7 @@ import {
   Paths,
   ResponseMetadata,
   ResponseTypes,
-  getLroLogical200ResponseName,
+  getLroLogicalResponseName,
   normalizeName
 } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
@@ -124,10 +124,7 @@ export function extractLroDetails(
     logicalResponseTypes = {
       error: responsesTypes.error,
       success: [
-        getLroLogical200ResponseName(
-          operationGroupName,
-          operation.operation.name
-        )
+        getLroLogicalResponseName(operationGroupName, operation.operation.name)
       ]
     };
   }

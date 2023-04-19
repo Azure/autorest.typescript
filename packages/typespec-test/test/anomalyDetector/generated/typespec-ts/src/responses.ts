@@ -186,6 +186,13 @@ export interface DetectMultivariateBatchAnomalyDefaultResponse
   headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
 }
 
+/** The final response for long-running DetectMultivariateBatchAnomaly operation */
+export interface DetectMultivariateBatchAnomalyLogicalResponse
+  extends HttpResponse {
+  status: "200";
+  body: MultivariateDetectionResultOutput;
+}
+
 /** The request has succeeded. */
 export interface DetectMultivariateLastAnomaly200Response extends HttpResponse {
   status: "200";
