@@ -5,7 +5,7 @@ import AzureLroCoreClientFactory, {
   isUnexpected
 } from "./generated/lro/lroCore/src/index.js";
 import { assert } from "chai";
-describe.only("AzureLroCoreClient Rest Client", () => {
+describe("AzureLroCoreClient Rest Client", () => {
   let client: AzureLroCoreClient;
 
   beforeEach(() => {
@@ -23,7 +23,6 @@ describe.only("AzureLroCoreClient Rest Client", () => {
         });
       const poller = await getLongRunningPoller(client, initalResponse);
       const result = await poller.pollUntilDone();
-      console.log(result, initalResponse);
       assert.equal(result.status, "200");
       assert.strictEqual(initalResponse.status, "201");
       if (isUnexpected(result)) {
@@ -55,7 +54,7 @@ describe.only("AzureLroCoreClient Rest Client", () => {
         throw Error("Unexpected status code");
       }
       if (result.status === "200") {
-        assert.equal(result.body.status, "success");
+        assert.equal(result.body.status, "Succeeded");
       }
     } catch (err) {
       assert.fail(err as string);
@@ -75,11 +74,10 @@ describe.only("AzureLroCoreClient Rest Client", () => {
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
       assert.strictEqual(initalResponse.status, "202");
-      console.log(result);
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }
-      assert.equal(result.status, "200");
+      assert.equal(result.status, "200", "final status code");
       if (result.status === "200") {
         assert.equal(
           (result as ExportLogicalResponse).body.result?.name,

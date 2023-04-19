@@ -42,11 +42,19 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         originalMethod !== "GET"
       ) {
         const operation = `GET ${path}`;
-        const success =
+        const logicalSuccessCodes = methodDetails[0].annotations?.lroDetails
+          ?.logicalResponseTypes?.success
+          ? ["200"]
+          : [];
+        const initalSuccessCodes =
           (pathDictionary[path].methods["get"] &&
             pathDictionary[path].methods["get"][0]?.successStatus) ??
           methodDetails[0].successStatus;
-        map = { ...map, ...{ [operation]: success } };
+        const successSet = new Set(
+          logicalSuccessCodes.concat(initalSuccessCodes)
+        );
+
+        map = { ...map, ...{ [operation]: Array.from(successSet) } };
       }
 
       const successTypes = [...methodDetails[0].responseTypes.success];
