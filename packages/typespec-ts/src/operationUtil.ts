@@ -115,7 +115,7 @@ export function extractLroDetails(
 ): LroDetails {
   let logicalResponseTypes: ResponseTypes | undefined;
   // By default we'll disable the overloading
-  let allowedOverloading = shouldGenerateLroLogicalResponse(
+  const allowedOverloading = shouldGenerateLroLogicalResponse(
     program,
     operation,
     responsesTypes

@@ -94,7 +94,7 @@ export function transformToResponseTypes(
       getOperationGroupName(operationGroup),
       rlcOperationUnit.responses
     );
-    if (!!lroLogicalResponse) {
+    if (lroLogicalResponse) {
       rlcOperationUnit.responses.push(lroLogicalResponse);
     }
     rlcResponses.push(rlcOperationUnit);
