@@ -5,7 +5,7 @@ import AzureCoreClientFactory, {
 import AzureCoreTraitsClientFactory, {
   AzureCoreTraitsClient
 } from "./generated/azure/core-traits/src/index.js";
-describe.only("Azure Core Rest Client", () => {
+describe("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
 
   beforeEach(() => {
@@ -89,22 +89,9 @@ describe.only("Azure Core Rest Client", () => {
       assert.fail(err as string);
     }
   });
-  //   it.skip("should serialize default format query array parameter", async () => {
-  //     try {
-  //       const result = await client.path("/collectionFormat/default").get({
-  //         queryParameters: {
-  //           colors: buildMultiCollection(colors, 'colors')
-  //         },
-  //         skipUrlEncoding: true
-  //       });
-  //       assert.strictEqual(result.status, "200");
-  //     } catch (err) {
-  //       assert.fail(err as string);
-  //     }
-  //   });
 });
 
-describe.only("Azure Core Traits Rest Client", () => {
+describe("Azure Core Traits Rest Client", () => {
   let client: AzureCoreTraitsClient;
 
   beforeEach(() => {
@@ -135,7 +122,7 @@ describe.only("Azure Core Traits Rest Client", () => {
   it("should delete user traits", async () => {
     try {
       const result = await client.path("/azure/traits/api/{apiVersion}/user/{id}", "2022-12-01-preview", 1).delete();
-      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
