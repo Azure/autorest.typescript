@@ -1,34 +1,37 @@
 import { assert } from "chai";
 import {
   emitClientDefinitionFromCadl,
-  emitParameterFromCadl
+  emitParameterFromCadl,
+  emitResponsesFromCadl
 } from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
 
-const COMMON_CLIENT_DEF = `
-import { ListByResourceGroupParameters, ListBySubscriptionParameters } from "./parameters";
-import { ListByResourceGroup200Response, ListBySubscription200Response } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+describe("Shared route support", () => {
+  describe("@query parameter differs", () => {
+    const COMMON_CLIENT_DEF = `
+        import { ListByResourceGroupParameters, ListBySubscriptionParameters } from "./parameters";
+        import { ListByResourceGroup200Response, ListBySubscription200Response } from "./responses";
+        import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface ListByResourceGroup {
-    post(options: ListByResourceGroupParameters): StreamableMethod<ListByResourceGroup200Response>;
-    post(options: ListBySubscriptionParameters): StreamableMethod<ListBySubscription200Response>;
-}
+        export interface ListByResourceGroup {
+            post(options: ListByResourceGroupParameters): StreamableMethod<ListByResourceGroup200Response>;
+            post(options: ListBySubscriptionParameters): StreamableMethod<ListBySubscription200Response>;
+        }
 
-export interface Routes {
-    /** Resource for '/sharedroutes/resources' has methods for the following verbs: post */
-    (path: "/sharedroutes/resources"): ListByResourceGroup;
-}
+        export interface Routes {
+            /** Resource for '/sharedroutes/resources' has methods for the following verbs: post */
+            (path: "/sharedroutes/resources"): ListByResourceGroup;
+        }
 
-export type testClient = Client & {
-    path: Routes;
-};`;
+        export type testClient = Client & {
+            path: Routes;
+        };`;
 
-const buildParamDef = (
-  resourceQueryParamDef: string,
-  subscriptionQueryParamDef: string
-) => {
-  return `
+    const buildParamDef = (
+      resourceQueryParamDef: string,
+      subscriptionQueryParamDef: string
+    ) => {
+      return `
     import { RequestParameters } from "@azure-rest/core-client";
     import { Resource } from "./models";
     
@@ -64,10 +67,7 @@ const buildParamDef = (
       ListBySubscriptionBodyParam &
       RequestParameters;
     `;
-};
-
-describe("Shared route support", () => {
-  describe("clientDefinitions.ts", () => {
+    };
     it("model shared routes that differ by variable query parameters", async () => {
       const tspDef = `
         model Resource {
@@ -150,6 +150,60 @@ describe("Shared route support", () => {
           `
         )
       );
+    });
+  });
+
+  describe("@header(content-type) responses differs", () => {
+    it("model shared routes that differ by variable query parameters", async () => {
+      const tspDef = `
+        model Resource {
+            id: string;
+        }
+
+        model SimpleHtmlResponse {
+            @header "content-Type": "text/html";
+            @body body: Resource
+        }
+
+        model SimplePlainResponse {
+            @header "content-Type": "text/plain";
+            @body body: Resource
+        }
+        @route("/sharedroutes/resources", { shared: true })
+        op listByResourceGroup(...Resource): SimpleHtmlResponse;
+        @route("/sharedroutes/resources", { shared: true })
+        op listBySubscription(...Resource): SimplePlainResponse;
+        `;
+      const clientDef = await emitClientDefinitionFromCadl(tspDef);
+      const responseDef = await emitResponsesFromCadl(tspDef);
+      console.log(clientDef, responseDef);
+    });
+  });
+
+  describe("@header(content-type) requests differs", () => {
+    it.only("model shared routes that differ by variable query parameters", async () => {
+      const tspDef = `
+        model Resource {
+            id: string;
+        }
+
+        model SimpleHtmlResponse {
+            @header "content-Type": "text/html";
+            @body body: Resource
+        }
+
+        model SimplePlainResponse {
+            @header "content-Type": "text/plain";
+            @body body: Resource
+        }
+        @route("/sharedroutes/resources", { shared: true })
+        op listByResourceGroup(...Resource): SimpleHtmlResponse;
+        @route("/sharedroutes/resources", { shared: true })
+        op listBySubscription(...Resource): SimplePlainResponse;
+        `;
+      const clientDef = await emitClientDefinitionFromCadl(tspDef);
+      const responseDef = await emitResponsesFromCadl(tspDef);
+      console.log(clientDef, responseDef);
     });
   });
 });
