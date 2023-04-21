@@ -4,7 +4,7 @@
 import { RequestOptions } from "../common/interfaces.js";
 import { BatchServiceContext as Client, isUnexpected } from "../rest/index.js";
 import {
-  CustomPagePoolUsageMetrics,
+  CustomPage,
   PoolStatistics,
   BatchPool,
   PoolState,
@@ -43,7 +43,7 @@ export interface PoolListUsageMetricsOptions extends RequestOptions {
 export async function listUsageMetrics(
   context: Client,
   options: PoolListUsageMetricsOptions = { requestOptions: {} }
-): Promise<CustomPagePoolUsageMetrics> {
+): Promise<CustomPage> {
   const result = await context.path("/poolusagemetrics").get({
     headers: { Accept: "application/json", ...options.requestOptions?.headers },
   });

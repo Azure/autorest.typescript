@@ -4,9 +4,9 @@
 import { RequestOptions } from "../common/interfaces.js";
 import { OpenAIContext as Client, isUnexpected } from "../rest/index.js";
 import {
-  DeploymentEmbeddingsOptionsEmbeddings,
-  DeploymentCompletionsOptionsCompletions,
-  DeploymentChatCompletionsOptionsChatCompletions,
+  Embeddings,
+  Completions,
+  ChatCompletions,
   ChatMessage,
 } from "./models.js";
 
@@ -34,7 +34,7 @@ export async function getEmbeddings(
   input: string | string[],
   deploymentId: string,
   options: GetEmbeddingsOptions = { requestOptions: {} }
-): Promise<DeploymentEmbeddingsOptionsEmbeddings> {
+): Promise<Embeddings> {
   const result = await context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
@@ -168,7 +168,7 @@ export async function getCompletions(
   context: Client,
   deploymentId: string,
   options: GetCompletionsOptions = { requestOptions: {} }
-): Promise<DeploymentCompletionsOptionsCompletions> {
+): Promise<Completions> {
   const result = await context
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
@@ -307,7 +307,7 @@ export async function getChatCompletions(
   messages: ChatMessage[],
   deploymentId: string,
   options: GetChatCompletionsOptions = { requestOptions: {} }
-): Promise<DeploymentChatCompletionsOptionsChatCompletions> {
+): Promise<ChatCompletions> {
   const result = await context
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({

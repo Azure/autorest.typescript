@@ -5,18 +5,9 @@
 ```ts
 
 import { AzureKeyCredential } from '@azure/core-auth';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
-
-// @public
-export function acknowledgeBatchOfCloudEvents(context: AzureMessagingEventGridContext, lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeBatchOfCloudEventsOptions): Promise<LockTokensResponse>;
 
 // @public (undocumented)
 export interface AcknowledgeBatchOfCloudEventsOptions extends RequestOptions {
@@ -25,9 +16,19 @@ export interface AcknowledgeBatchOfCloudEventsOptions extends RequestOptions {
 }
 
 // @public (undocumented)
-export type AzureMessagingEventGridContext = Client & {
-    path: Routes;
-};
+export class AzureMessagingEventGridClient {
+    constructor(endpoint: string, credential: AzureKeyCredential | TokenCredential, options?: ClientOptions);
+    // (undocumented)
+    acknowledgeBatchOfCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeBatchOfCloudEventsOptions): Promise<LockTokensResponse>;
+    // (undocumented)
+    publishBatchOfCloudEvents(events: CloudEventEvent[], topicName: string, options?: PublishBatchOfCloudEventsOptions): Promise<void>;
+    // (undocumented)
+    publishCloudEvent(id: string, source: string, type: string, specversion: string, topicName: string, options?: PublishCloudEventOptions): Promise<void>;
+    // (undocumented)
+    receiveBatchOfCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveBatchOfCloudEventsOptions): Promise<ReceiveResponse>;
+    // (undocumented)
+    releaseBatchOfCloudEvents(tokens: LockToken[], topicName: string, eventSubscriptionName: string, options?: ReleaseBatchOfCloudEventsOptions): Promise<LockTokensResponse>;
+}
 
 // @public
 export interface BrokerProperties {
@@ -53,9 +54,6 @@ export interface CloudEventEvent {
 }
 
 // @public
-export function createAzureMessagingEventGrid(endpoint: string, credential: AzureKeyCredential | TokenCredential, options?: ClientOptions): AzureMessagingEventGridContext;
-
-// @public
 export interface FailedLockToken {
     errorCode: number;
     errorDescription: string;
@@ -78,16 +76,10 @@ export interface LockTokensResponse {
     succeededLockTokens: string[];
 }
 
-// @public
-export function publishBatchOfCloudEvents(context: AzureMessagingEventGridContext, events: CloudEventEvent[], topicName: string, options?: PublishBatchOfCloudEventsOptions): Promise<void>;
-
 // @public (undocumented)
 export interface PublishBatchOfCloudEventsOptions extends RequestOptions {
     contentType?: string;
 }
-
-// @public
-export function publishCloudEvent(context: AzureMessagingEventGridContext, id: string, source: string, type: string, specversion: string, topicName: string, options?: PublishCloudEventOptions): Promise<void>;
 
 // @public (undocumented)
 export interface PublishCloudEventOptions extends RequestOptions {
@@ -99,9 +91,6 @@ export interface PublishCloudEventOptions extends RequestOptions {
     subject?: string;
     time?: Date;
 }
-
-// @public
-export function receiveBatchOfCloudEvents(context: AzureMessagingEventGridContext, topicName: string, eventSubscriptionName: string, options?: ReceiveBatchOfCloudEventsOptions): Promise<ReceiveResponse>;
 
 // @public (undocumented)
 export interface ReceiveBatchOfCloudEventsOptions extends RequestOptions {
@@ -121,9 +110,6 @@ export interface ReceiveResponse {
     value: ReceiveDetails[];
 }
 
-// @public
-export function releaseBatchOfCloudEvents(context: AzureMessagingEventGridContext, tokens: LockToken[], topicName: string, eventSubscriptionName: string, options?: ReleaseBatchOfCloudEventsOptions): Promise<LockTokensResponse>;
-
 // @public (undocumented)
 export interface ReleaseBatchOfCloudEventsOptions extends RequestOptions {
     accept?: "application/json";
@@ -141,10 +127,6 @@ export interface RequestOptions {
         skipUrlEncoding?: boolean;
     };
 }
-
-// Warnings were encountered during analysis:
-//
-// src/rest/clientDefinitions.ts:95:3 - (ae-forgotten-export) The symbol "Routes" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

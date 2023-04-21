@@ -22,7 +22,7 @@ import {
   ReleaseBatchOfCloudEventsOptions,
 } from "./api/index.js";
 
-export class AzureMessagingEventGrid {
+export class AzureMessagingEventGridClient {
   private _client: AzureMessagingEventGridContext;
 
   /** Azure Messaging EventGrid Client */

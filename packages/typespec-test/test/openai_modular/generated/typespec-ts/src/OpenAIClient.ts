@@ -4,9 +4,9 @@
 import { TokenCredential, AzureKeyCredential } from "@azure/core-auth";
 import { ClientOptions } from "./common/interfaces.js";
 import {
-  DeploymentEmbeddingsOptionsEmbeddings,
-  DeploymentCompletionsOptionsCompletions,
-  DeploymentChatCompletionsOptionsChatCompletions,
+  Embeddings,
+  Completions,
+  ChatCompletions,
   ChatMessage,
   createOpenAI,
   OpenAIContext,
@@ -34,14 +34,14 @@ export class OpenAIClient {
     input: string | string[],
     deploymentId: string,
     options: GetEmbeddingsOptions = { requestOptions: {} }
-  ): Promise<DeploymentEmbeddingsOptionsEmbeddings> {
+  ): Promise<Embeddings> {
     return getEmbeddings(this._client, input, deploymentId, options);
   }
 
   getCompletions(
     deploymentId: string,
     options: GetCompletionsOptions = { requestOptions: {} }
-  ): Promise<DeploymentCompletionsOptionsCompletions> {
+  ): Promise<Completions> {
     return getCompletions(this._client, deploymentId, options);
   }
 
@@ -49,7 +49,7 @@ export class OpenAIClient {
     messages: ChatMessage[],
     deploymentId: string,
     options: GetChatCompletionsOptions = { requestOptions: {} }
-  ): Promise<DeploymentChatCompletionsOptionsChatCompletions> {
+  ): Promise<ChatCompletions> {
     return getChatCompletions(this._client, messages, deploymentId, options);
   }
 }

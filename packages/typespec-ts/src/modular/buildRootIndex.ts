@@ -62,10 +62,20 @@ function exportOptionsInterfaces(
       continue;
     }
 
-    const namedExports = [...file.getExportedDeclarations().keys()];
-    const moduleSpecifier = `./api/${file.getBaseNameWithoutExtension()}.js`;
+    const namedExports: string[] = [];
+    for (const [key, delaration] of file.getExportedDeclarations().entries()) {
+      if (
+        delaration[0]?.getKindName() === "InterfaceDeclaration" ||
+        delaration[0]?.getKindName() === "TypeAliasDeclaration"
+      ) {
+        namedExports.push(key);
+      }
+    }
 
-    indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
+    if (namedExports.length > 0) {
+      const moduleSpecifier = `./api/${file.getBaseNameWithoutExtension()}.js`;
+      indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
+    }
   }
 }
 

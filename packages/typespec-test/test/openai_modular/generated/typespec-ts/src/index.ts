@@ -2,26 +2,23 @@
 // Licensed under the MIT license.
 
 export {
-  DeploymentEmbeddingsOptionsEmbeddings,
+  Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
   EmbeddingsOptions,
-  DeploymentCompletionsOptionsCompletions,
+  Completions,
   Choice,
   CompletionsLogProbabilityModel,
   CompletionsFinishReason,
   CompletionsUsage,
   CompletionsOptions,
-  DeploymentChatCompletionsOptionsChatCompletions,
+  ChatCompletions,
   ChatChoice,
   ChatMessage,
   ChatRole,
   ChatCompletionsOptions,
 } from "./api/models.js";
 export {
-  getEmbeddings,
-  getCompletions,
-  getChatCompletions,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,

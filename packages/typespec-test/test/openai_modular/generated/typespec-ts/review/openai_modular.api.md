@@ -5,14 +5,8 @@
 ```ts
 
 import { AzureKeyCredential } from '@azure/core-auth';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -21,6 +15,14 @@ export interface ChatChoice {
     finishReason: CompletionsFinishReason;
     index: number;
     message?: ChatMessage;
+}
+
+// @public (undocumented)
+export interface ChatCompletions {
+    choices?: ChatChoice[];
+    created: number;
+    id: string;
+    usage: CompletionsUsage;
 }
 
 // @public (undocumented)
@@ -60,6 +62,14 @@ export interface Choice {
 export interface ClientOptions extends ClientOptions_2 {
 }
 
+// @public (undocumented)
+export interface Completions {
+    choices?: Choice[];
+    created: number;
+    id: string;
+    usage: CompletionsUsage;
+}
+
 // @public
 export type CompletionsFinishReason = string;
 
@@ -97,32 +107,16 @@ export interface CompletionsUsage {
     totalTokens: number;
 }
 
-// @public (undocumented)
-export interface DeploymentChatCompletionsOptionsChatCompletions {
-    choices?: ChatChoice[];
-    created: number;
-    id: string;
-    usage: CompletionsUsage;
-}
-
-// @public (undocumented)
-export interface DeploymentCompletionsOptionsCompletions {
-    choices?: Choice[];
-    created: number;
-    id: string;
-    usage: CompletionsUsage;
-}
-
-// @public (undocumented)
-export interface DeploymentEmbeddingsOptionsEmbeddings {
-    data: EmbeddingItem[];
-    usage: EmbeddingsUsage;
-}
-
 // @public
 export interface EmbeddingItem {
     embedding: number[];
     index: number;
+}
+
+// @public (undocumented)
+export interface Embeddings {
+    data: EmbeddingItem[];
+    usage: EmbeddingsUsage;
 }
 
 // @public (undocumented)
@@ -137,11 +131,6 @@ export interface EmbeddingsUsage {
     promptTokens: number;
     totalTokens: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "OpenAIContext" needs to be exported by the entry point index.d.ts
-//
-// @public
-export function getChatCompletions(context: OpenAIContext, messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<DeploymentChatCompletionsOptionsChatCompletions>;
 
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends RequestOptions {
@@ -159,9 +148,6 @@ export interface GetChatCompletionsOptions extends RequestOptions {
     topP?: number;
     user?: string;
 }
-
-// @public
-export function getCompletions(context: OpenAIContext, deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends RequestOptions {
@@ -184,9 +170,6 @@ export interface GetCompletionsOptions extends RequestOptions {
     user?: string;
 }
 
-// @public
-export function getEmbeddings(context: OpenAIContext, input: string | string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<DeploymentEmbeddingsOptionsEmbeddings>;
-
 // @public (undocumented)
 export interface GetEmbeddingsOptions extends RequestOptions {
     accept?: "application/json";
@@ -199,11 +182,11 @@ export interface GetEmbeddingsOptions extends RequestOptions {
 export class OpenAIClient {
     constructor(endpoint: string, credential: AzureKeyCredential | TokenCredential, options?: ClientOptions);
     // (undocumented)
-    getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<DeploymentChatCompletionsOptionsChatCompletions>;
+    getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     // (undocumented)
-    getCompletions(deploymentId: string, options?: GetCompletionsOptions): Promise<DeploymentCompletionsOptionsCompletions>;
+    getCompletions(deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
     // (undocumented)
-    getEmbeddings(input: string | string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<DeploymentEmbeddingsOptionsEmbeddings>;
+    getEmbeddings(input: string | string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
 }
 
 // @public (undocumented)

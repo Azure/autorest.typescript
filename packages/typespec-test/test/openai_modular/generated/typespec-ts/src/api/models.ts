@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 /** */
-export interface DeploymentEmbeddingsOptionsEmbeddings {
+export interface Embeddings {
   /** Embedding values for the prompts submitted in the request. */
   data: EmbeddingItem[];
   /** Usage counts for tokens input using the embeddings API. */
@@ -53,7 +53,7 @@ export interface EmbeddingsOptions {
 }
 
 /** */
-export interface DeploymentCompletionsOptionsCompletions {
+export interface Completions {
   /** A unique identifier associated with this completions response. */
   id: string;
   /**
@@ -209,7 +209,7 @@ export interface CompletionsOptions {
 }
 
 /** */
-export interface DeploymentChatCompletionsOptionsChatCompletions {
+export interface ChatCompletions {
   /** A unique identifier associated with this chat completions response. */
   id: string;
   /**
