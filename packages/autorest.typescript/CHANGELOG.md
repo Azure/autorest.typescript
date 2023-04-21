@@ -1,3 +1,7 @@
+## 6.0.1 (2023-04-20)
+
+- [Feature] Support typespec compiler 0.43.0, Please refer to pr [#1813](https://github.com/Azure/autorest.typescript/pull/1813).
+
 ## 6.0.0 (2023-04-10)
 
 - Next generation TypeScript/JavaScript code generator GA.
