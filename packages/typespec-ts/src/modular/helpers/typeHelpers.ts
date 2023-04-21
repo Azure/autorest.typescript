@@ -54,7 +54,7 @@ export function getType(type: Type): TypeMetadata {
     case "string":
     case "duration":
       return { name: "string" };
-    case "combined":
+    case "combined": {
       if (!type.types) {
         throw new Error("Unable to process combined without combinedTypes");
       }
@@ -65,6 +65,7 @@ export function getType(type: Type): TypeMetadata {
         })
         .join(" | ");
       return { name };
+    }
     case "dict":
       if (!type.elementType) {
         throw new Error("Unable to process dict without elemetType info");
