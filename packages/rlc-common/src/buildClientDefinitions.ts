@@ -25,7 +25,10 @@ import {
   normalizeName
 } from "./helpers/nameUtils.js";
 import { pascalCase } from "./helpers/nameUtils.js";
-import { getImportModuleName } from "./helpers/nameConstructors.js";
+import {
+  getClientName,
+  getImportModuleName
+} from "./helpers/nameConstructors.js";
 
 export function buildClientDefinitions(model: RLCModel) {
   const options = {
@@ -65,12 +68,7 @@ export function buildClientDefinitions(model: RLCModel) {
     )
   });
 
-  const clientName = model.libraryName;
-
-  const clientInterfaceName = clientName.endsWith("Client")
-    ? `${clientName}`
-    : `${clientName}${model.options?.isModularLibrary ? "Context" : "Client"}`;
-
+  const clientInterfaceName = getClientName(model);
   clientDefinitionsFile.addTypeAlias({
     isExported: true,
     name: clientInterfaceName,

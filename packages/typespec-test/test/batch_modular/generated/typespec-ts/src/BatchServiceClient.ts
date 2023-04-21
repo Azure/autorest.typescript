@@ -116,7 +116,7 @@ import {
   JobScheduleListJobSchedulesOptions,
   ApplicationListResult,
   Application,
-  CustomPagePoolUsageMetrics,
+  CustomPage,
   PoolStatistics,
   BatchPool,
   AutoScaleRun,
@@ -194,7 +194,7 @@ import {
   TaskReactivateTaskCollectionOptions,
 } from "./api/index.js";
 
-export class BatchService {
+export class BatchServiceClient {
   private _client: BatchServiceContext;
 
   /** A client for issuing REST requests to the Azure Batch service. */
@@ -222,7 +222,7 @@ export class BatchService {
   pool = {
     listUsageMetrics: (
       options: PoolListUsageMetricsOptions = { requestOptions: {} }
-    ): Promise<CustomPagePoolUsageMetrics> => {
+    ): Promise<CustomPage> => {
       return listUsageMetrics(this._client, options);
     },
     getAllPoolLifetimeStatistics: (

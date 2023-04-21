@@ -29,6 +29,8 @@ export interface ApplicationsListApplicationsOptions extends RequestOptions {
   clientRequestId?: string;
   /** Whether the server should return the client-request-id in the response. */
   returnClientRequestId?: boolean;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
@@ -73,7 +75,10 @@ export async function listApplications(
   };
 }
 
-export interface ApplicationsGetOptions extends RequestOptions {}
+export interface ApplicationsGetOptions extends RequestOptions {
+  /** Accept header. */
+  accept?: "application/json";
+}
 
 /**
  * This operation returns only Applications and versions that are available for

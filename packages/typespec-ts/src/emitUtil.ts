@@ -53,10 +53,15 @@ async function emitFile(
   }
   // Format the contents if necessary
   if (isJson || isSourceCode) {
-    prettierFileContent = format(
-      prettierFileContent,
-      isJson ? prettierJSONOptions : prettierTypeScriptOptions
-    );
+    try {
+      prettierFileContent = format(
+        prettierFileContent,
+        isJson ? prettierJSONOptions : prettierTypeScriptOptions
+      );
+    } catch (e) {
+      console.error(`Failed to format file: ${filePath}`);
+      throw e;
+    }
   }
   await host.mkdirp(dirname(filePath));
   await host.writeFile(filePath, prettierFileContent);

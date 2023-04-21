@@ -18,15 +18,23 @@ export function buildClientContext(
     `${srcPath}/src/api/${name}Context.ts`
   );
 
+  clientContextFile.addImportDeclaration({
+    moduleSpecifier: "../rest/index.js",
+    namedImports: [`${client.name}Context`]
+  });
+
   clientContextFile.addExportDeclaration({
     moduleSpecifier: "../rest/index.js",
-    namedExports: [`${name}Context`]
+    namedExports: [`${client.name}Context`]
   });
+  // clientContextFile.addExportAssignment({
+  //   expression: `${client.name}Context`
+  // });
 
   const factoryFunction = clientContextFile.addFunction({
     docs: [description],
     name: `create${name}`,
-    returnType: `${name}Context`,
+    returnType: `${client.name}Context`,
     parameters: getClientParameters(client),
     isExported: true
   });
@@ -52,7 +60,7 @@ export function buildClientContext(
 
   // If the client needs credentials we need to pass those to getClient
   if (credentialsParam) {
-    importCredential(credentialsParam, clientContextFile);
+    importCredential(credentialsParam.type, clientContextFile);
     addCredentialOptionsStatement(credentialsParam, factoryFunction);
     getClientStatement = `const clientContext = getClient(baseUrl, credential, options)`;
   }

@@ -43,6 +43,8 @@ export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
@@ -226,6 +228,8 @@ export interface JobGetJobOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Gets information about the specified Job. */
@@ -1400,43 +1404,43 @@ export async function patchJob(
   jobId: string,
   options: JobPatchJobOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobs/{jobId}", jobId).patch({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.priority && { priority: options.priority }),
-      ...(options.allowTaskPreemption && {
-        allowTaskPreemption: options.allowTaskPreemption,
-      }),
-      ...(options.maxParallelTasks && {
-        maxParallelTasks: options.maxParallelTasks,
-      }),
-      ...(options.constraints && { constraints: options.constraints }),
-      ...(options.poolInfo && { poolInfo: options.poolInfo }),
-      ...(options.onAllTasksComplete && {
-        onAllTasksComplete: options.onAllTasksComplete,
-      }),
-      ...(options.metadata && { metadata: options.metadata }),
-    },
-  });
+  const result = await context
+    .path("/jobs/{jobId}", jobId)
+    .patch({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.priority && { priority: options.priority }),
+        ...(options.allowTaskPreemption && {
+          allowTaskPreemption: options.allowTaskPreemption,
+        }),
+        maxParallelTasks: options.maxParallelTasks ?? -1,
+        ...(options.constraints && { constraints: options.constraints }),
+        ...(options.poolInfo && { poolInfo: options.poolInfo }),
+        ...(options.onAllTasksComplete && {
+          onAllTasksComplete: options.onAllTasksComplete,
+        }),
+        ...(options.metadata && { metadata: options.metadata }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1626,43 +1630,43 @@ export async function updateJob(
   jobId: string,
   options: JobUpdateJobOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobs/{jobId}", jobId).put({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.priority && { priority: options.priority }),
-      ...(options.allowTaskPreemption && {
-        allowTaskPreemption: options.allowTaskPreemption,
-      }),
-      ...(options.maxParallelTasks && {
-        maxParallelTasks: options.maxParallelTasks,
-      }),
-      ...(options.constraints && { constraints: options.constraints }),
-      ...(options.poolInfo && { poolInfo: options.poolInfo }),
-      ...(options.onAllTasksComplete && {
-        onAllTasksComplete: options.onAllTasksComplete,
-      }),
-      ...(options.metadata && { metadata: options.metadata }),
-    },
-  });
+  const result = await context
+    .path("/jobs/{jobId}", jobId)
+    .put({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.priority && { priority: options.priority }),
+        ...(options.allowTaskPreemption && {
+          allowTaskPreemption: options.allowTaskPreemption,
+        }),
+        maxParallelTasks: options.maxParallelTasks ?? -1,
+        ...(options.constraints && { constraints: options.constraints }),
+        ...(options.poolInfo && { poolInfo: options.poolInfo }),
+        ...(options.onAllTasksComplete && {
+          onAllTasksComplete: options.onAllTasksComplete,
+        }),
+        ...(options.metadata && { metadata: options.metadata }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1733,29 +1737,31 @@ export async function disableJob(
   jobId: string,
   options: JobDisableJobOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobs/{jobId}/disable", jobId).post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: { disableTasks: disableTasks },
-  });
+  const result = await context
+    .path("/jobs/{jobId}/disable", jobId)
+    .post({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: { disableTasks: disableTasks },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1914,33 +1920,35 @@ export async function terminateJob(
   jobId: string,
   options: JobTerminateJobOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobs/{jobId}/terminate", jobId).post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.terminateReason && {
-        terminateReason: options.terminateReason,
-      }),
-    },
-  });
+  const result = await context
+    .path("/jobs/{jobId}/terminate", jobId)
+    .post({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.terminateReason && {
+          terminateReason: options.terminateReason,
+        }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -2111,35 +2119,35 @@ export async function addJob(
   context: Client,
   options: JobAddJobOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobs").post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.priority && { priority: options.priority }),
-      ...(options.allowTaskPreemption && {
-        allowTaskPreemption: options.allowTaskPreemption,
-      }),
-      ...(options.maxParallelTasks && {
-        maxParallelTasks: options.maxParallelTasks,
-      }),
-      ...(options.constraints && { constraints: options.constraints }),
-      ...(options.poolInfo && { poolInfo: options.poolInfo }),
-      ...(options.onAllTasksComplete && {
-        onAllTasksComplete: options.onAllTasksComplete,
-      }),
-      ...(options.metadata && { metadata: options.metadata }),
-    },
-  });
+  const result = await context
+    .path("/jobs")
+    .post({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.priority && { priority: options.priority }),
+        ...(options.allowTaskPreemption && {
+          allowTaskPreemption: options.allowTaskPreemption,
+        }),
+        maxParallelTasks: options.maxParallelTasks ?? -1,
+        ...(options.constraints && { constraints: options.constraints }),
+        ...(options.poolInfo && { poolInfo: options.poolInfo }),
+        ...(options.onAllTasksComplete && {
+          onAllTasksComplete: options.onAllTasksComplete,
+        }),
+        ...(options.metadata && { metadata: options.metadata }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -2180,6 +2188,8 @@ export interface JobListJobsOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists all of the Jobs in the specified Account. */
@@ -3186,6 +3196,8 @@ export interface JobListFromJobScheduleOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists the Jobs that have been created under the specified Job Schedule. */
@@ -4194,6 +4206,8 @@ export interface JobListPreparationAndReleaseTaskStatusOptions
   $filter?: string;
   /** An OData $select clause. */
   $select?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
@@ -4356,6 +4370,8 @@ export interface JobGetTaskCountsOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
