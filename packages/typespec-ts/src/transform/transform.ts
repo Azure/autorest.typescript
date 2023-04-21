@@ -59,7 +59,7 @@ export async function transformRLCModel(
       : ""
   );
   const libraryName = normalizeName(
-    options.batch && options.batch.length > 1
+    options.batch && (options.isModularLibrary || options.batch.length > 1)
       ? client.name
       : options?.title ?? getDefaultService(program)?.title ?? "",
     NameType.Class

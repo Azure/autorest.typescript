@@ -66,31 +66,33 @@ export async function addCertificate(
   context: Client,
   options: CertificatesAddCertificateOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/certificates").post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.thumbprint && { thumbprint: options.thumbprint }),
-      ...(options.thumbprintAlgorithm && {
-        thumbprintAlgorithm: options.thumbprintAlgorithm,
-      }),
-      ...(options.data && { data: options.data }),
-      ...(options.certificateFormat && {
-        certificateFormat: options.certificateFormat,
-      }),
-      ...(options.password && { password: options.password }),
-    },
-  });
+  const result = await context
+    .path("/certificates")
+    .post({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.thumbprint && { thumbprint: options.thumbprint }),
+        ...(options.thumbprintAlgorithm && {
+          thumbprintAlgorithm: options.thumbprintAlgorithm,
+        }),
+        ...(options.data && { data: options.data }),
+        ...(options.certificateFormat && {
+          certificateFormat: options.certificateFormat,
+        }),
+        ...(options.password && { password: options.password }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -129,6 +131,8 @@ export interface CertificatesListCertificatesOptions extends RequestOptions {
   $filter?: string;
   /** An OData $select clause. */
   $select?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists all of the Certificates that have been added to the specified Account. */
@@ -337,6 +341,8 @@ export interface CertificatesGetCertificateOptions extends RequestOptions {
   ocpDate?: string;
   /** An OData $select clause. */
   $select?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Gets information about the specified Certificate. */

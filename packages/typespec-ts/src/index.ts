@@ -43,6 +43,7 @@ import { buildModels } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildApiIndexFile } from "./modular/buildApiIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
+import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 // import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 
 export async function $onEmit(context: EmitContext) {
@@ -118,8 +119,8 @@ export async function $onEmit(context: EmitContext) {
       buildClassicalClient(client, project, srcPath);
       buildRootIndex(client, project, srcPath);
 
-      // emitPackage(project, srcPath, modularCodeModel);
-      // emitTsConfig(project, srcPath, modularCodeModel);
+      emitPackage(project, srcPath, modularCodeModel);
+      emitTsConfig(project, srcPath, modularCodeModel);
     }
 
     for (const file of project.getSourceFiles()) {

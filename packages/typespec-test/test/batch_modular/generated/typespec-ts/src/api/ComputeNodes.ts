@@ -73,6 +73,7 @@ export async function addUser(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/users", poolId, nodeId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -81,7 +82,6 @@ export async function addUser(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -224,6 +224,7 @@ export async function updateUser(
       userName
     )
     .put({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -232,7 +233,6 @@ export async function updateUser(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -270,6 +270,8 @@ export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
   ocpDate?: string;
   /** An OData $select clause. */
   $select?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Gets information about the specified Compute Node. */
@@ -565,6 +567,7 @@ export async function rebootComputeNode(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/reboot", poolId, nodeId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -573,7 +576,6 @@ export async function rebootComputeNode(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -629,6 +631,7 @@ export async function reimageComputeNode(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/reimage", poolId, nodeId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -637,7 +640,6 @@ export async function reimageComputeNode(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -692,6 +694,7 @@ export async function disableScheduling(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/disablescheduling", poolId, nodeId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -700,7 +703,6 @@ export async function disableScheduling(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -790,6 +792,8 @@ export interface ComputeNodesGetRemoteLoginSettingsOptions
    * directly.
    */
   ocpDate?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
@@ -850,6 +854,8 @@ export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
@@ -917,6 +923,8 @@ export interface ComputeNodesUploadBatchServiceLogsOptions
    * directly.
    */
   ocpDate?: string;
+  /** Accept header. */
+  accept?: "application/json";
   /** Body parameter Content-Type. Known values are: application/json. */
   content_type?: string;
 }
@@ -942,6 +950,7 @@ export async function uploadBatchServiceLogs(
       nodeId
     )
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -951,7 +960,6 @@ export async function uploadBatchServiceLogs(
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
         Accept: "application/json",
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -1005,6 +1013,8 @@ export interface ComputeNodesListOptions extends RequestOptions {
   $filter?: string;
   /** An OData $select clause. */
   $select?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists the Compute Nodes in the specified Pool. */

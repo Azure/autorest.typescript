@@ -132,7 +132,7 @@ export {
 export {
   ApplicationListResult,
   Application,
-  CustomPagePoolUsageMetrics,
+  CustomPage,
   PoolUsageMetrics,
   PoolStatistics,
   UsageStatistics,

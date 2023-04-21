@@ -4,7 +4,7 @@
 import { RequestOptions } from "../common/interfaces.js";
 import { BatchServiceContext as Client, isUnexpected } from "../rest/index.js";
 import {
-  CustomPagePoolUsageMetrics,
+  CustomPage,
   PoolStatistics,
   BatchPool,
   PoolState,
@@ -27,7 +27,10 @@ import {
   ComputeNodeDeallocationOption,
 } from "./models.js";
 
-export interface PoolListUsageMetricsOptions extends RequestOptions {}
+export interface PoolListUsageMetricsOptions extends RequestOptions {
+  /** Accept header. */
+  accept?: "application/json";
+}
 
 /**
  * If you do not specify a $filter clause including a poolId, the response
@@ -40,7 +43,7 @@ export interface PoolListUsageMetricsOptions extends RequestOptions {}
 export async function listUsageMetrics(
   context: Client,
   options: PoolListUsageMetricsOptions = { requestOptions: {} }
-): Promise<CustomPagePoolUsageMetrics> {
+): Promise<CustomPage> {
   const result = await context.path("/poolusagemetrics").get({
     headers: { Accept: "application/json", ...options.requestOptions?.headers },
   });
@@ -80,6 +83,8 @@ export interface PoolGetAllPoolLifetimeStatisticsOptions
    * directly.
    */
   ocpDate?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
@@ -350,33 +355,35 @@ export async function addPool(
   context: Client,
   options: PoolAddPoolOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/pools").post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.startTask && { startTask: options.startTask }),
-      ...(options.certificateReferences && {
-        certificateReferences: options.certificateReferences,
-      }),
-      ...(options.applicationPackageReferences && {
-        applicationPackageReferences: options.applicationPackageReferences,
-      }),
-      ...(options.metadata && { metadata: options.metadata }),
-      ...(options.targetNodeCommunicationMode && {
-        targetNodeCommunicationMode: options.targetNodeCommunicationMode,
-      }),
-    },
-  });
+  const result = await context
+    .path("/pools")
+    .post({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.startTask && { startTask: options.startTask }),
+        ...(options.certificateReferences && {
+          certificateReferences: options.certificateReferences,
+        }),
+        ...(options.applicationPackageReferences && {
+          applicationPackageReferences: options.applicationPackageReferences,
+        }),
+        ...(options.metadata && { metadata: options.metadata }),
+        ...(options.targetNodeCommunicationMode && {
+          targetNodeCommunicationMode: options.targetNodeCommunicationMode,
+        }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -417,6 +424,8 @@ export interface PoolListPoolsOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists all of the Pools in the specified Account. */
@@ -1077,6 +1086,8 @@ export interface PoolGetPoolOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Gets information about the specified Pool. */
@@ -1776,41 +1787,43 @@ export async function patchPool(
   poolId: string,
   options: PoolPatchPoolOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/pools/{poolId}", poolId).patch({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.startTask && { startTask: options.startTask }),
-      ...(options.certificateReferences && {
-        certificateReferences: options.certificateReferences,
-      }),
-      ...(options.applicationPackageReferences && {
-        applicationPackageReferences: options.applicationPackageReferences,
-      }),
-      ...(options.metadata && { metadata: options.metadata }),
-      ...(options.targetNodeCommunicationMode && {
-        targetNodeCommunicationMode: options.targetNodeCommunicationMode,
-      }),
-    },
-  });
+  const result = await context
+    .path("/pools/{poolId}", poolId)
+    .patch({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.startTask && { startTask: options.startTask }),
+        ...(options.certificateReferences && {
+          certificateReferences: options.certificateReferences,
+        }),
+        ...(options.applicationPackageReferences && {
+          applicationPackageReferences: options.applicationPackageReferences,
+        }),
+        ...(options.metadata && { metadata: options.metadata }),
+        ...(options.targetNodeCommunicationMode && {
+          targetNodeCommunicationMode: options.targetNodeCommunicationMode,
+        }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1949,6 +1962,7 @@ export async function enableAutoScale(
   const result = await context
     .path("/pools/{poolId}/enableautoscale", poolId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1965,7 +1979,6 @@ export async function enableAutoScale(
         ...(options.ifUnmodifiedSince && {
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -2004,6 +2017,8 @@ export interface PoolEvaluateAutoScaleOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
+  /** Accept header. */
+  accept?: "application/json";
   /** Body parameter Content-Type. Known values are: application/json. */
   content_type?: string;
 }
@@ -2022,6 +2037,7 @@ export async function evaluateAutoScale(
   const result = await context
     .path("/pools/{poolId}/evaluateautoscale", poolId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2031,7 +2047,6 @@ export async function evaluateAutoScale(
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
         Accept: "application/json",
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -2130,40 +2145,42 @@ export async function resize(
   poolId: string,
   options: PoolResizeOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/pools/{poolId}/resize", poolId).post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.targetDedicatedNodes && {
-        targetDedicatedNodes: options.targetDedicatedNodes,
-      }),
-      ...(options.targetLowPriorityNodes && {
-        targetLowPriorityNodes: options.targetLowPriorityNodes,
-      }),
-      ...(options.resizeTimeout && { resizeTimeout: options.resizeTimeout }),
-      ...(options.nodeDeallocationOption && {
-        nodeDeallocationOption: options.nodeDeallocationOption,
-      }),
-    },
-  });
+  const result = await context
+    .path("/pools/{poolId}/resize", poolId)
+    .post({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.targetDedicatedNodes && {
+          targetDedicatedNodes: options.targetDedicatedNodes,
+        }),
+        ...(options.targetLowPriorityNodes && {
+          targetLowPriorityNodes: options.targetLowPriorityNodes,
+        }),
+        ...(options.resizeTimeout && { resizeTimeout: options.resizeTimeout }),
+        ...(options.nodeDeallocationOption && {
+          nodeDeallocationOption: options.nodeDeallocationOption,
+        }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -2467,6 +2484,7 @@ export async function updateProperties(
   const result = await context
     .path("/pools/{poolId}/updateproperties", poolId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2475,7 +2493,6 @@ export async function updateProperties(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -2569,6 +2586,7 @@ export async function removeNodes(
   const result = await context
     .path("/pools/{poolId}/removenodes", poolId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2585,7 +2603,6 @@ export async function removeNodes(
         ...(options.ifUnmodifiedSince && {
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },

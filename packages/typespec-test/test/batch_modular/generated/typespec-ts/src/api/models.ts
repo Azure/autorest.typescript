@@ -20,7 +20,7 @@ export interface Application {
 }
 
 /** Paged collection of PoolUsageMetrics items */
-export interface CustomPagePoolUsageMetrics {
+export interface CustomPage {
   /** The PoolUsageMetrics items on this page */
   value: PoolUsageMetrics[];
   /** The link to the next page of items */

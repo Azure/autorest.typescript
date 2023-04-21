@@ -229,6 +229,8 @@ export interface JobScheduleGetJobScheduleOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Gets information about the specified Job Schedule. */
@@ -1496,6 +1498,7 @@ export async function patchJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .patch({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1512,7 +1515,6 @@ export async function patchJobSchedule(
         ...(options.ifUnmodifiedSince && {
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -1641,6 +1643,7 @@ export async function updateJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .put({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1657,7 +1660,6 @@ export async function updateJobSchedule(
         ...(options.ifUnmodifiedSince && {
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -1995,27 +1997,29 @@ export async function addJobSchedule(
   context: Client,
   options: JobScheduleAddJobScheduleOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobschedules").post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.schedule && { schedule: options.schedule }),
-      ...(options.jobSpecification && {
-        jobSpecification: options.jobSpecification,
-      }),
-      ...(options.metadata && { metadata: options.metadata }),
-    },
-  });
+  const result = await context
+    .path("/jobschedules")
+    .post({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.schedule && { schedule: options.schedule }),
+        ...(options.jobSpecification && {
+          jobSpecification: options.jobSpecification,
+        }),
+        ...(options.metadata && { metadata: options.metadata }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -2056,6 +2060,8 @@ export interface JobScheduleListJobSchedulesOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists all of the Job Schedules in the specified Account. */

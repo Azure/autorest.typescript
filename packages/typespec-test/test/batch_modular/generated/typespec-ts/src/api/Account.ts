@@ -37,6 +37,8 @@ export interface AccountListSupportedImagesOptions extends RequestOptions {
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
    */
   $filter?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists all Virtual Machine Images supported by the Azure Batch service. */
@@ -115,6 +117,8 @@ export interface AccountListPoolNodeCountsOptions extends RequestOptions {
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
    */
   $filter?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**

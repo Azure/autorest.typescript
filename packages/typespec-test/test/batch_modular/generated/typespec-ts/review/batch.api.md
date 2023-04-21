@@ -4,15 +4,8 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { Paged } from '@azure/core-paging';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -21,6 +14,7 @@ export type AccessScope = string;
 // @public (undocumented)
 export interface AccountListPoolNodeCountsOptions extends RequestOptions {
     $filter?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -31,6 +25,7 @@ export interface AccountListPoolNodeCountsOptions extends RequestOptions {
 // @public (undocumented)
 export interface AccountListSupportedImagesOptions extends RequestOptions {
     $filter?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -43,27 +38,6 @@ export interface AccountListSupportedImagesResult {
     "odata.nextLink"?: string;
     value?: ImageInformation[];
 }
-
-// @public
-export function addCertificate(context: BatchServiceContext, options?: CertificatesAddCertificateOptions): Promise<void>;
-
-// @public
-export function addJob(context: BatchServiceContext, options?: JobAddJobOptions): Promise<void>;
-
-// @public
-export function addJobSchedule(context: BatchServiceContext, options?: JobScheduleAddJobScheduleOptions): Promise<void>;
-
-// @public
-export function addPool(context: BatchServiceContext, options?: PoolAddPoolOptions): Promise<void>;
-
-// @public
-export function addTask(context: BatchServiceContext, jobId: string, options?: TaskAddTaskOptions): Promise<void>;
-
-// @public
-export function addTaskCollection(context: BatchServiceContext, value: BatchTask[], jobId: string, options?: TaskAddTaskCollectionOptions): Promise<TaskAddCollectionResult>;
-
-// @public
-export function addUser(context: BatchServiceContext, name: string, poolId: string, nodeId: string, options?: ComputeNodesAddUserOptions): Promise<void>;
 
 // @public
 export interface AffinityInformation {
@@ -94,10 +68,12 @@ export interface ApplicationPackageReference {
 
 // @public (undocumented)
 export interface ApplicationsGetOptions extends RequestOptions {
+    accept?: "application/json";
 }
 
 // @public (undocumented)
 export interface ApplicationsListApplicationsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -325,9 +301,117 @@ export interface BatchPoolResizeParameters {
 }
 
 // @public (undocumented)
-export type BatchServiceContext = Client & {
-    path: Routes;
-};
+export class BatchServiceClient {
+    constructor(endpoint: string, credential: TokenCredential, options?: ClientOptions);
+    // (undocumented)
+    account: {
+        listSupportedImages: (options?: AccountListSupportedImagesOptions) => Promise<AccountListSupportedImagesResult>;
+        listPoolNodeCounts: (options?: AccountListPoolNodeCountsOptions) => Promise<PoolNodeCountsListResult>;
+    };
+    // (undocumented)
+    applications: {
+        listApplications: (options?: ApplicationsListApplicationsOptions) => Promise<ApplicationListResult>;
+        get: (applicationId: string, options?: ApplicationsGetOptions) => Promise<Application>;
+    };
+    // (undocumented)
+    certificates: {
+        addCertificate: (options?: CertificatesAddCertificateOptions) => Promise<void>;
+        listCertificates: (options?: CertificatesListCertificatesOptions) => Promise<CertificateListResult>;
+        cancelCertificateDeletion: (thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesCancelCertificateDeletionOptions) => Promise<void>;
+        deleteCertificate: (thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesDeleteCertificateOptions) => Promise<void>;
+        getCertificate: (thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesGetCertificateOptions) => Promise<Certificate>;
+    };
+    // (undocumented)
+    computeNodeExtensions: {
+        getComputeNodeExtensions: (poolId: string, nodeId: string, extensionName: string, options?: ComputeNodeExtensionsGetComputeNodeExtensionsOptions) => Promise<NodeVMExtension>;
+        listComputeNodeExtensions: (poolId: string, nodeId: string, options?: ComputeNodeExtensionsListComputeNodeExtensionsOptions) => Promise<NodeVMExtensionList>;
+    };
+    // (undocumented)
+    computeNodes: {
+        addUser: (name: string, poolId: string, nodeId: string, options?: ComputeNodesAddUserOptions) => Promise<void>;
+        deleteUser: (poolId: string, nodeId: string, userName: string, options?: ComputeNodesDeleteUserOptions) => Promise<void>;
+        updateUser: (poolId: string, nodeId: string, userName: string, options?: ComputeNodesUpdateUserOptions) => Promise<void>;
+        getComputeNode: (poolId: string, nodeId: string, options?: ComputeNodesGetComputeNodeOptions) => Promise<ComputeNode>;
+        rebootComputeNode: (poolId: string, nodeId: string, options?: ComputeNodesRebootComputeNodeOptions) => Promise<void>;
+        reimageComputeNode: (poolId: string, nodeId: string, options?: ComputeNodesReimageComputeNodeOptions) => Promise<void>;
+        disableScheduling: (poolId: string, nodeId: string, options?: ComputeNodesDisableSchedulingOptions) => Promise<void>;
+        enableScheduling: (poolId: string, nodeId: string, options?: ComputeNodesEnableSchedulingOptions) => Promise<void>;
+        getRemoteLoginSettings: (poolId: string, nodeId: string, options?: ComputeNodesGetRemoteLoginSettingsOptions) => Promise<ComputeNodeGetRemoteLoginSettingsResult>;
+        getRemoteDesktop: (poolId: string, nodeId: string, options?: ComputeNodesGetRemoteDesktopOptions) => Promise<void>;
+        uploadBatchServiceLogs: (containerUrl: string, startTime: Date, poolId: string, nodeId: string, options?: ComputeNodesUploadBatchServiceLogsOptions) => Promise<UploadBatchServiceLogsResult>;
+        list: (poolId: string, options?: ComputeNodesListOptions) => Promise<ComputeNodeListResult>;
+    };
+    // (undocumented)
+    file: {
+        deleteFromTask: (jobId: string, taskId: string, filePath: string, options?: FileDeleteFromTaskOptions) => Promise<void>;
+        getFromTask: (jobId: string, taskId: string, filePath: string, options?: FileGetFromTaskOptions) => Promise<void>;
+        getPropertiesFromTask: (jobId: string, taskId: string, filePath: string, options?: FileGetPropertiesFromTaskOptions) => Promise<void>;
+        deleteFromComputeNode: (poolId: string, nodeId: string, filePath: string, options?: FileDeleteFromComputeNodeOptions) => Promise<void>;
+        getFromComputeNode: (poolId: string, nodeId: string, filePath: string, options?: FileGetFromComputeNodeOptions) => Promise<void>;
+        getPropertiesFromComputeNode: (poolId: string, nodeId: string, filePath: string, options?: FileGetPropertiesFromComputeNodeOptions) => Promise<void>;
+        listFromTask: (jobId: string, taskId: string, options?: FileListFromTaskOptions) => Promise<NodeFileListResult>;
+        listFromComputeNode: (poolId: string, nodeId: string, options?: FileListFromComputeNodeOptions) => Promise<NodeFileListResult>;
+    };
+    // (undocumented)
+    job: {
+        getAllJobLifetimeStatistics: (options?: JobGetAllJobLifetimeStatisticsOptions) => Promise<JobStatistics>;
+        deleteJob: (jobId: string, options?: JobDeleteJobOptions) => Promise<void>;
+        getJob: (jobId: string, options?: JobGetJobOptions) => Promise<BatchJob>;
+        patchJob: (jobId: string, options?: JobPatchJobOptions) => Promise<void>;
+        updateJob: (jobId: string, options?: JobUpdateJobOptions) => Promise<void>;
+        disableJob: (disableTasks: DisableJobOption, jobId: string, options?: JobDisableJobOptions) => Promise<void>;
+        enableJob: (jobId: string, options?: JobEnableJobOptions) => Promise<void>;
+        terminateJob: (jobId: string, options?: JobTerminateJobOptions) => Promise<void>;
+        addJob: (options?: JobAddJobOptions) => Promise<void>;
+        listJobs: (options?: JobListJobsOptions) => Promise<BatchJobListResult>;
+        listFromJobSchedule: (jobScheduleId: string, options?: JobListFromJobScheduleOptions) => Promise<BatchJobListResult>;
+        listPreparationAndReleaseTaskStatus: (jobId: string, options?: JobListPreparationAndReleaseTaskStatusOptions) => Promise<BatchJobListPreparationAndReleaseTaskStatusResult>;
+        getTaskCounts: (jobId: string, options?: JobGetTaskCountsOptions) => Promise<TaskCountsResult>;
+    };
+    // (undocumented)
+    jobSchedule: {
+        jobScheduleExists: (jobScheduleId: string, options?: JobScheduleJobScheduleExistsOptions) => Promise<void>;
+        deleteJobSchedule: (jobScheduleId: string, options?: JobScheduleDeleteJobScheduleOptions) => Promise<void>;
+        getJobSchedule: (jobScheduleId: string, options?: JobScheduleGetJobScheduleOptions) => Promise<BatchJobSchedule>;
+        patchJobSchedule: (jobScheduleId: string, options?: JobSchedulePatchJobScheduleOptions) => Promise<void>;
+        updateJobSchedule: (jobScheduleId: string, options?: JobScheduleUpdateJobScheduleOptions) => Promise<void>;
+        disableJobSchedule: (jobScheduleId: string, options?: JobScheduleDisableJobScheduleOptions) => Promise<void>;
+        enableJobSchedule: (jobScheduleId: string, options?: JobScheduleEnableJobScheduleOptions) => Promise<void>;
+        terminateJobSchedule: (jobScheduleId: string, options?: JobScheduleTerminateJobScheduleOptions) => Promise<void>;
+        addJobSchedule: (options?: JobScheduleAddJobScheduleOptions) => Promise<void>;
+        listJobSchedules: (options?: JobScheduleListJobSchedulesOptions) => Promise<BatchJobScheduleListResult>;
+    };
+    // (undocumented)
+    pool: {
+        listUsageMetrics: (options?: PoolListUsageMetricsOptions) => Promise<CustomPage>;
+        getAllPoolLifetimeStatistics: (options?: PoolGetAllPoolLifetimeStatisticsOptions) => Promise<PoolStatistics>;
+        addPool: (options?: PoolAddPoolOptions) => Promise<void>;
+        listPools: (options?: PoolListPoolsOptions) => Promise<BatchPoolListResult>;
+        deletePool: (poolId: string, options?: PoolDeletePoolOptions) => Promise<void>;
+        exists: (poolId: string, options?: PoolExistsOptions) => Promise<void>;
+        getPool: (poolId: string, options?: PoolGetPoolOptions) => Promise<BatchPool>;
+        patchPool: (poolId: string, options?: PoolPatchPoolOptions) => Promise<void>;
+        disableAutoScale: (poolId: string, options?: PoolDisableAutoScaleOptions) => Promise<void>;
+        enableAutoScale: (poolId: string, options?: PoolEnableAutoScaleOptions) => Promise<void>;
+        evaluateAutoScale: (autoScaleFormula: string, poolId: string, options?: PoolEvaluateAutoScaleOptions) => Promise<AutoScaleRun>;
+        resize: (poolId: string, options?: PoolResizeOptions) => Promise<void>;
+        stopResize: (poolId: string, options?: PoolStopResizeOptions) => Promise<void>;
+        updateProperties: (poolId: string, options?: PoolUpdatePropertiesOptions) => Promise<void>;
+        removeNodes: (nodeList: string[], poolId: string, options?: PoolRemoveNodesOptions) => Promise<void>;
+    };
+    // (undocumented)
+    task: {
+        addTask: (jobId: string, options?: TaskAddTaskOptions) => Promise<void>;
+        listTasks: (jobId: string, options?: TaskListTasksOptions) => Promise<BatchTaskListResult>;
+        addTaskCollection: (value: BatchTask[], jobId: string, options?: TaskAddTaskCollectionOptions) => Promise<TaskAddCollectionResult>;
+        deleteTaskCollection: (jobId: string, taskId: string, options?: TaskDeleteTaskCollectionOptions) => Promise<void>;
+        getTaskCollection: (jobId: string, taskId: string, options?: TaskGetTaskCollectionOptions) => Promise<BatchTask>;
+        updateTaskCollection: (jobId: string, taskId: string, options?: TaskUpdateTaskCollectionOptions) => Promise<void>;
+        listSubtasks: (jobId: string, taskId: string, options?: TaskListSubtasksOptions) => Promise<BatchTaskListSubtasksResult>;
+        terminateTaskCollection: (jobId: string, taskId: string, options?: TaskTerminateTaskCollectionOptions) => Promise<void>;
+        reactivateTaskCollection: (jobId: string, taskId: string, options?: TaskReactivateTaskCollectionOptions) => Promise<void>;
+    };
+}
 
 // @public
 export interface BatchTask {
@@ -378,9 +462,6 @@ export interface BatchTaskListSubtasksResult {
 
 // @public
 export type CachingType = string;
-
-// @public
-export function cancelCertificateDeletion(context: BatchServiceContext, thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesCancelCertificateDeletionOptions): Promise<void>;
 
 // @public
 export interface Certificate {
@@ -456,6 +537,7 @@ export interface CertificatesDeleteCertificateOptions extends RequestOptions {
 // @public (undocumented)
 export interface CertificatesGetCertificateOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -466,6 +548,7 @@ export interface CertificatesGetCertificateOptions extends RequestOptions {
 export interface CertificatesListCertificatesOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -546,6 +629,7 @@ export interface ComputeNodeError {
 // @public (undocumented)
 export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -555,6 +639,7 @@ export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions extends Re
 // @public (undocumented)
 export interface ComputeNodeExtensionsListComputeNodeExtensionsOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -640,6 +725,7 @@ export interface ComputeNodesEnableSchedulingOptions extends RequestOptions {
 // @public (undocumented)
 export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -648,6 +734,7 @@ export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -656,6 +743,7 @@ export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesGetRemoteLoginSettingsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -666,6 +754,7 @@ export interface ComputeNodesGetRemoteLoginSettingsOptions extends RequestOption
 export interface ComputeNodesListOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -710,6 +799,7 @@ export interface ComputeNodesUpdateUserOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesUploadBatchServiceLogsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     content_type?: string;
     endTime?: Date;
@@ -750,10 +840,7 @@ export type ContainerType = string;
 export type ContainerWorkingDirectory = string;
 
 // @public
-export function createBatchService(endpoint: string, credential: TokenCredential, options?: ClientOptions): BatchServiceContext;
-
-// @public
-export interface CustomPagePoolUsageMetrics {
+export interface CustomPage {
     nextLink?: string;
     value: PoolUsageMetrics[];
 }
@@ -767,35 +854,11 @@ export interface DataDisk {
 }
 
 // @public
-export function deleteCertificate(context: BatchServiceContext, thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesDeleteCertificateOptions): Promise<void>;
-
-// @public
 export interface DeleteCertificateError {
     code?: string;
     message?: string;
     values?: NameValuePair[];
 }
-
-// @public
-export function deleteFromComputeNode(context: BatchServiceContext, poolId: string, nodeId: string, filePath: string, options?: FileDeleteFromComputeNodeOptions): Promise<void>;
-
-// @public
-export function deleteFromTask(context: BatchServiceContext, jobId: string, taskId: string, filePath: string, options?: FileDeleteFromTaskOptions): Promise<void>;
-
-// @public
-export function deleteJob(context: BatchServiceContext, jobId: string, options?: JobDeleteJobOptions): Promise<void>;
-
-// @public
-export function deleteJobSchedule(context: BatchServiceContext, jobScheduleId: string, options?: JobScheduleDeleteJobScheduleOptions): Promise<void>;
-
-// @public
-export function deletePool(context: BatchServiceContext, poolId: string, options?: PoolDeletePoolOptions): Promise<void>;
-
-// @public
-export function deleteTaskCollection(context: BatchServiceContext, jobId: string, taskId: string, options?: TaskDeleteTaskCollectionOptions): Promise<void>;
-
-// @public
-export function deleteUser(context: BatchServiceContext, poolId: string, nodeId: string, userName: string, options?: ComputeNodesDeleteUserOptions): Promise<void>;
 
 // @public
 export type DependencyAction = string;
@@ -809,22 +872,10 @@ export interface DiffDiskSettings {
 }
 
 // @public
-export function disableAutoScale(context: BatchServiceContext, poolId: string, options?: PoolDisableAutoScaleOptions): Promise<void>;
-
-// @public
 export type DisableComputeNodeSchedulingOption = string;
 
 // @public
-export function disableJob(context: BatchServiceContext, disableTasks: DisableJobOption, jobId: string, options?: JobDisableJobOptions): Promise<void>;
-
-// @public
 export type DisableJobOption = string;
-
-// @public
-export function disableJobSchedule(context: BatchServiceContext, jobScheduleId: string, options?: JobScheduleDisableJobScheduleOptions): Promise<void>;
-
-// @public
-export function disableScheduling(context: BatchServiceContext, poolId: string, nodeId: string, options?: ComputeNodesDisableSchedulingOptions): Promise<void>;
 
 // @public
 export interface DiskEncryptionConfiguration {
@@ -841,18 +892,6 @@ export type DynamicVNetAssignmentScope = string;
 export type ElevationLevel = string;
 
 // @public
-export function enableAutoScale(context: BatchServiceContext, poolId: string, options?: PoolEnableAutoScaleOptions): Promise<void>;
-
-// @public
-export function enableJob(context: BatchServiceContext, jobId: string, options?: JobEnableJobOptions): Promise<void>;
-
-// @public
-export function enableJobSchedule(context: BatchServiceContext, jobScheduleId: string, options?: JobScheduleEnableJobScheduleOptions): Promise<void>;
-
-// @public
-export function enableScheduling(context: BatchServiceContext, poolId: string, nodeId: string, options?: ComputeNodesEnableSchedulingOptions): Promise<void>;
-
-// @public
 export interface EnvironmentSetting {
     name: string;
     value?: string;
@@ -866,12 +905,6 @@ export interface ErrorMessage {
     lang?: string;
     value?: string;
 }
-
-// @public
-export function evaluateAutoScale(context: BatchServiceContext, autoScaleFormula: string, poolId: string, options?: PoolEvaluateAutoScaleOptions): Promise<AutoScaleRun>;
-
-// @public
-export function exists(context: BatchServiceContext, poolId: string, options?: PoolExistsOptions): Promise<void>;
 
 // @public
 export interface ExitCodeMapping {
@@ -921,6 +954,7 @@ export interface FileDeleteFromTaskOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface FileGetFromComputeNodeOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ifModifiedSince?: string;
     ifUnmodifiedSince?: string;
@@ -932,6 +966,7 @@ export interface FileGetFromComputeNodeOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface FileGetFromTaskOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ifModifiedSince?: string;
     ifUnmodifiedSince?: string;
@@ -964,6 +999,7 @@ export interface FileGetPropertiesFromTaskOptions extends RequestOptions {
 // @public (undocumented)
 export interface FileListFromComputeNodeOptions extends RequestOptions {
     $filter?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -975,6 +1011,7 @@ export interface FileListFromComputeNodeOptions extends RequestOptions {
 // @public (undocumented)
 export interface FileListFromTaskOptions extends RequestOptions {
     $filter?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -991,57 +1028,6 @@ export interface FileProperties {
     fileMode?: string;
     lastModified: Date;
 }
-
-// @public
-export function get(context: BatchServiceContext, applicationId: string, options?: ApplicationsGetOptions): Promise<Application>;
-
-// @public
-export function getAllJobLifetimeStatistics(context: BatchServiceContext, options?: JobGetAllJobLifetimeStatisticsOptions): Promise<JobStatistics>;
-
-// @public
-export function getAllPoolLifetimeStatistics(context: BatchServiceContext, options?: PoolGetAllPoolLifetimeStatisticsOptions): Promise<PoolStatistics>;
-
-// @public
-export function getCertificate(context: BatchServiceContext, thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesGetCertificateOptions): Promise<Certificate>;
-
-// @public
-export function getComputeNode(context: BatchServiceContext, poolId: string, nodeId: string, options?: ComputeNodesGetComputeNodeOptions): Promise<ComputeNode>;
-
-// @public
-export function getComputeNodeExtensions(context: BatchServiceContext, poolId: string, nodeId: string, extensionName: string, options?: ComputeNodeExtensionsGetComputeNodeExtensionsOptions): Promise<NodeVMExtension>;
-
-// @public
-export function getFromComputeNode(context: BatchServiceContext, poolId: string, nodeId: string, filePath: string, options?: FileGetFromComputeNodeOptions): Promise<void>;
-
-// @public
-export function getFromTask(context: BatchServiceContext, jobId: string, taskId: string, filePath: string, options?: FileGetFromTaskOptions): Promise<void>;
-
-// @public
-export function getJob(context: BatchServiceContext, jobId: string, options?: JobGetJobOptions): Promise<BatchJob>;
-
-// @public
-export function getJobSchedule(context: BatchServiceContext, jobScheduleId: string, options?: JobScheduleGetJobScheduleOptions): Promise<BatchJobSchedule>;
-
-// @public
-export function getPool(context: BatchServiceContext, poolId: string, options?: PoolGetPoolOptions): Promise<BatchPool>;
-
-// @public
-export function getPropertiesFromComputeNode(context: BatchServiceContext, poolId: string, nodeId: string, filePath: string, options?: FileGetPropertiesFromComputeNodeOptions): Promise<void>;
-
-// @public
-export function getPropertiesFromTask(context: BatchServiceContext, jobId: string, taskId: string, filePath: string, options?: FileGetPropertiesFromTaskOptions): Promise<void>;
-
-// @public
-export function getRemoteDesktop(context: BatchServiceContext, poolId: string, nodeId: string, options?: ComputeNodesGetRemoteDesktopOptions): Promise<void>;
-
-// @public
-export function getRemoteLoginSettings(context: BatchServiceContext, poolId: string, nodeId: string, options?: ComputeNodesGetRemoteLoginSettingsOptions): Promise<ComputeNodeGetRemoteLoginSettingsResult>;
-
-// @public
-export function getTaskCollection(context: BatchServiceContext, jobId: string, taskId: string, options?: TaskGetTaskCollectionOptions): Promise<BatchTask>;
-
-// @public
-export function getTaskCounts(context: BatchServiceContext, jobId: string, options?: JobGetTaskCountsOptions): Promise<TaskCountsResult>;
 
 // @public
 export interface HttpHeader {
@@ -1196,6 +1182,7 @@ export interface JobExecutionInformation {
 
 // @public (undocumented)
 export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -1206,6 +1193,7 @@ export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
 export interface JobGetJobOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -1218,6 +1206,7 @@ export interface JobGetJobOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface JobGetTaskCountsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -1229,6 +1218,7 @@ export interface JobListFromJobScheduleOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1241,6 +1231,7 @@ export interface JobListJobsOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1252,6 +1243,7 @@ export interface JobListJobsOptions extends RequestOptions {
 export interface JobListPreparationAndReleaseTaskStatusOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1457,13 +1449,11 @@ export interface JobScheduleExecutionInformation {
     recentJob?: RecentJob;
 }
 
-// @public
-export function jobScheduleExists(context: BatchServiceContext, jobScheduleId: string, options?: JobScheduleJobScheduleExistsOptions): Promise<void>;
-
 // @public (undocumented)
 export interface JobScheduleGetJobScheduleOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -1491,6 +1481,7 @@ export interface JobScheduleListJobSchedulesOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1696,54 +1687,6 @@ export interface LinuxUserConfiguration {
 }
 
 // @public
-export function list(context: BatchServiceContext, poolId: string, options?: ComputeNodesListOptions): Promise<ComputeNodeListResult>;
-
-// @public
-export function listApplications(context: BatchServiceContext, options?: ApplicationsListApplicationsOptions): Promise<ApplicationListResult>;
-
-// @public
-export function listCertificates(context: BatchServiceContext, options?: CertificatesListCertificatesOptions): Promise<CertificateListResult>;
-
-// @public
-export function listComputeNodeExtensions(context: BatchServiceContext, poolId: string, nodeId: string, options?: ComputeNodeExtensionsListComputeNodeExtensionsOptions): Promise<NodeVMExtensionList>;
-
-// @public
-export function listFromComputeNode(context: BatchServiceContext, poolId: string, nodeId: string, options?: FileListFromComputeNodeOptions): Promise<NodeFileListResult>;
-
-// @public
-export function listFromJobSchedule(context: BatchServiceContext, jobScheduleId: string, options?: JobListFromJobScheduleOptions): Promise<BatchJobListResult>;
-
-// @public
-export function listFromTask(context: BatchServiceContext, jobId: string, taskId: string, options?: FileListFromTaskOptions): Promise<NodeFileListResult>;
-
-// @public
-export function listJobs(context: BatchServiceContext, options?: JobListJobsOptions): Promise<BatchJobListResult>;
-
-// @public
-export function listJobSchedules(context: BatchServiceContext, options?: JobScheduleListJobSchedulesOptions): Promise<BatchJobScheduleListResult>;
-
-// @public
-export function listPoolNodeCounts(context: BatchServiceContext, options?: AccountListPoolNodeCountsOptions): Promise<PoolNodeCountsListResult>;
-
-// @public
-export function listPools(context: BatchServiceContext, options?: PoolListPoolsOptions): Promise<BatchPoolListResult>;
-
-// @public
-export function listPreparationAndReleaseTaskStatus(context: BatchServiceContext, jobId: string, options?: JobListPreparationAndReleaseTaskStatusOptions): Promise<BatchJobListPreparationAndReleaseTaskStatusResult>;
-
-// @public
-export function listSubtasks(context: BatchServiceContext, jobId: string, taskId: string, options?: TaskListSubtasksOptions): Promise<BatchTaskListSubtasksResult>;
-
-// @public
-export function listSupportedImages(context: BatchServiceContext, options?: AccountListSupportedImagesOptions): Promise<AccountListSupportedImagesResult>;
-
-// @public
-export function listTasks(context: BatchServiceContext, jobId: string, options?: TaskListTasksOptions): Promise<BatchTaskListResult>;
-
-// @public
-export function listUsageMetrics(context: BatchServiceContext, options?: PoolListUsageMetricsOptions): Promise<CustomPagePoolUsageMetrics>;
-
-// @public
 export type LoginMode = string;
 
 // @public
@@ -1932,15 +1875,6 @@ export interface OutputFileUploadOptions {
     uploadCondition: OutputFileUploadCondition;
 }
 
-// @public
-export function patchJob(context: BatchServiceContext, jobId: string, options?: JobPatchJobOptions): Promise<void>;
-
-// @public
-export function patchJobSchedule(context: BatchServiceContext, jobScheduleId: string, options?: JobSchedulePatchJobScheduleOptions): Promise<void>;
-
-// @public
-export function patchPool(context: BatchServiceContext, poolId: string, options?: PoolPatchPoolOptions): Promise<void>;
-
 // @public (undocumented)
 export interface PoolAddPoolOptions extends RequestOptions {
     allocationState?: AllocationState;
@@ -2030,6 +1964,7 @@ export interface PoolEndpointConfiguration {
 
 // @public (undocumented)
 export interface PoolEvaluateAutoScaleOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     content_type?: string;
     ocpDate?: string;
@@ -2051,6 +1986,7 @@ export interface PoolExistsOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface PoolGetAllPoolLifetimeStatisticsOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -2061,6 +1997,7 @@ export interface PoolGetAllPoolLifetimeStatisticsOptions extends RequestOptions 
 export interface PoolGetPoolOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -2088,6 +2025,7 @@ export interface PoolListPoolsOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -2097,6 +2035,7 @@ export interface PoolListPoolsOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface PoolListUsageMetricsOptions extends RequestOptions {
+    accept?: "application/json";
 }
 
 // @public
@@ -2308,22 +2247,10 @@ export interface PublicIPAddressConfiguration {
 }
 
 // @public
-export function reactivateTaskCollection(context: BatchServiceContext, jobId: string, taskId: string, options?: TaskReactivateTaskCollectionOptions): Promise<void>;
-
-// @public
-export function rebootComputeNode(context: BatchServiceContext, poolId: string, nodeId: string, options?: ComputeNodesRebootComputeNodeOptions): Promise<void>;
-
-// @public
 export interface RecentJob {
     id?: string;
     url?: string;
 }
-
-// @public
-export function reimageComputeNode(context: BatchServiceContext, poolId: string, nodeId: string, options?: ComputeNodesReimageComputeNodeOptions): Promise<void>;
-
-// @public
-export function removeNodes(context: BatchServiceContext, nodeList: string[], poolId: string, options?: PoolRemoveNodesOptions): Promise<void>;
 
 // @public (undocumented)
 export interface RequestOptions {
@@ -2336,9 +2263,6 @@ export interface RequestOptions {
         skipUrlEncoding?: boolean;
     };
 }
-
-// @public
-export function resize(context: BatchServiceContext, poolId: string, options?: PoolResizeOptions): Promise<void>;
 
 // @public
 export interface ResizeError {
@@ -2417,9 +2341,6 @@ export type StartTaskState = string;
 export type StatusLevelTypes = string;
 
 // @public
-export function stopResize(context: BatchServiceContext, poolId: string, options?: PoolStopResizeOptions): Promise<void>;
-
-// @public
 export type StorageAccountType = string;
 
 // @public
@@ -2461,6 +2382,7 @@ export type TaskAddStatus = string;
 
 // @public (undocumented)
 export interface TaskAddTaskCollectionOptions extends RequestOptions {
+    accept?: "application/json";
     clientRequestId?: string;
     content_type?: string;
     ocpDate?: string;
@@ -2588,6 +2510,7 @@ export interface TaskFailureInformation {
 export interface TaskGetTaskCollectionOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -2617,6 +2540,7 @@ export interface TaskInformation {
 // @public (undocumented)
 export interface TaskListSubtasksOptions extends RequestOptions {
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -2628,6 +2552,7 @@ export interface TaskListTasksOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
+    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -2732,33 +2657,6 @@ export interface TaskUpdateTaskCollectionOptions extends RequestOptions {
 }
 
 // @public
-export function terminateJob(context: BatchServiceContext, jobId: string, options?: JobTerminateJobOptions): Promise<void>;
-
-// @public
-export function terminateJobSchedule(context: BatchServiceContext, jobScheduleId: string, options?: JobScheduleTerminateJobScheduleOptions): Promise<void>;
-
-// @public
-export function terminateTaskCollection(context: BatchServiceContext, jobId: string, taskId: string, options?: TaskTerminateTaskCollectionOptions): Promise<void>;
-
-// @public
-export function updateJob(context: BatchServiceContext, jobId: string, options?: JobUpdateJobOptions): Promise<void>;
-
-// @public
-export function updateJobSchedule(context: BatchServiceContext, jobScheduleId: string, options?: JobScheduleUpdateJobScheduleOptions): Promise<void>;
-
-// @public
-export function updateProperties(context: BatchServiceContext, poolId: string, options?: PoolUpdatePropertiesOptions): Promise<void>;
-
-// @public
-export function updateTaskCollection(context: BatchServiceContext, jobId: string, taskId: string, options?: TaskUpdateTaskCollectionOptions): Promise<void>;
-
-// @public
-export function updateUser(context: BatchServiceContext, poolId: string, nodeId: string, userName: string, options?: ComputeNodesUpdateUserOptions): Promise<void>;
-
-// @public
-export function uploadBatchServiceLogs(context: BatchServiceContext, containerUrl: string, startTime: Date, poolId: string, nodeId: string, options?: ComputeNodesUploadBatchServiceLogsOptions): Promise<UploadBatchServiceLogsResult>;
-
-// @public
 export interface UploadBatchServiceLogsConfiguration {
     containerUrl: string;
     endTime?: Date;
@@ -2851,10 +2749,6 @@ export interface WindowsConfiguration {
 export interface WindowsUserConfiguration {
     loginMode?: LoginMode;
 }
-
-// Warnings were encountered during analysis:
-//
-// src/rest/clientDefinitions.ts:1399:3 - (ae-forgotten-export) The symbol "Routes" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
