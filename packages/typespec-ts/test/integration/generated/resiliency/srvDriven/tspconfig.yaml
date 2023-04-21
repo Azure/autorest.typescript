@@ -9,6 +9,6 @@ options:
     azureSdkForJs: false
     isCadlTest: true
     packageDetails:
-      name: "@msinternal/dev-driven"
-      description: "Dev Driven Test Service"
+      name: "@msinternal/srv-driven"
+      description: "Srv Driven Test Service"
       version: "1.0.0"
