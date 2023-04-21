@@ -187,7 +187,7 @@ export function extractPagedMetadataNested(
   if (paged) {
     return paged;
   }
-  const templateArguments = type.templateArguments;
+  const templateArguments = type.templateMapper?.args;
   if (templateArguments) {
     for (const argument of templateArguments) {
       const modelArgument = argument as Model;

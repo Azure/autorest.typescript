@@ -21,50 +21,6 @@ export interface ApplicationOutput {
   versions: string[];
 }
 
-/** The parameters for a widget status request */
-export interface BatchClientRequestHeadersOutput {}
-
-/** The parameters for a widget status request */
-export interface BatchApplicationListHeadersOutput
-  extends BatchClientRequestHeadersOutput {}
-
-/** Common header parms for Job related File operartions */
-export interface BatchJobFileClientRequestHeadersOutput
-  extends BatchClientRequestHeadersOutput {}
-
-/** Common header parms for Pool related File operartions */
-export interface BatchPoolFileClientRequestHeadersOutput
-  extends BatchClientRequestHeadersOutput {}
-
-/** An error response received from the Azure Batch service. */
-export interface BatchErrorOutput {
-  /**
-   * An identifier for the error. Codes are invariant and are intended to be
-   * consumed programmatically.
-   */
-  code?: string;
-  /** An error message received in an Azure Batch error response. */
-  message?: ErrorMessageOutput;
-  /** A collection of key-value pairs containing additional details about the error. */
-  values?: Array<BatchErrorDetailOutput>;
-}
-
-/** An error message received in an Azure Batch error response. */
-export interface ErrorMessageOutput {
-  /** The language code of the error message */
-  lang?: string;
-  /** The text of the message. */
-  value?: string;
-}
-
-/** An item of additional information included in an Azure Batch error response. */
-export interface BatchErrorDetailOutput {
-  /** An identifier specifying the meaning of the Value property. */
-  key?: string;
-  /** The additional information included with the error response. */
-  value?: string;
-}
-
 /** Usage metrics for a Pool across an aggregation interval. */
 export interface PoolUsageMetricsOutput {
   /** The ID of the Pool whose metrics are aggregated in this entry. */
@@ -3469,6 +3425,35 @@ export interface TaskAddResultOutput {
   location?: string;
   /** An error response received from the Azure Batch service. */
   error?: BatchErrorOutput;
+}
+
+/** An error response received from the Azure Batch service. */
+export interface BatchErrorOutput {
+  /**
+   * An identifier for the error. Codes are invariant and are intended to be
+   * consumed programmatically.
+   */
+  code?: string;
+  /** An error message received in an Azure Batch error response. */
+  message?: ErrorMessageOutput;
+  /** A collection of key-value pairs containing additional details about the error. */
+  values?: Array<BatchErrorDetailOutput>;
+}
+
+/** An error message received in an Azure Batch error response. */
+export interface ErrorMessageOutput {
+  /** The language code of the error message */
+  lang?: string;
+  /** The text of the message. */
+  value?: string;
+}
+
+/** An item of additional information included in an Azure Batch error response. */
+export interface BatchErrorDetailOutput {
+  /** An identifier specifying the meaning of the Value property. */
+  key?: string;
+  /** The additional information included with the error response. */
+  value?: string;
 }
 
 /** The result of listing the subtasks of a Task. */

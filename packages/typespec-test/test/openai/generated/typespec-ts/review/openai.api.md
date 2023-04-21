@@ -56,26 +56,6 @@ export interface CompletionsOptions {
 }
 
 // @public
-export interface CompletionsOptionsOutput {
-    best_of?: number;
-    cache_level?: number;
-    completion_config?: string;
-    echo?: boolean;
-    frequency_penalty?: number;
-    logit_bias?: Record<string, number>;
-    logprobs?: number;
-    max_tokens?: number;
-    model: string;
-    n?: number;
-    presence_penalty?: number;
-    prompt?: string[];
-    stop?: string[];
-    temperature?: number;
-    top_p?: number;
-    user?: string;
-}
-
-// @public
 export interface CompletionsOutput {
     choices?: Array<ChoiceOutput>;
     created?: number;

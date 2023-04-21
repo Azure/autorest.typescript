@@ -25,9 +25,6 @@ export interface OperationStatusOutput {
   error?: ErrorModel;
 }
 
-/** The parameters for exporting a user. */
-export interface UserExportParamsOutput {}
-
 /** Provides status details for long running operations. */
 export interface ResourceOperationStatusOutput {
   /** The unique ID of the operation. */
