@@ -66,7 +66,7 @@ namespace AzureMessagingEventGrid {
     type: string;
 
     @doc("The time (in UTC) the event was generated, in RFC3339 format.")
-    time?: zonedDateTime;
+    time?: utcDateTime;
 
     @doc("The version of the CloudEvents specification which the event uses.")
     specversion: string;
