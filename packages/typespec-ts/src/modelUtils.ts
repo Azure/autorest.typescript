@@ -145,8 +145,9 @@ export function getEffectiveModelFromType(program: Program, type: Type): Type {
 export function includeDerivedModel(model: Model): boolean {
   return (
     !isTemplateDeclaration(model) &&
-    (model.templateArguments === undefined ||
-      model.templateArguments?.length === 0 ||
+    (!model.templateMapper ||
+      !model.templateMapper.args ||
+      model.templateMapper.args?.length === 0 ||
       model.derivedModels.length > 0)
   );
 }
@@ -353,12 +354,13 @@ function getSchemaForModel(
   let name = model.name;
   if (
     !overridedModelName &&
-    model.templateArguments &&
-    model.templateArguments.length > 0 &&
+    model.templateMapper &&
+    model.templateMapper.args &&
+    model.templateMapper.args.length > 0 &&
     getPagedResult(program, model)
   ) {
     name =
-      model.templateArguments
+      model.templateMapper.args
         .map((it) => {
           switch (it.kind) {
             case "Model":
@@ -398,8 +400,8 @@ function getSchemaForModel(
     const paged = extractPagedMetadataNested(program, model);
     if (paged && paged.itemsProperty) {
       const items = paged.itemsProperty as unknown as Model;
-      if (items && items.templateArguments) {
-        const templateName = items.templateArguments
+      if (items && items.templateMapper && items.templateMapper.args) {
+        const templateName = items.templateMapper.args
           ?.map((it) => {
             switch (it.kind) {
               case "Model":
@@ -539,8 +541,9 @@ function getSchemaForModel(
   // templated type.
   if (
     model.baseModel &&
-    model.baseModel.templateArguments &&
-    model.baseModel.templateArguments.length > 0 &&
+    model.baseModel.templateMapper &&
+    model.baseModel.templateMapper.args &&
+    model.baseModel.templateMapper.args.length > 0 &&
     modelSchema.properties &&
     Object.keys(modelSchema.properties).length === 0
   ) {
@@ -952,8 +955,9 @@ export function getBodyType(
           // response body type is reosurce type, and request body type (if templated) contains resource type
           if (
             bodyTypeInResponse === resourceType &&
-            bodyModel.templateArguments &&
-            bodyModel.templateArguments.some((it) => {
+            bodyModel.templateMapper &&
+            bodyModel.templateMapper.args &&
+            bodyModel.templateMapper.args.some((it) => {
               return it.kind === "Model" || it.kind === "Union"
                 ? it === bodyTypeInResponse
                 : false;

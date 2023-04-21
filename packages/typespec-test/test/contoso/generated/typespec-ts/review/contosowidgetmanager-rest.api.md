@@ -120,15 +120,6 @@ export interface DeleteWidgetDefaultResponse extends HttpResponse {
 export type DeleteWidgetParameters = RequestParameters;
 
 // @public
-export interface ErrorModelOutput {
-    code: string;
-    details: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
 export interface FakedSharedModel {
     createdDate: Date | string;
     tag: string;
@@ -215,12 +206,6 @@ export type GetWidgetOperationStatusParameters = RequestParameters;
 
 // @public (undocumented)
 export type GetWidgetParameters = RequestParameters;
-
-// @public
-export interface InnerErrorOutput {
-    code: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: GetWidget200Response | GetWidgetDefaultResponse): response is GetWidgetDefaultResponse;

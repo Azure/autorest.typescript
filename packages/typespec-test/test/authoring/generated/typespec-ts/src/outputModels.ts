@@ -47,9 +47,6 @@ export interface OperationStatusOutput {
   error?: ErrorModel;
 }
 
-/** Provides the most common query parameters for list operations. */
-export interface StandardListQueryParametersOutput {}
-
 /** The details of a project deployment. */
 export interface DeploymentOutput {
   /** The name of the deployment. */
