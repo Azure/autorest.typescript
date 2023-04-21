@@ -17,11 +17,11 @@ export default function createClient(
   serviceDeploymentVersion: string,
   options: ClientOptions = {}
 ): Client {
-  const apiVersion = options.apiVersion ?? "v2";
+  const apiVersion = options.apiVersion ?? "v1";
   const baseUrl =
     options.baseUrl ??
-    `http://localhost:3000/resiliency/service-driven/client:v2/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
-  const userAgentInfo = `azsdk-js-srv-driven-rest/1.0.0`;
+    `http://localhost:3000/resiliency/service-driven/client:v1/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
+  const userAgentInfo = `azsdk-js-srv-driven-1-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
