@@ -1,14 +1,14 @@
 import { SourceFile } from "ts-morph";
-import { Parameter } from "../modularCodeModel.js";
+import { Type } from "../modularCodeModel.js";
 
 /**
  * This function adds an import to the soruce file to import the right credential
  */
 export function importCredential(
-  credential: Parameter,
+  credential: Type,
   clientSourceFile: SourceFile
 ): void {
-  switch (credential.type.type) {
+  switch (credential.type) {
     case "Key":
       clientSourceFile.addImportDeclaration({
         moduleSpecifier: "@azure/core-auth",
@@ -21,9 +21,20 @@ export function importCredential(
         namedImports: ["TokenCredential"]
       });
       return;
+    case "combined":
+      if (!credential.types) {
+        break;
+      }
+
+      for (const cred of credential.types) {
+        if (cred.type === "Key" || cred.type === "OAuth2") {
+          importCredential(cred, clientSourceFile);
+        }
+      }
+      break;
     default:
       throw new Error(
-        `Credential of type ${credential.type.type} is not yet supported`
+        `Credential of type ${credential.type} is not yet supported`
       );
   }
 }

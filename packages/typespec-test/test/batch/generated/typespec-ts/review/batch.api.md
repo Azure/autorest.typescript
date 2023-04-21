@@ -393,14 +393,6 @@ export interface AzureFileShareConfigurationOutput {
 }
 
 // @public
-export interface BatchApplicationListHeadersOutput extends BatchClientRequestHeadersOutput {
-}
-
-// @public
-export interface BatchClientRequestHeadersOutput {
-}
-
-// @public
 export interface BatchErrorDetailOutput {
     key?: string;
     value?: string;
@@ -436,10 +428,6 @@ export interface BatchJob {
 // @public
 export interface BatchJobDisableParameters {
     disableTasks: string;
-}
-
-// @public
-export interface BatchJobFileClientRequestHeadersOutput extends BatchClientRequestHeadersOutput {
 }
 
 // @public
@@ -559,10 +547,6 @@ export interface BatchPoolEnableAutoScaleParameters {
 // @public
 export interface BatchPoolEvaluateAutoScaleParameters {
     autoScaleFormula: string;
-}
-
-// @public
-export interface BatchPoolFileClientRequestHeadersOutput extends BatchClientRequestHeadersOutput {
 }
 
 // @public

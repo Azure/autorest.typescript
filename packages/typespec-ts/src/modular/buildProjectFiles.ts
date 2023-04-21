@@ -6,14 +6,18 @@ export function emitPackage(
   srcPath: string,
   codeModel: ModularCodeModel
 ) {
-  const packageJson = project.createSourceFile(`${srcPath}/package.json`, "", {
-    overwrite: true
-  });
+  const packageJson = project.createSourceFile(
+    `${srcPath}/package-files/package.json`,
+    "",
+    {
+      overwrite: true
+    }
+  );
   const content = {
     name: `${
       codeModel.options?.packageDetails?.name ?? "@msinternal/unamedpackage"
     }`,
-    version: "1.0.0",
+    version: "1.0.0-beta.1",
     description: `"${codeModel.options?.packageDetails?.description}"`,
     "sdk-type": "client",
     main: "dist/index.js",
@@ -92,6 +96,7 @@ export function emitPackage(
     files: [
       "dist/",
       "dist-esm/src/",
+      "types",
       "types/src",
       "types/latest/",
       "types/3.1/",
@@ -131,7 +136,6 @@ export function emitPackage(
       "@types/chai": "^4.3.1",
       "@types/mocha": "^7.0.2",
       "@types/node": "^14.0.0",
-      "@types/uuid": "^8.3.4",
       chai: "^4.3.6",
       "cross-env": "^7.0.3",
       dotenv: "^16.0.0",
@@ -164,18 +168,12 @@ export function emitPackage(
       util: "^0.12.4"
     },
     dependencies: {
-      "@azure/abort-controller": "^1.1.0",
       "@azure-rest/core-client": "^1.1.2",
       "@azure/core-auth": "^1.4.1",
-      "@azure/core-lro": "^2.4.0",
-      "@azure/core-paging": "^1.3.0",
       "@azure/core-rest-pipeline": "^1.8.1",
-      "@azure/core-tracing": "^1.0.1",
       "@azure/core-util": "^1.1.0",
-      "@azure/core-xml": "^1.3.1",
       "@azure/logger": "^1.0.3",
-      tslib: "^2.4.0",
-      uuid: "^9.0.0"
+      tslib: "^2.4.0"
     }
   };
 
@@ -189,9 +187,13 @@ export function emitTsConfig(
   srcPath: string,
   codeModel: ModularCodeModel
 ) {
-  const tsConfig = project.createSourceFile(`${srcPath}/tsconfig.json`, "", {
-    overwrite: true
-  });
+  const tsConfig = project.createSourceFile(
+    `${srcPath}/package-files/tsconfig.json`,
+    "",
+    {
+      overwrite: true
+    }
+  );
   const content = {
     extends: "../../../tsconfig.package",
     compilerOptions: {

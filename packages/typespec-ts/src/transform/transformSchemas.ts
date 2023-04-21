@@ -97,15 +97,19 @@ export function transformSchemas(
   }
   function getGeneratedModels(model: Type, context: SchemaContext) {
     if (model.kind === "Model") {
-      if (model.templateArguments && model.templateArguments.length > 0) {
-        for (const temp of model.templateArguments) {
-          if (
-            !program.stateMap(modelKey).get(temp) ||
-            !program.stateMap(modelKey).get(temp)?.includes(context)
-          ) {
-            getGeneratedModels(temp, context);
-            break;
-          }
+      if (
+        model.templateMapper &&
+        model.templateMapper.args &&
+        model.templateMapper.args.length > 0
+      ) {
+        const temp = model.templateMapper.args[0];
+        if (
+          temp &&
+          temp.kind === "Model" &&
+          (!program.stateMap(modelKey).get(temp) ||
+            !program.stateMap(modelKey).get(temp)?.includes(context))
+        ) {
+          getGeneratedModels(temp, context);
         }
       }
 

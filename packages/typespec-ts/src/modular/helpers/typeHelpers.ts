@@ -34,6 +34,8 @@ export function getType(type: Type): TypeMetadata {
     case "float":
     case "integer":
       return { name: "number" };
+    case "byte-array":
+      return { name: "string" };
     case "list":
       if (!type.elementType) {
         throw new Error("Unable to process Array with no elementType");
@@ -52,16 +54,36 @@ export function getType(type: Type): TypeMetadata {
     case "string":
     case "duration":
       return { name: "string" };
+    case "combined": {
+      if (!type.types) {
+        throw new Error("Unable to process combined without combinedTypes");
+      }
+      const name = type.types
+        .map((t) => {
+          const sdkType = getTypeName(getType(t));
+          return `${sdkType}`;
+        })
+        .join(" | ");
+      return { name };
+    }
     case "dict":
       if (!type.elementType) {
         throw new Error("Unable to process dict without elemetType info");
       }
       return {
-        name: `Record<string, ${type.elementType.type}>`
+        name: `Record<string, ${getTypeName(getType(type.elementType))}>`
       };
     default:
       throw new Error(`Unsupported type ${type.type}`);
   }
+}
+
+function getTypeName(typeMetadata: TypeMetadata) {
+  let typeName = typeMetadata.name;
+  if (typeMetadata.modifier === "Array") {
+    typeName = `${typeName}[]`;
+  }
+  return typeName;
 }
 
 /**

@@ -1,6 +1,6 @@
 {
   "name": "@autorest/typescript",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "scripts": {
     "build": "tsc -p . && npm run copyFiles",
     "build:test:browser": "tsc -p tsconfig.browser-test.json && webpack --config webpack.config.test.js",
@@ -74,7 +74,7 @@
     "source-map-support": "^0.5.16",
     "ts-morph": "^15.1.0",
     "@azure/core-auth": "^1.3.2",
-    "@azure-tools/rlc-common": "^0.11.0"
+    "@azure-tools/rlc-common": "^0.12.0"
   },
   "devDependencies": {
     "@azure-tools/test-recorder": "^3.0.0",
