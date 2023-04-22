@@ -5,7 +5,7 @@ parameters:
 
   - name: LinuxPool
     type: string
-    default: azsdk-pool-mms-ubuntu-1804-general
+    default: azsdk-pool-mms-ubuntu-2004-general
 
   - name: OSVmImage
     type: string
