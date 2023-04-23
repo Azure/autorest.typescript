@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
-  StringGetNonNullParameters,
-  StringPatchNonNullParameters,
-  StringGetNullParameters,
-  StringPatchNullParameters,
+  StringModelGetNonNullParameters,
+  StringModelPatchNonNullParameters,
+  StringModelGetNullParameters,
+  StringModelPatchNullParameters,
   BytesGetNonNullParameters,
   BytesPatchNonNullParameters,
   BytesGetNullParameters,
@@ -28,10 +28,10 @@ import {
   CollectionsModelPatchNullParameters,
 } from "./parameters";
 import {
-  StringGetNonNull200Response,
-  StringPatchNonNull204Response,
-  StringGetNull200Response,
-  StringPatchNull204Response,
+  StringModelGetNonNull200Response,
+  StringModelPatchNonNull204Response,
+  StringModelGetNull200Response,
+  StringModelPatchNull204Response,
   BytesGetNonNull200Response,
   BytesPatchNonNull204Response,
   BytesGetNull200Response,
@@ -55,26 +55,26 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface StringGetNonNull {
+export interface StringModelGetNonNull {
   /** Get models that will return all properties in the model */
   get(
-    options?: StringGetNonNullParameters
-  ): StreamableMethod<StringGetNonNull200Response>;
+    options?: StringModelGetNonNullParameters
+  ): StreamableMethod<StringModelGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
-    options: StringPatchNonNullParameters
-  ): StreamableMethod<StringPatchNonNull204Response>;
+    options: StringModelPatchNonNullParameters
+  ): StreamableMethod<StringModelPatchNonNull204Response>;
 }
 
-export interface StringGetNull {
+export interface StringModelGetNull {
   /** Get models that will return the default object */
   get(
-    options?: StringGetNullParameters
-  ): StreamableMethod<StringGetNull200Response>;
+    options?: StringModelGetNullParameters
+  ): StreamableMethod<StringModelGetNull200Response>;
   /** Put a body with default properties. */
   patch(
-    options: StringPatchNullParameters
-  ): StreamableMethod<StringPatchNull204Response>;
+    options: StringModelPatchNullParameters
+  ): StreamableMethod<StringModelPatchNull204Response>;
 }
 
 export interface BytesGetNonNull {
@@ -188,40 +188,40 @@ export interface CollectionsModelGetNull {
 }
 
 export interface Routes {
-  /** Resource for '/models/properties/nullable/string/non-null' has methods for the following verbs: get, patch */
-  (path: "/models/properties/nullable/string/non-null"): StringGetNonNull;
-  /** Resource for '/models/properties/nullable/string/null' has methods for the following verbs: get, patch */
-  (path: "/models/properties/nullable/string/null"): StringGetNull;
-  /** Resource for '/models/properties/nullable/bytes/non-null' has methods for the following verbs: get, patch */
-  (path: "/models/properties/nullable/bytes/non-null"): BytesGetNonNull;
-  /** Resource for '/models/properties/nullable/bytes/null' has methods for the following verbs: get, patch */
-  (path: "/models/properties/nullable/bytes/null"): BytesGetNull;
-  /** Resource for '/models/properties/nullable/datetime/non-null' has methods for the following verbs: get, patch */
-  (path: "/models/properties/nullable/datetime/non-null"): DatetimeGetNonNull;
-  /** Resource for '/models/properties/nullable/datetime/null' has methods for the following verbs: get, patch */
-  (path: "/models/properties/nullable/datetime/null"): DatetimeGetNull;
-  /** Resource for '/models/properties/nullable/duration/non-null' has methods for the following verbs: get, patch */
-  (path: "/models/properties/nullable/duration/non-null"): DurationGetNonNull;
-  /** Resource for '/models/properties/nullable/duration/null' has methods for the following verbs: get, patch */
-  (path: "/models/properties/nullable/duration/null"): DurationGetNull;
-  /** Resource for '/models/properties/nullable/collections/bytes/non-null' has methods for the following verbs: get, patch */
+  /** Resource for '/type/property/nullable/string/non-null' has methods for the following verbs: get, patch */
+  (path: "/type/property/nullable/string/non-null"): StringModelGetNonNull;
+  /** Resource for '/type/property/nullable/string/null' has methods for the following verbs: get, patch */
+  (path: "/type/property/nullable/string/null"): StringModelGetNull;
+  /** Resource for '/type/property/nullable/bytes/non-null' has methods for the following verbs: get, patch */
+  (path: "/type/property/nullable/bytes/non-null"): BytesGetNonNull;
+  /** Resource for '/type/property/nullable/bytes/null' has methods for the following verbs: get, patch */
+  (path: "/type/property/nullable/bytes/null"): BytesGetNull;
+  /** Resource for '/type/property/nullable/datetime/non-null' has methods for the following verbs: get, patch */
+  (path: "/type/property/nullable/datetime/non-null"): DatetimeGetNonNull;
+  /** Resource for '/type/property/nullable/datetime/null' has methods for the following verbs: get, patch */
+  (path: "/type/property/nullable/datetime/null"): DatetimeGetNull;
+  /** Resource for '/type/property/nullable/duration/non-null' has methods for the following verbs: get, patch */
+  (path: "/type/property/nullable/duration/non-null"): DurationGetNonNull;
+  /** Resource for '/type/property/nullable/duration/null' has methods for the following verbs: get, patch */
+  (path: "/type/property/nullable/duration/null"): DurationGetNull;
+  /** Resource for '/type/property/nullable/collections/bytes/non-null' has methods for the following verbs: get, patch */
   (
-    path: "/models/properties/nullable/collections/bytes/non-null"
+    path: "/type/property/nullable/collections/bytes/non-null"
   ): CollectionsByteGetNonNull;
-  /** Resource for '/models/properties/nullable/collections/bytes/null' has methods for the following verbs: get, patch */
+  /** Resource for '/type/property/nullable/collections/bytes/null' has methods for the following verbs: get, patch */
   (
-    path: "/models/properties/nullable/collections/bytes/null"
+    path: "/type/property/nullable/collections/bytes/null"
   ): CollectionsByteGetNull;
-  /** Resource for '/models/properties/nullable/collections/model/non-null' has methods for the following verbs: get, patch */
+  /** Resource for '/type/property/nullable/collections/model/non-null' has methods for the following verbs: get, patch */
   (
-    path: "/models/properties/nullable/collections/model/non-null"
+    path: "/type/property/nullable/collections/model/non-null"
   ): CollectionsModelGetNonNull;
-  /** Resource for '/models/properties/nullable/collections/model/null' has methods for the following verbs: get, patch */
+  /** Resource for '/type/property/nullable/collections/model/null' has methods for the following verbs: get, patch */
   (
-    path: "/models/properties/nullable/collections/model/null"
+    path: "/type/property/nullable/collections/model/null"
   ): CollectionsModelGetNull;
 }
 
-export type ModelsPropertyNullableClient = Client & {
+export type TypePropertyNullableClient = Client & {
   path: Routes;
 };

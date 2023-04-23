@@ -1,4 +1,4 @@
-# ModelsVisibilityAutomatic REST client library for JavaScript
+# TypeModelVisibility REST client library for JavaScript
 
 Illustrates models with visibility properties.
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/visibility` package
 
-Install the ModelsVisibilityAutomatic REST client REST client library for JavaScript with `npm`:
+Install the TypeModelVisibility REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/visibility
 ```
 
-### Create and authenticate a `ModelsVisibilityAutomaticClient`
+### Create and authenticate a `TypeModelVisibilityClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

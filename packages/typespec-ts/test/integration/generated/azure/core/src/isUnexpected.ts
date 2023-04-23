@@ -16,18 +16,21 @@ import {
   ListDefaultResponse,
   ListWithPage200Response,
   ListWithPageDefaultResponse,
+  ListWithCustomPageModel200Response,
+  ListWithCustomPageModelDefaultResponse,
   Export200Response,
   ExportDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PATCH /azure/core/users/{id}": ["200", "201"],
-  "PUT /azure/core/users/{id}": ["200", "201"],
-  "GET /azure/core/users/{id}": ["200"],
-  "DELETE /azure/core/users/{id}": ["204"],
-  "GET /azure/core/users": ["200"],
-  "GET /azure/core/page": ["200"],
-  "POST /azure/core/users/{id}:export": ["200"],
+  "PATCH /azure/core/basic/users/{id}": ["200", "201"],
+  "PUT /azure/core/basic/users/{id}": ["200", "201"],
+  "GET /azure/core/basic/users/{id}": ["200"],
+  "DELETE /azure/core/basic/users/{id}": ["204"],
+  "GET /azure/core/basic/users": ["200"],
+  "GET /azure/core/basic/page": ["200"],
+  "GET /azure/core/basic/custom-page": ["200"],
+  "POST /azure/core/basic/users/{id}:export": ["200"],
 };
 
 export function isUnexpected(
@@ -55,6 +58,11 @@ export function isUnexpected(
   response: ListWithPage200Response | ListWithPageDefaultResponse
 ): response is ListWithPageDefaultResponse;
 export function isUnexpected(
+  response:
+    | ListWithCustomPageModel200Response
+    | ListWithCustomPageModelDefaultResponse
+): response is ListWithCustomPageModelDefaultResponse;
+export function isUnexpected(
   response: Export200Response | ExportDefaultResponse
 ): response is ExportDefaultResponse;
 export function isUnexpected(
@@ -73,6 +81,8 @@ export function isUnexpected(
     | ListDefaultResponse
     | ListWithPage200Response
     | ListWithPageDefaultResponse
+    | ListWithCustomPageModel200Response
+    | ListWithCustomPageModelDefaultResponse
     | Export200Response
     | ExportDefaultResponse
 ): response is
@@ -82,6 +92,7 @@ export function isUnexpected(
   | DeleteDefaultResponse
   | ListDefaultResponse
   | ListWithPageDefaultResponse
+  | ListWithCustomPageModelDefaultResponse
   | ExportDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);

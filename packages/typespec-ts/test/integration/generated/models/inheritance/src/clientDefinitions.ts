@@ -58,22 +58,24 @@ export interface GetWrongDiscriminator {
 }
 
 export interface Routes {
-  /** Resource for '/models/inheritance/valid' has methods for the following verbs: post, get, put */
-  (path: "/models/inheritance/valid"): PostValid;
-  /** Resource for '/models/inheritance/discriminated/model' has methods for the following verbs: get, put */
-  (path: "/models/inheritance/discriminated/model"): GetModel;
-  /** Resource for '/models/inheritance/discriminated/recursivemodel' has methods for the following verbs: get, put */
-  (path: "/models/inheritance/discriminated/recursivemodel"): GetRecursiveModel;
-  /** Resource for '/models/inheritance/discriminated/missingdiscriminator' has methods for the following verbs: get */
+  /** Resource for '/type/model/inheritance/valid' has methods for the following verbs: post, get, put */
+  (path: "/type/model/inheritance/valid"): PostValid;
+  /** Resource for '/type/model/inheritance/discriminated/model' has methods for the following verbs: get, put */
+  (path: "/type/model/inheritance/discriminated/model"): GetModel;
+  /** Resource for '/type/model/inheritance/discriminated/recursivemodel' has methods for the following verbs: get, put */
   (
-    path: "/models/inheritance/discriminated/missingdiscriminator"
+    path: "/type/model/inheritance/discriminated/recursivemodel"
+  ): GetRecursiveModel;
+  /** Resource for '/type/model/inheritance/discriminated/missingdiscriminator' has methods for the following verbs: get */
+  (
+    path: "/type/model/inheritance/discriminated/missingdiscriminator"
   ): GetMissingDiscriminator;
-  /** Resource for '/models/inheritance/discriminated/wrongdiscriminator' has methods for the following verbs: get */
+  /** Resource for '/type/model/inheritance/discriminated/wrongdiscriminator' has methods for the following verbs: get */
   (
-    path: "/models/inheritance/discriminated/wrongdiscriminator"
+    path: "/type/model/inheritance/discriminated/wrongdiscriminator"
   ): GetWrongDiscriminator;
 }
 
-export type ModelsInheritanceClient = Client & {
+export type TypeModelInheritanceClient = Client & {
   path: Routes;
 };

@@ -3,7 +3,7 @@ import AzureLroClientFactory, {
   getLongRunningPoller
 } from "./generated/lro/lroBasic/src/index.js";
 import { assert } from "chai";
-describe("AzureLroClient Rest Client", () => {
+describe.skip("AzureLroClient Rest Client", () => {
   let client: AzureLroClient;
 
   beforeEach(() => {

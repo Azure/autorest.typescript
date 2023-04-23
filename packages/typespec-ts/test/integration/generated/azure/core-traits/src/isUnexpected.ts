@@ -1,31 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  Get200Response,
-  GetDefaultResponse,
-  Delete204Response,
-  DeleteDefaultResponse,
-} from "./responses";
+import { SmokeTest200Response, SmokeTestDefaultResponse } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "GET /azure/traits/user/{id}": ["200"],
-  "DELETE /azure/traits/api/{apiVersion}/user/{id}": ["204"],
+  "GET /azure/core/traits/user/{id}": ["200"],
 };
 
 export function isUnexpected(
-  response: Get200Response | GetDefaultResponse
-): response is GetDefaultResponse;
+  response: SmokeTest200Response | SmokeTestDefaultResponse
+): response is SmokeTestDefaultResponse;
 export function isUnexpected(
-  response: Delete204Response | DeleteDefaultResponse
-): response is DeleteDefaultResponse;
-export function isUnexpected(
-  response:
-    | Get200Response
-    | GetDefaultResponse
-    | Delete204Response
-    | DeleteDefaultResponse
-): response is GetDefaultResponse | DeleteDefaultResponse {
+  response: SmokeTest200Response | SmokeTestDefaultResponse
+): response is SmokeTestDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

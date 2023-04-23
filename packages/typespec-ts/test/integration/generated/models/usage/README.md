@@ -1,4 +1,4 @@
-# ModelsUsage REST client library for JavaScript
+# TypeModelUsage REST client library for JavaScript
 
 Illustrates usage of Record in different places(Operation parameters, return type or both).
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/usage` package
 
-Install the ModelsUsage REST client REST client library for JavaScript with `npm`:
+Install the TypeModelUsage REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/usage
 ```
 
-### Create and authenticate a `ModelsUsageClient`
+### Create and authenticate a `TypeModelUsageClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

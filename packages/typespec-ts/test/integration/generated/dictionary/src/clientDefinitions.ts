@@ -151,28 +151,28 @@ export interface NullableFloatValueGet {
 }
 
 export interface Routes {
-  /** Resource for '/dictionary/int32' has methods for the following verbs: get, put */
-  (path: "/dictionary/int32"): Int32ValueGet;
-  /** Resource for '/dictionary/int64' has methods for the following verbs: get, put */
-  (path: "/dictionary/int64"): Int64ValueGet;
-  /** Resource for '/dictionary/boolean' has methods for the following verbs: get, put */
-  (path: "/dictionary/boolean"): BooleanValueGet;
-  /** Resource for '/dictionary/string' has methods for the following verbs: get, put */
-  (path: "/dictionary/string"): StringValueGet;
-  /** Resource for '/dictionary/float32' has methods for the following verbs: get, put */
-  (path: "/dictionary/float32"): Float32ValueGet;
-  /** Resource for '/dictionary/datetime' has methods for the following verbs: get, put */
-  (path: "/dictionary/datetime"): DatetimeValueGet;
-  /** Resource for '/dictionary/duration' has methods for the following verbs: get, put */
-  (path: "/dictionary/duration"): DurationValueGet;
-  /** Resource for '/dictionary/unknown' has methods for the following verbs: get, put */
-  (path: "/dictionary/unknown"): UnknownValueGet;
-  /** Resource for '/dictionary/model' has methods for the following verbs: get, put */
-  (path: "/dictionary/model"): ModelValueGet;
-  /** Resource for '/dictionary/model/recursive' has methods for the following verbs: get, put */
-  (path: "/dictionary/model/recursive"): RecursiveModelValueGet;
-  /** Resource for '/dictionary/nullable-float' has methods for the following verbs: get, put */
-  (path: "/dictionary/nullable-float"): NullableFloatValueGet;
+  /** Resource for '/type/dictionary/int32' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/int32"): Int32ValueGet;
+  /** Resource for '/type/dictionary/int64' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/int64"): Int64ValueGet;
+  /** Resource for '/type/dictionary/boolean' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/boolean"): BooleanValueGet;
+  /** Resource for '/type/dictionary/string' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/string"): StringValueGet;
+  /** Resource for '/type/dictionary/float32' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/float32"): Float32ValueGet;
+  /** Resource for '/type/dictionary/datetime' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/datetime"): DatetimeValueGet;
+  /** Resource for '/type/dictionary/duration' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/duration"): DurationValueGet;
+  /** Resource for '/type/dictionary/unknown' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/unknown"): UnknownValueGet;
+  /** Resource for '/type/dictionary/model' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/model"): ModelValueGet;
+  /** Resource for '/type/dictionary/model/recursive' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/model/recursive"): RecursiveModelValueGet;
+  /** Resource for '/type/dictionary/nullable-float' has methods for the following verbs: get, put */
+  (path: "/type/dictionary/nullable-float"): NullableFloatValueGet;
 }
 
 export type DictClient = Client & {

@@ -3,7 +3,12 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { UserOutput, UserListOutput, PagedUserOutput } from "./outputModels";
+import {
+  UserOutput,
+  UserListOutput,
+  PagedUserOutput,
+  UserListResultsOutput,
+} from "./outputModels";
 
 /** The request has succeeded. */
 export interface CreateOrUpdate200Response extends HttpResponse {
@@ -100,6 +105,23 @@ export interface ListWithPageDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & ListWithPageDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface ListWithCustomPageModel200Response extends HttpResponse {
+  status: "200";
+  body: UserListResultsOutput;
+}
+
+export interface ListWithCustomPageModelDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface ListWithCustomPageModelDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & ListWithCustomPageModelDefaultHeaders;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */

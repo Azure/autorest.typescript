@@ -1,4 +1,4 @@
-# EnumsFixed REST client library for JavaScript
+# TypeEnumFixed REST client library for JavaScript
 
 Fixed Enums Test Service
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/extensible-fixed` package
 
-Install the EnumsFixed REST client REST client library for JavaScript with `npm`:
+Install the TypeEnumFixed REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/extensible-fixed
 ```
 
-### Create and authenticate a `EnumsFixedClient`
+### Create and authenticate a `TypeEnumFixedClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

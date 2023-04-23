@@ -29,3 +29,4 @@ export interface UserOrderOutput {
 export type UserListOutput = Paged<UserOutput>;
 /** Paged collection of User items */
 export type PagedUserOutput = Paged<UserOutput>;
+export type UserListResultsOutput = Paged<UserOutput>;

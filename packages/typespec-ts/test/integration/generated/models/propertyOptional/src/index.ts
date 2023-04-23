@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import ModelsPropertyOptional from "./modelsPropertyOptional";
+import TypePropertyOptional from "./typePropertyOptional";
 
-export * from "./modelsPropertyOptional";
+export * from "./typePropertyOptional";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default ModelsPropertyOptional;
+export default TypePropertyOptional;

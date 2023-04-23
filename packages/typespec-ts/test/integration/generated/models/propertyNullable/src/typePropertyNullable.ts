@@ -2,18 +2,18 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { ModelsUsageClient } from "./clientDefinitions";
+import { TypePropertyNullableClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `ModelsUsageClient`
+ * Initialize a new instance of `TypePropertyNullableClient`
  * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): ModelsUsageClient {
+): TypePropertyNullableClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  const userAgentInfo = `azsdk-js-usage-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-nullable-property-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -25,7 +25,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ModelsUsageClient;
+  const client = getClient(baseUrl, options) as TypePropertyNullableClient;
 
   return client;
 }

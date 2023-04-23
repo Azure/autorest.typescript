@@ -1,15 +1,15 @@
-import ModelsInheritanceClientFactory, {
-  ModelsInheritanceClient,
+import TypeModelInheritanceClientFactory, {
+  TypeModelInheritanceClient,
   Salmon,
   SharkOutput
 } from "./generated/models/inheritance/src/index.js";
 import { assert } from "chai";
 
 describe("ModelsInheritance Rest Client", () => {
-  let client: ModelsInheritanceClient;
+  let client: TypeModelInheritanceClient;
 
   beforeEach(() => {
-    client = ModelsInheritanceClientFactory({
+    client = TypeModelInheritanceClientFactory({
       allowInsecureConnection: true
     });
   });
@@ -17,7 +17,7 @@ describe("ModelsInheritance Rest Client", () => {
   const validBody = { name: "abc", age: 32, smart: true };
   it("should get valid", async () => {
     try {
-      const result = await client.path("/models/inheritance/valid").get();
+      const result = await client.path("/type/model/inheritance/valid").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 32);
       assert.strictEqual(result.body.name, "abc");
@@ -29,7 +29,7 @@ describe("ModelsInheritance Rest Client", () => {
 
   it("should put valid", async () => {
     try {
-      const result = await client.path("/models/inheritance/valid").put({
+      const result = await client.path("/type/model/inheritance/valid").put({
         body: validBody
       });
       assert.strictEqual(result.status, "200");
@@ -43,7 +43,7 @@ describe("ModelsInheritance Rest Client", () => {
 
   it("should post valid", async () => {
     try {
-      const result = await client.path("/models/inheritance/valid").post({
+      const result = await client.path("/type/model/inheritance/valid").post({
         body: validBody
       });
       assert.strictEqual(result.status, "200");
@@ -55,7 +55,7 @@ describe("ModelsInheritance Rest Client", () => {
   it("should get polymorphic body", async () => {
     try {
       const result = await client
-        .path("/models/inheritance/discriminated/model")
+        .path("/type/model/inheritance/discriminated/model")
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
@@ -69,7 +69,7 @@ describe("ModelsInheritance Rest Client", () => {
   it("should put polymorphic body", async () => {
     try {
       const result = await client
-        .path("/models/inheritance/discriminated/model")
+        .path("/type/model/inheritance/discriminated/model")
         .put({
           body: {
             age: 1,
@@ -143,7 +143,7 @@ describe("ModelsInheritance Rest Client", () => {
   it("should get recursive body", async () => {
     try {
       const result = await client
-        .path("/models/inheritance/discriminated/recursivemodel")
+        .path("/type/model/inheritance/discriminated/recursivemodel")
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(JSON.stringify(result.body), JSON.stringify(validRecursiveBody));
@@ -155,7 +155,7 @@ describe("ModelsInheritance Rest Client", () => {
   it("should put recursive body", async () => {
     try {
       const result = await client
-        .path("/models/inheritance/discriminated/recursivemodel")
+        .path("/type/model/inheritance/discriminated/recursivemodel")
         .put({
             body: validRecursiveBody as Salmon
         });
@@ -168,7 +168,7 @@ describe("ModelsInheritance Rest Client", () => {
   it("should get missing discriminator body", async () => {
     try {
       const result = await client
-        .path("/models/inheritance/discriminated/missingdiscriminator")
+        .path("/type/model/inheritance/discriminated/missingdiscriminator")
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
@@ -180,7 +180,7 @@ describe("ModelsInheritance Rest Client", () => {
   it("should get wrong discriminator body", async () => {
     try {
       const result = await client
-        .path("/models/inheritance/discriminated/wrongdiscriminator")
+        .path("/type/model/inheritance/discriminated/wrongdiscriminator")
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);

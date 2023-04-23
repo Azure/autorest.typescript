@@ -1,18 +1,18 @@
-import EnumsExtensibleClientFactory, {
-  EnumsExtensibleClient
+import TypeEnumExtensibleClientFactory, {
+  TypeEnumExtensibleClient
 } from "./generated/enums/extensible/src/index.js";
 import { assert } from "chai";
 describe("ExtensibleEnums Rest Client", () => {
-  let client: EnumsExtensibleClient;
+  let client: TypeEnumExtensibleClient;
 
   beforeEach(() => {
-    client = EnumsExtensibleClientFactory({ allowInsecureConnection: true });
+    client = TypeEnumExtensibleClientFactory({ allowInsecureConnection: true });
   });
 
   it("should get known value", async () => {
     try {
       const result = await client
-        .path("/enums/extensible/string/known-value")
+        .path("/type/enum/extensible/string/known-value")
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Monday");
@@ -24,7 +24,7 @@ describe("ExtensibleEnums Rest Client", () => {
   it("should put known value", async () => {
     try {
       const result = await client
-        .path("/enums/extensible/string/known-value")
+        .path("/type/enum/extensible/string/known-value")
         .put({
           body: JSON.stringify("Monday")
         });
@@ -37,7 +37,7 @@ describe("ExtensibleEnums Rest Client", () => {
   it("should get unknown value", async () => {
     try {
       const result = await client
-        .path("/enums/extensible/string/unknown-value")
+        .path("/type/enum/extensible/string/unknown-value")
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Weekend");
@@ -49,7 +49,7 @@ describe("ExtensibleEnums Rest Client", () => {
   it("should put unknown value", async () => {
     try {
       const result = await client
-        .path("/enums/extensible/string/unknown-value")
+        .path("/type/enum/extensible/string/unknown-value")
         .put({
           body: JSON.stringify("Weekend")
         });

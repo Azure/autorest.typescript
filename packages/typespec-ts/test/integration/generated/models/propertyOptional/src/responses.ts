@@ -13,24 +13,24 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface StringGetAll200Response extends HttpResponse {
+export interface StringModelGetAll200Response extends HttpResponse {
   status: "200";
   body: StringPropertyOutput;
 }
 
 /** The request has succeeded. */
-export interface StringGetDefault200Response extends HttpResponse {
+export interface StringModelGetDefault200Response extends HttpResponse {
   status: "200";
   body: StringPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface StringPutAll204Response extends HttpResponse {
+export interface StringModelPutAll204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface StringPutDefault204Response extends HttpResponse {
+export interface StringModelPutDefault204Response extends HttpResponse {
   status: "204";
 }
 

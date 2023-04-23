@@ -11,35 +11,37 @@ import {
   CollectionsModelProperty,
 } from "./models";
 
-export type StringGetNonNullParameters = RequestParameters;
-export type StringGetNullParameters = RequestParameters;
+export type StringModelGetNonNullParameters = RequestParameters;
+export type StringModelGetNullParameters = RequestParameters;
 export type StringPropertyResourceMergeAndPatch = Partial<StringProperty>;
 
-export interface StringPatchNonNullBodyParam {
+export interface StringModelPatchNonNullBodyParam {
   body: StringPropertyResourceMergeAndPatch;
 }
 
-export interface StringPatchNonNullMediaTypesParam {
+export interface StringModelPatchNonNullMediaTypesParam {
   /** content-type is application/merge-patch+json */
   contentType: "application/merge-patch+json";
 }
 
-export type StringPatchNonNullParameters = StringPatchNonNullMediaTypesParam &
-  StringPatchNonNullBodyParam &
-  RequestParameters;
+export type StringModelPatchNonNullParameters =
+  StringModelPatchNonNullMediaTypesParam &
+    StringModelPatchNonNullBodyParam &
+    RequestParameters;
 
-export interface StringPatchNullBodyParam {
+export interface StringModelPatchNullBodyParam {
   body: StringPropertyResourceMergeAndPatch;
 }
 
-export interface StringPatchNullMediaTypesParam {
+export interface StringModelPatchNullMediaTypesParam {
   /** content-type is application/merge-patch+json */
   contentType: "application/merge-patch+json";
 }
 
-export type StringPatchNullParameters = StringPatchNullMediaTypesParam &
-  StringPatchNullBodyParam &
-  RequestParameters;
+export type StringModelPatchNullParameters =
+  StringModelPatchNullMediaTypesParam &
+    StringModelPatchNullBodyParam &
+    RequestParameters;
 export type BytesGetNonNullParameters = RequestParameters;
 export type BytesGetNullParameters = RequestParameters;
 export type BytesPropertyResourceMergeAndPatch = Partial<BytesProperty>;

@@ -2,18 +2,18 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { ModelsPropertyOptionalClient } from "./clientDefinitions";
+import { TypePropertyValueTypesClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `ModelsPropertyOptionalClient`
+ * Initialize a new instance of `TypePropertyValueTypesClient`
  * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): ModelsPropertyOptionalClient {
+): TypePropertyValueTypesClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  const userAgentInfo = `azsdk-js-optional-property-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-property-types-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -25,7 +25,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ModelsPropertyOptionalClient;
+  const client = getClient(baseUrl, options) as TypePropertyValueTypesClient;
 
   return client;
 }

@@ -21,24 +21,24 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface BooleanGet200Response extends HttpResponse {
+export interface BooleanModelGet200Response extends HttpResponse {
   status: "200";
   body: BooleanPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface BooleanPut204Response extends HttpResponse {
+export interface BooleanModelPut204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface StringGet200Response extends HttpResponse {
+export interface StringModelGet200Response extends HttpResponse {
   status: "200";
   body: StringPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface StringPut204Response extends HttpResponse {
+export interface StringModelPut204Response extends HttpResponse {
   status: "204";
 }
 

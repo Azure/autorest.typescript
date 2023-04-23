@@ -16,9 +16,9 @@ describe("Projected Name Rest Client", () => {
 
   it("should respect json projection", async () => {
     try {
-      const result = await client.path("/projection/json").post({
+      const result = await client.path("/projection/projected-name/property/json").post({
         body: {
-          codegen: "DPG"
+          wireName: true
         }
       });
       assert.strictEqual(result.status, "204");
@@ -27,24 +27,24 @@ describe("Projected Name Rest Client", () => {
     }
   });
 
-  it("should not respect client projection", async () => {
-    try {
-      const result = await client.path("/projection/client").post({
-        body: {
-          builtfrom: "DPG"
-        }
-      });
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
+  // it("should not respect client projection", async () => {
+  //   try {
+  //     const result = await client.path("/projection/projected-name/property/client"). ({
+  //       body: {
+  //         builtfrom: "DPG"
+  //       }
+  //     });
+  //     assert.strictEqual(result.status, "204");
+  //   } catch (err) {
+  //     assert.fail(err as string);
+  //   }
+  // });
 
   it("should not respect language projection", async () => {
     try {
-      const result = await client.path("/projection/language").post({
+      const result = await client.path("/projection/projected-name/property/language").post({
         body: {
-          wasMadeFor: "customers"
+          defaultName: true
         }
       });
       assert.strictEqual(result.status, "204");

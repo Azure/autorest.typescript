@@ -32,12 +32,12 @@ export interface PutUnknownValue {
 }
 
 export interface Routes {
-  /** Resource for '/enums/fixed/string/known-value' has methods for the following verbs: get, put */
-  (path: "/enums/fixed/string/known-value"): GetKnownValue;
-  /** Resource for '/enums/fixed/string/unknown-value' has methods for the following verbs: put */
-  (path: "/enums/fixed/string/unknown-value"): PutUnknownValue;
+  /** Resource for '/type/enum/fixed/string/known-value' has methods for the following verbs: get, put */
+  (path: "/type/enum/fixed/string/known-value"): GetKnownValue;
+  /** Resource for '/type/enum/fixed/string/unknown-value' has methods for the following verbs: put */
+  (path: "/type/enum/fixed/string/unknown-value"): PutUnknownValue;
 }
 
-export type EnumsFixedClient = Client & {
+export type TypeEnumFixedClient = Client & {
   path: Routes;
 };

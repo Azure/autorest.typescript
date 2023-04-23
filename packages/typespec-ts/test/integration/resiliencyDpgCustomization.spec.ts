@@ -5,7 +5,7 @@ import ServiceDrivenOldClientFactory, {
 import ServiceDrivenNewClientFactory, {
   ServiceDrivenNewClient
 } from "./generated/resiliency/srvDriven2/src/index.js";
-describe.only("ResiliencyDevDrivenClient Rest Client", () => {
+describe("ResiliencyDevDrivenClient Rest Client", () => {
   let client1: ServiceDrivenOldClient;
 
   beforeEach(() => {
