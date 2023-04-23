@@ -2,92 +2,56 @@
 // Licensed under the MIT license.
 
 import {
-  HeadNoParamsParameters,
-  GetRequiredParameters,
-  PutRequiredOptionalParameters,
-  DeleteParametersParameters,
-  PostParametersParameters,
-  GetOptionalParameters,
-  GetNewOperationParameters,
+  AddOperationParameters,
+  FromNoneParameters,
+  FromOneRequiredParameters,
+  FromOneOptionalParameters,
 } from "./parameters";
 import {
-  HeadNoParams200Response,
-  GetRequired200Response,
-  PutRequiredOptional200Response,
-  DeleteParameters204Response,
-  PostParameters200Response,
-  GetOptional200Response,
-  GetNewOperation200Response,
+  AddOperation204Response,
+  FromNone204Response,
+  FromOneRequired204Response,
+  FromOneOptional204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface HeadNoParams {
-  /**
-   * Head request, no params.
-   *  Initially has no query parameters. After evolution, a new optional query parameter is added
-   */
-  head(
-    options?: HeadNoParamsParameters
-  ): StreamableMethod<HeadNoParams200Response>;
-  /**
-   * Get true Boolean value on path.
-   *  Initially only has one required Query Parameter. After evolution, a new optional query parameter is added
-   */
-  get(options: GetRequiredParameters): StreamableMethod<GetRequired200Response>;
-  /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
-  put(
-    options: PutRequiredOptionalParameters
-  ): StreamableMethod<PutRequiredOptional200Response>;
-  /**
-   * Delete something.
-   *  Initially the path exists but there is no delete method. After evolution this is a new method in a known path
-   */
+export interface AddOperation {
+  /** Added operation */
   delete(
-    options?: DeleteParametersParameters
-  ): StreamableMethod<DeleteParameters204Response>;
+    options?: AddOperationParameters
+  ): StreamableMethod<AddOperation204Response>;
 }
 
-export interface PostParameters {
-  /** POST a JSON or a JPEG */
-  post(
-    options: PostParametersParameters
-  ): StreamableMethod<PostParameters200Response>;
+export interface FromNone {
+  /** Test that grew up from accepting no parameters to an optional input parameter */
+  head(options?: FromNoneParameters): StreamableMethod<FromNone204Response>;
 }
 
-export interface GetOptional {
-  /**
-   * Get true Boolean value on path.
-   *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
-   */
+export interface FromOneRequired {
+  /** Operation that grew up from accepting one required parameter to accepting a required parameter and an optional parameter. */
   get(
-    options?: GetOptionalParameters
-  ): StreamableMethod<GetOptional200Response>;
+    options: FromOneRequiredParameters
+  ): StreamableMethod<FromOneRequired204Response>;
 }
 
-export interface GetNewOperation {
-  /**
-   * I'm a new operation.
-   *  Initially neither path or method exist for this operation. After evolution, this is a new method in a new path
-   */
+export interface FromOneOptional {
+  /** Tests that we can grow up an operation from accepting one optional parameter to accepting two optional parameters. */
   get(
-    options?: GetNewOperationParameters
-  ): StreamableMethod<GetNewOperation200Response>;
+    options?: FromOneOptionalParameters
+  ): StreamableMethod<FromOneOptional204Response>;
 }
 
 export interface Routes {
-  /** Resource for '/serviceDriven2/serviceDriven/parameters' has methods for the following verbs: head, get, put, delete */
-  (path: "/serviceDriven2/serviceDriven/parameters"): HeadNoParams;
-  /** Resource for '/serviceDriven2/serviceDriven/parameters/\{contentTypePath\}' has methods for the following verbs: post */
-  (
-    path: "/serviceDriven2/serviceDriven/parameters/{contentTypePath}",
-    contentTypePath: "json" | "jpeg"
-  ): PostParameters;
-  /** Resource for '/serviceDriven2/serviceDriven/moreParameters' has methods for the following verbs: get */
-  (path: "/serviceDriven2/serviceDriven/moreParameters"): GetOptional;
-  /** Resource for '/serviceDriven2/serviceDriven/newPath' has methods for the following verbs: get */
-  (path: "/serviceDriven2/serviceDriven/newPath"): GetNewOperation;
+  /** Resource for '/add-operation' has methods for the following verbs: delete */
+  (path: "/add-operation"): AddOperation;
+  /** Resource for '/add-optional-param/from-none' has methods for the following verbs: head */
+  (path: "/add-optional-param/from-none"): FromNone;
+  /** Resource for '/add-optional-param/from-one-required' has methods for the following verbs: get */
+  (path: "/add-optional-param/from-one-required"): FromOneRequired;
+  /** Resource for '/add-optional-param/from-one-optional' has methods for the following verbs: get */
+  (path: "/add-optional-param/from-one-optional"): FromOneOptional;
 }
 
-export type ResiliencyServiceDriven2Client = Client & {
+export type ServiceDrivenNewClient = Client & {
   path: Routes;
 };

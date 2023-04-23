@@ -41,6 +41,6 @@ export interface Routes {
   (path: "/add-optional-param/from-one-optional"): FromOneOptional;
 }
 
-export type Client = Client & {
+export type ServiceDrivenOldClient = Client & {
   path: Routes;
 };

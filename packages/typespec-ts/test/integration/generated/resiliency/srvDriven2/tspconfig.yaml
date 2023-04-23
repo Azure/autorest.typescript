@@ -8,6 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isCadlTest: true
+    title: ServiceDrivenNewClient
     packageDetails:
       name: "@msinternal/srv-driven-2"
       description: "Srv Driven 2 Test Service"
