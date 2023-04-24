@@ -242,7 +242,7 @@ export function shouldGenerateLroOverload(pathDictionary: Paths) {
     allowCounts = 0;
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const lroDetail = methodDetails[0].annotations?.lroDetails;
+      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
       if (lroDetail?.isLongRunning) {
         lroCounts++;
         if (!lroDetail.allowedOverloading) {

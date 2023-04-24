@@ -38,12 +38,12 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
       // LROs may call the same path but with GET
       // to get the operation status.
       if (
-        methodDetails[0].annotations?.lroDetails?.isLongRunning &&
+        methodDetails[0].operationHelperDetail?.lroDetails?.isLongRunning &&
         originalMethod !== "GET"
       ) {
         const operation = `GET ${path}`;
-        const logicalSuccessCodes = methodDetails[0].annotations?.lroDetails
-          ?.logicalResponseTypes?.success
+        const logicalSuccessCodes = methodDetails[0].operationHelperDetail
+          ?.lroDetails?.logicalResponseTypes?.success
           ? ["200"]
           : [];
         const initalSuccessCodes =
@@ -62,11 +62,12 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
 
       if (
         model.helperDetails?.shouldGenerateLroOverload &&
-        methodDetails[0].annotations?.lroDetails?.logicalResponseTypes?.success
+        methodDetails[0].operationHelperDetail?.lroDetails?.logicalResponseTypes
+          ?.success
       ) {
         successTypes.push(
-          ...methodDetails[0].annotations?.lroDetails?.logicalResponseTypes
-            .success
+          ...methodDetails[0].operationHelperDetail?.lroDetails
+            ?.logicalResponseTypes.success
         );
       }
 

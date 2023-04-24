@@ -40,7 +40,7 @@ function buildOverloadDetail(model: RLCModel): LroDetail {
   const responses = new Set<string>();
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const lroDetail = methodDetails[0].annotations?.lroDetails;
+      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
       if (lroDetail?.isLongRunning) {
         const initalResponses = methodDetails[0].responseTypes.success.concat(
           methodDetails[0].responseTypes.error

@@ -121,7 +121,7 @@ function transformOperation(
     returnType: respNames.join(" | "),
     successStatus: gerOperationSuccessStatus(route),
     operationName: route.operation.name,
-    annotations: {
+    operationHelperDetail: {
       lroDetails: extractLroDetails(
         program,
         route,

@@ -65,7 +65,7 @@ export interface OperationMethod {
   successStatus: string[];
   responseTypes: ResponseTypes;
   operationName: string;
-  annotations?: OperationAnnotations;
+  operationHelperDetail?: OperationHelperDetail;
 }
 export interface PathMetadata {
   name: string;
@@ -84,7 +84,7 @@ export type PathParameter = {
   value?: string | number | boolean;
 };
 
-export interface OperationAnnotations {
+export interface OperationHelperDetail {
   lroDetails?: LroDetails;
   isPageable?: boolean;
 }
