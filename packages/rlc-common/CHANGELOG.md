@@ -1,3 +1,7 @@
+## 0.12.0 (2023-04-20)
+
+- [Feature] Support typespec compiler 0.43.0, Please refer to pr [#1813](https://github.com/Azure/autorest.typescript/pull/1813).
+
 ## 0.11.0 (2023-03-16)
 
 - [Feature] Rename to typespec-ts. Please refer to pr [#1782](https://github.com/Azure/autorest.typescript/pull/1782).

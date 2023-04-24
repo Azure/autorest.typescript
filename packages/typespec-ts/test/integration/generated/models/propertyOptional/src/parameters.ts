@@ -12,20 +12,21 @@ import {
   RequiredAndOptionalProperty,
 } from "./models";
 
-export type StringGetAllParameters = RequestParameters;
-export type StringGetDefaultParameters = RequestParameters;
+export type StringModelGetAllParameters = RequestParameters;
+export type StringModelGetDefaultParameters = RequestParameters;
 
-export interface StringPutAllBodyParam {
+export interface StringModelPutAllBodyParam {
   body: StringProperty;
 }
 
-export type StringPutAllParameters = StringPutAllBodyParam & RequestParameters;
+export type StringModelPutAllParameters = StringModelPutAllBodyParam &
+  RequestParameters;
 
-export interface StringPutDefaultBodyParam {
+export interface StringModelPutDefaultBodyParam {
   body: StringProperty;
 }
 
-export type StringPutDefaultParameters = StringPutDefaultBodyParam &
+export type StringModelPutDefaultParameters = StringModelPutDefaultBodyParam &
   RequestParameters;
 export type BytesGetAllParameters = RequestParameters;
 export type BytesGetDefaultParameters = RequestParameters;

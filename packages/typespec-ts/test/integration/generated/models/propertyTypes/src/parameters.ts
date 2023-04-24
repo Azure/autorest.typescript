@@ -20,22 +20,24 @@ import {
   NeverProperty,
 } from "./models";
 
-export type BooleanGetParameters = RequestParameters;
+export type BooleanModelGetParameters = RequestParameters;
 
-export interface BooleanPutBodyParam {
+export interface BooleanModelPutBodyParam {
   /** body */
   body: BooleanProperty;
 }
 
-export type BooleanPutParameters = BooleanPutBodyParam & RequestParameters;
-export type StringGetParameters = RequestParameters;
+export type BooleanModelPutParameters = BooleanModelPutBodyParam &
+  RequestParameters;
+export type StringModelGetParameters = RequestParameters;
 
-export interface StringPutBodyParam {
+export interface StringModelPutBodyParam {
   /** body */
   body: StringProperty;
 }
 
-export type StringPutParameters = StringPutBodyParam & RequestParameters;
+export type StringModelPutParameters = StringModelPutBodyParam &
+  RequestParameters;
 export type BytesGetParameters = RequestParameters;
 
 export interface BytesPutBodyParam {

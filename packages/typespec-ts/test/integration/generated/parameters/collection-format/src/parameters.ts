@@ -15,6 +15,39 @@ export interface QueryMultiQueryParam {
 
 export type QueryMultiParameters = QueryMultiQueryParam & RequestParameters;
 
+export interface QuerySsvQueryParamProperties {
+  /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as ssv collection, we provide buildSsvCollection from serializeHelper.ts to help */
+  colors: string;
+}
+
+export interface QuerySsvQueryParam {
+  queryParameters: QuerySsvQueryParamProperties;
+}
+
+export type QuerySsvParameters = QuerySsvQueryParam & RequestParameters;
+
+export interface QueryTsvQueryParamProperties {
+  /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as tsv collection, we provide buildTsvCollection from serializeHelper.ts to help */
+  colors: string;
+}
+
+export interface QueryTsvQueryParam {
+  queryParameters: QueryTsvQueryParamProperties;
+}
+
+export type QueryTsvParameters = QueryTsvQueryParam & RequestParameters;
+
+export interface QueryPipesQueryParamProperties {
+  /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as pipe collection, we provide buildPipeCollection from serializeHelper.ts to help */
+  colors: string;
+}
+
+export interface QueryPipesQueryParam {
+  queryParameters: QueryPipesQueryParamProperties;
+}
+
+export type QueryPipesParameters = QueryPipesQueryParam & RequestParameters;
+
 export interface QueryCsvQueryParamProperties {
   /** Possible values for colors are [blue,red,green] */
   colors: string[];

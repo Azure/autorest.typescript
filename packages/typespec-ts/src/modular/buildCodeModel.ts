@@ -315,8 +315,9 @@ function getBodyType(program: Program, route: HttpOperation): Type {
           // response body type is reosurce type, and request body type (if templated) contains resource type
           if (
             bodyTypeInResponse === resourceType &&
-            bodyModel.templateArguments &&
-            bodyModel.templateArguments.some((it) => {
+            bodyModel.templateMapper &&
+            bodyModel.templateMapper.args &&
+            bodyModel.templateMapper.args.some((it) => {
               return it.kind === "Model" || it.kind === "Union"
                 ? it === bodyTypeInResponse
                 : false;
@@ -805,10 +806,14 @@ function getName(program: Program, type: Model): string {
   if (friendlyName) {
     return friendlyName;
   } else {
-    if (type.templateArguments && type.templateArguments.length > 0) {
+    if (
+      type.templateMapper &&
+      type.templateMapper.args &&
+      type.templateMapper.args.length > 0
+    ) {
       return (
         type.name +
-        type.templateArguments
+        type.templateMapper.args
           .map((it) => (it.kind === "Model" ? it.name : ""))
           .join("")
       );
@@ -825,8 +830,8 @@ function emitModel(program: Program, type: Model): Record<string, any> {
   if (type.baseModel) {
     baseModel = getType(program, type.baseModel);
   }
-  const modelName =
-    getName(program, type) || getEffectiveSchemaType(program, type).name;
+  const effectiveName = getEffectiveSchemaType(program, type).name;
+  const modelName = effectiveName ? effectiveName : getName(program, type);
   return {
     type: "model",
     name: modelName,

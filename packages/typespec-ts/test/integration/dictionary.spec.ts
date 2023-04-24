@@ -75,7 +75,7 @@ describe("Dictionary Client", () => {
     it(`should get a ${params.type} value`, async () => {
       try {
         const result = await client
-          .path(`/dictionary/${params.type}` as any)
+          .path(`/type/dictionary/${params.type}` as any)
           .get();
         assert.strictEqual(result.status, "200");
         assert.deepEqual(result.body, params.defaultValue);
@@ -93,7 +93,7 @@ describe("Dictionary Client", () => {
           property = params.defaultValue;
         }
         const result = await client
-          .path(`/dictionary/${params.type}` as any)
+          .path(`/type/dictionary/${params.type}` as any)
           .put({
             body: property
           });

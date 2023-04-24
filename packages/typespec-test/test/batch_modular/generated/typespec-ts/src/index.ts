@@ -4,7 +4,7 @@
 export {
   ApplicationListResult,
   Application,
-  CustomPagePoolUsageMetrics,
+  CustomPage,
   PoolUsageMetrics,
   PoolStatistics,
   UsageStatistics,
@@ -200,27 +200,14 @@ export {
   NodeVMExtensionList,
 } from "./api/models.js";
 export {
-  listSupportedImages,
-  listPoolNodeCounts,
   AccountListSupportedImagesOptions,
   AccountListPoolNodeCountsOptions,
 } from "./api/Account.js";
 export {
-  listApplications,
-  get,
   ApplicationsListApplicationsOptions,
   ApplicationsGetOptions,
 } from "./api/Applications.js";
 export {
-  createBatchService,
-  BatchServiceContext,
-} from "./api/BatchServiceContext.js";
-export {
-  addCertificate,
-  listCertificates,
-  cancelCertificateDeletion,
-  deleteCertificate,
-  getCertificate,
   CertificatesAddCertificateOptions,
   CertificatesListCertificatesOptions,
   CertificatesCancelCertificateDeletionOptions,
@@ -228,24 +215,10 @@ export {
   CertificatesGetCertificateOptions,
 } from "./api/Certificates.js";
 export {
-  getComputeNodeExtensions,
-  listComputeNodeExtensions,
   ComputeNodeExtensionsGetComputeNodeExtensionsOptions,
   ComputeNodeExtensionsListComputeNodeExtensionsOptions,
 } from "./api/ComputeNodeExtensions.js";
 export {
-  addUser,
-  deleteUser,
-  updateUser,
-  getComputeNode,
-  rebootComputeNode,
-  reimageComputeNode,
-  disableScheduling,
-  enableScheduling,
-  getRemoteLoginSettings,
-  getRemoteDesktop,
-  uploadBatchServiceLogs,
-  list,
   ComputeNodesAddUserOptions,
   ComputeNodesDeleteUserOptions,
   ComputeNodesUpdateUserOptions,
@@ -260,14 +233,6 @@ export {
   ComputeNodesListOptions,
 } from "./api/ComputeNodes.js";
 export {
-  deleteFromTask,
-  getFromTask,
-  getPropertiesFromTask,
-  deleteFromComputeNode,
-  getFromComputeNode,
-  getPropertiesFromComputeNode,
-  listFromTask,
-  listFromComputeNode,
   FileDeleteFromTaskOptions,
   FileGetFromTaskOptions,
   FileGetPropertiesFromTaskOptions,
@@ -278,19 +243,6 @@ export {
   FileListFromComputeNodeOptions,
 } from "./api/File.js";
 export {
-  getAllJobLifetimeStatistics,
-  deleteJob,
-  getJob,
-  patchJob,
-  updateJob,
-  disableJob,
-  enableJob,
-  terminateJob,
-  addJob,
-  listJobs,
-  listFromJobSchedule,
-  listPreparationAndReleaseTaskStatus,
-  getTaskCounts,
   JobGetAllJobLifetimeStatisticsOptions,
   JobDeleteJobOptions,
   JobGetJobOptions,
@@ -306,16 +258,6 @@ export {
   JobGetTaskCountsOptions,
 } from "./api/Job.js";
 export {
-  jobScheduleExists,
-  deleteJobSchedule,
-  getJobSchedule,
-  patchJobSchedule,
-  updateJobSchedule,
-  disableJobSchedule,
-  enableJobSchedule,
-  terminateJobSchedule,
-  addJobSchedule,
-  listJobSchedules,
   JobScheduleJobScheduleExistsOptions,
   JobScheduleDeleteJobScheduleOptions,
   JobScheduleGetJobScheduleOptions,
@@ -328,21 +270,6 @@ export {
   JobScheduleListJobSchedulesOptions,
 } from "./api/JobSchedule.js";
 export {
-  listUsageMetrics,
-  getAllPoolLifetimeStatistics,
-  addPool,
-  listPools,
-  deletePool,
-  exists,
-  getPool,
-  patchPool,
-  disableAutoScale,
-  enableAutoScale,
-  evaluateAutoScale,
-  resize,
-  stopResize,
-  updateProperties,
-  removeNodes,
   PoolListUsageMetricsOptions,
   PoolGetAllPoolLifetimeStatisticsOptions,
   PoolAddPoolOptions,
@@ -360,15 +287,6 @@ export {
   PoolRemoveNodesOptions,
 } from "./api/Pool.js";
 export {
-  addTask,
-  listTasks,
-  addTaskCollection,
-  deleteTaskCollection,
-  getTaskCollection,
-  updateTaskCollection,
-  listSubtasks,
-  terminateTaskCollection,
-  reactivateTaskCollection,
   TaskAddTaskOptions,
   TaskListTasksOptions,
   TaskAddTaskCollectionOptions,
@@ -379,4 +297,5 @@ export {
   TaskTerminateTaskCollectionOptions,
   TaskReactivateTaskCollectionOptions,
 } from "./api/Task.js";
+export { BatchServiceClient } from "./BatchServiceClient.js";
 export { ClientOptions, RequestOptions } from "./common/interfaces.js";

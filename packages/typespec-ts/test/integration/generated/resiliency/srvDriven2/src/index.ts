@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import ResiliencyServiceDriven2 from "./resiliencyServiceDriven2";
+import ServiceDrivenNewClient from "./serviceDrivenNewClient";
 
-export * from "./resiliencyServiceDriven2";
+export * from "./serviceDrivenNewClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
-export * from "./models";
-export * from "./outputModels";
 
-export default ResiliencyServiceDriven2;
+export default ServiceDrivenNewClient;

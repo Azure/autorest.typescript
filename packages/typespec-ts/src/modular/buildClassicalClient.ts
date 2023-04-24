@@ -3,7 +3,6 @@ import {
   FunctionDeclarationStructure,
   MethodDeclarationStructure,
   OptionalKind,
-  ParameterDeclarationStructure,
   Project,
   Scope,
   SourceFile,
@@ -21,33 +20,36 @@ export function buildClassicalClient(
   srcPath: string
 ) {
   const { description } = client;
-  const name = getClientName(client);
+  const modularClientName = getClientName(client);
+  const classicalClientname = `${getClientName(client)}Client`;
   const params = getClientParameters(client);
 
-  const clientFile = project.createSourceFile(`${srcPath}/src/${name}.ts`);
+  const clientFile = project.createSourceFile(
+    `${srcPath}/src/${classicalClientname}.ts`
+  );
   const clientClass = clientFile.addClass({
     isExported: true,
-    name: `${name}`
+    name: `${classicalClientname}`
   });
 
   // Add the private client member. This will be the client context from /api
   clientClass.addProperty({
     name: "_client",
-    type: `${name}Context`,
+    type: `${modularClientName}Context`,
     scope: Scope.Private
   });
 
-  // TODO: We may need to generate constructo overloads at some point. Here we'd do that.
+  // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
     docs: [description],
     parameters: params
   });
   constructor.addStatements([
-    `this._client = create${name}(${(params ?? [])
+    `this._client = create${modularClientName}(${(params ?? [])
       .map((p) => p.name)
       .join(",")})`
   ]);
-  importCredential(params, clientFile);
+  importCredential(clientFile);
   buildClientOperationGroups(client, clientClass);
   importAllModels(clientFile, srcPath);
   clientFile.fixUnusedIdentifiers();
@@ -69,19 +71,10 @@ function importAllModels(clientFile: SourceFile, srcPath: string) {
   });
 }
 
-function importCredential(
-  params: OptionalKind<ParameterDeclarationStructure>[],
-  clientSourceFile: SourceFile
-): void {
-  const credential = params.find((p) => p.name === "credential");
-
-  if (!credential) {
-    return;
-  }
-
+function importCredential(clientSourceFile: SourceFile): void {
   clientSourceFile.addImportDeclaration({
     moduleSpecifier: "@azure/core-auth",
-    namedImports: [credential.type ?? "TokenCredential"]
+    namedImports: ["TokenCredential", "AzureKeyCredential"]
   });
 }
 

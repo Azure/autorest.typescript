@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { BatchServiceContext } from "../rest/index.js";
 import { TokenCredential } from "@azure/core-auth";
+import getClient from "../rest/index.js";
 import { ClientOptions } from "../common/interfaces.js";
-import getClient, { BatchServiceContext } from "../rest/index.js";
 
 export { BatchServiceContext } from "../rest/index.js";
 

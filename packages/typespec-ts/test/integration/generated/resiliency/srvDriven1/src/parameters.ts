@@ -2,50 +2,29 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { PostInput } from "./models";
 
-export type HeadNoParamsParameters = RequestParameters;
+export type FromNoneParameters = RequestParameters;
 
-export interface GetRequiredQueryParamProperties {
+export interface FromOneRequiredQueryParamProperties {
   /** I am a required parameter */
   parameter: string;
 }
 
-export interface GetRequiredQueryParam {
-  queryParameters: GetRequiredQueryParamProperties;
+export interface FromOneRequiredQueryParam {
+  queryParameters: FromOneRequiredQueryParamProperties;
 }
 
-export type GetRequiredParameters = GetRequiredQueryParam & RequestParameters;
-
-export interface PutRequiredOptionalQueryParamProperties {
-  /** I am a required parameter */
-  requiredParam: string;
-  /** I am an optional parameter */
-  optionalParam?: string;
-}
-
-export interface PutRequiredOptionalQueryParam {
-  queryParameters: PutRequiredOptionalQueryParamProperties;
-}
-
-export type PutRequiredOptionalParameters = PutRequiredOptionalQueryParam &
+export type FromOneRequiredParameters = FromOneRequiredQueryParam &
   RequestParameters;
 
-export interface PostParametersBodyParam {
-  /** I am a body parameter. My only valid JSON entry is { url: "http://example.org/myimage.jpeg" } */
-  body: PostInput;
-}
-
-export type PostParametersParameters = PostParametersBodyParam &
-  RequestParameters;
-
-export interface GetOptionalQueryParamProperties {
+export interface FromOneOptionalQueryParamProperties {
   /** I am an optional parameter */
-  optionalParam?: string;
+  parameter?: string;
 }
 
-export interface GetOptionalQueryParam {
-  queryParameters?: GetOptionalQueryParamProperties;
+export interface FromOneOptionalQueryParam {
+  queryParameters?: FromOneOptionalQueryParamProperties;
 }
 
-export type GetOptionalParameters = GetOptionalQueryParam & RequestParameters;
+export type FromOneOptionalParameters = FromOneOptionalQueryParam &
+  RequestParameters;

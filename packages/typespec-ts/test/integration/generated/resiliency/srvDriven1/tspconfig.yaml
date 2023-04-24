@@ -8,6 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isCadlTest: true
+    title: ServiceDrivenOldClient
     packageDetails:
       name: "@msinternal/srv-driven-1"
       description: "Srv Driven 1 Test Service"

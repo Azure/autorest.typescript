@@ -1,52 +1,86 @@
 import { assert } from "chai";
-import ResiliencyDevDrivenClientFactory, {
-  ResiliencyDevDrivenClient
-} from "./generated/resiliency/devDriven/src/index.js";
+import ServiceDrivenOldClientFactory, {
+  ServiceDrivenOldClient
+} from "./generated/resiliency/srvDriven1/src/index.js";
+import ServiceDrivenNewClientFactory, {
+  ServiceDrivenNewClient
+} from "./generated/resiliency/srvDriven2/src/index.js";
 describe("ResiliencyDevDrivenClient Rest Client", () => {
-  let client: ResiliencyDevDrivenClient;
+  let client1: ServiceDrivenOldClient;
 
   beforeEach(() => {
-    client = ResiliencyDevDrivenClientFactory({
+    client1 = ServiceDrivenOldClientFactory("v1", {
       allowInsecureConnection: true
     });
   });
 
-  describe("dpg customization with raw model", () => {
-    // comment out these test cases because the server is not ready
-    // https://github.com/Azure/autorest.typescript/issues/1535
-    xit("should get model", async () => {
-      const result = await client
-        .path("/resiliency/devdriven/customization/model/{mode}", "raw")
-        .get();
-      console.log(result);
-      assert.equal(result.status, "200");
-      assert.equal(result.body.received, "raw");
-    });
+  let client2: ServiceDrivenNewClient;
 
-    xit("should post model", async () => {
-      const result = await client
-        .path("/resiliency/devdriven/customization/model/{mode}", "raw")
-        .post({ body: { hello: "world!" } });
-      assert.equal(result.status, "200");
-      assert.equal(result.body.received, "raw");
+  beforeEach(() => {
+    client2 = ServiceDrivenNewClientFactory("v2", {
+      allowInsecureConnection: true
     });
   });
 
-  describe("dpg customization with model model", () => {
-    xit("should get model", async () => {
-      const result = await client
-        .path("/resiliency/devdriven/customization/model/{mode}", "model")
-        .get();
-      assert.equal(result.status, "200");
-      assert.equal(result.body.received, "model");
+  describe("resiliency with service driven", () => {
+    it("should work with none parameter", async () => {
+      const result1 = await client1
+        .path("/add-optional-param/from-none")
+        .head();
+
+      assert.equal(result1.status, "204");
+      const result2 = await client2.path("/add-optional-param/from-none").head({
+        queryParameters: {
+          "new-parameter": "new"
+        }
+      });
+
+      assert.equal(result2.status, "204");
     });
 
-    xit("should post model", async () => {
-      const result = await client
-        .path("/resiliency/devdriven/customization/model/{mode}", "model")
-        .post({ body: { hello: "world!" } });
-      assert.equal(result.status, "200");
-      assert.equal(result.body.received, "model");
+    it("should work with one optional parameter", async () => {
+      const result1 = await client1
+        .path("/add-optional-param/from-one-optional")
+        .get({
+          queryParameters: {
+            parameter: "optional"
+          }
+        });
+      assert.equal(result1.status, "204");
+      const result2 = await client2
+        .path("/add-optional-param/from-one-optional")
+        .get({
+          queryParameters: {
+            parameter: "optional",
+            "new-parameter": "new"
+          }
+        });
+      assert.equal(result2.status, "204");
     });
+
+    it("should work with one required parameter", async () => {
+      const result1 = await client1
+        .path("/add-optional-param/from-one-required")
+        .get({
+          queryParameters: {
+            parameter: "required"
+          }
+        });
+      assert.equal(result1.status, "204");
+      const result2 = await client2
+        .path("/add-optional-param/from-one-required")
+        .get({
+          queryParameters: {
+            parameter: "required",
+            "new-parameter": "new"
+          }
+        });
+      assert.equal(result2.status, "204");
+    });
+  });
+
+  it("should work with add operation", async () => {
+    const result2 = await client2.path("/add-operation").delete()
+    assert.equal(result2.status, "204");
   });
 });

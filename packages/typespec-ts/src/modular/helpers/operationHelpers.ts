@@ -4,7 +4,13 @@ import {
   ParameterDeclarationStructure
 } from "ts-morph";
 import { toPascalCase } from "../../casingUtils.js";
-import { Operation, Parameter, Property, Type } from "../modularCodeModel.js";
+import {
+  BodyParameter,
+  Operation,
+  Parameter,
+  Property,
+  Type
+} from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
 
 /**
@@ -15,11 +21,16 @@ export function getOperationFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const optionsType = getOperationOptionsName(operation);
   // Extract required parameters
-  let parameters: OptionalKind<ParameterDeclarationStructure>[] = (
-    operation.bodyParameter?.type.properties ?? []
-  )
-    .filter((p) => !p.optional)
-    .map((p) => buildType(p.clientName, p.type));
+  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [];
+
+  if (operation.bodyParameter?.type.type === "model") {
+    parameters = (operation.bodyParameter?.type.properties ?? [])
+      .filter((p) => !p.optional)
+      .map((p) => buildType(p.clientName, p.type));
+  } else if (operation.bodyParameter?.type.type === "list") {
+    const bodyArray = operation.bodyParameter;
+    parameters.push(buildType(bodyArray.clientName, bodyArray.type));
+  }
 
   parameters = parameters.concat(
     operation.parameters
@@ -27,6 +38,7 @@ export function getOperationFunction(
         (p) =>
           p.implementation === "Method" &&
           p.type.type !== "constant" &&
+          p.clientDefaultValue === undefined &&
           !p.optional
       )
       .map((p) => buildType(p.clientName, p.type))
@@ -102,8 +114,10 @@ function getRequestParameters(operation: Operation): string {
   }
 
   const operationParameters = operation.parameters.filter(
-    (p) => p.implementation !== "Client"
+    (p) => p.implementation !== "Client" && !isContentType(p)
   );
+
+  const contentTypeParameter = operation.parameters.find(isContentType);
 
   const parametersImplementation: Record<
     "header" | "query" | "body",
@@ -120,54 +134,169 @@ function getRequestParameters(operation: Operation): string {
     }
   }
 
-  for (const param of operation.bodyParameter?.type.properties?.filter(
-    (p) => !p.readonly
-  ) ?? []) {
-    parametersImplementation.body.push(getParameterMap(param));
-  }
-
   let paramStr = "";
+
+  if (contentTypeParameter) {
+    paramStr = `${getContentTypeValue(contentTypeParameter)},`;
+  }
 
   if (parametersImplementation.header.length) {
     paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
-      "\n"
-    )}...options.requestOptions?.headers},`;
+      ",\n"
+    )}, ...options.requestOptions?.headers},`;
   }
 
   if (parametersImplementation.query.length) {
     paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
-      "\n"
+      ",\n"
     )}},`;
   }
 
-  if (operation.bodyParameter && operation.bodyParameter.type.properties) {
-    paramStr = `${paramStr}\nbody: {${parametersImplementation.body.join(
-      "\n"
-    )}},`;
-  }
+  paramStr = `${paramStr}${buildBodyParameter(operation.bodyParameter)}`;
 
   return paramStr;
+}
+
+function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
+  if (!bodyParameter) {
+    return "";
+  }
+
+  if (bodyParameter.type.type === "model") {
+    const bodyParts: string[] = [];
+    for (const param of bodyParameter?.type.properties?.filter(
+      (p) => !p.readonly
+    ) ?? []) {
+      bodyParts.push(getParameterMap(param));
+    }
+
+    if (bodyParameter && bodyParameter.type.properties) {
+      return `\nbody: {${bodyParts.join(",\n")}},`;
+    }
+  }
+
+  if (bodyParameter.type.type === "list") {
+    return `\nbody: ${bodyParameter.clientName},`;
+  }
+
+  return "";
 }
 
 /**
  * This function helps with renames, translating client names to rest api names
  */
 function getParameterMap(param: Parameter | Property) {
-  const defaultValue = getDefaultValue(param);
-
-  if (param.optional || (param.type.type === "constant" && !defaultValue)) {
-    return `...(options.${param.clientName} && {"${
-      param.restApiName
-    }": ${`options.${param.clientName}})`},`;
+  if (isConstant(param)) {
+    return getConstantValue(param);
   }
 
-  return `"${param.restApiName}": ${
-    param.optional
-      ? `options.${param.clientName} ${defaultValue}`
-      : param.type.type === "constant"
-      ? `${defaultValue}`
-      : param.clientName
-  },`;
+  if (isOptionalWithouDefault(param)) {
+    return getOptionalWithoutDefault(param);
+  }
+
+  if (isOptionalWithDefault(param)) {
+    return getOptionalWithDefault(param);
+  }
+
+  if (isRequired(param)) {
+    return getRequired(param);
+  }
+
+  throw new Error(`Parameter ${param.clientName} is not supported`);
+}
+
+function isContentType(param: Parameter): boolean {
+  return (
+    param.location === "header" &&
+    param.restApiName.toLowerCase() === "content-type"
+  );
+}
+
+function getContentTypeValue(param: Parameter | Property) {
+  const defaultValue =
+    param.clientDefaultValue ?? param.type.clientDefaultValue;
+
+  if (!defaultValue) {
+    throw new Error(
+      `Constant ${param.clientName} does not have a default value`
+    );
+  }
+
+  if (defaultValue) {
+    return `contentType: (options.${param.clientName} as any) ?? "${defaultValue}"`;
+  } else {
+    return `contentType: options.${param.clientName}`;
+  }
+}
+
+type RequiredType = (Parameter | Property) & {
+  type: { optional: false | undefined; value: string };
+};
+
+function isRequired(param: Parameter | Property): param is RequiredType {
+  return !param.optional;
+}
+
+function getRequired(param: RequiredType) {
+  return `"${param.restApiName}": ${param.clientName}`;
+}
+
+type ConstantType = (Parameter | Property) & {
+  type: { type: "constant"; value: string };
+};
+
+function getConstantValue(param: ConstantType) {
+  const defaultValue =
+    param.clientDefaultValue ?? param.type.clientDefaultValue;
+
+  if (!defaultValue) {
+    throw new Error(
+      `Constant ${param.clientName} does not have a default value`
+    );
+  }
+
+  return `"${param.restApiName}": "${defaultValue}"`;
+}
+
+function isConstant(param: Parameter | Property): param is ConstantType {
+  return (
+    param.type.type === "constant" && param.clientDefaultValue !== undefined
+  );
+}
+
+type OptionalWithoutDefaultType = (Parameter | Property) & {
+  type: { optional: true; clientDefaultValue: never };
+};
+function isOptionalWithouDefault(
+  param: Parameter | Property
+): param is OptionalWithoutDefaultType {
+  return Boolean(param.optional && !param.clientDefaultValue);
+}
+function getOptionalWithoutDefault(param: OptionalWithoutDefaultType) {
+  return `...(options.${param.clientName} && {"${param.restApiName}": options.${param.clientName}})`;
+}
+
+type OptionalWithDefaultType = (Parameter | Property) & {
+  type: { optional: true; clientDefaultValue: string };
+};
+function isOptionalWithDefault(
+  param: Parameter | Property
+): param is OptionalWithDefaultType {
+  return Boolean(param.clientDefaultValue);
+}
+
+function getOptionalWithDefault(param: OptionalWithDefaultType) {
+  return `"${param.restApiName}": options.${
+    param.clientName
+  } ?? ${getQuotedValue(param)}`;
+}
+
+function getQuotedValue(param: OptionalWithDefaultType) {
+  if (param.type.type === "string") {
+    return `"${param.clientDefaultValue}"`;
+  } else {
+    return param.clientDefaultValue;
+  }
 }
 
 /**

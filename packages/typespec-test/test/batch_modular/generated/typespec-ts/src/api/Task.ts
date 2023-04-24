@@ -186,48 +186,52 @@ export async function addTask(
   jobId: string,
   options: TaskAddTaskOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobs/{jobId}/tasks", jobId).post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.content_type && { "Content-Type": options.content_type }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-    body: {
-      ...(options.id && { id: options.id }),
-      ...(options.displayName && { displayName: options.displayName }),
-      ...(options.exitConditions && { exitConditions: options.exitConditions }),
-      ...(options.commandLine && { commandLine: options.commandLine }),
-      ...(options.containerSettings && {
-        containerSettings: options.containerSettings,
-      }),
-      ...(options.resourceFiles && { resourceFiles: options.resourceFiles }),
-      ...(options.outputFiles && { outputFiles: options.outputFiles }),
-      ...(options.environmentSettings && {
-        environmentSettings: options.environmentSettings,
-      }),
-      ...(options.affinityInfo && { affinityInfo: options.affinityInfo }),
-      ...(options.constraints && { constraints: options.constraints }),
-      ...(options.requiredSlots && { requiredSlots: options.requiredSlots }),
-      ...(options.userIdentity && { userIdentity: options.userIdentity }),
-      ...(options.multiInstanceSettings && {
-        multiInstanceSettings: options.multiInstanceSettings,
-      }),
-      ...(options.dependsOn && { dependsOn: options.dependsOn }),
-      ...(options.applicationPackageReferences && {
-        applicationPackageReferences: options.applicationPackageReferences,
-      }),
-      ...(options.authenticationTokenSettings && {
-        authenticationTokenSettings: options.authenticationTokenSettings,
-      }),
-    },
-  });
+  const result = await context
+    .path("/jobs/{jobId}/tasks", jobId)
+    .post({
+      contentType: (options.content_type as any) ?? "application/json",
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+      body: {
+        ...(options.id && { id: options.id }),
+        ...(options.displayName && { displayName: options.displayName }),
+        ...(options.exitConditions && {
+          exitConditions: options.exitConditions,
+        }),
+        ...(options.commandLine && { commandLine: options.commandLine }),
+        ...(options.containerSettings && {
+          containerSettings: options.containerSettings,
+        }),
+        ...(options.resourceFiles && { resourceFiles: options.resourceFiles }),
+        ...(options.outputFiles && { outputFiles: options.outputFiles }),
+        ...(options.environmentSettings && {
+          environmentSettings: options.environmentSettings,
+        }),
+        ...(options.affinityInfo && { affinityInfo: options.affinityInfo }),
+        ...(options.constraints && { constraints: options.constraints }),
+        ...(options.requiredSlots && { requiredSlots: options.requiredSlots }),
+        ...(options.userIdentity && { userIdentity: options.userIdentity }),
+        ...(options.multiInstanceSettings && {
+          multiInstanceSettings: options.multiInstanceSettings,
+        }),
+        ...(options.dependsOn && { dependsOn: options.dependsOn }),
+        ...(options.applicationPackageReferences && {
+          applicationPackageReferences: options.applicationPackageReferences,
+        }),
+        ...(options.authenticationTokenSettings && {
+          authenticationTokenSettings: options.authenticationTokenSettings,
+        }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -268,6 +272,8 @@ export interface TaskListTasksOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
@@ -564,6 +570,8 @@ export interface TaskAddTaskCollectionOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
+  /** Accept header. */
+  accept?: "application/json";
   /** Body parameter Content-Type. Known values are: application/json. */
   content_type?: string;
 }
@@ -593,6 +601,7 @@ export async function addTaskCollection(
   const result = await context
     .path("/jobs/{jobId}/addtaskcollection", jobId)
     .post({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -602,7 +611,6 @@ export async function addTaskCollection(
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
         Accept: "application/json",
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -773,6 +781,8 @@ export interface TaskGetTaskCollectionOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /**
@@ -1250,6 +1260,7 @@ export async function updateTaskCollection(
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
     .put({
+      contentType: (options.content_type as any) ?? "application/json",
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1266,7 +1277,6 @@ export async function updateTaskCollection(
         ...(options.ifUnmodifiedSince && {
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
-        ...(options.content_type && { "Content-Type": options.content_type }),
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -1329,6 +1339,8 @@ export interface TaskListSubtasksOptions extends RequestOptions {
   ocpDate?: string;
   /** An OData $select clause. */
   $select?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** If the Task is not a multi-instance Task then this returns an empty collection. */

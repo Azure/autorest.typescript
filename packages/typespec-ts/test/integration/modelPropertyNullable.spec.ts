@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import ModelsPropertyNullableClientFactory, {
-  ModelsPropertyNullableClient
+import TypePropertyNullableClientFactory, {
+  TypePropertyNullableClient
 } from "./generated/models/propertyNullable/src/index.js";
 import { matrix } from "../util/matrix.js";
 
@@ -37,10 +37,10 @@ const testedTypes: TypeDetail[] = [
   }
 ];
 describe("ModelsPropertyNullableClient Rest Client", () => {
-  let client: ModelsPropertyNullableClient;
+  let client: TypePropertyNullableClient;
 
   beforeEach(() => {
-    client = ModelsPropertyNullableClientFactory({
+    client = TypePropertyNullableClientFactory({
       allowInsecureConnection: true
     });
   });
@@ -49,7 +49,7 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
     it(`should get a null value for nullable ${params.type}`, async () => {
       try {
         const result = await client
-          .path(`/models/properties/nullable/${params.type}/null` as any)
+          .path(`/type/property/nullable/${params.type}/null` as any)
           .get();
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body.nullableProperty, null);
@@ -62,7 +62,7 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
     it(`should get a non-null value for nullable ${params.type}`, async () => {
       try {
         const result = await client
-          .path(`/models/properties/nullable/${params.type}/non-null` as any)
+          .path(`/type/property/nullable/${params.type}/non-null` as any)
           .get();
         assert.strictEqual(result.status, "200");
         assert.deepEqual(result.body.nullableProperty, params.defaultValue);
@@ -75,7 +75,7 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
     it(`should patch a null value for nullable ${params.type}`, async () => {
       try {
         const result = await client
-          .path(`/models/properties/nullable/${params.type}/null` as any)
+          .path(`/type/property/nullable/${params.type}/null` as any)
           .patch({
             contentType: "application/merge-patch+json",
             body: {
@@ -98,7 +98,7 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
           property = params.defaultValue;
         }
         const result = await client
-          .path(`/models/properties/nullable/${params.type}/non-null` as any)
+          .path(`/type/property/nullable/${params.type}/non-null` as any)
           .patch({
             contentType: "application/merge-patch+json",
             body: {

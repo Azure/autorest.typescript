@@ -4,7 +4,7 @@ trigger:
 parameters:
   - name: LinuxPool
     type: string
-    default: azsdk-pool-mms-ubuntu-1804-general
+    default: azsdk-pool-mms-ubuntu-2004-general
   - name: IncludeRelease
     type: boolean
     default: true

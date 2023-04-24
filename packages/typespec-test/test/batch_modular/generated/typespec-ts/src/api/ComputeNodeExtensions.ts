@@ -27,6 +27,8 @@ export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions
   ocpDate?: string;
   /** An OData $select clause. */
   $select?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Gets information about the specified Compute Node Extension. */
@@ -136,6 +138,8 @@ export interface ComputeNodeExtensionsListComputeNodeExtensionsOptions
   returnClientRequestId?: boolean;
   /** An OData $select clause. */
   $select?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists the Compute Nodes Extensions in the specified Pool. */

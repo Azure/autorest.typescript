@@ -15,7 +15,10 @@ import * as path from "path";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { buildMethodShortcutImplementation } from "./buildMethodShortcuts.js";
 import { RLCModel, File, PathParameter } from "./interfaces.js";
-import { getImportModuleName } from "./helpers/nameConstructors.js";
+import {
+  getClientName,
+  getImportModuleName
+} from "./helpers/nameConstructors.js";
 
 function getClientOptionsInterface(
   clientName: string,

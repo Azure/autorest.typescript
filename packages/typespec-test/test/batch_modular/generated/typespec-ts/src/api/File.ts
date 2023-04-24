@@ -107,6 +107,8 @@ export interface FileGetFromTaskOptions extends RequestOptions {
    * format is bytes=startRange-endRange.
    */
   ocpRange?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Returns the content of the specified Task file. */
@@ -328,6 +330,8 @@ export interface FileGetFromComputeNodeOptions extends RequestOptions {
    * format is bytes=startRange-endRange.
    */
   ocpRange?: string;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -482,6 +486,8 @@ export interface FileListFromTaskOptions extends RequestOptions {
    * combination with the filter parameter to list specific type of files.
    */
   recursive?: boolean;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists the files in a Task's directory on its Compute Node. */
@@ -566,6 +572,8 @@ export interface FileListFromComputeNodeOptions extends RequestOptions {
   $filter?: string;
   /** Whether to list children of a directory. */
   recursive?: boolean;
+  /** Accept header. */
+  accept?: "application/json";
 }
 
 /** Lists all of the files in Task directories on the specified Compute Node. */
