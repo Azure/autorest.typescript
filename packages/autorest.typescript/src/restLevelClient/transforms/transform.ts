@@ -162,7 +162,7 @@ export function transformHelperDetails(
       nextLinkNames: [...nextLinks],
       isComplexPaging
     },
-    shouldGenerateLroOverload: false,
+    clientLroOverload: false,
     hasMultiCollection,
     hasPipeCollection,
     hasSsvCollection,

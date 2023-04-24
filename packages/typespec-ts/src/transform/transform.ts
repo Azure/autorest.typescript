@@ -35,7 +35,7 @@ import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
-import { shouldGenerateLroOverload } from "../operationUtil.js";
+import { getClientLroOverload } from "../operationUtil.js";
 
 export async function transformRLCModel(
   program: Program,
@@ -87,7 +87,7 @@ export async function transformRLCModel(
     dpgContext
   );
   // Enrich client-level annotation detail
-  helperDetails.shouldGenerateLroOverload = shouldGenerateLroOverload(paths);
+  helperDetails.clientLroOverload = getClientLroOverload(paths);
   const urlInfo = transformUrlInfo(program, dpgContext);
   const apiVersionInfo = transformApiVersionInfo(
     client,

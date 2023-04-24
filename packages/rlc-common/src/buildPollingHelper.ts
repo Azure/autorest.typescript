@@ -30,7 +30,7 @@ export function buildPollingHelper(model: RLCModel) {
 }
 
 function buildOverloadDetail(model: RLCModel): LroDetail {
-  if (!model.helperDetails?.shouldGenerateLroOverload) {
+  if (!model.helperDetails?.clientLroOverload) {
     return {
       shouldGenerateOverload: false
     };

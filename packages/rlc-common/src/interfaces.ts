@@ -34,7 +34,7 @@ export type ApiVersionPosition = "path" | "query" | "both" | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
-  shouldGenerateLroOverload?: boolean;
+  clientLroOverload?: boolean;
   pageDetails?: PagingDetails;
   hasMultiCollection?: boolean;
   hasPipeCollection?: boolean;
@@ -85,14 +85,14 @@ export type PathParameter = {
 };
 
 export interface OperationHelperDetail {
-  lroDetails?: LroDetails;
+  lroDetails?: OperationLroDetail;
   isPageable?: boolean;
 }
 
-export interface LroDetails {
+export interface OperationLroDetail {
   isLongRunning?: boolean;
   logicalResponseTypes?: ResponseTypes;
-  allowedOverloading?: boolean;
+  operationLroOverload?: boolean;
 }
 
 export interface RLCOptions {

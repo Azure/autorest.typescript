@@ -33,7 +33,7 @@ import {
   getOperationGroupName,
   getOperationStatuscode,
   isBinaryPayload,
-  shouldGenerateLroLogicalResponse
+  getOperationLroOverload
 } from "../operationUtil.js";
 
 export function transformToResponseTypes(
@@ -206,7 +206,7 @@ function transformLroLogicalResponse(
   operationGroupName: string,
   existingResponses: ResponseMetadata[]
 ): ResponseMetadata | undefined {
-  const shouldGenereate = shouldGenerateLroLogicalResponse(
+  const shouldGenereate = getOperationLroOverload(
     program,
     route,
     undefined,

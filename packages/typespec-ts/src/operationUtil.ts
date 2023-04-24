@@ -28,7 +28,7 @@ import {
   listOperationsInOperationGroup,
   SdkOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { LroDetails } from "@azure-tools/rlc-common";
+import { OperationLroDetail } from "@azure-tools/rlc-common";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -92,7 +92,7 @@ export function isLongRunningOperation(
   return Boolean(getLroMetadata(program, operation.operation));
 }
 
-export function shouldGenerateLroLogicalResponse(
+export function getOperationLroOverload(
   program: Program,
   operation: HttpOperation,
   existingResponseTypes?: ResponseTypes,
@@ -111,20 +111,20 @@ export function shouldGenerateLroLogicalResponse(
   return false;
 }
 
-export function extractLroDetails(
+export function extractOperationLroDetail(
   program: Program,
   operation: HttpOperation,
   responsesTypes: ResponseTypes,
   operationGroupName: string
-): LroDetails {
+): OperationLroDetail {
   let logicalResponseTypes: ResponseTypes | undefined;
   // By default we'll disable the overloading
-  const allowedOverloading = shouldGenerateLroLogicalResponse(
+  const operationLroOverload = getOperationLroOverload(
     program,
     operation,
     responsesTypes
   );
-  if (allowedOverloading) {
+  if (operationLroOverload) {
     logicalResponseTypes = {
       error: responsesTypes.error,
       success: [
@@ -136,7 +136,7 @@ export function extractLroDetails(
   return {
     isLongRunning: Boolean(getLroMetadata(program, operation.operation)),
     logicalResponseTypes,
-    allowedOverloading
+    operationLroOverload
   };
 }
 
@@ -237,7 +237,7 @@ export function extractPagedMetadataNested(
   return paged;
 }
 
-export function shouldGenerateLroOverload(pathDictionary: Paths) {
+export function getClientLroOverload(pathDictionary: Paths) {
   let lroCounts = 0,
     allowCounts = 0;
   for (const details of Object.values(pathDictionary)) {
@@ -245,7 +245,7 @@ export function shouldGenerateLroOverload(pathDictionary: Paths) {
       const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
       if (lroDetail?.isLongRunning) {
         lroCounts++;
-        if (!lroDetail.allowedOverloading) {
+        if (!lroDetail.operationLroOverload) {
           return false;
         }
         allowCounts++;

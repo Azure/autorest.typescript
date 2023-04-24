@@ -26,7 +26,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getSchemaForType } from "../modelUtils.js";
 import {
-  extractLroDetails,
+  extractOperationLroDetail,
   getOperationGroupName,
   getOperationStatuscode,
   isDefaultStatusCode,
@@ -122,7 +122,7 @@ function transformOperation(
     successStatus: gerOperationSuccessStatus(route),
     operationName: route.operation.name,
     operationHelperDetail: {
-      lroDetails: extractLroDetails(
+      lroDetails: extractOperationLroDetail(
         program,
         route,
         responseTypes,

@@ -61,7 +61,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
       const errorTypes = methodDetails[0].responseTypes.error;
 
       if (
-        model.helperDetails?.shouldGenerateLroOverload &&
+        model.helperDetails?.clientLroOverload &&
         methodDetails[0].operationHelperDetail?.lroDetails?.logicalResponseTypes
           ?.success
       ) {
