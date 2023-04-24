@@ -7,6 +7,7 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
@@ -34,7 +35,7 @@ export type AnomalyDetectorMVClient = Client & {
 };
 
 // @public (undocumented)
-export interface AnomalyDetectorMVClientOptions extends ClientOptions {
+export interface AnomalyDetectorMVClientOptions extends ClientOptions, InternalPipelineOptions {
     // (undocumented)
     apiVersion?: "v1.1";
 }

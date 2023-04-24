@@ -2,17 +2,19 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+import { logger } from "./logger";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { AuthUnionClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AuthUnionClient`
  * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
  */
 export default function createClient(
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions & InternalPipelineOptions = {}
 ): AuthUnionClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
@@ -33,6 +35,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: logger.info,
     },
   };
 

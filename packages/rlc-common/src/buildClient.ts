@@ -39,7 +39,7 @@ function getClientOptionsInterface(
 
   return {
     name: `${clientName}Options`,
-    extends: ["ClientOptions"],
+    extends: ["ClientOptions", "InternalPipelineOptions"],
     isExported: true,
     properties
   };
@@ -108,7 +108,7 @@ export function buildClient(model: RLCModel): File | undefined {
     ...commonClientParams,
     {
       name: "options",
-      type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`,
+      type: `${clientOptionsInterface?.name ?? "ClientOptions & InternalPipelineOptions"} = {}`,
       description: "the parameter for all optional parameters"
     }
   ];
@@ -146,6 +146,14 @@ export function buildClient(model: RLCModel): File | undefined {
     {
       namedImports: ["getClient", "ClientOptions"],
       moduleSpecifier: "@azure-rest/core-client"
+    },
+    {
+      namedImports: ["InternalPipelineOptions"],
+      moduleSpecifier: "@azure/core-rest-pipeline"
+    },
+    {
+      namedImports: ["logger"],
+      moduleSpecifier: "./logger"
     }
   ]);
 
@@ -254,6 +262,9 @@ function getClientFactoryBody(
       ...options,
       userAgentOptions: {
         userAgentPrefix
+      },
+      loggingOptions: {
+        logger: logger.info
       }
     }`;
 

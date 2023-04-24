@@ -2,9 +2,13 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+import { logger } from "./logger";
 import { ServiceDrivenOldClient } from "./clientDefinitions";
 
-export interface ServiceDrivenOldClientOptions extends ClientOptions {
+export interface ServiceDrivenOldClientOptions
+  extends ClientOptions,
+    InternalPipelineOptions {
   apiVersion?: string;
 }
 
@@ -30,6 +34,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: logger.info,
     },
   };
 

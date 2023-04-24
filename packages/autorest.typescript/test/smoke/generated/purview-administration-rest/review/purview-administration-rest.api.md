@@ -7,6 +7,7 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
@@ -558,10 +559,10 @@ interface ComplexReplacerConfigOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
+function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions & InternalPipelineOptions): PurviewMetadataPoliciesClient;
 
 // @public
-function createClient_2(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountClient;
+function createClient_2(endpoint: string, credentials: TokenCredential, options?: ClientOptions & InternalPipelineOptions): PurviewAccountClient;
 
 // @public
 interface DataPlaneAccountUpdateParameters {

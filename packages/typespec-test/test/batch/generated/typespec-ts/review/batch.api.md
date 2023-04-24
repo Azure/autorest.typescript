@@ -8,6 +8,7 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
@@ -2140,7 +2141,7 @@ export interface ContainerRegistryOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: TokenCredential, options?: ClientOptions): BatchServiceClient;
+function createClient(endpoint: string, credentials: TokenCredential, options?: ClientOptions & InternalPipelineOptions): BatchServiceClient;
 export default createClient;
 
 // @public

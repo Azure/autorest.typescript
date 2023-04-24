@@ -2,10 +2,14 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorMVClient } from "./clientDefinitions";
 
-export interface AnomalyDetectorMVClientOptions extends ClientOptions {
+export interface AnomalyDetectorMVClientOptions
+  extends ClientOptions,
+    InternalPipelineOptions {
   apiVersion?: "v1.1";
 }
 
@@ -40,6 +44,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix
+    },
+    loggingOptions: {
+      logger: logger.info
     }
   };
 

@@ -2,6 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { ConfidentialLedgerServiceClient } from "./clientDefinitions";
 
@@ -9,12 +11,12 @@ import { ConfidentialLedgerServiceClient } from "./clientDefinitions";
  * Initialize a new instance of `ConfidentialLedgerServiceClient`
  * @param ledgerUri type: string, The parameter ledgerUri
  * @param credentials type: TokenCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
  */
 export default function createClient(
   ledgerUri: string,
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: ClientOptions & InternalPipelineOptions = {}
 ): ConfidentialLedgerServiceClient {
   const baseUrl = options.baseUrl ?? `${ledgerUri}`;
   options.apiVersion = options.apiVersion ?? "2022-05-13";
@@ -34,6 +36,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: logger.info,
     },
   };
 

@@ -2,16 +2,18 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+import { logger } from "./logger";
 import { ResponseClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ResponseClient`
  * @param endpoint type: string, The parameter endpoint
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
  */
 export function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions & InternalPipelineOptions = {}
 ): ResponseClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
@@ -25,6 +27,9 @@ export function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: logger.info,
     },
   };
 

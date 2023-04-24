@@ -2,14 +2,16 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+import { logger } from "./logger";
 import { UrlRestClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `UrlRestClient`
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions & InternalPipelineOptions = {}
 ): UrlRestClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-url-rest/1.0.0-preview1`;
@@ -21,6 +23,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix
+    },
+    loggingOptions: {
+      logger: logger.info
     }
   };
 

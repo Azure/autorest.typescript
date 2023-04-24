@@ -2,14 +2,16 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+import { logger } from "./logger";
 import { AzureCoreTraitsClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AzureCoreTraitsClient`
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions & InternalPipelineOptions = {}
 ): AzureCoreTraitsClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
@@ -22,6 +24,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: logger.info,
     },
   };
 

@@ -8,6 +8,7 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
@@ -26,7 +27,7 @@ export type ConfidentialLedgerServiceClient = Client & {
 };
 
 // @public
-function createClient(ledgerUri: string, credentials: TokenCredential, options?: ClientOptions): ConfidentialLedgerServiceClient;
+function createClient(ledgerUri: string, credentials: TokenCredential, options?: ClientOptions & InternalPipelineOptions): ConfidentialLedgerServiceClient;
 export default createClient;
 
 // @public (undocumented)

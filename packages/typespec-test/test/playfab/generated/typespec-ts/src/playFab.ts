@@ -2,16 +2,18 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+import { logger } from "./logger";
 import { PlayFabClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `PlayFabClient`
  * @param endpoint type: string, The endpoint of your PlayFab service
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions & InternalPipelineOptions = {}
 ): PlayFabClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
 
@@ -24,6 +26,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: logger.info,
     },
   };
 

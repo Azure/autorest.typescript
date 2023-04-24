@@ -8,6 +8,7 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { HttpResponse } from '@azure-rest/core-client';
+import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
@@ -143,7 +144,7 @@ export interface CorrelationChangesOutput {
 }
 
 // @public
-function createClient(endpoint: string, apiVersion: string, credentials: KeyCredential, options?: ClientOptions): AnomalyDetectorRestClient;
+function createClient(endpoint: string, apiVersion: string, credentials: KeyCredential, options?: ClientOptions & InternalPipelineOptions): AnomalyDetectorRestClient;
 export default createClient;
 
 // @public (undocumented)
