@@ -112,6 +112,8 @@ op DetectMultivariateBatchAnomaly(
   @statusCode statusCode: 202,
   @doc("Id of the detection result.")
   @header "Operation-Id": string,
+  @doc("Location of the detection result.")
+  @header "Operation-Location": string,
   @body result: MultivariateDetectionResult,
 } | ResponseError;
 
