@@ -10,6 +10,7 @@ import {
   Methods,
   ObjectSchema,
   PathParameter,
+  Paths,
   RLCModel,
   SchemaContext
 } from "../interfaces.js";
@@ -60,27 +61,27 @@ export function getPathParamDefinitions(
 }
 
 export function hasPagingOperations(model: RLCModel) {
-  return Boolean(model.annotations?.hasPaging);
+  return Boolean(model.helperDetails?.hasPaging);
 }
 
 export function hasPollingOperations(model: RLCModel) {
-  return Boolean(model.annotations?.hasLongRunning);
+  return Boolean(model.helperDetails?.hasLongRunning);
 }
 
 export function hasMultiCollection(model: RLCModel) {
-  return Boolean(model.annotations?.hasMultiCollection);
+  return Boolean(model.helperDetails?.hasMultiCollection);
 }
 
 export function hasPipeCollection(model: RLCModel) {
-  return Boolean(model.annotations?.hasPipeCollection);
+  return Boolean(model.helperDetails?.hasPipeCollection);
 }
 
 export function hasSsvCollection(model: RLCModel) {
-  return Boolean(model.annotations?.hasSsvCollection);
+  return Boolean(model.helperDetails?.hasSsvCollection);
 }
 
 export function hasTsvCollection(model: RLCModel) {
-  return Boolean(model.annotations?.hasTsvCollection);
+  return Boolean(model.helperDetails?.hasTsvCollection);
 }
 
 export function hasUnexpectedHelper(model: RLCModel) {

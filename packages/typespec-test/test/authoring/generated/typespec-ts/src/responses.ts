@@ -50,6 +50,12 @@ export interface CreateOrUpdateDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
 }
 
+/** The final response for long-running createOrUpdate operation */
+export interface CreateOrUpdateLogicalResponse extends HttpResponse {
+  status: "200";
+  body: ProjectOutput;
+}
+
 /** The request has succeeded. */
 export interface Get200Response extends HttpResponse {
   status: "200";
@@ -88,6 +94,12 @@ export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & DeleteDefaultHeaders;
+}
+
+/** The final response for long-running delete operation */
+export interface DeleteLogicalResponse extends HttpResponse {
+  status: "200";
+  body: OperationStatusOutput;
 }
 
 /** The request has succeeded. */
@@ -129,6 +141,11 @@ export interface ExportDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & ExportDefaultHeaders;
 }
 
+/** The final response for long-running export operation */
+export interface ExportLogicalResponse extends HttpResponse {
+  status: "200";
+}
+
 export interface Importx202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -151,6 +168,11 @@ export interface ImportxDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & ImportxDefaultHeaders;
 }
 
+/** The final response for long-running importx operation */
+export interface ImportxLogicalResponse extends HttpResponse {
+  status: "200";
+}
+
 export interface Train202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -171,6 +193,11 @@ export interface TrainDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & TrainDefaultHeaders;
+}
+
+/** The final response for long-running train operation */
+export interface TrainLogicalResponse extends HttpResponse {
+  status: "200";
 }
 
 /** The request has succeeded. */
@@ -225,6 +252,12 @@ export interface DeployProjectDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & DeployProjectDefaultHeaders;
 }
 
+/** The final response for long-running deployProject operation */
+export interface DeployProjectLogicalResponse extends HttpResponse {
+  status: "200";
+  body: DeploymentOutput;
+}
+
 export interface DeleteDeployment202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -246,6 +279,12 @@ export interface DeleteDeploymentDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & DeleteDeploymentDefaultHeaders;
+}
+
+/** The final response for long-running deleteDeployment operation */
+export interface DeleteDeploymentLogicalResponse extends HttpResponse {
+  status: "200";
+  body: OperationStatusOutput;
 }
 
 /** The request has succeeded. */
@@ -285,6 +324,11 @@ export interface SwapDeploymentsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & SwapDeploymentsDefaultHeaders;
+}
+
+/** The final response for long-running swapDeployments operation */
+export interface SwapDeploymentsLogicalResponse extends HttpResponse {
+  status: "200";
 }
 
 /** The request has succeeded. */

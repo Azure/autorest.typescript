@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Details about a user. */
-export interface UserOutput {
-  /** The name of user. */
+/** This is a simple model. */
+export interface BodyParameter {
   name: string;
 }

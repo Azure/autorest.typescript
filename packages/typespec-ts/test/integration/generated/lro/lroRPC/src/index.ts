@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import SpecsAzureCoreLroStandard from "./specsAzureCoreLroStandard";
+import SpecsAzureCoreLroRpc from "./specsAzureCoreLroRpc";
 
-export * from "./specsAzureCoreLroStandard";
+export * from "./specsAzureCoreLroRpc";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -12,4 +12,4 @@ export * from "./models";
 export * from "./outputModels";
 export * from "./pollingHelper";
 
-export default SpecsAzureCoreLroStandard;
+export default SpecsAzureCoreLroRpc;

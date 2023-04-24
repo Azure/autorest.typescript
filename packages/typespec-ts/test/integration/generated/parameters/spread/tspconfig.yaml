@@ -3,12 +3,10 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: true
+    generateMetadata: false
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
     isCadlTest: true
     packageDetails:
-      name: "@msinternal/lro-basic"
-      description: "LRO Basic Test Service"
-      version: "1.0.0"
+      name: "@msinternal/parameterSpread"

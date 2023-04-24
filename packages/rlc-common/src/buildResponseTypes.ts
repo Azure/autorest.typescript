@@ -54,7 +54,8 @@ export function buildResponseTypes(model: RLCModel) {
       }
 
       // Get the information to build the Response Interface
-      const responseTypeName = getResponseTypeName(baseResponseName);
+      const responseTypeName =
+        response.predefinedName ?? getResponseTypeName(baseResponseName);
       const responseProperties = getResponseInterfaceProperties(
         response,
         headersInterface?.name

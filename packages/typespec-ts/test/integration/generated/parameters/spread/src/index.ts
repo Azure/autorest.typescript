@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import AzureLro from "./azureLro";
+import ParametersSpread from "./parametersSpread";
 
-export * from "./azureLro";
+export * from "./parametersSpread";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
-export * from "./outputModels";
-export * from "./pollingHelper";
+export * from "./models";
 
-export default AzureLro;
+export default ParametersSpread;

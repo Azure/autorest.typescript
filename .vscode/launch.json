@@ -83,7 +83,6 @@
     },
     {
       "name": "[TypeSpec] Smoke Test Debug",
-
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-test/test/batch_modular",
       "runtimeArgs": ["tsp", "compile", "./spec"],
@@ -93,10 +92,14 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "[TypeSpec] Generate integration code",
+      "name": "[TypeSpec] Debug generate integration code",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
-      "runtimeArgs": ["ts-node", "./test/commands/gen-cadl-ranch.ts"],
+      "runtimeArgs": [
+        "ts-node",
+        "./test/commands/gen-cadl-ranch.ts",
+        "--debug"
+      ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",

@@ -4,29 +4,37 @@
 import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
+  CreateOrUpdateLogicalResponse,
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
   Delete202Response,
+  DeleteLogicalResponse,
   DeleteDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
   Export202Response,
+  ExportLogicalResponse,
   ExportDefaultResponse,
   Importx202Response,
+  ImportxLogicalResponse,
   ImportxDefaultResponse,
   Train202Response,
+  TrainLogicalResponse,
   TrainDefaultResponse,
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
   DeployProject200Response,
   DeployProject201Response,
+  DeployProjectLogicalResponse,
   DeployProjectDefaultResponse,
   DeleteDeployment202Response,
+  DeleteDeploymentLogicalResponse,
   DeleteDeploymentDefaultResponse,
   ListDeployments200Response,
   ListDeploymentsDefaultResponse,
   SwapDeployments202Response,
+  SwapDeploymentsLogicalResponse,
   SwapDeploymentsDefaultResponse,
   GetDeploymentStatus200Response,
   GetDeploymentStatusDefaultResponse,
@@ -44,11 +52,11 @@ const responseMap: Record<string, string[]> = {
   "DELETE /authoring/analyze-text/projects/{projectName}": ["202"],
   "GET /authoring/analyze-text/projects": ["200"],
   "POST /authoring/analyze-text/projects/{projectName}:export": ["202"],
-  "GET /authoring/analyze-text/projects/{projectName}:export": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}:export": ["200", "202"],
   "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
-  "GET /authoring/analyze-text/projects/{projectName}:importx": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}:importx": ["200", "202"],
   "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
-  "GET /authoring/analyze-text/projects/{projectName}:train": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}:train": ["200", "202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["200"],
   "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
@@ -60,6 +68,7 @@ const responseMap: Record<string, string[]> = {
     "202",
   ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments:swap": [
+    "200",
     "202",
   ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}":
@@ -76,25 +85,26 @@ export function isUnexpected(
   response:
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
+    | CreateOrUpdateLogicalResponse
     | CreateOrUpdateDefaultResponse
 ): response is CreateOrUpdateDefaultResponse;
 export function isUnexpected(
   response: Get200Response | GetDefaultResponse
 ): response is GetDefaultResponse;
 export function isUnexpected(
-  response: Delete202Response | DeleteDefaultResponse
+  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse
 ): response is DeleteDefaultResponse;
 export function isUnexpected(
   response: ListProjects200Response | ListProjectsDefaultResponse
 ): response is ListProjectsDefaultResponse;
 export function isUnexpected(
-  response: Export202Response | ExportDefaultResponse
+  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse
 ): response is ExportDefaultResponse;
 export function isUnexpected(
-  response: Importx202Response | ImportxDefaultResponse
+  response: Importx202Response | ImportxLogicalResponse | ImportxDefaultResponse
 ): response is ImportxDefaultResponse;
 export function isUnexpected(
-  response: Train202Response | TrainDefaultResponse
+  response: Train202Response | TrainLogicalResponse | TrainDefaultResponse
 ): response is TrainDefaultResponse;
 export function isUnexpected(
   response: GetDeployment200Response | GetDeploymentDefaultResponse
@@ -103,16 +113,23 @@ export function isUnexpected(
   response:
     | DeployProject200Response
     | DeployProject201Response
+    | DeployProjectLogicalResponse
     | DeployProjectDefaultResponse
 ): response is DeployProjectDefaultResponse;
 export function isUnexpected(
-  response: DeleteDeployment202Response | DeleteDeploymentDefaultResponse
+  response:
+    | DeleteDeployment202Response
+    | DeleteDeploymentLogicalResponse
+    | DeleteDeploymentDefaultResponse
 ): response is DeleteDeploymentDefaultResponse;
 export function isUnexpected(
   response: ListDeployments200Response | ListDeploymentsDefaultResponse
 ): response is ListDeploymentsDefaultResponse;
 export function isUnexpected(
-  response: SwapDeployments202Response | SwapDeploymentsDefaultResponse
+  response:
+    | SwapDeployments202Response
+    | SwapDeploymentsLogicalResponse
+    | SwapDeploymentsDefaultResponse
 ): response is SwapDeploymentsDefaultResponse;
 export function isUnexpected(
   response: GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse
@@ -136,29 +153,37 @@ export function isUnexpected(
   response:
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
+    | CreateOrUpdateLogicalResponse
     | CreateOrUpdateDefaultResponse
     | Get200Response
     | GetDefaultResponse
     | Delete202Response
+    | DeleteLogicalResponse
     | DeleteDefaultResponse
     | ListProjects200Response
     | ListProjectsDefaultResponse
     | Export202Response
+    | ExportLogicalResponse
     | ExportDefaultResponse
     | Importx202Response
+    | ImportxLogicalResponse
     | ImportxDefaultResponse
     | Train202Response
+    | TrainLogicalResponse
     | TrainDefaultResponse
     | GetDeployment200Response
     | GetDeploymentDefaultResponse
     | DeployProject200Response
     | DeployProject201Response
+    | DeployProjectLogicalResponse
     | DeployProjectDefaultResponse
     | DeleteDeployment202Response
+    | DeleteDeploymentLogicalResponse
     | DeleteDeploymentDefaultResponse
     | ListDeployments200Response
     | ListDeploymentsDefaultResponse
     | SwapDeployments202Response
+    | SwapDeploymentsLogicalResponse
     | SwapDeploymentsDefaultResponse
     | GetDeploymentStatus200Response
     | GetDeploymentStatusDefaultResponse

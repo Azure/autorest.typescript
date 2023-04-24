@@ -32,6 +32,16 @@ export function getResponseTypeName(
   );
 }
 
+export function getLroLogicalResponseName(
+  operationGroup: string,
+  operationName: string
+) {
+  return normalizeName(
+    `${operationGroup}_${operationName}_Logical_Response`,
+    NameType.Interface
+  );
+}
+
 /**
  * The prefix of all response types
  * @param operationGroup operation group name e.g string_PutEmpty

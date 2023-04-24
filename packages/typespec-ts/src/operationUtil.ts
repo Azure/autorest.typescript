@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
-  DecoratedType,
-  ignoreDiagnostics,
-  Model,
-  Program,
-  Type
-} from "@typespec/compiler";
+  NameType,
+  Paths,
+  ResponseMetadata,
+  ResponseTypes,
+  getLroLogicalResponseName,
+  normalizeName
+} from "@azure-tools/rlc-common";
+import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -16,6 +17,7 @@ import {
   StatusCode
 } from "@typespec/http";
 import {
+  getLroMetadata,
   getPagedResult,
   PagedResultMetadata
 } from "@azure-tools/typespec-azure-core";
@@ -26,6 +28,11 @@ import {
   listOperationsInOperationGroup,
   SdkOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
+import {
+  OperationLroDetail,
+  OPERATION_LRO_LOW_PRIORITY,
+  OPERATION_LRO_HIGH_PRIORITY
+} from "@azure-tools/rlc-common";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -86,27 +93,104 @@ export function isLongRunningOperation(
   program: Program,
   operation: HttpOperation
 ) {
-  program;
-  for (const resp of operation.responses) {
-    if (!resp.responses || !resp.responses.length) {
-      continue;
-    }
-    if (hasDecorator(operation.operation, "$pollingOperation")) {
-      return true;
-    }
-    for (const unit of resp.responses) {
-      for (const [_, header] of Object.entries(unit.headers!)) {
-        if (hasDecorator(header, "$pollingLocation")) {
-          return true;
+  return Boolean(getLroMetadata(program, operation.operation));
+}
+
+/**
+ * Return if we have a client-level LRO overloading
+ * @param pathDictionary
+ * @returns
+ */
+export function getClientLroOverload(pathDictionary: Paths) {
+  let lroCounts = 0,
+    allowCounts = 0;
+  for (const details of Object.values(pathDictionary)) {
+    for (const methodDetails of Object.values(details.methods)) {
+      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
+      if (lroDetail?.isLongRunning) {
+        lroCounts++;
+        if (!lroDetail.operationLroOverload) {
+          return false;
         }
+        allowCounts++;
       }
     }
+  }
+
+  return Boolean(lroCounts > 0 && lroCounts === allowCounts);
+}
+
+/**
+ * Check if we have an operation-level overloading
+ * @param program
+ * @param operation The operation detail
+ * @param existingResponseTypes auxilary param for current response types
+ * @param existingResponses auxilary param for raw response data
+ * @returns
+ */
+export function getOperationLroOverload(
+  program: Program,
+  operation: HttpOperation,
+  existingResponseTypes?: ResponseTypes,
+  existingResponses?: ResponseMetadata[]
+) {
+  const metadata = getLroMetadata(program, operation.operation);
+  if (!metadata) {
+    return false;
+  }
+  const hasSuccessReturn = existingResponses?.filter((r) =>
+    r.statusCode.startsWith("20")
+  );
+  if (existingResponseTypes?.success || hasSuccessReturn) {
+    return true;
   }
   return false;
 }
 
-function hasDecorator(type: DecoratedType, name: string): boolean {
-  return type.decorators.find((it) => it.decorator.name === name) !== undefined;
+/**
+ * Extract the operation LRO details
+ * @param program
+ * @param operation Operation detail
+ * @param responsesTypes Calculated response types
+ * @param operationGroupName Operation group name
+ * @returns
+ */
+export function extractOperationLroDetail(
+  program: Program,
+  operation: HttpOperation,
+  responsesTypes: ResponseTypes,
+  operationGroupName: string
+): OperationLroDetail {
+  let logicalResponseTypes: ResponseTypes | undefined;
+
+  let precedence = OPERATION_LRO_LOW_PRIORITY;
+  const operationLroOverload = getOperationLroOverload(
+    program,
+    operation,
+    responsesTypes
+  );
+  if (operationLroOverload) {
+    logicalResponseTypes = {
+      error: responsesTypes.error,
+      success: [
+        getLroLogicalResponseName(operationGroupName, operation.operation.name)
+      ]
+    };
+    const metadata = getLroMetadata(program, operation.operation);
+    precedence = metadata?.finalStep &&
+      metadata?.finalStep.target &&
+      metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep?.target?.name === "result"
+      ? OPERATION_LRO_HIGH_PRIORITY
+      : OPERATION_LRO_LOW_PRIORITY;
+  }
+
+  return {
+    isLongRunning: Boolean(getLroMetadata(program, operation.operation)),
+    logicalResponseTypes,
+    operationLroOverload,
+    precedence
+  };
 }
 
 export function hasPollingOperations(

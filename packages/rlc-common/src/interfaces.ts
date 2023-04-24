@@ -10,7 +10,7 @@ export interface RLCModel {
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
   importSet?: Map<ImportKind, Set<string>>;
-  annotations?: AnnotationDetails;
+  helperDetails?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
 }
 
@@ -31,9 +31,10 @@ export interface ApiVersionInfo {
 }
 
 export type ApiVersionPosition = "path" | "query" | "both" | "none";
-export interface AnnotationDetails {
+export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
+  clientLroOverload?: boolean;
   pageDetails?: PagingDetails;
   hasMultiCollection?: boolean;
   hasPipeCollection?: boolean;
@@ -64,7 +65,7 @@ export interface OperationMethod {
   successStatus: string[];
   responseTypes: ResponseTypes;
   operationName: string;
-  annotations?: OperationAnnotations;
+  operationHelperDetail?: OperationHelperDetail;
 }
 export interface PathMetadata {
   name: string;
@@ -83,9 +84,21 @@ export type PathParameter = {
   value?: string | number | boolean;
 };
 
-export interface OperationAnnotations {
-  isLongRunning?: boolean;
+export interface OperationHelperDetail {
+  lroDetails?: OperationLroDetail;
   isPageable?: boolean;
+}
+
+export const OPERATION_LRO_HIGH_PRIORITY = 0,
+  OPERATION_LRO_LOW_PRIORITY = 1;
+export interface OperationLroDetail {
+  isLongRunning?: boolean;
+  logicalResponseTypes?: ResponseTypes;
+  operationLroOverload?: boolean;
+  /**
+   * This is used to sort the overload order, sorted in descending order
+   */
+  precedence?: number;
 }
 
 export interface RLCOptions {
@@ -224,6 +237,7 @@ export interface ResponseMetadata {
   description?: string;
   headers?: ResponseHeaderSchema[];
   body?: ResponseBodySchema;
+  predefinedName?: string;
 }
 
 export type ResponseHeaderSchema = Schema;

@@ -1,6 +1,7 @@
 export interface CadlRanchConfig {
   outputPath: string;
   inputPath: string;
+  debug?: boolean;
 }
 
 export const cadls: CadlRanchConfig[] = [
@@ -32,14 +33,14 @@ export const cadls: CadlRanchConfig[] = [
     outputPath: "enums/fixed",
     inputPath: "type/enum/fixed"
   },
-  // {
-  //   outputPath: "lro/lroBasic",
-  //   inputPath: "lro/lro-basic"
-  // },
-  // {
-  //   outputPath: "lro/lroCore",
-  //   inputPath: "lro/lro-core"
-  // },
+  {
+    outputPath: "lro/lroCore",
+    inputPath: "azure/core/lro/standard"
+  },
+  {
+    outputPath: "lro/lroRPC",
+    inputPath: "azure/core/lro/rpc"
+  },
   {
     outputPath: "models/inheritance",
     inputPath: "type/model/inheritance"
@@ -64,10 +65,6 @@ export const cadls: CadlRanchConfig[] = [
     outputPath: "models/usage",
     inputPath: "type/model/usage"
   },
-  // {
-  //   outputPath: "resiliency/devDriven",
-  //   inputPath: "resiliency/dev-driven"
-  // },
   {
     outputPath: "resiliency/srvDriven1",
     inputPath: "resiliency/srv-driven/old.tsp"
@@ -87,6 +84,10 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "parameters/collection-format",
     inputPath: "parameters/collection-format"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
   },
   {
     outputPath: "projection",

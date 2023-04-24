@@ -2,55 +2,73 @@
 // Licensed under the MIT license.
 
 import {
-  CreateOrReplace200Response,
-  CreateOrReplace201Response,
-  CreateOrReplaceLogicalResponse,
-  CreateOrReplaceDefaultResponse,
-  Delete202Response,
-  DeleteLogicalResponse,
-  DeleteDefaultResponse,
-  Export202Response,
-  ExportLogicalResponse,
-  ExportDefaultResponse,
+  CreateJob200Response,
+  CreateJob202Response,
+  CreateJobLogicalResponse,
+  CreateJobDefaultResponse,
+  GetJob200Response,
+  GetJobLogicalResponse,
+  GetJobDefaultResponse,
+  CreateJobFinalOnLocation200Response,
+  CreateJobFinalOnLocation202Response,
+  CreateJobFinalOnLocationLogicalResponse,
+  CreateJobFinalOnLocationDefaultResponse,
+  GetPoll200Response,
+  GetPollLogicalResponse,
+  GetPollDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PUT /azure/core/lro/standard/users/{name}": ["200", "201"],
-  "GET /azure/core/lro/standard/users/{name}": ["200", "202"],
-  "DELETE /azure/core/lro/standard/users/{name}": ["202"],
-  "POST /azure/core/lro/standard/users/{name}:export": ["202"],
-  "GET /azure/core/lro/standard/users/{name}:export": ["200", "202"],
+  "POST /azure/core/lro/rpc/same-poll-result/jobs": ["200", "202"],
+  "GET /azure/core/lro/rpc/same-poll-result/jobs": ["200", "202"],
+  "GET /azure/core/lro/rpc/same-poll-result/jobs/{jobId}": ["200"],
+  "POST /azure/core/lro/rpc/different-poll-result/jobs": ["200", "202"],
+  "GET /azure/core/lro/rpc/different-poll-result/jobs": ["200", "202"],
+  "GET /azure/core/lro/rpc/different-poll-result/jobs/operations/{operationId}":
+    ["200"],
 };
 
 export function isUnexpected(
   response:
-    | CreateOrReplace200Response
-    | CreateOrReplace201Response
-    | CreateOrReplaceLogicalResponse
-    | CreateOrReplaceDefaultResponse
-): response is CreateOrReplaceDefaultResponse;
+    | CreateJob200Response
+    | CreateJob202Response
+    | CreateJobLogicalResponse
+    | CreateJobDefaultResponse
+): response is CreateJobDefaultResponse;
 export function isUnexpected(
-  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse
-): response is DeleteDefaultResponse;
-export function isUnexpected(
-  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse
-): response is ExportDefaultResponse;
+  response: GetJob200Response | GetJobLogicalResponse | GetJobDefaultResponse
+): response is GetJobDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateOrReplace200Response
-    | CreateOrReplace201Response
-    | CreateOrReplaceLogicalResponse
-    | CreateOrReplaceDefaultResponse
-    | Delete202Response
-    | DeleteLogicalResponse
-    | DeleteDefaultResponse
-    | Export202Response
-    | ExportLogicalResponse
-    | ExportDefaultResponse
+    | CreateJobFinalOnLocation200Response
+    | CreateJobFinalOnLocation202Response
+    | CreateJobFinalOnLocationLogicalResponse
+    | CreateJobFinalOnLocationDefaultResponse
+): response is CreateJobFinalOnLocationDefaultResponse;
+export function isUnexpected(
+  response: GetPoll200Response | GetPollLogicalResponse | GetPollDefaultResponse
+): response is GetPollDefaultResponse;
+export function isUnexpected(
+  response:
+    | CreateJob200Response
+    | CreateJob202Response
+    | CreateJobLogicalResponse
+    | CreateJobDefaultResponse
+    | GetJob200Response
+    | GetJobLogicalResponse
+    | GetJobDefaultResponse
+    | CreateJobFinalOnLocation200Response
+    | CreateJobFinalOnLocation202Response
+    | CreateJobFinalOnLocationLogicalResponse
+    | CreateJobFinalOnLocationDefaultResponse
+    | GetPoll200Response
+    | GetPollLogicalResponse
+    | GetPollDefaultResponse
 ): response is
-  | CreateOrReplaceDefaultResponse
-  | DeleteDefaultResponse
-  | ExportDefaultResponse {
+  | CreateJobDefaultResponse
+  | GetJobDefaultResponse
+  | CreateJobFinalOnLocationDefaultResponse
+  | GetPollDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
