@@ -96,6 +96,38 @@ export function isLongRunningOperation(
   return Boolean(getLroMetadata(program, operation.operation));
 }
 
+/**
+ * Return if we have a clien-level LRO overloading
+ * @param pathDictionary
+ * @returns
+ */
+export function getClientLroOverload(pathDictionary: Paths) {
+  let lroCounts = 0,
+    allowCounts = 0;
+  for (const details of Object.values(pathDictionary)) {
+    for (const methodDetails of Object.values(details.methods)) {
+      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
+      if (lroDetail?.isLongRunning) {
+        lroCounts++;
+        if (!lroDetail.operationLroOverload) {
+          return false;
+        }
+        allowCounts++;
+      }
+    }
+  }
+
+  return Boolean(lroCounts > 0 && lroCounts === allowCounts);
+}
+
+/**
+ * Check if we have an operation-level overloading
+ * @param program
+ * @param operation The operation detail
+ * @param existingResponseTypes auxilary param for current response types
+ * @param existingResponses auxilary param for raw response data
+ * @returns
+ */
 export function getOperationLroOverload(
   program: Program,
   operation: HttpOperation,
@@ -115,6 +147,14 @@ export function getOperationLroOverload(
   return false;
 }
 
+/**
+ * Extract the operation LRO details
+ * @param program
+ * @param operation Operation detail
+ * @param responsesTypes Calculated response types
+ * @param operationGroupName Operation group name
+ * @returns
+ */
 export function extractOperationLroDetail(
   program: Program,
   operation: HttpOperation,
@@ -250,23 +290,4 @@ export function extractPagedMetadataNested(
     }
   }
   return paged;
-}
-
-export function getClientLroOverload(pathDictionary: Paths) {
-  let lroCounts = 0,
-    allowCounts = 0;
-  for (const details of Object.values(pathDictionary)) {
-    for (const methodDetails of Object.values(details.methods)) {
-      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
-      if (lroDetail?.isLongRunning) {
-        lroCounts++;
-        if (!lroDetail.operationLroOverload) {
-          return false;
-        }
-        allowCounts++;
-      }
-    }
-  }
-
-  return Boolean(lroCounts > 0 && lroCounts === allowCounts);
 }
