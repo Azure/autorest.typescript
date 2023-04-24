@@ -44,6 +44,12 @@ export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetWidgetOperationStatusDefaultHeaders;
 }
 
+/** The final response for long-running getWidgetOperationStatus operation */
+export interface GetWidgetOperationStatusLogicalResponse extends HttpResponse {
+  status: "200";
+  body: ResourceOperationStatusOutput;
+}
+
 export interface CreateOrUpdateWidget200Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -79,6 +85,12 @@ export interface CreateOrUpdateWidgetDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & CreateOrUpdateWidgetDefaultHeaders;
 }
 
+/** The final response for long-running createOrUpdateWidget operation */
+export interface CreateOrUpdateWidgetLogicalResponse extends HttpResponse {
+  status: "200";
+  body: WidgetOutput;
+}
+
 export interface DeleteWidget202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -100,6 +112,12 @@ export interface DeleteWidgetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & DeleteWidgetDefaultHeaders;
+}
+
+/** The final response for long-running deleteWidget operation */
+export interface DeleteWidgetLogicalResponse extends HttpResponse {
+  status: "200";
+  body: OperationStatusOutput;
 }
 
 /** The request has succeeded. */

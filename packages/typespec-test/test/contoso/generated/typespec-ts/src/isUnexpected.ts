@@ -6,10 +6,13 @@ import {
   GetWidgetDefaultResponse,
   CreateOrUpdateWidget200Response,
   CreateOrUpdateWidget201Response,
+  CreateOrUpdateWidgetLogicalResponse,
   CreateOrUpdateWidgetDefaultResponse,
   DeleteWidget202Response,
+  DeleteWidgetLogicalResponse,
   DeleteWidgetDefaultResponse,
   GetWidgetOperationStatus200Response,
+  GetWidgetOperationStatusLogicalResponse,
   GetWidgetOperationStatusDefaultResponse,
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
@@ -30,14 +33,19 @@ export function isUnexpected(
   response:
     | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidget201Response
+    | CreateOrUpdateWidgetLogicalResponse
     | CreateOrUpdateWidgetDefaultResponse
 ): response is CreateOrUpdateWidgetDefaultResponse;
 export function isUnexpected(
-  response: DeleteWidget202Response | DeleteWidgetDefaultResponse
+  response:
+    | DeleteWidget202Response
+    | DeleteWidgetLogicalResponse
+    | DeleteWidgetDefaultResponse
 ): response is DeleteWidgetDefaultResponse;
 export function isUnexpected(
   response:
     | GetWidgetOperationStatus200Response
+    | GetWidgetOperationStatusLogicalResponse
     | GetWidgetOperationStatusDefaultResponse
 ): response is GetWidgetOperationStatusDefaultResponse;
 export function isUnexpected(
@@ -49,10 +57,13 @@ export function isUnexpected(
     | GetWidgetDefaultResponse
     | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidget201Response
+    | CreateOrUpdateWidgetLogicalResponse
     | CreateOrUpdateWidgetDefaultResponse
     | DeleteWidget202Response
+    | DeleteWidgetLogicalResponse
     | DeleteWidgetDefaultResponse
     | GetWidgetOperationStatus200Response
+    | GetWidgetOperationStatusLogicalResponse
     | GetWidgetOperationStatusDefaultResponse
     | ListWidgets200Response
     | ListWidgetsDefaultResponse

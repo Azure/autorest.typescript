@@ -10,7 +10,7 @@ import {
 import {
   ImportKind,
   RLCModel,
-  AnnotationDetails,
+  HelperFunctionDetails,
   UrlInfo,
   ApiVersionInfo,
   extractPathApiVersion,
@@ -51,7 +51,7 @@ export function transform(model: CodeModel): RLCModel {
     responses: transformResponseTypes(model, importDetails),
     importSet: importDetails,
     parameters: transformParameterTypes(model, importDetails),
-    annotations: transformAnnotationDetails(model),
+    helperDetails: transformHelperDetails(model),
     urlInfo: transformUrlInfo(model),
     apiVersionInfo: transformApiVersion(model, urlInfo)
   };
@@ -113,9 +113,9 @@ function getOperationQueryApiVersion(
   return;
 }
 
-export function transformAnnotationDetails(
+export function transformHelperDetails(
   model: CodeModel
-): AnnotationDetails {
+): HelperFunctionDetails {
   const nextLinks = new Set<string>();
   const itemNames = new Set<string>();
   // Add default values
@@ -162,6 +162,7 @@ export function transformAnnotationDetails(
       nextLinkNames: [...nextLinks],
       isComplexPaging
     },
+    clientLroOverload: false,
     hasMultiCollection,
     hasPipeCollection,
     hasSsvCollection,

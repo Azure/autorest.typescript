@@ -44,6 +44,12 @@ export interface CreateOrReplaceDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & CreateOrReplaceDefaultHeaders;
 }
 
+/** The final response for long-running createOrReplace operation */
+export interface CreateOrReplaceLogicalResponse extends HttpResponse {
+  status: "200";
+  body: UserOutput;
+}
+
 export interface Delete202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -67,6 +73,12 @@ export interface DeleteDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & DeleteDefaultHeaders;
 }
 
+/** The final response for long-running delete operation */
+export interface DeleteLogicalResponse extends HttpResponse {
+  status: "200";
+  body: OperationStatusOutput;
+}
+
 export interface Export202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -88,4 +100,10 @@ export interface ExportDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & ExportDefaultHeaders;
+}
+
+/** The final response for long-running export operation */
+export interface ExportLogicalResponse extends HttpResponse {
+  status: "200";
+  body: ResourceOperationStatusOutput;
 }

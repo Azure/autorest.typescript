@@ -78,6 +78,14 @@ export interface CreateOrUpdateWidgetDefaultResponse extends HttpResponse {
     status: string;
 }
 
+// @public
+export interface CreateOrUpdateWidgetLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: WidgetOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 export interface CreateOrUpdateWidgetMediaTypesParam {
     contentType: "application/merge-patch+json";
@@ -116,6 +124,14 @@ export interface DeleteWidgetDefaultResponse extends HttpResponse {
     status: string;
 }
 
+// @public
+export interface DeleteWidgetLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: OperationStatusOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 export type DeleteWidgetParameters = RequestParameters;
 
@@ -135,7 +151,13 @@ export interface FakedSharedModelOutput {
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public
-export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse>(client: Client, initialResponse: CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse>(client: Client, initialResponse: DeleteWidget202Response | DeleteWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends GetWidgetOperationStatusLogicalResponse | GetWidgetOperationStatusDefaultResponse>(client: Client, initialResponse: GetWidgetOperationStatus200Response | GetWidgetOperationStatusDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
@@ -201,6 +223,14 @@ export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
     status: string;
 }
 
+// @public
+export interface GetWidgetOperationStatusLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: ResourceOperationStatusOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 export type GetWidgetOperationStatusParameters = RequestParameters;
 
@@ -211,13 +241,13 @@ export type GetWidgetParameters = RequestParameters;
 export function isUnexpected(response: GetWidget200Response | GetWidgetDefaultResponse): response is GetWidgetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetDefaultResponse): response is CreateOrUpdateWidgetDefaultResponse;
+export function isUnexpected(response: CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse): response is CreateOrUpdateWidgetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeleteWidget202Response | DeleteWidgetDefaultResponse): response is DeleteWidgetDefaultResponse;
+export function isUnexpected(response: DeleteWidget202Response | DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse): response is DeleteWidgetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: GetWidgetOperationStatus200Response | GetWidgetOperationStatusDefaultResponse): response is GetWidgetOperationStatusDefaultResponse;
+export function isUnexpected(response: GetWidgetOperationStatus200Response | GetWidgetOperationStatusLogicalResponse | GetWidgetOperationStatusDefaultResponse): response is GetWidgetOperationStatusDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: ListWidgets200Response | ListWidgetsDefaultResponse): response is ListWidgetsDefaultResponse;

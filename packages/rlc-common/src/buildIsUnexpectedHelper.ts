@@ -38,19 +38,38 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
       // LROs may call the same path but with GET
       // to get the operation status.
       if (
-        methodDetails[0].annotations?.isLongRunning &&
+        methodDetails[0].operationHelperDetail?.lroDetails?.isLongRunning &&
         originalMethod !== "GET"
       ) {
         const operation = `GET ${path}`;
-        const success =
+        const logicalSuccessCodes = methodDetails[0].operationHelperDetail
+          ?.lroDetails?.logicalResponseTypes?.success
+          ? ["200"]
+          : [];
+        const initalSuccessCodes =
           (pathDictionary[path].methods["get"] &&
             pathDictionary[path].methods["get"][0]?.successStatus) ??
           methodDetails[0].successStatus;
-        map = { ...map, ...{ [operation]: success } };
+        const successSet = new Set(
+          logicalSuccessCodes.concat(initalSuccessCodes)
+        );
+
+        map = { ...map, ...{ [operation]: Array.from(successSet) } };
       }
 
-      const successTypes = methodDetails[0].responseTypes.success;
+      const successTypes = [...methodDetails[0].responseTypes.success];
       const errorTypes = methodDetails[0].responseTypes.error;
+
+      if (
+        model.helperDetails?.clientLroOverload &&
+        methodDetails[0].operationHelperDetail?.lroDetails?.logicalResponseTypes
+          ?.success
+      ) {
+        successTypes.push(
+          ...methodDetails[0].operationHelperDetail?.lroDetails
+            ?.logicalResponseTypes.success
+        );
+      }
 
       if (!successTypes.length || !errorTypes.length || !errorTypes[0]) {
         continue;

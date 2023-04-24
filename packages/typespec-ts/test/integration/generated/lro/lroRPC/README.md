@@ -1,12 +1,12 @@
-# AzureLro REST client library for JavaScript
+# SpecsAzureCoreLroRpc REST client library for JavaScript
 
-All the basic lro test shall be added in this file
+Illustrates bodies templated with Azure Core with long-running operation
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/lro-basic)
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/lro-rpc)
 
 ## Getting started
 
@@ -18,15 +18,15 @@ Key links:
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@msinternal/lro-basic` package
+### Install the `@msinternal/lro-rpc` package
 
-Install the AzureLro REST client REST client library for JavaScript with `npm`:
+Install the SpecsAzureCoreLroRpc REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @msinternal/lro-basic
+npm install @msinternal/lro-rpc
 ```
 
-### Create and authenticate a `AzureLroClient`
+### Create and authenticate a `SpecsAzureCoreLroRpcClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

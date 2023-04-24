@@ -9,6 +9,6 @@ options:
     azureSdkForJs: false
     isCadlTest: true
     packageDetails:
-      name: "@msinternal/lro-basic"
-      description: "LRO Basic Test Service"
+      name: "@msinternal/lro-rpc"
+      description: "LRO RPC Test Service"
       version: "1.0.0"

@@ -81,6 +81,14 @@ export interface CreateOrUpdateDefaultResponse extends HttpResponse {
     status: string;
 }
 
+// @public
+export interface CreateOrUpdateLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: ProjectOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 export interface CreateOrUpdateMediaTypesParam {
     contentType: "application/merge-patch+json";
@@ -149,8 +157,24 @@ export interface DeleteDeploymentDefaultResponse extends HttpResponse {
     status: string;
 }
 
+// @public
+export interface DeleteDeploymentLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: OperationStatusOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 export type DeleteDeploymentParameters = RequestParameters;
+
+// @public
+export interface DeleteLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: OperationStatusOutput;
+    // (undocumented)
+    status: "200";
+}
 
 // @public (undocumented)
 export type DeleteParameters = RequestParameters;
@@ -229,6 +253,14 @@ export interface DeployProjectDefaultResponse extends HttpResponse {
     status: string;
 }
 
+// @public
+export interface DeployProjectLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: DeploymentOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
 
@@ -263,6 +295,12 @@ export interface ExportDefaultResponse extends HttpResponse {
     headers: RawHttpHeaders & ExportDefaultHeaders;
     // (undocumented)
     status: string;
+}
+
+// @public
+export interface ExportLogicalResponse extends HttpResponse {
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)
@@ -370,7 +408,28 @@ export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
 export type GetDeploymentStatusParameters = RequestParameters;
 
 // @public
-export function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse>(client: Client, initialResponse: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteDefaultResponse>(client: Client, initialResponse: Delete202Response | DeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportDefaultResponse>(client: Client, initialResponse: Export202Response | ExportDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends ImportxLogicalResponse | ImportxDefaultResponse>(client: Client, initialResponse: Importx202Response | ImportxDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends TrainLogicalResponse | TrainDefaultResponse>(client: Client, initialResponse: Train202Response | TrainDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends DeployProjectLogicalResponse | DeployProjectDefaultResponse>(client: Client, initialResponse: DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends DeleteDeploymentLogicalResponse | DeleteDeploymentDefaultResponse>(client: Client, initialResponse: DeleteDeployment202Response | DeleteDeploymentDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public (undocumented)
+export function getLongRunningPoller<TResult extends SwapDeploymentsLogicalResponse | SwapDeploymentsDefaultResponse>(client: Client, initialResponse: SwapDeployments202Response | SwapDeploymentsDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
@@ -489,44 +548,50 @@ export interface ImportxDefaultResponse extends HttpResponse {
     status: string;
 }
 
+// @public
+export interface ImportxLogicalResponse extends HttpResponse {
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 export type ImportxParameters = RequestParameters;
 
 // @public (undocumented)
-export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
+export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: Delete202Response | DeleteDefaultResponse): response is DeleteDefaultResponse;
+export function isUnexpected(response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse): response is DeleteDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: ListProjects200Response | ListProjectsDefaultResponse): response is ListProjectsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: Export202Response | ExportDefaultResponse): response is ExportDefaultResponse;
+export function isUnexpected(response: Export202Response | ExportLogicalResponse | ExportDefaultResponse): response is ExportDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: Importx202Response | ImportxDefaultResponse): response is ImportxDefaultResponse;
+export function isUnexpected(response: Importx202Response | ImportxLogicalResponse | ImportxDefaultResponse): response is ImportxDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: Train202Response | TrainDefaultResponse): response is TrainDefaultResponse;
+export function isUnexpected(response: Train202Response | TrainLogicalResponse | TrainDefaultResponse): response is TrainDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: GetDeployment200Response | GetDeploymentDefaultResponse): response is GetDeploymentDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
+export function isUnexpected(response: DeployProject200Response | DeployProject201Response | DeployProjectLogicalResponse | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeleteDeployment202Response | DeleteDeploymentDefaultResponse): response is DeleteDeploymentDefaultResponse;
+export function isUnexpected(response: DeleteDeployment202Response | DeleteDeploymentLogicalResponse | DeleteDeploymentDefaultResponse): response is DeleteDeploymentDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: ListDeployments200Response | ListDeploymentsDefaultResponse): response is ListDeploymentsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: SwapDeployments202Response | SwapDeploymentsDefaultResponse): response is SwapDeploymentsDefaultResponse;
+export function isUnexpected(response: SwapDeployments202Response | SwapDeploymentsLogicalResponse | SwapDeploymentsDefaultResponse): response is SwapDeploymentsDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse): response is GetDeploymentStatusDefaultResponse;
@@ -789,6 +854,12 @@ export interface SwapDeploymentsJobOutput {
 }
 
 // @public
+export interface SwapDeploymentsLogicalResponse extends HttpResponse {
+    // (undocumented)
+    status: "200";
+}
+
+// @public
 export interface SwapDeploymentsOptions {
     firstDeploymentName: string;
     secondDeploymentName: string;
@@ -844,6 +915,12 @@ export interface TrainingConfigVersionOutput {
 // @public
 export interface TrainingJobOptions {
     modelLabel: string;
+}
+
+// @public
+export interface TrainLogicalResponse extends HttpResponse {
+    // (undocumented)
+    status: "200";
 }
 
 // @public (undocumented)

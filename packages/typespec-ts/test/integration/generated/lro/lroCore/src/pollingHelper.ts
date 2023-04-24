@@ -10,6 +10,18 @@ import {
   SimplePollerLike,
   createHttpPoller,
 } from "@azure/core-lro";
+import {
+  CreateOrReplace200Response,
+  CreateOrReplace201Response,
+  CreateOrReplaceDefaultResponse,
+  CreateOrReplaceLogicalResponse,
+  Delete202Response,
+  DeleteDefaultResponse,
+  DeleteLogicalResponse,
+  Export202Response,
+  ExportDefaultResponse,
+  ExportLogicalResponse,
+} from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -17,6 +29,32 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
+export async function getLongRunningPoller<
+  TResult extends ExportLogicalResponse | ExportDefaultResponse
+>(
+  client: Client,
+  initialResponse: Export202Response | ExportDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
+    | CreateOrReplaceLogicalResponse
+    | CreateOrReplaceDefaultResponse
+>(
+  client: Client,
+  initialResponse:
+    | CreateOrReplace200Response
+    | CreateOrReplace201Response
+    | CreateOrReplaceDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends DeleteLogicalResponse | DeleteDefaultResponse
+>(
+  client: Client,
+  initialResponse: Delete202Response | DeleteDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,

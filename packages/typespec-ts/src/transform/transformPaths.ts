@@ -26,11 +26,11 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getSchemaForType } from "../modelUtils.js";
 import {
+  extractOperationLroDetail,
   getOperationGroupName,
   getOperationStatuscode,
   isDefaultStatusCode,
   isDefinedStatusCode,
-  isLongRunningOperation,
   isPagingOperation
 } from "../operationUtil.js";
 
@@ -103,27 +103,31 @@ function transformOperation(
   operationGroup?: SdkOperationGroup
 ) {
   const respNames = [];
+  const operationGroupName = getOperationGroupName(operationGroup);
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
-      getOperationGroupName(operationGroup),
+      operationGroupName,
       route.operation.name,
       getOperationStatuscode(resp)
     );
     respNames.push(respName);
   }
+  const responseTypes = getResponseTypes(route, operationGroup);
   const method: OperationMethod = {
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
-    optionsName: getParameterTypeName(
-      getOperationGroupName(operationGroup),
-      route.operation.name
-    ),
-    responseTypes: getResponseTypes(route, operationGroup),
+    optionsName: getParameterTypeName(operationGroupName, route.operation.name),
+    responseTypes,
     returnType: respNames.join(" | "),
     successStatus: gerOperationSuccessStatus(route),
     operationName: route.operation.name,
-    annotations: {
-      isLongRunning: isLongRunningOperation(program, route),
+    operationHelperDetail: {
+      lroDetails: extractOperationLroDetail(
+        program,
+        route,
+        responseTypes,
+        operationGroupName
+      ),
       isPageable: isPagingOperation(program, route)
     }
   };

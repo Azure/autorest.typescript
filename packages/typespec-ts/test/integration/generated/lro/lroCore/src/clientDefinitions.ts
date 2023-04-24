@@ -40,12 +40,15 @@ export interface Export {
 }
 
 export interface Routes {
-  /** Resource for '/azure/lro/core/users/\{name\}' has methods for the following verbs: put, delete */
-  (path: "/azure/lro/core/users/{name}", name: string): CreateOrReplace;
-  /** Resource for '/azure/lro/core/users/\{name\}:export' has methods for the following verbs: post */
-  (path: "/azure/lro/core/users/{name}:export", name: string): Export;
+  /** Resource for '/azure/core/lro/standard/users/\{name\}' has methods for the following verbs: put, delete */
+  (
+    path: "/azure/core/lro/standard/users/{name}",
+    name: string
+  ): CreateOrReplace;
+  /** Resource for '/azure/core/lro/standard/users/\{name\}:export' has methods for the following verbs: post */
+  (path: "/azure/core/lro/standard/users/{name}:export", name: string): Export;
 }
 
-export type AzureLroCoreClient = Client & {
+export type SpecsAzureCoreLroStandardClient = Client & {
   path: Routes;
 };

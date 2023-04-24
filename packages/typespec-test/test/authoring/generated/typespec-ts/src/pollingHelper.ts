@@ -10,6 +10,34 @@ import {
   SimplePollerLike,
   createHttpPoller,
 } from "@azure/core-lro";
+import {
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  CreateOrUpdateLogicalResponse,
+  Delete202Response,
+  DeleteDefaultResponse,
+  DeleteLogicalResponse,
+  Export202Response,
+  ExportDefaultResponse,
+  ExportLogicalResponse,
+  Importx202Response,
+  ImportxDefaultResponse,
+  ImportxLogicalResponse,
+  Train202Response,
+  TrainDefaultResponse,
+  TrainLogicalResponse,
+  DeployProject200Response,
+  DeployProject201Response,
+  DeployProjectDefaultResponse,
+  DeployProjectLogicalResponse,
+  DeleteDeployment202Response,
+  DeleteDeploymentDefaultResponse,
+  DeleteDeploymentLogicalResponse,
+  SwapDeployments202Response,
+  SwapDeploymentsDefaultResponse,
+  SwapDeploymentsLogicalResponse,
+} from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -17,6 +45,74 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
+export async function getLongRunningPoller<
+  TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse
+>(
+  client: Client,
+  initialResponse:
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends DeleteLogicalResponse | DeleteDefaultResponse
+>(
+  client: Client,
+  initialResponse: Delete202Response | DeleteDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends ExportLogicalResponse | ExportDefaultResponse
+>(
+  client: Client,
+  initialResponse: Export202Response | ExportDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends ImportxLogicalResponse | ImportxDefaultResponse
+>(
+  client: Client,
+  initialResponse: Importx202Response | ImportxDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends TrainLogicalResponse | TrainDefaultResponse
+>(
+  client: Client,
+  initialResponse: Train202Response | TrainDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends DeployProjectLogicalResponse | DeployProjectDefaultResponse
+>(
+  client: Client,
+  initialResponse:
+    | DeployProject200Response
+    | DeployProject201Response
+    | DeployProjectDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
+    | DeleteDeploymentLogicalResponse
+    | DeleteDeploymentDefaultResponse
+>(
+  client: Client,
+  initialResponse:
+    | DeleteDeployment202Response
+    | DeleteDeploymentDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
+    | SwapDeploymentsLogicalResponse
+    | SwapDeploymentsDefaultResponse
+>(
+  client: Client,
+  initialResponse: SwapDeployments202Response | SwapDeploymentsDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,

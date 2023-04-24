@@ -19,7 +19,7 @@
     "copy:typespec": "rm -rf temp && mkdirp -p temp && cp -r ./node_modules/@azure-tools/cadl-ranch-specs/http ./temp",
     "generate-and-run": "npm run generate-cadl-only && npm run integration-test:alone && npm run stop-test-server",
     "generate-cadl-only": "ts-node ./test/commands/gen-cadl-ranch.ts",
-    "integration-test:alone": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 2000 ./test/integration/*.spec.ts",
+    "integration-test:alone": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 4000 ./test/integration/*.spec.ts",
     "stop-test-server": "npx cadl-ranch server stop",
     "unit-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true './test/unit/**/*.spec.ts'"
   },
@@ -65,7 +65,8 @@
     "@azure-tools/typespec-client-generator-core": "~0.29.0",
     "fs-extra": "^11.1.0",
     "@typespec/openapi": "0.43.0",
-    "@typespec/openapi3": "0.43.0"
+    "@typespec/openapi3": "0.43.0",
+    "@azure-tools/typespec-autorest": "~0.29.0"
   },
   "mocha": {
     "extension": [

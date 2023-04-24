@@ -18,6 +18,13 @@ import {
   SimplePollerLike,
   createHttpPoller
 } from "@azure/core-lro";
+{{#if clientOverload}}
+import {
+  {{#each importedResponses}}
+  {{this}},
+  {{/each}}
+} from "./responses";
+{{/if}}
 {{/if}}
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -26,6 +33,17 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
+{{#if clientOverload}}
+{{#each overloadMap}}
+export async function getLongRunningPoller<
+  TResult extends {{ this.finalResponses }}
+>(
+  client: Client,
+  initialResponse: {{ this.initalResponses }},
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+{{/each}}
+{{/if}}
 export {{#unless useLegacyLro}}async {{/unless}}function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,
