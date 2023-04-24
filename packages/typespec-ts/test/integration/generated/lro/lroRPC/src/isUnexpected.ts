@@ -19,14 +19,13 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "POST /azure/lro/rpc/same-poll-result/jobs": ["200", "202"],
-  "GET /azure/lro/rpc/same-poll-result/jobs": ["200", "202"],
-  "GET /azure/lro/rpc/same-poll-result/jobs/{jobId}": ["200"],
-  "POST /azure/lro/rpc/different-poll-result/jobs": ["200", "202"],
-  "GET /azure/lro/rpc/different-poll-result/jobs": ["200", "202"],
-  "GET /azure/lro/rpc/different-poll-result/jobs/operations/{operationId}": [
-    "200",
-  ],
+  "POST /azure/core/lro/rpc/same-poll-result/jobs": ["200", "202"],
+  "GET /azure/core/lro/rpc/same-poll-result/jobs": ["200", "202"],
+  "GET /azure/core/lro/rpc/same-poll-result/jobs/{jobId}": ["200"],
+  "POST /azure/core/lro/rpc/different-poll-result/jobs": ["200", "202"],
+  "GET /azure/core/lro/rpc/different-poll-result/jobs": ["200", "202"],
+  "GET /azure/core/lro/rpc/different-poll-result/jobs/operations/{operationId}":
+    ["200"],
 };
 
 export function isUnexpected(

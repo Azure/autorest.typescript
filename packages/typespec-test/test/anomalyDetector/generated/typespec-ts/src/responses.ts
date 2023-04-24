@@ -163,7 +163,6 @@ export interface GetMultivariateModelDefaultResponse extends HttpResponse {
 export interface DetectMultivariateBatchAnomaly202Headers {
   /** Id of the detection result. */
   "operation-id": string;
-  "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
@@ -184,13 +183,6 @@ export interface DetectMultivariateBatchAnomalyDefaultResponse
   status: string;
   body: ErrorResponseOutput;
   headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
-}
-
-/** The final response for long-running DetectMultivariateBatchAnomaly operation */
-export interface DetectMultivariateBatchAnomalyLogicalResponse
-  extends HttpResponse {
-  status: "200";
-  body: MultivariateDetectionResultOutput;
 }
 
 /** The request has succeeded. */

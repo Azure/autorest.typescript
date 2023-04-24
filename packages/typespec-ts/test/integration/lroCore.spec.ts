@@ -1,21 +1,22 @@
-import AzureLroCoreClientFactory, {
-  AzureLroCoreClient,
-  ExportLogicalResponse,
+import SpecsAzureCoreLroStandardClientFactory, {
+  SpecsAzureCoreLroStandardClient,
   getLongRunningPoller,
   isUnexpected
 } from "./generated/lro/lroCore/src/index.js";
 import { assert } from "chai";
 describe("AzureLroCoreClient Rest Client", () => {
-  let client: AzureLroCoreClient;
+  let client: SpecsAzureCoreLroStandardClient;
 
   beforeEach(() => {
-    client = AzureLroCoreClientFactory({ allowInsecureConnection: true });
+    client = SpecsAzureCoreLroStandardClientFactory({
+      allowInsecureConnection: true
+    });
   });
 
   it("should put LRO response", async () => {
     try {
       const initalResponse = await client
-        .path("/azure/lro/core/users/{name}", "madge")
+        .path("/azure/core/lro/standard/users/{name}", "madge")
         .put({
           body: {
             role: "contributor"
@@ -40,7 +41,7 @@ describe("AzureLroCoreClient Rest Client", () => {
   it("should delete LRO response", async () => {
     try {
       const initalResponse = await client
-        .path("/azure/lro/core/users/{name}", "madge")
+        .path("/azure/core/lro/standard/users/{name}", "madge")
         .delete({
           body: {
             role: "contributor"
@@ -64,7 +65,7 @@ describe("AzureLroCoreClient Rest Client", () => {
   it("should export LRO response", async () => {
     try {
       const initalResponse = await client
-        .path("/azure/lro/core/users/{name}:export", "madge")
+        .path("/azure/core/lro/standard/users/{name}:export", "madge")
         .post({
           queryParameters: {
             format: "json"

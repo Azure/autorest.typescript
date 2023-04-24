@@ -19,7 +19,6 @@ import {
   GetMultivariateModel200Response,
   GetMultivariateModelDefaultResponse,
   DetectMultivariateBatchAnomaly202Response,
-  DetectMultivariateBatchAnomalyLogicalResponse,
   DetectMultivariateBatchAnomalyDefaultResponse,
   DetectMultivariateLastAnomaly200Response,
   DetectMultivariateLastAnomalyDefaultResponse,
@@ -35,7 +34,6 @@ const responseMap: Record<string, string[]> = {
   "DELETE /multivariate/models/{modelId}": ["204"],
   "GET /multivariate/models/{modelId}": ["200"],
   "POST /multivariate/models/{modelId}:detect-batch": ["202"],
-  "GET /multivariate/models/{modelId}:detect-batch": ["200", "202"],
   "POST /multivariate/models/{modelId}:detect-last": ["200"],
 };
 
@@ -82,7 +80,6 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | DetectMultivariateBatchAnomaly202Response
-    | DetectMultivariateBatchAnomalyLogicalResponse
     | DetectMultivariateBatchAnomalyDefaultResponse
 ): response is DetectMultivariateBatchAnomalyDefaultResponse;
 export function isUnexpected(
@@ -109,7 +106,6 @@ export function isUnexpected(
     | GetMultivariateModel200Response
     | GetMultivariateModelDefaultResponse
     | DetectMultivariateBatchAnomaly202Response
-    | DetectMultivariateBatchAnomalyLogicalResponse
     | DetectMultivariateBatchAnomalyDefaultResponse
     | DetectMultivariateLastAnomaly200Response
     | DetectMultivariateLastAnomalyDefaultResponse

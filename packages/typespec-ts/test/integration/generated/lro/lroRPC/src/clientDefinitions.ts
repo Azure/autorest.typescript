@@ -56,19 +56,24 @@ export interface GetPoll {
 }
 
 export interface Routes {
-  /** Resource for '/azure/lro/rpc/same-poll-result/jobs' has methods for the following verbs: post */
-  (path: "/azure/lro/rpc/same-poll-result/jobs"): CreateJob;
-  /** Resource for '/azure/lro/rpc/same-poll-result/jobs/\{jobId\}' has methods for the following verbs: get */
-  (path: "/azure/lro/rpc/same-poll-result/jobs/{jobId}", jobId: string): GetJob;
-  /** Resource for '/azure/lro/rpc/different-poll-result/jobs' has methods for the following verbs: post */
-  (path: "/azure/lro/rpc/different-poll-result/jobs"): CreateJobFinalOnLocation;
-  /** Resource for '/azure/lro/rpc/different-poll-result/jobs/operations/\{operationId\}' has methods for the following verbs: get */
+  /** Resource for '/azure/core/lro/rpc/same-poll-result/jobs' has methods for the following verbs: post */
+  (path: "/azure/core/lro/rpc/same-poll-result/jobs"): CreateJob;
+  /** Resource for '/azure/core/lro/rpc/same-poll-result/jobs/\{jobId\}' has methods for the following verbs: get */
   (
-    path: "/azure/lro/rpc/different-poll-result/jobs/operations/{operationId}",
+    path: "/azure/core/lro/rpc/same-poll-result/jobs/{jobId}",
+    jobId: string
+  ): GetJob;
+  /** Resource for '/azure/core/lro/rpc/different-poll-result/jobs' has methods for the following verbs: post */
+  (
+    path: "/azure/core/lro/rpc/different-poll-result/jobs"
+  ): CreateJobFinalOnLocation;
+  /** Resource for '/azure/core/lro/rpc/different-poll-result/jobs/operations/\{operationId\}' has methods for the following verbs: get */
+  (
+    path: "/azure/core/lro/rpc/different-poll-result/jobs/operations/{operationId}",
     operationId: string
   ): GetPoll;
 }
 
-export type AzureLroRpcClient = Client & {
+export type SpecsAzureCoreLroRpcClient = Client & {
   path: Routes;
 };

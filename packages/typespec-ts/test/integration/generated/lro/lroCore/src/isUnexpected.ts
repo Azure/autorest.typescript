@@ -15,11 +15,11 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PUT /azure/lro/core/users/{name}": ["200", "201"],
-  "GET /azure/lro/core/users/{name}": ["200", "202"],
-  "DELETE /azure/lro/core/users/{name}": ["202"],
-  "POST /azure/lro/core/users/{name}:export": ["202"],
-  "GET /azure/lro/core/users/{name}:export": ["200", "202"],
+  "PUT /azure/core/lro/standard/users/{name}": ["200", "201"],
+  "GET /azure/core/lro/standard/users/{name}": ["200", "202"],
+  "DELETE /azure/core/lro/standard/users/{name}": ["202"],
+  "POST /azure/core/lro/standard/users/{name}:export": ["202"],
+  "GET /azure/core/lro/standard/users/{name}:export": ["200", "202"],
 };
 
 export function isUnexpected(

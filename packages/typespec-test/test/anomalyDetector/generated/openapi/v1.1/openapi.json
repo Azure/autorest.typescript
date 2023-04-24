@@ -290,11 +290,6 @@
               "operation-id": {
                 "description": "Id of the detection result.",
                 "type": "string"
-              },
-              "Operation-Location": {
-                "description": "The location of an instance of ResourceOperationStatus",
-                "type": "string",
-                "format": "uri"
               }
             },
             "schema": {

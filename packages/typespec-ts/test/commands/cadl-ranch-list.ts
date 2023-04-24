@@ -33,18 +33,13 @@ export const cadls: CadlRanchConfig[] = [
     outputPath: "enums/fixed",
     inputPath: "type/enum/fixed"
   },
-  // {
-  //   outputPath: "lro/lroBasic",
-  //   inputPath: "lro/lro-basic"
-  // },
   {
     outputPath: "lro/lroCore",
-    inputPath: "lro/lro-core",
-    debug: true
+    inputPath: "azure/core/lro/standard"
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "lro/lro-rpc"
+    inputPath: "azure/core/lro/rpc"
   },
   {
     outputPath: "models/inheritance",
