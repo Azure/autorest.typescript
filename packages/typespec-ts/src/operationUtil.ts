@@ -97,7 +97,7 @@ export function isLongRunningOperation(
 }
 
 /**
- * Return if we have a clien-level LRO overloading
+ * Return if we have a client-level LRO overloading
  * @param pathDictionary
  * @returns
  */
