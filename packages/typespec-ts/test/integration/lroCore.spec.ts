@@ -79,10 +79,7 @@ describe("AzureLroCoreClient Rest Client", () => {
       }
       assert.equal(result.status, "200", "final status code");
       if (result.status === "200") {
-        assert.equal(
-          (result as ExportLogicalResponse).body.result?.name,
-          "madge"
-        );
+        assert.equal(result.body.result?.name, "madge");
       }
     } catch (err) {
       assert.fail(err as string);

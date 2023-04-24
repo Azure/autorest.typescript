@@ -30,6 +30,13 @@ import {
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
 export async function getLongRunningPoller<
+  TResult extends ExportLogicalResponse | ExportDefaultResponse
+>(
+  client: Client,
+  initialResponse: Export202Response | ExportDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
   TResult extends
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
@@ -46,13 +53,6 @@ export async function getLongRunningPoller<
 >(
   client: Client,
   initialResponse: Delete202Response | DeleteDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends ExportLogicalResponse | ExportDefaultResponse
->(
-  client: Client,
-  initialResponse: Export202Response | ExportDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

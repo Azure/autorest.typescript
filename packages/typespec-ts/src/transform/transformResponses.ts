@@ -206,13 +206,13 @@ function transformLroLogicalResponse(
   operationGroupName: string,
   existingResponses: ResponseMetadata[]
 ): ResponseMetadata | undefined {
-  const shouldGenereate = getOperationLroOverload(
+  const operationLroOverload = getOperationLroOverload(
     program,
     route,
     undefined,
     existingResponses
   );
-  if (!shouldGenereate) {
+  if (!operationLroOverload) {
     return;
   }
   const sortedResponses = existingResponses

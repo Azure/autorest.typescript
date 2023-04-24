@@ -118,7 +118,9 @@ export function extractOperationLroDetail(
   operationGroupName: string
 ): OperationLroDetail {
   let logicalResponseTypes: ResponseTypes | undefined;
-  // By default we'll disable the overloading
+  const HIGH_PRIORITY = 0,
+    LOW_PRIORITY = 1;
+  let precedence = LOW_PRIORITY;
   const operationLroOverload = getOperationLroOverload(
     program,
     operation,
@@ -131,12 +133,22 @@ export function extractOperationLroDetail(
         getLroLogicalResponseName(operationGroupName, operation.operation.name)
       ]
     };
+    const metadata = getLroMetadata(program, operation.operation);
+    precedence = !!(
+      metadata?.finalStep &&
+      metadata?.finalStep.target &&
+      metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep?.target?.name === "result"
+    )
+      ? HIGH_PRIORITY
+      : LOW_PRIORITY;
   }
 
   return {
     isLongRunning: Boolean(getLroMetadata(program, operation.operation)),
     logicalResponseTypes,
-    operationLroOverload
+    operationLroOverload,
+    precedence
   };
 }
 

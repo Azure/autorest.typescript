@@ -6,7 +6,7 @@ import { hasPollingOperations } from "./helpers/operationHelpers.js";
 import { pollingContent } from "./static/pollingContent.js";
 
 interface LroDetail {
-  shouldGenerateOverload?: boolean;
+  clientOverload?: boolean;
   overloadMap?: ResponseMap[];
   importedResponses?: string[];
 }
@@ -14,6 +14,7 @@ interface LroDetail {
 interface ResponseMap {
   initalResponses: string;
   finalResponses: string;
+  precedence?: number;
 }
 
 export function buildPollingHelper(model: RLCModel) {
@@ -32,10 +33,10 @@ export function buildPollingHelper(model: RLCModel) {
 function buildOverloadDetail(model: RLCModel): LroDetail {
   if (!model.helperDetails?.clientLroOverload) {
     return {
-      shouldGenerateOverload: false
+      clientOverload: false
     };
   }
-  const detail = [];
+  const mapDetail = [];
   const pathDictionary = model.paths;
   const responses = new Set<string>();
   for (const details of Object.values(pathDictionary)) {
@@ -53,18 +54,21 @@ function buildOverloadDetail(model: RLCModel): LroDetail {
         if (initalResponses && finalRespoonse) {
           initalResponses.forEach((n) => responses.add(n));
           finalRespoonse.forEach((n) => responses.add(n));
-          detail!.push({
+          mapDetail!.push({
             initalResponses: initalResponses.join("|"),
-            finalResponses: finalRespoonse.join("|")
+            finalResponses: finalRespoonse.join("|"),
+            precedence: lroDetail.precedence ?? 1
           });
         }
       }
     }
   }
 
+  // Sorted by the precedecne
+  mapDetail.sort((d1, d2) => d1.precedence - d2.precedence);
   return {
-    shouldGenerateOverload: responses.size > 0 && detail.length > 0,
+    clientOverload: responses.size > 0 && mapDetail.length > 0,
     importedResponses: Array.from(responses),
-    overloadMap: detail
+    overloadMap: mapDetail
   };
 }

@@ -37,10 +37,11 @@ export const cadls: CadlRanchConfig[] = [
   //   outputPath: "lro/lroBasic",
   //   inputPath: "lro/lro-basic"
   // },
-  // {
-  //   outputPath: "lro/lroCore",
-  //   inputPath: "lro/lro-core"
-  // },
+  {
+    outputPath: "lro/lroCore",
+    inputPath: "lro/lro-core",
+    debug: true
+  },
   {
     outputPath: "lro/lroRPC",
     inputPath: "lro/lro-rpc"
@@ -69,10 +70,6 @@ export const cadls: CadlRanchConfig[] = [
     outputPath: "models/usage",
     inputPath: "type/model/usage"
   },
-  // {
-  //   outputPath: "resiliency/devDriven",
-  //   inputPath: "resiliency/dev-driven"
-  // },
   {
     outputPath: "resiliency/srvDriven1",
     inputPath: "resiliency/srv-driven/old.tsp"

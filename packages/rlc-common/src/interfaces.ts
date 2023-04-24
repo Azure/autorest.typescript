@@ -93,6 +93,10 @@ export interface OperationLroDetail {
   isLongRunning?: boolean;
   logicalResponseTypes?: ResponseTypes;
   operationLroOverload?: boolean;
+  /**
+   * This is used to sort the overload order, sorted in descending order
+   */
+  precedence?: number;
 }
 
 export interface RLCOptions {
