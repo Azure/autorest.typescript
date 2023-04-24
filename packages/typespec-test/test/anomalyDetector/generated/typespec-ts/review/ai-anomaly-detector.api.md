@@ -6,15 +6,12 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { OperationState } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
@@ -125,7 +122,6 @@ export interface DetectMultivariateBatchAnomaly {
 // @public (undocumented)
 export interface DetectMultivariateBatchAnomaly202Headers {
     "operation-id": string;
-    // (undocumented)
     "operation-location": string;
 }
 
@@ -157,14 +153,6 @@ export interface DetectMultivariateBatchAnomalyDefaultResponse extends HttpRespo
     headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
     // (undocumented)
     status: string;
-}
-
-// @public
-export interface DetectMultivariateBatchAnomalyLogicalResponse extends HttpResponse {
-    // (undocumented)
-    body: MultivariateDetectionResultOutput;
-    // (undocumented)
-    status: "200";
 }
 
 // @public (undocumented)
@@ -341,9 +329,6 @@ export interface ErrorResponseOutput {
 // @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
-// @public
-export function getLongRunningPoller<TResult extends DetectMultivariateBatchAnomalyLogicalResponse | DetectMultivariateBatchAnomalyDefaultResponse>(client: Client, initialResponse: DetectMultivariateBatchAnomaly202Response | DetectMultivariateBatchAnomalyDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-
 // @public (undocumented)
 export interface GetMultivariateBatchDetectionResult {
     get(options?: GetMultivariateBatchDetectionResultParameters): StreamableMethod<GetMultivariateBatchDetectionResult200Response | GetMultivariateBatchDetectionResultDefaultResponse>;
@@ -432,7 +417,7 @@ export function isUnexpected(response: DeleteMultivariateModel204Response | Dele
 export function isUnexpected(response: GetMultivariateModel200Response | GetMultivariateModelDefaultResponse): response is GetMultivariateModelDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DetectMultivariateBatchAnomaly202Response | DetectMultivariateBatchAnomalyLogicalResponse | DetectMultivariateBatchAnomalyDefaultResponse): response is DetectMultivariateBatchAnomalyDefaultResponse;
+export function isUnexpected(response: DetectMultivariateBatchAnomaly202Response | DetectMultivariateBatchAnomalyDefaultResponse): response is DetectMultivariateBatchAnomalyDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: DetectMultivariateLastAnomaly200Response | DetectMultivariateLastAnomalyDefaultResponse): response is DetectMultivariateLastAnomalyDefaultResponse;

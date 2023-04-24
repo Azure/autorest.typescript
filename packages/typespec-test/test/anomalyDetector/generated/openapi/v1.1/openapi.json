@@ -290,6 +290,10 @@
               "operation-id": {
                 "description": "Id of the detection result.",
                 "type": "string"
+              },
+              "operation-location": {
+                "description": "Location of the detection result.",
+                "type": "string"
               }
             },
             "schema": {
