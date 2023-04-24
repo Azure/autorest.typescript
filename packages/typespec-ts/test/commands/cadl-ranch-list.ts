@@ -86,6 +86,10 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "parameters/collection-format"
   },
   {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
+  },
+  {
     outputPath: "projection",
     inputPath: "projection/projected-name"
   },
