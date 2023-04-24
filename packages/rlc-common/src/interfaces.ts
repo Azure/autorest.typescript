@@ -89,6 +89,8 @@ export interface OperationHelperDetail {
   isPageable?: boolean;
 }
 
+export const OPERATION_LRO_HIGH_PRIORITY = 0,
+  OPERATION_LRO_LOW_PRIORITY = 1;
 export interface OperationLroDetail {
   isLongRunning?: boolean;
   logicalResponseTypes?: ResponseTypes;

@@ -28,7 +28,11 @@ import {
   listOperationsInOperationGroup,
   SdkOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { OperationLroDetail } from "@azure-tools/rlc-common";
+import {
+  OperationLroDetail,
+  OPERATION_LRO_LOW_PRIORITY,
+  OPERATION_LRO_HIGH_PRIORITY
+} from "@azure-tools/rlc-common";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -118,9 +122,8 @@ export function extractOperationLroDetail(
   operationGroupName: string
 ): OperationLroDetail {
   let logicalResponseTypes: ResponseTypes | undefined;
-  const HIGH_PRIORITY = 0,
-    LOW_PRIORITY = 1;
-  let precedence = LOW_PRIORITY;
+
+  let precedence = OPERATION_LRO_LOW_PRIORITY;
   const operationLroOverload = getOperationLroOverload(
     program,
     operation,
@@ -140,8 +143,8 @@ export function extractOperationLroDetail(
       metadata.finalStep.kind === "pollingSuccessProperty" &&
       metadata?.finalStep?.target?.name === "result"
     )
-      ? HIGH_PRIORITY
-      : LOW_PRIORITY;
+      ? OPERATION_LRO_HIGH_PRIORITY
+      : OPERATION_LRO_LOW_PRIORITY;
   }
 
   return {

@@ -1,4 +1,4 @@
-import { RLCModel } from "./interfaces.js";
+import { OPERATION_LRO_HIGH_PRIORITY, RLCModel } from "./interfaces.js";
 import * as path from "path";
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
@@ -57,7 +57,7 @@ function buildOverloadDetail(model: RLCModel): LroDetail {
           mapDetail!.push({
             initalResponses: initalResponses.join("|"),
             finalResponses: finalRespoonse.join("|"),
-            precedence: lroDetail.precedence ?? 1
+            precedence: lroDetail.precedence ?? OPERATION_LRO_HIGH_PRIORITY
           });
         }
       }
