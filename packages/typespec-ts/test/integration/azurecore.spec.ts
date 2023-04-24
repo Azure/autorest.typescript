@@ -19,7 +19,7 @@ describe("Azure Core Rest Client", () => {
 
   it("should put user", async () => {
     try {
-      const result = await client.path("/azure/core/users/{id}", 1).put({
+      const result = await client.path("/azure/core/basic/users/{id}", 1).put({
         body: {
           name: "Madge"
         },
@@ -32,7 +32,7 @@ describe("Azure Core Rest Client", () => {
   });
   it("should patch user", async () => {
     try {
-      const result = await client.path("/azure/core/users/{id}", 1).patch({
+      const result = await client.path("/azure/core/basic/users/{id}", 1).patch({
         contentType: "application/merge-patch+json",
         body: {
           name: "Madge"
@@ -46,7 +46,7 @@ describe("Azure Core Rest Client", () => {
 
   it("should get user", async () => {
     try {
-      const result = await client.path("/azure/core/users/{id}", 1).get();
+      const result = await client.path("/azure/core/basic/users/{id}", 1).get();
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -55,7 +55,7 @@ describe("Azure Core Rest Client", () => {
 
   it("should delete user", async () => {
     try {
-      const result = await client.path("/azure/core/users/{id}", 1).delete();
+      const result = await client.path("/azure/core/basic/users/{id}", 1).delete();
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
@@ -64,7 +64,7 @@ describe("Azure Core Rest Client", () => {
 
   it("should list users", async () => {
     try {
-      const result = await client.path("/azure/core/users").get({
+      const result = await client.path("/azure/core/basic/users").get({
         queryParameters: {
           top: 5,
           skip: 10,
@@ -83,7 +83,7 @@ describe("Azure Core Rest Client", () => {
 
   it("should list with pages", async () => {
     try {
-      const result = await client.path("/azure/core/page").get();
+      const result = await client.path("/azure/core/basic/page").get();
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -105,7 +105,7 @@ describe("Azure Core Traits Rest Client", () => {
 
   it("should get user traits", async () => {
     try {
-      const result = await client.path("/azure/traits/user/{id}", 1).get({
+      const result = await client.path("/azure/core/traits/user/{id}", 1).get({
         headers: {
           foo: "123",
           "If-Match": "valid",
@@ -119,12 +119,12 @@ describe("Azure Core Traits Rest Client", () => {
       assert.fail(err as string);
     }
   });
-  it("should delete user traits", async () => {
-    try {
-      const result = await client.path("/azure/traits/api/{apiVersion}/user/{id}", "2022-12-01-preview", 1).delete();
-      assert.strictEqual(result.status, "204");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
+  // it("should delete user traits", async () => {
+  //   try {
+  //     const result = await client.path("/azure/traits/api/{apiVersion}/user/{id}", "2022-12-01-preview", 1).delete();
+  //     assert.strictEqual(result.status, "204");
+  //   } catch (err) {
+  //     assert.fail(err as string);
+  //   }
+  // });
 });

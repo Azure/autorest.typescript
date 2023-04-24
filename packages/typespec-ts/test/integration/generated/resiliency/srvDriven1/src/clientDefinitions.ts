@@ -2,69 +2,45 @@
 // Licensed under the MIT license.
 
 import {
-  HeadNoParamsParameters,
-  GetRequiredParameters,
-  PutRequiredOptionalParameters,
-  PostParametersParameters,
-  GetOptionalParameters,
+  FromNoneParameters,
+  FromOneRequiredParameters,
+  FromOneOptionalParameters,
 } from "./parameters";
 import {
-  HeadNoParams200Response,
-  GetRequired200Response,
-  PutRequiredOptional200Response,
-  PostParameters200Response,
-  GetOptional200Response,
+  FromNone204Response,
+  FromOneRequired204Response,
+  FromOneOptional204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface HeadNoParams {
-  /**
-   * Head request, no params.
-   *  Initially has no query parameters. After evolution, a new optional query parameter is added
-   */
-  head(
-    options?: HeadNoParamsParameters
-  ): StreamableMethod<HeadNoParams200Response>;
-  /**
-   * Get true Boolean value on path.
-   *  Initially only has one required Query Parameter. After evolution, a new optional query parameter is added
-   */
-  get(options: GetRequiredParameters): StreamableMethod<GetRequired200Response>;
-  /** Initially has one required query parameter and one optional query parameter.  After evolution, a new optional query parameter is added */
-  put(
-    options: PutRequiredOptionalParameters
-  ): StreamableMethod<PutRequiredOptional200Response>;
+export interface FromNone {
+  /** Test that currently accepts no parameters, will be updated in next spec to accept a new optional parameter as well */
+  head(options?: FromNoneParameters): StreamableMethod<FromNone204Response>;
 }
 
-export interface PostParameters {
-  /** POST a JSON */
-  post(
-    options: PostParametersParameters
-  ): StreamableMethod<PostParameters200Response>;
-}
-
-export interface GetOptional {
-  /**
-   * Get true Boolean value on path.
-   *  Initially has one optional query parameter. After evolution, a new optional query parameter is added
-   */
+export interface FromOneRequired {
+  /** Test that currently accepts one required parameter, will be updated in next spec to accept a new optional parameter as well */
   get(
-    options?: GetOptionalParameters
-  ): StreamableMethod<GetOptional200Response>;
+    options: FromOneRequiredParameters
+  ): StreamableMethod<FromOneRequired204Response>;
+}
+
+export interface FromOneOptional {
+  /** Test that currently accepts one optional parameter, will be updated in next spec to accept a new optional parameter as well */
+  get(
+    options?: FromOneOptionalParameters
+  ): StreamableMethod<FromOneOptional204Response>;
 }
 
 export interface Routes {
-  /** Resource for '/resiliency/servicedriven1/parameters' has methods for the following verbs: head, get, put */
-  (path: "/resiliency/servicedriven1/parameters"): HeadNoParams;
-  /** Resource for '/resiliency/servicedriven1/parameters/\{contentTypePath\}' has methods for the following verbs: post */
-  (
-    path: "/resiliency/servicedriven1/parameters/{contentTypePath}",
-    contentTypePath: "json"
-  ): PostParameters;
-  /** Resource for '/resiliency/servicedriven1/moreParameters' has methods for the following verbs: get */
-  (path: "/resiliency/servicedriven1/moreParameters"): GetOptional;
+  /** Resource for '/add-optional-param/from-none' has methods for the following verbs: head */
+  (path: "/add-optional-param/from-none"): FromNone;
+  /** Resource for '/add-optional-param/from-one-required' has methods for the following verbs: get */
+  (path: "/add-optional-param/from-one-required"): FromOneRequired;
+  /** Resource for '/add-optional-param/from-one-optional' has methods for the following verbs: get */
+  (path: "/add-optional-param/from-one-optional"): FromOneOptional;
 }
 
-export type ResiliencyServiceDriven1Client = Client & {
+export type ServiceDrivenOldClient = Client & {
   path: Routes;
 };

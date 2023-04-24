@@ -1,12 +1,12 @@
 import { assert } from "chai";
-import EnumsFixedClientFactory, {
-  EnumsFixedClient
+import TypeEnumFixedClientFactory, {
+  TypeEnumFixedClient
 } from "./generated/enums/fixed/src/index.js";
 describe("FixedEnums Rest Client", () => {
-  let client: EnumsFixedClient;
+  let client: TypeEnumFixedClient;
 
   beforeEach(() => {
-    client = EnumsFixedClientFactory({
+    client = TypeEnumFixedClientFactory({
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -16,7 +16,7 @@ describe("FixedEnums Rest Client", () => {
 
   it("should get known value", async () => {
     try {
-      const result = await client.path("/enums/fixed/string/known-value").get();
+      const result = await client.path("/type/enum/fixed/string/known-value").get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Monday");
     } catch (err) {
@@ -26,7 +26,7 @@ describe("FixedEnums Rest Client", () => {
 
   it("should put known value", async () => {
     try {
-      const result = await client.path("/enums/fixed/string/known-value").put({
+      const result = await client.path("/type/enum/fixed/string/known-value").put({
         body: "Monday",
         contentType: "application/json"
       });
@@ -39,7 +39,7 @@ describe("FixedEnums Rest Client", () => {
   it("should put unknown value and receives 500", async () => {
     try {
       const result = await client
-        .path("/enums/fixed/string/unknown-value")
+        .path("/type/enum/fixed/string/unknown-value")
         .put({
           body: "Weekend" as any,
           contentType: "application/json"

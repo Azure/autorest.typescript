@@ -16,7 +16,7 @@ describe("Internal Rest Client", () => {
 
   it("should get internal", async () => {
     try {
-      const result = await client.path("/internal/getInternal").get({
+      const result = await client.path("/azure/client-generator-core/internal/getInternal").get({
         queryParameters: {
           name: "get internal"
         }
@@ -29,7 +29,7 @@ describe("Internal Rest Client", () => {
 
   it("should post internal", async () => {
     try {
-      const result = await client.path("/internal/postInternal").post({
+      const result = await client.path("/azure/client-generator-core/internal/postInternal").post({
         body: {
           id: 1 as any,
           name: "post internal name"

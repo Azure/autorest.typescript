@@ -455,9 +455,9 @@ function extractDescriptionsFromBody(
 
 export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
   let hasMultiCollection = false;
-  const hasPipeCollection = false;
-  const hasSsvCollection = false;
-  const hasTsvCollection = false;
+  let hasPipeCollection = false;
+  let hasSsvCollection = false;
+  let hasTsvCollection = false;
   const descriptions = [];
   const collectionInfo = [];
   if (
@@ -468,7 +468,23 @@ export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
     descriptions.push("buildMultiCollection");
     collectionInfo.push("multi");
   }
-  // TODO add other collection logic once cadl has supported it.
+  if (parameter.type === "query" && (parameter as any).format === "ssv") {
+    hasSsvCollection = true;
+    descriptions.push("buildSsvCollection");
+    collectionInfo.push("ssv");
+  }
+
+  if (parameter.type === "query" && (parameter as any).format === "tsv") {
+    hasTsvCollection = true;
+    descriptions.push("buildTsvCollection");
+    collectionInfo.push("tsv");
+  }
+
+  if (parameter.type === "query" && (parameter as any).format === "pipes") {
+    hasPipeCollection = true;
+    descriptions.push("buildPipeCollection");
+    collectionInfo.push("pipe");
+  }
   return {
     hasMultiCollection,
     hasPipeCollection,

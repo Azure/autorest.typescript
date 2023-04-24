@@ -137,7 +137,7 @@ function transformOperation(
   } else {
     paths[route.path] = {
       description: getDoc(program, route.operation) ?? "",
-      name: route.operation.name || "Client",
+      name: escapeCoreName(route.operation.name || "Client"),
       pathParameters: route.parameters.parameters
         .filter((p) => p.type === "path")
         .map((p) => {
@@ -157,6 +157,12 @@ function transformOperation(
   }
 }
 
+function escapeCoreName(name: string) {
+  if (["client", "streamablemethod"].indexOf(name.toLowerCase()) > -1) {
+    return "_" + name;
+  }
+  return name;
+}
 function hasRequiredOptions(
   dpgContext: SdkContext,
   routeParameters: HttpOperationParameters

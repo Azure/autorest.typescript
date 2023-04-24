@@ -4,7 +4,7 @@
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 
-export interface GetHeaders {
+export interface SmokeTestHeaders {
   /** header in request */
   foo: string;
   /** The request should only proceed if an entity matches this string. */
@@ -19,23 +19,8 @@ export interface GetHeaders {
   "x-ms-client-request-id"?: string;
 }
 
-export interface GetHeaderParam {
-  headers: RawHttpHeadersInput & GetHeaders;
+export interface SmokeTestHeaderParam {
+  headers: RawHttpHeadersInput & SmokeTestHeaders;
 }
 
-export type GetParameters = GetHeaderParam & RequestParameters;
-
-export interface DeleteHeaders {
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  "Repeatability-Request-ID"?: string;
-  /** Specifies the date and time at which the request was first created. */
-  "Repeatability-First-Sent"?: string;
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  "x-ms-client-request-id"?: string;
-}
-
-export interface DeleteHeaderParam {
-  headers?: RawHttpHeadersInput & DeleteHeaders;
-}
-
-export type DeleteParameters = DeleteHeaderParam & RequestParameters;
+export type SmokeTestParameters = SmokeTestHeaderParam & RequestParameters;

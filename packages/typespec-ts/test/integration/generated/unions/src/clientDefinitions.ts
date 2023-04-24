@@ -38,14 +38,14 @@ export interface SendSecondNamedUnionValue {
 }
 
 export interface Routes {
-  /** Resource for '/unions/int' has methods for the following verbs: post */
-  (path: "/unions/int"): SendInt;
-  /** Resource for '/unions/int-array' has methods for the following verbs: post */
-  (path: "/unions/int-array"): SendIntArray;
-  /** Resource for '/unions/model1' has methods for the following verbs: post */
-  (path: "/unions/model1"): SendFirstNamedUnionValue;
-  /** Resource for '/unions/model2' has methods for the following verbs: post */
-  (path: "/unions/model2"): SendSecondNamedUnionValue;
+  /** Resource for '/type/union/int' has methods for the following verbs: post */
+  (path: "/type/union/int"): SendInt;
+  /** Resource for '/type/union/int-array' has methods for the following verbs: post */
+  (path: "/type/union/int-array"): SendIntArray;
+  /** Resource for '/type/union/model1' has methods for the following verbs: post */
+  (path: "/type/union/model1"): SendFirstNamedUnionValue;
+  /** Resource for '/type/union/model2' has methods for the following verbs: post */
+  (path: "/type/union/model2"): SendSecondNamedUnionValue;
 }
 
 export type UnionsClient = Client & {

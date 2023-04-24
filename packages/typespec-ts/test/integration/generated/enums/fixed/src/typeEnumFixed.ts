@@ -2,15 +2,15 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { EnumsFixedClient } from "./clientDefinitions";
+import { TypeEnumFixedClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `EnumsFixedClient`
+ * Initialize a new instance of `TypeEnumFixedClient`
  * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): EnumsFixedClient {
+): TypeEnumFixedClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-extensible-fixed-rest/1.0.0`;
@@ -25,7 +25,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as EnumsFixedClient;
+  const client = getClient(baseUrl, options) as TypeEnumFixedClient;
 
   return client;
 }

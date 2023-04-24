@@ -6,7 +6,7 @@ export interface CadlRanchConfig {
 export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "arrays/itemTypes",
-    inputPath: "arrays/item-types"
+    inputPath: "type/array"
   },
   {
     outputPath: "authentication/apiKey",
@@ -22,63 +22,59 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "dictionary",
-    inputPath: "dictionary"
+    inputPath: "type/dictionary"
   },
   {
     outputPath: "enums/extensible",
-    inputPath: "enums/extensible"
+    inputPath: "type/enum/extensible"
   },
   {
     outputPath: "enums/fixed",
-    inputPath: "enums/fixed"
+    inputPath: "type/enum/fixed"
   },
-  {
-    outputPath: "hello",
-    inputPath: "hello"
-  },
-  {
-    outputPath: "lro/lroBasic",
-    inputPath: "lro/lro-basic"
-  },
-  {
-    outputPath: "lro/lroCore",
-    inputPath: "lro/lro-core"
-  },
+  // {
+  //   outputPath: "lro/lroBasic",
+  //   inputPath: "lro/lro-basic"
+  // },
+  // {
+  //   outputPath: "lro/lroCore",
+  //   inputPath: "lro/lro-core"
+  // },
   {
     outputPath: "models/inheritance",
-    inputPath: "models/inheritance"
+    inputPath: "type/model/inheritance"
   },
   {
     outputPath: "models/propertyOptional",
-    inputPath: "models/property-optional"
+    inputPath: "type/property/optional"
   },
   {
     outputPath: "models/propertyNullable",
-    inputPath: "models/property-nullable"
+    inputPath: "type/property/nullable"
   },
   {
     outputPath: "models/propertyTypes",
-    inputPath: "models/property-types"
+    inputPath: "type/property/value-types"
   },
   {
     outputPath: "models/visibility",
-    inputPath: "models/visibility"
+    inputPath: "type/model/visibility"
   },
   {
     outputPath: "models/usage",
-    inputPath: "models/usage"
+    inputPath: "type/model/usage"
   },
-  {
-    outputPath: "resiliency/devDriven",
-    inputPath: "resiliency/dev-driven"
-  },
+  // {
+  //   outputPath: "resiliency/devDriven",
+  //   inputPath: "resiliency/dev-driven"
+  // },
   {
     outputPath: "resiliency/srvDriven1",
-    inputPath: "resiliency/srv-driven-1"
+    inputPath: "resiliency/srv-driven/old.tsp"
   },
   {
     outputPath: "resiliency/srvDriven2",
-    inputPath: "resiliency/srv-driven-2"
+    inputPath: "resiliency/srv-driven/main.tsp"
   },
   {
     outputPath: "specialWords",
@@ -86,7 +82,7 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "unions",
-    inputPath: "unions"
+    inputPath: "type/union"
   },
   {
     outputPath: "parameters/collection-format",
@@ -94,11 +90,11 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "projection",
-    inputPath: "projection"
+    inputPath: "projection/projected-name"
   },
   {
     outputPath: "internal",
-    inputPath: "internal"
+    inputPath: "azure/client-generator-core/internal"
   },
   {
     outputPath: "server/path/single",
@@ -110,7 +106,7 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "azure/core",
-    inputPath: "azure/core"
+    inputPath: "azure/core/basic"
   },
   {
     outputPath: "azure/core-traits",

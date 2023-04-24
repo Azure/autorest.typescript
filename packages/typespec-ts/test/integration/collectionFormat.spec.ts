@@ -1,6 +1,9 @@
 import { assert } from "chai";
 import CollectionFormatClientFactory, {
   buildMultiCollection,
+  buildPipeCollection,
+  buildSsvCollection,
+  buildTsvCollection,
   CollectionFormatClient
 } from "./generated/parameters/collection-format/src/index.js";
 describe("Collection Format Rest Client", () => {
@@ -35,6 +38,47 @@ describe("Collection Format Rest Client", () => {
       const result = await client.path("/parameters/collection-format/query/csv").get({
         queryParameters: {
           colors: colors
+        },
+        skipUrlEncoding: true
+      });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should serialize ssv format query array parameter", async () => {
+    try {
+      const result = await client.path("/parameters/collection-format/query/ssv").get({
+        queryParameters: {
+          colors: buildSsvCollection(colors)
+        }
+      });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should serialize tsv format query array parameter", async () => {
+    try {
+      const result = await client.path("/parameters/collection-format/query/tsv").get({
+        queryParameters: {
+          colors: buildTsvCollection(colors)
+        }
+      });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+
+  it("should serialize pipes format query array parameter", async () => {
+    try {
+      const result = await client.path("/parameters/collection-format/query/pipes").get({
+        queryParameters: {
+          colors: buildPipeCollection(colors)
         },
         skipUrlEncoding: true
       });

@@ -2,25 +2,47 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Project } from "./models";
+import {
+  JsonProjectedNameModel,
+  ClientProjectedNameModel,
+  LanguageProjectedNameModel,
+  JsonAndClientProjectedNameModel,
+} from "./models";
 
-export interface JsonProjectionBodyParam {
-  body?: Project;
+export interface PropertyJsonBodyParam {
+  body?: JsonProjectedNameModel;
 }
 
-export type JsonProjectionParameters = JsonProjectionBodyParam &
-  RequestParameters;
+export type PropertyJsonParameters = PropertyJsonBodyParam & RequestParameters;
 
-export interface ClientProjectionBodyParam {
-  body?: Project;
+export interface PropertyClientBodyParam {
+  body?: ClientProjectedNameModel;
 }
 
-export type ClientProjectionParameters = ClientProjectionBodyParam &
+export type PropertyClientParameters = PropertyClientBodyParam &
   RequestParameters;
 
-export interface LanguageProjectionBodyParam {
-  body?: Project;
+export interface PropertyLanguageBodyParam {
+  body?: LanguageProjectedNameModel;
 }
 
-export type LanguageProjectionParameters = LanguageProjectionBodyParam &
+export type PropertyLanguageParameters = PropertyLanguageBodyParam &
   RequestParameters;
+
+export interface PropertyJsonAndClientBodyParam {
+  body?: JsonAndClientProjectedNameModel;
+}
+
+export type PropertyJsonAndClientParameters = PropertyJsonAndClientBodyParam &
+  RequestParameters;
+export type OperationParameters = RequestParameters;
+
+export interface ParameterQueryParamProperties {
+  "default-name": string;
+}
+
+export interface ParameterQueryParam {
+  queryParameters: ParameterQueryParamProperties;
+}
+
+export type ParameterParameters = ParameterQueryParam & RequestParameters;

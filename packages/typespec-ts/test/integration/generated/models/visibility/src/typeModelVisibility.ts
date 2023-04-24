@@ -2,15 +2,15 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { ModelsVisibilityAutomaticClient } from "./clientDefinitions";
+import { TypeModelVisibilityClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `ModelsVisibilityAutomaticClient`
+ * Initialize a new instance of `TypeModelVisibilityClient`
  * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): ModelsVisibilityAutomaticClient {
+): TypeModelVisibilityClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-visibility-rest/1.0.0`;
@@ -25,7 +25,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ModelsVisibilityAutomaticClient;
+  const client = getClient(baseUrl, options) as TypeModelVisibilityClient;
 
   return client;
 }

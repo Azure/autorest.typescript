@@ -53,6 +53,7 @@ export interface ListQueryParam {
 
 export type ListParameters = ListQueryParam & RequestParameters;
 export type ListWithPageParameters = RequestParameters;
+export type ListWithCustomPageModelParameters = RequestParameters;
 export type DeleteParameters = RequestParameters;
 
 export interface ExportQueryParamProperties {

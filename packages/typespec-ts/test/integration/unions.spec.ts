@@ -11,7 +11,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should post input simple number union", async () => {
     try {
-      const result = await client.path("/unions/int").post({
+      const result = await client.path("/type/union/int").post({
         body: {
           simpleUnion: 1
         }
@@ -24,7 +24,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should post simple number array union", async () => {
     try {
-      const result = await client.path("/unions/int-array").post({
+      const result = await client.path("/type/union/int-array").post({
         body: {
           simpleUnion: [1, 2]
         }
@@ -37,7 +37,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should post named union model1", async () => {
     try {
-      const result = await client.path("/unions/model1").post({
+      const result = await client.path("/type/union/model1").post({
         body: {
           namedUnion: {
             name: "model1",
@@ -53,7 +53,7 @@ describe("UnionsClient Rest Client", () => {
 
   it("should post named union model2", async () => {
     try {
-      const result = await client.path("/unions/model2").post({
+      const result = await client.path("/type/union/model2").post({
         body: {
           namedUnion: {
             name: "model2",

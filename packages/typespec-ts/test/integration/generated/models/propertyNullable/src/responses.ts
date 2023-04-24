@@ -12,24 +12,24 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface StringGetNonNull200Response extends HttpResponse {
+export interface StringModelGetNonNull200Response extends HttpResponse {
   status: "200";
   body: StringPropertyOutput;
 }
 
 /** The request has succeeded. */
-export interface StringGetNull200Response extends HttpResponse {
+export interface StringModelGetNull200Response extends HttpResponse {
   status: "200";
   body: StringPropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface StringPatchNonNull204Response extends HttpResponse {
+export interface StringModelPatchNonNull204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface StringPatchNull204Response extends HttpResponse {
+export interface StringModelPatchNull204Response extends HttpResponse {
   status: "204";
 }
 

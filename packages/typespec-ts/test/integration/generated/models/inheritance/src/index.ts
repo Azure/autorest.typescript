@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import ModelsInheritance from "./modelsInheritance";
+import TypeModelInheritance from "./typeModelInheritance";
 
-export * from "./modelsInheritance";
+export * from "./typeModelInheritance";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default ModelsInheritance;
+export default TypeModelInheritance;

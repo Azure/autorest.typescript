@@ -2,18 +2,18 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { ResiliencyServiceDriven2Client } from "./clientDefinitions";
+import { TypeModelInheritanceClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `ResiliencyServiceDriven2Client`
+ * Initialize a new instance of `TypeModelInheritanceClient`
  * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): ResiliencyServiceDriven2Client {
+): TypeModelInheritanceClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "1.1.0";
-  const userAgentInfo = `azsdk-js-srv-driven-2-rest/1.0.0`;
+  options.apiVersion = options.apiVersion ?? "1.0.0";
+  const userAgentInfo = `azsdk-js-model-inheritance-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -25,7 +25,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ResiliencyServiceDriven2Client;
+  const client = getClient(baseUrl, options) as TypeModelInheritanceClient;
 
   return client;
 }

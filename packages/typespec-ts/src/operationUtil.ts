@@ -52,7 +52,11 @@ export function getOperationStatuscode(
 
 // FIXME: this is the placeholder function to extract the operationGroupName
 export function getOperationGroupName(operationGroup?: SdkOperationGroup) {
-  return operationGroup?.type.name ?? "";
+  return normalizeName(
+    operationGroup?.type.name ?? "",
+    NameType.Interface,
+    true
+  );
 }
 
 export function isDefaultStatusCode(statusCode: StatusCode) {

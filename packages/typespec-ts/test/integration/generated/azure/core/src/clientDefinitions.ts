@@ -8,6 +8,7 @@ import {
   DeleteParameters,
   ListParameters,
   ListWithPageParameters,
+  ListWithCustomPageModelParameters,
   ExportParameters,
 } from "./parameters";
 import {
@@ -25,6 +26,8 @@ import {
   ListDefaultResponse,
   ListWithPage200Response,
   ListWithPageDefaultResponse,
+  ListWithCustomPageModel200Response,
+  ListWithCustomPageModelDefaultResponse,
   Export200Response,
   ExportDefaultResponse,
 } from "./responses";
@@ -71,6 +74,15 @@ export interface ListWithPage {
   ): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse>;
 }
 
+export interface ListWithCustomPageModel {
+  /** List with custom page model. */
+  get(
+    options?: ListWithCustomPageModelParameters
+  ): StreamableMethod<
+    ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse
+  >;
+}
+
 export interface Export {
   /** Exports a User */
   post(
@@ -79,14 +91,16 @@ export interface Export {
 }
 
 export interface Routes {
-  /** Resource for '/azure/core/users/\{id\}' has methods for the following verbs: patch, put, get, delete */
-  (path: "/azure/core/users/{id}", id: number): CreateOrUpdate;
-  /** Resource for '/azure/core/users' has methods for the following verbs: get */
-  (path: "/azure/core/users"): List;
-  /** Resource for '/azure/core/page' has methods for the following verbs: get */
-  (path: "/azure/core/page"): ListWithPage;
-  /** Resource for '/azure/core/users/\{id\}:export' has methods for the following verbs: post */
-  (path: "/azure/core/users/{id}:export", id: number): Export;
+  /** Resource for '/azure/core/basic/users/\{id\}' has methods for the following verbs: patch, put, get, delete */
+  (path: "/azure/core/basic/users/{id}", id: number): CreateOrUpdate;
+  /** Resource for '/azure/core/basic/users' has methods for the following verbs: get */
+  (path: "/azure/core/basic/users"): List;
+  /** Resource for '/azure/core/basic/page' has methods for the following verbs: get */
+  (path: "/azure/core/basic/page"): ListWithPage;
+  /** Resource for '/azure/core/basic/custom-page' has methods for the following verbs: get */
+  (path: "/azure/core/basic/custom-page"): ListWithCustomPageModel;
+  /** Resource for '/azure/core/basic/users/\{id\}:export' has methods for the following verbs: post */
+  (path: "/azure/core/basic/users/{id}:export", id: number): Export;
 }
 
 export type AzureCoreClient = Client & {

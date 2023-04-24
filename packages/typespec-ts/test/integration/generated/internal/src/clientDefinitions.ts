@@ -16,10 +16,10 @@ export interface PostInternal {
 }
 
 export interface Routes {
-  /** Resource for '/internal/getInternal' has methods for the following verbs: get */
-  (path: "/internal/getInternal"): GetInternal;
-  /** Resource for '/internal/postInternal' has methods for the following verbs: post */
-  (path: "/internal/postInternal"): PostInternal;
+  /** Resource for '/azure/client-generator-core/internal/getInternal' has methods for the following verbs: get */
+  (path: "/azure/client-generator-core/internal/getInternal"): GetInternal;
+  /** Resource for '/azure/client-generator-core/internal/postInternal' has methods for the following verbs: post */
+  (path: "/azure/client-generator-core/internal/postInternal"): PostInternal;
 }
 
 export type InternalClient = Client & {

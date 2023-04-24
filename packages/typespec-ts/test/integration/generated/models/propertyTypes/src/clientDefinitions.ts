@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
-  BooleanGetParameters,
-  BooleanPutParameters,
-  StringGetParameters,
-  StringPutParameters,
+  BooleanModelGetParameters,
+  BooleanModelPutParameters,
+  StringModelGetParameters,
+  StringModelPutParameters,
   BytesGetParameters,
   BytesPutParameters,
   IntGetParameters,
@@ -34,10 +34,10 @@ import {
   NeverPutParameters,
 } from "./parameters";
 import {
-  BooleanGet200Response,
-  BooleanPut204Response,
-  StringGet200Response,
-  StringPut204Response,
+  BooleanModelGet200Response,
+  BooleanModelPut204Response,
+  StringModelGet200Response,
+  StringModelPut204Response,
   BytesGet200Response,
   BytesPut204Response,
   IntGet200Response,
@@ -67,18 +67,26 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface BooleanGet {
+export interface BooleanModelGet {
   /** Get call */
-  get(options?: BooleanGetParameters): StreamableMethod<BooleanGet200Response>;
+  get(
+    options?: BooleanModelGetParameters
+  ): StreamableMethod<BooleanModelGet200Response>;
   /** Put operation */
-  put(options: BooleanPutParameters): StreamableMethod<BooleanPut204Response>;
+  put(
+    options: BooleanModelPutParameters
+  ): StreamableMethod<BooleanModelPut204Response>;
 }
 
-export interface StringGet {
+export interface StringModelGet {
   /** Get call */
-  get(options?: StringGetParameters): StreamableMethod<StringGet200Response>;
+  get(
+    options?: StringModelGetParameters
+  ): StreamableMethod<StringModelGet200Response>;
   /** Put operation */
-  put(options: StringPutParameters): StreamableMethod<StringPut204Response>;
+  put(
+    options: StringModelPutParameters
+  ): StreamableMethod<StringModelPut204Response>;
 }
 
 export interface BytesGet {
@@ -197,38 +205,38 @@ export interface NeverGet {
 }
 
 export interface Routes {
-  /** Resource for '/models/properties/types/boolean' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/boolean"): BooleanGet;
-  /** Resource for '/models/properties/types/string' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/string"): StringGet;
-  /** Resource for '/models/properties/types/bytes' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/bytes"): BytesGet;
-  /** Resource for '/models/properties/types/int' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/int"): IntGet;
-  /** Resource for '/models/properties/types/float' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/float"): FloatGet;
-  /** Resource for '/models/properties/types/datetime' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/datetime"): DatetimeGet;
-  /** Resource for '/models/properties/types/duration' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/duration"): DurationGet;
-  /** Resource for '/models/properties/types/enum' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/enum"): EnumGet;
-  /** Resource for '/models/properties/types/extensible-enum' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/extensible-enum"): ExtensibleEnumGet;
-  /** Resource for '/models/properties/types/model' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/model"): ModelGet;
-  /** Resource for '/models/properties/types/collections/string' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/collections/string"): CollectionsStringGet;
-  /** Resource for '/models/properties/types/collections/int' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/collections/int"): CollectionsIntGet;
-  /** Resource for '/models/properties/types/collections/model' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/collections/model"): CollectionsModelGet;
-  /** Resource for '/models/properties/types/dictionary/string' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/dictionary/string"): DictionaryStringGet;
-  /** Resource for '/models/properties/types/never' has methods for the following verbs: get, put */
-  (path: "/models/properties/types/never"): NeverGet;
+  /** Resource for '/type/property/value-types/boolean' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/boolean"): BooleanModelGet;
+  /** Resource for '/type/property/value-types/string' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/string"): StringModelGet;
+  /** Resource for '/type/property/value-types/bytes' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/bytes"): BytesGet;
+  /** Resource for '/type/property/value-types/int' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/int"): IntGet;
+  /** Resource for '/type/property/value-types/float' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/float"): FloatGet;
+  /** Resource for '/type/property/value-types/datetime' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/datetime"): DatetimeGet;
+  /** Resource for '/type/property/value-types/duration' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/duration"): DurationGet;
+  /** Resource for '/type/property/value-types/enum' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/enum"): EnumGet;
+  /** Resource for '/type/property/value-types/extensible-enum' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/extensible-enum"): ExtensibleEnumGet;
+  /** Resource for '/type/property/value-types/model' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/model"): ModelGet;
+  /** Resource for '/type/property/value-types/collections/string' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/collections/string"): CollectionsStringGet;
+  /** Resource for '/type/property/value-types/collections/int' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/collections/int"): CollectionsIntGet;
+  /** Resource for '/type/property/value-types/collections/model' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/collections/model"): CollectionsModelGet;
+  /** Resource for '/type/property/value-types/dictionary/string' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/dictionary/string"): DictionaryStringGet;
+  /** Resource for '/type/property/value-types/never' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/never"): NeverGet;
 }
 
-export type ModelsPropertyTypesClient = Client & {
+export type TypePropertyValueTypesClient = Client & {
   path: Routes;
 };

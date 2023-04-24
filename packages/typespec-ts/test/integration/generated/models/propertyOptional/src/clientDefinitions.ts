@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
-  StringGetAllParameters,
-  StringPutAllParameters,
-  StringGetDefaultParameters,
-  StringPutDefaultParameters,
+  StringModelGetAllParameters,
+  StringModelPutAllParameters,
+  StringModelGetDefaultParameters,
+  StringModelPutDefaultParameters,
   BytesGetAllParameters,
   BytesPutAllParameters,
   BytesGetDefaultParameters,
@@ -32,10 +32,10 @@ import {
   RequiredAndOptionalPutRequiredOnlyParameters,
 } from "./parameters";
 import {
-  StringGetAll200Response,
-  StringPutAll204Response,
-  StringGetDefault200Response,
-  StringPutDefault204Response,
+  StringModelGetAll200Response,
+  StringModelPutAll204Response,
+  StringModelGetDefault200Response,
+  StringModelPutDefault204Response,
   BytesGetAll200Response,
   BytesPutAll204Response,
   BytesGetDefault200Response,
@@ -63,26 +63,26 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface StringGetAll {
+export interface StringModelGetAll {
   /** Get models that will return all properties in the model */
   get(
-    options?: StringGetAllParameters
-  ): StreamableMethod<StringGetAll200Response>;
+    options?: StringModelGetAllParameters
+  ): StreamableMethod<StringModelGetAll200Response>;
   /** Put a body with all properties present. */
   put(
-    options: StringPutAllParameters
-  ): StreamableMethod<StringPutAll204Response>;
+    options: StringModelPutAllParameters
+  ): StreamableMethod<StringModelPutAll204Response>;
 }
 
-export interface StringGetDefault {
+export interface StringModelGetDefault {
   /** Get models that will return the default object */
   get(
-    options?: StringGetDefaultParameters
-  ): StreamableMethod<StringGetDefault200Response>;
+    options?: StringModelGetDefaultParameters
+  ): StreamableMethod<StringModelGetDefault200Response>;
   /** Put a body with default properties. */
   put(
-    options: StringPutDefaultParameters
-  ): StreamableMethod<StringPutDefault204Response>;
+    options: StringModelPutDefaultParameters
+  ): StreamableMethod<StringModelPutDefault204Response>;
 }
 
 export interface BytesGetAll {
@@ -216,48 +216,48 @@ export interface RequiredAndOptionalGetRequiredOnly {
 }
 
 export interface Routes {
-  /** Resource for '/models/properties/optional/string/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/string/all"): StringGetAll;
-  /** Resource for '/models/properties/optional/string/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/string/default"): StringGetDefault;
-  /** Resource for '/models/properties/optional/bytes/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/bytes/all"): BytesGetAll;
-  /** Resource for '/models/properties/optional/bytes/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/bytes/default"): BytesGetDefault;
-  /** Resource for '/models/properties/optional/datetime/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/datetime/all"): DatetimeGetAll;
-  /** Resource for '/models/properties/optional/datetime/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/datetime/default"): DatetimeGetDefault;
-  /** Resource for '/models/properties/optional/duration/all' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/duration/all"): DurationGetAll;
-  /** Resource for '/models/properties/optional/duration/default' has methods for the following verbs: get, put */
-  (path: "/models/properties/optional/duration/default"): DurationGetDefault;
-  /** Resource for '/models/properties/optional/collections/bytes/all' has methods for the following verbs: get, put */
+  /** Resource for '/type/property/optional/string/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/string/all"): StringModelGetAll;
+  /** Resource for '/type/property/optional/string/default' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/string/default"): StringModelGetDefault;
+  /** Resource for '/type/property/optional/bytes/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/bytes/all"): BytesGetAll;
+  /** Resource for '/type/property/optional/bytes/default' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/bytes/default"): BytesGetDefault;
+  /** Resource for '/type/property/optional/datetime/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/datetime/all"): DatetimeGetAll;
+  /** Resource for '/type/property/optional/datetime/default' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/datetime/default"): DatetimeGetDefault;
+  /** Resource for '/type/property/optional/duration/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/duration/all"): DurationGetAll;
+  /** Resource for '/type/property/optional/duration/default' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/duration/default"): DurationGetDefault;
+  /** Resource for '/type/property/optional/collections/bytes/all' has methods for the following verbs: get, put */
   (
-    path: "/models/properties/optional/collections/bytes/all"
+    path: "/type/property/optional/collections/bytes/all"
   ): CollectionsByteGetAll;
-  /** Resource for '/models/properties/optional/collections/bytes/default' has methods for the following verbs: get, put */
+  /** Resource for '/type/property/optional/collections/bytes/default' has methods for the following verbs: get, put */
   (
-    path: "/models/properties/optional/collections/bytes/default"
+    path: "/type/property/optional/collections/bytes/default"
   ): CollectionsByteGetDefault;
-  /** Resource for '/models/properties/optional/collections/model/all' has methods for the following verbs: get, put */
+  /** Resource for '/type/property/optional/collections/model/all' has methods for the following verbs: get, put */
   (
-    path: "/models/properties/optional/collections/model/all"
+    path: "/type/property/optional/collections/model/all"
   ): CollectionsModelGetAll;
-  /** Resource for '/models/properties/optional/collections/model/default' has methods for the following verbs: get, put */
+  /** Resource for '/type/property/optional/collections/model/default' has methods for the following verbs: get, put */
   (
-    path: "/models/properties/optional/collections/model/default"
+    path: "/type/property/optional/collections/model/default"
   ): CollectionsModelGetDefault;
-  /** Resource for '/models/properties/optional/requiredAndOptional/all' has methods for the following verbs: get, put */
+  /** Resource for '/type/property/optional/requiredAndOptional/all' has methods for the following verbs: get, put */
   (
-    path: "/models/properties/optional/requiredAndOptional/all"
+    path: "/type/property/optional/requiredAndOptional/all"
   ): RequiredAndOptionalGetAll;
-  /** Resource for '/models/properties/optional/requiredAndOptional/requiredOnly' has methods for the following verbs: get, put */
+  /** Resource for '/type/property/optional/requiredAndOptional/requiredOnly' has methods for the following verbs: get, put */
   (
-    path: "/models/properties/optional/requiredAndOptional/requiredOnly"
+    path: "/type/property/optional/requiredAndOptional/requiredOnly"
   ): RequiredAndOptionalGetRequiredOnly;
 }
 
-export type ModelsPropertyOptionalClient = Client & {
+export type TypePropertyOptionalClient = Client & {
   path: Routes;
 };
