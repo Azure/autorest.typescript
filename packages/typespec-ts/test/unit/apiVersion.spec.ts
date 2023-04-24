@@ -130,16 +130,18 @@ const buildDefaultReturn = (hasDefault: boolean) => {
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
   
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpoint type: string, The endpoint to use.
-   * @param options type: ClientOptions, the parameter for all optional parameters
+   * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
-    options: ClientOptions = {}
+    options: ClientOptions & InternalPipelineOptions = {}
   ): testClient {
     const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
     ${defaultDef}
@@ -154,6 +156,9 @@ const buildDefaultReturn = (hasDefault: boolean) => {
       userAgentOptions: {
         userAgentPrefix,
       },
+      loggingOptions: {
+        logger: logger.info,
+      },
     };
   
     const client = getClient(baseUrl, options) as testClient;
@@ -165,9 +170,11 @@ const buildDefaultReturn = (hasDefault: boolean) => {
 const buildPathReturn_WithDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
 
-  export interface testClientOptions extends ClientOptions {
+  export interface testClientOptions extends ClientOptions, InternalPipelineOptions {
     apiVersion?: string;
   }
   
@@ -193,6 +200,9 @@ const buildPathReturn_WithDefault = () => {
       userAgentOptions: {
         userAgentPrefix,
       },
+      loggingOptions: {
+        logger: logger.info,
+      },
     };
   
     const client = getClient(baseUrl, options) as testClient;
@@ -204,18 +214,20 @@ const buildPathReturn_WithDefault = () => {
 const buildPathReturn_WithoutDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
   
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpoint type: string, The endpoint to use.
    * @param apiVersion type: string, Api Version Possible values: 2022-05-15-preview
-   * @param options type: ClientOptions, the parameter for all optional parameters
+   * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
     apiVersion: string,
-    options: ClientOptions = {}
+    options: ClientOptions & InternalPipelineOptions = {}
   ): testClient {
     const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
 
@@ -228,6 +240,9 @@ const buildPathReturn_WithoutDefault = () => {
       ...options,
       userAgentOptions: {
         userAgentPrefix,
+      },
+      loggingOptions: {
+        logger: logger.info,
       },
     };
   
