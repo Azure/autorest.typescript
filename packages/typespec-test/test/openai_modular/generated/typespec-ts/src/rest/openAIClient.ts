@@ -3,7 +3,7 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
-import { logger } from "./logger";
+import { logger } from "./../logger";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { OpenAIContext } from "./clientDefinitions.js";
 

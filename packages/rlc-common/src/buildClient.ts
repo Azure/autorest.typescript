@@ -142,6 +142,9 @@ export function buildClient(model: RLCModel): File | undefined {
   }
   clientFile.addFunction(functionStatement);
 
+  const paths = srcPath.split(path.sep);
+  const parentPath = paths.length - 1 - paths.indexOf("src");
+
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
@@ -153,7 +156,7 @@ export function buildClient(model: RLCModel): File | undefined {
     },
     {
       namedImports: ["logger"],
-      moduleSpecifier: "./logger"
+      moduleSpecifier: `./${"../".repeat(parentPath)}logger`
     }
   ]);
 

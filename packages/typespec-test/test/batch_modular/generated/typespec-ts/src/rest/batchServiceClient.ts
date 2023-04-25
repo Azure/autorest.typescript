@@ -3,7 +3,7 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
-import { logger } from "./logger";
+import { logger } from "./../logger";
 import { TokenCredential } from "@azure/core-auth";
 import { BatchServiceContext } from "./clientDefinitions.js";
 
