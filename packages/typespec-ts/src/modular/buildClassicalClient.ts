@@ -91,6 +91,7 @@ function buildClientOperationGroups(
 
     const tempfile = new Project().createSourceFile("temp.ts");
 
+    operationDeclarations[3];
     const declarations = tempfile.addFunctions(operationDeclarations);
 
     if (operationGroupName) {
