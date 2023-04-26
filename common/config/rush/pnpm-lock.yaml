@@ -228,6 +228,20 @@ packages:
       '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
     dev: false
 
+  /@azure-tools/typespec-client-generator-core/0.30.0-dev.9_402126a56c0aec99e52d5c3ab81bd82d:
+    resolution: {integrity: sha512-kiMlynnvzH6Bj2nkfiUDmpAI6jjHslCiGOCgzbJZYPHhLUQ2M436lBI4cFZ2l3Kc+QP0fBsJ93fqC4fgG8stkQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@typespec/compiler': '>=0.43.0'
+      '@typespec/http': '>=0.43.1'
+      '@typespec/rest': '>=0.43.0'
+    dependencies:
+      '@typespec/compiler': 0.43.0
+      '@typespec/http': 0.43.1_@typespec+compiler@0.43.0
+      '@typespec/lint': 0.43.0_@typespec+compiler@0.43.0
+      '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
+    dev: false
+
   /@azure/abort-controller/1.1.0:
     resolution: {integrity: sha512-TrRLIoSQVzfAJX9H1JeFjzAoDGcoK1IYX1UImfceTZpsyYfWr09Ss1aHW1y5TrrR3iq6RZLBwJ3E24uwPhwahw==}
     engines: {node: '>=12.0.0'}
@@ -5886,7 +5900,7 @@ packages:
     dev: false
 
   file:projects/typespec-ts.tgz:
-    resolution: {integrity: sha512-tz4FZ2J0JWcdmK5ytyegPF9cWzgIzNUMQ5V7D1t8xbZJ2Zq/uLclYhQCobi9j6nd2mS91MUNLCjarZMXi2tJSQ==, tarball: file:projects/typespec-ts.tgz}
+    resolution: {integrity: sha512-ufjk6HQqAT284JdhvwU0DwEWFRBsVMQyXYpzYjN01fRi70IwBJze8sxWZrTFafLAPgiOraYDI5UtkJBgVJ3LdA==, tarball: file:projects/typespec-ts.tgz}
     name: '@rush-temp/typespec-ts'
     version: 0.0.0
     dependencies:
@@ -5896,7 +5910,7 @@ packages:
       '@azure-tools/cadl-ranch-specs': 0.14.2_bd61dc72c94e80567c8cb3296aa23ca2
       '@azure-tools/typespec-autorest': 0.29.0_dc07eaa457c0d0f9d1f8446f800dd756
       '@azure-tools/typespec-azure-core': 0.29.0_402126a56c0aec99e52d5c3ab81bd82d
-      '@azure-tools/typespec-client-generator-core': 0.29.0_402126a56c0aec99e52d5c3ab81bd82d
+      '@azure-tools/typespec-client-generator-core': 0.30.0-dev.9_402126a56c0aec99e52d5c3ab81bd82d
       '@azure/core-auth': 1.4.0
       '@azure/core-lro': 2.5.2
       '@azure/core-paging': 1.5.0

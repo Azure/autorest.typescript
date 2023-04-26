@@ -16,6 +16,7 @@ import {
   RLCModel,
   RLCOptions,
   Schema,
+  SchemaContext,
   UrlInfo
 } from "@azure-tools/rlc-common";
 import { Program, getDoc } from "@typespec/compiler";
@@ -128,11 +129,18 @@ export function transformUrlInfo(
         const property = host?.[0]?.parameters.get(key);
         const type = property?.type;
 
-        if (!type) {
+        if (!property || !type) {
           continue;
         }
 
-        const schema = getSchemaForType(program, type);
+        const schema = getSchemaForType(
+          program,
+          dpgContext,
+          type,
+          [SchemaContext.Exception, SchemaContext.Input],
+          false,
+          property!
+        );
         urlParameters.push({
           name: key,
           type: getTypeName(schema),

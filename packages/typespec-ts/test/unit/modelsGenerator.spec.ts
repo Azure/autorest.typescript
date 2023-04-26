@@ -718,8 +718,143 @@ describe("Input/output model type", () => {
     });
   });
   describe("duration generation", () => {
-    it("should handle duration -> string", async () => {
-      await verifyPropertyType("duration", "string");
+    const buildParameterDef = (type: string) => {
+      return `
+      import { RequestParameters } from "@azure-rest/core-client";
+      
+      export interface GetModelQueryParamProperties {
+        "input": ${type};
+      }
+
+      export interface GetModelQueryParam {
+        queryParameters: GetModelQueryParamProperties;
+      }
+      
+      export type GetModelParameters = GetModelQueryParam & RequestParameters;
+      `;
+    };
+
+    describe("as input and output model property", () => {
+      it("should handle duration without format", async () => {
+        await verifyPropertyType("duration", "string");
+      });
+
+      it("should handle duration with format `seconds`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        model SimpleModel {
+          @Azure.ClientGenerator.Core.clientFormat("seconds")
+          prop: duration;
+        }
+        @route("/duration/prop/seconds")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": number;
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": number;
+        }
+        `
+        );
+      });
+
+      it("should handle duration with format `iso8601`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        model SimpleModel {
+          @Azure.ClientGenerator.Core.clientFormat("iso8601")
+          prop: duration;
+        }
+        @route("/duration/prop/iso8601")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        console.log(inputModelFile, outputModelFile);
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": string;
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": string;
+        }
+        `
+        );
+      });
+    });
+
+    describe("as query parameter", () => {
+      it("should handle duration without format", async () => {
+        const schemaOutput = await emitParameterFromCadl(`
+        @route("/duration/query/default")
+        @get
+        op getModel(@query input: duration): NoContentResponse;
+        `);
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+      });
+
+      it("should handle duration with format `seconds`", async () => {
+        const schemaOutput = await emitParameterFromCadl(
+          `
+        @route("/duration/query/seconds")
+        @get
+        op getModel(
+          @query
+          @Azure.ClientGenerator.Core.clientFormat("seconds")
+          input: duration): NoContentResponse;
+        `,
+          false,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("number"));
+      });
+
+      it("should handle duration with format `iso8601`", async () => {
+        const schemaOutput = await emitParameterFromCadl(
+          `
+        @route("/duration/query/iso8601")
+        @get
+        op getModel(
+          @query
+          @Azure.ClientGenerator.Core.clientFormat("iso8601")
+          input: duration): NoContentResponse;
+        `,
+          false,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+      });
     });
   });
   describe("datetime generation", () => {
