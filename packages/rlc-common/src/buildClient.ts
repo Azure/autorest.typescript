@@ -108,7 +108,10 @@ export function buildClient(model: RLCModel): File | undefined {
     ...commonClientParams,
     {
       name: "options",
-      type: `${clientOptionsInterface?.name ?? "ClientOptions & InternalPipelineOptions"} = {}`,
+      type: `${
+        clientOptionsInterface?.name ??
+        "ClientOptions & InternalPipelineOptions"
+      } = {}`,
       description: "the parameter for all optional parameters"
     }
   ];
@@ -142,8 +145,9 @@ export function buildClient(model: RLCModel): File | undefined {
   }
   clientFile.addFunction(functionStatement);
 
-  const paths = srcPath.split(path.sep);
-  const parentPath = paths.length - 1 - paths.indexOf("src");
+  const paths = srcPath.replace(/\/$/, "").split(path.sep);
+  const parentPath =
+    paths.lastIndexOf("src") > -1 ? paths.length - 1 - paths.lastIndexOf("src") : 0;
 
   clientFile.addImportDeclarations([
     {
