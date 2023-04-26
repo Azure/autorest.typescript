@@ -18,7 +18,7 @@ export class ResponseClient {
         this._client = createResponse(endpoint, options);
     }
 
-    createOrUpdate(options: CreateWithHeadersOptions = {}): Promise<ResponseResource> {
+    createWithHeaders(options: CreateWithHeadersOptions = {}): Promise<ResponseResource> {
         return createWithHeaders(this._client, options);
     }
 }
