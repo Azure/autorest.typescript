@@ -39,7 +39,7 @@ function getClientOptionsInterface(
 
   return {
     name: `${clientName}Options`,
-    extends: ["ClientOptions", "InternalPipelineOptions"],
+    extends: ["ClientOptions"],
     isExported: true,
     properties
   };
@@ -108,10 +108,7 @@ export function buildClient(model: RLCModel): File | undefined {
     ...commonClientParams,
     {
       name: "options",
-      type: `${
-        clientOptionsInterface?.name ??
-        "ClientOptions & InternalPipelineOptions"
-      } = {}`,
+      type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`,
       description: "the parameter for all optional parameters"
     }
   ];
@@ -147,7 +144,9 @@ export function buildClient(model: RLCModel): File | undefined {
 
   const paths = srcPath.replace(/\/$/, "").split(path.sep);
   const parentPath =
-    paths.lastIndexOf("src") > -1 ? paths.length - 1 - paths.lastIndexOf("src") : 0;
+    paths.lastIndexOf("src") > -1
+      ? paths.length - 1 - paths.lastIndexOf("src")
+      : 0;
 
   clientFile.addImportDeclarations([
     {
@@ -155,12 +154,10 @@ export function buildClient(model: RLCModel): File | undefined {
       moduleSpecifier: "@azure-rest/core-client"
     },
     {
-      namedImports: ["InternalPipelineOptions"],
-      moduleSpecifier: "@azure/core-rest-pipeline"
-    },
-    {
       namedImports: ["logger"],
-      moduleSpecifier: `./${"../".repeat(parentPath)}logger`
+      moduleSpecifier: `${
+        parentPath > 0 ? "./" : "../".repeat(parentPath)
+      }logger`
     }
   ]);
 
