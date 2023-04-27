@@ -5,7 +5,7 @@ import { Resource } from './models.js';
 
 export interface CreateOrUpdateOptions {
     requestOptions?: RequestOptions;
-    body?: Resource;
+    description?: string;
     /** Body parameter Content-Type. Known values are: application/json. */
     content_type?: string;
 }
@@ -13,6 +13,7 @@ export interface CreateOrUpdateOptions {
 export async function createOrUpdate(
     context: CoreClient.CoreContext,
     name: string,
+    type: string,
     options: CreateOrUpdateOptions = { requestOptions: {} }
 ): Promise<Resource> {
     const result = await context.path('/cadl-core/resources/{name}', name).put({
@@ -22,7 +23,9 @@ export async function createOrUpdate(
             ...options.requestOptions?.headers,
         },
         body: {
-            ...(options.body ?? {}),
+            name,
+            type,
+            description: options.description,
         },
     });
     if (isUnexpected(result)) {

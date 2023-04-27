@@ -5,13 +5,15 @@ import { Resource } from './models.js';
 
 export interface CreateWithHeadersOptions {
     requestOptions?: RequestOptions;
-    body?: Resource;
+    description?: string;
     /** Body parameter Content-Type. Known values are: application/json. */
     content_type?: string;
 }
 
 export async function createWithHeaders(
     context: ResponseClient.ResponseContext,
+    name: string,
+    type: string,
     options: CreateWithHeadersOptions = { requestOptions: {} }
 ): Promise<Resource> {
     const result = await context.path("/response/create-with-headers").put({
@@ -21,7 +23,9 @@ export async function createWithHeaders(
             ...options.requestOptions?.headers,
         },
         body: {
-            ...(options.body ?? {}),
+            name,
+            type,
+            description: options.description,
         },
     });
     if (isUnexpected(result)) {
@@ -31,4 +35,8 @@ export async function createWithHeaders(
     return {
         ...result.body,
     };
+}
+
+export async function GetBinary(): Promise<Uint8Array> {
+
 }
